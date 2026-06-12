@@ -1369,6 +1369,92 @@
         "SUPER-ADDITIVITY MARGIN (pre-registered, statistical not absolute): with R1-R3 satisfied, PASS requires integrated-arm score (world-model R2 + affordance accuracy) MINUS additive baseline (sum of isolated marginal gains) > 2 x across-seed SD of the baseline, on >= 2/3 seeds. Positive-but-below-margin = inconclusive/additive-only (NOT weakens). At-or-below baseline with R1-R3 satisfied and mean gradient cosine >= 0 = genuine FAIL (integration merely additive). REGIME CAVEAT (Kumaran 2016 schema-consistency + Caruana 1997 relatedness): the INTEGRATED-PAIR arm must pair modules whose features genuinely overlap (E1<->E2 is the registered overlap instance) with that relatedness pre-registered, so a null is not misattributed to integration failure when it is module-unrelatedness."
       ],
       "notes": "Source: docs/thoughts/2026-06-12_cognifold_cross_pollination_and_language_stream.md. Topic 2 (E1<->E2 feature overlap) is the INTEGRATED-PAIR arm, not a separate experiment. READINESS GATE NOW SET by lit-pull evidence/literature/targeted_review_mech_423_integration_prerequisites (2026-06-12; MECH-423 literature_confidence 0->0.848, plausible_unproven quadrant) -- the previously PENDING acceptance_check is replaced with concrete R1/R2/R3 thresholds (gradient-cosine coupling + inference convergence + active interleaved replay) grounded in CLS (McClelland 1995 / Kumaran 2016), amortized inference (Gershman & Goodman 2014), and the multitask-transfer/negative-transfer literature (Caruana 1997 / Yu PCGrad 2020). This proposal is now READY to be handed to /queue-experiment, but per Daniel 2026-06-12 the queuing step is deliberately deferred to a later session (this session only set the gate, did not queue). The /queue-experiment Step-2.5 substrate check must verify the R1/R2/R3 instrumentation is actually wired into the V3 eval path before queuing -- if the shared-latent gradient/inference-convergence/cross-module-replay-share readouts do not yet exist in ree-v3, the proposal self-routes blocked_substrate rather than producing a vacuous probe."
+    },
+    {
+      "proposal_id": "EXP-0384",
+      "claim_id": "MECH-426",
+      "related_claims": [
+        "MECH-426",
+        "INV-086",
+        "INV-034",
+        "MECH-217",
+        "MECH-116"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "queue_id": null,
+      "script_path": null,
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 120,
+      "machine_affinity": "any",
+      "registered_utc": "2026-06-12",
+      "objective": "Test MECH-426: does a rate-of-progress (velocity) signal -- the derivative of an on-path bootstrapped progress estimate -- sustain superordinate-goal commitment between sparse terminal confirmations? Does ablating it degrade long-horizon maintenance SPECIFICALLY in the sparse-confirmation regime?",
+      "design": "2x2 multi-arm ablation in a long-horizon task tuned so MECH-116 working-memory goal-maintenance has measurably DECAYED (distractor load / extended horizon -- the regime INV-086 is scoped to). Factor 1: VELOCITY-ON (progress-derivative modulates commitment/effort) vs VELOCITY-OFF (signal ablated, goal representation + proxy-wanting landscape held intact). Factor 2: SPARSE-confirmation vs DENSE-confirmation. Metric: superordinate-goal completion rate + z_goal commitment-persistence. Prediction: VELOCITY-OFF degrades maintenance in the SPARSE arm but not the DENSE arm (where velocity adds no information). Model velocity as EFFORT-REGULATION (Carver&Scheier coasting), NOT same-goal reinforcement.",
+      "acceptance_checks": [
+        "PASS: VELOCITY-OFF lowers superordinate-goal completion / commitment-persistence vs VELOCITY-ON in the SPARSE-confirmation regime, with no comparable drop in the DENSE regime, on >=2/3 seeds.",
+        "FAIL: VELOCITY-OFF leaves maintenance unchanged in the sparse regime (the velocity signal is not load-bearing for maintenance).",
+        "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): (a) the bare-goal control must itself show WM-maintenance DECAY in the chosen regime [z_goal persistence below baseline threshold; else the test is vacuous since unscaffolded z_goal persists ~1000 steps -- strand-I]; (b) the velocity signal must have NON-ZERO cross-condition RANGE [not magnitude-only / range-zero -- the V3-EXQ-643 affect-must-be-candidate-differentiated lesson]; check_degeneracy non_degenerate=false on either failing.",
+        "DIRECTION CAVEAT: read PASS/FAIL in the effort-regulation (coasting) direction. A design that rewards same-goal commitment for positive progress inverts Carver&Scheier and is mis-specified."
+      ],
+      "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Carver&Scheier1990 velocity loop; Sutton1988 bootstrapped progress estimate). FOLDS the on_path_progress_inference candidate (the bootstrapped estimate is the substrate the velocity is taken over). Hand to /queue-experiment; Step-2.5 must verify a progress-derivative readout + a WM-decay regime exist in the V3 eval path, else blocked_substrate."
+    },
+    {
+      "proposal_id": "EXP-0385",
+      "claim_id": "MECH-427",
+      "related_claims": [
+        "MECH-427",
+        "INV-086",
+        "ARC-051",
+        "MECH-217",
+        "INV-034"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "queue_id": null,
+      "script_path": null,
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 120,
+      "machine_affinity": "any",
+      "registered_utc": "2026-06-12",
+      "objective": "Test MECH-427: does a discrete SUBGOAL-attainment event propagate credit UP the hierarchy to the SUPERORDINATE goal, lifting parent-goal commitment above a matched no-attainment control? (Cross-LEVEL credit, vs MECH-217's along-trajectory within-level spread.)",
+      "design": "Hierarchical task where concrete subgoals serve a superordinate goal. Matched-trajectory contrast: ARM ATTAINED (the agent reaches a subgoal) vs ARM NO-ATTAINMENT (same trajectory length / same superordinate goal, subgoal not reached) -- controlled so the only difference is the attainment event. Metric: parent superordinate-goal commitment (parent z_goal norm / persistence) measured AFTER the event window. Prediction: subgoal attainment lifts parent commitment; the bare distal goal alone (no-attainment) shows no lift (Bandura&Schunk1981: distal-alone ~= no goal).",
+      "acceptance_checks": [
+        "PASS: parent superordinate-goal commitment is higher post-event in ARM ATTAINED than ARM NO-ATTAINMENT, on >=2/3 seeds.",
+        "FAIL: subgoal attainment produces no parent-commitment lift despite a non-zero attainment rate (no cross-level credit).",
+        "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): subgoals must be ATTAINED at a NON-ZERO rate in ARM ATTAINED [else there is nothing to credit -- the goal_pipeline:GAP-2 foraging/benefit-contact-ceiling trap]; AND parent z_goal must be live (non-floor) so a lift is measurable; check_degeneracy non_degenerate=false otherwise."
+      ],
+      "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Bandura&Schunk1981 proximal-subgoal distal motivation; goal-gradient Hull1932/Kivetz2006). Cross-level UP-credit channel that ARC-051 does not currently carry. Hand to /queue-experiment; Step-2.5 must verify the substrate can produce non-zero subgoal-attainment (cf. GAP-2 foraging ceiling) before queuing."
+    },
+    {
+      "proposal_id": "EXP-0386",
+      "claim_id": "INV-087",
+      "related_claims": [
+        "INV-087",
+        "INV-065",
+        "INV-086"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "queue_id": null,
+      "script_path": null,
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 10,
+      "machine_affinity": "any",
+      "registered_utc": "2026-06-12",
+      "objective": "Test INV-087: does an UNTETHERED (non-potential) maintenance proxy divert E3 selection AWAY from the clean-goal optimum, while a POTENTIAL-based proxy (gamma*Phi(s')-Phi(s), Ng et al.) over the same goal-proximity leaves the optimum intact?",
+      "design": "Controlled E3-selection probe in the V3-EXQ-674 family (no env / no training -> avoids monostrategy / z_goal-collapse confounds). Identical base score landscape across arms. ARM CTRL: no proxy. ARM NON-POTENTIAL: a raw progress bonus (a non-potential function of goal-proximity) added to the per-candidate score landscape. ARM POTENTIAL: a potential-difference proxy gamma*Phi(s')-Phi(s) over the SAME proximity Phi. Metric: TRUE (clean-landscape) quality of the E3-selected candidate. Prediction: NON-POTENTIAL drops selected true-quality vs CTRL (behaviour diverted); POTENTIAL preserves it (policy-invariant per Ng/Harada/Russell1999).",
+      "acceptance_checks": [
+        "PASS: selected-candidate true-quality is LOWER under ARM NON-POTENTIAL than CTRL, AND ARM POTENTIAL is statistically indistinguishable from CTRL, on >=2/3 seeds (the dissociation: untethered diverts, tethered does not).",
+        "FAIL: the non-potential proxy does NOT lower selected true-quality (the tethering constraint is not load-bearing on this substrate), OR the potential proxy also diverts (the potential construction is mis-specified).",
+        "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): the clean-goal optimum must be DISCRIMINABLE -- selected-candidate true-quality must have non-zero range across proxy conditions on the identical base landscape [else there is no optimum to divert from]; the uncommitted (multinomial) E3 regime must be active per the 674 finding [temperature-blind argmin branch would mask the effect]; check_degeneracy non_degenerate=false otherwise."
+      ],
+      "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). THE standout new capture -- REE owns proxy-goal NECESSITY (INV-065) but not the alignment GUARD. Directly buildable on the V3-EXQ-674 E3-selection-probe shape (real e3.select(), injected score_bias landscape over an identical base). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Ng/Harada/Russell1999 potential-based policy-invariance; Skalse2022 restricted-policy tractability). Hand to /queue-experiment."
     }
   ]
 }

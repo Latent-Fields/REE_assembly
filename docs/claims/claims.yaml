@@ -41688,3 +41688,238 @@
     REINSTATEMENT is uncovered by the existing precision cluster (MECH-251/254/255/259/347 all act on current
     perception / candidate selection / goal templates, not stored-trace read-out). The gain x suppression
     INTERACTION is registered separately as Q-076. V4/V5-leaning, OFF the V3 critical path. DO NOT build in V3.
+
+- id: INV-086
+  title: goal_maintenance_feedback_necessity
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-030
+    - SD-014
+  pending_substrate_reconfirmation: true
+  status: candidate
+  subject: goal.maintenance_feedback_necessity
+  polarity: asserts
+  depends_on: [INV-065, INV-034, MECH-116, MECH-217, ARC-030, SD-014]
+  registered: "2026-06-12"
+  description: >
+    Beyond the horizon over which recurrent working-memory maintenance (MECH-116)
+    suffices, sustaining a SUPERORDINATE goal across the interval between sparse
+    terminal confirmations requires INTERMEDIATE FEEDBACK signals -- a progress-proxy
+    (MECH-216/217), a predicted-subgoal / on-path progress estimate (MECH-426), or
+    cross-level subgoal credit (MECH-427). A bare goal held only as a recurrent
+    working-memory trace decays in long-horizon, distractor-laden, or effortful
+    regimes; intermediate feedback is what keeps the superordinate goal committed
+    across the gap. This is the MAINTENANCE-necessity parallel to INV-065's
+    REACHABILITY-necessity: INV-065 says proxy goals are required to PLAN toward a
+    distal target beyond the CEM horizon; INV-086 says feedback signals are required
+    to HOLD that target committed when terminal confirmation is sparse. It is the
+    mechanism-face of INV-034 (why maintenance matters: ethical agency) and INV-053
+    (its failure: depression).
+  notes: >
+    Scoped explicitly PAST MECH-116. MECH-116 establishes that E1's LSTM hidden state
+    maintains goal context recurrently WITHOUT ongoing benefit signals -- passive
+    working-memory maintenance. In current V3 that suffices: z_goal persists ~1000
+    steps unscaffolded (the strand-I counter-datum from the lit-pull). INV-086 is
+    therefore NOT a claim that bare goals always decay -- it is the claim that BEYOND
+    the WM-maintenance horizon (under distractor load, effort cost, or sparse
+    confirmation) feedback-scaffolding becomes NECESSARY. Without the regime scoping
+    the claim is vacuous-by-construction on the current substrate. The feedback
+    channels (MECH-216/217 proxy-wanting, MECH-426 progress-velocity, MECH-427
+    subgoal-credit) are the candidate scaffolds; INV-086 is their shared parent.
+    Distinct from INV-034 (normative: maintenance necessary for agency) and INV-053
+    (clinical: maintenance failure = depression) -- those say WHY maintenance matters;
+    INV-086 says HOW long-horizon maintenance is achieved. Cross-link:
+    evidence/planning/goal_pipeline_plan.md. Grounded by
+    evidence/literature/targeted_review_proxy_progress_goal_maintenance
+    (Carver&Scheier1990, Bandura&Schunk1981, Sutton1988). Intake: proxy/progress
+    goal-maintenance (Daniel 2026-06-12).
+  what_would_answer: >
+    In a regime where MECH-116 working-memory maintenance has MEASURABLY DECAYED
+    (superordinate-goal z_goal persistence falls below a baseline threshold under
+    distractor/horizon/effort load -- the NON-DEGENERACY PRECONDITION: the bare-goal
+    control must itself show decay, else the test is vacuous since unscaffolded z_goal
+    already persists ~1000 steps), ablating ALL intermediate feedback channels
+    (proxy-wanting MECH-216/217 + progress-velocity MECH-426 + subgoal-credit
+    MECH-427) collapses superordinate-goal completion rate, while restoring ANY single
+    channel rescues it. FAIL = completion rate unchanged by feedback ablation
+    (maintenance is purely WM-driven; the feedback-necessity thesis is false in this
+    regime). The discriminating metric (completion-rate delta full-vs-all-ablated)
+    must have non-zero cross-seed range or the run self-routes substrate_not_ready.
+
+- id: MECH-426
+  title: progress_velocity_maintenance
+  claim_type: mechanism
+  status: candidate
+  subject: goal.progress_velocity_maintenance
+  implementation_phase: v3
+  depends_on: [INV-086, INV-034, MECH-217, MECH-116]
+  registered: "2026-06-12"
+  description: >
+    A rate-of-progress (velocity) signal -- the temporal derivative of an on-path
+    progress estimate over goal-proximity -- produces a modulatory signal that
+    sustains superordinate-goal commitment between sparse terminal confirmations. The
+    on-path progress estimate is itself a bootstrapped value / forward-model readout
+    (the "predicted subgoal / inference" face of the intake, folded in here): the
+    agent infers it is on-trajectory via a TD-style bootstrapped estimate
+    (Sutton 1988), and the DERIVATIVE of that estimate -- am I closing the gap, and
+    how fast -- is the maintenance signal. This is the REE instantiation of the
+    Carver & Scheier (1990) second-order ("velocity") control loop, in which affect is
+    generated from the RATE of discrepancy reduction rather than the discrepancy
+    itself.
+  notes: >
+    FOLDS the candidate on_path_progress_inference (intake strand D): the bootstrapped
+    on-path estimate is the SUBSTRATE the velocity signal is differentiated over, not a
+    separate claim. A value/forward-model head over an IMPOVERISHED or non-Markov
+    latent yields a BIASED progress estimate = an untethered proxy -- that failure mode
+    is the prediction cross-referenced to INV-087 (proxy_tethering_constraint).
+    CRITICAL MODELLING CAVEAT (Carver&Scheier coasting): above-reference progress
+    produces positive affect that REDUCES effort on the current goal and licenses
+    redeployment -- velocity must be modelled as EFFORT-REGULATION, NOT same-goal
+    reinforcement. A naive implementation treating positive progress-affect as a bonus
+    increasing same-goal commitment INVERTS the theory and will mis-fire. Distinct from
+    MECH-217 (which BUILDS the wanting landscape via reverse replay); MECH-426 READS a
+    derivative of progress at decision time to modulate commitment. Grounded by
+    targeted_review_proxy_progress_goal_maintenance (Carver&Scheier1990, Sutton1988).
+    Proposal: EXP-0384.
+  what_would_answer: >
+    Ablate the rate-of-progress (velocity) signal while holding the proxy-wanting
+    landscape and the goal representation intact; long-horizon superordinate-goal
+    maintenance degrades SPECIFICALLY in the sparse-confirmation regime (completion
+    rate / commitment-persistence drops vs the velocity-intact arm), and the effect is
+    absent in the dense-confirmation regime where velocity adds no information.
+    NON-DEGENERACY: the velocity signal must have non-zero cross-condition RANGE (not
+    magnitude-only / range-zero -- the V3-EXQ-643 "affect must be candidate-
+    differentiated" lesson); a range-zero velocity self-routes substrate_not_ready, not
+    a verdict. PASS/FAIL read in the effort-regulation (coasting) direction, NOT as
+    same-goal reinforcement.
+
+- id: MECH-427
+  title: cross_level_subgoal_credit
+  claim_type: mechanism
+  status: candidate
+  subject: goal.cross_level_subgoal_credit
+  implementation_phase: v3
+  depends_on: [INV-086, ARC-051, MECH-217, INV-034]
+  registered: "2026-06-12"
+  description: >
+    Attaining a concrete SUBGOAL propagates credit / commitment UP the goal hierarchy
+    to the SUPERORDINATE goal it serves, reinforcing maintenance of the parent goal.
+    This is the cross-LEVEL complement to MECH-217: MECH-217 spreads wanting backward
+    ALONG a single approach trajectory (within a level); MECH-427 propagates a discrete
+    subgoal-attainment EVENT upward to the parent goal representation. The empirical
+    anchor is Bandura & Schunk (1981): decomposing a distal goal into attainable
+    proximal subgoals sustained motivation and mastery, whereas the bare distal goal
+    alone behaved indistinguishably from NO goal -- the superordinate goal is
+    maintained THROUGH subgoal attainment.
+  notes: >
+    Distinct from MECH-217 (along-trajectory, within-level wanting spread) and from
+    MECH-426 (continuous velocity derivative): MECH-427 is a DISCRETE-event credit
+    propagation ACROSS hierarchy levels. Extends ARC-051's emergent multi-level
+    hierarchy with an UP-level credit channel ARC-051 does not currently carry
+    (ARC-051's three levels all feed the SAME field but there is no parent-credit
+    propagation). Grounded by targeted_review_proxy_progress_goal_maintenance
+    (Bandura&Schunk1981; goal-gradient Hull1932 / Kivetz2006). Proposal: EXP-0385.
+  what_would_answer: >
+    A discrete subgoal-attainment event raises measured commitment to the PARENT
+    superordinate goal (parent z_goal norm / persistence) above a matched
+    no-subgoal-attainment control on the same trajectory; the bare distal goal alone
+    shows no such lift. NON-DEGENERACY: subgoals must actually be attained at a
+    NON-ZERO rate in the run (else there is nothing to credit -- the goal_pipeline
+    GAP-2 foraging/benefit-contact-ceiling trap; a zero-attainment run self-routes
+    substrate_not_ready, not a FAIL). FAIL = subgoal attainment produces no parent
+    commitment lift despite a non-zero attainment rate.
+
+- id: INV-087
+  title: proxy_tethering_constraint
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-014
+    - SD-015
+  pending_substrate_reconfirmation: true
+  status: candidate
+  subject: goal.proxy_tethering_constraint
+  polarity: asserts
+  depends_on: [INV-065, INV-086, SD-014, SD-015]
+  registered: "2026-06-12"
+  description: >
+    Any intermediate maintenance/progress proxy that sustains a superordinate goal
+    carries a DIVERGENCE risk (Goodhart / reward-hacking): optimizing the proxy can
+    pull behaviour AWAY from the superordinate goal it was meant to serve, UNLESS the
+    proxy is tethered. The tethering constraint has a precise form -- an additive
+    maintenance proxy leaves the true-goal optimal policy INVARIANT iff it approximates
+    a POTENTIAL DIFFERENCE over goal-proximity, F = gamma*Phi(s') - Phi(s)
+    (Ng, Harada & Russell 1999), the only additive shaping form that is policy-
+    invariant under all dynamics. Equivalently, an untethered (non-potential) proxy is
+    trustworthy only over a RESTRICTED policy manifold (Skalse et al. 2022): over all
+    stochastic policies a non-trivial never-diverging proxy essentially cannot exist,
+    but over the structured manifold a biologically-motivated agent occupies
+    (homeostatic drives, harm constraints, bounded planning) aligned proxies DO exist.
+    REE owns proxy-goal NECESSITY (INV-065); INV-087 is the missing alignment GUARD.
+  notes: >
+    The standout new capture: the existing cluster (INV-065/MECH-216/217/ARC-051)
+    establishes that proxy goals are necessary and how they form, but nothing
+    constrains them to stay ALIGNED with the superordinate goal. The guard matters most
+    for an ethics-load-bearing architecture (INV-034) -- an untethered maintenance
+    proxy is exactly the route by which a goal-maintaining agent drifts from the goal.
+    Transfer caveat: the Ng et al. invariance is exact only for a stationary,
+    state-only potential; REE's maintenance proxy is learned and non-stationary, so the
+    potential form is a DESIGN TARGET / limiting-case certificate, not an off-the-shelf
+    guarantee. The Skalse restricted-policy result is what makes tethering TRACTABLE in
+    REE's setting. Ties to MECH-426 (a biased-latent progress estimate IS an untethered
+    proxy). Grounded by targeted_review_proxy_progress_goal_maintenance
+    (Ng/Harada/Russell1999, Skalse2022). Proposal: EXP-0386.
+  what_would_answer: >
+    Inject a maintenance proxy that is NOT a potential difference over goal-proximity
+    (e.g. a raw progress bonus) into the E3 selection landscape and show it shifts the
+    selected-candidate distribution AWAY from the clean-goal optimum (true-goal quality
+    of the selected candidate drops), while a potential-based proxy
+    (gamma*Phi(s')-Phi(s)) over the SAME proximity leaves the clean-goal optimum
+    intact. NON-DEGENERACY: the clean-goal optimum must be discriminable -- selected-
+    candidate true-quality must have non-zero range across proxy conditions on an
+    identical base landscape (else nothing to divert). Tractable as a controlled
+    E3-selection probe in the V3-EXQ-674 family (no env / no training -> avoids the
+    monostrategy / z_goal-collapse confounds). FAIL = the non-potential proxy does NOT
+    divert behaviour (tethering constraint not load-bearing on this substrate).
+
+- id: ARC-105
+  title: granularity_matched_goal_hierarchy
+  claim_type: architecture_hypothesis
+  status: candidate
+  epistemic_category: substrate_conditional
+  subject: goal.granularity_matched_hierarchy
+  implementation_phase: v4
+  depends_on: [ARC-051, INV-086]
+  registered: "2026-06-12"
+  description: >
+    A superordinate goal and its concrete subgoals are represented at DISTINCT,
+    DISCRETE granularity levels (not a single continuous granularity scalar), and
+    maintaining the abstract superordinate goal WHILE executing concrete subgoals is
+    supported by this cross-level representational organization. The biological anchor
+    is the rostro-caudal abstraction gradient in lateral prefrontal cortex
+    (Badre & D'Esposito 2009): rostral PFC holds abstract/superordinate goals, caudal
+    PFC concrete action rules, with asymmetric top-down control. Per the 2018 revision
+    (Badre & Nee) the organization is best modelled as a SMALL NUMBER OF DISCRETE zones
+    (~3: schematic / contextual / sensorimotor), NOT a continuous gradient -- so the
+    REE claim is written DISCRETE.
+  notes: >
+    V4 / substrate_conditional: REE-v3 has no explicit multi-scale goal-representation
+    substrate (z_goal is single-scale). Extends ARC-051's emergent multi-LEVEL wanting
+    hierarchy (whose levels are wanting-SOURCE scales: contact/schema/replay) with an
+    ORTHOGONAL axis -- the representational GRANULARITY of the goal itself (abstract-
+    goal vs concrete-subgoal encoding). OFF the V3 critical path: do not build in V3;
+    promote only on a specific failure that a single-scale z_goal cannot represent
+    abstract-goal maintenance under subgoal switching. Written DISCRETE (~3 zones) per
+    Badre&Nee2018, NOT continuous. Grounded by
+    targeted_review_proxy_progress_goal_maintenance (Badre&D'Esposito2009 + 2018
+    caveat). No EXP proposal (V4-blocked).
+  what_would_answer: >
+    PRECONDITION UNMET in V3 (substrate_conditional): requires a multi-scale goal-
+    representation substrate that does not yet exist. Once built: superordinate-goal
+    maintenance survives concrete-subgoal SWITCHING iff the abstract goal is encoded at
+    a granularity level DISTINCT from the subgoal; collapsing both to one level causes
+    abstract-goal loss on subgoal switch (the abstract goal is overwritten by the
+    concrete subgoal it should outlive). FAIL = abstract-goal maintenance is
+    independent of single- vs multi-level representation (granularity matching not
+    load-bearing). Until the substrate exists this self-routes substrate_not_ready.

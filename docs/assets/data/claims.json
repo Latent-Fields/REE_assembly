@@ -727,6 +727,14 @@
     "title": "Language-cannot-override-harm guard (language-input level): symbolic/linguistic input may CONDITION priors, but the harm/ethics substrate retains veto authority over any language-mediated update. There must be NO path by which symbolic/linguistic content overwrites or suppresses a harm signal. Operationalises the universal invariant INV-007 as an explicit guard a design can violate.",
     "type": "architectural_commitment"
   },
+  "ARC-105": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.granularity_matched_hierarchy",
+    "title": "granularity_matched_goal_hierarchy",
+    "type": "architecture_hypothesis",
+    "what_would_answer": "PRECONDITION UNMET in V3 (substrate_conditional): requires a multi-scale goal- representation substrate that does not yet exist. Once built: superordinate-goal maintenance survives concrete-subgoal SWITCHING iff the abstract goal is encoded at a granularity level DISTINCT from the subgoal; collapsing both to one level causes abstract-goal loss on subgoal switch (the abstract goal is overwritten by the concrete subgoal it should outlive). FAIL = abstract-goal maintenance is independent of single- vs multi-level representation (granularity matching not load-bearing). Until the substrate exists this self-routes substrate_not_ready.\n"
+  },
   "EXT-001": {
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -1790,6 +1798,34 @@
     "subject": "language.parsed_affect_is_uncertain_hypothesis",
     "title": "Uncertainty-propagation invariant: affect recovered from language MUST enter agent-state modelling as a probability distribution (an uncertain other-agent prior), NEVER as a categorical emotion truth, and must remain overridable by the agent's own grounded harm/threat streams. Any path that lets a confident text label override grounded harm sensing violates this invariant.",
     "type": "invariant"
+  },
+  "INV-086": {
+    "emergent_from": [
+      "ARC-030",
+      "SD-014"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "goal.maintenance_feedback_necessity",
+    "title": "goal_maintenance_feedback_necessity",
+    "type": "invariant",
+    "what_would_answer": "In a regime where MECH-116 working-memory maintenance has MEASURABLY DECAYED (superordinate-goal z_goal persistence falls below a baseline threshold under distractor/horizon/effort load -- the NON-DEGENERACY PRECONDITION: the bare-goal control must itself show decay, else the test is vacuous since unscaffolded z_goal already persists ~1000 steps), ablating ALL intermediate feedback channels (proxy-wanting MECH-216/217 + progress-velocity MECH-426 + subgoal-credit MECH-427) collapses superordinate-goal completion rate, while restoring ANY single channel rescues it. FAIL = completion rate unchanged by feedback ablation (maintenance is purely WM-driven; the feedback-necessity thesis is false in this regime). The discriminating metric (completion-rate delta full-vs-all-ablated) must have non-zero cross-seed range or the run self-routes substrate_not_ready.\n"
+  },
+  "INV-087": {
+    "emergent_from": [
+      "SD-014",
+      "SD-015"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "goal.proxy_tethering_constraint",
+    "title": "proxy_tethering_constraint",
+    "type": "invariant",
+    "what_would_answer": "Inject a maintenance proxy that is NOT a potential difference over goal-proximity (e.g. a raw progress bonus) into the E3 selection landscape and show it shifts the selected-candidate distribution AWAY from the clean-goal optimum (true-goal quality of the selected candidate drops), while a potential-based proxy (gamma*Phi(s')-Phi(s)) over the SAME proximity leaves the clean-goal optimum intact. NON-DEGENERACY: the clean-goal optimum must be discriminable -- selected- candidate true-quality must have non-zero range across proxy conditions on an identical base landscape (else nothing to divert). Tractable as a controlled E3-selection probe in the V3-EXQ-674 family (no env / no training -> avoids the monostrategy / z_goal-collapse confounds). FAIL = the non-potential proxy does NOT divert behaviour (tethering constraint not load-bearing on this substrate).\n"
   },
   "MECH-001": {
     "epistemic_stance": "believed",
@@ -4817,6 +4853,22 @@
     "title": "Retrieval-time accessibility gating: which stored traces become reinstatable at a given moment is set by two composable READ-side policy layers, not by storage alone. Line A -- a global, slowly-fluctuating, arousal-coupled reinstatement GAIN (content-blind; sets the threshold on whether ANY stored trace crosses into accessibility; stochastic-resonance flavour). Line B -- a content-selective competitive SUPPRESSION that, given what the global gate admits, inhibits specific competitors to keep retrieval clean. The READ-side sibling of MECH-261's mode-conditioned WRITE-gate family: REE owns the gates but not this retrieval-time gating POLICY.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "SUBSTRATE-CONDITIONAL -- REE-v3 has no explicit retrieval-readiness gain knob and no content-selective retrieval-suppression operator over episodic / ContextMemory read-out (the gates exist for WRITE, MECH-261; the read-time POLICY does not). Once a retrieval substrate exposes (i) a global scalar gain on trace reinstatement and (ii) a competitor-suppression operator: DISSOCIATION test -- lesioning Line A (clamp gain low) reduces reinstatement of ALL traces uniformly (apparent forgetting, content-blind), while lesioning Line B (disable competitive suppression) leaves gain intact but RAISES competitor intrusions / wrong-trace reinstatement (interference, content-selective). PASS = the two lesions produce mechanistically distinct, doubly-dissociable read-out signatures (uniform-suppression vs selective-intrusion); FAIL = a single knob reproduces both, i.e. the two layers are not separable on this substrate. NON-DEGENERACY GATE: the reinstatement-accuracy metric must be live (non-floor, non-ceiling cross-trace variance) and at least two competing traces must be co-encoded and individually scorable in the no-lesion control, else neither 'uniform forgetting' nor 'selective intrusion' is reachable and the run self-routes substrate_not_ready (check_degeneracy non_degenerate=false), NOT a verdict.\n"
+  },
+  "MECH-426": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.progress_velocity_maintenance",
+    "title": "progress_velocity_maintenance",
+    "type": "mechanism",
+    "what_would_answer": "Ablate the rate-of-progress (velocity) signal while holding the proxy-wanting landscape and the goal representation intact; long-horizon superordinate-goal maintenance degrades SPECIFICALLY in the sparse-confirmation regime (completion rate / commitment-persistence drops vs the velocity-intact arm), and the effect is absent in the dense-confirmation regime where velocity adds no information. NON-DEGENERACY: the velocity signal must have non-zero cross-condition RANGE (not magnitude-only / range-zero -- the V3-EXQ-643 \"affect must be candidate- differentiated\" lesson); a range-zero velocity self-routes substrate_not_ready, not a verdict. PASS/FAIL read in the effort-regulation (coasting) direction, NOT as same-goal reinforcement.\n"
+  },
+  "MECH-427": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.cross_level_subgoal_credit",
+    "title": "cross_level_subgoal_credit",
+    "type": "mechanism",
+    "what_would_answer": "A discrete subgoal-attainment event raises measured commitment to the PARENT superordinate goal (parent z_goal norm / persistence) above a matched no-subgoal-attainment control on the same trajectory; the bare distal goal alone shows no such lift. NON-DEGENERACY: subgoals must actually be attained at a NON-ZERO rate in the run (else there is nothing to credit -- the goal_pipeline GAP-2 foraging/benefit-contact-ceiling trap; a zero-attainment run self-routes substrate_not_ready, not a FAIL). FAIL = subgoal attainment produces no parent commitment lift despite a non-zero attainment rate.\n"
   },
   "Q-001": {
     "epistemic_stance": "asked",

@@ -5,6 +5,22 @@ closure_plan:
   registered: 2026-05-08
   last_updated: 2026-06-12
   scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-306, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
+  related_threads:
+    - thread: goal_maintenance_feedback
+      claims: [INV-086, MECH-426, MECH-427, INV-087, ARC-105]
+      registered: 2026-06-12
+      note: >
+        Long-horizon goal-MAINTENANCE cluster (distinct from the reachability spine
+        INV-065/MECH-216/217/ARC-051 this plan already scopes), reaped 2026-06-12 from
+        the proxy/progress intake and lit-grounded by
+        evidence/literature/targeted_review_proxy_progress_goal_maintenance.
+        INV-086 = umbrella (feedback-scaffolded maintenance, scoped PAST MECH-116
+        working-memory maintenance); MECH-426 progress-velocity (folds on-path
+        inference; EXP-0384); MECH-427 cross-level subgoal-credit (EXP-0385);
+        INV-087 proxy-tethering/Goodhart guard (EXP-0386, V3-EXQ-674 E3-probe family);
+        ARC-105 granularity-matched hierarchy (V4, substrate_conditional). NOT
+        gap-owned -- tracked here for goal-pipeline locality; promote to a GAP node
+        only if one becomes a closure blocker.
   nodes:
     - id: "goal_pipeline:GAP-1"
       title: "MECH-307 anticipatory-affect conjunction architecture"
