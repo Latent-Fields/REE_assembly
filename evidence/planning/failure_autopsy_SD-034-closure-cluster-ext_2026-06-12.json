@@ -1,0 +1,238 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-12T23:16:13Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "parent_autopsy": "failure_autopsy_SD-034-closure-cluster_2026-06-12",
+  "adjudication_note": "User AskUserQuestion 2026-06-12T23:16Z: 464c/467c route to a SEPARATE mode-governance substrate gap (not the closure plane); 629b routes to the scaffolded_sd054_onboarding nav-competence ceiling as a readiness requeue; written as a new sibling file (parent confirmed/closed left intact).",
+  "targets": [
+    {
+      "run_id": "v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural_20260612T213304Z_v3",
+      "queue_id": "V3-EXQ-461c",
+      "claim_ids": ["MECH-090", "SD-033a", "SD-034"],
+      "sub_cluster": "A_closure_control_plane",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- closure-coupled resolution + SD-033a rule persistence never let to express",
+        "biological_reference": "OFC sequence-completion cells (Rich & Shapiro 2009); failure matches a missing completion->closure coupling",
+        "prerequisites": "missing -- env sequence_complete -> emit_closure unwired; rule_state-stability automatic trigger unmet (untrained/zeroed rule_bias_head + SP-CEM perturbation)",
+        "implementation": "partial (symbol-without-functional-role: ClosureOperator wired, trigger decoupled from real completions)",
+        "environment": "adequate (env emits completions; committed Hold windows formed, n_windows>0)",
+        "measurement": "misleading -- committed_windows_engaged precondition verified window-formation, not closure-coupled-resolution-trigger-availability (V3-EXQ-642 wrong-precondition)",
+        "integration": "isolated -- done-token does not propagate to committed-latch occupancy",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC sequence-completion cells + frontal task-set disengagement (Collins & Frank 2014)",
+        "dependencies": ["env completion -> closure trigger coupling", "magnitude-bearing trained rule_state"],
+        "is_formal_import": false,
+        "divergence": "completion-triggered disengagement is driven by actual task completion, not an internal rule-vector happening to stabilise; the REE failure is the missing completion->closure dependency",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "non_contributory, substrate_ceiling, pending_retest_after_substrate. Cohort extension of the SD-034 closure cluster. Committed Hold windows formed (n_windows>0, the *b-cohort gap closed) but n_closure_coupled_resolutions=0 on the foraging agent, so SD-033a rule-persistence (measured only at closure resolutions) and the SD-034 coupling could not express. Same env->emit_closure-unwired / untrained-rule_bias_head root cause as 460c. Not a falsification.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "failure_record_entry": {
+          "run_id": "v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural_20260612T213304Z_v3",
+          "experiment_type": "v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural",
+          "metric": "n_closure_coupled_resolutions = 0 on ARM_HOLD_ON despite committed Hold windows forming (n_windows>0, precondition met)",
+          "target": "n_closure_coupled_resolutions > 0 reachable on the positive control once env sequence_complete is routed to emit_closure + rule_bias_head is trained"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "461c precondition advanced past 460c (verified Hold windows formed) but still gated on the wrong proxy -- window-formation, not closure-coupled-resolution-trigger-availability."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_466c_sd034_satisficing_residue_discharge_behavioural_20260612T131423Z_v3",
+      "queue_id": "V3-EXQ-466c",
+      "claim_ids": ["SD-034", "MECH-094"],
+      "sub_cluster": "A_closure_control_plane",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- closure done-token never fired so the residue-discharge (MECH-094) could not be exercised",
+        "biological_reference": "OFC completion cells; same missing completion->closure coupling as 460c",
+        "prerequisites": "missing -- env sequence_complete -> emit_closure unwired; automatic rule_state-stability trigger unmet",
+        "implementation": "partial (symbol-without-functional-role)",
+        "environment": "adequate (n_sequence_completions=11/6/5 ON, beta elevated 268/376/128)",
+        "measurement": "misleading -- completion non-vacuity gate checked env-completion-availability not closure-trigger-availability",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC sequence-completion cells; ResidueField domain discharge as MECH-094-gated write",
+        "dependencies": ["env completion -> closure trigger coupling"],
+        "is_formal_import": false,
+        "divergence": "the discharge is strictly downstream of a closure event; n_closures=0 is a trigger-availability failure, not a discharge failure",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "non_contributory, substrate_ceiling, pending_retest_after_substrate. Near-clone of 460c -- n_closures=0 on 3/3 seeds despite n_sequence_completions=11/6/5 and beta elevated; the residue-discharge (MECH-094) is strictly downstream of an unfired closure. Not a falsification.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "failure_record_entry": {
+          "run_id": "v3_exq_466c_sd034_satisficing_residue_discharge_behavioural_20260612T131423Z_v3",
+          "experiment_type": "v3_exq_466c_sd034_satisficing_residue_discharge_behavioural",
+          "metric": "n_closures = 0 on 3/3 seeds (both arms) despite n_sequence_completions=11/6/5 and total_beta_elevated=268/376/128",
+          "target": "n_closures > 0 reachable on the positive control after env sequence_complete -> emit_closure + trained rule_bias_head"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "466c is the cleanest reproduction of the parent 460c closure-never-fires signature -- the closure done-token is decoupled from real env completions."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
+      "queue_id": "V3-EXQ-464c",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "sub_cluster": "B_mode_governance_engagement",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-266 over-binding / switch-cost asymmetry never let to express",
+        "biological_reference": "task-set switch governance (Collins & Frank 2014); the contested mode was never entered",
+        "prerequisites": "missing -- the SalienceCoordinator never receives the varying signals that drive genuine external_task occupancy on the foraging substrate",
+        "implementation": "partial (rails wired, contested mode never occupied)",
+        "environment": "inadequate for the test -- no external_task pressure on the 603n foraging agent",
+        "measurement": "misleading and VACUOUS -- the mode-switching non-vacuity gate keyed on n_switches counts the per-episode settle into internal_planning (n_switches=15==n_episodes), not genuine competition",
+        "integration": "isolated -- coordinator does not reach mode occupancy",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC/PFC task-set switch governance; Schmitt-trigger hysteresis on mode dwell",
+        "dependencies": ["genuine external_task mode occupancy", "a non-vacuity gate keyed on contested-mode occupancy not switch-count"],
+        "is_formal_import": false,
+        "divergence": "the asymmetric exit-rail acts on the transition OUT of external_task; with fraction_in_external_task=0.0 the rail has no mode to bind and the occupancy contrast (C1) is pinned 0-vs-0",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "non_contributory, substrate_ceiling, pending_retest_after_substrate. fraction_in_external_task=0.0 both arms all seeds; the mode-switching non-vacuity gate passed vacuously (n_switches=15==n_episodes counts the per-episode settle into internal_planning, not genuine competition). The asymmetric exit-rail has no mode to bind. Distinct mode-governance substrate gap, not the closure plane. Not a falsification.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mode-governance-engagement",
+        "title": "Drive genuine external_task mode occupancy + occupancy-keyed non-vacuity gate for MECH-266 / SD-032a behavioural arms",
+        "implementation_hint": "On the 603n foraging substrate the SalienceCoordinator never receives salience signals that put the agent in external_task mode (fraction_in_external_task=0.0), so the MECH-266 over-binding / dose-response contrasts cannot express and the n_switches non-vacuity gate certifies episode-boundary settles. Substrate work: supply an external-task pressure (e.g. a salience-driving task primitive) that produces genuine external_task occupancy on the foraging agent, and re-state the readiness gate as min_across_arms(fraction_in_external_task) > floor rather than n_switches >= 1.",
+        "unblocks_claims": ["MECH-266", "SD-032a"],
+        "depends_on_unresolved": ["scaffolded_sd054_onboarding nav-competence (Stage-H) + free text: SalienceCoordinator external_task salience drive on the foraging substrate"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
+          "experiment_type": "v3_exq_464c_mech266_competing_goals_behavioural",
+          "metric": "fraction_in_external_task = 0.0 both arms all seeds; n_switches = 15 == n_episodes (episode-boundary settle artifact); C1 task-occupancy contrast pinned 0-vs-0",
+          "target": "min_across_arms(fraction_in_external_task) > floor (e.g. > 0.1) reachable on the positive control so the asymmetric exit-rail has a contested mode to bind"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "n_switches == n_episodes with fraction_in_external_task=0.0 is the mode-governance vacuity tell; the non-vacuity gate counted episode-boundary settles.",
+        "A MECH-266 retest must gate on contested-mode occupancy reachable, not switch-count."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+      "queue_id": "V3-EXQ-467c",
+      "claim_ids": ["MECH-266", "SD-032a"],
+      "sub_cluster": "B_mode_governance_engagement",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-266 hysteresis dose-response never let to express",
+        "biological_reference": "Schmitt-trigger mode-dwell hysteresis; no genuine mode switches to lengthen/shorten",
+        "prerequisites": "missing -- genuine external_task mode competition",
+        "implementation": "partial (rails wired, contested mode never occupied)",
+        "environment": "inadequate for the test -- no external_task pressure",
+        "measurement": "misleading -- mean_dwell is an episode-length artifact (total_steps/n_runs) and n_switches=12==n_episodes",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "task-switching mode-dwell hysteresis",
+        "dependencies": ["genuine external_task mode occupancy + switches"],
+        "is_formal_import": false,
+        "divergence": "the hysteresis ratio cannot move dwell when there are no genuine mode switches; the dwell metric reflects episode length, not in-mode residency",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "non_contributory, substrate_ceiling, pending_retest_after_substrate. mean_dwell is an episode-length artifact (total_steps/n_runs) and n_switches=12==n_episodes -- genuine mode competition never occurred, so the hysteresis dose-response cannot express. Same mode-governance gap as 464c. Not a falsification.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mode-governance-engagement",
+        "failure_record_entry": {
+          "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+          "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+          "metric": "n_switches = 12 == n_episodes for every hysteresis ratio; mean_dwell = total_steps/n_runs (episode-length artifact); dose-response non-monotone and uninterpretable",
+          "target": "genuine switch counts (n_switches > n_episodes) and in-mode dwell that responds to the hysteresis ratio, once external_task occupancy is driven"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "467c mean_dwell tracks total_steps/n_runs, confirming the dwell metric is an episode-length artifact rather than a genuine in-mode residence governed by the hysteresis ratio."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_629b_mech342_ecological_maintenance_release_evidence_20260612T155004Z_v3",
+      "queue_id": "V3-EXQ-629b",
+      "claim_ids": ["MECH-342"],
+      "sub_cluster": "C_readiness_requeue",
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-342 not fairly tested across seeds; fired correctly on the one competent seed",
+        "biological_reference": "BG-thalamo-cortical de-commitment under degraded readiness (Cisek & Kalaska 2010); works when foraging competent",
+        "prerequisites": "missing -- foraging competence on 2/3 seeds (contact guard 0.333 < 0.667)",
+        "implementation": "complete -- mechanism fired on seed 43 (decommit_transitions=34, mech342_fires=1, beta occupancy 1.0->0.217)",
+        "environment": "adequate-but-agent-incompetent (z_goal-at-contact-peak 0.0/0.371 on seeds 42/44)",
+        "measurement": "adequate -- self-routed substrate_not_ready_requeue correctly",
+        "integration": "n/a -- never reached commitment on 2/3 seeds",
+        "scale": "foraging-competence ceiling"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG de-commitment / readiness-driven release under sustained degraded conditions",
+        "dependencies": ["foraging competence (contact guard) on >= 2/3 seeds"],
+        "is_formal_import": false,
+        "divergence": "the seed-43 positive (release authority under degraded readiness) is consistent with the claim; the failure is upstream foraging incompetence, not a MECH-342 defect",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "non_contributory, substrate_not_ready_requeue, pending_retest_after_substrate, narrow_supports_flag. Contact guard failed (1/3 seeds forage-competent); on the one competent seed (43) MECH-342 maintenance-release fired (decommit_transitions=34, mech342_fires=1, beta occupancy 1.0->0.217 in the degraded window vs OFF 1.0) -- a narrow single-seed positive that points the fix at the scaffolded_sd054_onboarding nav-competence ceiling, NOT the closure plane. Not a falsification.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "failure_record_entry": {
+          "run_id": "v3_exq_629b_mech342_ecological_maintenance_release_evidence_20260612T155004Z_v3",
+          "experiment_type": "v3_exq_629b_mech342_ecological_maintenance_release_evidence",
+          "metric": "foraging_contact_guard fraction = 0.333 (seed 43 only; seeds 42/44 z_goal_norm_at_contact_peak 0.0/0.371 < 0.4); C1 baseline_commits=0.0, C2 degradation_occurred=0.0",
+          "target": "foraging_contact_guard >= 2/3 seeds (the Stage-H nav/survival-competence leg) so MECH-342 can be scored across seeds; seed-43 already shows release authority once foraging clears"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "629b seed-43 shows MECH-342 has genuine release authority once foraging clears (decommit_transitions=34, mech342_fires=1, beta occupancy 1.0->0.217) -- a narrow_supports signal that points the fix at nav-competence, not MECH-342.",
+        "The score_margin_floor recalibration from failure_autopsy_V3-EXQ-629_2026-06-03 is already applied; this failure is upstream of it (contact guard)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Cohort extension of the SD-034 closure cluster that splits THREE ways. A (461c/466c): closure done-token / coupled-resolution never fires despite env completions + beta elevated (parent's exact pattern). B (464c/467c): MECH-266 mode-governance never engages because external_task mode is never occupied and the n_switches non-vacuity gate passed vacuously (counted episode-boundary settles). C (629b): foraging contact-guard readiness failure, with MECH-342 firing correctly on the one competent seed.",
+    "is_independent_bugs": false,
+    "structural_property": "Across three distinct mechanism axes, a wired control-plane has no behavioural authority because the substrate never delivers the engagement the claim assumes (closure trigger coupling / external_task occupancy / foraging competence). Each readiness gate certified a proxy that co-occurs rather than the load-bearing claim's actual trigger -- the recurring V3-EXQ-642 wrong-precondition pattern at three layers.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"]
+  }
+}
