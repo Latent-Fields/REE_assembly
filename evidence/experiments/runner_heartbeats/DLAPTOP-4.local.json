@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-12T16:49:21Z",
+  "last_tick_utc": "2026-06-12T17:19:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-461c",
   "current_exq_started_utc": "2026-06-12T05:10:55.660413+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "runs_done": 3,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
+    "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 220,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 127.7
+    "overall_pct": 200.0
   },
-  "seconds_elapsed": 41907,
+  "seconds_elapsed": 43714,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural] starting (dry_run=False)",
@@ -36,7 +36,13 @@
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.948 gate=pass",
     "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00034",
     "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/265 median_last=102.0 survival_gate=pass"
+    "[train] p1_foraging seed=43 ep 220/265 median_last=102.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.3129 contact_events=107 z_goal_at_contact=0.4109",
+    "Seed 43 Condition ARM_HOLD_ON",
+    "Seed 43 Condition ARM_NO_HOLD_OFF",
+    "[train] persist_eval seed=43 ep 265/265 c1=False c2=False c3=False n_windows=160 n_delay=0 persist=0.0 coupled=0",
+    "verdict: FAIL seed=43 guard_pass=True commit_nonvacuity=True (contact_rate=0.3129 z_goal_at_contact=0.4109)",
+    "Seed 44 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
