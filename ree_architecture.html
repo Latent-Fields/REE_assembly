@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- REE Architecture Visualizer — 2026-06-12.2 proportional wheel-zoom + edge-label declutter + node-accuracy audit (residue 6-valence, z_theta/z_delta) -->
+<!-- REE Architecture Visualizer — 2026-06-12.3 added FrontalCue (SD-016) + GhostGoalBank (MECH-292) nodes; prior: zoom + label declutter + residue 6-valence + z_theta/z_delta -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -241,7 +241,7 @@ const NODES = [
     detail: {
       file: 'ree_core/predictors/e1_deep.py',
       desc: '<b>Slow associative world model.</b> LSTM-based, 20-step horizon. Provides terrain prior for HippocampalModule. Runs SHY homeostasis offline (MECH-120). Schema salience readout (MECH-216).',
-      props: [['input','z_self + z_world (64d)'],['hidden','256d LSTM'],['context mem','16 attention slots'],['train signal','sensory prediction error'],['prediction_horizon','20 steps']],
+      props: [['input','z_self + z_world (64d)'],['hidden','256d LSTM'],['context mem','16 attention slots (frontal cue store, SD-016)'],['train signal','sensory prediction error'],['prediction_horizon','20 steps']],
       claims: ['ARC-007','MECH-089','MECH-120','MECH-216','INV-049'],
       passing: ['EXQ-265 sleep queued']
     }
@@ -334,6 +334,28 @@ const NODES = [
       passing: ['MECH-120 wired 2026-04-08']
     }
   },
+
+  // Frontal cue (SD-016) — added 2026-06-12 node-accuracy pass
+  { id:'cue',    label:'FrontalCue (SD-016)',  short:'CUE',  x:255, y:455, w:140, h:40, color:'#79c0ff', group:'latent',
+    detail: {
+      file: 'ree_core/predictors/e1_deep.py — extract_cue_context / agent.py',
+      desc: '<b>Frontal cue-indexed integration (SD-016, ARC-041).</b> A z_world-keyed query into E1\'s ContextMemory yields two top-down modulators: action_bias (MECH-151) and terrain_weight (MECH-152). Biases action selection and harm/goal scoring without writing the latents.',
+      props: [['query','z_world &rarr; ContextMemory slots'],['action_bias (MECH-151)','&rarr; E2.action_object + Hippo proposals'],['terrain_weight (MECH-152)','w_harm / w_goal &rarr; E3 scoring'],['umbrella','ARC-041'],['writepath fix','ContextMemory key-collapse repair + diversification loss (SD-016)']],
+      claims: ['SD-016','MECH-150','MECH-151','MECH-152','ARC-041'],
+      passing: ['EXQ-449a cue_action_proj fix','EXQ-477 follow-up']
+    }
+  },
+
+  // Ghost-goal bank (MECH-292) — added 2026-06-12 node-accuracy pass
+  { id:'ghost',  label:'GhostGoalBank (MECH-292)',short:'GGB', x:850, y:475, w:150, h:40, color:'#ffa657', group:'hip',
+    detail: {
+      file: 'ree_core/hippocampal/ghost_goal_bank.py',
+      desc: '<b>Ranked ghost-goal bank (MECH-292).</b> Stores hippocampal anchors with valence tags (wanting_strength, arousal_tag, last_vs, staleness) and ranks them by goal_match against z_goal to seed proposals. Extended by MECH-339 (composite-cue outshining gate) and MECH-340 (persistence / efficacy gate).',
+      props: [['stores','hippocampal anchors + valence tags'],['rank key','goal_match vs z_goal'],['MECH-339','composite cue + outshining gate'],['MECH-340','persistence / efficacy gate'],['consumer','Hippocampal proposal seeding']],
+      claims: ['MECH-292','MECH-339','MECH-340'],
+      passing: ['spec mech_292_ghost_goal_bank.md']
+    }
+  },
 ];
 
 // Edges: [from, to, label, style]
@@ -398,6 +420,16 @@ const EDGES = [
 
   // Replay tag
   ['hip',    'residue','MECH-094\nhyp_tag gate',     'residue'],
+
+  // Frontal cue (SD-016) — extract_cue_context off E1 ContextMemory, modulates E2/Hippo/E3
+  ['e1',     'cue',    'cue_context\n(z_world query)','data'],
+  ['cue',    'e2',     'action_bias\n(MECH-151)',     'data'],
+  ['cue',    'hip',    'action_bias\n(proposals)',    'plan'],
+  ['cue',    'e3',     'terrain_weight\n(MECH-152)',  'data'],
+
+  // Ghost-goal bank (MECH-292) — ranks hippocampal anchors by goal_match, seeds proposals
+  ['goal',   'ghost',  'goal_match\nrank',            'data'],
+  ['ghost',  'hip',    'ranked anchors\n(proposal seed)','plan'],
 ];
 
 // ============================================================
