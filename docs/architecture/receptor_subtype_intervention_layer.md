@@ -18,6 +18,13 @@ psychiatric_failure_modes.md, psychiatric_failure_axes.md (ARC-086)
 > patient should be treated on the basis of this document. Receptor pharmacology is the place
 > REE has historically been "philosophy-right / mechanism-wrong" (see
 > `memory/feedback_biology_before_definitions`): elegance is not evidence.
+>
+> **This layer cannot produce treatment evidence — only treatment-research directions.** REE is
+> never a link in the evidence chain. What it does is *nominate which existing-drug trial is worth
+> running* and state the falsification condition in advance, so the trial is informative either way.
+> The evidence — if it ever exists — is the trial's, not REE's. A receptor match plus a coherent
+> mechanism story is a reason to *test*, never a reason to *prescribe* or to claim an effect. Every
+> "predicted_effect" below is a hypothesis about what such a trial would find, not a finding.
 
 ---
 
@@ -189,11 +196,14 @@ ChEMBL. "Approved-but-off-this-indication" is the repurposing-yield flag.
   augmentation.**
 
 ### Why this matters for public systems
-An already-approved drug carries a known safety profile and an off-label / low-cost-of-evidence
-path to a new indication. For a public payer (HSE included) that is structurally the cheapest way to
-add a treatment option — *provided* the prediction has survived a refutation attempt, not merely
-been registered. The discipline below (falsification conditions, dissociation logic) is what
-converts "interesting receptor match" into a payer-relevant asset.
+The product here is a *research direction*, not a treatment claim. An already-approved drug carries a
+known safety profile, so the trial that would generate the evidence is cheaper and faster to run than
+for a new molecule — but REE only points to *which* trial is worth prioritising; the trial, not REE,
+produces the evidence. For a public payer (HSE included) the value is purely in better-prioritised
+research: a falsifiable, mechanism-motivated hypothesis about an off-label use is a stronger reason to
+fund a trial than an untethered hunch. It is not, and cannot become, a basis for prescribing ahead of
+that trial. The discipline below (falsification conditions, dissociation logic) is what makes a
+hypothesis worth a trial's cost — it does not substitute for the trial.
 
 ---
 
