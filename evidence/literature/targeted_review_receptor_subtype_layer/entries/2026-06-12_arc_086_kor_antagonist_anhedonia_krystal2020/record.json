@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_arc_086_kor_antagonist_anhedonia_krystal2020",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["ARC-086", "MECH-048"],
+  "source": {
+    "title": "A randomized proof-of-mechanism trial applying the 'fast-fail' approach to evaluating kappa-opioid antagonism as a treatment for anhedonia",
+    "authors": ["Andrew D Krystal", "Diego A Pizzagalli", "James W Murrough", "Gerard Sanacora", "Sarah H Lisanby", "William Z Potter"],
+    "year": 2020,
+    "venue": "Nature Medicine",
+    "doi": "10.1038/s41591-020-0806-7"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality multicentre, double-blind, placebo-controlled RCT (n=89) with a pre-registered fMRI primary endpoint: a selective KOR antagonist (JNJ-67953964) significantly increased ventral-striatum activation during reward anticipation in patients with anhedonia and a mood/anxiety disorder. This is the human proof-of-mechanism the layer's kappa-axis proposal and PHARM-018 falsification condition turn on. Confidence below 0.8 because the primary endpoint is a circuit biomarker (reward-anticipation activation), not a clinical anhedonia or commitment endpoint, and it does not isolate a 'commitment-entropy' construct from general reward-circuit engagement.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The trial demonstrates target engagement on a reward-anticipation circuit biomarker, not clinical anhedonia remission or any commitment/perseveration measure; a positive biomarker does not establish that the kappa axis is dissociable from the serotonin axis on clinical endpoints (the PHARM-018 falsification still stands open)."],
+  "tags": ["arc_086", "mech_048", "kappa_opioid", "kor_antagonist", "anhedonia", "ventral_striatum", "commitment_entropy", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "In a NIMH fast-fail proof-of-mechanism RCT (selective KOR antagonist JNJ-67953964 10 mg, n=45, vs placebo n=44) in patients with anhedonia and a mood or anxiety disorder, the KOR antagonist significantly increased fMRI ventral-striatum activation during reward anticipation relative to placebo (effect size 0.58), with good tolerability.",
+    "ree_translation": "The layer proposes a kappa-driven commitment-entropy vulnerability axis (a candidate amendment to ARC-086) distinct from the serotonin-terrain and dopamine-selection axes, with PHARM-018 predicting that kappa antagonism normalises pathological aversive-state-lock / anhedonia via the kappa-antagonist arm. Krystal et al. provide the human target-engagement proof: blocking KOR demonstrably re-engages the reward-anticipation circuitry whose hypofunction REE reads as the aversive-attractor-dominant state.",
+    "mapping_caveat": "The endpoint is a reward-anticipation CIRCUIT BIOMARKER (ventral-striatum fMRI), not clinical anhedonia remission and certainly not a commitment/perseveration measure. It establishes that kappa antagonism engages reward circuitry in humans; it does NOT establish dissociation from the serotonin axis on clinical endpoints, nor validate the commitment-entropy construct -- the PHARM-018 falsification condition remains open.",
+    "source_context": "Human; multicentre double-blind placebo-controlled RCT; fMRI reward-anticipation primary endpoint; anhedonia with mood/anxiety disorder."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.25,
+    "notes": "Top-tier human RCT with pre-registered biomarker endpoint; transfer risk low (human anhedonia). Mapping_fidelity moderate-good for 'kappa antagonism engages human reward circuitry'; the limiter is biomarker-vs-clinical-endpoint and the unvalidated commitment-entropy construct."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-088"],
+  "source": {
+    "title": "Efficacy and Safety of Xanomeline-Trospium Chloride in Schizophrenia: A Randomized Clinical Trial (EMERGENT-3)",
+    "authors": ["Inder Kaul", "Sharon Sawchak", "Carol A Tamminga", "Alan Breier", "Steven M Paul", "Stephen K Brannan"],
+    "year": 2024,
+    "venue": "JAMA Psychiatry",
+    "doi": "10.1001/jamapsychiatry.2024.0785"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Phase 3, multicentre, randomised, double-blind, placebo-controlled RCT (n=256) showing xanomeline-trospium -- a dual M1/M4 agonist with NO direct D2 blocking activity -- significantly reduces PANSS total in acute schizophrenia (effect size 0.60), replicating EMERGENT-1/-2. High-quality clinical proof of the layer's central claim that psychosis can be treated from the muscarinic side without D2 antagonism. Confidence below 0.8 because the trial does not isolate the M4 dopamine-selection arm from the M1 arm, so it supports the non-D2-route claim cleanly but the specific M4-mediated MECH-086 attribution rests on the preclinical entries.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The trial demonstrates clinical efficacy of combined M1/M4 agonism but cannot attribute the antipsychotic effect to the M4-dopamine arm specifically vs the M1-cortical arm -- the receptor-resolved dissociation the layer asserts (M4=selection, M1=plasticity) is not testable from this aggregate clinical endpoint."],
+  "tags": ["mech_088", "pharm_017", "xanomeline", "karxt", "cobenfy", "non_d2_antipsychotic", "schizophrenia", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "In adults with schizophrenia experiencing acute psychosis, xanomeline-trospium (a dual M1/M4-preferring muscarinic agonist with no direct D2 dopamine-receptor blocking activity) significantly reduced PANSS total score vs placebo at 5 weeks (LS mean difference -8.4; Cohen d 0.60), with extrapyramidal-symptom, weight, and somnolence measures similar to placebo, replicating EMERGENT-1 and EMERGENT-2.",
+    "ree_translation": "The receptor layer (Section 3B / PHARM-017) treats xanomeline as the live proof that psychosis -- the MECH-088 failure -- can be corrected via the muscarinic route without D2 antagonism, attacking the dopamine-selection arm from the M4 side. EMERGENT-3 is the clinical confirmation that this non-D2 muscarinic mechanism is genuinely antipsychotic in humans, and the benign EPS/weight profile is consistent with the absence of D2 blockade.",
+    "mapping_caveat": "The trial confirms the NON-D2 route works clinically but cannot dissociate the M4 (dopamine-selection) contribution from the M1 (cortical plasticity) contribution -- the molecule is a dual agonist and the PANSS endpoint is aggregate. The layer's specific M4=selection / M1=plasticity split is not adjudicated here; it depends on the preclinical M4 entries (Foster 2016) and the M1/M4 dissociation reviews.",
+    "source_context": "Human; phase 3 RCT, acute schizophrenia, 5-week PANSS endpoint."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.2,
+    "notes": "Top-tier clinical evidence (phase 3 RCT, replicated). Transfer risk low (this IS the human indication). Mapping_fidelity moderate because it grounds the non-D2-route claim but not the within-molecule M4-vs-M1 dissociation the layer asserts."
+  }
+}

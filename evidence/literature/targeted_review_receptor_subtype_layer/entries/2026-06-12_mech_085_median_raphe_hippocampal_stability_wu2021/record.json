@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_085_median_raphe_hippocampal_stability_wu2021",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-085"],
+  "source": {
+    "title": "5-HT modulation of a medial septal circuit tunes social memory stability",
+    "authors": ["Xiaoting Wu", "Wade Morishita", "Kevin T Beier", "Boris D Heifets", "Robert C Malenka"],
+    "year": 2021,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-021-03956-8"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "High-quality circuit dissection (optogenetics + slice physiology + behaviour) from a leading lab showing that median-raphe serotonergic input bidirectionally controls hippocampal-circuit memory STABILITY. It is a strong demonstration of the general principle the layer needs -- median raphe 5-HT modulating a hippocampal-representational-stability parameter -- but the receptor implicated is 5-HT1B (on medial-septum neurons), not 5-HT1A, and the locus is the MS->dCA2 social-memory circuit, not the CA1/DG aversive-terrain the layer names. Confidence capped accordingly.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The modulation is mediated by 5-HT1B on medial septal neurons and targets dCA2 social-memory stability, NOT 5-HT1A on CA1/DG aversive terrain -- so this paper supports the GENERIC 'median raphe 5-HT tunes hippocampal representational stability' principle but not the layer's specific 5-HT1A receptor or its aversive-basin construct."],
+  "tags": ["mech_085", "pharm_016", "median_raphe", "hippocampus", "memory_stability", "5ht1b", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Median-raphe serotonergic terminals in the medial septum bidirectionally regulate social-memory stability: novel social interaction increases activity in dCA2-projecting MS neurons and induces glutamatergic plasticity onto dCA2 pyramidal cells; 5-HT enhances the activity of these MS cells (via 5-HT receptors on MS neurons), and optogenetic manipulation of median-raphe 5-HT terminals in MS bidirectionally controls memory stability.",
+    "ree_translation": "MECH-085 holds that median-raphe serotonin shapes hippocampal-terrain geometry and the depth/stability of attractor basins. Wu et al. give a concrete instance of median-raphe 5-HT setting a hippocampal-circuit STABILITY parameter (here, how stable a social-memory representation is), which is the same family of computation REE attributes to the terrain plane -- serotonin tuning how firmly a hippocampal representation holds.",
+    "mapping_caveat": "Receptor and target both differ from the layer's specific claim: the effect is 5-HT1B-mediated on medial-septum neurons modulating dCA2 SOCIAL-MEMORY stability, not 5-HT1A on CA1/DG modulating AVERSIVE-basin depth. This supports the generic principle (median raphe 5-HT -> hippocampal representational stability) but is at best indirect support for the 5-HT1A aversive-terrain assignment, and could even be read as a competing receptor account.",
+    "source_context": "Mouse; optogenetics + slice electrophysiology + social-memory behaviour; median raphe -> medial septum -> dCA2 circuit."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (Nature, rigorous circuit dissection). Mapping_fidelity low because the receptor (5-HT1B) and construct (social-memory stability, not aversive-basin depth) both differ from the layer's specific 5-HT1A/terrain claim. Included as principle-level support with an explicit divergence flag."
+  }
+}

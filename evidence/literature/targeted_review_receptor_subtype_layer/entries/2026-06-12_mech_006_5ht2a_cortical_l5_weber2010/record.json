@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_006_5ht2a_cortical_l5_weber2010",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-006"],
+  "source": {
+    "title": "Htr2a Gene and 5-HT(2A) Receptor Expression in the Cerebral Cortex Studied Using Genetically Modified Mice",
+    "authors": ["Elaine T Weber", "Rodrigo Andrade"],
+    "year": 2010,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2010.00036"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Strong, direct receptor-localisation evidence using genetically modified mice (Htr2a-EGFP BAC transgenics + 5-HT2A-KO-validated antibody) plus slice electrophysiology. Cleanly establishes that the dominant cortical 5-HT2A-expressing population is layer V pyramidal cells (with a diffuse band over layer Va and an anteroposterior gradient), which is the postsynaptic anchor for the layer's '5-HT2A = cortical/narrative level' assignment. Confidence held below 0.8 because the bridge from 'expressed on L5 pyramidal cells' to 'sets narrative-level representational exclusivity' is a substantial interpretive step REE makes, not something the paper measures.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["5-HT2A is also expressed on middle-layer fast-spiking parvalbumin GABAergic interneurons (which serotonin excites), so the cortical 5-HT2A effect is not purely a layer-V-pyramidal phenomenon; any REE story that treats 5-HT2A as a clean L5-pyramidal precision knob ignores the interneuron arm."],
+  "tags": ["mech_006", "pharm_015", "5ht2a", "cortical_l5_pyramidal", "serotonin_receptor", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "In mouse cerebral cortex the largest Htr2a-expressing neuronal population is layer V pyramidal cells of the anterior cortex; 5-HT2A receptor protein shows strong laminar expression in a diffuse band overlying layer Va with a marked anteroposterior gradient matching the L5 pyramidal distribution. Additional 5-HT2A expression is found on middle-layer parvalbumin fast-spiking interneurons and subplate/layer VIb cells, and serotonin depolarises the interneurons via 5-HT2A.",
+    "ree_translation": "The receptor layer assigns MECH-006's narrative-/cognitive-level representational-exclusivity and top-level-precision motif to 5-HT2A on cortical layer-5 pyramidal cells (dorsal-raphe-driven). Weber & Andrade provide the direct postsynaptic localisation: 5-HT2A really is concentrated on cortical L5 pyramidal output neurons, the cells whose gain/precision would plausibly set high-level representational exclusivity, and 5-HT2A inverse agonism (pimavanserin, PHARM-015) acts on exactly this population.",
+    "mapping_caveat": "Localisation is not function: the paper shows WHERE 5-HT2A is, not that it computes 'narrative exclusivity' or 'top-level precision'. The presence of a substantial 5-HT2A interneuron population that serotonin excites means the net cortical effect is a pyramidal-plus-interneuron circuit effect, not a pure pyramidal-gain knob -- the REE single-construct mapping is a simplification.",
+    "source_context": "Mouse cortex; immunohistochemistry in Htr2a-EGFP BAC transgenics + 5-HT2A-KO-validated antibody + slice electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Genetically-validated localisation is high quality. Mapping_fidelity moderate-good: the L5-pyramidal anchor is real and direct, but the leap to 'narrative exclusivity' is REE's. Transfer risk moderate (mouse cortical laminar organisation maps reasonably to primate but the functional claim is human-framed)."
+  }
+}

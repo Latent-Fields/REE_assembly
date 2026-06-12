@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_048_dynorphin_kor_dysphoria_land2008",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-048", "MECH-088", "ARC-086"],
+  "source": {
+    "title": "The dysphoric component of stress is encoded by activation of the dynorphin kappa-opioid system",
+    "authors": ["Benjamin B Land", "Michael R Bruchas", "Julia C Lemos", "Mei Xu", "Erica J Melief", "Charles Chavkin"],
+    "year": 2008,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4458-07.2008"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Rigorous, multi-pronged primary study (KOR antagonism, dynorphin gene deletion, CRF/urocortin challenge, CRF-receptor-subtype antagonists, phospho-KOR immunolabelling) establishing that the dysphoric/aversive component of stress is specifically encoded by CRF2-driven dynorphin release acting on KOR, with KOR activation localised to amygdala, nucleus accumbens, dorsal raphe and hippocampus. Foundational grounding for treating kappa/dynorphin as the aversive-state substrate the layer builds the commitment-entropy axis on. Confidence held below 0.8 because the bridge from 'encodes dysphoria/aversion' to REE's 'commitment-entropy destabiliser' is an interpretive construct, and the data are rodent place-aversion / immobility, not commitment dynamics.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The system encodes the aversive/dysphoric VALENCE of stress (place aversion, immobility); it is not shown to raise policy-competition entropy or destabilise commitments -- the 'commitment-entropy' reading is REE's overlay on an aversive-valence finding."],
+  "tags": ["mech_048", "mech_088", "arc_086", "kappa_opioid", "dynorphin", "dysphoria", "commitment_entropy", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Aversive (place-aversion, immobility) effects of repeated forced-swim and inescapable-footshock stress, and of CRF/urocortin challenge, are blocked by KOR antagonism and absent in dynorphin-knockout mice; CRF-induced aversion is mediated by CRF2 (not CRF1) receptors driving dynorphin release and KOR activation; phospho-selective KOR antibody shows dynorphin-dependent KOR activation in basolateral amygdala, nucleus accumbens, dorsal raphe and hippocampus.",
+    "ree_translation": "The layer (Section 3C / PHARM-018) reads mu/kappa as opposing poles on a commitment-entropy axis -- mu stabilises selected commitments (MECH-048), kappa destabilises and carries dysphoric/aversive state. Land et al. ground the kappa half: dynorphin/KOR is the dedicated substrate that encodes the aversive/dysphoric state, the 'aversive attractor wins by default' condition the layer maps to pathological kappa-driven destabilisation. The hippocampal/amygdalar KOR activation also ties it to the terrain and harm planes (MECH-088).",
+    "mapping_caveat": "The finding is about aversive VALENCE encoding, not about commitment dynamics or policy entropy. Mapping kappa-dysphoria onto a 'commitment-entropy destabiliser' is REE's construct and is not tested here. Rodent stress-aversion assays; mu-opioid (the proposed stabiliser pole, MECH-048) is not examined in this paper.",
+    "source_context": "Mouse; conditioned place aversion / forced-swim immobility + genetic and pharmacological dissection + phospho-KOR immunohistochemistry."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Landmark primary study, multi-method, strong causal controls. Mapping_fidelity moderate: cleanly grounds kappa/dynorphin as the aversive-state substrate, but the commitment-entropy construct is an REE overlay. Transfer risk moderate (rodent stress assays -> human affective state)."
+  }
+}

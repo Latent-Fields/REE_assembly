@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_048_dynorphin_kor_stress_review_bruchas2009",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-048", "ARC-086"],
+  "source": {
+    "title": "The dynorphin/kappa opioid system as a modulator of stress-induced and pro-addictive behaviors",
+    "authors": ["Michael R Bruchas", "Benjamin B Land", "Charles Chavkin"],
+    "year": 2009,
+    "venue": "Brain Research",
+    "doi": "10.1016/j.brainres.2009.08.062"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Well-cited review consolidating the dynorphin/KOR-as-aversive-state-controller account: KOR activation produces dysphoria, potentiates drug-seeking and stress-induced reinstatement, and operates downstream of CRF. Grounds the layer's premise that there is a dedicated neuropeptide system whose job is to install/modulate negative affective state -- the substrate for a distinct vulnerability axis. Confidence mid-range because it is a review (synthesis, not primary), and as with Land 2008 the 'commitment-entropy' reading is REE's, not the literature's.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The review frames dynorphin/KOR around dysphoria and addiction/relapse, not commitment or option-selection; it gives no independent support for the 'raises policy entropy' half of the layer's claim beyond the affective-state framing."],
+  "tags": ["mech_048", "arc_086", "kappa_opioid", "dynorphin", "stress", "dysphoria", "commitment_entropy", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "The endogenous dynorphin/kappa-opioid-receptor system modulates mood and increases the rewarding effects of abused drugs; its activation plays a major role in the pro-addictive effects of stress, mediating dysphoria, potentiating drug-seeking, and driving stress-induced reinstatement, in tight interaction with the CRF system; KOR antagonists are highlighted as candidate therapeutics for affective dysregulation.",
+    "ree_translation": "Supports the layer's Section 3C premise that there is a dedicated system whose function is to set negative affective/aversive state -- the kappa pole of the commitment-entropy axis (opposing the mu stabiliser, MECH-048). The CRF-dynorphin coupling and the therapeutic framing of KOR antagonism ground the prediction (PHARM-018) that kappa antagonism normalises pathological aversive-state-lock.",
+    "mapping_caveat": "Review-level synthesis centred on dysphoria and addiction/relapse, not on commitment or policy-selection dynamics. It corroborates the 'aversive-state controller' substrate but provides no independent evidence for the specific 'raises policy entropy / destabilises commitments' computational claim.",
+    "source_context": "Rodent-dominated mechanistic review; stress, mood, addiction."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Solid consolidating review by the leading group. Mapping_fidelity moderate (aversive-state substrate well grounded; commitment-entropy construct not). Partly overlaps Land 2008 (same group) -- included as the synthesis/therapeutic-framing complement rather than independent primary data."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_arc_086_kor_perseveration_efficiency_bari2025",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["ARC-086", "MECH-048"],
+  "source": {
+    "title": "Computationally Informed Insights Into Anhedonia and Treatment by Kappa Opioid Receptor Antagonism",
+    "authors": ["Bilal A Bari", "Andrew D Krystal", "Diego A Pizzagalli", "Samuel J Gershman"],
+    "year": 2025,
+    "venue": "Biological Psychiatry: Cognitive Neuroscience and Neuroimaging",
+    "doi": "10.1016/j.bpsc.2025.05.011"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Theory-driven secondary analysis of a KOR-antagonist RCT plus three other datasets, fitting a resource-bounded reinforcement-learning model that decomposes behaviour into memory and efficiency components, and a perseveration term. The striking result for REE: KOR antagonism increases reward sensitivity AND perseveration, and anhedonia is linked to deviation from OPTIMAL perseveration. This is the most architecturally-specific anchor for the layer's commitment-entropy framing -- 'perseveration' is the closest empirical analogue to MECH-048's commitment-stability construct. Confidence mid-range: secondary analysis, modest KOR n (24/31), and 'perseveration' is an operational proxy for, not identical to, REE 'commitment entropy'.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The modelling finds KOR antagonism has DISTINCT cognitive effects, only one of which is related to anhedonia -- so the kappa->commitment-stability link is real but partial, and the layer's clean 'kappa = the commitment-entropy axis' framing risks over-attributing a multi-component drug effect to a single axis.", "Optimal perseveration is bounded by memory capacity; 'more perseveration' is only therapeutic up to the resource-rational optimum, so a naive 'kappa antagonism stabilises commitment' reading omits the optimality constraint."],
+  "tags": ["arc_086", "mech_048", "kappa_opioid", "kor_antagonist", "perseveration", "commitment_entropy", "reinforcement_learning", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Fitting a resource-bounded reinforcement-learning model to Probabilistic Reward Task behaviour (KOR-antagonist RCT secondary analysis, n=24 KOR / n=31 placebo, plus three other datasets), anhedonia was associated with deficits in EFFICIENCY (not memory), arising from an inability to perseverate OPTIMALLY for a given memory capacity; KOR antagonism (likely elevating tonic dopamine) increased both memory and efficiency, which the model attributes to increased reward sensitivity AND increased perseveration.",
+    "ree_translation": "This is the closest empirical instantiation of the layer's commitment-entropy axis. MECH-048 frames mu-opioid as a commitment STABILISER that reduces the urge to switch; the layer frames kappa as the destabiliser raising policy entropy. 'Perseveration' in the resource-rational model IS commitment-to-an-action / resistance-to-switching, and 'deviation from optimal perseveration' is exactly the policy-instability the layer maps to pathological kappa drive. KOR antagonism restoring optimal perseveration = normalising kappa-driven commitment-destabilisation -- the PHARM-018 / ARC-086 prediction, in computational-psychiatry terms.",
+    "mapping_caveat": "'Perseveration' is an operational RL proxy, not identical to REE 'commitment entropy'; the optimum is bounded by memory capacity (more perseveration is only good up to the resource-rational optimum), a constraint the REE framing omits. KOR antagonism's effect is multi-component (the paper explicitly says only ONE of its cognitive effects relates to anhedonia), so attributing it wholly to a single commitment-entropy axis over-simplifies. Secondary analysis, modest KOR n.",
+    "source_context": "Human; computational (resource-bounded RL) secondary analysis of a KOR-antagonist RCT + 3 additional datasets; Probabilistic Reward Task."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Strong theory-driven analysis from leading computational-psychiatry and KOR groups. Mapping_fidelity is the HIGHEST in strand 3 for the commitment-entropy construct specifically -- perseveration is a near-analogue of commitment stability. Limiters: secondary analysis, modest n, proxy-not-identity, optimality constraint. Transfer risk low (human)."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_085_5ht1a_anxiety_akimova2009",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-085"],
+  "source": {
+    "title": "The serotonin-1A receptor in anxiety disorders",
+    "authors": ["Elena Akimova", "Rupert Lanzenberger", "Siegfried Kasper"],
+    "year": 2009,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2009.03.012"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "High-quality, well-cited review synthesising 5-HT1A KO/transgenic mouse models, human genetic polymorphisms, and PET binding (WAY-100635) data, all converging on a key role for 5-HT1A in the serotonergic regulation of anxiety, with reduced 5-HT1A binding in panic and social anxiety disorder. Grounds the layer's assignment of the aversive/anxiety (terrain) arm to 5-HT1A. Confidence mid-range because (a) it is a review not a single decisive experiment, (b) the data implicate limbic/temporal and raphe 5-HT1A broadly rather than isolating a hippocampal-CA1/DG basin-depth mechanism, and (c) 'aversive attractor basin depth' is REE's construct, not measured here.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The review localises the anxiety-relevant 5-HT1A signal to limbic/mesiotemporal cortex and raphe autoreceptors broadly and notably finds 5-HT1A binding NOT reduced in PTSD -- so the layer's specific 'MECH-088 PTSD terrain component' attribution to 5-HT1A is weakened, not supported, by the human PET pattern.", "Pre-synaptic (raphe autoreceptor) vs post-synaptic 5-HT1A have opposite functional signs, so a single '5-HT1A = terrain' assignment conflates two populations."],
+  "tags": ["mech_085", "pharm_016", "5ht1a", "anxiety", "hippocampal_terrain", "buspirone", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Convergent preclinical (5-HT1A knockout/transgenic mice), genetic (human polymorphisms associated with higher anxiety), and neuroimaging (PET) evidence implicates the inhibitory 5-HT1A receptor in the neural processing of anxiety; PET shows reduced 5-HT1A binding in panic disorder and social anxiety disorder (but not PTSD), and higher trait anxiety associates with lower 5-HT1A binding in healthy subjects.",
+    "ree_translation": "The receptor layer assigns MECH-085's hippocampal-terrain motif -- aversive attractor basin depth / fear-consistent rollout capture -- to 5-HT1A (median-raphe-driven, hippocampal CA1/DG + somatodendritic autoreceptor), distinct from the 5-HT2A cortical/narrative arm. Akimova et al. ground the functional half of that assignment: 5-HT1A tone is causally and clinically tied to anxiety/aversive state, and 5-HT1A partial agonism (buspirone, PHARM-016) is the predicted terrain-flattening lever.",
+    "mapping_caveat": "The review supports '5-HT1A modulates aversive/anxiety state', not the specific REE construct 'hippocampal-CA1/DG aversive-basin depth'. The human binding signal localises to mesiotemporal cortex and raphe broadly, and is explicitly NOT reduced in PTSD -- which sits awkwardly with the layer's PTSD-terrain attribution. Pre- vs post-synaptic 5-HT1A populations have opposite signs and are not separated in this mapping.",
+    "source_context": "Human (PET, genetics) + mouse (KO/transgenic); narrative review, anxiety disorders."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Strong convergent review. Mapping_fidelity moderate: grounds 5-HT1A-anxiety link cleanly but not the CA1/DG basin-depth specificity, and the PTSD-null finding is a partial counter to one sub-attribution. Transfer risk low-moderate (substantial human data)."
+  }
+}

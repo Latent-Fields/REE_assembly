@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_086_muscarinic_psychosis_mckinzie2012",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-086", "MECH-088"],
+  "source": {
+    "title": "Muscarinic mechanisms in psychotic disorders",
+    "authors": ["David L McKinzie", "Frank P Bymaster"],
+    "year": 2012,
+    "venue": "Handbook of Experimental Pharmacology",
+    "doi": "10.1007/978-3-642-25758-2_9"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Authoritative mechanistic review establishing the reciprocal M4-dopamine relationship (from M4-knockout work) and the dual M1/M4 rationale: M4 confers antidopaminergic / antipsychotic-like activity while M1/M4 together also drive pro-cognitive effects. Directly grounds the layer's two-plane interaction framing (M4=dopamine-selection, M1=plasticity/cognition). Confidence mid-range because it is a review (some claims preclinical-model-level) and the M1-vs-M4 functional partition is presented as a rationale, not a fully isolated result.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The review notes that schizophrenia is a syndrome and muscarinic agonists, like D2 antagonists, will not help everyone -- non-response may track cortical M1 deficits; this predicts heterogeneity the REE single-mechanism plane story does not capture."],
+  "tags": ["mech_086", "mech_088", "pharm_017", "m4_muscarinic", "m1_muscarinic", "dopamine_selection", "xanomeline", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Postmortem and imaging studies show decreased M1 and M4 receptors in schizophrenia-relevant regions; M4-knockout work reveals a reciprocal relationship between M4 and dopamine-receptor function; muscarinic agonists show antidopaminergic activity in assays predictive of antipsychotic efficacy; and the M1/M4-preferring partial agonist xanomeline has antipsychotic-like and pro-cognitive activity preclinically and reduces psychotic symptoms clinically. An agonist engaging both M1 and M4 is proposed to address core symptom clusters.",
+    "ree_translation": "The layer's Section 3B asserts a two-plane interaction: M4 dampens the MECH-086 dopamine trajectory-selection gain (antidopaminergic, antipsychotic) while M1 acts on the cortical plasticity/encoding plane (cognition). McKinzie & Bymaster ground exactly this partition -- the reciprocal M4-dopamine relationship is the dopamine-selection arm, and the M1/M4 pro-cognitive rationale is the second plane -- and they tie it to MECH-088 psychosis via the antidopaminergic-without-D2 mechanism.",
+    "mapping_caveat": "This is a review synthesising preclinical-model and postmortem data; the M1-vs-M4 functional split is a well-argued rationale rather than a cleanly isolated causal dissociation, and 'antidopaminergic activity in predictive assays' is a behavioural proxy, not a direct measure of REE's trajectory-selection gain.",
+    "source_context": "Mixed human postmortem/imaging + rodent knockout + behavioural-predictive assays; narrative mechanistic review."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative review by the original xanomeline-mechanism investigators. Mapping_fidelity moderate-good for the M4-dopamine / M1-cognition two-plane framing; the limiter is review-level evidence and proxy endpoints. Transfer risk moderate."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_006_raphe_projection_specificity_ren2019",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-006", "MECH-085"],
+  "source": {
+    "title": "Single-cell transcriptomes and whole-brain projections of serotonin neurons in the mouse dorsal and median raphe nuclei",
+    "authors": ["Jing Ren", "Alina Isakova", "Drew Friedmann", "Minmin Luo", "Stephen R Quake", "Liqun Luo"],
+    "year": 2019,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.49424"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "High-quality primary anatomy (plate-based scRNA-seq + intersectional viral tracing + whole-brain projection mapping + single-cell reconstruction) from a leading lab. Establishes the load-bearing anatomical PREMISE of the receptor layer's level-split: dorsal and median raphe serotonin neurons are molecularly distinct and target segregated fields, with VGLUT3+ DR neurons preferentially innervating cortex and a separate subcortical-projecting population. It does NOT itself test the REE exclusivity (MECH-006) or terrain (MECH-085) mechanisms, nor the receptor-subtype assignment -- it grounds the possibility of a two-source, two-target architecture. Mouse data; confidence held to mid-range by that interpretive gap and species transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The paper shows DR->cortex preference for the VGLUT3+ subset, not a clean DR->cortex / MR->hippocampus dichotomy; the hippocampus/septum is innervated by both nuclei, so the receptor layer's tidy DR-cortical vs MR-hippocampal mapping is an idealisation of a more graded projection field."],
+  "tags": ["mech_006", "mech_085", "pharm_015", "pharm_016", "raphe", "serotonin_projection", "dorsal_raphe", "median_raphe", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Dorsal and median raphe serotonin neurons form transcriptomically distinct clusters that map to principal-DR, caudal-DR, or MR, and these molecular subtypes differ in their whole-brain axonal targets: DR serotonin neurons co-expressing VGLUT3 preferentially innervate the cortex, whereas other subtypes (e.g. TRH-co-expressing) innervate subcortical regions such as the hypothalamus.",
+    "ree_translation": "The receptor-subtype layer reconciles the MECH-006 vs MECH-085 serotonin conflict by assigning the cortical/narrative-exclusivity motif to one raphe-receptor population and the hippocampal-terrain/basin-depth motif to another. Ren et al. supply the anatomical precondition: there genuinely are molecularly and projection-distinct raphe serotonin populations targeting different forebrain fields, so 're-using the same serotonergic motif at different hierarchical levels' is anatomically licensed rather than ad hoc.",
+    "mapping_caveat": "This is grounding for the ANATOMICAL PREMISE only. The paper says nothing about 5-HT2A vs 5-HT1A receptors (it characterises the presynaptic source, not the postsynaptic receptor), nor about exclusivity/terrain computation. The DR-cortex preference is for a molecular subset, and both nuclei innervate hippocampus to some degree -- so the clean DR->cortex / MR->hippocampus split the layer draws is a simplification.",
+    "source_context": "Mouse; scRNA-seq + intersectional viral-genetic anterograde tracing + single-neuron reconstruction."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high; mapping_fidelity is the limiting factor because the paper grounds the projection-architecture premise, not the receptor assignment or the REE computation. Transfer risk moderate (mouse anatomy -> human-framed REE planes)."
+  }
+}

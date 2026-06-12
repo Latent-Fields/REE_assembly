@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_receptor_subtype_layer",
+  "entry_id": "2026-06-12_mech_086_m4_striatal_dopamine_foster2016",
+  "timestamp_utc": "2026-06-12T15:37:55Z",
+  "claim_ids_tested": ["MECH-086", "MECH-087"],
+  "source": {
+    "title": "Antipsychotic-like Effects of M4 Positive Allosteric Modulators Are Mediated by CB2 Receptor-Dependent Inhibition of Dopamine Release",
+    "authors": ["Daniel J Foster", "Jermaine M Wilson", "Daniel H Remke", "Sachin Patel", "Carrie K Jones", "P Jeffrey Conn"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.017"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Strong, mechanistically-resolved primary study (FSCV dopamine measurement + striatal slice physiology + M4 and CB2 knockouts + antipsychotic-predictive behaviour) directly establishing that M4 activation on striatal spiny projection neurons depresses striatal dopamine release and produces antipsychotic-like effects WITHOUT D2 blockade. This is the precise mechanism the layer's Section 3B / PHARM-017 rests on for the dopamine-selection arm. Confidence high but below 0.8 because the bridge from 'depresses striatal dopamine release' to MECH-086's 'dampens dopamine trajectory-SELECTION gain' is REE's computational interpretation, and the effect runs through a CB2/endocannabinoid intermediary the REE story does not represent.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The M4-to-dopamine effect is not direct: it requires intact CB2 cannabinoid signalling as an obligatory intermediary, so any REE account that treats M4 as a direct dopamine-selection damper omits a required relay (and a place the mechanism could break in humans)."],
+  "tags": ["mech_086", "mech_087", "pharm_017", "m4_muscarinic", "striatal_dopamine", "xanomeline", "non_d2_antipsychotic", "receptor_subtype_layer", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Activation of M4 muscarinic receptors on striatal spiny projection neurons produces a sustained (>30 min) depression of striatal dopamine release, measured by fast-scan cyclic voltammetry; both this sustained dopamine-release inhibition and the antipsychotic-like behavioural efficacy of M4 positive allosteric modulators require intact CB2 cannabinoid-receptor signalling.",
+    "ree_translation": "The receptor layer (Section 3B) assigns to M4 the role of damping the MECH-086 dopamine trajectory-selection plane WITHOUT D2 blockade -- the reason xanomeline (PHARM-017) is antipsychotic from the muscarinic side. Foster et al. supply the direct striatal mechanism: M4 activation does reduce striatal dopamine output and does produce antipsychotic-predictive behaviour, by a route entirely separate from postsynaptic D2 antagonism. This is the cross-plane (MECH-087) point that a muscarinic action reaches the dopamine-selection plane.",
+    "mapping_caveat": "Two gaps. (1) 'Striatal dopamine release' is a presynaptic dopamine-availability measure; MECH-086's 'trajectory-SELECTION gain' is a computational construct about action/option selection, which the paper does not measure. (2) The effect is CB2/endocannabinoid-dependent -- an obligatory intermediary absent from the REE account; the muscarinic-to-dopamine link is therefore indirect.",
+    "source_context": "Mouse; FSCV dopamine release in striatal slices + M4/CB2 knockouts + prepulse-inhibition / antipsychotic-predictive behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Very high source quality (Neuron, multi-method, genetic controls). Mapping_fidelity good: directly grounds 'M4 dampens striatal dopamine without D2', which is the layer's core Section 3B mechanism; the residual gap is release-vs-selection-gain and the CB2 intermediary. Transfer risk moderate (mouse striatum)."
+  }
+}
