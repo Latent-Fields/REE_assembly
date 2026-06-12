@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-12T15:47:16.123486Z`
+Generated: `2026-06-12T16:20:23.090406Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -222,6 +222,7 @@ Generated: `2026-06-12T15:47:16.123486Z`
 | `targeted_review_pfc_subdivision_architecture` | [`2026-04-27_sd_033b_ofc_cognitive_map_wilson2014`](targeted_review_pfc_subdivision_architecture/entries/2026-04-27_sd_033b_ofc_cognitive_map_wilson2014/record.json) | 20 | [`summary`](targeted_review_pfc_subdivision_architecture/entries/2026-04-27_sd_033b_ofc_cognitive_map_wilson2014/summary.md) |
 | `targeted_review_play_commitment_loop_personality_window` | [`2026-05-17_inv_075_temperament_character_adolescence_zohar2018`](targeted_review_play_commitment_loop_personality_window/entries/2026-05-17_inv_075_temperament_character_adolescence_zohar2018/record.json) | 6 | [`summary`](targeted_review_play_commitment_loop_personality_window/entries/2026-05-17_inv_075_temperament_character_adolescence_zohar2018/summary.md) |
 | `targeted_review_pretend_play_counterfactual` | [`2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013`](targeted_review_pretend_play_counterfactual/entries/2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013/record.json) | 8 | [`summary`](targeted_review_pretend_play_counterfactual/entries/2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013/summary.md) |
+| `targeted_review_proxy_progress_goal_maintenance` | [`2026-06-12_mech217_td_value_as_progress_proxy_sutton1988`](targeted_review_proxy_progress_goal_maintenance/entries/2026-06-12_mech217_td_value_as_progress_proxy_sutton1988/record.json) | 6 | [`summary`](targeted_review_proxy_progress_goal_maintenance/entries/2026-06-12_mech217_td_value_as_progress_proxy_sutton1988/summary.md) |
 | `targeted_review_q_001` | [`2026-03-29_q001_gamma_vip_coherence_veit2022`](targeted_review_q_001/entries/2026-03-29_q001_gamma_vip_coherence_veit2022/record.json) | 4 | [`summary`](targeted_review_q_001/entries/2026-03-29_q001_gamma_vip_coherence_veit2022/summary.md) |
 | `targeted_review_q_002` | [`2026-03-29_q002_spatial_threshold_ca_surge_lines2024`](targeted_review_q_002/entries/2026-03-29_q002_spatial_threshold_ca_surge_lines2024/record.json) | 4 | [`summary`](targeted_review_q_002/entries/2026-03-29_q002_spatial_threshold_ca_surge_lines2024/summary.md) |
 | `targeted_review_q_003` | [`2026-03-29_q003_network_ca_multiplexing_cahill2024`](targeted_review_q_003/entries/2026-03-29_q003_network_ca_multiplexing_cahill2024/record.json) | 4 | [`summary`](targeted_review_q_003/entries/2026-03-29_q003_network_ca_multiplexing_cahill2024/summary.md) |

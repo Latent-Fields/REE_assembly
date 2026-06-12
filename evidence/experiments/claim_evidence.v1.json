@@ -2994,7 +2994,7 @@
       }
     },
     "ARC-041": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.163, lit_conf=0.723",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.162, lit_conf=0.723",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -3011,8 +3011,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.163,
-      "experimental_confidence_decoupled": 0.163,
+      "experimental_confidence": 0.162,
+      "experimental_confidence_decoupled": 0.162,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -3689,15 +3689,17 @@
       }
     },
     "ARC-051": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.804",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.861",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 4,
       "evidence_class_counts": {
+        "lit:behavioral_human": 1,
+        "lit:connectome_mechanistic_review": 1,
         "lit:theoretical_review": 2
       },
       "evidence_level_counts": {},
@@ -3712,11 +3714,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-26_ghost_goal_goal_maintenance_barch2010",
-      "latest_timestamp_utc": "2026-04-26T03:39:00Z",
-      "literature_confidence": 0.804,
-      "literature_confidence_parallel": 0.804,
-      "overall_confidence": 0.804,
+      "latest_run_id": "2026-06-12_arc051_rostrocaudal_abstraction_gradient_badre2009",
+      "latest_timestamp_utc": "2026-06-12T16:12:47Z",
+      "literature_confidence": 0.861,
+      "literature_confidence_parallel": 0.861,
+      "overall_confidence": 0.861,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -3750,12 +3752,48 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-26T03:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-051",
+          "confidence": 0.6,
+          "confidence_rationale": "Classic controlled experiment isolating goal GRANULARITY: identical material, only the goal framing varied (proximal subgoals vs single distal goal vs no goals). Proximal subgoals produced the strongest gains on every measure; distal goals 'had no demonstrable effects'. Directly supports Strand G (proximal subgoals sustain distal motivation) and the maintenance thesis (a bare superordinate goal does not by itself drive sustained effort -- it must be decomposed). Confidence 0.60: small-N developmental study (40 children, ~10/cell), single domain, and the mechanism ('self-efficacy') has no clean computational analog.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Distal goal alone was statistically indistinguishable from no goals -- a cautionary datum for any REE design that expects a bare superordinate goal representation to sustain long-horizon effort without intermediate structure.",
+            "The mechanism is human self-efficacy self-appraisal; the study conflates subgoals-as-frequent-success-signals with subgoals-as-capability-information, which a computational model would need to separate.",
+            "Small N (~10/cell), single domain (arithmetic), four sessions -- noisy effect-size estimates."
+          ],
+          "run_id": "2026-06-12_arc051_proximal_subgoals_distal_motivation_bandura1981",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-051",
+          "confidence": 0.62,
+          "confidence_rationale": "Field-defining review with neuroimaging + anatomical + electrophysiological + developmental convergence for a rostro-caudal abstraction gradient (rostral=abstract/superordinate, caudal=concrete/proximate), including the asymmetric top-down control signature (anterior predicts caudal activation, not vice versa). Supports a granularity-matched goal hierarchy. Capped at 0.62 because 'abstraction' conflates several axes and the 2018 follow-up (Badre & Nee) argues the organization is discrete (3 zones) rather than a continuous unidimensional gradient -- a material qualification for any continuous-granularity model.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "The 2018 synthesis (Badre & Nee, TICS) revises the picture: evidence 'consistently supports three major functional subdivisions' that are 'functionally discontinuous, violating a linear, progressive rostro-caudal gradient' -- a continuous granularity axis is a modeling simplification, not the current consensus.",
+            "'Abstraction has been defined somewhat differently across these experiments' (domain-generality, relational integration, temporal abstraction, policy abstraction are conflated), so the mapping of a single goal-granularity axis onto the anatomical axis is not clean.",
+            "The review itself cautions that the gradient features 'do not, by themselves, require that the organization be hierarchical.'"
+          ],
+          "run_id": "2026-06-12_arc051_rostrocaudal_abstraction_gradient_badre2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 4
       }
     },
     "ARC-058": {
@@ -7183,17 +7221,18 @@
       }
     },
     "INV-034": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.754",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.85",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 4,
       "evidence_class_counts": {
+        "lit:behavioral_human": 1,
         "lit:meta_analysis": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -7207,11 +7246,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-03-29_inv_034_goal_representations_schizophrenia_barch2010",
-      "latest_timestamp_utc": "2026-03-29T14:00:00Z",
-      "literature_confidence": 0.754,
-      "literature_confidence_parallel": 0.754,
-      "overall_confidence": 0.754,
+      "latest_run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+      "latest_timestamp_utc": "2026-06-12T16:12:47Z",
+      "literature_confidence": 0.85,
+      "literature_confidence_parallel": 0.85,
+      "overall_confidence": 0.85,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7247,12 +7286,47 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-03-29T14:00:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-034",
+          "confidence": 0.6,
+          "confidence_rationale": "Classic controlled experiment isolating goal GRANULARITY: identical material, only the goal framing varied (proximal subgoals vs single distal goal vs no goals). Proximal subgoals produced the strongest gains on every measure; distal goals 'had no demonstrable effects'. Directly supports Strand G (proximal subgoals sustain distal motivation) and the maintenance thesis (a bare superordinate goal does not by itself drive sustained effort -- it must be decomposed). Confidence 0.60: small-N developmental study (40 children, ~10/cell), single domain, and the mechanism ('self-efficacy') has no clean computational analog.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Distal goal alone was statistically indistinguishable from no goals -- a cautionary datum for any REE design that expects a bare superordinate goal representation to sustain long-horizon effort without intermediate structure.",
+            "The mechanism is human self-efficacy self-appraisal; the study conflates subgoals-as-frequent-success-signals with subgoals-as-capability-information, which a computational model would need to separate.",
+            "Small N (~10/cell), single domain (arithmetic), four sessions -- noisy effect-size estimates."
+          ],
+          "run_id": "2026-06-12_arc051_proximal_subgoals_distal_motivation_bandura1981",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-034",
+          "confidence": 0.7,
+          "confidence_rationale": "Foundational, widely-replicated control-theory account that directly names a rate-of-progress (velocity) feedback loop as the source of the affect signal that regulates effort -- the exact mechanism Strand A proposes for sustaining goal commitment. Downgraded from higher because the 1990 paper is theoretical synthesis (no controlled test in this article) and specifies the loop only qualitatively (no functional forms for reference-rate, gain, or time constants).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "The 'coasting' prediction inverts a naive reading: above-reference progress produces positive affect that REDUCES effort on the current goal (licensing redeployment), so a model that treats positive progress-affect as reinforcement INCREASING same-goal commitment contradicts the theory.",
+            "Functional forms (reference-rate setting, velocity->affect transform, smoothing/prediction of rate, multi-goal arbitration) are left unspecified and must be chosen by the modeller."
+          ],
+          "run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 4
       }
     },
     "INV-041": {
@@ -8297,20 +8371,20 @@
       }
     },
     "INV-053": {
-      "confidence_rationale": "exp=7 entry(s), lit=5 entry(s), exp_conf=0.856, lit_conf=0.799",
+      "confidence_rationale": "exp=7 entry(s), lit=6 entry(s), exp_conf=0.856, lit_conf=0.82",
       "direction_counts": {
         "mixed": 3,
-        "supports": 9,
+        "supports": 10,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 12,
+      "entries_total": 13,
       "evidence_class_counts": {
         "exp:simulation": 7,
         "lit:behavioral_human": 2,
         "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 1,
-        "lit:theoretical_review": 1
+        "lit:theoretical_review": 2
       },
       "evidence_level_counts": {
         "C": 7
@@ -8326,29 +8400,13 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_434_inv053_depression_attractor_replication_20260420T071542Z_v3",
-      "latest_timestamp_utc": "2026-04-20T07:15:42.478046Z",
-      "literature_confidence": 0.799,
-      "literature_confidence_parallel": 0.799,
-      "overall_confidence": 0.828,
+      "latest_run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+      "latest_timestamp_utc": "2026-06-12T16:12:47Z",
+      "literature_confidence": 0.82,
+      "literature_confidence_parallel": 0.82,
+      "overall_confidence": 0.838,
       "pass_runs": 7,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "INV-053",
-          "confidence": 0.75,
-          "confidence_rationale": "PASS with supporting direction",
-          "evidence_class": "exp:simulation",
-          "evidence_direction": "supports",
-          "evidence_level": "C",
-          "experiment_purpose": "evidence",
-          "experiment_type": "v3_exq_406_inv053_depression_attractor_replication",
-          "failure_signatures": [],
-          "run_id": "v3_exq_406_inv053_depression_attractor_replication_1776493166_v3",
-          "source_type": "experimental",
-          "status": "PASS",
-          "timestamp_utc": "2026-04-18T06:19:26Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "INV-053",
@@ -8414,12 +8472,29 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-04-20T07:15:42.478046Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-053",
+          "confidence": 0.7,
+          "confidence_rationale": "Foundational, widely-replicated control-theory account that directly names a rate-of-progress (velocity) feedback loop as the source of the affect signal that regulates effort -- the exact mechanism Strand A proposes for sustaining goal commitment. Downgraded from higher because the 1990 paper is theoretical synthesis (no controlled test in this article) and specifies the loop only qualitatively (no functional forms for reference-rate, gain, or time constants).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "The 'coasting' prediction inverts a naive reading: above-reference progress produces positive affect that REDUCES effort on the current goal (licensing redeployment), so a model that treats positive progress-affect as reinforcement INCREASING same-goal commitment contradicts the theory.",
+            "Functional forms (reference-rate setting, velocity->affect transform, smoothing/prediction of rate, multi-goal arbitration) are left unspecified and must be chosen by the modeller."
+          ],
+          "run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
         }
       ],
-      "runs_total": 12,
+      "runs_total": 13,
       "source_counts": {
         "experimental": 7,
-        "literature": 5
+        "literature": 6
       }
     },
     "INV-054": {
@@ -8735,7 +8810,7 @@
       }
     },
     "INV-057": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.885",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.884",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -8763,9 +8838,9 @@
       },
       "latest_run_id": "2026-04-06_mech_192_dog_recognize_emotion_multimodal_albuquerque2016",
       "latest_timestamp_utc": "2026-04-06T08:00:00Z",
-      "literature_confidence": 0.885,
-      "literature_confidence_parallel": 0.885,
-      "overall_confidence": 0.885,
+      "literature_confidence": 0.884,
+      "literature_confidence_parallel": 0.884,
+      "overall_confidence": 0.884,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -9160,6 +9235,95 @@
       "source_counts": {
         "experimental": 0,
         "literature": 2
+      }
+    },
+    "INV-065": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.798",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:computational_model": 3
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+      "latest_timestamp_utc": "2026-06-12T16:12:47Z",
+      "literature_confidence": 0.798,
+      "literature_confidence_parallel": 0.798,
+      "overall_confidence": 0.798,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-065",
+          "confidence": 0.75,
+          "confidence_rationale": "Foundational theorem with a necessary-and-sufficient, dynamics-independent guarantee -- exceptionally high source quality. It is the formal tethering constraint Strand B needs: it tells you EXACTLY which proxy signals provably do not distort the true goal. Direction is 'mixed' relative to a naive proxy-goal claim: it supports the usefulness of intermediate signals while proving that an arbitrary proxy (non-potential-based) can change the optimal policy. Mapping fidelity capped because REE's proxy is a learned, non-stationary, possibly affective signal, not a stationary state-only potential.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Invariance holds only for an additive, Markov, state-only potential Phi(s) under fixed discount; action-dependent, history-dependent, or drifting (learned online) potentials break the guarantee unless specially handled.",
+            "Necessity: if a shaping reward is NOT potential-based, there EXIST dynamics and a base reward under which the optimal policy of the shaped problem differs from the true one -- i.e. an untethered proxy can provably divert the agent from the true goal."
+          ],
+          "run_id": "2026-06-12_inv065_potential_based_shaping_ng1999",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-065",
+          "confidence": 0.62,
+          "confidence_rationale": "Rigorous formal characterization of WHEN a proxy can diverge from a true objective -- the negative counterpart to Ng et al. High source quality (NeurIPS, formal proofs). Mapping fidelity moderate: the headline impossibility is a worst-case result over ALL stochastic policies, but the paper itself shows non-trivial unhackable proxies exist on RESTRICTED policy sets -- exactly the regime a biological/structured agent occupies, so it both warns and partially reassures. Direction 'mixed' (warns against naive proxy reliance; the escape hatch supports REE's structured-policy setting).",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Over the set of ALL stochastic policies, two reward functions can be unhackable only if one is constant -- a guaranteed-never-divergent non-trivial proxy essentially cannot exist in the unrestricted case.",
+            "Assumes a single fixed true reward; for an architecture with multiple homeostatic drives or non-stationary objectives the unhackability comparison must be re-specified per objective."
+          ],
+          "run_id": "2026-06-12_inv065_reward_hacking_characterization_skalse2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "INV-065",
+          "confidence": 0.72,
+          "confidence_rationale": "Foundational source for the mechanism by which a learned prediction becomes a dense, intermediate stand-in for a distal/sparse outcome: TD bootstrapping uses a later prediction as the learning target for an earlier one. Directly grounds Strand D (on-path progress estimation) and the substrate of MECH-217's value-propagation. High source quality. Capped at 0.72 because the 1988 convergence guarantees are for the prediction (policy-evaluation) problem with largely linear approximation -- not control, off-policy, or deep nonlinear substrates (deadly triad), which is where REE actually operates.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Convergence/optimality proven for linear TD(0) in the prediction problem with a fixed policy; does not cover control, off-policy learning, or nonlinear approximators where TD can diverge.",
+            "The bootstrap target is only as good as the state representation: a value head over an impoverished or non-Markov latent is a BIASED progress proxy -- the proxy can be confidently wrong."
+          ],
+          "run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     },
     "INV-073": {
@@ -14059,35 +14223,38 @@
       }
     },
     "MECH-087": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.725",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.775, lit_conf=0.725",
       "direction_counts": {
+        "mixed": 0,
+        "supports": 2,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 2,
+      "evidence_class_counts": {
+        "exp:simulation": 1,
+        "lit:behavioral_animal": 1
+      },
+      "evidence_level_counts": {
+        "C": 1
+      },
+      "evidence_quadrant": "confirmed_established",
+      "experimental_confidence": 0.775,
+      "experimental_confidence_decoupled": 0.775,
+      "fail_runs": 0,
+      "genuine_exp_count": 1,
+      "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
-      "evidence_class_counts": {
-        "lit:behavioral_animal": 1
-      },
-      "evidence_level_counts": {},
-      "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.0,
-      "experimental_confidence_decoupled": 0.0,
-      "fail_runs": 0,
-      "genuine_exp_count": 0,
-      "genuine_exp_direction_counts": {
-        "mixed": 0,
-        "supports": 0,
-        "unknown": 0,
-        "weakens": 0
-      },
-      "latest_run_id": "2026-06-12_mech_086_m4_striatal_dopamine_foster2016",
-      "latest_timestamp_utc": "2026-06-12T15:37:55Z",
+      "latest_run_id": "v3_exq_674_mech087_cross_plane_nonrescue_20260612T161453Z_v3",
+      "latest_timestamp_utc": "2026-06-12T16:14:53Z",
       "literature_confidence": 0.725,
       "literature_confidence_parallel": 0.725,
-      "overall_confidence": 0.725,
-      "pass_runs": 0,
+      "overall_confidence": 0.75,
+      "pass_runs": 1,
       "recent_entries": [
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -14104,11 +14271,27 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-12T15:37:55Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-087",
+          "confidence": 0.75,
+          "confidence_rationale": "PASS with supporting direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "supports",
+          "evidence_level": "C",
+          "experiment_purpose": "evidence",
+          "experiment_type": "v3_exq_674_mech087_cross_plane_nonrescue",
+          "failure_signatures": [],
+          "run_id": "v3_exq_674_mech087_cross_plane_nonrescue_20260612T161453Z_v3",
+          "source_type": "experimental",
+          "status": "PASS",
+          "timestamp_utc": "2026-06-12T16:14:53Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
-        "experimental": 0,
+        "experimental": 1,
         "literature": 1
       }
     },
@@ -14201,7 +14384,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.601, lit_conf=0.868",
+      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.6, lit_conf=0.868",
       "direction_counts": {
         "mixed": 4,
         "supports": 14,
@@ -14223,8 +14406,8 @@
         "C": 12
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.601,
-      "experimental_confidence_decoupled": 0.601,
+      "experimental_confidence": 0.6,
+      "experimental_confidence_decoupled": 0.6,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -14237,7 +14420,7 @@
       "latest_timestamp_utc": "2026-06-06T21:21:00Z",
       "literature_confidence": 0.868,
       "literature_confidence_parallel": 0.868,
-      "overall_confidence": 0.735,
+      "overall_confidence": 0.734,
       "pass_runs": 5,
       "recent_entries": [
         {
@@ -15382,7 +15565,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.346, lit_conf=0.891",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.345, lit_conf=0.891",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -15401,8 +15584,8 @@
         "C": 6
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.346,
-      "experimental_confidence_decoupled": 0.346,
+      "experimental_confidence": 0.345,
+      "experimental_confidence_decoupled": 0.345,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -18061,7 +18244,7 @@
       }
     },
     "MECH-150": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.163, lit_conf=0.731",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.162, lit_conf=0.731",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -18078,8 +18261,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.163,
-      "experimental_confidence_decoupled": 0.163,
+      "experimental_confidence": 0.162,
+      "experimental_confidence_decoupled": 0.162,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -18092,7 +18275,7 @@
       "latest_timestamp_utc": "2026-04-02T13:20:00Z",
       "literature_confidence": 0.731,
       "literature_confidence_parallel": 0.731,
-      "overall_confidence": 0.542,
+      "overall_confidence": 0.541,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -21430,7 +21613,7 @@
       }
     },
     "MECH-193": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.802",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.801",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -21457,9 +21640,9 @@
       },
       "latest_run_id": "2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015",
       "latest_timestamp_utc": "2026-04-06T08:00:00Z",
-      "literature_confidence": 0.802,
-      "literature_confidence_parallel": 0.802,
-      "overall_confidence": 0.802,
+      "literature_confidence": 0.801,
+      "literature_confidence_parallel": 0.801,
+      "overall_confidence": 0.801,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -22654,6 +22837,61 @@
         "literature": 5
       }
     },
+    "MECH-217": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:computational_model": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+      "latest_timestamp_utc": "2026-06-12T16:12:47Z",
+      "literature_confidence": 0.71,
+      "literature_confidence_parallel": 0.71,
+      "overall_confidence": 0.71,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-217",
+          "confidence": 0.72,
+          "confidence_rationale": "Foundational source for the mechanism by which a learned prediction becomes a dense, intermediate stand-in for a distal/sparse outcome: TD bootstrapping uses a later prediction as the learning target for an earlier one. Directly grounds Strand D (on-path progress estimation) and the substrate of MECH-217's value-propagation. High source quality. Capped at 0.72 because the 1988 convergence guarantees are for the prediction (policy-evaluation) problem with largely linear approximation -- not control, off-policy, or deep nonlinear substrates (deadly triad), which is where REE actually operates.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+          "failure_signatures": [
+            "Convergence/optimality proven for linear TD(0) in the prediction problem with a fixed policy; does not cover control, off-policy learning, or nonlinear approximators where TD can diverge.",
+            "The bootstrap target is only as good as the state representation: a value head over an impoverished or non-Markov latent is a BIASED progress proxy -- the proxy can be confidently wrong."
+          ],
+          "run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-12T16:12:47Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
+      }
+    },
     "MECH-220": {
       "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.203, lit_conf=0.86",
       "direction_counts": {
@@ -22912,7 +23150,7 @@
       }
     },
     "MECH-230": {
-      "confidence_rationale": "exp=2 entry(s), lit=11 entry(s), exp_conf=0.813, lit_conf=0.829",
+      "confidence_rationale": "exp=2 entry(s), lit=11 entry(s), exp_conf=0.812, lit_conf=0.829",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -22932,8 +23170,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.813,
-      "experimental_confidence_decoupled": 0.813,
+      "experimental_confidence": 0.812,
+      "experimental_confidence_decoupled": 0.812,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -22946,7 +23184,7 @@
       "latest_timestamp_utc": "2026-06-11T13:11:05Z",
       "literature_confidence": 0.829,
       "literature_confidence_parallel": 0.829,
-      "overall_confidence": 0.823,
+      "overall_confidence": 0.822,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -24462,59 +24700,42 @@
       }
     },
     "MECH-266": {
-      "confidence_rationale": "exp=1 entry(s), lit=6 entry(s), exp_conf=0.325, lit_conf=0.841",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.375, lit_conf=0.841",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "entries_total": 7,
+      "entries_total": 8,
       "evidence_class_counts": {
-        "exp:simulation": 1,
+        "exp:simulation": 2,
         "lit:computational_model": 2,
         "lit:fmri_connectivity": 1,
         "lit:review_pharmacology": 1,
         "lit:theoretical_review": 2
       },
       "evidence_level_counts": {
-        "C": 1
+        "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.325,
-      "experimental_confidence_decoupled": 0.325,
-      "fail_runs": 1,
-      "genuine_exp_count": 1,
+      "experimental_confidence": 0.375,
+      "experimental_confidence_decoupled": 0.375,
+      "fail_runs": 2,
+      "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 0,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "latest_run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
-      "latest_timestamp_utc": "2026-06-12T11:52:22Z",
+      "latest_run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+      "latest_timestamp_utc": "2026-06-12T15:58:46Z",
       "literature_confidence": 0.841,
       "literature_confidence_parallel": 0.841,
-      "overall_confidence": 0.712,
+      "overall_confidence": 0.655,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-266",
-          "confidence": 0.74,
-          "confidence_rationale": "Neuron review that frames striatal dopamine as the modulator of the stability-flexibility tradeoff, with output gating functions varying with task demands. The review explicitly discusses how the basal tone of different dopaminergic projection systems reflects perceived environmental statistics computed in frontal cortex, and how dopaminergic drug effects depend on the baseline state of target brain regions -- an inverted-U with distinct directions at high vs low baseline. This is directly relevant to MECH-266, which posits asymmetric enter vs exit thresholds per operating mode. Cools' account supports the mechanism-level claim that mode transitions are not symmetric: entering a stable mode (bias to stability) uses a different dynamic than leaving it (bias to flexibility), and the asymmetry is modulated by tonic-DA state (which varies by mode context). Confidence is 0.74 because the review is architectural rather than giving a direct Schmitt-trigger demonstration in a mode-switching paradigm.",
-          "evidence_class": "lit:theoretical_review",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_connectome_mech_266",
-          "failure_signatures": [
-            "If empirical work shows that dopaminergic effects on mode transitions are symmetric -- i.e. same threshold for enter and exit, modulated only by overall gain -- the Schmitt-trigger framing in MECH-266 is over-specified.",
-            "The review discusses dopamine as a global modulator; if mode-specific asymmetry is in fact a property of local circuits (e.g. cortical recurrence) rather than tonic DA, the implementation in SD-032a with per-mode (enter, exit) thresholds may be attributing to dopamine what belongs to local dynamics."
-          ],
-          "run_id": "2026-04-21_mech_266_stability_flexibility_cools2019",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-21T00:09:03Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-266",
@@ -24584,11 +24805,27 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-06-12T11:52:22Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-266",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "evidence_level": "C",
+          "experiment_purpose": "evidence",
+          "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+          "failure_signatures": [],
+          "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-06-12T15:58:46Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 8,
       "source_counts": {
-        "experimental": 1,
+        "experimental": 2,
         "literature": 6
       }
     },
@@ -29997,7 +30234,7 @@
       }
     },
     "MECH-341": {
-      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.87, lit_conf=0.779",
+      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.869, lit_conf=0.779",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -30014,8 +30251,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.87,
-      "experimental_confidence_decoupled": 0.87,
+      "experimental_confidence": 0.869,
+      "experimental_confidence_decoupled": 0.869,
       "fail_runs": 0,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -30028,7 +30265,7 @@
       "latest_timestamp_utc": "2026-06-10T04:41:09Z",
       "literature_confidence": 0.779,
       "literature_confidence_parallel": 0.779,
-      "overall_confidence": 0.825,
+      "overall_confidence": 0.824,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -38665,16 +38902,16 @@
       }
     },
     "SD-032a": {
-      "confidence_rationale": "exp=2 entry(s), lit=20 entry(s), exp_conf=0.6, lit_conf=0.878",
+      "confidence_rationale": "exp=3 entry(s), lit=20 entry(s), exp_conf=0.575, lit_conf=0.878",
       "direction_counts": {
         "mixed": 0,
         "supports": 21,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "entries_total": 22,
+      "entries_total": 23,
       "evidence_class_counts": {
-        "exp:simulation": 2,
+        "exp:simulation": 3,
         "lit:behavioral_animal": 7,
         "lit:clinical_case": 2,
         "lit:connectome_mechanistic_review": 1,
@@ -38683,44 +38920,26 @@
         "lit:theoretical_review": 7
       },
       "evidence_level_counts": {
-        "C": 2
+        "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.6,
-      "experimental_confidence_decoupled": 0.6,
-      "fail_runs": 1,
-      "genuine_exp_count": 2,
+      "experimental_confidence": 0.575,
+      "experimental_confidence_decoupled": 0.575,
+      "fail_runs": 2,
+      "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
         "mixed": 0,
         "supports": 1,
         "unknown": 0,
-        "weakens": 1
+        "weakens": 2
       },
-      "latest_run_id": "v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3",
-      "latest_timestamp_utc": "2026-06-12T11:52:22Z",
+      "latest_run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+      "latest_timestamp_utc": "2026-06-12T15:58:46Z",
       "literature_confidence": 0.878,
       "literature_confidence_parallel": 0.878,
-      "overall_confidence": 0.767,
+      "overall_confidence": 0.727,
       "pass_runs": 1,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-032a",
-          "confidence": 0.88,
-          "confidence_rationale": "This is the most direct biological analogue of the V3-EXQ-471 catatonia scenario yet published. Mice toggle dynamically between food seeking and self-preservation as predation threat varies, and increasing caloric need (the override signal) re-engages food seeking under threat through identified AgRP -> BNST and AgRP -> LH circuits. Crucially, predator-responsive PMd-CCK neurons SUPPRESS AgRP activity, not via z_harm-side modulation -- so the threat -> feeding suppression is an active circuit, not just a competing scalar. Confidence high because the architecture maps cleanly onto SD-012/SD-036 and identifies specific output pathways the V3 model can implement.",
-          "evidence_class": "lit:behavioral_animal",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_homeostatic_override",
-          "failure_signatures": [
-            "Predator threat suppresses AgRP (hunger) activity rather than just competing with it -- suggesting threat-driven hypophagia is an active inhibition, not arbitration loss.",
-            "Override of threat by hunger requires increased caloric need; the override signal scales with deprivation, supporting graded rather than threshold drive amplification.",
-            "AgRP -> BNST and AgRP -> LH are distinct output channels for threat-overriding food seeking; suggests at least two-target broadcast rather than single output."
-          ],
-          "run_id": "2026-04-22_homeostatic_override_predator_foodseek_dearaujosalgado2023",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-22T16:25:52Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-032a",
@@ -38787,11 +39006,27 @@
           "source_type": "experimental",
           "status": "FAIL",
           "timestamp_utc": "2026-06-12T11:52:22Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-032a",
+          "confidence": 0.75,
+          "confidence_rationale": "FAIL with weakening direction",
+          "evidence_class": "exp:simulation",
+          "evidence_direction": "weakens",
+          "evidence_level": "C",
+          "experiment_purpose": "evidence",
+          "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+          "failure_signatures": [],
+          "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+          "source_type": "experimental",
+          "status": "FAIL",
+          "timestamp_utc": "2026-06-12T15:58:46Z"
         }
       ],
-      "runs_total": 22,
+      "runs_total": 23,
       "source_counts": {
-        "experimental": 2,
+        "experimental": 3,
         "literature": 20
       }
     },
@@ -113242,6 +113477,227 @@
       "timestamp_utc": "2026-06-12T15:37:55Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-342",
+      "confidence": 0.0,
+      "confidence_rationale": "non_contributory -- excluded from scoring",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "non_contributory",
+      "evidence_level": "C",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_629b_mech342_ecological_maintenance_release_evidence",
+      "failure_signatures": [],
+      "run_id": "v3_exq_629b_mech342_ecological_maintenance_release_evidence_20260612T155004Z_v3",
+      "scoring_excluded": "non_contributory",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-06-12T15:50:04Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-266",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "evidence_level": "C",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+      "failure_signatures": [],
+      "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-06-12T15:58:46Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-032a",
+      "confidence": 0.75,
+      "confidence_rationale": "FAIL with weakening direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "weakens",
+      "evidence_level": "C",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+      "failure_signatures": [],
+      "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+      "source_type": "experimental",
+      "status": "FAIL",
+      "timestamp_utc": "2026-06-12T15:58:46Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-051",
+      "confidence": 0.6,
+      "confidence_rationale": "Classic controlled experiment isolating goal GRANULARITY: identical material, only the goal framing varied (proximal subgoals vs single distal goal vs no goals). Proximal subgoals produced the strongest gains on every measure; distal goals 'had no demonstrable effects'. Directly supports Strand G (proximal subgoals sustain distal motivation) and the maintenance thesis (a bare superordinate goal does not by itself drive sustained effort -- it must be decomposed). Confidence 0.60: small-N developmental study (40 children, ~10/cell), single domain, and the mechanism ('self-efficacy') has no clean computational analog.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Distal goal alone was statistically indistinguishable from no goals -- a cautionary datum for any REE design that expects a bare superordinate goal representation to sustain long-horizon effort without intermediate structure.",
+        "The mechanism is human self-efficacy self-appraisal; the study conflates subgoals-as-frequent-success-signals with subgoals-as-capability-information, which a computational model would need to separate.",
+        "Small N (~10/cell), single domain (arithmetic), four sessions -- noisy effect-size estimates."
+      ],
+      "run_id": "2026-06-12_arc051_proximal_subgoals_distal_motivation_bandura1981",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-051",
+      "confidence": 0.62,
+      "confidence_rationale": "Field-defining review with neuroimaging + anatomical + electrophysiological + developmental convergence for a rostro-caudal abstraction gradient (rostral=abstract/superordinate, caudal=concrete/proximate), including the asymmetric top-down control signature (anterior predicts caudal activation, not vice versa). Supports a granularity-matched goal hierarchy. Capped at 0.62 because 'abstraction' conflates several axes and the 2018 follow-up (Badre & Nee) argues the organization is discrete (3 zones) rather than a continuous unidimensional gradient -- a material qualification for any continuous-granularity model.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "The 2018 synthesis (Badre & Nee, TICS) revises the picture: evidence 'consistently supports three major functional subdivisions' that are 'functionally discontinuous, violating a linear, progressive rostro-caudal gradient' -- a continuous granularity axis is a modeling simplification, not the current consensus.",
+        "'Abstraction has been defined somewhat differently across these experiments' (domain-generality, relational integration, temporal abstraction, policy abstraction are conflated), so the mapping of a single goal-granularity axis onto the anatomical axis is not clean.",
+        "The review itself cautions that the gradient features 'do not, by themselves, require that the organization be hierarchical.'"
+      ],
+      "run_id": "2026-06-12_arc051_rostrocaudal_abstraction_gradient_badre2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-034",
+      "confidence": 0.6,
+      "confidence_rationale": "Classic controlled experiment isolating goal GRANULARITY: identical material, only the goal framing varied (proximal subgoals vs single distal goal vs no goals). Proximal subgoals produced the strongest gains on every measure; distal goals 'had no demonstrable effects'. Directly supports Strand G (proximal subgoals sustain distal motivation) and the maintenance thesis (a bare superordinate goal does not by itself drive sustained effort -- it must be decomposed). Confidence 0.60: small-N developmental study (40 children, ~10/cell), single domain, and the mechanism ('self-efficacy') has no clean computational analog.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Distal goal alone was statistically indistinguishable from no goals -- a cautionary datum for any REE design that expects a bare superordinate goal representation to sustain long-horizon effort without intermediate structure.",
+        "The mechanism is human self-efficacy self-appraisal; the study conflates subgoals-as-frequent-success-signals with subgoals-as-capability-information, which a computational model would need to separate.",
+        "Small N (~10/cell), single domain (arithmetic), four sessions -- noisy effect-size estimates."
+      ],
+      "run_id": "2026-06-12_arc051_proximal_subgoals_distal_motivation_bandura1981",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-034",
+      "confidence": 0.7,
+      "confidence_rationale": "Foundational, widely-replicated control-theory account that directly names a rate-of-progress (velocity) feedback loop as the source of the affect signal that regulates effort -- the exact mechanism Strand A proposes for sustaining goal commitment. Downgraded from higher because the 1990 paper is theoretical synthesis (no controlled test in this article) and specifies the loop only qualitatively (no functional forms for reference-rate, gain, or time constants).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "The 'coasting' prediction inverts a naive reading: above-reference progress produces positive affect that REDUCES effort on the current goal (licensing redeployment), so a model that treats positive progress-affect as reinforcement INCREASING same-goal commitment contradicts the theory.",
+        "Functional forms (reference-rate setting, velocity->affect transform, smoothing/prediction of rate, multi-goal arbitration) are left unspecified and must be chosen by the modeller."
+      ],
+      "run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-053",
+      "confidence": 0.7,
+      "confidence_rationale": "Foundational, widely-replicated control-theory account that directly names a rate-of-progress (velocity) feedback loop as the source of the affect signal that regulates effort -- the exact mechanism Strand A proposes for sustaining goal commitment. Downgraded from higher because the 1990 paper is theoretical synthesis (no controlled test in this article) and specifies the loop only qualitatively (no functional forms for reference-rate, gain, or time constants).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "The 'coasting' prediction inverts a naive reading: above-reference progress produces positive affect that REDUCES effort on the current goal (licensing redeployment), so a model that treats positive progress-affect as reinforcement INCREASING same-goal commitment contradicts the theory.",
+        "Functional forms (reference-rate setting, velocity->affect transform, smoothing/prediction of rate, multi-goal arbitration) are left unspecified and must be chosen by the modeller."
+      ],
+      "run_id": "2026-06-12_inv034_velocity_affect_loop_carver1990",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-065",
+      "confidence": 0.75,
+      "confidence_rationale": "Foundational theorem with a necessary-and-sufficient, dynamics-independent guarantee -- exceptionally high source quality. It is the formal tethering constraint Strand B needs: it tells you EXACTLY which proxy signals provably do not distort the true goal. Direction is 'mixed' relative to a naive proxy-goal claim: it supports the usefulness of intermediate signals while proving that an arbitrary proxy (non-potential-based) can change the optimal policy. Mapping fidelity capped because REE's proxy is a learned, non-stationary, possibly affective signal, not a stationary state-only potential.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Invariance holds only for an additive, Markov, state-only potential Phi(s) under fixed discount; action-dependent, history-dependent, or drifting (learned online) potentials break the guarantee unless specially handled.",
+        "Necessity: if a shaping reward is NOT potential-based, there EXIST dynamics and a base reward under which the optimal policy of the shaped problem differs from the true one -- i.e. an untethered proxy can provably divert the agent from the true goal."
+      ],
+      "run_id": "2026-06-12_inv065_potential_based_shaping_ng1999",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-065",
+      "confidence": 0.62,
+      "confidence_rationale": "Rigorous formal characterization of WHEN a proxy can diverge from a true objective -- the negative counterpart to Ng et al. High source quality (NeurIPS, formal proofs). Mapping fidelity moderate: the headline impossibility is a worst-case result over ALL stochastic policies, but the paper itself shows non-trivial unhackable proxies exist on RESTRICTED policy sets -- exactly the regime a biological/structured agent occupies, so it both warns and partially reassures. Direction 'mixed' (warns against naive proxy reliance; the escape hatch supports REE's structured-policy setting).",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Over the set of ALL stochastic policies, two reward functions can be unhackable only if one is constant -- a guaranteed-never-divergent non-trivial proxy essentially cannot exist in the unrestricted case.",
+        "Assumes a single fixed true reward; for an architecture with multiple homeostatic drives or non-stationary objectives the unhackability comparison must be re-specified per objective."
+      ],
+      "run_id": "2026-06-12_inv065_reward_hacking_characterization_skalse2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "INV-065",
+      "confidence": 0.72,
+      "confidence_rationale": "Foundational source for the mechanism by which a learned prediction becomes a dense, intermediate stand-in for a distal/sparse outcome: TD bootstrapping uses a later prediction as the learning target for an earlier one. Directly grounds Strand D (on-path progress estimation) and the substrate of MECH-217's value-propagation. High source quality. Capped at 0.72 because the 1988 convergence guarantees are for the prediction (policy-evaluation) problem with largely linear approximation -- not control, off-policy, or deep nonlinear substrates (deadly triad), which is where REE actually operates.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Convergence/optimality proven for linear TD(0) in the prediction problem with a fixed policy; does not cover control, off-policy learning, or nonlinear approximators where TD can diverge.",
+        "The bootstrap target is only as good as the state representation: a value head over an impoverished or non-Markov latent is a BIASED progress proxy -- the proxy can be confidently wrong."
+      ],
+      "run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-217",
+      "confidence": 0.72,
+      "confidence_rationale": "Foundational source for the mechanism by which a learned prediction becomes a dense, intermediate stand-in for a distal/sparse outcome: TD bootstrapping uses a later prediction as the learning target for an earlier one. Directly grounds Strand D (on-path progress estimation) and the substrate of MECH-217's value-propagation. High source quality. Capped at 0.72 because the 1988 convergence guarantees are for the prediction (policy-evaluation) problem with largely linear approximation -- not control, off-policy, or deep nonlinear substrates (deadly triad), which is where REE actually operates.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_proxy_progress_goal_maintenance",
+      "failure_signatures": [
+        "Convergence/optimality proven for linear TD(0) in the prediction problem with a fixed policy; does not cover control, off-policy learning, or nonlinear approximators where TD can diverge.",
+        "The bootstrap target is only as good as the state representation: a value head over an impoverished or non-Markov latent is a BIASED progress proxy -- the proxy can be confidently wrong."
+      ],
+      "run_id": "2026-06-12_mech217_td_value_as_progress_proxy_sutton1988",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-12T16:12:47Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-087",
+      "confidence": 0.75,
+      "confidence_rationale": "PASS with supporting direction",
+      "evidence_class": "exp:simulation",
+      "evidence_direction": "supports",
+      "evidence_level": "C",
+      "experiment_purpose": "evidence",
+      "experiment_type": "v3_exq_674_mech087_cross_plane_nonrescue",
+      "failure_signatures": [],
+      "run_id": "v3_exq_674_mech087_cross_plane_nonrescue_20260612T161453Z_v3",
+      "source_type": "experimental",
+      "status": "PASS",
+      "timestamp_utc": "2026-06-12T16:14:53Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -113280,7 +113736,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-12T15:47:16.123486Z",
+  "generated_at_utc": "2026-06-12T16:20:23.090406Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [
