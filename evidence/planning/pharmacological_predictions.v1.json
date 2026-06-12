@@ -16,10 +16,11 @@
     "status": "registered | provisional_supported | provisional_weakened | retired | superseded_by",
     "supersedes": "optional PHARM-ID this entry supersedes (when an earlier prediction has been refined)",
     "notes": "free text, including clinical caveats and scope limits",
-    "polarity": "positive (intervention helps) | negative (intervention does NOT help / is contraindicated by architecture)"
+    "polarity": "positive (intervention helps) | negative (intervention does NOT help / is contraindicated by architecture)",
+    "receptor_resolution": "optional. {subtype, projection, action, plane} resolving the intervention to a receptor-subtype rung between the mechanism claims and the drug class. Added 2026-06-12 with the receptor_subtype_intervention_layer.md abstraction layer."
   },
-  "last_updated_utc": "2026-04-22T17:53:38Z",
-  "next_id": 15,
+  "last_updated_utc": "2026-06-12T14:28:16Z",
+  "next_id": 19,
   "predictions": [
     {
       "id": "PHARM-001",
@@ -305,6 +306,92 @@
       "polarity": "positive",
       "status": "registered",
       "notes": "This is the headline DISSOCIATION prediction of the dementia/medications cluster. It distinguishes pipeline-mediated benefit from three plausible competitor explanations and ties the architectural commitment (INV-047 staged decline matches reverse phase-dependency ordering) to a specific testable cognitive-trajectory signature. The trial design implied by this prediction is not yet conducted; the prediction stands as a falsification target for the entire cluster (INV-047 + MECH-173-177)."
+    },
+    {
+      "id": "PHARM-015",
+      "registered_utc": "2026-06-12T14:28:16Z",
+      "intervention": "pimavanserin (5-HT2A inverse agonist) for the narrative-level over-precision / aberrant-salience axis",
+      "intervention_class": "5ht2a_inverse_agonist",
+      "claim_ids": ["MECH-006", "MECH-085", "MECH-088", "IMPL-005"],
+      "receptor_resolution": {"subtype": "5-HT2A", "projection": "dorsal raphe -> L5 cortical pyramidal", "action": "inverse agonist", "plane": "narrative-level representational exclusivity / top-level precision (MECH-006 rho-exclusivity)"},
+      "predicted_effect": "REE resolves the MECH-006/MECH-085 serotonin conflict by receptor subtype: 5-HT2A on cortical L5 pyramidal cells carries MECH-006's narrative-level representational-exclusivity / top-level-precision motif (distinct from 5-HT1A hippocampal terrain, PHARM-016). 5-HT2A inverse agonism (pimavanserin) should reduce aberrant high-level salience and 'narrative lock' (IMPL-005 failure mode 3, high alpha_theta over-precision; MECH-088 psychosis narrative arm). Architecturally distinctive prediction: benefit on delusional CONVICTION / over-precision specifically, dissociable from the dopamine-selection (D2) arm of psychosis -- a 5-HT2A agent should help the narrative-exclusivity component while leaving the salience-stamping component to dopaminergic / M4 agents (PHARM-017).",
+      "intervention_axis": "regulator_layer_5HT2A_narrative_precision",
+      "phenotype_target": "narrative_overprecision_aberrant_salience",
+      "dissociates_from": ["PHARM-016", "PHARM-017"],
+      "falsification_condition": "Pimavanserin reduces hallucination frequency (established in PDP) but produces NO measurable reduction in delusional conviction / narrative-over-precision in primary psychosis or adjunctive MDD beyond a generic sedation/antipsychotic-adjunct effect; OR a 5-HT2A inverse agonist and a 5-HT1A agonist (PHARM-016) produce indistinguishable effects on the same endpoint (which would collapse the receptor-subtype level-split of Section 3A).",
+      "literature_anchors": [
+        {"type": "mechanism", "anchor": "ChEMBL CHEMBL2448613 (pimavanserin tartrate, USAN stem -anserin = 5-HT2 antagonist; approved 2016 Parkinson's disease psychosis)", "status": "consistent"},
+        {"type": "trial", "anchor": "ACADIA CLARITY adjunctive-MDD programme: Phase 2 NCT03018340 (completed), Phase 3 NCT03968159 (completed, n=298)", "status": "mixed_trialled_not_approved_for_MDD"},
+        {"type": "trial", "anchor": "NCT06592833 (Mount Sinai, recruiting): pimavanserin used to BLOCK 5-HT2A to dissect psilocybin -- ready-made dissociation probe for the level-split", "status": "ongoing"},
+        {"type": "needed", "anchor": "endpoint separating delusional conviction (narrative precision) from hallucination frequency, stratified 5-HT2A vs 5-HT1A vs D2 arms", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "REPURPOSING GAP: approved for Parkinson's disease psychosis; trialled but NOT labelled for adjunctive MDD or primary psychosis. This entry is also the working resolution of the MECH-006/MECH-085 conflict flagged in neuromodulatory_control_planes.md: 5-HT2A=narrative/cortical level (MECH-006), 5-HT1A=terrain/hippocampal level (MECH-085, PHARM-016). out_of_domain for V3 (no 5-HT subtype split in substrate); adjudicated against clinical literature. See receptor_subtype_intervention_layer.md Section 3A."
+    },
+    {
+      "id": "PHARM-016",
+      "registered_utc": "2026-06-12T14:28:16Z",
+      "intervention": "buspirone (5-HT1A partial agonist) for the hippocampal-terrain aversive-basin-depth axis",
+      "intervention_class": "5ht1a_partial_agonist",
+      "claim_ids": ["MECH-085", "MECH-088"],
+      "receptor_resolution": {"subtype": "5-HT1A", "projection": "median raphe -> hippocampal CA1/DG; + somatodendritic autoreceptor", "action": "partial agonist", "plane": "hippocampal-terrain basin geometry / aversive attractor wall steepness (MECH-085 terrain level)"},
+      "predicted_effect": "5-HT1A on hippocampal CA1/DG carries MECH-085's terrain motif: aversive attractor basin depth and local rollout geometry (distinct from the 5-HT2A narrative level, PHARM-015). 5-HT1A partial agonism (buspirone) should flatten aversive basin walls, reducing fear-consistent rollout capture (anxiolysis; MECH-088 PTSD terrain component). Distinctive prediction: terrain-component benefit (anxiety, anhedonic terrain-lock) dissociable from the narrative-precision axis (PHARM-015) -- the two serotonergic agents target DIFFERENT REE planes despite sharing the 'serotonergic' class label.",
+      "intervention_axis": "regulator_layer_5HT1A_terrain_geometry",
+      "phenotype_target": "aversive_terrain_basin_depth",
+      "dissociates_from": ["PHARM-015"],
+      "falsification_condition": "5-HT1A partial agonist augmentation (buspirone/pindolol) and a 5-HT2A inverse agonist (PHARM-015) produce indistinguishable effects on matched terrain (anxiety) vs narrative (delusional-conviction) endpoints -- i.e. no level-split; OR 5-HT1A augmentation does not shorten antidepressant onset despite the somatodendritic-autoreceptor-desensitisation timecourse predicting it should (audit link 6.4).",
+      "literature_anchors": [
+        {"type": "mechanism", "anchor": "buspirone 5-HT1A partial agonist, approved for GAD (established pharmacology)", "status": "consistent"},
+        {"type": "trial", "anchor": "pindolol (5-HT1A autoreceptor antagonist) antidepressant-acceleration augmentation literature -- existing partial test of the onset-delay reframe", "status": "mixed"},
+        {"type": "needed", "anchor": "buspirone/5-HT1A augmentation in anhedonic / terrain-locked depression with terrain-vs-narrative endpoint separation", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "REPURPOSING GAP: approved for GAD; REE-predicted extension to terrain-component augmentation in depression and the PTSD terrain component. Dissociation partner to PHARM-015 -- together they are the receptor-resolved reconciliation of MECH-006 vs MECH-085. out_of_domain for V3. See receptor_subtype_intervention_layer.md Section 3A."
+    },
+    {
+      "id": "PHARM-017",
+      "registered_utc": "2026-06-12T14:28:16Z",
+      "intervention": "xanomeline/trospium (M1/M4 muscarinic agonist, Cobenfy/KarXT) -- M1 plasticity-gain x M4 dopamine-selection interaction",
+      "intervention_class": "muscarinic_m1_m4_agonist",
+      "claim_ids": ["MECH-083", "MECH-086", "MECH-087", "MECH-088"],
+      "receptor_resolution": {"subtype": "M1 (cortical/hippocampal) + M4 (striatal)", "projection": "M1 cortex/hippocampus; M4 striatum", "action": "agonist", "plane": "INTERACTION: M1 -> ACh meta-plane plasticity gain (MECH-083); M4 -> dampens dopamine trajectory-selection gain (MECH-086) without D2 blockade"},
+      "predicted_effect": "Interaction-effect prediction that is INVISIBLE at transmitter granularity: xanomeline's two targets sit on two different planes of the MECH-087 hierarchy. M1 acts on the ACh meta-plane (plasticity gain on encoding, MECH-083); M4 acts downstream to dampen dopamine selection gain (MECH-086) -- which is WHY xanomeline is antipsychotic without D2 blockade. It attacks MECH-088 psychosis from the SELECTION-plane side (dopamine stamping salience onto noise) via muscarinic M4 rather than D2 antagonism. Predicted: efficacy on aberrant salience plus a cognition/encoding benefit (M1 plasticity-gain) that pure D2 antagonists lack.",
+      "intervention_axis": "interaction_M1_plasticity_x_M4_dopamine_selection",
+      "phenotype_target": "aberrant_salience_psychosis_with_encoding_deficit",
+      "dissociates_from": ["PHARM-015"],
+      "falsification_condition": "Xanomeline's antipsychotic effect is fully accounted for by a mechanism other than M4-mediated dopamine-selection damping (e.g. abolished by M1-selective but not M4-selective manipulation, contradicting the selection-plane attribution); OR it shows NO cognition/encoding advantage over D2 antagonists at matched antipsychotic efficacy (which would weaken the M1 plasticity-gain arm); OR a pure D2 antagonist reproduces the full xanomeline profile (collapsing the interaction into the existing dopamine-selection account).",
+      "literature_anchors": [
+        {"type": "trial", "anchor": "KarXT schizophrenia programme -- Phase 2 NCT03697252 (completed, n=182), Phase 3 NCT05919823; FDA approval 2024 (Cobenfy), first non-D2 antipsychotic", "status": "consistent"},
+        {"type": "trial", "anchor": "indication expansion: AD psychosis ADEPT-3 NCT05980949 (recruiting, n=800), AD agitation NCT07011732, schizophrenia cognition NCT07084831", "status": "ongoing"},
+        {"type": "needed", "anchor": "M1-selective vs M4-selective dissection of the antipsychotic vs cognition arms; head-to-head cognition endpoint vs D2 antagonist", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "REPURPOSING GAP: approved 2024 for schizophrenia; actively expanding to MCI/AD cognition and AD psychosis. The canonical interaction-effect example for the receptor layer -- one molecule, two MECH-087 planes. out_of_domain for V3 (no muscarinic subtypes in substrate). See receptor_subtype_intervention_layer.md Section 3B."
+    },
+    {
+      "id": "PHARM-018",
+      "registered_utc": "2026-06-12T14:28:16Z",
+      "intervention": "buprenorphine (mu partial agonist + kappa antagonist) for kappa-driven commitment-entropy / anhedonia-suicidality",
+      "intervention_class": "mu_partial_kappa_antagonist",
+      "claim_ids": ["MECH-048", "MECH-088", "ARC-086"],
+      "receptor_resolution": {"subtype": "mu-opioid + kappa-opioid", "projection": "mesolimbic/PAG (mu); dynorphin system (kappa)", "action": "mu partial agonist; kappa antagonist", "plane": "commitment-entropy axis -- mu stabilises (reduces policy competition, MECH-048); kappa destabilises (raises policy entropy, dysphoria)"},
+      "predicted_effect": "REE reads mu/kappa as opposing poles on a commitment-entropy axis (opioid thought 2026-02-11 -> MECH-048): mu-opioid is a commitment STABILISER that reduces internal policy competition; the kappa/dynorphin system is the DESTABILISER that raises policy entropy and carries dysphoric/aversive state. Anhedonic, dysphoric, aversive-state-locked depression is read as pathological kappa-driven destabilisation. Buprenorphine's KAPPA-ANTAGONISM arm should normalise this, predicting an anti-anhedonic / anti-suicidal effect on a DISTINCT axis from monoaminergic antidepressants (serotonin terrain + dopamine selection). Distinctive prediction: benefit on anhedonia/aversive-state-lock and acute suicidality that is NOT reproduced by an SSRI, and that tracks the kappa-antagonist (not the mu-agonist) arm.",
+      "intervention_axis": "regulator_layer_opioid_commitment_entropy_kappa",
+      "phenotype_target": "kappa_driven_anhedonia_dysphoria_suicidality",
+      "dissociates_from": ["PHARM-006"],
+      "falsification_condition": "Buprenorphine's antidepressant/anti-suicidal effect tracks the mu-agonist arm rather than the kappa-antagonist arm (e.g. a selective kappa antagonist shows no effect while mu agonism does); OR kappa antagonism produces the SAME response profile as an SSRI on anhedonia-specific endpoints, collapsing the commitment-entropy axis into the existing serotonin axis (which would falsify ARC-086 audit link 6.3); OR the ALKS-5461 (buprenorphine+samidorphan, kappa unmasked) MDD signal fails to separate from placebo on anhedonia-specific (not global-mood) endpoints.",
+      "literature_anchors": [
+        {"type": "mechanism", "anchor": "buprenorphine mu partial agonist + kappa antagonist (established pharmacology); approved for opioid dependence / pain", "status": "consistent"},
+        {"type": "trial", "anchor": "anti-suicidal MDD trials: Stanford Phase 3 NCT04116528 (completed, n=50), Nimes Phase 3 NCT03646058 (recruiting, n=180); late-life TRD NCT01071538", "status": "mixed_promising"},
+        {"type": "trial", "anchor": "ALKS-5461 (buprenorphine+samidorphan, kappa-antagonism unmasked) MDD programme NCT01381107", "status": "mixed_kappa_arm_test"},
+        {"type": "needed", "anchor": "anhedonia-specific (vs global-mood) endpoint with kappa-arm vs mu-arm dissection", "status": "absent"}
+      ],
+      "polarity": "positive",
+      "status": "registered",
+      "notes": "REPURPOSING GAP: approved for opioid dependence / pain; REE-predicted anti-anhedonic / anti-suicidal adjunct in treatment-resistant depression -- high public-health salience (suicidality endpoint). Proposes a kappa-driven commitment-entropy axis as a NEW ARC-086 vulnerability axis distinct from serotonin-terrain and dopamine-selection. out_of_domain for V3 (no opioid policy-entropy term in substrate). See receptor_subtype_intervention_layer.md Section 3C."
     }
   ]
 }

@@ -1339,3 +1339,20 @@ are predictions the MECH-343 / Q-056 experiment program (EXP-0176) would test. T
 is currently blocked on two upstream substrates (`modulatory-bias-selection-authority`
 and a difficulty-gated proposal-entropy regulator), so `MECH-343` is registered
 `epistemic_category: substrate_conditional` and is not promotable until they land.
+
+---
+
+## Receptor-subtype resolution layer (2026-06-12)
+
+The clinical mappings above are stated at the level of REE mechanisms and (in the PHARM
+registry) drug *classes*. A receptor-subtype rung now sits between them:
+[`receptor_subtype_intervention_layer.md`](receptor_subtype_intervention_layer.md). It
+resolves the MECH-006/MECH-085 serotonin conflict by receptor subtype (5-HT2A narrative
+level vs 5-HT1A hippocampal-terrain level), names interaction effects invisible at
+transmitter granularity (M1 plasticity-gain x M4 dopamine-selection in xanomeline;
+mu/kappa as opposing poles of a commitment-entropy axis), and surfaces approved-drug
+**repurposing** candidates whose receptor profile matches a plane failure but whose label
+does not yet cover it (pimavanserin, buspirone, xanomeline/trospium, buprenorphine --
+registered PHARM-015..018, all `out_of_domain`, adjudicated against clinical literature
+not V3 substrate). It also marks the boundary of what the V3 substrate can test: plane-
+level dissociations (MECH-087) are V3-tractable; receptor-subtype distinctions are not.
