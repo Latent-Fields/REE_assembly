@@ -21460,6 +21460,25 @@
     emit_closure + de-commitment hold + train rule_bias_head); substrate_queue
     SD-034 amended with both *c failure records.
   pending_retest_after_substrate: true
+  implementation_note: >-
+    2026-06-12 commitment-closure-control-plane amend (/implement-substrate):
+    gave the ClosureOperator behavioural authority on the 603n substrate via two
+    no-op-default legs. Leg A -- explicit env-completion hook seam
+    REEAgent.notify_env_completion -> closure_operator.emit_closure (config
+    use_closure_env_completion_hook; closes the V3-EXQ-460c n_closures=0 defect:
+    the env sequence_complete signal was never routed into emit_closure). Leg B --
+    BetaGate de-commitment hold/refractory installed by ClosureOperator._fire
+    (config closure_decommit_hold_ticks; closes the V3-EXQ-468c committed_frac
+    cap-pin: a closure-driven release now survives >1 tick). Leg C (the trained
+    GAP-D rule_bias_head + non-cap-pinned de-commitment DV) is experiment-side.
+    Bit-identical OFF (1014 contracts + 7/7 preflight; 6 new in
+    test_sd034_decommit_hold_and_env_hook.py). NO flag/confidence change: SD-034
+    provisional holds, MECH-261 stable untouched, MECH-260 candidate. Validation
+    V3-EXQ-460d (supersedes 460c) + V3-EXQ-468d (supersedes 468c) -- retest gate:
+    n_closures>=1 reachable + nogo_installed>=1 on >=2/3 seeds AND a non-cap-pinned
+    de-commitment DV ON<OFF on >=2/3 seeds. See ree-v3/CLAUDE.md "SD-034 AMEND:
+    commitment-closure-control-plane" + docs/architecture/sd_034_governance_closure_operator.md
+    amend section.
   location: evidence/planning/sd033_governance_plan.md
 - id: SD-035
   title: "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus — two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours."

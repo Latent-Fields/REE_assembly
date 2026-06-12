@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-034
 **Subject:** governance.closure_operator
-**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27)
+**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12 -- see amend section below)
 **Registered:** 2026-04-20
 **Depends on:** SD-033 (governance cluster), SD-033a (lateral PFC analog rule_state), MECH-090 (BetaGate commitment latch), MECH-260 (dACC action-class No-Go), MECH-094 (hypothesis tag write gate), SD-032a (SalienceCoordinator), SD-032b (dACC analog)
 **Blocks:** EXP-0156 / V3-EXQ-460 (verified-but-not-released), EXP-0157 / V3-EXQ-461 (delayed-reward persistence), EXP-0162 / V3-EXQ-466 (satisficing / residue discharge), EXP-0164 / V3-EXQ-468 (commitment vs contradiction). All landing-diagnostic variants PASSed 2026-04-21.
@@ -150,6 +150,73 @@ runs, the canonical prerequisites are in place:
 There is therefore no ordering hazard between the governance writes and the canonical sequence.
 
 ---
+
+## Amend: commitment-closure-control-plane (env-completion hook + de-commit hold) -- 2026-06-12
+
+**Routed by:** `evidence/planning/failure_autopsy_SD-034-closure-cluster_2026-06-12.{md,json}`
+(confirmed 2026-06-12 governance cycle). The 2026-04-20 landing is unit-level; the
+2026-06-12 `*c`-cohort behavioural arms on the 603n foraging-competent substrate
+showed the operator had **no behavioural authority**:
+
+- **V3-EXQ-460c** -- `n_closures=0` on 3/3 seeds despite env `sequence_completions=2/5/6`
+  and beta elevated; `nogo_installed_total=0` (strictly downstream of a closure fire).
+  Root cause: the env emits `transition_type == "sequence_complete"` but the experiment
+  **never routes it into `emit_closure()`** -- it relied solely on the automatic
+  rule-state-stability detector, whose conjunction (rule_state delta < 0.001 x3 ticks +
+  meaningful magnitude + sd_033a gate >= 0.5 + allowed mode) was unmet on the
+  untrained/zeroed `rule_bias_head` + SP-CEM-perturbed agent.
+- **V3-EXQ-468c** -- closure-coupled beta releases fire MORE under ON (C1 PASS) but the
+  latch re-elevates immediately, so `committed_frac_post_vs_pre` cap-pins (~39 both arms,
+  post pinned at the 195-step window); the release lacks de-commit hold authority.
+
+Both reclassified `non_contributory` / `substrate_ceiling` / `pending_retest_after_substrate`
+(NO demotion of SD-034; NO weaken of MECH-261). This amend supplies the two missing
+substrate links; the `*d` retests + non-cap-pinned DV are experiment-side.
+
+### Two no-op-default legs (bit-identical OFF)
+
+**Leg A -- explicit env-completion hook seam** (closes 460c `n_closures=0`).
+`REEAgent.notify_env_completion(action_class, z_world=None, bypass_mode_conditioning=False,
+simulation_mode=False) -> Optional[ClosureEvent]` (ree-v3/ree_core/agent.py). When
+`use_closure_env_completion_hook=True` AND `closure_operator is not None` AND not
+simulation, it routes the env completion into `closure_operator.emit_closure(action_class,
+z_world or self._current_latent.z_world, ...)` and returns the `ClosureEvent` (so the
+harness counts fires / No-Go installs); returns `None` (no-op) otherwise. The experiment
+harness calls it post-`env.step()` on a `sequence_complete` tick. This is the explicit
+hook the operator docstring already described but the `*c` cohort left unwired.
+
+**Leg B -- de-commitment hold / refractory** (closes 468c `committed_frac` cap-pin).
+`BetaGate` (ree-v3/ree_core/heartbeat/beta_gate.py) gains `_refractory_remaining` +
+`apply_refractory(n)` + a `refractory_remaining` property; `elevate()` is a no-op while
+the window is active (records `_n_elevation_refractory_blocked`); `propagate()` decrements
+the window once per tick (it runs every `select_action`). `ClosureOperatorConfig.decommit_hold_ticks`
+(default 0) makes `_fire()` install `beta_gate.apply_refractory(decommit_hold_ticks)` on
+any closure fire (recorded as `ClosureEvent.decommit_refractory_applied`). The release
+now survives >1 tick -> measurable post-completion uncommitted fraction.
+
+**Leg C (experiment-side, NOT substrate).** The `*d` retests set the landed GAP-D
+`lateral_pfc_train_rule_bias_head` so the automatic detector has a magnitude-bearing
+rule_state, gate readiness on `n_closures>0` reachable on the positive control, and read
+de-commitment on a non-cap-pinned statistic (post-completion uncommitted fraction /
+committed-run-length delta), not a post/pre ratio against a 5-step pre-baseline.
+
+### Config (REEConfig + from_dims; both no-op default)
+
+- `use_closure_env_completion_hook` (bool, default False) -- Leg A master.
+- `closure_decommit_hold_ticks` (int, default 0) -- Leg B hold length; wired into the
+  `ClosureOperatorConfig` build in `REEAgent.__init__` via getattr fallback.
+
+### Validation
+
+1014 contracts (1008 prior + 6 new in `tests/contracts/test_sd034_decommit_hold_and_env_hook.py`)
++ 7/7 preflight PASS; `v3_exq_460c --dry-run` unchanged (hook OFF -> prior FAIL signature);
+agent smoke confirms hook ON routes a completion (`n_closures 0->1`, `nogo_pushed=3`) +
+refractory blocks re-commit. **Validation experiments:** V3-EXQ-460d (supersedes 460c) +
+V3-EXQ-468d (supersedes 468c) via `/queue-experiment`. **Retest gate:** `n_closures>=1`
+reachable on the positive control AND `nogo_installed>=1` on >=2/3 seeds after the
+env->emit_closure wiring; and a non-cap-pinned de-commitment DV showing ON<OFF on >=2/3
+seeds. Phased training: N/A. MECH-094: env hook is waking-only + simulation-gated; the
+refractory is a control-state transition. Step-8.5 staleness: not triggered (no-op-default).
 
 ## Anchor Documents
 
