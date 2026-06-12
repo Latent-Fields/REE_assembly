@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_141c_mech111_novelty_drive_measurement_fix
 
-Generated: `2026-06-12T16:20:23.090406Z`
+Generated: `2026-06-12T22:35:40.329027Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

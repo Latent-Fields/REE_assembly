@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-11T21:50:01Z",
+  "generated_at": "2026-06-12T19:04:40Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -2369,6 +2369,47 @@
         "claim_ids": [
           "MECH-171"
         ]
+      }
+    },
+    {
+      "event_id": "asn-20260612T180110Z-05708699-claude_local",
+      "stable_hash": "057086994f1d",
+      "igw_id_at_assign": "IGW-20260612-192",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-12T18:01:10Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=8fc46be1-8d5f-48d4-ac81-38f705739e89 branch=claude/igw-192-v3-exq-669",
+      "item_snapshot": {
+        "skill": "/diagnose-errors",
+        "title": "Diagnose ERROR: V3-EXQ-669",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260612T190440Z-05708699-claude_local",
+      "stable_hash": "057086994f1d",
+      "igw_id_at_assign": "IGW-20260612-192",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-12T19:04:40Z",
+      "released_at": "2026-06-12T19:04:40Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260612T180110Z-05708699-claude_local",
+      "note": "session_uuid=8fc46be1-8d5f-48d4-ac81-38f705739e89 branch=claude/igw-192-v3-exq-669",
+      "item_snapshot": {
+        "skill": "/diagnose-errors",
+        "title": "Diagnose ERROR: V3-EXQ-669",
+        "lane": "experiment",
+        "priority": 30,
+        "claim_ids": []
       }
     }
   ]

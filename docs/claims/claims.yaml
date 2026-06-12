@@ -4683,6 +4683,21 @@
     serotonergic landscape worsens outcomes. Extends MECH-063 (orthogonal control axes)
     with hierarchical asymmetry: axes are ordered, not merely orthogonal. Testable: degrading
     5-HT axis produces trajectory pathology not rescued by DA augmentation.
+  evidence_quality_note: >
+    [2026-06-12 governance] First experimental evidence: V3-EXQ-674
+    (cross_plane_non_rescue) PASS / supports, non_degenerate=true. Controlled
+    probe of the real E3 softmax-selection stage (no env/training, forced
+    uncommitted regime so softmax temperature is the operative dopamine-selection
+    gain). Mapping: dopamine selection-gain = E3 softmax temperature; serotonin
+    map-geometry terrain = the per-candidate score landscape. Both dissociations
+    confirmed on 3/3 seeds: terrain-lesion NOT rescued by dopamine
+    (rescue_fraction_A=-0.02) but rescued by terrain (rf_B=1.0); dopamine-lesion
+    rescued by dopamine (rf_C=1.63) but NOT by terrain (rf_D=0.0). All four
+    readiness preconditions met (clean-landscape discriminative 3.08>1.0;
+    terrain-lesion moves argmin 0.91; dopamine-temperature modulates decisiveness
+    0.93). Supports prediction (3): DA augmentation on a distorted serotonergic
+    landscape does not rescue. Stays candidate (single supporting probe of one
+    plane-pair; receptor-subtype layer treated out_of_domain for V3).
 - id: MECH-088
   title: "Psychiatric conditions as four-plane neuromodulatory control failures."
   claim_type: mechanism_hypothesis
@@ -21429,6 +21444,21 @@
     Provisional->candidate demotion (conflict_ratio 0.889, weakens=4) HELD:
     all four weakens were this substrate-limited cohort, now excluded from
     scoring. pending_retest_after_substrate set.
+    2026-06-12 governance: the *c cohort (foraging-competent 603n substrate)
+    landed. V3-EXQ-460c (n_closures=0 despite env sequence_completions=2/5/6 --
+    env completion not routed into emit_closure(); rule_bias_head untrained) and
+    V3-EXQ-468c (closure-coupled release fires MORE near contradiction, C1 PASS,
+    but no de-commitment hold -> committed_frac DV cap-pinned) reclassified
+    non_contributory + substrate_ceiling per confirmed
+    failure_autopsy_SD-034-closure-cluster_2026-06-12 (user-confirmed in the
+    2026-06-12T22:16Z cycle). Cohort siblings V3-EXQ-461c/466c (+ 464c/467c/629b
+    on MECH-266/SD-032a/MECH-342) flagged for a /failure-autopsy cluster
+    extension and left PENDING (no inline weakens). Provisional->candidate
+    demotion (now conflict_ratio 0.889, weakens=4) again HELD: the new weakens
+    are the same substrate-limited closure-control-plane cohort, not
+    falsifications. Routed to /implement-substrate (wire env sequence_complete ->
+    emit_closure + de-commitment hold + train rule_bias_head); substrate_queue
+    SD-034 amended with both *c failure records.
   pending_retest_after_substrate: true
   location: evidence/planning/sd033_governance_plan.md
 - id: SD-035
@@ -21996,6 +22026,14 @@
     demotion (conflict_ratio 0.571, weakens=2) HELD: both weakens were this
     substrate-limited cohort, now excluded from scoring.
     pending_retest_after_substrate set.
+    2026-06-12 governance: *c successors V3-EXQ-464c (competing goals) + V3-EXQ-467c
+    (mode stickiness) landed on the foraging-competent 603n substrate (contact
+    guard now met) and self-route residual_*_open / weakens, but they are cohort
+    siblings of the SD-034 closure-control-plane cluster (the commitment-latch has
+    no behavioural authority on this substrate -- same theme as 460c/468c). Flagged
+    for the /failure-autopsy cluster extension and left PENDING this cycle (no
+    inline weakens applied). Provisional->candidate demotion (conflict_ratio 0.571)
+    again HELD pending that autopsy + retest; not falsifications of MECH-266.
   pending_retest_after_substrate: true
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-267

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_598b_gap1_sd033a_bias_head_trainable_ablation
 
-Generated: `2026-06-12T16:20:23.090406Z`
+Generated: `2026-06-12T22:35:40.329027Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

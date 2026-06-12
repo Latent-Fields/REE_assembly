@@ -643,6 +643,25 @@
       "assigned_at": "2026-06-11T20:48:40Z",
       "status": "completed_resumable",
       "reaped_at": "2026-06-11T21:50:01Z"
+    },
+    {
+      "igw_id": "IGW-20260612-192",
+      "stable_hash": "057086994f1d",
+      "skill": "/diagnose-errors",
+      "lane": "experiment",
+      "priority": 30,
+      "claim_ids": [],
+      "owner_exq": "V3-EXQ-669",
+      "title": "Diagnose ERROR: V3-EXQ-669",
+      "worktree": ".claude/worktrees/igw-192-v3-exq-669",
+      "branch": "claude/igw-192-v3-exq-669",
+      "session_uuid": "8fc46be1-8d5f-48d4-ac81-38f705739e89",
+      "pid": 5374,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-192-v3-exq-669 && claude --resume 8fc46be1-8d5f-48d4-ac81-38f705739e89",
+      "task_claim_session_id": "igw-auto-igw-192-v3-exq-669-20260612T180226Z",
+      "assigned_at": "2026-06-12T18:01:10Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-12T19:04:40Z"
     }
   ],
   "dispositions": [
@@ -805,6 +824,18 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-06-11T21:50:01Z",
       "re_eligible_after": "2026-06-13T21:50:01Z"
+    },
+    {
+      "stable_hash": "057086994f1d",
+      "igw_id_at_disposition": "IGW-20260612-192",
+      "owner_exq": "V3-EXQ-669",
+      "claim_ids": [],
+      "skill": "/diagnose-errors",
+      "title": "Diagnose ERROR: V3-EXQ-669",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-06-12T19:04:40Z",
+      "re_eligible_after": "2026-06-14T19:04:40Z"
     }
   ]
 }

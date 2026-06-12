@@ -117,3 +117,11 @@ One line per hourly tick. ASCII only.
 2026-06-12T08:52:10Z skip IGW-20260612-207: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-12T09:52:19Z skip IGW-20260612-208: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-12T10:52:34Z no eligible item (skipped 211): IGW-20260612-001:skill /governance not allowed; IGW-20260612-002:skill /governance not allowed; IGW-20260612-003:skill /governance not allowed
+2026-06-12T17:00:16Z no eligible item (skipped 219): IGW-20260612-001:skill /governance not allowed; IGW-20260612-007:skill /governance not allowed; IGW-20260612-009:skill /governance not allowed
+2026-06-12T18:01:10Z SPAWN IGW-20260612-192 skill=/diagnose-errors prio=30 uuid=8fc46be1-8d5f-48d4-ac81-38f705739e89 pid=5374 worktree=igw-192-v3-exq-669
+2026-06-12T19:04:40Z auto-defer IGW-20260612-192 hash=057086994f1d for 48h (reaped -> completed_resumable)
+2026-06-12T19:04:40Z reaped TASK_CLAIMS igw-auto-igw-192-v3-exq-669-20260612T180226Z (ledger IGW-20260612-192 -> completed_resumable)
+2026-06-12T19:04:32Z skip IGW-20260612-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-12T20:04:48Z skip IGW-20260612-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-12T21:05:00Z skip IGW-20260612-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-12T22:05:10Z skip IGW-20260612-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)

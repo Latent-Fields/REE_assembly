@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_620b_sd037_axis_a_phase1_consumer_input_distributions_stream_on
 
-Generated: `2026-06-12T16:20:23.090406Z`
+Generated: `2026-06-12T22:35:40.329027Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

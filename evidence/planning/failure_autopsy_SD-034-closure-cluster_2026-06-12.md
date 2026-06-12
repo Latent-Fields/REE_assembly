@@ -2,7 +2,7 @@
 
 - generated_utc: 2026-06-12T11:25:25Z
 - scope: cluster (2 FAILs)
-- status: awaiting_human_confirmation (autonomous session; Step-8 interactive gate replaced by draft per staging discipline)
+- status: confirmed (2026-06-12T22:16Z governance cycle; user AskUserQuestion "Apply as recommended"; 460c/468c manifests reclassified non_contributory + substrate_ceiling + pending_retest, SD-034 substrate_queue amended). COHORT EXTENSION PENDING: 461c/464c/466c/467c/629b landed and were flagged this cycle for a /failure-autopsy cluster extension (governance left them pending, no inline evidence_direction applied).
 - targets:
   - V3-EXQ-468c -- run `v3_exq_468c_sd034_mech268_commitment_vs_contradiction_behavioural_20260612T080105Z_v3` -- claim_ids [SD-034, MECH-268, MECH-090]
   - V3-EXQ-460c -- run `v3_exq_460c_sd034_verified_but_not_released_behavioural_20260612T090021Z_v3` -- claim_ids [SD-034, MECH-260, MECH-261]
