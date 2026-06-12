@@ -1,56 +1,46 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-12T21:20:29Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-461c",
-  "current_exq_started_utc": "2026-06-12T05:10:55.660413+00:00",
-  "current_title": "commitment_closure:GAP-4 MECH-090/SD-033a/SD-034 delayed-reward persistence behavioural, REWIRED onto the 603n scaffolded_sd054_onboarding curriculum (supersedes the committed_mode_curriculum harness 461b used); *c cohort",
-  "current_claim_id": "MECH-090",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "runs_done": 6,
-    "runs_total": 3,
-    "episodes_done": 170,
-    "episodes_total": 265,
-    "overall_pct": 221.4
-  },
-  "seconds_elapsed": 58174,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4738 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.977 gate=pass",
-    "[train] p0_guided seed=42 ep 130/265 mean_len=198.3 rv=6.57109",
-    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.3535 contact_events=152 z_goal_at_contact=0.5092",
-    "Seed 42 Condition ARM_HOLD_ON",
-    "Seed 42 Condition ARM_NO_HOLD_OFF",
-    "[train] persist_eval seed=42 ep 265/265 c1=False c2=False c3=False n_windows=0 n_delay=0 persist=0.0 coupled=0",
-    "verdict: FAIL seed=42 guard_pass=True commit_nonvacuity=False (contact_rate=0.3535 z_goal_at_contact=0.5092)",
-    "Seed 43 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4005 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.948 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00034",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/265 median_last=102.0 survival_gate=pass",
-    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.3129 contact_events=107 z_goal_at_contact=0.4109",
-    "Seed 43 Condition ARM_HOLD_ON",
-    "Seed 43 Condition ARM_NO_HOLD_OFF",
-    "[train] persist_eval seed=43 ep 265/265 c1=False c2=False c3=False n_windows=160 n_delay=0 persist=0.0 coupled=0",
-    "verdict: FAIL seed=43 guard_pass=True commit_nonvacuity=True (contact_rate=0.3129 z_goal_at_contact=0.4109)",
-    "Seed 44 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4239 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.928 gate=pass",
-    "[train] p0_guided seed=44 ep 130/265 mean_len=200.0 rv=0.00001",
-    "[train] hazard_avoidance seed=44 ep 170/265 median_last=103.0 survival_gate=pass"
+  "last_tick_utc": "2026-06-12T21:33:34Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 8,
+  "queue_id_at_head": "V3-EXQ-655",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-514m",
+      "result": "FAIL",
+      "completed_at": "2026-06-11T13:11:07.219449+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-485e",
+      "result": "FAIL",
+      "completed_at": "2026-06-11T13:52:25.324359+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-668",
+      "result": "PASS",
+      "completed_at": "2026-06-11T13:53:10.433581+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-673",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T04:48:14.194322+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-461c",
+      "result": "FAIL",
+      "completed_at": "2026-06-12T21:33:14.662120+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 61210,
   "runner_version": "r3077 de9c564 2026-06-12 (running r3073 60c2918)",
   "gpu": {
