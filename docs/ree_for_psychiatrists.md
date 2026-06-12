@@ -15,6 +15,18 @@ keeps the programme honest.
 (Gamma → Google Slides; author's working copy — share/publish before circulating).
 The slide text is reproduced below so it is searchable and readable without the deck.
 
+<!-- SLIDE EMBED: once the deck is "Published to web" in Gamma (or Google Slides
+     File > Share > Publish to web), paste the embed URL into the iframe src below
+     and delete this comment + the surrounding placeholder note. -->
+<!--
+<div style="position:relative;padding-top:56.25%;margin:1.5em 0">
+  <iframe src="PASTE_GAMMA_OR_SLIDES_EMBED_URL_HERE" allowfullscreen
+    style="position:absolute;top:0;left:0;width:100%;height:100%;border:1px solid #d0d7de;border-radius:8px"></iframe>
+</div>
+-->
+{: .note }
+> The interactive deck embed will appear here once the Gamma/Slides deck is published to web.
+
 > **Honesty guardrail (carried throughout).** REE is a research-stage computational
 > specification and simulation programme — not a deployed AI, a clinical tool, or a
 > validated model of any psychiatric disorder. Brain-region mappings are theoretical
@@ -119,6 +131,20 @@ Self → Value → World/uncertainty → Agency/vulnerability → Others → Sha
 ## Part 3 — The architecture, mapped to the brain
 
 > Brain-region mappings are theoretical homologies and design inspirations — not claims of biological fidelity.
+
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="architecture/brain_map_sagittal_static.svg" alt="REE brain map, midsagittal silhouette with functional regions coloured by family"
+       style="max-width:440px;width:100%;height:auto;background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:10px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em;line-height:1.8">
+    <strong>The architecture on a midsagittal brain.</strong> Colour = functional family —
+    <span style="background:#cfe2f3;padding:1px 6px;border-radius:3px">cortical / association (E1)</span>
+    <span style="background:#fce5b6;padding:1px 6px;border-radius:3px">commitment gate (E3)</span>
+    <span style="background:#cfead0;padding:1px 6px;border-radius:3px">hippocampal rollout</span>
+    <span style="background:#f4cccc;padding:1px 6px;border-radius:3px">affect / harm</span>
+    <span style="background:#e0d3f0;padding:1px 6px;border-radius:3px">neuromodulatory / regulatory</span>.
+    Interactive version with live evidence overlay: <a href="architecture/brain_map.html">REE Brain Map</a>.
+  </figcaption>
+</figure>
 
 ### REE is a prediction-and-error machine
 Like the brain, REE acts under uncertainty — predicting, then correcting on error: **predict** (generate expectations) → **compare** (measure the gap) → **correct** (update and recommit). The three constraints from Part 2 become four architectural components.

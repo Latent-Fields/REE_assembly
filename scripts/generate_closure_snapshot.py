@@ -38,6 +38,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
 SNAPSHOT = PLANNING_DIR / "closure_status.md"
 DRIFT_REPORT = PLANNING_DIR / "closure_drift.md"
+# Visual rollup for the GitHub Pages site (Jekyll builds docs/ only, so the
+# evidence/planning snapshot above is invisible there). Regenerated every run.
+DOCS_DASHBOARD = REPO_ROOT / "docs" / "closure_dashboard.md"
 
 # Mirror of serve.py CLOSURE_STATUS_WEIGHTS. None == excluded from the progress
 # denominator (deferred work is not part of "what closes v3").
@@ -117,6 +120,89 @@ def _cell(v) -> str:
     if v is None:
         return ""
     return str(v).replace("|", "\\|").replace("\n", " ").strip()
+
+
+def _bar(pct: float) -> str:
+    """Inline-HTML progress bar (no external CSS; renders on plain GitHub Pages)."""
+    colour = "#cf222e" if pct < 40 else "#bf8700" if pct < 75 else "#1a7f37"
+    return (
+        '<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;'
+        'max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle">'
+        f'<div style="background:{colour};height:18px;width:{pct:.1f}%"></div></div>'
+    )
+
+
+def write_docs_dashboard(plans, overall, tally, n_remaining, n_deferred,
+                         n_done, roadmap_plans, now_iso) -> None:
+    """Emit a visual closure dashboard into docs/ for the Pages site."""
+    o_total = n_remaining + n_done  # non-deferred V3 nodes
+    D: list[str] = []
+    D.append("---")
+    D.append("title: Closure Dashboard")
+    D.append("nav_order: 11")
+    D.append("---")
+    D.append("")
+    D.append("# REE-v3 Closure Dashboard")
+    D.append("")
+    D.append(f"_Generated {now_iso} — regenerated every governance run; do not edit by hand._")
+    D.append("")
+    D.append(
+        "How close V3 is to closing, per plan. Weighted by node status "
+        "(done = 1, partial / in-progress = part credit, open / blocked = 0). "
+        "The companion **drift audit** checks whether each node's self-declared "
+        "status matches its experiments. This is the static, server-free view of "
+        "the live `/closure` dashboard."
+    )
+    D.append("")
+    D.append("## Overall")
+    D.append("")
+    D.append(f"<p style=\"font-size:1.6em;font-weight:600;margin:.2em 0\">{overall * 100:.1f}%</p>")
+    D.append("")
+    D.append(_bar(overall * 100))
+    D.append("")
+    D.append(
+        f"{int(o_total)} non-deferred nodes across {len(plans)} plan(s) · "
+        f"**{n_done} done · {n_remaining} remaining · {n_deferred} deferred**."
+    )
+    D.append("")
+    tally_str = " · ".join(f"`{k}`&nbsp;{v}" for k, v in sorted(tally.items()))
+    D.append(f"Status tally: {tally_str}")
+    D.append("")
+    D.append("## By plan")
+    D.append("")
+    D.append('<table style="border-collapse:collapse;width:100%">')
+    D.append(
+        '<thead><tr style="text-align:left;border-bottom:2px solid #d0d7de">'
+        '<th style="padding:6px 10px">Plan</th>'
+        '<th style="padding:6px 10px;width:55%">Progress</th>'
+        '<th style="padding:6px 10px">Nodes</th>'
+        '<th style="padding:6px 10px">Updated</th></tr></thead><tbody>'
+    )
+    for p in sorted(plans, key=lambda x: x["progress"]):
+        pct = p["progress"] * 100
+        title = _cell(p["title"])
+        lu = _cell(p["last_updated"])
+        D.append(
+            '<tr style="border-bottom:1px solid #eaeef2">'
+            f'<td style="padding:6px 10px"><strong>{title}</strong></td>'
+            f'<td style="padding:6px 10px">{_bar(pct)}&nbsp;<span style="color:#57606a">{pct:.0f}%</span></td>'
+            f'<td style="padding:6px 10px">{p["node_count"]}</td>'
+            f'<td style="padding:6px 10px;color:#57606a">{lu}</td></tr>'
+        )
+    D.append("</tbody></table>")
+    D.append("")
+    if roadmap_plans:
+        D.append(
+            f"_Plus {len(roadmap_plans)} V4/V5 forward-roadmap plan(s), excluded "
+            "from the V3 closure percentage._"
+        )
+        D.append("")
+    D.append(
+        "Full node-by-node detail (remaining work, blockers, owners) is in the "
+        "generated `evidence/planning/closure_status.md` snapshot."
+    )
+    D.append("")
+    DOCS_DASHBOARD.write_text("\n".join(D) + "\n", encoding="utf-8")
 
 
 def main() -> int:
@@ -376,7 +462,11 @@ def main() -> int:
 
     SNAPSHOT.write_text("\n".join(L) + "\n", encoding="utf-8")
 
+    write_docs_dashboard(plans, overall, tally, len(remaining), len(deferred),
+                         len(done), roadmap_plans, now_iso)
+
     print(f"Closure snapshot written: {SNAPSHOT.relative_to(REPO_ROOT)}")
+    print(f"Closure dashboard written: {DOCS_DASHBOARD.relative_to(REPO_ROOT)}")
     print(
         f"  plans_mapped={len(plans)}  remaining={len(remaining)}  "
         f"deferred={len(deferred)}  done={len(done)}  "

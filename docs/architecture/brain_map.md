@@ -15,6 +15,21 @@ biological homology or anatomical completeness.
 intended cerebrum / cerebellum / commitment reading and how it maps to modules.
 The live map is catching up to that ontology (see **Layout intent** below).
 
+<figure style="margin:1.5em 0;text-align:center">
+  <img src="brain_map_sagittal_static.svg" alt="REE brain map, midsagittal silhouette with functional regions coloured by family"
+       style="max-width:440px;width:100%;height:auto;background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:10px">
+  <figcaption style="font-size:.9em;color:#57606a;margin-top:.6em;line-height:1.8">
+    <strong>Static functional map (midsagittal).</strong> Region colour = functional family —
+    <span style="background:#cfe2f3;padding:1px 6px;border-radius:3px">cortical / association (E1)</span>
+    <span style="background:#fce5b6;padding:1px 6px;border-radius:3px">commitment gate (E3)</span>
+    <span style="background:#cfead0;padding:1px 6px;border-radius:3px">hippocampal rollout</span>
+    <span style="background:#f4cccc;padding:1px 6px;border-radius:3px">affect / harm</span>
+    <span style="background:#e0d3f0;padding:1px 6px;border-radius:3px">neuromodulatory / regulatory</span>.
+    The interactive <code>/brain-map</code> overlays live claim &amp; evidence data (needs <code>serve.py</code>);
+    this static copy is functional-analogy only, not biological homology.
+  </figcaption>
+</figure>
+
 ## URLs
 
 | URL | Purpose |
