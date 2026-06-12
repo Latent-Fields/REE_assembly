@@ -1,0 +1,51 @@
+{
+ "schema_version": "literature_evidence/v1",
+ "literature_type": "targeted_review_inv_043_caregiver_development",
+ "entry_id": "2026-06-12_inv_082_secure_base_working_model_self_verschueren1996",
+ "timestamp_utc": "2026-06-12T13:55:51Z",
+ "claim_ids_tested": [
+  "INV-082",
+  "INV-043"
+ ],
+ "source": {
+  "title": "The internal working model of the self, attachment, and competence in five-year-olds.",
+  "authors": [
+   "Verschueren K",
+   "Marcoen A",
+   "Schoefs V"
+  ],
+  "year": 1996,
+  "venue": "Child Development",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/9022252/"
+ },
+ "evidence_class": "behavioral_human",
+ "evidence_direction": "supports",
+ "confidence": 0.66,
+ "confidence_rationale": "Direct empirical test of Bowlby's claim that the working model of self is intertwined with the working model of attachment to the caregiver: in 5-year-olds the security of the child-mother attachment representation is positively and strongly related to the positiveness (affective quality) of the self-representation, and positiveness of self predicts competence, social acceptance and adjustment. This is the cleanest available operationalisation of INV-082's central premise -- internalised care registers as a stable, personally-applicable self-valence. Confidence held below 0.8 by sample size (n~50-95), single developmental window (kindergarten), correlational design (cannot show that secure attachment CAUSES positive self-model, only co-variation), and the gap between a child's puppet-interview self-affect and REE's z_self valence channel.",
+ "summary_path": "summary.md",
+ "failure_signatures": [
+  "The association is correlational: a positive self-model and a secure attachment representation co-vary, but the study cannot establish that received caregiving causes the positive self-valence rather than a third factor (e.g. child temperament) driving both -- INV-082's causal 'care internalised AS self-valence' is consistent with but not proven by this design.",
+  "Measured at a single age (~5 years); says nothing about the STABILITY of internalised loveability under later correction or threat, which is the load-bearing part of INV-082 (safe base that survives correction)."
+ ],
+ "tags": [
+  "inv_082",
+  "inv_043",
+  "attachment",
+  "secure_base",
+  "internal_working_model",
+  "self_valence",
+  "loveability"
+ ],
+ "mapping": {
+  "source_claim_statement": "The security of a young child's internal working model of attachment to the mother is positively and strongly related to the positiveness of the child's internal working model of the self; positiveness of self in turn relates to competence, social acceptance, and behavioural adjustment.",
+  "ree_translation": "INV-082 asserts that loveability is a safe-base structural prerequisite: care must be internalised as a personally-applicable, stable self-valence before correction/repair can be metabolised without self-erasure. This paper is the developmental-psychology grounding for the 'internalised as self-valence' half of that claim -- received secure caregiving produces a positive working model of self (the loveability term), and that self-model is what subsequently supports competent, socially-engaged functioning (the safe-base function). Maps onto LOVE-2 / DEV-NEED-017 loveability_coupling and the proposed coupling of received care INTO z_self viability scoring (self_model_v4:SELF-3).",
+  "mapping_caveat": "Human developmental correlation in 5-year-olds, not a mechanism in a computational substrate. The paper measures a child's affective self-representation via a puppet interview; REE's z_self valence channel is a different object and the transfer from 'positive self-model' to 'a scorable self-valence term that biases E3 viability' is an architectural bet, not something this study tests. It also does not address the bound (over-coupling) or the survival-of-correction stability that INV-082 makes load-bearing.",
+  "source_context": "Belgian kindergarten sample (~50-95 children, ~5 years old); Attachment Story Completion Task + adapted Puppet Interview; teacher-rated competence/adjustment outcomes."
+ },
+ "confidence_components": {
+  "source_quality": 0.7,
+  "mapping_fidelity": 0.7,
+  "transfer_risk": 0.4,
+  "notes": "High-quality journal (Child Development) and a direct test of the Bowlby self-model/attachment link, but small correlational samples and a single age window. Transfer risk moderate: the construct (positive working model of self from secure attachment) maps well conceptually onto loveability-as-self-valence, but the leap to a computational z_self valence term is non-trivial."
+ }
+}

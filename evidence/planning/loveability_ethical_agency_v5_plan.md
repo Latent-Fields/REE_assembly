@@ -4,7 +4,7 @@ closure_plan:
   generation: v5
   title: "Loveability internalisation + ethical agency (safe base + live unethical affordance)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-12
   scope_claims: [INV-043, MECH-158, MECH-159, INV-029, ARC-024, ARC-010, ARC-040, ARC-047]
   sibling_plans: [ethics_as_coherence_v5, self_model_v4, object_representation_v4]
   roadmap_note: >
@@ -134,7 +134,7 @@ closure_plan:
     - id: "loveability_ethical_agency_v5:LOVE-7"
       title: "Biology grounding completion (attachment / safe-base / repair / moral-emotion lit-pulls)"
       phase: 2
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [INV-043, "INV-082"]
@@ -145,8 +145,18 @@ closure_plan:
         - "L1 attachment / safe-base (Bowlby/Ainsworth secure-base; internal working models) -- grounds LOVE-2 loveability-as-self-valence"
         - "L2 rupture-and-repair (Tronick still-face; interactive repair) + shame vs guilt differentiation (Tangney) -- grounds LOVE-4 correction-without-annihilation and the appeasement/self-erasure failure modes"
         - "L3 self-other coupling bound (Salles 2024 similarity-coupling inversion; Morelli 2018 VS vs vmPFC self/other-harm dissociation) -- already partly anchored in DEV-NEED-017/021/022; confirms the loveability_coupling_gain upper bound"
-      last_updated: 2026-06-10
-      completion_note: "The existing seeds (INV-043 caregiver-love hypothesis, MECH-158 failure indicator) have philosophical grounding but the new V5 claims this plan proposes (safe-base prerequisite, live-affordance necessity, correction-without-annihilation, love-mediated repair) instantiate formal/clinical concepts (attachment theory, rupture-repair, shame/guilt) and per project rule need a biology pull before they harden past candidate. Tracks closing that grounding debt; runs in parallel with LOVE-2..LOVE-6 design, not gated behind the substrate."
+      last_updated: 2026-06-12
+      pull_2026_06_12:
+        status: "DONE -- biology grounding debt discharged (IGW-20260612-114, /lit-pull)"
+        literature_dir: "evidence/literature/targeted_review_inv_043_caregiver_development (7 -> 11 entries)"
+        entries_added:
+          - "L1 secure-base / internal-working-model -> self-valence: Verschueren, Marcoen & Schoefs 1996 (Child Development, PMID 9022252) -- security of child-mother attachment representation strongly predicts positiveness of the working model of SELF. Grounds INV-082 origin (loveability internalised as self-valence) + INV-043. supports, conf 0.66, [INV-082, INV-043]."
+          - "L2a shame-vs-guilt locus (the 'I erred' vs 'I am unloveable' separation): Tangney, Stuewig & Mashek 2007 (Annu Rev Psychol, doi 10.1146/annurev.psych.56.091103.070145) -- guilt = behaviour-locus, reparative; shame = global-self-locus, withdrawal/appeasement/self-erasure. Grounds the INV-082 safe-base FUNCTION + LOVE-4 correction-without-annihilation failure modes. supports, conf 0.70, [INV-082]."
+          - "L2b rupture-and-repair as the regulating event: Muller, Zietlow, Tronick & Reck 2015 (Psychopathology, doi 10.1159/000439225) -- still-face interactive repair latency associated with infant cortisol reactivity, independent of maternal diagnosis ('infants respond to what they experience'). Grounds LOVE-5 love-mediated repair + INV-043 caregiver behaviour. supports, conf 0.63, [INV-082, INV-043]."
+          - "L3 self-other coupling UPPER BOUND: Salles, Fadel & Mograbi 2024 (PsyCh Journal, doi 10.1002/pchj.720) -- the named anchor; inverted-U: moderate similarity = empathic concern WITHOUT personal distress, high similarity RE-INTRODUCES personal distress. Grounds the bounded loveability_coupling_gain (DEV-NEED-017 ceiling). supports, conf 0.60, [INV-082]. CAVEAT recorded in entry: supports the QUALITATIVE upper bound only -- does NOT validate the numeric [0.1, 0.7] interval (still a modelling choice)."
+        index_effect: "INV-082 literature_confidence 0.0 -> 0.824 (was an ungrounded 2026-06-10 claim); INV-043 0.837. exp_conf unchanged (0.0; V5, no substrate). Lit and exp are decoupled signals -- this raises lit_conf only; promotion still gated on V5 experimental evidence."
+        scope_note: "Grounding debt only. Does NOT promote INV-082/INV-043 past candidate, does NOT touch the V3 queue/substrate, and the bound remains a design parameter pending experimental calibration. L1/L2/L3 anchors named in the readiness_gate are now all filed."
+      completion_note: "The existing seeds (INV-043 caregiver-love hypothesis, MECH-158 failure indicator) have philosophical grounding but the new V5 claims this plan proposes (safe-base prerequisite, live-affordance necessity, correction-without-annihilation, love-mediated repair) instantiate formal/clinical concepts (attachment theory, rupture-repair, shame/guilt) and per project rule need a biology pull before they harden past candidate. CLOSED 2026-06-12: the L1 (secure-base/IWM), L2 (rupture-repair + shame/guilt), and L3 (self-other coupling bound) anchors are all filed -- see pull_2026_06_12. Ran in parallel with LOVE-2..LOVE-6 design, not gated behind the substrate."
 ---
 # Loveability Internalisation + Ethical Agency -- V5 Forward Roadmap
 

@@ -1,0 +1,51 @@
+{
+ "schema_version": "literature_evidence/v1",
+ "literature_type": "targeted_review_inv_043_caregiver_development",
+ "entry_id": "2026-06-12_inv_082_shame_guilt_moral_emotions_tangney2007",
+ "timestamp_utc": "2026-06-12T13:55:51Z",
+ "claim_ids_tested": [
+  "INV-082"
+ ],
+ "source": {
+  "title": "Moral emotions and moral behavior.",
+  "authors": [
+   "Tangney JP",
+   "Stuewig J",
+   "Mashek DJ"
+  ],
+  "year": 2007,
+  "venue": "Annual Review of Psychology",
+  "doi": "10.1146/annurev.psych.56.091103.070145",
+  "url": "https://doi.org/10.1146/annurev.psych.56.091103.070145"
+ },
+ "evidence_class": "theoretical_review",
+ "evidence_direction": "supports",
+ "confidence": 0.7,
+ "confidence_rationale": "Canonical review establishing the shame/guilt distinction that INV-082's safe-base function depends on: guilt is a negative evaluation of a specific BEHAVIOUR ('I did a bad thing') and predicts reparative, approach-oriented responses; shame is a negative evaluation of the global SELF ('I am bad/unloveable') and predicts withdrawal, defensiveness, externalisation and appeasement. This is precisely the 'I erred' vs 'I am unloveable / must self-erase / must appease' separation that INV-082 makes load-bearing for correction-without-annihilation. High confidence as a conceptual grounding (the distinction is well-replicated and the review is authoritative); held below 0.8 because it is a human-affect taxonomy, not a mechanism, and the empirical adaptive/maladaptive split for guilt vs shame has known boundary conditions.",
+ "summary_path": "summary.md",
+ "failure_signatures": [
+  "The shame/guilt adaptive-maladaptive dichotomy is not absolute: the review notes guilt can become maladaptive when fused with shame or when it generalises into chronic self-blame -- so a REE design that merely routes correction to a 'guilt-like' channel does not automatically avoid self-erasure; the behaviour-vs-self locus is the actual discriminator, not the affect label.",
+  "Childhood-abuse history predicts shame-proneness: the conditions of caregiving shape whether later correction routes to guilt (repair) or shame (collapse) -- implying INV-082's safe base is not a fixed parameter but itself a developmental product (consistent with, but a complication for, treating loveability as a settable substrate term)."
+ ],
+ "tags": [
+  "inv_082",
+  "shame",
+  "guilt",
+  "moral_emotions",
+  "self_vs_behavior",
+  "correction_without_annihilation",
+  "repair"
+ ],
+ "mapping": {
+  "source_claim_statement": "Shame and guilt are distinct self-conscious moral emotions: guilt centres on a negative evaluation of a specific behaviour and motivates reparative, constructive action; shame centres on a negative global evaluation of the self and motivates withdrawal, defensiveness, externalisation of blame, and (often) appeasement. Childhood abuse is linked to later proneness to shame.",
+  "ree_translation": "INV-082's safe-base function is defined by exactly this discrimination: an agent with internalised loveability can metabolise correction as 'I caused harm / made an error' (a behaviour-level, reparable update -- the guilt pathway) rather than 'I am unloveable / must self-erase / must appease' (a self-level collapse -- the shame pathway). Tangney et al. supply the empirical taxonomy that the LOVE-4 correction-without-annihilation failure modes (self-erasure, appeasement) are drawn from, and that DEV-NEED-018's punishment_avoidance_vs_repair_discriminability readout must separate. Loveability is what biases correction toward the guilt/repair locus instead of the shame/collapse locus.",
+  "mapping_caveat": "This is a human-emotion review, not evidence about a computational agent; REE has no shame/guilt qualia. The mapping is structural: the behaviour-vs-self LOCUS of negative evaluation, and its differential behavioural consequences, transfer as a design target (separable correction outcomes), not the affective phenomenology. The review also shows the dichotomy has boundary conditions, so 'route correction to the guilt channel' is necessary framing, not a sufficient mechanism.",
+  "source_context": "Authoritative narrative review of decades of self-conscious-emotion research (human; spanning child and adult samples), Annual Review of Psychology."
+ },
+ "confidence_components": {
+  "source_quality": 0.85,
+  "mapping_fidelity": 0.68,
+  "transfer_risk": 0.45,
+  "notes": "Top-tier authoritative review and a well-replicated distinction -> high source quality. Mapping fidelity good but not perfect: the shame/guilt locus distinction maps cleanly onto INV-082's 'I erred vs I am unloveable' separation, but REE instantiates no affect, so the transfer is of the structural discriminator only. Transfer risk moderate-high for the same reason."
+ }
+}

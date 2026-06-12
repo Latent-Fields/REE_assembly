@@ -1,0 +1,51 @@
+{
+ "schema_version": "literature_evidence/v1",
+ "literature_type": "targeted_review_inv_043_caregiver_development",
+ "entry_id": "2026-06-12_inv_082_self_other_coupling_bound_salles2024",
+ "timestamp_utc": "2026-06-12T13:55:51Z",
+ "claim_ids_tested": [
+  "INV-082"
+ ],
+ "source": {
+  "title": "Moderate similarity leads to empathic concern, but high similarity can also induce personal distress towards others' pain.",
+  "authors": [
+   "Salles BM",
+   "Fadel JV",
+   "Mograbi DC"
+  ],
+  "year": 2024,
+  "venue": "PsyCh Journal",
+  "doi": "10.1002/pchj.720",
+  "url": "https://doi.org/10.1002/pchj.720"
+ },
+ "evidence_class": "behavioral_human",
+ "evidence_direction": "supports",
+ "confidence": 0.6,
+ "confidence_rationale": "The named L3 anchor for the loveability_coupling_gain UPPER BOUND. Experimentally manipulating perceived self-other similarity (low/moderate/high) toward an injured target: moderate similarity yielded empathic concern WITHOUT personal distress (reduced disgust/avoidance), while high similarity produced empathic concern but ALSO as much personal-distress signalling as the low-similarity group -- a non-monotone, inverted-U relationship. This is the direct empirical basis for INV-082's claim that loveability/coupling is bounded ('care internalised as personally-applicable AND stable', not 'more coupling is better') and for the DEV-NEED-017 loveability_coupling_gain ceiling. Held at 0.6 by a single modest-N lab study (n=87), indirect self-other-distress measures (facial disgust as a personal-distress proxy), and the gap from inter-personal empathy similarity to an intra-agent self-valence coupling parameter.",
+ "summary_path": "summary.md",
+ "failure_signatures": [
+  "Single study, n=87, with personal distress operationalised indirectly (facial disgust / avoidance, gaze, pupil) rather than by a validated distress instrument -- the inversion at high similarity is suggestive, not a precisely-located threshold; it does NOT license the specific [0.1, 0.7] numeric bound, only the qualitative claim that an upper bound exists.",
+  "The coupling here is BETWEEN two people (observer vs injured target); INV-082's loveability_coupling_gain is a within-agent coupling of received care into self-valence -- the inverted-U may not transfer cleanly across that reframing, and the high-similarity 'personal distress' failure mode is an analogy for over-coupling, not a measurement of it."
+ ],
+ "tags": [
+  "inv_082",
+  "self_other_coupling",
+  "empathy",
+  "personal_distress",
+  "coupling_upper_bound",
+  "salles2024",
+  "loveability_coupling_gain"
+ ],
+ "mapping": {
+  "source_claim_statement": "Perceived similarity to a suffering target has a non-monotone effect on vicarious emotion: moderate similarity maximises empathic concern while minimising personal distress (less avoidance/disgust), but high similarity, although it raises empathic concern, also raises personal distress to the level of the low-similarity condition. Empathy is optimised at intermediate, not maximal, self-other overlap.",
+  "ree_translation": "INV-082 explicitly asserts a BOUNDED loveability ('Salles 2024, bounded') -- care must be internalised as personally-applicable but the coupling has an upper limit above which it inverts into the personal-distress failure (the adult analogue of MECH-158 'love exists but not for me', here 'the other's pain becomes my own distress'). The plan's DEV-NEED-017 readout pins loveability_coupling_gain to [0.1, 0.7] with the upper bound credited to this paper: over-coupling is the failure, not the goal. Salles et al. supply the empirical inverted-U that makes the upper bound load-bearing rather than a free parameter, and is the standing guard against any 'more coupling is better' design of LOVE-2.",
+  "mapping_caveat": "The paper measures interpersonal empathy as a function of observer-target similarity; INV-082's coupling is a within-agent term (received care -> self-valence). The transfer is by structural analogy (a coupling strength with an inverted-U optimum), and the study does NOT validate the specific numeric interval [0.1, 0.7] -- it supports only the QUALITATIVE existence of an upper bound. Personal distress is measured by indirect behavioural proxies (facial disgust, avoidance) in a single n=87 sample.",
+  "source_context": "87 adult participants; video of an athlete in pain preceded by a similarity-priming clip (low/moderate/high); emotional self-reports, facial action coding, gaze, and pupillometry."
+ },
+ "confidence_components": {
+  "source_quality": 0.6,
+  "mapping_fidelity": 0.6,
+  "transfer_risk": 0.55,
+  "notes": "Modest single-study evidence with indirect distress measures -> moderate source quality. Mapping fidelity moderate: the inverted-U is the right SHAPE for INV-082's bounded coupling, but it is interpersonal-empathy similarity, not within-agent self-valence coupling, and it does not pin the numeric bound. This entry grounds the BOUND qualitatively; the [0.1,0.7] interval remains a design choice, not a measured threshold."
+ }
+}
