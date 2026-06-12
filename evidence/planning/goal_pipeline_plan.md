@@ -7,8 +7,17 @@ closure_plan:
   scope_claims: [SD-012, SD-014, SD-015, SD-018, SD-049, MECH-117, MECH-216, MECH-229, MECH-230, MECH-295, MECH-306, MECH-307, ARC-030, ARC-032, ARC-036, ARC-051]
   related_threads:
     - thread: goal_maintenance_feedback
-      claims: [INV-086, MECH-426, MECH-427, INV-087, ARC-105]
+      claims: [INV-086, MECH-426, MECH-427, INV-087, ARC-105, MECH-428]
       registered: 2026-06-12
+      gap2_link: >
+        MECH-428 (subgoal_bootstrapped_goal_seeding, EXP-0390) directly addresses
+        this plan's GAP-2 blocker: when DIRECT z_goal seeding is sparse (unscaffolded
+        z_goal_norm < 0.1 -- the foraging/benefit-contact-ceiling failure), reliably-
+        attainable subgoals + MECH-427 cross-level credit can BOOTSTRAP the z_goal
+        attractor bottom-up, measured against the 626b forced-seed positive control.
+        INV-086 was widened 2026-06-12 to a TWO-AXIS fragility claim (sparse feedback
+        = maintenance fragility; sparse SEEDING = formation fragility) so the umbrella
+        covers MECH-428's formation direction.
       note: >
         Long-horizon goal-MAINTENANCE cluster (distinct from the reachability spine
         INV-065/MECH-216/217/ARC-051 this plan already scopes), reaped 2026-06-12 from

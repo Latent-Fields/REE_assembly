@@ -41751,7 +41751,15 @@
     across the gap. This is the MAINTENANCE-necessity parallel to INV-065's
     REACHABILITY-necessity: INV-065 says proxy goals are required to PLAN toward a
     distal target beyond the CEM horizon; INV-086 says feedback signals are required
-    to HOLD that target committed when terminal confirmation is sparse. It is the
+    to HOLD that target committed when terminal confirmation is sparse. SUPERORDINATE
+    goals are fragile along TWO axes: (1) sparse terminal FEEDBACK -- maintenance
+    fragility, addressed by progress-velocity (MECH-426) and subgoal-credit
+    (MECH-427); and (2) sparse SEEDING -- a superordinate goal whose instantiating
+    benefit is rarely/never reached is hard to FORM at all (formation fragility,
+    addressed by subgoal/proxy BOOTSTRAPPING, MECH-428). The SAME intermediate-
+    feedback machinery remedies both, which is why the HARD CLASS -- sparsely seeded
+    AND sparsely confirmed -- is difficult to create and maintain. Despite the
+    title, INV-086 thus spans goal FORMATION as well as maintenance. It is the
     mechanism-face of INV-034 (why maintenance matters: ethical agency) and INV-053
     (its failure: depression).
   notes: >
@@ -41858,6 +41866,9 @@
     (ARC-051's three levels all feed the SAME field but there is no parent-credit
     propagation). Grounded by targeted_review_proxy_progress_goal_maintenance
     (Bandura&Schunk1981; goal-gradient Hull1932 / Kivetz2006). Proposal: EXP-0385.
+    SIBLING: MECH-428 is the FORMATION-direction sibling -- the same cross-level
+    credit applied to SEED an under-seeded parent (goal creation), where MECH-427
+    MAINTAINS an already-seeded parent.
   what_would_answer: >
     A discrete subgoal-attainment event raises measured commitment to the PARENT
     superordinate goal (parent z_goal norm / persistence) above a matched
@@ -41961,3 +41972,54 @@
     concrete subgoal it should outlive). FAIL = abstract-goal maintenance is
     independent of single- vs multi-level representation (granularity matching not
     load-bearing). Until the substrate exists this self-routes substrate_not_ready.
+
+- id: MECH-428
+  title: subgoal_bootstrapped_goal_seeding
+  claim_type: mechanism
+  status: candidate
+  subject: goal.subgoal_bootstrapped_seeding
+  implementation_phase: v3
+  depends_on: [INV-086, MECH-427, ARC-051, MECH-112, MECH-230]
+  registered: "2026-06-12"
+  description: >
+    When a SUPERORDINATE goal cannot be seeded directly -- because the terminal benefit
+    that would instantiate it is rarely or never reached (sparse seeding) -- reliably-
+    attainable SUBGOALS together with their proxy/progress feedback can BOOTSTRAP the
+    superordinate goal bottom-up: repeated subgoal attainment and its cross-level credit
+    (MECH-427) progressively seed and stabilise a structured z_goal attractor
+    (MECH-112/MECH-230) that direct top-down seeding failed to produce. This is the
+    FORMATION-direction complement to MECH-427's maintenance-direction credit: MECH-427
+    reinforces an already-seeded parent; MECH-428 claims the same cross-level credit can
+    CREATE the parent when direct seeding is sparse. It is the mechanism by which the
+    HARD CLASS of goals INV-086 names -- sparsely seeded AND sparsely confirmed --
+    becomes reachable at all.
+  notes: >
+    Directly addresses the live, dominant goal-pipeline blocker: z_goal SEEDING failure
+    (z_goal_norm < 0.1 "in every iteration"; EXQ-085f/g, EXQ-233, EXQ-536a/b all failed
+    AT the seeding step; goal_pipeline:GAP-2 is blocked because the agent never reaches
+    self-sustaining benefit contact, so z_goal is never seeded; INV-034 is held "until
+    z_goal seeding is reliable"). The scaffolded_sd054_onboarding substrate scaffolds
+    seeding EXTERNALLY (developmental nursery/feeding curriculum); MECH-428 is the
+    INTERNAL complement -- the agent's own subgoal structure substitutes for direct
+    superordinate seeding. The 626b forced_seed positive control (z_goal forced high,
+    wiring proven sound) is the reference a bootstrapping run is measured against.
+    Distinct from MECH-216/217 (populate the wanting landscape for REACHABILITY) and
+    from MECH-426/427 (MAINTAIN an already-seeded goal). Grounded by
+    evidence/literature/targeted_review_proxy_progress_goal_maintenance
+    (Bandura&Schunk1981: proximal subgoals CREATED intrinsic interest / goal pursuit in
+    initially-uninterested learners -- a FORMATION result, not just maintenance). A
+    developmental-scaffolding / zone-of-proximal-development (Vygotsky) lit anchor would
+    strengthen the formation framing -- flagged as a NEXT lit-pull. Cross-link:
+    goal_pipeline_plan.md (GAP-2) + scaffolded_sd054_onboarding. Proposal: EXP-0390.
+  what_would_answer: >
+    In a regime where DIRECT superordinate-goal seeding is sparse (unscaffolded z_goal
+    seeding fails -- z_goal_norm stays < 0.1, the GAP-2 condition), enabling
+    subgoal-attainment + cross-level credit (MECH-427) BOOTSTRAPS a structured z_goal
+    attractor (z_goal_norm rises materially above the unscaffolded baseline, toward the
+    626b forced-seed reference) and produces goal-directed behaviour the no-subgoal
+    control does not. NON-DEGENERACY: subgoals must be ATTAINED at a non-zero rate AND
+    the 626b-style forced-seed positive control must itself show a structured z_goal in
+    the SAME harness [else the substrate, not bootstrapping, is what fails ->
+    self-routes substrate_not_ready, NOT a FAIL -- the GAP-2 foraging-ceiling trap].
+    FAIL = subgoal attainment produces no z_goal seeding above the unscaffolded baseline
+    despite non-zero attainment and a working forced-seed control.

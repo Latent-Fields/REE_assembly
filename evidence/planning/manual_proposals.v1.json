@@ -1462,6 +1462,35 @@
         "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): the clean-goal optimum must be DISCRIMINABLE -- selected-candidate true-quality must have non-zero range across proxy conditions on the identical base landscape [else there is no optimum to divert from]; the uncommitted (multinomial) E3 regime must be active per the 674 finding [temperature-blind argmin branch would mask the effect]; check_degeneracy non_degenerate=false otherwise."
       ],
       "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). THE standout new capture -- REE owns proxy-goal NECESSITY (INV-065) but not the alignment GUARD. Directly buildable on the V3-EXQ-674 E3-selection-probe shape (real e3.select(), injected score_bias landscape over an identical base). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Ng/Harada/Russell1999 potential-based policy-invariance; Skalse2022 restricted-policy tractability). Hand to /queue-experiment."
+    },
+    {
+      "proposal_id": "EXP-0390",
+      "claim_id": "MECH-428",
+      "related_claims": [
+        "MECH-428",
+        "INV-086",
+        "MECH-427",
+        "MECH-112",
+        "MECH-230"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "queue_id": null,
+      "script_path": null,
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 150,
+      "machine_affinity": "any",
+      "registered_utc": "2026-06-12",
+      "objective": "Test MECH-428: when DIRECT superordinate-goal seeding is sparse (the goal_pipeline:GAP-2 condition -- unscaffolded z_goal_norm stays < 0.1), can reliably-attainable SUBGOALS + cross-level credit (MECH-427) BOOTSTRAP a structured z_goal attractor bottom-up that direct top-down seeding fails to produce?",
+      "design": "3-arm comparison in the seeding-sparse regime (the GAP-2 / scaffolded_sd054 onboarding harness where unscaffolded direct z_goal seeding fails). ARM NO-SUBGOAL (unscaffolded baseline: direct superordinate seeding only -- expected z_goal_norm < 0.1). ARM SUBGOAL-BOOTSTRAP (reliably-attainable subgoals present + MECH-427 cross-level credit enabled -> credit propagates up to seed the parent z_goal). ARM FORCED-SEED (626b-style positive control: z_goal forced high, wiring-soundness reference). Metric: structured z_goal attractor (z_goal_norm, attractor structure) + downstream goal-directed behaviour. Prediction: SUBGOAL-BOOTSTRAP z_goal_norm rises materially above NO-SUBGOAL baseline toward the FORCED-SEED reference, and yields goal-directed behaviour NO-SUBGOAL does not.",
+      "acceptance_checks": [
+        "PASS: ARM SUBGOAL-BOOTSTRAP z_goal_norm (and goal-directed behaviour) materially exceeds ARM NO-SUBGOAL baseline, on >=2/3 seeds, with the lift a pre-registered fraction of the FORCED-SEED reference.",
+        "FAIL: SUBGOAL-BOOTSTRAP shows no z_goal seeding above the unscaffolded NO-SUBGOAL baseline despite non-zero subgoal attainment and a working forced-seed control (cross-level credit does not seed the parent).",
+        "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL -- the GAP-2 foraging-ceiling trap): (a) subgoals must be ATTAINED at a non-zero rate in ARM SUBGOAL-BOOTSTRAP [else nothing to credit]; (b) ARM FORCED-SEED must itself produce a structured z_goal in the SAME harness [else the substrate, not bootstrapping, is what fails]; check_degeneracy non_degenerate=false on either failing."
+      ],
+      "notes": "Source: proxy/progress goal-maintenance intake -- SEEDING-fragility refinement (Daniel 2026-06-12). FORMATION-direction sibling of MECH-427 (EXP-0385, maintenance). Anchored to the live z_goal-seeding blocker (goal_pipeline:GAP-2): the 626b forced-seed positive control is the reference; the no-subgoal arm is the GAP-2 unscaffolded failure. Grounded by targeted_review_proxy_progress_goal_maintenance (Bandura&Schunk1981 formation result). Hand to /queue-experiment; Step-2.5 must verify the subgoal-attainment + cross-level-credit instrumentation is wired in the scaffolded_sd054 harness before queuing (else blocked_substrate). A Vygotsky/ZPD developmental-scaffolding lit anchor is a flagged NEXT."
     }
   ]
 }
