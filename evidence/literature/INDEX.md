@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-12T16:20:23.090406Z`
+Generated: `2026-06-12T17:06:40.956409Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -208,6 +208,7 @@ Generated: `2026-06-12T16:20:23.090406Z`
 | `targeted_review_mech_318_rule_state_abstraction` | [`2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/record.json) | 4 | [`summary`](targeted_review_mech_318_rule_state_abstraction/entries/2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019/summary.md) |
 | `targeted_review_mech_329` | [`2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025`](targeted_review_mech_329/entries/2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025/record.json) | 3 | [`summary`](targeted_review_mech_329/entries/2026-06-10_mech_329_reward_circuit_ontogeny_opendak2025/summary.md) |
 | `targeted_review_mech_371` | [`2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014`](targeted_review_mech_371/entries/2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014/record.json) | 1 | [`summary`](targeted_review_mech_371/entries/2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014/summary.md) |
+| `targeted_review_mech_423_integration_prerequisites` | [`2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/record.json) | 6 | [`summary`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
 | `targeted_review_object_files_feature_binding` | [`2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/record.json) | 11 | [`summary`](targeted_review_object_files_feature_binding/entries/2026-06-06_mech_089_theta_gamma_neural_code_lisman_jensen2013/summary.md) |

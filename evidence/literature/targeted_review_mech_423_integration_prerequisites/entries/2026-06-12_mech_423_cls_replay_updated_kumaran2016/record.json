@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_cls_replay_updated_kumaran2016",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "What Learning Systems do Intelligent Agents Need? Complementary Learning Systems Theory Updated",
+    "authors": ["Dharshan Kumaran", "Demis Hassabis", "James L. McClelland"],
+    "year": 2016,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2016.05.004"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The modern CLS restatement, co-authored by the DeepMind team that put replay at the centre of agent design. Directly supports two of MECH-423's readiness sub-conditions: replay is the mechanism by which experience statistics are integrated across the system (R3), and neocortical learning can be RAPID when new information is consistent with existing shared structure -- i.e. the super-additive regime is precisely 'schema-consistent' integration. Explicitly bridges neuroscience and ML agent design, which is the exact cross-domain register MECH-423 lives in. Mapping fidelity moderate because it is a review, not a controlled super-additivity test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If replayed experience is not weighted/selected to interleave across the modules that share the latent, integration does not accrue and the integrated arm shows no advantage -- replay merely rehearses within-module and the cross-pollination MECH-423 predicts never occurs.",
+    "When new information is INCONSISTENT with the existing shared structure, neocortical (slow, shared) integration is slow and can interfere; super-additivity is expected only in the schema-consistent regime, so a mismatched module pairing can produce a null or negative result that is about task-relatedness, not about integration machinery."
+  ],
+  "tags": ["mech-423", "complementary_learning_systems", "replay", "schema_consistency", "integration_readiness"],
+  "mapping": {
+    "source_claim_statement": "CLS updated: replay of hippocampal memories allows goal-dependent weighting of experience statistics and is the route by which structured knowledge is built; neocortical learning can be rapid for information consistent with known structure; the framework is explicitly relevant to designing artificial intelligent agents.",
+    "ree_translation": "Supports MECH-423's readiness conditions R3 (replay actively moving/weighting traces across modules) and sharpens the super-additive regime: the integrated arm should beat the additive baseline specifically when the modules share schema-consistent structure over the L-space latent. REE's MECH-121 replay is the 'goal-dependent weighting' engine; the claim is that it must be running for cross-module gain to appear.",
+    "mapping_caveat": "A review/position paper, not a controlled experiment measuring a super-additive margin. It establishes that replay is the integration route and that schema-consistency gates the speed of gain, but the magnitude (gain EXCEEDING the sum) is not quantified here. The 'intelligent agent' framing is aspirational, not a benchmark.",
+    "source_context": "Cognitive neuroscience + AI; hippocampal replay, systems consolidation, deep RL agent design (DQN-era DeepMind)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "High-impact review in a top venue, authoritative authorship spanning exactly the neuro/ML bridge MECH-423 occupies. Held below 0.8 because review-level evidence and the super-additive magnitude is asserted-as-plausible, not measured."
+  }
+}

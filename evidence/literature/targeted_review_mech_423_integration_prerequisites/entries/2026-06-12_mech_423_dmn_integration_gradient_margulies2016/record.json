@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_dmn_integration_gradient_margulies2016",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "Situating the default-mode network along a principal gradient of macroscale cortical organization",
+    "authors": ["Daniel S. Margulies", "Satrajit S. Ghosh", "Alexandros Goulas", "Marcel Falkiewicz", "Julia M. Huntenburg", "Georg Langs", "Gleb Bezgin", "Simon B. Eickhoff", "F. Xavier Castellanos", "Michael Petrides", "Elizabeth Jefferies", "Jonathan Smallwood"],
+    "year": 2016,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1608282113"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Strong empirical grounding (humans + macaque) that a transmodal integration hub (the DMN) sits at the apex of a principal cortical gradient, maximally and equidistantly removed from primary sensory/motor cortex -- exactly the topographical signature of a region whose function is to integrate information detached from immediate sensory input. This grounds the BIOLOGICAL plausibility of MECH-423's readiness condition R-DMN (a DMN-analogue offline integration hub). Confidence held to 0.66 because REE has no explicit DMN module (per project_attention_distributed_precision_selection, REE's analogue is distributed), so the mapping is to a FUNCTIONAL prerequisite, not a named substrate component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the integrated substrate has no apex region detached from sensory/motor streams (no transmodal hub equidistant from the modalities it integrates), there is no locus for cross-module integration to occur -- integration collapses back to within-modality processing and the super-additive gap does not open.",
+    "The gradient is a structural/topographical observation; an integration hub being PRESENT does not entail it is actively integrating during the measurement window -- a static hub with no online integration is the degenerate-readiness case."
+  ],
+  "tags": ["mech-423", "default_mode_network", "integration_hub", "principal_gradient", "transmodal", "integration_readiness"],
+  "mapping": {
+    "source_claim_statement": "Decomposition of human and macaque connectivity yields a principal gradient anchored at one end by primary sensory/motor regions and at the other by transmodal cortex (the DMN); DMN regions lie at the greatest and precisely-equidistant geodesic distance from primary sensory/motor landmarks, positioning the DMN to process transmodal information unrelated to immediate sensory input.",
+    "ree_translation": "Grounds the biological reality of MECH-423's DMN-analogue readiness condition: super-additive cross-model integration needs a locus that sits ABOVE the individual sensory/affordance streams and integrates them while detached from immediate input -- the offline/DMN-style integration the readiness gate requires. In REE this 'apex' is the shared L-space latent (ARC-004) plus its offline consolidation regime rather than a dedicated DMN module.",
+    "mapping_caveat": "REE does not implement an explicit DMN; the project's standing position is that attention/integration is distributed (project_attention_distributed_precision_selection). So this paper supports the FUNCTIONAL necessity of an integration apex, not a one-to-one substrate mapping. It is also a structural connectivity result -- it shows the hub exists, not that it is integrating on any given trial.",
+    "source_context": "Resting-state fMRI connectivity gradients in humans and macaque; macroscale cortical topography; transmodal vs unimodal hierarchy."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "High-quality cross-species empirical paper. Mapping fidelity lowered because the readiness condition it grounds (a DMN-analogue integration hub) is realised in REE as a distributed/latent property rather than a discrete module, and the result is topographical rather than a dynamic integration measurement. Transfer risk elevated for the same reason."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_amortized_inference_gershman2014",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "Amortized Inference in Probabilistic Reasoning",
+    "authors": ["Samuel J. Gershman", "Noah D. Goodman"],
+    "year": 2014,
+    "venue": "Proceedings of the 36th Annual Meeting of the Cognitive Science Society (CogSci 2014)",
+    "doi": "",
+    "url": "https://escholarship.org/uc/item/34j1h7k5"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Establishes the formal notion that the brain operates by amortized inference -- learning a reusable recognition map (q(z|x)) that produces a posterior over the shared latent in one pass, sharing inference effort across related queries. This grounds MECH-423's readiness condition R2 (a converged/amortized inference loop must be running) and supplies the concrete failure mode (the 'amortization gap') that makes the converged-posterior threshold measurable. Confidence held to 0.64 because it is a conceptual/CogSci paper, not a controlled study, and the inference-convergence requirement is a prerequisite for, not a demonstration of, super-additivity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the shared latent z is not inferred to a stable posterior before readout -- the inference loop has not converged, or the amortized recognition map carries a large amortization gap -- then each module reads a noisy/under-determined z and cross-module corrections cannot propagate, so integrated approximately equals isolated regardless of true coupling.",
+    "Amortized inference trades accuracy for reuse; an untrained or under-trained recognition network produces a posterior far from the true posterior, which masquerades as 'no integration benefit' when the real fault is an unconverged inference loop."
+  ],
+  "tags": ["mech-423", "amortized_inference", "recognition_model", "inference_convergence", "amortization_gap", "integration_readiness"],
+  "mapping": {
+    "source_claim_statement": "When an agent must answer many related inference queries (e.g. recognising a scene from many viewpoints), memoryless per-query inference is wasteful; amortized inference learns a recognition model that maps observations directly to an approximate posterior, sharing inference computation across queries. The brain is argued to operate in this amortized regime.",
+    "ree_translation": "MECH-423's cross-module error corrections can only propagate through a SHARED posterior over the L-space latent. Gershman & Goodman ground the requirement that this posterior be actually produced and stable -- REE's inference loop must run to convergence (or its amortized analogue must be trained past the amortization gap) before the integrated vs isolated comparison means anything. This is the literature backbone for readiness condition R2.",
+    "mapping_caveat": "The paper is about the efficiency/structure of inference, not about multi-module super-additivity. It justifies WHY a converged shared posterior is prerequisite, and names the amortization gap as the measurable failure, but does not itself show that a converged loop yields super-additive gains. CogSci-proceedings venue (lighter peer review than a journal).",
+    "source_context": "Computational cognitive science; probabilistic programs; recognition models / Helmholtz-machine-style inference; precursor framing to the VAE amortized-inference literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.36,
+    "notes": "Influential conceptual paper (the canonical 'amortized inference' reference) but a proceedings piece, not an empirical study. Mapping is to the inference-convergence prerequisite, hence fidelity moderate; transfer risk moderate because the amortized-inference framing maps naturally onto REE's learned latent inference."
+  }
+}

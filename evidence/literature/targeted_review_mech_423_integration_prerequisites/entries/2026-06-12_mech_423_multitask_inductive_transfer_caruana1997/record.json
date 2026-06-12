@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_multitask_inductive_transfer_caruana1997",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "Multitask Learning",
+    "authors": ["Rich Caruana"],
+    "year": 1997,
+    "venue": "Machine Learning",
+    "doi": "10.1023/A:1007379606734"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The foundational demonstration that a SHARED representation trained on related tasks generalises better than isolated single-task models -- the direct ML precedent for MECH-423's 'integrated beats isolated'. It SUPPORTS that super-additive transfer is real and arises from feature sharing in the hidden layer. But it is tagged MIXED because Caruana is explicit that the benefit is CONDITIONAL on task relatedness; sharing across unrelated tasks does not help and can hurt. This conditionality is exactly the readiness/regime caveat MECH-423 must respect, so the paper both supports the claim's existence and bounds its universality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sharing a representation across tasks that do not share underlying structure yields no transfer benefit and can degrade performance -- a sub-additive or negative result that is about task UNrelatedness, not about the integration machinery; MECH-423 must therefore pair modules whose features genuinely overlap (E1<->E2) or risk a null that misattributes to integration failure.",
+    "The MTL benefit is an emergent property of gradient-coupled hidden units; if the shared layer is too small or the task-specific heads absorb all the signal, the cross-task features never form and the integrated model reverts to the isolated baseline."
+  ],
+  "tags": ["mech-423", "multitask_learning", "inductive_transfer", "shared_representation", "positive_transfer", "integration_readiness"],
+  "mapping": {
+    "source_claim_statement": "Multitask learning improves generalisation by using the domain information in the training signals of RELATED tasks as an inductive bias, learning tasks in parallel over a shared representation so that features developed for one task are reused by others; MTL in backprop nets discovers task relatedness without explicit supervision.",
+    "ree_translation": "This is the closest ML precedent for MECH-423: the integrated arm (E1 world-model + E2 affordance-model over a shared L-space latent with cross-module gradient flow) is a hard-parameter-sharing MTL system, and Caruana shows such systems can beat isolated single-task models via inductive transfer. It supports that super-additivity is a real, demonstrated phenomenon -- AND grounds the readiness requirement that the modules must be related (schema-consistent) for the gain to appear.",
+    "mapping_caveat": "Caruana measures generalisation improvement, not a strict 'gain exceeds the SUM of marginal gains' super-additivity test; the additive-baseline framing in EXP-0380 is a stronger bar than the MTL-beats-single-task comparison. And the benefit's conditionality means a null on REE could reflect module unrelatedness rather than a refutation of the mechanism.",
+    "source_context": "Supervised ML; backprop nets, k-NN, kernel regression; classic multitask / inductive-transfer benchmarks (e.g. pneumonia risk, road-following)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Foundational, thousands of citations, the origin of hard parameter sharing. Mapping fidelity good (REE's integrated arm IS an MTL system) but the additive-baseline bar in EXP-0380 is stricter than Caruana's beats-single-task comparison. Mixed direction reflects the explicit relatedness conditionality."
+  }
+}

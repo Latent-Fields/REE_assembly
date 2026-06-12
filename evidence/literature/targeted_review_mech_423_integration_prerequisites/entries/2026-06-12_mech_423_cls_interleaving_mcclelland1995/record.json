@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_cls_interleaving_mcclelland1995",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "Why there are complementary learning systems in the hippocampus and neocortex: insights from the successes and failures of connectionist models of learning and memory",
+    "authors": ["James L. McClelland", "Bruce L. McNaughton", "Randall C. O'Reilly"],
+    "year": 1995,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.102.3.419"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational, heavily-replicated CLS account. Directly establishes that integrating new knowledge into a single shared (cortical-analogue) representation REQUIRES gradual interleaved training; non-interleaved focused learning produces catastrophic interference rather than integration. Maps cleanly onto MECH-423's readiness precondition (R3: offline interleaving must be active) but is a necessary-condition argument about WHEN integration helps, not a direct measurement of super-additivity in REE -- hence mapping_fidelity capped below 0.8.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the integrated arm trains all modules in a focused, non-interleaved schedule (one module's experience swept before the next), the shared latent suffers catastrophic interference and integrated performance falls BELOW a modular baseline -- a sub-additive result that is an artefact of the missing interleaving prerequisite, not evidence against super-additivity.",
+    "Structure discovery (the source of any cross-module gain) only emerges when learning of each item is gradual and interleaved with learning about other items; a single-pass or blocked schedule yields no shared structure to be super-additive over."
+  ],
+  "tags": ["mech-423", "complementary_learning_systems", "interleaved_replay", "catastrophic_interference", "integration_readiness"],
+  "mapping": {
+    "source_claim_statement": "Connectionist (shared-weight) systems discover the structure latent in an ensemble of experiences only if learning is gradual and interleaved across items; the hippocampus exists precisely to support this by replaying experiences so neocortex can integrate them slowly without catastrophic interference.",
+    "ree_translation": "MECH-423's super-additive gain depends on a shared L-space latent (ARC-004) integrating E1/E2/object-spine experience. CLS says that integration is only realisable when an offline interleaving engine (REE's MECH-121 replay / sleep consolidation) is actively moving traces across modules. This is the literature backbone for readiness condition R3 -- 'offline/consolidation transfer must be active' -- and explains why, below it, integrated approximately equals isolated by construction.",
+    "mapping_caveat": "CLS is about avoiding interference during sequential learning, not specifically about gains EXCEEDING the additive baseline. It grounds the necessity of the interleaving prerequisite, but a positive super-additive margin in REE is an additional claim CLS does not itself establish. Connectionist-cortex analogy to REE's L-space is structural, not identity.",
+    "source_context": "Connectionist simulations of human/animal memory; hippocampal-neocortical division of labour; catastrophic interference in backprop networks."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.34,
+    "notes": "Canonical paper, thousands of citations, repeatedly validated. Weighted down on mapping because it argues necessity of interleaving, not the super-additive magnitude MECH-423 asserts; transfer risk moderate (connectionist-to-REE-substrate analogy is close but not identity)."
+  }
+}

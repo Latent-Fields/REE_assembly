@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_423_integration_prerequisites",
+  "entry_id": "2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020",
+  "timestamp_utc": "2026-06-12T17:02:14Z",
+  "claim_ids_tested": ["MECH-423"],
+  "source": {
+    "title": "Gradient Surgery for Multi-Task Learning",
+    "authors": ["Tianhe Yu", "Saurabh Kumar", "Abhishek Gupta", "Sergey Levine", "Karol Hausman", "Chelsea Finn"],
+    "year": 2020,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS 2020)",
+    "doi": "",
+    "url": "https://proceedings.neurips.cc/paper/2020/hash/3fe78a8acf5fda99de95303940a2420c-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Supplies the OPERATIONAL readiness metric for MECH-423: it defines conflicting gradients as those with negative cosine similarity, and shows negative transfer (a shared representation performing WORSE than separate models) arises when conflicting gradients coincide with high positive curvature and a large magnitude difference. This converts MECH-423's vague 'non-zero cross-module gradient' readiness check into a concrete, measurable two-sided gate (coupling non-zero AND not net-conflicting). Tagged mixed because it is primarily evidence of the FAILURE mode -- a shared latent is not automatically super-additive; it can be sub-additive by gradient conflict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A shared representation can perform WORSE than independent per-task models (negative transfer) when task gradients on the shared parameters conflict -- so an integrated arm at-or-below the isolated baseline may indicate destructive gradient interference, a regime where super-additivity is not even expected, rather than a clean refutation of the claim.",
+    "If the per-module gradients on the shared latent have a net-negative cosine similarity, the shared optimisation direction is not jointly beneficial; scoring super-additivity in that regime measures the wrong thing -- the readiness gate must detect net-conflict and route substrate_not_ready / re-scope, not FAIL."
+  ],
+  "tags": ["mech-423", "negative_transfer", "conflicting_gradients", "gradient_cosine", "multitask_learning", "integration_readiness", "readiness_metric"],
+  "mapping": {
+    "source_claim_statement": "In multi-task learning, gradients from different tasks can conflict -- defined as negative cosine similarity between task gradients. This is detrimental to optimisation specifically when conflicting gradients coincide with high positive curvature and a large difference in gradient magnitudes. PCGrad mitigates it by projecting each task gradient onto the normal plane of any conflicting task gradient, reducing negative transfer.",
+    "ree_translation": "Provides the concrete instrument for MECH-423's readiness condition R1 (the shared latent must be doing genuine, non-destructive cross-module work). The measurable quantity is the cosine similarity between per-module gradients on the shared L-space latent: it must be NON-ZERO (the latent is actually coupled, not integrated-equals-isolated by construction) and NOT NET-NEGATIVE (the modules are not in destructive conflict, which would produce sub-additivity for reasons unrelated to the claim). This is the precise, pre-registerable readiness metric the lit-pull was asked to deliver.",
+    "mapping_caveat": "PCGrad's analysis is for supervised/RL multi-task nets; REE's E1/E2/object-spine coupling is a generative-predictive setting, so the gradient-cosine readiness metric transfers in form but its threshold must be calibrated on REE's own substrate (the 0-floor and any positive margin are design choices, not values Yu et al. supply for REE). The paper studies how to FIX conflict, not a super-additivity benchmark.",
+    "source_context": "Deep multi-task learning and multi-task reinforcement learning; supervised vision benchmarks + MT10/MT50 robotic manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.34,
+    "notes": "Strong, widely-used NeurIPS method paper. High value because it operationalises the readiness metric (gradient cosine) the gate needs. Mixed direction because it is chiefly evidence of the negative-transfer failure mode; mapping fidelity good but threshold must be REE-calibrated."
+  }
+}
