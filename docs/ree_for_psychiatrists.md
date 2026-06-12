@@ -15,17 +15,13 @@ keeps the programme honest.
 (Gamma → Google Slides; author's working copy — share/publish before circulating).
 The slide text is reproduced below so it is searchable and readable without the deck.
 
-<!-- SLIDE EMBED: once the deck is "Published to web" in Gamma (or Google Slides
-     File > Share > Publish to web), paste the embed URL into the iframe src below
-     and delete this comment + the surrounding placeholder note. -->
-<!--
-<div style="position:relative;padding-top:56.25%;margin:1.5em 0">
-  <iframe src="PASTE_GAMMA_OR_SLIDES_EMBED_URL_HERE" allowfullscreen
+<div style="position:relative;padding-top:59.27%;margin:1.5em 0">
+  <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQSwiybqADrr2Y4sF7shoW3m6hOOnUL1_T36JgNovMiQxEW47sW1UM0S9i9iD6B9YC-27MoybjcocK2/pubembed?start=true&loop=true&delayms=3000"
+    frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"
     style="position:absolute;top:0;left:0;width:100%;height:100%;border:1px solid #d0d7de;border-radius:8px"></iframe>
 </div>
--->
-{: .note }
-> The interactive deck embed will appear here once the Gamma/Slides deck is published to web.
+
+*The interactive deck above auto-advances; the full slide text is also reproduced below for search and offline reading.*
 
 > **Honesty guardrail (carried throughout).** REE is a research-stage computational
 > specification and simulation programme — not a deployed AI, a clinical tool, or a
