@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_guilt_repair_moral_emotion",
+  "entry_id": "2026-06-12_inv_081_guilt_shame_neural_signatures_piretti2023",
+  "timestamp_utc": "2026-06-12T13:57:20Z",
+  "claim_ids_tested": ["INV-081", "ARC-097"],
+  "source": {
+    "title": "The Neural Signatures of Shame, Embarrassment, and Guilt: A Voxel-Based Meta-Analysis on Functional Neuroimaging Studies",
+    "authors": ["Luca Piretti", "Edoardo Pappaianni", "Claudia Garbin", "Raffaella Ida Rumiati", "Remo Job", "Alessandro Grecucci"],
+    "year": 2023,
+    "venue": "Brain Sciences",
+    "doi": "10.3390/brainsci13040559",
+    "url": "https://doi.org/10.3390/brainsci13040559"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Quantitative voxel-based meta-analysis (17 guilt + 17 shame/embarrassment fMRI studies) showing partially DISSOCIABLE neural substrates whose functional interpretation maps onto the two REE branches: guilt -> left temporo-parietal junction (social cognition / other-modelling), shame/embarrassment -> dorsal ACC + thalamus (social-pain) and premotor cortex (behavioural inhibition / withdrawal). The behavioural-inhibition signature for shame and the social-cognitive signature for guilt are biological corroboration that the two are distinct action-tendency systems, grounding the ARC-097/INV-081 design split at the neural level. Held at 0.7 because functional labels of activation foci are interpretive, the harm-attribution-to-self that REE targets is not directly isolated, and species/substrate transfer to a synthetic agent is large.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Guilt and shame/embarrassment share a common left anterior insula activation (emotional awareness/arousal) -- the dissociation is partial, not total, so a synthetic split that treats the two as cleanly separate streams overstates the neural evidence.",
+    "The meta-analysis pools shame with embarrassment, which differ in moral weight; the 'shame' signature is therefore not a pure index of moral self-condemnation, weakening the direct mapping to INV-081's specific target (global negative self-worth write)."
+  ],
+  "tags": ["inv-081", "arc-097", "guilt", "shame", "neuroimaging", "tpj", "anterior_cingulate", "behavioural_inhibition", "eth-8"],
+  "mapping": {
+    "source_claim_statement": "Across 34 functional neuroimaging studies, guilt and shame/embarrassment both engage the left anterior insula (emotional awareness/arousal) but have dissociable specific substrates: guilt is associated with the left temporo-parietal junction (social-cognitive / mentalising processes), whereas shame/embarrassment recruit social-pain regions (dorsal anterior cingulate cortex, thalamus) and a behavioural-inhibition/premotor network. The authors interpret this as reflecting the distinct action tendencies of the two emotions.",
+    "ree_translation": "Biological corroboration of the ARC-097 / INV-081 design split: the guilt branch carries a social-cognitive (other-directed, repair-relevant) signature, while the shame branch carries a social-pain + behavioural-inhibition (withdrawal) signature. This supports treating guilt-as-repair and shame-as-withdrawal as genuinely distinct routing targets -- the premise of routing self-attributed harm to repair (other-modelling) rather than to a withdrawing self-condemnation response.",
+    "mapping_caveat": "The meta-analysis localises brain activation foci and assigns them functional labels by reverse inference; it does not measure the self-attribution-to-action computation REE prescribes, and it pools shame with embarrassment (which is less morally loaded), so the 'shame' signature is not a clean index of the global-self-badness write INV-081 prohibits. Transfer from human haemodynamic activation maps to a synthetic E3/self-model architecture is by analogy of function, not mechanism.",
+    "source_context": "Voxel-based (ALE-style) meta-analysis of healthy-adult task-fMRI studies of self-conscious emotions; 17 shame/embarrassment and 17 guilt studies meeting inclusion criteria."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good (quantitative meta-analysis aggregating 34 studies, peer-reviewed). Mapping fidelity moderate: the dissociable signatures corroborate the two-branch design but localisation/reverse-inference and the shame+embarrassment pooling dilute the specific mapping to INV-081. Transfer risk moderate-high: human fMRI to synthetic architecture."
+  }
+}

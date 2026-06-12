@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_guilt_repair_moral_emotion",
+  "entry_id": "2026-06-12_arc_097_guilt_reparation_cooperation_dehooge2007",
+  "timestamp_utc": "2026-06-12T13:57:20Z",
+  "claim_ids_tested": ["ARC-097", "MECH-411"],
+  "source": {
+    "title": "Moral sentiments and cooperation: Differential influences of shame and guilt",
+    "authors": ["Ilona E. de Hooge", "Marcel Zeelenberg", "Seger M. Breugelmans"],
+    "year": 2007,
+    "venue": "Cognition and Emotion",
+    "doi": "10.1080/02699930600980874",
+    "url": "https://www.tandfonline.com/doi/abs/10.1080/02699930600980874"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct experimental (not merely correlational) evidence that induced guilt motivates reparative/prosocial action toward the harmed party, dissociated from shame, using economic-game behaviour as the dependent measure. Strong for the action-outlet half of ARC-097 and for MECH-411 (guilt generates and selects a repair trajectory). Held mid-band because it is a single (multi-experiment) lab paper on healthy adults with self-report inductions, and the later de Hooge work itself qualifies the picture (guilt's prosociality is regulated by whether reparative action has occurred, and can be at others' expense).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Guilt's prosocial pull is conditional, not automatic: when another party has already repaired the damage, the transgressor's reparative intentions and prosocial behaviour drop -- so the signal that drives repair is sensitive to whether repair has been accomplished, not to the bare fact of harm. A repair-routing mechanism keyed only to harm-detection would over-repair.",
+    "Later work in this line shows guilt-driven compensation can be taken at the expense of uninvolved third parties when that is the cheaper route -- reparation is targeted at discharging the guilt, which is not guaranteed to be globally prosocial."
+  ],
+  "tags": ["arc-097", "mech-411", "guilt", "reparation", "prosocial", "cooperation", "moral_emotion", "eth-8"],
+  "mapping": {
+    "source_claim_statement": "Across experiments, guilt and shame have differential effects on social behaviour: guilt specifically motivates reparative and prosocial action directed at restoring the relationship with, or compensating, the victim of one's transgression, whereas shame does not produce the same targeted reparative push (and can produce withdrawal or self-protective behaviour). Guilt's reparative effect is regulated by whether the damage has been repaired.",
+    "ree_translation": "Grounds the action-outlet core of ARC-097 -- self-attributed harm opens a repair pathway -- and grounds MECH-411 (after self-attributed harm, E3 generates repair trajectories and compares them against avoidance/concealment/goal-continuation). The paper shows that in humans the guilt signal does not terminate in a self-evaluation; it selects a reparative action targeted at the harmed party, exactly the routing MECH-411 prescribes for E3.",
+    "mapping_caveat": "The dependent measures are human cooperative/economic-game choices following emotion inductions; REE's MECH-411 is an E3 trajectory-generation-and-comparison mechanism over a represented other's D_V. The paper establishes that guilt selects reparation over alternatives in people -- it does not validate that an E3 argmin over generated trajectories is the computation that does so, nor that REE's repair target (another agent's D_{V,j}) is represented. The conditional, sometimes-third-party-displaced nature of human guilt-repair is a caution the simple REE routing does not yet capture.",
+    "source_context": "Series of laboratory experiments with healthy adult participants; emotion inductions (autobiographical recall / scenarios) followed by behavioural measures of cooperation and reparation in social-dilemma and allocation tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Source quality good (multi-experiment, behavioural DV, peer-reviewed, well-cited). Mapping fidelity good for the repair-routing prescription. Transfer risk moderate-to-high: induced human emotion + economic-game behaviour to a synthetic E3 trajectory mechanism, and the conditionality of guilt-repair adds mapping nuance."
+  }
+}

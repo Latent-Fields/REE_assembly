@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_guilt_repair_moral_emotion",
+  "entry_id": "2026-06-12_arc_097_guilt_shame_moral_emotions_tangney2007",
+  "timestamp_utc": "2026-06-12T13:57:20Z",
+  "claim_ids_tested": ["INV-081", "ARC-097"],
+  "source": {
+    "title": "Moral Emotions and Moral Behavior",
+    "authors": ["June Price Tangney", "Jeff Stuewig", "Debra J. Mashek"],
+    "year": 2007,
+    "venue": "Annual Review of Psychology",
+    "doi": "10.1146/annurev.psych.56.091103.070145",
+    "url": "https://www.annualreviews.org/content/journals/10.1146/annurev.psych.56.091103.070145"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical, heavily-cited review by the field's leading researchers on the self-conscious emotions. The guilt-vs-shame action-tendency dissociation (guilt -> approach/repair, shame -> withdrawal/defensiveness) and the bad-act/bad-self distinction are the load-bearing claims for both ARC-097 and INV-081, and they are stated as well-replicated empirical regularities, not speculation. Confidence held below 0.9 because it is a narrative review of human self-report/behavioural studies (not a single high-powered experiment) and the REE target is an architectural routing prescription, so mapping is conceptual rather than measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The guilt/shame distinction is not clean in lay language or in some measures; when guilt is fused with shame ('shame-fused guilt') its adaptive reparative signature disappears, so a system that merely tags 'self-attributed harm' without separating bad-act from bad-self attribution would not inherit the reparative benefit.",
+    "Guilt's reparative push can become maladaptive when it generalises into chronic self-blame or survivor-guilt without a discharge path -- evidence that repair-routing must terminate (cf. MECH-412 residue-release) rather than persist indefinitely."
+  ],
+  "tags": ["inv-081", "arc-097", "guilt", "shame", "moral_emotion", "reparation", "self-conscious_emotion", "eth-8"],
+  "mapping": {
+    "source_claim_statement": "Shame and guilt are distinct self-conscious emotions: shame involves a negative evaluation of the global self ('I am a bad person') and motivates hiding, withdrawal, avoidance, and defensive externalisation of blame; guilt involves a negative evaluation of a specific behaviour ('I did a bad thing') and motivates reparative, approach-oriented action -- confession, apology, and undoing the harm. Guilt is, on balance, the more adaptive moral emotion and is associated with empathy and constructive responses to wrongdoing.",
+    "ree_translation": "Directly grounds ARC-097 (self-attributed harm must open repair and policy-update pathways rather than global self-condemnation) and INV-081 (self-attributed harm must bind to actions/commitments/predictions/repair obligations, not to unbounded negative self-worth). The bad-act vs bad-self contrast is precisely the REE design split: a guilt-like signal that routes to a repair trajectory (ARC-097 / MECH-411) is the adaptive path; a shame-like global self-badness write is the failure mode INV-081 prohibits.",
+    "mapping_caveat": "The review is about human affective phenomenology and behaviour measured by self-report and laboratory tasks; REE's claims are architectural prescriptions about how a synthetic agent should route a self-attribution tag. The biology/psychology shows the distinction EXISTS and that the reparative branch is adaptive -- it does not show that REE's particular implementation (E3 repair-trajectory generation, a bounded self-worth write) is the mechanism that produces it. Human shame is also embodied and socially-evaluative in ways the V3/V4 substrate does not yet represent.",
+    "source_context": "Narrative review of human developmental, social, and clinical psychology literature on shame, guilt, and embarrassment (self-report scales, behavioural studies, longitudinal data)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (definitive review, expert authors, top venue). Mapping fidelity high because the source's central distinction is the exact distinction the two REE claims encode. Transfer risk moderate: human-affect-to-synthetic-architecture transfer plus review-level (not experiment-level) evidence."
+  }
+}

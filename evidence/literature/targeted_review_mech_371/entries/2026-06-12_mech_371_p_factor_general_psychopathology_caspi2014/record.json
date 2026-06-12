@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_371",
+  "entry_id": "2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014",
+  "timestamp_utc": "2026-06-12T13:57:20Z",
+  "claim_ids_tested": ["MECH-371"],
+  "source": {
+    "title": "The p Factor: One General Psychopathology Factor in the Structure of Psychiatric Disorders?",
+    "authors": ["Avshalom Caspi", "Renate M. Houts", "Daniel W. Belsky", "Sidra J. Goldman-Mellor", "HonaLee Harrington", "Salomon Israel", "Madeline H. Meier", "Sandhya Ramrakha", "Idan Shalev", "Richie Poulton", "Terrie E. Moffitt"],
+    "year": 2014,
+    "venue": "Clinical Psychological Science",
+    "doi": "10.1177/2167702613497473",
+    "url": "https://doi.org/10.1177/2167702613497473"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The foundational, well-replicated empirical paper establishing the p factor (a single general-psychopathology dimension) in a 20-year longitudinal cohort. It grounds the EXISTENCE and transdiagnostic-loading premise of MECH-371's p-factor analogue -- a single broad vulnerability dimension that raises joint susceptibility across failure modes. Held at 0.72 because the paper validates the construct in humans but says nothing about MECH-371's specific MECHANISTIC interpretation (that the p-factor analogue IS control-plane / setpoint-regulation instability, ARC-005); that mapping is REE's own hypothesis and is not in the source.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The p factor is a statistical/structural finding (a latent dimension that fits cross-disorder covariance better than separable factors); it does not identify a single causal mechanism, so MECH-371's claim that the analogue is specifically control-plane regulatory instability goes beyond what the source establishes and could be the wrong mechanistic identification.",
+    "p-factor structure can be partly an artefact of measurement and comorbidity-counting; a REE substrate that builds in a single global-instability scalar by construction risks manufacturing the dimension rather than discovering it -- the human evidence is for a latent factor, not for a designed-in scalar."
+  ],
+  "tags": ["mech-371", "p_factor", "general_psychopathology", "transdiagnostic", "vulnerability_axis", "failure_modes", "eth-8"],
+  "mapping": {
+    "source_claim_statement": "In the Dunedin longitudinal cohort followed from adolescence to midlife, the structure of psychopathology is captured better by a single general dimension (the p factor) than by separable Internalizing/Externalizing/Thought-Disorder factors. Higher p is associated with greater life impairment, greater familiality, worse developmental histories, and more compromised early-life brain function. The p factor explains why disorder-specific causes, biomarkers, and treatments are hard to find, and motivates transdiagnostic approaches.",
+    "ree_translation": "Grounds MECH-371's central premise: that a single broad vulnerability dimension can load across ALL failure modes, raising joint susceptibility to many at once, orthogonal to any single-axis failure. The human p factor is the empirical referent for REE's 'global-instability / broad control-plane vulnerability axis' -- the one psychiatric-failure axis with no existing REE claim home -- and supports the prediction that a subset of agents carry elevated risk across the whole failure-mode space.",
+    "mapping_caveat": "Caspi et al. establish that a general psychopathology dimension EXISTS and loads transdiagnostically; they do NOT identify its mechanism. MECH-371 additionally asserts the analogue is specifically instability in precision/gain/threshold setpoint regulation (ARC-005) -- a mechanistic identification the source neither makes nor tests. The source is human clinical-epidemiological data; REE's analogue is a control-plane-stability scalar in a synthetic agent. So the paper grounds the AXIS/transdiagnostic-loading claim, not the control-plane-mechanism claim.",
+    "source_context": "Dunedin Multidisciplinary Health and Development Study: ~1000-person birth cohort, psychiatric assessment across 20 years (adolescence to midlife); confirmatory factor analysis of disorder structure."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (landmark longitudinal cohort, definitive paper, heavily replicated since). Mapping fidelity moderate: grounds the existence + transdiagnostic-loading premise but not MECH-371's control-plane mechanistic identification. Transfer risk moderate: human clinical epidemiology to a synthetic global-stability scalar."
+  }
+}

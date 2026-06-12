@@ -4,7 +4,7 @@ closure_plan:
   generation: v5
   title: "Ethics-as-coherence + failure-mode taxonomy + moral-residue / guilt-repair cluster (V5 SOCIAL roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-12
   scope_claims: [ARC-056, MECH-164, MECH-145, MECH-146, ARC-086, MECH-367, MECH-371, INV-067, INV-068, INV-069, INV-070, INV-071, INV-072, ARC-054]
   sibling_plans: [relational_harm_moral_semantics_v5, mirror_modelling, self_model_v4, object_representation_v4]
   roadmap_note: >
@@ -147,7 +147,7 @@ closure_plan:
     - id: "ethics_as_coherence_v5:ETH-8"
       title: "Biology grounding: guilt-as-reparative-motivation vs shame-as-withdrawal, moral-repair, typed-causal-attribution, and p-factor lit-pulls"
       phase: 2
-      status: open
+      status: closed
       severity: medium
       owner_exq: null
       unblocks_claims: ["ARC-097", "INV-081", MECH-371]
@@ -158,8 +158,30 @@ closure_plan:
         - "L2 moral-repair / restitution literature -- grounds the repair-search + residue-release mechanism (ETH-3)"
         - "L3 typed causal-attribution / theory-of-causal-ownership -- grounds the attribution ontology (ETH-2) per feedback_biology_before_formal_definitions"
         - "L4 general-psychopathology / p-factor (Caspi & Moffitt) -- the intake/claim notes flag this to sharpen MECH-371 before any promotion"
-      last_updated: 2026-06-10
-      completion_note: "Per project rule feedback_biology_before_formal_definitions: the guilt-repair cluster and the p-factor axis are formal/clinical constructs that need a biology lit-pull before registration. This node tracks closing that grounding debt. L1 (guilt-vs-shame) and L4 (p-factor) are the highest-priority pulls because they gate the two safety invariants (ETH-4) and MECH-371 respectively. Status open -- a lit-pull can begin independent of substrate."
+      last_updated: 2026-06-12
+      governance_2026_06_12: >
+        Biology-grounding debt DISCHARGED via /lit-pull (IGW-20260612-054). Five literature_evidence/v1
+        entries filed under evidence/literature/ across all four sub-pulls (all evidence_direction=supports):
+        targeted_review_guilt_repair_moral_emotion/ holds (L1) Tangney, Stuewig & Mashek 2007 Annu Rev Psychol
+        (guilt=bad-act/approach-repair vs shame=bad-self/withdrawal; conf 0.82; -> INV-081 + ARC-097),
+        (L2) de Hooge, Zeelenberg & Breugelmans 2007 Cognition & Emotion (induced guilt selects reparative/
+        prosocial action toward the victim, regulated by repair-completion; conf 0.74; -> ARC-097 + MECH-411),
+        (L3) Weiner 1985 Psychological Review (typed causal attribution -- locus/controllability -- selects the
+        moral emotion; controllable-internal -> guilt, uncontrollable-global -> shame; conf 0.70; -> ARC-096 +
+        ARC-097), and the biology anchor Piretti et al. 2023 Brain Sciences voxel-based meta-analysis (34 fMRI
+        studies; dissociable signatures -- guilt=left TPJ/social-cognition, shame=dACC social-pain + premotor
+        behavioural-inhibition; conf 0.70; -> INV-081 + ARC-097). targeted_review_mech_371/ holds (L4) Caspi
+        et al. 2014 Clin Psychol Sci the p factor (single transdiagnostic general-psychopathology dimension,
+        Dunedin 20yr cohort; conf 0.72; -> MECH-371). Index rebuilt: literature_confidence now ARC-097=0.87,
+        INV-081=0.78, MECH-371=0.71, ARC-096=0.70 (was 0 for all). This discharges the
+        feedback_biology_before_formal_definitions grounding debt for the guilt-repair cluster + the p-factor
+        axis; it does NOT promote any claim -- ARC-096/097, INV-081 and MECH-371 stay candidate /
+        substrate_conditional / v3_pending, gated on the unbuilt V4/V5 self-model + social substrate. The L3
+        Weiner anchor flags the controllability/responsibility entanglement (ownership tags less orthogonal
+        than a formal ontology assumes) and the L4 anchor flags that the p factor grounds the AXIS/loading
+        premise but NOT MECH-371's control-plane (ARC-005) mechanistic identification -- both carried as
+        explicit mapping_caveats / failure_signatures for the eventual promotion review.
+      completion_note: "Per project rule feedback_biology_before_formal_definitions: the guilt-repair cluster and the p-factor axis are formal/clinical constructs that need a biology lit-pull before registration. This node tracked closing that grounding debt. CLOSED 2026-06-12 -- all four sub-pulls (L1 guilt-vs-shame, L2 moral-repair, L3 typed-causal-attribution, L4 p-factor) filed (see governance_2026_06_12). The pull discharges the grounding debt only; the grounded claims remain unpromotable on substrate grounds (ETH-2/3/4 readiness gates unchanged)."
 ---
 # Ethics-as-Coherence + Failure-Mode Taxonomy + Moral-Residue / Guilt-Repair -- V5 SOCIAL Roadmap
 

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_guilt_repair_moral_emotion",
+  "entry_id": "2026-06-12_arc_097_attribution_emotion_weiner1985",
+  "timestamp_utc": "2026-06-12T13:57:20Z",
+  "claim_ids_tested": ["ARC-096", "ARC-097"],
+  "source": {
+    "title": "An Attributional Theory of Achievement Motivation and Emotion",
+    "authors": ["Bernard Weiner"],
+    "year": 1985,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.92.4.548",
+    "url": "https://acmd615.pbworks.com/f/weinerAnattributionaltheory.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The foundational, field-defining theory that the TYPE of causal attribution (locus, stability, controllability) determines which emotion arises -- guilt specifically follows from internal + controllable attribution, shame from internal attribution to uncontrollable/global causes. This is the closest thing in the literature to a 'typed causal attribution governs moral emotion' law, directly grounding ARC-096's typed ontology and the attribution-precondition for ARC-097's guilt routing. Held at 0.7 because it is a theory of achievement emotion (success/failure) rather than interpersonal-harm morality per se, and is a theoretical framework rather than a single decisive experiment, so the mapping is by structural analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Weiner's controllability and locus dimensions are conceptually entangled with 'responsibility' in ways that are not fully separable -- a typed-attribution ontology that treats ownership tags (self/controllable/intentional) as cleanly orthogonal may over-formalise a distinction the source treats as partially overlapping.",
+    "The theory is built on achievement (success/failure) attributions; the guilt/shame mapping for interpersonal moral harm is an extension, so a system importing the dimensional structure wholesale risks mis-specifying which moral attributions yield guilt vs shame."
+  ],
+  "tags": ["arc-096", "arc-097", "attribution", "causal_attribution", "controllability", "responsibility", "guilt", "shame", "eth-8"],
+  "mapping": {
+    "source_claim_statement": "Perceived causes of outcomes vary along a small set of dimensions -- locus (internal/external), stability, and controllability (with intentionality/globality as further structures) -- and these dimensions, not the outcome itself, determine the emotional response. Controllability/personal-responsibility attributions are the key determinant of guilt and shame: guilt follows from attributing a negative outcome to an internal, controllable cause; shame follows from attributing it to an internal but uncontrollable (and often global) cause. Emotions so generated then guide motivated behaviour.",
+    "ree_translation": "Grounds ARC-096 (REE requires a typed causal-attribution ontology) by showing that, in humans, the TYPE of causal attribution is what selects the moral emotion -- i.e. you cannot get the right affect/route without first typing the cause (self/controllable/intentional vs uncontrollable/global). It also grounds the precondition structure of ARC-097: guilt-as-repair is licensed specifically by an internal+controllable (own-act, could-have-done-otherwise) attribution, which is exactly the ownership tag ARC-096 must supply before ARC-097's repair routing can fire.",
+    "mapping_caveat": "Weiner's theory is about achievement emotions (reactions to success and failure), and the guilt/shame application is an extension within that framework rather than a dedicated theory of interpersonal moral harm. REE's attribution ontology is a richer typed set (self/world/body/model/commitment/other/shared/accidental/repairable) than Weiner's locus x stability x controllability cube, so the source supports the PRINCIPLE that attribution-type governs moral-emotional routing, not the specific REE tag set. The controllability/responsibility entanglement means the ownership tags may be less orthogonal in practice than a formal ontology assumes.",
+    "source_context": "Theoretical synthesis in Psychological Review integrating a large body of human achievement-motivation and attribution experiments; the canonical statement of attribution theory of motivation and emotion."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (the field-defining theory, top venue, vast empirical base). Mapping fidelity moderate: it establishes the attribution-type -> emotion principle that ARC-096 needs, but via the achievement-emotion frame and a coarser dimensional set than REE's typed ontology. Transfer risk moderate from the achievement-to-moral-harm extension and theory-to-architecture mapping."
+  }
+}
