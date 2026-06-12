@@ -2429,7 +2429,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-087": {
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "neuromodulation.four_plane_hierarchical_ordering",
     "title": "Hierarchical ordering of four neuromodulatory control planes: ACh \u2192 NA \u2192 5-HT \u2192 DA.",
@@ -4794,6 +4794,22 @@
     "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-423": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "integration.cross_model_super_additivity",
+    "title": "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "V3 ablation. ARM INTEGRATED: E1 world-model + E2 affordance-model (and, in a third arm, the object spine) trained over a SHARED L-space latent with cross-module gradient flow. ARM ISOLATED: parameter- and compute-matched modules trained with NO shared features (gradient stop between streams). PASS = joint world-model R2 + affordance accuracy of the integrated arm EXCEEDS the additive baseline (sum of each isolated module's marginal gain) by a pre-registered margin. FAIL = integrated arm at-or-below the additive baseline. READINESS PRECONDITION (the discriminating non-degeneracy gate, per Daniel 2026-06-12): the integration machinery must demonstrably be doing cross-module work before the test means anything -- (i) the shared latent must carry NON-ZERO cross-module gradient (measured), (ii) the inference loop must be running to convergence, and (iii) offline/consolidation transfer (DMN-analogue + sleep replay, MECH-121) must be active and moving traces across modules. Below any of these the integrated and isolated arms are indistinguishable by construction and the run self-routes substrate_not_ready (check_degeneracy non_degenerate=false), NOT a FAIL. The concrete readiness metric/threshold is to be set by a pending literature pull on which integration prerequisites are necessary for super-additive gain.\n"
+  },
+  "MECH-424": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.prediction_as_corrective_instantiating_stream",
+    "title": "Language prediction as a corrective / instantiating predictive stream: when language is modelled as an externalisation of internal cognition, predicting language inside the integrated substrate can INSTANTIATE cognitive structures not gained sensorimotorically, and can CORRECT or DEGRADE existing structures as a function of the language's quality. The bidirectional clause (good language repairs structure; bad language corrupts it) is the discriminating edge over language-as-scaffold.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "SUBSTRATE-CONDITIONAL -- requires a linguistic input channel REE-v3 does not have (the V6 language interface: ARC-009 realisation / MECH-373 / MECH-422). Once that channel exists: an agent with a language-prediction head trained over a corpus encoding CORRECT task structure acquires or repairs a behaviourally-measured cognitive structure that a matched no-language control does NOT (instantiate / correct leg = PASS); AND an agent trained over a corpus encoding WRONG structure has that structure DEGRADED relative to the no-language control (worsen leg = PASS). Both legs required: the bidirectional dependence on language quality is the discriminating prediction. UNMET PRECONDITION: no linguistic channel in V3, so the claim self-routes substrate_not_ready until the V6 language layer is built; the non-degeneracy gate additionally requires the measured structure to be live (non-floor) in the no-language control so 'correct' and 'worsen' are both reachable directions.\n"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",
@@ -5556,7 +5572,7 @@
     "type": "design_decision"
   },
   "SD-032a": {
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "stable",
     "subject": "cingulate.salience_network_coordinator",
     "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",

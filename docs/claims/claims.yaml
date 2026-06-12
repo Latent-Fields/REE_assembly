@@ -41428,3 +41428,101 @@
     Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to
     emerge from the relational-inference stack (MECH-419/MECH-420). Cannot be resolved until the
     symbolic stack exists to observe; epistemic_category substrate_conditional. DO NOT build in V3.
+- id: MECH-423
+  title: "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable."
+  claim_type: mechanism_hypothesis
+  subject: integration.cross_model_super_additivity
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  epistemic_category: standard
+  version_relevance: v3
+  claim_level: mechanistic
+  registered_utc: 2026-06-12
+  depends_on:
+    - ARC-004    # the shared multi-timescale L-space latent that makes feature-sharing possible
+    - ARC-001    # E1 world model -- one cross-pollinating stream
+    - ARC-002    # E2 affordance model -- the second stream; E1<->E2 overlap is the pairwise instance
+    - MECH-081   # E2 sufficiency constraint reduces E1 dimensionality target -- a registered pairwise interaction this generalises
+    - MECH-033   # E2 kernels seed hippocampal rollouts -- an existing cross-module transfer path
+    - ARC-080    # object-identity primitive -- a cross-cutting feature donor across modules
+  possible_overlap_with:
+    - MECH-081   # MECH-081 is one PAIRWISE E2->E1 interaction; MECH-423 is the system-level super-additivity claim over many streams
+    - MECH-082   # E2 distortion biases E1 sampling -- another pairwise propagation instance
+  location: docs/thoughts/2026-06-12_cognifold_cross_pollination_and_language_stream.md
+  source:
+    - docs/thoughts/2026-06-12_cognifold_cross_pollination_and_language_stream.md
+  what_would_answer: >
+    V3 ablation. ARM INTEGRATED: E1 world-model + E2 affordance-model (and, in a third arm, the object
+    spine) trained over a SHARED L-space latent with cross-module gradient flow. ARM ISOLATED:
+    parameter- and compute-matched modules trained with NO shared features (gradient stop between
+    streams). PASS = joint world-model R2 + affordance accuracy of the integrated arm EXCEEDS the
+    additive baseline (sum of each isolated module's marginal gain) by a pre-registered margin. FAIL =
+    integrated arm at-or-below the additive baseline. READINESS PRECONDITION (the discriminating
+    non-degeneracy gate, per Daniel 2026-06-12): the integration machinery must demonstrably be doing
+    cross-module work before the test means anything -- (i) the shared latent must carry NON-ZERO
+    cross-module gradient (measured), (ii) the inference loop must be running to convergence, and
+    (iii) offline/consolidation transfer (DMN-analogue + sleep replay, MECH-121) must be active and
+    moving traces across modules. Below any of these the integrated and isolated arms are
+    indistinguishable by construction and the run self-routes substrate_not_ready (check_degeneracy
+    non_degenerate=false), NOT a FAIL. The concrete readiness metric/threshold is to be set by a
+    pending literature pull on which integration prerequisites are necessary for super-additive gain.
+  notes: >
+    The 'turbo-charge' fragment (Topic 5 of the 2026-06-12 cognifold intake), made falsifiable. REE
+    owns the cognifold (ARC-001/002/003/004/005/007), the object spine (ARC-080/081/082/083), and
+    several pairwise transfer paths (MECH-033, MECH-081/082, MECH-121), but NO claim asserts that
+    integration is SUPER-ADDITIVE rather than merely additive. MECH-423 is that assertion. Topic 2
+    (E1<->E2 feature overlap beating either alone) is the pairwise instance and becomes the first
+    experiment arm, not a separate claim. Topic 1 (E1 reaps error and self-improves) and Topic 4 (the
+    cognifold itself) are owned-by-design and cross-referenced only, not registered. OPEN READINESS
+    QUESTION (Daniel): the signal may be null until inference + DMN-style offline integration + sleep
+    consolidation are themselves mature -- captured as the readiness precondition above and motivating
+    the lit-pull. EXP-0380 in manual_proposals.v1.json carries the ablation design. epistemic_category
+    standard, V3-tractable in principle but gated on the readiness precondition.
+- id: MECH-424
+  title: "Language prediction as a corrective / instantiating predictive stream: when language is modelled as an externalisation of internal cognition, predicting language inside the integrated substrate can INSTANTIATE cognitive structures not gained sensorimotorically, and can CORRECT or DEGRADE existing structures as a function of the language's quality. The bidirectional clause (good language repairs structure; bad language corrupts it) is the discriminating edge over language-as-scaffold."
+  claim_type: mechanism_hypothesis
+  subject: language.prediction_as_corrective_instantiating_stream
+  polarity: asserts
+  status: candidate
+  implementation_phase: v6
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  claim_level: mechanistic
+  registered_utc: 2026-06-12
+  depends_on:
+    - INV-003    # language as functional self-representation -- the scaffold premise this extends to structure-formation
+    - ARC-009    # the symbolic mediation layer; the linguistic channel a language-prediction head would attach to
+    - MECH-010   # language emergence/bootstrapping -- the closest existing dynamics claim
+    - MECH-011   # language-and-learning dynamics -- the nearest neighbour; MECH-424 is its prediction-as-structure-formation facet
+    - INV-013    # cognition is predictive/iterative -- language prediction is one more predictive stream
+    - MECH-423   # super-additivity parent: language is a cross-pollinating stream whose gain (or harm) MECH-424 specialises
+  possible_overlap_with:
+    - MECH-011   # MECH-011 = general language-and-learning; MECH-424 = the specific bidirectional instantiate/correct/worsen mechanism via language PREDICTION
+    - MECH-373   # LanguageAffectAdaptor parses affect FROM language; MECH-424 is the inverse -- language prediction SHAPING internal structure (cross-ref, not duplicate)
+  location: docs/thoughts/2026-06-12_cognifold_cross_pollination_and_language_stream.md
+  source:
+    - docs/thoughts/2026-06-12_cognifold_cross_pollination_and_language_stream.md
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL -- requires a linguistic input channel REE-v3 does not have (the V6 language
+    interface: ARC-009 realisation / MECH-373 / MECH-422). Once that channel exists: an agent with a
+    language-prediction head trained over a corpus encoding CORRECT task structure acquires or repairs a
+    behaviourally-measured cognitive structure that a matched no-language control does NOT (instantiate /
+    correct leg = PASS); AND an agent trained over a corpus encoding WRONG structure has that structure
+    DEGRADED relative to the no-language control (worsen leg = PASS). Both legs required: the bidirectional
+    dependence on language quality is the discriminating prediction. UNMET PRECONDITION: no linguistic
+    channel in V3, so the claim self-routes substrate_not_ready until the V6 language layer is built; the
+    non-degeneracy gate additionally requires the measured structure to be live (non-floor) in the
+    no-language control so 'correct' and 'worsen' are both reachable directions.
+  notes: >
+    The genuinely-new, distinctive fragment (Topic 3 of the 2026-06-12 cognifold intake). REE owns
+    language as coordination/compression scaffold (INV-003, ARC-009, MECH-010/011) and a V6 cluster that
+    parses affect/grammar FROM language (MECH-373, INV-085, MECH-422). MECH-424 is the inverse and
+    unregistered direction: language PREDICTION as a learning signal that writes/corrects/corrupts
+    internal cognitive structure, bidirectionally gated on the language's quality. This is the formal
+    analogue of how good or bad explanation reshapes a clinician's mental model. Tightly coupled to
+    MECH-423 (language is one cross-pollinating stream; its gain is super-additive when the language is
+    good, NEGATIVE when bad -- the asymmetry MECH-423 alone does not capture). epistemic_category
+    substrate_conditional: the mechanism is statable and falsifiable now, but the channel it needs is
+    V6. DO NOT build in V3.
