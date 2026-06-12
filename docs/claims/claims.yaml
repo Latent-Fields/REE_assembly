@@ -38784,6 +38784,11 @@
     - INV-061
     - MECH-343
     - RA-002
+  pharmacological_predictions:
+    - PHARM-015  # 5-HT2A-cortical narrative/precision axis (pimavanserin)
+    - PHARM-016  # 5-HT1A-hippocampal terrain/aversive-basin axis (buspirone)
+    - PHARM-017  # M1 plasticity x M4 dopamine-selection axes (xanomeline, non-D2)
+    - PHARM-018  # kappa/mu commitment-entropy axis (buprenorphine)
   location: docs/architecture/psychiatric_failure_axes.md#arc-086
   notes: >
     The genuinely-new ORGANIZING contribution of the psychiatric-genetic-overlap intake. REE already
@@ -38805,6 +38810,19 @@
     derealization (MECH-200), OCD (SD-034/045/046), depressive attractor (INV-053/054), and catatonia
     subtypes (SD-036/MECH-279 vs MECH-343) stay mechanistically distinct. Does not promote/demote any
     existing claim. Reaped from the 2026-06-06 psychiatric-genetic-overlap intake.
+    NEUROMODULATORY-RECEPTOR GROUNDING (reaped 2026-06-12 from the receptor-subtype intervention layer
+    lit-pull; evidence/literature/targeted_review_receptor_subtype_layer/, all out_of_domain --
+    clinical-pharmacology-adjudicated, promotes nothing on the V3 axis): three of the vulnerability
+    axes now carry a biology-first receptor-resolved grounding. (i) precision/terrain axis <-
+    serotonin-receptor subtypes: 5-HT2A-cortical = narrative exclusivity/top-level precision vs
+    5-HT1A-hippocampal = aversive-basin/terrain depth [MECH-006/MECH-085; Ren 2019, Weber & Andrade
+    2010, Akimova 2009]; (ii) goal/salience-coupling + commitment-release axes <- M4-striatal
+    dopamine-selection damping, the non-D2 antipsychotic route [MECH-086/MECH-087; Foster 2016, Kaul
+    2024 EMERGENT-3]; (iii) commitment-threshold/action-release axis <- the kappa/mu commitment-entropy
+    overlay (MECH-048; kappa = destabiliser/aversive-state-lock, mu = stabiliser) [Land 2008, Krystal
+    2020, Bari 2025 -- KOR antagonism restores OPTIMAL PERSEVERATION]. Whether these receptor groundings
+    are mutually DISSOCIABLE (vs collapsing to one affective dimension) is the new open question Q-075.
+    Receptor-resolved predictions: PHARM-015..018 (see pharmacological_predictions field).
 - id: Q-064
   title: "Should REE represent a clinical syndrome as a weighted VECTOR over the ARC-086 latent vulnerability axes (with comorbidity = axis-overlap and pleiotropy = one mechanism loading multiple axes), rather than as a diagnosis-specific locus mapping -- and if so, how is comorbidity represented without exploding the claim registry, and how is axis-predisposition (which axes are fragile) kept distinct from axis-expression (gated by REE's developmental / plasticity machinery)?"
   claim_type: open_question
@@ -38829,6 +38847,50 @@
     separate "which axes are fragile" from "which failure mode is currently expressed". Resolvable in
     REE only once the ARC-086 axis-vector substrate exists (V4/V5); off the V3 critical path -- DO NOT
     queue a V3 experiment against this. Reaped from the 2026-06-06 psychiatric-genetic-overlap intake.
+- id: Q-075
+  title: "Are ARC-086's latent vulnerability axes grounded in DISSOCIABLE neuromodulator-receptor systems -- does the precision/terrain axis map to serotonin-receptor subtypes (5-HT2A-cortical narrative vs 5-HT1A-hippocampal terrain), the goal/salience-coupling + commitment-release axes to dopamine-selection (M4-muscarinic / D2-vs-D3), and the commitment-threshold axis to the kappa/mu opioid commitment-entropy overlay -- such that receptor-SELECTIVE interventions produce DOUBLE-DISSOCIATED effects on their predicted axis, rather than the axes collapsing into a single affective dimension?"
+  claim_type: open_question
+  subject: failure_modes.neuromodulatory_receptor_grounding_of_vulnerability_axes
+  polarity: open
+  status: candidate
+  epistemic_category: out_of_domain
+  registered: "2026-06-12"
+  version_relevance: v4_v5
+  what_would_answer: >
+    A receptor-selective DOUBLE-DISSOCIATION in clinical / pharmacological data: an agent selective for
+    one axis's receptor (5-HT1A partial agonism for the terrain axis, M4 agonism for the
+    dopamine-selection axis, kappa antagonism for the commitment-entropy axis) improves its PREDICTED
+    axis-specific endpoint WITHOUT equivalently moving the partner axes' endpoints, and the converse for
+    the partner agents. PHARM-015..018's falsification_conditions are the concrete instances -- e.g. if
+    kappa antagonism produces the SAME response profile as an SSRI on anhedonia-specific endpoints, the
+    commitment-entropy axis collapses into the serotonin-terrain axis and Q-075 is answered NO for that
+    pair. A clean cross-receptor double-dissociation answers YES; a uniform / non-dissociable response
+    across receptor classes answers NO (the axes are not grounded as distinct receptor systems).
+  depends_on:
+    - ARC-086
+    - MECH-048
+    - MECH-085
+    - MECH-086
+    - MECH-087
+  pharmacological_predictions:
+    - PHARM-015
+    - PHARM-016
+    - PHARM-017
+    - PHARM-018
+  location: docs/architecture/psychiatric_failure_axes.md#q-075
+  notes: >
+    Reaped 2026-06-12 from the receptor-subtype intervention layer lit-pull (strands 3A/3B/3C;
+    evidence/literature/targeted_review_receptor_subtype_layer/). ARC-086 registers the latent
+    vulnerability-axis VOCABULARY; Q-064 asks how to REPRESENT syndromes as weighted vectors over those
+    axes; Q-075 is the distinct, logically-prior empirical question of whether the axes are grounded in
+    dissociable neuromodulator-RECEPTOR systems at all. epistemic_category out_of_domain EXPLICITLY: the
+    test domain is clinical pharmacology (receptor-selective RCTs / naturalistic cohorts), NOT the V3
+    substrate -- which has no 5-HT / muscarinic / opioid receptor subtypes (the receptor rung is
+    out_of_domain for V3 per docs/architecture/receptor_subtype_intervention_layer.md Section 4). DO NOT
+    queue a V3 experiment against this; the V3-tractable sibling is the MECH-087 cross-plane non-rescue
+    test (a PLANE-level, not receptor-level, dissociation). Lit grounding raised lit_conf on
+    MECH-006/048/085/086/087/088 + ARC-086, exp_conf unchanged 0 (promotes nothing). Does not
+    promote/demote any existing claim. Receptor-resolved predictions: PHARM-015..018.
 - id: MECH-371
   title: "A global-instability / broad control-plane vulnerability axis (a p-factor / general-psychopathology-factor analogue) loads across ALL failure modes: a single broad dimension of control-plane regulatory fragility -- instability in precision/gain/threshold setpoint regulation (ARC-005) rather than any one specific comparator or stream -- raises joint susceptibility to multiple failure modes at once, distinct from and orthogonal to any single-axis failure. This is the axis with no existing REE home; it predicts that a subset of agents/patients carry elevated risk across the whole failure-mode space rather than along one axis."
   claim_type: mechanism_hypothesis

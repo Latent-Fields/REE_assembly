@@ -108,6 +108,37 @@ Resolvable in REE only once the ARC-086 vector substrate exists (V4/V5); off the
 
 ---
 
+<a id="q-075"></a>
+## Q-075 — Are the vulnerability axes grounded in *dissociable* neuromodulator-receptor systems? (open question)
+
+Reaped 2026-06-12 from the **receptor-subtype intervention layer** lit-pull (strands 3A/3B/3C;
+`evidence/literature/targeted_review_receptor_subtype_layer/`). Where Q-064 asks how to *represent*
+syndromes as vectors over the ARC-086 axes, Q-075 asks the logically prior empirical question:
+**are the axes grounded in dissociable neuromodulator-receptor systems at all?** The receptor layer
+proposes a specific grounding —
+
+- **precision / terrain axis ← serotonin subtypes:** 5-HT2A-cortical (narrative exclusivity) vs
+  5-HT1A-hippocampal (aversive-basin/terrain depth) [MECH-006/MECH-085; Ren 2019, Weber & Andrade
+  2010, Akimova 2009]
+- **goal/salience-coupling + commitment-release axes ← M4-striatal dopamine-selection** damping, the
+  non-D2 antipsychotic route [MECH-086/MECH-087; Foster 2016, Kaul 2024 EMERGENT-3]
+- **commitment-threshold axis ← the kappa/mu commitment-entropy overlay** (MECH-048; kappa =
+  destabiliser/aversive-state-lock, mu = stabiliser) [Land 2008, Krystal 2020, Bari 2025 — KOR
+  antagonism restores *optimal perseveration*]
+
+`epistemic_category: out_of_domain` — the test domain is **clinical pharmacology** (receptor-selective
+RCTs / cohorts), not the V3 substrate (which has no receptor subtypes; the receptor rung is
+out_of_domain per `receptor_subtype_intervention_layer.md` §4). **What would answer it:** a
+receptor-selective *double-dissociation* — each agent moves its predicted axis-endpoint without
+equivalently moving the partners' — as set out concretely in the PHARM-015..018 falsification
+conditions (e.g. if kappa antagonism gives the *same* anhedonia-endpoint profile as an SSRI, the
+commitment-entropy axis collapses into the serotonin-terrain axis → answered NO for that pair). The
+V3-tractable sibling is the **MECH-087 cross-plane non-rescue** test — a *plane*-level, not
+receptor-level, dissociation. Promotes nothing; lit grounds the design only. depends_on ARC-086,
+MECH-048, MECH-085, MECH-086, MECH-087.
+
+---
+
 <a id="mech-371"></a>
 ## MECH-371 — Global-instability / control-plane vulnerability axis (p-factor analogue)
 
