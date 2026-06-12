@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-12T18:19:41Z",
+  "last_tick_utc": "2026-06-12T18:49:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-461c",
   "current_exq_started_utc": "2026-06-12T05:10:55.660413+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 20,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 202.5
+    "overall_pct": 203.8
   },
-  "seconds_elapsed": 47328,
+  "seconds_elapsed": 49135,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural] starting (dry_run=False)",
@@ -43,7 +43,8 @@
     "[train] persist_eval seed=43 ep 265/265 c1=False c2=False c3=False n_windows=160 n_delay=0 persist=0.0 coupled=0",
     "verdict: FAIL seed=43 guard_pass=True commit_nonvacuity=True (contact_rate=0.3129 z_goal_at_contact=0.4109)",
     "Seed 44 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4239 formed=True"
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4239 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.928 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
