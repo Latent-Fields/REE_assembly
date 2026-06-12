@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-12T10:27:25Z",
+  "last_tick_utc": "2026-06-12T10:57:33Z",
   "state": "running",
   "current_exq": "V3-EXQ-461c",
   "current_exq_started_utc": "2026-06-12T05:10:55.660413+00:00",
@@ -9,22 +9,26 @@
   "current_claim_id": "MECH-090",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_NO_HOLD_OFF",
+    "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 21.4
+    "overall_pct": 66.7
   },
-  "seconds_elapsed": 18992,
-  "seconds_remaining": 69756,
+  "seconds_elapsed": 20800,
+  "seconds_remaining": 20245,
   "recent_lines": [
     "[v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_DELAYED_REWARD_PERSISTENCE",
     "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4738 formed=True",
     "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.977 gate=pass",
     "[train] p0_guided seed=42 ep 130/265 mean_len=198.3 rv=6.57109",
-    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.3535 contact_events=152 z_goal_at_contact=0.5092",
+    "Seed 42 Condition ARM_HOLD_ON",
+    "Seed 42 Condition ARM_NO_HOLD_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

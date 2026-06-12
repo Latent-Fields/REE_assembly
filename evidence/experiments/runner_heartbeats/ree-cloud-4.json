@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-12T10:27:30Z",
+  "last_tick_utc": "2026-06-12T10:57:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-464c",
   "current_exq_started_utc": "2026-06-12T07:21:55.254914+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_COMPETING_GOALS",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 200.0
+    "overall_pct": 203.8
   },
-  "seconds_elapsed": 11135,
+  "seconds_elapsed": 12943,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_464c_mech266_competing_goals_behavioural] starting (dry_run=False)",
@@ -42,7 +42,9 @@
     "Seed 43 Condition ARM_ASYM_STICKY_TASK",
     "[train] mode_eval seed=43 ep 265/265 c1=False c2=True c3=True sym_switches=15 asym_switches=15 sym_frac=0.0 asym_frac=0.0",
     "verdict: FAIL seed=43 guard_pass=True switch_nonvacuity=True (contact_rate=0.3761 z_goal_at_contact=0.4471)",
-    "Seed 44 Condition CURRICULUM_BUILT_COMPETING_GOALS"
+    "Seed 44 Condition CURRICULUM_BUILT_COMPETING_GOALS",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4267 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.918 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
