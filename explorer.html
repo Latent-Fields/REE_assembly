@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-12.1 -->
+<!-- EXPLORER_VERSION: 2026-06-12.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7969,7 +7969,13 @@ END CONFLICT RESOLUTION`;
       panel.addEventListener('wheel', (e) => {
         if (!e.ctrlKey && !e.metaKey) return; // plain scroll: allow normal scroll, only zoom with Ctrl
         e.preventDefault();
-        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        // Zoom proportional to scroll delta (deltaMode-normalised, clamped) so a
+        // trackpad pinch or high-res wheel zooms smoothly instead of jumping.
+        let dy = e.deltaY;
+        if (e.deltaMode === 1) dy *= 16;        // lines -> ~px
+        else if (e.deltaMode === 2) dy *= 100;  // pages -> ~px
+        dy = Math.max(-50, Math.min(50, dy));
+        const delta = Math.exp(-dy * 0.0015);
         setGraphZoom(graphZoom.scale * delta, e.clientX, e.clientY);
       }, { passive: false });
 

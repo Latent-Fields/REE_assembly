@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- REE Architecture Visualizer — 2026-04-29.1 stability overlay -->
+<!-- REE Architecture Visualizer — 2026-06-12.1 proportional wheel-zoom + edge-label declutter -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -644,16 +644,34 @@ function drawEdge(from, to, label, style, t) {
     ctx.fill();
   }
 
-  // Edge label (only if zoomed in enough)
-  if (showLabels && zoom > 0.6) {
-    const lx = bezierPoint(sfx,cpx,stx,0.45);
-    const ly = bezierPoint(sfy,cpy,sty,0.45);
-    ctx.globalAlpha = highlight ? 0.9 : 0.55;
-    ctx.fillStyle = '#e6edf3';
-    ctx.font = `${Math.max(8,9*zoom)}px monospace`;
-    ctx.textAlign='center';
-    const lines = label.split('\n');
-    lines.forEach((ln,i) => ctx.fillText(ln, lx, ly+(i-lines.length/2+0.5)*11*zoom));
+  // Edge label (only if zoomed in enough). When a node is selected, fade
+  // unconnected labels hard so the selected node's signal flow reads clearly;
+  // a dark rounded backing keeps the top label legible where edges overlap.
+  if (showLabels && zoom > 0.6 && label) {
+    const labelAlpha = selectedNode ? (highlight ? 1 : 0.12) : 0.85;
+    if (labelAlpha > 0.05) {
+      const lx = bezierPoint(sfx,cpx,stx,0.45);
+      const ly = bezierPoint(sfy,cpy,sty,0.45);
+      const fs = Math.max(8,9*zoom);
+      ctx.font = `${fs}px monospace`;
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      const lines = label.split('\n');
+      const lineH = fs + 2;
+      let maxW = 0;
+      lines.forEach(ln => { maxW = Math.max(maxW, ctx.measureText(ln).width); });
+      const padX = 4*zoom, padY = 2*zoom;
+      const boxW = maxW + padX*2;
+      const boxH = lines.length*lineH + padY*2;
+      const topY = ly - boxH/2;
+      // backing
+      ctx.globalAlpha = labelAlpha * (highlight ? 0.9 : 0.72);
+      drawRoundRect(lx - boxW/2, topY, boxW, boxH, 4*zoom, '#0d1117', null, 0);
+      // text
+      ctx.globalAlpha = labelAlpha;
+      ctx.fillStyle = highlight ? '#fff' : '#c9d4df';
+      lines.forEach((ln,i) => ctx.fillText(ln, lx, topY + padY + lineH*(i+0.5)));
+    }
   }
 
   ctx.restore();
@@ -808,7 +826,14 @@ canvas.addEventListener('wheel', e => {
   userInteracted = true;
   const rect = canvas.getBoundingClientRect();
   const mx=e.clientX-rect.left, my=e.clientY-rect.top;
-  const factor = e.deltaY<0?1.12:0.89;
+  // Zoom proportional to scroll delta so trackpads/high-res wheels (which fire
+  // many small events per gesture) stay precise instead of compounding a fixed
+  // per-event factor. Normalise deltaMode (px/line/page) and clamp per event.
+  let dy = e.deltaY;
+  if (e.deltaMode === 1) dy *= 16;        // lines -> ~px
+  else if (e.deltaMode === 2) dy *= 100;  // pages -> ~px
+  dy = Math.max(-50, Math.min(50, dy));   // one tick can't leap
+  const factor = Math.exp(-dy * 0.0015);  // smooth multiplicative zoom
   pan.x = mx + (pan.x-mx)*factor;
   pan.y = my + (pan.y-my)*factor;
   zoom *= factor;
