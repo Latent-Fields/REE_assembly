@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-09.1 -->
+<!-- EXPLORER_VERSION: 2026-06-12.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7155,8 +7155,9 @@ END CONFLICT RESOLUTION`;
             ${qi.failed_at ? `<span style="color:var(--muted);font-weight:normal"> &mdash; ${qi.failed_at.replace('T',' ').replace('Z',' UTC').slice(0,19)} UTC</span>` : ''}
            </div>`
         : '';
+      const queueSearchKey = escapeHtml([qi.queue_id, qi.claim_id, qi.title, qi.description, inferVersion(qi)].filter(Boolean).join(' '));
       return `
-        <div class="exp-card ${s}">
+        <div class="exp-card ${s}" data-exp-search="${queueSearchKey}">
           <div class="exp-card-header">
             ${qi.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(qi.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(qi.claim_id || '')}</span>
@@ -7215,8 +7216,9 @@ END CONFLICT RESOLUTION`;
       const detailWidget = detailKey
         ? `<button class="exp-detail-btn" data-detail-script="${escapeHtml(c.script_name || '')}" data-detail-qid="${escapeHtml(c.queue_id || '')}">Details</button>`
         : '';
+      const completedSearchKey = escapeHtml([c.queue_id, c.claim_id, c.title, c.description, c.script_name, dirName, inferVersion(c)].filter(Boolean).join(' '));
       return `
-        <div class="exp-card ${resultClass}">
+        <div class="exp-card ${resultClass}" data-exp-search="${completedSearchKey}">
           <div class="exp-card-header">
             ${c.queue_id ? `<span class="exp-claim-chip" style="font-family:monospace">${escapeHtml(c.queue_id)}</span>` : ''}
             <span class="exp-claim-chip">${escapeHtml(c.claim_id || '')}</span>
@@ -7244,6 +7246,38 @@ END CONFLICT RESOLUTION`;
       } catch (e) {
         return { status: 'error', message: 'API unavailable — is serve.py running?' };
       }
+    }
+
+    // Filter the experiment cards (Now Running / Queue / Completed) by the shared
+    // "Search ID / subject / type" box. Runner Control is never filtered. Matches
+    // each card's data-exp-search key (queue_id + claim_id + title + description +
+    // script/version) rather than its full text, so "666" hits V3-EXQ-666* without
+    // false positives from incidental metric values/timestamps. Re-applied after
+    // every renderExperiments() so it survives the auto-refresh, and on each search
+    // keystroke / Enter while the Experiments view is active.
+    function applyExpFilter() {
+      if (!els.expContent) return;
+      const term = (els.search && els.search.value || '').trim().toLowerCase();
+      ['expSectionRunning', 'expSectionQueue', 'expSectionCompleted'].forEach(id => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+        sec.querySelectorAll('.exp-card').forEach(card => {
+          if (!term) { card.style.display = ''; return; }
+          const hay = (card.dataset.expSearch || card.textContent || '').toLowerCase();
+          card.style.display = hay.includes(term) ? '' : 'none';
+        });
+        // Hide version subheads (e.g. "V3 — N") that have no visible card left
+        // before the next subhead, so a filtered list doesn't show empty groups.
+        sec.querySelectorAll('.exp-version-subhead').forEach(sub => {
+          let anyVisible = false;
+          let n = sub.nextElementSibling;
+          while (n && !n.classList.contains('exp-version-subhead')) {
+            if (n.classList.contains('exp-card') && n.style.display !== 'none') { anyVisible = true; break; }
+            n = n.nextElementSibling;
+          }
+          sub.style.display = term && !anyVisible ? 'none' : '';
+        });
+      });
     }
 
     async function renderExperiments() {
@@ -7599,6 +7633,10 @@ END CONFLICT RESOLUTION`;
         });
       }
       if (noteEl) noteEl.innerHTML = refreshNote;
+
+      // Re-apply the search-box filter after the DOM swap so it survives the
+      // periodic auto-refresh (cards are rebuilt each tick).
+      applyExpFilter();
 
       let restoreY = scrollY;
       try {
@@ -8075,7 +8113,7 @@ END CONFLICT RESOLUTION`;
 
     function wireEvents() {
       ['input', 'change'].forEach(evt => {
-        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); applyExpFilter(); saveFilterStateToStorage(); });
         els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
         els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
         els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
@@ -8084,6 +8122,13 @@ END CONFLICT RESOLUTION`;
         if (els.evidencedFilter) els.evidencedFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
       });
 
+
+      // Pressing Enter in the search box explicitly re-applies the experiment-card
+      // filter (live-filtering already happens on 'input', but Enter is the natural
+      // commit gesture and shouldn't reload/submit anything).
+      els.search.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); applyExpFilter(); }
+      });
 
       els.clearFilters.addEventListener('click', () => {
         els.search.value = '';
@@ -8096,6 +8141,7 @@ END CONFLICT RESOLUTION`;
         renderTable();
         renderGraph();
         renderMap();
+        applyExpFilter();
       });
 
       // Stats lozenge collapse toggle (default collapsed; remembered across reloads)
