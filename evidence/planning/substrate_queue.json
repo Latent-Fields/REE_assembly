@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
-  "last_updated_utc": "2026-06-11T21:06:51Z",
+  "last_seen_session": "governance-apply-batch9-20260612T0626Z",
+  "last_updated_utc": "2026-06-12T06:35:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -2367,7 +2367,7 @@
       "design_doc": "evidence/planning/goal_pipeline_plan.md",
       "implementation_hint": "Edit ree-v3/ree_core/latent/stack.py ResourceEncoder to accept identity tag (one-hot or learned embedding) on the larger world_obs. Add identity-classifier aux head with phased training. Iterate SD-032 consumer files (ree_core/cingulate/ + ree_core/agent.py update_z_goal + ree_core/regulators/mech295_liking_bridge.py + override / salience / dACC / AIC / PCC / pACC consumers) to read obs_dict['per_axis_drive'] when SD-049 per-axis is on. Write V3-EXQ-514 script following the V3-EXQ-509 / V3-EXQ-513 4-arm sweep template, with phased training over the trained identity-aware z_resource and the wanting!=liking dissociation acceptance criterion as the load-bearing test.",
       "implementation_note": "SD-049 Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 in ree-v3/ree_core/latent/stack.py (ResourceEncoder identity_head + LatentState.identity_logits), ree-v3/ree_core/utils/config.py (LatentStackConfig use_identity_classifier + identity_classifier_n_types), ree-v3/ree_core/agent.py (compute_resource_identity_loss), and ree-v3/ree_core/environment/causal_grid_world.py (info dict sd049_consumed_type_tag_this_tick supervision target plumbing). Encoder shape: shared trunk MLP + identity-classifier head + magnitude head per Option C verdict, with z_resource OUTPUT shape preserved at 32 dims (identity_logits exposed as separate LatentState field rather than concatenated, avoiding GoalState dim-mismatch). Bit-identical OFF default; 7/7 preflight + 184/184 contracts PASS with classifier OFF. V3-EXQ-514 queued (estimated_minutes=90); 4-arm sweep with phased training P0 joint -> P1 freeze classifier -> P2 evaluate; 10 acceptance criteria covering goal_resource_r >= 0.5 in ARM_2 + identity-recovery linear-probe accuracy > 0.6 + per-axis drive evolution + ARM_3 5-type overshoot + ARM_0 baseline replication.",
-      "last_seen_session": "governance-cycle-20260603T165935Z",
+      "last_seen_session": "governance-apply-batch9-20260612T0626Z",
       "phase_1_dependency_resolved_utc": "2026-05-03",
       "phase_2_scope": [
         "1. z_resource encoder identity expansion: extend SD-015 ResourceEncoder so z_resource carries identity. Two design alternatives: (a) one-hot identity slot concatenated with magnitude latent (cheap, deterministic); (b) low-D learned embedding (richer, requires phased training). Pick via lit-pull / experimental probe. Both options consume the larger world_obs (325 ARM_2 / 375 ARM_3) without modification of existing experiments since SD-015 is gated by use_resource_encoder=False default.",
@@ -2398,6 +2398,12 @@
           "experiment_type": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity",
           "metric": "ARM_2 consumption rate ~0.2% (23 consumption vs 818 neighborhood samples); C6 wanting!=liking dissoc fraction 0.0 on all 3 seeds; C2b probe_acc_neighborhood 0.447; C2c n_consumption_samples 23. Third FAIL on row1b_joint_identity_probe_weak (514j/514k/514l).",
           "target": "A working foraging-competence scaffold must drive consumption across resource identities to >= 30 consumption-identity samples/seed (C2c) AND yield wanting!=liking dissoc fraction >= 0.6 (C6) AND probe_acc_neighborhood >= 0.6 (C2b) on the multi-resource substrate."
+        },
+        {
+          "run_id": "v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking_20260611T224339Z_v3",
+          "experiment_type": "v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking",
+          "metric": "WL non-vacuity gate leg-2 (run-bank populated >=2 drive-differentiated tokens) 0.0 < 0.667 floor; leg-1 positive control PASSED (the WL instrument fires on a constructed bank). The SD-049 behavioural run-bank still does not populate >=2 drive-differentiated object tokens at consumption -- same substrate gap as 514m. NOT a MECH-229 weakens (designed self-route)",
+          "target": ">=0.667 seeds populate the run-bank with >=2 distinct object tokens at differing per-axis drives at consumption events"
         }
       ],
       "amend_note_2026_06_03": "failure_autopsy_V3-EXQ-514l: SD-049-PHASE-2 deliverable (V3-EXQ-514 behavioural validation) NOT met -- 514j/k/l all FAIL row1b_joint_identity_probe_weak. Encoder/cascade wired+firing (C0/C1/C2a/C2d/C3 PASS); missing piece is upstream foraging-competence on the SD-049 multi-resource/reef substrate (~0.2% consumption rate, 23 vs 818 neighborhood samples). Required: port the foraging-competence + benefit/consumption-contact scaffold from scaffolded_sd054_onboarding to the SD-049/reef harness (the 514 family uses its own P0/P1/P2 30/10, not the scaffolded scheduler) so consumption reaches >=30 identity samples/seed (C2c) and wanting!=liking dissoc >=0.6 (C6). C5 lift is a separate test-design defect (ARM_0 saturates goal_resource_r ~1.0); 514m non-saturating redesign deferred until scaffold lands."
@@ -4213,13 +4219,19 @@
           "experiment_type": "v3_exq_603i_escape_affordance_bridge_validation",
           "metric": "safety_credit_frac=0.0 (0/3 all arms); relief_credit_frac=0.67 (2/3). each_enabled_bridge_half_fires_nonvacuously UNMET (measured 0.0 vs 0.667)",
           "target": "Each enabled bridge half credits non-vacuously (>0 on >=2/3 seeds) -- requires a trained MECH-303/304 threat-absence predictor feeding the safety half"
+        },
+        {
+          "run_id": "v3_exq_603o_escape_affordance_bridge_behavioural_redesign_20260611T213609Z_v3",
+          "experiment_type": "v3_exq_603o_escape_affordance_bridge_behavioural_redesign",
+          "metric": "the redesigned 603o env flattened the base harm landscape: harm_landscape_discriminative_on_base met only 1/3 seeds (floor 0.667); the other 3 preconditions (PAG-freeze/ilPFC gate, bridge-halves fire, z_goal lights) met. supersedes 603l. designed self-route substrate_not_ready_requeue, non_contributory",
+          "target": ">=2/3 seeds harm_eval_range >= 0.02 on base (the 603k harm-pathway-training level ~0.133) so the bridge has a survival signal to act on"
         }
       ],
       "implementation_hint": "MECH-357 suppresses freeze but its avoidance_efficacy is a global scalar that only penalises the no-op class, so the agent un-freezes without acquiring a directed escape (603h seed-43: efficacy 0.633 -> worst survival). Add an affordance-indexed credit: a directed action that drops z_harm_a / terminates a threat cue emits phasic relief (MECH-302-consistent) and learned safety (MECH-303/304-consistent) that increments escape_affordance[action|location|policy]; under future threat E3 receives a bounded, threat-context-gated approach bonus toward that affordance. Build behind no-op-default flags (bit-identical OFF), distinct from reflexive escape (SD-037/MECH-281) and generic relief/safety rows. Bound it so it cannot create pathological avoidance/habit loops or globally swamp food/goal approach.",
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 rule agrees (>=1 fresh failure record from 603h). No override.",
       "added_session": "governance-apply-603h-autopsy-20260608T0721Z",
-      "last_seen_session": "substrate-reconcile-603jk-WP-A-20260610T0631Z",
+      "last_seen_session": "governance-apply-batch9-20260612T0626Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-603h_2026-06-08.json",
       "pending_retest_after_substrate": true,
       "retest_harness": "thought-intake Section 5 4-arm discriminative EXQ (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE) with a nav-competence positive control (oracle/hand-shaped escape gradient or reef-refuge reachability under threat) and a non-vacuity gate requiring each enabled bridge half to credit non-vacuously before scoring G_H. Acceptance: G_H >= 2/3 AND G_H improves over ARM_BASE_IA_ONLY; bridge bonus threat-context bounded, must not swamp food/goal approach.",
@@ -4322,13 +4334,19 @@
           "experiment_type": "v3_exq_666a_arc063_crf_availability_maintenance_readiness",
           "metric": "Maintenance mechanism WORKS but the count-floor gate did not isolate it: crf_n_maintained_reactivatable ARM_2 16/10/15 vs ARM_1 3/2/7 vs ARM_0 0/0/0 -- both e2ctx arms clear the n>=2 floor (discrimination fails). The isolating statistic crf_frac_maintained cleanly separates: ARM_2 1.0/0.625/0.938 vs ARM_1 0.188/0.125/0.438 vs ARM_0 0.0. crf_frac_active ~0.016-0.031 in both e2ctx arms (confirms it is the wrong readout, lit-prescribed readout redefinition validated).",
           "target": "a working readiness gate must ISOLATE the maintenance contribution -- re-state on crf_frac_maintained (e.g. ARM_1 < ~0.5 fails, ARM_2 >= 0.625 clears) and/or a context-absent gap long enough that differentiation-alone erodes below the floor, on >=2/3 seeds, so the substrate 'ready' flag rests on a discriminating test before the 654c GAP-B falsifier scores"
+        },
+        {
+          "run_id": "v3_exq_666b_arc063_crf_availability_maintenance_readiness_fracgate_20260612T005245Z_v3",
+          "experiment_type": "v3_exq_666b_arc063_crf_availability_maintenance_readiness_fracgate",
+          "metric": "ARM_1 (mature e2ctx, maintenance-OFF) regressed to a fully undifferentiated pool under the longer context-absent gap regime: differentiated 0/3, crf_frac_maintained 0.0 all seeds, max_pairwise_dist 0.000 -- the non-vacuity gate tripped, starving the isolating maintenance contrast (ARM_2 cleared 0.8125 mean / 2-3 >=0.625 in isolation, but the comparison is vacuous when ARM_1 is empty rather than maintained-but-eroded)",
+          "target": "ARM_1 still differentiates (0.1-0.45, as in 666a) AND ARM_2 crf_frac_maintained >=0.625 with ARM_1 < 0.5 -- a non-vacuous maintenance contrast (666c re-gate needs a regime where ARM_1 does not collapse)"
         }
       ],
       "implementation_hint": "Mechanism CONFIRMED FUNCTIONAL by V3-EXQ-666a: read on crf_frac_maintained, maintenance (ARM_2) holds 62.5-100% of the differentiated pool vs differentiation-alone (ARM_1) 12.5-43.75%, clean monotone 3/3-seed separation; the lit-prescribed maintained-pool readout (replacing crf_frac_active) is validated. ready stays FALSE only because the pre-registered readiness gate used the count-floor crf_n_maintained_reactivatable>=2 (which differentiation-alone clears at the shorter behavioural-runtime context-absent gaps) instead of the isolating crf_frac_maintained. NEXT: V3-EXQ-666b pre-registers the gate on crf_frac_maintained (ARM_1 fails, ARM_2 clears) and/or a longer-gap regime; on its PASS, adopt maintenance-ON as the mature-regime default + flip ready=true + unblock the 654c GAP-B behavioural re-run.",
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 agrees (>=1 fresh failure record V3-EXQ-666 + unblocks 3 candidate claims MECH-309/ARC-062/ARC-063). No override.",
       "added_session": "governance-cycle-20260611T0701Z",
-      "last_seen_session": "governance-cycle-666a-amend-20260611T2106Z",
+      "last_seen_session": "governance-apply-batch9-20260612T0626Z",
       "implemented_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
       "implemented_utc": "2026-06-11T08:02:54Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-666_2026-06-11.json",

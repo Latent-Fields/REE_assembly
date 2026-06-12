@@ -11147,6 +11147,20 @@
     not engaged. This maps onto the philosophical distinction between negligence and
     deliberate action.
     Registered 2026-04-02 from MECH-025 decomposition during literature pull discussion.
+  evidence_quality_note: >
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-671 (precision-responsibility, the first MECH-025b test) FAILed but is
+    DEGENERATE / non_contributory, not claim pressure. C1 (precision<->residue
+    correlation) and C2 (high/low-precision residue ratio) were both exactly 0.0
+    across 778 committed harm-events because ResidueField.total_residue never
+    accumulates under committed harm -- there is no residue gradient for precision to
+    modulate. The "mixed" direction was only the 4/6 arithmetic (C3-C6 are
+    health/sample preconditions). The claim's depends_on (SD-003 self-attribution via
+    counterfactual E2 -- the 28-FAIL formal-import claim; ARC-016 -- v3_pending held)
+    are not confirmed operative, so the linkage could not express itself. manifest
+    non_degenerate set false. Retest = V3-EXQ-671a: add a residue-accumulation
+    positive-control gate (residue must move under committed harm before the
+    precision<->residue correlation is read). No confidence change; first MECH-025b run.
   evidence: []
 
 - id: MECH-160
@@ -12183,6 +12197,21 @@
   subject: dementia.sleep_disruption_vicious_cycle
   polarity: asserts
   status: candidate
+  epistemic_category: out_of_domain
+  governance_2026_06_12: >
+    epistemic_category set out_of_domain (failure_autopsy_batch9_2026-06-12,
+    user-adjudicated; IGW experiment-surfacing suppression + exp_conf-gating
+    exemption, NOT a promote/demote). MECH-171 asserts clinical-Alzheimer's
+    staged progression (multi-year vicious cycle, critical intervention window,
+    schema-scaffold collapse) not faithfully instantiable in a 300-episode
+    grid-world -- sibling-consistent with MECH-172 (governance_2026_06_10).
+    V3-EXQ-673 (vicious-cycle sleep disruption) FAILed degenerate: all arms
+    identical, late_pred_loss==0; it ran 3x under one EXQ (queue entry retired,
+    the three content-identical reruns must not multi-count). The degenerate
+    manifests are non_contributory and do not press the claim. NOTE FOR USER:
+    claim_type left mechanism_hypothesis pending your decision (reads as a
+    clinical research/literature anchor, cf. INV-048 -> derived_prediction,
+    and the MECH-172 same-pending note).
   depends_on:
     - MECH-168
     - INV-046
@@ -12272,6 +12301,21 @@
     - MECH-120
     - MECH-121
     - MECH-123
+  evidence_quality_note: >
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-670 (pharmacological sleep-disruption equivalence, the first INV-048
+    behavioural test) FAILed but is DEGENERATE / non_contributory, not a weakens.
+    harm_discrimination was byte-identical across all 4 arms (normal / REM-suppressed
+    ~antidepressants / SWS-suppressed ~benzodiazepines / no-sleep) because
+    run_sleep_cycle runs the SWS + REM passes but never trains e3.harm_eval_head --
+    the harm readout is seed-fixed and arm-invariant, so the verdict could not respond
+    to the sleep manipulation. The 4-arm phase-fidelity-vs-cause-agnostic design is a
+    faithful operationalisation of INV-048; only the readout is broken. manifest
+    non_degenerate set false; carries no information on the derived prediction. Retest
+    = V3-EXQ-670a: train the harm-valuation pathway in the sleep cycle (the
+    scaffold_train_harm_pathway / 603k pattern) + add a non-vacuity gate (arms must
+    produce distinct harm_discrimination before the verdict is read). No confidence
+    change.
   notes: >
     Reclassified from claim_type: invariant in Session C batch 2026-04-17.
     Rationale: this is a clinical pharmacological prediction about human sleep
@@ -20852,6 +20896,19 @@
     the trained head) is the promotion gate -- 485b/485c PASSed only as
     representation-level MECH-263 functional-signature diagnostics. No flag /
     confidence change in this landing (substrate only).
+
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-485f (the 485e trained-OFC-head retest) reclassified weakens ->
+    non_contributory (measurement_test_design_defect: readiness-gate miscalibration).
+    The three 485e fixes took effect (ofc_bias_scale 0.5 defeated clamp-saturation;
+    SD-056 e2_action_contrastive lifted bank_zworld_spread off zero; absolute
+    between_context_tv floor caught the C2 vacuity), and the readiness gate
+    (bias_range>1e-3) cleared by a hair (max 0.00898) -- but that is ~50x below the
+    0.05 the devaluation/between-context DVs require, so 'ready' did not certify a
+    fair test (devaluation_shift 5e-5..2.6e-4). NOT a fair falsification -> NOT a
+    weakens. pending_retest_after_substrate retained. Retest = V3-EXQ-485g with the
+    readiness floor aligned to the DV-significance floor (bias_range competitive with
+    the selection softmax, ~0.05). SD-033b stays candidate; no demotion.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: SD-033c
   title: "vmPFC-analog (subjective value integration): module that integrates scalar value across goals, needs, and competing options to produce a unified value signal. Consolidates existing ARC-035 / MECH-151 / MECH-152 / MECH-235 functions under the SD-033 cluster."
@@ -21651,6 +21708,17 @@
     behavioural signatures still require env-extension EXQs (outcome
     relabelling, task-distinct state pairs). v3_pending remains true pending
     behavioural evidence.
+
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-485f (trained-OFC-head behavioural) reclassified weakens ->
+    non_contributory (readiness-gate miscalibration). The readiness gate cleared by a
+    hair (bias_range 0.00898) but ~50x below the 0.05 the devaluation/task-role DVs
+    require, so the OFC bias that cleared readiness still had no authority to move the
+    selection softmax (devaluation_shift 5e-5..2.6e-4) -- not a fair falsification.
+    NOT a weakens against MECH-263. pending_retest_after_substrate retained; retest
+    V3-EXQ-485g with the readiness floor aligned to the DV-significance floor. The
+    485b/485c representation-level supports are unaffected. MECH-263 stays candidate /
+    v3_pending.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
 - id: MECH-264
   title: "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin."
@@ -29730,6 +29798,20 @@
     Promotion to full active reserved for a subsequent walk after a
     behavioural-runtime test on the larger SD-054 / multi-resource
     substrate cohort (V3-EXQ-619 and downstream).
+
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-569g (route-range matched-entropy falsifier) reclassified weakens ->
+    non_contributory. On the now-ready (643a-validated) modulatory-bias-selection-
+    authority substrate the route-range channel reached the E3 accumulator
+    (route_range 0.18, C1 e2.world_forward divergent PASS 3/3) but ARM_1_E2WF
+    selected-action entropy 0.615 did NOT exceed the matched-noise control 0.704
+    (1/3 seeds strict-above) -- range reaches selection but carves no extra
+    committed-action diversity vs noise. NOT a demotion (provisional, 46 supports,
+    exp_conf ~0.97). The substrate excuse is now spent (ready=true) and this is the
+    5th+ ARC-065 failure with a distinct signature each time -> routed to
+    /claim-synthesis as granularity debt: the coarse 'diversity is load-bearing'
+    claim under-names the range-reaches != range-carves distinction. No confidence
+    change this cycle (the specific GAP-A R1.b sub-hypothesis is the synthesis input).
   notes: >
     HYBRID-naming convention (Pull 4 R4): the title carries both the REE-
     internal architectural name (behavioral_diversity_generation_pathway)
@@ -30156,6 +30238,18 @@
     for the full implementation note.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-604a re-tagged non_contributory: C0 PASS (SD-056 contrastive substrate fixed the 604 monomodal collapse, pairwise_dist 0.039>0.03) but curiosity_bias_abs_mean=0.0 in every arm incl ARM_ALL_ON and selected_entropy identical across all 5 arms -- the modulatory curiosity bias has zero authority at E3.select. NOT a falsification (the test could not let the claim express itself). substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- blocked by substrate_queue CREATE 'modulatory-bias-selection-authority'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a).
+
+    [2026-06-12 governance / confirmed failure_autopsy_batch9_2026-06-12 applied]:
+    V3-EXQ-590b (novelty Goldilocks behavioural calibration) reclassified
+    does_not_support -> non_contributory. On the now-ready (643a-validated)
+    authority substrate the gain knob moves H_pos by 0.283 across gains (authority
+    OPERATIVE, not zero -- the 604a zero-authority bottleneck is resolved) but every
+    nonzero gain matched or degraded exploration vs the gain=0 control (best 0.4188 <
+    0.4200; lift 1/3 seeds). NOT a demotion. The substrate excuse is now spent
+    (ready=true) and this is the >=3rd MECH-314a failure with a distinct signature ->
+    routed to /claim-synthesis as granularity debt: 'novelty buys exploration'
+    under-names authority-moves-argmin != signal-is-adaptive. No confidence change
+    this cycle.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314b

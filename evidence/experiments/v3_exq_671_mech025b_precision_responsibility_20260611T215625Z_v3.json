@@ -1,1 +1,42 @@
-{"status": "FAIL", "metrics": {"precision_residue_correlation": 0.0, "high_precision_residue_ratio": 0.0, "committed_step_count": 778.0, "harm_pred_std": 0.19479234516620636, "world_forward_r2": 0.932354211807251, "e3_tick_total": 1637.0, "total_harm_train": 7803.0, "fatal_error_count": 0.0, "n_samples": 778.0, "crit1_pass": 0.0, "crit2_pass": 0.0, "crit3_pass": 1.0, "crit4_pass": 1.0, "crit5_pass": 1.0, "crit6_pass": 1.0, "criteria_met": 4.0}, "summary_markdown": "# V3-EXQ-671 -- MECH-025b: Precision-Responsibility Attribution\n\n**Status:** FAIL\n**Claim:** MECH-025b -- high-precision action mode carries responsibility attribution\n**Prerequisite:** MECH-025 (doing mode produces internal signature)\n**alpha_world:** 0.9\n**Warmup:** 500 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Motivation\n\nMECH-025b tests the philosophical bridge: does precision level modulate\nresponsibility weight? Actions committed at higher precision should accumulate\nproportionally more residue (ethical accountability) than low-precision actions,\nbecause high-precision implies the agent had finer discrimination capacity.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| Precision-Residue Correlation | 0.0000 |\n| High/Low Precision Residue Ratio | 0.0000 |\n| Committed Steps Sampled | 778 |\n| World Forward R2 | 0.9324 |\n| Harm Pred Std | 0.1948 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: precision_residue_correlation > 0.15 | FAIL | 0.0000 |\n| C2: high_precision_residue_ratio > 1.1 | FAIL | 0.0000 |\n| C3: committed_step_count >= 20 | PASS | 778 |\n| C4: world_forward_r2 > 0.05 | PASS | 0.9324 |\n| C5: harm_pred_std > 0.01 | PASS | 0.1948 |\n| C6: No fatal errors | PASS | 0 |\n\nCriteria met: 4/6 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: precision_residue_correlation=0.0000 <= 0.15\n- C2 FAIL: high_precision_residue_ratio=0.0000 <= 1.1\n", "claim_ids": ["MECH-025b"], "evidence_direction": "mixed", "experiment_type": "v3_exq_671_mech025b_precision_responsibility", "fatal_error_count": 0, "run_timestamp": "20260611T215625Z", "claim": "MECH-025b", "verdict": "FAIL", "run_id": "v3_exq_671_mech025b_precision_responsibility_20260611T215625Z_v3", "architecture_epoch": "ree_hybrid_guardrails_v1", "queue_id": "V3-EXQ-671", "outcome": "FAIL", "machine": "ree-cloud-4"}
+{
+  "status": "FAIL",
+  "metrics": {
+    "precision_residue_correlation": 0.0,
+    "high_precision_residue_ratio": 0.0,
+    "committed_step_count": 778.0,
+    "harm_pred_std": 0.19479234516620636,
+    "world_forward_r2": 0.932354211807251,
+    "e3_tick_total": 1637.0,
+    "total_harm_train": 7803.0,
+    "fatal_error_count": 0.0,
+    "n_samples": 778.0,
+    "crit1_pass": 0.0,
+    "crit2_pass": 0.0,
+    "crit3_pass": 1.0,
+    "crit4_pass": 1.0,
+    "crit5_pass": 1.0,
+    "crit6_pass": 1.0,
+    "criteria_met": 4.0
+  },
+  "summary_markdown": "# V3-EXQ-671 -- MECH-025b: Precision-Responsibility Attribution\n\n**Status:** FAIL\n**Claim:** MECH-025b -- high-precision action mode carries responsibility attribution\n**Prerequisite:** MECH-025 (doing mode produces internal signature)\n**alpha_world:** 0.9\n**Warmup:** 500 eps  |  Eval: 50 eps\n**Seed:** 0\n\n## Motivation\n\nMECH-025b tests the philosophical bridge: does precision level modulate\nresponsibility weight? Actions committed at higher precision should accumulate\nproportionally more residue (ethical accountability) than low-precision actions,\nbecause high-precision implies the agent had finer discrimination capacity.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| Precision-Residue Correlation | 0.0000 |\n| High/Low Precision Residue Ratio | 0.0000 |\n| Committed Steps Sampled | 778 |\n| World Forward R2 | 0.9324 |\n| Harm Pred Std | 0.1948 |\n\n## PASS Criteria\n\n| Criterion | Result | Value |\n|---|---|---|\n| C1: precision_residue_correlation > 0.15 | FAIL | 0.0000 |\n| C2: high_precision_residue_ratio > 1.1 | FAIL | 0.0000 |\n| C3: committed_step_count >= 20 | PASS | 778 |\n| C4: world_forward_r2 > 0.05 | PASS | 0.9324 |\n| C5: harm_pred_std > 0.01 | PASS | 0.1948 |\n| C6: No fatal errors | PASS | 0 |\n\nCriteria met: 4/6 -> **FAIL**\n\n## Failure Notes\n\n- C1 FAIL: precision_residue_correlation=0.0000 <= 0.15\n- C2 FAIL: high_precision_residue_ratio=0.0000 <= 1.1\n",
+  "claim_ids": [
+    "MECH-025b"
+  ],
+  "evidence_direction": "non_contributory",
+  "experiment_type": "v3_exq_671_mech025b_precision_responsibility",
+  "fatal_error_count": 0,
+  "run_timestamp": "20260611T215625Z",
+  "claim": "MECH-025b",
+  "verdict": "FAIL",
+  "run_id": "v3_exq_671_mech025b_precision_responsibility_20260611T215625Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "queue_id": "V3-EXQ-671",
+  "outcome": "FAIL",
+  "machine": "ree-cloud-4",
+  "evidence_direction_per_claim": {
+    "MECH-025b": "non_contributory"
+  },
+  "non_degenerate": false,
+  "degeneracy_reason": "C1 precision-residue correlation and C2 high/low-precision residue ratio both exactly 0.0 across 778 committed harm-events: ResidueField.total_residue never accumulates under committed harm, so there is no residue gradient for precision to modulate. 'mixed' was only the 4/6 arithmetic (C3-C6 are health/sample preconditions).",
+  "evidence_direction_note": "DEGENERATE / non_contributory per failure_autopsy_batch9_2026-06-12 (REE_assembly master ad3a165726). C1 precision-residue correlation and C2 high/low-precision residue ratio both exactly 0.0 across 778 committed harm-events: ResidueField.total_residue never accumulates under committed harm, so there is no residue gradient for precision to modulate. 'mixed' was only the 4/6 arithmetic (C3-C6 are health/sample preconditions). Carries no information on the claim; not claim pressure. Retest re-queued with a non-vacuity gate."
+}

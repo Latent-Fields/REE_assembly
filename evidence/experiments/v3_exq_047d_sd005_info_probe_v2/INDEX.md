@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_047d_sd005_info_probe_v2
 
-Generated: `2026-06-11T21:23:56.441414Z`
+Generated: `2026-06-12T06:42:48.789701Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

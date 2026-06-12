@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_231_mech106_bg_hysteresis
 
-Generated: `2026-06-11T21:23:56.441414Z`
+Generated: `2026-06-12T06:42:48.789701Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

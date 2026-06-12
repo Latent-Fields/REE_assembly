@@ -1,1 +1,355 @@
-{"experiment_type": "v3_exq_670_inv048_pharmacological_sleep_disruption_equivalence", "claim_ids_tested": ["INV-048"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_class": "experimental", "summary": "V3-EXQ-670 tested INV-048's prediction that pharmacological sleep phase disruption produces attribution pipeline degradation equivalent to behavioral sleep deprivation. Four arms: normal sleep (both SWS+REM), REM-suppressed (SWS only), SWS-suppressed (REM only), no sleep (neither). Results: C1=False (SWS necessary for slot differentiation), C2=False (sleep better than no sleep), C3=False (full sleep improves harm attribution), C4=False (REM suppression impairs harm attribution). Manipulation checks C5=True. Outcome: FAIL.", "run_id": "v3_exq_670_inv048_pharm_sleep_20260611T211811Z_v3", "seeds": [42, 43, 44], "n_cycles": 5, "n_prototypes_per_context": 30, "arm_configs": {"ARM_A_NORMAL_SLEEP": {"sws_enabled": true, "rem_enabled": true}, "ARM_B_REM_SUPPRESSED": {"sws_enabled": true, "rem_enabled": false}, "ARM_C_SWS_SUPPRESSED": {"sws_enabled": false, "rem_enabled": true}, "ARM_D_NO_SLEEP": {"sws_enabled": false, "rem_enabled": false}}, "arm_aggregates": {"ARM_A_NORMAL_SLEEP": {"slot_differentiation_mean": 0.4471521774927775, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 30.0, "results": [{"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}, {"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}, {"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}]}, "ARM_B_REM_SUPPRESSED": {"slot_differentiation_mean": 0.4471521774927775, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 0.0, "results": [{"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}]}, "ARM_C_SWS_SUPPRESSED": {"slot_differentiation_mean": 1.0027768015861511, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 0.0, "cumulative_rem_rollouts_mean": 30.0, "results": [{"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 42, "slot_differentiation": 0.9990339875221252, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}, {"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 43, "slot_differentiation": 1.0082074403762817, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}, {"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 44, "slot_differentiation": 1.0010889768600464, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}]}, "ARM_D_NO_SLEEP": {"slot_differentiation_mean": 1.0027768015861511, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 0.0, "cumulative_rem_rollouts_mean": 0.0, "results": [{"arm_name": "ARM_D_NO_SLEEP", "seed": 42, "slot_differentiation": 0.9990339875221252, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}, {"arm_name": "ARM_D_NO_SLEEP", "seed": 43, "slot_differentiation": 1.0082074403762817, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}, {"arm_name": "ARM_D_NO_SLEEP", "seed": 44, "slot_differentiation": 1.0010889768600464, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}]}}, "all_seed_results": [{"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}, {"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 42, "slot_differentiation": 0.9990339875221252, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}, {"arm_name": "ARM_D_NO_SLEEP", "seed": 42, "slot_differentiation": 0.9990339875221252, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}, {"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}, {"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 43, "slot_differentiation": 1.0082074403762817, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}, {"arm_name": "ARM_D_NO_SLEEP", "seed": 43, "slot_differentiation": 1.0082074403762817, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}, {"arm_name": "ARM_A_NORMAL_SLEEP", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "sws_enabled": true, "rem_enabled": true}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "sws_enabled": true, "rem_enabled": false}, {"arm_name": "ARM_C_SWS_SUPPRESSED", "seed": 44, "slot_differentiation": 1.0010889768600464, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 30.0, "sws_enabled": false, "rem_enabled": true}, {"arm_name": "ARM_D_NO_SLEEP", "seed": 44, "slot_differentiation": 1.0010889768600464, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 0, "cumulative_rem_rollouts": 0, "sws_enabled": false, "rem_enabled": false}], "criteria": {"C1_slot_diff_A_vs_C": {"passed": false, "pass_count": 0, "required": 2}, "C2_slot_diff_A_vs_D": {"passed": false, "pass_count": 0, "required": 2}, "C3_harm_disc_A_vs_D": {"passed": false, "pass_count": 0, "required": 2}, "C4_harm_disc_A_vs_B": {"passed": false, "pass_count": 0, "required": 2}, "C5_manipulation_checks": {"passed": true, "pass_count": 3, "required": 2}}, "thresholds": {"c1_slot_diff_margin": 0.05, "c2_slot_diff_margin": 0.05, "c3_harm_disc_margin": 0.1, "c4_harm_disc_margin": 0.05}, "queue_id": "V3-EXQ-670", "machine": "ree-cloud-4"}
+{
+  "experiment_type": "v3_exq_670_inv048_pharmacological_sleep_disruption_equivalence",
+  "claim_ids_tested": [
+    "INV-048"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_class": "experimental",
+  "summary": "V3-EXQ-670 tested INV-048's prediction that pharmacological sleep phase disruption produces attribution pipeline degradation equivalent to behavioral sleep deprivation. Four arms: normal sleep (both SWS+REM), REM-suppressed (SWS only), SWS-suppressed (REM only), no sleep (neither). Results: C1=False (SWS necessary for slot differentiation), C2=False (sleep better than no sleep), C3=False (full sleep improves harm attribution), C4=False (REM suppression impairs harm attribution). Manipulation checks C5=True. Outcome: FAIL.",
+  "run_id": "v3_exq_670_inv048_pharm_sleep_20260611T211811Z_v3",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_cycles": 5,
+  "n_prototypes_per_context": 30,
+  "arm_configs": {
+    "ARM_A_NORMAL_SLEEP": {
+      "sws_enabled": true,
+      "rem_enabled": true
+    },
+    "ARM_B_REM_SUPPRESSED": {
+      "sws_enabled": true,
+      "rem_enabled": false
+    },
+    "ARM_C_SWS_SUPPRESSED": {
+      "sws_enabled": false,
+      "rem_enabled": true
+    },
+    "ARM_D_NO_SLEEP": {
+      "sws_enabled": false,
+      "rem_enabled": false
+    }
+  },
+  "arm_aggregates": {
+    "ARM_A_NORMAL_SLEEP": {
+      "slot_differentiation_mean": 0.4471521774927775,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 30.0,
+      "results": [
+        {
+          "arm_name": "ARM_A_NORMAL_SLEEP",
+          "seed": 42,
+          "slot_differentiation": 0.8679620027542114,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": true,
+          "rem_enabled": true
+        },
+        {
+          "arm_name": "ARM_A_NORMAL_SLEEP",
+          "seed": 43,
+          "slot_differentiation": 0.055531442165374756,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": true,
+          "rem_enabled": true
+        },
+        {
+          "arm_name": "ARM_A_NORMAL_SLEEP",
+          "seed": 44,
+          "slot_differentiation": 0.41796308755874634,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": true,
+          "rem_enabled": true
+        }
+      ]
+    },
+    "ARM_B_REM_SUPPRESSED": {
+      "slot_differentiation_mean": 0.4471521774927775,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 0.0,
+      "results": [
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 42,
+          "slot_differentiation": 0.8679620027542114,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": true,
+          "rem_enabled": false
+        },
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 43,
+          "slot_differentiation": 0.055531442165374756,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": true,
+          "rem_enabled": false
+        },
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 44,
+          "slot_differentiation": 0.41796308755874634,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": true,
+          "rem_enabled": false
+        }
+      ]
+    },
+    "ARM_C_SWS_SUPPRESSED": {
+      "slot_differentiation_mean": 1.0027768015861511,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 0.0,
+      "cumulative_rem_rollouts_mean": 30.0,
+      "results": [
+        {
+          "arm_name": "ARM_C_SWS_SUPPRESSED",
+          "seed": 42,
+          "slot_differentiation": 0.9990339875221252,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": false,
+          "rem_enabled": true
+        },
+        {
+          "arm_name": "ARM_C_SWS_SUPPRESSED",
+          "seed": 43,
+          "slot_differentiation": 1.0082074403762817,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": false,
+          "rem_enabled": true
+        },
+        {
+          "arm_name": "ARM_C_SWS_SUPPRESSED",
+          "seed": 44,
+          "slot_differentiation": 1.0010889768600464,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 30.0,
+          "sws_enabled": false,
+          "rem_enabled": true
+        }
+      ]
+    },
+    "ARM_D_NO_SLEEP": {
+      "slot_differentiation_mean": 1.0027768015861511,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 0.0,
+      "cumulative_rem_rollouts_mean": 0.0,
+      "results": [
+        {
+          "arm_name": "ARM_D_NO_SLEEP",
+          "seed": 42,
+          "slot_differentiation": 0.9990339875221252,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": false,
+          "rem_enabled": false
+        },
+        {
+          "arm_name": "ARM_D_NO_SLEEP",
+          "seed": 43,
+          "slot_differentiation": 1.0082074403762817,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": false,
+          "rem_enabled": false
+        },
+        {
+          "arm_name": "ARM_D_NO_SLEEP",
+          "seed": 44,
+          "slot_differentiation": 1.0010889768600464,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 0,
+          "cumulative_rem_rollouts": 0,
+          "sws_enabled": false,
+          "rem_enabled": false
+        }
+      ]
+    }
+  },
+  "all_seed_results": [
+    {
+      "arm_name": "ARM_A_NORMAL_SLEEP",
+      "seed": 42,
+      "slot_differentiation": 0.8679620027542114,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": true,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 42,
+      "slot_differentiation": 0.8679620027542114,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": true,
+      "rem_enabled": false
+    },
+    {
+      "arm_name": "ARM_C_SWS_SUPPRESSED",
+      "seed": 42,
+      "slot_differentiation": 0.9990339875221252,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": false,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_D_NO_SLEEP",
+      "seed": 42,
+      "slot_differentiation": 0.9990339875221252,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": false,
+      "rem_enabled": false
+    },
+    {
+      "arm_name": "ARM_A_NORMAL_SLEEP",
+      "seed": 43,
+      "slot_differentiation": 0.055531442165374756,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": true,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 43,
+      "slot_differentiation": 0.055531442165374756,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": true,
+      "rem_enabled": false
+    },
+    {
+      "arm_name": "ARM_C_SWS_SUPPRESSED",
+      "seed": 43,
+      "slot_differentiation": 1.0082074403762817,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": false,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_D_NO_SLEEP",
+      "seed": 43,
+      "slot_differentiation": 1.0082074403762817,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": false,
+      "rem_enabled": false
+    },
+    {
+      "arm_name": "ARM_A_NORMAL_SLEEP",
+      "seed": 44,
+      "slot_differentiation": 0.41796308755874634,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": true,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 44,
+      "slot_differentiation": 0.41796308755874634,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": true,
+      "rem_enabled": false
+    },
+    {
+      "arm_name": "ARM_C_SWS_SUPPRESSED",
+      "seed": 44,
+      "slot_differentiation": 1.0010889768600464,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 30.0,
+      "sws_enabled": false,
+      "rem_enabled": true
+    },
+    {
+      "arm_name": "ARM_D_NO_SLEEP",
+      "seed": 44,
+      "slot_differentiation": 1.0010889768600464,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 0,
+      "cumulative_rem_rollouts": 0,
+      "sws_enabled": false,
+      "rem_enabled": false
+    }
+  ],
+  "criteria": {
+    "C1_slot_diff_A_vs_C": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C2_slot_diff_A_vs_D": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C3_harm_disc_A_vs_D": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C4_harm_disc_A_vs_B": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C5_manipulation_checks": {
+      "passed": true,
+      "pass_count": 3,
+      "required": 2
+    }
+  },
+  "thresholds": {
+    "c1_slot_diff_margin": 0.05,
+    "c2_slot_diff_margin": 0.05,
+    "c3_harm_disc_margin": 0.1,
+    "c4_harm_disc_margin": 0.05
+  },
+  "queue_id": "V3-EXQ-670",
+  "machine": "ree-cloud-4",
+  "evidence_direction_per_claim": {
+    "INV-048": "non_contributory"
+  },
+  "non_degenerate": false,
+  "degeneracy_reason": "harm_discrimination byte-identical across all 4 sleep arms: run_sleep_cycle never trains e3.harm_eval_head, so the harm readout is seed-fixed and arm-invariant. The verdict could not respond to the sleep manipulation.",
+  "evidence_direction_note": "DEGENERATE / non_contributory per failure_autopsy_batch9_2026-06-12 (REE_assembly master ad3a165726). harm_discrimination byte-identical across all 4 sleep arms: run_sleep_cycle never trains e3.harm_eval_head, so the harm readout is seed-fixed and arm-invariant. The verdict could not respond to the sleep manipulation. Carries no information on the claim; not claim pressure. Retest re-queued with a non-vacuity gate."
+}

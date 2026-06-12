@@ -1,12 +1,42 @@
 {
-  "generated_at": "2026-06-11T21:18:23Z",
+  "generated_at": "2026-06-12T06:27:26Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 1,
-    "suppressed": 10
+    "stale_since": 4,
+    "suppressed": 9
   },
   "drifted": [],
   "stale_since": [
+    {
+      "node_id": "arc_062_rule_apprehension:GAP-H",
+      "plan": "arc_062_rule_apprehension_plan.md",
+      "node_status": "partial",
+      "owner_exq": "V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg; V3-EXQ-544/545/544a historical diagnostics; Q-045/MECH-313/MECH-260 leg awaits behavioral_diversity_isolation:GAP-C / V3-EXQ-603i; GAP-B successor still owed",
+      "node_last_updated": "2026-06-08",
+      "reasons": [
+        "failure_autopsy_V3-EXQ-667_2026-06-11.json (2026-06-11) reclassified Q-043"
+      ]
+    },
+    {
+      "node_id": "commitment_closure:GAP-8",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-485e (evidence-grade trained-OFC-head behavioural arm; FAIL/non_contributory self-route substrate_not_ready_requeue, FLAGGED for /failure-autopsy 2026-06-11; predecessor V3-EXQ-485d substrate-readiness diagnostic, then 485c/485b representation-level MECH-263 diagnostics PASS 2026-06-04, NOT a supersession lineage)",
+      "node_last_updated": "2026-06-11",
+      "reasons": [
+        "owner_exq pins V3-EXQ-485e but later same-lineage sibling V3-EXQ-485f has terminal evidence (manifest `v3_exq_485f_sd033b_trained_ofc_head_behavioural_20260611T221413Z_v3.json`)"
+      ]
+    },
+    {
+      "node_id": "goal_pipeline:GAP-2",
+      "plan": "goal_pipeline_plan.md",
+      "node_status": "open",
+      "owner_exq": "V3-EXQ-514m",
+      "node_last_updated": "2026-06-11",
+      "reasons": [
+        "owner_exq pins V3-EXQ-514m but later same-lineage sibling V3-EXQ-514n has terminal evidence (manifest `v3_exq_514n_sd049_phase2_mech229_object_bound_wanting_liking_20260611T224339Z_v3.json`)"
+      ]
+    },
     {
       "node_id": "behavioral_diversity_isolation:GAP-B",
       "plan": "behavioral_diversity_isolation_plan.md",
