@@ -1,0 +1,113 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460c_sd034_verified_but_not_released_behavioural",
+  "run_id": "v3_exq_460c_sd034_verified_but_not_released_behavioural_20260612T090021Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-12T09:00:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-034": "weakens",
+    "MECH-260": "weakens",
+    "MECH-261": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "residual_closure_open",
+    "readiness_route": "residual_closure_open",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "commitment_and_completion_engaged",
+        "description": "the ON arm committed (total_beta_elevated > 0) AND reached completions (n_sequence_completions > 0) on >= 2/3 guard-passing seeds -- so closure HAD an opportunity to fire (the n_closures=0 *b-cohort gap, now self-routed; n_closures=0 WITHOUT completions is substrate-not-engaged, WITH completions is a genuine weakens).",
+        "control": "fraction of guard-passing seeds with ON-arm commitment AND sequence completions.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_n_closures",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_beta_release",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_nogo_installed",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C4_off_holds_latch_never_closes",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "completion_non_vacuity_gate": {
+      "definition": "ON-arm total_beta_elevated > 0 AND n_sequence_completions > 0 on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false weakens (the V3-EXQ-643 / V3-EXQ-514n same-precondition lesson).",
+      "min_fraction": 0.6666666666666666,
+      "c1_min_closures": 1,
+      "c2_min_beta_releases": 1,
+      "c3_min_nogo": 1
+    }
+  }
+}
