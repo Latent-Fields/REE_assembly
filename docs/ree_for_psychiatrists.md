@@ -11,6 +11,11 @@ philosophical foundations, through the architecture and its brain mapping, to a
 clinical "computational psychopathology" mapping and the governance method that
 keeps the programme honest.
 
+**Companion project:** the failure-mode → syndrome mapping previewed in Part 5 is developed in
+depth in the **[AI Cognitive Failure Taxonomy](https://github.com/Latent-Fields/ai-cognitive-failure-taxonomy)**
+— a structured, *bidirectional* correspondence between AI architectural failure modes and clinical
+psychopathology (clinical precision for AI safety; computational predictions back to psychiatry).
+
 **Live deck:** [REE — The Reflective-Ethical Engine: Intro for Psychiatrists](https://docs.google.com/presentation/d/1bkyjZRHA9BYtNICHPhDIGIZaPMoGjeL4Z-q3fCdlv5I/edit)
 (Gamma → Google Slides; author's working copy — share/publish before circulating).
 The slide text is reproduced below so it is searchable and readable without the deck.
@@ -213,6 +218,14 @@ REE treats conscience not as a rule consulted on demand but as a standing cost f
 > vocabulary and a source of testable hypotheses, **not** a diagnostic system. REE is not a
 > validated disease model. The question is: *which computational parameter, mis-set, would
 > produce this picture?*
+
+{: .note }
+> **This chapter has a dedicated home.** The
+> [**AI Cognitive Failure Taxonomy**](https://github.com/Latent-Fields/ai-cognitive-failure-taxonomy)
+> repository builds the AI ↔ psychopathology correspondence out in full: clinical concepts
+> (*confabulation*, *commitment dysregulation*, *precision misallocation*) give descriptive
+> precision to AI failure analysis, and the computational implementations generate testable
+> predictions back about the human conditions they model.
 
 ### Failure mode 1 — precision misrouting
 *Mechanism:* attention (precision) is set too high at the wrong hierarchical level.
