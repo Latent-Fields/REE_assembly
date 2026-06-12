@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-12T14:58:44Z",
+  "last_tick_utc": "2026-06-12T15:28:46Z",
   "state": "running",
   "current_exq": "V3-EXQ-629b",
   "current_exq_started_utc": "2026-06-12T13:16:26.000924+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 235,
-    "overall_pct": 200.0
+    "overall_pct": 204.3
   },
-  "seconds_elapsed": 6138,
+  "seconds_elapsed": 7941,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_629b_mech342_ecological_maintenance_release_evidence] starting (dry_run=False)",
@@ -44,7 +44,9 @@
     "Seed 43 Condition ARM_1_RELEASE_ON",
     "H[occ=1.000 fires=0 decommit=0] D[occ=0.996 fires=1 decommit=34 degr_ticks=3195 min_nav=0.000]",
     "verdict: PASS seed=43 guard_pass=True (contact_rate=0.3228 z_goal_at_contact=0.4278)",
-    "Seed 44 Condition CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE"
+    "Seed 44 Condition CURRICULUM_BUILT_MECH342_ECOLOGICAL_MAINTENANCE_RELEASE",
+    "[train] stage0_nursery seed=44 ep 20/235 z_goal_peak=0.3760 formed=False",
+    "[train] stage0b_consolidate seed=44 ep 30/235 retention=0.905"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
