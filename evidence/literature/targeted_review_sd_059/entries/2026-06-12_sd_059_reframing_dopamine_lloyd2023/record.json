@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_059",
+  "entry_id": "2026-06-12_sd_059_reframing_dopamine_lloyd2023",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "source": {
+    "title": "Reframing dopamine: A controlled controller at the limbic-motor interface.",
+    "authors": [
+      "Kevin Lloyd",
+      "Peter Dayan"
+    ],
+    "year": 2023,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1011569"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "A computational model of active avoidance/omission in which the prospect of punishment is RECAST as an opportunity to approach safety, with accumbens dopamine transients tracking that reframing at discriminative cues. This is a near-isomorph of MECH-358's threat-gated approach bonus toward credited escape-affordance classes. Strong mechanism-level mapping; held below 0.8 because the model targets dopaminergic control, not REE's pure-arithmetic per-action EMA table.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model treats reframing as a deliberately deployed cognitive-control instrument; if REE's bridge bonus fires non-selectively (not threat-gated) it would diverge from this account, which makes the threat-context gate a load-bearing guard."
+  ],
+  "tags": [
+    "sd-059",
+    "mech-358",
+    "approach-to-safety",
+    "nucleus-accumbens",
+    "dopamine",
+    "computational-model"
+  ],
+  "mapping": {
+    "source_claim_statement": "When instrumental and Pavlovian influences conflict (active avoidance, omission), a controlled reframing mechanism recasts possible punishment as an opportunity to approach safety; modulation of accumbens dopamine is itself an instrument of cognitive control, and the fitted model reproduces observed dopamine transients at discriminative cues.",
+    "ree_translation": "The 'approach safety' reframing is MECH-358's approach bonus: under future threat, a per-candidate negative (favoured) E3 score-bias toward credited classes drives the agent to approach the escape affordance. The discriminative-cue dopamine transient is the moment the threat-context gate opens and the credited class is favoured.",
+    "mapping_caveat": "This is a normative/dopaminergic model, whereas MECH-358 is a non-trainable arithmetic regulator with explicit clamp/gate/leak guards; the mapping is at the level of computational role (reframe-to-approach-safety), not implementation. MECH-375 (trainable Q_relief) is the closer REE analogue of a learned controller.",
+    "source_context": "Model fit to rodent behaviour + accumbens dopamine from two active-avoidance/omission datasets."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Computational role maps cleanly onto the approach-bonus term; implementation differs (learned dopaminergic control vs fixed arithmetic)."
+  }
+}

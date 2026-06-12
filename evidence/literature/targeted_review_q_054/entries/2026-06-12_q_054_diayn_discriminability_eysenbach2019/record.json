@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_054",
+  "entry_id": "2026-06-12_q_054_diayn_discriminability_eysenbach2019",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "Q-054"
+  ],
+  "source": {
+    "title": "Diversity is All You Need: Learning Skills without a Reward Function.",
+    "authors": [
+      "Benjamin Eysenbach",
+      "Abhishek Gupta",
+      "Julian Ibarz",
+      "Sergey Levine"
+    ],
+    "year": 2019,
+    "venue": "ICLR 2019 (arXiv:1802.06070)",
+    "doi": "10.48550/arXiv.1802.06070",
+    "url": "https://arxiv.org/abs/1802.06070"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "DIAYN formalises exactly the coupling Q-054 asks about: a discriminator q(z|s) can only separate latent classes to the extent the policy produces discriminable (diverse) behaviour, via the objective I(S;Z)=H(Z)-H(Z|S). This supports the EXISTENCE of a diversity->discriminability dependence (ARC-062 = the discriminator, ARC-065 = the diversity generator). It does NOT, however, quantify a minimum entropy FLOOR, which is the specific numeric Q-054 poses (is 0.497 nats enough?). Framework-level support, not a threshold measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DIAYN couples diversity and discriminability bidirectionally (the discriminator reward shapes the policy), so a fixed upstream entropy is not strictly required -- a caution that Q-054's 'static floor' framing may be ill-posed if the ARC-062 discriminator is allowed to shape the ARC-065 stream rather than read a frozen one."
+  ],
+  "tags": [
+    "q-054",
+    "arc-062",
+    "arc-065",
+    "mutual-information",
+    "skill-discriminability",
+    "action-entropy"
+  ],
+  "mapping": {
+    "source_claim_statement": "Maximising the mutual information I(S;Z)=H(Z)-H(Z|S) between visited states and a latent skill index, via a learned discriminator q(z|s) plus a maximum-entropy policy, yields skills that are both diverse and distinguishable; minimising H(Z|S) means the skill must be easy to infer from the states it visits.",
+    "ree_translation": "ARC-062's reef/forage context discriminator is the analogue of q(z|s); the upstream first_action_entropy that ARC-065 must supply is the policy-entropy term. Q-054's 'discriminative cut' exists only when H(context|behavior) is drivable low, which requires the behavioural stream to be diverse enough -- precisely DIAYN's H(Z|S) term. The information-theoretic lower bound Q-054 cites (I(context;action)) is the DIAYN objective read in REE's vocabulary.",
+    "mapping_caveat": "DIAYN learns the discriminator and policy JOINTLY toward a mutual-information optimum and never reports a critical entropy threshold below which discrimination fails; Q-054 wants a numeric floor on a (possibly fixed) upstream entropy. The paper supports the coupling and the lower-bound intuition but not the specific 0.497-nat sufficiency question -- that remains the empirical job of V3-EXQ-543b.",
+    "source_context": "Continuous-control RL benchmarks (MuJoCo, etc.); unsupervised skill discovery; latent skills z."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Foundational, well-cited; but it answers the QUALITATIVE coupling, not the quantitative floor Q-054 asks for -- mapping_fidelity deliberately mid, transfer risk from joint-trained skills to a fixed-stream discriminator is real."
+  }
+}

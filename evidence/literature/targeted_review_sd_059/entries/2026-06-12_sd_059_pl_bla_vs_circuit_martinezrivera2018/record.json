@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_059",
+  "entry_id": "2026-06-12_sd_059_pl_bla_vs_circuit_martinezrivera2018",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "source": {
+    "title": "Prefrontal circuits signaling active avoidance retrieval and extinction.",
+    "authors": [
+      "Freddyson J Martinez-Rivera",
+      "Christian Bravo-Rivera",
+      "Coraly D Velazquez-Diaz",
+      "Marlian Montesinos-Cartagena",
+      "Gregory J Quirk"
+    ],
+    "year": 2018,
+    "venue": "Psychopharmacology (Berl)",
+    "doi": "10.1007/s00213-018-5012-7"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Retrograde-tracer + c-Fos mapping shows avoidance RETRIEVAL is signaled by prelimbic projections to basolateral amygdala (and to a lesser extent ventral striatum), while extinction recruits IL->BLA/VS and PL->VS. This supports SD-059's architectural premise that a positive avoidance pathway runs through amygdala->ventral-striatum credit projections, distinct from the suppression/extinction route. Correlational (c-Fos), so confidence is moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Avoidance retrieval did NOT activate IL neurons; the IL route was selective to extinction -- a caution that mapping the SD-059 escape-credit pathway onto IL specifically (as opposed to PL->BLA->VS) would mis-assign the substrate."
+  ],
+  "tags": [
+    "sd-059",
+    "mech-358",
+    "prelimbic",
+    "basolateral-amygdala",
+    "ventral-striatum",
+    "retrograde-tracer"
+  ],
+  "mapping": {
+    "source_claim_statement": "Active-avoidance retrieval is signaled by prelimbic (PL) projections to basolateral amygdala (BLA), and PL may modulate ventral striatum (VS) indirectly via BLA; extinction is signaled by infralimbic (IL) projections to BLA and VS plus PL->VS.",
+    "ree_translation": "Provides the anatomical scaffold for SD-059's claim that avoidance credit is carried by an amygdala->ventral-striatal (LA/BA->NAcc) action-reinforcement pathway -- the half SD-059 says is UNWIRED to avoidance in current REE. MECH-358's EMA credit table is the functional abstraction of this PL/BLA->VS routing.",
+    "mapping_caveat": "c-Fos + tracers establish which projections are ACTIVE during retrieval/extinction, not that they carry a quantitative per-action relief/safety credit; the REE bridge is an arithmetic regulator, so this is substrate-plausibility evidence, not mechanism-identity evidence. The retrieval-vs-extinction dissociation also warns against conflating the IL suppression node with the avoidance-credit node.",
+    "source_context": "Male rats; platform-mediated signaled active avoidance; CTB/FluoroGold retrograde tracers into BLA and VS; c-Fos after retrieval (2 tones) vs extinction (15 tones)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.4,
+    "notes": "Strong anatomy, but correlational activation; rodent->REE arithmetic-regulator transfer risk is the main discount."
+  }
+}

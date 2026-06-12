@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_059",
+  "entry_id": "2026-06-12_sd_059_ilpfc_suppression_moscarello2013",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "SD-059"
+  ],
+  "source": {
+    "title": "Active avoidance learning requires prefrontal suppression of amygdala-mediated defensive reactions.",
+    "authors": [
+      "Justin M Moscarello",
+      "Joseph E LeDoux"
+    ],
+    "year": 2013,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2596-12.2013"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The canonical paper the SD-059 title cites. Lesion + pharmacological inactivation directly establish the ilPFC->CeA freeze-SUPPRESSION interface, which is exactly the half SD-059 says exists but is insufficient. It supports SD-059's premise (suppression is a distinct, real mechanism) while its own data contain no directed-escape action-credit signal -- the gap SD-059 fills. High source quality (causal manipulations, double dissociation); mapping is to the premise rather than to the added credit table, so not maxed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "ilPFC inactivation increased freezing and decreased avoidance but the study provides no evidence for a positively-reinforced, action-specific escape response -- consistent with SD-059's claim that the suppression pathway alone does not compute the escape direction."
+  ],
+  "tags": [
+    "sd-059",
+    "mech-358",
+    "mech-357",
+    "active-avoidance",
+    "infralimbic",
+    "central-amygdala"
+  ],
+  "mapping": {
+    "source_claim_statement": "Instrumental active avoidance recruits infralimbic prefrontal cortex to inhibit central-amygdala-mediated Pavlovian defensive reactions (freezing), producing a robust, context-general suppression of freezing; ilPFC and CeA hold two opposing memory traces.",
+    "ree_translation": "This is the freeze-SUPPRESSION half that REE already owns as MECH-357/SD-058 (the ilPFC avoidance_efficacy gate). SD-059's thesis is that this suppression interface only releases the no-op/freeze brake and 'does NOT compute the escape direction'; the paper supports the existence and causal necessity of that suppression interface while supplying no directed-escape action-credit, which is precisely the unwired gap SD-059 adds via the affordance-indexed credit table.",
+    "mapping_caveat": "The paper evidences the SUPPRESSION half (MECH-357), not the per-first-action-class relief/safety credit table that is the novel content of SD-059/MECH-358; treating it as direct support for the credit table would over-map. It is rodent lesion/inactivation data, so the action-credit absence is an absence-of-evidence, not a measured negative.",
+    "source_context": "Rats, signaled (Sidman/platform) active avoidance; electrolytic lesions, muscimol inactivation, anisomycin protein-synthesis inhibition; c-Fos."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Causal manipulations in the canonical paradigm; transfer risk from rodent suppression circuit to a V3 arithmetic regulator is moderate. Mapping is to the premise/gap, not the added mechanism."
+  }
+}

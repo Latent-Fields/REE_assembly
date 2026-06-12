@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_059",
+  "entry_id": "2026-06-12_sd_059_striatal_avoidance_credit_boeke2017",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "source": {
+    "title": "Active Avoidance: Neural Mechanisms and Attenuation of Pavlovian Conditioned Responding.",
+    "authors": [
+      "Emily A Boeke",
+      "Justin M Moscarello",
+      "Joseph E LeDoux",
+      "Elizabeth A Phelps",
+      "Catherine A Hartley"
+    ],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3261-16.2017"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Human fMRI dissociating active avoidance from yoked extinction: instrumental control engages the striatum at shock-omission and PERSISTENTLY diminishes threat, including transfer to novel stimuli. This is direct human evidence for a response-produced safety/relief credit attached to a SPECIFIC avoidance action -- the MECH-358 safety half and the SD-059 'response-produced safety' wiring. Human data (preferred over rodent), within-paradigm contrast; confidence held below 0.8 because BOLD-at-omission is a correlational read of 'credit', not a per-action-class table.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Yoked extinction (matched shock, no instrumental control) did NOT confer the persistent threat reduction -- absent an action-contingent credit signal, mere safety exposure fails, matching SD-059's prediction that a global 'avoidance works' scalar without an affordance-indexed action credit is insufficient."
+  ],
+  "tags": [
+    "sd-059",
+    "mech-358",
+    "active-avoidance",
+    "ventral-striatum",
+    "response-produced-safety",
+    "human-fmri"
+  ],
+  "mapping": {
+    "source_claim_statement": "In humans, exercising instrumental control over an aversive stimulus (active avoidance) engages striatal BOLD responses to shock omission and persistently attenuates conditioned threat responding -- more durably than yoked extinction -- and reduces subsequent threat conditioning to novel cues.",
+    "ree_translation": "The striatal shock-omission response is the response-produced safety credit that MECH-358's SAFETY half writes when a directed action terminates the threat (threat_scale<=0 -> credit safety_affordance[class]). The persistence/transfer maps to SD-059 tagging the credited first-action class as an escape affordance approachable under future threat. The yoked-extinction null maps to why MECH-357's global scalar is not enough.",
+    "mapping_caveat": "fMRI BOLD at omission indexes a credit-like signal at the circuit level but does not demonstrate the per-first-action-class EMA table or the threat-gated approach bonus that are the specific computational content of MECH-358; the action-credit is inferred, not isolated to discrete action classes.",
+    "source_context": "Healthy human adults; threat conditioning then active avoidance vs yoked extinction; skin conductance + BOLD; next-day novel threat conditioning."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.28,
+    "notes": "Human within-subject design lowers transfer risk relative to rodent work; mapping fidelity good for the safety-half but does not reach the per-action-class table."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_054",
+  "entry_id": "2026-06-12_q_054_valor_curriculum_achiam2018",
+  "timestamp_utc": "2026-06-12T09:06:03Z",
+  "claim_ids_tested": [
+    "Q-054"
+  ],
+  "source": {
+    "title": "Variational Option Discovery Algorithms.",
+    "authors": [
+      "Joshua Achiam",
+      "Harrison Edwards",
+      "Dario Amodei",
+      "Pieter Abbeel"
+    ],
+    "year": 2018,
+    "venue": "arXiv:1807.10299",
+    "doi": "10.48550/arXiv.1807.10299",
+    "url": "https://arxiv.org/abs/1807.10299"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "VALOR shows that the number of behavioural modes a decoder can reliably distinguish is capacity-limited, and introduces a curriculum that grows the context count ONLY when decoder performance is sufficient. This is direct evidence that the diversity<->discriminability relation has critical structure (a moving threshold), supporting Q-054's expectation of a phase transition. It addresses the CEILING (how many modes are distinguishable) rather than Q-054's FLOOR (minimum entropy to get any cut), so the mapping is by analogy of mechanism, not identity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "VALOR's evidence is about a decoder CEILING on distinguishable contexts under a growth curriculum; reading it as a FLOOR on upstream entropy is an inversion that could mislead if the ARC-062 discriminator's failure mode is capacity-limited rather than diversity-limited."
+  ],
+  "tags": [
+    "q-054",
+    "arc-062",
+    "arc-065",
+    "variational-option-discovery",
+    "curriculum",
+    "decoder-capacity"
+  ],
+  "mapping": {
+    "source_claim_statement": "VALOR frames option discovery as a trajectory autoencoder (policy encodes a context into a trajectory; a decoder reconstructs the context) and stabilises training with a curriculum in which the number of contexts increases only when decoder performance is strong enough, letting one agent learn many more modes than with a fixed context distribution.",
+    "ree_translation": "The decoder is ARC-062 (recover context from behaviour); the context count is the realised trajectory-class diversity ARC-065 must generate. The curriculum result says discriminability and diversity must be co-grown: push diversity faster than the discriminator can track and the cut collapses. That predicts the phase-transition shape Q-054 hypothesises and argues for a SCHEDULED rather than fixed diversity target.",
+    "mapping_caveat": "VALOR characterises an upper bound on distinguishable modes given decoder capacity, not a minimum first_action_entropy below which no cut exists; Q-054 is the dual (floor, not ceiling). Useful as mechanism-shape evidence and as an argument that the 0.497-nat question may be mis-framed as static, but it does not supply the numeric floor.",
+    "source_context": "Continuous-control + gridworld RL; unsupervised option discovery; VALOR vs prior variational methods."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.45,
+    "notes": "Speaks to the diversity<->discriminability critical structure (supports the phase-transition expectation) but is the ceiling-dual of Q-054's floor; intentionally moderate."
+  }
+}
