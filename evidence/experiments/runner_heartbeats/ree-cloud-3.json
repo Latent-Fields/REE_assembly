@@ -1,56 +1,46 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-13T06:58:09Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-460d",
-  "current_exq_started_utc": "2026-06-12T23:42:46.960445+00:00",
-  "current_title": "SD-034 commitment-closure-control-plane retest: env-completion hook + de-commit hold (supersedes 460c)",
-  "current_claim_id": "SD-034",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
-    "runs_done": 6,
-    "runs_total": 3,
-    "episodes_done": 170,
-    "episodes_total": 265,
-    "overall_pct": 221.4
-  },
-  "seconds_elapsed": 26123,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_460d_sd034_closure_control_plane_behavioural] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4610 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.965 gate=pass",
-    "[train] p0_guided seed=42 ep 130/265 mean_len=196.4 rv=0.50124",
-    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.2484 contact_events=68 z_goal_at_contact=0.5075",
-    "Seed 42 Condition ARM_CLOSURE_ON",
-    "Seed 42 Condition ARM_CLOSURE_OFF",
-    "[train] closure_eval seed=42 ep 265/265 c1=True c2=False c3=True c4=True n_closures=6 hook_fires=6 nogo=18 completions=6 beta_elev=0",
-    "verdict: FAIL seed=42 guard_pass=True complete_nonvacuity=False closure_trigger=True (contact_rate=0.2484 z_goal_at_contact=0.5075)",
-    "Seed 43 Condition CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
-    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4096 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.970 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00000",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.1996 contact_events=83 z_goal_at_contact=0.4418",
-    "Seed 43 Condition ARM_CLOSURE_ON",
-    "Seed 43 Condition ARM_CLOSURE_OFF",
-    "[train] closure_eval seed=43 ep 265/265 c1=True c2=True c3=True c4=False n_closures=3 hook_fires=3 nogo=9 completions=3 beta_elev=184",
-    "verdict: FAIL seed=43 guard_pass=True complete_nonvacuity=True closure_trigger=True (contact_rate=0.1996 z_goal_at_contact=0.4418)",
-    "Seed 44 Condition CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
-    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4279 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.844 gate=pass",
-    "[train] p0_guided seed=44 ep 130/265 mean_len=200.0 rv=0.00144",
-    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass"
+  "last_tick_utc": "2026-06-13T07:27:36Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-655",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-598c",
+      "result": "PASS",
+      "completed_at": "2026-06-07T13:56:12.172729+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603k",
+      "result": "PASS",
+      "completed_at": "2026-06-09T18:14:20.455688+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-662",
+      "result": "PASS",
+      "completed_at": "2026-06-10T10:47:31.360050+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-664",
+      "result": "PASS",
+      "completed_at": "2026-06-10T11:28:09.632703+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-460d",
+      "result": "FAIL",
+      "completed_at": "2026-06-13T07:27:34.386040+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 747,
   "runner_version": "r3103 235ca22 2026-06-12 (running r3097 893a83c)",
   "gpu": {
