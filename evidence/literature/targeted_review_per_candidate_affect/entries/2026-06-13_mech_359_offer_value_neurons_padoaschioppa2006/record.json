@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_359_offer_value_neurons_padoaschioppa2006",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-359"],
+  "source": {
+    "title": "Neurons in the orbitofrontal cortex encode economic value.",
+    "authors": ["Camillo Padoa-Schioppa", "John A. Assad"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04676",
+    "url": "https://doi.org/10.1038/nature04676"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Landmark, heavily-replicated primate single-unit study (source_quality 0.95) establishing that OFC encodes the value of OFFERED goods independently of visuospatial position and motor response -- the option-specific (per-good) value coding MECH-359's 'affect must be candidate-differentiated' currently lacks a neuroscience anchor for. Mapping is solid for the per-OPTION differentiation (0.78) but partial: OFC offer-value is a scalar good-value, whereas MECH-359 posits a MULTI-CHANNEL affect vector per candidate (curiosity/safety/harm-sensory/harm-affective/effort/relief/blocked-agency). It grounds the per-candidate axis, not the multi-channel axis. exp_conf unchanged 0 -- PROMOTES NOTHING (claim is implementation_phase v4 / substrate_conditional).",
+  "summary_path": "summary.md",
+  "failure_signatures": ["OFC offer-value is a single economic value per good, not a multi-channel affect vector; this paper evidences the per-option differentiation MECH-359 needs but says nothing about the curiosity/safety/harm-affective channel decomposition.", "Choice-between-goods framing ('value independent of action') is the OPPOSITE emphasis to MECH-360's expression-as-action-geometry; the per-candidate value here is action-abstracted, whereas REE attaches the affect vector to E3 candidate TRAJECTORIES."],
+  "tags": ["mech-359", "orbitofrontal_cortex", "offer_value", "option_specific_value_coding", "ae-9", "completion_set_L1"],
+  "mapping": {
+    "source_claim_statement": "During economic choice, OFC neurons encode the value of offered and chosen goods independently of visuospatial factors and motor responses; if a monkey chooses between A and B, OFC encodes the value of the two goods regardless of side or response -- choice is essentially between goods, not between actions.",
+    "ree_translation": "OFC offer-value neurons are the biological existence proof that the brain represents value PER OPTION before a motor commitment -- exactly the substrate MECH-359 generalises when it asserts each E3 candidate trajectory must carry its own (cross-candidate-differentiated) affect contribution rather than a scalar added equally to all K candidates. A scalar cannot move an argmax; an option-keyed value can.",
+    "mapping_caveat": "OFC offer-value is a single economic-value scalar per good; MECH-359 is a multi-CHANNEL per-candidate affect vector. This paper grounds the per-candidate (option-specific) requirement, NOT the multi-channel decomposition, and not the affect (vs reward-value) content. It is also action-abstracted (value before action), whereas REE binds the affect vector to candidate action-trajectories.",
+    "source_context": "Single-unit recordings, macaque OFC, juice/food economic-choice task; primate electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Weighted toward mapping_fidelity for this architectural claim. High source quality is discounted by the scalar-value vs multi-channel-affect gap and the monkey-economic-choice -> REE-proto-affect transfer."
+  }
+}

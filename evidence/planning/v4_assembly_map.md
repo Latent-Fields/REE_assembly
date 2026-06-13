@@ -1,6 +1,6 @@
 # V4 Assembly Map -- cross-plan blocker taxonomy + lit-pull sweep
 
-Generated: 2026-06-13T18:16:39Z by `scripts/generate_v4_assembly_map.py`
+Generated: 2026-06-13T18:18:31Z by `scripts/generate_v4_assembly_map.py`
 
 Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_gate | v3_substrate | sibling_node | lit_gap | deferred) and grounding `lit_pull_status` (none | active | partial | done). **Generation v4/v5 only -- the V3 closure % is untouched.** Warn-only planning aid; regenerate after editing any `*_v4_plan.md`.
 
@@ -26,7 +26,7 @@ Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_g
 | drives_motivation_v4 | 5 | 1 | 0 | 1 | 0 | 1 | none |
 | goal_deliberation_v4 | 8 | 1 | 2 | 2 | 0 | 1 | done |
 | hippocampal_planning_v4 | 9 | 1 | 0 | 6 | 0 | 1 | partial |
-| inference_belief_state_v4 | 7 | 0 | 3 | 0 | 1 | 0 | none |
+| inference_belief_state_v4 | 7 | 0 | 3 | 0 | 1 | 0 | done |
 | memory_lifecycle_v4 | 8 | 0 | 0 | 3 | 0 | 0 | partial |
 | object_reasoning_abstraction_v4 | 8 | 0 | 0 | 5 | 0 | 1 | partial |
 | object_representation_v4 | 6 | 0 | 1 | 1 | 0 | 0 | partial |
@@ -56,7 +56,7 @@ The nodes that gate V4 from the V3 side -- closing these is what actually moves 
 | plasticity_neuromodulation_v4 | `plasticity_neuromodulation_v4:PLW-3` | v3_substrate | load-bearing | MECH-398 | MECH-333 open-phase mechanism is planned-but-unbuilt (epistemic_category substrate_conditional 2026-06-10; only the plastic-channel-injection option landed, the F-grad... |
 | self_model_v4 | `self_model_v4:SELF-6` | v3_substrate | high | MECH-214 | CausalGridWorldV2 conflates location with reward, so the MECH-214 addiction failure mode (wanting fires on an E1-unrepresented satisfaction state) is structurally invi... |
 
-## Literature-pull sweep order (9 pulls owed)
+## Literature-pull sweep order (8 pulls owed)
 
 The first pass of assembly work. Each grounding node's /lit-pull must (a) ground its registered claims AND (b) harvest the co-constitutive circuit partners the mechanism presupposes -- so building the substrate does not omit jointly-necessary components. In-progress pulls are listed first (finish them); the rest are ordered by how much load-bearing blocked work the plan's grounding unblocks.
 
@@ -101,15 +101,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - L2 object permanence (Piaget; Baillargeon; Spelke core-knowledge; Kellman & Spelke 1983) -- ACTIVE 2026-06-04
   - L3 affordances (Gibson); L4 self-as-object (Gallagher/Botvinick); L5 ToM (Woodward/Csibra) -- follow when their pillars are scheduled
 
-### 6. inference_belief_state_v4 -- `inference_belief_state_v4:INF-7` [none; gates 4 load-bearing/high blocked nodes]
-
-- **Ground:** Q-070
-- **Pull + completion-set harvest:**
-  - Biology grounding (project rule feedback_biology_before_formal_definitions): L1 hippocampal-prefrontal replay (intake 5.1); L2 cognitive-map / relational inference (intake 5.2); L3 pattern-completion vs preplay safety (intake 5.3); L4 POMDP belief-state + Dreamer latent world models (intake 6.1/6.2); L5 active inference / epistemic value (intake 6.3)
-  - Failure-mode register (intake section 9): failure-to-infer-hidden-danger, failure-to-infer-hidden-safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation (apophenia/paranoia), cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic
-  - These map onto EXISTING state-abstraction failure modes (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading) -- the register links new modes to the existing taxonomy rather than inventing a parallel one
-
-### 7. developmental_dmn_v4 -- `developmental_dmn_v4:DMN-8` [none; gates 3 load-bearing/high blocked nodes]
+### 6. developmental_dmn_v4 -- `developmental_dmn_v4:DMN-8` [none; gates 3 load-bearing/high blocked nodes]
 
 - **Ground:** ARC-090, MECH-380, MECH-383
 - **Pull + completion-set harvest:**
@@ -117,14 +109,14 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - Per project rule feedback_biology_before_formal_definitions: each pillar that instantiates a formal developmental concept needs a biology lit-pull BEFORE its substrate is built
   - Schedule per-pillar: private-speech/inner-speech (MECH-380/381), label-as-perceptual-control (MECH-383), self-distancing (MECH-382) -- follow when their pillars are scheduled
 
-### 8. drives_motivation_v4 -- `drives_motivation_v4:DRV-3` [none; gates 2 load-bearing/high blocked nodes]
+### 7. drives_motivation_v4 -- `drives_motivation_v4:DRV-3` [none; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** MECH-394, SD-060
 - **Pull + completion-set harvest:**
   - Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEFORE registering the arbitration MECH (drive competition / hypothalamic drive hierarchy / opportunity-cost theories: Berridge incentive salience already in SD-012/MECH-295; need lateral-hypothalamus / dopamine tonic-vigour / Pezzulo 2014 exploratory-vs-homeostatic / Niv 2007 opportunity-cost-of-time)
   - L-non-terminal-needs: ethology of non-feeding drives (grooming, play, exploration) as homeostatically-regulated systems, not just deficit-reduction
 
-### 9. plasticity_neuromodulation_v4 -- `plasticity_neuromodulation_v4:PLW-2` [none; gates 2 load-bearing/high blocked nodes]
+### 8. plasticity_neuromodulation_v4 -- `plasticity_neuromodulation_v4:PLW-2` [none; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** MECH-398, ARC-093
 - **Pull + completion-set harvest:**

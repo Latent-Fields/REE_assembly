@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_369_lc_ne_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-369"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance.",
+    "authors": ["Gary Aston-Jones", "Jonathan D. Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://doi.org/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical review (source_quality 0.92) of a SLOW, BROADLY-PROJECTING neuromodulatory system (LC-NE) with two activity modes -- phasic (task exploitation) and tonic (disengagement / search for alternatives) -- in which a value-INDEPENDENT GAIN parameter sets engagement vs release of the current behaviour. This is the value-independent slow-modulator-class anchor MECH-369 was flagged as LACKING (AE-9 L4): a slow field-state that biases the action-release/engagement landscape WITHOUT being a value estimate. Direction set MIXED, not supports, because of a polarity inversion: tonic LC-NE promotes DISENGAGEMENT/lability, whereas MECH-369's compulsive stickiness is the LOW-disengagement (hard-to-release) pole. The anchor grounds the EXISTENCE and form of the modulator class; the stickiness polarity is a free parameter, not directly evidenced. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["POLARITY INVERSION: LC-NE tonic mode drives DISENGAGEMENT and exploration; MECH-369 is about excess STICKINESS / failure to release. The paper grounds a value-independent release/engagement modulator but its documented direction is opposite to compulsion -- do NOT cite it as evidence that the modulator produces stickiness.", "LC-NE gain is driven by ACC/OFC utility monitoring, so it is not strictly utility-BLIND at the system level; MECH-369's 'value-independent' is about the modulator carrying no value ESTIMATE itself, which holds, but the upstream drive is utility-derived -- a subtle mapping boundary.", "Generic-neuromodulator transfer: LC-NE is one specific system; using it as the slow-modulator-class template risks importing NE-specific properties (arousal coupling) that MECH-369 does not intend."],
+  "tags": ["mech-369", "locus_coeruleus", "norepinephrine", "adaptive_gain", "value_independent_modulator", "decommit_friction", "exploration_exploitation", "ae-9", "completion_set_L4", "no_owning_substrate_node"],
+  "mapping": {
+    "source_claim_statement": "The LC-NE system has two modes: PHASIC activation facilitates task-related behaviours and optimises exploitation; TONIC activation is associated with DISENGAGEMENT from the current task and search for alternatives (exploration). The mode is controlled by a broadly-projecting GAIN parameter, driven by frontal (ACC/OFC) utility monitoring, that adjusts engagement vs release of current behaviour on slow and fast timescales.",
+    "ree_translation": "MECH-369 posits a slow, broadly-projecting substrate-state modulator with authority over decommit-friction / loop-release that biases stickiness INDEPENDENTLY of represented goal value. LC-NE adaptive gain is the canonical biological instance of a value-INDEPENDENT slow modulator that sets exactly this engagement-vs-release landscape -- it changes the release/threshold landscape, not the value estimate, which is MECH-369's defining property. This is the 'slow-modulator-class distinction (value-independent stickiness authority) not yet built' the claim flags as missing a substrate node.",
+    "mapping_caveat": "Direction is MIXED because of a polarity inversion: tonic LC-NE produces DISENGAGEMENT, the opposite of compulsive stickiness. The paper grounds the EXISTENCE and FORM of a value-independent slow release-modulator (the modulator class MECH-369 needs), NOT the specific stickiness polarity. Also, LC gain is driven by frontal utility monitoring, so the value-independence is about the modulator carrying no value estimate ITSELF, not about being utility-blind upstream.",
+    "source_context": "Integrative review of monkey LC-NE neurophysiology + computational modelling; systems / computational neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Top-tier source and the cleanest available value-independent slow-modulator template, but the polarity inversion and the absence of a stickiness-direction demonstration cap mapping_fidelity. MIXED direction reflects that the anchor grounds the modulator class while leaving the compulsion polarity unevidenced. Net 0.62."
+  }
+}

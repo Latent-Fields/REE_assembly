@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_arc_088_emotion_cognition_integration_pessoa2008",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["ARC-088"],
+  "source": {
+    "title": "On the relationship between emotion and cognition.",
+    "authors": ["Luiz Pessoa"],
+    "year": 2008,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2317",
+    "url": "https://doi.org/10.1038/nrn2317"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Authoritative review (source_quality 0.90) arguing that emotion and cognition are NOT segregated into specialised 'affective' vs 'cognitive' modules but are realised in dynamic coalitions of networks integrated via high-connectivity hubs -- no region is purely affective or cognitive. This grounds ARC-088's load-bearing architectural thesis that affect must be NATIVE control machinery, not an optimise-then-bolt-on-safety add-on. mapping_fidelity 0.60: Pessoa supports the integration/native thesis and lightly the partial-independence framing, but does NOT directly evidence ARC-088's SPECIFIC anti-collapse / behavioural-diversity function (that emotions prevent collapse onto the dominant gradient). ARC-088 is substrate_coherence -- promote/demote already suppressed; this is conceptual grounding only. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Pessoa argues for INTEGRATION (no pure affective/cognitive regions); ARC-088 needs both integration AND partial-independence of evaluators -- the paper's hub-integration emphasis is mildly in tension with ARC-088's 'preserve DISTINCT affective streams' distinctness rule, though the two are reconcilable (shared interfaces, distinct learning targets).", "Does not address anti-collapse / behavioural diversity specifically -- the claim's distinctive functional thesis (emotions prevent collapse onto the dominant gradient) is unevidenced by this general integration review.", "Architectural-commitment claim: no experiment can confirm it; literature grounding is necessarily conceptual, capping how far confidence can rise."],
+  "tags": ["arc-088", "emotion_cognition_integration", "native_control", "anti_collapse", "affect_architecture", "ae-9"],
+  "mapping": {
+    "source_claim_statement": "Complex cognitive-emotional behaviours arise from dynamic coalitions of networks of brain areas, none of which should be conceptualised as specifically affective or cognitive; high-connectivity hubs regulate the flow and integration of information. The prevalent view that some regions are 'affective' (amygdala) and others 'cognitive' (lateral PFC) is problematic.",
+    "ree_translation": "ARC-088 asserts emotion-like systems are NATIVE, partially-independent control machinery (gates, biases, interrupts, salience shifts, release conditions) whose collective effect prevents behaviour collapsing onto the dominant gradient -- and that an optimise-then-bolt-on-safety design FAILS because these evaluators must be native, not added afterward. Pessoa's integration thesis is the canonical neuroscience grounding for the 'native, not bolt-on' half: affect is woven into the same networks that produce behaviour, not a separable downstream module.",
+    "mapping_caveat": "Pessoa grounds the integration / native-control thesis but NOT ARC-088's specific anti-collapse / behavioural-diversity FUNCTION. There is also a mild tension: Pessoa emphasises integration, while ARC-088's load-bearing rule is to PRESERVE distinct affective streams; the two reconcile (distinct learning targets + shared interfaces/consumers) but the paper does not make that distinction. Conceptual grounding for a substrate_coherence claim, not functional evidence.",
+    "source_context": "Integrative review of human/animal affective neuroscience and network organisation; cognitive-affective neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.30,
+    "notes": "High-quality source; mapping grounds the native-not-bolt-on thesis strongly but the anti-collapse function only by extension. Architectural_commitment / substrate_coherence claim, so grounding is conceptual by nature and confidence is capped accordingly. Net 0.60."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_364_interoceptive_inference_seth2013",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-364"],
+  "source": {
+    "title": "Interoceptive inference, emotion, and the embodied self.",
+    "authors": ["Anil K. Seth"],
+    "year": 2013,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2013.09.007",
+    "url": "https://doi.org/10.1016/j.tics.2013.09.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Influential theoretical framework (source_quality 0.82) casting emotion as precision-weighted predictive inference over interoceptive afferents -- affect as a control/precision variable, not a separate evaluative add-on. This is the L3 'affect-as-control-precision' anchor for MECH-364's conflict/constraint-LOAD framing: load and its discharge are naturally expressed as changes in precision/uncertainty over an internal generative model. mapping_fidelity is the limiting factor (0.52): Seth grounds the GENERAL affect-as-precision frame, but MECH-364 is specifically laughter as a REGIME-level discharge of accumulated E3 conflict/constraint pressure -- Seth says nothing about laughter or load-release dynamics. Indirect, frame-level support. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Seth's interoceptive inference is about subjective feeling states / selfhood -- it does not address laughter, regime transitions, or load discharge; the mapping to MECH-364's specific mechanism is by analogy (precision dynamics), not direct evidence.", "MECH-364 itself is flagged compass-level (popular-science synthesis source); grounding it in a precision-inference review raises the frame's respectability but cannot supply the missing primary evidence for the laughter-load-release claim specifically.", "Risk of over-claiming: affect-as-precision is a broad frame that fits many claims; do not let it inflate MECH-364's specificity."],
+  "tags": ["mech-364", "interoceptive_inference", "predictive_coding", "affect_as_precision", "constraint_load", "ae-9", "completion_set_L3"],
+  "mapping": {
+    "source_claim_statement": "Subjective feeling states (emotions) arise from actively-inferred generative (predictive) models of the causes of interoceptive afferents -- 'interoceptive inference'. Emotion is precision-weighted prediction-error minimisation over internal bodily signals, generalising appraisal theory and grounding body-ownership and selfhood.",
+    "ree_translation": "MECH-364 frames laughter as the discharge of accumulated E3 conflict/constraint LOAD marking a safe control-plane regime transition (ARC-016). Seth's interoceptive-inference frame supplies the deeper biology-faithful reading the AE-9 gate names (L3 affect-as-control-precision): affective load is naturally represented as PRECISION/uncertainty over an internal generative model, and a drop in that load (e.g. after iterated safe-confirmation) is a precision/regime update -- not a reward signal. This grounds the affect-as-control-precision lens MECH-364's load-readout presupposes.",
+    "mapping_caveat": "Frame-level, indirect support only. Seth addresses emotion-as-interoceptive-precision and selfhood; he does NOT address laughter, regime transitions, or load discharge. The mapping is by analogy (precision dynamics) not direct evidence, and affect-as-precision is broad enough to fit many claims -- it must not be read as specific evidence for the laughter mechanism.",
+    "source_context": "Theoretical review, predictive-coding / active-inference framework for interoception and emotion; cognitive neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.40,
+    "notes": "High-quality, high-influence frame but mapping_fidelity is the binding constraint -- it grounds the affect-as-precision LENS, not MECH-364's specific laughter-load-release dynamics. Heavily weighted on mapping_fidelity for this hypothesis -> net 0.55."
+  }
+}

@@ -174,8 +174,8 @@ closure_plan:
     - id: "affect_expression_v4:AE-9"
       title: "Biology grounding completion (per-candidate/option-specific value coding, expression-as-action-geometry, affect-as-precision lit-pulls + completion-set harvest)"
       phase: 2
-      status: open
-      lit_pull_status: none
+      status: in_progress
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-359, MECH-360, MECH-364, MECH-369, ARC-088]
@@ -186,6 +186,32 @@ closure_plan:
         - "L2 expression-as-action-geometry (Dael/Mortillaro/Scherer 2012 body-action coding; Niv 2007 tonic-DA vigour as expression-intensity partner) -- harvest the basal-ganglia vigour pathway as the co-constitutive read-out partner for MECH-360"
         - "L3 affect-as-control-precision (Seth 2013; Critchley & Garfinkel interoceptive inference) for MECH-364 conflict/constraint-load; L4 slow-modulator decommit-friction (MECH-369) needs a value-INDEPENDENT modulator-class anchor -- flag: no owning substrate node exists yet"
       last_updated: 2026-06-13
+      lit_pull_done_utc: "2026-06-13T18:06:40Z"
+      lit_pull_outcome: >
+        DONE 2026-06-13 (lit-pull-ae9-per-candidate-affect). 8 literature_evidence/v1
+        entries written under evidence/literature/targeted_review_per_candidate_affect;
+        all 5 named claims grounded, exp_conf unchanged 0 (PROMOTES NOTHING). lit_conf:
+        MECH-359 0.762 (L1 Padoa-Schioppa&Assad 2006 OFC offer-value + Rich&Wallis 2016
+        per-option value ensembles -- the option-specific value-coding anchor the claim
+        LACKED; caveat: grounds per-candidate axis, NOT the multi-channel affect
+        decomposition); MECH-360 0.71 (L2 Niv et al 2007 tonic-DA vigour = BG
+        expression-INTENSITY readout + Dael/Mortillaro/Scherer 2012 BAP body-action
+        geometry/action-readiness = the STYLE axis); MECH-364 0.67 (L3 Seth 2013 +
+        Critchley&Garfinkel 2017 interoceptive-inference = affect-as-control-precision
+        LENS only, frame-level, NOT the laughter-load-release mechanism; MECH-364 stays
+        compass-level); MECH-369 0.56 (L4 Aston-Jones&Cohen 2005 LC-NE adaptive gain =
+        value-INDEPENDENT slow broadly-projecting engagement/release modulator -- the
+        slow-modulator-class anchor flagged as missing; direction set MIXED for a polarity
+        inversion: tonic LC drives DISENGAGEMENT, opposite to compulsive stickiness ->
+        grounds the modulator CLASS, not the stickiness polarity); ARC-088 0.65 (Pessoa
+        2008 emotion-cognition integration = the native-not-bolt-on thesis;
+        substrate_coherence so gating unchanged). PROPOSAL SURFACED (NOT registered):
+        MECH-369's slow-modulator-class distinction would most faithfully be an
+        adaptive-gain / engagement-release modulator in the LC-NE mould alongside
+        SD-037/SD-036/MECH-186-188 but with explicit loop-RELEASE authority; this also
+        concretises the still-open AE-7 'no owning roadmap node' planning gap (left for a
+        separate planning decision). status in_progress (not done) because that no-owning-node
+        gap and the AE-7 substrate decision remain.
       completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaces a planning gap: AE-7's 'slow-modulator-class distinction' (MECH-369) is referenced as a blocker but owns no roadmap node. Off V3 closure path; promotes nothing."
 ---
 # Candidate-differentiated affect, expression, anti-collapse, compulsion-risk -- V4 Roadmap

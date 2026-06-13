@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_364_interoception_emotion_critchley2017",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-364"],
+  "source": {
+    "title": "Interoception and emotion.",
+    "authors": ["Hugo D. Critchley", "Sarah N. Garfinkel"],
+    "year": 2017,
+    "venue": "Current Opinion in Psychology",
+    "doi": "10.1016/j.copsyc.2017.04.020",
+    "url": "https://doi.org/10.1016/j.copsyc.2017.04.020"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.53,
+  "confidence_rationale": "Empirical-review counterpart to Seth 2013 (source_quality 0.80; Review with cited human findings) consolidating interoceptive predictive-coding models of emotion and -- importantly for REE -- documenting DISSOCIABLE psychological dimensions of interoception and short-term, phasic interoceptive effects on neural/mental processing. Grounds the same L3 affect-as-control-precision lens for MECH-364 with closer-to-data support (e.g. cardiac-phase modulation of fear processing). mapping_fidelity 0.50 -- still the general frame, not laughter/load-release specifically. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Reviews interoception-emotion coupling broadly (fear/anxiety, cardiac cycle); does NOT address laughter, respiratory load discharge, or control-plane regime transitions -- the MECH-364-specific mechanism is unevidenced.", "Largely overlaps Seth 2013 in frame; included as the empirical-review counterpart, so the two L3 entries are partially redundant rather than independent confirmations.", "Affect-as-precision generality risk: the same caution as Seth applies -- do not over-attribute specificity to MECH-364."],
+  "tags": ["mech-364", "interoception", "emotion", "predictive_coding", "affect_as_precision", "ae-9", "completion_set_L3"],
+  "mapping": {
+    "source_claim_statement": "Emotional feeling states arise from afferent visceral signalling and its central representation; interoceptive predictive-coding models explain emotion and selfhood, interoception has dissociable psychological dimensions, and short-term (e.g. cardiac-phase) interoceptive effects modulate neural and mental processing including fear-specific effects.",
+    "ree_translation": "Reinforces the L3 affect-as-control-precision lens for MECH-364: affect is realised as precision-weighted inference over internal state, so 'conflict/constraint LOAD' and its discharge are precision/uncertainty dynamics over an internal generative model. The documented DISSOCIABLE dimensions of interoception also lightly support ARC-088's distinctness principle -- affect channels are separable, not a single scalar.",
+    "mapping_caveat": "General frame + fear/anxiety-weighted empirical examples; no laughter, no respiratory load-release, no regime-transition evidence. Partially redundant with Seth 2013 (same predictive-coding lens). Grounds the lens, not MECH-364's specific dynamics.",
+    "source_context": "Review of human interoception-emotion findings within a predictive-coding framework; cognitive/affective neuroscience + psychiatry."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.40,
+    "notes": "Empirical-review counterpart to Seth; closer to data but same frame-level mapping gap to the specific laughter mechanism. Slightly below Seth (0.53) given partial redundancy."
+  }
+}

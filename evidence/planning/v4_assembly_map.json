@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T18:16:39Z",
+  "generated_at": "2026-06-13T18:18:31Z",
   "totals": {
     "nodes": 99,
     "plans": 13,
@@ -129,7 +129,7 @@
         "inference_belief_state_v4:INF-1",
         "inference_belief_state_v4:INF-2"
       ],
-      "lit": "none"
+      "lit": "done"
     },
     {
       "plan": "memory_lifecycle_v4",
@@ -493,22 +493,6 @@
         "L3 affordances (Gibson); L4 self-as-object (Gallagher/Botvinick); L5 ToM (Woodward/Csibra) -- follow when their pillars are scheduled"
       ],
       "blocked_lb": 2
-    },
-    {
-      "plan": "inference_belief_state_v4",
-      "file": "inference_belief_state_v4_plan.md",
-      "node": "inference_belief_state_v4:INF-7",
-      "status": "open",
-      "lit_pull_status": "none",
-      "unblocks_claims": [
-        "Q-070"
-      ],
-      "harvest": [
-        "Biology grounding (project rule feedback_biology_before_formal_definitions): L1 hippocampal-prefrontal replay (intake 5.1); L2 cognitive-map / relational inference (intake 5.2); L3 pattern-completion vs preplay safety (intake 5.3); L4 POMDP belief-state + Dreamer latent world models (intake 6.1/6.2); L5 active inference / epistemic value (intake 6.3)",
-        "Failure-mode register (intake section 9): failure-to-infer-hidden-danger, failure-to-infer-hidden-safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation (apophenia/paranoia), cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic",
-        "These map onto EXISTING state-abstraction failure modes (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading) -- the register links new modes to the existing taxonomy rather than inventing a parallel one"
-      ],
-      "blocked_lb": 4
     },
     {
       "plan": "developmental_dmn_v4",

@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_360_tonic_dopamine_vigor_niv2007",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-360"],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor.",
+    "authors": ["Yael Niv", "Nathaniel D. Daw", "Daphna Joel", "Peter Dayan"],
+    "year": 2007,
+    "venue": "Psychopharmacology (Berl)",
+    "doi": "10.1007/s00213-006-0502-4",
+    "url": "https://doi.org/10.1007/s00213-006-0502-4"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Foundational computational account (source_quality 0.85) deriving response VIGOUR (latency/rate of acting) as an optimal-control read-out of a slow modulatory variable -- tonic dopamine reporting the average reward rate / opportunity cost. This is the co-constitutive basal-ganglia partner the AE-9 gate names for MECH-360 (L2): expression INTENSITY is not a separate output channel but a computed consequence of the motivational state driving action selection. mapping_fidelity 0.70 -- it grounds the INTENSITY/vigour dimension of expression-as-action-geometry, but MECH-360's geometry is richer (approach angle, retreat, oscillation, avoidance margin, repair-seeking), only one axis of which is captured by a scalar vigour. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Vigour here is a single scalar (response rate/latency) set by a GLOBAL tonic signal -- it does not differentiate per-candidate (the average reward rate is shared across actions), so it grounds expression INTENSITY but not the per-candidate STYLE differentiation that MECH-360 inherits from MECH-359.", "Tonic-DA-as-average-reward is a normative model, not a direct expression measurement; the link from vigour to the visible behavioural geometry (hesitation, approach angle) is an REE-side extrapolation."],
+  "tags": ["mech-360", "tonic_dopamine", "response_vigor", "basal_ganglia", "expression_intensity", "ae-9", "completion_set_L2"],
+  "mapping": {
+    "source_claim_statement": "Response vigour (the rate/latency of acting) is optimally set by the long-run average reward rate, which acts as the opportunity cost of time and is putatively reported by tonic dopamine levels in nucleus accumbens; higher tonic dopamine -> more vigorous responding. Vigour is a computed consequence of the motivational state, not an independently-engineered output.",
+    "ree_translation": "MECH-360 asserts expression begins as an EMERGENT read-out of affective arbitration, not a separate output channel. Niv et al supply the cleanest normative instance of that logic in the motor-intensity dimension: the basal-ganglia vigour signal (how fast/hard you act) falls out of the value/motivational landscape rather than being separately specified. This is the 'tonic-DA vigour as expression-intensity partner' the AE-9 readiness gate names -- the BG read-out side of the affect vector.",
+    "mapping_caveat": "Vigour in Niv et al is a GLOBAL scalar set by the average reward rate -- it is shared across actions and so does NOT carry the per-candidate differentiation that is MECH-360's distinctive claim. It grounds the expression-INTENSITY axis only; the richer geometry (approach angle, retreat, oscillation, avoidance margin, decommitment, repair-seeking) is not addressed. Also a model, not a direct expression measurement.",
+    "source_context": "Average-reward reinforcement-learning / optimal-control model of free-operant behaviour (rodent free-operant data); computational neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Strong foundational model but grounds only one axis (intensity) of MECH-360's geometry, and via a global rather than per-candidate signal. Held below the MECH-359 anchors accordingly."
+  }
+}

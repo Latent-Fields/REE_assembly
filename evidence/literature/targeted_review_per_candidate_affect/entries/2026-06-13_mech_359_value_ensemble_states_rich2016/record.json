@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_359_value_ensemble_states_rich2016",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-359"],
+  "source": {
+    "title": "Decoding subjective decisions from orbitofrontal cortex.",
+    "authors": ["Erin L. Rich", "Jonathan D. Wallis"],
+    "year": 2016,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4320",
+    "url": "https://doi.org/10.1038/nn.4320"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Primate OFC ensemble-decoding study (source_quality 0.90) showing that during a single choice OFC ALTERNATES between distinct neural states each associated with one available option's value, and that the dynamics of this alternation predict whether the subject decides quickly or vacillates. This is the strongest available anchor for BOTH halves of MECH-359: (a) per-candidate-differentiated value representations co-active for the same world-state, and (b) the deliberative oscillation between candidates that MECH-360 later reads out as expression (hesitation/vacillation). mapping_fidelity 0.80. Still a single economic-value-per-option scalar, not the multi-channel affect vector -- the multi-channel decomposition remains ungrounded. exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Decoded OFC states carry a single subjective value per option, not a multi-channel affect vector; the curiosity/safety/harm decomposition of MECH-359 is not addressed.", "Two-option task -- the K-candidate generalisation (REE evaluates many candidate trajectories) is an extrapolation beyond the binary-choice evidence."],
+  "tags": ["mech-359", "orbitofrontal_cortex", "value_ensembles", "per_candidate_states", "deliberation_dynamics", "ae-9", "completion_set_L1"],
+  "mapping": {
+    "source_claim_statement": "During individual subjective choices, OFC alternates between neural states associated with the value of each available option; ensembles of value-encoding neurons shift activity patterns as the network evaluates each option, and the dynamics of this alternation predict whether the subject decides quickly or vacillates between alternatives.",
+    "ree_translation": "Rich & Wallis is the dynamic, ensemble-level version of MECH-359's core requirement: for the same world-state the brain holds DISTINCT, co-considered, option-keyed value representations and arbitrates among them over time. This directly grounds 'the same world-state can support different candidate rankings under different internal pressures', and the observed vacillation dynamics are the biological seed of the MECH-360 expression readout (oscillation between candidates / hesitation).",
+    "mapping_caveat": "The decoded states represent a single subjective value per option, not the multi-channel affect vector MECH-359 posits; and the task is binary, so REE's many-candidate generalisation is an extrapolation. The paper grounds per-candidate differentiation + deliberation dynamics, not the affect-channel content.",
+    "source_context": "Single-unit ensemble recordings + state-space decoding, macaque OFC, subjective two-option choice; primate electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.32,
+    "notes": "Slightly higher mapping_fidelity than Padoa-Schioppa 2006 because the per-candidate states are shown CO-ACTIVE and DELIBERATIVE (mapping both MECH-359 differentiation and the MECH-360 expression-oscillation precursor), not just per-good tuning. Discounted for scalar-value content and binary-task scope."
+  }
+}

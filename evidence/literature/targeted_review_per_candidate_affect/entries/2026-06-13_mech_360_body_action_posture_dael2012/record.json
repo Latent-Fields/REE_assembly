@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_per_candidate_affect",
+  "entry_id": "2026-06-13_mech_360_body_action_posture_dael2012",
+  "timestamp_utc": "2026-06-13T18:06:40Z",
+  "claim_ids_tested": ["MECH-360"],
+  "source": {
+    "title": "Emotion expression in body action and posture.",
+    "authors": ["Nele Dael", "Marcello Mortillaro", "Klaus R. Scherer"],
+    "year": 2012,
+    "venue": "Emotion",
+    "doi": "10.1037/a0025737",
+    "url": "https://doi.org/10.1037/a0025737"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Empirical production study (source_quality 0.70; n=10 actors, posed portrayals) using the Body Action and Posture (BAP) coding system to show that emotion-specific information is carried by patterns of body MOVEMENT and posture, and -- decisively for MECH-360 -- that many of these patterns are interpretable as reflecting functional components of emotion, specifically modes of APPRAISAL and ACTION READINESS. This is the L2 'expression-as-action-geometry' anchor: expression is the geometric residue of action-readiness, not a separate signal. mapping_fidelity 0.78. Discounted by posed-vs-spontaneous portrayal and small actor sample (transfer_risk 0.42). exp_conf unchanged 0 -- PROMOTES NOTHING.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Portrayals are ACTED by professional actors, not spontaneous emergent behaviour -- posed expression may overstate the lawfulness of the action-geometry/emotion mapping relative to naturally-emergent behaviour.", "Most emotions were expressed by MULTIPLE body-movement patterns (many-to-one), so the geometry->affect read-out is not a clean bijection; an observer inferring state from geometry (the V5 consumer) faces real ambiguity.", "Human full-body emotional display -> REE agent action-geometry is a substantial morphological transfer; REE has no body, so 'posture' maps only metaphorically onto trajectory shape."],
+  "tags": ["mech-360", "body_action_posture", "action_readiness", "expression_geometry", "appraisal_components", "ae-9", "completion_set_L2"],
+  "mapping": {
+    "source_claim_statement": "Body movement and posture convey emotion-specific (not merely intensity) information; using the BAP coding system, specific patterns of body action systematically distinguish portrayed emotions, and most patterns are best explained as reflecting functional components of emotion -- modes of appraisal and action readiness -- rather than as arbitrary expressive codes.",
+    "ree_translation": "MECH-360 asserts expression is the emergent geometric RESIDUE of affective arbitration -- the visible style (approach, retreat, hesitation) falls out of which trajectory the affect vector selected. Dael et al is the empirical case that human emotional expression IS organised as action-geometry tied to action-readiness/appraisal, exactly the 'expression-as-action-geometry' (Dael/Mortillaro/Scherer 2012 body-action coding) anchor the AE-9 gate names. Expression as configured action, not a bolt-on output channel.",
+    "mapping_caveat": "Portrayals are posed by actors, not spontaneous/emergent; expression is many-to-one (most emotions -> multiple body patterns), so the geometry->state read-out is ambiguous; and the human full-body morphology transfers only metaphorically to a bodiless REE agent's trajectory geometry. Grounds the PRINCIPLE (expression = action-readiness geometry), not a specific REE read-out mapping.",
+    "source_context": "Human emotion-portrayal production study, 10 professional actors, 12 emotions, BAP coding; behavioural/affective science."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.42,
+    "notes": "High conceptual mapping_fidelity (action-readiness IS the MECH-360 frame) but real transfer risk from posed human full-body display to bodiless agent geometry, plus small posed sample. Net 0.60."
+  }
+}
