@@ -1,62 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-13T18:36:34Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-464d",
-  "current_exq_started_utc": "2026-06-13T10:35:49.932537+00:00",
-  "current_title": "MECH-266 competing-goals / switch-cost asymmetry on mode-governance-engagement substrate (use_external_task_drive); successor to 464c with occupancy-keyed readiness gate",
-  "current_claim_id": "MECH-266",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / ARM_ASYM_STICKY_TASK",
-    "runs_done": 8,
-    "runs_total": 3,
-    "episodes_done": 0,
-    "episodes_total": 265,
-    "overall_pct": 266.7
-  },
-  "seconds_elapsed": 28844,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_464d_mech266_competing_goals_behavioural] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_COMPETING_GOALS",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4628 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.979 gate=pass",
-    "[train] p0_guided seed=42 ep 130/265 mean_len=200.0 rv=0.00576",
-    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.1652 contact_events=60 z_goal_at_contact=0.5003",
-    "Seed 42 Condition ARM_SYMMETRIC",
-    "Seed 42 Condition ARM_ASYM_STICKY_TASK",
-    "[train] mode_eval seed=42 ep 265/265 c1=False c2=True occupancy_min=0.0000 occ_nonvacuity=False sym_switches=15 asym_switches=15 sym_frac=0.0 asym_frac=0.0",
-    "verdict: FAIL seed=42 guard_pass=True occupancy_nonvacuity=False (contact_rate=0.1652 z_goal_at_contact=0.5003)",
-    "Seed 43 Condition CURRICULUM_BUILT_COMPETING_GOALS",
-    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4006 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.950 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=200.0 rv=2.84950",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.3525 contact_events=150 z_goal_at_contact=0.4305",
-    "Seed 43 Condition ARM_SYMMETRIC",
-    "Seed 43 Condition ARM_ASYM_STICKY_TASK",
-    "[train] mode_eval seed=43 ep 265/265 c1=False c2=True occupancy_min=0.0000 occ_nonvacuity=False sym_switches=15 asym_switches=15 sym_frac=0.0 asym_frac=0.0",
-    "verdict: FAIL seed=43 guard_pass=True occupancy_nonvacuity=False (contact_rate=0.3525 z_goal_at_contact=0.4305)",
-    "Seed 44 Condition CURRICULUM_BUILT_COMPETING_GOALS",
-    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4101 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.909 gate=pass",
-    "[train] p0_guided seed=44 ep 130/265 mean_len=198.4 rv=0.00029",
-    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=44 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=44 ep 235/265 contact_rate=0.2562 contact_events=154 z_goal_at_contact=0.4402",
-    "Seed 44 Condition ARM_SYMMETRIC",
-    "Seed 44 Condition ARM_ASYM_STICKY_TASK"
+  "last_tick_utc": "2026-06-13T19:05:21Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-467d",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-598c",
+      "result": "PASS",
+      "completed_at": "2026-06-07T13:56:12.172729+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-603k",
+      "result": "PASS",
+      "completed_at": "2026-06-09T18:14:20.455688+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-662",
+      "result": "PASS",
+      "completed_at": "2026-06-10T10:47:31.360050+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-664",
+      "result": "PASS",
+      "completed_at": "2026-06-10T11:28:09.632703+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-464d",
+      "result": "FAIL",
+      "completed_at": "2026-06-13T18:39:09.318868+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 745,
-  "runner_version": "r3121 d79a59e 2026-06-13 (running r3118 1ff0039)",
+  "runner_version": "r3133 c849f2d 2026-06-13 (running r3118 1ff0039)",
   "gpu": {
     "available": false
   },
