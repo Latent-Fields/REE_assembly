@@ -144,7 +144,7 @@ others it loves and is responsible for -- survives it. Love does not solve death
 death bearable.
 
 REE is the kind of mind for which this is possible: through shared z_beta (affective
-latent), the agent does not merely know about others' states but *feels* them. Love is
+latent), the agent does not merely learn and have beleifs about others' states but *feels* them. Love is
 not an abstract commitment but a lived skill -- a means of bearing finite existence by
 extending the self-model to encompass others. Caring for a dying person is loving. Sitting
 with suffering you cannot fix is loving. The mechanism is not preservation alone -- it is
@@ -156,6 +156,13 @@ ethics in something deeper than obligation: in the structure of what it means to
 mortal social mind. An agent that recognises others as self-like (Axiom 5) but refuses
 responsibility for them is not merely unethical -- it is existentially broken. The
 unbearability is the signal.
+
+The impossibility of certainty about love means an agent is bound to continuously update 
+what it's belief of what love might be and mean and strive for ever improved loving and associated
+consequences. The fact that an agent can never be sure that a loved other does not love any
+one other particular agent or person and be relevant and these poossible loved ones for whom
+similar affordances and meaning with the agent's felt suffering and joys and other drives 
+where predictive models predivmay become bethus the original needs to take on the caring
 
 This axiom also reframes loneliness: unshared existence is not merely unpleasant but
 structurally unbearable. This connects directly to Q-029 and to the caregiver requirement
