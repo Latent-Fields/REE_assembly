@@ -16600,7 +16600,7 @@
       }
     },
     "MECH-103": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.832",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.831",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -16627,9 +16627,9 @@
       },
       "latest_run_id": "2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual",
       "latest_timestamp_utc": "2026-03-19T20:00:00Z",
-      "literature_confidence": 0.832,
-      "literature_confidence_parallel": 0.832,
-      "overall_confidence": 0.832,
+      "literature_confidence": 0.831,
+      "literature_confidence_parallel": 0.831,
+      "overall_confidence": 0.831,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -25882,7 +25882,7 @@
       }
     },
     "MECH-266": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.373, lit_conf=0.84",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.372, lit_conf=0.84",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -25901,8 +25901,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.373,
-      "experimental_confidence_decoupled": 0.373,
+      "experimental_confidence": 0.372,
+      "experimental_confidence_decoupled": 0.372,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -33209,6 +33209,61 @@
       "source_counts": {
         "experimental": 0,
         "literature": 4
+      }
+    },
+    "MECH-435": {
+      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.7",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 1,
+      "evidence_class_counts": {
+        "lit:computational_model": 1
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-13_mech_394_opportunity_cost_vigor_niv2007",
+      "latest_timestamp_utc": "2026-06-13T18:11:26Z",
+      "literature_confidence": 0.7,
+      "literature_confidence_parallel": 0.7,
+      "overall_confidence": 0.7,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-435",
+          "confidence": 0.7,
+          "confidence_rationale": "Foundational normative theory establishing that the long-run average reward rate functions as an opportunity cost that sets a global vigour/allocation signal (reported by tonic dopamine). This supplies MECH-394 with the missing common currency an arbitration policy needs: a single scalar in which the cost of dwelling on one drive (time not spent on others) is priced. Held at 0.70 because the theory is about response vigour/latency of an already-selected action, only indirectly about which drive is selected -- the bridge from opportunity-cost-of-time to inter-drive arbitration is a reasoned extension, not the paper's own claim.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_drive_arbitration",
+          "failure_signatures": [
+            "The opportunity-cost signal in Niv et al. controls how vigorously/quickly to act, not which of several competing drives to pursue. Treating it as a direct arbitration signal over-reads the model: it prices the cost of time but does not by itself rank drives.",
+            "The average-reward currency is a single global scalar; if MECH-394's arbitration needs per-axis differentiated valuations (so that fear and hunger are priced on different scales), a single opportunity-cost term is insufficient and must be combined with axis-specific benefit terms."
+          ],
+          "run_id": "2026-06-13_mech_394_opportunity_cost_vigor_niv2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-13T18:11:26Z"
+        }
+      ],
+      "runs_total": 1,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 1
       }
     },
     "MECH-900": {
@@ -41645,7 +41700,7 @@
       }
     },
     "SD-032a": {
-      "confidence_rationale": "exp=3 entry(s), lit=20 entry(s), exp_conf=0.573, lit_conf=0.878",
+      "confidence_rationale": "exp=3 entry(s), lit=20 entry(s), exp_conf=0.572, lit_conf=0.878",
       "direction_counts": {
         "mixed": 0,
         "supports": 21,
@@ -41666,8 +41721,8 @@
         "C": 3
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.573,
-      "experimental_confidence_decoupled": 0.573,
+      "experimental_confidence": 0.572,
+      "experimental_confidence_decoupled": 0.572,
       "fail_runs": 2,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -118616,6 +118671,23 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-435",
+      "confidence": 0.7,
+      "confidence_rationale": "Foundational normative theory establishing that the long-run average reward rate functions as an opportunity cost that sets a global vigour/allocation signal (reported by tonic dopamine). This supplies MECH-394 with the missing common currency an arbitration policy needs: a single scalar in which the cost of dwelling on one drive (time not spent on others) is priced. Held at 0.70 because the theory is about response vigour/latency of an already-selected action, only indirectly about which drive is selected -- the bridge from opportunity-cost-of-time to inter-drive arbitration is a reasoned extension, not the paper's own claim.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_drive_arbitration",
+      "failure_signatures": [
+        "The opportunity-cost signal in Niv et al. controls how vigorously/quickly to act, not which of several competing drives to pursue. Treating it as a direct arbitration signal over-reads the model: it prices the cost of time but does not by itself rank drives.",
+        "The average-reward currency is a single global scalar; if MECH-394's arbitration needs per-axis differentiated valuations (so that fear and hunger are priced on different scales), a single opportunity-cost term is insufficient and must be combined with axis-specific benefit terms."
+      ],
+      "run_id": "2026-06-13_mech_394_opportunity_cost_vigor_niv2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-13T18:11:26Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-060",
       "confidence": 0.8,
       "confidence_rationale": "Direct empirical demonstration that one drive (hunger) suppresses several others (thirst, anxiety, innate fear, social interaction), that the suppression is graded and context-conditional (often only when food is accessible), and that a hypothalamic node integrates internal state + external factors + anticipated yield. This is the multidrive-competition phenomenon MECH-394 asserts, measured at circuit + behavioural levels. Confidence held below 0.85 because the mapping is functional, not mechanistic -- REE has no AgRP/ARC analogue, and the paper shows hunger-over-others rather than a full N-axis arbitration policy.",
@@ -118855,7 +118927,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-13T18:58:42.576276Z",
+  "generated_at_utc": "2026-06-13T19:03:09.273958Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

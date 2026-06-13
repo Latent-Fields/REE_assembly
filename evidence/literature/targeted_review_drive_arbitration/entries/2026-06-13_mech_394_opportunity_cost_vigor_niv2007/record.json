@@ -3,7 +3,7 @@
   "literature_type": "targeted_review_drive_arbitration",
   "entry_id": "2026-06-13_mech_394_opportunity_cost_vigor_niv2007",
   "timestamp_utc": "2026-06-13T18:11:26Z",
-  "claim_ids_tested": ["MECH-394"],
+  "claim_ids_tested": ["MECH-394", "MECH-435"],
   "source": {
     "title": "Tonic dopamine: opportunity costs and the control of response vigor",
     "authors": ["Yael Niv", "Nathaniel D. Daw", "Daphna Joel", "Peter Dayan"],
@@ -20,7 +20,7 @@
     "The opportunity-cost signal in Niv et al. controls how vigorously/quickly to act, not which of several competing drives to pursue. Treating it as a direct arbitration signal over-reads the model: it prices the cost of time but does not by itself rank drives.",
     "The average-reward currency is a single global scalar; if MECH-394's arbitration needs per-axis differentiated valuations (so that fear and hunger are priced on different scales), a single opportunity-cost term is insufficient and must be combined with axis-specific benefit terms."
   ],
-  "tags": ["mech-394", "drive_arbitration", "opportunity_cost", "tonic_dopamine", "response_vigour", "average_reward_rl", "sd-012_crossref"],
+  "tags": ["mech-394", "mech-435", "drive_arbitration", "opportunity_cost", "tonic_dopamine", "response_vigour", "average_reward_rl", "sd-012_crossref"],
   "mapping": {
     "source_claim_statement": "In an average-reward reinforcement-learning model, optimal control balances the cost of acting quickly against the benefit of obtaining reward sooner; the long-run average reward rate plays the role of an opportunity cost (the cost of time), mediates motivational influences on response vigour, and is putatively reported by tonic dopamine in nucleus accumbens.",
     "ree_translation": "MECH-394's soft-competitive orchestration needs a common currency in which to compare otherwise-incommensurable drives. Niv et al. identify that currency: the opportunity cost of time -- the reward forgone elsewhere by dwelling on the current option. An arbitration policy that allocates behaviour across simultaneously-active drives is implicitly solving the same average-reward optimisation, where committing to one drive axis incurs the opportunity cost of the satiation/benefit not gained on the others. This also cross-references SD-012 (drive-scaled benefit signals): the tonic, slowly-varying global signal Niv describes is the kind of modulator that would set the overall vigour with which the winning drive is pursued, sitting above the per-candidate score_bias of MECH-295.",
