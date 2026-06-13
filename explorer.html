@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-12.2 -->
+<!-- EXPLORER_VERSION: 2026-06-13.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -130,6 +130,61 @@
       border-bottom-color: var(--accent);
       background: transparent;
     }
+
+    /* External (new-tab) link marker */
+    .ext-arrow {
+      font-size: 9px;
+      opacity: 0.55;
+      margin-left: 3px;
+      vertical-align: top;
+    }
+
+    /* "More" dropdown in the view-nav */
+    .nav-more { position: relative; display: inline-flex; }
+    .nav-more-btn { display: inline-flex; align-items: center; gap: 4px; }
+    .nav-more-caret { font-size: 10px; opacity: 0.7; }
+    .nav-more-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 60;
+      margin-top: 4px;
+      min-width: 190px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--card, #ffffff);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+    }
+    .nav-more-menu[hidden] { display: none; }
+    .nav-more-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 6px 10px 2px 10px;
+    }
+    .nav-more-item {
+      border: none;
+      background: transparent;
+      text-align: left;
+      padding: 7px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .nav-more-item:hover { background: rgba(0,0,0,0.05); color: var(--ink); }
+    .nav-more-item.primary { background: transparent; color: var(--accent); font-weight: 600; }
+    .nav-more-item.primary:hover { background: rgba(0,0,0,0.05); }
 
     .stats {
       display: flex;
@@ -2065,20 +2120,29 @@
       <a href="https://www.google.ie" target="_blank" rel="noopener" style="margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Google ↗</a>
     </div>
     <nav class="view-nav">
+      <!-- Primary views (home -> closure) -->
       <button id="listViewBtn" class="view-btn primary">List</button>
       <button id="graphViewBtn" class="view-btn">Graph</button>
-      <button id="docsViewBtn" class="view-btn">Docs</button>
       <button id="mapViewBtn" class="view-btn">Map</button>
       <button id="processViewBtn" class="view-btn" title="Weekly claim growth and SCC-collapsed dependency process view">Process</button>
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments</button>
       <button id="archViewBtn" class="view-btn" title="Architecture diagram with substrate stability overlay">Architecture</button>
-      <button id="contribViewBtn" class="view-btn">Contributors</button>
-      <a href="/fishtank_viz.html" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;">Fishtank &#x1F41F;</a>
-      <a href="/machines" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;" title="Multi-machine runner dashboard">Machines &#x1F5A5;&#xFE0F;</a>
-      <a href="/workset" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;" title="Post-governance work packages with copy-paste agent briefs">Workset</a>
-      <a href="/closure" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;" title="ree-v3 closure progress: gap nodes across all plan-of-record docs">Closure &#x1F9E9;</a>
-      <a href="/brain-map" target="_blank" rel="noopener" class="view-btn" style="text-decoration:none;display:inline-flex;align-items:center;padding-bottom:9px;" title="Brain-inspired region map: claims, implementation, evidence overlays">Brain Map</a>
+      <a href="/workset" target="_blank" rel="noopener" class="view-btn ext" title="Post-governance work packages with copy-paste agent briefs">Workset<span class="ext-arrow">&#x2197;</span></a>
+      <a href="/closure" target="_blank" rel="noopener" class="view-btn ext" title="ree-v3 closure progress: gap nodes across all plan-of-record docs">Closure &#x1F9E9;<span class="ext-arrow">&#x2197;</span></a>
+      <!-- Secondary surfaces + design documents, tucked behind one click -->
+      <div class="nav-more">
+        <button type="button" id="navMoreBtn" class="view-btn nav-more-btn" aria-haspopup="true" aria-expanded="false" title="Docs, contributors and other dashboards">More <span class="nav-more-caret">&#x25BE;</span></button>
+        <div id="navMoreMenu" class="nav-more-menu" hidden>
+          <div class="nav-more-label">Reference</div>
+          <button id="docsViewBtn" class="nav-more-item" title="Browse design documents by theme">Docs</button>
+          <button id="contribViewBtn" class="nav-more-item" title="Contributor ledger">Contributors</button>
+          <div class="nav-more-label">Dashboards</div>
+          <a href="/brain-map" target="_blank" rel="noopener" class="nav-more-item ext" title="Brain-inspired region map: claims, implementation, evidence overlays">Brain Map<span class="ext-arrow">&#x2197;</span></a>
+          <a href="/machines" target="_blank" rel="noopener" class="nav-more-item ext" title="Multi-machine runner dashboard">Machines &#x1F5A5;&#xFE0F;<span class="ext-arrow">&#x2197;</span></a>
+          <a href="/fishtank_viz.html" target="_blank" rel="noopener" class="nav-more-item ext" title="Behavioural visualisation">Fishtank &#x1F41F;<span class="ext-arrow">&#x2197;</span></a>
+        </div>
+      </div>
     </nav>
     <div class="stats-row">
       <button id="statsToggle" class="stats-toggle" type="button" aria-expanded="false" title="Show/hide claim stats">&#9656; Stats</button>
@@ -2522,54 +2586,72 @@ END CONFLICT RESOLUTION`;
         ],
       },
       {
-        label: 'Architecture',
+        label: 'Architecture / Overview & Engines',
         docs: [
           { title: 'Overview', path: 'docs/architecture/overview.md' },
           { title: 'E1', path: 'docs/architecture/e1.md' },
           { title: 'E2', path: 'docs/architecture/e2.md' },
           { title: 'E3', path: 'docs/architecture/e3.md' },
           { title: 'L-space', path: 'docs/architecture/l_space.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Control Plane',
+        docs: [
           { title: 'Control Plane', path: 'docs/architecture/control_plane.md' },
           { title: 'Control Plane Signal Map', path: 'docs/architecture/control_plane_signal_map.md' },
           { title: 'Hook Surface Contract', path: 'docs/architecture/hook_surface_contract.md' },
+          { title: 'Path Authority and Interrupts', path: 'docs/architecture/path_authority_and_interrupts.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Memory & Circuits',
+        docs: [
           { title: 'Default Mode', path: 'docs/architecture/default_mode.md' },
           { title: 'Hippocampal Systems', path: 'docs/architecture/hippocampal_systems.md' },
           { title: 'Hippocampal Braid (legacy)', path: 'docs/architecture/hippocampal_braid.md' },
           { title: 'Papez Circuit', path: 'docs/architecture/papez_circuit.md' },
           { title: 'Arcuate Fasciculus', path: 'docs/architecture/arcuate_fasciculus.md' },
-          { title: 'Developmental Curriculum', path: 'docs/architecture/developmental_curriculum.md' },
-          { title: 'Residue Geometry', path: 'docs/architecture/residue_geometry.md' },
-          { title: 'Sensory Stream Tags', path: 'docs/architecture/sensory_stream_tags.md' },
-          { title: 'Temporal Dynamics', path: 'docs/architecture/temporal_dynamics.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Modes & Agency',
+        docs: [
           { title: 'Mode Manager', path: 'docs/architecture/mode_manager.md' },
           { title: 'Modes of Cognition', path: 'docs/architecture/modes_of_cognition.md' },
           { title: 'Agency Responsibility Flow', path: 'docs/architecture/agency_responsibility_flow.md' },
           { title: 'Trajectory Selection', path: 'docs/architecture/trajectory_selection.md' },
+          { title: 'Developmental Curriculum', path: 'docs/architecture/developmental_curriculum.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Attention & Binding',
+        docs: [
           { title: 'Entities and Binding', path: 'docs/architecture/entities_and_binding.md' },
           { title: 'Precision Control', path: 'docs/architecture/precision_control.md' },
           { title: 'Precision Scoping', path: 'docs/architecture/precision_scoping.md' },
-          { title: 'Path Authority and Interrupts', path: 'docs/architecture/path_authority_and_interrupts.md' },
+          { title: 'Why Attention Must Be Fragmented', path: 'docs/architecture/why_attention_must_be_fragmented.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Representation & Dynamics',
+        docs: [
+          { title: 'Residue Geometry', path: 'docs/architecture/residue_geometry.md' },
+          { title: 'Sensory Stream Tags', path: 'docs/architecture/sensory_stream_tags.md' },
+          { title: 'Temporal Dynamics', path: 'docs/architecture/temporal_dynamics.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Neuromodulation',
+        docs: [
           { title: 'Astrocyte Regulatory Stack', path: 'docs/architecture/astrocyte_regulatory_stack.md' },
           { title: 'Serotonin', path: 'docs/architecture/serotonin.md' },
-          { title: 'Language (overview)', path: 'docs/architecture/language.md' },
-          { title: 'Sleep (overview)', path: 'docs/architecture/sleep.md' },
-          { title: 'Social', path: 'docs/architecture/social.md' },
-          { title: 'Why Attention Must Be Fragmented', path: 'docs/architecture/why_attention_must_be_fragmented.md' },
-          { title: 'JEPA E1/E2 Integration Contract', path: 'docs/architecture/jepa_e1e2_integration_contract.md' },
-          { title: 'JEPA-REE Hybrid Diagram Spec', path: 'docs/architecture/jepa_ree_hybrid_diagram_spec.md' },
-          { title: 'REE-v2 Spec', path: 'docs/architecture/ree_v2_spec.md' },
-          { title: 'REE-v2 Repo Bootstrap Spec', path: 'docs/architecture/ree_v2_repo_bootstrap_spec.md' },
-          { title: 'Architecture Triple-View Guide', path: 'docs/architecture/diagram_views.md' },
-          { title: 'Architecture Stream Catalog', path: 'docs/architecture/streams.md' },
-          { title: 'Architecture Routing Table', path: 'docs/architecture/stream_routing.v1.yaml' },
-          { title: 'Architecture Static Diagram Source', path: 'docs/architecture/architecture_static.mmd' },
-          { title: 'Architecture Typed Dataflow Source', path: 'docs/architecture/architecture_typed_dataflow.mmd' },
-          { title: 'Architecture Episode Sequence Source', path: 'docs/architecture/episode_sequence.mmd' },
         ],
       },
       {
         label: 'Architecture / Language',
         docs: [
+          { title: 'Language (overview)', path: 'docs/architecture/language.md' },
           { title: 'Emergence and Bootstrapping', path: 'docs/architecture/language/emergence_and_bootstrapping.md' },
           { title: 'Language and Learning', path: 'docs/architecture/language/language_and_learning.md' },
           { title: 'Language and Institutions', path: 'docs/architecture/language/language_and_institutions.md' },
@@ -2581,9 +2663,41 @@ END CONFLICT RESOLUTION`;
       {
         label: 'Architecture / Sleep',
         docs: [
+          { title: 'Sleep (overview)', path: 'docs/architecture/sleep.md' },
           { title: 'Precision Recalibration', path: 'docs/architecture/sleep/precision_recalibration.md' },
           { title: 'Reality Consolidation', path: 'docs/architecture/sleep/reality_consolidation.md' },
           { title: 'Residue Integration', path: 'docs/architecture/sleep/residue_integration.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Social',
+        docs: [
+          { title: 'Social', path: 'docs/architecture/social.md' },
+        ],
+      },
+      {
+        label: 'Architecture / JEPA Integration',
+        docs: [
+          { title: 'JEPA E1/E2 Integration Contract', path: 'docs/architecture/jepa_e1e2_integration_contract.md' },
+          { title: 'JEPA-REE Hybrid Diagram Spec', path: 'docs/architecture/jepa_ree_hybrid_diagram_spec.md' },
+        ],
+      },
+      {
+        label: 'Architecture / Diagrams & Sources',
+        docs: [
+          { title: 'Architecture Triple-View Guide', path: 'docs/architecture/diagram_views.md' },
+          { title: 'Architecture Stream Catalog', path: 'docs/architecture/streams.md' },
+          { title: 'Architecture Routing Table', path: 'docs/architecture/stream_routing.v1.yaml' },
+          { title: 'Architecture Static Diagram Source', path: 'docs/architecture/architecture_static.mmd' },
+          { title: 'Architecture Typed Dataflow Source', path: 'docs/architecture/architecture_typed_dataflow.mmd' },
+          { title: 'Architecture Episode Sequence Source', path: 'docs/architecture/episode_sequence.mmd' },
+        ],
+      },
+      {
+        label: 'Architecture / Specs (v2)',
+        docs: [
+          { title: 'REE-v2 Spec', path: 'docs/architecture/ree_v2_spec.md' },
+          { title: 'REE-v2 Repo Bootstrap Spec', path: 'docs/architecture/ree_v2_repo_bootstrap_spec.md' },
         ],
       },
       {
@@ -6643,6 +6757,12 @@ END CONFLICT RESOLUTION`;
         if (btn === activeButton) btn.classList.add('primary');
         else btn.classList.remove('primary');
       });
+      // Reflect active state on the "More" button when a view it hosts is active.
+      const navMoreBtn = document.getElementById('navMoreBtn');
+      if (navMoreBtn) {
+        const hostedActive = (activeButton === els.docsViewBtn || activeButton === els.contribViewBtn);
+        navMoreBtn.classList.toggle('primary', hostedActive);
+      }
     }
 
     function hideAllPrimaryViews() {
@@ -8194,7 +8314,38 @@ END CONFLICT RESOLUTION`;
         els.contribViewBtn.addEventListener('click', () => setView('contributors'));
       }
 
-
+      // "More" dropdown in the view-nav
+      (function wireNavMore() {
+        const moreBtn = document.getElementById('navMoreBtn');
+        const moreMenu = document.getElementById('navMoreMenu');
+        if (!moreBtn || !moreMenu) return;
+        const closeMenu = () => {
+          moreMenu.setAttribute('hidden', '');
+          moreBtn.setAttribute('aria-expanded', 'false');
+        };
+        const openMenu = () => {
+          moreMenu.removeAttribute('hidden');
+          moreBtn.setAttribute('aria-expanded', 'true');
+        };
+        moreBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (moreMenu.hasAttribute('hidden')) openMenu();
+          else closeMenu();
+        });
+        // Close after choosing any item (in-page view buttons + external links)
+        moreMenu.querySelectorAll('.nav-more-item').forEach(item => {
+          item.addEventListener('click', () => closeMenu());
+        });
+        // Close on outside click or Escape
+        document.addEventListener('click', (e) => {
+          if (moreMenu.hasAttribute('hidden')) return;
+          if (e.target === moreBtn || moreMenu.contains(e.target)) return;
+          closeMenu();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMenu();
+        });
+      })();
 
       if (els.mapEpochOnly) {
         els.mapEpochOnly.addEventListener('change', () => {
