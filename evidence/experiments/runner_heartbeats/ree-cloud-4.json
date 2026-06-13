@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-13T02:37:06Z",
+  "last_tick_utc": "2026-06-13T03:07:13Z",
   "state": "running",
   "current_exq": "V3-EXQ-468d",
   "current_exq_started_utc": "2026-06-13T00:02:03.744458+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
-    "runs_done": 3,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
+    "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 121.4
+    "overall_pct": 203.8
   },
-  "seconds_elapsed": 9303,
+  "seconds_elapsed": 11110,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_468d_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
@@ -35,7 +35,16 @@
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4113 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.929 gate=pass",
     "[train] p0_guided seed=43 ep 130/265 mean_len=196.4 rv=9.93828",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.3726 contact_events=183 z_goal_at_contact=0.4267",
+    "Seed 43 Condition ARM_SUBSTRATE_ON",
+    "Seed 43 Condition ARM_SUBSTRATE_OFF",
+    "[train] decommit_eval seed=43 ep 265/265 c1=False c2=False decommit_gap=-1.0000 on_cfp_abs=1.0000 off_cfp_abs=0.0000 hook_fires=4 beta_elev=0 eps_contra=5 rel_near=0",
+    "verdict: FAIL seed=43 guard_pass=True commit_nonvacuity=False (contact_rate=0.3726 z_goal_at_contact=0.4267)",
+    "Seed 44 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4323 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.866 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
