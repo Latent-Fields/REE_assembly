@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_366_field_observer_perspective_nigro1983",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["MECH-366"],
+  "source": {
+    "title": "Point of view in personal memories",
+    "authors": ["Georgia Nigro", "Ulric Neisser"],
+    "year": 1983,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1016/0010-0285(83)90016-6"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Establishes the core construct MECH-366 needs: personal memories are represented from one of two viewpoints -- FIELD (first-person, original field of view) or OBSERVER (seeing oneself from outside) -- so perspective is a real, represented structural property of an episode, not just an encoding artefact of the camera. That is direct support for the existence of a viewpoint tag. Held at 0.6 (mixed) because the paper does NOT demonstrate the part MECH-366 most needs: that viewpoint is freely SWITCHABLE at retrieval independent of encoding viewpoint. It shows perspective varies with emotion/self-awareness and age of memory, which actually suggests perspective is partly determined by encoding/affect rather than arbitrarily re-set on demand.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Nigro & Neisser show perspective CORRELATES with emotionality, self-awareness and memory age (older and more self-focused memories drift toward observer perspective). This is evidence that viewpoint is partly DETERMINED by encoding and emotional content, which is in tension with MECH-366's claim that viewpoint is freely switchable at retrieval INDEPENDENT of encoding viewpoint -- the independence is not demonstrated and is mildly contraindicated.",
+    "The construct is established by self-report questionnaire on naturalistic memories, with no manipulation showing a single memory can be voluntarily re-experienced from the other viewpoint on demand; switchability is inferred, not tested."
+  ],
+  "tags": ["mech-366", "field_observer_perspective", "autobiographical_memory", "viewpoint", "point_of_view"],
+  "mapping": {
+    "source_claim_statement": "Personal memories are recalled from one of two distinguishable points of view -- 'field' memories, in which the rememberer sees the scene from their original first-person vantage, and 'observer' memories, in which the rememberer sees themselves in the scene from an external vantage. Which perspective dominates varies systematically with emotionality, degree of self-awareness at the time, and the age of the memory.",
+    "ree_translation": "MECH-366's switchable episodic perspective tag: event tokens carry a viewpoint label (participant/first-person vs observer/third-person). Nigro & Neisser establish that this label is a genuine represented property of autobiographical episodes -- the first half of MECH-366 -- and that it is the same field/observer construct REE names.",
+    "mapping_caveat": "Grounds the EXISTENCE of a viewpoint property, NOT its free switchability-at-retrieval-independent-of-encoding (the load-bearing second half of MECH-366). The systematic dependence of perspective on emotion/self-awareness/age that they report actually leans against arbitrary re-setting. Switchability is better evidenced by later work (e.g. voluntary perspective-shift studies); this entry should be read as grounding the construct and flagging switchability as an open follow-up. Human self-report; naturalistic memories.",
+    "source_context": "Human cognitive psychology; four studies, recall questionnaires on naturalistic personal memories."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Seminal, well-replicated construct (1983 Cognitive Psychology) -- source quality solid for its era and method (self-report). Mapping fidelity moderate: it nails the construct but not the switchability that distinguishes MECH-366 from a fixed encoding tag. Direction 'mixed' deliberately, not 'supports', because the emotion/age dependence is a mild contra-signal to encoding-independent switching."
+  }
+}

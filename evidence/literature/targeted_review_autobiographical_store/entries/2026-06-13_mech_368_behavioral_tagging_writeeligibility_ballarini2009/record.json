@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_368_behavioral_tagging_writeeligibility_ballarini2009",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["MECH-368", "MECH-361"],
+  "source": {
+    "title": "Behavioral tagging is a general mechanism of long-term memory formation",
+    "authors": ["Fabricio Ballarini", "Diego Moncada", "Maria Cecilia Martinez", "Nadia Alen", "Haydee Viola"],
+    "year": 2009,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.0907078106"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Direct behavioural demonstration of a two-factor write-eligibility mechanism: a weak experience sets a transient, input-specific 'learning tag' that yields only short-term memory UNLESS a separate novelty/salience event within a critical time window supplies the plasticity-related products that convert it to long-term memory. This is a strong biological analogue of MECH-368's separation of write-ELIGIBILITY (the tag) from write-CONSUMMATION (capture of consolidation resources), and grounds 'plasticity_eligibility' as a real gated state rather than an engineering label. Held at 0.7 because it concerns hippocampus-dependent episodic/behavioural LTM, not durable world-model/policy weight updates, and the gating variable is novelty/PRP availability rather than MECH-368's fuller f(PE, salience, residue, goal_relevance) conditioning set.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Behavioral tagging gates the consolidation of episodic/behavioural memory traces; it is NOT shown to gate durable updates to a predictive world-model or action policy, the path MECH-368 flags as under-covered. The analogy to E1/E2/policy weight-writes is structural, not demonstrated.",
+    "The 'second factor' that licenses long-term write is NOVELTY-driven protein synthesis within a time window, a narrower and more passive trigger than MECH-368's active per-event gate conditioned on prediction_error, salience, residue_status, goal_relevance and plasticity_eligibility together. Tagging shows eligibility-then-capture exists; it does not show the rich multi-input arbitration MECH-368 posits."
+  ],
+  "tags": ["mech-368", "mech-361", "behavioral_tagging", "synaptic_tag_and_capture", "write_eligibility", "plasticity_eligibility", "consolidation", "hippocampus"],
+  "mapping": {
+    "source_claim_statement": "Weak training that normally yields only short-term memory is converted to long-term memory if it coincides (within a critical time window) with a novel experience; this requires newly synthesized proteins induced by the novelty and reflects a 'behavioral tagging' process analogous to synaptic tag-and-capture -- a weak event sets a transient, protein-synthesis-independent, input-specific learning tag that must capture plasticity-related products to become durable.",
+    "ree_translation": "MECH-368's distinction between an event being write-ELIGIBLE (the tag is set) and actually consummating a durable write (capturing the consolidation resources), and the reality of a gated 'plasticity_eligibility' state in its conditioning function. Also grounds MECH-361's preferential-write logic: which traces survive to LTM is gated, not automatic, and salience/novelty is the gate.",
+    "mapping_caveat": "The gated path is hippocampus-dependent episodic/behavioural LTM, NOT the online world-model/policy weight-update path that is MECH-368's actual under-covered target. The licensing factor is novelty-induced PRP availability, narrower than MECH-368's multi-input arbitration. Animal behaviour (rats); transfer to a synthetic durable-write gate is by analogy and structural parallel, not demonstrated equivalence.",
+    "source_context": "Rats; three learning tasks (spatial object recognition, contextual fear conditioning, conditioned taste aversion); weak-training + novelty paradigm with protein-synthesis inhibitor controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Strong, well-controlled PNAS behavioural study generalising synaptic tag-and-capture to behaviour across three tasks. Mapping fidelity moderate: the eligibility-then-capture STRUCTURE maps cleanly onto MECH-368's eligibility/consummation split, but the path (episodic vs model-update) and the conditioning set (novelty vs multi-input) both diverge. Direction 'supports' for the structural principle that durable write is a gated, two-factor process."
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T17:36:27Z",
+  "generated_at": "2026-06-13T18:16:39Z",
   "totals": {
     "nodes": 99,
     "plans": 13,
@@ -27,7 +27,7 @@
       "frontier": [
         "affect_expression_v4:AE-2"
       ],
-      "lit": "none"
+      "lit": "done"
     },
     {
       "plan": "autobiographical_memory_v4",
@@ -45,7 +45,7 @@
         "autobiographical_memory_v4:ABM-1",
         "autobiographical_memory_v4:ABM-4"
       ],
-      "lit": "none"
+      "lit": "partial"
     },
     {
       "plan": "developmental_dmn_v4",
@@ -96,7 +96,7 @@
       "frontier": [
         "goal_deliberation_v4:GDL-1"
       ],
-      "lit": "none"
+      "lit": "done"
     },
     {
       "plan": "hippocampal_planning_v4",
@@ -240,7 +240,7 @@
         "self_model_v4:SELF-1",
         "self_model_v4:SELF-3"
       ],
-      "lit": "none"
+      "lit": "done"
     }
   ],
   "v3_bottlenecks": [
@@ -441,6 +441,26 @@
       "blocked_lb": 5
     },
     {
+      "plan": "autobiographical_memory_v4",
+      "file": "autobiographical_memory_v4_plan.md",
+      "node": "autobiographical_memory_v4:ABM-9",
+      "status": "in_progress",
+      "lit_pull_status": "partial",
+      "unblocks_claims": [
+        "ARC-085",
+        "MECH-365",
+        "MECH-366",
+        "MECH-368",
+        "MECH-361"
+      ],
+      "harvest": [
+        "L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGaugh 1998; Ballarini 2009 behavioural tagging) -- the anchor for MECH-368/MECH-361 affect-weighted write authority",
+        "L2 source/provenance monitoring (Johnson, Hashtroudi & Lindsay 1993 source-monitoring framework; reality-monitoring) for the ARC-085 provenance fields + the imagined-vs-experienced viewpoint label (MECH-366)",
+        "L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning"
+      ],
+      "blocked_lb": 3
+    },
+    {
       "plan": "memory_lifecycle_v4",
       "file": "memory_lifecycle_v4_plan.md",
       "node": "memory_lifecycle_v4:MEM-8",
@@ -475,45 +495,6 @@
       "blocked_lb": 2
     },
     {
-      "plan": "affect_expression_v4",
-      "file": "affect_expression_v4_plan.md",
-      "node": "affect_expression_v4:AE-9",
-      "status": "open",
-      "lit_pull_status": "none",
-      "unblocks_claims": [
-        "MECH-359",
-        "MECH-360",
-        "MECH-364",
-        "MECH-369",
-        "ARC-088"
-      ],
-      "harvest": [
-        "L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neurons; Rich & Wallis 2016 value-encoding ensembles) -- the neuroscience anchor MECH-359's 'affect must be candidate-differentiated' currently LACKS; cross-ref Berridge & Robinson incentive salience already grounding SD-012/MECH-295",
-        "L2 expression-as-action-geometry (Dael/Mortillaro/Scherer 2012 body-action coding; Niv 2007 tonic-DA vigour as expression-intensity partner) -- harvest the basal-ganglia vigour pathway as the co-constitutive read-out partner for MECH-360",
-        "L3 affect-as-control-precision (Seth 2013; Critchley & Garfinkel interoceptive inference) for MECH-364 conflict/constraint-load; L4 slow-modulator decommit-friction (MECH-369) needs a value-INDEPENDENT modulator-class anchor -- flag: no owning substrate node exists yet"
-      ],
-      "blocked_lb": 4
-    },
-    {
-      "plan": "goal_deliberation_v4",
-      "file": "goal_deliberation_v4_plan.md",
-      "node": "goal_deliberation_v4:GDL-8",
-      "status": "open",
-      "lit_pull_status": "none",
-      "unblocks_claims": [
-        "SD-033e",
-        "MECH-264",
-        "MECH-265",
-        "SD-046"
-      ],
-      "harvest": [
-        "L1 frontopolar/area-10 counterfactual deliberation (Koechlin & Hyafil 2007 branching; Boorman 2009 vmPFC/FPC tracking the value of the UNCHOSEN alternative) -- the direct anchor for SD-033e/MECH-264 counterfactual-value tracking",
-        "L2 dACC foraging/switch value (Kolling 2012; Shenhav EVC 2013) -- harvest the dACC<->FPC loop as a co-constitutive partner (SD-032b dACC is the V3 hook); and the LC-NE disengage/explore partner (cross-link plasticity_neuromodulation)",
-        "L3 capacity-limited multi-slot maintenance (Cowan; Bays & Husain resource model) grounding the SD-046 N>=2 GoalState fork and the SD-027/028 selection-gate that makes it tractable"
-      ],
-      "blocked_lb": 4
-    },
-    {
       "plan": "inference_belief_state_v4",
       "file": "inference_belief_state_v4_plan.md",
       "node": "inference_belief_state_v4:INF-7",
@@ -528,46 +509,6 @@
         "These map onto EXISTING state-abstraction failure modes (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading) -- the register links new modes to the existing taxonomy rather than inventing a parallel one"
       ],
       "blocked_lb": 4
-    },
-    {
-      "plan": "self_model_v4",
-      "file": "self_model_v4_plan.md",
-      "node": "self_model_v4:SELF-8",
-      "status": "open",
-      "lit_pull_status": "none",
-      "unblocks_claims": [
-        "MECH-214",
-        "MECH-215",
-        "SD-030",
-        "INV-064",
-        "ARC-081"
-      ],
-      "harvest": [
-        "Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this node adds the self-model-INTEGRATION-specific strands rather than duplicating it",
-        "L1 body-ownership (Botvinick & Cohen 1998 rubber-hand; Tsakiris 2010 neurocognitive model) + L2 sense-of-agency / efference-copy self (Blakemore & Frith; forward-model self-prediction) -- the direct anchors for SD-030 E2 self-forward-model and MECH-215",
-        "L3 interoceptive self (Craig 2009; Seth) for the MECH-214 wanting-on-an-E1-unrepresented-satisfaction-state failure mode; harvest the insula partner + TPJ self/other boundary as the cross-link to the V5 social tier"
-      ],
-      "blocked_lb": 4
-    },
-    {
-      "plan": "autobiographical_memory_v4",
-      "file": "autobiographical_memory_v4_plan.md",
-      "node": "autobiographical_memory_v4:ABM-9",
-      "status": "open",
-      "lit_pull_status": "none",
-      "unblocks_claims": [
-        "ARC-085",
-        "MECH-365",
-        "MECH-366",
-        "MECH-368",
-        "MECH-361"
-      ],
-      "harvest": [
-        "L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGaugh 1998; Ballarini 2009 behavioural tagging) -- the anchor for MECH-368/MECH-361 affect-weighted write authority",
-        "L2 source/provenance monitoring (Johnson, Hashtroudi & Lindsay 1993 source-monitoring framework; reality-monitoring) for the ARC-085 provenance fields + the imagined-vs-experienced viewpoint label (MECH-366)",
-        "L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning"
-      ],
-      "blocked_lb": 3
     },
     {
       "plan": "developmental_dmn_v4",

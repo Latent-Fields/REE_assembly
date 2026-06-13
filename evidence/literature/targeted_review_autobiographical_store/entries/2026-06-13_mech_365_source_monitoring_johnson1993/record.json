@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_365_source_monitoring_johnson1993",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["MECH-365", "ARC-085"],
+  "source": {
+    "title": "Source monitoring",
+    "authors": ["Marcia K. Johnson", "Shahin Hashtroudi", "D. Stephen Lindsay"],
+    "year": 1993,
+    "venue": "Psychological Bulletin",
+    "doi": "10.1037/0033-2909.114.1.3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The source-monitoring framework is the foundational and still-dominant account of how the cognitive system attributes a remembered event to its origin (perceived vs imagined, internal vs external, this-source vs that-source). It directly grounds MECH-365's central design move -- that provenance is a represented attribute of an event rather than a free-floating mode bit -- and the reality-monitoring sub-case is the biological form of the committed_vs_imagined field. Held below 0.8 because the framework treats provenance as a RECONSTRUCTIVE, probabilistic attribution made at retrieval (and routinely WRONG), which is in tension with MECH-365's stronger one-way, never-violated gate; the framework supports the existence and dimensionality of the field but partly weakens the absoluteness of the gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Source monitoring is a heuristic, reconstructive judgement made at retrieval from imperfect cues (vividness, sensory detail, cognitive-operation traces), not a stored ground-truth label -- so the human system routinely MISattributes imagined events as perceived (the source-misattribution errors that ARE confabulation/false memory). This weakens MECH-365's premise that committed_vs_imagined can be a reliably-enforced, one-way, first-class field rather than a fallible after-the-fact inference.",
+    "Because 'source' is multidimensional with indefinitely many values, a single binary committed_vs_imagined bit may be an under-specification: provenance failures occur along many axes (who said it, when, internally-generated-by-me vs by-another), not just real-vs-imagined."
+  ],
+  "tags": ["mech-365", "arc-085", "source_monitoring", "reality_monitoring", "provenance", "confabulation", "committed_vs_imagined"],
+  "mapping": {
+    "source_claim_statement": "Memories do not carry intrinsic source labels; the source of a memory (perceived vs imagined, internally vs externally generated, one external source vs another) is ATTRIBUTED by decision processes operating on qualitative characteristics of the memory record (perceptual/contextual/semantic detail, records of cognitive operations). Reality monitoring -- distinguishing internally generated from externally derived memories -- is one sub-case; 'source' is a multidimensional construct, and source attributions can be and frequently are wrong.",
+    "ree_translation": "MECH-365's provenance-bearing event token: every event token carries explicit provenance fields {source_status, committed_vs_imagined} and the committed_vs_imagined label is first-class and load-bearing. The source-monitoring framework is the biology that makes 'provenance is a represented attribute of an event' a grounded design move rather than an engineering convenience, and reality monitoring is the direct analogue of the committed_vs_imagined distinction. Also grounds ARC-085's claim that event tokens are bound to perspective, self-state and source rather than being neutral storage.",
+    "mapping_caveat": "The framework's provenance is RECONSTRUCTED at retrieval and is fallible -- the source-misattribution errors it catalogues ARE confabulation. MECH-365 instead posits a one-way gate that imagined tokens can NEVER cross into committed status. So the human substrate evidences that provenance is a represented, multidimensional attribute (supports MECH-365's data structure) but simultaneously shows the biological version is leaky (does NOT support, and partly undercuts, the absoluteness of MECH-365's gate). Human cognitive psychology; healthy + clinical populations.",
+    "source_context": "Human cognitive psychology; integrative theoretical review spanning recognition, eyewitness memory, cryptomnesia, confabulation, amnesia and aging."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Foundational, field-defining review (Psychological Bulletin, thousands of citations). Mapping fidelity discounted because the framework grounds the FIELD (provenance as a represented, multidimensional attribute) more strongly than it grounds the GATE (one-way, never-violated) -- on the gate it is arguably a weakening signal, captured in failure_signatures. Net direction is 'supports' for the data-structure claim that is MECH-365's actual content."
+  }
+}

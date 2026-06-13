@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_252_253_sleep_memory_triage_stickgold2013",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["MECH-361", "MECH-252", "MECH-253"],
+  "source": {
+    "title": "Sleep-dependent memory triage: evolving generalization through selective processing",
+    "authors": ["Robert Stickgold", "Matthew P. Walker"],
+    "year": 2013,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3303"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong, widely-cited review establishing that sleep does not preserve all encoded information but TRIAGES it -- selectively retaining some memories and discarding others, and applying different operations (integrate into existing networks / distill overarching rules / stabilize as-learned) to what it keeps, with salience/future-relevance tags biasing what is retained. This grounds the OFFLINE write-weight principle co-constitutive of MECH-361 (selective, salience-weighted consolidation) and the existence of distinct consolidation OPERATIONS that MECH-252/253 partition. Held at 0.62 (mixed) because the review does NOT establish MECH-252/253's specific dissociation -- SWS consolidating stored-content vs REM consolidating projection-WEIGHTS; it argues for selective + operation-differentiated processing generally, a coarser claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review establishes selective triage and multiple consolidation operations but does NOT map operations cleanly onto SWS-vs-REM, nor onto a content-vs-weights distinction; MECH-252 (SWS consolidates goal-value content) / MECH-253 (REM consolidates template-performance into projection weights) is a finer, stage-specific and target-specific dissociation that this paper does not deliver and is the part still owed direct evidence.",
+    "Triage 'tags' for retention are described in terms of future relevance / emotional salience / explicit instruction; the mechanism by which those tags are set and read is left open, so the claim that an affect GRADIENT is the write-weight (MECH-361) is supported only at the level of 'salience biases retention', not as a graded quantitative write-weight."
+  ],
+  "tags": ["mech-361", "mech-252", "mech-253", "sleep", "memory_triage", "consolidation", "sws", "rem", "selective_consolidation", "generalization", "sleep_substrate"],
+  "mapping": {
+    "source_claim_statement": "The brain does not retain all it encodes; sleep performs 'memory triage', selectively retaining some memories and discarding others, and for retained memories applies different operations -- integration into existing networks, distillation of overarching rules (generalization), or verbatim stabilization. Which memories are kept and how they are processed is biased by tags of future relevance and emotional salience.",
+    "ree_translation": "The offline write-weight principle co-constitutive of MECH-361 (consolidation is selective and salience-weighted, not uniform) and the premise behind MECH-252/MECH-253 that consolidation comprises distinct OPERATIONS on retained memories (content integration vs rule/weight extraction). Cross-links the autobiographical store to the sleep_substrate: the ARC-085 store must honour selective, operation-differentiated offline write rather than uniform replay.",
+    "mapping_caveat": "Supports selective + operation-differentiated consolidation in GENERAL; does NOT establish the specific MECH-252/253 dissociation (SWS=stored-content vs REM=projection-weights), which is stage-specific and target-specific and finer than this review. For MECH-361 it supports 'salience biases what is consolidated' but not 'a graded affective gradient is the quantitative write-weight'. Human + animal synthesis review; direction set 'mixed' to reflect partial mapping.",
+    "source_context": "Human and animal sleep-and-memory synthesis; review of selective consolidation, generalization and schema integration across sleep stages."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "High-prestige Nature Neuroscience review. Mapping fidelity is the binding constraint: it grounds the general principle (selective, operation-differentiated, salience-biased offline consolidation) that MECH-361/252/253 all assume, but not the specific stage/target dissociations MECH-252/253 assert. Direction 'mixed' -- genuine support for the shared premise, silence-to-underdetermination on the specific split."
+  }
+}

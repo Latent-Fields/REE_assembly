@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Autobiographical Memory (V4 forward roadmap): unified event store, provenance, write-authority, imagination-learning constraints"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361, MECH-252, MECH-253, MECH-261, Q-060, Q-062]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -163,8 +163,8 @@ closure_plan:
     - id: "autobiographical_memory_v4:ABM-9"
       title: "Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imagination-learning constraints lit-pulls + completion-set harvest)"
       phase: 2
-      status: open
-      lit_pull_status: none
+      status: in_progress
+      lit_pull_status: partial
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361]
@@ -175,7 +175,7 @@ closure_plan:
         - "L2 source/provenance monitoring (Johnson, Hashtroudi & Lindsay 1993 source-monitoring framework; reality-monitoring) for the ARC-085 provenance fields + the imagined-vs-experienced viewpoint label (MECH-366)"
         - "L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning"
       last_updated: 2026-06-13
-      completion_note: "Autobiographical_memory named its biology anchors only inside node readiness_gates (no dedicated grounding node). This node consolidates the formal /lit-pull (project rule feedback_biology_before_formal_definitions) and the completion-set harvest (emotional-tagging consolidation, source-monitoring, CLS schema partner) so the unified ARC-085 store's write-authority and provenance gates are built on grounded mechanism, not analogy. Off V3 closure path; promotes nothing."
+      completion_note: "Autobiographical_memory named its biology anchors only inside node readiness_gates (no dedicated grounding node). This node consolidates the formal /lit-pull (project rule feedback_biology_before_formal_definitions) and the completion-set harvest (emotional-tagging consolidation, source-monitoring, CLS schema partner) so the unified ARC-085 store's write-authority and provenance gates are built on grounded mechanism, not analogy. Off V3 closure path; promotes nothing. LIT-PULL DONE 2026-06-13 (lit_pull_status: partial) -- 6 literature_evidence/v1 entries under evidence/literature/targeted_review_autobiographical_store, all 5 target claims grounded, exp_conf unchanged 0 (PROMOTES NOTHING; all v4/substrate_conditional). Grounding map: ARC-085 lit_conf 0.78 (Schacter & Addis 2007 constructive episodic simulation -- shared retro/prospective machinery; caveat: shared-process underdetermines single-store, falsifier is a V4 experiment). MECH-365 0.78 (Johnson Hashtroudi & Lindsay 1993 source-monitoring framework -- provenance as a represented multidimensional attribute; HONEST WEAKENER recorded: biological source-monitoring is reconstructive/fallible, so it grounds MECH-365's FIELD but leans against the absoluteness of its one-way GATE -- REE's gate is normative-safer-than-brain). MECH-366 0.55 MIXED (Nigro & Neisser 1983 field/observer -- grounds the viewpoint CONSTRUCT; does NOT ground encoding-independent SWITCHABILITY, which their emotion/age dependence mildly contraindicates -> FOLLOW-UP owed: instructed perspective-shift paradigm). MECH-368 0.765 (McGaugh 2004 BLA-modulated consolidation = salience/affect write-weight input + Ballarini 2009 behavioural tagging = two-factor write-ELIGIBILITY-then-capture structure; both ground the principle on the EPISODIC path, NOT the durable world-model/policy weight path MECH-368 actually targets -> still owed). MECH-361 0.797 (McGaugh + Ballarini; grounds affect-scales-write-strength but NOT the per-CANDIDATE gradient, which is substrate_conditional on off-plan MECH-359). Sleep cross-link MECH-252/253 0.56 MIXED (Stickgold & Walker 2013 memory triage -- grounds selective + operation-differentiated offline consolidation in GENERAL, but NOT the specific SWS-content/REM-weights dissociation -> owed to the sleep_substrate track, stage-resolved pull or V4 experiment). PROPOSAL-FIRST harvest (surfaced to user, NOT auto-registered): (P1) schema-gated fast-consolidation partner (vmPFC/CLS schema-congruence route) -- candidate MECH amending MECH-261/MECH-285; (P2) provenance as a multi-dimensional source VECTOR rather than a single committed_vs_imagined bit -- candidate amendment to MECH-365; (P3) behavioural-tag eligibility-then-capture as the explicit two-factor structure of MECH-368's plasticity_eligibility term. Two follow-up pulls keep status at partial: MECH-366 switchability + MECH-252/253 stage-resolved dissociation."
 ---
 # Autobiographical Memory -- V4 Forward Roadmap
 

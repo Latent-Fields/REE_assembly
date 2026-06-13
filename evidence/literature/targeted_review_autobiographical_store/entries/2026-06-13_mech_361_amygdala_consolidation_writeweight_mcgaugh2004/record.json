@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_361_amygdala_consolidation_writeweight_mcgaugh2004",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["MECH-361", "MECH-368"],
+  "source": {
+    "title": "The amygdala modulates the consolidation of memories of emotionally arousing experiences",
+    "authors": ["James L. McGaugh"],
+    "year": 2004,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.27.070203.144157"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Compelling, convergent animal+human evidence that emotional arousal, via the basolateral amygdala (BLA) and its neuromodulatory (noradrenergic/glucocorticoid/cholinergic) inputs, MODULATES the strength of memory consolidation -- the degree of amygdala activation at encoding predicts subsequent recall. This is the biological mechanism MECH-361 names as 'affect gradient as memory WRITE-WEIGHT' and is a strong anchor for the salience/affect input to MECH-368's event-level write-authority gate. Held below 0.85 because the substrate modulates a GENERIC arousal/valence magnitude, not the per-candidate, signed affective GRADIENT MECH-361 specifies, and because it concerns the episodic/declarative write path, not the durable world-model/policy weight path that is MECH-368's under-covered target.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The amygdala modulates write strength as a function of overall emotional AROUSAL (a largely scalar magnitude), whereas MECH-361 requires a per-CANDIDATE affective gradient (a vector over considered options). The BLA literature grounds 'affect scales write depth' but not 'the differential gradient ACROSS candidates is the write-weight' -- the candidate-differentiation that is MECH-361's actual novelty is not evidenced here.",
+    "BLA modulation operates on consolidation of declarative/episodic and procedural memory; it is NOT shown to gate durable updates to a predictive world-model or policy weights, which is exactly the path MECH-368 flags as under-covered. Transfer to the online model-update path is by analogy."
+  ],
+  "tags": ["mech-361", "mech-368", "amygdala", "bla", "memory_consolidation", "emotional_arousal", "write_weight", "noradrenaline", "glucocorticoid"],
+  "mapping": {
+    "source_claim_statement": "The basolateral complex of the amygdala (BLA) modulates the consolidation of long-term memory for emotionally arousing experiences; posttraining manipulation of adrenal stress hormones and neurotransmitters in the BLA bidirectionally alters memory strength, the BLA exerts this effect via efferents to caudate, accumbens and cortex, and in humans the degree of amygdala activation during encoding of arousing material correlates with subsequent recall. Emotional significance makes experiences well remembered.",
+    "ree_translation": "MECH-361's affective-gradient-as-write-weight (high-affect episodes preferentially written, deeper) and the salience/affect input to MECH-368's event-level write-authority gate. The BLA-modulates-consolidation circuit is the biological mechanism by which an affect signal sets how strongly an event deforms memory -- i.e. affect IS a write-weight, not just a retrieval cue. Sharpens REE's existing MECH-074 (BLA arousal-modulated write depth) toward MECH-361's gradient framing.",
+    "mapping_caveat": "The amygdala modulates a generic AROUSAL magnitude, not a per-candidate signed gradient; MECH-361's candidate-differentiation is the novel part and is NOT evidenced here (it is substrate_conditional on MECH-359, off this plan). And the modulated path is episodic/declarative consolidation, not the durable world-model/policy weight-update path MECH-368 targets. Animal lesion/pharmacology + human fMRI; transfer to a synthetic write-weight is by analogy.",
+    "source_context": "Animal (rat) posttraining lesion and intra-amygdala pharmacology + human fMRI; integrative review."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Field-defining review by the originator of the BLA-consolidation-modulation programme; the causal animal pharmacology is strong, the human correlation converges. Mapping fidelity discounted for the arousal-magnitude vs candidate-gradient gap and the episodic vs model-update path gap. Direction clearly 'supports' for the core 'affect scales write strength' principle shared by MECH-361 and MECH-368."
+  }
+}

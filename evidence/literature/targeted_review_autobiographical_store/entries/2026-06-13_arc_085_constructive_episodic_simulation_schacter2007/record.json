@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_arc_085_constructive_episodic_simulation_schacter2007",
+  "timestamp_utc": "2026-06-13T18:10:25Z",
+  "claim_ids_tested": ["ARC-085", "MECH-365"],
+  "source": {
+    "title": "The cognitive neuroscience of constructive memory: remembering the past and imagining the future",
+    "authors": ["Daniel L. Schacter", "Donna Rose Addis"],
+    "year": 2007,
+    "venue": "Philosophical Transactions of the Royal Society B: Biological Sciences",
+    "doi": "10.1098/rstb.2007.2087"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical statement and review of the constructive episodic simulation hypothesis, with converging cognitive, neuropsychological and neuroimaging evidence that remembering the past and imagining the future draw on overlapping psychological and neural processes. This is the single strongest biology anchor for ARC-085's core claim (one event-token store; simulation = forward re-composition of the same tokens replay reinstates backward). Confidence held below 0.85 because the support is for a SHARED-PROCESS / SHARED-NETWORK architecture inferred from overlap, not for a literal single addressable store, and because the review is integrative rather than a single decisive experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Overlap of neural substrates for past and future is consistent with a shared store but does not establish ONE store; a two-store model with shared upstream construction processes predicts the same imaging overlap, so the imaging evidence does not by itself discriminate ARC-085's single-store claim from its two-store falsifier.",
+    "The constructive system is described as error-prone (memory distortions, false recognition) -- the very flexibility that lets it simulate futures is the source of confabulation, which is the failure mode MECH-365's one-way provenance gate must contain rather than something this substrate prevents on its own."
+  ],
+  "tags": ["arc-085", "mech-365", "autobiographical_memory", "mental_time_travel", "constructive_episodic_simulation", "imagination_vs_experience"],
+  "mapping": {
+    "source_claim_statement": "Episodic memory is a fundamentally constructive (not reproductive) process; an adaptive function of that constructive system is to flexibly extract and recombine elements of past experiences to simulate future episodes, and remembering the past and imagining the future show substantial overlap in their underlying psychological and neural processes.",
+    "ree_translation": "ARC-085's unified autobiographical event substrate -- retrospective replay (ARC-007) and prospective simulation (ARC-018) drawing on ONE self-tagged event-token store, where future-trajectory generation is forward re-composition of the same tokens replay reinstates backward. The recombination-of-stored-elements account is the biological form of 'forward re-composition of the same event tokens'. Also touches MECH-365: the constructive system's error-proneness is exactly why a provenance/committed-vs-imagined field is load-bearing.",
+    "mapping_caveat": "Overlap of process/network does NOT entail a single physical store; the data are equally consistent with two stores sharing upstream constructive machinery. ARC-085's specific falsifier (corrupting the shared store degrades past-recall AND future-simulation fidelity TOGETHER) is not tested here -- this anchors the shared-machinery premise, not the single-store conclusion. Human cognitive-neuroscience review; transfer to a synthetic event-token substrate is by analogy.",
+    "source_context": "Human cognitive neuroscience; integrative review of behavioural, neuropsychological (amnesia) and fMRI/PET evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High-prestige, heavily-cited review by the originators of the hypothesis. Mapping fidelity weighted down because the shared-process evidence underdetermines the single-store architectural commitment ARC-085 actually makes. Transfer risk moderate: the construct (mental time travel) is well-defined but REE's instantiation is a substrate this paper does not address."
+  }
+}
