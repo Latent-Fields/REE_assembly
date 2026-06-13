@@ -19765,6 +19765,12 @@
     trigger) is implemented and stable; what is missing is an external_task
     pressure SOURCE on the foraging agent. New substrate entry:
     mode-governance-engagement (behavioural arms only; status unchanged).
+    SUBSTRATE LANDED 2026-06-13: ree-v3 REEConfig.use_external_task_drive
+    (no-op-default) registers a committed-goal-pursuit engagement signal on the
+    SalienceCoordinator in both affinity_weights (-> external_task) and
+    salience_weights (switch-into-external_task aggregate). SD-032a status UNCHANGED
+    (stable); validation via the MECH-266 behavioural successors V3-EXQ-464d/467d with
+    the occupancy-keyed readiness gate. See ree-v3/CLAUDE.md mode-governance-engagement.
   depends_on:
     - SD-032           # parent cluster
     - SD-032b          # dACC-analog (contributor signal)
@@ -21999,6 +22005,13 @@
     mode-governance-engagement substrate entry (drive genuine external_task
     occupancy + re-state the readiness gate as
     min_across_arms(fraction_in_external_task) > floor).
+    SUBSTRATE LANDED 2026-06-13 (ree-v3 REEConfig.use_external_task_drive,
+    no-op-default; the SalienceCoordinator now has an external_task salience
+    SOURCE -- a committed-goal-pursuit engagement signal registered in both
+    affinity_weights and salience_weights). PROMOTES NOTHING: MECH-266 stays
+    provisional, pending_retest_after_substrate holds; retest = V3-EXQ-464d
+    (competing-goals) + V3-EXQ-467d (mode-stickiness) with the occupancy-keyed
+    readiness gate. See ree-v3/CLAUDE.md mode-governance-engagement section.
   implementation_note: >
     IMPLEMENTED 2026-04-21 as a Schmitt-trigger extension of the
     MECH-259 symmetric switch_threshold in ree-v3/ree_core/cingulate/

@@ -325,3 +325,26 @@ Key entries:
 - Leech & Sharp 2013: PCC "Arousal, Balance, Breadth" framing (conservative use only).
 - Scholl, Kolling et al 2015 (*J Neurosci*): dACC + lateral aPFC bias-suppression against recency (MECH-260).
 - Carr, Jadhav & Frank 2011; Tambini & Davachi 2019; Rothschild/Eban/Frank 2017; Peyrache et al 2009; Frankland & Bontempi 2005 (MECH-261 systems-consolidation grounding).
+
+---
+
+## mode-governance-engagement: external_task salience source (2026-06-13)
+
+**Status:** IMPLEMENTED (ree-v3, no-op-default). PROMOTES NOTHING — validation pending.
+
+**Problem.** The SD-032a `SalienceCoordinator` gives `external_task` only `external_task_bias` (1.0) plus `drive_level` (affinity weight 1.0), while `dacc_pe`/`dacc_foraging`/`dacc_difficulty` all push `internal_planning`. On the 603n foraging substrate `drive_level` is ~0.016 (V3-EXQ-540c probe), so on tick 1 the soft argmax flips to `internal_planning` and the agent settles there for the whole episode → `fraction_in_external_task = 0.0`. The MECH-266/SD-032a behavioural arms (V3-EXQ-464c, 467c) consequently could not express — the asymmetric exit-rail had no contested mode to bind, and their `n_switches >= 1` non-vacuity gate passed *vacuously* (it counted one episode-initial settle per episode, `n_switches == n_episodes`). Confirmed by `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12` sub-cluster B.
+
+**Fix.** Add a goal-pursuit-derived `external_task_drive` signal to the coordinator, registered (by `REEAgent`, like the SD-035 CeA and SD-037 override signals) in **both** `affinity_weights` (→ `external_task`, mode SELECTION) **and** `salience_weights` (→ aggregate, so a switch *into* `external_task` can fire the MECH-259 trigger). Injected per-tick in `select_action` from a committed-pursuit-of-an-active-goal engagement scalar:
+
+```
+engagement = goal_active ? clip(commit_w*float(beta_gate.is_elevated)
+                                + prox_w*goal_proximity(z_world), 0, 1) : 0
+```
+
+The engagement is **dynamic** — gated on an active goal, graded by committed pursuit × proximity — so it releases toward `internal_planning` during deliberation / between-goals / just-consumed. This preserves genuine mode competition rather than collapsing to the opposite degeneracy (the 464b "100% external_task, 0 switches" saturation recorded in the MECH-266 `evidence_quality_note`).
+
+**Config (REEConfig + from_dims, all no-op default → bit-identical OFF):** `use_external_task_drive` (master), `external_task_drive_affinity_weight`, `external_task_drive_salience_weight`, `external_task_drive_commit_weight`, `external_task_drive_proximity_weight`, `external_task_drive_require_goal_active`.
+
+**Scope.** Non-trainable arithmetic signal injection; the `SalienceCoordinator` class is unchanged (it already accepts arbitrary named signals). Phased training N/A; MECH-094 waking-only by call-site scoping (same as the neighbouring AIC/CeA/override injections).
+
+**Validation.** V3-EXQ-464d (competing-goals) + V3-EXQ-467d (mode-stickiness dose-response) — successors of 464c/467c with `use_external_task_drive=True` and the readiness gate restated as `min_across_arms(fraction_in_external_task) > floor` (≈0.1) replacing `n_switches >= 1`. MECH-266 stays provisional, SD-032a stays stable. Implementation log: `ree-v3/CLAUDE.md` (mode-governance-engagement section). Substrate entry: `evidence/planning/substrate_queue.json`.
