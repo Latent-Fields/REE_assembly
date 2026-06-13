@@ -148,3 +148,4 @@ One line per hourly tick. ASCII only.
 2026-06-13T19:13:42Z auto-defer IGW-20260613-223 hash=4b58d4f7a8a1 for 48h (reaped -> completed_resumable)
 2026-06-13T19:13:38Z skip IGW-20260613-221: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-13T20:13:45Z no eligible item (skipped 223): IGW-20260613-001:skill /governance not allowed; IGW-20260613-007:skill /governance not allowed; IGW-20260613-009:skill /governance not allowed
+2026-06-13T21:13:49Z skip IGW-20260613-220: no fresh runner heartbeat (experiment-lane item would just sit in queue)
