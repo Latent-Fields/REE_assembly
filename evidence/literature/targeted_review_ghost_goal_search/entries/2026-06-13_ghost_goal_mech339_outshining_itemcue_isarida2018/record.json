@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-06-13_ghost_goal_mech339_outshining_itemcue_isarida2018",
+  "timestamp_utc": "2026-06-13T09:07:16Z",
+  "claim_ids_tested": ["MECH-339"],
+  "source": {
+    "title": "The roles of remembering and outshining in global environmental context-dependent recognition",
+    "authors": ["Takeo Isarida", "Toshiko K. Isarida", "Takayuki Kubota", "Kotaro Nishimura", "Moemi Fukasawa", "Kodai Takahashi"],
+    "year": 2018,
+    "venue": "Journal of Memory and Language",
+    "doi": "10.1016/j.jml.2017.12.001",
+    "url": "https://doi.org/10.1016/j.jml.2017.12.001"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the most direct behavioural confirmation available for the SPECIFIC gating rule MECH-339 asserts -- not merely that context cues help retrieval, but that their contribution is CONDITIONAL on the strength of the direct (item) cue. Isarida et al. report that the size of the environmental context-dependent recognition effect DECREASES as item-cue strength increases, i.e. a strong item cue outshines the context cue. That is the outshining gate, measured. Confidence held at 0.66 rather than higher because (a) the substrate is human verbal recognition, not an agent's goal-bank retrieval, so the channel identities (item-cue<->z_goal match, ambient-context<->SD-039 payload) are an analogy not an import; (b) assessed from the abstract + meta-analytic summaries, not the full results tables.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the context channel were an always-on additive term rather than a strength-gated fallback, context-dependent effects would NOT shrink as the direct cue strengthens -- Isarida et al. observe exactly that shrinkage, so an unconditional additive context term mispredicts the data.",
+    "Context-dependent recognition here is carried by recollection (encoding-specificity / 'remembering'), not familiarity; a context channel wired to a familiarity-like graded-strength signal rather than a match-conditional recollective probe would not reproduce the regime."
+  ],
+  "tags": ["mech-339", "ghost_goal_search", "outshining", "encoding_specificity", "context_dependent_memory", "cue_competition", "retrieval_cue"],
+  "mapping": {
+    "source_claim_statement": "Environmental context-dependent recognition is governed by an outshining relationship: the item cue and the ambient-context cue compete, and the stronger cue dominates retrieval. An item cue (associated with one item) is normally stronger than a context cue (associated with many items), so context-dependent recognition is small or absent when item cues are strong, and emerges only when item-based recollection is weak. The effect is recollection-based (consistent with encoding specificity) and produces a context-based mirror effect (positive on hits/d', reversed on false alarms).",
+    "ree_translation": "Direct behavioural support for MECH-339's central architectural choice: the ghost-bank retrieval cue is composite (direct z_goal match PLUS a context channel from SD-039 payload fields), and the two are combined by an OUTSHINING gate, not summed with fixed weight. A strong direct z_goal match should down-weight/suppress the context channel; context-cue retrieval is the conditional fallback regime, not an always-on additive term. Isarida's strength->effect-size inverse relationship is precisely the gate function GhostGoalBank._outshine_gate is meant to instantiate (gate = clip((outshine_pivot - goal_match)/outshine_pivot)).",
+    "mapping_caveat": "The paper measures human episodic recognition with verbal items and physical/photographic study environments; MECH-339 applies the same competition logic to an agent's latent goal-bank, where 'item cue' = z_goal cosine match and 'context cue' = composed arousal_tag/last_vs/cause payload. The structural correspondence (strength-gated competition, conditional context fallback) is strong, but the channel identities are an analogy, and the human task gives no direct evidence about the arousal_tag composition specifically.",
+    "source_context": "Human behavioural episodic-memory experiments (global environmental context-dependent recognition; remember/know and d' decomposition); Shizuoka University series synthesising the outshining account."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.42,
+    "notes": "High-quality, theory-targeted behavioural work in a strong venue (JML) from the group that has carried the outshining account empirically. Mapping fidelity high for the GATE STRUCTURE (strength-gated, conditional fallback) -- the single feature that distinguishes MECH-339 from a fixed-weight additive cue. Transfer risk moderate: human verbal recognition -> agent goal-bank retrieval; the polarity and conditionality transfer cleanly, the specific payload-field composition does not."
+  }
+}

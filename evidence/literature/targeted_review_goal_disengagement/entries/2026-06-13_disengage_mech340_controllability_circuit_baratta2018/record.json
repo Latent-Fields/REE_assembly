@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-06-13_disengage_mech340_controllability_circuit_baratta2018",
+  "timestamp_utc": "2026-06-13T09:07:16Z",
+  "claim_ids_tested": ["MECH-340"],
+  "source": {
+    "title": "Behavioural and neural sequelae of stressor exposure are not modulated by controllability in females",
+    "authors": ["Michael V. Baratta", "Nathan R. Leslie", "Isabella P. Fallon", "Samuel D. Dolzani", "Lauren E. Chun", "Andrew M. Tamalunas", "Linda R. Watkins", "Steven F. Maier"],
+    "year": 2018,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.13833",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29359831/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong support for MECH-340's core architectural commitment that persistence is an EXPLICIT, SEPARABLE control/efficacy gate over a disengagement default -- not a property of the stressor or of accumulated failure. In males, behavioural control over an identical stressor abolishes its sequelae via a prelimbic->dorsal-raphe gate; in females the same control is acquired but does NOT engage that protective circuit, so the buffering is absent -- and pharmacological activation of prelimbic cortex restores it. A dissociation in which identical control with identical outcomes does or does not gate persistence depending on whether a specific cortical circuit is engaged is exactly the 'the gate is a separate mechanism, present-but-can-be-silent' structure MECH-340 posits. Held at 0.62: rodent stressor-controllability paradigm mapped to an agent's goal-bank persistence is a structural analogy with real transfer risk, and the female-circuit finding is a boundary as much as a confirmation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A persistence gate can be PRESENT yet not ENGAGED: females acquire the controlling response and possess the prelimbic->DRN circuitry, yet the protective gate is not recruited and the disengagement default proceeds -- so 'the gate exists' does not entail 'the gate fires', and an architecture that conflates the two mispredicts the female data.",
+    "Persistence buffering tracks engagement of a specific cortical control-detection circuit, not the objective controllability of the situation: identical control with successful acquisition produces opposite sequelae depending on circuit engagement, ruling out a gate keyed on attained-control-as-fact rather than detected-control-as-signal."
+  ],
+  "tags": ["mech-340", "goal_disengagement", "controllability", "persistence_efficacy_gate", "prelimbic_cortex", "dorsal_raphe", "control_detection", "separable_gate"],
+  "mapping": {
+    "source_claim_statement": "Behavioural control over a stressor normally eliminates its neurochemical and behavioural sequelae through a prelimbic-cortex circuit that projects to and inhibits the dorsal raphe nucleus. In female rats this protective effect of control is absent: animals acquire the controlling response, and the prelimbic->DRN circuitry is present, but behavioural control fails to selectively engage the prelimbic cells that project to the dorsal raphe. Pharmacological activation of the prelimbic cortex restores the stress-buffering effect of control.",
+    "ree_translation": "Direct support for MECH-340's gate as an explicit, separable mechanism layered over a disengagement default. MECH-340 says a control/efficacy-detection signal MAINTAINS an unresolved-goal bank entry as an active MECH-293 re-probe target, and its ABSENCE is the default (the entry decays in MECH-292 rank without erasing the SD-039 trace). Baratta et al. show that the control-detection gate (prelimbic->DRN) is dissociable from the fact of control: it can be present-but-unengaged, in which case the default sequelae proceed; and it can be switched on pharmacologically. This is the strongest available evidence that 'gate persistence / default disengage' is implemented as a distinct, recruitable circuit -- exactly the explicit/separable property MECH-340's evidence note requires (Koster/Gillan).",
+    "mapping_caveat": "Aversive stressor-controllability paradigm in rats, indexing helplessness-type behaviour (escape failure, social exploration) and dorsal-raphe serotonergic activation -- not an agent re-probing a stored goal. The mapping imports the CIRCUIT LOGIC (separable control-detection gate over a default), not the behaviour. The female finding is a sex-specific engagement boundary whose REE analogue is unspecified; it is used here as evidence that gate-presence != gate-engagement, not as a claim about sex.",
+    "source_context": "Rat behavioural neuroscience: escapable vs yoked-inescapable tailshock, juvenile social exploration / shuttle-box escape / fear assays, dorsal-raphe 5-HT and prelimbic->DRN tract-tracing + c-fos, plus prelimbic pharmacological activation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Rigorous circuit-level dissociation with a causal pharmacological restoration (high source quality). Mapping fidelity moderate-to-high for the SEPARABILITY claim (the gate is a distinct, recruitable circuit, present-but-silent in females) which is the precise property MECH-340 needs beyond Maier & Seligman 2016's default-inversion. Transfer risk moderate: rodent aversive controllability -> agent goal-bank persistence is a structural analogy."
+  }
+}

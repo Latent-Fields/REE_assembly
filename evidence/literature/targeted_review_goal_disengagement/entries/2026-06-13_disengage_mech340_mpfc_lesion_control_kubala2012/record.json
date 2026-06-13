@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_goal_disengagement",
+  "entry_id": "2026-06-13_disengage_mech340_mpfc_lesion_control_kubala2012",
+  "timestamp_utc": "2026-06-13T09:07:16Z",
+  "claim_ids_tested": ["MECH-340"],
+  "source": {
+    "title": "Short- and long-term consequences of stressor controllability in adolescent rats",
+    "authors": ["Kenneth H. Kubala", "John P. Christianson", "Richard D. Kaufman", "Linda R. Watkins", "Steven F. Maier"],
+    "year": 2012,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2012.06.027",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22771417/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Causal (lesion) evidence that the control-detection gate is NECESSARY for the persistence/buffering effect: excitotoxic lesions of medial prefrontal cortex PREVENT the stressor-controllability effect, so escapable and inescapable stress become equivalent without the gate -- the default proceeds when the detector is removed. This is the loss-of-function complement to Baratta 2018's present-but-silent / restorable gain-of-function, and together they bracket MECH-340's separable-gate-over-a-default architecture. It also shows a controllable experience inoculates against a later uncontrollable one, matching the reengagement-coupled, history-as-appraisal (not history-as-tally) framing. Held at 0.60: same rodent-aversive-to-agent-goal-bank transfer risk, and the lesion speaks to gate necessity, not to the specific appraisal variables MECH-340 leaves to Q-053.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Remove the control-detection substrate (mPFC lesion) and the controllability benefit vanishes: escapable and inescapable stressors become behaviourally and neurochemically equivalent -- so persistence does NOT arise from the objective availability of control, only from its detection by an intact gate.",
+    "Without the gate, the dorsal-raphe-mediated default (reduced exploration, serotonergic activation) proceeds regardless of whether control was in fact available -- a system lacking the explicit detector collapses to the disengagement default."
+  ],
+  "tags": ["mech-340", "goal_disengagement", "controllability", "persistence_efficacy_gate", "medial_prefrontal_cortex", "lesion", "control_detection", "stress_inoculation"],
+  "mapping": {
+    "source_claim_statement": "In adolescent rats, behavioural control over a stressor mitigates its behavioural and neurochemical consequences (the 'stressor controllability effect'): escapable tailshock, unlike inescapable tailshock, does not reduce social exploration or activate the dorsal raphe. Excitotoxic lesions of the medial prefrontal cortex PREVENT this effect, eliminating the difference between escapable and inescapable stress. A controllable adolescent stressor also prevents the consequences of an inescapable stressor experienced later in adulthood.",
+    "ree_translation": "Loss-of-function support for MECH-340's gate. MECH-340 makes persistence a gated override of a disengagement default, where the gate reads a control/efficacy detection signal. Kubala et al. show the medial-prefrontal control detector is NECESSARY: ablate it and the controllability benefit disappears, so the system reverts to the default (DRN-mediated disengagement) even when control was objectively available. This is the complement to a present-but-silent / restorable gate (Baratta 2018): removing the detector removes persistence. The stress-inoculation result -- a prior controllable experience protects against a later uncontrollable one -- matches the claim's reengagement-coupled, appraisal-based framing (Wrosch 2003; Klinger 1975), where control history shifts an appraisal rather than incrementing a failure/effort tally.",
+    "mapping_caveat": "Rodent aversive stressor-controllability paradigm with social-exploration and dorsal-raphe readouts, in adolescents; not goal-bank re-probing. The lesion establishes that an mPFC control-detection gate is necessary for the buffering, i.e. that persistence is gate-dependent -- it does not identify the appraisal VARIABLES feeding the gate (MECH-340 deliberately leaves those to Q-053) nor distinguish among candidate control signals. Adolescent-specific developmental effects are not modelled in REE.",
+    "source_context": "Rat behavioural neuroscience: escapable vs inescapable tailshock in adolescents, juvenile social exploration and dorsal-raphe c-fos/serotonergic readouts, excitotoxic mPFC lesions, plus a developmental inoculation manipulation across adolescence->adulthood."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Causal lesion design plus a longitudinal inoculation result (high source quality). Mapping fidelity moderate: it nails gate NECESSITY (the persistence benefit is detector-dependent, not control-fact-dependent) which complements Baratta 2018's separability, but says nothing about the specific appraisal variables. Transfer risk moderate, as for all rodent-controllability -> agent-goal-bank mappings in this folder."
+  }
+}

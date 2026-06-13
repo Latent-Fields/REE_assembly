@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_ghost_goal_search",
+  "entry_id": "2026-06-13_ghost_goal_mech339_video_context_isarida2020",
+  "timestamp_utc": "2026-06-13T09:07:16Z",
+  "claim_ids_tested": ["MECH-339"],
+  "source": {
+    "title": "Video context-dependent effects in recognition memory",
+    "authors": ["Takeo Isarida", "Toshiko K. Isarida", "Takayuki Kubota", "Saki Nakajima", "Kosei Yagi", "Aoi Yamamoto", "Miyoko Higuma"],
+    "year": 2020,
+    "venue": "Journal of Memory and Language",
+    "doi": "10.1016/j.jml.2020.104113",
+    "url": "https://doi.org/10.1016/j.jml.2020.104113"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Corroborates the boundary side of MECH-339: it shows the context channel carries real, recoverable retrieval signal (a richer dynamic context reinstates context-dependent recognition where static photographic contexts often produce null effects), which is what justifies including a context channel at all. But it is mixed for the claim because it primarily varies context salience rather than the item-cue strength that defines the outshining gate; it bounds and motivates the context channel without testing the gate's conditional shape directly. Held at 0.50 to reflect that indirectness plus abstract-level assessment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Static, low-information contexts can yield null context-dependent recognition even when an episode was encoded there -- so a context channel whose salience term is flat (insensitive to how much contextual information is actually available) would over-credit weak contexts and predict effects the data do not show.",
+    "Context-dependent recognition is fragile and depends on context richness; a model that treats any stored SD-039 payload as an equally strong context cue regardless of its informational content would mispredict the conditions under which the fallback actually helps."
+  ],
+  "tags": ["mech-339", "ghost_goal_search", "context_dependent_memory", "context_salience", "dynamic_context", "outshining", "retrieval_cue"],
+  "mapping": {
+    "source_claim_statement": "Dynamic video contexts produce reliable environmental context-dependent recognition effects, in contrast to the weak and often null effects obtained with static photographic contexts. Richer, more distinctive contextual information at encoding and test yields a stronger contextual retrieval cue and a measurable context-dependent recognition advantage.",
+    "ree_translation": "Supports the existence and gradedness of MECH-339's context channel: there is a real, recoverable contextual retrieval signal whose strength scales with the informational content of the stored context, which is the premise behind composing a context channel from the SD-039 payload (arousal_tag/last_vs/cause) and weighting it by a context-salience term (context_salience = 1 - exp(-arousal_tag/arousal_scale)). It also bounds the channel: contexts that are informationally thin contribute little, so the salience term must be sensitive to how much context is actually stored, not flat.",
+    "mapping_caveat": "The paper varies CONTEXT richness (video vs photo), not the direct item-cue strength that defines the outshining gate, so it speaks to the magnitude and reality of the context channel rather than to the gating rule itself. The 'richness' manipulation is a loose analogue of MECH-339's context_salience, not a direct test of the arousal_tag composition; and as with the 2018 paper the substrate is human verbal recognition, not goal-bank retrieval.",
+    "source_context": "Human behavioural recognition-memory experiments contrasting dynamic (video) vs static (photographic) environmental contexts; same Shizuoka University programme."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Strong venue and careful design (high source quality). Mapping fidelity moderate: it validates that a context channel carries graded, real retrieval signal (the premise for including one and for a salience weight) but does not test the outshining gate's conditional shape -- that is why it is logged 'mixed' rather than 'supports'. Transfer risk moderate for the same human->agent reasons as the companion 2018 entry."
+  }
+}
