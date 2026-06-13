@@ -1,0 +1,125 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-13T09:47:14Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "confirmed_utc": "2026-06-13T09:47:14Z",
+  "confirmed_by": "failure-autopsy interactive gate 2026-06-13 (user AskUserQuestion: routing=Both amend substrate_queue + queue-experiment; beta-fragility=fold into Leg-C re-queue, escalate if persists)",
+  "parent_autopsy": "failure_autopsy_SD-034-closure-cluster_2026-06-12",
+  "sibling_autopsy": "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+  "substrate_landed": "commitment-closure-control-plane (ree-v3 6fdb111, 2026-06-12): Leg A env-completion hook + Leg B de-commit refractory; Leg C (trained rule_bias_head + non-cap-pinned de-commit DV) explicitly experiment-side and NOT built.",
+  "targets": [
+    {
+      "run_id": "v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3",
+      "queue_id": "V3-EXQ-460d",
+      "supersedes": "V3-EXQ-460c",
+      "claim_ids": ["SD-034", "MECH-260", "MECH-261"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "residual_closure_open",
+      "manifest_self_stamp_per_claim": {"SD-034": "weakens", "MECH-260": "supports", "MECH-261": "weakens"},
+      "criteria_outcome": {"C1_n_closures": "PASS", "C2_beta_release": "FAIL", "C3_nogo_installed": "PASS", "C4_off_holds_latch_never_closes": "FAIL"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-034/MECH-261 intact -- closure FIRES (C1 PASS via Leg-A env hook) so the *c n_closures=0 gap is closed, but the de-commit BEHAVIOURAL AUTHORITY (ON<OFF latch occupancy) cannot express without a trained magnitude-bearing rule_state; MECH-261 mode-conditioning was not exercised (closure fired via the explicit Leg-A bypass hook, not the mode-conditioned predicate). MECH-260 strengthened.",
+        "biological_reference": "clear -- OFC sequence-completion cells (Rich & Shapiro 2009) + frontal task-set disengagement (Collins & Frank 2014); the completion->closure coupling now fires (Leg A), but disengagement requires a magnitude-bearing rule-completion signal to drive a NET latch-occupancy drop.",
+        "prerequisites": "missing -- the TRAINED magnitude-bearing rule_bias_head (Leg C). CODE-CONFIRMED: the script sets lateral_pfc_train_rule_bias_head=True (un-zeroes the head) but never includes agent.lateral_pfc.bias_head_parameters() in any optimizer and runs no .backward()/REINFORCE step (zero matches for optim/Adam/backward/loss/bias_head_parameters in v3_exq_460d). The head sits at random init, never task-trained -> no task-shaped magnitude for the automatic detector or the de-commit.",
+        "implementation": "partial -- Leg A (env hook) works (n_closures 6/3/7 all hook-driven; nogo 18/9/21). Leg B refractory installed (5 ticks). Leg C (trained head + non-cap-pinned DV) NOT built (experiment-side).",
+        "environment": "adequate -- 603n foraging-competence guard passed 3/3; env emits completions; commitment+completion non-vacuity met (0.667).",
+        "measurement": "misleading -- C2 is an all-seeds aggregation artifact (releases fire 2/3 seeds: 184,463; fails only on seed-42 where total_beta_elevated=0). C4 = (arm_off occupancy >= arm_on occupancy): on seeds 43/44 ON occupancy was HIGHER than OFF (12.27 vs 10.07; 31.73 vs 27.67) -> the de-commit release has NO NET AUTHORITY over latch occupancy vs the OFF control (the 468c cap-pinned/no-differential signature carried forward). A non-cap-pinned ON<OFF occupancy-drop DV is part of Leg C.",
+        "integration": "isolated -- closure done-token + No-Go install fire, but the release does not propagate to a net latch-occupancy reduction below the OFF control.",
+        "scale": "adequate -- not a budget problem."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC sequence-completion cells + frontal task-set disengagement (Rich & Shapiro 2009; Collins & Frank 2014; Schuck 2016) coupled to BG-thalamo-cortical de-commitment (Cisek & Kalaska 2010)",
+        "dependencies": ["trained magnitude-bearing rule_state (the completion signal)", "a non-cap-pinned de-commitment readout", "the env completion -> closure trigger coupling (now present, Leg A)"],
+        "is_formal_import": false,
+        "divergence": "the closure now fires on the actual completion event (Leg A fixed the *c divergence), but de-commitment is driven by a rule-completion MAGNITUDE the untrained head does not carry; the residual is the unbuilt experiment-side Leg C, not a biology divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-034": "non_contributory", "MECH-260": "supports", "MECH-261": "non_contributory"},
+      "recommended_evidence_quality_note": "SD-034 / MECH-261 (460d): non_contributory + pending_retest_after_substrate -- OVERRIDES the manifest self-stamped weakens (false weakens). Closure NOW FIRES on the Leg-A env-completion hook (C1 PASS, n_closures 6/3/7; the *c n_closures=0 gap is CLOSED), but C2/C4 FAIL because the de-commit release has no NET authority over latch occupancy (C4: ON occupancy 12.27/31.73 >= OFF 10.07/27.67 on seeds 43/44 -- closure ON held the latch AT LEAST AS LONG as OFF, the opposite of the predicted disengagement). Code-confirmed root cause: Leg C is unbuilt -- the script sets lateral_pfc_train_rule_bias_head=True but never trains the head (no optimizer inclusion / no .backward()), so the magnitude-bearing rule_state that drives a meaningful closure-coupled de-commit does not exist; the C4 DV is also cap-pinned. MECH-261 mode-conditioning was NOT exercised (closure fired via the explicit Leg-A bypass hook). NOT a falsification. MECH-260 (460d): supports (narrow) -- closure->No-Go ordering confirmed (nogo_installed 18/9/21 strictly downstream of fired closures). Retest after Leg C (trained rule_bias_head + non-cap-pinned ON<OFF occupancy DV).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-034",
+        "sd_id_suggested": "commitment-closure-control-plane",
+        "title": "Leg C: train the existing GAP-D rule_bias_head (598b REINFORCE pattern) + non-cap-pinned ON<OFF de-commit-occupancy DV + beta-engagement non-vacuity gate",
+        "implementation_hint": "The trainable rule_bias_head SUBSTRATE already exists (SD-033a GAP-D, landed 2026-05-17). The *d retests set the flag but never trained the head (no optimizer inclusion, no .backward()), so the magnitude-bearing rule_state was inert and the closure-coupled de-commit had no net authority (C4: ON occupancy >= OFF). Build Leg C EXPERIMENT-SIDE in the 460e/468e re-queue: (1) add list(agent.lateral_pfc.bias_head_parameters()) to the P1 optimizer and train via the V3-EXQ-598b E3-gradient REINFORCE pattern; (2) read de-commitment on a non-cap-pinned ON<OFF latch-occupancy-DROP statistic (committed-fraction post-completion, NOT the cap-pinned post/pre ratio); (3) add a beta-elevation-engagement non-vacuity gate (the 468d total_beta_elevated>0 gate, applied to 460d C2 too) so a no-beta seed self-routes substrate_not_ready rather than failing C2. ESCALATE to a MECH-090 R-c-gate / scaffolded-curriculum substrate amend ONLY IF beta still fails to elevate on >=2/3 seeds after the head is trained.",
+        "unblocks_claims": ["SD-034", "MECH-260", "MECH-261", "MECH-268", "MECH-090"],
+        "depends_on_unresolved": ["SD-033a GAP-D lateral_pfc_train_rule_bias_head (landed 2026-05-17; substrate present, experiment must TRAIN it)", "commitment_closure:GAP-4"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3",
+          "experiment_type": "v3_exq_460d_sd034_closure_control_plane_behavioural",
+          "metric": "C1 PASS (n_closures 6/3/7 via Leg-A hook; nogo 18/9/21) but C2/C4 FAIL: ON latch occupancy >= OFF on seeds 43/44 (12.27 vs 10.07; 31.73 vs 27.67) -- de-commit release has no net authority; rule_bias_head flag set but never trained (no optimizer inclusion).",
+          "target": "after Leg C is trained: ON<OFF latch-occupancy drop on a non-cap-pinned statistic on >=2/3 seeds, with beta-engagement non-vacuity met."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Leg A (env-completion hook) decisively closes the *c n_closures=0 gap -- closure now fires on the actual completion event (460d C1 PASS, MECH-260 supports).",
+        "Setting lateral_pfc_train_rule_bias_head=True only UN-ZEROES the head; the experiment must additionally include bias_head_parameters() in an optimizer and run REINFORCE to give it task-shaped magnitude. 460d/468d did the former, not the latter -- Leg C is code-confirmed unbuilt.",
+        "C4 (ON occupancy < OFF occupancy) is the load-bearing de-commit-authority criterion; ON >= OFF means the closure-coupled release has no NET authority over the latch, distinct from C2 (a release fired at all).",
+        "MECH-261 must not absorb a weakens when closure fires via the explicit Leg-A bypass hook -- the mode-conditioned predicate was not the firing path."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3",
+      "queue_id": "V3-EXQ-468d",
+      "supersedes": "V3-EXQ-468c",
+      "claim_ids": ["SD-034", "MECH-268", "MECH-090"],
+      "failed_criterion": "precondition_unmet",
+      "self_route_label": "substrate_not_ready_requeue",
+      "manifest_self_stamp_per_claim": {"SD-034": "non_contributory", "MECH-268": "non_contributory", "MECH-090": "non_contributory"},
+      "criteria_outcome": {"C1_beta_release_near_contradiction": "FAIL", "C2_committed_frac_post_absolute_on_lt_off": "FAIL", "criteria_non_degenerate": {"C1": false, "C2": false}},
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the commitment-vs-contradiction DV never ran because the ON arm did not commit-with-beta on 2/3 seeds; SD-034/MECH-268/MECH-090 could not express.",
+        "biological_reference": "clear -- dACC PE saturation (Quilodran 2008) coordinating a BG de-commitment under sustained counter-evidence (Cisek & Kalaska 2010); the mechanism was never engaged because no beta latch formed on 2/3 seeds.",
+        "prerequisites": "missing -- commitment-with-beta-elevation engagement on the scaffolded foraging agent. The ON arm shows total_committed_steps 2608/2216 (E3 committed a trajectory) but total_beta_elevated=0 on seeds 43/44 -- the bistable BetaGate never registered elevated. Same no-beta signature as 460d-seed42. Intertwined with the untrained Leg-C head (no magnitude-bearing rule_state -> fragile/seed-dependent commitment).",
+        "implementation": "partial -- contradiction injection WORKS (episodes_with_contradiction 5/5/3 ON; 4/6/8 OFF -- fired on all seeds). The gap is NOT contradiction injection; it is commitment/beta-elevation.",
+        "environment": "adequate -- subgoal_mode + counter_evidence primitives engaged; foraging-contact guard met 3/3.",
+        "measurement": "the commitment non-vacuity gate (total_beta_elevated>0 AND episodes_with_contradiction>0 on >=2/3 seeds) correctly self-routed substrate_not_ready_requeue at 0.333 -- it caught the no-commitment seeds rather than scoring a false weakens.",
+        "integration": "n/a -- the ON arm never reached a beta latch on 2/3 seeds, so the contradiction-coupled release had nothing to act on.",
+        "scale": "adequate."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC closure + dACC PE saturation (Rich 2009; Quilodran 2008) coupled to BG-thalamo-cortical de-commitment (Cisek & Kalaska 2010)",
+        "dependencies": ["commitment-with-beta-elevation engagement on the foraging agent", "trained magnitude-bearing rule_state", "non-cap-pinned de-commitment readout"],
+        "is_formal_import": false,
+        "divergence": "no biology divergence -- the test never reached the regime; the binding gap is engagement (commit-with-beta), not the claimed mechanism.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-034": "non_contributory", "MECH-268": "non_contributory", "MECH-090": "non_contributory"},
+      "recommended_evidence_quality_note": "SD-034 / MECH-268 / MECH-090 (468d): non_contributory + pending_retest_after_substrate -- the self-route substrate_not_ready_requeue is CONFIRMED. The binding precondition failure is total_beta_elevated=0 on seeds 43/44 (the ON arm committed an E3 trajectory -- total_committed_steps 2608/2216 -- but the bistable BetaGate never registered elevated), NOT contradiction injection (which fired on all 3 seeds: episodes_with_contradiction 5/5/3). Criteria are genuinely degenerate (C1/C2 cannot fire with no beta latch). Re-queueing 468e with 'injection on >=2/3 seeds' would NOT fix it -- injection already fires; the agent does not commit-with-beta. Same cohort root cause as 460d (untrained Leg-C head -> fragile commitment + no de-commit authority). NOT a falsification. Retest as 468e after Leg C is trained, with a beta-engagement non-vacuity gate confirming beta elevates on >=2/3 seeds before the contradiction DV is scored.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-034",
+        "sd_id_suggested": "commitment-closure-control-plane",
+        "failure_record_entry": {
+          "run_id": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3",
+          "experiment_type": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural",
+          "metric": "commitment_and_contradiction_engaged precondition 0.333 < 0.667: ON-arm total_beta_elevated=0 on seeds 43/44 (E3 committed, beta never elevated) despite contradiction firing 5/5/3 episodes; criteria degenerate (C1/C2 false).",
+          "target": "after Leg C is trained + a beta-engagement non-vacuity gate: ON arm commits-with-beta on >=2/3 seeds so the contradiction-coupled de-commit DV (ON committed-fraction post-contradiction < OFF, non-cap-pinned) is interpretable."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 468d binding failure is commit-WITHOUT-beta-elevation (total_committed_steps>0 yet total_beta_elevated=0) on 2/3 seeds -- a dissociation between E3 committing a trajectory and the bistable BetaGate registering elevated, not a contradiction-injection wiring gap.",
+        "Contradiction injection is functional (fired on all 3 seeds); do NOT re-queue 468e on the premise that injection needs to engage on more seeds.",
+        "The beta-engagement fragility is folded into the Leg-C re-queue (beta-engagement non-vacuity gate); escalate to a MECH-090 R-c-gate / curriculum substrate amend only if beta fails to elevate on >=2/3 seeds after the head is trained."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "The just-landed commitment-closure-control-plane substrate (Leg A env hook + Leg B refractory) ADVANCED the *c cohort one link -- closure now FIRES on the actual completion event (460d C1 PASS, n_closures 6/3/7; the *c n_closures=0 gap is CLOSED, MECH-260 supports) -- but the de-commit BEHAVIOURAL AUTHORITY over MECH-090 latch occupancy is still absent (460d C4: ON occupancy >= OFF), and on a subset of seeds the agent commits an E3 trajectory without the bistable BetaGate ever elevating (total_beta_elevated=0: 460d-seed42, 468d-seeds43/44), which gates 468d's contradiction arm.",
+    "is_independent_bugs": false,
+    "structural_property": "The wired closure control-plane fires its proximal events (closure done-token + No-Go install) but carries no NET authority over the commitment latch at the granularity the de-commit claims assert, because Leg C -- a TRAINED magnitude-bearing rule_bias_head + a non-cap-pinned de-commit DV -- is experiment-side and was not built (code-confirmed: the trainable-head substrate exists from GAP-D, the flag is set, but the head is never included in an optimizer or trained). The same untrained-rule_state root produces a commit-without-beta-elevation fragility that blocks 468d's contradiction arm. One structural property, advanced from the *c cohort, NOT three independent bugs.",
+    "readings": ["experiment_side_leg_c_unbuilt", "beta_engagement_fragility"]
+  }
+}
