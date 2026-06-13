@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_207_prediction_error_cholinergic_update_sinclair2021",
+  "timestamp_utc": "2026-06-13T19:54:20Z",
+  "claim_ids_tested": ["MECH-207"],
+  "source": {
+    "title": "Prediction errors disrupt hippocampal representations and update episodic memories.",
+    "authors": ["Alyssa H Sinclair", "Grace M Manalili", "Iva K Brunec", "R Alison Adcock", "Morgan D Barense"],
+    "year": 2021,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.2117625118"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The PRIMARY the HPL-9 partial flag named. Directly grounds MECH-207's load-bearing conjunction: prediction error disrupts sustained hippocampal representations AND the PE->updating relationship DEPENDS ON concurrent basal-forebrain (cholinergic) activation -- i.e. cholinergic co-activation is the permissive gate. Resolves the directionality ambiguity left by Hasselmo 1999; held below 0.85 by fMRI indirectness (basal-forebrain BOLD as a cholinergic proxy).",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Cholinergic involvement is inferred from basal-forebrain BOLD activation and hippocampal-basal-forebrain connectivity, not from a direct ACh measurement or a cholinergic manipulation -- the permissive-gate role is correlational here, not causally demonstrated."],
+  "tags": ["mech-207", "prediction_error", "cholinergic", "basal_forebrain", "memory_updating", "surprise_buffer", "directionality_resolved"],
+  "mapping": {
+    "source_claim_statement": "Mnemonic prediction errors (surprising narrative endings) disrupted sustained hippocampal activation patterns, and the degree of disruption predicted memory updating. The relationship between hippocampal activation and subsequent memory DEPENDED ON concurrent basal-forebrain activation, supporting cholinergic regulation of when memories become malleable.",
+    "ree_translation": "Near-verbatim grounding of MECH-207: prediction error triggers hippocampal representation destabilisation and offline memory updating ONLY when basal-forebrain cholinergic activation co-occurs. The PE-disruption arm is the 'surprise buffer destabilisation'; the basal-forebrain-dependence is the 'permissive write-gate'. This settles the directionality the Hasselmo 1999 entry left mixed: Hasselmo's low-ACh-CONSOLIDATION (stabilising old traces) and Sinclair's cholinergic-gated UPDATING (making traces malleable on PE) are different operations, not a contradiction -- MECH-207 is the updating/write side, which Sinclair grounds.",
+    "mapping_caveat": "Human fMRI: 'cholinergic' is operationalised as basal-forebrain BOLD + hippocampus-basal-forebrain connectivity, a proxy for acetylcholine, not a direct ACh measure or manipulation. The permissive-gate conjunction is correlational; a causal cholinergic test would strengthen it.",
+    "source_context": "Human fMRI; familiar narrative videos interrupted before expected endings to elicit mnemonic prediction errors; activation-pattern stability + hippocampus-neuromodulatory connectivity tracked against subsequent memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.30,
+    "notes": "PNAS human study; the PE x basal-forebrain conjunction maps almost one-to-one onto MECH-207. Mapping fidelity high; capped by the BOLD-as-cholinergic-proxy indirectness. Together with Hasselmo (mixed) this moves MECH-207 from a single mixed entry to a supports+frame pair."
+  }
+}

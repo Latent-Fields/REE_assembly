@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_147_hilar_mossy_cell_inhibition_hashimotodani2017",
+  "timestamp_utc": "2026-06-13T19:54:20Z",
+  "claim_ids_tested": ["MECH-147"],
+  "source": {
+    "title": "LTP at Hilar Mossy Cell-Dentate Granule Cell Synapses Modulates Dentate Gyrus Output by Increasing Excitation/Inhibition Balance.",
+    "authors": ["Yuki Hashimotodani", "Kaoutsar Nasrallah", "Kyle R Jensen", "Andres E Chavez", "Daniel Carrera", "Pablo E Castillo"],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.07.028"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Grounds the completion-set partner HPL-9 named for MECH-147: hilar mossy cells set the dentate excitation/inhibition balance (both an associative GC feedback loop AND feed-forward GABAergic inhibition onto GCs) that governs DG output sparsity. Confidence moderate because the paper measures synaptic plasticity / E-I balance, not pattern separation directly -- it establishes the partner circuit, not the separation consequence.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The study measures MC-GC synaptic plasticity and its effect on E/I balance and GC output; it does NOT directly test that mossy-cell-mediated inhibition improves pattern separation. The link from E/I-balance control to separation is inferred (the authors note possible relevance to pattern separation and epilepsy)."],
+  "tags": ["mech-147", "hilar_mossy_cells", "feedback_inhibition", "dentate_gyrus", "e_i_balance", "completion_set"],
+  "mapping": {
+    "source_claim_statement": "Hilar mossy cells form an associative positive-feedback loop with dentate granule cells AND synapse onto GABAergic interneurons that mediate feed-forward inhibition onto granule cells; LTP at mossy-cell->granule-cell synapses increases the excitation/inhibition balance and enhances granule-cell output.",
+    "ree_translation": "Grounds the co-constitutive INHIBITORY partner MECH-147 presupposes. The HPL-9 node flagged that a DG-style separation layer is not self-sufficient: the hilar mossy-cell circuit (excitatory feedback + recruited feed-forward inhibition) sets the E/I balance that controls how sparse, and therefore how decorrelated, granule-cell output is. A REE separation layer built as bare sparse expansion, without an analog of this E/I-balance control, omits the mechanism that actually tunes sparsity.",
+    "mapping_caveat": "The paper establishes the partner circuit and its control over DG output sparsity via E/I balance; it does not demonstrate the downstream separation benefit. The separation consequence is the inference, and the regulation is shown via synaptic plasticity (LTP) rather than as a static architectural requirement.",
+    "source_context": "Rodent (mouse/rat) hippocampal slice electrophysiology; optogenetic and pharmacological dissection of mossy-cell -> granule-cell and disynaptic inhibitory pathways."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.32,
+    "notes": "High-quality primary Neuron ephys. Mapping fidelity moderate: grounds the EXISTENCE and output-control role of the mossy-cell/feed-forward-inhibition partner, not the separation consequence per se. Pairs with Leutgeb 2007 (separation result) to complete the DG circuit picture."
+  }
+}

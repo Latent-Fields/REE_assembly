@@ -1,0 +1,17 @@
+# Theta–gamma sequence coding (Lisman & Buzsáki 2008) — MECH-148 (completion-set partner)
+
+**Claim:** MECH-148 — hippocampal pure time cells provide a context-independent elapsed-time scaffold for E3 credit assignment. **This entry grounds the oscillatory ordering partner** the HPL-9 node flagged for the time-cell mechanism.
+
+## What the paper did
+
+Lisman and Buzsáki synthesised a now-standard account of how the brain times and orders neuronal firing using two nested rhythms. Within each cycle of the slow **theta** rhythm, several faster **gamma** cycles occur; each gamma cycle is occupied by a distinct neural ensemble. The consequence is a code in which a *sequence of items* is laid out in order across the gamma cycles of a single theta cycle — item one in the first gamma slot, item two in the second, and so on. In the hippocampus, this is the machinery behind **phase precession**: as an animal moves through a sequence of places, the places are replayed in compressed order within each theta cycle, which can be read as the recall of an ordered sequence from memory. The same scheme, the authors argue, may support multi-item short-term memory in cortex, and its disruption may contribute to symptoms of schizophrenia.
+
+## Why it matters for REE
+
+MECH-148's core construct — a *pure, context-independent elapsed-time* signal — is grounded by the Omer/Las/Ulanovsky (2022) entry. But the HPL-9 assembly note flagged theta–gamma phase coding as a co-required *partner*, and the distinction is worth being precise about, because getting it wrong would mis-specify the substrate. Pure time cells give a **metric** signal: how much duration has elapsed since a reference event, which is what sets the *magnitude* of temporal discounting (a harm at rollout step 15 versus step 3). Theta–gamma coding gives an **ordinal** signal: the *rank order* of events within a sequence, and the segmentation of a continuous rollout into discrete, correctly-ordered steps. A REE rollout module that weights outcomes by temporal distance needs both — the elapsed-time scalar to decide *how much* to discount, and a sequence-ordering code to keep the multi-step events in the right order to discount *in the first place*. This entry grounds the second. (It also corroborates REE's existing MECH-089 theta–gamma nesting claim, though I have tagged it conservatively to MECH-148 alone, as the HPL-9 completion-set partner it serves, to avoid contaminating MECH-089's evidence record with a single tangential entry.)
+
+## Caveats and confidence
+
+The load-bearing caveat *is* the ordinal-versus-metric distinction. Theta–gamma coding represents *which item is first, second, third* — not *how many seconds have elapsed*. So this is a complementary partner to MECH-148's pure time cells, not a substitute for them; conflating "sequence ordering" with "elapsed-time" would build a substrate that orders events but cannot discount by duration, or vice versa. The source is a canonical theoretical synthesis (Lisman & Buzsáki, two authorities on hippocampal oscillations) rather than a single primary result, and it appears in a schizophrenia venue because the authors extend the scheme to psychopathology — the hippocampal sequence-coding core is well-supported regardless. Mapping fidelity moderate (0.66): it secures the ordering/segmentation partner, complementary to the elapsed-time core. Confidence 0.70 (supports).
+
+*According to PubMed.* Source: Lisman J, Buzsáki G (2008), *Schizophrenia Bulletin* 34(5):974–80. [DOI](https://doi.org/10.1093/schbul/sbn060)

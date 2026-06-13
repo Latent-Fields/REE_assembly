@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_148_theta_gamma_sequence_code_lisman2008",
+  "timestamp_utc": "2026-06-13T19:54:20Z",
+  "claim_ids_tested": ["MECH-148"],
+  "source": {
+    "title": "A neural coding scheme formed by the combined function of gamma and theta oscillations.",
+    "authors": ["John Lisman", "Gyorgy Buzsaki"],
+    "year": 2008,
+    "venue": "Schizophrenia Bulletin",
+    "doi": "10.1093/schbul/sbn060"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Grounds the completion-set partner HPL-9 named for MECH-148: theta-gamma nesting is the oscillatory code that orders items/events in a temporal sequence -- the substrate that a per-step elapsed-time tag plugs into. Confidence moderate because the scheme codes ORDERED ITEM sequences (rank), which is adjacent to but not identical with MECH-148's pure context-independent ELAPSED-TIME signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Theta-gamma coding represents the ORDINAL position of items in a sequence (which item is 1st, 2nd, ...), not a metric elapsed-time-since-event scalar. MECH-148's pure time cells encode elapsed duration; the theta-gamma partner supplies ordering/segmentation, so the two are complementary, not interchangeable -- conflating them would mis-specify the substrate."],
+  "tags": ["mech-148", "theta_gamma", "phase_coding", "sequence_order", "temporal_scaffold", "completion_set"],
+  "mapping": {
+    "source_claim_statement": "Theta and gamma oscillations work together to form a neural code in which multiple neural ensembles represent an ORDERED SEQUENCE of items: each gamma cycle within a theta cycle holds one item, giving items a rank order; in the hippocampus this underlies phase precession (recall of ordered place sequences).",
+    "ree_translation": "Grounds the oscillatory temporal-ordering partner MECH-148 presupposes. Pure time cells supply a content-free elapsed-time axis; theta-gamma nesting supplies the ORDERING/segmentation of events within a rollout. A REE rollout module that weights outcomes by temporal distance needs both: the elapsed-time scalar (MECH-148) to set discounting magnitude AND a sequence-ordering code to keep multi-step rollout events in correct rank. Also corroborates REE's existing MECH-089 theta-gamma nesting claim.",
+    "mapping_caveat": "The theta-gamma code is ORDINAL (item rank within a sequence), whereas MECH-148's pure time cells are a METRIC elapsed-time signal. They are complementary partners, not the same quantity -- this entry grounds the ordering partner, not MECH-148's core elapsed-time construct (which Omer/Las/Ulanovsky 2022 grounds).",
+    "source_context": "Theoretical review synthesising rodent hippocampal oscillation physiology (theta phase precession, gamma item-coding) with human short-term-memory and schizophrenia evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.32,
+    "notes": "Canonical Lisman & Buzsaki theta-gamma synthesis. Mapping fidelity moderate: grounds the ordering/segmentation partner (ordinal), complementary to MECH-148's metric elapsed-time core. Conservative single tag (MECH-148) though it also corroborates MECH-089."
+  }
+}

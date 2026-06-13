@@ -1,0 +1,17 @@
+# Hilar mossy cells and dentate E/I balance (Hashimotodani et al. 2017) — MECH-147 (completion-set partner)
+
+**Claim:** MECH-147 — a DG-equivalent sparse layer must decorrelate similar z_world states before rollout proposals are generated. **This entry grounds the inhibitory completion-set partner** the HPL-9 node flagged: a DG separation layer is not self-sufficient without the hilar mossy-cell circuit that controls its sparsity.
+
+## What the paper did
+
+Castillo's group at Albert Einstein characterised the synapse from hilar **mossy cells** (MCs) onto dentate **granule cells** (GCs). Mossy cells sit in an interesting position: they receive input from granule cells and project *back* to them — locally, contralaterally, and along the hippocampal long axis — forming an associative positive-feedback loop. But the same mossy cells also synapse onto GABAergic interneurons that deliver *feed-forward inhibition* onto granule cells. So mossy cells act on the dentate through both excitation and inhibition. The paper's specific result is that the MC→GC synapse undergoes a presynaptic, NMDA-receptor-independent form of LTP (requiring postsynaptic BDNF/TrkB and presynaptic cAMP/PKA), and that potentiating this excitatory arm shifts the **excitation/inhibition balance** and increases granule-cell output. The disynaptic inhibitory loop is not similarly potentiated, so the net effect is a tunable lever on how much the dentate fires.
+
+## Why it matters for REE
+
+The HPL-9 assembly note made a specific structural argument: building a DG-style sparse expander *without* its inhibitory partners would not yield the pattern-separation property, because separation is a property of the *circuit*, not of granule cells alone. This paper grounds that partner. Granule-cell sparsity — the ~5% activation that makes the dentate a good separator — is not an intrinsic property of granule cells; it is *set* by the balance between excitatory drive (entorhinal input plus mossy-cell feedback) and inhibition (feed-forward GABAergic interneurons, themselves recruited by mossy cells). Mossy cells are the hub that controls that balance. The lesson for a REE substrate is concrete: a separation layer needs an analog of this E/I-balance control — a mechanism that holds activation sparse and adjusts it — not merely a wide projection. Omit it and the "separation" is uncontrolled; the sparsity that does the decorrelating has nothing tuning it.
+
+## Caveats and confidence
+
+The honest limit is that this paper establishes the *partner circuit* and its control over dentate output, but does not itself demonstrate the *pattern-separation consequence* — that is shown by Leutgeb (2007) and Bakker (2008), with which this entry pairs to complete the picture. The result is also framed through synaptic *plasticity* (MC–GC LTP) rather than as a static architectural requirement, and the authors themselves note the circuit's dual relevance to both pattern separation and temporal-lobe epilepsy — a reminder that the same E/I lever, pushed too far, is pathological. So this is partner-grounding, mapping-fidelity moderate (0.62): it secures the existence and output-control role of the mossy-cell/feed-forward-inhibition partner, leaving the separation benefit to the companion entries. High-quality primary Neuron electrophysiology. Confidence 0.70 (supports).
+
+*According to PubMed.* Source: Hashimotodani Y, Nasrallah K, Jensen KR, Chávez AE, Carrera D, Castillo PE (2017), *Neuron* 95(4):928–943.e3. [DOI](https://doi.org/10.1016/j.neuron.2017.07.028)
