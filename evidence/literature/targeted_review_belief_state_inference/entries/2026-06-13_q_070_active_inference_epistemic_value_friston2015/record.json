@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_active_inference_epistemic_value_friston2015",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091",
+    "MECH-388"
+  ],
+  "source": {
+    "title": "Active inference and epistemic value",
+    "authors": [
+      "Karl Friston",
+      "Francesco Rigoli",
+      "Dimitri Ognibene",
+      "Christoph Mathys",
+      "Thomas Fitzgerald",
+      "Giovanni Pezzulo"
+    ],
+    "year": 2015,
+    "venue": "Cognitive Neuroscience",
+    "doi": "10.1080/17588928.2015.1020053",
+    "url": "https://www.tandfonline.com/doi/full/10.1080/17588928.2015.1020053"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The canonical formal treatment decomposing the value of a policy into pragmatic (reward/harm) and epistemic (uncertainty-reducing) components, so that information-gathering actions are selected even when not immediately rewarding. Directly grounds MECH-388 (epistemic action pressure as a survival-relevant viability function) and the active-inference half of L5. Confidence capped by the formalism's strong assumptions (expected-free-energy minimisation) which REE does not adopt wholesale, and by it being theory rather than a single decisive empirical test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anti-epistemic panic: an agent weighting only pragmatic value commits under threat without sampling -- the active-inference account predicts this as failure to value epistemic gain.",
+    "Epistemic freezing: the dual failure -- over-weighting epistemic value so the agent keeps gathering information and never commits -- is the over-exploration tail the pragmatic/epistemic balance must bound."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "mech-388",
+    "inf-7",
+    "active_inference",
+    "epistemic_value",
+    "exploration",
+    "L5"
+  ],
+  "mapping": {
+    "source_claim_statement": "Under active inference, agents minimise the expected free energy of future outcomes; the quality of a policy decomposes into extrinsic/pragmatic value (preferred outcomes) and epistemic/intrinsic value (expected information gain / uncertainty reduction), so optimal behaviour includes actions chosen purely to resolve uncertainty about hidden states.",
+    "ree_translation": "Formal backbone of MECH-388: when goal success or harm avoidance depends on hidden state, REE should assign action pressure to uncertainty-reducing transitions even when not immediately reward/harm-optimal -- 'the intelligent action may be one that TESTS where safety is.' Also reframes Q-044 curiosity machinery as a survival-relevant viability function, not only play/exploration.",
+    "mapping_caveat": "Active inference packages pragmatic and epistemic value into one expected-free-energy scalar; REE keeps harm, goal, and epistemic pressure as separate streams and has not committed to free-energy minimisation. The shared, transferable point is the EXISTENCE and selectability of epistemic value; the unifying scalar formalism is explicitly NOT adopted (and Q-044's sub-flavour-independence question must be adjudicated before generalising curiosity).",
+    "source_context": "Theoretical / computational neuroscience review with simulation illustrations; not a clinical or single-cell empirical study."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Source quality good (canonical, heavily cited) but theory-with-simulation rather than decisive experiment. Mapping fidelity good for epistemic-value existence; transfer risk moderate due to free-energy formalism REE does not adopt."
+  }
+}

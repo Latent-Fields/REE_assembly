@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_jumping_to_conclusions_ross2015",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070"
+  ],
+  "source": {
+    "title": "Jumping to Conclusions About the Beads Task? A Meta-analysis of Delusional Ideation and Data-Gathering",
+    "authors": [
+      "Robert M. Ross",
+      "Ryan McKay",
+      "Max Coltheart",
+      "Robyn Langdon"
+    ],
+    "year": 2015,
+    "venue": "Schizophrenia Bulletin",
+    "doi": "10.1093/schbul/sbu187",
+    "url": "https://academic.oup.com/schizophreniabulletin/article-abstract/41/5/1183/1919680"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "A rigorous meta-analysis of the 'jumping to conclusions' (JTC) data-gathering bias -- the cleanest candidate operationalisation of premature-collapse / anti-epistemic over-hasty inference. It confirms a real association between delusional ideation and reduced data-gathering BUT finds the effect modest and partly confounded (e.g. by general cognitive ability), which tempers any clean claim that 'premature hypothesis collapse' is a unitary, strongly-measurable failure mode. Direction is therefore mixed: supports the failure mode's reality, weakens its purity. Confidence 0.62 reflects strong source quality offset by the qualifying finding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Premature-collapse / anti-epistemic-panic: delusion-prone individuals gather less evidence before committing to a belief (fewer 'draws to decision') -- the over-hasty-inference signature INF-7 must track -- but the effect is small and confounded, so the failure mode is real yet not cleanly separable.",
+    "Cautions INF-7 against treating each register entry as a crisp dissociable mechanism: the clinical operationalisation of 'collapse too early' is noisier than the conceptual taxonomy implies."
+  ],
+  "tags": [
+    "q-070",
+    "inf-7",
+    "failure_mode_register",
+    "jumping_to_conclusions",
+    "premature_collapse",
+    "data_gathering",
+    "mech-126"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across studies using the beads/draws-to-decision task, delusional and delusion-prone individuals gather less data before deciding (the JTC bias). Meta-analysis confirms the association is reliable but of modest magnitude and partly attributable to confounds such as general cognitive ability, rather than a large, specific reasoning deficit.",
+    "ree_translation": "Operationalises and partly validates the INF-7 register's 'hypothesis collapse too early' / 'anti-epistemic panic' modes and maps them onto MECH-126 uncertainty collapse: committing on too little evidence = treating residual uncertainty as zero. But the modest, confounded effect size is the honest counter-weight: it supports including premature-collapse in the register while warning that the failure modes are graded and overlapping, not crisp dissociable lesions -- which is precisely why Q-070 is framed as an open question (do they reduce to the existing taxonomy?) rather than an assertion of a new parallel one.",
+    "mapping_caveat": "The beads task is a narrow, abstract probabilistic-reasoning paradigm in humans; generalising 'draws to decision' to REE's epistemic-action-pressure / commitment-timing dynamics is a real stretch (no shared task, species, or substrate). It grounds the EXISTENCE and clinical relevance of an over-hasty-commitment failure mode and supplies a calibration warning, not a mechanism REE inherits.",
+    "source_context": "Meta-analysis of human behavioural studies (beads / draws-to-decision probabilistic-reasoning task) in delusional and delusion-prone samples."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.46,
+    "notes": "High source quality (meta-analysis). Lower mapping fidelity and higher transfer risk: abstract human reasoning task -> REE commitment timing; the modest/confounded effect is itself the evidentiary nuance, hence direction=mixed."
+  }
+}

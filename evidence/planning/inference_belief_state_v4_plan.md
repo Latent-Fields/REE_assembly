@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Inference / belief-state affordance layer (the inference pipeline)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-004, ARC-007, ARC-018, MECH-022, MECH-033, ARC-062, ARC-063, SD-057, SD-059, MECH-358, Q-044, INV-035, INV-036]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -130,7 +130,7 @@ closure_plan:
       title: "Inference failure-mode register + biology grounding (lit-pulls)"
       phase: 2
       status: open
-      lit_pull_status: none
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: ["Q-070"]
@@ -140,7 +140,8 @@ closure_plan:
         - "Biology grounding (project rule feedback_biology_before_formal_definitions): L1 hippocampal-prefrontal replay (intake 5.1); L2 cognitive-map / relational inference (intake 5.2); L3 pattern-completion vs preplay safety (intake 5.3); L4 POMDP belief-state + Dreamer latent world models (intake 6.1/6.2); L5 active inference / epistemic value (intake 6.3)"
         - "Failure-mode register (intake section 9): failure-to-infer-hidden-danger, failure-to-infer-hidden-safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation (apophenia/paranoia), cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic"
         - "These map onto EXISTING state-abstraction failure modes (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading) -- the register links new modes to the existing taxonomy rather than inventing a parallel one"
-      last_updated: 2026-06-10
+      last_updated: 2026-06-13
+      lit_pull_note: "DONE 2026-06-13 via /lit-pull (session lit-pull-inf7-belief-state-inference). 8 literature_evidence/v1 entries under evidence/literature/targeted_review_belief_state_inference grounding all 5 strands: L1 Pfeiffer&Foster 2013 (prospective replay, supports 0.78), L2 Whittington 2020 TEM (relational map, 0.76), L3 Kay 2020 (cycling-between-possible-futures, 0.80 -- highest fidelity: MECH-385 belief-set + INV-078 provenance), L4 Kaelbling 1998 POMDP (belief-not-observation, 0.70, MECH-385) + Hafner 2023 DreamerV3 (latent imagination, 0.65), L5 Friston 2015 active inference (epistemic value, 0.70, MECH-388); failure register grounded by Sterzer 2018 predictive-coding-psychosis (0.74) + Ross 2015 JTC meta-analysis (mixed 0.62). Failure-mode register MAPPED onto the existing MECH-126 state-abstraction taxonomy (synthesis table): 9/11 modes reduce to context-loss/uncertainty-collapse/valence-mis-tag/overmerge/oversplit/threat-spreading; the 2 epistemic-balance modes (epistemic-freezing / anti-epistemic-panic) form a genuinely-new commitment-timing axis -> surfaced PROPOSAL-FIRST (recommend keeping inside Q-070 as a sub-axis note, NOT a new MECH while substrate absent). Tags Q-070 + ARC-091 (+ MECH-385/388/INV-078 where mapping is direct). literature_confidence only; exp_conf 0; PROMOTES NOTHING; no V3 experiment queued."
       completion_note: "Intake sections 5, 6, 9. The lit grounding must precede the belief-state substrate (project rule: biology before formal definitions, canonical failures SD-003/SD-010). The failure-mode register doubles as the diagnostic-design source for the eventual V4 safety-route-inference experiment family (intake section 11)."
 ---
 # Inference / Belief-State Affordance Layer -- V4 Forward Roadmap

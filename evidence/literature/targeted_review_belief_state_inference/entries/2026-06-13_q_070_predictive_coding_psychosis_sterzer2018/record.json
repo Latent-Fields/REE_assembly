@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_predictive_coding_psychosis_sterzer2018",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070"
+  ],
+  "source": {
+    "title": "The Predictive Coding Account of Psychosis",
+    "authors": [
+      "Philipp Sterzer",
+      "Rick A. Adams",
+      "Paul Fletcher",
+      "Chris Frith",
+      "Stephen M. Lawrie",
+      "Lars Muckli",
+      "Philipp Petrovic",
+      "David Uhlhaas",
+      "Martin Voss",
+      "Philip R. Corlett"
+    ],
+    "year": 2018,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2018.05.015",
+    "url": "https://www.biologicalpsychiatryjournal.com/article/S0006-3223(18)31508-9/fulltext"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "A high-quality consensus review tying psychotic symptoms to specific INFERENCE failures (aberrant precision-weighting of priors vs sensory prediction errors), which is exactly the bridge INF-7 needs: it grounds the inference-specific failure modes (overconfident-wrong-hypothesis, apophenia/aberrant salience, premature-collapse) AND lets them be mapped onto the existing MECH-126 state-abstraction taxonomy rather than invented anew. Confidence reflects strong source + tight conceptual mapping, tempered by it being a review of a contested computational account.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Overconfident-wrong-hypothesis: over-weighted priors (or aberrantly precise prediction errors) drive false inferences held with high confidence -> delusions; maps to MECH-126 overmerge + uncertainty collapse.",
+    "Hypothesis-proliferation / apophenia: aberrant salience assigns meaning to noise -> spurious structure (paranoid/magical route construction); maps to MECH-126 valence mis-tagging + threat-spreading.",
+    "Failure-to-infer correctly is here a precision-weighting pathology, not a missing-data pathology -- a distinction INF-7's register must preserve."
+  ],
+  "tags": [
+    "q-070",
+    "inf-7",
+    "failure_mode_register",
+    "predictive_coding",
+    "psychosis",
+    "aberrant_inference",
+    "mech-126"
+  ],
+  "mapping": {
+    "source_claim_statement": "Psychotic phenomena (hallucinations, delusions) are explained as disturbances of hierarchical Bayesian/predictive-coding inference: maladaptive precision-weighting -- over-weighting prior beliefs or aberrantly weighting sensory prediction errors -- produces false inferences and aberrant salience, with delusions as explanatory hypotheses that resist correction.",
+    "ree_translation": "Grounds the INF-7 failure-mode register's 'overconfident wrong hypothesis', 'hypothesis proliferation / apophenia / paranoid route construction', and 'cue hijack' as recognised clinical inference failures, and provides the bridge to map them onto MECH-126: aberrant-precision-driven over-commitment = overmerge + uncertainty collapse; aberrant salience over noise = valence mis-tagging + threat-spreading. This is the evidence that the new inference failure modes are largely RE-DESCRIPTIONS of the existing state-abstraction taxonomy under partial observability, not a parallel taxonomy.",
+    "mapping_caveat": "The predictive-coding account of psychosis is itself a contested computational framework (not a settled mechanism), and REE does not implement hierarchical precision-weighting literally; the mapping is at the level of failure-mode topology (which inference errors occur and how they cluster), not mechanism identity. It grounds that the modes are real and clinically attested, not that REE's substrate will produce them by the same route.",
+    "source_context": "Consensus theoretical review in Biological Psychiatry synthesising human psychophysics, computational modelling, and clinical phenomenology of schizophrenia-spectrum psychosis."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.34,
+    "notes": "Strong consensus review. Mapping fidelity good for the failure-register-to-MECH-126 reduction; transfer risk moderate because the predictive-coding account is contested and REE's mechanism differs."
+  }
+}

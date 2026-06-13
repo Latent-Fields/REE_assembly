@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_latent_world_model_dreamer_hafner2023",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091"
+  ],
+  "source": {
+    "title": "Mastering Diverse Domains through World Models (DreamerV3)",
+    "authors": [
+      "Danijar Hafner",
+      "Jurgis Pasukonis",
+      "Jimmy Ba",
+      "Timothy Lillicrap"
+    ],
+    "year": 2023,
+    "venue": "arXiv preprint arXiv:2301.04104",
+    "doi": "10.48550/arXiv.2301.04104",
+    "url": "https://arxiv.org/abs/2301.04104"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.65,
+  "confidence_rationale": "A strong, widely-replicated demonstration that an agent learning a compact LATENT world model and improving behaviour inside imagined (model-generated) trajectories can act effectively across 150+ domains from a single config, including long-horizon sparse-reward tasks. It is the ML analogue of REE's E2/hippocampal rollout-driven inference. Confidence held to 0.65: it is a preprint, an engineering result not a neuroscience finding, and it collapses harm/goal/residue into a single reward -- precisely the design REE rejects.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model-free reactive agent (no latent model, no imagined rollouts) fails the long-horizon/partial-information tasks Dreamer solves -- the computational analogue of 'cannot infer a route from partial evidence'.",
+    "Reward-collapse: Dreamer's single scalar reward is itself a cautionary signature for REE's insistence on separated streams; super-additive value collapse would mis-tag valence (MECH-126 valence mis-tagging)."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "inf-7",
+    "world_model",
+    "latent_imagination",
+    "model_based_rl",
+    "L4"
+  ],
+  "mapping": {
+    "source_claim_statement": "DreamerV3 learns a latent dynamics model from interaction and trains an actor-critic purely on imagined trajectories rolled out in that latent space, achieving strong data-efficiency and generality (including first-from-scratch diamond collection in Minecraft) with fixed hyperparameters.",
+    "ree_translation": "The ML existence-proof that intelligent action under partial information depends on latent prediction + imagined rollout rather than reactive mapping -- the same structure ARC-091/INF-7 attribute to E2 action-consequence prediction (MECH-033) and ARC-018 hippocampal rollouts feeding the inference layer. Supports the feasibility of building behaviour over inferred latent state, not raw observation.",
+    "mapping_caveat": "Dreamer optimises a single reward and a monolithic latent; REE separates harm, goal, residue, commitment, and ethical texture and treats imagined trajectories as provenance-tagged hypotheses (INV-078). So Dreamer grounds the LATENT-MODEL-AND-IMAGINATION principle but is an architectural counter-example on stream separation and on corrigible-hypothesis provenance; do not import its reward-collapse.",
+    "source_context": "Deep model-based reinforcement learning; benchmark suite of 150+ tasks (Atari, DMLab, Minecraft, continuous control); preprint (not peer-reviewed at pull time)."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "Source quality lower (preprint, engineering benchmark). Mapping fidelity moderate (latent-model-imagination shared; reward-collapse divergent). Highest transfer risk in the pull -- ML->REE neuro-grounded architecture."
+  }
+}

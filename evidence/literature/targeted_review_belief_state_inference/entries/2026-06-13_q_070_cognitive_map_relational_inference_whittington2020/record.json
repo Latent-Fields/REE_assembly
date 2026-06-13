@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_cognitive_map_relational_inference_whittington2020",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091"
+  ],
+  "source": {
+    "title": "The Tolman-Eichenbaum Machine: Unifying Space and Relational Memory through Generalization in the Hippocampal Formation",
+    "authors": [
+      "James C.R. Whittington",
+      "Timothy H. Muller",
+      "Shirley Mark",
+      "Guifen Chen",
+      "Caswell Barry",
+      "Neil Burgess",
+      "Timothy E.J. Behrens"
+    ],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.10.024",
+    "url": "https://www.cell.com/cell/fulltext/S0092-8674(20)31388-X"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Strong model+data convergence: a single generative model reproduces grid/place/band/object-vector cell phenomenology AND generalises relational structure to novel environments, recovering empirically recorded representations. Directly grounds the L2 'cognitive map = general relational inference engine' premise behind ARC-091. Tempered by being a model whose biological claims are inferential rather than directly recorded.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the hippocampal-entorhinal map were purely spatial (not a reusable relational structure), REE's 'state-as-navigable relational package, inferable across structurally-equivalent situations' framing would lose its biological warrant; TEM shows structural knowledge factorises and transfers."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "inf-7",
+    "cognitive_map",
+    "relational_inference",
+    "generalization",
+    "L2"
+  ],
+  "mapping": {
+    "source_claim_statement": "A factorised generative model (TEM) that separates structural knowledge (where/how things relate) from sensory experience reproduces hippocampal-entorhinal cell types and, crucially, generalises learned relational structure to new environments -- formalising the hippocampal formation as a relational-memory / cognitive-map system, not a purely spatial one.",
+    "ree_translation": "Grounds INF-7/ARC-091's 'state as navigable relational situation' and the map-generalisation failure axis (map-over/under-generalisation). The structure/content factorisation is the biology behind REE's claim that inference reuses a relational map to answer 'where am I in this relational space, and what unseen relation follows?' -- and that over- vs under-transfer of that map (oversplit/overmerge in MECH-126 terms) are the failure modes.",
+    "mapping_caveat": "TEM is a normative model fit to data, not a lesion/causal demonstration that the brain performs this factorisation; and REE does not implement TEM. The mapping is at the level of shared computational principle (factorised relational generalisation), so transfer risk lies in assuming REE's L-space inherits the same generalisation properties.",
+    "source_context": "Computational model trained on structured tasks; compared against rodent entorhinal/hippocampal recordings and non-spatial relational-inference tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.34,
+    "notes": "Source quality high (Cell, landmark unifying model). Mapping fidelity high for the relational-inference framing and the map-generalisation failure axis; transfer risk moderate because it is a model, not a causal recording."
+  }
+}

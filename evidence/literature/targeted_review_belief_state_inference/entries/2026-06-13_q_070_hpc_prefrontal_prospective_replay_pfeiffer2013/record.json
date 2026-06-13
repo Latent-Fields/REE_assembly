@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_hpc_prefrontal_prospective_replay_pfeiffer2013",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091"
+  ],
+  "source": {
+    "title": "Hippocampal place-cell sequences depict future paths to remembered goals",
+    "authors": [
+      "Brad E. Pfeiffer",
+      "David J. Foster"
+    ],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12112",
+    "url": "https://www.nature.com/articles/nature12112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical Nature single-unit study with a direct, prospective result: pre-navigation hippocampal sequences are biased toward the upcoming path to a remembered goal. Maps strongly onto INF-7/ARC-091's claim that hippocampal output supplies prospective hypotheses (L1). Held below 0.85 only by the animal->REE-architecture transfer (rat spatial trajectory vs REE's general state-as-navigable latent).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If hippocampal output were pure retrieval (past trajectories only), the inference-layer framing of replay-as-hypothesis-generator would be wrong; the result instead shows future-biased, goal-directed sequences."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "inf-7",
+    "hippocampal_replay",
+    "prospective_coding",
+    "L1"
+  ],
+  "mapping": {
+    "source_claim_statement": "Before goal-directed navigation, hippocampal place cells generate brief (~ripple-timescale) sequences encoding spatial trajectories that progress from the rat's current location toward a known goal location, providing direct evidence that place-cell sequences can depict future paths.",
+    "ree_translation": "Grounds the INF-7/ARC-091 premise that hippocampal completion/replay (ARC-007/ARC-018) is not merely memory retrieval but a generator of prospective candidate trajectories -- the raw material the inference layer turns into a belief-state hypothesis set (MECH-385) and inferred affordances. The 'depict future paths to goals' result is the biology behind 'given partial evidence, propose a route'.",
+    "mapping_caveat": "The paper measures literal spatial trajectories to a visible/remembered reward location in an open arena; REE's inference layer claims a far more general state-hypothesis construction under partial observability. The transfer assumes spatial prospective sequencing generalises to non-spatial relational state inference -- plausible (see Whittington 2020) but not demonstrated here.",
+    "source_context": "Rat dorsal CA1 tetrode ensemble recordings; open-field goal-directed navigation task."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Nature, well-replicated prospective-replay line). Mapping fidelity strong for the 'replay = prospective hypothesis' half of L1; transfer risk moderate (spatial->general-relational)."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_pomdp_belief_state_kaelbling1998",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091",
+    "MECH-385"
+  ],
+  "source": {
+    "title": "Planning and acting in partially observable stochastic domains",
+    "authors": [
+      "Leslie Pack Kaelbling",
+      "Michael L. Littman",
+      "Anthony R. Cassandra"
+    ],
+    "year": 1998,
+    "venue": "Artificial Intelligence",
+    "doi": "10.1016/S0004-3702(98)00023-X",
+    "url": "https://www.sciencedirect.com/science/article/pii/S000437029800023X"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The foundational formal statement of the exact problem INF-7/ARC-091 names: under partial observability the policy must map a BELIEF over hidden states (not the raw observation) to action. High source-quality (the canonical POMDP reference) and a precise normative grounding for MECH-385. Confidence capped because REE explicitly does NOT adopt exact Bayesian belief updating, so the mapping is principle-level, with real divergence in mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Failure-to-infer-hidden-danger / hidden-safety is exactly the cost of acting on observation rather than belief; the POMDP framework makes precise why an observation->action policy is provably suboptimal when state is hidden.",
+    "Context loss (MECH-126): a memoryless reactive policy that ignores observation/action history is the degenerate belief-state failure the formalism rules out."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "mech-385",
+    "inf-7",
+    "pomdp",
+    "belief_state",
+    "partial_observability",
+    "L4"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a partially observable Markov decision process the agent cannot observe the true state and must maintain a belief state -- a probability distribution over hidden states -- updated from its action/observation history; the optimal policy is a function of the belief state (equivalently the history), not of the current observation.",
+    "ree_translation": "The formal backbone of MECH-385 (belief-state hypothesis set) and the ARC-091 thesis that E3 must select trajectories over inferred state, not raw observation. REE's bounded top-k hypothesis set with confidence weights is a tractable, non-Bayesian approximation of the POMDP belief state; this paper supplies the why (observation->action is provably insufficient under hidden state).",
+    "mapping_caveat": "REE deliberately avoids the full POMDP formalism: it keeps a bounded set of competing hypotheses with heuristic precision rather than an exact posterior, separates harm/goal/residue streams instead of a single reward, and never commits to closed-form belief updates. So this grounds the PROBLEM and the necessity of belief-over-observation, not REE's specific solution; importing POMDP optimality guarantees into REE would be a category error.",
+    "source_context": "Theoretical AI / operations-research formalism; tabular discrete state-action POMDPs with offline value-iteration solution methods."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.4,
+    "notes": "Canonical source. Mapping fidelity moderate: it nails the problem statement (belief not observation) but REE's approximate, stream-separated solution diverges from exact POMDP machinery -- hence the higher transfer risk."
+  }
+}

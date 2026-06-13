@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_q_070_possible_futures_cycling_kay2020",
+  "timestamp_utc": "2026-06-13T18:07:17Z",
+  "claim_ids_tested": [
+    "Q-070",
+    "ARC-091",
+    "INV-078"
+  ],
+  "source": {
+    "title": "Constant Sub-second Cycling between Representations of Possible Futures in the Hippocampus",
+    "authors": [
+      "Kenneth Kay",
+      "Jason E. Chung",
+      "Marielena Sosa",
+      "Jonathan S. Schor",
+      "Mattias P. Karlsson",
+      "Margaret C. Larkin",
+      "Daniel F. Liu",
+      "Loren M. Frank"
+    ],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.01.014",
+    "url": "https://www.cell.com/cell/fulltext/S0092-8674(20)30061-1"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Direct, striking single-unit evidence that the hippocampus holds MULTIPLE competing future hypotheses in rapid alternation (~8 Hz, one per theta cycle) rather than collapsing to a single committed path. This is close to a one-to-one biological instantiation of the belief-state-hypothesis-set + provenance principle (INV-078: completed trajectory is a hypothesis, not a commitment). Strong source and tight mapping; transfer to non-spatial REE state the main caveat.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Premature-collapse failure mode: if the hippocampus committed to one representation rather than cycling, it would model the 'hypothesis collapse too early / one bad explanation dominates' pathology; the healthy system instead maintains alternatives sub-second.",
+    "Hypothesis-proliferation has the opposite signature -- cycling without ever committing -- which the inference layer must bound (top-k)."
+  ],
+  "tags": [
+    "q-070",
+    "arc-091",
+    "inv-078",
+    "inf-7",
+    "pattern_completion",
+    "preplay",
+    "belief_state",
+    "provenance",
+    "L3"
+  ],
+  "mapping": {
+    "source_claim_statement": "At a choice point with two upcoming paths, hippocampal activity represents the two possible future scenarios in constant ~125-ms alternation (one scenario per theta cycle), so the animal holds multiple candidate futures concurrently rather than a single representation.",
+    "ree_translation": "The clearest biology for MECH-385 (a bounded set of competing latent-state/trajectory hypotheses) and INV-078 (inferred trajectories remain provenance-tagged as hypotheses, not perception/commitment). Cycling-between-possible-futures = the substrate refusing to collapse uncertainty prematurely; it grounds both the belief-set representation and the safety principle that completed trajectories are proposals corrigible by outcome.",
+    "mapping_caveat": "Two discrete spatial paths at a maze choice point is a much simpler hypothesis space than REE's general partial-observability state inference; the ~8 Hz theta-cycling mechanism is spatial-navigation-specific and should not be over-read as the literal implementation REE must adopt. The principle (hold competing futures, do not collapse early) transfers; the mechanism may not.",
+    "source_context": "Rat dorsal CA1 ensemble recordings; W-track / multi-path maze choice points; theta-rhythm-locked analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Source quality high (Cell, Frank lab). Mapping fidelity is the highest in the pull -- competing-futures-without-collapse maps almost directly onto MECH-385 + INV-078. Transfer risk moderate (spatial binary choice -> general belief set)."
+  }
+}
