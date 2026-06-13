@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_366_first_third_person_dual_perspective_rice2009",
+  "timestamp_utc": "2026-06-13T20:14:52Z",
+  "claim_ids_tested": ["MECH-366"],
+  "source": {
+    "title": "I can see it both ways: First- and third-person visual perspectives at retrieval",
+    "authors": ["Heather J. Rice", "David C. Rubin"],
+    "year": 2009,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2009.07.004"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Rice & Rubin show that first- and third-person visual perspectives are NOT mutually exclusive opposites: people commonly report experiencing a single memory from both perspectives, and the two ratings correlate differentially with vividness rather than trading off as a single bipolar dimension. This supports two things MECH-366 needs: (1) viewpoint is a graded, represented property that can be queried independently (not one fixed camera angle baked into the trace), and (2) it is a property distinct from the content of the episode. Held at 0.7 because the evidence is retrospective self-report rating rather than a manipulation showing on-demand switching, and the reported gender/individual differences mildly echo the encoding-dependence caveat from Nigro & Neisser.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Perspective is partly an individual-differences and gender-linked variable (females report third-person perspective more often). As with Nigro & Neisser, this is a mild contra-signal to fully arbitrary, person-independent switching -- the viewpoint tag's default may be partly fixed by the rememberer, not freely re-set per retrieval."
+  ],
+  "tags": ["mech-366", "visual_perspective", "first_person", "third_person", "autobiographical_memory", "dual_perspective"],
+  "mapping": {
+    "source_claim_statement": "First- and third-person visual perspectives at retrieval should not be treated as opposite ends of a single dimension. Individuals can experience the same event from more than one perspective at once, and the two perspective experiences correlate differentially with vividness, indicating they are separable represented attributes rather than a single bipolar property.",
+    "ree_translation": "Supports MECH-366's framing of viewpoint as a represented, queryable property of an episode that is separable both from the episode's content and from a single fixed camera. The co-availability of both perspectives on one memory is consistent with a viewpoint LABEL that can be set to either value (or read from either) at retrieval, rather than a perspective hard-baked at encoding.",
+    "mapping_caveat": "Demonstrates co-availability and separability of the two perspectives, not voluntary on-demand SWITCHING of a single token (that is St. Jacques 2017's contribution). The gender/individual-difference effects mean the default viewpoint is partly a stable trait of the rememberer -- a mild qualifier on 'freely switchable independent of encoding'. Human self-report rating study.",
+    "source_context": "Human cognitive psychology; questionnaire/rating studies on autobiographical and laboratory events, separate first- and third-person ratings per memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Well-cited methodological clarification in a solid venue. Mapping fidelity good: it directly supports viewpoint as a separable, dual-valued represented attribute (distinct from content), which is exactly the SD-005-vs-MECH-366 distinction the task asks to ground. Below St. Jacques because it shows co-availability rather than active switching."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_429_schema_congruence_vmpfc_vankesteren2012",
+  "timestamp_utc": "2026-06-13T20:14:52Z",
+  "claim_ids_tested": ["MECH-429"],
+  "source": {
+    "title": "How schema and novelty augment memory formation",
+    "authors": ["Marlieke T. R. van Kesteren", "Dirk J. Ruiter", "Guillen Fernandez", "Richard N. Henson"],
+    "year": 2012,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/j.tins.2012.02.001"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Direct grounding for MECH-429, which was reaped in the first ABM-9 pass as a completion-set partner with NO literature_evidence entry (lit_conf null) -- this entry closes that reap-only gap, which is exactly what the FINISH pass asked for. van Kesteren et al.'s SLIMM model proposes that medial PFC detects congruency between new information and existing neocortical schemas ('resonance') and, when congruent, routes that information into a fast mPFC-gated systems-consolidation pathway, bypassing the slow hippocampal-dependent route that incongruent information needs. That IS MECH-429's mechanism: schema-fit as a consolidation write-weight / routing variable with a fast vmPFC route. Strong fidelity; held at 0.77 because the claim that schema-fit is a SECOND write-weight axis ORTHOGONAL to affect (MECH-361) is REE's synthesis, not something this paper tests against affect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "SLIMM also predicts schema-INCONGRUENT (novel) information is sometimes better remembered (the paradoxical novelty effect), via a separate route. So schema-congruence is not a monotone write-weight -- both high congruence and high novelty can boost encoding by different mechanisms. MECH-429's 'congruent is consolidated preferentially' is the central tendency, but a faithful model must represent the U-shaped congruence/novelty interaction, not a single linear schema-fit gain."
+  ],
+  "tags": ["mech-429", "schema_congruence", "consolidation", "vmpfc", "mpfc", "slimm", "systems_consolidation", "cls"],
+  "mapping": {
+    "source_claim_statement": "Information congruent with an existing schema is usually better and faster consolidated than incongruent information. In the SLIMM framework, medial PFC detects the congruency ('resonance') of new information with neocortical schemas and, when resonance is high, promotes rapid neocortical integration while suppressing the slower MTL/hippocampal-dependent route; when resonance is low, MTL-dependent encoding dominates (and strong novelty can itself augment memory by a distinct mechanism).",
+    "ree_translation": "Grounds MECH-429: schema-congruence is a consolidation WRITE-WEIGHT and ROUTING variable, with a fast vmPFC/mPFC-gated route for congruent content and a slow hippocampal route for incongruent content. This is the CLS/schema fast-consolidation route that REE's existing consolidation gates (MECH-261 mode-conditioned write gating; MECH-285 V_s-residual priority) presupposed but had not named, and it supplies the biology-before-formal-definitions warrant the reaped MECH-429 stub asked for before any build.",
+    "mapping_caveat": "The paper grounds schema-fit as a routing/consolidation variable, but it does NOT establish schema-fit as a write-weight axis INDEPENDENT of affect (MECH-361) -- that orthogonality is MECH-429's own synthesis and remains the falsifier (does schema-fit explain consolidation variance beyond affect + V_s residual?). Human/animal systems-neuroscience review; the mPFC<->vmPFC mapping onto a REE 'fast route' is an architectural analogy. Tse et al 2007 (Science) is the canonical empirical anchor for schema-accelerated consolidation and is cited in MECH-429's notes; Schapiro et al 2017 covers the CLS-within-hippocampus angle.",
+    "source_context": "Human and rodent systems neuroscience; integrative review of lesion + neuroimaging findings; proposes the SLIMM (schema-linked interactions between MTL and neocortex) model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative review (Trends in Neurosciences) integrating the Tse-2007 schema-consolidation findings into a named mechanism. Mapping fidelity high for the congruence-routing core of MECH-429; reduced from higher only because the affect-orthogonality axis is REE's synthesis, not the paper's test. Transfer risk moderate -- a neural-systems route mapped onto a REE consolidation write-weight."
+  }
+}

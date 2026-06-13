@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_366_reality_monitoring_johnson1981",
+  "timestamp_utc": "2026-06-13T20:14:52Z",
+  "claim_ids_tested": ["MECH-366"],
+  "source": {
+    "title": "Reality monitoring",
+    "authors": ["Marcia K. Johnson", "Carol L. Raye"],
+    "year": 1981,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.88.1.67"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Johnson & Raye's reality-monitoring model grounds the OTHER facet of MECH-366 named in the task: the imagined-vs-experienced viewpoint label. They show that memories carry attributes (perceptual detail, contextual richness vs records of cognitive operations) that the system uses to decide whether a memory originated externally (perceived) or internally (imagined/reasoned), and that this attribution is reconstructive and can fail. That is the biological warrant for treating imagined-vs-experienced as a represented, decidable label on an episode rather than a given. Held at 0.62 because (a) it is a 1981 theoretical model, and (b) reality-monitoring is really the imagined-vs-experienced SOURCE axis, which overlaps MECH-365/MECH-430 provenance more than the field/observer SPATIAL axis -- I am grounding one of MECH-366's two viewpoint dimensions, with explicit overlap into the provenance claims.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reality monitoring is reconstructive and fallible: the imagined-vs-experienced label is INFERRED from memory attributes at retrieval, not stored as ground truth. This grounds the EXISTENCE of an imagined-vs-experienced label but, exactly as the MECH-365 Johnson-1993 entry already recorded, leans against the absoluteness of a one-way committed-vs-imagined gate -- the brain's tag is probabilistic and can be wrong (imagined events misattributed as experienced)."
+  ],
+  "tags": ["mech-366", "reality_monitoring", "source_monitoring", "imagined_vs_experienced", "provenance", "autobiographical_memory"],
+  "mapping": {
+    "source_claim_statement": "People distinguish memories of externally derived events (perceived) from memories of internally generated events (imagined, reasoned) by evaluating qualitative attributes of the memory -- externally derived memories tend to have more perceptual and contextual detail, internally generated ones carry more records of cognitive operations. This 'reality monitoring' is a reconstructive decision process that can both succeed and systematically fail.",
+    "ree_translation": "Grounds the imagined-vs-experienced facet of MECH-366's switchable viewpoint label: whether an episode is re-experienced AS perceived-and-lived versus AS imagined/simulated is itself a represented, decidable property of the token, set by an attribute-based attribution process. This is the second of MECH-366's two viewpoint dimensions (the first being field/observer spatial perspective, grounded by St. Jacques / Rice & Rubin / Nigro).",
+    "mapping_caveat": "Reality monitoring is the SOURCE (internal/external) axis and overlaps substantially with the provenance machinery REE already homes in MECH-365 (committed-vs-imagined gate) and MECH-430 (multi-dimensional source vector). Tagged to MECH-366 because the task frames imagined-vs-experienced as a viewpoint label on the episode, but the honest reading is that this axis is co-owned with MECH-365/MECH-430 -- it should not be double-counted as independent field/observer evidence. 1981 theoretical model; human cognitive psychology.",
+    "source_context": "Human cognitive psychology; foundational theoretical model with supporting discrimination/confusion paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Seminal, heavily replicated framework (the source-monitoring literature grew out of it), but an older theoretical paper. Mapping fidelity moderate by design: it grounds the imagined-vs-experienced viewpoint dimension of MECH-366 while overlapping the MECH-365/MECH-430 provenance claims, so I deliberately did not inflate it. Direction 'supports' for the existence of the label; the fallibility is logged as a failure signature consistent with the existing provenance-gate weakener."
+  }
+}

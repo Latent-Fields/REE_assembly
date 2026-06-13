@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_366_intrusive_imagery_viewpoint_brewin2010",
+  "timestamp_utc": "2026-06-13T20:14:52Z",
+  "claim_ids_tested": ["MECH-366"],
+  "source": {
+    "title": "Intrusive images in psychological disorders: Characteristics, neural mechanisms, and treatment implications",
+    "authors": ["Chris R. Brewin", "James D. Gregory", "Michelle Lipton", "Neil Burgess"],
+    "year": 2010,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0018113"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Brewin et al.'s dual-representation account of intrusive imagery is a clinical anchor that viewpoint is a represented, dissociable property and that imagined/re-experienced content carries a viewpoint that can be therapeutically shifted (e.g. moving a flashback from a field/reliving perspective to an observer perspective reduces distress). That supports MECH-366's 're-experienced from either viewpoint' clause and extends it to imagery, not just recall. Marked MIXED, not supports, because the same literature documents that traumatic intrusions often come with an INVOLUNTARY, fixed first-person reliving perspective that resists voluntary re-setting -- a direct partial contraindication to the 'freely switchable at will' reading of MECH-366.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Traumatic intrusive images are characteristically involuntary and locked to a first-person reliving (field) perspective with a 'nowness' quality; the viewpoint is precisely what the patient CANNOT switch at will. This is a real-world failure mode of free viewpoint-switching and shows the switch can be blocked by the affective/encoding status of the memory -- consistent with the Nigro and Rice caveats that perspective is partly determined, not arbitrary.",
+    "The field<->observer shift that therapy induces is effortful and often requires structured intervention, not a costless retrieval-time toggle -- a faithful REE viewpoint switch may need to model the cost/eligibility of switching, not just its availability."
+  ],
+  "tags": ["mech-366", "intrusive_imagery", "viewpoint", "field_observer", "ptsd", "dual_representation", "clinical"],
+  "mapping": {
+    "source_claim_statement": "Intrusive images across PTSD, depression, anxiety, eating disorders and psychosis are vivid, often first-person re-livings of real or imaginary events. A dual-representation framework distinguishes a contextually-bound, deliberately retrievable representation from a sensory-bound, involuntarily triggered one; the perspective/viewpoint of an intrusive image is a clinically meaningful, modifiable property, and shifting it (e.g. toward an observer perspective) is a route to reduced distress.",
+    "ree_translation": "Clinical and neural support for MECH-366's claim that viewpoint is a represented, dissociable property of an episode that holds for IMAGINED/re-experienced material as well as recalled material, and that can in principle be shifted. The treatment finding that perspective can be moved is consistent with switchability; the involuntariness of intrusions is the boundary condition on it.",
+    "mapping_caveat": "Clinical population (intrusive psychopathology), so transfer to a healthy/normative REE architecture is non-trivial. The evidence cuts both ways: it supports viewpoint-as-modifiable-property but documents conditions under which the viewpoint is involuntarily FIXED -- hence MIXED. Maps onto the field/observer axis and the imagined-vs-experienced axis jointly via the 'nowness'/reliving construct, which also touches MECH-365 provenance.",
+    "source_context": "Human clinical psychology / cognitive neuroscience; integrative theoretical review with a dual-representation neural model (hippocampal vs sensory-bound representations)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.5,
+    "notes": "High-standing integrative review (Psychological Review) with a mechanistic dual-representation model. Mapping fidelity moderate and direction MIXED on purpose: the clinical phenomenon both supports viewpoint-as-switchable-property (treatment-induced field->observer shifts) and bounds it (involuntary fixed reliving perspective). Transfer risk elevated because the evidence base is psychopathological imagery, not healthy voluntary recall."
+  }
+}

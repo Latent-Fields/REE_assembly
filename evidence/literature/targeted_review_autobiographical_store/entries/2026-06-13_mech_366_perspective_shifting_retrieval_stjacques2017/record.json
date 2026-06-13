@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_autobiographical_store",
+  "entry_id": "2026-06-13_mech_366_perspective_shifting_retrieval_stjacques2017",
+  "timestamp_utc": "2026-06-13T20:14:52Z",
+  "claim_ids_tested": ["MECH-366"],
+  "source": {
+    "title": "Shifting visual perspective during retrieval shapes autobiographical memories",
+    "authors": ["Peggy L. St. Jacques", "Karl K. Szpunar", "Daniel L. Schacter"],
+    "year": 2017,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2016.12.028"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the switchability keystone the Nigro & Neisser entry explicitly named as the missing follow-up. St. Jacques et al. instruct participants to recall a recently encoded autobiographical event from EITHER the original (typically own-eyes) perspective or the alternative perspective, and show that adopting a novel visual perspective at retrieval is (a) possible on demand and (b) actively reshapes the phenomenology of the memory, with precuneus recruitment scaling the degree of change. This is direct evidence for the load-bearing second half of MECH-366: viewpoint is a represented property that can be re-set at retrieval, independent of the encoding viewpoint, rather than a fixed encoding artefact. Held at 0.78 rather than higher because the manipulation is instructed/voluntary in a lab paradigm and the reshaping effect means switching is not perfectly content-preserving -- which is itself architecturally interesting but slightly complicates a clean 'same token, switchable label' reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Shifting perspective does not merely re-render the same stored episode from a new angle -- it MODIFIES the memory (emotional intensity and vividness change, precuneus activity predicts the degree of change). So MECH-366's clean picture (one event token, a switchable viewpoint label read at retrieval) is complicated: in the brain, exercising the switch writes back to the trace. A faithful REE implementation must decide whether viewpoint-switch is a pure read operation or one that legitimately updates the episode."
+  ],
+  "tags": ["mech-366", "visual_perspective", "perspective_shifting", "autobiographical_memory", "retrieval", "switchability"],
+  "mapping": {
+    "source_claim_statement": "Although autobiographical events are typically encoded from a first-person (own-eyes) visual perspective, people can deliberately retrieve them from an alternative observer perspective. Doing so during retrieval shapes the memory: it alters emotional intensity and vividness, and the magnitude of these phenomenological changes is predicted by recruitment of the precuneus, a region implicated in visuospatial perspective and memory.",
+    "ree_translation": "Direct biological warrant for MECH-366's claim that the participant/observer viewpoint label is SWITCHABLE at retrieval independent of encoding viewpoint. Where Nigro & Neisser establish that the field/observer property exists, St. Jacques et al. establish that it can be voluntarily re-set on a given episode -- the part MECH-366 most needs and that the prior entry flagged as untested.",
+    "mapping_caveat": "The switch is not phenomenologically inert: re-experiencing from the other viewpoint reshapes the memory. This SUPPORTS switchability but cautions against modelling the viewpoint tag as a free, side-effect-free read field over an immutable token. Human cognitive neuroscience; instructed lab manipulation on recently encoded events, so 'voluntary on demand' is shown under instruction, not necessarily spontaneous. Says nothing about the imagined-vs-experienced source axis -- that facet is grounded separately (Johnson & Raye; Brewin).",
+    "source_context": "Human fMRI + behavioural; healthy adults; encode-then-shift autobiographical paradigm with precuneus as the key neural correlate."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.35,
+    "notes": "Strong venue (NeuroImage), combined behavioural + fMRI design with a converging neural correlate. Mapping fidelity high: it tests exactly the switchability MECH-366 asserts. Transfer risk moderate -- it is a human cognitive-neuroscience finding mapped onto a representational tag in REE, and the reshaping side-effect means the mapping is 'switchable but write-coupled', not 'switchable and inert'."
+  }
+}
