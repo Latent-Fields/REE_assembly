@@ -139,3 +139,4 @@ One line per hourly tick. ASCII only.
 2026-06-13T13:10:47Z auto-defer IGW-20260613-217 hash=b546beeb29d4 for 48h (reaped -> completed_resumable)
 2026-06-13T13:10:47Z reaped TASK_CLAIMS igw-auto-igw-217-proposal-exp-0196-mech-180-20260613T120936Z (ledger IGW-20260613-217 -> completed_resumable)
 2026-06-13T13:10:41Z skip IGW-20260613-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-13T14:10:50Z skip IGW-20260613-215: no fresh runner heartbeat (experiment-lane item would just sit in queue)
