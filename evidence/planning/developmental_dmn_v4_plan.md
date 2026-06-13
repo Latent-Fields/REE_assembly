@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Play, Private Speech, Externalised DMN, Developmental Compression Ladder (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-090, MECH-380, MECH-381, MECH-382, MECH-383, MECH-384, Q-068]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -142,20 +142,20 @@ closure_plan:
     - id: "developmental_dmn_v4:DMN-8"
       title: "Biology grounding completion (Vygotsky private speech, DMN, label-as-control, self-distancing lit-pulls)"
       phase: 2
-      status: deferred
+      status: done
       blocker_class: lit_gap
-      lit_pull_status: none
+      lit_pull_status: done
       severity: medium
       owner_exq: null
-      unblocks_claims: [ARC-090, MECH-380, MECH-383]
+      unblocks_claims: [ARC-090, MECH-380, MECH-381, MECH-382, MECH-383]
       depends_on: []
       cross_plan_link: []
       readiness_gate:
-        - "Current state: architectural-analogy anchors only (Vygotsky private speech; Lupyan/Swingley labels-alter-search; Kross/Moser third-person self-talk; DMN self-reflection/simulation literature) -- recorded as anchors, NOT a citable out-of-domain dataset (no research_anchor claim)"
-        - "Per project rule feedback_biology_before_formal_definitions: each pillar that instantiates a formal developmental concept needs a biology lit-pull BEFORE its substrate is built"
-        - "Schedule per-pillar: private-speech/inner-speech (MECH-380/381), label-as-perceptual-control (MECH-383), self-distancing (MECH-382) -- follow when their pillars are scheduled"
-      last_updated: 2026-06-10
-      completion_note: "The cluster's evidence anchors are textbook-level psychology/neuroscience supporting a strong architectural analogy, not citable mechanism evidence. This node tracks closing that grounding debt before each pillar's substrate is built; deferred (not in_progress) because no pull is active yet and the pillars themselves are upstream-blocked."
+        - "DONE 2026-06-13: textbook analogies replaced with mechanism/neuroscience evidence under evidence/literature/targeted_review_developmental_dmn (7 literature_evidence/v1 entries). lit_conf: ARC-090 0.752, MECH-380 0.74, MECH-381 0.74, MECH-382 0.71, MECH-383 0.76; exp_conf 0.0 ALL -- PROMOTES NOTHING (all v4/substrate_conditional)."
+        - "Per project rule feedback_biology_before_formal_definitions: each pillar that instantiates a formal developmental concept needs a biology lit-pull BEFORE its substrate is built -- now satisfied for all five claims, independent of the still-blocked pillars (DMN-3..DMN-7)."
+        - "Grounding is independent of the upstream play-cluster block: this node closes the lit-debt now; the pillars still wait on their V3 substrate gates."
+      last_updated: 2026-06-13
+      completion_note: "DONE (lit-pull 2026-06-13). Grounded all five DMN scope claims with neuroscience mechanism evidence across the four lenses, not just developmental-psychology analogy: MECH-380/381 inner speech via Alderson-Day & Fernyhough 2015 (Psychol Bull -- Vygotskian internalisation + left-IFG/STG neurobiology) and Jones & Fernyhough 2007 (condensed<->expanded dialogic inner speech = the compression mechanism); MECH-383 label-as-perceptual-control via Lupyan & Swingley 2012 (self-directed speech speeds visual search; impairs on mismatch = sign-dependent control authority) and Lupyan 2012 label-feedback hypothesis (the top-down precision-control partner; rides ARC-005/MECH-251/261, no parallel attention module); MECH-382 self-distancing via Moser et al. 2017 (third-person self-talk: reduced LPP + mPFC self-referential activation without a cognitive-control surcharge); ARC-090 externalised DMN via Andrews-Hanna 2011 (end-state internal-mentation function set) paired with Fair et al. 2008 (the internal DMN is a developmental ACHIEVEMENT -- sparse at 7-9 yrs, integrates with age). Honest boundary recorded across entries: the DMN literature grounds the END-STATE and that it is developmentally assembled, but NOT ARC-090's distinctive externalise->internalise CAUSAL thesis (no DMN-maturation study attributes integration to play/private-speech); that remains REE's hypothesis grounded by analogy to the inner-speech internalisation route. No completion-set partner claim registered (proposal-first): the circuit partners (left-IFG production, STG self-monitoring, mPFC self-reference, DMN hubs) all map to existing REE claims as cross-refs; the one borderline candidate -- an inner-speech self-generation/provenance tag whose failure yields other-attributed control signals -- is subsumed by MECH-094 (tag loss), MECH-430 (provenance vector), and INV-061 (frame confusion), so it is surfaced as a NOTE, not a new MECH."
 ---
 # Play, Private Speech, Externalised DMN -- V4 Developmental Roadmap
 
@@ -250,3 +250,28 @@ the IGW proposal lane today: a V3 probe against any pillar would be vacuous.
   `generation: v4` set so the V3 closure % is unaffected. No claims.yaml edits.
   Cluster is mostly reaped -- all seven claims already registered; no new claims
   proposed.
+
+- **2026-06-13** -- DMN-8 biology-grounding lit-pull CLOSED (`lit_pull_status: done`,
+  node `status: done`). Replaced the textbook analogies that grounded the cluster with
+  neuroscience mechanism evidence: 7 `literature_evidence/v1` entries under
+  `evidence/literature/targeted_review_developmental_dmn` covering all four lenses and
+  all five scope claims. lit_conf raised from None to ARC-090 0.752 / MECH-380 0.74 /
+  MECH-381 0.74 / MECH-382 0.71 / MECH-383 0.76; **exp_conf stays 0.0 for all --
+  PROMOTES NOTHING** (every claim v4 / substrate_conditional; the pillars DMN-3..DMN-7
+  remain upstream-blocked, but the grounding was independent of them). Papers:
+  Alderson-Day & Fernyhough 2015 + Jones & Fernyhough 2007 (inner speech: Vygotskian
+  internalisation + left-IFG/STG neurobiology + condensed<->expanded compression);
+  Lupyan & Swingley 2012 + Lupyan 2012 (label-as-perceptual-control + label-feedback
+  top-down partner); Moser et al. 2017 (third-person self-talk: mPFC self-referential
+  down-regulation without a control surcharge); Andrews-Hanna 2011 + Fair et al. 2008
+  (DMN internal-mentation function set + DMN as a developmental achievement).
+  **Honest boundary recorded:** the DMN literature grounds the END-STATE and that it is
+  developmentally assembled, but no DMN-maturation study attributes that integration to
+  play / private speech, so ARC-090's distinctive externalise->internalise CAUSAL thesis
+  is *not* directly grounded -- it stands on analogy to the inner-speech internalisation
+  route. **No completion-set partner claim registered (proposal-first):** the circuit
+  partners map to existing claims as cross-refs; the one borderline candidate (an
+  inner-speech self-generation / provenance tag whose failure yields other-attributed
+  control signals, per Jones & Fernyhough's AVH model) is subsumed by MECH-094 (tag loss)
+  + MECH-430 (provenance vector) + INV-061 (frame confusion) and is surfaced as a NOTE,
+  not a new MECH.

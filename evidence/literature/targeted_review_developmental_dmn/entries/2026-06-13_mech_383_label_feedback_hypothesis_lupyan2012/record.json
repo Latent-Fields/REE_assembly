@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_dmn",
+  "entry_id": "2026-06-13_mech_383_label_feedback_hypothesis_lupyan2012",
+  "timestamp_utc": "2026-06-13T20:13:24Z",
+  "claim_ids_tested": ["MECH-383"],
+  "source": {
+    "title": "Linguistically modulated perception and cognition: the label-feedback hypothesis",
+    "authors": ["Gary Lupyan"],
+    "year": 2012,
+    "venue": "Frontiers in Psychology",
+    "doi": "10.3389/fpsyg.2012.00054"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the theoretical statement of the mechanism that MECH-383 names -- the label-feedback hypothesis -- and is the 'top-down precision-control partner' the grounding task asked for. It assembles the evidence that labels exert rapid, pervasive, top-down effects on categorisation, visual discrimination, and even stimulus detection, and argues the right framework is one where labels MODULATE ongoing perceptual processing in a task-dependent, flexible way (rather than verbal vs non-verbal being separate stores). That modulatory, task-dependent framing is exactly MECH-383's 'label as control input to precision'. Confidence moderate because it is a review/position piece, not a single decisive experiment, and its 'reject the verbal/non-verbal distinction' framing is stronger than REE needs (REE only needs labels to be ONE control input among others).",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Label effects are described as both deep (reaching basic visual processes) AND fragile (verbal interference can nullify them) -- so a label-as-control input is state-dependent and can be knocked out by load, meaning REE could not treat it as a reliable always-on precision signal.", "The review is a theoretical synthesis advocating a position (language modulates perception online); it is not itself an experiment, so it grounds the FRAMEWORK for MECH-383 rather than supplying a new decisive datum beyond the primary studies it cites."],
+  "tags": ["mech-383", "label_feedback", "top_down", "precision_control", "perception", "categorization", "developmental_dmn"],
+  "mapping": {
+    "source_claim_statement": "Language -- specifically the practice of labeling -- exerts extremely rapid and pervasive effects on putatively non-verbal processes including categorisation, visual discrimination, and even detecting the presence of a stimulus. The puzzle (effects are deep yet vulnerable to verbal interference) is best resolved by rejecting the verbal/non-verbal representation distinction and treating language as modulating ongoing cognitive and perceptual processing in a flexible, task-dependent manner (the label-feedback hypothesis).",
+    "ree_translation": "The theoretical partner for MECH-383: it states the mechanism (labels feed back top-down to modulate perception in real time) that MECH-383 imports as 'self-generated labels are a control input to perceptual precision'. The task-dependent, modulatory framing is the warrant for placing labels ON the ARC-005/MECH-251/261 precision plane rather than building a separate attention module -- consistent with the project's attention=distributed-precision-selection map.",
+    "mapping_caveat": "Lupyan's strong claim (abandon the verbal/non-verbal distinction) exceeds what MECH-383 asserts; REE only needs labels to be one tunable control input alongside affect, goal, and uncertainty signals. The evidence is for human linguistic labels; REE's labels are non-linguistic internal tokens, and the verbal-interference fragility shows the channel is load-sensitive.",
+    "source_context": "Theoretical review / position paper synthesising human behavioural and perceptual studies of labeling effects; human only."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.42,
+    "notes": "Influential, widely-cited position paper; source quality good for a review but it is advocacy of a framework, not a single experiment. Mapping fidelity good -- the framework is precisely the top-down-modulation mechanism MECH-383 needs. Transfer risk elevated by linguistic modality + load-sensitivity of the effect."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_dmn",
+  "entry_id": "2026-06-13_mech_382_third_person_self_talk_moser2017",
+  "timestamp_utc": "2026-06-13T20:13:24Z",
+  "claim_ids_tested": ["MECH-382"],
+  "source": {
+    "title": "Third-person self-talk facilitates emotion regulation without engaging cognitive control: Converging evidence from ERP and fMRI",
+    "authors": ["Jason S Moser", "Adrienne Dougherty", "Whitney I Mattson", "Benjamin Katz", "Tim P Moran", "Darwin Guevarra", "Holly Shablack", "Ozlem Ayduk", "John Jonides", "Marc G Berman", "Ethan Kross"],
+    "year": 2017,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-017-04047-3"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct, converging-methods (ERP + fMRI) neuroscience test of MECH-382's exact claim: referring to oneself in the third person (self-distancing) reduces self-referential emotional reactivity -- a smaller late positive potential within the first second, and reduced medial prefrontal cortex (self-referential) activation -- and does so WITHOUT increasing cognitive-control markers (no extra stimulus-preceding negativity; no increase in cognitive-control fMRI regions). That 'alters processing of the affective/self-referential state, cheaply, without recruiting effortful control' is precisely MECH-382's framing of distancing as a low-effort arbitration-altering operator. Confidence held below 0.8 by modest sample sizes typical of ERP/fMRI studies and by the architectural step from human mPFC self-referential processing to REE's self_reference_frame vocabulary.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The effect is demonstrated for down-regulating NEGATIVE affect (aversive images, negative autobiographical memories); the paper does not show third-person framing helps with the broader 'sticky high-conflict self-referential state' MECH-382 targets (e.g. unresolved prediction-error pressure), so the generalisation to arbitration-level conflict is an extrapolation.", "'Without engaging cognitive control' is an inference from the ABSENCE of increases in a-priori control markers (SPN; control regions); a null on chosen markers is weaker than a positive demonstration that no control was used, so the 'low-effort' premise rests on accepting a null."],
+  "tags": ["mech-382", "self_distancing", "third_person_self_talk", "emotion_regulation", "mpfc", "self_reference_frame", "developmental_dmn"],
+  "mapping": {
+    "source_claim_statement": "Silently referring to oneself by name / in the third person ('Why is Jason feeling this way?') rather than the first person reduces self-referential emotional reactivity: Study 1 (ERP) showed a reduced late positive potential to aversive images within ~1s; Study 2 (fMRI) showed reduced medial prefrontal cortex activation when reflecting on negative memories. Neither study showed increased activity in a-priori cognitive-control markers, suggesting third-person self-talk is a relatively EFFORTLESS form of self-control via psychological distance.",
+    "ree_translation": "Direct grounding for MECH-382 (the distancing operator): reframing a sticky first-person state into a more model-like / third-person frame reduces self-referential collapse (the mPFC reduction) and does so cheaply, without an effortful-control surcharge -- exactly MECH-382's claim that distancing alters arbitration via the control plane rather than by spending control resource. Supports the value of the DMN-2 self_reference_frame {first_person, system_state, third_person_model} vocabulary as a functional, not cosmetic, distinction.",
+    "mapping_caveat": "The evidence is specifically about down-regulating negative AFFECT in humans via natural-language self-reference; MECH-382 targets a broader 'sticky high-conflict self-referential state' (including non-affective prediction-error pressure) reframed through a non-linguistic system-state frame. The 'low-effort' claim rests partly on accepting nulls on chosen control markers.",
+    "source_context": "Two human experiments (ERP Study 1; fMRI Study 2) with aversive images and negative autobiographical recall; standard ERP/fMRI sample sizes."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Strong converging-methods design (ERP + fMRI, two studies, a-priori markers) from the group that defined the self-distancing literature; source quality good despite modest n. Mapping fidelity good -- it tests the operator MECH-382 names. Transfer risk elevated: human affect down-regulation via language -> a non-linguistic arbitration-level reframe."
+  }
+}

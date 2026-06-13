@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_dmn",
+  "entry_id": "2026-06-13_mech_383_self_directed_speech_visual_search_lupyanswingley2012",
+  "timestamp_utc": "2026-06-13T20:13:24Z",
+  "claim_ids_tested": ["MECH-383"],
+  "source": {
+    "title": "Self-directed speech affects visual search performance",
+    "authors": ["Gary Lupyan", "Daniel Swingley"],
+    "year": 2012,
+    "venue": "Quarterly Journal of Experimental Psychology",
+    "doi": "10.1080/17470218.2011.647039"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the canonical direct test of MECH-383's exact claim: producing a self-directed label ('saying the target name aloud') temporarily improves visual SEARCH for that target -- a perceptual-control intervention, not a post-perceptual report. The design is causal (within-subject manipulation of speaking vs not speaking the target name) and the effect is graded by name-target association strength, which matches MECH-383's framing of labels as tunable top-down signals. Confidence held below 0.8 because the manipulation is overt natural-language speech in humans and the boundary condition (speaking HURTS when the label mismatches the target) shows the control input is not free -- both relevant transfer caveats for a non-linguistic REE substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The facilitation reverses to IMPAIRMENT as the discrepancy between the spoken name and the visual target grows -- a mis-specified label actively degrades search, so a label-as-control input in REE would need accurate label generation to be net-beneficial (no free lunch).", "The effect is on visual SEARCH (finding a known target among distractors), which is template-matching/attentional, not on detecting genuinely novel or unexpected cues -- so the paper supports the 'bias toward label-relevant cues' reading of MECH-383 more strongly than the 'novelty-gradient toward unexplained change' reading."],
+  "tags": ["mech-383", "label_feedback", "self_directed_speech", "visual_search", "top_down_control", "precision", "developmental_dmn"],
+  "mapping": {
+    "source_claim_statement": "Saying a target object's name aloud before/during visual search facilitates finding it (faster, more accurate), particularly when the name-to-object association is strong; as the name-target discrepancy increases, speaking begins to impair search. Verbal labels can therefore temporarily change ongoing perceptual processing -- hearing 'chair' makes the visual system a better 'chair detector' (label-feedback hypothesis).",
+    "ree_translation": "Direct grounding for MECH-383: a self-directed label ('food-gradient', 'danger-gradient', 'blocked-goal') is a top-down tuning signal that biases perceptual search toward label-relevant cues, not merely a description appended after perception. The graded, association-dependent effect maps onto MECH-383's framing of labels as control INPUTS to the precision-routing plane (ARC-005, MECH-251/261), and the impairment-on-mismatch shows the input has real, sign-dependent authority over perception.",
+    "mapping_caveat": "The label here is overt natural-language speech in humans; REE has no language and would generate labels as internal control tokens. The demonstrated effect is on template-guided SEARCH for a known target, not on open-ended novelty detection -- so it grounds the cue-biasing half of MECH-383 better than the unexplained-change-detection half.",
+    "source_context": "Human behavioural psychophysics; within-subject visual-search task with a speak-the-name manipulation; n in the standard cognitive-psychology range."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.42,
+    "notes": "Well-designed causal within-subject behavioural study, widely cited as the canonical self-directed-speech-and-search result; source quality good. Mapping fidelity high -- the paper tests almost exactly what MECH-383 asserts. Transfer risk elevated by the natural-language modality and the search-vs-novelty scope limit."
+  }
+}

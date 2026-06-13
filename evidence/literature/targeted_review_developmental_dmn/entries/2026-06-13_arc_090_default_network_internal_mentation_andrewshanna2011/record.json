@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_developmental_dmn",
+  "entry_id": "2026-06-13_arc_090_default_network_internal_mentation_andrewshanna2011",
+  "timestamp_utc": "2026-06-13T20:13:24Z",
+  "claim_ids_tested": ["ARC-090"],
+  "source": {
+    "title": "The brain's default network and its adaptive role in internal mentation",
+    "authors": ["Jessica R Andrews-Hanna"],
+    "year": 2011,
+    "venue": "The Neuroscientist",
+    "doi": "10.1177/1073858411403316"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Establishes the END-STATE that ARC-090 says development compresses INTO: the default mode network is a set of interacting hubs and subsystems supporting 'internal mentation' -- self-reference, autobiographical memory, future simulation/prospection, and adaptive introspective thought -- the exact function list ARC-090 attributes to the mature internal DMN. This grounds the target of the developmental claim with mechanism/connectivity evidence. It does NOT itself test the developmental-externalisation thesis (that those functions first run externally in play), so it supports one half of ARC-090 (what the end-state is) and is silent on the other (the externalise->internalise trajectory), which is why it is paired with the Fair 2008 maturation entry.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The review characterises the ADULT/mature default network; it makes no claim that DMN functions are developmentally PRECEDED by external play-based instantiation -- ARC-090's distinctive thesis is therefore unsupported by this paper alone (it grounds the end-state, not the precursor).", "The fractionation into hubs/subsystems is partly inferential from functional-connectivity correlations; the mapping from 'DMN subsystem' to a discrete REE generative-modelling module is an architectural translation, not a one-to-one correspondence."],
+  "tags": ["arc-090", "default_mode_network", "internal_mentation", "self_reference", "future_simulation", "autobiographical_memory", "developmental_dmn"],
+  "mapping": {
+    "source_claim_statement": "The default network -- midline and lateral cortical regions more active during rest/idle moments -- is organised into interacting hubs and subsystems that play a central role in 'internal mentation': spontaneous and deliberate introspective, self-referential, autobiographical-memory, and future-oriented (prospective) thought. These are adaptive functions, not mere task-negative idling.",
+    "ree_translation": "Grounds the END-STATE in ARC-090: the mature internal DMN performs self-reference, autobiographical memory, future simulation, and narrative/counterfactual mentation. This is the same function set REE already owns as the internal-DMN end-state (ARC-014 safe imagination without commitment; MECH-029 reflective evaluation), and that ARC-090 asserts development compresses INTO. The hub/subsystem organisation also supports treating these as separable functions rather than one monolithic capacity.",
+    "mapping_caveat": "The review is about the adult network and its functions; it neither supports nor tests ARC-090's distinctive developmental claim that those functions first run EXTERNALLY in play. It grounds the destination of the developmental ladder, not the ladder itself.",
+    "source_context": "Synthesis of human structural/functional neuroimaging and the mind-wandering behavioural literature; adult populations."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Authoritative, heavily-cited review by a leading DMN researcher; source quality high. Mapping fidelity moderate because it grounds only the end-state half of ARC-090. Transfer risk low for the function inventory (human neuroimaging -> REE internal-DMN end-state REE already commits to), higher only for the subsystem->module step."
+  }
+}
