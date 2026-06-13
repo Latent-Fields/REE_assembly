@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_mech_434_raised_threshold_overgathering_ocd_hauser2017",
+  "timestamp_utc": "2026-06-13T18:52:03Z",
+  "claim_ids_tested": [
+    "MECH-434",
+    "Q-070"
+  ],
+  "source": {
+    "title": "Increased decision thresholds enhance information gathering performance in juvenile Obsessive-Compulsive Disorder (OCD)",
+    "authors": [
+      "Tobias U. Hauser",
+      "Michael Moutoussis",
+      "Reto Iannaccone",
+      "Silvia Brem",
+      "Susanne Walitza",
+      "Renate Drechsler",
+      "Peter Dayan",
+      "Raymond J. Dolan"
+    ],
+    "year": 2017,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1005440",
+    "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005440"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The clean clinical-computational anchor for the epistemic-freezing pole and the exact mirror of the Ross 2015 jumping-to-conclusions finding: OCD youth set HIGHER decision thresholds and gather MORE information before committing, modelled as an altered cost of sampling. Together with the JTC entry it brackets the commitment-timing axis from both ends -- under-gather (panic/JTC) vs over-gather (freezing/OCD). Confidence 0.70: rigorous model-based clinical study, but the over-gathering is in an abstract sampling task, and 'enhanced performance' shows the pole is not purely pathological (context-dependent).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Epistemic-freezing: a raised decision threshold / increased subjective cost of committing produces extended information gathering and delayed (or absent) commitment -- the over-exploration pole MECH-434 must bound.",
+    "The effect can be advantageous in some contexts, so the axis is a trade-off with an optimal band, not a deficit to minimise to zero."
+  ],
+  "tags": [
+    "mech-434",
+    "q-070",
+    "inf-7",
+    "decision_threshold",
+    "information_gathering",
+    "ocd",
+    "epistemic_freezing",
+    "compulsivity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Juvenile OCD patients gather more information before deciding than controls; computational modelling attributes this to an increased decision threshold arising from an altered (lowered) perceived cost of sampling, which in some contexts yields better-informed, more accurate decisions.",
+    "ree_translation": "Grounds the epistemic-freezing pole of MECH-434 and completes the symmetry with anti-epistemic-panic: where panic collapses the threshold (commit too early), freezing raises it (gather forever). Maps the axis onto a concrete, dimensional clinical parameter (decision threshold / sampling cost) -- the same knob Cisek's urgency gating modulates from the other side -- and shows it is graded and context-sensitive, supporting MECH-434's inverted-U / optimal-band framing.",
+    "mapping_caveat": "The beads-like sequential sampling task is abstract and human; generalising 'decision threshold / sampling cost' to REE's belief-state commitment over inferred trajectories is a functional mapping, not a shared mechanism. And 'enhanced performance' warns against treating the freezing pole as purely pathological.",
+    "source_context": "Computational-psychiatry study: juvenile OCD vs controls on a sequential information-sampling task, fit with a Bayesian/cost-of-sampling decision model."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.4,
+    "notes": "Rigorous computational-psychiatry source. Mapping fidelity moderate (abstract sampling task -> REE commitment); the context-dependent benefit is itself informative about the axis being a trade-off."
+  }
+}

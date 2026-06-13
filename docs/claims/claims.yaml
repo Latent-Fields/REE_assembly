@@ -40175,6 +40175,54 @@
     narrow_open_question does NOT fire -- there is no V4 inference substrate to test
     against; the right response is to ground via literature and design the substrate,
     not to queue a V3 experiment. DO NOT queue a V3 experiment against this.
+    2026-06-13 lit-pull outcome: 9/11 register modes reduce to MECH-126
+    (context-loss/uncertainty-collapse/valence-mis-tag/overmerge/oversplit/threat-spreading);
+    the residual epistemic-freezing <-> anti-epistemic-panic axis did NOT reduce and
+    was registered as MECH-434 (epistemic commitment timing). See
+    evidence/literature/targeted_review_belief_state_inference/literature_synthesis.md.
+
+- id: MECH-434
+  title: "Epistemic commitment timing: the inference layer's decision of WHEN to stop gathering evidence and commit a trajectory is a governed control parameter (an urgency/threshold over the belief-state set), balancing pragmatic value (act now) against epistemic value (sample more). Its two failure poles are epistemic-freezing (epistemic value over-weighted / threshold too high -> the agent keeps sampling and never commits) and anti-epistemic-panic (under threat, the epistemic term collapses / urgency forced high -> the agent commits on too little evidence). This axis is NOT reducible to the MECH-126 state-abstraction failure taxonomy; it lives at the seam between the belief-state hypothesis set (MECH-385) / epistemic action pressure (MECH-388) and the commitment gate (MECH-061 / MECH-090), and has an inverted-U optimum rather than a monotone."
+  claim_type: mechanism_hypothesis
+  subject: inference.epistemic_commitment_timing
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-13
+  depends_on:
+    - ARC-091    # inference layer umbrella whose commit step this governs
+    - MECH-385   # belief-state hypothesis set -- the uncertainty this acts over
+    - MECH-388   # epistemic action pressure -- the epistemic term whose over/under-weighting defines the two poles
+    - MECH-061   # commitment / action-arc beginning -- the act this times
+    - MECH-090   # beta gate -- the commitment-gate the timing parameter would modulate
+    - Q-044      # curiosity sub-flavour independence -- pragmatic-vs-epistemic balance depends on its adjudication
+  related_claims:
+    - MECH-433   # LC-NE-analog explore/exploit gain control -- candidate neuromodulatory IMPLEMENTER of the anti-epistemic-panic pole (arousal collapses deliberation)
+    - Q-070      # inference failure-mode register -- MECH-434 is the one register axis that did NOT reduce to MECH-126
+  distinct_from:
+    - MECH-126   # state-abstraction failure taxonomy: MECH-434's two poles are a commitment-TIMING dimension, not a state-representation failure; this is the residual the INF-7 lit-pull could not fold into MECH-126
+  location: evidence/planning/inference_belief_state_v4_plan.md
+  notes: >
+    Surfaced PROPOSAL-FIRST by the 2026-06-13 INF-7 belief-state-inference lit-pull
+    (Q-070 failure-mode register) as the only inference failure mode that did NOT
+    reduce to the existing MECH-126 state-abstraction taxonomy, then registered at
+    user direction (the V4 belief-state substrate is a commitment; this is part of
+    mapping the claims it will be built on). Biology-before-formal-definitions
+    grounding (targeted_review_belief_state_inference): Cisek 2009 urgency-gating =
+    the timing-is-a-tunable-parameter backbone; Mobbs 2020 threat-imminence
+    (model-based -> model-free switch) + Arnsten 2009 acute-stress-takes-PFC-offline
+    = the anti-epistemic-panic pole + its inverted-U; Hauser 2017 raised-decision-
+    threshold OCD over-gathering (mirror of the Ross 2015 jumping-to-conclusions
+    entry) = the epistemic-freezing pole. FALSIFICATION: MECH-434 is wrong if, once a
+    V4 belief-state substrate exists, commitment timing turns out to be fully
+    determined by the belief-set's posterior (no separately-governable urgency/
+    threshold parameter), OR if the freezing and panic failures dissociate onto
+    independent mechanisms rather than two poles of one parameter. substrate_conditional
+    on the V4 belief-state substrate not yet built; promote/demote suppressed.
+    DO NOT build in V3.
 
 # --- goal_deliberation_v4 cluster (MECH-389) ---
 - id: MECH-389

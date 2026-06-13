@@ -1,0 +1,9 @@
+# Increased decision thresholds enhance information gathering in juvenile OCD (Hauser et al., 2017)
+
+**Claims grounded:** MECH-434, Q-070. The epistemic-freezing pole -- and the mirror of the jumping-to-conclusions finding.
+
+Hauser, Moutoussis, Dayan, Dolan and colleagues studied juvenile OCD patients on a sequential information-sampling task. The patients gathered *more* information before committing than controls, and computational modelling attributed this to a **higher decision threshold**, arising from an altered (lowered) subjective cost of sampling. Strikingly, in some contexts this made their decisions better-informed and more accurate -- the over-gathering is not purely a deficit.
+
+This is the clean clinical-computational anchor for MECH-434's **epistemic-freezing** pole, and it completes a symmetry that makes the axis credible. Set it beside the Ross 2015 jumping-to-conclusions meta-analysis already in this directory: JTC (delusional ideation) is the *under*-gathering, low-threshold, commit-too-early end; OCD over-gathering is the *over*-gathering, high-threshold, never-commit end. The two clinical literatures bracket a single dimension -- the decision threshold / cost of sampling -- from opposite sides, which is exactly what MECH-434 asserts: epistemic-freezing and anti-epistemic-panic are the two poles of one commitment-timing parameter, the same knob Cisek's urgency signal modulates dynamically. And because the raised threshold can be *advantageous*, the entry also supports MECH-434's inverted-U framing: the goal is an optimal band, not the elimination of either tendency.
+
+The caveat mirrors the JTC entry's: the sampling task is abstract and human, so mapping 'decision threshold / sampling cost' onto REE's belief-state commitment over inferred trajectories is functional, not a shared mechanism, and the context-dependent benefit warns against treating the freezing pole as pure pathology. Confidence 0.70.

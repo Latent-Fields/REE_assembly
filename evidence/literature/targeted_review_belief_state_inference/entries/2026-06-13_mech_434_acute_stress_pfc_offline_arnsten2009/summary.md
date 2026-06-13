@@ -1,0 +1,9 @@
+# Stress signalling pathways that impair prefrontal cortex structure and function (Arnsten, 2009)
+
+**Claims grounded:** MECH-434, Q-070. The neuromodulatory mechanism behind anti-epistemic-panic.
+
+Arnsten's canonical review establishes a result that is easy to underrate: even *mild, acute, uncontrollable* stress triggers a catecholamine surge (noradrenaline and dopamine) that, at high levels, rapidly and reversibly takes the prefrontal cortex offline. Flexible, slow, deliberative PFC-mediated control gives way to faster, more habitual posterior and subcortical control. The effect follows an inverted-U: optimal PFC function sits in a moderate arousal band, and both too little and too much arousal degrade it.
+
+This supplies the *why* under the anti-epistemic-panic pole of MECH-434. Mobbs gives the functional switch (imminence shortens deliberation); Arnsten gives the neuromodulatory mechanism that implements it -- under threat-driven arousal, the very substrate that would sustain extended inference is suppressed, biasing the commitment-timing parameter toward premature commitment. It also grounds two structural features of MECH-434. First, the **inverted-U**: the axis is not monotone (more arousal = faster commit) but has an optimal band, so panic is the high-arousal tail and sluggish under-engagement the low-arousal tail. Second, it ties the axis to a future REE **neuromodulatory analogue** -- the LC-NE-style adaptive-gain modulator that the broader V4 sweep keeps flagging as a genuine missing piece (REE has no noradrenaline analogue yet).
+
+The honest limit: this is about biological PFC working memory under catecholamine stress, and REE has no literal catecholamine system. The bridge to REE's commitment gate (MECH-090) is functional analogy -- it grounds that arousal *can* collapse deliberation and that there is an optimal band, not that REE's substrate does so by this pathway. Confidence 0.72.

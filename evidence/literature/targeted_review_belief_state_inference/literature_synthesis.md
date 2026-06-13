@@ -50,11 +50,11 @@ The task's load-bearing instruction: map the inference-specific failure modes on
 
 ---
 
-## Completion-set harvest (PROPOSAL-FIRST -- not auto-registered)
+## Completion-set harvest -> REGISTERED as MECH-434 (2026-06-13)
 
-Per the intake-must-reap rule, the pull surfaces one genuinely-new candidate the existing register does not own. **It is surfaced here for the user, not registered.**
+Per the intake-must-reap rule, the pull surfaced one genuinely-new candidate the existing register did not own. Surfaced proposal-first, then **registered at user direction** (the V4 belief-state substrate is a commitment; this is part of mapping the claims it will be built on).
 
-1. **Proposed: an epistemic-commitment-timing axis on the failure register.** The two modes epistemic-freezing / anti-epistemic-panic do not reduce to a single MECH-126 axis -- they form an over-explore vs over-commit *timing* dimension (grounded in Friston 2015 pragmatic-vs-epistemic balance and Ross 2015's graded JTC effect), naturally owned at the BetaGate / commitment-timing seam rather than the state-abstraction taxonomy. Could be registered as either (a) an explicit sub-axis note on Q-070's register, or (b) a small candidate MECH wiring the inference layer's epistemic balance to the existing commitment machinery (MECH-061 commit / MECH-090 beta). **Recommend (a)** -- keep it inside Q-070 until the V4 belief-state substrate exists; minting a MECH now would be a substrate_conditional claim with no testable home.
+1. **Epistemic-commitment-timing axis -> MECH-434** (`inference.epistemic_commitment_timing`, candidate / substrate_conditional / v4). The two modes epistemic-freezing / anti-epistemic-panic do not reduce to a single MECH-126 axis -- they form an over-explore vs over-commit *timing* dimension, naturally owned at the belief-set -> commitment-gate seam (MECH-385/MECH-388 -> MECH-061/MECH-090) rather than the state-abstraction taxonomy. **Given its own grounding pull** (4 entries in this directory): Cisek 2009 urgency-gating (timing-is-a-tunable-parameter backbone), Mobbs 2020 threat-imminence + Arnsten 2009 acute-stress-PFC-offline (anti-epistemic-panic pole + inverted-U), Hauser 2017 raised-threshold OCD over-gathering (epistemic-freezing pole, mirror of Ross 2015 JTC). Cross-referenced to MECH-433 (LC-NE-analog gain control) as candidate neuromodulatory implementer of the panic pole. lit_conf only; exp_conf 0.
 
 No other net-new claim is warranted: the remaining ten modes are re-descriptions of MECH-126 axes (no new claim), and the L1..L5 biology grounds already-registered claims (ARC-091 / MECH-385 / MECH-388 / INV-078).
 

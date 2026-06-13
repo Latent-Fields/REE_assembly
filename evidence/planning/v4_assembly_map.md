@@ -1,6 +1,6 @@
 # V4 Assembly Map -- cross-plan blocker taxonomy + lit-pull sweep
 
-Generated: 2026-06-13T18:47:52Z by `scripts/generate_v4_assembly_map.py`
+Generated: 2026-06-13T18:58:44Z by `scripts/generate_v4_assembly_map.py`
 
 Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_gate | v3_substrate | sibling_node | lit_gap | deferred) and grounding `lit_pull_status` (none | active | partial | done). **Generation v4/v5 only -- the V3 closure % is untouched.** Warn-only planning aid; regenerate after editing any `*_v4_plan.md`.
 

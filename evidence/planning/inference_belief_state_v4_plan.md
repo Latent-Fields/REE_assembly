@@ -232,7 +232,83 @@ is honest to build.
 
 ---
 
+## V4 belief-state system -- design notes (grounded 2026-06-13)
+
+The INF-7 lit-pull (`evidence/literature/targeted_review_belief_state_inference`,
+biology-before-formal-definitions) is not just confidence bookkeeping -- it pins
+the **design constraints** the eventual V4 belief-state substrate must satisfy.
+These are the claims V4 will be built on, each with its grounding and its
+non-negotiable shape. Nothing here is built in V3.
+
+1. **Representation = a bounded SET, not a single state and not a full posterior
+   (MECH-385).** Grounded by Kay 2020 (hippocampus holds competing futures in
+   sub-second alternation) + Kaelbling 1998 (policy must map a belief over hidden
+   states, not the observation). *Design:* top-k latent-state hypotheses, each
+   carrying confidence/precision, predicted transitions, goal/antigoal relations,
+   and uncertainty (the `InferredStateHypothesis` schema, intake S12). Explicitly
+   an approximation -- REE does NOT import exact POMDP belief-updating (Kaelbling
+   caveat) and does NOT reward-collapse the way Dreamer does (Hafner caveat).
+
+2. **Provenance = hypotheses stay tagged as inferred until enacted (INV-078).**
+   Grounded by Kay 2020 (cycling = refusing to collapse early) + pattern-completion-
+   is-hypothesis (intake 5.3). *Design:* inferred/imagined trajectories carry a
+   provenance tag; they bias selection but do NOT overwrite perception or write
+   residue history until a committed outcome updates them. This is the guard
+   against inference becoming hallucinated certainty.
+
+3. **Generation = hippocampal completion/replay as a PROSPECTIVE hypothesis source.**
+   Grounded by Pfeiffer & Foster 2013 (pre-navigation sequences depict future paths
+   to goals) + Whittington 2020 TEM (the map is relational and generalises).
+   *Design:* MECH-022 injection + ARC-007 completion + ARC-018 rollout feed the set;
+   ARC-004 L-space supplies relational generalisation -- with map over/under-
+   generalisation (-> MECH-126 overmerge/oversplit) as the named failure axis.
+
+4. **Action side = inferred affordance field, corrigible by outcome (MECH-386).**
+   Grounded by Hafner 2023 (latent imagination can drive behaviour) but with REE's
+   stream-separation kept. *Design:* affordances bias E3 candidates without
+   overwriting perception; gated on cross-plan OBJ-4 object->action grounding
+   (SD-016/SD-055) so the action space is not vacuous.
+
+5. **Epistemic value as a first-class action term (MECH-388).** Grounded by Friston
+   2015 (policy value = pragmatic + epistemic). *Design:* assign action pressure to
+   uncertainty-reducing transitions even when not immediately reward/harm-optimal;
+   gated on Q-044 curiosity sub-flavour adjudication before generalising curiosity.
+
+6. **Commitment timing as a GOVERNED parameter (MECH-434 -- registered 2026-06-13).**
+   Grounded by Cisek 2009 (urgency-gating = timing is a tunable gain), Mobbs 2020 +
+   Arnsten 2009 (threat/arousal collapses deliberation = anti-epistemic-panic pole,
+   inverted-U), Hauser 2017 (raised threshold / over-gathering in OCD = epistemic-
+   freezing pole, the mirror of Ross 2015 JTC). *Design:* an urgency/threshold over
+   the belief-set, THREAT-modulated, with an inverted-U optimum, sitting at the
+   MECH-385/MECH-388 -> MECH-061/MECH-090 seam. Plausibly implemented via a future
+   LC-NE-analog gain modulator (MECH-433, the cross-plan neuromodulator gap). This
+   is the one register axis that did NOT reduce to MECH-126.
+
+7. **Failure register = the diagnostic-design source (Q-070).** The eventual V4
+   safety-route-inference experiment family (intake S11) should instrument every
+   register mode: 9 map onto MECH-126 (context-loss/uncertainty-collapse/valence-
+   mis-tag/overmerge/oversplit/threat-spreading), 2 onto MECH-434 (freezing/panic).
+   Each diagnostic must probe BOTH poles of timing, not just premature commitment.
+
+8. **What stays OUT of V3 (unchanged).** No belief-state code in V3; 603k
+   ARM_HARM_ON_MIDLINE is routing PRESSURE, not harm-pathway falsification; no
+   promotions (every claim here is `substrate_conditional`, exp_conf 0).
+
+---
+
 ## Decision log
+
+- **2026-06-13** -- INF-7 lit-pull executed (8 entries) + design noting. All 5
+  biology/ML strands (L1 Pfeiffer&Foster 2013 / L2 Whittington TEM 2020 / L3 Kay
+  2020 / L4 Kaelbling 1998 + Hafner DreamerV3 2023 / L5 Friston 2015) and the
+  failure register (Sterzer 2018, Ross 2015) grounded; `lit_pull_status` none->done.
+  Failure-mode register mapped onto the existing MECH-126 taxonomy (9/11 modes);
+  the residual **epistemic-freezing <-> anti-epistemic-panic** axis registered at
+  user direction as **MECH-434** (epistemic commitment timing), with its own
+  grounding pull (Cisek 2009 / Mobbs 2020 / Arnsten 2009 / Hauser 2017) and cross-ref
+  to MECH-433 (LC-NE-analog) as candidate implementer. `literature_confidence` only
+  -- exp_conf stays 0, PROMOTES NOTHING. V4 belief-state design-notes section added
+  above. No V3 experiment queued.
 
 - **2026-06-10** -- Plan registered as a V4 forward-roadmap in the
   generation-segmented closure pipeline (sibling to object_representation_v4).

@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_mech_434_acute_stress_pfc_offline_arnsten2009",
+  "timestamp_utc": "2026-06-13T18:52:03Z",
+  "claim_ids_tested": [
+    "MECH-434",
+    "Q-070"
+  ],
+  "source": {
+    "title": "Stress signalling pathways that impair prefrontal cortex structure and function",
+    "authors": [
+      "Amy F. T. Arnsten"
+    ],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2648",
+    "url": "https://www.nature.com/articles/nrn2648"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical review establishing that even mild acute uncontrollable stress triggers a catecholamine surge that rapidly takes prefrontal deliberative control offline and shifts behaviour toward habitual/reactive responding. This is the neuromodulatory mechanism behind anti-epistemic-panic: under threat the substrate that would sustain extended inference is suppressed, forcing early commitment. Strong source; capped because it is about working-memory/PFC function generally, and the bridge to REE's specific commitment-timing gate is functional, not implemented.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anti-epistemic-panic mechanism: acute stress -> high catecholamines -> PFC deliberative/working-memory function impaired -> reliance on faster habitual/subcortical control -> commitment before the belief-state is resolved.",
+    "Predicts the inverted-U: too little arousal under-engages, too much collapses deliberation -- the commitment-timing axis has an optimal band, not a monotone."
+  ],
+  "tags": [
+    "mech-434",
+    "q-070",
+    "inf-7",
+    "acute_stress",
+    "prefrontal_cortex",
+    "catecholamines",
+    "anti_epistemic_panic",
+    "neuromodulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Acute uncontrollable stress engages catecholamine (noradrenaline/dopamine) signalling that, at high levels, rapidly and reversibly impairs prefrontal cortex function and shifts behavioural control from slow, flexible PFC-mediated deliberation toward faster, habitual posterior/subcortical circuits.",
+    "ree_translation": "Supplies the neuromodulatory why for the anti-epistemic-panic pole of MECH-434: under threat-driven arousal the capacity for extended, flexible inference is down-regulated, biasing the commitment-timing parameter toward premature commitment. It also grounds MECH-434's inverted-U structure (an optimal arousal band) and links the axis to a future REE neuromodulatory analogue (cf. the LC-NE-analog gap noted across the V4 sweep).",
+    "mapping_caveat": "The review concerns biological PFC working memory under catecholamine stress; REE has no literal catecholamine system and the link to its commitment gate (MECH-090) is functional analogy. It grounds that arousal CAN collapse deliberation, not that REE's substrate does so by this pathway.",
+    "source_context": "Mechanistic neuroscience review (rodent + primate + human) of acute/chronic stress effects on prefrontal cortex via catecholamine intracellular signalling."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.4,
+    "notes": "Canonical Nat Rev Neurosci review. Mapping fidelity moderate (general PFC function -> REE commitment gate is analogy); transfer risk moderate (no catecholamine substrate in REE)."
+  }
+}

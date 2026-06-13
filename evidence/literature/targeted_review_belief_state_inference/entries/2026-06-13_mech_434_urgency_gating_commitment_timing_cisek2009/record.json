@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_mech_434_urgency_gating_commitment_timing_cisek2009",
+  "timestamp_utc": "2026-06-13T18:52:03Z",
+  "claim_ids_tested": [
+    "MECH-434",
+    "Q-070"
+  ],
+  "source": {
+    "title": "Decisions in Changing Conditions: The Urgency-Gating Model",
+    "authors": [
+      "Paul Cisek",
+      "Genevieve Aude Puskas",
+      "Stephany El-Murr"
+    ],
+    "year": 2009,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1844-09.2009",
+    "url": "https://www.jneurosci.org/content/29/37/11560"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The cleanest computational grounding that WHEN to commit is a governed, time-varying control parameter rather than a fixed threshold: evidence is multiplied by a growing urgency signal, so the effective decision criterion drops over time and commitment timing is tunable. This is the mechanistic backbone of MECH-434 (commitment timing as the axis whose two poles are freezing and panic). Held at 0.74 because it is a model of perceptual two-choice decisions, not of REE's belief-state-over-trajectories commitment, and urgency here is motor-related rather than threat-driven.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A fixed (non-urgency) bound cannot adapt commitment timing to changing conditions -- it either over-deliberates (freezing) or commits prematurely; urgency-gating shows timing is an adjustable gain, which is exactly what the two MECH-434 poles dysregulate in opposite directions."
+  ],
+  "tags": [
+    "mech-434",
+    "q-070",
+    "inf-7",
+    "urgency_gating",
+    "decision_threshold",
+    "commitment_timing",
+    "failure_mode_register"
+  ],
+  "mapping": {
+    "source_claim_statement": "In changing environments the brain does not integrate evidence to a fixed bound; it multiplies a (low-pass-filtered) estimate of momentary sensory evidence by a growing urgency signal, so the effective decision criterion decreases with time -- a built-in, adjustable trade-off between decision speed and accuracy.",
+    "ree_translation": "Grounds MECH-434's core assertion that commitment timing is a GOVERNED control parameter, not an emergent side-effect: the urgency signal is the biological analogue of the knob REE would tune at the seam between the belief-state set (MECH-385) / epistemic action pressure (MECH-388) and the commitment gate (MECH-061/MECH-090). Epistemic-freezing = urgency held too low / threshold too high; anti-epistemic-panic = urgency forced too high / threshold collapsed.",
+    "mapping_caveat": "Urgency-gating is modelled for rapid perceptual two-alternative choices with motor-related urgency; REE's commitment is over inferred trajectories under partial observability with threat-/goal-driven (not motor) urgency. The transferable claim is the EXISTENCE of an adjustable timing parameter, not the specific multiplicative urgency mechanism.",
+    "source_context": "Computational model + monkey/human reaching decisions under changing sensory evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Strong J Neurosci source. Mapping fidelity good for 'timing is a tunable parameter'; transfer risk moderate (perceptual-motor -> trajectory-commitment)."
+  }
+}

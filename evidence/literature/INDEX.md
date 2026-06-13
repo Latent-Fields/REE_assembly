@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-13T18:19:16.730878Z`
+Generated: `2026-06-13T18:58:42.576276Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -36,7 +36,7 @@ Generated: `2026-06-13T18:19:16.730878Z`
 | `targeted_review_arc_071_composition` | [`2026-05-10_arc_071_visuomotor_chunk_size_sakai2003`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/record.json) | 9 | [`summary`](targeted_review_arc_071_composition/entries/2026-05-10_arc_071_visuomotor_chunk_size_sakai2003/summary.md) |
 | `targeted_review_autobiographical_store` | [`2026-06-13_mech_368_behavioral_tagging_writeeligibility_ballarini2009`](targeted_review_autobiographical_store/entries/2026-06-13_mech_368_behavioral_tagging_writeeligibility_ballarini2009/record.json) | 6 | [`summary`](targeted_review_autobiographical_store/entries/2026-06-13_mech_368_behavioral_tagging_writeeligibility_ballarini2009/summary.md) |
 | `targeted_review_autonomic_rebound_parasympathetic_recovery` | [`2026-06-06_autonomic_rebound_vagal_rebound_mezzacappa2001`](targeted_review_autonomic_rebound_parasympathetic_recovery/entries/2026-06-06_autonomic_rebound_vagal_rebound_mezzacappa2001/record.json) | 4 | [`summary`](targeted_review_autonomic_rebound_parasympathetic_recovery/entries/2026-06-06_autonomic_rebound_vagal_rebound_mezzacappa2001/summary.md) |
-| `targeted_review_belief_state_inference` | [`2026-06-13_q_070_predictive_coding_psychosis_sterzer2018`](targeted_review_belief_state_inference/entries/2026-06-13_q_070_predictive_coding_psychosis_sterzer2018/record.json) | 8 | [`summary`](targeted_review_belief_state_inference/entries/2026-06-13_q_070_predictive_coding_psychosis_sterzer2018/summary.md) |
+| `targeted_review_belief_state_inference` | [`2026-06-13_mech_434_urgency_gating_commitment_timing_cisek2009`](targeted_review_belief_state_inference/entries/2026-06-13_mech_434_urgency_gating_commitment_timing_cisek2009/record.json) | 12 | [`summary`](targeted_review_belief_state_inference/entries/2026-06-13_mech_434_urgency_gating_commitment_timing_cisek2009/summary.md) |
 | `targeted_review_blocked_agency_anger_stream` | [`2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020`](targeted_review_blocked_agency_anger_stream/entries/2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020/record.json) | 5 | [`summary`](targeted_review_blocked_agency_anger_stream/entries/2026-06-05_blocked_agency_reactive_aggression_consumer_prefrontal_bertsch2020/summary.md) |
 | `targeted_review_candidate_rule_field_representation` | [`2026-06-04_arc_063_subspace_partitioning_weber2023`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/record.json) | 3 | [`summary`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/summary.md) |
 | `targeted_review_candidate_support_preserving_cem` | [`2026-05-14_arc_065_information_theoretic_mpc_williams2017`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/record.json) | 5 | [`summary`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/summary.md) |

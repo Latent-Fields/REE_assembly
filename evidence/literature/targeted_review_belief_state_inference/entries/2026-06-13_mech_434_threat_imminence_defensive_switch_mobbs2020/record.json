@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_belief_state_inference",
+  "entry_id": "2026-06-13_mech_434_threat_imminence_defensive_switch_mobbs2020",
+  "timestamp_utc": "2026-06-13T18:52:03Z",
+  "claim_ids_tested": [
+    "MECH-434",
+    "Q-070"
+  ],
+  "source": {
+    "title": "Space, Time, and Fear: Survival Computations along Defensive Circuits",
+    "authors": [
+      "Dean Mobbs",
+      "Drew B. Headley",
+      "Weilun Ding",
+      "Peter Dayan"
+    ],
+    "year": 2020,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.12.016",
+    "url": "https://www.cell.com/trends/cognitive-sciences/abstract/S1364-6613(20)30002-4"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "A strong synthesis of the threat-imminence framework, which is almost a direct description of the anti-epistemic-panic pole: as a threat becomes proximal/surprising, the system contracts its decision and state space and switches from model-based (deliberative, information-gathering) to model-free (fast, reactive) computation. That is exactly 'collapse the epistemic term and commit under urgency'. High relevance and source quality; capped by being a review framework and by the species/circuit specifics not mapping one-to-one onto REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anti-epistemic-panic: at high threat imminence the deliberative/model-based route is abandoned for model-free reaction BEFORE the belief-state is disambiguated -- adaptive when imminence is genuinely high, pathological when it fires on uncertain or distal threat.",
+    "The same axis predicts the opposite failure when imminence is mis-estimated as low (over-deliberation), linking to epistemic-freezing."
+  ],
+  "tags": [
+    "mech-434",
+    "q-070",
+    "inf-7",
+    "threat_imminence",
+    "defensive_circuits",
+    "model_based_vs_model_free",
+    "anti_epistemic_panic"
+  ],
+  "mapping": {
+    "source_claim_statement": "Defensive decisions occur at different spatiotemporal scales: distal/uncertain threats permit extended information processing via model-based circuits, whereas proximal/surprising threats reduce the decision and state space and recruit fast model-free architectures (e.g. midbrain/PAG) -- a graded switch in computation governed by threat imminence.",
+    "ree_translation": "The biology of anti-epistemic-panic in MECH-434: rising threat imminence shifts the agent from epistemic, deliberative inference (sample where safety is) to reactive commitment on a contracted hypothesis space. It grounds the claim that commitment timing is THREAT-modulated -- the urgency term of MECH-434 is driven up by imminence, exactly the pressure 603k's ARM_HARM_ON_MIDLINE creates.",
+    "mapping_caveat": "Threat-imminence work is grounded in mammalian survival circuits (amygdala, PAG, hypothalamus) REE does not implement as such; the mapping is functional (imminence -> shorter deliberation -> faster commitment), not anatomical. Whether the model-based/model-free switch is the right primitive for REE's belief-state commitment is itself a design question.",
+    "source_context": "Theoretical review synthesising rodent and human threat/defence neuroscience under a threat-imminence / survival-computation framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.34,
+    "notes": "High-quality TICS review. Mapping fidelity strong for the panic pole (imminence-driven deliberation->reaction switch); transfer risk moderate (survival-circuit anatomy not REE's)."
+  }
+}
