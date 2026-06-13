@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_147_human_dg_ca3_separation_bakker2008",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["MECH-147"],
+  "source": {
+    "title": "Pattern separation in the human hippocampal CA3 and dentate gyrus.",
+    "authors": ["Arnold Bakker", "C Brock Kirwan", "Michael Miller", "Craig E L Stark"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1152882"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "High-resolution human fMRI placing the separation bias specifically in CA3/DG and the COMPLETION bias in CA1/subiculum -- corroborates the rodent result in humans and, importantly, localises the separation/completion division that MECH-147's circuit depends on. Lower transfer risk than rodent work; held below 0.85 by fMRI's indirect read of subfield computation.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["fMRI BOLD is an indirect, population-level proxy for the underlying separation computation; the study infers separation vs completion from repetition-related activity, not from single-unit decorrelation."],
+  "tags": ["mech-147", "pattern_separation", "ca3_completion", "human_fmri", "hippocampal_planning", "completion_set"],
+  "mapping": {
+    "source_claim_statement": "High-resolution fMRI during incidental encoding shows a strong bias toward pattern separation limited to CA3/dentate gyrus, while CA1, subiculum, and entorhinal/parahippocampal cortices show a bias toward pattern completion.",
+    "ree_translation": "Human confirmation of MECH-147's separation stage AND its completion-set partner in one map: separation is a CA3/DG property, completion a CA1/EC property. For REE this argues the separation layer and a completion/readout stage are anatomically distinct sub-computations that must both exist -- separation alone is not the whole disambiguation circuit.",
+    "mapping_caveat": "BOLD signal infers separation vs completion from how activity changes to similar-vs-repeated lures; it does not directly measure the sparse-code decorrelation. The subfield assignment is high-resolution but still a population proxy.",
+    "source_context": "Human adults, 1.5mm isotropic high-resolution fMRI during an incidental memory-encoding task with similar lure stimuli."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.25,
+    "notes": "Human data lowers transfer risk relative to rodent ephys. Mapping fidelity strong for localising separation-vs-completion; fmri indirectness caps source_quality."
+  }
+}

@@ -1,6 +1,6 @@
 # V4 Assembly Map -- cross-plan blocker taxonomy + lit-pull sweep
 
-Generated: 2026-06-13T14:59:57Z by `scripts/generate_v4_assembly_map.py`
+Generated: 2026-06-13T17:36:27Z by `scripts/generate_v4_assembly_map.py`
 
 Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_gate | v3_substrate | sibling_node | lit_gap | deferred) and grounding `lit_pull_status` (none | active | partial | done). **Generation v4/v5 only -- the V3 closure % is untouched.** Warn-only planning aid; regenerate after editing any `*_v4_plan.md`.
 
@@ -25,7 +25,7 @@ Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_g
 | developmental_dmn_v4 | 8 | 0 | 1 | 4 | 1 | 0 | none |
 | drives_motivation_v4 | 5 | 1 | 0 | 1 | 0 | 1 | none |
 | goal_deliberation_v4 | 8 | 1 | 2 | 2 | 0 | 1 | none |
-| hippocampal_planning_v4 | 9 | 1 | 0 | 6 | 0 | 1 | none |
+| hippocampal_planning_v4 | 9 | 1 | 0 | 6 | 0 | 1 | partial |
 | inference_belief_state_v4 | 7 | 0 | 3 | 0 | 1 | 0 | none |
 | memory_lifecycle_v4 | 8 | 0 | 0 | 3 | 0 | 0 | partial |
 | object_reasoning_abstraction_v4 | 8 | 0 | 0 | 5 | 0 | 1 | partial |
@@ -60,7 +60,15 @@ The nodes that gate V4 from the V3 side -- closing these is what actually moves 
 
 The first pass of assembly work. Each grounding node's /lit-pull must (a) ground its registered claims AND (b) harvest the co-constitutive circuit partners the mechanism presupposes -- so building the substrate does not omit jointly-necessary components. In-progress pulls are listed first (finish them); the rest are ordered by how much load-bearing blocked work the plan's grounding unblocks.
 
-### 1. object_reasoning_abstraction_v4 -- `object_reasoning_abstraction_v4:OBJ-ABS-8` [partial; gates 5 load-bearing/high blocked nodes]
+### 1. hippocampal_planning_v4 -- `hippocampal_planning_v4:HPL-9` [partial; gates 5 load-bearing/high blocked nodes]
+
+- **Ground:** MECH-147, MECH-148, MECH-149, MECH-207, ARC-040
+- **Pull + completion-set harvest:**
+  - L1 DG pattern separation (Sakon & Suzuki 2019; Leutgeb 2007) -- AND harvest the completion-set: hilar mossy-cell feedback inhibition + CA3 recurrent-collateral pattern COMPLETION are co-constitutive of the separation property; building a DG expansion layer without the inhibitory/completion partners will not yield the claimed property
+  - L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)
+  - L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)
+
+### 2. object_reasoning_abstraction_v4 -- `object_reasoning_abstraction_v4:OBJ-ABS-8` [partial; gates 5 load-bearing/high blocked nodes]
 
 - **Ground:** SD-040, SD-045, SD-042
 - **Pull + completion-set harvest:**
@@ -69,7 +77,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - L-theta theta-abstraction-scaling (Gupta 2012, Bellmund 2018, Constantinescu 2016) -- DONE: targeted_review_theta_abstraction_scaling (grounds MECH-299 / MECH-300)
   - REMAINING DEBT: biology-before-formal-definitions check on any V4 SD/MECH that operationalises options as a formal Sutton-Precup-Singh construct before its substrate is built (per project rule feedback_biology_before_formal_definitions)
 
-### 2. memory_lifecycle_v4 -- `memory_lifecycle_v4:MEM-8` [partial; gates 2 load-bearing/high blocked nodes]
+### 3. memory_lifecycle_v4 -- `memory_lifecycle_v4:MEM-8` [partial; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** MECH-391, INV-080
 - **Pull + completion-set harvest:**
@@ -77,21 +85,13 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - Consolidation-faults primary source VERIFIED 2026-06-09 (arXiv:2605.12978, UIUC + Tsinghua); secondary arXiv:2505.16067 NOT yet re-verified -- pull via /lit-pull if it becomes load-bearing for a registered claim
   - Adjacent corroboration to fold if a consolidation claim registers: SSGM arXiv:2603.11768 (drift taxonomy) + survey arXiv:2603.07670 / arXiv:2605.06716
 
-### 3. object_representation_v4 -- `object_representation_v4:OBJ-6` [partial; gates 2 load-bearing/high blocked nodes]
+### 4. object_representation_v4 -- `object_representation_v4:OBJ-6` [partial; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** ARC-080, ARC-006
 - **Pull + completion-set harvest:**
   - L1 object-files & feature-binding (Kahneman/Treisman/Gibbs 1992; Treisman & Gelade 1980 FIT) -- ACTIVE 2026-06-04
   - L2 object permanence (Piaget; Baillargeon; Spelke core-knowledge; Kellman & Spelke 1983) -- ACTIVE 2026-06-04
   - L3 affordances (Gibson); L4 self-as-object (Gallagher/Botvinick); L5 ToM (Woodward/Csibra) -- follow when their pillars are scheduled
-
-### 4. hippocampal_planning_v4 -- `hippocampal_planning_v4:HPL-9` [none; gates 5 load-bearing/high blocked nodes]
-
-- **Ground:** MECH-147, MECH-148, MECH-149, MECH-207, ARC-040
-- **Pull + completion-set harvest:**
-  - L1 DG pattern separation (Sakon & Suzuki 2019; Leutgeb 2007) -- AND harvest the completion-set: hilar mossy-cell feedback inhibition + CA3 recurrent-collateral pattern COMPLETION are co-constitutive of the separation property; building a DG expansion layer without the inhibitory/completion partners will not yield the claimed property
-  - L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)
-  - L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)
 
 ### 5. affect_expression_v4 -- `affect_expression_v4:AE-9` [none; gates 4 load-bearing/high blocked nodes]
 

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_148_pure_contextual_time_cells_omer2022",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["MECH-148"],
+  "source": {
+    "title": "Contextual and pure time coding for self and other in the hippocampus.",
+    "authors": ["David B Omer", "Liora Las", "Nachum Ulanovsky"],
+    "year": 2022,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-022-01226-y"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Direct single-unit evidence for the exact distinction MECH-148 needs -- a population of CA1 cells encoding PURE elapsed time independent of spatial context, dissociated from context-conjunctive time cells. The social-landing time cells are a bonus that grounds the V5/MECH-127 multi-agent-credit bridge the node flags.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The pure-time signal is demonstrated in bat CA1 during hanging/landing epochs; whether an analogous context-independent elapsed-time tag is necessary for credit assignment over MULTI-STEP planning rollouts (REE's use) is not tested -- the paper is about representation, not about its use in valuation."],
+  "tags": ["mech-148", "time_cells", "temporal_credit", "hippocampal_planning", "social_time_cells", "v5_bridge"],
+  "mapping": {
+    "source_claim_statement": "Bat hippocampal CA1 contains two distinct time-cell populations: contextual time cells (different temporal sequences at different locations) and PURE time cells (similar preferred times across contexts, encoding elapsed time per se). A further population encodes time aligned to ANOTHER bat's landing.",
+    "ree_translation": "Direct grounding for MECH-148's context-independent elapsed-time scaffold: the pure-time population is exactly the 'context-independent elapsed-time encoding' MECH-148 requires for E3 to weight rollout outcomes by temporal distance rather than being step-local-myopic. The other-aligned time cells ground the social variant the node names as the MECH-127 multi-agent temporal-credit bridge toward V5.",
+    "mapping_caveat": "Demonstrates the REPRESENTATION (pure elapsed-time cells exist and are dissociable); does not demonstrate that wiring such a tag into a planner improves long-horizon credit assignment. REE's use of the signal for discounting is the inference.",
+    "source_context": "Single-unit recordings in freely-behaving Egyptian fruit bats, CA1, during stationary hanging epochs and a social imitation/landing task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.30,
+    "notes": "Nature Neuroscience primary single-unit data; the pure-vs-contextual dissociation maps almost verbatim onto MECH-148's construct. Transfer risk moderate (bat CA1 -> REE rollout module)."
+  }
+}

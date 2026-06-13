@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_147_dg_ca3_pattern_separation_leutgeb2007",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["MECH-147"],
+  "source": {
+    "title": "Pattern separation in the dentate gyrus and CA3 of the hippocampus.",
+    "authors": ["Jill K Leutgeb", "Stefan Leutgeb", "May-Britt Moser", "Edvard I Moser"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1135801"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.81,
+  "confidence_rationale": "Canonical primary ephys (Moser lab, Science) showing the dentate gyrus decorrelates similar inputs before they reach CA3 -- direct mechanistic support for a separation stage upstream of the downstream associative network. Confidence held below 0.85 only by the transfer from spatial place-coding to REE's z_world planning seed.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Pattern separation in this study is observed on the SPATIAL place-code; the experiment does not test that separating a planning SEED reduces near-duplicate trajectory proposals -- that downstream consequence is REE's extrapolation, not a measured result here."],
+  "tags": ["mech-147", "pattern_separation", "dentate_gyrus", "ca3_completion", "hippocampal_planning", "completion_set"],
+  "mapping": {
+    "source_claim_statement": "Minimal changes in environment shape substantially alter correlated activity among dentate granule cells, while CA3 recruits non-overlapping assemblies -- a DUAL mechanism: decorrelation in DG plus recruitment in CA3.",
+    "ree_translation": "MECH-147's requirement that a DG-equivalent sparse layer decorrelate similar z_world seeds before the hippocampal module proposes rollouts. Crucially, the paper's dual mechanism also supplies the completion-set partner MECH-147 presupposes: CA3 recurrent recruitment (pattern COMPLETION) is the counterpart to DG separation, so a REE separation layer that omits a completion/recruitment stage would only implement half the circuit.",
+    "mapping_caveat": "The paper measures decorrelation of a spatial code under environment-shape change; it does not show that this decorrelation improves trajectory-proposal diversity or planning. The REE consequence (separation -> non-duplicate rollouts) is a forward inference.",
+    "source_context": "Single-unit recordings from place-modulated granule cells in freely-exploring Long-Evans rats under controlled environment-morph manipulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "High source quality (definitive primary result). Mapping fidelity strong for the separation stage; the rollout-diversity consequence is inferred. Transfer risk moderate (rodent spatial code -> REE latent planning seed)."
+  }
+}

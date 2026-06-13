@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-13T09:17:45.118035Z`
+Generated: `2026-06-13T17:35:25.790378Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -153,6 +153,7 @@ Generated: `2026-06-13T09:17:45.118035Z`
 | `targeted_review_hippocampal_dopamine_gain` | [`2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/record.json) | 1 | [`summary`](targeted_review_hippocampal_dopamine_gain/entries/2026-04-02_mech_075_lc_hpc_dopamine_kempadoo2016/summary.md) |
 | `targeted_review_hippocampal_event_segmentation` | [`2026-04-02_arc_007_event_structure_segmentation_baldassano2017`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/record.json) | 1 | [`summary`](targeted_review_hippocampal_event_segmentation/entries/2026-04-02_arc_007_event_structure_segmentation_baldassano2017/summary.md) |
 | `targeted_review_hippocampal_pfc_planning` | [`2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/record.json) | 2 | [`summary`](targeted_review_hippocampal_pfc_planning/entries/2026-04-02_mech_163_hpc_pfc_theta_coherence_benchenane2010/summary.md) |
+| `targeted_review_hippocampal_planning_mechanisms` | [`2026-06-13_mech_207_acetylcholine_encoding_consolidation_hasselmo1999`](targeted_review_hippocampal_planning_mechanisms/entries/2026-06-13_mech_207_acetylcholine_encoding_consolidation_hasselmo1999/record.json) | 6 | [`summary`](targeted_review_hippocampal_planning_mechanisms/entries/2026-06-13_mech_207_acetylcholine_encoding_consolidation_hasselmo1999/summary.md) |
 | `targeted_review_hippocampal_remapping` | [`2026-04-02_mech_077_rate_global_remapping_leutgeb2005`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/record.json) | 2 | [`summary`](targeted_review_hippocampal_remapping/entries/2026-04-02_mech_077_rate_global_remapping_leutgeb2005/summary.md) |
 | `targeted_review_hippocampal_subfield_architecture` | [`2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/record.json) | 4 | [`summary`](targeted_review_hippocampal_subfield_architecture/entries/2026-03-30_arc_018_mech_033_rl_fast_slow_botvinick2019/summary.md) |
 | `targeted_review_hippocampal_valence_asymmetry` | [`2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/record.json) | 5 | [`summary`](targeted_review_hippocampal_valence_asymmetry/entries/2026-04-14_arc007_sd004_reward_hippocampal_ltm_wittmann2005/summary.md) |

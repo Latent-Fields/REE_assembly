@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_149_hippocampal_vta_novelty_loop_lisman2005",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["MECH-149", "MECH-075"],
+  "source": {
+    "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory.",
+    "authors": ["John E Lisman", "Anthony A Grace"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.05.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Foundational, heavily-cited review that supplies BOTH a hippocampal novelty/mismatch detector (MECH-149) AND its VTA dopaminergic gain partner (MECH-075) as one coupled loop. Confidence capped because it is a theoretical/review synthesis, and because REE repurposes the novelty gate to inject PLANNING rollouts whereas the paper's loop gates entry into long-term memory.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The loop is framed around gating MEMORY STORAGE (LTP/entry into LTM), not around gating proposal injection into a planner. REE's use of CA1 mismatch to modulate rollout frequency/diversity is an extrapolation of the same novelty signal to a different consumer."],
+  "tags": ["mech-149", "mech-075", "ca1_mismatch", "novelty", "hippocampal_vta_loop", "dopamine", "completion_set"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus detects newly-arrived information not already in long-term memory; this novelty signal travels via subiculum/accumbens/ventral pallidum to the VTA, whose novelty-dependent dopamine firing is fed back to the hippocampus to enhance LTP and learning -- a closed hippocampal-VTA loop.",
+    "ree_translation": "Grounds MECH-149's CA1 mismatch/novelty detector (the hippocampus computing 'is this already stored/predicted?') and, in the same loop, MECH-075's claim that VTA dopaminergic gain modulates hippocampal attractor dynamics. The two REE claims are not independent -- the biology presents them as one feedback circuit, so the completion-set partner of MECH-149 (the VTA gain arm = MECH-075) is grounded here too.",
+    "mapping_caveat": "The loop gates ENTRY INTO LONG-TERM MEMORY (what gets stored). MECH-149 repurposes the same novelty signal to gate ROLLOUT INJECTION into E3 evaluation (what gets simulated). The novelty-detection arm transfers cleanly; the downstream consumer differs.",
+    "source_context": "Theoretical synthesis of rodent/primate anatomy and physiology (subiculum-accumbens-VP-VTA pathway; DA modulation of hippocampal LTP)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Canonical review (high citation, foundational) rather than a single primary result -- source_quality strong but not primary-data. Mapping fidelity moderate: novelty-detection arm maps well; the planning-injection consumer is REE-specific. Grounds MECH-075 as the loop's gain partner."
+  }
+}

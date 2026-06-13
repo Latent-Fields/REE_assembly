@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_mech_207_acetylcholine_encoding_consolidation_hasselmo1999",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["MECH-207"],
+  "source": {
+    "title": "Neuromodulation: acetylcholine and memory consolidation.",
+    "authors": ["Michael E Hasselmo"],
+    "year": 1999,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/s1364-6613(99)01365-0"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational source for the IDEA that acetylcholine sets a switch between encoding and consolidation dynamics in the hippocampus -- supports MECH-207's core frame that ACh gates which phase of memory processing is active. But the DIRECTIONALITY differs: Hasselmo's classic model has HIGH ACh favour encoding and LOW ACh release the dynamics that permit consolidation, whereas MECH-207 (after Sinclair 2021) frames ACh as the PERMISSIVE write-gate on the offline surprise buffer. Mixed until the Sinclair primary is pulled to reconcile the sign.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Hasselmo's model assigns CONSOLIDATION to LOW-ACh states (quiet waking / slow-wave sleep), while MECH-207 frames ACh as PERMISSIVE for the write/update of PE-tagged episodes. The two can be reconciled (different operations: ACh suppresses interference during encoding vs ACh gating eligibility of specific episodes) but the directional sign is not identical and must not be asserted as a clean 'supports'."],
+  "tags": ["mech-207", "acetylcholine", "encoding_consolidation_switch", "cholinergic", "write_gate", "directionality_caveat"],
+  "mapping": {
+    "source_claim_statement": "High hippocampal acetylcholine during active waking sets dynamics appropriate for ENCODING (suppressing excitatory feedback so new input does not interfere with stored patterns); low acetylcholine during quiet waking / slow-wave sleep releases that suppression and permits CONSOLIDATION (spread of activity within hippocampus and to cortex).",
+    "ree_translation": "Grounds MECH-207's premise that a cholinergic signal gates WHICH memory operation the hippocampus is doing -- a state-conditional plasticity switch, the OPENING side REE currently lacks. But the specific MECH-207 claim (ACh is a PERMISSIVE write-gate on the surprise buffer, i.e. PE-tagged episodes become eligible for offline updating only with cholinergic co-activation) is a more recent refinement (Sinclair 2021); Hasselmo's directionality (low ACh = consolidate) is not identical and must be reconciled rather than cited as direct support.",
+    "mapping_caveat": "Directionality mismatch: the classic model puts consolidation at LOW ACh; MECH-207 puts the write-gate permission at cholinergic co-activation. Reconcilable (encoding-interference-suppression vs episode-eligibility gating are different operations) but not the same sign -- so this entry is MIXED, grounding the frame while flagging that the Sinclair 2021 primary is needed to settle the write-gate directionality.",
+    "source_context": "Theoretical review integrating rodent cholinergic physiology across the sleep-wake cycle with computational models of encoding vs consolidation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Canonical foundational review (high source quality) but mapping fidelity is the weak axis: it grounds the encode-vs-consolidate-switch FRAME, not MECH-207's specific permissive-write-gate directionality. Pull Sinclair 2021 (the node's named primary) before treating MECH-207 as cleanly grounded."
+  }
+}

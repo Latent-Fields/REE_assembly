@@ -166,8 +166,8 @@ closure_plan:
     - id: "hippocampal_planning_v4:HPL-9"
       title: "Biology grounding completion (DG separation / time cells / CA1 novelty / ACh write-gate / dorsal-ventral lit-pulls + circuit completion-set harvest)"
       phase: 2
-      status: open
-      lit_pull_status: none
+      status: in_progress
+      lit_pull_status: partial
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-147, MECH-148, MECH-149, MECH-207, ARC-040]
@@ -178,7 +178,12 @@ closure_plan:
         - "L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)"
         - "L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)"
       last_updated: 2026-06-13
-      completion_note: "Hippocampal_planning had NO dedicated grounding node at registration (the four mechanism gates MECH-147/148/149/207 cite papers in-node but no formal /lit-pull was run; project rule feedback_biology_before_formal_definitions). This node tracks closing that debt AND, per the assembly-planning brief, explicitly harvesting the co-constitutive CIRCUIT PARTNERS each mechanism presupposes (mossy-cell inhibition, CA3 completion, theta-gamma coding, VTA loop, cholinergic source) so the substrate build does not omit jointly-necessary components. Off the V3 closure path (generation v4); promotes nothing."
+      lit_pull_done:
+        - "2026-06-13 /lit-pull -> evidence/literature/targeted_review_hippocampal_planning_mechanisms (6 entries). Core of all five claims grounded: MECH-147 lit_conf 0.80 (Leutgeb 2007 DG/CA3 dual mechanism = separation + the CA3-COMPLETION partner; Bakker 2008 human CA3/DG-separation vs CA1-completion); MECH-148 0.77 (Omer/Las/Ulanovsky 2022 pure-vs-contextual time cells + the social time-cell = V5/MECH-127 bridge); MECH-149+MECH-075 0.72 (Lisman & Grace 2005 hippocampal-VTA loop grounds BOTH the novelty detector AND its VTA-DA gain partner as one circuit); ARC-040 0.75 (Fanselow & Dong 2010 dorsal-cognitive/ventral-affective segregation, dorsal<->cortex / ventral<->amygdala-hypothalamus connectivity)."
+      lit_pull_remaining:
+        - "MECH-207 is MIXED (lit_conf 0.56), NOT cleanly grounded: Hasselmo 1999 grounds the encode-vs-consolidate-switch FRAME but its directionality (consolidation at LOW ACh) differs from MECH-207's permissive-write-gate-at-cholinergic-co-activation. Pull the Sinclair 2021 PRIMARY to settle the sign before building the ACh gate."
+        - "Completion-set partners still un-pulled as standalone entries: hilar mossy-cell feedback inhibition (the DG inhibitory partner) and theta-gamma phase-coding (the time-cell partner). Leutgeb covers CA3-completion and Lisman&Grace covers the VTA loop, so those two partners ARE grounded; mossy-cell + theta-gamma remain."
+      completion_note: "Hippocampal_planning had NO dedicated grounding node at registration (the four mechanism gates MECH-147/148/149/207 cite papers in-node but no formal /lit-pull was run; project rule feedback_biology_before_formal_definitions). PARTIAL as of 2026-06-13: core of all five claims grounded + two completion-set partners (CA3 completion, VTA loop) harvested in the same pull; remaining = MECH-207 directionality (Sinclair 2021 primary) + the mossy-cell-inhibition and theta-gamma partners. Off the V3 closure path (generation v4); promotes nothing (exp_conf unchanged 0)."
 ---
 # Hippocampal Planning -- V4 Roadmap
 

@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_hippocampal_planning_mechanisms",
+  "entry_id": "2026-06-13_arc_040_dorsal_ventral_segregation_fanselow2010",
+  "timestamp_utc": "2026-06-13T17:31:42Z",
+  "claim_ids_tested": ["ARC-040"],
+  "source": {
+    "title": "Are the dorsal and ventral hippocampus functionally distinct structures?",
+    "authors": ["Michael S Fanselow", "Hong-Wei Dong"],
+    "year": 2010,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.11.031"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Definitive, heavily-cited synthesis of behavioural, anatomical, and gene-expression evidence for a dorsal(cognitive/spatial) vs ventral(emotion/stress) functional segregation -- the exact architectural dissociation ARC-040 asserts (dorsal value-free navigation vs ventral valence prior). Confidence capped only by the architectural-mapping step (anatomical segregation -> REE's segregated proposer/prior module).",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The paper documents a segregation gradient (dorsal/intermediate/ventral) and connectivity correlates; it does NOT establish that the ventral 'valence' contribution must be an ACCUMULATED PRIOR sourced from R(x,t) geometry (ARC-040's specific computational commitment) rather than an online value computation."],
+  "tags": ["arc-040", "dorsal_ventral", "functional_segregation", "valence_prior", "hippocampal_planning"],
+  "mapping": {
+    "source_claim_statement": "Behavioural, anatomical, and gene-expression evidence supports functional segmentation of the hippocampus along its long axis: the dorsal (posterior in primates) performs primarily COGNITIVE/spatial functions; the ventral (anterior) relates to STRESS, EMOTION, and affect. Dorsal gene expression correlates with cortical information-processing regions; ventral with amygdala and hypothalamus.",
+    "ree_translation": "Direct support for ARC-040's architectural commitment: a dorsal-predominant, value-free spatial trajectory proposer ARCHITECTURALLY SEGREGATED from a ventral-analog valence prior. The dorsal-cortex / ventral-amygdala-hypothalamus connectivity split is the biological warrant for keeping navigation and valence as distinct streams (ARC-007 no-new-value compliance) rather than a single merged module.",
+    "mapping_caveat": "The segregation is a gradient (dorsal/intermediate/ventral) with overlap, not a clean binary; and the paper does not commit the ventral contribution to being an ACCUMULATED valence prior sourced from a residue-field geometry -- that computational specificity is ARC-040's, beyond what the segregation evidence shows.",
+    "source_context": "Review integrating rodent lesion/behaviour, tract-tracing anatomy, and large-scale gene-expression correlation, with primate axis homology."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Canonical, high-citation review across three evidence streams (behaviour/anatomy/genes) with explicit primate homology -> low transfer risk. Mapping strong for the segregation principle; the accumulated-prior-from-R(x,t) specificity is REE's addition."
+  }
+}
