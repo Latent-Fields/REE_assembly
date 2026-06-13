@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-13T04:07:25Z",
+  "last_tick_utc": "2026-06-13T04:37:30Z",
   "state": "running",
   "current_exq": "V3-EXQ-460d",
   "current_exq_started_utc": "2026-06-12T23:42:46.960445+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
-    "runs_done": 3,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
+    "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 121.4
+    "overall_pct": 203.8
   },
-  "seconds_elapsed": 15879,
+  "seconds_elapsed": 17683,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460d_sd034_closure_control_plane_behavioural] starting (dry_run=False)",
@@ -35,7 +35,16 @@
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4096 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.970 gate=pass",
     "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00000",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.1996 contact_events=83 z_goal_at_contact=0.4418",
+    "Seed 43 Condition ARM_CLOSURE_ON",
+    "Seed 43 Condition ARM_CLOSURE_OFF",
+    "[train] closure_eval seed=43 ep 265/265 c1=True c2=True c3=True c4=False n_closures=3 hook_fires=3 nogo=9 completions=3 beta_elev=184",
+    "verdict: FAIL seed=43 guard_pass=True complete_nonvacuity=True closure_trigger=True (contact_rate=0.1996 z_goal_at_contact=0.4418)",
+    "Seed 44 Condition CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4279 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.844 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
