@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_sd_046_cognitive_branching_koechlin2007",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["SD-046", "SD-033e", "MECH-264"],
+  "source": {
+    "title": "Anterior prefrontal function and the limits of human decision-making",
+    "authors": ["Etienne Koechlin", "Alexandre Hyafil"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1142995",
+    "url": "https://doi.org/10.1126/science.1142995"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical Science account of frontopolar (lateral area 10) cognitive branching: the FPC holds a pending task-set in a counterfactual ('to be re-engaged later') state while another is executed. Directly grounds the SD-046 pending/parked-slot primitive and SD-033e's engage<->deliberate transition. Confidence held below 0.8 because the paper's headline structural finding -- branching is restricted to ONE pending alternative (recursive branching beyond two tasks fails) -- qualifies rather than fully endorses SD-046's N=2-4 range; the mapping from human task-branching to an artificial multi-slot GoalState is an architectural analogy, not a measured isomorphism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Koechlin & Hyafil find a STRUCTURAL limit of one pending branch: humans cannot recursively branch between more than two tasks. If SD-046 instantiates N=3-4 hard discrete slots that all maintain full counterfactual branch status simultaneously, this paper predicts that beyond the second pending slot the architecture will not deliver genuine branch-and-return behaviour -- the extra slots would degrade to stored-but-not-branchable goals.",
+    "The branching signal is specific to lateral FPC (area 10); if a V4 SD-033e-analog placed counterfactual maintenance in a vmPFC/OFC-analog value module instead, the dissociation Koechlin reports would be lost."
+  ],
+  "tags": ["sd-046", "sd-033e", "mech-264", "frontopolar", "cognitive_branching", "pending_task", "gdl-8", "L1"],
+  "mapping": {
+    "source_claim_statement": "Lateral anterior prefrontal cortex (frontopolar, area 10) implements cognitive branching: it maintains a pending task-set in a counterfactual state for delayed re-engagement while a concurrent task is executed. This capacity is subject to a hard structural limit -- humans can hold one pending branch (two tasks total), not recursive branches beyond that.",
+    "ree_translation": "SD-046's multi-slot GoalState is the architectural realisation of branching: a parked goal slot holds an interrupted task's counterfactual ('resume later') status while another slot's trajectory commits, and SD-033e is the frontopolar-analog substrate that hosts the engage<->deliberate transition. The Koechlin limit translates to a prior on the slot count: the honest default for SD-046 is N=2 (one active + one pending branch), with N=3-4 treated as a capacity-bounded extension (see Cowan/Bays&Husain/Heilbronner entries) rather than a free parameter.",
+    "mapping_caveat": "Human dual-task branching is not the same construct as a maintained set of parallel goal slots; Koechlin's task alternates between TWO task-sets, whereas SD-046 proposes simultaneously-active goals each generating its own ghost-bank rank and proposer trajectories. The paper grounds the PENDING-BRANCH primitive and its limit, not the full parallel-arbitration claim (that is MECH-265's territory).",
+    "source_context": "Human model-based fMRI + behaviour; task-switching / branching paradigm; healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.32,
+    "notes": "High source quality (Science, model-based fMRI, foundational and heavily replicated framing). Mapping_fidelity moderate-high: the pending-branch primitive maps cleanly onto the parked slot, but the structural-2 limit is a constraint on SD-046, not a blanket endorsement. Transfer_risk moderate: human->artificial-agent, and the FPC localisation is human-specific (Mansouri 2017 notes parallel-goal monitoring is human-elaborated)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_sd_046_flexible_resource_bays2008",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["SD-046", "SD-027", "SD-028", "MECH-254"],
+  "source": {
+    "title": "Dynamic shifts of limited working memory resources in human vision",
+    "authors": ["Paul M. Bays", "Masud Husain"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1158023",
+    "url": "https://doi.org/10.1126/science.1158023"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "The resource-model counterweight to Cowan's fixed-slot view: Bays & Husain show visual WM capacity is NOT a fixed number of items but a limited resource shared dynamically across all items, with allocation biased by attention and saccade targets, and the proportion allocated to each item setting its PRECISION (a power law). Mixed direction by design: it SUPPORTS the capacity-limited and precision-weighted-selection premises behind SD-027/SD-028/MECH-254, but CHALLENGES SD-046's discrete-fixed-slot framing -- the honest tension the node should carry. Confidence 0.58 reflects the productive disagreement plus visual-WM->goal-slot transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If SD-046 commits to N discrete equal-capacity slots, Bays & Husain predict that is the wrong idealisation: a shared flexible resource means adding a 3rd or 4th active goal does not give it a full slot -- it dilutes the precision of ALL goals, so the marginal goal is represented poorly rather than fully. A fixed-slot SD-046 would mis-predict graceful degradation.",
+    "Resource allocation is biased toward saccade/attention targets; an REE arbitrator that allocated equal resource across slots regardless of which is being acted on would not match the biology -- the acted-on goal should draw disproportionate precision."
+  ],
+  "tags": ["sd-046", "sd-027", "sd-028", "mech-254", "resource_model", "precision", "working_memory", "slot_vs_resource", "gdl-8", "L3"],
+  "mapping": {
+    "source_claim_statement": "Visual working memory is not limited by a fixed number of items (the slot model) but is a limited RESOURCE shared dynamically across all items in the scene. The resource shifts flexibly between objects, biased by selective attention and upcoming saccade targets; the proportion allocated to each item sets the precision with which it is remembered, following a simple power law.",
+    "ree_translation": "For SD-027/SD-028/MECH-254 (capacity-limited precision-weighted selection + the attentional template as a precision-space object), Bays & Husain directly ground the premise: selection is the allocation of a shared precision resource, and precision is the currency. For SD-046, it supplies the alternative to a fixed-slot GoalState -- a flexible-resource multi-goal state where active goals share a precision budget and the acted-on goal draws more, predicting graceful degradation rather than a hard slot cutoff.",
+    "mapping_caveat": "Measured on visual WM for simple features, not goals or trajectories; the slot-vs-resource debate is unresolved in the human literature itself (hybrid 'slots+averaging' models exist). It grounds the precision/resource framing of the access gate strongly, but its bearing on SD-046 is to PROBLEMATISE the discrete-slot choice, not to settle it -- hence the mixed direction.",
+    "source_context": "Human visual working memory psychophysics; feature-recall precision paradigm; healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "Strong, highly cited Science psychophysics paper (source_quality 0.88). Mapping_fidelity 0.55: grounds the precision-resource framing of SD-027/SD-028/MECH-254 well, but its relation to SD-046 is to challenge the discrete-slot framing, so 'fidelity' to the claim-as-written is partial. Transfer_risk 0.42 (visual WM -> goal slots) plus the unresolved slot-vs-resource debate. Mixed direction is the honest call."
+  }
+}

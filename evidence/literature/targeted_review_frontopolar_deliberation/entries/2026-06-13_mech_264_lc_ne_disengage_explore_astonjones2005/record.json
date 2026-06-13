@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_mech_264_lc_ne_disengage_explore_astonjones2005",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["MECH-264", "SD-033e"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance",
+    "authors": ["Gary Aston-Jones", "Jonathan D. Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://doi.org/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The LC-NE disengage/explore partner the GDL-8 node explicitly asks for, with a cross-link to plasticity_neuromodulation. Phasic LC activity facilitates the current task (exploit); when task utility wanes, tonic LC activity is associated with DISENGAGEMENT from the current task and a search for alternatives (explore). This is a neuromodulatory GAIN signal that gates the switch MECH-264 computes -- crucially, ACC/OFC drive these LC mode transitions, closing the loop with the dACC/FPC value system. Held to 0.6: it grounds the disengage/explore GATING partner, not the FPC counterfactual-value computation; the mapping is a partner-circuit analogy, and REE has no explicit NE-analog substrate (cross-link, not host).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Aston-Jones & Cohen place the disengage/explore signal in a diffuse neuromodulatory system (LC-NE) driven by ACC/OFC utility monitoring, NOT in the FPC value computation. If MECH-264's switch-to-alternative is implemented purely as a value-margin threshold with no gain/arousal partner, it omits the tonic-mode disengagement trigger that the biology says is necessary to LEAVE a low-utility task -- the agent could track counterfactual value correctly yet fail to disengage.",
+    "Tonic LC (explore mode) is associated with degraded performance on the current task; an REE NE-analog tuned for easy disengagement would trade exploit-stability for explore-readiness, a parameter REE currently has no claim governing (gap surfaced for plasticity_neuromodulation)."
+  ],
+  "tags": ["mech-264", "sd-033e", "lc-ne", "norepinephrine", "disengage", "explore_exploit", "plasticity_neuromodulation", "gdl-8", "L2"],
+  "mapping": {
+    "source_claim_statement": "LC neurons show two modes. Phasic LC activation, driven by the outcome of task-related decisions, facilitates the ensuing behaviour and optimises current-task performance (exploitation). When task utility wanes, LC shifts to a tonic activity mode associated with disengagement from the current task and a search for alternative behaviours (exploration). ACC and OFC -- which monitor task utility -- drive these LC mode transitions.",
+    "ree_translation": "MECH-264's switch-to-alternative is gated not only by a value margin but by a disengage/explore signal analogous to the LC-NE tonic mode: when the chosen course's utility wanes, a neuromodulatory-analog gain shift licenses leaving it to explore alternatives. SD-033e's engage<->deliberate transition is the behavioural expression of this mode shift. The ACC/OFC->LC drive maps onto the dACC-analog (SD-032b) and value system (SD-033c) feeding the switch, closing the deliberation loop. Registered as a CROSS-LINK to plasticity_neuromodulation, not as a new REE substrate.",
+    "mapping_caveat": "LC-NE is a diffuse neuromodulatory gain system, not a value-tracking module; it grounds the disengage/explore GATE that licenses MECH-264's switch, not the counterfactual-value computation itself. REE has no explicit NE-analog substrate, so this is a partner-circuit analogy and a flagged gap (the explore/exploit gain control is unowned), not a claim this paper directly confirms.",
+    "source_context": "Monkey LC neurophysiology + computational modelling; review."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.35,
+    "notes": "Canonical, heavily cited review (Annu Rev Neurosci). Source_quality 0.9. Mapping_fidelity 0.5: grounds the disengage/explore gating PARTNER and its ACC/OFC drive (the loop), but not MECH-264's value computation; REE lacks an NE-analog host, so it is a cross-link. Transfer_risk 0.35 (monkey/diffuse-modulator -> artificial gain parameter)."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_sd_046_branching_wm_capacity_heilbronner2009",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["SD-046", "MECH-265"],
+  "source": {
+    "title": "Is there a structural limit to 'branch' recursively between more than two tasks?",
+    "authors": ["Urs Heilbronner", "Stefan Pollmann"],
+    "year": 2009,
+    "venue": "Psychological Research",
+    "doi": "10.1007/s00426-009-0249-8",
+    "url": "https://doi.org/10.1007/s00426-009-0249-8"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "The bridge between L1 (branching) and L3 (capacity): Heilbronner & Pollmann directly test Koechlin & Hyafil's structural-2-task branching limit and find it is NOT structural -- participants successfully branched between up to FOUR tasks when working-memory load was kept low. The limiting factor is WM capacity, not a hard architectural ceiling of two. Mixed direction: it WEAKENS the strict structural-2 reading (which would have capped SD-046 at N=2) and SUPPORTS a WM-capacity-bounded N=2-4 multi-slot design. Confidence 0.55: smaller behavioural study, single lab, but a clean directly-on-point manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE adopts a hard structural cap of N=2 slots (the strict Koechlin reading), Heilbronner & Pollmann predict that is too conservative -- up to 4 are reachable under low load. But the converse failure is the live risk: branching capacity DEGRADES with WM load, so an SD-046 that holds 4 slots under high per-slot load (rich z_goal + drive + age + persistence per slot) will not realise 4 effective branches.",
+    "Retaining task-SETS and task-CONTENTS contributed additively to difficulty; an SD-046 slot that bundles both (rule/task-set AND content) per slot doubles the load contribution, lowering the effective slot count below the nominal N."
+  ],
+  "tags": ["sd-046", "mech-265", "branching", "working_memory", "capacity", "slot_count", "gdl-8", "L1_L3_bridge"],
+  "mapping": {
+    "source_claim_statement": "Koechlin & Hyafil's claim of a structural limit of two tasks for recursive branching is not supported. Branching between up to four tasks was observed as long as working-memory load was kept low; WM capacity, not a fixed architectural ceiling, is the limiting factor. Retaining task-sets and task-contents additively increased difficulty, supporting a view of WM and executive function as tightly interactive rather than separate modules.",
+    "ree_translation": "For SD-046's slot count: the upper bound on N is not a hard structural 2 but a WM-capacity-governed number that can reach ~4 under low per-slot load, consistent with the roadmap's 'n=2-4 plausibly' and with Cowan's ~4. For MECH-265 (relative-importance monitoring across the active set): the number of goals that can be monitored in parallel is itself capacity-bounded and load-sensitive, so the monitor's effective fan-out is a function of per-goal representational cost.",
+    "mapping_caveat": "Human task-branching behaviour, single behavioural study; it adjudicates the branching capacity limit but does not measure goal-slot maintenance in an agent. It refines the Koechlin entry's structural-2 caveat (raising the ceiling, conditioning it on load) rather than independently grounding SD-046's substrate.",
+    "source_context": "Human behavioural experiment; recursive task-branching with independently varied WM load; healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.38,
+    "notes": "Smaller single-lab behavioural study (source_quality 0.7) but a clean, directly-on-point manipulation (independently varying WM load and branching depth). Mapping_fidelity 0.6: refines the slot-count bound and ties it to load. Transfer_risk 0.38. Mixed direction because it weakens the strict structural-2 reading while supporting a load-bounded N=2-4."
+  }
+}

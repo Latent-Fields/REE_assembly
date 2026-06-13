@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_mech_265_expected_value_of_control_shenhav2013",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["MECH-265", "SD-046", "SD-032b"],
+  "source": {
+    "title": "The expected value of control: an integrative theory of anterior cingulate cortex function",
+    "authors": ["Amitai Shenhav", "Matthew M. Botvinick", "Jonathan D. Cohen"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.07.007",
+    "url": "https://doi.org/10.1016/j.neuron.2013.07.007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Supplies the normative arbitration computation the multi-slot deliberation layer needs: dACC allocates control by computing the expected value of control (EVC) -- expected payoff of a controlled process, amount of control required, minus cognitive-effort cost -- and uses it to decide WHETHER, WHERE, and HOW MUCH control to allocate. This is the decision rule for SD-046's cross-slot arbitrator and for MECH-265's relative-importance read. Held to 0.66 because it is a normative THEORY (not a direct measurement) and its locus is dACC (SD-032b), grounding the arbitrator's decision function rather than MECH-265's frontopolar relative-importance representation per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "EVC is a normative theory, not a measured mechanism; if a V4 arbitrator implements EVC literally it inherits the open question of how the effort-cost term is computed -- Shenhav et al leave the cost function unspecified, so an REE arbitrator could mis-specify it and either thrash (cost too low) or freeze (cost too high).",
+    "EVC localises arbitration to dACC. If MECH-265's relative-importance monitor is placed in an FPC-analog while the control-allocation decision is EVC-style dACC, the two must be wired as a loop; an implementation collapsing them into one module would lose the Mansouri 2017 FPC-specific parallel-monitoring phenotype."
+  ],
+  "tags": ["mech-265", "sd-046", "sd-032b", "dacc", "expected_value_of_control", "arbitrator", "gdl-8", "L2"],
+  "mapping": {
+    "source_claim_statement": "The dorsal ACC computes the expected value of control (EVC) by integrating the expected payoff of a controlled process, the amount of control required to achieve it, and the cost of that control in cognitive effort; it uses this signal to determine whether, where, and how much control to allocate -- unifying ACC's diverse roles (reward, monitoring, action selection) under one normative function.",
+    "ree_translation": "SD-046's dACC-style arbitrator and MECH-265's relative-importance monitor need a decision rule that says which active goal slot's trajectory earns this tick's commitment and how much control to invest. EVC is that rule: each slot's expected payoff, the control its trajectory demands, and an effort cost are integrated into a per-slot control-allocation value, and the arbitrator commits the slot with the highest EVC. MECH-265's parallel relative-importance read is the input the EVC arbitrator consumes.",
+    "mapping_caveat": "EVC is a normative/computational theory of dACC, not a measurement, and it is about CONTROL allocation generally rather than multi-GOAL arbitration specifically; the multi-goal reading is REE's extension. It grounds SD-046's arbitrator decision-function and SD-032b, and supplies the effort-cost term MECH-265's switching policy implies, but it does not by itself evidence a frontopolar relative-importance representation (that is Mansouri 2017, prong_d).",
+    "source_context": "Theoretical/computational review with normative model; integrates human and animal ACC literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.3,
+    "notes": "High-impact integrative theory (Neuron, heavily cited). Source_quality 0.85 (review/theory, not primary data). Mapping_fidelity 0.6: grounds the arbitrator decision rule and the effort-cost term, but EVC is control-allocation-general and dACC-localised, so MECH-265's frontopolar relative-importance representation is only partially covered. Transfer_risk 0.3 (normative theory transfers reasonably to an artificial arbitrator; the unspecified cost function is the risk)."
+  }
+}

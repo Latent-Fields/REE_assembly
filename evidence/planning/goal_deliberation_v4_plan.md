@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Multi-slot Goal Deliberation, Counterfactual Branching, Interrupted-task Resumption (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [SD-046, SD-033e, MECH-264, MECH-265, SD-027, SD-028, MECH-254, MECH-255, Q-068]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -141,8 +141,8 @@ closure_plan:
     - id: "goal_deliberation_v4:GDL-8"
       title: "Biology grounding completion (frontopolar deliberation, counterfactual/unchosen-value tracking, capacity-limited multi-slot lit-pulls + completion-set harvest)"
       phase: 2
-      status: open
-      lit_pull_status: none
+      status: done
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [SD-033e, MECH-264, MECH-265, SD-046]
@@ -153,7 +153,30 @@ closure_plan:
         - "L2 dACC foraging/switch value (Kolling 2012; Shenhav EVC 2013) -- harvest the dACC<->FPC loop as a co-constitutive partner (SD-032b dACC is the V3 hook); and the LC-NE disengage/explore partner (cross-link plasticity_neuromodulation)"
         - "L3 capacity-limited multi-slot maintenance (Cowan; Bays & Husain resource model) grounding the SD-046 N>=2 GoalState fork and the SD-027/028 selection-gate that makes it tractable"
       last_updated: 2026-06-13
-      completion_note: "Goal_deliberation had NO grounding node; SD-033e/SD-046 import frontopolar/dACC and working-memory-capacity constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). This node tracks the pull plus the completion-set harvest (dACC-FPC loop, LC-NE disengage partner, capacity-resource model). Off V3 closure path; promotes nothing."
+      completion_note: >
+        DONE 2026-06-13 (lit-pull-gdl8-frontopolar-deliberation). 7 entries under
+        evidence/literature/targeted_review_frontopolar_deliberation. The L1 frontopolar
+        anchors (Boorman 2009 / Mansouri 2015+2017 / Koechlin&Summerfield 2007 / Burgess 2007)
+        were ALREADY grounded in targeted_review_frontopolar_analog_prong_d, so this pull did
+        NOT re-pull them (avoids double-count); it added the NET-NEW co-constitutive partners:
+        L1 Koechlin&Hyafil 2007 branching (Science 318:594; the pending-branch + structural-2
+        limit, distinct from the Summerfield gradient paper already on file) -> SD-046 0->0.822;
+        L2 dACC<->FPC loop (Kolling 2012 foraging/search-value + Shenhav 2013 EVC control-allocation,
+        both cross-linked to the SD-032b dACC hook) + Aston-Jones&Cohen 2005 LC-NE phasic/tonic
+        disengage-to-explore (cross-link plasticity_neuromodulation); L3 capacity-resource
+        (Cowan 2001 ~4-chunk focus-of-attention bound + Bays&Husain 2008 flexible precision
+        resource + Heilbronner&Pollmann 2009 branching-is-WM-bounded-not-structurally-2) ->
+        first grounding for the previously-ZERO-lit SD-027 0->0.70 / SD-028 0->0.54 / MECH-254
+        0->0.70. Net: SD-033e 0.888, MECH-264 0.882, MECH-265 0.889 (slight dip: Heilbronner
+        mixed), SD-046 0.822. exp_conf unchanged 0 everywhere -- PROMOTES NOTHING. Bays&Husain +
+        Heilbronner marked MIXED by design: they problematise SD-046's DISCRETE-fixed-slot framing
+        (flexible-resource + load-bounded N alternatives) -- the honest slot-vs-resource fork the
+        roadmap should carry. MECH-255 (vmPFC-dlPFC template compiler) NOT grounded here (more
+        specific than the capacity papers reach; belongs to a GDL-6-scoped pull). 3 completion-set
+        PARTNER claims SURFACED proposal-first (NOT registered): (P1) dACC<->FPC reciprocal
+        arbitration loop MECH; (P2) LC-NE-analog explore/exploit gain control governing MECH-264
+        disengagement -- REE has no NE-analog substrate (genuine gap); (P3) Q-claim on whether
+        SD-046 is discrete-slot or flexible-precision-resource. Off V3 closure path."
 ---
 # Multi-slot Goal Deliberation -- V4 Forward Roadmap
 

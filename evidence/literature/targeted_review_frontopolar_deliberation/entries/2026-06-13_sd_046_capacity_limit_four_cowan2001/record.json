@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_frontopolar_deliberation",
+  "entry_id": "2026-06-13_sd_046_capacity_limit_four_cowan2001",
+  "timestamp_utc": "2026-06-13T18:06:43Z",
+  "claim_ids_tested": ["SD-046", "SD-027", "MECH-254"],
+  "source": {
+    "title": "The magical number 4 in short-term memory: a reconsideration of mental storage capacity",
+    "authors": ["Nelson Cowan"],
+    "year": 2001,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/s0140525x01003922",
+    "url": "https://doi.org/10.1017/s0140525x01003922"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "The L3 capacity anchor: Cowan's wide-ranging synthesis argues the pure capacity limit of the focus of attention is a small fixed number averaging about 4 chunks (3-5), distinct from Miller's compound 7. This grounds two things the deliberation roadmap needs: (1) a principled prior on SD-046's slot count N (2-4, not arbitrary), and (2) the capacity-limited-selection premise behind SD-027/MECH-254's top-k gate. Held to 0.62: the transfer from human STM chunks to goal slots / selected latents is an analogy across domains, and Cowan's 'focus of attention' is not goals specifically; it bounds the count without being measured on goal maintenance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cowan's limit is for the focus of attention over chunks; if 'goal slot' or 'selected E1/E2 latent' is not the right unit of chunking, the ~4 number may not transfer -- the capacity bound could be on something REE does not represent as a slot.",
+    "The capacity is a CENTRAL focus-of-attention limit, with non-capacity-limited stores (activated LTM) alongside it; an REE design that treats all maintained goals as occupying the capacity-limited focus would over-constrain, when biology allows many activated-but-not-focal goals plus a small focal set."
+  ],
+  "tags": ["sd-046", "sd-027", "mech-254", "capacity_limit", "working_memory", "focus_of_attention", "gdl-8", "L3"],
+  "mapping": {
+    "source_claim_statement": "A single central capacity limit -- the focus of attention -- holds about 4 chunks (range 3-5) under conditions where chunking and rehearsal are controlled, smaller and more precise than Miller's 7. This pure capacity is distinct from non-capacity-limited stores (sensory memory, activated long-term memory).",
+    "ree_translation": "SD-046's choice of N>=2 simultaneously-active goal slots (the roadmap says 'n=2-4 plausibly') is bounded from above by the focus-of-attention capacity: a small fixed number around 4. SD-027/MECH-254's capacity-limited top-k selection gate (k ~ 3-7 in the claim text) is the same bound applied to E1/E2 content entering E3. Cowan supplies the empirical prior that this number is small and fixed, not free -- and distinguishes the small FOCAL set from a larger activated-but-not-selected pool.",
+    "mapping_caveat": "Cowan measures human short-term storage of chunks (digits, items), not goal slots or latent broadcast units; the ~4 number transfers as an order-of-magnitude prior on N and k, not as a measured value for goal maintenance. The focal/activated distinction warns against treating every maintained goal as occupying capacity.",
+    "source_context": "Human short-term memory; cross-paradigm synthesis (BBS target article); healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.42,
+    "notes": "Canonical, foundational BBS target article (source_quality 0.88). Mapping_fidelity 0.6: bounds the slot/selection count as a prior, but 'chunk' != 'goal slot' != 'selected latent'. Transfer_risk 0.42 -- the highest in this pull -- because the cross-domain transfer (human STM -> artificial goal slots) is a genuine analogy, not a measured isomorphism."
+  }
+}
