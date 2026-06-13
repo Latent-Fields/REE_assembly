@@ -40224,6 +40224,51 @@
     on the V4 belief-state substrate not yet built; promote/demote suppressed.
     DO NOT build in V3.
 
+# --- drive arbitration opportunity-cost currency (MECH-435, component of MECH-394) ---
+- id: MECH-435
+  title: "Multidrive arbitration is priced in a common opportunity-cost-of-time currency: a global, slowly-varying tonic vigour signal (the long-run average reward rate / opportunity cost of dwelling on the currently-arbitrated drive) supplies the commensurable scale over which otherwise-incommensurable drive axes compete, sitting ABOVE the per-candidate liking-stream score_bias (MECH-295). The currency sets HOW VIGOROUSLY the arbitrated drive is pursued; it does NOT by itself determine WHICH drive wins -- selection additionally requires a per-axis-differentiated benefit gradient, so the global scalar is necessary-but-insufficient for arbitration."
+  claim_type: mechanism_hypothesis
+  subject: drive.arbitration_opportunity_cost_currency
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: 2026-06-13
+  depends_on:
+    - SD-060     # the multidrive register the currency prices competition across
+    - SD-012     # drive-scaled benefit -- the per-axis term the global currency sits above
+    - MECH-295   # per-candidate liking-stream score_bias the currency modulates, not replaces
+  related_claims:
+    - MECH-394   # parent: the soft-competitive arbitration policy this currency is the commensurability term for
+    - MECH-359   # candidate-differentiated / option-specific value coding -- the per-axis gradient the global scalar cannot supply alone
+  location: evidence/planning/drives_motivation_v4_plan.md
+  notes: >
+    Registered 2026-06-13 PROPOSAL-FIRST -> at user direction, as the
+    component/child of MECH-394 surfaced by the DRV-3 drive-arbitration lit-pull
+    (drives_motivation_v4 plan). The DRV-2 arbitration policy names the
+    orchestration VARIABLES (context / per-axis satiation / inter-drive competition
+    / developmental phase) but leaves the COMMON CURRENCY in which incommensurable
+    drives are compared unspecified; this claim is that currency. Biology-before-
+    formal-definitions grounding: Niv, Daw, Joel & Dayan 2007 (Psychopharmacology,
+    DOI 10.1007/s00213-006-0502-4; targeted_review_drive_arbitration) -- tonic
+    dopamine reports the long-run average reward rate, which functions as the
+    opportunity cost of time and sets response vigour; this is the commensurable
+    scale a multidrive policy needs. Cross-ref Pezzulo/Rigoli/Friston 2015
+    (priors-as-drives precision-weighting) and SD-012 (drive-scaled benefit).
+    LOAD-BEARING CAVEAT carried verbatim from the lit-pull: Niv's signal governs
+    the vigour of an ALREADY-CHOSEN action, and a gradient-free global scalar
+    cannot by itself carve WHICH drive wins -- so MECH-435 is explicitly the
+    currency TERM, necessary-but-insufficient, and must be paired with a per-axis-
+    differentiated benefit gradient (ties the candidate-differentiated-affect
+    concern: MECH-359 option-specific value coding, AE-9 cluster). FALSIFICATION:
+    MECH-435 is wrong if a built V4 multidrive substrate arbitrates correctly with
+    NO global opportunity-cost term (pure per-axis benefit comparison suffices), or
+    if the tonic global signal turns out to carry the selection gradient itself
+    rather than only vigour. substrate_conditional on the SD-060 register + MECH-394
+    arbitration substrate (V4); promote/demote suppressed. DO NOT build in V3.
+
 # --- goal_deliberation_v4 cluster (MECH-389) ---
 - id: MECH-389
   title: "Interrupted-task resumption: a parked-goal persistence + capacity-keyed re-prioritisation mechanism that closes the event-arc interrupt->reorient->resume span. When a task is interrupted (hazard, capacity loss, higher-priority goal), its goal slot is PARKED (z_goal + progress context retained, not invalidated) rather than discarded; the parked slot carries a persistence/urgency signal (Zeigarnik-analog) that re-elevates its relative importance in the SD-033e/MECH-265 arbitrator when capacity returns, triggering reorient-and-resume rather than restart-from-scratch."
@@ -40510,6 +40555,7 @@
     - MECH-295   # approach mechanism
     - MECH-216   # arbitration / competition substrate
     - ARC-073    # play-vs-homeostatic single-axis competition
+    - MECH-435   # opportunity-cost-of-time common currency the policy prices competition in (necessary-but-insufficient component)
   location: evidence/planning/drives_motivation_v4_plan.md
   notes: >
     Drives framed as orchestrated over context / satiation / competition / dev-phase.
