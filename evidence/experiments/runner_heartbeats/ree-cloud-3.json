@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-13T03:37:21Z",
+  "last_tick_utc": "2026-06-13T04:07:25Z",
   "state": "running",
   "current_exq": "V3-EXQ-460d",
   "current_exq_started_utc": "2026-06-12T23:42:46.960445+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
     "runs_done": 3,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 116.4
+    "overall_pct": 121.4
   },
-  "seconds_elapsed": 14075,
+  "seconds_elapsed": 15879,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460d_sd034_closure_control_plane_behavioural] starting (dry_run=False)",
@@ -34,7 +34,8 @@
     "Seed 43 Condition CURRICULUM_BUILT_CLOSURE_CONTROL_PLANE_RETEST",
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4096 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.970 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00000"
+    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00000",
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
