@@ -1,0 +1,85 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_676_mech423_readiness_readouts_nonvacuous",
+  "run_id": "v3_exq_676_mech423_readiness_readouts_nonvacuous_20260613T000035Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-13T00:00:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readiness_readouts_nonvacuous",
+    "preconditions": [
+      {
+        "name": "replay_buffers_populated",
+        "description": "both E1 world buffer and E2 transition buffer hold >= BUFFER_FLOOR replay traces (else R3 consolidation is starved, share is uninterpretable)",
+        "measured": 499.0,
+        "threshold": 2.0,
+        "control": "min over seeds after P0 warm-up",
+        "met": true
+      },
+      {
+        "name": "shared_latent_couples_into_both_modules",
+        "description": "R1 min per-module gradient norm on the jointly-fed shared latent exceeds the floor (the SAME statistic the R1 criterion routes on); below-floor means the latent is uncoupled, not that coupling is refuted",
+        "measured": 7.261904829647392e-05,
+        "threshold": 1e-08,
+        "control": "min over seeds, positive-control z_shared fed to E1+E2",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "R3_blocked_control_discriminates": true,
+      "R2_settled_multiple_iters": true,
+      "R1_two_modules": true
+    },
+    "criteria": [
+      {
+        "name": "R2_converges_majority",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "R3_interleaved_nonvacuous_blocked_zero_majority",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "R1_coupled_majority",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
