@@ -4899,6 +4899,20 @@
     "title": "Two-factor (tag-and-capture) write-eligibility: MECH-368's plasticity_eligibility is not a single instantaneous test but a TWO-STAGE process -- a local event sets a transient, input-specific eligibility TAG, and a durable model/policy write is consummated only if that tag CAPTURES a separately-gated plasticity/consolidation-resource signal within a time window. A tagged-eligible event can still fail to write if no capture signal arrives, and an arriving capture signal can rescue a recently-tagged weak event.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-432": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "pfc.dacc_fpc_reciprocal_arbitration_loop",
+    "title": "dACC<->FPC reciprocal arbitration loop: the switch-to-alternative decision is not computed in one module but emerges from a comparison ACROSS two substrates -- the FPC-analog (SD-033e/MECH-264) carries the counterfactual value of the specific unchosen option, the dACC-analog (SD-032b) carries the environment search-value and expected-value-of-control, and slot-switching (SD-046) is gated by their relative comparison. Neither signal alone drives the switch; the loop does.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-433": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "neuromod.lc_ne_explore_exploit_gain",
+    "title": "LC-NE-analog explore/exploit gain control: a value-INDEPENDENT, broadly-projecting tonic/phasic gain signal gates DISENGAGEMENT from the committed course. Phasic gain stabilises current-task exploitation; a tonic-mode shift -- driven by waning task utility monitored in the dACC/value system -- licenses disengagement to explore alternatives, supplying the trigger that MECH-264's value-margin switch alone does not. REE has no NE-analog substrate today; this names the missing modulator.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",
@@ -5423,6 +5437,14 @@
     "title": "Does the INTERACTION of retrieval-readiness gain (MECH-425 Line A) and content-selective suppression (MECH-425 Line B) govern the interference-vs-forgetting tradeoff? Predicted regimes: high gain WITHOUT selective suppression -> problematic interference (too many traces accessible at once); low gain -> apparent forgetting; competent retrieval = high gain + sharp competitive suppression.",
     "type": "open_question",
     "what_would_answer": "SUBSTRATE-CONDITIONAL (needs the MECH-425 retrieval substrate -- both knobs). 2x2 design: {gain high, gain low} x {selective suppression ON, OFF}, with >=2 competing co-encoded traces scorable individually. PREDICTED signature: (high gain, suppression OFF) -> highest competitor-intrusion / interference rate; (low gain, *) -> lowest correct-trace reinstatement (apparent forgetting); (high gain, suppression ON) -> highest correct-trace reinstatement with low intrusion (the competent regime). ANSWERED = the interference rate depends on the gain x suppression INTERACTION term (not on either main effect alone) in the predicted direction. NON-ANSWER / self-route substrate_not_ready: if intrusion and correct-recall metrics are floor/ceiling-pinned (no cross-cell variance) the interaction is unmeasurable -- NOT a verdict.\n"
+  },
+  "Q-077": {
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "goal.multi_slot_discrete_vs_resource",
+    "title": "Is SD-046's multi-slot GoalState a set of DISCRETE fixed-capacity slots (Cowan ~4-chunk focus-of-attention) or a single FLEXIBLE precision-resource shared across goals (Bays & Husain), with the acted-on goal drawing disproportionate precision? The human capacity literature is itself unresolved on slot-vs-resource; the answer sets whether SD-046 degrades by a hard cutoff past N or by graceful precision dilution as goals are added.",
+    "type": "open_question",
+    "what_would_answer": "SUBSTRATE-CONDITIONAL (needs the SD-046 multi-slot substrate, GDL-1). Escalating-load design: a multi-goal arena with N = 1..K simultaneously-active goals, each goal's behavioural/representational fidelity scored individually. DISCRIMINATING signature: discrete-slot model predicts a STEP function -- fidelity holds flat up to a fixed N (~4, Cowan) then the marginal goal drops to a floor; resource model predicts SMOOTH degradation -- each added goal dilutes the shared precision budget (power-law, Bays & Husain), with the acted-on/attended goal drawing disproportionate fidelity. ANSWERED = the degradation curve discriminates step-function (slot) vs continuous-dilution (resource), AND the acted-on-goal precision-bias is present (resource) or absent (pure equal slots). NON-ANSWER / self-route substrate_not_ready: if fidelity metrics are floor/ceiling-pinned across N (no cross-load variance) the curve shape is unmeasurable -- NOT a verdict.\n"
   },
   "RA-001": {
     "epistemic_stance": "asked",

@@ -5,7 +5,7 @@ closure_plan:
   title: "Multi-slot Goal Deliberation, Counterfactual Branching, Interrupted-task Resumption (V4 roadmap)"
   registered: 2026-06-10
   last_updated: 2026-06-13
-  scope_claims: [SD-046, SD-033e, MECH-264, MECH-265, SD-027, SD-028, MECH-254, MECH-255, Q-068]
+  scope_claims: [SD-046, SD-033e, MECH-264, MECH-265, SD-027, SD-028, MECH-254, MECH-255, Q-068, MECH-432, MECH-433, Q-077]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
     FORWARD ROADMAP, not a closure map. V4 has no experiments yet, so nodes
@@ -173,10 +173,15 @@ closure_plan:
         (flexible-resource + load-bounded N alternatives) -- the honest slot-vs-resource fork the
         roadmap should carry. MECH-255 (vmPFC-dlPFC template compiler) NOT grounded here (more
         specific than the capacity papers reach; belongs to a GDL-6-scoped pull). 3 completion-set
-        PARTNER claims SURFACED proposal-first (NOT registered): (P1) dACC<->FPC reciprocal
-        arbitration loop MECH; (P2) LC-NE-analog explore/exploit gain control governing MECH-264
-        disengagement -- REE has no NE-analog substrate (genuine gap); (P3) Q-claim on whether
-        SD-046 is discrete-slot or flexible-precision-resource. Off V3 closure path."
+        PARTNER claims surfaced proposal-first and then REGISTERED 2026-06-13 (user said 'register
+        all'), all candidate / implementation_phase v4 / v3_pending / epistemic_category
+        substrate_conditional -> PROMOTES NOTHING: (P1) MECH-432 dACC<->FPC reciprocal arbitration
+        loop (FPC counterfactual value x dACC search/control value gating slot-switch; dissociation
+        prediction); (P2) MECH-433 LC-NE-analog explore/exploit gain control governing MECH-264
+        disengagement -- names the MISSING NE-analog substrate (genuine gap; cross-link
+        plasticity_neuromodulation); (P3) Q-077 open_question on whether SD-046 is discrete-slot
+        (Cowan) or flexible-precision-resource (Bays&Husain), with what_would_answer. All wired
+        into depends_on; added to this plan's scope_claims. Off V3 closure path."
 ---
 # Multi-slot Goal Deliberation -- V4 Forward Roadmap
 

@@ -21982,6 +21982,145 @@
     alternative rules). Gateway-function support from Burgess/
     Dumontheil/Gilbert 2007 TiCS.
   location: evidence/literature/targeted_review_pfc_subdivision_architecture/synthesis.md
+- id: MECH-432
+  title: "dACC<->FPC reciprocal arbitration loop: the switch-to-alternative decision is not computed in one module but emerges from a comparison ACROSS two substrates -- the FPC-analog (SD-033e/MECH-264) carries the counterfactual value of the specific unchosen option, the dACC-analog (SD-032b) carries the environment search-value and expected-value-of-control, and slot-switching (SD-046) is gated by their relative comparison. Neither signal alone drives the switch; the loop does."
+  claim_type: mechanism_hypothesis
+  subject: pfc.dacc_fpc_reciprocal_arbitration_loop
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4
+  claim_level: mechanistic
+  registered_utc: 2026-06-13
+  depends_on:
+    - SD-033e          # FPC-analog host of the counterfactual-value side of the loop
+    - MECH-264         # the per-option counterfactual value the FPC side supplies
+    - SD-032b          # dACC-analog host of the search-value / EVC side of the loop
+    - MECH-265         # relative-importance read consumed by the arbitration
+    - SD-046           # multi-slot GoalState whose slot-switch the loop gates
+  functional_restatement: >
+    REE's deliberation roadmap treats counterfactual-value tracking
+    (MECH-264, FPC-analog) and adaptive control / search-value (SD-032b,
+    dACC-analog) as separate mechanisms. MECH-432 asserts they are
+    co-constitutive: the switch-to-alternative is driven by a RECIPROCAL
+    comparison between them, not by either in isolation. The FPC-analog
+    supplies the value of the specific unchosen option (Boorman 2009);
+    the dACC-analog supplies the average value of the environment and the
+    cost/expected-value of switching effort (Kolling et al 2012 Science
+    foraging-value; Shenhav et al 2013 Neuron expected-value-of-control).
+    The slot-switch commits when the dACC search/control value exceeds the
+    chosen-option value by a margin the FPC counterfactual estimate
+    informs.
+
+    This makes a structural prediction beyond MECH-264/MECH-265: lesioning
+    EITHER substrate should impair switching in a DISSOCIABLE way -- remove
+    the FPC side and the agent loses the specific-alternative value (cannot
+    pick WHICH alternative); remove the dACC side and it loses the
+    environment/search-value (cannot decide WHETHER to leave at all),
+    reproducing the vmPFC/ACC reference-frame dissociation Kolling reports.
+
+    Falsifiable (primary): if a single combined module computing both the
+    counterfactual value and the search/control value reproduces adaptive
+    slot-switching as well as the two-substrate loop in a V4 dual-goal
+    arena, the reciprocal-loop claim is unnecessary and MECH-264 + SD-032b
+    can be merged. Falsifiable (dissociation): if FPC-side and dACC-side
+    ablations produce the SAME switching deficit rather than the
+    which-vs-whether dissociation, the loop is mis-specified.
+  notes: >
+    Registered 2026-06-13 from the goal_deliberation_v4:GDL-8
+    frontopolar-deliberation lit-pull completion-set harvest (proposal P1,
+    user said "register all"). The dACC<->FPC loop is the co-constitutive
+    partner structure the Kolling 2012 / Shenhav 2013 / Aston-Jones &
+    Cohen 2005 triad describes -- counterfactual deliberation is a loop,
+    not a module. substrate_conditional: testable only once the SD-046
+    multi-slot substrate (GDL-1) and the SD-033e FPC-analog (GDL-2) exist;
+    DO NOT build in V3. SD-032b is the live V3 dACC hook. The LC-NE gain
+    signal that converts "the alternative looks better" into "actually
+    disengage" is MECH-433 (the third strand of the same loop).
+  evidence_quality_note: >
+    Registered pre-implementation (V4 scope), literature-grounded only
+    (PROMOTES NOTHING; experimental_confidence stays 0). Grounding:
+    Kolling et al 2012 Science (vmPFC option-value vs ACC search-value
+    dissociation); Shenhav et al 2013 Neuron (expected-value-of-control as
+    dACC arbitration function); cross-link to the FPC counterfactual
+    anchor Boorman et al 2009 (targeted_review_frontopolar_analog_prong_d).
+    Known caveat: the Hayden/Shenhav debate on whether ACC "foraging
+    value" partly reflects choice difficulty -- a V4 implementation must
+    keep counterfactual-value and search-value terms architecturally
+    separate to avoid reproducing that confound.
+  location: evidence/literature/targeted_review_frontopolar_deliberation/
+- id: MECH-433
+  title: "LC-NE-analog explore/exploit gain control: a value-INDEPENDENT, broadly-projecting tonic/phasic gain signal gates DISENGAGEMENT from the committed course. Phasic gain stabilises current-task exploitation; a tonic-mode shift -- driven by waning task utility monitored in the dACC/value system -- licenses disengagement to explore alternatives, supplying the trigger that MECH-264's value-margin switch alone does not. REE has no NE-analog substrate today; this names the missing modulator."
+  claim_type: mechanism_hypothesis
+  subject: neuromod.lc_ne_explore_exploit_gain
+  polarity: asserts
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4
+  claim_level: mechanistic
+  registered_utc: 2026-06-13
+  depends_on:
+    - MECH-264         # the switch-to-alternative this gain signal licenses
+    - SD-033e          # engage<->deliberate transition the gain mode-shift expresses
+    - SD-032b          # dACC/value utility monitor that drives the LC mode transition
+  functional_restatement: >
+    MECH-264 frames switching as a value-margin threshold: switch when the
+    counterfactual value beats the chosen value. MECH-433 adds the
+    orthogonal trigger that the value-margin reading omits -- a
+    neuromodulatory GAIN signal analogous to the locus-coeruleus
+    norepinephrine (LC-NE) system (Aston-Jones & Cohen 2005 Annu Rev
+    Neurosci). In phasic mode, gain is time-locked to task-decision
+    outcomes and stabilises exploitation of the current task. When task
+    utility wanes -- detected by the dACC/value system (SD-032b) -- a shift
+    to tonic mode is associated with DISENGAGEMENT from the current task
+    and a search for alternatives. The gain shift is what converts "the
+    alternative looks better" (MECH-264) into "actually leave and explore."
+
+    The signal is value-independent and broadly projecting (a global gain
+    scalar, not a per-option value), which distinguishes it from MECH-264's
+    option-specific value and from MECH-432's reciprocal value comparison.
+    Its cost is the biologically attested trade-off: tonic (explore) mode
+    degrades current-task performance, so the gain set-point governs how
+    readily the agent disengages -- a parameter REE currently has no claim
+    over.
+
+    GENUINE SUBSTRATE GAP: REE-v3 has no NE-analog module. There is no
+    tonic/phasic gain mode anywhere in the substrate today. MECH-433 names
+    the missing modulator and reserves its interface; it is NOT a relabel
+    of an existing knob (distinct from MECH-093 arousal-modulated E3, which
+    is a precision scalar, not an explore/exploit disengagement controller;
+    and from the SD-016/SD-037 broadcast machinery).
+
+    Falsifiable (primary): if MECH-264's value-margin switch reproduces
+    adaptive disengagement (leaving low-utility tasks at the right time)
+    WITHOUT any separate gain signal in a V4 explore/exploit arena, the
+    NE-analog is unnecessary. Falsifiable (set-point): if varying the gain
+    set-point does NOT trade exploit-stability against explore-readiness in
+    the predicted direction, the mechanism is mis-specified.
+  notes: >
+    Registered 2026-06-13 from the goal_deliberation_v4:GDL-8
+    frontopolar-deliberation lit-pull completion-set harvest (proposal P2,
+    user said "register all"). CROSS-LINK plasticity_neuromodulation: this
+    is long-horizon neuromodulator territory; the explore/exploit gain
+    controller is the disengagement-side complement to the closure-side
+    machinery and should be sequenced with the plasticity-window
+    neuromodulator work, NOT built standalone in V3. substrate_conditional:
+    needs both a V4 NE-analog substrate AND the SD-033e/SD-046 deliberation
+    layer to have anything to disengage between. The third strand of the
+    MECH-432 dACC<->FPC loop (FPC value + dACC search-value + LC-NE gain).
+  evidence_quality_note: >
+    Registered pre-implementation (V4 scope), literature-grounded only
+    (PROMOTES NOTHING; experimental_confidence stays 0). Grounding:
+    Aston-Jones & Cohen 2005 Annu Rev Neurosci (LC-NE adaptive-gain theory;
+    phasic=exploit, tonic=disengage/explore; ACC/OFC drive the mode
+    transitions). Mapping caveat (logged in the lit entry): LC-NE is a
+    diffuse gain system, not a value module, and REE has no NE-analog host
+    -- this claim is the gap, not a confirmed mechanism.
+  location: evidence/literature/targeted_review_frontopolar_deliberation/
 - id: MECH-266
   title: "Asymmetric mode hysteresis in SalienceCoordinator: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it, and the asymmetry is mode-specific. Schmitt-trigger extension of the existing SD-032a enter-threshold logic (currently enter-only / symmetric)."
   claim_type: mechanism_hypothesis
@@ -41685,6 +41824,45 @@
     retrievable would be needed") is exactly the high-gain / no-suppression corner. substrate_conditional:
     testable only on a substrate exposing BOTH the Line-A gain knob and the Line-B suppression operator
     (see MECH-425). DO NOT build in V3.
+- id: Q-077
+  title: "Is SD-046's multi-slot GoalState a set of DISCRETE fixed-capacity slots (Cowan ~4-chunk focus-of-attention) or a single FLEXIBLE precision-resource shared across goals (Bays & Husain), with the acted-on goal drawing disproportionate precision? The human capacity literature is itself unresolved on slot-vs-resource; the answer sets whether SD-046 degrades by a hard cutoff past N or by graceful precision dilution as goals are added."
+  claim_type: open_question
+  subject: goal.multi_slot_discrete_vs_resource
+  polarity: asks
+  status: candidate
+  implementation_phase: v4
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  version_relevance: v4_v5
+  registered_utc: 2026-06-13
+  depends_on:
+    - SD-046           # the multi-slot GoalState whose architecture this fork decides
+    - SD-027           # capacity-limited access gate; the discrete-vs-resource answer constrains its k
+    - MECH-254         # top-k selection (discrete) vs precision-weighted soft allocation (resource)
+  possible_overlap_with:
+    - SD-028           # if resource wins, the attentional template IS the precision-allocation object (Bays&Husain) -- cross-ref not duplicate
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL (needs the SD-046 multi-slot substrate, GDL-1). Escalating-load design:
+    a multi-goal arena with N = 1..K simultaneously-active goals, each goal's behavioural/representational
+    fidelity scored individually. DISCRIMINATING signature: discrete-slot model predicts a STEP function --
+    fidelity holds flat up to a fixed N (~4, Cowan) then the marginal goal drops to a floor; resource model
+    predicts SMOOTH degradation -- each added goal dilutes the shared precision budget (power-law, Bays &
+    Husain), with the acted-on/attended goal drawing disproportionate fidelity. ANSWERED = the degradation
+    curve discriminates step-function (slot) vs continuous-dilution (resource), AND the acted-on-goal
+    precision-bias is present (resource) or absent (pure equal slots). NON-ANSWER / self-route
+    substrate_not_ready: if fidelity metrics are floor/ceiling-pinned across N (no cross-load variance) the
+    curve shape is unmeasurable -- NOT a verdict.
+  notes: >
+    Registered 2026-06-13 from the goal_deliberation_v4:GDL-8 frontopolar-deliberation lit-pull completion-set
+    harvest (proposal P3, user said "register all"). The fork is forced by a genuine, unresolved split in the
+    source literature: Cowan 2001 (focus-of-attention ~4 discrete chunks) vs Bays & Husain 2008 (flexible
+    shared precision resource), with Heilbronner & Pollmann 2009 showing branching capacity is WM-load-bounded
+    rather than structurally fixed. This is the slot-vs-resource design decision SD-046's current
+    discrete-slot framing makes implicitly; the Bays & Husain + Heilbronner lit entries are marked MIXED
+    against SD-046 precisely because they problematise that framing. Answering it sets whether the V4 substrate
+    holds N hard slots or a graded precision budget. DO NOT build in V3. Hybrid "slots+averaging" models exist
+    in the source literature and are a third possible answer.
+  location: evidence/literature/targeted_review_frontopolar_deliberation/
 - id: MECH-423
   title: "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable."
   claim_type: mechanism_hypothesis
