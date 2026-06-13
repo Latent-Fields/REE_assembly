@@ -129,3 +129,6 @@ One line per hourly tick. ASCII only.
 2026-06-13T00:07:03Z auto-defer IGW-20260612-216 hash=db8776c83afb for 48h (reaped -> completed_resumable)
 2026-06-13T00:07:03Z reaped TASK_CLAIMS igw-auto-igw-216-proposal-exp-0144-mech-423-20260612T230543Z (ledger IGW-20260612-216 -> completed_resumable)
 2026-06-13T00:06:55Z SPAWN IGW-20260613-218 skill=/queue-experiment prio=40 uuid=21be40cb-8b1c-4328-b3f7-1cd44ca6a43d pid=48491 worktree=igw-218-proposal-exp-0190-mech-048
+2026-06-13T01:08:15Z auto-defer IGW-20260613-218 hash=9d4e5058bd05 for 48h (reaped -> completed_resumable)
+2026-06-13T01:08:15Z reaped TASK_CLAIMS igw-auto-igw-218-proposal-exp-0190-mech-048-20260613T000704Z (ledger IGW-20260613-218 -> completed_resumable)
+2026-06-13T01:08:10Z no eligible item (skipped 219): IGW-20260613-001:skill /governance not allowed; IGW-20260613-007:skill /governance not allowed; IGW-20260613-009:skill /governance not allowed

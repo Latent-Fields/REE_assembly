@@ -702,7 +702,8 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-218-proposal-exp-0190-mech-048 && claude --resume 21be40cb-8b1c-4328-b3f7-1cd44ca6a43d",
       "task_claim_session_id": "igw-auto-igw-218-proposal-exp-0190-mech-048-20260613T000704Z",
       "assigned_at": "2026-06-13T00:06:55Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-13T01:08:15Z"
     }
   ],
   "dispositions": [
@@ -891,6 +892,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-06-13T00:07:03Z",
       "re_eligible_after": "2026-06-15T00:07:03Z"
+    },
+    {
+      "stable_hash": "9d4e5058bd05",
+      "igw_id_at_disposition": "IGW-20260613-218",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-048"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal EXP-0190 (MECH-048)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-06-13T01:08:15Z",
+      "re_eligible_after": "2026-06-15T01:08:15Z"
     }
   ]
 }
