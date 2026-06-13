@@ -41,6 +41,7 @@ closure_plan:
       title: "PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [SD-033e]
@@ -57,6 +58,7 @@ closure_plan:
       title: "PILLAR 2 -- counterfactual-value tracking and switch-to-alternative gate (MECH-264)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-264]
@@ -73,6 +75,7 @@ closure_plan:
       title: "PILLAR 3 -- relative-importance monitoring across competing goals + dACC cross-slot arbitrator (MECH-265, SD-046)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-265, SD-046]
@@ -89,6 +92,7 @@ closure_plan:
       title: "PILLAR 4 -- interrupted-task resumption / Zeigarnik (the event-arc's weak interrupt->reorient->resume span)"
       phase: 3
       status: blocked
+      blocker_class: v3_gate
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-389"]
@@ -105,6 +109,7 @@ closure_plan:
       title: "PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberation"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: medium
       owner_exq: null
       unblocks_claims: [SD-027, SD-028, MECH-254, MECH-255]
@@ -121,6 +126,7 @@ closure_plan:
       title: "Graded action-status vocabulary -- decide whether deliberation needs an explicit simulated!=intended!=committed annotation (Q-068)"
       phase: 4
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: [Q-068]
@@ -132,6 +138,22 @@ closure_plan:
         - "Resolve by working through whether the existing write-profiles disambiguate the new deliberation states; if not, register the vocabulary as a first-class annotation"
       last_updated: 2026-06-10
       completion_note: "Q-068 (candidate, v4, open_question): deferred until the deliberation pillars create states that actually stress the existing write-profile vocabulary. Answering it earlier would be premature -- the distinguishing pressure does not exist in single-stream V3."
+    - id: "goal_deliberation_v4:GDL-8"
+      title: "Biology grounding completion (frontopolar deliberation, counterfactual/unchosen-value tracking, capacity-limited multi-slot lit-pulls + completion-set harvest)"
+      phase: 2
+      status: open
+      lit_pull_status: none
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [SD-033e, MECH-264, MECH-265, SD-046]
+      depends_on: []
+      cross_plan_link: []
+      readiness_gate:
+        - "L1 frontopolar/area-10 counterfactual deliberation (Koechlin & Hyafil 2007 branching; Boorman 2009 vmPFC/FPC tracking the value of the UNCHOSEN alternative) -- the direct anchor for SD-033e/MECH-264 counterfactual-value tracking"
+        - "L2 dACC foraging/switch value (Kolling 2012; Shenhav EVC 2013) -- harvest the dACC<->FPC loop as a co-constitutive partner (SD-032b dACC is the V3 hook); and the LC-NE disengage/explore partner (cross-link plasticity_neuromodulation)"
+        - "L3 capacity-limited multi-slot maintenance (Cowan; Bays & Husain resource model) grounding the SD-046 N>=2 GoalState fork and the SD-027/028 selection-gate that makes it tractable"
+      last_updated: 2026-06-13
+      completion_note: "Goal_deliberation had NO grounding node; SD-033e/SD-046 import frontopolar/dACC and working-memory-capacity constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). This node tracks the pull plus the completion-set harvest (dACC-FPC loop, LC-NE disengage partner, capacity-resource model). Off V3 closure path; promotes nothing."
 ---
 # Multi-slot Goal Deliberation -- V4 Forward Roadmap
 

@@ -30,6 +30,7 @@ closure_plan:
       title: "GATE -- multi-step hippocampally-planned system validated in V3 (MECH-163)"
       phase: 1
       status: blocked
+      blocker_class: v3_gate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-163]
@@ -46,6 +47,7 @@ closure_plan:
       title: "PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-040]
@@ -62,6 +64,7 @@ closure_plan:
       title: "DG-equivalent pattern separation before rollout proposal (MECH-147)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-147]
@@ -78,6 +81,7 @@ closure_plan:
       title: "Pure time cells -- temporal scaffolding for E3 credit assignment (MECH-148)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-148]
@@ -94,6 +98,7 @@ closure_plan:
       title: "CA1 mismatch novelty gate on rollout injection (MECH-149)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-149]
@@ -110,6 +115,7 @@ closure_plan:
       title: "ACh permissive write-gate on the surprise buffer (MECH-207)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-207]
@@ -126,6 +132,7 @@ closure_plan:
       title: "Schema-primed rapid assimilation (INV-039)"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [INV-039]
@@ -142,6 +149,7 @@ closure_plan:
       title: "Improvement-tier enrichments -- compression, dual-mode construction, approach-bias pathway (MECH-241/242/243)"
       phase: 4
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-241, MECH-242, MECH-243]
@@ -155,6 +163,22 @@ closure_plan:
         - "MECH-243 approach-bias output pathway: a richer substrate where approach (move-toward) and avoidance (move-away) are independent output dimensions during simultaneous motivational conflict"
       last_updated: 2026-06-10
       completion_note: "Grouped as deferred because all three are explicitly improvement-tier in claims.yaml and share the same gate (base navigation substrate + a richer action/environment substrate). MECH-243 in particular is untestable until approach and avoidance are separable output channels -- the current single-action-dimension substrate conflates them."
+    - id: "hippocampal_planning_v4:HPL-9"
+      title: "Biology grounding completion (DG separation / time cells / CA1 novelty / ACh write-gate / dorsal-ventral lit-pulls + circuit completion-set harvest)"
+      phase: 2
+      status: open
+      lit_pull_status: none
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-147, MECH-148, MECH-149, MECH-207, ARC-040]
+      depends_on: []
+      cross_plan_link: ["sleep_substrate"]
+      readiness_gate:
+        - "L1 DG pattern separation (Sakon & Suzuki 2019; Leutgeb 2007) -- AND harvest the completion-set: hilar mossy-cell feedback inhibition + CA3 recurrent-collateral pattern COMPLETION are co-constitutive of the separation property; building a DG expansion layer without the inhibitory/completion partners will not yield the claimed property"
+        - "L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)"
+        - "L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)"
+      last_updated: 2026-06-13
+      completion_note: "Hippocampal_planning had NO dedicated grounding node at registration (the four mechanism gates MECH-147/148/149/207 cite papers in-node but no formal /lit-pull was run; project rule feedback_biology_before_formal_definitions). This node tracks closing that debt AND, per the assembly-planning brief, explicitly harvesting the co-constitutive CIRCUIT PARTNERS each mechanism presupposes (mossy-cell inhibition, CA3 completion, theta-gamma coding, VTA loop, cholinergic source) so the substrate build does not omit jointly-necessary components. Off the V3 closure path (generation v4); promotes nothing."
 ---
 # Hippocampal Planning -- V4 Roadmap
 

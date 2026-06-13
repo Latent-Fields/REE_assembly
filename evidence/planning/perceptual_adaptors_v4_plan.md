@@ -55,6 +55,7 @@ closure_plan:
       title: "PILLAR B -- deep-adaptor (sight) perceptual-manifold constructor: metric/geometry before world-model entry"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [ARC-087, MECH-372]
@@ -86,6 +87,7 @@ closure_plan:
       title: "PILLAR C -- cross-modal negotiation currency: making heterogeneous sense geometries mutually negotiable in one world model"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [Q-065, MECH-103, "MECH-396"]
@@ -117,6 +119,7 @@ closure_plan:
       title: "Biology grounding completion (perceptual-manifold / colour-geometry / multisensory-binding lit-pulls)"
       phase: 2
       status: done
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-087, MECH-372, Q-065]

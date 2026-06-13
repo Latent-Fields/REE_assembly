@@ -41,6 +41,7 @@ closure_plan:
       title: "Multidrive arbitration / orchestration policy (which drive wins when several are active)"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-394", MECH-295]
@@ -58,6 +59,7 @@ closure_plan:
       title: "Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)"
       phase: 2
       status: open
+      lit_pull_status: none
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-394", "SD-060"]
@@ -72,6 +74,7 @@ closure_plan:
       title: "Orienting/surveying drive: pre-approach active-sensing control state"
       phase: 3
       status: blocked
+      blocker_class: v3_gate
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-395"]
@@ -89,6 +92,7 @@ closure_plan:
       title: "Non-terminal failure-grade taxonomy as a transfer-world launch profile"
       phase: 4
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: ["Q-071"]

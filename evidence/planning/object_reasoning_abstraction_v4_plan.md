@@ -44,6 +44,7 @@ closure_plan:
       title: "PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [SD-045]
@@ -60,6 +61,7 @@ closure_plan:
       title: "PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [SD-040]
@@ -76,6 +78,7 @@ closure_plan:
       title: "PILLAR B retrieval -- prototype-readout operator + type-V_s gating (MECH-296 / MECH-297)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-296, MECH-297]
@@ -92,6 +95,7 @@ closure_plan:
       title: "PILLAR C -- option library (SD-042): named reusable subroutines (init-set / termination / internal-policy)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [SD-042]
@@ -109,6 +113,7 @@ closure_plan:
       title: "PILLAR D -- theta-packaging + cognitive-map traversal scale to the active abstraction level (MECH-299 / MECH-300)"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-299, MECH-300]
@@ -129,6 +134,7 @@ closure_plan:
       title: "Developmental sparsification policy for the abstraction substrates (Q-057): deletion vs down-weighting vs gating vs residue-tag de-authorization"
       phase: 4
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: [Q-057]
@@ -147,6 +153,7 @@ closure_plan:
       title: "Biology grounding completion for the abstraction substrates (chunking / options / type-prototype / theta-scaling lit-pulls)"
       phase: 2
       status: in_progress
+      lit_pull_status: partial
       severity: medium
       owner_exq: null
       unblocks_claims: [SD-040, SD-045, SD-042]

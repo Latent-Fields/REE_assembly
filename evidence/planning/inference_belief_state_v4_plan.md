@@ -61,6 +61,7 @@ closure_plan:
       title: "Belief-state hypothesis set (top-k latent-state hypotheses with precision)"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-385"]
@@ -77,6 +78,7 @@ closure_plan:
       title: "Inferred affordance field (afford. not directly perceived; biases E3 candidates)"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-386"]
@@ -94,6 +96,7 @@ closure_plan:
       title: "Safety-route inference (infer route to safety from partial map/cue/gradient)"
       phase: 3
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-387"]
@@ -110,6 +113,7 @@ closure_plan:
       title: "Epistemic action pressure (information-gathering as survival-relevant, not just curiosity)"
       phase: 3
       status: blocked
+      blocker_class: lit_gap
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-388"]
@@ -126,6 +130,7 @@ closure_plan:
       title: "Inference failure-mode register + biology grounding (lit-pulls)"
       phase: 2
       status: open
+      lit_pull_status: none
       severity: medium
       owner_exq: null
       unblocks_claims: ["Q-070"]

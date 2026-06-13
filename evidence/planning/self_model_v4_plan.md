@@ -41,6 +41,7 @@ closure_plan:
       title: "Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [SD-030]
@@ -87,6 +88,7 @@ closure_plan:
       title: "z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-214]
@@ -103,6 +105,7 @@ closure_plan:
       title: "Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure"
       phase: 4
       status: blocked
+      blocker_class: v3_substrate
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-214]
@@ -119,6 +122,7 @@ closure_plan:
       title: "Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar"
       phase: 5
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [INV-064]
@@ -133,6 +137,22 @@ closure_plan:
         - "Sequencing rule: the self-object cutover (SELF-1..SELF-6) must be demonstrably stable before others-as-object work begins -- a stable self is a DEV-NEED-021 prerequisite for otherness inference"
       last_updated: 2026-06-10
       completion_note: "INV-064 is not a substrate step but a sequencing invariant: it pins the order self -> world -> others and forbids building the social pillar before the self is stable. This node is the honesty gate between this plan and the social roadmap; it depends on the shared MECH-163 V4-entry gate, not on new self-model code beyond SELF-1/SELF-3."
+    - id: "self_model_v4:SELF-8"
+      title: "Biology grounding completion (self-as-object body-ownership, agency/forward-model self, interoceptive self lit-pulls + completion-set harvest)"
+      phase: 2
+      status: open
+      lit_pull_status: none
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-214, MECH-215, SD-030, INV-064, ARC-081]
+      depends_on: []
+      cross_plan_link: ["object_representation_v4:OBJ-6"]
+      readiness_gate:
+        - "Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this node adds the self-model-INTEGRATION-specific strands rather than duplicating it"
+        - "L1 body-ownership (Botvinick & Cohen 1998 rubber-hand; Tsakiris 2010 neurocognitive model) + L2 sense-of-agency / efference-copy self (Blakemore & Frith; forward-model self-prediction) -- the direct anchors for SD-030 E2 self-forward-model and MECH-215"
+        - "L3 interoceptive self (Craig 2009; Seth) for the MECH-214 wanting-on-an-E1-unrepresented-satisfaction-state failure mode; harvest the insula partner + TPJ self/other boundary as the cross-link to the V5 social tier"
+      last_updated: 2026-06-13
+      completion_note: "Self_model had NO grounding node; self-as-object integration imports body-ownership / agency / interoception constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). Cross-references OBJ-6 L4 to avoid duplication; tracks the integration-specific strands + completion-set harvest (insula interoceptive-self, TPJ self/other boundary). Off V3 closure path; promotes nothing."
 ---
 # Self-Model Integration -- V4 Forward Roadmap
 

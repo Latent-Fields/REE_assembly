@@ -44,6 +44,7 @@ closure_plan:
       title: "Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / Sale)"
       phase: 1
       status: open
+      lit_pull_status: none
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-398", "ARC-093"]
@@ -59,6 +60,7 @@ closure_plan:
       title: "PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-398"]
@@ -75,6 +77,7 @@ closure_plan:
       title: "PILLAR B -- state-conditional plasticity-gain architectural commitment"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: ["ARC-093"]
@@ -91,6 +94,7 @@ closure_plan:
       title: "PILLAR C -- PV-interneuron inhibitory-maturation window-closure clock"
       phase: 3
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-399"]
@@ -106,6 +110,7 @@ closure_plan:
       title: "PILLAR D -- BDNF-analog trophic window-duration knob (lowest priority)"
       phase: 3
       status: deferred
+      blocker_class: deferred
       severity: low
       owner_exq: null
       unblocks_claims: ["MECH-400"]

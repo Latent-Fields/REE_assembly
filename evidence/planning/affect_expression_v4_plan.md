@@ -24,6 +24,7 @@ closure_plan:
       title: "FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)"
       phase: 1
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-359]
@@ -60,6 +61,7 @@ closure_plan:
       title: "Expression as emergent action geometry (MECH-360) -- the readout side of the affect vector"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-360]
@@ -76,6 +78,7 @@ closure_plan:
       title: "Candidate-gradient hippocampal episode schema (MECH-361) -- affect gradient as write-weight + retrieval-query"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-361]
@@ -94,6 +97,7 @@ closure_plan:
       title: "Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-355]
@@ -111,6 +115,7 @@ closure_plan:
       title: "Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudication (Q-059)"
       phase: 3
       status: blocked
+      blocker_class: v3_substrate
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-364, Q-059]
@@ -128,6 +133,7 @@ closure_plan:
       title: "Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value-vs-stickiness discriminator (Q-063)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-369, MECH-370, SD-045, Q-063]
@@ -148,6 +154,7 @@ closure_plan:
       title: "Developmental sparsification of the affect/memory substrate (MECH-362, Q-057) -- cross-cutting compass"
       phase: 4
       status: deferred
+      blocker_class: deferred
       severity: low
       owner_exq: null
       unblocks_claims: [MECH-362, "MECH-390"]
@@ -164,6 +171,22 @@ closure_plan:
         - "The NEW bridge needed here is the application of subtractive sparsification to the AFFECT vector (AE-1) and the candidate-gradient episode store (AE-4) specifically -- whether mature affect arbitration uses convergent-weak-channel summation vs single-strong-channel authority; no claim states this affect-specific bridge yet"
       last_updated: 2026-06-10
       completion_note: "MECH-362: mature sparse/structured connectivity emerges by pruning an over-connected near-random substrate, not additively; mature recall needs convergent summation of weak inputs vs a single strong cue. Deferred (lowest severity) because it is a developmental compass over the whole substrate, not a near-term affect step; included so the affect-specific application is captured rather than lost. substrate_conditional -- DO NOT build a developmental pruning substrate in V3."
+    - id: "affect_expression_v4:AE-9"
+      title: "Biology grounding completion (per-candidate/option-specific value coding, expression-as-action-geometry, affect-as-precision lit-pulls + completion-set harvest)"
+      phase: 2
+      status: open
+      lit_pull_status: none
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [MECH-359, MECH-360, MECH-364, MECH-369, ARC-088]
+      depends_on: []
+      cross_plan_link: ["behavioral_diversity_isolation:GAP-A"]
+      readiness_gate:
+        - "L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neurons; Rich & Wallis 2016 value-encoding ensembles) -- the neuroscience anchor MECH-359's 'affect must be candidate-differentiated' currently LACKS; cross-ref Berridge & Robinson incentive salience already grounding SD-012/MECH-295"
+        - "L2 expression-as-action-geometry (Dael/Mortillaro/Scherer 2012 body-action coding; Niv 2007 tonic-DA vigour as expression-intensity partner) -- harvest the basal-ganglia vigour pathway as the co-constitutive read-out partner for MECH-360"
+        - "L3 affect-as-control-precision (Seth 2013; Critchley & Garfinkel interoceptive inference) for MECH-364 conflict/constraint-load; L4 slow-modulator decommit-friction (MECH-369) needs a value-INDEPENDENT modulator-class anchor -- flag: no owning substrate node exists yet"
+      last_updated: 2026-06-13
+      completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaces a planning gap: AE-7's 'slow-modulator-class distinction' (MECH-369) is referenced as a blocker but owns no roadmap node. Off V3 closure path; promotes nothing."
 ---
 # Candidate-differentiated affect, expression, anti-collapse, compulsion-risk -- V4 Roadmap
 

@@ -66,6 +66,7 @@ closure_plan:
       title: "PILLAR 3 -- tools/affordances object->action binding (ARC-082)"
       phase: 3
       status: blocked
+      blocker_class: v3_substrate
       severity: high
       owner_exq: null
       unblocks_claims: [ARC-082]
@@ -82,6 +83,7 @@ closure_plan:
       title: "PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-file slots"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [ARC-083]
@@ -100,6 +102,7 @@ closure_plan:
       title: "Biology grounding completion (object-files / permanence / affordances / self / ToM lit-pulls)"
       phase: 2
       status: in_progress
+      lit_pull_status: partial
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-080, ARC-006]

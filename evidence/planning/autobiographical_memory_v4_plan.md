@@ -40,6 +40,7 @@ closure_plan:
       title: "Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulation"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-085]
@@ -57,6 +58,7 @@ closure_plan:
       title: "Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-365]
@@ -91,6 +93,7 @@ closure_plan:
       title: "Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)"
       phase: 4
       status: blocked
+      blocker_class: v3_substrate
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-368, Q-062]
@@ -109,6 +112,7 @@ closure_plan:
       title: "Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-361]
@@ -126,6 +130,7 @@ closure_plan:
       title: "Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property"
       phase: 5
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-366]
@@ -142,6 +147,7 @@ closure_plan:
       title: "Consolidation write-paths the store must respect (MECH-252 / MECH-253 / MECH-261)"
       phase: 5
       status: deferred
+      blocker_class: deferred
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-252, MECH-253, MECH-261]
@@ -154,6 +160,22 @@ closure_plan:
         - "These are the EXISTING offline write-path claims; the V4 work is making the ARC-085 store honour the SWS/REM content-vs-weights split and the mode-conditioned channel, NOT re-asserting them"
       last_updated: 2026-06-10
       completion_note: "Deferred (not blocked): these consolidation claims are already specified and partly substrate-present in V3; the node tracks the integration obligation -- the unified store and its provenance/write-authority gates must compose cleanly with the SWS/REM content-vs-weights split (MECH-252/253) and the MECH-261 channel grain, rather than introduce a parallel write path."
+    - id: "autobiographical_memory_v4:ABM-9"
+      title: "Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imagination-learning constraints lit-pulls + completion-set harvest)"
+      phase: 2
+      status: open
+      lit_pull_status: none
+      severity: medium
+      owner_exq: null
+      unblocks_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361]
+      depends_on: []
+      cross_plan_link: ["sleep_substrate"]
+      readiness_gate:
+        - "L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGaugh 1998; Ballarini 2009 behavioural tagging) -- the anchor for MECH-368/MECH-361 affect-weighted write authority"
+        - "L2 source/provenance monitoring (Johnson, Hashtroudi & Lindsay 1993 source-monitoring framework; reality-monitoring) for the ARC-085 provenance fields + the imagined-vs-experienced viewpoint label (MECH-366)"
+        - "L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning"
+      last_updated: 2026-06-13
+      completion_note: "Autobiographical_memory named its biology anchors only inside node readiness_gates (no dedicated grounding node). This node consolidates the formal /lit-pull (project rule feedback_biology_before_formal_definitions) and the completion-set harvest (emotional-tagging consolidation, source-monitoring, CLS schema partner) so the unified ARC-085 store's write-authority and provenance gates are built on grounded mechanism, not analogy. Off V3 closure path; promotes nothing."
 ---
 # Autobiographical Memory -- V4 Forward Roadmap
 

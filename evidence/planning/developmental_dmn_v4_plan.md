@@ -53,6 +53,7 @@ closure_plan:
       title: "PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds"
       phase: 2
       status: blocked
+      blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-090]
@@ -70,6 +71,7 @@ closure_plan:
       title: "PILLAR -- private speech as external cognitive-control surface (MECH-380): Vygotskian internalisation ladder"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-380]
@@ -86,6 +88,7 @@ closure_plan:
       title: "PILLAR -- developmental compression ladder (MECH-381): externalise-then-internalise across the whole curriculum"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-381]
@@ -104,6 +107,7 @@ closure_plan:
       title: "Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-382]
@@ -122,6 +126,7 @@ closure_plan:
       title: "Labels as top-down perceptual-control signals (MECH-383): self-directed labels tune perceptual search"
       phase: 4
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-383]
@@ -138,6 +143,8 @@ closure_plan:
       title: "Biology grounding completion (Vygotsky private speech, DMN, label-as-control, self-distancing lit-pulls)"
       phase: 2
       status: deferred
+      blocker_class: lit_gap
+      lit_pull_status: none
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-090, MECH-380, MECH-383]

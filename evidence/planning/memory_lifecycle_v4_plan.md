@@ -44,6 +44,7 @@ closure_plan:
       title: "Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing"
       phase: 1
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-147, MECH-391]
@@ -92,6 +93,7 @@ closure_plan:
       title: "Provenance + contradiction-flag + rollback layer on consolidated memory"
       phase: 3
       status: blocked
+      blocker_class: sibling_node
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-094, MECH-068, MECH-124, MECH-392]
@@ -127,6 +129,7 @@ closure_plan:
       title: "Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)"
       phase: 2
       status: blocked
+      blocker_class: sibling_node
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-261, INV-039, INV-049, MECH-401]
@@ -144,6 +147,7 @@ closure_plan:
       title: "Biology + source grounding completion (allocation-policy lit DONE; consolidation-faults source verify)"
       phase: 2
       status: in_progress
+      lit_pull_status: partial
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-391, INV-080]
