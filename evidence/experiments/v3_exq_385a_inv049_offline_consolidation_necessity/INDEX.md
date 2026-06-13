@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_385a_inv049_offline_consolidation_necessity
 
-Generated: `2026-06-13T20:10:22.464354Z`
+Generated: `2026-06-13T21:46:56.133215Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

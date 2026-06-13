@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_063a_arc029_committed_mode_harm_outcomes_rc_gate
 
-Generated: `2026-06-13T20:10:22.464354Z`
+Generated: `2026-06-13T21:46:56.133215Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
