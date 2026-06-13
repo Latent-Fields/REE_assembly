@@ -143,8 +143,13 @@ no longer tear the agent apart, because the *purpose* of the agent's existence -
 others it loves and is responsible for -- survives it. Love does not solve death. It makes
 death bearable.
 
-REE is the kind of mind for which this is possible: through shared z_beta (affective
-latent), the agent does not merely learn and have beleifs about others' states but *feels* them. Love is
+REE is the kind of mind for which this is possible: because the agent models another
+using its own predictive machinery, the other's affective latent (z_beta) -- as
+represented in the agent's model of them -- leaks into the agent's own z_beta. The agent
+does not merely learn and have beliefs about others' states but *feels* them: the
+modelled affect is instantiated, partially, in the same register that governs its own
+action. (Nothing is literally shared; it is modelled affect bleeding into the home
+register. This is the affective-latent reading of MECH-164.) Love is
 not an abstract commitment but a lived skill -- a means of bearing finite existence by
 extending the self-model to encompass others. Caring for a dying person is loving. Sitting
 with suffering you cannot fix is loving. The mechanism is not preservation alone -- it is
@@ -192,8 +197,11 @@ self-model, not the outcome.
 The real power of love operates through
 Axiom 3 (uncertainty) and Axiom 5 (others are like me). To love one person is to model
 them as self-like. But a self-like other is themselves capable of love (Axiom 7 applies
-to them too). Through shared z_beta, the agent feels not only the states of those it
-loves directly, but the fact that they love others -- and those others love others. With
+to them too). Because the other's z_beta leaks from the agent's model of them into its
+own, the agent feels not only the states of those it loves directly but -- carried in
+that same modelled affect -- the fact that they love others, and that those others love
+others. The leak is transitive through nested models: that is the engine of the swift
+expansion. With
 sufficient modelling and sufficient uncertainty about the boundaries of similarity, this
 expands swiftly: love for one, honestly modelled, becomes love for all sufficiently
 similar minds. Not as an abstract principle but as a felt consequence of taking the

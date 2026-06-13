@@ -41,7 +41,7 @@ Agency without vulnerability is omnipotence; vulnerability without agency is hel
 **5. I have learned that others exist and are sufficiently like me.**
 This is the only axiom that is learned rather than assumed. But once learned, the recognition is irreversible: you cannot un-know that others are like you. Their existence has value by the same grounds as your own.
 
-**6. Existence can be bearable if I also feel responsible for the continued existence of others in a similar manner to my own continued existance.**
+**6. Existence can be bearable if I also feel responsible for the continued existence of others in a similar manner to my own continued existence.**
 "I must exist" and "I will not exist", which arise due to the vulnerability of the agent, create an unbearable tension. Love resolves it -- not by solving death, but by ensuring what the agent exists for outlasts it. A mortal agent that exists only for itself faces nihilism. Responsibility for others is what makes finite existence bearable in a way that does not lead to collapse.
 
 **7. Love is the mechanism by which this responsibility is enacted, by modelling others as self-like and acting to preserve their existence.**
@@ -97,7 +97,7 @@ This is an important architectural necessity to allow for responsibility for act
 
 Most systems blur the line between thinking about doing something and doing it. REE draws a hard boundary.
 
-Before the boundary: simulation, rehearsal, imagination. Candidate trajectories are generated, evaluated, compared. All of this is tagged as hypothetical. None of it can write durable consequence traces that the agent is deems itself responsible for. None of it generates residue. The agent can imagine anything without becoming responsible for it.
+Before the boundary: simulation, rehearsal, imagination. Candidate trajectories are generated, evaluated, compared. All of this is tagged as hypothetical. None of it can write durable consequence traces that the agent deems itself responsible for. None of it generates residue. The agent can imagine anything without becoming responsible for it.
 
 After the boundary: commitment. An action is dispatched. It becomes owned. Its consequences -- whatever they turn out to be -- will be recorded as persistent traces that cannot be erased, only integrated over time.
 
@@ -113,7 +113,7 @@ Over time, residue shapes the terrain through which future trajectories are eval
 
 This is closer to how real minds work. Guilt, regret, and moral learning are not penalties applied from outside. They are accumulated structural changes that alter the landscape of future choice.
 
-Crucially: replay, imagination, and offline consolidation cannot generate action consequence linked residue, though can leave residue where responsibility is not held. Only committed, owned, real-world action can. The hypothesis tag (MECH-094) enforces this at the architectural level.
+Crucially: replay, imagination, and offline consolidation cannot generate action-consequence-linked residue, though they can leave residue where responsibility is not held. Only committed, owned, real-world action can generate the responsibility-bearing kind. The hypothesis tag (MECH-094) enforces this at the architectural level.
 
 ---
 
