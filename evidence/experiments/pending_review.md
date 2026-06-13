@@ -1,26 +1,25 @@
 # Pending Experiment Review
 
-Generated: `2026-06-12T22:37:36Z`  
-Last review: `2026-06-12T22:16:51Z`  
-Pending: **6** item(s) -- 0 PASS, 5 FAIL, 1 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-13T09:20:10Z`  
+Last review: `2026-06-13T09:14:10Z`  
+Pending: **4** item(s) -- 0 PASS, 4 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_464c_mech266_competing_goals_behavioural_20260612T115222Z_v3` | 2026-06-12T11:52 | MECH-266, SD-032a | — |
-| `v3_exq_466c_sd034_satisficing_residue_discharge_behavioural_20260612T131423Z_v3` | 2026-06-12T13:14 | MECH-094, SD-034 | — |
-| `v3_exq_629b_mech342_ecological_maintenance_release_evidence_20260612T155004Z_v3` | 2026-06-12T15:50 | MECH-342 | — |
-| `v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3` | 2026-06-12T15:58 | MECH-266, SD-032a | — |
-| `v3_exq_461c_mech090_sd033a_delayed_reward_persistence_behavioural_20260612T213304Z_v3` | 2026-06-12T21:33 | MECH-090, SD-033a, SD-034 | — |
+| `v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3` | 2026-06-13T04:51 | MECH-090, MECH-268, SD-034 | — |
+| `v3_exq_655_inv074_crystallization_necessity_taskshift_20260613T070430Z_v3` | 2026-06-13T07:04 | INV-074, MECH-313, MECH-333, MECH-334, MECH-341 | — |
+| `v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3` | 2026-06-13T07:27 | MECH-260, MECH-261, SD-034 | — |
+| `v3_exq_669a_mech329_wanting_first_goal_seeding_20260613T074454Z_v3` | 2026-06-13T07:44 | MECH-189, MECH-329 | — |
 
-## Needs discussion (ERROR / UNKNOWN / smoke)
+## Diagnostic adjudication required (self-route unverified)
 
-These entries completed in the runner but have no indexed result file (ERROR/UNKNOWN) or are onboarding smoke runs. They must be discussed and then added to `discussed_experiment_dirs` in review_tracker.json.
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
 
-| Queue ID | Result | Script | Notes |
-|----------|--------|--------|-------|
-| `V3-EXQ-669` | ERROR | `?` | ERROR |
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ---
 

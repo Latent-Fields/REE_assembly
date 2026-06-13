@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_429_inv044_bayesian_prior_before_posterior
 
-Generated: `2026-06-12T22:35:40.329027Z`
+Generated: `2026-06-13T09:17:45.118035Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

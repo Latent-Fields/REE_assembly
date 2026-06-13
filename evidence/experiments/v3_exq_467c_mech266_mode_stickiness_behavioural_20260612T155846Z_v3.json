@@ -1,1 +1,370 @@
-{"run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3", "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural", "queue_id": "V3-EXQ-467c", "claim_ids": ["MECH-266", "SD-032a"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260612T155846Z", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-266": "weakens", "SD-032a": "weakens"}, "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (full curriculum; 603n config; ready=true 2026-06-11) + SalienceCoordinator (SD-032a) + MECH-266 uniform exit-rail ratio sweep + GAP-3 dual_cue env primitive. use_closure_operator OFF (closure would inject a confounding mode-switch signal).", "condition": "CURRICULUM_BUILT_MODE_STICKINESS", "predecessor": "V3-EXQ-467b (successor, NOT supersede)", "method_note": "467b's MECH-266 mode-stickiness dose-response (a lower uniform exit rail -> longer dwell + fewer switches; mean dwell monotone non-increasing in r) re-run on a foraging-competent agent BUILT THROUGH the scaffolded_sd054_onboarding curriculum. 467b's committed_mode_curriculum trained commitment but NOT foraging competence, so the coordinator never received the varying signals that drive mode switches (n_switches=0).", "readiness_note": "TWO non-vacuity gates self-route a substrate-not-engaged read to non_contributory (never a false weakens): the 603n contact guard + the mode-switching non-vacuity gate (the loosest-rail arm actually switched modes).", "arm_note": "One eval per hysteresis ratio in RATIOS, each a clone of the same trained weights. The committed_mode_curriculum O-2 forced-rv contrast arm is dropped.", "pre_registered_thresholds": {"p2_zgoal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666, "ratios": [0.1, 0.5, 1.0, 1.5, 2.0], "c2_min_dwell_ratio": 2.0, "c3_min_switches": 1}, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "hazard_stage_budget": 40, "p1_budget": 50, "p2_budget": 15, "mode_eval_episodes_per_ratio": 12, "train_steps": 200, "n_resource_types": 3, "scaffold_train_harm_pathway": true, "config_basis": "V3-EXQ-603n"}, "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "acceptance": {"contact_non_vacuity_met": true, "guard_fraction": 1.0, "n_guard_passing_seeds": 3, "mode_switching_non_vacuity_met": true, "mode_switching_non_vacuity_fraction": 1.0, "criteria_pass_fraction": 0.0, "n_seeds_pass": 0, "overall_pass": false, "ratios": [0.1, 0.5, 1.0, 1.5, 2.0], "per_seed_guard_pass": [true, true, true], "per_seed_criteria_pass": [false, false, false], "route_reason": "criteria_unmet_genuine_weakens"}, "interpretation": {"label": "residual_dose_response_open", "readiness_route": "residual_dose_response_open", "preconditions": [{"name": "foraging_contact_guard", "description": "603n G2+G3 contact guard on >= 2/3 seeds.", "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}, {"name": "mode_switching_engaged", "description": "the highest-r (loosest-rail) arm switched modes (n_switches >= C3_MIN_SWITCHES) on >= 2/3 guard-passing seeds -- the exact n_switches=0 gap the *b cohort scored.", "control": "fraction of guard-passing seeds with high-r-arm switches.", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}], "criteria": [{"name": "C1_dwell_monotone_non_increasing_in_r", "load_bearing": true, "passed": false}, {"name": "C2_low_r_dwell_ge_ratio_times_high_r", "load_bearing": true, "passed": false}, {"name": "C3_high_r_switches_nonvacuity", "load_bearing": true, "passed": true}], "criteria_non_degenerate": {"C1": true, "C2": true, "C3": true}, "contact_guard": {"definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.", "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0}, "mode_switching_non_vacuity_gate": {"definition": "high-r (r=2.00) arm n_switches >= C3_MIN_SWITCHES on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false weakens.", "min_fraction": 0.6666666666666666, "ratios": [0.1, 0.5, 1.0, 1.5, 2.0], "c2_min_dwell_ratio": 2.0, "c3_min_switches": 1}}, "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.47168976068496704, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.2850140056022409, "p2_z_goal_norm_at_contact_peak": 0.4964650571346283, "p2_num_contact_events": 87, "condition_results": [{"ratio": 0.1, "mean_dwell": 59.792, "n_switches": 12, "n_runs": 24, "total_steps": 1423, "n_episodes": 12}, {"ratio": 0.5, "mean_dwell": 67.917, "n_switches": 12, "n_runs": 24, "total_steps": 1618, "n_episodes": 12}, {"ratio": 1.0, "mean_dwell": 75.958, "n_switches": 12, "n_runs": 24, "total_steps": 1811, "n_episodes": 12}, {"ratio": 1.5, "mean_dwell": 92.292, "n_switches": 12, "n_runs": 24, "total_steps": 2203, "n_episodes": 12}, {"ratio": 2.0, "mean_dwell": 67.75, "n_switches": 12, "n_runs": 24, "total_steps": 1614, "n_episodes": 12}], "criteria": {"C1": false, "C2": false, "C3": true}, "mode_switching_non_vacuity": true, "pass": false}, {"seed": 43, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.4071308374404907, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.18198198198198198, "p2_z_goal_norm_at_contact_peak": 0.4266904890537262, "p2_num_contact_events": 84, "condition_results": [{"ratio": 0.1, "mean_dwell": 51.542, "n_switches": 12, "n_runs": 24, "total_steps": 1225, "n_episodes": 12}, {"ratio": 0.5, "mean_dwell": 76.125, "n_switches": 12, "n_runs": 24, "total_steps": 1815, "n_episodes": 12}, {"ratio": 1.0, "mean_dwell": 67.917, "n_switches": 12, "n_runs": 24, "total_steps": 1618, "n_episodes": 12}, {"ratio": 1.5, "mean_dwell": 75.958, "n_switches": 12, "n_runs": 24, "total_steps": 1811, "n_episodes": 12}, {"ratio": 2.0, "mean_dwell": 84.083, "n_switches": 12, "n_runs": 24, "total_steps": 2006, "n_episodes": 12}], "criteria": {"C1": false, "C2": false, "C3": true}, "mode_switching_non_vacuity": true, "pass": false}, {"seed": 44, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.41982901096343994, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.4026679841897233, "p2_z_goal_norm_at_contact_peak": 0.45146191120147705, "p2_num_contact_events": 174, "condition_results": [{"ratio": 0.1, "mean_dwell": 67.708, "n_switches": 12, "n_runs": 24, "total_steps": 1613, "n_episodes": 12}, {"ratio": 0.5, "mean_dwell": 100.5, "n_switches": 12, "n_runs": 24, "total_steps": 2400, "n_episodes": 12}, {"ratio": 1.0, "mean_dwell": 59.708, "n_switches": 12, "n_runs": 24, "total_steps": 1421, "n_episodes": 12}, {"ratio": 1.5, "mean_dwell": 68.042, "n_switches": 12, "n_runs": 24, "total_steps": 1621, "n_episodes": 12}, {"ratio": 2.0, "mean_dwell": 59.625, "n_switches": 12, "n_runs": 24, "total_steps": 1419, "n_episodes": 12}], "criteria": {"C1": false, "C2": false, "C3": true}, "mode_switching_non_vacuity": true, "pass": false}], "machine": "ree-cloud-4"}
+{
+ "run_id": "v3_exq_467c_mech266_mode_stickiness_behavioural_20260612T155846Z_v3",
+ "experiment_type": "v3_exq_467c_mech266_mode_stickiness_behavioural",
+ "queue_id": "V3-EXQ-467c",
+ "claim_ids": [
+  "MECH-266",
+  "SD-032a"
+ ],
+ "experiment_purpose": "evidence",
+ "architecture_epoch": "ree_hybrid_guardrails_v1",
+ "timestamp_utc": "20260612T155846Z",
+ "outcome": "FAIL",
+ "evidence_direction": "non_contributory",
+ "evidence_direction_per_claim": {
+  "MECH-266": "non_contributory",
+  "SD-032a": "non_contributory"
+ },
+ "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+ "substrate": "scaffolded_sd054_onboarding (full curriculum; 603n config; ready=true 2026-06-11) + SalienceCoordinator (SD-032a) + MECH-266 uniform exit-rail ratio sweep + GAP-3 dual_cue env primitive. use_closure_operator OFF (closure would inject a confounding mode-switch signal).",
+ "condition": "CURRICULUM_BUILT_MODE_STICKINESS",
+ "predecessor": "V3-EXQ-467b (successor, NOT supersede)",
+ "method_note": "467b's MECH-266 mode-stickiness dose-response (a lower uniform exit rail -> longer dwell + fewer switches; mean dwell monotone non-increasing in r) re-run on a foraging-competent agent BUILT THROUGH the scaffolded_sd054_onboarding curriculum. 467b's committed_mode_curriculum trained commitment but NOT foraging competence, so the coordinator never received the varying signals that drive mode switches (n_switches=0).",
+ "readiness_note": "TWO non-vacuity gates self-route a substrate-not-engaged read to non_contributory (never a false weakens): the 603n contact guard + the mode-switching non-vacuity gate (the loosest-rail arm actually switched modes).",
+ "arm_note": "One eval per hysteresis ratio in RATIOS, each a clone of the same trained weights. The committed_mode_curriculum O-2 forced-rv contrast arm is dropped.",
+ "pre_registered_thresholds": {
+  "p2_zgoal_gate": 0.4,
+  "contact_gate": 0.0,
+  "min_fraction": 0.6666666666666666,
+  "ratios": [
+   0.1,
+   0.5,
+   1.0,
+   1.5,
+   2.0
+  ],
+  "c2_min_dwell_ratio": 2.0,
+  "c3_min_switches": 1
+ },
+ "scaffold_curriculum": {
+  "stage0_budget": 20,
+  "stage0b_budget": 10,
+  "p0_budget": 100,
+  "hazard_stage_budget": 40,
+  "p1_budget": 50,
+  "p2_budget": 15,
+  "mode_eval_episodes_per_ratio": 12,
+  "train_steps": 200,
+  "n_resource_types": 3,
+  "scaffold_train_harm_pathway": true,
+  "config_basis": "V3-EXQ-603n"
+ },
+ "stage_plan": [
+  {
+   "stage": "0",
+   "name": "nursery_forced_feed",
+   "method": "run_stage0_nursery",
+   "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+  },
+  {
+   "stage": "1",
+   "name": "guided_low_conflict",
+   "method": "run_p0",
+   "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+  },
+  {
+   "stage": "2",
+   "name": "easy_foraging",
+   "method": "run_p1 (early anneal)",
+   "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+  },
+  {
+   "stage": "3",
+   "name": "guarded_hazard",
+   "method": "run_p1 (late anneal)",
+   "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+  },
+  {
+   "stage": "4",
+   "name": "mature_test",
+   "method": "run_p2",
+   "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+  }
+ ],
+ "acceptance": {
+  "contact_non_vacuity_met": true,
+  "guard_fraction": 1.0,
+  "n_guard_passing_seeds": 3,
+  "mode_switching_non_vacuity_met": true,
+  "mode_switching_non_vacuity_fraction": 1.0,
+  "criteria_pass_fraction": 0.0,
+  "n_seeds_pass": 0,
+  "overall_pass": false,
+  "ratios": [
+   0.1,
+   0.5,
+   1.0,
+   1.5,
+   2.0
+  ],
+  "per_seed_guard_pass": [
+   true,
+   true,
+   true
+  ],
+  "per_seed_criteria_pass": [
+   false,
+   false,
+   false
+  ],
+  "route_reason": "criteria_unmet_genuine_weakens",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+   "MECH-266": "non_contributory",
+   "SD-032a": "non_contributory"
+  }
+ },
+ "interpretation": {
+  "label": "residual_dose_response_open",
+  "readiness_route": "residual_dose_response_open",
+  "preconditions": [
+   {
+    "name": "foraging_contact_guard",
+    "description": "603n G2+G3 contact guard on >= 2/3 seeds.",
+    "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+    "measured": 1.0,
+    "threshold": 0.6666666666666666,
+    "met": true
+   },
+   {
+    "name": "mode_switching_engaged",
+    "description": "the highest-r (loosest-rail) arm switched modes (n_switches >= C3_MIN_SWITCHES) on >= 2/3 guard-passing seeds -- the exact n_switches=0 gap the *b cohort scored.",
+    "control": "fraction of guard-passing seeds with high-r-arm switches.",
+    "measured": 1.0,
+    "threshold": 0.6666666666666666,
+    "met": true
+   }
+  ],
+  "criteria": [
+   {
+    "name": "C1_dwell_monotone_non_increasing_in_r",
+    "load_bearing": true,
+    "passed": false
+   },
+   {
+    "name": "C2_low_r_dwell_ge_ratio_times_high_r",
+    "load_bearing": true,
+    "passed": false
+   },
+   {
+    "name": "C3_high_r_switches_nonvacuity",
+    "load_bearing": true,
+    "passed": true
+   }
+  ],
+  "criteria_non_degenerate": {
+   "C1": true,
+   "C2": true,
+   "C3": true
+  },
+  "contact_guard": {
+   "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+   "min_fraction": 0.6666666666666666,
+   "p2_zgoal_gate": 0.4,
+   "contact_gate": 0.0
+  },
+  "mode_switching_non_vacuity_gate": {
+   "definition": "high-r (r=2.00) arm n_switches >= C3_MIN_SWITCHES on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false weakens.",
+   "min_fraction": 0.6666666666666666,
+   "ratios": [
+    0.1,
+    0.5,
+    1.0,
+    1.5,
+    2.0
+   ],
+   "c2_min_dwell_ratio": 2.0,
+   "c3_min_switches": 1
+  }
+ },
+ "per_seed": [
+  {
+   "seed": 42,
+   "aborted_at": null,
+   "abort_reason": "",
+   "guard_pass": true,
+   "stage0_z_goal_norm_peak": 0.47168976068496704,
+   "p1_survival_pass": true,
+   "hazard_stage_survival_pass": true,
+   "p2_contact_rate": 0.2850140056022409,
+   "p2_z_goal_norm_at_contact_peak": 0.4964650571346283,
+   "p2_num_contact_events": 87,
+   "condition_results": [
+    {
+     "ratio": 0.1,
+     "mean_dwell": 59.792,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1423,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 0.5,
+     "mean_dwell": 67.917,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1618,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.0,
+     "mean_dwell": 75.958,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1811,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.5,
+     "mean_dwell": 92.292,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 2203,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 2.0,
+     "mean_dwell": 67.75,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1614,
+     "n_episodes": 12
+    }
+   ],
+   "criteria": {
+    "C1": false,
+    "C2": false,
+    "C3": true
+   },
+   "mode_switching_non_vacuity": true,
+   "pass": false
+  },
+  {
+   "seed": 43,
+   "aborted_at": null,
+   "abort_reason": "",
+   "guard_pass": true,
+   "stage0_z_goal_norm_peak": 0.4071308374404907,
+   "p1_survival_pass": true,
+   "hazard_stage_survival_pass": true,
+   "p2_contact_rate": 0.18198198198198198,
+   "p2_z_goal_norm_at_contact_peak": 0.4266904890537262,
+   "p2_num_contact_events": 84,
+   "condition_results": [
+    {
+     "ratio": 0.1,
+     "mean_dwell": 51.542,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1225,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 0.5,
+     "mean_dwell": 76.125,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1815,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.0,
+     "mean_dwell": 67.917,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1618,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.5,
+     "mean_dwell": 75.958,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1811,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 2.0,
+     "mean_dwell": 84.083,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 2006,
+     "n_episodes": 12
+    }
+   ],
+   "criteria": {
+    "C1": false,
+    "C2": false,
+    "C3": true
+   },
+   "mode_switching_non_vacuity": true,
+   "pass": false
+  },
+  {
+   "seed": 44,
+   "aborted_at": null,
+   "abort_reason": "",
+   "guard_pass": true,
+   "stage0_z_goal_norm_peak": 0.41982901096343994,
+   "p1_survival_pass": true,
+   "hazard_stage_survival_pass": true,
+   "p2_contact_rate": 0.4026679841897233,
+   "p2_z_goal_norm_at_contact_peak": 0.45146191120147705,
+   "p2_num_contact_events": 174,
+   "condition_results": [
+    {
+     "ratio": 0.1,
+     "mean_dwell": 67.708,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1613,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 0.5,
+     "mean_dwell": 100.5,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 2400,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.0,
+     "mean_dwell": 59.708,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1421,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 1.5,
+     "mean_dwell": 68.042,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1621,
+     "n_episodes": 12
+    },
+    {
+     "ratio": 2.0,
+     "mean_dwell": 59.625,
+     "n_switches": 12,
+     "n_runs": 24,
+     "total_steps": 1419,
+     "n_episodes": 12
+    }
+   ],
+   "criteria": {
+    "C1": false,
+    "C2": false,
+    "C3": true
+   },
+   "mode_switching_non_vacuity": true,
+   "pass": false
+  }
+ ],
+ "machine": "ree-cloud-4",
+ "evidence_direction_note": "non_contributory, substrate_ceiling, pending_retest_after_substrate. mean_dwell is an episode-length artifact (total_steps/n_runs) and n_switches=12==n_episodes -- genuine mode competition never occurred, so the hysteresis dose-response cannot express. Same mode-governance gap as 464c. Not a falsification.",
+ "pending_retest_after_substrate": true,
+ "epistemic_category_note": "substrate_ceiling",
+ "governance_review": "governance-cycle-20260613T0858Z: applied confirmed failure_autopsy_SD-034-closure-cluster-ext_2026-06-12 (B_mode_governance_engagement); routing=implement-substrate"
+}

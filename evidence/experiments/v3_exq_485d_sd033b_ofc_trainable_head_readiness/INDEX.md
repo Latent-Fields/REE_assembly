@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_485d_sd033b_ofc_trainable_head_readiness
 
-Generated: `2026-06-12T22:35:40.329027Z`
+Generated: `2026-06-13T09:17:45.118035Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

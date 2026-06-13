@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_608_mech341_e3_score_collapse_diagnostic
 
-Generated: `2026-06-12T22:35:40.329027Z`
+Generated: `2026-06-13T09:17:45.118035Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

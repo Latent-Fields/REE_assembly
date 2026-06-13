@@ -19754,6 +19754,17 @@
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
+  governance_note_2026_06_13: >
+    Cross-ref (does not change SD-032a stable status): the MECH-266/SD-032a
+    *behavioural* arms V3-EXQ-464c + 467c were reclassified non_contributory
+    (substrate_ceiling) this cycle per confirmed
+    failure_autopsy_SD-034-closure-cluster-ext_2026-06-12 -- the SalienceCoordinator
+    never received signals putting the agent in external_task mode on the 603n
+    foraging substrate (fraction_in_external_task=0.0), so the asymmetric exit-rail
+    had no mode to bind. SD-032a's substrate (discrete operating_mode + switch
+    trigger) is implemented and stable; what is missing is an external_task
+    pressure SOURCE on the foraging agent. New substrate entry:
+    mode-governance-engagement (behavioural arms only; status unchanged).
   depends_on:
     - SD-032           # parent cluster
     - SD-032b          # dACC-analog (contributor signal)
@@ -21326,6 +21337,21 @@
   status: provisional
   implementation_phase: v3
   v3_pending: false
+  pending_retest_after_substrate: true  # commitment-closure-control-plane (gov 2026-06-13)
+  governance_note_2026_06_13: >
+    demote_to_candidate recommendation (conflict_ratio 0.889, 4 weakens) HELD this
+    cycle (illusory-demotion guard). Cohort siblings V3-EXQ-461c + 466c
+    reclassified non_contributory (substrate_ceiling, pending_retest) per confirmed
+    failure_autopsy_SD-034-closure-cluster-ext_2026-06-12 -- closure done-token
+    never fired despite env completions. The two validation re-queues of the
+    closure-control-plane substrate that landed 2026-06-12 ran: V3-EXQ-460d showed
+    C1_n_closures PASS (closure now FIRES on the env-completion hook -- the *c
+    n_closures=0 gap is CLOSED; MECH-260 supports) but C2_beta_release/C4 FAIL
+    (de-commitment behavioural authority residual; Leg C trained rule_bias_head
+    still experiment-side); V3-EXQ-468d precondition_unmet (contradiction injection
+    1/3 seeds). Both 460d + 468d routed to /failure-autopsy this cycle (no
+    evidence_direction applied -- left pending). Demotion revisited next cycle once
+    the autopsy adjudicates the residual closure leg.
   implementation_note: >
     IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
     (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-
@@ -21958,6 +21984,21 @@
   status: provisional
   implementation_phase: v3
   v3_pending: false
+  pending_retest_after_substrate: true  # mode-governance-engagement (gov 2026-06-13)
+  governance_note_2026_06_13: >
+    V3-EXQ-464c + 467c reclassified non_contributory (substrate_ceiling,
+    pending_retest_after_substrate) per confirmed
+    failure_autopsy_SD-034-closure-cluster-ext_2026-06-12: on the 603n foraging
+    substrate fraction_in_external_task=0.0 (the contested mode is never
+    occupied) and the n_switches non-vacuity gate passed vacuously
+    (n_switches==n_episodes = per-episode settles into internal_planning), so the
+    MECH-266 over-binding / hysteresis dose-response could not express. NOT a
+    falsification. The demote_to_candidate recommendation (conflict_ratio 0.571,
+    2 weakens) was HELD this cycle -- both weakens were these two cohort FAILs,
+    now excluded from scoring. Retest is blocked on the new
+    mode-governance-engagement substrate entry (drive genuine external_task
+    occupancy + re-state the readiness gate as
+    min_across_arms(fraction_in_external_task) > floor).
   implementation_note: >
     IMPLEMENTED 2026-04-21 as a Schmitt-trigger extension of the
     MECH-259 symmetric switch_threshold in ree-v3/ree_core/cingulate/
@@ -37651,8 +37692,21 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  pending_retest_after_substrate: true  # scaffolded_sd054_onboarding nav-competence transfer (gov 2026-06-13)
   claim_level: mechanistic
   registered_utc: "2026-06-02"
+  governance_note_2026_06_13: >
+    V3-EXQ-629b reclassified non_contributory (substrate_not_ready_requeue,
+    pending_retest, narrow_supports) per confirmed
+    failure_autopsy_SD-034-closure-cluster-ext_2026-06-12: foraging contact-guard
+    held on only 1/3 seeds (seeds 42/44 z_goal_at_contact_peak 0.0/0.371 < 0.4).
+    On the ONE competent seed (43) MECH-342 maintenance-release FIRED correctly
+    (decommit_transitions=34, mech342_fires=1, beta occupancy 1.0->0.217 in the
+    degraded window vs OFF 1.0) -- a narrow single-seed POSITIVE. The failure is
+    upstream foraging incompetence (nav-competence not transferring to the 629b
+    ecological harness), NOT a MECH-342 defect. Retest after the
+    scaffolded_sd054_onboarding nav-competence leg clears on >= 2/3 seeds. Not a
+    falsification.
   depends_on:
     - MECH-090   # commit-entry R-c admission conjunction (beta latch + CommitReadiness signal)
   notes: >
