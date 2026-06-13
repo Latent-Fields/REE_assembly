@@ -128,3 +128,4 @@ One line per hourly tick. ASCII only.
 2026-06-12T23:05:21Z SPAWN IGW-20260612-216 skill=/queue-experiment prio=40 uuid=c2d7ea63-f997-4922-8557-98f660b8ba98 pid=37726 worktree=igw-216-proposal-exp-0144-mech-423
 2026-06-13T00:07:03Z auto-defer IGW-20260612-216 hash=db8776c83afb for 48h (reaped -> completed_resumable)
 2026-06-13T00:07:03Z reaped TASK_CLAIMS igw-auto-igw-216-proposal-exp-0144-mech-423-20260612T230543Z (ledger IGW-20260612-216 -> completed_resumable)
+2026-06-13T00:06:55Z SPAWN IGW-20260613-218 skill=/queue-experiment prio=40 uuid=21be40cb-8b1c-4328-b3f7-1cd44ca6a43d pid=48491 worktree=igw-218-proposal-exp-0190-mech-048
