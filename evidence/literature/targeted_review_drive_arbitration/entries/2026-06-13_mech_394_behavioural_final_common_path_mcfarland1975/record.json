@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_drive_arbitration",
+  "entry_id": "2026-06-13_mech_394_behavioural_final_common_path_mcfarland1975",
+  "timestamp_utc": "2026-06-13T18:11:26Z",
+  "claim_ids_tested": ["MECH-394"],
+  "source": {
+    "title": "The behavioural final common path",
+    "authors": ["David J. McFarland", "Richard M. Sibly"],
+    "year": 1975,
+    "venue": "Philosophical Transactions of the Royal Society of London B",
+    "doi": "10.1098/rstb.1975.0009",
+    "url": "https://royalsocietypublishing.org/doi/10.1098/rstb.1975.0009"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Foundational ethological formalisation of drive arbitration: motivational candidates compete for a single behavioural final common path because an animal cannot do more than one thing at a time, with the winner set by 'degree of competitiveness' in a causal-factor space. This is the conceptual ancestor of MECH-394's per-candidate competition and supplies the 'candidate'/'competitiveness' vocabulary REE's E3 scoring uses. Held at 0.66 because its core mutual-exclusivity axiom (behavioural classes cannot co-occur) is the winner-take-all pole that tensions with MECH-394's explicit 'soft-competitive ... not a single-axis winner' commitment, and the empirical content is 1975 dove hunger/thirst measurement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework axiomatises that behavioural classes are mutually exclusive (the animal does exactly one thing), giving a winner-take-all final common path. MECH-394 explicitly rejects a single-axis winner in favour of soft competition, so McFarland & Sibly anchor the WTA pole the REE policy must decide AGAINST -- it supports competition-among-candidates but not the soft-blend specifically.",
+    "Causal-factor-space isoclines are a descriptive measurement framework fitted to dove hunger/thirst; it does not specify the neural mechanism of competition, so it constrains the functional form of arbitration but is silent on implementation."
+  ],
+  "tags": ["mech-394", "drive_arbitration", "ethology", "behavioural_final_common_path", "candidate_competition", "motivational_competition", "winner_take_all"],
+  "mapping": {
+    "source_claim_statement": "Any model of the reversible motivational processes governing behaviour can be represented by isoclines in a multidimensional causal-factor space, given that behavioural classes are mutually exclusive (cannot occur simultaneously) and incompatible actions are uniquely determined by a set of causal factors. Isoclines join points of equal 'degree of competitiveness' of a particular 'candidate' for overt expression; competition between candidates is the inevitable consequence of the animal being unable to do more than one thing at a time, and occurs in the behavioural final common path. Demonstrated by measuring hunger and thirst in doves.",
+    "ree_translation": "MECH-394 asserts that simultaneously-active drives are arbitrated by soft-competitive orchestration producing one behavioural output. McFarland & Sibly are the foundational statement of exactly this picture: drives are causal factors, behavioural options are 'candidates', and arbitration is the competition for a single behavioural final common path scored by each candidate's 'degree of competitiveness'. REE's E3 already scores per-candidate competitiveness (score_bias contributions, MECH-295), so this paper is arguably the conceptual ancestor of REE's arbitration vocabulary -- the multidrive policy MECH-394 wants is the modern, soft-competitive generalisation of the behavioural final common path. It frames the central V4 design fork: McFarland & Sibly's strict mutual-exclusivity is the WTA endpoint; MECH-394 chooses a softer competition between those poles.",
+    "mapping_caveat": "The framework's mutual-exclusivity axiom (one behaviour at a time) is a winner-take-all commitment that MECH-394 deliberately relaxes; so this evidences the candidate-competition SKELETON of MECH-394, not its soft-competitive specifics, and it actively marks the WTA pole the policy must argue against. It is a 1975 behavioural/descriptive framework (dove hunger/thirst), silent on neural mechanism; transfer to a computational drive register assumes the causal-factor-space abstraction is substrate-general.",
+    "source_context": "Theoretical ethology with behavioural measurement: causal-factor-space formalism applied to the quantification of hunger and thirst competition in doves."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.40,
+    "notes": "Foundational, canonical ethology (Phil Trans R Soc). Mapping_fidelity is the highest in this set on conceptual grounds -- 'candidate'/'competitiveness'/'final common path' is almost REE's own E3 language -- but transfer_risk is elevated by the 1975 vintage, the dove-behavioural empirical base, and the WTA-vs-soft-blend divergence."
+  }
+}

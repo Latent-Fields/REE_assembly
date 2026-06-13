@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_drive_arbitration",
+  "entry_id": "2026-06-13_mech_394_homeostatic_active_inference_pezzulo2015",
+  "timestamp_utc": "2026-06-13T18:11:26Z",
+  "claim_ids_tested": ["MECH-394"],
+  "source": {
+    "title": "Active Inference, homeostatic regulation and adaptive behavioural control",
+    "authors": ["Giovanni Pezzulo", "Francesco Rigoli", "Karl Friston"],
+    "year": 2015,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2015.09.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The closest formal articulation of REE's drive layer: homeostatic set-points enter as priors that 'act as drives or goals to enslave action', and multiple control processes (Pavlovian, habitual, goal-directed) are cast as hierarchical contextualisations rather than competitors with a hard boundary. This grounds MECH-394's soft-competitive (not winner-take-all) framing and the homeostatic-vs-exploratory balance the claim cites loosely as 'Pezzulo 2014'. Held at 0.68 because it is a theoretical review proposing a framework, not an empirical result or a worked arbitration policy; it licenses the architecture, it does not test it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The framework dissolves the mechanistic distinction between control processes rather than specifying an explicit arbitration rule; it tells you drives-as-priors compete softly via precision-weighting but does not pin down the WTA-vs-blend decision MECH-394 must make, so it under-determines the policy.",
+    "As a normative active-inference account it predicts behaviour minimises expected free energy; if REE's substrate cannot represent the homeostatic set-points as priors with calibrated precision, the soft-competition the framework promises will not emerge and arbitration could collapse to whichever drive has the largest raw error."
+  ],
+  "tags": ["mech-394", "drive_arbitration", "active_inference", "homeostatic_regulation", "priors_as_drives", "exploratory_vs_homeostatic", "arc-073_crossref"],
+  "mapping": {
+    "source_claim_statement": "Within Active Inference, homeostatic and allostatic regulation is achieved by treating interoceptive set-points as priors that drive action to fulfil them; Pavlovian, habitual, and goal-directed processes are successive hierarchical contextualisations of the same sensorimotor inference rather than mechanistically distinct controllers, and priors act as drives/goals that enslave action via precision-weighting.",
+    "ree_translation": "MECH-394 asserts arbitration is soft-competitive over context/satiation/competition/developmental-phase, not a fixed single-axis winner. Pezzulo, Rigoli & Friston supply the formal scaffold: if each drive axis is a homeostatic prior, then multiple simultaneously-active drives are multiple priors competing for control via their precisions, and precision-weighting is the soft-competition mechanism -- the same vocabulary REE uses (precision-selection, soft-competitive disinhibition). The hierarchical-contextualisation move grounds MECH-394's 'over context' orchestration variable: context sets which drive-prior is most precise. The exploratory-vs-homeostatic balance the claim attributes to 'Pezzulo 2014' is articulated here as the trade-off between epistemic (information-seeking) and pragmatic (homeostatic) value, cross-referencing ARC-073's play-to-real competence-saturation criterion.",
+    "mapping_caveat": "This is a theoretical review, not an empirical study or a simulation of multidrive arbitration; it licenses the architecture (drives-as-priors, soft precision-weighted competition) without specifying or testing the explicit arbitration rule MECH-394 needs. The claim's '2014' citation resolves to this 2015 Prog Neurobiol review (and the broader Pezzulo homeostatic active-inference program); the year drift is noted. Treating the framework as evidence FOR a particular policy (e.g. precision-weighted blend over WTA) would over-read it.",
+    "source_context": "Conceptual synthesis / review uniting Active Inference (Bayesian perception-action) with associative-learning accounts of homeostatic and behavioural control."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.30,
+    "notes": "Influential Prog Neurobiol review. Mapping_fidelity high on vocabulary alignment (priors-as-drives, precision-weighted soft competition) but it is a framework not a result; source_quality reflects review status, not primary data."
+  }
+}

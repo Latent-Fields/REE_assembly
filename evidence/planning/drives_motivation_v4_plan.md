@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Drives & Motivation (V4 forward roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [SD-012, MECH-216, MECH-295, MECH-111, MECH-347, ARC-073, SD-057]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -58,8 +58,8 @@ closure_plan:
     - id: "drives_motivation_v4:DRV-3"
       title: "Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)"
       phase: 2
-      status: open
-      lit_pull_status: none
+      status: closed
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-394", "SD-060"]
@@ -68,8 +68,8 @@ closure_plan:
       readiness_gate:
         - "Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEFORE registering the arbitration MECH (drive competition / hypothalamic drive hierarchy / opportunity-cost theories: Berridge incentive salience already in SD-012/MECH-295; need lateral-hypothalamus / dopamine tonic-vigour / Pezzulo 2014 exploratory-vs-homeostatic / Niv 2007 opportunity-cost-of-time)"
         - "L-non-terminal-needs: ethology of non-feeding drives (grooming, play, exploration) as homeostatically-regulated systems, not just deficit-reduction"
-      last_updated: 2026-06-10
-      completion_note: "The arbitration policy (DRV-2) instantiates a formal competition mechanism; per the biology-before-formal-definitions rule it must be grounded before registration to avoid the SD-003 / SD-010 philosophy-right / mechanism-wrong failure mode. This node tracks that grounding debt."
+      last_updated: 2026-06-13
+      completion_note: "GROUNDED 2026-06-13 via /lit-pull -> evidence/literature/targeted_review_drive_arbitration/ (5 literature_evidence/v1 entries). MECH-394 lit_conf 0->0.855, SD-060 lit_conf 0->0.755 (exp_conf stays 0; promotes nothing -- both substrate_conditional V4). Entries: Burnett et al. 2016 (Neuron, hunger-driven motivational state competition: contextual, satiation-graded suppression of rival drives -- the existence proof for MECH-394's soft-competitive orchestration AND SD-060's multi-axis register); Niv Daw Joel & Dayan 2007 (Psychopharmacology, tonic-DA opportunity-cost-of-time: the common-currency term arbitration needs); Pezzulo Rigoli & Friston 2015 (Prog Neurobiol, priors-as-drives / precision-weighted soft competition -- resolves the claim's loose 'Pezzulo 2014' citation; cross-ref ARC-073 exploratory-vs-homeostatic); McFarland & Sibly 1975 (Phil Trans R Soc B, behavioural final common path -- foundational ethology, source of REE's 'candidate'/'competitiveness' vocabulary, anchors the WTA pole MECH-394 argues against); Mu et al. 2020 (Nat Commun, grooming as behavioural-homeostatic de-arousal -- one worked non-feeding homeostatic integrator for SD-060). Biology-before-formal-definitions satisfied: MECH-394 (already registered candidate) and the DRV-2 policy it precedes are now grounded ahead of any V4 build. PROPOSAL-FIRST (surfaced to user, NOT auto-registered): a candidate partner sub-claim that arbitration is priced in a common opportunity-cost-of-time currency (a global tonic vigour signal above per-axis benefit terms), motivated by Niv 2007 -- the currency MECH-394 currently leaves unspecified. Honest caveat carried into the record: Niv's signal sets vigour of a chosen action, and a global scalar with no cross-axis gradient cannot by itself carve WHICH drive wins (ties to the live candidate-differentiated-affect concern). Original grounding-debt note preserved: the arbitration policy (DRV-2) instantiates a formal competition mechanism; per the biology-before-formal-definitions rule it must be grounded before registration to avoid the SD-003 / SD-010 philosophy-right / mechanism-wrong failure mode."
     - id: "drives_motivation_v4:DRV-4"
       title: "Orienting/surveying drive: pre-approach active-sensing control state"
       phase: 3
@@ -192,3 +192,19 @@ substrate work is honest to build.
   pre_approach_orienting_mode) plus a transfer-world design criterion
   (non_terminal_failure_profile). `generation: v4` set so the V3 closure % is
   unaffected. No claims.yaml edits.
+- **2026-06-13** -- DRV-3 grounding node CLOSED. Biology-before-formal-definitions
+  lit-pull complete (5 entries under
+  evidence/literature/targeted_review_drive_arbitration/): Burnett 2016 (multidrive
+  competition, contextual hierarchy), Niv 2007 (opportunity-cost-of-time common
+  currency), Pezzulo/Rigoli/Friston 2015 (priors-as-drives, precision-weighted soft
+  competition), McFarland & Sibly 1975 (behavioural final common path / candidate
+  competition), Mu 2020 (grooming as behavioural-homeostatic de-arousal). MECH-394
+  lit_conf 0->0.855, SD-060 lit_conf 0->0.755; exp_conf stays 0 (lit/exp decoupled),
+  promotes nothing -- both remain substrate_conditional V4. DRV-2 (the arbitration
+  policy MECH-394 instantiates) is now grounded ahead of registration/build. ONE
+  proposal-first partner sub-claim surfaced to the user, NOT auto-registered: a
+  common opportunity-cost-of-time currency for arbitration (global tonic vigour
+  signal above per-axis benefit terms, motivated by Niv 2007), carrying the honest
+  caveat that a gradient-free global scalar cannot alone carve which drive wins
+  (links the candidate-differentiated-affect concern). No claims.yaml edits this
+  session (lit/exp decoupled; proposal-first).

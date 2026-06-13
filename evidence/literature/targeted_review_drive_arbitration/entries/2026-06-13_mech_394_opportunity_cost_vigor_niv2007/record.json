@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_drive_arbitration",
+  "entry_id": "2026-06-13_mech_394_opportunity_cost_vigor_niv2007",
+  "timestamp_utc": "2026-06-13T18:11:26Z",
+  "claim_ids_tested": ["MECH-394"],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor",
+    "authors": ["Yael Niv", "Nathaniel D. Daw", "Daphna Joel", "Peter Dayan"],
+    "year": 2007,
+    "venue": "Psychopharmacology (Berl)",
+    "doi": "10.1007/s00213-006-0502-4"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Foundational normative theory establishing that the long-run average reward rate functions as an opportunity cost that sets a global vigour/allocation signal (reported by tonic dopamine). This supplies MECH-394 with the missing common currency an arbitration policy needs: a single scalar in which the cost of dwelling on one drive (time not spent on others) is priced. Held at 0.70 because the theory is about response vigour/latency of an already-selected action, only indirectly about which drive is selected -- the bridge from opportunity-cost-of-time to inter-drive arbitration is a reasoned extension, not the paper's own claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The opportunity-cost signal in Niv et al. controls how vigorously/quickly to act, not which of several competing drives to pursue. Treating it as a direct arbitration signal over-reads the model: it prices the cost of time but does not by itself rank drives.",
+    "The average-reward currency is a single global scalar; if MECH-394's arbitration needs per-axis differentiated valuations (so that fear and hunger are priced on different scales), a single opportunity-cost term is insufficient and must be combined with axis-specific benefit terms."
+  ],
+  "tags": ["mech-394", "drive_arbitration", "opportunity_cost", "tonic_dopamine", "response_vigour", "average_reward_rl", "sd-012_crossref"],
+  "mapping": {
+    "source_claim_statement": "In an average-reward reinforcement-learning model, optimal control balances the cost of acting quickly against the benefit of obtaining reward sooner; the long-run average reward rate plays the role of an opportunity cost (the cost of time), mediates motivational influences on response vigour, and is putatively reported by tonic dopamine in nucleus accumbens.",
+    "ree_translation": "MECH-394's soft-competitive orchestration needs a common currency in which to compare otherwise-incommensurable drives. Niv et al. identify that currency: the opportunity cost of time -- the reward forgone elsewhere by dwelling on the current option. An arbitration policy that allocates behaviour across simultaneously-active drives is implicitly solving the same average-reward optimisation, where committing to one drive axis incurs the opportunity cost of the satiation/benefit not gained on the others. This also cross-references SD-012 (drive-scaled benefit signals): the tonic, slowly-varying global signal Niv describes is the kind of modulator that would set the overall vigour with which the winning drive is pursued, sitting above the per-candidate score_bias of MECH-295.",
+    "mapping_caveat": "Niv et al. model response vigour/latency of a chosen action, not selection among competing drives. The translation -- that opportunity cost is the currency arbitration optimises -- is a reasoned extension supported by the average-reward framework's structure, but the paper does not itself test multidrive arbitration. The mapping should not be cited as evidence that MECH-394's WINNER is chosen by opportunity cost alone; it grounds the existence of the common-currency term, not the full selection rule.",
+    "source_context": "Computational/normative modelling (average-reward RL) of free-operant behaviour in rodents, linked to tonic dopamine pharmacology and accumbens physiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Highly-cited foundational normative theory. Mapping_fidelity capped because the model targets vigour/latency, and the inter-drive-arbitration reading is an extension; transfer_risk moderate because the average-reward principle is computational and substrate-general but its accumbens/tonic-DA grounding is rodent-specific."
+  }
+}

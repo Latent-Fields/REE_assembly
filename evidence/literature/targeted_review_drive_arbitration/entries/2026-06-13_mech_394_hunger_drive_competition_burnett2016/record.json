@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_drive_arbitration",
+  "entry_id": "2026-06-13_mech_394_hunger_drive_competition_burnett2016",
+  "timestamp_utc": "2026-06-13T18:11:26Z",
+  "claim_ids_tested": ["MECH-394", "SD-060"],
+  "source": {
+    "title": "Hunger-Driven Motivational State Competition",
+    "authors": ["C. Joseph Burnett", "Chia Li", "Emily Webber", "Eva Tsaousidou", "Stephen Y. Xue", "Jens C. Bruning", "Michael J. Krashes"],
+    "year": 2016,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2016.08.032"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Direct empirical demonstration that one drive (hunger) suppresses several others (thirst, anxiety, innate fear, social interaction), that the suppression is graded and context-conditional (often only when food is accessible), and that a hypothalamic node integrates internal state + external factors + anticipated yield. This is the multidrive-competition phenomenon MECH-394 asserts, measured at circuit + behavioural levels. Confidence held below 0.85 because the mapping is functional, not mechanistic -- REE has no AgRP/ARC analogue, and the paper shows hunger-over-others rather than a full N-axis arbitration policy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hunger's dominance is context-gated: it suppresses competing drives 'often only when food is accessible', so a fixed drive hierarchy (hunger > thirst > fear) is wrong -- the ranking is conditional on affordance availability. A multidrive policy that ignores environmental affordance state would mispredict when a lower-ranked drive wins.",
+    "The paper establishes hunger-suppresses-others but does not characterise the reciprocal case (does extreme thirst or fear suppress hunger symmetrically?), so the competition geometry beyond the hunger-dominant regime is unconstrained by this evidence."
+  ],
+  "tags": ["mech-394", "sd-060", "drive_arbitration", "multidrive_competition", "hypothalamus", "agrp", "motivational_hierarchy"],
+  "mapping": {
+    "source_claim_statement": "Hunger increases its capacity to suppress competing motivational systems (thirst, anxiety-related behaviour, innate fear, social interaction), often only when food is accessible; AgRP/ARC neurons integrate internal state, external factors, and anticipated yield, so behavioural choice under competing needs is a flexible computation rather than a fixed priority.",
+    "ree_translation": "MECH-394 asserts that when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner. Burnett et al. supply the biological existence proof: drive competition is real, the winning drive suppresses the others, and the suppression strength is modulated by satiation level (degree of hunger) and context (food accessibility) -- exactly the orchestration variables MECH-394 names. The ARC integration of internal state + external factors + anticipated yield is the biological instance of the contextual arbitration MECH-394 requires. Also grounds SD-060: thirst, fear, and social interaction are treated as first-class competing drive axes, not collapsed into a single scalar.",
+    "mapping_caveat": "The paper demonstrates one drive (hunger) dominating others, not a symmetric N-axis arbitration policy; REE's MECH-394 generalises beyond the hunger-dominant case the data establish. The mapping is functional (competition + contextual gating) not mechanistic -- REE has no AgRP/arcuate substrate, so this evidences the computation MECH-394 posits, not its implementation. Mouse appetitive/defensive behaviour; transfer to REE's gridworld drive register assumes the contextual-competition principle is substrate-general.",
+    "source_context": "In vivo mouse study: battery of behavioural assays (feeding vs thirst, anxiety, innate fear, social interaction) under food deprivation + real-time fibre-photometry monitoring of arcuate (ARC/AgRP) neuron activity, with optogenetic manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Neuron, Krashes lab; converging behavioural battery + photometry + optogenetics. Mapping_fidelity high because the orchestration-over-context/satiation framing is almost verbatim what MECH-394 claims; capped below 0.8 by the hunger-dominant-only scope and absence of a REE arcuate analogue."
+  }
+}
