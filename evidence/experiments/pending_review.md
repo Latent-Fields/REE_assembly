@@ -1,25 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-06-13T09:20:10Z`  
-Last review: `2026-06-13T09:14:10Z`  
-Pending: **4** item(s) -- 0 PASS, 4 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 1 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-13T20:11:59Z`  
+Last review: `2026-06-13T20:11:00Z`  
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3` | 2026-06-13T04:51 | MECH-090, MECH-268, SD-034 | — |
-| `v3_exq_655_inv074_crystallization_necessity_taskshift_20260613T070430Z_v3` | 2026-06-13T07:04 | INV-074, MECH-313, MECH-333, MECH-334, MECH-341 | — |
-| `v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3` | 2026-06-13T07:27 | MECH-260, MECH-261, SD-034 | — |
-| `v3_exq_669a_mech329_wanting_first_goal_seeding_20260613T074454Z_v3` | 2026-06-13T07:44 | MECH-189, MECH-329 | — |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3` | 2026-06-13T16:12 | MECH-180 | — |
+| `v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3` | 2026-06-13T18:01 | MECH-057b | — |
 
 ---
 

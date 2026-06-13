@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_677_mech180_novelty_sleep_upregulation_probe
+
+Generated: `2026-06-13T20:10:22.464354Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3` | `2026-06-13T16:12:41Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3/summary.md) / [`manifest`](runs/v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3/manifest.json) / [`metrics`](runs/v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3/metrics.json) |

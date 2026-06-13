@@ -13853,6 +13853,16 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
+  epistemic_category: substrate_ceiling  # gov 2026-06-13: GAP-2 z_goal-seeding/context-diversity ceiling (per failure_autopsy_V3-EXQ-669a)
+  pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
+  governance_note_2026_06_13: >
+    PM cycle (gov 2026-06-13T20:04Z): the super-ordinal write gate could not be exercised in
+    V3-EXQ-669a (superseded; degenerate -- zero writes/anchors in all arms) nor in the
+    nursery-harness retest V3-EXQ-669b (non_contributory; non_degenerate:false, anchor store
+    saturated to <=1 because merge_similarity collapses the nursery z_world contexts). Same
+    goal_pipeline:GAP-2 context-diversity ceiling (per confirmed
+    failure_autopsy_V3-EXQ-669a_2026-06-13). substrate_ceiling + pending_retest_after_substrate;
+    not a falsification.
   depends_on:
     - INV-041
     - SD-016
@@ -20461,6 +20471,12 @@
   claim_level: mechanistic
   registered_utc: 2026-04-19
   last_updated_utc: 2026-04-19
+  governance_note_2026_06_13b: >
+    PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-460d's MECH-261 entry reclassified
+    weakens->non_contributory per confirmed failure_autopsy_SD-034-closure-control-plane-d
+    (the de-commit RELEASE leg is unbuilt; not a falsification). Does NOT change MECH-261's
+    stable status (33 supports / strong evidence base); recorded so the 460d entry is not
+    miscounted as opposing.
   depends_on:
     - SD-032a          # coordinator (source of operating_mode)
     - MECH-094         # hypothesis tag (the specific tag this generalises)
@@ -21358,6 +21374,16 @@
     1/3 seeds). Both 460d + 468d routed to /failure-autopsy this cycle (no
     evidence_direction applied -- left pending). Demotion revisited next cycle once
     the autopsy adjudicates the residual closure leg.
+  governance_note_2026_06_13b: >
+    PM cycle (gov 2026-06-13T20:04Z): the two routed FAILs are now ADJUDICATED.
+    Per confirmed failure_autopsy_SD-034-closure-control-plane-d_2026-06-13:
+    V3-EXQ-460d -> SD-034 + MECH-261 reclassified weakens->non_contributory (manifest
+    override applied; MECH-260 retains supports), pending_retest_after_substrate;
+    V3-EXQ-468d -> SD-034/MECH-268/MECH-090 confirmed non_contributory (substrate_not_ready:
+    total_beta_elevated=0 on seeds 43/44), pending_retest_after_substrate. substrate_queue
+    amended (SD-034, action=amend). The demote_to_candidate recommendation is DEFERRED again
+    (user 2026-06-13): with the 460d/468d weakens now removed from scoring, re-evaluate the
+    conflict_ratio post-rebuild before any provisional->candidate move.
   implementation_note: >
     IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
     (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-
@@ -22151,6 +22177,15 @@
     provisional, pending_retest_after_substrate holds; retest = V3-EXQ-464d
     (competing-goals) + V3-EXQ-467d (mode-stickiness) with the occupancy-keyed
     readiness gate. See ree-v3/CLAUDE.md mode-governance-engagement section.
+  governance_note_2026_06_13b: >
+    PM cycle (gov 2026-06-13T20:04Z): the *d retests ran on the landed substrate and
+    STILL self-routed substrate_not_ready_requeue -- V3-EXQ-464d + V3-EXQ-467d both
+    non_contributory (external_task occupancy not reachable across the sweep; the
+    external_task drive does not yet produce occupancy because the Stage-H nav-competence
+    dependency is unresolved). No weight against MECH-266 / SD-032a. The provisional->candidate
+    demotion is DEFERRED again (user 2026-06-13): conflict-resolution remains substrate-blocked
+    (Stage-H nav competence), so neither demote-now nor hold-and-resolve can make progress this
+    cycle. Re-evaluate once external_task occupancy is reachable.
   implementation_note: >
     IMPLEMENTED 2026-04-21 as a Schmitt-trigger extension of the
     MECH-259 symmetric switch_threshold in ree-v3/ree_core/cingulate/
@@ -35304,6 +35339,17 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
+  epistemic_category: substrate_ceiling  # gov 2026-06-13: GAP-2 z_goal-seeding ceiling (per failure_autopsy_V3-EXQ-669a)
+  pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
+  governance_note_2026_06_13: >
+    PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-669a superseded (degenerate by construction:
+    anchor/write/p01=0 in all arms incl the c4 sanity control) and its nursery-harness retest
+    V3-EXQ-669b non_contributory (self-stamped non_degenerate:false -- R3 unmet, max anchor_count=1;
+    merge_similarity collapses the nursery z_world contexts so C1/C3 have zero cross-arm range).
+    Both blocked by the same goal_pipeline:GAP-2 context-diversity ceiling (per confirmed
+    failure_autopsy_V3-EXQ-669a_2026-06-13). epistemic_category=substrate_ceiling +
+    pending_retest_after_substrate: re-queue with a more context-diverse nursery / lower
+    super_ordinal merge threshold. Not a falsification of the wanting-before-liking ordering.
   depends_on:
     - MECH-189
     - SD-014
@@ -35787,6 +35833,16 @@
   status: candidate
   pending_retest_after_substrate: true
   registered_utc: "2026-05-17"
+  governance_note_2026_06_13: >
+    PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-655 (7th necessity-test iteration; the
+    pre-registered route-(a) task-distribution-shift redesign superseding the 610f noise-only
+    phase-3) reclassified unknown->non_contributory + substrate_ceiling for all 5 cohort claims
+    (INV-074/MECH-313/MECH-333/MECH-334/MECH-341) per confirmed failure_autopsy_V3-EXQ-655_2026-06-13.
+    The stripped REINFORCE control did NOT collapse entropy (D2 0.065<0.10) and crystallization
+    EWC fired but D1~0 (sign-inconsistent) with ARM_4 bit-identical to ARM_0 -- the decisive
+    substrate-incapacity confirmation, NOT a falsification. USER DECISION (2026-06-13): STOP the
+    610 necessity-test cascade; accept INV-074 substrate_ceiling on its OD-critical-period
+    biological grounding (lit_conf 0.918); no re-queue, no substrate_queue entry.
   depends_on:
     - INV-075    # parent: signal-structure temporal decoupling. INV-074 is the COMPETITIVE special case (decay mechanism = active dominant-pathway overwriting; resolution = crystallization/lock arm)
     - INV-073    # developmental bootstrapping necessity (exploration epoch)
@@ -37528,6 +37584,12 @@
   pending_retest_after_substrate: true   # 2026-06-07 governance: per failure_autopsy_V3-EXQ-614e (confirmed) -- 614e committed-class no-lift is a substrate_ceiling gated on ARC-065/GAP-A candidate-pool class diversity, not a falsification; keeps the substrate-limited FAIL tracked in the conflict ratio.
   claim_level: mechanistic
   registered_utc: "2026-05-25"
+  governance_note_2026_06_13b: >
+    PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-655's MECH-341 entry reclassified
+    unknown->non_contributory (substrate_ceiling) per failure_autopsy_V3-EXQ-655_2026-06-13
+    -- the 655 task-shift necessity test could not discriminate (decisive substrate-incapacity).
+    Recorded so 655 is not miscounted as a weakens; MECH-341's independent experimental support
+    is unaffected.
   depends_on:
     - ARC-065    # parent diversity-generation pathway -- MECH-341 is the Layer-B child
     - ARC-033    # E2_harm_s forward model -- the input to E3 scoring

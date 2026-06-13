@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_466b_sd034_satisficing_residue_discharge_behavioural
 
-Generated: `2026-06-13T09:17:45.118035Z`
+Generated: `2026-06-13T20:10:22.464354Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

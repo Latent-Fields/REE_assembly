@@ -3,10 +3,20 @@
   "literature_type": "targeted_review_action_policy_decomposition",
   "entry_id": "2026-04-28_action_policy_hierarchical_options_botvinick2009",
   "timestamp_utc": "2026-04-28T04:42:02Z",
-  "claim_ids_tested": ["SD-004", "ARC-021", "MECH-292", "MECH-293"],
+  "claim_ids_tested": [
+    "SD-004",
+    "ARC-021",
+    "MECH-292",
+    "MECH-293",
+    "SD-042"
+  ],
   "source": {
     "title": "Hierarchically organized behavior and its neural foundations: a reinforcement learning perspective",
-    "authors": ["Matthew M Botvinick", "Yael Niv", "Andrew G Barto"],
+    "authors": [
+      "Matthew M Botvinick",
+      "Yael Niv",
+      "Andrew G Barto"
+    ],
     "year": 2009,
     "venue": "Cognition",
     "doi": "10.1016/j.cognition.2008.08.011",
@@ -22,7 +32,17 @@
     "The framework leaves open the key question of how the agent IDENTIFIES new option subroutines from experience. Botvinick et al. flag this as an important open question -- how learning carves the action space into useful chunks. For an REE option library, this is the same question: how would the substrate populate its option dictionary from experience?",
     "Options as temporally extended actions can recurse (options containing sub-options). The paper allows this in principle but does not specify how deep the recursion goes biologically. An REE option library would need to commit to a finite hierarchy depth or accept open-ended recursion."
   ],
-  "tags": ["sd_004", "arc_021", "mech_292", "mech_293", "action_policy_decomposition", "options_framework", "hierarchical_rl", "subroutines"],
+  "tags": [
+    "sd_004",
+    "arc_021",
+    "sd_042",
+    "mech_292",
+    "mech_293",
+    "action_policy_decomposition",
+    "options_framework",
+    "hierarchical_rl",
+    "subroutines"
+  ],
   "mapping": {
     "source_claim_statement": "The hierarchical structure of behaviour -- the divisibility of ongoing behaviour into discrete tasks, subtask sequences, and simple actions -- can be modelled by hierarchical reinforcement learning, in which the learning agent aggregates actions into reusable subroutines or skills (options). Components of hierarchical RL map onto neural structures, particularly within dorsolateral and orbital prefrontal cortex. A particularly important open question is how learning identifies new action routines that are likely to provide useful building blocks for solving a wide range of future problems.",
     "ree_translation": "For SD-004 (action-object space) and ARC-021 (three BG-like loops): the canonical biological action decomposition includes an OPTION level above primitive actions and below goal-directed planning. Options are temporally extended, reusable, named action subroutines whose internal logic is hidden from the higher-level controller. REE's action_object_decoder is a continuous decoder, not a discrete option library. The architectural slot for an option library would be a learned codebook of named options, each with an initiation set, a termination function, and an internal policy -- the canonical option triple from Sutton-Precup-Singh 1999. For MECH-292 / MECH-293 (ranked ghost-goal bank, ghost-goal probes): an option library would couple naturally -- ghost-goal probes could prefer options whose initiation set matches the current state and whose expected outcome cosine-matches the current goal. This is a richer probe-seeding strategy than the current one.",
@@ -32,7 +52,7 @@
   "confidence_components": {
     "source_quality": 0.88,
     "mapping_fidelity": 0.78,
-    "transfer_risk": 0.40,
+    "transfer_risk": 0.4,
     "notes": "Source quality high (Cognition, foundational integrative review). Mapping fidelity high: the option / hierarchical-RL level is a genuine missing slot in REE V3's decomposition stack between primitive actions and goal-directed planning. Transfer risk moderate because V3's gridworld and short episodes don't strongly need temporally extended actions; the option level becomes more architecturally meaningful in V4."
   }
 }

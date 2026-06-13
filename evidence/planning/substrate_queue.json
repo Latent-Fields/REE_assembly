@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
-  "last_updated_utc": "2026-06-13T09:45:43Z",
+  "last_updated_utc": "2026-06-13T20:04:39Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1594,12 +1594,25 @@
       "added_session": "substrate-queue-completeness-2026-04-27T18:20",
       "depends_on_unresolved": [],
       "design_doc": "evidence/planning/commitment_closure_plan.md",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3",
+          "experiment_type": "v3_exq_460d_sd034_closure_control_plane_behavioural",
+          "metric": "C1 PASS (n_closures 6/3/7 via Leg-A hook; nogo 18/9/21) but C2/C4 FAIL: ON latch occupancy >= OFF on seeds 43/44 (12.27 vs 10.07; 31.73 vs 27.67) -- de-commit release has no net authority; rule_bias_head flag set but never trained (no optimizer inclusion).",
+          "target": "after Leg C is trained: ON<OFF latch-occupancy drop on a non-cap-pinned statistic on >=2/3 seeds, with beta-engagement non-vacuity met."
+        },
+        {
+          "run_id": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural_20260613T045129Z_v3",
+          "experiment_type": "v3_exq_468d_sd034_mech268_decommit_hold_behavioural",
+          "metric": "commitment_and_contradiction_engaged precondition 0.333 < 0.667: ON-arm total_beta_elevated=0 on seeds 43/44 (E3 committed, beta never elevated) despite contradiction firing 5/5/3 episodes; criteria degenerate (C1/C2 false).",
+          "target": "after Leg C is trained + a beta-engagement non-vacuity gate: ON arm commits-with-beta on >=2/3 seeds so the contradiction-coupled de-commit DV (ON committed-fraction post-contradiction < OFF, non-cap-pinned) is interpretable."
+        }
+      ],
       "implementation_hint": "ClosureOperator coordinates five sub-signals at rule_state completion: (a) MECH-090 beta_gate.release(); (b) MECH-260 dacc.inject_nogo(action_class) targeted recency suppression; (c) ResidueField.discharge_domain (multiplicative decay with 1e-6 floor preserving 'cannot be erased'); (d) SalienceCoordinator update_signal('closure_event') re-bias toward internal_planning; (e) MECH-268 dacc.reset_episode_pe(). Mode-conditioning gate is the falsifiability predicate. Module: ree_core/governance/closure_operator.py. Master flag use_closure_operator (default False). Requires use_lateral_pfc_analog + use_dacc.",
       "implementation_status": "implemented",
       "implemented_session": "implement-sd034-closure-operator-2026-04-20",
       "implemented_utc": "2026-04-20T00:00:00Z",
-      "last_seen_session": "governance-2026-04-28T2156Z",
+      "last_seen_session": "governance-readonly-20260613T1959Z",
       "metric_trajectory": {
         "current_blocker": null,
         "direction": "higher_is_better",

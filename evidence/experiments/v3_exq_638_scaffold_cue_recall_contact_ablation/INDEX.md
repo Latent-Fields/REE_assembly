@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_638_scaffold_cue_recall_contact_ablation
 
-Generated: `2026-06-13T09:17:45.118035Z`
+Generated: `2026-06-13T20:10:22.464354Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
