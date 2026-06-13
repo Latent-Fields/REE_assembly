@@ -1,0 +1,61 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-13T10:02:38Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_655_inv074_crystallization_necessity_taskshift_20260613T070430Z_v3",
+      "queue_id": "V3-EXQ-655",
+      "supersedes": "V3-EXQ-610f",
+      "claim_ids": ["INV-074", "MECH-333", "MECH-334", "MECH-341", "MECH-313"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "D2 (true-negative control collapses) FAILED delta 0.0654 < 0.10 even under a genuine conflicting-task phase-3; D1 (crystallization preserves) unreadable delta -0.00065; D4 (floor) delta 0.0 (ARM_4 bit-identical to ARM_0). D3 non-vacuity PASS.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- test could not let INV-074 express; D2 collapse precondition unmet under a genuine task-shift",
+        "biological_reference": "clear -- OD critical period (Hensch 2005) + plasticity injection (Nikishin 2023, MECH-333) + EWC (Kirkpatrick 2017, MECH-334); lit_conf 0.82; NOT a formal-definition import",
+        "prerequisites": "missing -- a V3 phase-3 regime that induces collapse-without-crystallization; now shown unreachable even by a conflicting-task shift",
+        "implementation": "complete -- fix_verification: policy trained, expansion stepped 1249 params, EWC penalty 0.2227 in loss",
+        "environment": "substrate ceiling -- SD-054 reef-bipartite + hazard_food_attraction=0.8 conflicting-task shift does not force collapse in stripped REINFORCE-on-grid; threshold map 0.065-0.080, no floor load-bearing",
+        "measurement": "adequate but weak -- selected_action_entropy non-degenerate, D3 PASS; seed variance std 0.40 dwarfs cross-arm deltas; D2/D4 are 3-seed means but per-seed paired D1 confirms ~0",
+        "integration": "fine -- arms isolate cleanly; EWC anchors residue basins while the expansion MLP (MECH-333 plasticity-injection channel) trains freely (designed)",
+        "scale": "insufficient at test-design level -- stripped REINFORCE-on-grid does not collapse catastrophically under noise (610f) OR conflicting task (655)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ocular-dominance critical-period crystallization + plasticity injection + EWC write-protect",
+        "dependencies": ["developing-cortex critical period", "plasticity injection open-phase channel", "EWC-protected established basins"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports the mechanism class; the failure is environmental-pressure incapacity in the V3 substrate, not a wrong mechanism",
+        "lit_status": "present (lit_conf 0.82)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_non_degenerate": false,
+      "recommended_non_degenerate_reason": "Discrimination criterion D1 unreadable because the D2 collapse precondition was never instantiated even under a genuine conflicting-task phase-3; the manipulation is inert at the entropy-measurement layer (crystallization EWC fired but D1=-0.00065; D4=0.0). Adjudicated non_contributory rather than a falsification. NOTE: the by-design zero cross-arm phase-2 variance must NOT be read as the degeneracy axis (phase-2 is pre-manipulation).",
+      "recommended_evidence_quality_note": "V3-EXQ-655 (7th necessity-test iteration; the pre-registered route-(a) redesign replacing the 610f noise-only phase-3 with a genuine TASK-DISTRIBUTION SHIFT -- SD-054 reef-bipartite + hazard_food_attraction=0.8) re-FAILed D2: the stripped REINFORCE control did NOT collapse its action entropy even under a conflicting-task phase-3 (delta 0.0654; threshold map 0.065-0.080, no entropy floor load-bearing), so the necessity premise was never instantiated and D1 is unreadable (delta -0.00065, sign-inconsistent per seed). Wiring verified-live (policy trained, expansion stepped 1249 params, EWC penalty 1938 / 0.2227-in-loss) and D3 sanity PASS -- a genuine substrate-incapacity finding, not a harness no-op or a measurement bug (cross-arm phase-2 identity is by design; the aggregate is the correct seed-mean). DECISIVE per the 610f pre-registration: a genuine conflicting-task shift also failing to collapse the control confirms reading (b). INV-074 NOT weakened (universal invariant; OD critical-period existence proof; lit_conf 0.82); ACCEPT substrate_ceiling and STOP the 610 necessity-test cascade. non_contributory; non_degenerate:false; pending_retest_after_substrate. User adjudication 2026-06-13.",
+      "recommended_evidence_quality_note_floor_claims": "V3-EXQ-655 D4 (MECH-341/313 floor preserves diversity) is uninterpretable because D2 (control collapse) FAILed -- ARM_4 (floors-on) was bit-identical to ARM_0 (delta 0.0). non_contributory; not weakened; carried under the same substrate_ceiling disposition; no further re-queue in the 610 cascade.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "User-confirmed STOP the 610 cascade. INV-074 rests on its biological grounding + existing substrate_ceiling tag. A retest is unblocked only by a V3 substrate enrichment that can exhibit catastrophic plasticity collapse -- not on any current roadmap item, so no substrate_queue entry is created. If such enrichment is ever scoped, the necessity test should re-key its non-degeneracy axis to phase-3 cross-condition (not by-design-constant cross-arm phase-2)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "stop_cascade": true,
+      "claim_synthesis_trigger": false,
+      "claim_synthesis_rationale": "7th autopsy on INV-074 but every iteration shares the SAME failure signature (control never collapses -> discrimination unreadable) -- one structural substrate property, not divergent signatures. The claim is coarse-substrate-blocked, not several finer claims. STOP, do not decompose.",
+      "learning_extracted": [
+        "A genuine conflicting-task phase-3 (SD-054 reef-bipartite + food-attracted hazards) is NOT sufficient to force catastrophic plasticity collapse in stripped V3 REINFORCE-on-grid -- the decisive disambiguator confirms the substrate-incapacity reading (b) from the 610f autopsy.",
+        "Crystallization machinery verified-live (EWC penalty 1938; expansion stepped 1249 params) yet D1=-0.00065 -- consistent with no collapse to resist, and with EWC protecting residue z_world basins while the expansion MLP trains freely, so policy action entropy may be the wrong observable for MECH-334 regardless.",
+        "Seed variance std 0.40 dwarfs all cross-arm deltas; per-seed paired D1 confirms ~0 -- the FAIL is not a seed-mean aggregation artefact.",
+        "INV-074 (universal invariant, OD critical-period existence proof) cannot be weakened by a test the substrate cannot instantiate; non_contributory for all five claims."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control / collapse-precondition fails -> crystallization-necessity discrimination unreadable; same signature across 610a-f (noise) and 655 (genuine task-shift)",
+    "is_independent_bugs": false,
+    "structural_property": "the V3 REINFORCE-on-grid substrate does not exhibit catastrophic plasticity collapse under any phase-3 pressure tried, so INV-074's necessity premise is structurally uninstantiable on the current substrate (substrate_ceiling)",
+    "readings": ["substrate_incapacity_confirmed", "noise_was_not_the_right_pressure_REJECTED_by_655"]
+  }
+}
