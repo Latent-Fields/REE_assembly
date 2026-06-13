@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-13T00:06:32Z",
+  "last_tick_utc": "2026-06-13T00:36:40Z",
   "state": "running",
   "current_exq": "V3-EXQ-669a",
   "current_exq_started_utc": "2026-06-12T23:40:40.395945+00:00",
@@ -12,18 +12,21 @@
     "run_label": "starting...",
     "runs_done": 0,
     "runs_total": 1,
-    "episodes_done": 50,
+    "episodes_done": 150,
     "episodes_total": 400,
-    "overall_pct": 10.8
+    "overall_pct": 23.3
   },
-  "seconds_elapsed": 1552,
-  "seconds_remaining": 12833,
+  "seconds_elapsed": 3360,
+  "seconds_remaining": 11060,
   "recent_lines": [
     "V3-EXQ-669a -- MECH-329 Wanting-First Goal Seeding",
     "Seed: 42",
     "=== Running condition: wanting_first ===",
     "[wanting_first] Starting infant curriculum...",
-    "[wanting_first] [train] ep 50/400 phase=0 benefits=116 harms=1026"
+    "[wanting_first] [train] ep 50/400 phase=0 benefits=116 harms=1026",
+    "[wanting_first] [train] ep 100/400 phase=0 benefits=220 harms=1806",
+    "[wanting_first] Phase 0 -> 1, rebuilding agent...",
+    "[wanting_first] [train] ep 150/400 phase=1 benefits=404 harms=2499"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
