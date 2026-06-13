@@ -180,7 +180,9 @@ the mechanism is the full modelling of another as self-like, including the model
 their suffering, their mortality, and their value. What matters is the extension of the
 self-model, not the outcome.
 
-**Love's expansion through uncertainty.** The real power of love operates through
+### Love's expansion through uncertainty
+
+The real power of love operates through
 Axiom 3 (uncertainty) and Axiom 5 (others are like me). To love one person is to model
 them as self-like. But a self-like other is themselves capable of love (Axiom 7 applies
 to them too). Through shared z_beta, the agent feels not only the states of those it
