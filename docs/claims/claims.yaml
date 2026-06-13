@@ -42135,3 +42135,54 @@
     self-routes substrate_not_ready, NOT a FAIL -- the GAP-2 foraging-ceiling trap].
     FAIL = subgoal attainment produces no z_goal seeding above the unscaffolded baseline
     despite non-zero attainment and a working forced-seed control.
+
+# Registered 2026-06-13 -- completion-set partners REAPED from the autobiographical_memory_v4:ABM-9
+# biology /lit-pull (evidence/literature/targeted_review_autobiographical_store). Each was surfaced
+# proposal-first, then user-approved for registration. All V4 / substrate_conditional / off the V3
+# critical path; PROMOTE NOTHING (exp_conf 0). Wired into depends_on of the cluster they complete.
+- id: MECH-429
+  title: "Schema-congruence as a consolidation write-weight and routing variable: the degree of fit between an event and the agent's existing schemas modulates how that event is consolidated -- schema-congruent content is consolidated preferentially and routed more directly into the durable/semantic store (a fast vmPFC-gated systems-consolidation route), while schema-incongruent content requires prolonged hippocampal-dependent consolidation or is gated out. Schema-fit is a WRITE-WEIGHT input to consolidation alongside affect (MECH-361), not only a retrieval-time prior."
+  claim_type: mechanism_hypothesis
+  subject: memory.schema_congruence_consolidation_weight
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-261
+    - MECH-285
+    - MECH-121
+    - MECH-361
+  location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-429
+  notes: "Reaped from the autobiographical_memory_v4:ABM-9 /lit-pull (2026-06-13) as a completion-set partner -- the CLS/schema fast-consolidation route the MECH-261/MECH-285 consolidation gates PRESUPPOSE but REE had not named. Amends the CONTENT/ROUTING policy of MECH-261 (mode-conditioned write gating) and MECH-285 (consolidation-priority by V_s residual): schema-fit is a SECOND write-weight axis beside affect (MECH-361). Biological anchors (verified in the ABM-9 pull's adjacent literature; pull a targeted review before any build, per biology-before-formal-definitions): Tse et al 2007 Science 316:76-82 'Schemas and memory consolidation' (a congruent schema dramatically accelerates systems consolidation / neocortical incorporation); van Kesteren, Ruiter, Fernandez & Henson 2012 Trends Neurosci (SLIMM -- mPFC-mediated schema-congruent fast route vs MTL-dependent incongruent route); Ghosh & Gilboa 2014 Neuropsychologia (schema construct); Schapiro et al 2017 Phil Trans R Soc B (CLS within the hippocampus). FALSIFIER: if consolidation priority is fully accounted for by affect/salience (MECH-361) + V_s residual (MECH-285) with NO additional variance explained by schema-fit, MECH-429 earns no keep. V4/V5; off the V3 critical path; substrate_conditional on the ARC-085 unified store + an explicit schema representation not yet built in V3. DO NOT build in V3 until routed by experiment."
+- id: MECH-430
+  title: "Multi-dimensional provenance source vector: an event token's provenance is a SOURCE VECTOR over several partly-independent dimensions (perceived-vs-imagined, self-generated-vs-other-generated, source identity, temporal source, modality), not a single committed_vs_imagined bit. Provenance failures dissociate per-dimension -- the system can correctly attribute real-vs-imagined while mis-attributing who-generated-it or when -- so each dimension carries its own confidence, and the one-way committed gate applies per safety-relevant dimension rather than to a single global bit."
+  claim_type: mechanism_hypothesis
+  subject: memory.multidimensional_provenance_vector
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-365
+    - MECH-094
+    - MECH-037
+  location: docs/architecture/autobiographical_temporality_and_future_simulation.md#mech-430
+  notes: "Reaped from the autobiographical_memory_v4:ABM-9 /lit-pull (2026-06-13). Refines MECH-365: the committed_vs_imagined field is ONE dimension of a richer source vector. Anchor (verified, in the ABM-9 pull): Johnson, Hashtroudi & Lindsay 1993 Psychological Bulletin 114(1):3-28 (source-monitoring framework -- 'source' is EXPLICITLY multidimensional with indefinitely many values, contra the binary reality-monitoring dichotomy; source-misattribution -- cryptomnesia, misinformation, who-said-it errors -- occurs per-dimension). Under-specifying provenance as a single bit risks missing per-dimension misattribution that a global real-vs-imagined gate would pass. FALSIFIER: if a single committed_vs_imagined bit is sufficient to prevent all safety-relevant confabulation in the substrate (per-dimension provenance adds no protective discrimination), MECH-430 earns no keep over MECH-365. V4/V5; off the V3 critical path; substrate_conditional on the MECH-365 token. DO NOT build in V3 until routed by experiment."
+- id: MECH-431
+  title: "Two-factor (tag-and-capture) write-eligibility: MECH-368's plasticity_eligibility is not a single instantaneous test but a TWO-STAGE process -- a local event sets a transient, input-specific eligibility TAG, and a durable model/policy write is consummated only if that tag CAPTURES a separately-gated plasticity/consolidation-resource signal within a time window. A tagged-eligible event can still fail to write if no capture signal arrives, and an arriving capture signal can rescue a recently-tagged weak event."
+  claim_type: mechanism_hypothesis
+  subject: plasticity.tag_and_capture_two_factor_eligibility
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  depends_on:
+    - MECH-368
+    - MECH-285
+    - MECH-261
+  location: docs/architecture/plasticity_write_authority_gating.md#mech-431
+  notes: "Reaped from the autobiographical_memory_v4:ABM-9 /lit-pull (2026-06-13). Refines MECH-368's plasticity_eligibility term from a scalar gate into the eligibility-THEN-capture STRUCTURE; MECH-285 (consolidation-priority by V_s residual) is a candidate capture-resource signal and MECH-261 gates the channel the tag lives in. Anchors (verified Ballarini in the ABM-9 pull; the cellular pair are canonical): Ballarini, Moncada, Martinez, Alen & Viola 2009 PNAS 106(34):14599 (behavioural tagging -- weak training yields LTM only if a novel experience supplies plasticity-related products within a critical window); Frey & Morris 1997 Nature 385:533 (synaptic tagging and capture); Redondo & Morris 2011 Nat Rev Neurosci (synaptic-tagging-and-capture hypothesis). FALSIFIER: if a single-stage eligibility test (no separate capture stage, no time window) prevents catastrophic interference on the online world-model/policy update path just as well, the two-factor structure earns no keep over MECH-368. V4/V5; off the V3 critical path; substrate_conditional on the MECH-368 gate + an online model-update write channel not yet built in V3. DO NOT build in V3 until routed by experiment."

@@ -45,6 +45,22 @@ Event tokens carry a viewpoint label (participant/first-person vs observer/third
 
 Should REE represent autobiographical event memory as a distinct first-class type, separate from semantic (facts/relations) and task/procedural (policies/schemas) memory — or is the existing episodic->semantic consolidation pathway (MECH-121) sufficient? The case motivates the distinction (TL separates emotion-tagged "life memory" from neutral encyclopedic "black memory"), but REE has no memory-type taxonomy claim. Sub-questions: does a distinct layer earn its keep vs a tag on episodic content; how does residue attach without contaminating imagined futures (ties MECH-365); where is the replay / counterfactual-simulation / future-planning boundary. `epistemic_category: substrate_conditional` explicit so `narrow_open_question` does not fire — V4-parked, not V3-tractable.
 
+## <a id="mech-429"></a>MECH-429 — Schema-congruence as a consolidation write-weight
+
+Reaped from the ABM-9 biology /lit-pull (2026-06-13). The degree of fit between an event and the agent's existing schemas modulates *how* it is consolidated: schema-congruent content is consolidated preferentially and routed more directly into the durable/semantic store (a fast vmPFC-gated systems-consolidation route), while schema-incongruent content requires prolonged hippocampal-dependent consolidation or is gated out. Schema-fit is therefore a **write-weight axis beside affect (MECH-361)**, not only a retrieval-time prior, and it is the CLS/schema route the MECH-261/MECH-285 consolidation gates already presuppose.
+
+- depends_on: MECH-261, MECH-285, MECH-121, MECH-361.
+- Anchors: Tse et al 2007 *Science* (schemas accelerate systems consolidation); van Kesteren et al 2012 *TINS* (SLIMM, mPFC fast route); Ghosh & Gilboa 2014; Schapiro et al 2017 (CLS).
+- Falsifier: if affect/salience (MECH-361) + V_s residual (MECH-285) fully account for consolidation priority with no residual variance explained by schema-fit, MECH-429 earns no keep.
+
+## <a id="mech-430"></a>MECH-430 — Multi-dimensional provenance source vector
+
+Reaped from the ABM-9 /lit-pull (2026-06-13). Refines MECH-365: an event token's provenance is a **source vector** over several partly-independent dimensions (perceived-vs-imagined, self-vs-other-generated, source identity, temporal source, modality), not a single `committed_vs_imagined` bit. Provenance failures dissociate per-dimension — the system can attribute real-vs-imagined correctly while mis-attributing who-generated-it or when — so each dimension carries its own confidence and the one-way committed gate applies per safety-relevant dimension.
+
+- depends_on: MECH-365, MECH-094, MECH-037.
+- Anchor: Johnson, Hashtroudi & Lindsay 1993 *Psychological Bulletin* (source is explicitly multidimensional, contra the binary reality-monitoring dichotomy; misattribution is per-dimension).
+- Falsifier: if a single `committed_vs_imagined` bit prevents all safety-relevant confabulation (per-dimension provenance adds no protective discrimination), MECH-430 earns no keep over MECH-365.
+
 ## Cautions (carry forward verbatim from the intake)
 
 Do not treat hyperthymesia as desirable, vivid memory as accurate, or future simulation as prediction/precognition. Do not generalise strongly from a single case. Do not promote any of this to an invariant or a V3 target. Correct extraction: preserve autobiographical temporality as a bridge between memory, identity, and future trajectory generation; provenance and commitment-status labels are the load-bearing safety requirement.
@@ -55,5 +71,8 @@ Do not treat hyperthymesia as desirable, vivid memory as accurate, or future sim
 - MECH-365 depends_on ARC-085, MECH-094, MECH-037, INV-011.
 - MECH-366 depends_on ARC-085, SD-005.
 - Q-060 depends_on ARC-085, MECH-121.
+- MECH-429 depends_on MECH-261, MECH-285, MECH-121, MECH-361. (reaped from ABM-9 lit-pull)
+- MECH-430 depends_on MECH-365, MECH-094, MECH-037. (reaped from ABM-9 lit-pull)
+- MECH-431 (home: plasticity_write_authority_gating.md) depends_on MECH-368, MECH-285, MECH-261. (reaped from ABM-9 lit-pull)
 
 All `status: candidate`, `epistemic_category: substrate_conditional`, `implementation_phase: v4`, `version_relevance: v4_v5`. Promote/demote suppressed; the right response is to wait for the upstream V4 substrate, not to run experiments on the current V3 machinery. DO NOT build in V3 until routed by an explicit version decision.

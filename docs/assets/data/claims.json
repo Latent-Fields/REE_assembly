@@ -4878,6 +4878,27 @@
     "type": "mechanism",
     "what_would_answer": "In a regime where DIRECT superordinate-goal seeding is sparse (unscaffolded z_goal seeding fails -- z_goal_norm stays < 0.1, the GAP-2 condition), enabling subgoal-attainment + cross-level credit (MECH-427) BOOTSTRAPS a structured z_goal attractor (z_goal_norm rises materially above the unscaffolded baseline, toward the 626b forced-seed reference) and produces goal-directed behaviour the no-subgoal control does not. NON-DEGENERACY: subgoals must be ATTAINED at a non-zero rate AND the 626b-style forced-seed positive control must itself show a structured z_goal in the SAME harness [else the substrate, not bootstrapping, is what fails -> self-routes substrate_not_ready, NOT a FAIL -- the GAP-2 foraging-ceiling trap]. FAIL = subgoal attainment produces no z_goal seeding above the unscaffolded baseline despite non-zero attainment and a working forced-seed control.\n"
   },
+  "MECH-429": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "memory.schema_congruence_consolidation_weight",
+    "title": "Schema-congruence as a consolidation write-weight and routing variable: the degree of fit between an event and the agent's existing schemas modulates how that event is consolidated -- schema-congruent content is consolidated preferentially and routed more directly into the durable/semantic store (a fast vmPFC-gated systems-consolidation route), while schema-incongruent content requires prolonged hippocampal-dependent consolidation or is gated out. Schema-fit is a WRITE-WEIGHT input to consolidation alongside affect (MECH-361), not only a retrieval-time prior.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-430": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "memory.multidimensional_provenance_vector",
+    "title": "Multi-dimensional provenance source vector: an event token's provenance is a SOURCE VECTOR over several partly-independent dimensions (perceived-vs-imagined, self-generated-vs-other-generated, source identity, temporal source, modality), not a single committed_vs_imagined bit. Provenance failures dissociate per-dimension -- the system can correctly attribute real-vs-imagined while mis-attributing who-generated-it or when -- so each dimension carries its own confidence, and the one-way committed gate applies per safety-relevant dimension rather than to a single global bit.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-431": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "plasticity.tag_and_capture_two_factor_eligibility",
+    "title": "Two-factor (tag-and-capture) write-eligibility: MECH-368's plasticity_eligibility is not a single instantaneous test but a TWO-STAGE process -- a local event sets a transient, input-specific eligibility TAG, and a durable model/policy write is consummated only if that tag CAPTURES a separately-gated plasticity/consolidation-resource signal within a time window. A tagged-eligible event can still fail to write if no capture signal arrives, and an arriving capture signal can rescue a recently-tagged weak event.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",

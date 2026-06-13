@@ -64,6 +64,18 @@ V4-scoped because the `goal_relevance` input depends on a competitive z_goal (th
 
 ---
 
+## <a id="mech-431"></a>MECH-431 — Two-factor (tag-and-capture) write-eligibility
+
+Reaped from the autobiographical_memory_v4:ABM-9 biology /lit-pull (2026-06-13). Refines MECH-368's `plasticity_eligibility` term from a scalar instantaneous gate into the **eligibility-then-capture structure** the cellular and behavioural tagging literature describes. A local event sets a transient, input-specific eligibility **tag**; a durable model/policy write is consummated only if that tag **captures** a separately-gated plasticity/consolidation-resource signal within a time window. A tagged-eligible event can still fail to write if no capture signal arrives, and an arriving capture signal can rescue a recently-tagged weak event.
+
+- depends_on: MECH-368, MECH-285 (candidate capture-resource signal = consolidation-priority by V_s residual), MECH-261 (gates the channel the tag lives in).
+- Anchors: Ballarini et al 2009 *PNAS* (behavioural tagging — weak training yields LTM only if novelty supplies plasticity-related products within a window); Frey & Morris 1997 *Nature* (synaptic tagging and capture); Redondo & Morris 2011 *Nat Rev Neurosci*.
+- Falsifier: if a single-stage eligibility test (no separate capture stage, no time window) prevents catastrophic interference on the online model-update path just as well, the two-factor structure earns no keep over MECH-368.
+
+`status: candidate`, `epistemic_category: substrate_conditional`, `implementation_phase: v4`, `version_relevance: v4_v5`. Off the V3 critical path; do not build in V3 until routed by experiment.
+
+---
+
 ## Relationship to the two adjacent notes (cross-reference, NOT conflation)
 
 | Note | Grain | Question |
