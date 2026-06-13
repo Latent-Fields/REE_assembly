@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-13T10:19:14Z",
+  "last_tick_utc": "2026-06-13T10:39:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-672a",
   "current_exq_started_utc": "2026-06-13T10:00:28.208317+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / ARM_0_NO_GATE",
     "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 80,
     "episodes_total": 500,
-    "overall_pct": 16.7
+    "overall_pct": 19.3
   },
-  "seconds_elapsed": 1127,
-  "seconds_remaining": 5100,
+  "seconds_elapsed": 2333,
+  "seconds_remaining": 4937,
   "recent_lines": [
     "V3-EXQ-672a: MECH-057b Trajectory Promotion Gate (relative completion bar)",
     "Dry run: False",
@@ -77,7 +77,15 @@
     "[ARM_0_NO_GATE] Seed 42 complete: harm_rate=0.5957 goal_success=0.0000 completion=0.3450 candidates=32.00 filtered=0.0000",
     "verdict: PASS",
     "Seed 43 Condition ARM_0_NO_GATE",
-    "[ARM_0_NO_GATE] Seed 43 starting..."
+    "[ARM_0_NO_GATE] Seed 43 starting...",
+    "[train] ep 10/500  harm_rate=0.1436  e3_ticks=139  mean_candidates=32.00",
+    "[train] ep 20/500  harm_rate=0.1452  e3_ticks=237  mean_candidates=32.00",
+    "[train] ep 30/500  harm_rate=0.1412  e3_ticks=379  mean_candidates=32.00",
+    "[train] ep 40/500  harm_rate=0.1359  e3_ticks=495  mean_candidates=32.00",
+    "[train] ep 50/500  harm_rate=0.1231  e3_ticks=657  mean_candidates=32.00",
+    "[train] ep 60/500  harm_rate=0.1194  e3_ticks=794  mean_candidates=32.00",
+    "[train] ep 70/500  harm_rate=0.1234  e3_ticks=915  mean_candidates=32.00",
+    "[train] ep 80/500  harm_rate=0.1265  e3_ticks=1044  mean_candidates=32.00"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
