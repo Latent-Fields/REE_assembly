@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-13T01:06:44Z",
+  "last_tick_utc": "2026-06-13T01:36:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-468d",
   "current_exq_started_utc": "2026-06-13T00:02:03.744458+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
     "runs_done": 3,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 100.0
+    "overall_pct": 103.8
   },
-  "seconds_elapsed": 3880,
+  "seconds_elapsed": 5688,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_468d_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
@@ -31,7 +31,9 @@
     "Seed 42 Condition ARM_SUBSTRATE_OFF",
     "[train] decommit_eval seed=42 ep 265/265 c1=True c2=False decommit_gap=0.0000 on_cfp_abs=1.0000 off_cfp_abs=1.0000 hook_fires=3 beta_elev=123 eps_contra=5 rel_near=8",
     "verdict: FAIL seed=42 guard_pass=True commit_nonvacuity=True (contact_rate=0.2020 z_goal_at_contact=0.5331)",
-    "Seed 43 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION"
+    "Seed 43 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
+    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4113 formed=True",
+    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.929 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
