@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-13T14:40:28Z",
+  "last_tick_utc": "2026-06-13T15:10:31Z",
   "state": "running",
   "current_exq": "V3-EXQ-677",
   "current_exq_started_utc": "2026-06-13T12:45:53.861988+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-180",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 456 / HIGH_NOVELTY",
-    "runs_done": 4,
+    "run_label": "Seed 456 / LOW_NOVELTY",
+    "runs_done": 5,
     "runs_total": 6,
-    "episodes_done": 81,
+    "episodes_done": 21,
     "episodes_total": 100,
-    "overall_pct": 80.2
+    "overall_pct": 86.8
   },
-  "seconds_elapsed": 6875,
-  "seconds_remaining": 445,
+  "seconds_elapsed": 8678,
+  "seconds_remaining": 296,
   "recent_lines": [
     "V3-EXQ-677 v3_exq_677_mech180_novelty_sleep_upregulation_probe",
     "=== Seed 42 ===",
@@ -60,7 +60,12 @@
     "[train] HIGH_NOVELTY seed=456 ep 21/100",
     "[train] HIGH_NOVELTY seed=456 ep 41/100",
     "[train] HIGH_NOVELTY seed=456 ep 61/100",
-    "[train] HIGH_NOVELTY seed=456 ep 81/100"
+    "[train] HIGH_NOVELTY seed=456 ep 81/100",
+    "[train] HIGH_NOVELTY seed=456 ep 100/100",
+    "verdict: PASS",
+    "Seed 456 Condition LOW_NOVELTY",
+    "[train] LOW_NOVELTY seed=456 ep 1/100",
+    "[train] LOW_NOVELTY seed=456 ep 21/100"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
