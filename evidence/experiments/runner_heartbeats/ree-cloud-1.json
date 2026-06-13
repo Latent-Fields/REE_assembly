@@ -1,48 +1,46 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-13T09:48:24Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-669a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-640",
-      "result": "PASS",
-      "completed_at": "2026-06-05T12:58:02.556862+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-610f",
-      "result": "FAIL",
-      "completed_at": "2026-06-08T05:15:16.673468+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603i",
-      "result": "FAIL",
-      "completed_at": "2026-06-08T20:11:33.690996+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-653",
-      "result": "PASS",
-      "completed_at": "2026-06-08T21:30:02.277808+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603j",
-      "result": "PASS",
-      "completed_at": "2026-06-09T05:12:08.765661+00:00"
-    }
+  "last_tick_utc": "2026-06-13T10:04:08Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-672a",
+  "current_exq_started_utc": "2026-06-13T10:00:28.208317+00:00",
+  "current_title": "MECH-057b trajectory-promotion-gate (relative completion bar): supersedes degenerate V3-EXQ-672",
+  "current_claim_id": "MECH-057b",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_NO_GATE",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 110,
+    "episodes_total": 500,
+    "overall_pct": 3.7
+  },
+  "seconds_elapsed": 220,
+  "seconds_remaining": 24353,
+  "recent_lines": [
+    "V3-EXQ-672a: MECH-057b Trajectory Promotion Gate (relative completion bar)",
+    "Dry run: False",
+    "=== ARM_0_NO_GATE ===",
+    "Seed 42 Condition ARM_0_NO_GATE",
+    "[ARM_0_NO_GATE] Seed 42 starting...",
+    "[train] ep 10/500  harm_rate=0.6516  e3_ticks=12  mean_candidates=32.00",
+    "[train] ep 20/500  harm_rate=0.5844  e3_ticks=25  mean_candidates=32.00",
+    "[train] ep 30/500  harm_rate=0.5700  e3_ticks=40  mean_candidates=32.00",
+    "[train] ep 40/500  harm_rate=0.5678  e3_ticks=53  mean_candidates=32.00",
+    "[train] ep 50/500  harm_rate=0.5814  e3_ticks=60  mean_candidates=32.00",
+    "[train] ep 60/500  harm_rate=0.5871  e3_ticks=69  mean_candidates=32.00",
+    "[train] ep 70/500  harm_rate=0.5866  e3_ticks=81  mean_candidates=32.00",
+    "[train] ep 80/500  harm_rate=0.5872  e3_ticks=91  mean_candidates=32.00",
+    "[train] ep 90/500  harm_rate=0.5947  e3_ticks=100  mean_candidates=32.00",
+    "[train] ep 100/500  harm_rate=0.5931  e3_ticks=112  mean_candidates=32.00",
+    "[train] ep 110/500  harm_rate=0.6050  e3_ticks=118  mean_candidates=32.00"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 417704,
-  "runner_version": "r3115 7964804 2026-06-13 (running r3112 e01cd37)",
+  "runner_version": "r3117 cb1ef4e 2026-06-13 (running r3112 e01cd37)",
   "gpu": {
     "available": false
   },
