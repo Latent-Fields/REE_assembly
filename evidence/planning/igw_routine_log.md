@@ -150,3 +150,5 @@ One line per hourly tick. ASCII only.
 2026-06-13T20:13:45Z no eligible item (skipped 223): IGW-20260613-001:skill /governance not allowed; IGW-20260613-007:skill /governance not allowed; IGW-20260613-009:skill /governance not allowed
 2026-06-13T21:13:49Z skip IGW-20260613-220: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-13T22:13:56Z SPAWN IGW-20260613-220 skill=/queue-experiment prio=40 uuid=76f4f309-7d13-4179-abac-d72aa425ff84 pid=98997 worktree=igw-220-proposal-exp-0194-mech-191
+2026-06-13T23:15:21Z auto-defer IGW-20260613-220 hash=36954c42d3f5 for 48h (reaped -> completed_resumable)
+2026-06-13T23:15:21Z reaped TASK_CLAIMS igw-auto-igw-220-proposal-exp-0194-mech-191-20260613T221403Z (ledger IGW-20260613-220 -> completed_resumable)
