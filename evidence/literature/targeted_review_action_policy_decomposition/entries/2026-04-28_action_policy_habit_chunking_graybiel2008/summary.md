@@ -27,3 +27,8 @@ Chunking is biologically a consequence of overtraining. REE experiments are typi
 ## Confidence reasoning
 
 I sit this at 0.84. Source quality 0.92 — *Annual Review of Neuroscience*, Graybiel is the canonical voice on basal ganglia and habit formation, the chunking framework is grounded in primate single-unit data and replicated across labs. Mapping fidelity 0.78 because the action-chunk substrate maps cleanly onto an REE architectural slot within ARC-021's dorsolateral-loop position, and the OCD pathology connection is directly relevant to the SD-033 governance work. Transfer risk 0.30 — biological chunking is studied in motor paradigms, REE's cognitive grid paradigm needs the same primitive at a slightly different abstraction level.
+
+
+---
+
+**Tagging note (2026-06-13, OBJ-ABS-8 lit-pull).** `SD-045` (action-chunk cache, registered 2026-04-28) added to `claim_ids_tested`. This entry was authored 2026-04-28 and originally tagged only ARC-021/SD-004; SD-045 was registered the same day, and its own `functional_restatement` cites this paper as a primary biological warrant, so the tag is corrected per the claim_ids-accuracy rule. Direction unchanged (supports). Raises SD-045 literature_confidence only -- experimental_confidence stays 0, this promotes nothing.

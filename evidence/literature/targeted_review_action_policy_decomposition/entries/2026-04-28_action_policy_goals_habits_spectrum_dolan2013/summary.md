@@ -29,3 +29,8 @@ The "fifth generation" work the paper points to is recent enough that the archit
 ## Confidence reasoning
 
 I sit this at 0.82. Source quality 0.88 — *Neuron*, two leading authorities, definitive review of the dichotomy literature. Mapping fidelity 0.75 because the spectrum framing is architecturally more honest than the two-system framing but harder to translate directly into REE substrate decisions; the architectural recommendation it licenses (integrate habit substrate with planner machinery rather than as parallel system) is direct and useful. Transfer risk 0.30 because the framework is computational/theoretical and translates directly to REE's architectural scaffolding.
+
+
+---
+
+**Tagging note (2026-06-13, OBJ-ABS-8 lit-pull).** `SD-045` (action-chunk cache, registered 2026-04-28) added to `claim_ids_tested`. This entry was authored 2026-04-28 and originally tagged only ARC-021/SD-004; SD-045 was registered the same day, and its own `functional_restatement` cites this paper as a primary biological warrant, so the tag is corrected per the claim_ids-accuracy rule. Direction unchanged (supports). Raises SD-045 literature_confidence only -- experimental_confidence stays 0, this promotes nothing.

@@ -36,3 +36,8 @@ The neural mapping is partly inferential. The paper argues components "might map
 ## Confidence reasoning
 
 I sit this at 0.83. Source quality 0.88 — *Cognition*, foundational integrative review, options framework is widely adopted in computational neuroscience and cognitive modelling. Mapping fidelity 0.78 because the option level is a genuine missing slot in REE V3's decomposition between primitive actions and goal-directed planning, with a clear architectural shape. Transfer risk 0.40 because V3's gridworld and short episodes don't strongly need temporally extended actions; the option level becomes more architecturally meaningful in V4 environments with richer task structure.
+
+
+---
+
+**Tagging note (2026-06-13, OBJ-ABS-8 lit-pull).** `SD-042` (option library, registered 2026-04-28) added to `claim_ids_tested`. This entry was authored 2026-04-28 and originally tagged SD-004/ARC-021/MECH-292/MECH-293; SD-042 was registered the same day, and its `functional_restatement` cites this paper (Botvinick, Niv & Barto 2009) as the framework anchor for the option triple, so the tag is corrected per the claim_ids-accuracy rule. Direction unchanged (supports). Raises SD-042 literature_confidence only -- experimental_confidence stays 0, this promotes nothing.

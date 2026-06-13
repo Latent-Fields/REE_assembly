@@ -152,8 +152,8 @@ closure_plan:
     - id: "object_reasoning_abstraction_v4:OBJ-ABS-8"
       title: "Biology grounding completion for the abstraction substrates (chunking / options / type-prototype / theta-scaling lit-pulls)"
       phase: 2
-      status: in_progress
-      lit_pull_status: partial
+      status: done
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [SD-040, SD-045, SD-042]
@@ -161,11 +161,11 @@ closure_plan:
       cross_plan_link: []
       readiness_gate:
         - "L-type type-prototype substrate (Quiroga 2005, Schapiro 2016/2017, Constantinescu 2016, Hennies 2017) -- DONE: targeted_review_hpc_type_prototype_substrate (grounds SD-040 / MECH-296 / MECH-297)"
-        - "L-action action-policy decomposition (Graybiel 2008, Daw 2005, Dolan & Dayan 2013, Botvinick 2009) -- DONE: targeted_review_action_policy_decomposition (grounds SD-045 / SD-042)"
+        - "L-action action-policy decomposition (Graybiel 2008, Daw 2005, Dolan & Dayan 2013, Botvinick 2009 + Jin & Costa 2010 + Badre & Frank 2012) -- DONE: targeted_review_action_policy_decomposition (grounds SD-045 lit_conf 0.919 / SD-042 lit_conf 0.787; SD-040 grounded 0.747 via the theta + type-prototype dirs)"
         - "L-theta theta-abstraction-scaling (Gupta 2012, Bellmund 2018, Constantinescu 2016) -- DONE: targeted_review_theta_abstraction_scaling (grounds MECH-299 / MECH-300)"
-        - "REMAINING DEBT: biology-before-formal-definitions check on any V4 SD/MECH that operationalises options as a formal Sutton-Precup-Singh construct before its substrate is built (per project rule feedback_biology_before_formal_definitions)"
-      last_updated: 2026-06-10
-      completion_note: "Unlike the object_representation pillar plan, the abstraction cluster was registered WITH its lit-pulls (three targeted reviews dated 2026-04-28). This node tracks the remaining biology-before-formal-definitions discipline for the options pillar specifically (SD-042 imports a formal RL construct) and confirms the existing grounding is sufficient before substrate build."
+        - "REMAINING DEBT -- DISCHARGED 2026-06-13: biology-before-formal-definitions check on the SD-042 options formalism done. Diagnosed cause as a tagging gap (Graybiel 2008/Botvinick 2009 predated the SD-042/SD-045 claim IDs registered the same day and were tagged ARC-021/SD-004/MECH-292/293 only); repaired claim_ids per the claim_ids-accuracy rule + added Jin & Costa 2010 (Nature, nigrostriatal start/stop bracketing -> SD-045) and Badre & Frank 2012 (Cereb Cortex fMRI, empirical cortico-striatal hierarchical-RL warrant for the Sutton-Precup-Singh options formalism -> SD-042, mapping_fidelity deliberately bounded at 0.62 because the fMRI warrants nested policy-abstraction, not the option triple itself). exp_conf stays 0 -- PROMOTES NOTHING."
+      last_updated: 2026-06-13
+      completion_note: "CLOSED 2026-06-13. The abstraction cluster was registered WITH its lit-pulls (three targeted reviews dated 2026-04-28), but SD-045 (chunk cache) and SD-042 (option library) carried literature_confidence=None because the action_policy_decomposition entries that evidence them (Graybiel 2008 chunking, Botvinick 2009 options) were authored hours before those claim IDs existed and were never re-tagged. Diagnosed as a tagging gap (cause a), not a genuine grounding gap: fixed the claim_ids on Graybiel 2008 / Daw 2005 / Dolan & Dayan 2013 (-> SD-045) and Botvinick 2009 (-> SD-042), then added two fresh primaries -- Jin & Costa 2010 (direct start/stop circuit evidence for SD-045) and Badre & Frank 2012 (empirical cortico-striatal hierarchical-RL warrant discharging the named options-formalism biology-before-formal-definitions check for SD-042). Result: SD-045 lit_conf 0.919, SD-042 lit_conf 0.787, SD-040 unchanged 0.747; all exp_conf 0 (implementation_phase v4) so nothing promotes. All three abstraction substrates are now biologically grounded ahead of any V4 build."
 ---
 # Object-Reasoning Abstraction -- V4 Roadmap
 
@@ -212,7 +212,7 @@ step is honest to build.
 | C -- option library | OBJ-ABS-5 | SD-042 | V4 | ARC-021 + SD-004 + hierarchical/tool/social environment |
 | D -- theta packaging + map traversal | OBJ-ABS-6 | MECH-299, MECH-300 | V4 (capstone) | MECH-089/294 + MECH-269 + >=1 unit substrate |
 | developmental sparsification | OBJ-ABS-7 | Q-057 | V4/V5 (deferred) | ARC-019 + MECH-362; a populated pool to sparsify |
-| grounding debt | OBJ-ABS-8 | SD-040/045/042 | cross-cutting | three lit-pulls DONE 2026-04-28; options-formalism check remains |
+| grounding debt | OBJ-ABS-8 | SD-040/045/042 | cross-cutting | DONE 2026-06-13: tagging gap fixed (SD-045 0.919 / SD-042 0.787 / SD-040 0.747) + Jin&Costa 2010 + Badre&Frank 2012 discharge the options-formalism check |
 
 ---
 
@@ -279,3 +279,21 @@ a duplicate of it:
   abstraction to scale into, making vocabulary expansion the gating decision.
   SD-045's monostrategy pull-forward condition noted as the only V3-entry path.
   `generation: v4` set so the V3 closure % is unaffected. No claims.yaml edits.
+- **2026-06-13** -- OBJ-ABS-8 CLOSED (lit_pull_status partial -> done). SD-045
+  and SD-042 had carried `literature_confidence=None` despite the node asserting
+  the 2026-04-28 lit-pulls grounded them. Diagnosed as a **tagging gap** (cause a),
+  not a missing-grounding gap: the action_policy_decomposition entries that
+  evidence them -- Graybiel 2008 (striatal action chunking / task-bracketing) and
+  Botvinick 2009 (hierarchical options) -- were authored hours before the
+  SD-045/SD-042 claim IDs were registered the same day, and were tagged only
+  ARC-021/SD-004/MECH-292/293. Repaired the claim_ids per the claim_ids-accuracy
+  rule (SD-045 -> Graybiel 2008 + Daw 2005 + Dolan & Dayan 2013, all cited in
+  SD-045's functional_restatement; SD-042 -> Botvinick 2009) and added two fresh
+  primaries: Jin & Costa 2010 (Nature; direct nigrostriatal start/stop bracketing,
+  the gating signal SD-045 depends on) and Badre & Frank 2012 (Cereb Cortex fMRI;
+  empirical cortico-striatal hierarchical-RL evidence that discharges the named
+  biology-before-formal-definitions check for the Sutton-Precup-Singh options
+  formalism, mapping_fidelity held to 0.62 because the fMRI warrants nested
+  policy-abstraction, not the option triple). Result: SD-045 lit_conf 0.919,
+  SD-042 lit_conf 0.787, SD-040 unchanged 0.747; all exp_conf 0
+  (implementation_phase v4) -- PROMOTES NOTHING. No claims.yaml edits.

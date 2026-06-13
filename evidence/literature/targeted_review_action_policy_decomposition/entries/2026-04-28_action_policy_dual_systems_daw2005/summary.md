@@ -35,3 +35,8 @@ The paper does not specify the arbitrator substrate precisely. ACC is one candid
 ## Confidence reasoning
 
 I sit this at 0.85. Source quality 0.90 — *Nature Neuroscience*, foundational, framework remains canonical 20 years later with substantial empirical accumulation. Mapping fidelity 0.82 because the model-based / model-free dichotomy maps cleanly onto REE's existing planner and the missing habit substrate, with the caveat that ARC-021's three-loop framing is richer than Daw 2005's two-system framing. Transfer risk 0.25 because the framework is computational and translates directly to REE's architectural scaffolding.
+
+
+---
+
+**Tagging note (2026-06-13, OBJ-ABS-8 lit-pull).** `SD-045` (action-chunk cache, registered 2026-04-28) added to `claim_ids_tested`. This entry was authored 2026-04-28 and originally tagged only ARC-021/SD-004; SD-045 was registered the same day, and its own `functional_restatement` cites this paper as a primary biological warrant, so the tag is corrected per the claim_ids-accuracy rule. Direction unchanged (supports). Raises SD-045 literature_confidence only -- experimental_confidence stays 0, this promotes nothing.

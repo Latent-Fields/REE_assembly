@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-06-13_sd_045_sequence_chunk_start_stop_jin2010",
+  "timestamp_utc": "2026-06-13T20:13:51Z",
+  "claim_ids_tested": ["SD-045"],
+  "source": {
+    "title": "Start/stop signals emerge in nigrostriatal circuits during sequence learning",
+    "authors": ["Xin Jin", "Rui M Costa"],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09263",
+    "url": "https://doi.org/10.1038/nature09263"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Nature primary single-unit/circuit study (PMID 20651684, PMC3477867). In a self-paced operant task, mice learning to perform a particular action sequence developed nigrostriatal neural activity that specifically signalled the INITIATION or TERMINATION of each sequence. The start/stop activity emerged with learning, was action-specific, and did not reflect interval timing, movement speed, or action value; genetically altering striatal circuit function disrupted the development of this activity and selectively impaired sequence learning. This is the direct empirical substrate for the start/stop bracketing SD-045's chunk cache depends on -- stronger and more mechanistic than the Graybiel 2008 review it complements. Confidence 0.84: very high source quality and a near-verbatim mapping onto SD-045's (state-signature -> chunk -> outcome-signature) bracketed unit; modest transfer risk (rodent motor sequence vs REE grid-world cognitive action).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The start/stop signals are demonstrated for over-trained motor action sequences in mice; whether the same bracketing machinery brackets abstract / cognitive 'chunks' (e.g. 'forage at this location' as a unit) is a plausible but untested extrapolation.",
+    "Start/stop activity EMERGED only after substantial sequence learning. REE's short episodes (200-500 steps) may not accumulate enough repetition to surface a chunk-bracketing signature, which is a real design constraint on any V3 pull-forward of SD-045.",
+    "The paper localises the start/stop signal to nigrostriatal circuits broadly; it does not resolve the dorsolateral-vs-dorsomedial striatal split that SD-045 assumes when it places the chunk cache specifically in the ARC-021 dorsolateral-loop slot."
+  ],
+  "tags": ["sd_045", "action_policy_decomposition", "action_chunking", "sequence_learning", "task_bracketing", "nigrostriatal", "start_stop_signals", "basal_ganglia"],
+  "mapping": {
+    "source_claim_statement": "During learning of a self-paced action sequence, neurons in nigrostriatal circuits develop activity that specifically signals the initiation or the termination of the sequence. This start/stop activity emerges with learning, is specific to particular actions, and does not reflect interval timing, movement speed, or action value. Disrupting striatal circuit function disrupts the emergence of start/stop activity and selectively impairs sequence learning.",
+    "ree_translation": "SD-045 posits an action-chunk cache that stores frequently-traversed action sequences as cached lookups, gated by task-bracketing-analogue start/end signals and executable as a unit without re-rolling through E2+CEM. Jin & Costa give the biological warrant that such start/stop bracketing signals are (a) real, (b) learned rather than innate, (c) dissociable from value and timing, and (d) causally necessary for sequence learning. This grounds the gating mechanism SD-045 names (chunk start/stop signals indexed by a start-state signature and an expected-outcome signature) in direct circuit-level evidence, not just review-level synthesis.",
+    "mapping_caveat": "The evidence is rodent motor-sequence learning under heavy over-training. SD-045 needs the same primitive at REE's more variable, shorter-horizon, cognitive-action granularity, where chunks must be context-conditional rather than fixed-trigger. The paper warrants the EXISTENCE and learnability of start/stop bracketing; it does not warrant that a small dictionary-style cache is the right computational instantiation, nor that REE episode lengths suffice to induce it.",
+    "source_context": "In-vivo single-unit recording in freely behaving mice performing a self-paced lever-press operant sequence task, combined with genetic (striatal NMDA-receptor) manipulation to test causal necessity."
+  },
+  "confidence_components": {
+    "source_quality": 0.93,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.32,
+    "notes": "Source quality very high (Nature primary data, canonical Jin & Costa start/stop result, causal manipulation included). Mapping fidelity high: start/stop bracketing maps directly onto SD-045's chunk-cache gating signals. Transfer risk modest -- rodent motor sequence to REE cognitive grid-world action, plus the over-training requirement that REE's short episodes may not satisfy."
+  }
+}

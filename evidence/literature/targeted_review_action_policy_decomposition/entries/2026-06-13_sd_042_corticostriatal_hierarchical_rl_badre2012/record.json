@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_policy_decomposition",
+  "entry_id": "2026-06-13_sd_042_corticostriatal_hierarchical_rl_badre2012",
+  "timestamp_utc": "2026-06-13T20:13:51Z",
+  "claim_ids_tested": ["SD-042"],
+  "source": {
+    "title": "Mechanisms of hierarchical reinforcement learning in cortico-striatal circuits 2: evidence from fMRI",
+    "authors": ["David Badre", "Michael J Frank"],
+    "year": 2012,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhr117",
+    "url": "https://doi.org/10.1093/cercor/bhr117"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Cerebral Cortex fMRI study (PMID 21693491, PMC3278316), companion to the Frank & Badre 2011 computational model. Provides empirical human evidence that distinct cortico-striatal circuits learn hierarchical structure at distinct levels of policy abstraction -- contextual representations in rostral frontal cortex gate representations in caudal frontal cortex, with reinforcement learning operating at each level. This is the biology-before-formal-definitions warrant the OBJ-ABS-8 node requires for SD-042: it shows that a biological substrate genuinely learns and represents temporally/contextually nested policy abstraction in cortico-striatal loops, which is the neural precondition for an option-style library. Confidence 0.72 (deliberately below the chunking entries): the fMRI evidence is for LEVELS-of-policy-abstraction and gating, not for the Sutton-Precup-Singh option TRIPLE (initiation set / termination function / internal policy) per se, so the formal construct SD-042 imports is warranted at the architecture level but not validated component-by-component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The fMRI evidence validates that cortico-striatal circuits gate contextual representations at nested levels of abstraction; it does NOT directly evidence the three formal components of an option (initiation set, termination function, internal policy). SD-042 imports those from the RL formalism, so the biological warrant covers the hierarchy, not the option triple itself.",
+    "The analysis re-uses the Badre, Kayser & D'Esposito 2010 task via a model-based reanalysis; the abstraction levels are defined by the experimenters' policy hierarchy rather than discovered by the agent. How the brain DISCOVERS reusable option boundaries from experience -- the same open question Botvinick 2009 flags -- remains unaddressed.",
+    "Mapping fidelity is bounded by REE's gridworld: with 4 actions and short episodes there is little genuine hierarchical depth for an option library to compress, so the substrate stays V4-gated on a richer environment (tool use / social coordination / hierarchical task structure) regardless of the biological warrant."
+  ],
+  "tags": ["sd_042", "action_policy_decomposition", "options_framework", "hierarchical_rl", "corticostriatal", "rostro_caudal_pfc", "policy_abstraction", "biology_before_formal_definitions"],
+  "mapping": {
+    "source_claim_statement": "The frontal lobes are organized hierarchically such that more rostral frontal regions modulate cognitive control in caudal regions. A neural circuit model in which contextual representations in rostral frontal cortex influence the striatal gating of representations in caudal frontal cortex, with reinforcement learning operating at each level, predicts fMRI signatures that are confirmed: there is evidence for an individual cortico-striatal circuit performing reinforcement learning of hierarchical structure at a specific level of policy abstraction, consistent with hierarchical control emerging from nested cortico-striatal circuits at different levels of abstraction.",
+    "ree_translation": "SD-042 imports the Sutton-Precup-Singh (1999) options formalism -- a discrete codebook of named, reusable temporally-extended subroutines. Per the project's biology-before-formal-definitions rule, a formal RL construct must carry a biological warrant before its substrate is built. Badre & Frank supply it: human cortico-striatal loops demonstrably learn and represent policy at nested levels of abstraction via striatal gating, which is the substrate an option library would inhabit. Together with Botvinick, Niv & Barto 2009 (the framework anchor, now tagged SD-042 in this same directory) this discharges OBJ-ABS-8's named 'options-formalism check': the hierarchical-RL-in-cortico-striatal-loops claim is empirically grounded, so SD-042 is not a free-floating formalism.",
+    "mapping_caveat": "This is the deliberately weaker arm of the SD-042 grounding. The fMRI warrants nested policy-abstraction learning in cortico-striatal circuits; it does NOT validate the option triple (initiation set / termination function / internal policy) as the brain's actual representational format, nor does it show how option boundaries are discovered from experience. SD-042 should be read as biologically licensed at the architecture level (a hierarchy-learning substrate exists) but with its specific formal instantiation still a design choice to be tested in V4, not a fact read off the biology.",
+    "source_context": "Human fMRI, model-based reanalysis of a hierarchical reinforcement-learning task (abstract action rule discovery), with the latent hypothesis-state estimates drawn from the companion Frank & Badre 2011 'mixture of experts' computational model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high (Cereb Cortex, model-driven fMRI, paired with a published computational model). Mapping fidelity moderate-and-bounded: warrants nested policy-abstraction learning in cortico-striatal loops but not the option triple itself -- exactly the biology-before-formal-definitions caveat the node flags. Transfer risk moderate (human abstract-rule task to REE gridworld; the gridworld lacks the hierarchical depth that makes options load-bearing). Confidence held to 0.72 to reflect that the formalism, not the hierarchy, is the under-warranted part."
+  }
+}
