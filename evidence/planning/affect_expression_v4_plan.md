@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Candidate-differentiated affect, expression-as-action-geometry, anti-collapse, compulsion-risk (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [MECH-359, MECH-360, MECH-361, MECH-364, MECH-355, ARC-088, MECH-369, MECH-370, MECH-362, SD-045, Q-059, Q-063]
   sibling_plans: [behavioral_diversity_isolation, goal_pipeline, arc_062_rule_apprehension, sleep_substrate]
   roadmap_note: >
@@ -136,12 +136,12 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-369, MECH-370, SD-045, Q-063]
-      depends_on: ["affect_expression_v4:AE-2"]
+      unblocks_claims: [MECH-370, SD-045, Q-063]
+      depends_on: ["affect_expression_v4:AE-2", "affect_expression_v4:AE-10"]
       cross_plan_link:
         - "commitment_closure"
         - "sleep_substrate"
-      blocking_on: "MECH-369 needs a slow-modulator-class distinction (value-INDEPENDENT decommit-friction/threshold authority) not yet built; MECH-370 needs the composed multi-term readout to exist; the answer to Q-063 (value-driven persistence vs field-state stickiness) cannot be adjudicated until that substrate exists."
+      blocking_on: "AE-10 -- MECH-369's value-INDEPENDENT slow decommit-friction/engagement-release modulator substrate (now owned by node AE-10, 2026-06-13) must be built before the compulsion cluster composes on top of it; MECH-370 needs the composed multi-term readout to exist; the answer to Q-063 (value-driven persistence vs field-state stickiness) cannot be adjudicated until that substrate exists."
       readiness_gate:
         - "MECH-369 most naturally AMENDS the slow-modulator layer (SD-037 orexin-analog gain cluster) with a NEW decommit-friction authority channel -- distinct from SD-037 (reweights z_harm/gates SD-012, no loop-release authority), MECH-268 (fast dACC PE urgency, not slow), MECH-106 (value-driven threshold, whereas MECH-369 is value-INDEPENDENT). Sits alongside SD-036 (GABA decay), MECH-186/187/188 (5-HT gain), SD-048 (inflammatory/allostatic harm-stream bias)"
         - "MECH-370 composes terms REE already represents separately: loop_reinforcement ~ SD-045 + ARC-071; threat_salience ~ harm stream/MECH-268; residue_persistence ~ IMPL-005; decommit_friction ~ ARC-016 + MECH-342 + SD-034; slow_modulatory_state ~ MECH-369/SD-037/SD-036 -- the five exist but are never composed into one diagnosable signal"
@@ -212,7 +212,28 @@ closure_plan:
         concretises the still-open AE-7 'no owning roadmap node' planning gap (left for a
         separate planning decision). status in_progress (not done) because that no-owning-node
         gap and the AE-7 substrate decision remain.
-      completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaces a planning gap: AE-7's 'slow-modulator-class distinction' (MECH-369) is referenced as a blocker but owns no roadmap node. Off V3 closure path; promotes nothing."
+      completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaced a planning gap -- AE-7's 'slow-modulator-class distinction' (MECH-369) was referenced as a blocker but owned no roadmap node; RESOLVED 2026-06-13 (user-approved) by registering node AE-10 below + amending MECH-369 in claims.yaml with the Aston-Jones&Cohen 2005 LC-NE adaptive-gain grounding/substrate-home decision. Off V3 closure path; promotes nothing."
+    - id: "affect_expression_v4:AE-10"
+      title: "Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction MECH-369 needs) -- AE-7 prerequisite"
+      phase: 3
+      status: blocked
+      blocker_class: v3_substrate
+      severity: high
+      owner_exq: null
+      unblocks_claims: [MECH-369]
+      depends_on: ["affect_expression_v4:AE-2"]
+      cross_plan_link:
+        - "commitment_closure"
+        - "sleep_substrate"
+      blocking_on: "The value-INDEPENDENT slow decommit-friction / loop-release authority channel does not exist: the V3 slow-modulator layer (SD-037 orexin-analog gain cluster) is present but carries NO release authority -- it reweights z_harm and gates SD-012 drive->z_goal seeding only. The substrate to build is the missing gain channel; gated on an explicit version/routing decision (DO NOT build in V3 -- a probe before the channel exists would be vacuous, cf. AE-7 and the play-mode cluster)."
+      readiness_gate:
+        - "BIOLOGY GROUNDED (AE-9, 2026-06-13): Aston-Jones & Cohen 2005 LC-NE adaptive gain is the value-INDEPENDENT slow broadly-projecting engagement/release modulator anchor (lit_conf 0.56, evidence_direction MIXED). POLARITY CAVEAT carried into the build: tonic LC-NE drives DISENGAGEMENT; compulsive stickiness is the OPPOSITE pole (gain stuck in exploitation / failure to enter disengagement) -- the anchor grounds the modulator CLASS and form, NOT the stickiness polarity, which is the build's free parameter to instantiate and falsify"
+        - "ADOPTED SUBSTRATE HOME: an LC-NE-style ADAPTIVE-GAIN channel AMENDING the SD-037 slow-modulator cluster with explicit loop-RELEASE / decommit-friction authority -- distinct from SD-037 (z_harm reweight / drive-seeding, no release authority), MECH-268 (fast dACC PE urgency, not slow), MECH-106 (value-driven threshold, whereas this is value-INDEPENDENT). Sits alongside SD-036 (GABA decay), MECH-186/187/188 (5-HT gain), SD-048 (inflammatory/allostatic harm-stream bias)"
+        - "V3 PULL-FORWARD condition exists ONLY on monostrategy surfacing in EXQ-495 successors (per the MECH-369/SD-045 claim text); default V4 -- do not pull forward without that routing + an explicit version decision"
+        - "ARC-088 distinctness rule applies: this is a DISTINCT slow-modulator stream (its own learning target / gating condition = value-independent loop-release authority); it may share consumers (commitment gating, residue, offline consolidation) but must NOT be merged into the value/threshold scalar (that would re-collapse MECH-369 onto MECH-106)"
+        - "PRECISION GUARDRAIL (carried from MECH-369): LC-NE grounds the slow-modulator CLASS; the Nagarajan microglial Ca2+ anchor is a FAST switch -- do NOT reduce compulsion to inflammation or import a fast mechanism as the slow modulator"
+      last_updated: 2026-06-13
+      completion_note: "AE-10 gives MECH-369's value-independent slow decommit-friction / engagement-release modulator its own owning roadmap node (the 'no owning node' gap AE-9 surfaced). It is the substrate PRIMITIVE the compulsion cluster (AE-7: MECH-370 composed readout / SD-045 chunk-cache / Q-063 discriminator) composes on top of -- AE-7 now depends_on AE-10. Biology now grounded (Aston-Jones&Cohen 2005 LC-NE adaptive gain, AE-9 lit-pull) and the SD-037-cluster adaptive-gain substrate home adopted in claims.yaml MECH-369. blocker_class v3_substrate because the build is an enrichment of the V3 SD-037 slow-modulator layer (a new loop-release gain channel), but it stays implementation_phase v4 / substrate_conditional: DO NOT build in V3 until an explicit version decision (and the monostrategy-surfacing pull-forward trigger) fires. PROMOTES NOTHING."
 ---
 # Candidate-differentiated affect, expression, anti-collapse, compulsion-risk -- V4 Roadmap
 
@@ -263,7 +284,8 @@ nodes out of the V3 closure percentage.
 | candidate-gradient episode schema | AE-4 | MECH-361 | V4 | AE-1 built; amends MECH-261 content schema; MECH-094 provenance |
 | soothing modulator | AE-5 | MECH-355 | V4-social | V4 other-agent substrate (OBJ-5); MECH-219/SD-012/SD-032e stable |
 | laughter discharge + crying analogue | AE-6 | MECH-364, Q-059 | V4/V5 | E3 regime-load readout (ARC-016 check); social substrate for Q-059 |
-| compulsion-risk substrate | AE-7 | MECH-369, MECH-370, SD-045, Q-063 | V4 | slow-modulator decommit-friction channel (SD-037 cluster); SD-034/INV-004/006 firewall |
+| slow decommit-friction modulator substrate | AE-10 | MECH-369 | V4 | enrich SD-037 slow-modulator layer with a value-independent loop-release gain channel; grounded by Aston-Jones&Cohen 2005 LC-NE adaptive gain (AE-9) |
+| compulsion-risk cluster (composes on AE-10) | AE-7 | MECH-370, SD-045, Q-063 | V4 | AE-10 built; composed readout (MECH-370); SD-034/INV-004/006 firewall |
 | developmental sparsification | AE-8 | MECH-362, Q-057 | V4 (compass) | amends ARC-019; affect-specific bridge is the new piece |
 
 ---
@@ -329,3 +351,23 @@ nodes out of the V3 closure percentage.
   i.e. whether mature affect arbitration uses convergent-weak-channel summation
   vs single-strong-channel authority. MECH-362 names the general principle but
   no claim states the affect-specific application.
+- **2026-06-13** -- AE-9 biology-grounding lit-pull DONE (8 entries under
+  `evidence/literature/targeted_review_per_candidate_affect`; lit_conf only,
+  PROMOTES NOTHING). MECH-359 0.762 (Padoa-Schioppa&Assad 2006 + Rich&Wallis
+  2016), MECH-360 0.71 (Niv 2007 + Dael/Mortillaro/Scherer 2012), MECH-364 0.67
+  (Seth 2013 + Critchley&Garfinkel 2017, frame-level only), MECH-369 0.56 MIXED
+  (Aston-Jones&Cohen 2005 LC-NE adaptive gain, polarity caveat), ARC-088 0.65
+  (Pessoa 2008). `lit_pulls_owed` 12->8.
+- **2026-06-13** -- Registered node **AE-10** (user-approved follow-up to AE-9):
+  the value-INDEPENDENT slow decommit-friction / engagement-release modulator
+  substrate MECH-369 needs now has its own owning roadmap node, closing the
+  'no owning node' planning gap AE-9 surfaced. AE-7 (compulsion cluster
+  MECH-370/SD-045/Q-063) now `depends_on` AE-10 and MECH-369 moved out of AE-7's
+  `unblocks_claims` into AE-10's. **claims.yaml MECH-369 amended** (not a new
+  claim ID): adopted the LC-NE-style adaptive-gain / engagement-release framing
+  (SD-037-cluster amendment carrying explicit loop-release authority) as the
+  substrate home, with the Aston-Jones&Cohen 2005 grounding + polarity caveat;
+  added `roadmap_node: affect_expression_v4:AE-10`. NO promotion/demotion --
+  exp_conf stays 0, MECH-369 stays candidate / v4 / substrate_conditional; the
+  build still requires an explicit version decision (DO NOT build in V3). Mirror
+  in `docs/architecture/slow_modulatory_state_and_compulsive_loops.md#mech-369`.

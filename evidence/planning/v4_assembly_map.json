@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-13T18:58:44Z",
+  "generated_at": "2026-06-13T19:58:37Z",
   "totals": {
-    "nodes": 99,
+    "nodes": 100,
     "plans": 13,
     "by_class": {
       "v3_gate": 3,
-      "v3_substrate": 12,
+      "v3_substrate": 13,
       "sibling_node": 36,
       "lit_gap": 2,
       "deferred": 8
@@ -16,10 +16,10 @@
       "plan": "affect_expression_v4",
       "file": "affect_expression_v4_plan.md",
       "title": "Candidate-differentiated affect, expression-as-action-geometry, anti-collapse, compulsion-risk (V4 roadmap)",
-      "n_nodes": 9,
+      "n_nodes": 10,
       "counts": {
         "v3_gate": 0,
-        "v3_substrate": 2,
+        "v3_substrate": 3,
         "sibling_node": 4,
         "lit_gap": 0,
         "deferred": 1
@@ -111,7 +111,7 @@
         "deferred": 1
       },
       "frontier": [],
-      "lit": "partial"
+      "lit": "done"
     },
     {
       "plan": "inference_belief_state_v4",
@@ -266,6 +266,16 @@
       "blocking_on": "MECH-364 needs an E3 conflict/constraint-LOAD readout (regime-level, not the per-tick MECH-110 tag-clear); Q-059 (crying analogue + laughter repair-vs-damage adjudication) needs a V4/V5 social substrate (laughter is not monotone-affiliative)."
     },
     {
+      "plan": "affect_expression_v4",
+      "node": "affect_expression_v4:AE-10",
+      "class": "v3_substrate",
+      "severity": "high",
+      "unblocks_claims": [
+        "MECH-369"
+      ],
+      "blocking_on": "The value-INDEPENDENT slow decommit-friction / loop-release authority channel does not exist: the V3 slow-modulator layer (SD-037 orexin-analog gain cluster) is present but carries NO release authority -- it reweights z_harm and gates SD-012 drive->z_goal seeding only. The substrate to build is the missing gain channel; gated on an explicit version/routing decision (DO NOT build in V3 -- a probe before the channel exists would be vacuous, cf. AE-7 and the play-mode cluster)."
+    },
+    {
       "plan": "autobiographical_memory_v4",
       "node": "autobiographical_memory_v4:ABM-5",
       "class": "v3_substrate",
@@ -401,26 +411,6 @@
     }
   ],
   "lit_sweep": [
-    {
-      "plan": "hippocampal_planning_v4",
-      "file": "hippocampal_planning_v4_plan.md",
-      "node": "hippocampal_planning_v4:HPL-9",
-      "status": "in_progress",
-      "lit_pull_status": "partial",
-      "unblocks_claims": [
-        "MECH-147",
-        "MECH-148",
-        "MECH-149",
-        "MECH-207",
-        "ARC-040"
-      ],
-      "harvest": [
-        "L1 DG pattern separation (Sakon & Suzuki 2019; Leutgeb 2007) -- AND harvest the completion-set: hilar mossy-cell feedback inhibition + CA3 recurrent-collateral pattern COMPLETION are co-constitutive of the separation property; building a DG expansion layer without the inhibitory/completion partners will not yield the claimed property",
-        "L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)",
-        "L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)"
-      ],
-      "blocked_lb": 5
-    },
     {
       "plan": "object_reasoning_abstraction_v4",
       "file": "object_reasoning_abstraction_v4_plan.md",

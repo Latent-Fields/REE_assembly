@@ -1,6 +1,6 @@
 # V4 Assembly Map -- cross-plan blocker taxonomy + lit-pull sweep
 
-Generated: 2026-06-13T18:58:44Z by `scripts/generate_v4_assembly_map.py`
+Generated: 2026-06-13T19:58:37Z by `scripts/generate_v4_assembly_map.py`
 
 Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_gate | v3_substrate | sibling_node | lit_gap | deferred) and grounding `lit_pull_status` (none | active | partial | done). **Generation v4/v5 only -- the V3 closure % is untouched.** Warn-only planning aid; regenerate after editing any `*_v4_plan.md`.
 
@@ -14,18 +14,18 @@ Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_g
 | `lit_gap` | biology grounding owed before build | run the /lit-pull (see sweep) |
 | `deferred` | explicitly off the critical path | nothing now; revisit on trigger |
 
-**Totals:** 99 nodes across 13 plans -- v3_gate=3, v3_substrate=12, sibling_node=36, lit_gap=2, deferred=8. Only 15 of the blocked nodes are gated on the V3 side; the rest are intra-V4 sequencing.
+**Totals:** 100 nodes across 13 plans -- v3_gate=3, v3_substrate=13, sibling_node=36, lit_gap=2, deferred=8. Only 16 of the blocked nodes are gated on the V3 side; the rest are intra-V4 sequencing.
 
 ## Per-plan blocker taxonomy
 
 | plan | nodes | v3_gate | v3_sub | sibling | lit_gap | defer | grounding |
 |------|------:|-------:|------:|-------:|-------:|-----:|-----------|
-| affect_expression_v4 | 9 | 0 | 2 | 4 | 0 | 1 | done |
+| affect_expression_v4 | 10 | 0 | 3 | 4 | 0 | 1 | done |
 | autobiographical_memory_v4 | 9 | 0 | 1 | 4 | 0 | 1 | partial |
 | developmental_dmn_v4 | 8 | 0 | 1 | 4 | 1 | 0 | none |
 | drives_motivation_v4 | 5 | 1 | 0 | 1 | 0 | 1 | done |
 | goal_deliberation_v4 | 8 | 1 | 2 | 2 | 0 | 1 | done |
-| hippocampal_planning_v4 | 9 | 1 | 0 | 6 | 0 | 1 | partial |
+| hippocampal_planning_v4 | 9 | 1 | 0 | 6 | 0 | 1 | done |
 | inference_belief_state_v4 | 7 | 0 | 3 | 0 | 1 | 0 | done |
 | memory_lifecycle_v4 | 8 | 0 | 0 | 3 | 0 | 0 | partial |
 | object_reasoning_abstraction_v4 | 8 | 0 | 0 | 5 | 0 | 1 | partial |
@@ -34,7 +34,7 @@ Roll-up over the V4/V5 forward roadmaps. Reads each node's `blocker_class` (v3_g
 | plasticity_neuromodulation_v4 | 7 | 0 | 1 | 1 | 0 | 2 | none |
 | self_model_v4 | 8 | 0 | 1 | 3 | 0 | 0 | done |
 
-## V3-side bottleneck register (15)
+## V3-side bottleneck register (16)
 
 The nodes that gate V4 from the V3 side -- closing these is what actually moves the roadmap. Everything classed `sibling_node` ultimately waits behind one of these (or behind a lit-pull).
 
@@ -45,6 +45,7 @@ The nodes that gate V4 from the V3 side -- closing these is what actually moves 
 | hippocampal_planning_v4 | `hippocampal_planning_v4:HPL-1` | v3_gate | load-bearing | MECH-163 | MECH-163 is implementation_phase: v3 and held under hold_pending_v3_substrate (9 lit supports, 0 genuine exp entries). The VTA/hippocampal model-based system (goal-see... |
 | affect_expression_v4 | `affect_expression_v4:AE-1` | v3_substrate | load-bearing | MECH-359 | behavioral_diversity_isolation:GAP-A (cand_world_pairwise_dist=0.0 -- candidate trajectories collapse to a single regime, so there is no cross-candidate basis to attac... |
 | affect_expression_v4 | `affect_expression_v4:AE-6` | v3_substrate | medium | MECH-364,Q-059 | MECH-364 needs an E3 conflict/constraint-LOAD readout (regime-level, not the per-tick MECH-110 tag-clear); Q-059 (crying analogue + laughter repair-vs-damage adjudicat... |
+| affect_expression_v4 | `affect_expression_v4:AE-10` | v3_substrate | high | MECH-369 | The value-INDEPENDENT slow decommit-friction / loop-release authority channel does not exist: the V3 slow-modulator layer (SD-037 orexin-analog gain cluster) is presen... |
 | autobiographical_memory_v4 | `autobiographical_memory_v4:ABM-5` | v3_substrate | high | MECH-368,Q-062 | Requires an online world-model/policy WRITE channel to gate; the goal_relevance input depends on a competitive z_goal (goal_pipeline GAP-4), which is the main reason M... |
 | developmental_dmn_v4 | `developmental_dmn_v4:DMN-3` | v3_substrate | load-bearing | ARC-090 | The V3 play cluster (ARC-049/050, MECH-194-199, INV-058/060) is substrate_blocked: no play_frame_tag, no synthetic-signal seeding, no bilateral frame in ree-v3 code. A... |
 | goal_deliberation_v4 | `goal_deliberation_v4:GDL-2` | v3_substrate | load-bearing | SD-033e | Gated on the V3 operating_mode primitive being behaviourally exercisable: SD-032a discrete operating_mode + MECH-259 switch threshold landed (V3-EXQ-446/455 PASS), but... |
@@ -56,19 +57,11 @@ The nodes that gate V4 from the V3 side -- closing these is what actually moves 
 | plasticity_neuromodulation_v4 | `plasticity_neuromodulation_v4:PLW-3` | v3_substrate | load-bearing | MECH-398 | MECH-333 open-phase mechanism is planned-but-unbuilt (epistemic_category substrate_conditional 2026-06-10; only the plastic-channel-injection option landed, the F-grad... |
 | self_model_v4 | `self_model_v4:SELF-6` | v3_substrate | high | MECH-214 | CausalGridWorldV2 conflates location with reward, so the MECH-214 addiction failure mode (wanting fires on an E1-unrepresented satisfaction state) is structurally invi... |
 
-## Literature-pull sweep order (7 pulls owed)
+## Literature-pull sweep order (6 pulls owed)
 
 The first pass of assembly work. Each grounding node's /lit-pull must (a) ground its registered claims AND (b) harvest the co-constitutive circuit partners the mechanism presupposes -- so building the substrate does not omit jointly-necessary components. In-progress pulls are listed first (finish them); the rest are ordered by how much load-bearing blocked work the plan's grounding unblocks.
 
-### 1. hippocampal_planning_v4 -- `hippocampal_planning_v4:HPL-9` [partial; gates 5 load-bearing/high blocked nodes]
-
-- **Ground:** MECH-147, MECH-148, MECH-149, MECH-207, ARC-040
-- **Pull + completion-set harvest:**
-  - L1 DG pattern separation (Sakon & Suzuki 2019; Leutgeb 2007) -- AND harvest the completion-set: hilar mossy-cell feedback inhibition + CA3 recurrent-collateral pattern COMPLETION are co-constitutive of the separation property; building a DG expansion layer without the inhibitory/completion partners will not yield the claimed property
-  - L2 pure time cells (Omer/Las/Ulanovsky 2022; Eichenbaum 2014) + theta-gamma phase-coding partner; L3 CA1 match-mismatch novelty (Lisman & Grace 2005) + VTA dopaminergic loop partner (MECH-075)
-  - L4 ACh permissive write-gate (Sinclair 2021; Hasselmo 2006) + septohippocampal cholinergic projection source; L5 dorsal/ventral segregation (Fanselow & Dong 2010; Strange 2014)
-
-### 2. object_reasoning_abstraction_v4 -- `object_reasoning_abstraction_v4:OBJ-ABS-8` [partial; gates 5 load-bearing/high blocked nodes]
+### 1. object_reasoning_abstraction_v4 -- `object_reasoning_abstraction_v4:OBJ-ABS-8` [partial; gates 5 load-bearing/high blocked nodes]
 
 - **Ground:** SD-040, SD-045, SD-042
 - **Pull + completion-set harvest:**
@@ -77,7 +70,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - L-theta theta-abstraction-scaling (Gupta 2012, Bellmund 2018, Constantinescu 2016) -- DONE: targeted_review_theta_abstraction_scaling (grounds MECH-299 / MECH-300)
   - REMAINING DEBT: biology-before-formal-definitions check on any V4 SD/MECH that operationalises options as a formal Sutton-Precup-Singh construct before its substrate is built (per project rule feedback_biology_before_formal_definitions)
 
-### 3. autobiographical_memory_v4 -- `autobiographical_memory_v4:ABM-9` [partial; gates 3 load-bearing/high blocked nodes]
+### 2. autobiographical_memory_v4 -- `autobiographical_memory_v4:ABM-9` [partial; gates 3 load-bearing/high blocked nodes]
 
 - **Ground:** ARC-085, MECH-365, MECH-366, MECH-368, MECH-361
 - **Pull + completion-set harvest:**
@@ -85,7 +78,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - L2 source/provenance monitoring (Johnson, Hashtroudi & Lindsay 1993 source-monitoring framework; reality-monitoring) for the ARC-085 provenance fields + the imagined-vs-experienced viewpoint label (MECH-366)
   - L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning
 
-### 4. memory_lifecycle_v4 -- `memory_lifecycle_v4:MEM-8` [partial; gates 2 load-bearing/high blocked nodes]
+### 3. memory_lifecycle_v4 -- `memory_lifecycle_v4:MEM-8` [partial; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** MECH-391, INV-080
 - **Pull + completion-set harvest:**
@@ -93,7 +86,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - Consolidation-faults primary source VERIFIED 2026-06-09 (arXiv:2605.12978, UIUC + Tsinghua); secondary arXiv:2505.16067 NOT yet re-verified -- pull via /lit-pull if it becomes load-bearing for a registered claim
   - Adjacent corroboration to fold if a consolidation claim registers: SSGM arXiv:2603.11768 (drift taxonomy) + survey arXiv:2603.07670 / arXiv:2605.06716
 
-### 5. object_representation_v4 -- `object_representation_v4:OBJ-6` [partial; gates 2 load-bearing/high blocked nodes]
+### 4. object_representation_v4 -- `object_representation_v4:OBJ-6` [partial; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** ARC-080, ARC-006
 - **Pull + completion-set harvest:**
@@ -101,7 +94,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - L2 object permanence (Piaget; Baillargeon; Spelke core-knowledge; Kellman & Spelke 1983) -- ACTIVE 2026-06-04
   - L3 affordances (Gibson); L4 self-as-object (Gallagher/Botvinick); L5 ToM (Woodward/Csibra) -- follow when their pillars are scheduled
 
-### 6. developmental_dmn_v4 -- `developmental_dmn_v4:DMN-8` [none; gates 3 load-bearing/high blocked nodes]
+### 5. developmental_dmn_v4 -- `developmental_dmn_v4:DMN-8` [none; gates 3 load-bearing/high blocked nodes]
 
 - **Ground:** ARC-090, MECH-380, MECH-383
 - **Pull + completion-set harvest:**
@@ -109,7 +102,7 @@ The first pass of assembly work. Each grounding node's /lit-pull must (a) ground
   - Per project rule feedback_biology_before_formal_definitions: each pillar that instantiates a formal developmental concept needs a biology lit-pull BEFORE its substrate is built
   - Schedule per-pillar: private-speech/inner-speech (MECH-380/381), label-as-perceptual-control (MECH-383), self-distancing (MECH-382) -- follow when their pillars are scheduled
 
-### 7. plasticity_neuromodulation_v4 -- `plasticity_neuromodulation_v4:PLW-2` [none; gates 2 load-bearing/high blocked nodes]
+### 6. plasticity_neuromodulation_v4 -- `plasticity_neuromodulation_v4:PLW-2` [none; gates 2 load-bearing/high blocked nodes]
 
 - **Ground:** MECH-398, ARC-093
 - **Pull + completion-set harvest:**

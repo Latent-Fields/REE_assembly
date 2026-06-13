@@ -62,6 +62,26 @@ drive-seeding, no release authority), and MECH-106 (value-driven threshold). Mos
 extending the SD-037 slow-modulator cluster with a decommit-friction authority channel.
 `depends_on`: SD-037, SD-036, MECH-268, SD-034, ARC-016, MECH-342, SD-048.
 
+**Biology grounding + substrate-home decision (2026-06-13, AE-9 lit-pull, user-approved).** The
+value-INDEPENDENT slow-modulator *class* is now anchored by **Aston-Jones & Cohen 2005** (*Annu Rev
+Neurosci* 28:403–50, [doi:10.1146/annurev.neuro.28.061604.135709](https://doi.org/10.1146/annurev.neuro.28.061604.135709))
+— LC-NE adaptive gain, a slow broadly-projecting modulator whose gain sets task *engagement vs
+disengagement/release* decoupled from any specific option's value (lit entry
+`targeted_review_per_candidate_affect/2026-06-13_mech_369_lc_ne_adaptive_gain_astonjones2005`,
+`literature_confidence` 0.56, `evidence_direction` **mixed**). **Polarity caveat:** tonic LC-NE drives
+*disengagement* — the opposite pole to compulsive stickiness — so the anchor grounds the modulator
+*class and form*, not the stickiness polarity (compulsion reads as a *failure to enter* the
+disengagement mode / gain stuck in exploitation; a free parameter for the build to instantiate and
+falsify). **Decision:** adopt the LC-NE-style **adaptive-gain / engagement-release** framing as the
+substrate home — an SD-037-cluster amendment carrying *explicit loop-release / decommit-friction
+authority* (distinct from SD-037's `z_harm`-reweight/drive-seeding gain, which has none). This
+substrate is now owned by roadmap node **`affect_expression_v4:AE-10`** (previously a "no owning node"
+gap); AE-7 (the compulsion cluster MECH-370/SD-045/Q-063) depends on AE-10. Raises
+`literature_confidence` only — `experimental_confidence` stays 0; MECH-369 stays `candidate` /
+`implementation_phase: v4` / `substrate_conditional`; the build still requires an explicit version
+decision (do **not** build in V3). LC-NE grounds the slow-modulator class; do **not** conflate it with
+the *fast* Nagarajan microglial Ca²⁺ switch.
+
 ### MECH-370 — Composed compulsion-risk readout {#mech-370}
 
 `compulsion_risk = f(loop_reinforcement, threat_salience, residue_persistence, decommit_friction,
