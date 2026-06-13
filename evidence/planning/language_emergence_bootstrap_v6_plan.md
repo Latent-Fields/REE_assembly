@@ -4,7 +4,7 @@ closure_plan:
   generation: v6
   title: "Language emergence + bootstrap from social ecology (V6 LINGUISTIC umbrella)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-009, INV-003, INV-007, MECH-010, MECH-014, MECH-308]
   sibling_plans: [grammar_primitive_mining_v6, language_affect_adaptor_v6, multi_agent_ecology_v5, mirror_modelling_other_self_v5, fast_empathy_v5, ethics_as_coherence_v5, object_representation_v4, self_model_v4]
   roadmap_note: >
@@ -34,7 +34,7 @@ closure_plan:
     - id: "language_emergence_bootstrap_v6:LANG-1"
       title: "Bootstrap-not-bolt-on architectural commitment (the load-bearing spine: language emerges from social ecology, is never imported)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [INV-003, ARC-009]
@@ -44,8 +44,8 @@ closure_plan:
         - "No substrate prerequisite -- this is a DESIGN COMMITMENT, the spine of the whole plan, already carried by ACTIVE claims INV-003 (language emerges as functional self-representation, not a bolt-on) + ARC-009 (language is an emergent coordination/compression layer, NOT a value source / rule system / optimiser)"
         - "Positive form: language MUST emerge from making communication the cheapest way for already-social organisms to coordinate attention/action/warning/request/help/refusal/teaching; it is never a separate module bolted onto cognition (the engine is the social ecology; the grammar/LLM scaffold is a turbocharger -- grammar_primitive_mining_v6)"
         - "Prohibition the commitment implies: do NOT import transformer attention or LLM architecture into REE because language is useful; do NOT reward arbitrary bitstrings unless grounded, reusable, action-relevant (docs/architecture/language.md ARC-009; docs/thoughts/2026-06-05 cautions)"
-      last_updated: 2026-06-10
-      completion_note: "ARC-009 + INV-003 are ACTIVE established design (NOT reassignment candidates). This node restates them as the V6 spine: every node below is a specialisation of 'language is grounded emergent coordination, not bolted-on syntax'. It is the linguistic-tier analogue of fast_empathy_v5's no-empathy-scalar prohibition -- an architectural commitment about HOW language must arise, testable as a negative (any design that bolts a language module on, or imports LLM weights as the value layer, violates it)."
+      last_updated: 2026-06-13
+      completion_note: "ARC-009 + INV-003 are ACTIVE established design (NOT reassignment candidates). This node restates them as the V6 spine: every node below is a specialisation of 'language is grounded emergent coordination, not bolted-on syntax'. It is the linguistic-tier analogue of fast_empathy_v5's no-empathy-scalar prohibition -- an architectural commitment about HOW language must arise, testable as a negative (any design that bolts a language module on, or imports LLM weights as the value layer, violates it). Reconciled 2026-06-13: claim(s) INV-003, ARC-009 registered in claims.yaml; this design commitment/prohibition is the deliverable and is landed -- downstream nodes remain blocked on their substrate."
     - id: "language_emergence_bootstrap_v6:LANG-2"
       title: "Enabling-conditions register: the pre-linguistic substrate inventory communication needs before it can bootstrap"
       phase: 1

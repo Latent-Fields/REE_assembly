@@ -30,7 +30,7 @@ closure_plan:
     - id: "inference_belief_state_v4:INF-1"
       title: "Name + route the inference layer (V3 architecture note, no substrate)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-091"]
@@ -40,8 +40,8 @@ closure_plan:
         - "V3 ALREADY HAS the ingredients: ARC-004 (L-space), ARC-007 (path completion), ARC-018 (rollout + viability mapping), MECH-022 (hypothesis injection), MECH-033 (E2 kernel chaining) -- all implementation_phase: v3"
         - "DECISION this node forces: register the umbrella ARC claim that NAMES inference as a distinct integrative function (bridge, not organ) and pins its depends_on to the ingredient claims above; V3 scope is name+route ONLY, no belief-state code"
         - "Guard from intake section 14: do not explode V3 scope; 603k midline is routing PRESSURE, not a demand for full implementation"
-      last_updated: 2026-06-10
-      completion_note: "Intake section 7 sketches the umbrella ARC. The umbrella distinguishes inference (select/combine/apply rules under uncertainty) from rule apprehension (supply candidate regularities). This is the parent every node below specialises. Registered as candidate, not promoted -- naming changes no V3 behaviour."
+      last_updated: 2026-06-13
+      completion_note: "Intake section 7 sketches the umbrella ARC. The umbrella distinguishes inference (select/combine/apply rules under uncertainty) from rule apprehension (supply candidate regularities). This is the parent every node below specialises. Registered as candidate, not promoted -- naming changes no V3 behaviour. Reconciled 2026-06-13: claim(s) ARC-091 registered in claims.yaml; this design commitment/prohibition is the deliverable and is landed -- downstream nodes remain blocked on their substrate."
     - id: "inference_belief_state_v4:INF-2"
       title: "Inferred state must not collapse to perceived observation (invariant)"
       phase: 1

@@ -4,7 +4,7 @@ closure_plan:
   generation: v6
   title: "Abstract / relational / compositional reasoning at symbolic scale"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-009, INV-003, INV-007, ARC-063, MECH-011, MECH-299, MECH-300, SD-040]
   sibling_plans:
     - grammar_primitive_mining_v6
@@ -41,7 +41,7 @@ closure_plan:
     - id: "abstract_relational_reasoning_v6:ARR-1"
       title: "Two-levels-of-abstraction distinction (the load-bearing scoping claim)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-102"]
@@ -51,8 +51,8 @@ closure_plan:
         - "No substrate prerequisite -- this is a DESIGN/SCOPING claim, registrable now as the spine of the plan: REE has TWO distinct abstraction layers and they must not be conflated"
         - "SUBSTRATE-level abstraction (V4, owned by object_reasoning_abstraction_v4): theta-packaged units (MECH-299), cognitive-map traversal at the active abstraction level (MECH-300), type-encoder prototypes (SD-040), action chunks / options. This is abstraction the agent COMPUTES OVER but cannot yet NAME or recombine arbitrarily."
         - "SYMBOLIC-scale abstraction (V6, this plan): compositional generalisation, analogy, propositional/relational inference over NAMED primitives. The recombination operator is the grammar/symbol layer, not the substrate."
-      last_updated: 2026-06-10
-      completion_note: "The first thing this plan must assert: symbolic reasoning is NOT just more of the V4 substrate abstraction. ARC-009 already commits language as a 'symbolic mediation and coordination layer'; this claim names the consequent reasoning capacity (recombination over symbols) as a distinct level. Like ARC-080's type-vs-token fork for objects, this is the scoping decision every node below inherits. Cheapest node; registrable now as the documentation spine."
+      last_updated: 2026-06-13
+      completion_note: "The first thing this plan must assert: symbolic reasoning is NOT just more of the V4 substrate abstraction. ARC-009 already commits language as a 'symbolic mediation and coordination layer'; this claim names the consequent reasoning capacity (recombination over symbols) as a distinct level. Like ARC-080's type-vs-token fork for objects, this is the scoping decision every node below inherits. Cheapest node; registrable now as the documentation spine. Reconciled 2026-06-13: claim(s) ARC-102 registered in claims.yaml; this design commitment/prohibition is the deliverable and is landed -- downstream nodes remain blocked on their substrate."
     - id: "abstract_relational_reasoning_v6:ARR-2"
       title: "Compositional generalisation over named primitives (recombine grounded symbols to novel combinations)"
       phase: 2

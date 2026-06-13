@@ -4,7 +4,7 @@ closure_plan:
   generation: v6
   title: "Language trust, deception, failure modes, and institutions"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [INV-007, ARC-009, INV-003, MECH-012, MECH-013, MECH-015, MECH-031, INV-029, ARC-012]
   sibling_plans: [ethics_as_coherence_v5, relational_harm_moral_semantics_v5, mirror_modelling_other_self_v5, fast_empathy_v5, multi_agent_ecology_v5]
   roadmap_note: >
@@ -34,7 +34,7 @@ closure_plan:
     - id: "language_trust_deception_institutions_v6:LTI-1"
       title: "Language-cannot-override-harm as an explicit GUARD mechanism (operationalise INV-007)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["INV-007", "ARC-104"]
@@ -44,8 +44,8 @@ closure_plan:
         - "INV-007 ('Language cannot override embodied harm sensing') is an ACTIVE universal invariant -- it is asserted but NOT yet realised as an architectural guard a design can violate. This node converts the invariant into an explicit mechanism: symbolic input may CONDITION priors but the harm/ethics substrate retains veto authority over any language-mediated update"
         - "No substrate prerequisite for the DESIGN CLAIM (registrable now as the spine of the plan, like ARC-012's 'E3 needs no explicit ethical cost term'); the guard is a negative architectural commitment -- there must be NO path by which symbolic/linguistic content overwrites or suppresses a harm signal"
         - "Realisation gate (the test that the guard holds) is V6: needs a language channel (ARC-009) feeding the world model AND the non-linguistic harm substrate (SD-011 dual-nociceptive streams, the V5 ethics_as_coherence + relational_harm_moral_semantics tiers) so a false harm claim can be cross-checked against embodied harm and world-model prediction"
-      last_updated: 2026-06-10
-      completion_note: "The CENTRAL safety contribution of the language-trust layer. INV-007 already exists as an invariant; this node makes it a guard mechanism the rest of the plan presupposes. trust_and_deception.md: 'symbolic input is informative but not authoritative' -- the guard is the architectural form of that sentence. Like ARC-012 it is testable as what must NOT exist (no language->harm-suppression path)."
+      last_updated: 2026-06-13
+      completion_note: "The CENTRAL safety contribution of the language-trust layer. INV-007 already exists as an invariant; this node makes it a guard mechanism the rest of the plan presupposes. trust_and_deception.md: 'symbolic input is informative but not authoritative' -- the guard is the architectural form of that sentence. Like ARC-012 it is testable as what must NOT exist (no language->harm-suppression path). Reconciled 2026-06-13: claim(s) INV-007, ARC-104 registered in claims.yaml; this design commitment/prohibition is the deliverable and is landed -- downstream nodes remain blocked on their substrate."
     - id: "language_trust_deception_institutions_v6:LTI-2"
       title: "Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)"
       phase: 2

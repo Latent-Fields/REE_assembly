@@ -4,7 +4,7 @@ closure_plan:
   generation: v6
   title: "Grammar & LLMs as primitive-mining scaffolds (mine, do NOT import architecture)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-009, INV-003, INV-007, ARC-063, ARC-062, ARC-059, MECH-278, MECH-373]
   sibling_plans:
     - multi_agent_ecology_v5
@@ -41,7 +41,7 @@ closure_plan:
     - id: "grammar_primitive_mining_v6:GRAM-1"
       title: "Mine-not-import discipline: grammar/LLMs are a primitive MINE, never an architecture to transfer (load-bearing prohibition)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-100", "INV-003", "INV-007"]
@@ -52,8 +52,8 @@ closure_plan:
         - "Positive form: grammar is a fossil record of recurrent cognitive relations (agent, action, object, context, cue, outcome, cause, exception, self, other, rule, belief); for each grammatical primitive the method asks which PRE-LINGUISTIC REE substrate it binds to, and a cut is grounded ONLY if it changes perception / attention / action / memory / rule-availability / coordination"
         - "Consistency check against ACTIVE language claims: ARC-009 (language as symbolic-mediation/coordination LAYER over grounded substrate, not the origin of cognition), INV-003 (language emerges as functional self-representation, not a bolt-on), INV-007 (language cannot override embodied harm sensing) -- the prohibition is the corollary of all three; it does not contradict or re-scope them"
         - "Consistency check against the REE_convergence standing rule: external frameworks are mined-not-imported; this is the language/LLM instance of that rule"
-      last_updated: 2026-06-10
-      completion_note: "The CENTRAL contribution of the 2026-06-05 grammar/LLM intake (docs/thoughts/2026-06-05_Grammar_and_LLMS_as_V5_primitive-mining_scaffolds.md). Like ARC-012 (E3 needs no explicit ethical cost term) and the fast-empathy no-scalar prohibition (fast_empathy_v5:EMP-1), this is an architectural_commitment about what must NOT exist: there must be NO imported transformer block and NO 'language model' treated as a cognitive authority inside REE. Testable as a negative commitment -- any design that imports LLM architecture or rewards arbitrary ungrounded bitstrings violates it. Registrable now; it constrains every node below."
+      last_updated: 2026-06-13
+      completion_note: "The CENTRAL contribution of the 2026-06-05 grammar/LLM intake (docs/thoughts/2026-06-05_Grammar_and_LLMS_as_V5_primitive-mining_scaffolds.md). Like ARC-012 (E3 needs no explicit ethical cost term) and the fast-empathy no-scalar prohibition (fast_empathy_v5:EMP-1), this is an architectural_commitment about what must NOT exist: there must be NO imported transformer block and NO 'language model' treated as a cognitive authority inside REE. Testable as a negative commitment -- any design that imports LLM architecture or rewards arbitrary ungrounded bitstrings violates it. Registrable now; it constrains every node below. Reconciled 2026-06-13: claim(s) ARC-100, INV-003, INV-007 registered in claims.yaml; this design commitment/prohibition is the deliverable and is landed -- downstream nodes remain blocked on their substrate."
     - id: "grammar_primitive_mining_v6:GRAM-2"
       title: "Grammar->substrate mapping table (the mining artifact): per primitive, which substrate, which version, grounded-or-merely-named"
       phase: 1
