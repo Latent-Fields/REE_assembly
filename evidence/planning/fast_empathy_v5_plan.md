@@ -4,7 +4,7 @@ closure_plan:
   generation: v5
   title: "Fast empathy as stream-binding (NOT a module)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-010, MECH-031, MECH-112, SD-011, MECH-183, MECH-191, MECH-359, MECH-360]
   sibling_plans: [mirror_modelling_other_self_v5, self_model_v4, object_representation_v4]
   roadmap_note: >
@@ -29,7 +29,7 @@ closure_plan:
     - id: "fast_empathy_v5:EMP-1"
       title: "No-empathy-scalar architectural prohibition (the load-bearing prohibition)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-094"]
@@ -39,12 +39,12 @@ closure_plan:
         - "No substrate prerequisite -- this is a DESIGN PROHIBITION, registrable now as the spine of the whole plan: there must be NO empathy_enabled flag and NO empathy_score scalar in any REE version"
         - "Positive form: fast empathy MUST emerge from binding/routing the basic motivational-affective streams (liking, wanting, suffering, threat, relief, frustration, curiosity, attachment/proximity, fatigue/cost, agency/control, prediction-error) across self -> object -> other; it is never a primitive of its own"
         - "Consistency check against the affect register: docs/architecture/affect_primitives.md (SD-011 dual-nociceptive; the three-primitive harm register) is the V3 seed of the stream taxonomy this prohibition extends into the social domain"
-      last_updated: 2026-06-10
-      completion_note: "The CENTRAL contribution of the 2026-05-04 fast-empathy intake: the prohibition is the claim. It is testable as a negative architectural commitment (any design introducing an empathy scalar violates it) and it constrains every node below. Like ARC-012 (E3 needs no explicit ethical cost term) it is an architectural_commitment about what must NOT exist."
+      last_updated: 2026-06-13
+      completion_note: "The CENTRAL contribution of the 2026-05-04 fast-empathy intake: the prohibition is the claim. It is testable as a negative architectural commitment (any design introducing an empathy scalar violates it) and it constrains every node below. Like ARC-012 (E3 needs no explicit ethical cost term) it is an architectural_commitment about what must NOT exist. Reconciled 2026-06-13: claim ARC-094 registered in claims.yaml (candidate, substrate_conditional); the design prohibition is the deliverable and is landed, downstream binding nodes remain blocked on the V5 social substrate."
     - id: "fast_empathy_v5:EMP-2"
       title: "Open, extensible affect-stream taxonomy (handles, not a final ontology)"
       phase: 1
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: ["ARC-095"]
@@ -54,8 +54,8 @@ closure_plan:
         - "V3 SEED present: affect_primitives.md already registers a three-way harm dissociation (SD-011 z_harm_s / z_harm_a) -- a partial register, not yet the ~11-stream social-extensible taxonomy"
         - "The taxonomy must permit later split / merge / rename; the stream names are HANDLES the binding layer routes, not a frozen ontology"
         - "No substrate gate -- this sharpens the existing register; it is a documentation+claim step, prerequisite to giving EMP-3/EMP-4 a stable vocabulary to bind"
-      last_updated: 2026-06-10
-      completion_note: "Sharpens affect_primitives.md from the V3 harm-only register to an explicitly extensible social register. Deliberately provisional: a frozen taxonomy would re-create the empathy-scalar error one level down. Cheapest node; can land alongside EMP-1 as the documentation pair."
+      last_updated: 2026-06-13
+      completion_note: "Sharpens affect_primitives.md from the V3 harm-only register to an explicitly extensible social register. Deliberately provisional: a frozen taxonomy would re-create the empathy-scalar error one level down. Cheapest node; can land alongside EMP-1 as the documentation pair. Reconciled 2026-06-13: claim ARC-095 registered in claims.yaml (candidate, substrate_conditional); the design prohibition is the deliverable and is landed, downstream binding nodes remain blocked on the V5 social substrate."
     - id: "fast_empathy_v5:EMP-3"
       title: "Stream-binding mechanism: route own motivational-affective streams across the other-model"
       phase: 2
