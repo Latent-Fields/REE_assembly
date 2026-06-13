@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-13T09:48:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_669a_mech329_wanting_first_goal_seeding_20260613T074454Z_v3",
+      "queue_id": "V3-EXQ-669a",
+      "supersedes": "v3_exq_669_mech329_wanting_first_goal_seeding",
+      "claim_ids": ["MECH-329", "MECH-189"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "c4_delayed_sanity=false: the both_delayed POSITIVE/sanity control produced anchor_count=0; all discrimination criteria c1/c2/c3 also false. Discriminative metric (anchor_count, total_writes, p01_writes, p01_mean_complexity) pinned at 0 in every arm. benefit_contacts=1244 and harm_events=4953 byte-identical across all three arms -> manipulation produced zero behavioural divergence.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ordering (MECH-329) and write-formation (MECH-189) claims could not express themselves; no writes fired in any arm",
+        "biological_reference": "clear -- wanting-before-liking (Berridge incentive-salience) + childhood super-ordinal goal formation both have strong existence proofs; neither is a formal-definition import",
+        "prerequisites": "missing -- the Stage-0 forced-feed nursery (scaffolded_sd054_onboarding) that MECH-189's own validation V3-EXQ-588c required is absent from this harness",
+        "implementation": "complete -- MECH-189 SuperOrdinalGoalMemory + write hook landed 2026-06-09; StepHarness calls update_z_goal; substrate wired but unfed",
+        "environment": "wrong harness / too sparse -- ecological InfantCurriculumScheduler hits goal_pipeline:GAP-2 benefit-contact ceiling instead of the scaffolded nursery",
+        "measurement": "misleading (vacuous) -- discriminative metric pinned at 0 in every arm including the positive control; degenerate by construction",
+        "integration": "isolated -- wanting/liking gating has no behavioural authority while z_goal never seeds (identical benefit_contacts confirm)",
+        "scale": "adequate -- 54277 steps/arm; not a budget issue"
+      },
+      "biological_reference": {
+        "closest_mechanism": "mesolimbic-dopamine incentive-salience wanting seeding approach goals before hedonic liking calibration (MECH-329); developmental childhood super-ordinal goal-hierarchy formation under a protected early window (MECH-189)",
+        "dependencies": ["reliable early benefit contact (developmental nursery / caregiver-feeding stage)", "z_goal seeding above the foraging-competence ceiling", "INV-041 childhood prerequisite", "SD-016 cue-indexed ContextMemory"],
+        "is_formal_import": false,
+        "divergence": "none -- the FAIL matches what biology predicts when the nursery/early-contact dependency is absent; it is a discovered prerequisite (positive-negative for the developmental-scaffold dependency), not a falsification of the seeding mechanism",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-669a (MECH-329 wanting-before-liking ordering; MECH-189 super-ordinal write) reclassified non_contributory + substrate_ceiling + pending_retest_after_substrate. Degenerate by construction: anchor_count = total_writes = p01_writes = 0 and p01_mean_complexity = 0.000 in ALL THREE arms including the both_delayed positive/sanity control (c4=false), with byte-identical benefit_contacts (1244) and harm_events (4953) across arms -- the discriminative metric is pinned at 0, so the ordering claim was measured over an empty set. Root cause = goal_pipeline:GAP-2 (the ecological InfantCurriculum harness never reaches self-sustaining benefit contact, z_goal_norm < 0.1, the MECH-189 salience write gate never fires). NOT a falsification of MECH-329 or MECH-189; both stay candidate / confidence 0.0. Retest owed on the scaffolded_sd054_onboarding nursery harness (ready: true 2026-06-11) with a both_delayed anchor_count >= 1 non-vacuity readiness gate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "scaffolded_sd054_onboarding is already ready: true (readiness_flip_2026_06_11, V3-EXQ-603n PASS). The gap is the experiment's harness choice (InfantCurriculumScheduler instead of the ready nursery), not a missing substrate. No substrate write needed; route to /queue-experiment."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_after_substrate_per_claim": ["MECH-329", "MECH-189"],
+      "narrow_supports_flag": false,
+      "demotion": "none",
+      "claim_status_change": "none",
+      "learning_extracted": [
+        "MECH-329/MECH-189 cannot be evaluated on the ecological InfantCurriculum harness while goal_pipeline:GAP-2 is open; the FAIL is a discovered/confirmed dependency (positive-negative) for the developmental-nursery prerequisite the claims' own design names.",
+        "Degenerate-by-construction: c4_delayed_sanity=false means the positive control is itself on the floor; the run carries no information about wanting-vs-liking ordering.",
+        "Harness mismatch is the actionable defect: 669a uses InfantCurriculumScheduler, not the ready scaffolded_sd054_onboarding forced-feed nursery (the only validated z_goal-seeding path above the GAP-2 ceiling; cf. the MECH-189 substrate validation V3-EXQ-588c)."
+      ],
+      "routing": "queue-experiment",
+      "retest_spec": "Re-issue the wanting_first vs liking_first vs both_delayed ordering test on the scaffolded_sd054_onboarding curriculum (Stage-0 forced-feed nursery -> wean) so super-ordinal writes fire, under a new EXQ letter (same scientific question, harness fix). Pre-register a non-vacuity readiness gate: the both_delayed positive control must produce anchor_count >= 1 AND total_writes >= 1 BEFORE C1/C2/C3 ordering criteria are scored; below that, self-route substrate_not_ready_requeue rather than emit a FAIL (the V3-EXQ-588c readiness discipline).",
+      "granularity_debt_recurrence": {
+        "prior_autopsy_on_target": "failure_autopsy_V3-EXQ-588_2026-05-19 (MECH-189)",
+        "is_second_or_later": true,
+        "different_failure_signature": false,
+        "claim_synthesis_recommended": false,
+        "note": "588 = super-ordinal write path did not exist yet; 669a = path exists (landed 2026-06-09) but is starved by the same upstream goal_pipeline:GAP-2 z_goal-seeding ceiling. One structural property across two build stages, not a coarse claim hiding finer mechanisms. No /claim-synthesis."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "cross_references": [
+    "goal_pipeline_plan.md GAP-2 (foraging-competence / benefit-contact ceiling -- root cause)",
+    "failure_autopsy_V3-EXQ-588_2026-05-19 (prior MECH-189 autopsy)",
+    "failure_autopsy_V3-EXQ-514m_2026-06-11 (sibling vacuous-criterion C_WL=0 precedent)",
+    "V3-EXQ-642 (sibling vacuous-criterion z_block=0 precedent)",
+    "substrate_queue.json scaffolded_sd054_onboarding (ready: true; retest target)",
+    "V3-EXQ-588c / ree-v3/CLAUDE.md MECH-189 (forced-feed nursery validation precedent)"
+  ]
+}
