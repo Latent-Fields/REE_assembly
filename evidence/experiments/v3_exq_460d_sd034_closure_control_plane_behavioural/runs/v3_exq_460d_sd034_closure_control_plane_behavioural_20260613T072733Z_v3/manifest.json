@@ -1,0 +1,119 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460d_sd034_closure_control_plane_behavioural",
+  "run_id": "v3_exq_460d_sd034_closure_control_plane_behavioural_20260613T072733Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-13T07:27:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-034": "weakens",
+    "MECH-260": "supports",
+    "MECH-261": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "residual_closure_open",
+    "readiness_route": "residual_closure_open",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "commitment_and_completion_engaged",
+        "description": "ON arm committed (total_beta_elevated > 0) AND reached completions (n_sequence_completions > 0) on >= 2/3 guard-passing seeds -- so closure HAD an opportunity to fire.",
+        "control": "fraction of guard-passing seeds with ON-arm commitment AND sequence completions.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_trigger_available_count",
+        "description": "the 642-lesson readiness gate: ON-arm n_closures > 0 REACHABLE on the positive control (the same count statistic the C1 load-bearing criterion routes on), measured among completion-engaged guard seeds, on >= 2/3. Below floor -> substrate_not_ready_requeue: the env-completion hook is wired but the closure done-token still does not fire = closure-detector-trigger-availability unmet, NEVER a false weakens.",
+        "control": "ARM_CLOSURE_ON n_closures > 0 (with the Leg-A env-completion hook + Leg-C trained rule_bias_head both enabled).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_n_closures",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_beta_release",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_nogo_installed",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C4_off_holds_latch_never_closes",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure on every env sequence_complete tick.",
+      "leg_b_decommit_hold_ticks": 5,
+      "leg_c_trained_rule_bias_head": true
+    },
+    "closure_trigger_gate": {
+      "definition": "ON-arm n_closures > 0 reachable on >= 2/3 completion-engaged guard seeds. The 642-lesson gate the *c cohort lacked (it checked env-completion-availability, not closure-trigger-availability).",
+      "min_fraction": 0.6666666666666666,
+      "c1_min_closures": 1,
+      "c3_min_nogo": 1
+    }
+  }
+}
