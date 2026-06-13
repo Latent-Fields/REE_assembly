@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Self-Model Integration (finish self-attribution; self-as-object cutover)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-13
   scope_claims: [ARC-081, MECH-214, MECH-215, SD-030, INV-064]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -141,7 +141,7 @@ closure_plan:
       title: "Biology grounding completion (self-as-object body-ownership, agency/forward-model self, interoceptive self lit-pulls + completion-set harvest)"
       phase: 2
       status: open
-      lit_pull_status: none
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-214, MECH-215, SD-030, INV-064, ARC-081]
@@ -152,7 +152,7 @@ closure_plan:
         - "L1 body-ownership (Botvinick & Cohen 1998 rubber-hand; Tsakiris 2010 neurocognitive model) + L2 sense-of-agency / efference-copy self (Blakemore & Frith; forward-model self-prediction) -- the direct anchors for SD-030 E2 self-forward-model and MECH-215"
         - "L3 interoceptive self (Craig 2009; Seth) for the MECH-214 wanting-on-an-E1-unrepresented-satisfaction-state failure mode; harvest the insula partner + TPJ self/other boundary as the cross-link to the V5 social tier"
       last_updated: 2026-06-13
-      completion_note: "Self_model had NO grounding node; self-as-object integration imports body-ownership / agency / interoception constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). Cross-references OBJ-6 L4 to avoid duplication; tracks the integration-specific strands + completion-set harvest (insula interoceptive-self, TPJ self/other boundary). Off V3 closure path; promotes nothing."
+      completion_note: "Self_model had NO grounding node; self-as-object integration imports body-ownership / agency / interoception constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). Cross-references OBJ-6 L4 to avoid duplication; tracks the integration-specific strands + completion-set harvest (insula interoceptive-self, TPJ self/other boundary). Off V3 closure path; promotes nothing. LIT-PULL DONE 2026-06-13 (targeted_review_self_model_integration, 6 entries): L1 body-ownership = Botvinick & Cohen 1998 (rubber-hand, ARC-081/SD-030, 0.61) + Tsakiris 2010 (neurocognitive model, ARC-081/SD-030/MECH-215/INV-064, 0.66 -- harvests right-TPJ self/other + right-posterior-insula ownership partners); L2 sense-of-agency/efference-copy = Blakemore/Wolpert/Frith 2002 (comparator model, SD-030/MECH-215, 0.70 -- strongest mapping) + Frith/Blakemore/Wolpert 2000 (parietal predicted-state vs prefrontal intention dissociation, SD-030/MECH-215, 0.68); L3 interoceptive self = Craig 2009 (AIC re-represents interoception, MECH-214/MECH-215, 0.60 -- anterior-insula partner) + Seth 2013 (interoceptive inference = MECH-214 satisfaction-referent-as-modelled-quantity, MECH-214/MECH-215/INV-064, 0.64). lit_conf raised SD-030 0.831 / MECH-215 0.828 / INV-064 0.725 / ARC-081 0.718 / MECH-214 0.71; ALL exp_conf 0.0, plausible_unproven -- PROMOTES NOTHING. Did NOT duplicate OBJ-6 L4 self-as-object (Gallagher/Botvinick object-file) -- that remains OBJ-6's tracking. COMPLETION-SET PARTNERS surfaced proposal-first (NOT auto-registered): (a) insula as the interoceptive-self locus -- two independent strands converge (Tsakiris right-posterior-insula ownership + Craig AIC interoceptive awareness); (b) right-TPJ self/other boundary as the V5 social-tier cross-link; (c) candidate design note that the self-model is ONE predictive-comparator form over TWO streams (motor-self SD-030 + interoceptive-self MECH-214), per Seth's unification. See decision log 2026-06-13."
 ---
 # Self-Model Integration -- V4 Forward Roadmap
 
@@ -251,3 +251,36 @@ each DR step, exactly which V3-era prerequisites must land first.
   self-attribution DD) is `superseded_by: [MECH-256, SD-029]` since
   2026-04-18; the self-attribution mechanism continuity lives on in MECH-256,
   so SELF-2's readiness gate cites MECH-256/SD-031, not the superseded SD-003.
+- **2026-06-13** -- SELF-8 biology-grounding /lit-pull executed
+  (`evidence/literature/targeted_review_self_model_integration`, 6 entries).
+  L1 body-ownership (Botvinick & Cohen 1998; Tsakiris 2010), L2
+  sense-of-agency/efference-copy (Blakemore/Wolpert/Frith 2002;
+  Frith/Blakemore/Wolpert 2000), L3 interoceptive self (Craig 2009; Seth 2013).
+  lit_conf raised on all five scope claims (SD-030 0.831, MECH-215 0.828,
+  INV-064 0.725, ARC-081 0.718, MECH-214 0.71); **exp_conf unchanged at 0.0 on
+  every claim -- `plausible_unproven`, promotes nothing.** Deliberately did
+  NOT duplicate `object_representation_v4:OBJ-6` L4 self-as-object
+  (Gallagher/Botvinick object-file framing) -- that grounding remains OBJ-6's
+  to track; this node added only the integration-specific strands. lit_pull_status
+  none -> done. **Completion-set partners surfaced PROPOSAL-FIRST (not
+  registered)** -- to be adjudicated by the user before any claims.yaml edit:
+  1. *Insula as the interoceptive-self locus.* Two independent strands of the
+     pull converge on insular cortex -- Tsakiris's right posterior insula
+     (subjective body-ownership) and Craig's anterior insula (interoceptive
+     awareness / the basis of feelings). Candidate: a MECH-214 grounding note
+     naming the interoceptive self-channel's biological anchor, or a small
+     interoceptive-self-channel substrate item. NOT a new INV.
+  2. *Right-TPJ self/other boundary as the V5 social-tier cross-link.*
+     Tsakiris's incorporeability test (right TPJ) is the seat of the
+     self/other distinction the eventual social pillar (ARC-082 others-as-object
+     / DEV-NEED-021) will need. Candidate: a cross-plan link note from this
+     plan / object_representation_v4:OBJ-5 to a future V5 social grounding node;
+     INV-064's self-before-others sequencing already gates it.
+  3. *One comparator, two streams (design note).* Seth 2013 unifies the motor-self
+     (SD-030 predicted-vs-observed self-state) and the interoceptive-self
+     (MECH-214 satisfaction-state inference) under one predictive-comparator
+     form. Candidate: a design note (not a claim) that the V4 self-model should
+     instantiate a single comparator architecture over both streams rather than
+     two unrelated subsystems -- a cleaner, more biologically defensible SD-030
+     + MECH-214 build order. Falsifiable revert: if the two streams need
+     materially different comparator dynamics, split them.

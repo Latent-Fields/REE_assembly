@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_mech_214_interoceptive_inference_embodied_self_seth2013",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["MECH-214", "MECH-215", "INV-064"],
+  "source": {
+    "title": "Interoceptive inference, emotion, and the embodied self",
+    "authors": ["Anil K. Seth"],
+    "year": 2013,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2013.09.007",
+    "url": "https://doi.org/10.1016/j.tics.2013.09.007"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Seth's interoceptive-inference framework recasts subjective feelings as inferences from a generative (predictive) model of the causes of interoceptive afferents -- i.e. the satisfaction/affective state is a MODELLED quantity, not a raw read-out. This is the closest existing theory to MECH-214's claim that a goal's satisfaction referent must be E1-representable (model-representable) for the goal to be coherent, and it unifies interoceptive selfhood with the same predictive-coding machinery SD-030/MECH-215 use on the motor side. Held at 0.64: a strong conceptual unification but a framework, not a REE-specific result; INV-064 mapping is weak.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the generative model of interoceptive causes is impoverished, the satisfaction state a goal targets is not inferable -- wanting fires on a state the agent cannot model, the MECH-214 failure mode stated in predictive-coding terms.",
+    "Body ownership and emotion are recast as the SAME interoceptive-inference process -- so a self-model that infers exteroceptive self-state but not interoceptive self-state would dissociate agency-capacity from affective grounding (the MECH-215 capacity-vs-affect gap), and the rubber-hand illusion has an interoceptive-precision modulator.",
+    "Selfhood is developmentally built from interoceptive inference; a system that scores viability (E3) before its interoceptive generative model is differentiated evaluates against an undefined affective subject -- the structural shape of INV-064's lower-layer-before-higher-layer prerequisite (weak/analogical)."
+  ],
+  "tags": ["mech-214", "mech-215", "inv-064", "interoception", "interoceptive-inference", "predictive-coding", "embodied-self", "active-inference", "wanting-liking", "l3-interoceptive"],
+  "mapping": {
+    "source_claim_statement": "Subjective feeling states (emotions) arise from actively-inferred generative (predictive) models of the causes of interoceptive afferent signals; this 'interoceptive inference' generalises appraisal theories and underlies the experience of body ownership and conscious selfhood in health and neuropsychiatric illness.",
+    "ree_translation": "MECH-214 requires a goal's satisfaction referent to be E1-representable; Seth makes that referent a MODELLED quantity -- the satisfaction/affective state is the output of a generative model over interoceptive causes, so 'E1-representable' becomes 'inferable by the interoceptive generative model'. When that model is impoverished, the satisfaction state cannot be inferred and wanting decouples from its hedonic grounding (the MECH-214 addiction/anhedonia mapping). The same predictive-coding form unifies this with SD-030/MECH-215 on the motor side: one comparator architecture, two streams (motor-self and interoceptive-self).",
+    "mapping_caveat": "A theoretical/computational framework, not a REE experiment; it strengthens the CONCEPTUAL coherence of the MECH-214 channel (and ties the self-model's interoceptive and motor halves under one predictive-coding roof) but tests nothing in REE. The INV-064 tag is weak -- Seth notes selfhood DEVELOPS from interoceptive inference, which rhymes with the maturational-prerequisite logic, but does not test the E1->E2->E3 necessity claim. Free-energy/active-inference framing is adjacent to but not identical with REE's E1/E2/E3 decomposition.",
+    "source_context": "Theoretical cognitive neuroscience; predictive-coding / active-inference account of interoception, emotion, and selfhood."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (influential TICS framework, foundational for interoceptive predictive processing). Mapping fidelity good for MECH-214 (the satisfaction referent as a modelled/inferable quantity is almost a restatement of E1-representability) and decent for MECH-215; weak for INV-064 (developmental remark, not the necessity claim). Transfer risk low-moderate: predictive-coding self maps onto REE's generative E1/E2 at the framework level."
+  }
+}

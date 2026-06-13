@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_arc_081_rubber_hand_body_ownership_botvinick1998",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["ARC-081", "SD-030"],
+  "source": {
+    "title": "Rubber hands 'feel' touch that eyes see",
+    "authors": ["Matthew Botvinick", "Jonathan Cohen"],
+    "year": 1998,
+    "venue": "Nature",
+    "doi": "10.1038/35784",
+    "url": "https://doi.org/10.1038/35784"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.61,
+  "confidence_rationale": "Canonical, massively replicated psychophysical demonstration that the felt boundary of the bodily self is a recalibratable inference over multisensory inputs, not a fixed given. This is strong direct support for the ARC-081 stance that z_self is a constructed, malleable object-representation rather than a privileged primitive. Confidence is held below 0.7 because the mapping from a perceptual ownership illusion to REE's latent z_self plasticity is an analogy at the representational level, not a measurement of REE's actual comparator.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If z_self were an unrevisable body-state primitive rather than an inferred object, synchronous visuo-tactile stimulation of an external object could not capture ownership -- the rubber-hand effect shows the self-boundary is re-inferred from current evidence, exactly what ARC-081 requires and what a fixed-latent z_self would forbid.",
+    "The illusion requires temporally congruent multisensory input; asynchronous stroking abolishes it -- i.e. ownership is gated by a prediction/observation match, which is precisely the SD-030 comparator signature and fails when the match is broken."
+  ],
+  "tags": ["arc-081", "sd-030", "body-ownership", "rubber-hand-illusion", "multisensory-integration", "self-model", "l1-body-ownership"],
+  "mapping": {
+    "source_claim_statement": "Synchronous visual and tactile stimulation of a fake hand induces the subjective experience that the fake hand is one's own and that touch is felt at the seen location, with proprioceptive drift of the felt hand position toward the rubber hand.",
+    "ree_translation": "The bodily self (z_self in REE) is not a fixed body-state primitive but a representation continually re-inferred from multisensory congruence -- which is the substrate ARC-081 needs for z_self to become a token-keyed object-file SLOT, and which SD-030 operationalises as a self-stream comparator that referral of ownership depends on (a match between predicted and observed self-relevant signals).",
+    "mapping_caveat": "This is a perceptual ownership illusion in healthy adults, not a measurement of a forward-model residual. It supports the GENERAL claim that the self-boundary is inferred and recalibratable; it does NOT by itself establish that REE's specific E2 self-forward-model architecture (SD-030 residual_self = z_self_observed - E2_self(z_self_{t-1}, a_actual)) is the correct mechanism. The drift is over body-PART ownership, not the whole stateful self-model SELF-1 builds.",
+    "source_context": "Human psychophysics; visuo-tactile ownership illusion; questionnaire + proprioceptive drift measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.40,
+    "notes": "Source quality near-ceiling (canonical Nature letter, thousands of replications across paradigms). Mapping fidelity moderate: the illusion grounds the inferred/recalibratable nature of the bodily self (ARC-081) cleanly but maps onto SD-030's specific forward-model comparator only by analogy. Transfer risk moderate: healthy-adult perceptual illusion -> REE latent self-model is a representational-level transfer, not a same-mechanism transfer."
+  }
+}

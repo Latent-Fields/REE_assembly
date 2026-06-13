@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_sd_030_motor_awareness_control_comparator_frith2000",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["SD-030", "MECH-215"],
+  "source": {
+    "title": "Abnormalities in the awareness and control of action",
+    "authors": ["Christopher D. Frith", "Sarah-Jayne Blakemore", "Daniel M. Wolpert"],
+    "year": 2000,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2000.0734",
+    "url": "https://doi.org/10.1098/rstb.2000.0734"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The fuller review behind the 2002 TICS framework, with the added value of a localisation claim: representations of the CURRENT and PREDICTED state of the motor system are in parietal cortex, while representations of INTENDED movements are in prefrontal/premotor cortex. This dissociates the predicted-state machinery (SD-030 comparator substrate) from the intention/goal machinery (E3-side), which is exactly the separation REE draws between the self-forward-model and the goal/viability evaluator. Held at 0.68 because the lesion synthesis is correlational and the parietal/prefrontal localisation is coarse relative to REE's z_self/z_goal split.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Phantom-limb and anosognosic movement illusions are driven by motor-command streams in the ABSENCE of sensory confirmation -- a self-model that represents agency from intention alone, with no observed-self to compare against, will hallucinate successful action, the failure SD-030's residual is meant to catch.",
+    "Damage dissociates 'predicted current state' (parietal) from 'intended movement' (prefrontal/premotor); collapsing these into one representation -- as V3 does by running E2 on combined z_gamma with no z_self stream -- removes the distinction agency depends on.",
+    "Delusions of control arise when intention and the felt consequence of action are no longer properly linked: the comparator between intended and achieved self-state has failed, the MECH-215 (2) E2-self-transition prerequisite breaking."
+  ],
+  "tags": ["sd-030", "mech-215", "sense-of-agency", "forward-model", "efference-copy", "parietal", "prefrontal", "phantom-limb", "l2-agency"],
+  "mapping": {
+    "source_claim_statement": "Awareness of action is based on two sources -- sensory signals from skin/muscle and the stream of issued motor commands. Representations of the current and predicted state of the motor system reside in parietal cortex; representations of intended actions in prefrontal/premotor cortex. Lesions dissociate these, producing phantom limbs, anosognosia, utilization behaviour, and delusions of control.",
+    "ree_translation": "The parietal current/predicted-state representation is the substrate of SD-030's z_self forward model (the predicted self-state E2_self emits); the prefrontal/premotor intended-action representation maps to REE's goal/intention side (z_goal -> E3). The paper's central dissociation -- predicted-state machinery separable from intention machinery -- is the biological warrant for keeping the SD-030 self-forward-model distinct from the E3 viability/goal evaluator, and for MECH-215's claim that an E2 self-transition model must exist as the subject of agentive prediction.",
+    "mapping_caveat": "Lesion-and-illusion synthesis, not a mechanistic recording; the parietal/prefrontal localisation is at a far coarser grain than REE's z_self vs z_goal latent split, so the mapping is a functional-architecture analogy. The clinical phenomena are predictions REE should reproduce, not evidence about REE's current substrate. SD-030 remains V4-deferred; literature_confidence only.",
+    "source_context": "Human cognitive neurology review; integrates lesion data (phantom limb, anosognosia, delusions of control) into a forward-model account."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (Phil Trans R Soc B review, PMC1692910; the deeper companion to the 2002 TICS piece). Mapping fidelity good -- the predicted-state-vs-intention dissociation is genuinely informative for REE's self-model/goal separation -- but coarser-grained than the latent architecture, hence below the 2002 entry. Transfer risk low-moderate."
+  }
+}

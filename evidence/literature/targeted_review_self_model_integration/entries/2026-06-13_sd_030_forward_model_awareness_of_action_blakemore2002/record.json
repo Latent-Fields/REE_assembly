@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_sd_030_forward_model_awareness_of_action_blakemore2002",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["SD-030", "MECH-215"],
+  "source": {
+    "title": "Abnormalities in the awareness of action",
+    "authors": ["Sarah-Jayne Blakemore", "Daniel M. Wolpert", "Christopher D. Frith"],
+    "year": 2002,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/s1364-6613(02)01907-1",
+    "url": "https://doi.org/10.1016/s1364-6613(02)01907-1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "The direct conceptual anchor for SD-030: optimal motor control relies on internal representations of the ACTUAL, DESIRED, and PREDICTED states of the limbs/world, and breakdowns in the predicted-vs-actual comparison produce specific agency pathologies (delusions of control, anarchic hand, phantom limbs). This is the forward-model-self architecture SD-030 instantiates as residual_self, and the E2-self-transition half of MECH-215. High mapping fidelity to the mechanism; held at 0.70 because it is a review/framework rather than a single decisive experiment and the human-clinical-to-REE transfer is at the functional-role level.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When the predicted state of the motor system diverges from the actual state beyond the comparator's reach, the action is no longer attributed to the self -- the delusion-of-control / passivity signature, which SD-030 predicts as a self-stream residual exceeding the attribution threshold.",
+    "Awareness of action is built on motor-command (efference) streams, not only sensory feedback; phantom-limb movement illusions arise from the command stream alone -- so a self-model lacking an E2-self forward prediction (efference-copy analogue) cannot represent agency at all, the MECH-215 (2) prerequisite.",
+    "Only certain components of the internal representation reach awareness; impairing the predicted-state component selectively breaks agency while leaving movement intact -- a dissociation a single undifferentiated z_self could not produce."
+  ],
+  "tags": ["sd-030", "mech-215", "sense-of-agency", "efference-copy", "forward-model", "comparator", "delusions-of-control", "l2-agency"],
+  "mapping": {
+    "source_claim_statement": "Motor control and the awareness of action rest on internal representations of the actual, desired, and predicted states of the body and world; a comparison between the predicted and actual sensory consequences of action underwrites the sense of agency, and selective impairment of these components produces anarchic hand, phantom limbs, utilization behaviour, and delusions of control.",
+    "ree_translation": "SD-030's self-stream comparator -- residual_self = z_self_observed - E2_self(z_self_{t-1}, a_actual) -- is the REE instantiation of the predicted-vs-actual comparison this paper makes the basis of agency. The requirement that a PREDICTED self-state (from a forward model driven by the issued action) exist before agency can be felt is the MECH-215 prerequisite that E2 must model how the agent's own actions transform z_self.",
+    "mapping_caveat": "This is a human motor-control / neuropsychiatric framework paper, not an experiment on REE's architecture. It strongly grounds the FORM of the mechanism (forward model + comparator on a self-stream) but does not measure REE's z_self residual; the clinical dissociations (delusions of control) are offered as predictions REE should reproduce, not as evidence that it does. SD-030 is V4-deferred (no clean z_self stream in V3) so this raises literature_confidence only.",
+    "source_context": "Human cognitive neuroscience / neuropsychiatry review; motor control internal-models framework with clinical dissociations."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (canonical TICS framework, foundational for the comparator model of agency). Mapping fidelity is the highest in this pull: the actual/desired/predicted triad maps almost directly onto SD-030's residual and MECH-215's E2-self-transition prerequisite. Transfer risk low-moderate -- a functional-role transfer from human motor self-monitoring to a REE latent comparator."
+  }
+}

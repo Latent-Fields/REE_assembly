@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_mech_214_anterior_insula_interoceptive_awareness_craig2009",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["MECH-214", "MECH-215"],
+  "source": {
+    "title": "How do you feel--now? The anterior insula and human awareness",
+    "authors": ["A. D. (Bud) Craig"],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2555",
+    "url": "https://doi.org/10.1038/nrn2555"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "The canonical statement that the anterior insula re-represents interoceptive state and that this re-representation is the basis of subjective feelings -- the biological seat of the E1-representable satisfaction/affective state MECH-214 requires. Strong source, but mapping fidelity is moderate: Craig describes WHERE and THAT interoception is re-represented, not the REE-specific failure mode (wanting fires on an E1-unrepresented satisfaction state). Held at 0.60.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the satisfaction/homeostatic state a goal aims at is not re-represented in an interoceptive self-channel, there is no felt-feeling against which attainment can be registered -- the MECH-214 wanting-without-grounding failure: pursuit of a proxy whose hedonic/satisfaction referent is never E1-represented.",
+    "Subjective feelings depend on AIC re-representation of body state; a self-model with only exteroceptive z_self (body schema, no interoceptive channel) would predict action capacity yet have no representable satisfaction state -- the MECH-215 capacity-vs-affect gap.",
+    "The AIC's involvement spans craving, homeostatic drives, and decision -- so an agent lacking this channel could pursue goals without the affective evaluation that distinguishes wanting from liking (the addiction-mapping prediction)."
+  ],
+  "tags": ["mech-214", "mech-215", "interoception", "anterior-insula", "interoceptive-self", "satisfaction-state", "wanting-liking", "l3-interoceptive", "completion-set-harvest"],
+  "mapping": {
+    "source_claim_statement": "The anterior insular cortex re-represents interoceptive state (the physiological condition of the body) and this re-representation provides a basis for all subjective feelings and for awareness; it is implicated across homeostatic drives, craving, emotion, and decision-making.",
+    "ree_translation": "Craig's interoceptive re-representation is the biological seat of the E1-representable satisfaction/affective self-state MECH-214 requires: a goal's satisfaction referent must be representable in E1's schema space (here, an interoceptive self-channel) for z_goal to carry semantic hedonic information. Without it, wanting fires on an E1-unrepresented state -- the addiction/anhedonia mapping. The interoceptive self-state is also the affective half of MECH-215's z_self subject.",
+    "mapping_caveat": "A review of insula function in humans, not a test of the REE failure mode. It grounds the EXISTENCE and locus of an interoceptive self-representation (so the MECH-214 channel is biologically real) but says nothing about REE's z_goal/z_self wiring or whether an agent lacking the channel shows the predicted wanting-without-satisfaction pathology -- that remains the V4 DR-14 experiment. The anterior insula is harvested as a completion-set partner (interoceptive-self locus), proposal-first.",
+    "source_context": "Human functional neuroanatomy review; anterior insular cortex, von Economo neurons, interoception and awareness."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (Nat Rev Neurosci, the canonical interoception-awareness review). Mapping fidelity moderate: establishes that an interoceptive self-representation exists and where, but the MECH-214 failure mode (wanting on an unrepresented satisfaction state) is REE-specific and untested here. Transfer risk moderate -- human neuroanatomy to a REE interoceptive-goal channel that V3 does not yet have."
+  }
+}

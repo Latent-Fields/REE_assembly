@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_self_model_integration",
+  "entry_id": "2026-06-13_arc_081_body_ownership_neurocognitive_model_tsakiris2010",
+  "timestamp_utc": "2026-06-13T18:10:23Z",
+  "claim_ids_tested": ["ARC-081", "SD-030", "MECH-215", "INV-064"],
+  "source": {
+    "title": "My body in the brain: a neurocognitive model of body-ownership",
+    "authors": ["Manos Tsakiris"],
+    "year": 2010,
+    "venue": "Neuropsychologia",
+    "doi": "10.1016/j.neuropsychologia.2009.09.034",
+    "url": "https://doi.org/10.1016/j.neuropsychologia.2009.09.034"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "A well-cited neurocognitive model that decomposes body-ownership into exactly the components REE posits for the self-model: a pre-existing stored body model, online multisensory integration modulated by that model, and a referral step that yields the ownership experience -- with a named cortical division of labour (right TPJ incorporeability test, S2 online body representation, posterior parietal/ventral premotor recalibration, right posterior insula subjective ownership). The model-against-internal-model-of-the-body structure is a faithful biological analogue of SD-030's self-comparator and ARC-081's stored self-slot. Held below 0.7 because it is a review/model synthesis (not a single decisive experiment), and the INV-064 ordering mapping is weak.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Body-ownership requires a pre-existing stored model of the body to gate which external objects are even incorporeable; without a prior self-model there is no referral step -- this is the structural prerequisite SELF-1 (stateful z_self) must satisfy before SD-030/MECH-215 can attach, and it fails if z_self is only an instantaneous EMA snapshot.",
+    "Ownership is computed as multisensory input weighted against the internal body model; when the two conflict beyond tolerance, incorporation fails -- a comparator-with-tolerance, matching SD-030's residual gate and failing exactly where the residual exceeds threshold.",
+    "The right posterior insula carries the subjective-ownership signal; if the interoceptive partner is absent the multisensory match can occur without the felt-mine experience -- predicting a dissociation that a purely exteroceptive self-model (no MECH-214 interoceptive channel) would suffer."
+  ],
+  "tags": ["arc-081", "sd-030", "mech-215", "inv-064", "body-ownership", "tpj", "insula", "self-other-boundary", "internal-body-model", "l1-body-ownership", "completion-set-harvest"],
+  "mapping": {
+    "source_claim_statement": "Body-ownership arises from the interaction of current multisensory input with internal models of the body: a stored body model tests incorporeability (right TPJ), an online body representation is maintained (S2), hand-centred coordinates are recalibrated (posterior parietal / ventral premotor), and the subjective experience of ownership is underpinned by the right posterior insula.",
+    "ree_translation": "REE's self-model is a stored z_self (the internal body model) against which incoming self-relevant signals are compared (SD-030 self-stream comparator); the stored-model-precedes-referral structure is the SELF-1 prerequisite (a stateful self before agentive prediction, MECH-215). The right-TPJ incorporeability test is the biological seat of the self/other boundary REE needs for its V5 social tier, and the right-posterior-insula ownership signal is the interoceptive partner that MECH-214 requires for self-state goal content.",
+    "mapping_caveat": "This is a synthesis model of a body-PART ownership phenomenon, not a developmental or agentive-prediction experiment. The INV-064 tag is the weakest: the model has a LAYERED structure (stored model before integration before referral) that rhymes with INV-064's representational-prerequisite logic, but it does NOT test the E1->E2->E3 maturational-necessity claim or the prefrontal-myelination prediction. The TPJ/insula localisations are harvested as completion-set partners (proposal-first), not registered.",
+    "source_context": "Human cognitive neuroscience review; rubber-hand-illusion-derived neurocognitive model with fMRI/lesion localisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high (influential, well-cited review with explicit circuit model). Mapping fidelity good for ARC-081/SD-030/MECH-215 (the stored-model + comparator + referral decomposition is close to REE's self-model architecture) but the INV-064 mapping is loose (structural analogy, not the maturational-necessity claim). Transfer risk low-moderate: a human cortical model maps onto REE latents at the functional-role level."
+  }
+}
