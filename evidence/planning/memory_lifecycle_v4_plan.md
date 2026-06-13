@@ -146,8 +146,8 @@ closure_plan:
     - id: "memory_lifecycle_v4:MEM-8"
       title: "Biology + source grounding completion (allocation-policy lit DONE; consolidation-faults source verify)"
       phase: 2
-      status: in_progress
-      lit_pull_status: partial
+      status: done
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-391, INV-080]
@@ -155,10 +155,11 @@ closure_plan:
       cross_plan_link: []
       readiness_gate:
         - "Allocation-gate lit DONE 2026-06-06: VERDICT at evidence/literature/targeted_review_contextual_memory_allocation_gate/ (de Sousa 2026 + Cai 2016 + Bakker 2008 + Tse 2007 + Sahay 2011; all supports, mean ~0.73)"
-        - "Consolidation-faults primary source VERIFIED 2026-06-09 (arXiv:2605.12978, UIUC + Tsinghua); secondary arXiv:2505.16067 NOT yet re-verified -- pull via /lit-pull if it becomes load-bearing for a registered claim"
-        - "Adjacent corroboration to fold if a consolidation claim registers: SSGM arXiv:2603.11768 (drift taxonomy) + survey arXiv:2603.07670 / arXiv:2605.06716"
-      last_updated: 2026-06-10
-      completion_note: "Per project rule feedback_biology_before_formal_definitions: the allocation-gate half is grounded (lit verdict closed); the consolidation-faults half has a verified primary source but no biology lit-pull on consolidation-as-fallible-operator beyond MECH-068/124. This node tracks closing that grounding debt before the substrate is built."
+        - "MULTI-STATE-LIFECYCLE + FALLIBLE-OPERATOR biology DONE 2026-06-13: VERDICT at evidence/literature/targeted_review_memory_lifecycle_store/ -- 7 entries. MECH-391 lit_conf 0->0.842 (Frankland&Bontempi 2005 systems-consolidation staging; Dudai&Eisenberg 2004 reconsolidation-as-lingering-consolidation = contested state; Nader&Hardt 2009 dynamic/reconstructive memory; Schlichting&Preston 2015 integration = allocation 'integrate' pole). INV-080 lit_conf 0->0.767 (Sekeres/Winocur/Moscovitch 2018 trace-transformation precision-loss = the THREAT; Richards&Frankland 2017 transience-is-adaptive = grounds 'retired' state + SHARPENS INV-080 to 'no SILENT/ungoverned deletion' not 'never forget'; Xiong 2025 arXiv:2505.16067 LLM-agent corroboration). exp_conf stays 0 -- PROMOTES NOTHING."
+        - "Consolidation-faults primary source VERIFIED 2026-06-09 (arXiv:2605.12978, UIUC + Tsinghua); secondary arXiv:2505.16067 RE-VERIFIED 2026-06-13 (Xiong et al., 'How Memory Management Impacts LLM Agents'; advocates preserving quality-labelled episodic records over lossy consolidation; error-propagation from inaccurate experiences) -- folded as the INV-080 computational-corroboration entry."
+        - "Adjacent corroboration to fold if a NEW consolidation claim registers (none registered this pass): SSGM arXiv:2603.11768 (drift taxonomy) + survey arXiv:2603.07670 / arXiv:2605.06716"
+      last_updated: 2026-06-13
+      completion_note: "CLOSED 2026-06-13. Per feedback_biology_before_formal_definitions: both halves now grounded. Allocation-gate half was already lit-closed (2026-06-06) but those entries were tagged to a placeholder CANDIDATE id, NOT to MECH-391 (registered 2026-06-10), so MECH-391's literature_confidence read None; the new targeted_review_memory_lifecycle_store entries tag the real claim IDs and lift MECH-391 to 0.842 / INV-080 to 0.767. The biology of memory as a multi-state lifecycle with FALLIBLE operators is grounded (systems-consolidation staging; reconsolidation = contested/labile state; trace-transformation = lossy summarised/consolidated states; transience = adaptive governed retirement). KEY honesty note recorded in entries: INV-080 is biology-INFORMED-but-not-biology-MANDATED -- the biological default is detail LOSS (Sekeres 2018) and adaptive forgetting (Richards & Frankland 2017), so the invariant must read 'no SILENT/ungoverned overwrite of the evidence base', not 'never delete'. No completion-set partner claim registered (proposal-first; nothing surfaced that is not already covered by MECH-392/INV-079/INV-080). exp_conf 0 on both -- promotes nothing; substrate-BUILD gate unchanged (DO NOT build in V3)."
 ---
 # Memory Lifecycle -- V4 Roadmap
 

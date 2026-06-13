@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_inv_080_trace_transformation_precision_loss_sekeres2018",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "INV-080",
+    "MECH-391"
+  ],
+  "source": {
+    "title": "Changes in patterns of neural activity underlie a time-dependent transformation of memory in rats and humans.",
+    "authors": [
+      "Melanie J Sekeres",
+      "Gordon Winocur",
+      "Morris Moscovitch",
+      "John A E Anderson",
+      "Sara Pishdadian",
+      "J Martin Wojtowicz",
+      "Marie St-Laurent",
+      "Mary Pat McAndrews",
+      "Cheryl L Grady"
+    ],
+    "year": 2018,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.23009",
+    "url": ""
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Strong cross-species (rat + human fMRI) evidence for Trace Transformation Theory: memories lose perceptual/contextual PRECISION over time as they become schematic, with a hippocampal->mPFC shift. For INV-080 this grounds the THREAT model (consolidation transforms and loses episodic detail) but NOT the prescription (no evidence the brain preserves a recoverable raw episode) -- the biological default is detail loss, so INV-080 is biology-informed-but-not-biology-mandated. Mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The biological default is that detail is LOST under transformation -- gist-like schematic memory replaces perceptually-detailed episodic memory over time. So INV-080's 'consolidation_output must not replace source_episode_evidence' is a NORMATIVE engineering rule that DEPARTS from the biological default, not one biology mandates; the brain does not obviously keep a recoverable raw episode, so the warrant is for the risk, not the remedy."
+  ],
+  "tags": [
+    "inv-080",
+    "trace_transformation",
+    "precision_loss",
+    "mech-391"
+  ],
+  "mapping": {
+    "source_claim_statement": "Context-specific memories in rats and naturalistic episodic memories in humans lose precision over time as the supporting network reorganises (hippocampus disengages as detail is lost; mPFC engages increasingly for schematic memory); when detail IS retrieved the hippocampus remains engaged at remote timepoints -- i.e. consolidation is a TRANSFORMATION (detailed -> schematic), not a faithful copy.",
+    "ree_translation": "Grounds the failure mode INV-080 exists to forbid: a consolidation operator transforms a memory and, in doing so, loses episodic/perceptual detail (the 'summarised'/'consolidated' states in MECH-391's lifecycle are lossy). INV-080's rule -- the consolidated abstraction must retain a pointer to, and must not delete, the source episodes -- is precisely a guard against this transformation silently destroying the evidence base.",
+    "mapping_caveat": "The paper documents that biological consolidation DOES lose detail by default; it does NOT show a preservation mechanism that keeps a recoverable raw episode. So it grounds the THREAT (transformation degrades episodic detail) but is neutral-to-adverse on the PRESCRIPTION: INV-080 is a normative design rule that deliberately departs from the lossy biological default, keeping the source pointer that the brain often does not. Hence mixed, not supports.",
+    "source_context": "Cross-species: rat context-fear + human naturalistic episodic memory, behaviour + fMRI, recent vs remote timepoints."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.32,
+    "notes": "Mixed: strong evidence for the transformation/precision-loss threat; provides no preservation mechanism, so it warrants the risk INV-080 addresses rather than the remedy INV-080 prescribes."
+  }
+}

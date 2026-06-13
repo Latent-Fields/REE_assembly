@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_mech_391_memory_integration_schema_schlichting2015",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "MECH-391"
+  ],
+  "source": {
+    "title": "Memory integration: neural mechanisms and implications for behavior.",
+    "authors": [
+      "Margaret L Schlichting",
+      "Alison R Preston"
+    ],
+    "year": 2015,
+    "venue": "Current Opinion in Behavioral Sciences",
+    "doi": "10.1016/j.cobeha.2014.07.005",
+    "url": ""
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Directly on the integrate-vs-separate axis MECH-391's allocation gate steers: related memories interconnect via overlapping neuronal populations; mPFC schema representations guide reactivation that promotes hippocampal integration (schema_fit input). High mapping fidelity for the 'integrate' pole; the explicit DECISION policy (when to integrate vs separate, and pricing false-linking) remains the novel REE overlay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper documents integration as a mechanism but does not specify WHEN integration should be withheld; it evidences only the integrate pole, so it cannot ground the cost of OVER-integration (false linking) that INV-079 and the allocation policy must price -- a one-sided grounding that, taken alone, would bias the gate toward linking."
+  ],
+  "tags": [
+    "mech-391",
+    "memory_integration",
+    "schema",
+    "allocation_gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Related memories become interconnected through recruitment of overlapping neuronal populations; a hippocampal-medial-prefrontal circuit supports integration, with abstracted mPFC representations guiding reactivation of related memories during new encoding so related experiences become linked, supporting flexible generalisation.",
+    "ree_translation": "Grounds the 'integrate' decision of MECH-391's allocation gate and the schema_fit input: the substrate by which a new experience is linked to related prior traces (overlapping populations, mPFC-guided reactivation) is exactly the actuator the allocation policy would steer when it chooses integrate over separate.",
+    "mapping_caveat": "This grounds the integrate POLE and its substrate, not the DECISION POLICY. It says nothing about when to choose separate, and -- crucially -- it evidences only the benefit of linking, not the cost of false linking (the one-sided-lit caveat already flagged for INV-079 via Sahay 2011). The context_similarity x temporal_distance interaction and the false-linking price remain ungrounded here.",
+    "source_context": "Review of human cognitive/behavioural neuroscience of memory integration (fMRI, behaviour)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.3,
+    "notes": "Highest mapping fidelity in this set for the allocation-gate's integrate pole; honest about grounding only one side."
+  }
+}

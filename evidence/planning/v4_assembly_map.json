@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T19:59:44Z",
+  "generated_at": "2026-06-13T20:18:44Z",
   "totals": {
     "nodes": 100,
     "plans": 13,
@@ -149,7 +149,7 @@
         "memory_lifecycle_v4:MEM-4",
         "memory_lifecycle_v4:MEM-6"
       ],
-      "lit": "partial"
+      "lit": "done"
     },
     {
       "plan": "object_reasoning_abstraction_v4",
@@ -166,7 +166,7 @@
       "frontier": [
         "object_reasoning_abstraction_v4:OBJ-ABS-1"
       ],
-      "lit": "partial"
+      "lit": "done"
     },
     {
       "plan": "object_representation_v4",
@@ -412,25 +412,6 @@
   ],
   "lit_sweep": [
     {
-      "plan": "object_reasoning_abstraction_v4",
-      "file": "object_reasoning_abstraction_v4_plan.md",
-      "node": "object_reasoning_abstraction_v4:OBJ-ABS-8",
-      "status": "in_progress",
-      "lit_pull_status": "partial",
-      "unblocks_claims": [
-        "SD-040",
-        "SD-045",
-        "SD-042"
-      ],
-      "harvest": [
-        "L-type type-prototype substrate (Quiroga 2005, Schapiro 2016/2017, Constantinescu 2016, Hennies 2017) -- DONE: targeted_review_hpc_type_prototype_substrate (grounds SD-040 / MECH-296 / MECH-297)",
-        "L-action action-policy decomposition (Graybiel 2008, Daw 2005, Dolan & Dayan 2013, Botvinick 2009) -- DONE: targeted_review_action_policy_decomposition (grounds SD-045 / SD-042)",
-        "L-theta theta-abstraction-scaling (Gupta 2012, Bellmund 2018, Constantinescu 2016) -- DONE: targeted_review_theta_abstraction_scaling (grounds MECH-299 / MECH-300)",
-        "REMAINING DEBT: biology-before-formal-definitions check on any V4 SD/MECH that operationalises options as a formal Sutton-Precup-Singh construct before its substrate is built (per project rule feedback_biology_before_formal_definitions)"
-      ],
-      "blocked_lb": 5
-    },
-    {
       "plan": "autobiographical_memory_v4",
       "file": "autobiographical_memory_v4_plan.md",
       "node": "autobiographical_memory_v4:ABM-9",
@@ -449,23 +430,6 @@
         "L3 imagination-learning constraints (Stickgold 2013; Schapiro 2017 CLS; confabulation literature) -- already anchored for ABM-4; harvest the hippocampal-vmPFC schema partner + the SWS/REM content-vs-weights split (MECH-252/253) co-constitutive of honest replay-based learning"
       ],
       "blocked_lb": 3
-    },
-    {
-      "plan": "memory_lifecycle_v4",
-      "file": "memory_lifecycle_v4_plan.md",
-      "node": "memory_lifecycle_v4:MEM-8",
-      "status": "in_progress",
-      "lit_pull_status": "partial",
-      "unblocks_claims": [
-        "MECH-391",
-        "INV-080"
-      ],
-      "harvest": [
-        "Allocation-gate lit DONE 2026-06-06: VERDICT at evidence/literature/targeted_review_contextual_memory_allocation_gate/ (de Sousa 2026 + Cai 2016 + Bakker 2008 + Tse 2007 + Sahay 2011; all supports, mean ~0.73)",
-        "Consolidation-faults primary source VERIFIED 2026-06-09 (arXiv:2605.12978, UIUC + Tsinghua); secondary arXiv:2505.16067 NOT yet re-verified -- pull via /lit-pull if it becomes load-bearing for a registered claim",
-        "Adjacent corroboration to fold if a consolidation claim registers: SSGM arXiv:2603.11768 (drift taxonomy) + survey arXiv:2603.07670 / arXiv:2605.06716"
-      ],
-      "blocked_lb": 2
     },
     {
       "plan": "object_representation_v4",

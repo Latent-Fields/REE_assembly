@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_inv_080_transience_adaptive_richards2017",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "INV-080",
+    "MECH-391"
+  ],
+  "source": {
+    "title": "The Persistence and Transience of Memory.",
+    "authors": [
+      "Blake A Richards",
+      "Paul W Frankland"
+    ],
+    "year": 2017,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2017.04.037",
+    "url": ""
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.64,
+  "confidence_rationale": "Grounds the 'retired' state as a first-class ADAPTIVE, regulated operation (transience enhances flexibility + prevents overfitting; goal of memory is decision-optimisation not preservation) -- supports MECH-391's retired state. But for INV-080 it is a genuine TENSION: it argues controlled forgetting/attenuation is GOOD, cautioning against a naive 'never delete' reading. Net mixed: it reframes INV-080 as 'retirement must be GOVERNED', not 'no deletion'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Transience (forgetting) is adaptive -- it enhances flexibility and prevents overfitting -- so an over-strong INV-080 that forbids ALL deletion would itself be a failure mode (hoarding outdated, overfit detail). The invariant must be read as 'no SILENT/ungoverned deletion of the evidence base', not 'no forgetting'; a memory system that never retires anything degrades decision-making."
+  ],
+  "tags": [
+    "inv-080",
+    "transience",
+    "forgetting",
+    "retired_state",
+    "mech-391"
+  ],
+  "mapping": {
+    "source_claim_statement": "Transience (forgetting) is as important as persistence: it (1) enhances flexibility by reducing the influence of outdated information on memory-guided decisions and (2) prevents overfitting to specific past events, promoting generalisation; the goal of memory is to optimise decision-making, not to transmit information faithfully through time.",
+    "ree_translation": "Two-sided. For MECH-391: grounds the 'retired' state as a designed, adaptive, REGULATED operation (forgetting is a first-class lifecycle move, not mere decay). For INV-080: a corrective -- the invariant cannot mean 'never delete'; it must mean 'retirement and abstraction must be GOVERNED and provenanced', preserving the evidence base while still permitting principled transience.",
+    "mapping_caveat": "This is the entry that problematises a naive INV-080. Biology says controlled forgetting is adaptive; an invariant forbidding all deletion would be maladaptive (hoarding overfit detail). So the grounding REFRAMES INV-080 rather than simply supporting it: the rule is about preventing SILENT, ungoverned overwrite/loss of source evidence, not about preventing retirement per se. Mixed, leaning corrective.",
+    "source_context": "Neuron review drawing explicit parallels between neurobiological forgetting and computational regularisation / overfitting."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.3,
+    "notes": "Mixed/corrective: supports the retired state for MECH-391 while sharpening INV-080 away from a naive no-deletion reading."
+  }
+}

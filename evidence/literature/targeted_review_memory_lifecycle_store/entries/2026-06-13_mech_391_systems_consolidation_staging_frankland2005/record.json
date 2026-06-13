@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_mech_391_systems_consolidation_staging_frankland2005",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "MECH-391"
+  ],
+  "source": {
+    "title": "The organization of recent and remote memories.",
+    "authors": [
+      "Paul W Frankland",
+      "Bruno Bontempi"
+    ],
+    "year": 2005,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn1607",
+    "url": ""
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical NRN review; strong source quality. Maps onto the multi-STATE-over-time premise behind MECH-391's lifecycle store (recent hippocampus-dependent -> remote cortical), but does not itself specify a 6-label taxonomy or an allocation-decision policy, so mapping_fidelity is held mid.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review establishes that memories pass through distinct, time-dependent states with different anatomical substrates, but it does not enumerate discrete lifecycle LABELS (retained/indexed/summarised/consolidated/contested/retired) nor describe a control-plane that decides among them -- the staging is observed, the policy is a REE overlay."
+  ],
+  "tags": [
+    "mech-391",
+    "systems_consolidation",
+    "memory_lifecycle"
+  ],
+  "mapping": {
+    "source_claim_statement": "New episodic memories initially depend on the medial temporal lobe / hippocampus and, as they mature, become increasingly dependent on distributed cortical networks; the transformation from recent to remote memory is a staged, molecularly and cellularly distinct process.",
+    "ree_translation": "The biological warrant for MECH-391 treating memory as a multi-STATE lifecycle rather than a single store: a trace occupies time-dependent states (indexed in hippocampus -> consolidated in cortex) with different substrate homes, which is precisely the premise a lifecycle store with distinct state labels operationalises.",
+    "mapping_caveat": "Frankland & Bontempi ground that there ARE distinct time-dependent memory states; they do NOT ground REE's specific 6-state vocabulary nor the allocation-gate decision (integrate/partial_overlap/separate). The staging is descriptive biology; the discrete-state model and the control policy remain REE design choices.",
+    "source_context": "Review of rodent + human systems-consolidation literature (lesion, imaging, molecular)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.3,
+    "notes": "High venue/source quality; mapping held mid because the paper grounds the staging premise, not the discrete-state taxonomy or the policy."
+  }
+}

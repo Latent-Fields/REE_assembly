@@ -1,0 +1,45 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_mech_391_reconsolidation_lingering_dudai2004",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "MECH-391"
+  ],
+  "source": {
+    "title": "Rites of passage of the engram: reconsolidation and the lingering consolidation hypothesis.",
+    "authors": [
+      "Yadin Dudai",
+      "Mark Eisenberg"
+    ],
+    "year": 2004,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2004.09.003",
+    "url": ""
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong source; grounds the 'contested' (labile-on-reactivation) state but explicitly bounds it -- reconsolidation as time-limited lingering consolidation, mostly fresh memories, blockade does not induce permanent amnesia. The labile state is real but narrower than an indefinitely re-writable 'contested' slot, hence mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reconsolidation occurs mostly in relatively fresh memories and blockade of reconsolidation does not induce permanent amnesia -- so a 'contested' lifecycle state cannot be modelled as an always-available, indefinitely re-writable mode; the window is bounded and may be a tail of the original consolidation rather than a recapitulated process."
+  ],
+  "tags": [
+    "mech-391",
+    "reconsolidation",
+    "contested_state"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reactivated memories can re-enter a state sensitive to amnestic agents (reconsolidation), but the authors argue this reflects 'lingering consolidation' -- a tail of the original stabilisation, occurring mainly in fresh memories -- rather than a full recapitulation of consolidation, and its blockade does not produce permanent amnesia.",
+    "ree_translation": "Biological warrant for the 'contested' state in MECH-391's lifecycle: a stored trace is not permanently inert -- reactivation can return it to a labile, re-writable condition. This is the substrate analogue of a memory leaving a settled state and re-entering one where it can be updated or challenged.",
+    "mapping_caveat": "The paper deliberately bounds the phenomenon: the labile window is time-limited and may be a lingering tail of initial consolidation, not a fully recurrent process. So it grounds that a 'contested' state EXISTS but cautions against modelling it as an unbounded, always-on re-write mode -- the REE state must carry an eligibility window, not a standing invitation.",
+    "source_context": "Review/synthesis of rodent reconsolidation experiments (amnestic-agent blockade paradigms)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Mixed by design: grounds the contested state's existence while problematising an over-broad reading of it."
+  }
+}

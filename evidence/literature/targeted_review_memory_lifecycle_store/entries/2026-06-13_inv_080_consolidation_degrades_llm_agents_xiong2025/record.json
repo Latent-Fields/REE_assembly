@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_inv_080_consolidation_degrades_llm_agents_xiong2025",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "INV-080"
+  ],
+  "source": {
+    "title": "How Memory Management Impacts LLM Agents: An Empirical Study of Experience-Following Behavior",
+    "authors": [
+      "Zidi Xiong",
+      "Yuping Lin",
+      "Wenya Xie",
+      "Pengfei He",
+      "Zirui Liu",
+      "Jiliang Tang",
+      "Himabindu Lakkaraju",
+      "Zhen Xiang"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint (v2, Oct 2025)",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2505.16067"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "On-domain computational corroboration of the fallible-operator / raw-episode-preservation premise: LLM agents show an experience-following property; inaccurate stored experiences propagate errors; the paper advocates regulating experience QUALITY and preserving episodic records over lossy consolidation/summarisation. Mapping fidelity high (REE is an agent), but it is an AI preprint not biology -- per biology-before-formal-definitions it supplements, does not substitute for, the biological warrant. Held at 0.60.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Error propagation: an inaccurate past experience retrieved by similarity drives a similar (wrong) output -- so a consolidation step that summarises away the detail needed to judge an experience's quality REMOVES the very signal ('future task evaluations as free quality labels') needed to filter it, making lossy consolidation actively harmful in an agent loop."
+  ],
+  "tags": [
+    "inv-080",
+    "llm_agent",
+    "consolidation_faults",
+    "computational_corroboration"
+  ],
+  "mapping": {
+    "source_claim_statement": "LLM agents exhibit an 'experience-following' property (similar input to a retrieved memory yields similar output); this creates error propagation from inaccurate stored experiences. The authors recommend regulating experience QUALITY within the memory bank -- using future task evaluations as free quality labels and preserving/filtering episodic records -- rather than consolidating or summarising records in ways that lose information.",
+    "ree_translation": "Computational corroboration of INV-080 in the agent setting REE actually occupies: preserving raw, quality-labelled episodic records outperforms lossy consolidation, and abstracting away episodic detail removes the evidence needed to detect and filter bad experiences. This is the same anti-overwrite / raw-episode-preservation logic the primary consolidation-faults source (arXiv:2605.12978) grounds, now from a second study.",
+    "mapping_caveat": "An AI-agent empirical preprint, not biology, and not yet peer-reviewed. Per the project's biology-before-formal-definitions rule this is corroboration that supplements -- it does not substitute for -- the biological warrant carried by the Frankland/Dudai/Nader/Winocur/Richards entries. Transfer risk is non-trivial (specific LLM-agent memory architectures may not generalise), though closer than animal->human because REE is itself an agent.",
+    "source_context": "Empirical study of memory-management strategies in LLM agents (retrieval, consolidation, summarisation)."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "Secondary computational corroboration (the node's secondary consolidation-faults source, re-verified 2026-06-13). Supplements the biology per biology-before-formal-definitions."
+  }
+}

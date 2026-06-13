@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_memory_lifecycle_store",
+  "entry_id": "2026-06-13_mech_391_reconsolidation_dynamic_nader2009",
+  "timestamp_utc": "2026-06-13T20:13:40Z",
+  "claim_ids_tested": [
+    "MECH-391"
+  ],
+  "source": {
+    "title": "A single standard for memory: the case for reconsolidation.",
+    "authors": [
+      "Karim Nader",
+      "Oliver Hardt"
+    ],
+    "year": 2009,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn2590",
+    "url": ""
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong NRN review arguing memory is a principally DYNAMIC, reconstructive process: consolidated memories re-enter transient instability on reactivation and must re-stabilise. Directly grounds the contested state and the fallible-operator premise (re-stabilisation can alter content). The 6-state labels and allocation policy remain REE overlays, so fidelity is held below ceiling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If post-retrieval restabilisation can alter a memory's content, then a 'consolidated' state cannot be treated as immutable ground truth -- any lifecycle store that reads consolidated traces as authoritative-and-final inherits the risk that the trace was silently rewritten during a prior reconsolidation episode."
+  ],
+  "tags": [
+    "mech-391",
+    "reconsolidation",
+    "reconstructive_memory",
+    "contested_state"
+  ],
+  "mapping": {
+    "source_claim_statement": "Consolidated memories can re-enter states of transient instability following reactivation, from which they must again stabilise to persist; the same operational evidence underpins both consolidation and reconsolidation, so memory is principally a dynamic rather than a write-once process.",
+    "ree_translation": "Grounds two things MECH-391's lifecycle store needs: (1) the 'contested' state (reactivation -> instability -> required re-stabilisation), and (2) the fallible-operator premise that motivates the whole memory_lifecycle_v4 cluster -- if re-stabilisation can change content, memory operators are corruptible and the store must track provenance, not just hold a settled value.",
+    "mapping_caveat": "Nader & Hardt establish memory as dynamic/reconstructive; they do not enumerate REE's discrete states nor describe an allocation/integration POLICY. The grounding is for the corrigible, re-writable nature of stored traces, not for the specific control logic MECH-391 adds.",
+    "source_context": "Review unifying the operational definitions of consolidation and reconsolidation across rodent and human work."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.3,
+    "notes": "Supports: the reconstructive/dynamic nature is strongly grounded; fidelity held below ceiling because labels + policy are REE additions."
+  }
+}
