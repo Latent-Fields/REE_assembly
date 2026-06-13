@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Precision Recalibration
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Precision Recalibration

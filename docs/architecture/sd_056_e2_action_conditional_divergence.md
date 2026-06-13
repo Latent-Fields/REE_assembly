@@ -1,3 +1,10 @@
+---
+title: "SD-056: e2.action_conditional_divergence_contrastive"
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 10
+---
+
 # SD-056: e2.action_conditional_divergence_contrastive
 
 **Claim ID:** SD-056

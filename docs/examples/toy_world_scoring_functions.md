@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Toy World Scoring Functions
 
 **Claim Type:** implementation_note  

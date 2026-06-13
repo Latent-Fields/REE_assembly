@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Component Mapping
 
 This document maps the astrocyte-aware regulatory stack concepts into existing REE terminology and identifies what must change in REE's conceptual commitments.

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Trajectory Selection
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 12
 ---
 
 # Trajectory Selection

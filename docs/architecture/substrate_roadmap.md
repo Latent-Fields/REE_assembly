@@ -1,3 +1,10 @@
+---
+title: Substrate Roadmap (V3 enrichment planning)
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 5
+---
+
 # Substrate Roadmap (V3 enrichment planning)
 
 > Planning artifact, not a spec. Captures the V3 substrate enrichments

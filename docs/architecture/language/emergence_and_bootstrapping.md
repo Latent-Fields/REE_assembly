@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Emergence And Bootstrapping
+parent: Language
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Emergence And Bootstrapping

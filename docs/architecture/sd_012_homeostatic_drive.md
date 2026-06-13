@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-012: Homeostatic Drive Modulation"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # SD-012: Homeostatic Drive Modulation

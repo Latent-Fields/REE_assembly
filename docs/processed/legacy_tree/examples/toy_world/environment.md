@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Toy world environment contract (REE-v0)
 
 This is a minimal, reproducible environment contract that supports REE concepts.

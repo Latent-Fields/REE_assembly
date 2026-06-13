@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Rule Apprehension Layer (architecture anchor)
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # Rule Apprehension Layer (architecture anchor)

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: State
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 11
 ---
 
 # State

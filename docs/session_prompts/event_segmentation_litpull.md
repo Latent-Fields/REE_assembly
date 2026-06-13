@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Lit-pull spec: Event Segmentation (MECH-288 prerequisite)
 
 **Target claim:** MECH-288 (event-segmentation substrate; candidate v3_pending, registered 2026-04-22 alongside this spec).

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Medications, Sleep Architecture, and Dementia Risk
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Medications, Sleep Architecture, and Dementia Risk

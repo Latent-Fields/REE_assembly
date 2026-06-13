@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-011: Dual Nociceptive Streams"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # SD-011: Dual Nociceptive Streams

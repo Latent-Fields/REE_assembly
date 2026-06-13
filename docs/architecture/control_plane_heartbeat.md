@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Control Plane Heartbeat Architecture
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Control Plane Heartbeat Architecture

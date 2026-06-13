@@ -1,3 +1,10 @@
+---
+title: "SD-058: defensive_action.instrumental_avoidance_acquisition"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 14
+---
+
 # SD-058: defensive_action.instrumental_avoidance_acquisition
 
 **Claim ID:** SD-058 (architecture) + MECH-357 (mechanism)

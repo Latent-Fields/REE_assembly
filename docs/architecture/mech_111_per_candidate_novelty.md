@@ -1,3 +1,10 @@
+---
+title: MECH-111 per-candidate E1-prediction-error novelty (PARKED design)
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 3
+---
+
 # MECH-111 per-candidate E1-prediction-error novelty (PARKED design)
 
 **Status:** PARKED — design-complete, NOT implemented. Do not treat as a live

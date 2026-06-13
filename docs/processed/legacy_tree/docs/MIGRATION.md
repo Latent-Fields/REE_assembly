@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Documentation Migration Summary
 
 This document tracks the migration of content from original locations to the canonical documentation structure.

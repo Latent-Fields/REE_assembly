@@ -1,3 +1,10 @@
+---
+title: "Sustained drive and anticipatory wanting: SD-012 amendment scoping"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 16
+---
+
 # Sustained drive and anticipatory wanting: SD-012 amendment scoping
 
 **Created:** 2026-05-08

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **Elaborates Section 5 (Social Extension: Self/Other) of `REE_CORE.md`.**
 
 # Social Cognition (REE)

@@ -1,7 +1,8 @@
 ---
-title: Hippocampal Anchor Selection (Regional Verisimilitude)
-parent: Architecture
-nav_order: 27
+title: Hippocampal Anchor Selection via Regional Verisimilitude
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Hippocampal Anchor Selection via Regional Verisimilitude

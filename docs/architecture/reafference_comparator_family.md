@@ -1,3 +1,10 @@
+---
+title: Reafference Comparator Family
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 8
+---
+
 # Reafference Comparator Family
 
 > **Claim:** ARC-061 (`self_attribution.reafference_comparator_family`,

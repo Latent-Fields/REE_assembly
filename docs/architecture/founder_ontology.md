@@ -1,7 +1,8 @@
 ---
-title: Founder ontology (E1 / E2 / E3)
-parent: Architecture
-nav_order: 2
+title: Founder ontology -- how to read E1, E2, and E3
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Founder ontology -- how to read E1, E2, and E3

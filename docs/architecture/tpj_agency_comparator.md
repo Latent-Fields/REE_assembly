@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: TPJ Agency-Detection Comparator (MECH-095)
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # TPJ Agency-Detection Comparator (MECH-095)

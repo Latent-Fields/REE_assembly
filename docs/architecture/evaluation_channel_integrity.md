@@ -1,6 +1,7 @@
 ---
-title: Evaluation-Channel Integrity (Governance-Mediated Self-Improvement)
-nav_order: 99
+title: Evaluation-Channel Integrity
+parent: Governance
+nav_order: 2
 ---
 
 # Evaluation-Channel Integrity

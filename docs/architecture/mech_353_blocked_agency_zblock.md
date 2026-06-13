@@ -1,3 +1,10 @@
+---
+title: "MECH-353: affect.blocked_agency_control_failure_stream (z_block)"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 8
+---
+
 # MECH-353: affect.blocked_agency_control_failure_stream (z_block)
 
 **Claim ID:** MECH-353

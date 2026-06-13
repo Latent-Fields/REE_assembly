@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Precision Control
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # Precision Control

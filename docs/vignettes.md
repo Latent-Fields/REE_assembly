@@ -1,5 +1,4 @@
 ---
-layout: default
 title: Vignettes
 nav_order: 9
 ---

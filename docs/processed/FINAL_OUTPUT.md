@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Documentation Refactoring — Final Output (Archived)
 
 > **Moved here 2026-03-02.** Original location: `docs/FINAL_OUTPUT.md` (now contains an archive redirect).

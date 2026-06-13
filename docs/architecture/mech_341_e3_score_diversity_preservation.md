@@ -1,3 +1,10 @@
+---
+title: "MECH-341: E3 Score Diversity Preservation"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 4
+---
+
 # MECH-341: E3 Score Diversity Preservation
 
 **Claim ID:** MECH-341

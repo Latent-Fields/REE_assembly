@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-010: Harm Stream Separation"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 9
 ---
 
 # SD-010: Harm Stream Separation

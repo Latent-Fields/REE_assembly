@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-047: Multi-Source Environmental Dynamics"
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # SD-047: Multi-Source Environmental Dynamics

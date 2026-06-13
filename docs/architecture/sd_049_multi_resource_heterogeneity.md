@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-049: Multi-Resource Heterogeneity"
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 11
 ---
 
 # SD-049: Multi-Resource Heterogeneity

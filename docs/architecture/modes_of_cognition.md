@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Modes of Cognition as Control-Plane Regimes
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Modes of Cognition as Control-Plane Regimes

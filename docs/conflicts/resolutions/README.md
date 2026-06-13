@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict Resolutions (Decisions and Rationale)
 
 This folder contains resolution notes for conflicts documented in `docs/conflicts/`.

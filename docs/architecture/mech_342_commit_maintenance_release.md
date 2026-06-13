@@ -1,3 +1,10 @@
+---
+title: "MECH-342: Maintenance-time readiness-driven commitment-release coupling"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 5
+---
+
 # MECH-342: Maintenance-time readiness-driven commitment-release coupling
 
 **Claim ID:** MECH-342

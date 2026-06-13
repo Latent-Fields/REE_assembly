@@ -1,3 +1,10 @@
+---
+title: MECH-292 Ranked Ghost-Goal Bank
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 4
+---
+
 # MECH-292 Ranked Ghost-Goal Bank
 
 **Status (2026-04-27):** IMPLEMENTED. Pure-arithmetic derived view over the

@@ -1,3 +1,10 @@
+---
+title: "MECH-303: Contextual Passive Safety Terrain"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 7
+---
+
 # MECH-303: Contextual Passive Safety Terrain
 
 **Claim ID:** MECH-303

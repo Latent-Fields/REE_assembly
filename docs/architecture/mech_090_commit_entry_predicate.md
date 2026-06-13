@@ -1,3 +1,10 @@
+---
+title: MECH-090 Commit-Entry Predicate (R-c single-gate conjunction)
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 2
+---
+
 # MECH-090 Commit-Entry Predicate (R-c single-gate conjunction)
 
 **Claim ID:** MECH-090 (commit-entry predicate amendment, 2026-05-28)

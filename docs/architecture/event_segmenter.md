@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Event-Segment Detection Substrate (MECH-288)
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Event-Segment Detection Substrate (MECH-288)

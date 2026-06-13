@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Invariant Classification Audit
 
 **Session:** Session B of invariant-types governance cycle

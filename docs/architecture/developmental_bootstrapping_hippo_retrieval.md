@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Bootstrapping and Hippocampal Cue-Indexed Trajectory Retrieval
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Developmental Bootstrapping and Hippocampal Cue-Indexed Trajectory Retrieval

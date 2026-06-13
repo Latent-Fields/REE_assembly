@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Needs Register
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Developmental Needs Register

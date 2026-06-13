@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-036: GABAergic Cross-Stream Decay Regulator"
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 14
 ---
 
 # SD-036: GABAergic Cross-Stream Decay Regulator

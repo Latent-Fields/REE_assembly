@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Mode Manager — Architectural Specification (Draft)
 
 > **Status:** Draft / architectural control document  

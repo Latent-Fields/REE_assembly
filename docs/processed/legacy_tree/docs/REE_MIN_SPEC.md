@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE minimum instantiation specification (REE‑v0)
 
 This document lists the minimal commitments needed to implement a runnable REE prototype.

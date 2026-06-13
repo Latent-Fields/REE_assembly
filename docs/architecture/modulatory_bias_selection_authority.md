@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # modulatory-bias-selection-authority
 
 **Status:** IMPLEMENTED 2026-06-03 (substrate-readiness validation pending V3-EXQ).

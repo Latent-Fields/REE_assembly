@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # MECH-090: Bistable Beta Gate — Diagnose and Fix
 
 > Paste this into a new Claude Code session as your opening message.

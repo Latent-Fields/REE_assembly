@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Default Mode (Internal Generative Mode)
 
 **Claim Type:** architectural_commitment  

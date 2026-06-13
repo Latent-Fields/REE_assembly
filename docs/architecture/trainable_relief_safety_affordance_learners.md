@@ -1,3 +1,10 @@
+---
+title: Trainable relief / safety affordance learners (MECH-375 / MECH-376 / Q-067)
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 17
+---
+
 # Trainable relief / safety affordance learners (MECH-375 / MECH-376 / Q-067)
 
 **Status:** candidate cluster, registered 2026-06-09. Home doc for the trainable

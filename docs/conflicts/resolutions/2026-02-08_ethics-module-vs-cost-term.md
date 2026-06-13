@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Resolution: No Ethics Module vs Explicit Ethical Cost Term
 
 ## Conflict Reference(s)

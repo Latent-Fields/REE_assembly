@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # V_s Foundation Lit-Pull: Schema-Region Granularity, Multi-Map Coexistence, Per-Stream Verisimilitude
 
 > Created: 2026-04-22

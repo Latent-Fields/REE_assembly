@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-020: z_harm_a Encodes Affective Surprise (Precision-Weighted PE)"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 13
 ---
 
 # SD-020: z_harm_a Encodes Affective Surprise (Precision-Weighted PE)

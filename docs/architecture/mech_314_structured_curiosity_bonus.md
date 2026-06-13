@@ -1,3 +1,10 @@
+---
+title: "MECH-314: structured_curiosity_bonus (frontopolar exploration / EFE analog)"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 8
+---
+
 # MECH-314: structured_curiosity_bonus (frontopolar exploration / EFE analog)
 
 **Claim ID:** MECH-314 (parent) + MECH-314a (striatal novelty) + MECH-314b (frontopolar uncertainty) + MECH-314c (learning progress)

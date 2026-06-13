@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Cross-Version Hook Surface Contract
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # Cross-Version Hook Surface Contract

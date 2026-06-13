@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model

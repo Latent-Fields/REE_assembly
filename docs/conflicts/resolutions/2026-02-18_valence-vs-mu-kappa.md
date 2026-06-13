@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Resolution: Valence Vectors vs Mu/Kappa Stability Overlays
 
 ## Conflict Reference(s)

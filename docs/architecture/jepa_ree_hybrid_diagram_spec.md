@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: JEPA to REE Hybrid Diagram Spec
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # JEPA to REE Hybrid Diagram Spec

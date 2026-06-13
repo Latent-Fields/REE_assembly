@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Entities and Binding
 
 **Claim Type:** architectural_commitment  

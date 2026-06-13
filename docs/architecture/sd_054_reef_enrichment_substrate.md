@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-054: Reef Enrichment Substrate (CausalGridWorldV2 extension)"
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 12
 ---
 
 # SD-054: Reef Enrichment Substrate (CausalGridWorldV2 extension)

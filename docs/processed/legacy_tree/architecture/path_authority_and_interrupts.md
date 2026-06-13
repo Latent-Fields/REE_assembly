@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 
 Norepinephrine: Path Authority, Interruptibility, and Commitment Pressure
 

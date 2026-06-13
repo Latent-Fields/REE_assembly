@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Affect Primitives
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Affect Primitives

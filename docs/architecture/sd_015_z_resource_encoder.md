@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-015: Dedicated z_resource Encoder for Goal-Directed Navigation"
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # SD-015: Dedicated z_resource Encoder for Goal-Directed Navigation

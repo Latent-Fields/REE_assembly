@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: ARC-080 -- Object Identity as a Cross-Cutting Representational Primitive
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # ARC-080 -- Object Identity as a Cross-Cutting Representational Primitive

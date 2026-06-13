@@ -1,4 +1,6 @@
-
+---
+nav_exclude: true
+---
 
 # Reflective Ethical Engine — Architectural Overview
 

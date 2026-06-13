@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Control Plane (Precision, Gain, and Mode Regulation)
 
 **Claim Type:** architectural_commitment  

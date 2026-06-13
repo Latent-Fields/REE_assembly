@@ -1,3 +1,10 @@
+---
+title: "SD-051: safety_prediction.cue_specific_conditioned_inhibition_substrate"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 12
+---
+
 # SD-051: safety_prediction.cue_specific_conditioned_inhibition_substrate
 
 **Claim ID:** SD-051

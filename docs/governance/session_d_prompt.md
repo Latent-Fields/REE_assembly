@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Session D Prompt — Invariant-Types Pipeline Completion
 
 > **Usage:** Hand this file to a fresh session (e.g. "Read

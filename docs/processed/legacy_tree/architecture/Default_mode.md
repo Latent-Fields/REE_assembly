@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 Default mode (internal generative mode)
 
 Role in REE

@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 
 Part 3
 

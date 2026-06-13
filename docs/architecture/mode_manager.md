@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Mode Manager
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Mode Manager

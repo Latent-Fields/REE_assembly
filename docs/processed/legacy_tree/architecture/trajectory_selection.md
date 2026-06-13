@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Trajectory selection (E3)
 
 E3 evaluates candidate sensorimotor futures and **commits** to one trajectory.

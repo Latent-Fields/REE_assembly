@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: REE Triple-View Diagram Bundle
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # REE Triple-View Diagram Bundle

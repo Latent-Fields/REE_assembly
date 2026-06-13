@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Four-Plane Neuromodulatory Control Model
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Four-Plane Neuromodulatory Control Model

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Glossary
 
 **Claim Type:** implementation_note  

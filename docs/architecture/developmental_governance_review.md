@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Governance Synthesis Review
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 4
 ---
 
 <!-- DEVGOV_REVIEW_VERSION: 2026-05-16.2 -->

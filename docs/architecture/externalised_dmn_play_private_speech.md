@@ -1,3 +1,10 @@
+---
+title: Externalised Default Mode Operation; Private Speech as Developmental Cognitive-Control Scaffold
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 3
+---
+
 # Externalised Default Mode Operation; Private Speech as Developmental Cognitive-Control Scaffold
 
 **Status:** V4+ developmental-architecture cluster (candidate). Off the REE-v3 critical

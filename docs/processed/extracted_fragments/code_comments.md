@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Extracted Fragments: Code Comments and Docstrings
 
 These excerpts are preserved verbatim from code files that include REE-related descriptive text.

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Session C Batch Prompt — All Grey-Zone Resolutions
 
 > **Usage:** Hand this file to a fresh session: "Read

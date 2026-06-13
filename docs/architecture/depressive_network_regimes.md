@@ -1,3 +1,10 @@
+---
+title: Depressive Network Regimes and Repair
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Depressive Network Regimes and Repair
 
 Status: anchor doc for the clinical-depression intake claims (RA-001, MECH-367, Q-061).

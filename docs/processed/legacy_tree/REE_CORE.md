@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Reflective-Ethical Engine (REE) — Core Architecture
 
 ## 1. Purpose

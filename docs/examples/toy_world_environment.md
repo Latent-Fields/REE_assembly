@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Toy World Environment
 
 **Claim Type:** implementation_note  

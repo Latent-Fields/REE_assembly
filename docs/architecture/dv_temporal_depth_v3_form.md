@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: D_V Temporal-Depth Verisimilitude — V3 Synaptic Form (ARC-054 V3 promotion)
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # D_V Temporal-Depth Verisimilitude — V3 Synaptic Form (ARC-054 V3 promotion)

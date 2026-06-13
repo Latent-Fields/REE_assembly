@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: MECH-314a Phase-2 Novelty-Source Architecture Design
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 9
 ---
 
 # MECH-314a Phase-2 Novelty-Source Architecture Design

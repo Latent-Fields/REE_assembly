@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Typed-Claims Documentation System
 
 This README is executable guidance for AI coding agents. When invoked, agents must follow the quoted prompts exactly.

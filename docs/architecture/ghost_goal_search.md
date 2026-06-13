@@ -1,3 +1,10 @@
+---
+title: Ghost Goal Search
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Ghost Goal Search
 
 **Status:** design sketch (2026-04-26) + **Retrieval-Cue Reframe (2026-05-19)** -- see Section 0  

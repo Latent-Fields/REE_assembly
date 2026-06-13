@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Compact Consolidation Principle
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # Compact Consolidation Principle

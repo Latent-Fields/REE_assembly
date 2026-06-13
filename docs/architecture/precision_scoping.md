@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Precision Scoping
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 11
 ---
 
 # Precision Scoping

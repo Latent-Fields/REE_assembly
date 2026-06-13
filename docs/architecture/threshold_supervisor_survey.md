@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Threshold Supervisor: Scattered Mechanisms Survey
 
 Registered: 2026-05-07

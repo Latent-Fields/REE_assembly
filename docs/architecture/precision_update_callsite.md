@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Precision update call site (Q-042)
 
 Architectural decision doc supporting `Q-042` in `docs/claims/claims.yaml`.

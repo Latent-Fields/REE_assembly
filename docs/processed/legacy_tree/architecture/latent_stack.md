@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Latent stack (L-space)
 
 > **📍 Canonical Location:** This content has been migrated to [`docs/architecture/l_space.md`](../docs/architecture/l_space.md) with formal claim typing and dependency tracking. This file is preserved for compatibility.

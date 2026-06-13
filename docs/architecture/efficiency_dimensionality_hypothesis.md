@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "Efficiency and Dimensionality Hypothesis: E1/E2/E3 Multi-Stack vs Single-Stack"
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Efficiency and Dimensionality Hypothesis: E1/E2/E3 Multi-Stack vs Single-Stack

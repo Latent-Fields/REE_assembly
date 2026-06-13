@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **This overview is subordinate to `REE_CORE.md` (the canonical specification).**
 
 # REE overview

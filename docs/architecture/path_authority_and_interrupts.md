@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Path Authority And Interrupts
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 8
 ---
 
 # Path Authority And Interrupts

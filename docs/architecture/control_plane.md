@@ -1,7 +1,8 @@
 ---
-title: Control Plane
-parent: Architecture
-nav_order: 5
+title: Control Plane (Precision, Gain, and Mode Regulation)
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Control Plane (Precision, Gain, and Mode Regulation)

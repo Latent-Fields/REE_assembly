@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: REE-v2 Repository Bootstrap Spec
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 9
 ---
 
 # REE-v2 Repository Bootstrap Spec

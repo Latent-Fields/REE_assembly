@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Language Failure Modes
+parent: Language
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Language Failure Modes

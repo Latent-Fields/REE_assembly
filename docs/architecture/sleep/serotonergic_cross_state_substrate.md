@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Serotonergic Cross-State Substrate Requirements
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 9
 ---
 
 # Serotonergic Cross-State Substrate Requirements

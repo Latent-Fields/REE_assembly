@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Roadmap
 
 ## REE‑v0 (specification)

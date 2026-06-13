@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "Sleep-Aggregation Cluster: MECH-272 / MECH-273 / MECH-275 / MECH-285"
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # Sleep-Aggregation Cluster: MECH-272 / MECH-273 / MECH-275 / MECH-285

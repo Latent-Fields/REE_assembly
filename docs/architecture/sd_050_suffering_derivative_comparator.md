@@ -1,3 +1,10 @@
+---
+title: "SD-050: relief.suffering_derivative_comparator"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 11
+---
+
 # SD-050: relief.suffering_derivative_comparator
 
 **Claim ID:** SD-050

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Latent Stack (L-space)
 
 **Claim Type:** architectural_commitment  

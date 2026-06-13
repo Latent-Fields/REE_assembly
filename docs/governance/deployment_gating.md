@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Deployment Gating for V3 and V4
 
 **Status:** governance note

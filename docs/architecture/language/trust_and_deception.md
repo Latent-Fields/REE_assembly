@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Trust And Deception
+parent: Language
+grandparent: Architecture
+nav_order: 8
 ---
 
 # Trust And Deception

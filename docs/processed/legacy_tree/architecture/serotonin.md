@@ -1,3 +1,6 @@
+---
+nav_exclude: true
+---
 
 Serotonin: Representational Collapse, Exclusivity, and Plasticity
 

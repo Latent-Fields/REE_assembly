@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # ControlVector Logging (four-signal control adjudication, recommendation B)
 
 **Subject:** telemetry.control_vector_logging

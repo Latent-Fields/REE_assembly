@@ -1,3 +1,10 @@
+---
+title: Policy Primitive Granularity — Architectural Family
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 6
+---
+
 # Policy Primitive Granularity — Architectural Family
 
 **Status:** family slot registered 2026-05-10 (ARC-069 parent + ARC-070 + ARC-071 candidate / pending_design).

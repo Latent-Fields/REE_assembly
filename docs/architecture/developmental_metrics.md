@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Metrics
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Developmental Metrics

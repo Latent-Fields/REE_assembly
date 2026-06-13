@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Offline Phase Architecture
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Offline Phase Architecture

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Daniel README — How This Project Is Sharpened Without Breaking It
 
 This document exists to prevent a recurring failure mode:

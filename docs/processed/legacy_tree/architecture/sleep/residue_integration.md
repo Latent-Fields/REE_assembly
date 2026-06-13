@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **Elaborates Section 4.5 (Moral Residue) and 4.6 (Offline Integration / Sleep) of `REE_CORE.md`.**
 
 # Residue Integration

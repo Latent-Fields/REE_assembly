@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Hippocampal Braid (Path Memory and Replay)
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Hippocampal Braid (Path Memory and Replay)

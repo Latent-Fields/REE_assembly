@@ -1,3 +1,10 @@
+---
+title: Laughter as cognitive-load release and inter-regime social signal
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 2
+---
+
 # Laughter as cognitive-load release and inter-regime social signal
 
 Status: SEED (candidate claims registered 2026-06-09; V4/V5, off the V3 critical path)

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Documentation Refactoring Changelog
 
 ## 2026-02-08: Typed-Claims Docs Rebuild

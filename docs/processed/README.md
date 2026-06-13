@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Processed Sources
 
 - `legacy_tree/` is a verbatim preservation of documentation-like files discovered in the repo at rebuild time.

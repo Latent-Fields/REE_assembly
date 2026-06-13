@@ -1,195 +1,273 @@
 """
 apply_nav_frontmatter.py
-One-shot script: adds/updates Jekyll frontmatter on all docs/ files to produce
-a clean Just-the-Docs nav structure.
+Re-runnable script: stamps Jekyll (Just-the-Docs) nav frontmatter across docs/
+to produce a clean, themed left-hand sidebar for the GitHub Pages site.
 
 Run from repo root:
   /opt/local/bin/python3 docs/apply_nav_frontmatter.py
 
-Safe to re-run: it reads the current file, strips existing frontmatter if
-present, then prepends the canonical block.
+Structure produced:
+  TOP LEVEL (ordered):
+    Home / Why This Architecture? / Architecture (section) / Foundations /
+    Invariants / Roadmap / Glossary / Failure Modes / Vignettes /
+    REE for Psychiatrists / Closure Dashboard / Governance (section) /
+    Contribute Compute
+  ARCHITECTURE -> 16 themed collapsible sub-sections (3-level nav):
+    Architecture (overview.md, has_children)
+      -> <Theme> section stub (architecture/sections/<key>.md, has_children)
+        -> the design docs for that theme (parent=<Theme>, grandparent=Architecture)
+  GOVERNANCE -> 2 children.
+
+Design docs that are scratch / session-prompts / narrow impl notes are kept
+nav_exclude (still build + reachable by URL, just hidden from the sidebar).
+
+Safe to re-run: reads each file, strips existing frontmatter, re-stamps.
+Adjust the ASSIGN map below to move a page between themes.
 """
 
 import os
-import re
 
 DOCS = os.path.dirname(os.path.abspath(__file__))
 ARCH = os.path.join(DOCS, "architecture")
+SECTIONS_DIR = os.path.join(ARCH, "sections")
 
 # ---------------------------------------------------------------------------
-# Frontmatter spec
-# Key = repo-relative path from DOCS root
-# Value = dict of frontmatter keys (only the ones we want to set/overwrite)
+# 1. Top-level pages (ordered). Key = path relative to docs/.
 # ---------------------------------------------------------------------------
 
-SPEC = {}
-
-# --- Top-level visible pages (ordered) ------------------------------------
-
-# index.md is rewritten separately with Write tool -- skip here
-# vignettes.md already has correct frontmatter -- skip
-
-SPEC["invariants.md"]          = {"title": "Invariants",     "nav_order": 5}
-SPEC["roadmap.md"]             = {"title": "Roadmap",        "nav_order": 6}
-SPEC["glossary.md"]            = {"title": "Glossary",       "nav_order": 7}
-SPEC["REE_failure_modes.md"]   = {"title": "Failure Modes",  "nav_order": 8}
-SPEC["vignettes.md"]           = {"title": "Vignettes",      "nav_order": 9}
-
-# --- Top-level hidden (accessible by link, not in sidebar) ----------------
-
-for f in [
-    "FINAL_OUTPUT.md",
-    "MIGRATION.md",
-    "REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md",
-    "REE_MIN_SPEC.md",
-    "REE_overview.md",
-    "V1_PROGRESS_AND_LEARNING.md",
-    "changelog.md",
-    "repo_meta.md",
-    "README.md",
-]:
-    SPEC[f] = {"nav_exclude": True}
-
-# --- Architecture: featured top-level pages (no parent) -------------------
-
-SPEC["architecture/ethical_agency_derivation.md"] = {
-    "title": "Why This Architecture?",
-    "nav_order": 2,
-}
-SPEC["architecture/five_axioms_foundations.md"] = {
-    "title": "Foundations",
-    "nav_order": 4,
+TOP_LEVEL = {
+    "index.md":                                  {"title": "Home",                  "nav_order": 1},
+    "architecture/ethical_agency_derivation.md": {"title": "Why This Architecture?","nav_order": 2},
+    "architecture/overview.md":                  {"title": "Architecture",          "nav_order": 3, "has_children": True},
+    "architecture/five_axioms_foundations.md":   {"title": "Foundations",           "nav_order": 4},
+    "invariants.md":                             {"title": "Invariants",            "nav_order": 5},
+    "roadmap.md":                                {"title": "Roadmap",               "nav_order": 6},
+    "glossary.md":                               {"title": "Glossary",              "nav_order": 7},
+    "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 8},
+    "vignettes.md":                              {"title": "Vignettes",             "nav_order": 9},
+    "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 10},
+    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 11},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 13},
 }
 
-# --- Architecture: parent page --------------------------------------------
+# ---------------------------------------------------------------------------
+# 2. Governance section (top-level parent + children)
+# ---------------------------------------------------------------------------
 
-SPEC["architecture/overview.md"] = {
-    "title": "Architecture",
-    "nav_order": 3,
-    "has_children": True,
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 12, "has_children": True}
+GOVERNANCE_CHILDREN = {
+    "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
+    "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},
 }
 
-# --- Architecture: visible children (under Architecture parent) -----------
+# ---------------------------------------------------------------------------
+# 3. Architecture themed sub-sections (key -> (Title, nav_order))
+#    Each becomes a stub page architecture/sections/<key>.md (created if absent).
+# ---------------------------------------------------------------------------
 
-SPEC["architecture/e1.md"]                 = {"title": "E1 -- Deep Predictor",       "parent": "Architecture", "nav_order": 1}
-SPEC["architecture/e2.md"]                 = {"title": "E2 -- Fast Predictor",       "parent": "Architecture", "nav_order": 2}
-SPEC["architecture/e3.md"]                 = {"title": "E3 -- Trajectory Selector",  "parent": "Architecture", "nav_order": 3}
-SPEC["architecture/l_space.md"]            = {"title": "L-space",                    "parent": "Architecture", "nav_order": 4}
-SPEC["architecture/control_plane.md"]      = {"title": "Control Plane",              "parent": "Architecture", "nav_order": 5}
-SPEC["architecture/hippocampal_systems.md"]= {"title": "Hippocampal Systems",        "parent": "Architecture", "nav_order": 6}
-SPEC["architecture/default_mode.md"]       = {"title": "Default Mode",               "parent": "Architecture", "nav_order": 7}
-SPEC["architecture/residue_geometry.md"]   = {"title": "Residue",                    "parent": "Architecture", "nav_order": 8}
-SPEC["architecture/established_ethical_systems.md"] = {"title": "Established Ethical Systems", "parent": "Architecture", "nav_order": 9}
+SECTIONS = [
+    ("engines",        "Core Engines & Forward Models",         1),
+    ("foundations",    "Foundations & Rationale",               2),
+    ("representation", "Perception, Representation & Dynamics",  3),
+    ("attention",      "Attention, Binding & Objects",          4),
+    ("control",        "Control, Precision & Neuromodulation",  5),
+    ("memory",         "Memory & Hippocampus",                  6),
+    ("modes",          "Modes, Agency & Default Mode",          7),
+    ("goals",          "Goals, Drives & Motivation",            8),
+    ("affect",         "Affect, Harm & Nociception",            9),
+    ("pfc",            "Executive & PFC Control",               10),
+    ("language",       "Language",                              11),
+    ("sleep",          "Sleep & Offline Integration",           12),
+    ("social",         "Social & Clinical",                     13),
+    ("development",    "Development & Curriculum",              14),
+    ("specs",          "Specs, Diagrams & Versions",            15),
+    ("roadmap",        "Roadmap & Planning (V4+)",              16),
+]
+SECTION_TITLE = {key: title for key, title, _ in SECTIONS}
 
-# --- Architecture: exclude everything else --------------------------------
+# ---------------------------------------------------------------------------
+# 4. Assignment: architecture/<basename> -> theme key  (or None to exclude)
+# ---------------------------------------------------------------------------
 
-ARCH_EXCLUDE = [
-    "agency_responsibility_flow.md",
-    "arc_033_e2_harm_s_forward_model.md",
-    "arcuate_fasciculus.md",
-    "astrocyte_regulatory_stack.md",
-    "compact_consolidation_principle.md",
-    "control_plane_heartbeat.md",
-    "control_plane_signal_map.md",
-    "developmental_curriculum.md",
-    "diagram_views.md",
-    "e1_e2_constraint_propagation.md",
-    "efficiency_dimensionality_hypothesis.md",
-    "entities_and_binding.md",
-    "frontal_cue_integration.md",
-    "goal_wanting_signal_chain.md",
-    "hippocampal_braid.md",
-    "hippocampal_literature_synthesis_2026.md",
-    "hook_surface_contract.md",
-    "jepa_e1e2_integration_contract.md",
-    "jepa_ree_hybrid_diagram_spec.md",
-    "language.md",
-    "mode_manager.md",
-    "modes_of_cognition.md",
-    "neuromodulatory_control_planes.md",
-    "papez_circuit.md",
-    "path_authority_and_interrupts.md",
-    "play_mode.md",
-    "precision_control.md",
-    "precision_scoping.md",
-    "psychiatric_failure_modes.md",
-    "ree_v2_repo_bootstrap_spec.md",
-    "ree_v2_spec.md",
+ASSIGN = {
+    # --- Core Engines & Forward Models ---
+    "e1.md": "engines", "e2.md": "engines", "e3.md": "engines", "l_space.md": "engines",
+    "state.md": "engines", "founder_ontology.md": "engines",
+    "sd_004_sd_005_encoder_codesign.md": "engines", "sd_015_z_resource_encoder.md": "engines",
+    "sd_030_e2_self_forward_model.md": "engines", "sd_031_e2_world_forward_model.md": "engines",
+    "sd_056_e2_action_conditional_divergence.md": "engines",
+
+    # --- Foundations & Rationale ---
+    "post_hoc_filter_insufficiency.md": "foundations", "established_ethical_systems.md": "foundations",
+    "efficiency_dimensionality_hypothesis.md": "foundations", "invariant_types.md": "foundations",
+    "policy_primitive_granularity.md": "foundations", "claim_phase_provenance.md": "foundations",
+    "reafference_comparator_family.md": "foundations", "non_deficit_action_drives.md": "foundations",
+
+    # --- Perception, Representation & Dynamics ---
+    "residue_geometry.md": "representation", "sensory_stream_tags.md": "representation",
+    "sense_specific_perceptual_manifolds.md": "representation", "temporal_dynamics.md": "representation",
+    "e1_e2_constraint_propagation.md": "representation", "dv_temporal_depth_v3_form.md": "representation",
+
+    # --- Attention, Binding & Objects ---
+    "why_attention_must_be_fragmented.md": "attention", "entities_and_binding.md": "attention",
+    "frontal_cue_integration.md": "attention", "sd_016_frontal_cue_integration.md": "attention",
+    "sd_032_cingulate_integration_substrate.md": "attention", "event_segmenter.md": "attention",
+    "mech_045_object_file_buffer.md": "attention", "arc_080_object_representation_primitive.md": "attention",
+    "mech_294_multi_content_theta_packet.md": "attention",
+
+    # --- Control, Precision & Neuromodulation ---
+    "control_plane.md": "control", "control_plane_heartbeat.md": "control",
+    "control_plane_signal_map.md": "control", "neuromodulatory_control_planes.md": "control",
+    "precision_control.md": "control", "precision_scoping.md": "control",
+    "path_authority_and_interrupts.md": "control", "plasticity_write_authority_gating.md": "control",
+    "serotonin.md": "control", "astrocyte_regulatory_stack.md": "control",
+    "receptor_subtype_intervention_layer.md": "control", "sd_024_da_modulated_rbf_density.md": "control",
+    "mech_313_stochastic_noise_floor.md": "control", "sd_036_gabaergic_decay_regulator.md": "control",
+    "sd_037_broadcast_override_regulator.md": "control", "mech_271_routing_v3_substrate_plan.md": "control",
+
+    # --- Memory & Hippocampus ---
+    "hippocampal_systems.md": "memory", "hippocampal_braid.md": "memory",
+    "hippocampal_anchor_selection.md": "memory", "hippocampal_literature_synthesis_2026.md": "memory",
+    "hippocampal_map_tagged_channels.md": "memory", "hippocampal_valence_asymmetry.md": "memory",
+    "valenced_hippocampal_map.md": "memory", "papez_circuit.md": "memory",
+    "developmental_bootstrapping_hippo_retrieval.md": "memory", "sd_039_anchor_goal_payload.md": "memory",
+    "mech_189_super_ordinal_goal_anchors.md": "memory",
+    "autobiographical_temporality_and_future_simulation.md": "memory",
+
+    # --- Modes, Agency & Default Mode ---
+    "mode_manager.md": "modes", "modes_of_cognition.md": "modes", "default_mode.md": "modes",
+    "play_mode.md": "modes", "play_substrate_design.md": "modes",
+    "externalised_dmn_play_private_speech.md": "modes", "agency_responsibility_flow.md": "modes",
+    "trajectory_selection.md": "modes", "three_loop_learning_channels.md": "modes",
+    "self_attribution_per_stream.md": "modes", "tpj_agency_comparator.md": "modes",
+    "v_s_invalidation_runtime.md": "modes", "mech_269b_vs_rollout_gating.md": "modes",
+
+    # --- Goals, Drives & Motivation ---
+    "goal_wanting_signal_chain.md": "goals", "sustained_drive_anticipatory_wanting.md": "goals",
+    "ghost_goal_search.md": "goals", "mech_292_ghost_goal_bank.md": "goals",
+    "mech_293_ghost_goal_probe_search.md": "goals", "mech_295_drive_liking_approach_bridge.md": "goals",
+    "mech_303_contextual_safety_terrain.md": "goals", "sd_012_homeostatic_drive.md": "goals",
+    "sd_050_suffering_derivative_comparator.md": "goals", "sd_051_conditioned_safety_store.md": "goals",
+    "sd_057_object_bound_incentive_salience.md": "goals", "sd_058_instrumental_avoidance_acquisition.md": "goals",
+    "sd_059_escape_affordance_bridge.md": "goals", "trainable_relief_safety_affordance_learners.md": "goals",
+    "mech_111_per_candidate_novelty.md": "goals", "mech_314_structured_curiosity_bonus.md": "goals",
+    "mech_314a_phase2_novelty_source_design.md": "goals",
+
+    # --- Affect, Harm & Nociception ---
+    "affect_primitives.md": "affect", "affect_terminology_instinct_protoemotion.md": "affect",
+    "anticipatory_affect_conjunction_vs_dual_channel.md": "affect",
+    "candidate_differentiated_affective_gradients.md": "affect",
+    "emotion_as_anti_collapse_architecture.md": "affect", "vmPFC.md": "affect",
+    "arc_033_e2_harm_s_forward_model.md": "affect", "sd_010_harm_stream_separation.md": "affect",
+    "sd_011_dual_nociceptive_streams.md": "affect", "sd_013_e2_harm_s_interventional_training.md": "affect",
+    "sd_019_harm_nonredundancy.md": "affect", "sd_020_harm_surprise_pe.md": "affect",
+    "sd_021_descending_pain_modulation.md": "affect", "sd_022_directional_limb_damage.md": "affect",
+    "sd_023_environmental_gradient_texture.md": "affect", "sd_035_amygdala_analog.md": "affect",
+    "sd_048_interoceptive_noise_dynamics.md": "affect", "mech_219_hysteretic_integrator.md": "affect",
+    "mech_353_blocked_agency_zblock.md": "affect",
+
+    # --- Executive & PFC Control ---
+    "sd_033_pfc_subdivision_architecture.md": "pfc", "sd_033a_lateral_pfc_analog.md": "pfc",
+    "sd_033b_ofc_analog.md": "pfc", "sd_033d_premotor_sma_analog.md": "pfc",
+    "sd_034_governance_closure_operator.md": "pfc", "mech_090_commit_entry_predicate.md": "pfc",
+    "mech_319_simulation_mode_rule_gate.md": "pfc", "mech_341_e3_score_diversity_preservation.md": "pfc",
+    "mech_342_commit_maintenance_release.md": "pfc", "rule_apprehension_layer.md": "pfc",
+    "arc_063_candidate_rule_field.md": "pfc", "phased_rule_state_training_curriculum.md": "pfc",
+    "sd_055_differentiable_cem_selection.md": "pfc",
+
+    # --- Language ---
+    "language.md": "language", "arcuate_fasciculus.md": "language",
+
+    # --- Sleep & Offline Integration ---
+    "sleep.md": "sleep", "sleep_aggregation_cluster.md": "sleep",
+    "sd_017_sleep_phase_architecture.md": "sleep", "compact_consolidation_principle.md": "sleep",
+
+    # --- Social & Clinical ---
+    "social.md": "social", "psychiatric_failure_axes.md": "social",
+    "psychiatric_failure_modes.md": "social", "depressive_network_regimes.md": "social",
+    "slow_modulatory_state_and_compulsive_loops.md": "social", "laughter_social_load_release.md": "social",
+
+    # --- Development & Curriculum ---
+    "developmental_curriculum.md": "development", "developmental_metrics.md": "development",
+    "developmental_needs_register.md": "development", "developmental_experiment_priorities.md": "development",
+    "developmental_governance_review.md": "development", "monostrategy_developmental_analysis.md": "development",
+    "infant_substrate_expansion.md": "development", "scientist_agent_developmental_ordering.md": "development",
+    "developmental_pruning_and_sparse_memory_cognifold.md": "development", "replay_development_analysis.md": "development",
+    "critical_period_crystallization.md": "development", "sd_047_multi_source_dynamics.md": "development",
+    "sd_049_multi_resource_heterogeneity.md": "development", "sd_054_reef_enrichment_substrate.md": "development",
+
+    # --- Specs, Diagrams & Versions ---
+    "diagram_views.md": "specs", "jepa_e1e2_integration_contract.md": "specs",
+    "jepa_ree_hybrid_diagram_spec.md": "specs", "ree_v2_spec.md": "specs",
+    "ree_v2_repo_bootstrap_spec.md": "specs", "brain_map.md": "specs",
+    "hook_surface_contract.md": "specs", "streams.md": "specs",
+    "v2_v3_transition_roadmap.md": "specs", "v3_v4_transition_boundary.md": "specs",
+    "v3_v4_phase_substrate_boundary.md": "specs",
+
+    # --- Roadmap & Planning (V4+) ---
+    "architecture_scaling_needs.md": "roadmap", "substrate_roadmap.md": "roadmap",
+    "v4_planning_index.md": "roadmap", "v4_spec.md": "roadmap",
+    "v4_developmental_harness_spec.md": "roadmap", "mech_423_superadditivity_readiness_substrate.md": "roadmap",
+    "cognifold_signed_coupling.md": "roadmap", "spintronic_memristive_cognifold_substrate.md": "roadmap",
+}
+
+# Subdir pages (all language/* -> language; all sleep/* -> sleep)
+SUBDIR_ASSIGN = {
+    "language/emergence_and_bootstrapping.md": "language",
+    "language/language_and_institutions.md": "language",
+    "language/language_and_learning.md": "language",
+    "language/language_failure_modes.md": "language",
+    "language/minimal_signalling_channel.md": "language",
+    "language/trust_and_deception.md": "language",
+    "sleep/medications_dementia.md": "sleep",
+    "sleep/offline_phases.md": "sleep",
+    "sleep/precision_recalibration.md": "sleep",
+    "sleep/reality_consolidation.md": "sleep",
+    "sleep/residue_integration.md": "sleep",
+    "sleep/serotonergic_cross_state_substrate.md": "sleep",
+    "comparisons/meta_kaust_neural_computers.md": "specs",
+}
+
+# Architecture pages deliberately hidden from the sidebar (scratch / session
+# prompts / narrow impl notes). Still build + reachable by URL.
+ARCH_SCRATCH = [
+    "context_memory_writepath_fix.md",
+    "control_vector_logging.md",
+    "mech163_planned_system_gate_session_prompt.md",
+    "mech188_vs_mech295_dual_path.md",
+    "mech_318_absorption_check.md",
+    "modulatory_bias_selection_authority.md",
+    "precision_update_callsite.md",
     "sd015_hippocampal_nav_session_prompt.md",
     "sd_003_experiment_design.md",
-    "sd_004_sd_005_encoder_codesign.md",
-    "sd_010_harm_stream_separation.md",
-    "sd_011_dual_nociceptive_streams.md",
-    "sd_012_homeostatic_drive.md",
-    "sd_013_e2_harm_s_interventional_training.md",
-    "sd_015_z_resource_encoder.md",
-    "sd_016_frontal_cue_integration.md",
-    "sd_017_sleep_phase_architecture.md",
-    "sd_019_harm_nonredundancy.md",
-    "sd_020_harm_surprise_pe.md",
-    "sd_021_descending_pain_modulation.md",
-    "sd_022_directional_limb_damage.md",
-    "sd_023_environmental_gradient_texture.md",
-    "sensory_stream_tags.md",
-    "serotonin.md",
-    "sleep.md",
-    "social.md",
-    "state.md",
-    "streams.md",
-    "temporal_dynamics.md",
-    "three_loop_learning_channels.md",
-    "tpj_agency_comparator.md",
-    "trajectory_selection.md",
-    "v2_v3_transition_roadmap.md",
-    "v3_v4_transition_boundary.md",
-    "valenced_hippocampal_map.md",
-    "vmPFC.md",
-    "why_attention_must_be_fragmented.md",
+    "sd_016_writepath_v3_diversification_loss.md",
+    "threshold_supervisor_survey.md",
 ]
 
-for f in ARCH_EXCLUDE:
-    SPEC["architecture/" + f] = {"nav_exclude": True}
+# Top-level docs hidden from sidebar (reachable by link).
+TOP_EXCLUDE = [
+    "FINAL_OUTPUT.md", "MIGRATION.md", "REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md",
+    "REE_MIN_SPEC.md", "REE_overview.md", "V1_PROGRESS_AND_LEARNING.md",
+    "changelog.md", "repo_meta.md", "README.md", "repo_meta.md",
+]
 
-# Subdirectory files -- all excluded
-for subdir in ["language", "sleep"]:
-    subpath = os.path.join(ARCH, subdir)
-    if os.path.isdir(subpath):
-        for fname in os.listdir(subpath):
-            if fname.endswith(".md"):
-                SPEC["architecture/{}/{}".format(subdir, fname)] = {"nav_exclude": True}
-
-# Claims and conflicts subdirectory files
-for subdir in ["claims", "conflicts"]:
-    subpath = os.path.join(DOCS, subdir)
-    if os.path.isdir(subpath):
-        for fname in os.listdir(subpath):
-            if fname.endswith(".md"):
-                SPEC["{}/{}".format(subdir, fname)] = {"nav_exclude": True}
-
+# Whole subdirectories whose .md/.html pages are excluded from the sidebar.
+EXCLUDE_SUBDIRS = ["claims", "conflicts", "governance", "examples", "session_prompts", "processed"]
 
 # ---------------------------------------------------------------------------
-# Helper functions
+# Helpers
 # ---------------------------------------------------------------------------
 
 def strip_existing_frontmatter(text):
-    """Remove existing --- block if present. Returns (fm_dict, body)."""
     if not text.startswith("---\n"):
-        return {}, text
+        return text
     end = text.find("\n---\n", 4)
     if end == -1:
-        return {}, text
-    fm_text = text[4:end]
-    body = text[end + 5:]  # skip \n---\n
-    fm = {}
-    for line in fm_text.splitlines():
-        if ":" in line:
-            k, _, v = line.partition(":")
-            fm[k.strip()] = v.strip()
-    return fm, body
+        return text
+    return text[end + 5:]
 
 
 def render_frontmatter(fm):
-    """Render a frontmatter dict to a --- block string."""
     lines = ["---"]
     for k, v in fm.items():
         if isinstance(v, bool):
@@ -197,8 +275,8 @@ def render_frontmatter(fm):
         elif isinstance(v, int):
             lines.append("{}: {}".format(k, v))
         else:
-            # Quote strings that contain special chars
-            if any(c in str(v) for c in [":", "{", "}", "[", "]", "#", "&", "*", "!", "|", ">", "'", '"', "%", "@", "`"]):
+            special = [":", "{", "}", "[", "]", "#", "&", "*", "!", "|", ">", "'", '"', "%", "@", "`"]
+            if any(c in str(v) for c in special):
                 lines.append('{}: "{}"'.format(k, str(v).replace('"', '\\"')))
             else:
                 lines.append("{}: {}".format(k, v))
@@ -206,34 +284,121 @@ def render_frontmatter(fm):
     return "\n".join(lines) + "\n"
 
 
-def apply(rel_path, new_keys):
+def stamp(rel_path, fm):
     abs_path = os.path.join(DOCS, rel_path)
     if not os.path.exists(abs_path):
         print("SKIP (not found): {}".format(rel_path))
-        return
-
+        return False
     with open(abs_path, "r", encoding="utf-8") as f:
         text = f.read()
-
-    existing_fm, body = strip_existing_frontmatter(text)
-
-    # Merge: new_keys take precedence
-    merged = dict(existing_fm)
-    merged.update(new_keys)
-
-    new_text = render_frontmatter(merged) + "\n" + body.lstrip("\n")
-
+    body = strip_existing_frontmatter(text)
+    new_text = render_frontmatter(fm) + "\n" + body.lstrip("\n")
     with open(abs_path, "w", encoding="utf-8") as f:
         f.write(new_text)
+    return True
 
-    print("OK: {}".format(rel_path))
+
+def title_of(abs_path):
+    """First markdown H1, else prettified filename."""
+    try:
+        for line in open(abs_path, encoding="utf-8", errors="ignore"):
+            s = line.strip()
+            if s.startswith("# "):
+                return s[2:].strip()
+    except Exception:
+        pass
+    base = os.path.splitext(os.path.basename(abs_path))[0]
+    return base.replace("_", " ").replace("-", " ").title()
 
 
 # ---------------------------------------------------------------------------
 # Run
 # ---------------------------------------------------------------------------
 
+def run():
+    count = 0
+
+    # 1. Top-level pages
+    for rel, fm in TOP_LEVEL.items():
+        if stamp(rel, fm):
+            count += 1
+
+    # 2. Governance section
+    if stamp("architecture/overview.md", TOP_LEVEL["architecture/overview.md"]):
+        pass  # already done above; harmless
+    # Governance parent is a dedicated stub page so the section has a landing page.
+    gov_stub = "governance_section.md"
+    gov_fm = dict(GOVERNANCE_PARENT)
+    gov_path = os.path.join(DOCS, gov_stub)
+    if not os.path.exists(gov_path):
+        with open(gov_path, "w", encoding="utf-8") as f:
+            f.write(render_frontmatter(gov_fm) + "\n# Governance\n\n"
+                    "How REE governs its own claims: the verification gate and the "
+                    "evaluation-channel integrity model. Select a page from the navigation.\n")
+        count += 1
+    else:
+        stamp(gov_stub, gov_fm)
+    for rel, fm in GOVERNANCE_CHILDREN.items():
+        if stamp(rel, fm):
+            count += 1
+
+    # 3. Architecture section stub pages
+    if not os.path.isdir(SECTIONS_DIR):
+        os.makedirs(SECTIONS_DIR)
+    for key, title, order in SECTIONS:
+        rel = "architecture/sections/{}.md".format(key)
+        fm = {"title": title, "parent": "Architecture", "has_children": True, "nav_order": order}
+        path = os.path.join(DOCS, rel)
+        if not os.path.exists(path):
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(render_frontmatter(fm) + "\n# {}\n\n".format(title)
+                        + "Architecture documents in this area. Select a page from the navigation.\n")
+            count += 1
+        else:
+            stamp(rel, fm)
+
+    # 4. Architecture doc pages -> theme child, sorted by title within theme
+    #    First gather (rel, key, title) so we can assign nav_order per theme.
+    members = {}  # key -> list of (title, rel)
+    def add_member(rel, key):
+        abs_path = os.path.join(DOCS, rel)
+        if not os.path.exists(abs_path):
+            print("SKIP (not found): {}".format(rel))
+            return
+        members.setdefault(key, []).append((title_of(abs_path), rel))
+
+    for base, key in ASSIGN.items():
+        add_member("architecture/" + base, key)
+    for rel, key in SUBDIR_ASSIGN.items():
+        add_member("architecture/" + rel, key)
+
+    for key, items in members.items():
+        for order, (title, rel) in enumerate(sorted(items), start=1):
+            fm = {"title": title, "parent": SECTION_TITLE[key],
+                  "grandparent": "Architecture", "nav_order": order}
+            if stamp(rel, fm):
+                count += 1
+
+    # 5. Exclusions
+    for base in ARCH_SCRATCH:
+        if stamp("architecture/" + base, {"nav_exclude": True}):
+            count += 1
+    for base in TOP_EXCLUDE:
+        if stamp(base, {"nav_exclude": True}):
+            count += 1
+    for sub in EXCLUDE_SUBDIRS:
+        subpath = os.path.join(DOCS, sub)
+        if not os.path.isdir(subpath):
+            continue
+        for root, _dirs, files in os.walk(subpath):
+            for fn in files:
+                if fn.endswith((".md", ".html")):
+                    rel = os.path.relpath(os.path.join(root, fn), DOCS)
+                    if stamp(rel, {"nav_exclude": True}):
+                        count += 1
+
+    print("\nDone. {} files stamped.".format(count))
+
+
 if __name__ == "__main__":
-    for rel_path, keys in SPEC.items():
-        apply(rel_path, keys)
-    print("\nDone. {} files processed.".format(len(SPEC)))
+    run()

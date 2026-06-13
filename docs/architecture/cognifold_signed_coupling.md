@@ -1,3 +1,10 @@
+---
+title: Cognifold Signed Coupling (ARC-084 / MECH-363 / Q-058)
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Cognifold Signed Coupling (ARC-084 / MECH-363 / Q-058)
 
 **Status:** candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09 from the competitive-interactions thought intake.

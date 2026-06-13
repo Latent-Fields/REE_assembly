@@ -1,3 +1,10 @@
+---
+title: Non-Deficit Action Drives — Architectural Family
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 5
+---
+
 # Non-Deficit Action Drives — Architectural Family
 
 **Status:** family slot registered 2026-05-10 (ARC-066 + ARC-067 + ARC-068 candidate / pending_design).

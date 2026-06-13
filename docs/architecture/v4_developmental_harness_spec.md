@@ -1,3 +1,10 @@
+---
+title: V4 Developmental Testing Harness — Spec Sketch
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 6
+---
+
 # V4 Developmental Testing Harness — Spec Sketch
 
 **Registered:** 2026-04-21

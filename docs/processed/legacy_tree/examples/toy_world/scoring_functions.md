@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Toy world scoring functions
 
 ## Reality cost \(\mathcal{F}\)

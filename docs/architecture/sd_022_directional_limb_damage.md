@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-022: Directional Limb Damage (Body Extension)"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 15
 ---
 
 # SD-022: Directional Limb Damage (Body Extension)

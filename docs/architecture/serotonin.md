@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Serotonin
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 16
 ---
 
 # Serotonin

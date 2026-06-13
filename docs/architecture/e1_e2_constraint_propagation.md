@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: E1/E2 Constraint Propagation and Perceptual Bias
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # E1/E2 Constraint Propagation and Perceptual Bias

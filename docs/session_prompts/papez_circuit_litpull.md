@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Papez Circuit Literature Pull
 
 > Paste this into a new Claude Code session as your opening message.

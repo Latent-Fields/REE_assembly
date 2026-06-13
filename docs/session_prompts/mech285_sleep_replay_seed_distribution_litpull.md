@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # MECH-285 Sleep-Replay Seed-Distribution Lit-Pull: Narrow vs Broad Staleness-Priority Coverage
 
 > Created: 2026-04-24

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-037: Broadcast Override Regulator (orexin-analog)"
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 15
 ---
 
 # SD-037: Broadcast Override Regulator (orexin-analog)

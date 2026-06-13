@@ -1,7 +1,8 @@
 ---
 title: REE Brain Map
-parent: Architecture
-nav_order: 15
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # REE Brain Map

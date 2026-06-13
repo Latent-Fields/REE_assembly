@@ -1,3 +1,10 @@
+---
+title: "Anticipatory affect: conjunction architecture (MECH-307) vs SD-014 6-channel amendment"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 4
+---
+
 # Anticipatory affect: conjunction architecture (MECH-307) vs SD-014 6-channel amendment
 
 **Created:** 2026-05-08

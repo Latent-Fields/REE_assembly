@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Homeostatic Override / Imminent-Death Drive Amplification Literature Pull
 
 > Paste this into a new Claude Code session as your opening message.

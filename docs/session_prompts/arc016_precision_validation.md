@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # ARC-016: Dynamic Precision Validation
 
 > Paste this into a new Claude Code session as your opening message.

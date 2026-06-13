@@ -1,3 +1,10 @@
+---
+title: MECH-294 Multi-Content Theta-Burst Packet -- Substrate Design Memo
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 6
+---
+
 # MECH-294 Multi-Content Theta-Burst Packet -- Substrate Design Memo
 
 - **Status:** IMPLEMENTED 2026-06-09 (substrate landed behind the no-op-default

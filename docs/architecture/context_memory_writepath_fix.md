@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # ContextMemory write-path + bias-dominance fix (DRAFT v2)
 
 Status: DRAFT v2, 2026-04-25. Revised per user direction: substrate

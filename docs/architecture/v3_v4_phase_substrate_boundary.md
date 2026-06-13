@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: V3/V4 Phase Substrate Boundary -- Architectural Commitment
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 12
 ---
 
 # V3/V4 Phase Substrate Boundary -- Architectural Commitment

@@ -1,3 +1,10 @@
+---
+title: Infant Substrate Expansion Design
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 8
+---
+
 # Infant Substrate Expansion Design
 <!-- version: 2026-05-16.2 -->
 <!-- author: claude-sonnet-4-6, session infant-substrate-expansion-2026-05-16T111412Z -->

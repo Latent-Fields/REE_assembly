@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-016: Frontal Cue Integration"
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # SD-016: Frontal Cue Integration

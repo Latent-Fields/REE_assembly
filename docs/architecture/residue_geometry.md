@@ -1,7 +1,8 @@
 ---
-title: Residue
-parent: Architecture
-nav_order: 8
+title: Residue Geometry
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Residue Geometry

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-017: Minimal Sleep-Phase Architecture (V3)"
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 8
 ---
 
 # SD-017: Minimal Sleep-Phase Architecture (V3)

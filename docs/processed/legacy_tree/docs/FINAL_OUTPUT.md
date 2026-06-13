@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE Documentation Refactoring — Final Output
 
 **Date:** 2026-02-07  

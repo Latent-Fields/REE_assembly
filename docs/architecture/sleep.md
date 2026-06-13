@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Offline Integration and Sleep
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Offline Integration and Sleep

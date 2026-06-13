@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Language And Institutions
+parent: Language
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Language And Institutions

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Residue Geometry
 
 **Claim Type:** architectural_commitment  

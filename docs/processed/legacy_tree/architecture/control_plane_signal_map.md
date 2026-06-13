@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Control Plane Signal→Knob Wiring Map (E1/E2/E3)
 
 > **Status:** Draft / architectural note  

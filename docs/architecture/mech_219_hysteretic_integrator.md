@@ -1,3 +1,10 @@
+---
+title: "MECH-219: Affective-Harm Hysteretic Integrator (z_harm_suffering)"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 7
+---
+
 # MECH-219: Affective-Harm Hysteretic Integrator (z_harm_suffering)
 
 **Claim ID:** MECH-219 (`affect.affective_harm_hysteretic_integration`)

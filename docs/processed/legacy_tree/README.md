@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Reflective‑Ethical Engine (REE)
 
 Start here: `REE_CORE.md` (canonical spine of the architecture).

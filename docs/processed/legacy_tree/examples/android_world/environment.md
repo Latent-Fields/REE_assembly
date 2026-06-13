@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Embodied (Android-like) instantiation contract
 
 This contract sketches a more grounded instantiation where “harm” and “homeostasis” are unambiguous.

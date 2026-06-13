@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **Elaborates Section 6 (Failure Modes) of `REE_CORE.md`.**
 
 # Language Failure Modes

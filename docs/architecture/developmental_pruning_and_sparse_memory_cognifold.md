@@ -1,3 +1,10 @@
+---
+title: Developmental pruning and sparse memory cognifold
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 7
+---
+
 # Developmental pruning and sparse memory cognifold
 
 **Date:** 2026-06-09

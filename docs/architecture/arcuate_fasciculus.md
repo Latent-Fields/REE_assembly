@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Arcuate Fasciculus (Functional Analog)
+parent: Language
+grandparent: Architecture
+nav_order: 1
 ---
 
 # Arcuate Fasciculus (Functional Analog)

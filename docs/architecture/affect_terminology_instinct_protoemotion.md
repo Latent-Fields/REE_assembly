@@ -1,3 +1,10 @@
+---
+title: "Affect terminology: instinct, protoemotion, emotion"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 3
+---
+
 # Affect terminology: instinct, protoemotion, emotion
 
 **Document type:** Architecture terminology addendum  

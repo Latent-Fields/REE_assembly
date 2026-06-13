@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Regulatory Stack Model
 
 This document introduces the **regulatory stack** framing: a layered architecture in which monoamines are reinterpreted as **meta-regulatory broadcast signals** rather than direct control knobs.

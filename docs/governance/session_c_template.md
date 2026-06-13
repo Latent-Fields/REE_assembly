@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Session C_n Template — Grey-Zone Invariant Resolution
 
 > **Usage:** This is the shared framework for per-invariant grey-zone

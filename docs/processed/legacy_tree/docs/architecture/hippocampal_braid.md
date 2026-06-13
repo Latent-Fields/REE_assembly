@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Hippocampal Braid (Path Memory and Replay)
 
 **Claim Type:** architectural_commitment  

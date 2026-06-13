@@ -1,7 +1,8 @@
 ---
-title: Default Mode
-parent: Architecture
-nav_order: 7
+title: Default Mode (Internal Generative Mode)
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Default Mode (Internal Generative Mode)

@@ -1,3 +1,10 @@
+---
+title: "SD-059 / MECH-358: Relief/Safety Escape-Affordance Bridge"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 15
+---
+
 # SD-059 / MECH-358: Relief/Safety Escape-Affordance Bridge
 
 **Claim ID:** SD-059 (architecture) / MECH-358 (mechanism)

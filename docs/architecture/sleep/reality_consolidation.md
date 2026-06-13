@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Reality Consolidation
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Reality Consolidation

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Psychiatric Failure Modes as Latent Vulnerability Axes
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Psychiatric Failure Modes as Latent Vulnerability Axes

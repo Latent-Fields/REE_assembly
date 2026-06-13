@@ -1,5 +1,4 @@
 ---
-title: Gamma prompts — REE for Psychiatrists
 nav_exclude: true
 ---
 

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Hippocampal Literature Synthesis 2026
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Hippocampal Literature Synthesis 2026

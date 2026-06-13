@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # REE failure modes (implementation-focused)
 
 This document lists REE-relevant failure modes as **computational pathologies**. It is not a clinical guide.

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Resolution: Rollout Entropy Floor vs Residue Persistence
 
 ## Conflict Reference(s)

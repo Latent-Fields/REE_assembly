@@ -1,3 +1,10 @@
+---
+title: Claim Phase Provenance and Dependency-Driven Reclassification
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Claim Phase Provenance and Dependency-Driven Reclassification
 
 **Status:** design proposal + landed checker, 2026-06-09

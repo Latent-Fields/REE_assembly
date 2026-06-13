@@ -1,3 +1,10 @@
+---
+title: Hippocampal Map-Tagged Channels — Heterogeneous Affect Encoding in the REE Architecture
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 6
+---
+
 # Hippocampal Map-Tagged Channels — Heterogeneous Affect Encoding in the REE Architecture
 
 **Status:** design reference (V4 scope; informs V3 SD-011 generalization)

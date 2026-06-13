@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Session B Prompt — Invariant Classification Audit
 
 > **Usage:** Hand this file to a fresh session (e.g. "Read

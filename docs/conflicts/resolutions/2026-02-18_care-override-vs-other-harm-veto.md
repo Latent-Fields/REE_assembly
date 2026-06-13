@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Resolution: Care Override vs Other-Harm Veto
 
 ## Conflict Reference(s)

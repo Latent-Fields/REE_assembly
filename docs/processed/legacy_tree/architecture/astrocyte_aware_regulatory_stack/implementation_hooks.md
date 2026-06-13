@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Implementation Hooks
 
 This document provides practical guidance for future code integration of the astrocyte-aware regulatory stack **without requiring immediate code changes**. It specifies where a `RegulatoryField` module would sit in the architecture, what interfaces it should expose, and how it relates to existing REE components.

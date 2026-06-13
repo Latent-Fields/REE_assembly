@@ -1,3 +1,10 @@
+---
+title: Play Substrate Design
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 8
+---
+
 # Play Substrate Design
 
 **Status:** Draft — 2026-05-16

@@ -1,3 +1,10 @@
+---
+title: Plasticity Write-Authority Gating (admission side)
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 9
+---
+
 # Plasticity Write-Authority Gating (admission side)
 
 **Status:** candidate-claim home doc. NOT a substrate-design memo, NOT a V3 critical-path item.

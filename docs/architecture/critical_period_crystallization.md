@@ -1,3 +1,10 @@
+---
+title: "Critical-Period Crystallization: Phase-3 Plasticity Injection + EWC Residue Write-Protect"
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Critical-Period Crystallization: Phase-3 Plasticity Injection + EWC Residue Write-Protect
 
 **Implements:** INV-074 (necessity), MECH-333 (open phase, option E subset),

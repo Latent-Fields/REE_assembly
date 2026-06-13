@@ -1,3 +1,10 @@
+---
+title: Autobiographical Temporality and Future Simulation (ARC-085 / MECH-365 / MECH-366 / Q-060)
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 1
+---
+
 # Autobiographical Temporality and Future Simulation (ARC-085 / MECH-365 / MECH-366 / Q-060)
 
 Status: candidate cluster, V4/V5, off the V3 critical path. Registered 2026-06-09.

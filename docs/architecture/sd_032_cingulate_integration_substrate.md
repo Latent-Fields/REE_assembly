@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-032: Cingulate Integration Substrate"
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 8
 ---
 
 # SD-032: Cingulate Integration Substrate

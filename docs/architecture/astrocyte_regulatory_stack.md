@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Astrocyte-Aware Regulatory Stack (Control Plane Mechanism)
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # Astrocyte-Aware Regulatory Stack (Control Plane Mechanism)

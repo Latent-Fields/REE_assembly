@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **Elaborates Section 4.6 (Offline Integration / Sleep) and 4.5 (Precision Control) of `REE_CORE.md`.**
 
 # Precision Recalibration

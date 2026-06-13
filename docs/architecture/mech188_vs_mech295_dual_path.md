@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # MECH-188 vs MECH-295 dual-path z_goal: read-site disambiguation
 
 **Created:** 2026-05-08

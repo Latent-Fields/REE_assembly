@@ -1,3 +1,10 @@
+---
+title: "ARC-063: policy.rule_apprehension_layer (V3-tractable distributed CandidateRule field)"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 1
+---
+
 # ARC-063: policy.rule_apprehension_layer (V3-tractable distributed CandidateRule field)
 
 **Claim ID:** ARC-063

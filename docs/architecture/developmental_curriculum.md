@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Curriculum and Staged Training
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Developmental Curriculum and Staged Training

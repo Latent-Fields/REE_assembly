@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Residue geometry
 
 Residue is stored as persistent curvature over latent space.

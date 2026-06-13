@@ -1,3 +1,10 @@
+---
+title: "Invariant Types: Universal vs Emergent"
+parent: "Foundations & Rationale"
+grandparent: Architecture
+nav_order: 4
+---
+
 # Invariant Types: Universal vs Emergent
 
 **Status:** architecture doc, 2026-04-17

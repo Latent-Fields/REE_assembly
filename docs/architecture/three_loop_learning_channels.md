@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Three-Loop Learning Channel Separation
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 11
 ---
 
 # Three-Loop Learning Channel Separation

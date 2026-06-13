@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-021: Descending Pain Modulation — Commitment-Gated z_harm_s Attenuation"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 14
 ---
 
 # SD-021: Descending Pain Modulation — Commitment-Gated z_harm_s Attenuation

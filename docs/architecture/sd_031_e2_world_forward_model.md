@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-031: E2_world Causal-Footprint Forward Model Comparator"
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 9
 ---
 
 # SD-031: E2_world Causal-Footprint Forward Model Comparator

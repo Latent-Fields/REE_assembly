@@ -1,3 +1,10 @@
+---
+title: Candidate-Differentiated Affective Gradients (V4/V5 cluster)
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 5
+---
+
 # Candidate-Differentiated Affective Gradients (V4/V5 cluster)
 
 **Status:** candidate / substrate_conditional / implementation_phase v4 — **DO NOT build in V3.**

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Precision control (monoamine analogue)
 
 REE uses depth-indexed precision gains \(\alpha_k\) to control how strongly errors at different depths shape belief and action.

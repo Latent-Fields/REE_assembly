@@ -1,6 +1,7 @@
 ---
 title: Governance Verification Gate
-nav_order: 99
+parent: Governance
+nav_order: 1
 ---
 
 # Governance Verification Gate

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "SD-013: E2_harm_s Interventional Training"
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 11
 ---
 
 # SD-013: E2_harm_s Interventional Training

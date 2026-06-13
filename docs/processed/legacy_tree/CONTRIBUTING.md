@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Contributing
 
 Thank you for considering a contribution.

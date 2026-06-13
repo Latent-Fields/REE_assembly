@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 τ-Scoped Precision: Update Rules and Separation
 
 Overview

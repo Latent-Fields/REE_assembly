@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: MECH-045 -- Token-Instance Object-File / Entity-Persistence Buffer (Substrate Design Memo)
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # MECH-045 -- Token-Instance Object-File / Entity-Persistence Buffer (Substrate Design Memo)

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Waking-Phase Online V_s Invalidation Literature Pull
 
 > Created: 2026-04-22

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Residue Integration
+parent: "Sleep & Offline Integration"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # Residue Integration

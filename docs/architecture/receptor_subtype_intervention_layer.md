@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "Receptor-Subtype + Interaction-Effects Layer (model <-> intervention)"
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 12
 ---
 
 # Receptor-Subtype + Interaction-Effects Layer (model <-> intervention)

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Astrocytes in Brief
 
 > **This is not "astrocytes replace neurons."**  

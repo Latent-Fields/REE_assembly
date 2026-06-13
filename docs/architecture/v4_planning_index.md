@@ -1,7 +1,8 @@
 ---
 title: V4 Planning Index
-parent: Architecture
-nav_order: 100
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # V4 Planning Index

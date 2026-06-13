@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Control Plane Signal Map
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Control Plane Signal Map

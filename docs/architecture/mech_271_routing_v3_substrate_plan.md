@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: MECH-271 Hypothesis-Tag-as-Routing -- V3 Substrate Landing Plan
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # MECH-271 Hypothesis-Tag-as-Routing -- V3 Substrate Landing Plan

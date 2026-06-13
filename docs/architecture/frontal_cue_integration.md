@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Frontal Cue Integration
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Frontal Cue Integration

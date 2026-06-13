@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: REE-v2 Implementation Spec
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 8
 ---
 
 # REE-v2 Implementation Spec

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-016 ContextMemory v3 -- Auxiliary Diversification Loss (Path 1)
 
 Status: PROPOSED 2026-04-25

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: V3 / V4 Architecture Transition Boundary
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 11
 ---
 
 <!-- TRANSITION_BOUNDARY_VERSION: 2026-04-05.1 -->

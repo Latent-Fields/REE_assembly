@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: SD-004 + SD-005 Encoder Co-Design Specification
+parent: "Core Engines & Forward Models"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # SD-004 + SD-005 Encoder Co-Design Specification

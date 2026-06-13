@@ -1,3 +1,10 @@
+---
+title: V4 Spec (initial deliberate spec, 2026-05-02)
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 8
+---
+
 # V4 Spec (initial deliberate spec, 2026-05-02)
 
 > Initial spec-first phase for V4. Captures the substrate primitives V4

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: REE Architecture Streams and IDs (v1)
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 4
 ---
 
 # REE Architecture Streams and IDs (v1)

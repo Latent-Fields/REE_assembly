@@ -1,7 +1,8 @@
 ---
-title: Architecture Scaling Needs
-parent: Architecture
-nav_order: 99
+title: REE Architecture Scaling Needs
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # REE Architecture Scaling Needs

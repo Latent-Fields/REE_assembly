@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # MECH-094: Split Failure Modes — Confabulation, Psychosis, Hallucination
 
 > Paste this into a new Claude Code session as your opening message.

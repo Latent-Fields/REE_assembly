@@ -1,3 +1,10 @@
+---
+title: "Hippocampal Valence Asymmetry: BLA vs VTA Pathways"
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 8
+---
+
 # Hippocampal Valence Asymmetry: BLA vs VTA Pathways
 
 > Registered: 2026-04-14

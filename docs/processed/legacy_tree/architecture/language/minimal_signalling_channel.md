@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 > **Elaborates Section 5 (Social Extension: Language) of `REE_CORE.md`.**
 
 # Minimal Signalling Channel (Pre-language)

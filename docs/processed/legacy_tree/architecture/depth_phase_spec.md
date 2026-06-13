@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 Depth–Phase Coordinate System (REE Canonical Specification)
 
 Status

@@ -1,3 +1,10 @@
+---
+title: "SD-057: drive.object_bound_incentive_salience"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 13
+---
+
 # SD-057: drive.object_bound_incentive_salience
 
 **Claim ID:** SD-057

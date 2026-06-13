@@ -1,3 +1,10 @@
+---
+title: Emotion as anti-collapse architecture (ARC-088)
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 6
+---
+
 # Emotion as anti-collapse architecture (ARC-088)
 
 **Status:** candidate architectural framing (MAP, not new substrate)

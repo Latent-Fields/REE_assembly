@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 Hippocampal braid (path memory and replay)
 
 Role in REE

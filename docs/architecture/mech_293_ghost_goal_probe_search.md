@@ -1,3 +1,10 @@
+---
+title: MECH-293 Waking Ghost-Goal Probe Search
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 5
+---
+
 # MECH-293 Waking Ghost-Goal Probe Search
 
 **Status (2026-04-27):** IMPLEMENTED 2026-04-27. Substrate prerequisite SD-039

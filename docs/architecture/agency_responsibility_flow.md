@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Agency and Responsibility Flow
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 1
 ---
 
 # Agency and Responsibility Flow

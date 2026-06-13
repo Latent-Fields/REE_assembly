@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Astrocyte‑aware Regulatory Stack
 
 This module reframes **monoaminergic regulation** in REE by introducing the neuroscientific reality that astrocytes—non-neuronal glial cells—implement a slow, spatially resolved, history-dependent control substrate that mediates neuromodulation. Instead of treating monoamines (dopamine, serotonin, noradrenaline, etc.) as direct, instantaneous gain knobs, this perspective recognizes them as broadcast meta-regulatory signals that bias a deeper astrocytic regulatory field, which in turn modulates local synaptic gain, precision, plasticity, and timing.

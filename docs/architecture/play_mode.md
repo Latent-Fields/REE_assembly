@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Play Mode
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # Play Mode

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # SD-019/020/021: Harm Stream Validation — Unblock the Dependency Chain
 
 > Paste this into a new Claude Code session as your opening message.

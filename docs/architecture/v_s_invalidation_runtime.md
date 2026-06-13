@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "Waking-Phase V_s Invalidation: Runtime Trigger + Local Accumulator"
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 13
 ---
 
 # Waking-Phase V_s Invalidation: Runtime Trigger + Local Accumulator

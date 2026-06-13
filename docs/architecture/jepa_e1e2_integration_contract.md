@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: JEPA-Like E1/E2 Representation Reference Contract
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # JEPA-Like E1/E2 Representation Reference Contract

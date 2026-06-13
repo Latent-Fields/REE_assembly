@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # MECH-318 Absorption Check
 
 **Date:** 2026-05-10

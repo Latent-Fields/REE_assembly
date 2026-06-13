@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Language and Symbolic Mediation
+parent: Language
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Language and Symbolic Mediation

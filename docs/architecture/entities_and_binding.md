@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Entities and Binding
+parent: "Attention, Binding & Objects"
+grandparent: Architecture
+nav_order: 2
 ---
 
 # Entities and Binding

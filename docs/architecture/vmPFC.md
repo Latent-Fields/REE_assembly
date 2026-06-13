@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: vmPFC — Affective and Normative State Preparation
+parent: "Affect, Harm & Nociception"
+grandparent: Architecture
+nav_order: 19
 ---
 
 # vmPFC — Affective and Normative State Preparation

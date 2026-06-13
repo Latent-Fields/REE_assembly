@@ -1,3 +1,10 @@
+---
+title: "MECH-295: Drive -> Liking-Stream -> Approach Cue Bridge"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 6
+---
+
 # MECH-295: Drive -> Liking-Stream -> Approach Cue Bridge
 
 **Claim ID:** MECH-295

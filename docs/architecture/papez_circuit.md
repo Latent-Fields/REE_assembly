@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Papez Circuit (Functional Analog)
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # Papez Circuit (Functional Analog)

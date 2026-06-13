@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Conflict: No Ethics Module vs Explicit Ethical Cost Term
 
 ## Conflicting Claim IDs

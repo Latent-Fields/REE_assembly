@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "V_s Monostrategy Root-Cause Analysis: A Developmental Pathology Lens"
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 14
 ---
 
 <!-- MONOSTRATEGY_DEV_ANALYSIS_VERSION: 2026-05-16.3 -->

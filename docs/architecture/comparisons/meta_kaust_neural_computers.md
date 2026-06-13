@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: "REE versus Neural Computers: A Technical Comparison"
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 7
 ---
 
 # REE versus Neural Computers: A Technical Comparison

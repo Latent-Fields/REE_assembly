@@ -1,3 +1,10 @@
+---
+title: Spintronic-memristive substrates as future physical cognifold candidates
+parent: "Roadmap & Planning (V4+)"
+grandparent: Architecture
+nav_order: 4
+---
+
 # Spintronic-memristive substrates as future physical cognifold candidates
 
 **Status:** candidate compass — POST-V5 / future physical instantiation.

@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Developmental Experiment Priorities
+parent: "Development & Curriculum"
+grandparent: Architecture
+nav_order: 3
 ---
 
 <!-- version: 2026-05-16.1 -->

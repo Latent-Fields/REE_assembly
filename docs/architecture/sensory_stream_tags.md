@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Sensory Stream Tags (Minimal Set)
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 5
 ---
 
 # Sensory Stream Tags (Minimal Set)

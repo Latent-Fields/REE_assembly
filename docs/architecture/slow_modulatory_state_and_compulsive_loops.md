@@ -1,3 +1,10 @@
+---
+title: Slow Modulatory State and Compulsive Loops
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 5
+---
+
 # Slow Modulatory State and Compulsive Loops
 
 **Status:** V4/V5 compass. Location anchor for the candidate claims reaped from the

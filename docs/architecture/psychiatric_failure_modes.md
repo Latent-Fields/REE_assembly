@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Psychiatric Failure Modes as Architectural States
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 3
 ---
 
 # Psychiatric Failure Modes as Architectural States

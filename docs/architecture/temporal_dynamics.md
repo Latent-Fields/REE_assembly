@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Temporal Dynamics and Phase Gating
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Temporal Dynamics and Phase Gating

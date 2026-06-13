@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Minimal Signalling Channel
+parent: Language
+grandparent: Architecture
+nav_order: 7
 ---
 
 # Minimal Signalling Channel

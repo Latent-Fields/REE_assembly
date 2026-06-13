@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Language And Learning
+parent: Language
+grandparent: Architecture
+nav_order: 4
 ---
 
 # Language And Learning

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Source placeholder
 
 This repository is specification-first.

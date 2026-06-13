@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: Social Cognition (Self/Other)
+parent: "Social & Clinical"
+grandparent: Architecture
+nav_order: 6
 ---
 
 # Social Cognition (Self/Other)

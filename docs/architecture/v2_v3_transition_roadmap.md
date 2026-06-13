@@ -1,5 +1,8 @@
 ---
-nav_exclude: true
+title: V2 → V3 Transition Roadmap
+parent: "Specs, Diagrams & Versions"
+grandparent: Architecture
+nav_order: 10
 ---
 
 # V2 → V3 Transition Roadmap

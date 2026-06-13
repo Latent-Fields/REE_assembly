@@ -1,3 +1,10 @@
+---
+title: Self-Attribution Per Reafferent Stream
+parent: "Modes, Agency & Default Mode"
+grandparent: Architecture
+nav_order: 9
+---
+
 # Self-Attribution Per Reafferent Stream
 
 **Registered:** 2026-04-18

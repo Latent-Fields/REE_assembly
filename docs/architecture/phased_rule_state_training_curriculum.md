@@ -1,3 +1,10 @@
+---
+title: Phased rule_state Training Curriculum -- Design + Risk Analysis
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 6
+---
+
 # Phased rule_state Training Curriculum -- Design + Risk Analysis
 
 **Owner:** `commitment_closure` deliverable 4 (the GAP-3 carve-out)

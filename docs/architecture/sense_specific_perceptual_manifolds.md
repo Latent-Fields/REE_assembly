@@ -1,3 +1,10 @@
+---
+title: Sense-specific perceptual manifolds before shared world-model entry
+parent: "Perception, Representation & Dynamics"
+grandparent: Architecture
+nav_order: 4
+---
+
 # Sense-specific perceptual manifolds before shared world-model entry
 
 Status: SEED / candidate cluster (V4/V5 perception). Off the V3 / GAP-7 critical path.

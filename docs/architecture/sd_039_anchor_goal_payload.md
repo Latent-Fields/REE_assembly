@@ -1,3 +1,10 @@
+---
+title: SD-039 Dual-Trace Anchor Goal-Snapshot Payload
+parent: "Memory & Hippocampus"
+grandparent: Architecture
+nav_order: 11
+---
+
 # SD-039 Dual-Trace Anchor Goal-Snapshot Payload
 
 **Status (2026-04-27):** IMPLEMENTED. Both the substrate-side surface

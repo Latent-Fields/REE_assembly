@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # References
 
 This document provides an annotated list of key references on astrocytes, neuromodulation, and their computational roles. It supports the claims made in the Astrocyte-aware Regulatory Stack documentation.

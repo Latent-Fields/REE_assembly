@@ -1,3 +1,10 @@
+---
+title: "MECH-319: Simulation-Mode Rule-Write Gate (Categorical Replay Tag)"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 3
+---
+
 # MECH-319: Simulation-Mode Rule-Write Gate (Categorical Replay Tag)
 
 **Claim ID:** MECH-319
