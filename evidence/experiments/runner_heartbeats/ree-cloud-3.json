@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-13T18:06:24Z",
+  "last_tick_utc": "2026-06-13T18:36:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-464d",
   "current_exq_started_utc": "2026-06-13T10:35:49.932537+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "MECH-266",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_COMPETING_GOALS",
-    "runs_done": 6,
+    "run_label": "Seed 44 / ARM_ASYM_STICKY_TASK",
+    "runs_done": 8,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 221.4
+    "overall_pct": 266.7
   },
-  "seconds_elapsed": 27034,
+  "seconds_elapsed": 28844,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_464d_mech266_competing_goals_behavioural] starting (dry_run=False)",
@@ -46,7 +46,11 @@
     "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4101 formed=True",
     "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.909 gate=pass",
     "[train] p0_guided seed=44 ep 130/265 mean_len=198.4 rv=0.00029",
-    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=44 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=44 ep 235/265 contact_rate=0.2562 contact_events=154 z_goal_at_contact=0.4402",
+    "Seed 44 Condition ARM_SYMMETRIC",
+    "Seed 44 Condition ARM_ASYM_STICKY_TASK"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
