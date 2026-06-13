@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-13T13:40:12Z",
+  "last_tick_utc": "2026-06-13T14:10:19Z",
   "state": "running",
   "current_exq": "V3-EXQ-467d",
   "current_exq_started_utc": "2026-06-13T10:36:27.077832+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_MODE_STICKINESS",
     "runs_done": 12,
     "runs_total": 3,
-    "episodes_done": 20,
+    "episodes_done": 30,
     "episodes_total": 295,
-    "overall_pct": 402.3
+    "overall_pct": 403.4
   },
-  "seconds_elapsed": 11025,
+  "seconds_elapsed": 12833,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_467d_mech266_mode_stickiness_behavioural] starting (dry_run=False)",
@@ -49,7 +49,8 @@
     "[train] dwell_sweep seed=43 ep 295/295 c1=False c2=False occupancy_min=0.0000 occ_nonvacuity=False dwells=[68.042, 84.125, 84.208, 84.167, 67.75] fracs=[0.0, 0.0, 0.0, 0.0, 0.0]",
     "verdict: FAIL seed=43 guard_pass=True occupancy_nonvacuity=False (contact_rate=0.1666 z_goal_at_contact=0.4382)",
     "Seed 44 Condition CURRICULUM_BUILT_MODE_STICKINESS",
-    "[train] stage0_nursery seed=44 ep 20/295 z_goal_peak=0.4332 formed=True"
+    "[train] stage0_nursery seed=44 ep 20/295 z_goal_peak=0.4332 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/295 retention=0.881 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
