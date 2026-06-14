@@ -157,3 +157,4 @@ One line per hourly tick. ASCII only.
 2026-06-14T00:16:34Z reaped TASK_CLAIMS igw-auto-igw-214-proposal-exp-0195-mech-270-20260613T231523Z (ledger IGW-20260613-214 -> completed_resumable)
 2026-06-14T00:16:29Z no eligible item (skipped 214): IGW-20260614-001:skill /governance not allowed; IGW-20260614-007:skill /governance not allowed; IGW-20260614-009:skill /governance not allowed
 2026-06-14T01:16:37Z no eligible item (skipped 214): IGW-20260614-001:skill /governance not allowed; IGW-20260614-007:skill /governance not allowed; IGW-20260614-009:skill /governance not allowed
+2026-06-14T02:16:44Z no eligible item (skipped 214): IGW-20260614-001:skill /governance not allowed; IGW-20260614-007:skill /governance not allowed; IGW-20260614-009:skill /governance not allowed
