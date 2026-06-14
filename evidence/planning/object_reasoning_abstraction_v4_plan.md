@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Object-reasoning abstraction (V4 roadmap: theta-packaged units, options, chunks, relational maps)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-14
   scope_claims: [SD-040, MECH-296, MECH-297, SD-045, SD-042, MECH-299, MECH-300, Q-057]
   sibling_plans: [object_representation, goal_pipeline]
   roadmap_note: >
@@ -28,18 +28,21 @@ closure_plan:
     - id: "object_reasoning_abstraction_v4:OBJ-ABS-1"
       title: "Substrate-vocabulary expansion is the gating fork (atomic-only V3 has no second granularity)"
       phase: 1
-      status: open
+      status: blocked_pending_substrate
+      blocker_class: v4_substrate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-299, MECH-300]
       depends_on: []
       cross_plan_link: ["object_representation:OBJ-1"]
+      blocking_on: "Gated on building the FIRST reusable-unit substrate -- a unit ABOVE the atomic action -- so the abstraction-scaling claims have a second granularity to scale into. The fork: SD-045 action-chunk cache (OBJ-ABS-2) OR SD-040/MECH-296 type-instance match (OBJ-ABS-3) OR SD-042 option library (OBJ-ABS-5). All three are implementation_phase v4 and themselves gated on their own V3-era prerequisites (ARC-021 / SD-004 / MECH-269 / MECH-290 / a richer environment). V3's vocabulary is FIXED at z_world + atomic actions, so this is a missing substrate LAYER, not a missing flag -- no V3 pull-forward exists except SD-045's monostrategy-persistence trigger (per the OBJ-ABS-2 readiness gate). Resolves to open when a version decision (V4, or a fired SD-045 pull-forward) commits to which reusable-unit substrate is built first."
       readiness_gate:
         - "V3 substrate vocabulary is FIXED at z_world + atomic actions (per MECH-299 notes: no second granularity exists for theta to scale into)"
         - "At least one reusable-unit substrate must land before the abstraction-scaling claims become testable: SD-045 action-chunk cache, OR SD-040/MECH-296 type-instance match, OR SD-042 option library"
         - "DECISION the fork forces: which reusable-unit substrate is built FIRST (chunk vs type vs option) -- that choice determines the first non-atomic granularity theta and the cognitive map can traverse"
-      last_updated: 2026-06-10
+      last_updated: 2026-06-14
       completion_note: "This node is the entry condition for the whole plan: every downstream abstraction claim (MECH-299/300 packaging, MECH-296/297 readout/gating) is meaningful only once the substrate stack carries a unit ABOVE the atomic action. V3 cannot pull these forward because there is nothing for the abstraction to scale into. Not a missing flag -- a missing substrate layer."
+      governance_2026_06_14: "IGW plan-reconcile (ready '(plan reconcile)' item IGW-20260614-139). NOT flipped to done -- the node tracks a genuine missing substrate layer, not a registration that already landed. Status open -> blocked_pending_substrate with blocker_class v4_substrate and an explicit blocking_on naming the SD-045/SD-040/SD-042 reusable-unit-substrate fork. This removes OBJ-ABS-1 from the ready plan lane (the generator routes blocked_pending_substrate to the substrate/plan lane, not 'ready') while keeping the fork VISIBLE as a load-bearing blocked item rather than hiding it (deferred would drop it from the workset entirely). MECH-299/300 left untouched in claims.yaml (already candidate / implementation_phase v4 / v3_pending false -> _is_deferred_beyond_v3 suppresses them from /queue-experiment proposals; no substrate_conditional tag added per user decision). No claims.yaml edits, no experiments, no promotions."
     - id: "object_reasoning_abstraction_v4:OBJ-ABS-2"
       title: "PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway"
       phase: 2
@@ -297,3 +300,18 @@ a duplicate of it:
   policy-abstraction, not the option triple). Result: SD-045 lit_conf 0.919,
   SD-042 lit_conf 0.787, SD-040 unchanged 0.747; all exp_conf 0
   (implementation_phase v4) -- PROMOTES NOTHING. No claims.yaml edits.
+- **2026-06-14** -- OBJ-ABS-1 reclassified open -> `blocked_pending_substrate`
+  (IGW plan-reconcile, ready item IGW-20260614-139). The entry fork was
+  surfacing as a ready `(plan reconcile)` work package, but it is NOT a stale
+  registration to flip to done -- it tracks a genuine **missing substrate layer**:
+  V3's vocabulary is fixed at z_world + atomic actions, so there is no second
+  granularity for MECH-299/300 (theta packaging) or MECH-296/297 (prototype
+  readout/gating) to scale into. Recorded honestly as substrate-gated:
+  `blocker_class: v4_substrate` + an explicit `blocking_on` naming the
+  SD-045/SD-040/SD-042 reusable-unit-substrate fork (each itself v4 and gated on
+  its own V3-era prerequisites). Chose `blocked_pending_substrate` over `deferred`
+  so the load-bearing fork stays VISIBLE in the workset (the generator drops
+  `deferred`/`done` nodes entirely) while leaving the ready plan lane. MECH-299/300
+  left untouched in claims.yaml (already candidate / v4 / v3_pending false ->
+  suppressed from /queue-experiment proposals; no `substrate_conditional` tag
+  added, per user decision). No claims.yaml edits, no experiments, no promotions.
