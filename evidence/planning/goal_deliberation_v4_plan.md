@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Multi-slot Goal Deliberation, Counterfactual Branching, Interrupted-task Resumption (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-14
   scope_claims: [SD-046, SD-033e, MECH-264, MECH-265, SD-027, SD-028, MECH-254, MECH-255, Q-068, MECH-432, MECH-433, Q-077]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -25,7 +25,7 @@ closure_plan:
     - id: "goal_deliberation_v4:GDL-1"
       title: "Single-slot vs multi-slot fork (the first design decision: does V4 widen GoalState to N>=2?)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [SD-046]
@@ -35,8 +35,8 @@ closure_plan:
         - "V3 goal pipeline is SINGLE-STREAM: one z_goal, one SD-039 ghost-goal-bank rank, one E3-committed trajectory per heartbeat (goal_pipeline GAP-1 substrate landed 2026-05-11)"
         - "DECISION the fork forces: does the V4 substrate hold N>=2 simultaneously-active goal slots (SD-046 multi-slot GoalState, each with per-slot z_goal + drive coupling + age + persistence), or stay single-slot and only ADD a counterfactual-value monitor over the one stream? Every node below assumes the multi-slot answer; if V4 stays single-slot, GDL-3/4/5 collapse into a thinner monitor-only design"
         - "The single-stream pipeline must itself be honest first: goal_pipeline GAP-2 (cue/wanting -> action authority -> benefit-contact) is the live V3 bottleneck and is NOT yet closed (foraging/benefit-contact leg still substrate-blocked, 2026-06-10). A multi-slot arbitrator over a pipeline that cannot reliably commit ONE goal would be vacuous"
-      last_updated: 2026-06-10
-      completion_note: "SD-046 is candidate / implementation_phase v4. This node is the design decision, not the build: choosing multi-slot is the precondition for the dACC-style cross-slot arbitrator and for every deliberation pillar below. Genuine architectural fork, not a missing flag."
+      last_updated: 2026-06-14
+      completion_note: "SD-046 is candidate / implementation_phase v4. This node is the design decision, not the build: choosing multi-slot is the precondition for the dACC-style cross-slot arbitrator and for every deliberation pillar below. Genuine architectural fork, not a missing flag. RESOLVED 2026-06-14 (interactive IGW design-fork session): MULTI-SLOT (N>=2) ADOPTED -- single-slot+monitor was rejected because GDL-3/4/5 (counterfactual switch, cross-slot arbitrator, interrupt/park/resume) and the multi-goal OCD over-binding failure mode are structurally multi-slot and cannot be hosted by a single-alternative monitor. SD-046 confirmed as written (dated decision note added to its claims.yaml notes). The discrete-slot (Cowan) vs flexible-precision-resource (Bays & Husain) sub-fork stays open as Q-077. BUILD remains gated on goal_pipeline GAP-2; this node records only the DESIGN decision. PROMOTES NOTHING (SD-046 stays candidate/v4/substrate_conditional)."
     - id: "goal_deliberation_v4:GDL-2"
       title: "PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)"
       phase: 2
@@ -295,3 +295,16 @@ then it is `MECH-389`.
   prose-only NEWCLAIM placeholder (MECH-389)
   per the event-arc intake's gating rule -- NOT folded onto MECH-320, which is a
   distinct tonic-vigor mechanism. No claims.yaml edits.
+- **2026-06-14** -- GDL-1 (single-slot vs multi-slot fork) RESOLVED in an
+  interactive IGW design-fork session: **MULTI-SLOT (N>=2) ADOPTED**. The
+  single-slot+counterfactual-monitor alternative was rejected because the
+  deliberation layer's load-bearing capabilities -- cross-goal relative-importance
+  monitoring (MECH-265), the interrupt->park->resume span (GDL-5 Zeigarnik), and
+  the multi-goal OCD over-binding failure mode -- are structurally multi-slot and
+  cannot be hosted by a single-alternative monitor (Boorman 2009
+  chosen-vs-best-unchosen). SD-046 is confirmed as written; a dated decision note
+  was added to its `claims.yaml` notes and GDL-1 flipped open->done. The discrete-
+  slot (Cowan) vs flexible-precision-resource (Bays & Husain) sub-fork is NOT
+  resolved here -- it stays open as Q-077. The BUILD remains gated on
+  goal_pipeline GAP-2; this records only the DESIGN decision. PROMOTES NOTHING
+  (SD-046 stays candidate / implementation_phase v4 / substrate_conditional).

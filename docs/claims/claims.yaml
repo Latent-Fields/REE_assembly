@@ -26302,6 +26302,29 @@
     be commissioned in advance of the V3-EXQ-498 + EXP-0169 outcome
     so the substrate design can begin immediately on the FAIL+FAIL
     branch without further gating.
+
+    GDL-1 FORK RESOLVED 2026-06-14 (IGW goal_deliberation_v4:GDL-1
+    interactive design-fork session): the MULTI-SLOT answer is ADOPTED.
+    V4 widens GoalState to N>=2 simultaneously-active slots (this claim
+    as written) rather than staying single-slot with only a
+    counterfactual-value monitor over the one committed stream.
+    Rationale: the deliberation layer's load-bearing capabilities --
+    cross-goal relative-importance monitoring (MECH-265), the
+    interrupt->park->resume span of an interrupted task (GDL-5 Zeigarnik),
+    and the multi-goal OCD over-binding failure mode -- are structurally
+    multi-slot; a single-alternative monitor (Boorman 2009
+    chosen-vs-best-unchosen) cannot host a parked second goal or
+    arbitrate across more than two goals. This is the DESIGN decision
+    only; the BUILD stays gated on goal_pipeline GAP-2 (the single stream
+    must reliably commit-and-contact ONE goal first -- a multi-slot
+    arbitrator over a pipeline that cannot commit one goal is vacuous).
+    The discrete-slot (Cowan) vs flexible-precision-resource
+    (Bays & Husain) SUB-fork is NOT resolved here -- it stays open as
+    Q-077 (what_would_answer registered). The dACC<->FPC reciprocal
+    arbitration loop (MECH-432) and the LC-NE-analog disengage/explore
+    partner (MECH-433) are the partner machinery this fork commits to
+    building. PROMOTES NOTHING: SD-046 stays candidate /
+    implementation_phase v4 / substrate_conditional.
   evidence_quality_note: >
     Registered candidate without a dedicated lit-pull. Architectural
     motivation comes from monostrategy debugging in V3 plus the OCD over
