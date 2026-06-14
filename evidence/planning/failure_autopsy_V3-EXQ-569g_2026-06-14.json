@@ -1,8 +1,12 @@
 {
   "schema_version": "failure_autopsy/v1",
-  "generated_utc": "2026-06-14T20:14:00Z",
+  "generated_utc": "2026-06-14T20:48:33Z",
   "scope": "single",
   "status": "confirmed",
+  "supersedes_prior_autopsy": {
+    "file": "failure_autopsy_V3-EXQ-569g_2026-06-14 (20:14Z version, commit a8fd6ae7d2)",
+    "reason": "The prior version misread arm_results[0/1/2] (the three SEEDS of ARM_0_PROPOSER, ~0 by design) as 'all three falsifier arms applied route_range=0.0', concluding instrumentation-defect/diagnose-first/action=none. In fact ARM_1_E2WF (arm_results rows 3-5) applied modulatory_channel_route_range 0.219/0.186/0.134 (mean 0.179852 = the readiness probe), so the routing/authority mechanism WAS active in the scored arm. Corrected routing: implement-substrate / amend; the gap is the gain-bounded additive CONVERSION, not a wiring null."
+  },
   "targets": [
     {
       "run_id": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier_20260611T224954Z_v3",
@@ -10,45 +14,57 @@
       "claim_ids": ["ARC-065"],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
-        "claim_alignment": "intact -- ARC-065 not tested under conditions where it could express (applied modulatory_channel_route_range=0.0 in every scored arm); non_contributory, not a falsification",
-        "biological_reference": "clear -- BG-like modulatory-bias-vs-value-gap committed-action selection; not a formal import; no lit gap",
-        "prerequisites": "present-but-inactive -- route-range substrate (663 PASS) + authority (643a PASS) landed but inactive at the live arm select site",
-        "implementation": "partial / instrumentation defect -- readiness gate certifies the channel-representation spread (probe), NOT the applied per-candidate routed bias at committed selection; the two diverge 0.18 (readiness) vs 0.0 (in-arm)",
-        "environment": "adequate",
-        "measurement": "MISLEADING (load-bearing) -- C_R1B scored on arms where the enabling mechanism modulatory_channel_route_range reads exactly 0.0; the readiness gate guards the wrong statistic",
-        "integration": "partially coupled -- channel->authority->committed-action validated piecewise in probes but live arm shows 0 conversion",
-        "scale": "adequate"
+        "claim_alignment": "intact -- ARC-065 diversity SOURCE exists (ARM_1 route_range 0.18 reached the authority, consumed spread 0.057, cand_world divergent); the FAIL is on reach-to-behaviour CONVERSION, not source existence or falsification -> non_contributory",
+        "biological_reference": "clear -- BG-like gain/contrast committed-action selection gate vs an F-dominated primary; not a formal import; no lit gap",
+        "prerequisites": "present-and-active -- route-range substrate (662/663 PASS) + authority (643a PASS) landed AND active in the scored arm (ARM_1 applied route_range 0.18 at the live select tick, 3/3 seeds)",
+        "implementation": "partial / conversion under-powered -- the authority is gap-relative ADDITIVE at gain 0.5 (modulatory range renormalized to 0.5*raw_score_range then added), structurally subdominant to the F-dominated primary (88-89% of E3 score variance, V3-EXQ-571)",
+        "environment": "adequate -- proposer + matched-noise controls present (matched-noise under-lifted this run: ARM_2 entropy == ARM_0; successor falsifier must verify the noise control actually lifts entropy)",
+        "measurement": "adequate (load-bearing) -- C_R1B was scored on an arm where the mechanism-under-test IS active (route_range 0.18); the negative is real, NOT the 20:14Z autopsy's claimed inert-arm artefact",
+        "integration": "isolated->partially-coupled -- routed range reaches the authority and perturbs the argmax (V3-EXQ-662 committed-class TV>floor) but does not reliably raise committed-action diversity above a temperature-matched control (569g 1/3 seeds strict-above-both)",
+        "scale": "adequate -- 1/3-seed conversion + upstream-magnitude-flat 667 rule out a budget/warmup cause"
       },
       "biological_reference": {
-        "closest_mechanism": "basal-ganglia / cortico-striatal committed-action selection where neuromodulatory + contextual biases shift the committed choice only with sufficient gain relative to the value-difference",
-        "dependencies": ["forward-model-dominated primary score (E2 world_forward; F=88-89% of E3 score variance per V3-EXQ-571)", "modulatory bias channel with committed-selection authority"],
+        "closest_mechanism": "basal-ganglia / cortico-striatal committed-action selection where DA-modulated gain/contrast converts small representational differences into discrete choice, competing against a forward-model-dominated primary value (E2 world_forward, F=88-89% of E3 score variance per V3-EXQ-571)",
+        "dependencies": ["forward-model-dominated primary score (F dominates)", "a selection-authority coupling with sufficient gain AND structure-preserving arbitration to let a structured modulatory channel win near-decisive (not only near-tie) candidates"],
         "is_formal_import": false,
-        "divergence": "none -- the failure is wiring/instrumentation (readiness gate certifies a different statistic than the one applied), not biology divergence",
+        "divergence": "none -- the failure is the gain/architecture of the selection coupling (a known dependency of the reference mechanism), not biology divergence",
         "lit_status": "present"
       },
-      "recommended_epistemic_category": "non_contributory (precondition-unmet / instrumentation defect; NOT substrate_ceiling -- that is the self-route mis-label, V3-EXQ-642 pattern)",
+      "recommended_epistemic_category": "non_contributory (substrate CONVERSION ceiling -- same class as the 569f-661-654a cluster; NOT the V3-EXQ-642 precondition-unmet pattern, which was the prior autopsy's mis-label, and NOT /claim-synthesis granularity debt: ARC-065 is one architectural commitment)",
       "recommended_evidence_direction": "non_contributory",
-      "recommended_evidence_quality_note": "[2026-06-14 autopsy V3-EXQ-569g]: 569g FAIL/non_contributory r1a_entropy_only_artefact MIS-LABELS the cause. The readiness probe certified ARM_1 modulatory_channel_route_range = 0.18 (clears floor), but ALL THREE falsifier arms applied route_range = 0.0 at the committed-selection site -- so C_R1B was scored on runs where the routing/authority mechanism-under-test was inert (V3-EXQ-642 precondition-unmet pattern, NOT a substrate ceiling). project_channel_range is range-preserving, so the in-arm cand_world_summaries re-collapsed (or routing did not fire in the arm path). ARC-065 unmoved (non_contributory, not a falsification). Routed diagnose-first: a claim-free in-arm route-range collapse diagnostic locates (i) live-arm summary re-collapse / (ii) project_channel_range / (iii) routing-source wiring BEFORE any 4th modulatory-bias-selection-authority amend; the next real GAP-A falsifier must gate on the IN-ARM applied route_range, not a probe statistic.",
+      "recommended_evidence_quality_note": "[2026-06-14 autopsy V3-EXQ-569g, CORRECTED]: 569g FAIL/non_contributory. The routed per-candidate range GENUINELY reached the E3 selection authority -- ARM_1_E2WF applied modulatory_channel_route_range = 0.18 at the live select tick on 3/3 seeds (route_range_per_arm_mean.ARM_1_E2WF = 0.179852, = the readiness probe; ARM_0/ARM_2 = 0.0 are the no-routing controls by design). [Corrects the 20:14Z autopsy, which misread arm_results[0/1/2] -- the three SEEDS of ARM_0_PROPOSER -- as 'all three arms = 0.0'.] Yet ARM_1 committed-action entropy 0.615 is NOT strict-above proposer/matched-noise 0.704 (1/3 seeds). So the range reaches the authority and perturbs the argmax (V3-EXQ-662 TV>0) but does not reliably gain committed-action diversity over a temperature control -- the SAME conversion ceiling as failure_autopsy_569f-661-654a, advanced one link. Cause: the authority is gap-relative ADDITIVE at gain 0.5 (modrange = 0.5*raw_score_range), subdominant to the F-dominated primary (88-89% of E3 score variance, V3-EXQ-571); upstream magnitude sweeps (667/640a) are washed out by the authority's range-renormalization, so only authority GAIN + arbitration STRUCTURE are live levers. ARC-065 unmoved (non_contributory; source exists, conversion is the gap). Routed to /implement-substrate (amend modulatory-bias-selection-authority): try (a) gain/contrast tuning first, scored against a verified-lifting matched-noise control; (b) shortlist-then-modulate arbitration as the pre-registered fallback the gain sweep discriminates. V3-EXQ-682 kept running as in-arm confirmation before the amend acts. xref MECH-341/ARC-062/MECH-294 (one shared conversion fix). NOT /claim-synthesis (substrate iteration, ARC-065 is one commitment).",
       "recommended_substrate_queue_entry": {
-        "action": "none",
+        "action": "amend",
         "target_sd_id": "modulatory-bias-selection-authority",
-        "note": "Entry already exists and already carries the 569f/661/654a failure records. Do NOT add a new entry or a 4th amend on an unlocated cause -- the claim-free diagnostic must first attribute the in-arm applied route_range=0.0 to (i) live-arm cand_world_summaries re-collapse / (ii) project_channel_range degeneracy / (iii) routing-source wiring-not-plumbed-into-arm-config. The amend follows the diagnostic, not this autopsy."
+        "implementation_hint_extension": "569g advances the necessary-but-not-sufficient note one link beyond the 06-10 route-range amend: the route-range amend solved REACH (ARM_1 applied route_range 0.18 at the live select tick, 3/3 seeds, = the readiness probe), but the CONVERSION is still inert -- ARM_1 committed-action entropy 0.615 is not strict-above proposer/matched-noise 0.704 (1/3 seeds). Cause is the gap-relative ADDITIVE authority at gain 0.5 (modrange = 0.5*raw_score_range), subdominant to the F-dominated primary (88-89% variance, V3-EXQ-571). Refined rule: the channel range must MOVE the committed argmax against the F-dominated primary, with structure a temperature control cannot replicate (matched-noise gate), not merely reach the accumulator. Pursue (a) authority_gain / contrast tuning FIRST (sweep modulatory_authority_gain 0.5->1.0/2.0/4.0 and/or replace additive rescale with a contrast/normalization), scored against a verified-lifting matched-noise control; if higher gain only adds noise-like entropy (not above matched-noise) that falsifies (a) and promotes (b) shortlist-then-modulate arbitration (F filters to a near-tie set, modulatory channel arbitrates within it). Do NOT re-sweep upstream bias magnitude (667/640a flat -- authority range-renormalizes its input). Keep V3-EXQ-682 (in-arm route-range collapse diagnostic, already queued) running as belt-and-suspenders before the amend acts.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier_20260611T224954Z_v3",
+          "experiment_type": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier",
+          "metric": "ARM_1_E2WF applied in-arm modulatory_channel_route_range = 0.18 (3/3 seeds, route_range_per_arm_mean 0.179852 = readiness probe; ARM_0/ARM_2 = 0.0 no-routing controls) -- route-range REACHED the authority -- yet committed-action entropy ARM_1 0.615 NOT strict-above proposer/matched-noise 0.704 (1/3 seeds strict-above-both). The routed range reaches the authority and perturbs the argmax (662 TV>0) but does not reliably convert into more committed-action diversity than a temperature control.",
+          "target": "ARM_1 committed-action entropy strict-above BOTH a verified-lifting matched-noise control AND the proposer baseline on >=2/3 seeds, with the in-arm applied route_range > floor in the scored arm, under a gain/contrast or shortlist-then-modulate conversion that beats the F-dominated primary (V3-EXQ-571)",
+          "supersedes_failure_record": "v3_exq_569f_gapa_e2wf_matched_entropy_falsifier_20260610T001255Z_v3 (569g is the post-route-range-amend validation: 569f had range present but UN-routed; 569g routes it and isolates the conversion as the residual)",
+          "source_autopsy": "failure_autopsy_V3-EXQ-569g_2026-06-14",
+          "xref": "MECH-341 (within-class temperature lever, same conversion bottleneck) / ARC-062 + MECH-309 (rule-field channel) / MECH-294 (coherence channel) -- one shared conversion fix"
+        }
       },
       "pending_retest_after_substrate": true,
       "narrow_supports_flag": false,
       "learning_extracted": [
-        "The GAP-A falsifier's readiness gate certifies the channel REPRESENTATION spread (a probe outside the scored arms), not the APPLIED per-candidate modulatory_channel_route_range at the live committed-selection tick; the two diverge (0.18 vs 0.0). Any future GAP-A falsifier must gate on the in-arm applied route_range measured on the same ticks as C_R1B.",
-        "Locate before amend: the applied 0.0 has three candidate causes -- (i) in-arm cand_world_summaries re-collapse despite candidate_summary_source=e2_world_forward, (ii) project_channel_range degeneracy on the live input, (iii) routing-source wiring not plumbed into the arm agent config (vs only the readiness probe). A claim-free diagnostic disambiguates before /implement-substrate.",
-        "SD-056-NaN prime suspect DISCONFIRMED for this lineage: 569f/569g C1_arm1_e2_world_forward_divergent=TRUE; V3-EXQ-617 already validated the SD-056 multistep stability amend. The blocker is the channel->committed-action conversion, not the predictor.",
-        "6th autopsy on the GAP-A conversion (569c/569e/614e/643/569f-661-654a/569g) = substrate-iteration recurrence, NOT claim-granularity debt on ARC-065 (one architectural commitment, not several mechanisms) -> diagnose-first, not /claim-synthesis."
+        "Route-range REACH is solved: the 06-10 amend works -- ARM_1 applied route_range 0.18 (3/3 seeds) at the live select tick, matching the readiness probe. The gap moved one link downstream from 'range reaches the accumulator' to 'range moves the committed argmax'.",
+        "The authority is gap-relative ADDITIVE and gain-bounded (gain 0.5 -> modrange = 0.5*raw_score_range), hence structurally subdominant to the F-dominated primary (88-89% of E3 score variance, V3-EXQ-571). A 0.5*range-capped additive perturbation flips near-ties (662 TV>0) but not decisive winners (569g entropy flat).",
+        "Upstream-magnitude sweeps cannot fix this (667/640a byte-identical) because the authority range-renormalizes its input. Live levers are authority GAIN and arbitration ARCHITECTURE, not upstream bias magnitude.",
+        "Necessary-but-not-sufficient refined one more link: the channel range must MOVE the committed argmax against the F-dominated primary AND with structure a temperature control cannot replicate (matched-noise gate). Reach without reliable structured conversion = still a decorative channel at the commit layer.",
+        "The matched-noise control under-lifted this run (ARM_2 entropy == ARM_0); a successor falsifier must verify the noise control actually raises selected-action entropy so it can discriminate structured from random diversity.",
+        "SD-056-NaN remains disconfirmed for this lineage (C1 e2_world_forward divergent TRUE; V3-EXQ-617 fixed the multistep NaN). The blocker is the conversion, not the predictor.",
+        "PRIOR-AUTOPSY CORRECTION (process learning): the 20:14Z autopsy mislabeled the cause by reading arm_results[0/1/2] as 'the three arms' when they are the three SEEDS of ARM_0_PROPOSER. Per-arm fields in a multi-seed manifest are seed-major within arm -- always index by (arm_id, seed) via summary.*_per_arm_mean, not by raw arm_results position."
       ],
-      "routing": "queue-experiment"
+      "routing": "implement-substrate"
     }
   ],
   "cluster_pattern": {
-    "shape": "readiness gate certifies a channel-representation statistic in a probe (route_range 0.18) while the falsifier scores its primary DV on arms where the applied per-candidate routed bias reads 0.0 -- the mechanism-under-test is inert where the verdict is computed",
+    "shape": "the routed per-candidate channel range REACHES the E3 selection authority in the treatment arm (ARM_1 applied route_range 0.18, 3/3 seeds) and perturbs the committed argmax (662 TV>0), but does not reliably raise committed-action diversity above a temperature-matched control (569g entropy flat, 1/3 seeds) -- reach achieved, conversion sub-threshold",
     "is_independent_bugs": false,
-    "structural_property": "the GAP-A channel->committed-action conversion has been validated piecewise in isolated probes across 3 substrate amends, but the live behavioural arm re-collapses the conversion to 0 before it reaches committed selection; the readiness instrumentation has masked this by certifying the wrong (probe-side) statistic",
-    "readings": ["instrumentation_defect_readiness_gate_wrong_statistic", "genuine_conversion_ceiling_if_diagnostic_shows_live_summary_collapse_is_structural"]
+    "structural_property": "the V3 E3 committed-action selection-authority coupling routes upstream channel range into the score accumulator (06-10 amend) but the gap-relative ADDITIVE conversion at gain 0.5 is subdominant to the F-dominated primary (88-89% variance, V3-EXQ-571), so structured range converts to committed-action diversity only near-tie / seed-fragile. Same conversion ceiling as failure_autopsy_569f-661-654a, advanced one link (643='authority never fires' -> route-range amend='range reaches accumulator' -> 569g='range reaches accumulator + perturbs argmax but conversion is gain-bounded/non-specific').",
+    "readings": ["gain_contrast_under_powered_additive_authority_FAVOURED_try_first", "architectural_shortlist_then_modulate_required_if_gain_sweep_stays_below_matched_noise"]
   }
 }
