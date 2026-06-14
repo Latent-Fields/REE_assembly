@@ -142,6 +142,32 @@ decide whether the unit is a **type, a token, or an anchor** -- and that
 type-vs-token-vs-anchor choice is the **first design fork** for any future
 substrate step.
 
+> **OBJ-1 RESOLUTION (2026-06-14, IGW plan-reconcile `object_representation_v4:OBJ-1`; user decision).**
+> The fork is resolved **not** by electing one of {type, token, anchor} as the
+> primitive that subsumes the other two, but by making the **coordination itself
+> the primitive**: an object is a **binding that holds three distinct coordinate
+> facets** -- a TYPE/category readout (SD-015/SD-049, `z_resource`), a SPATIAL
+> ANCHOR (SD-039/MECH-292/293 ghost bank), and a TOKEN-INSTANCE individuation
+> (ARC-006/MECH-044/MECH-045 object-file) -- none of which reduces to another. The
+> object-file is the structure that keeps the facets **coregistered**; the
+> primitive is the coregistration, not any one facet crowned. This fits the binding
+> literature already on file: a **slot** addresses the token (which object;
+> Pylyshyn FINST / Locatello slot-attention), **synchrony** binds the features that
+> cohere now (Fries / Singer / von der Malsburg), and von der Malsburg's
+> **superposition catastrophe** is exactly *why* the facets must be kept
+> distinct-but-bound rather than collapsed. The V3 diagnostics that bottomed out on
+> a missing bound representation (V3-EXQ-641a coherence-non-reducibility =
+> "bound-representation prerequisite absent"; `z_world` dim=32 discriminative
+> ceiling) are the experimental pull toward this same coregistration substrate.
+> **Consequence:** OBJ-2 is no longer "pick token over type" but **"build the
+> coregistration structure that binds the three facets"**; `z_object` becomes the
+> *type-readout of* a coordinate object-file rather than a free-standing type tag;
+> SD-039's anchor store is now wired into ARC-080 `depends_on` as the anchor facet.
+> The remaining open sub-fork -- token-vs-type **individuation strength** within the
+> bound token facet -- is deferred to the first OBJ-2 build step. Design commitment
+> only: `implementation_phase: v4` / `v3_pending`, off the V3-closure critical path;
+> no substrate built, no V3 behaviour changed.
+
 ### Where a unified object representation would live
 
 A coherent layer generalises `z_object`/`z_resource` out of the resource silo

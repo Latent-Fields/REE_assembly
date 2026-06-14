@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Object Representation (V4 PILLAR roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-14
   scope_claims: [ARC-080, ARC-081, ARC-082, ARC-083, ARC-006, MECH-045, MECH-278]
   sibling_plans: [goal_pipeline]
   roadmap_note: >
@@ -20,7 +20,7 @@ closure_plan:
     - id: "object_representation_v4:OBJ-1"
       title: "Type-vs-token-vs-anchor representational fork (the first design decision)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-080]
@@ -30,8 +30,8 @@ closure_plan:
         - "V3 LIVE object work is TYPE-level: SD-049 per-type tag + classifier head; SD-015 location-invariant z_resource; SD-057 IncentiveTokenBank keyed by resource TYPE"
         - "V3 also has a spatial-ANCHOR store (SD-039 / MECH-292 / MECH-293 ghost-goal bank, payload = goal-snapshot)"
         - "DECISION the fork forces: does the V4 object-file key on TYPE (apples), ANCHOR (a location), or TOKEN-INSTANCE (this apple, tracked through occlusion)? Permanence/tools/self/other all need TOKEN-INSTANCE"
-      last_updated: 2026-06-10
-      completion_note: "Per ARC-080 functional_restatement: 'object' currently means three things in REE (type / spatial anchor / feature-bundle token). Choosing token-instance is the precondition for every pillar below. This is a genuine representational gap, not a missing flag."
+      last_updated: 2026-06-14
+      completion_note: "RESOLVED 2026-06-14 (IGW plan-reconcile, user decision). The fork is resolved NOT by crowning one of {type, token, anchor} but by making the COORDINATION the primitive: an object is a binding that holds three distinct coordinate facets -- TYPE readout (SD-015/SD-049), SPATIAL ANCHOR (SD-039/MECH-292/293), TOKEN-INSTANCE individuation (ARC-006/MECH-044/MECH-045) -- none reducing to another; the object-file is the coregistration structure. Fits the slot(address)+synchrony(bind)+superposition-catastrophe(why-distinct) lit on file, and the V3-EXQ-641a / z_world dim=32 'bound-representation absent' diagnostics. Recorded on ARC-080 (claims.yaml functional_restatement OBJ-1 RESOLUTION block + SD-039 added to depends_on as the anchor facet) and arch doc arc_080_object_representation_primitive.md SS3. CONSEQUENCE: OBJ-2 reframed from 'pick token over type' to 'build the coregistration structure binding the three facets'; z_object = type-readout OF a coordinate object-file. Open sub-fork (token-vs-type individuation strength within the bound token facet) deferred to the first OBJ-2 build step. Design commitment only -- stays v4/v3_pending, off the V3-closure critical path; no substrate built."
     - id: "object_representation_v4:OBJ-2"
       title: "PILLAR 1 -- token-instance object-file substrate (permanence through occlusion)"
       phase: 2
@@ -151,7 +151,7 @@ must land before the V4 substrate step is honest to build.
 
 | Pillar | Node | Claim | Phase leaning | The V3 readiness gate |
 |---|---|---|---|---|
-| (fork) type/token/anchor | OBJ-1 | ARC-080 | V4 (first decision) | SD-049 type tag + SD-039 anchor bank both live; pick token-instance |
+| (fork) type/token/anchor | OBJ-1 | ARC-080 | RESOLVED 2026-06-14 | coordination-is-the-primitive: object = binding of type+anchor+token coordinate facets (none subsumes) |
 | 1 -- permanence | OBJ-2 | ARC-080 PILLAR 1 (future child) | V3-straddle / V4 | reactivate MECH-045; generalise SD-039/292/293 bank to object-token |
 | 2 -- self-as-object | OBJ-3 | ARC-081 | V3 begins / V4 cutover | DR-10..14 + MECH-214/215 + INV-064 + SD-030 + MECH-163 |
 | 3 -- tools/affordances | OBJ-4 | ARC-082 | V3 substrate / V4 binding | EXP-0155 + SD-055 differentiable-CEM (SD-016 grounding) |
@@ -190,3 +190,17 @@ must land before the V4 substrate step is honest to build.
 - **2026-06-10** -- Plan registered as the pilot V4 forward-roadmap. Nodes seeded
   from ARC-080/081/082/083. Readiness gates pinned per pillar. `generation: v4`
   set so the V3 closure % is unaffected. No claims.yaml edits.
+- **2026-06-14** -- OBJ-1 RESOLVED (IGW plan-reconcile, user decision). The
+  type-vs-token-vs-anchor fork is resolved by making the **coordination** the
+  primitive, not by crowning one facet: an object is a binding that holds three
+  distinct coordinate facets -- TYPE readout (SD-015/SD-049), SPATIAL ANCHOR
+  (SD-039/MECH-292/293), TOKEN-INSTANCE individuation (ARC-006/MECH-044/MECH-045)
+  -- none reducing to another; the object-file is the coregistration structure
+  (slot=address, synchrony=bind, superposition-catastrophe=why-distinct). Recorded
+  on ARC-080 (`functional_restatement` OBJ-1 RESOLUTION block; SD-039 added to
+  `depends_on` as the anchor facet) and the arch doc (SS3). Consequence: OBJ-2
+  reframes from "pick token over type" to "build the coregistration structure
+  binding the three facets"; `z_object` = type-readout *of* a coordinate
+  object-file. Open sub-fork (token-vs-type individuation strength) deferred to the
+  first OBJ-2 build step. Design commitment only; no claims.yaml *claim* added, no
+  promotion, off the V3-closure critical path. OBJ-1 status open->done.
