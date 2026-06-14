@@ -1,46 +1,30 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-14T20:48:29Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-672b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-591c",
-      "result": "FAIL",
-      "completed_at": "2026-06-10T22:55:17.501510+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-665",
-      "result": "PASS",
-      "completed_at": "2026-06-10T23:30:56.846187+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514m",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:11:07.219449+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485e",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:52:25.324359+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-668",
-      "result": "PASS",
-      "completed_at": "2026-06-11T13:53:10.433581+00:00"
-    }
+  "last_tick_utc": "2026-06-14T21:18:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-682",
+  "current_exq_started_utc": "2026-06-14T21:01:04.244488+00:00",
+  "current_title": "GAP-A in-arm route-range collapse diagnostic (locate 569g applied route_range=0.0 -> cause i/ii/iii)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_PROPOSER",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 10,
+    "episodes_total": 70,
+    "overall_pct": 2.4
+  },
+  "seconds_elapsed": 1057,
+  "seconds_remaining": 7133,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_PROPOSER",
+    "[train] arm=ARM_0_PROPOSER seed=42 phase=P0 ep 10/70"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 87363,
   "runner_version": "r3162 c846759 2026-06-14 (running r3156 4a51616)",
   "gpu": {

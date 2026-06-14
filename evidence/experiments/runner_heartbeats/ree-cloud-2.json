@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-14T20:48:34Z",
+  "last_tick_utc": "2026-06-14T21:18:46Z",
   "state": "running",
   "current_exq": "V3-EXQ-591d",
   "current_exq_started_utc": "2026-06-14T20:25:17.451886+00:00",
@@ -9,19 +9,25 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / gate",
-    "runs_done": 0,
+    "run_label": "Seed 43 / gate",
+    "runs_done": 1,
     "runs_total": 5,
     "episodes_done": 50,
     "episodes_total": 160,
-    "overall_pct": 6.2
+    "overall_pct": 26.2
   },
-  "seconds_elapsed": 1397,
-  "seconds_remaining": 13039,
+  "seconds_elapsed": 3209,
+  "seconds_remaining": 9282,
   "recent_lines": [
     "V3-EXQ-591d gate-robustness: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 threshold=0.9940 ep_min=100 [K-of-N=5/10 EMA_alpha=0.2] [diversity stack ON]",
     "Seed 42 Condition gate-robustness",
-    "[train] gate-robustness seed=42 ep 50/160 phase=0 h_pos=0.098"
+    "[train] gate-robustness seed=42 ep 50/160 phase=0 h_pos=0.098",
+    "[train] gate-robustness seed=42 ep 100/160 phase=0 h_pos=0.156",
+    "[train] gate-robustness seed=42 ep 150/160 phase=1 h_pos=1.100",
+    "[train] gate-robustness seed=42 ep 160/160 phase=1 h_pos=0.098",
+    "verdict: PASS",
+    "Seed 43 Condition gate-robustness",
+    "[train] gate-robustness seed=43 ep 50/160 phase=0 h_pos=0.641"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
