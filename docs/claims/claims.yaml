@@ -38744,6 +38744,14 @@
     z_harm_a / the world-forward, so P0 keeps the SD-056 e2 contrastive warmup + a
     readiness precondition (else credit re-starves like 603h). Not promotable until the
     EXQ PASSes (v3_pending). Design doc: docs/architecture/sd_059_escape_affordance_bridge.md.
+    [2026-06-14] First scored evidence V3-EXQ-603l (4-arm bridge behavioural retest) self-routed
+    weakens but is reclassified non_contributory by failure_autopsy_V3-EXQ-603l_2026-06-10
+    (confirmed): the discrimination criterion best_bridge_G_H > G_H_BASE was structurally
+    unsatisfiable because the 603k harm-pathway-training readiness fix raised ARM_BASE_IA_ONLY to
+    the binary survival ceiling (3/3), and the binary G_H gate saturated; the bridge fired
+    non-vacuously and the both-arm showed ~35% longer mean hazard-stage survival (graded benefit
+    invisible to the binary gate). Demotion threshold NOT reached (test was not fair). Retest pending
+    a REDESIGN EXQ (603o: headroom hazard regime + continuous survival metric), NOT new substrate.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 - id: MECH-358
@@ -38796,6 +38804,13 @@
     approach bias favours credited classes only under threat (zero when safe). Not
     promotable until the EXQ PASSes (v3_pending). Design doc:
     docs/architecture/sd_059_escape_affordance_bridge.md.
+    [2026-06-14] First scored evidence V3-EXQ-603l self-routed weakens but is reclassified
+    non_contributory by failure_autopsy_V3-EXQ-603l_2026-06-10 (confirmed): the discrimination
+    criterion best_bridge_G_H > G_H_BASE was structurally unsatisfiable -- the 603k harm-pathway
+    readiness fix raised base to the binary survival ceiling (3/3) and the binary G_H gate saturated;
+    the bridge fired non-vacuously and the both-arm showed ~35% longer mean hazard-stage survival.
+    Demotion threshold NOT reached. Retest pending a REDESIGN EXQ (603o: headroom hazard regime +
+    continuous survival metric), NOT new substrate.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 # Registered 2026-06-09 -- candidate-differentiated affective gradients (V4/V5 cluster).
