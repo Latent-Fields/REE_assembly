@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Drives & Motivation (V4 forward roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-14
   scope_claims: [SD-012, MECH-216, MECH-295, MECH-111, MECH-347, ARC-073, SD-057]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -25,7 +25,7 @@ closure_plan:
     - id: "drives_motivation_v4:DRV-1"
       title: "Non-terminal drive register (drives beyond hunger/thirst as first-class axes)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["SD-060", MECH-111]
@@ -35,8 +35,8 @@ closure_plan:
         - "V3 LIVE single-axis homeostatic drive: SD-012 (drive_level = 1.0 - energy from obs_body[3]; drive_weight=2.0 scales effective_benefit) -- one axis only (food/energy)"
         - "V3 has scattered intrinsic-drive seeds NOT unified into a register: MECH-111 curiosity/novelty (EMA -> E3 routing currently broken, EXQ-141b/590a); SD-012 homeostatic; ARC-073 play competence-saturation drive pressure"
         - "DECISION the register forces: which axes are first-class (exploration / play / social / learning / grooming-rest in addition to depletion), and is each a scalar drive_level on its own homeostatic-style integrator or a derived/contextual signal?"
-      last_updated: 2026-06-10
-      completion_note: "Per thought_intake_2026-06-04_non_terminal_need_launch.md S2: nursery scaffolding + weaning arc already exist; the genuinely NEW framing is treating non-food needs as a register of first-class drive axes rather than one energy scalar. This is the precondition for arbitration (DRV-2) and for the orienting drive (DRV-4) to have a need to gate on."
+      last_updated: 2026-06-14
+      completion_note: "Per thought_intake_2026-06-04_non_terminal_need_launch.md S2: nursery scaffolding + weaning arc already exist; the genuinely NEW framing is treating non-food needs as a register of first-class drive axes rather than one energy scalar. This is the precondition for arbitration (DRV-2) and for the orienting drive (DRV-4) to have a need to gate on. RECONCILED 2026-06-14 (plan reconcile -> done): the load-bearing architectural commitment is registered. SD-060 (claims.yaml; design_decision, candidate, substrate_conditional, v4, v3_pending) captures the drive-register framing verbatim -- title + functional_restatement name it as genuinely-NEW framing, 'each non-terminal need becomes a first-class drive axis carried as its own homeostatic-style integrator', explicitly 'the precondition for arbitration (DRV-2, MECH-394) and the orienting drive (DRV-4, MECH-395)'; depends_on [SD-012, MECH-111, ARC-073] wires the single-axis baseline plus the two scattered seeds the register unifies. MECH-111 (curiosity/novelty intrinsic seed) is registered and correctly cross-referenced as one of the unified seeds. No claims.yaml amendment needed (user-confirmed 2026-06-14). The open which-axes-first-class / scalar-integrator-vs-derived DECISION is correctly left in the readiness_gate as a V4 build-time decision, not a registration-completeness condition. Registration IS the deliverable for this phase-1 node; the V4 substrate build stays gated (substrate_conditional, DO NOT build in V3)."
     - id: "drives_motivation_v4:DRV-2"
       title: "Multidrive arbitration / orchestration policy (which drive wins when several are active)"
       phase: 2
@@ -208,6 +208,19 @@ substrate work is honest to build.
   caveat that a gradient-free global scalar cannot alone carve which drive wins
   (links the candidate-differentiated-affect concern). No claims.yaml edits in the
   grounding pass (lit/exp decoupled; proposal-first).
+- **2026-06-14** -- DRV-1 node RECONCILED open -> done (plan reconcile). The
+  phase-1 load-bearing architectural commitment is registered: SD-060 (the
+  non-terminal drive register) captures the genuinely-new drive-axes-as-
+  first-class-register framing verbatim (title + functional_restatement +
+  depends_on [SD-012, MECH-111, ARC-073] wiring the single-axis baseline and the
+  two scattered seeds the register unifies), and MECH-111 (curiosity/novelty
+  seed) is registered and cross-referenced as one of the unified seeds.
+  Registration IS the deliverable for this node; the which-axes-first-class /
+  scalar-integrator-vs-derived DECISION stays a V4 build-time choice in the
+  readiness_gate, and the substrate build stays gated (substrate_conditional, DO
+  NOT build in V3). No claims.yaml amendment needed (user-confirmed). Node +
+  frontmatter last_updated -> 2026-06-14; inter-governance workset regenerated
+  (DRV-1 no longer a ready plan-reconcile item).
 - **2026-06-13** -- MECH-435 REGISTERED at user direction (the proposal-first
   partner surfaced above). Candidate, claim_type mechanism_hypothesis,
   epistemic_category substrate_conditional, implementation_phase v4, v3_pending:
