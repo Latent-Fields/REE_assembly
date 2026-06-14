@@ -1,23 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 2199291,
-  "runner_started_at": "2026-06-03T06:06:50.999872+00:00",
-  "last_updated": "2026-06-09T05:12:08.766763+00:00",
+  "runner_pid": 417704,
+  "runner_started_at": "2026-06-13T07:05:38.890186+00:00",
+  "last_updated": "2026-06-14T10:25:15.475949+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-640b",
-      "backlog_id": "",
-      "claim_id": "SD-057",
-      "title": "SD-057/MECH-346/MECH-347 cue-authority lineage CLEAN EVIDENCE retest: re-run the 640a scaffold cue-recall gain sweep (cue_recall_gain{0.2,1.0,5.0} x kappa{2.0,10.0} + ARM_OFF, 3 seeds) now that modulatory-bias-selection-authority is VALIDATED (V3-EXQ-643a PASS). use_modulatory_selection_authority=True+gain=0.5 on every arm so the cue->z_goal->MECH-295 approach bias has bounded authority over the E3.select argmin in the contact-making scaffold P2 env. Promotes 640a (diagnostic, flat lift, authority OFF) to EVIDENCE.",
-      "description": "",
-      "estimated_minutes": 658.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3344,6 +3332,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_603j_escape_bridge_safety_half_readiness_20260609T051208Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 1.7
+    },
+    {
+      "queue_id": "V3-EXQ-672a",
+      "backlog_id": "",
+      "claim_id": "MECH-057b",
+      "title": "MECH-057b trajectory-promotion-gate (relative completion bar): supersedes degenerate V3-EXQ-672",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C6_baseline_not_collapsed: FAIL | C7_no_fatal_errors: PASS | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-672a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-672a.json",
+      "started_at": "2026-06-13T10:00:28.208317+00:00",
+      "completed_at": "2026-06-13T18:01:47.409901+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 28879.2
+    },
+    {
+      "queue_id": "V3-EXQ-679",
+      "backlog_id": "EVB-0143",
+      "claim_id": "",
+      "title": "MECH-423 R1/R2/R3 readiness-validation diagnostic",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | label=readiness_validated outcome=PASS elapsed=293.6s | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-679 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-679.json",
+      "started_at": "2026-06-14T10:20:20.325272+00:00",
+      "completed_at": "2026-06-14T10:25:15.475353+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_679_mech423_readiness_validation_diagnostic_20260614T102515Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 295.2
     }
   ]
 }
