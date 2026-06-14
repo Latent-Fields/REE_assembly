@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_679_mech423_readiness_validation_diagnostic",
+  "run_id": "v3_exq_679_mech423_readiness_validation_diagnostic_20260614T102515Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-14T10:25:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "readiness_validated",
+    "preconditions": [
+      {
+        "name": "r1_shared_latent_grad_coupled",
+        "description": "trained shared latent must carry a non-zero gradient to each module (the stat R1 routes on)",
+        "kind": "readiness",
+        "measured": 0.0008388060377910733,
+        "threshold": 1e-06,
+        "control": "combined [z_self,z_world] from trained encoder fed to two trained reconstruction heads",
+        "met": true
+      },
+      {
+        "name": "r2_iterative_loop_iterated",
+        "description": "iterative-inference settling loop must actually iterate (>=2 rounds) for the convergence readout to be non-vacuous",
+        "kind": "readiness",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "control": "use_iterative_inference=True, inference_settle_iters=10 on trained substrate",
+        "met": true
+      },
+      {
+        "name": "r3_e2_touchable_under_interleaved",
+        "description": "interleaved schedule must touch E2 (>=1 update) -- the module the cross-module share depends on; a starved E2 buffer would collapse the share to 0 and masquerade as the blocked control",
+        "kind": "readiness",
+        "measured": 8.0,
+        "threshold": 1.0,
+        "control": "E2 _e2_transition_buffer populated via record_transition during warmup",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "R1": true,
+      "R2": true,
+      "R3": true
+    },
+    "criteria": [
+      {
+        "name": "R1_coupled",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "R2_converged_below_tol",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "R3_interleaved_share_positive_blocked_zero",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "R1/R2/R3 readouts are non-vacuous on a trained substrate. EXP-0380 would receive a meaningful reading; the readiness substrate is validated."
+  }
+}
