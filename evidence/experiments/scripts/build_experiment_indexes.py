@@ -524,6 +524,132 @@ def _compare(value: float, op: str, threshold: float) -> bool:
     raise RuntimeError(f"Unsupported stop criteria operator: {op}")
 
 
+# Governance/adjudication fields a /failure-autopsy or governance pass may
+# correct AFTER a run is recorded. These corrections are written to the FLAT
+# manifest (evidence/experiments/<run_id>.json), which is the surface
+# /failure-autopsy and operators edit -- NOT the runs/<run_id>/manifest.json
+# "pack" copy the indexer scans for scoring. Each of these fields gates scoring
+# exclusion or evidence direction, so a flat-only correction that does not
+# reach the pack copy is silently ignored and the stale pack value keeps
+# scoring (confirmed 2026-06-14: pack `does_not_support` -> weakens on MECH-171
+# x3 / MECH-057b while the flat copy already read `non_contributory` /
+# `superseded`). The merge below makes the flat copy authoritative for these
+# fields only; everything else (metrics, status, claim_ids, timestamps) is
+# still read from the pack.
+_FLAT_AUTHORITATIVE_FIELDS = (
+    "evidence_direction",
+    "evidence_direction_per_claim",
+    "evidence_direction_note",
+    "non_degenerate",
+    "non_degenerate_per_claim",
+    "degeneracy_reason",
+    "superseded_by",
+    "pending_retest_after_substrate",
+    "pending_retest_after_substrate_per_claim",
+    "superseded_by_substrate",
+    "superseded_by_substrate_per_claim",
+)
+
+# Subset of the above whose disagreement actually changes how a run scores a
+# claim (direction / exclusion). A mismatch on any of these is the dangerous
+# case the 2026-06-14 incident exhibited, so it is WARNed loudly. The remaining
+# fields (e.g. degeneracy_reason free text) are merged silently.
+_FLAT_DIRECTION_FIELDS = frozenset({
+    "evidence_direction",
+    "evidence_direction_per_claim",
+    "non_degenerate",
+    "non_degenerate_per_claim",
+    "superseded_by",
+    "pending_retest_after_substrate",
+    "pending_retest_after_substrate_per_claim",
+    "superseded_by_substrate",
+    "superseded_by_substrate_per_claim",
+})
+
+# Sentinel distinguishing "pack has no such key" from "pack value is None".
+_MISSING = object()
+
+# Fields whose presence marks a manifest copy as carrying a DELIBERATE,
+# annotated governance decision (the documented signature of a /failure-autopsy
+# or supersession correction -- see CLAUDE.md "evidence_direction"). A stale
+# auto-emitted sibling carries none of these. This is the discriminator that
+# tells the corrected copy from the stale one WITHOUT relying on mtime (which is
+# meaningless in a git checkout, where it reflects checkout order, not edits).
+_ANNOTATION_MARKER_FIELDS = (
+    "evidence_direction_note",
+    "degeneracy_reason",
+    "superseded_by",
+    "superseded_by_substrate",
+)
+
+
+def _is_annotated(manifest: dict[str, Any]) -> bool:
+    """True when the manifest copy carries an explicit governance-decision marker."""
+    if not isinstance(manifest, dict):
+        return False
+    for fld in _ANNOTATION_MARKER_FIELDS:
+        if str(manifest.get(fld, "") or "").strip():
+            return True
+    return False
+
+
+def _merge_flat_manifest_overrides(
+    pack_manifest: dict[str, Any],
+    flat_manifest: dict[str, Any],
+) -> tuple[dict[str, Any], list[tuple[str, Any, Any]], bool]:
+    """Overlay flat-sibling governance fields onto the pack WHEN the flat copy
+    is the corrected one.
+
+    Returns ``(merged_manifest, disagreements, applied)``:
+      * ``disagreements`` -- list of ``(field, pack_value, flat_value)`` for
+        every authoritative field the two copies differ on (computed regardless
+        of whether the overlay fires, so callers can WARN on genuine conflicts).
+      * ``applied`` -- True iff the flat overlay was actually applied.
+
+    **Authority rule (the load-bearing decision).** A correction is, by the
+    repo's own convention, written to the flat ``evidence/experiments/<run_id>``
+    .json with an explanatory ``evidence_direction_note`` / ``degeneracy_reason``.
+    The pack ``runs/<run_id>/manifest.json`` is the historical scoring source.
+    So the flat copy overrides the pack ONLY when the flat copy is ANNOTATED and
+    the pack copy is NOT -- i.e. the flat carries a deliberate correction the
+    pack hasn't received yet (the 2026-06-14 MECH-171/057b/180 case). The
+    inverse legacy shape -- pack annotated (manual supersession + note) while the
+    flat is a stale earlier emission (the v3_exq_150-series) -- must NOT flip, so
+    the overlay is suppressed there and the pack stays authoritative. When both
+    or neither copy is annotated, the pack is retained (status quo: the indexer
+    has always scored the pack); a both-annotated disagreement is surfaced via
+    ``disagreements`` for manual reconciliation.
+
+    Only fields PRESENT in the flat manifest are overlaid (key presence, not
+    truthiness -- so an explicit ``non_degenerate: false`` overrides while an
+    absent field leaves the pack value intact). A missing flat sibling
+    (``flat_manifest == {}``) is a no-op, preserving legacy/synthetic handling.
+    """
+    if not isinstance(flat_manifest, dict) or not flat_manifest:
+        return pack_manifest, [], False
+    pack = pack_manifest if isinstance(pack_manifest, dict) else {}
+
+    disagreements: list[tuple[str, Any, Any]] = []
+    for fld in _FLAT_AUTHORITATIVE_FIELDS:
+        if fld not in flat_manifest:
+            continue
+        flat_val = flat_manifest[fld]
+        pack_val = pack.get(fld, _MISSING)
+        if pack_val is _MISSING or pack_val != flat_val:
+            disagreements.append(
+                (fld, None if pack_val is _MISSING else pack_val, flat_val))
+
+    apply_overlay = _is_annotated(flat_manifest) and not _is_annotated(pack)
+    if not apply_overlay:
+        return pack_manifest, disagreements, False
+
+    merged = dict(pack)
+    for fld in _FLAT_AUTHORITATIVE_FIELDS:
+        if fld in flat_manifest:
+            merged[fld] = flat_manifest[fld]
+    return merged, disagreements, True
+
+
 def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, list[RunRecord]]:
     by_experiment: dict[str, list[RunRecord]] = defaultdict(list)
 
@@ -570,6 +696,38 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
 
         manifest = _load_json(manifest_path)
         run_id = str(manifest.get("run_id", run_dir.name))
+
+        # Flat-manifest authoritative override (2026-06-14). Governance /
+        # failure-autopsy corrections land on evidence/experiments/<run_id>.json
+        # (with an evidence_direction_note / degeneracy_reason), not this pack
+        # copy. When the flat copy carries such an annotation and the pack does
+        # not, the flat copy is the corrected one and its governance fields are
+        # overlaid here so a flat-only correction is not silently ignored. The
+        # inverse legacy shape (pack annotated, flat a stale earlier emission --
+        # the v3_exq_150-series) is left untouched. A missing sibling => {} =>
+        # no-op (legacy/synthetic runs without a flat sibling are untouched).
+        flat_manifest = _load_json(base_dir / f"{run_id}.json")
+        manifest, _flat_disagreements, _flat_applied = _merge_flat_manifest_overrides(
+            manifest, flat_manifest)
+        _dir_disagree = [d for d in _flat_disagreements if d[0] in _FLAT_DIRECTION_FIELDS]
+        if _flat_applied:
+            for fld, pack_val, flat_val in _dir_disagree:
+                print(
+                    f"WARNING: flat-manifest correction applied for {run_id}: "
+                    f"'{fld}' pack={pack_val!r} -> flat={flat_val!r} (flat carries "
+                    f"the governance annotation; pack copy is stale). Re-sync "
+                    f"runs/{run_dir.name}/manifest.json to silence this."
+                )
+        elif _dir_disagree and _is_annotated(manifest) and _is_annotated(flat_manifest):
+            # Both copies annotated but disagree: a genuine conflict. Retain the
+            # pack (historical scoring source) and surface for manual reconcile.
+            for fld, pack_val, flat_val in _dir_disagree:
+                print(
+                    f"WARNING: flat/pack BOTH annotated but disagree for {run_id}: "
+                    f"'{fld}' pack={pack_val!r} flat={flat_val!r} -- pack retained; "
+                    f"reconcile manually."
+                )
+
         timestamp_raw, timestamp = _parse_timestamp(
             manifest.get("timestamp_utc"), manifest_path
         )

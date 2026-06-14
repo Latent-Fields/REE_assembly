@@ -137,6 +137,234 @@ def test_non_diagnostic_is_na():
     assert flag == "n/a", flag
 
 
+# --- flat-manifest authoritative override (2026-06-14 regression) ----------
+# Root cause: _scan_runs scores runs/<run_id>/manifest.json (the "pack" copy),
+# but /failure-autopsy + governance corrections are written to the flat
+# evidence/experiments/<run_id>.json. A flat-only correction was silently
+# ignored, so a stale pack `does_not_support` (-> weakens) kept scoring against
+# MECH-171 x3 / MECH-057b. _merge_flat_manifest_overrides makes the flat copy
+# authoritative for governance/adjudication fields.
+
+def test_annotated_flat_overrides_unannotated_pack():
+    """The 2026-06-14 incident shape: flat carries the autopsy correction +
+    note, pack is the stale auto-emit -> flat wins, applied=True."""
+    pack = {"evidence_direction": "does_not_support",
+            "evidence_direction_per_claim": {"MECH-171": "does_not_support"}}
+    flat = {"evidence_direction": "non_contributory",
+            "evidence_direction_per_claim": {"MECH-171": "non_contributory"},
+            "evidence_direction_note": "autopsy: monomodal policy, untestable"}
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["evidence_direction"] == "non_contributory", merged
+    assert merged["evidence_direction_per_claim"]["MECH-171"] == "non_contributory"
+    fields = {d[0] for d in disagree}
+    assert "evidence_direction" in fields
+    assert "evidence_direction_per_claim" in fields
+
+
+def test_unannotated_flat_does_not_override_annotated_pack():
+    """The legacy v3_exq_150-series inverse: pack carries the supersession note,
+    flat is a stale earlier emission -> pack MUST stay authoritative. This is
+    the regression guard for the dozens of legacy runs the naive rule broke."""
+    pack = {"evidence_direction": "superseded",
+            "evidence_direction_note": "Implementation gap: policy entropy walk"}
+    flat = {"evidence_direction": "weakens"}  # stale, no note
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is False
+    assert merged["evidence_direction"] == "superseded"  # pack retained
+    # disagreement is still reported (for diagnostics), but overlay suppressed
+    assert ("evidence_direction", "superseded", "weakens") in disagree
+
+
+def test_both_annotated_disagree_retains_pack():
+    """When both copies are annotated but disagree, retain the pack (status quo
+    scoring source) and surface the conflict via disagreements."""
+    pack = {"evidence_direction": "weakens",
+            "evidence_direction_note": "pack decision"}
+    flat = {"evidence_direction": "supports",
+            "evidence_direction_note": "flat decision"}
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is False
+    assert merged["evidence_direction"] == "weakens"
+    assert ("evidence_direction", "weakens", "supports") in disagree
+
+
+def test_neither_annotated_retains_pack():
+    """Two unannotated copies that differ (emission artifact): pack retained,
+    no scoring change vs the historical pack-only behaviour."""
+    pack = {"evidence_direction": "mixed"}
+    flat = {"evidence_direction": "supports"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is False
+    assert merged["evidence_direction"] == "mixed"
+
+
+def test_flat_missing_sibling_is_noop():
+    """No flat sibling (=> {}) must leave the pack manifest byte-identical --
+    this is what preserves legacy/synthetic-run handling."""
+    pack = {"evidence_direction": "supports", "run_id": "legacy_run"}
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, {})
+    assert merged == pack
+    assert disagree == []
+    assert applied is False
+
+
+def test_annotated_flat_absent_field_does_not_clobber_pack():
+    """A field present on the pack but ABSENT from the annotated flat copy is
+    left untouched (key presence, not truthiness, gates the overlay)."""
+    pack = {"evidence_direction": "supports", "non_degenerate": True}
+    flat = {"evidence_direction": "non_contributory",
+            "evidence_direction_note": "x"}  # annotated; no non_degenerate key
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["non_degenerate"] is True
+    assert merged["evidence_direction"] == "non_contributory"
+
+
+def test_flat_explicit_false_non_degenerate_overrides():
+    """An explicit non_degenerate: false on an ANNOTATED flat copy must override
+    even though it is falsy (the key-presence rule, not truthiness). The
+    degeneracy_reason both annotates the flat and propagates."""
+    pack = {"non_degenerate": True}
+    flat = {"non_degenerate": False, "degeneracy_reason": "constant metric"}
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["non_degenerate"] is False
+    assert merged["degeneracy_reason"] == "constant metric"
+    assert ("non_degenerate", True, False) in disagree
+
+
+def test_flat_agreement_yields_no_disagreement():
+    """Idempotent case: flat == pack (post manual 2026-06-14 fix). Both
+    annotated and identical -> no disagreement, applied=False (nothing to do)."""
+    shared = {"evidence_direction": "superseded",
+              "evidence_direction_per_claim": {"MECH-057b": "superseded"},
+              "non_degenerate": False,
+              "evidence_direction_note": "superseded by 672a"}
+    merged, disagree, applied = b._merge_flat_manifest_overrides(
+        dict(shared), dict(shared))
+    assert disagree == []
+    assert applied is False
+    assert merged["evidence_direction"] == "superseded"
+
+
+def test_flat_superseded_by_substrate_propagates():
+    pack = {}
+    flat = {"superseded_by_substrate": "SD-046@2026-06-10"}  # self-annotating
+    merged, disagree, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["superseded_by_substrate"] == "SD-046@2026-06-10"
+    assert ("superseded_by_substrate", None, "SD-046@2026-06-10") in disagree
+
+
+def test_metrics_and_status_not_overridden():
+    """Only governance fields are overlaid; metrics/status/claim_ids come from
+    the pack and must survive the merge untouched (annotated-flat path)."""
+    pack = {"status": "PASS", "claim_ids_tested": ["MECH-171"],
+            "evidence_direction": "does_not_support"}
+    flat = {"status": "FAIL", "claim_ids_tested": ["WRONG"],
+            "evidence_direction": "non_contributory",
+            "evidence_direction_note": "autopsy"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["status"] == "PASS"           # pack wins (not authoritative)
+    assert merged["claim_ids_tested"] == ["MECH-171"]
+    assert merged["evidence_direction"] == "non_contributory"  # flat wins
+
+
+def test_is_annotated_signals():
+    assert b._is_annotated({"evidence_direction_note": "x"}) is True
+    assert b._is_annotated({"degeneracy_reason": "x"}) is True
+    assert b._is_annotated({"superseded_by": "y"}) is True
+    assert b._is_annotated({"superseded_by_substrate": "SD-1@d"}) is True
+    assert b._is_annotated({"evidence_direction": "weakens"}) is False
+    assert b._is_annotated({"evidence_direction_note": ""}) is False  # empty
+    assert b._is_annotated({}) is False
+
+
+# --- real-data smoke: the four incident run_ids ----------------------------
+
+def _real_run_pairs():
+    """Yield (run_id, flat_path, pack_path) for the 672/672a/673/677 cohort
+    that exists in the repo. Skips any not present (keeps the test portable)."""
+    import json
+    from pathlib import Path
+    base = Path(__file__).resolve().parents[1]  # evidence/experiments
+    run_ids = [
+        "v3_exq_672_mech057b_trajectory_promotion_gate_20260612T214458Z_v3",
+        "v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3",
+        "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T230231Z_v3",
+        "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3",
+        "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T044809Z_v3",
+        "v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3",
+    ]
+    for rid in run_ids:
+        flat = base / f"{rid}.json"
+        packs = list(base.glob(f"**/runs/{rid}/manifest.json"))
+        if flat.exists() and packs:
+            yield rid, flat, packs[0], json
+
+
+def test_real_cohort_merge_makes_flat_authoritative():
+    """For each incident run: the flat copy is annotated (autopsy note), so a
+    STALE/UNANNOTATED pack (the pre-2026-06-14 state, reproduced by stripping
+    the pack's annotation) is corrected back to the flat direction by the
+    annotation-gated overlay."""
+    seen = 0
+    for rid, flat_path, pack_path, json in _real_run_pairs():
+        seen += 1
+        flat = json.loads(flat_path.read_text(encoding="utf-8"))
+        pack = json.loads(pack_path.read_text(encoding="utf-8"))
+        assert b._is_annotated(flat), f"{rid}: flat should carry autopsy note"
+        # Reproduce the pre-fix incident: pack stale (does_not_support) AND
+        # unannotated (no note/reason) -> flat overlay must fire and restore.
+        corrupt = dict(pack)
+        corrupt["evidence_direction"] = "does_not_support"
+        corrupt["evidence_direction_per_claim"] = {
+            k: "does_not_support" for k in (flat.get("evidence_direction_per_claim") or {})
+        }
+        for fld in b._ANNOTATION_MARKER_FIELDS:
+            corrupt.pop(fld, None)
+        m2, disagree, applied = b._merge_flat_manifest_overrides(corrupt, flat)
+        assert applied is True, rid
+        assert m2["evidence_direction"] == flat["evidence_direction"], rid
+        if flat.get("evidence_direction") != "does_not_support":
+            assert any(d[0] == "evidence_direction" for d in disagree), rid
+    assert seen >= 4, f"expected >=4 incident runs present, found {seen}"
+
+
+def test_real_legacy_150_series_not_flipped():
+    """Regression guard: the v3_exq_150-series has an ANNOTATED pack
+    (supersession note) and a STALE unannotated flat. The overlay must NOT
+    fire, so the pack's `superseded`/`inconclusive` exclusion is preserved."""
+    import json
+    from pathlib import Path
+    base = Path(__file__).resolve().parents[1]
+    checked = 0
+    for rid in ("v3_exq_159_q020_arc007_valence_constraint_pair_20260329T193606Z_v3",
+                "v3_exq_150_q005_sleep_anneal_20260329T131504Z_v3"):
+        flat_p = base / f"{rid}.json"
+        packs = list(base.glob(f"**/runs/{rid}/manifest.json"))
+        if not (flat_p.exists() and packs):
+            continue
+        checked += 1
+        flat = json.loads(flat_p.read_text(encoding="utf-8"))
+        pack = json.loads(packs[0].read_text(encoding="utf-8"))
+        assert b._is_annotated(pack), rid          # pack has the note
+        assert not b._is_annotated(flat), rid       # flat is stale
+        merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+        assert applied is False, rid
+        assert merged.get("evidence_direction") == pack.get("evidence_direction"), rid
+    assert checked >= 1, "expected at least one legacy 150-series pair present"
+
+
+def test_does_not_support_still_maps_to_weakens():
+    """Guardrail: the does_not_support -> weakens synonym is INTENTIONALLY
+    preserved (171 manifests use it as a genuine 'evidence against' label).
+    The 2026-06-14 fix is flat-authoritative merge, NOT re-mapping this token."""
+    assert b._normalize_direction("does_not_support") == "weakens"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
