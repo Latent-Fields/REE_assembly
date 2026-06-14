@@ -2250,6 +2250,20 @@
   status: candidate
   lifecycle_stage: candidate
   implementation_phase: v3
+  governance_2026_06_14: >
+    User-adjudicated (decision-brief follow-up). The two genuine V3 runs were
+    reclassified out of scoring: V3-EXQ-672a -> non_contributory (the
+    trajectory-promotion gate filters ~40% of candidates, C3 PASS, but
+    C6_baseline_not_collapsed FAILED -- goal_success=0.0 in BOTH arms and
+    candidate-score spread=0.009, so the gate's harm/completion benefit could
+    not be measured against a functional baseline); V3-EXQ-672 -> superseded by
+    672a per the EXQ supersession policy. Both propagated to the runs/ pack
+    manifests (the scored copy). Net: MECH-057b returns to ZERO genuine
+    experimental evidence (exp_conf -> 0; lit_conf 0.857 only) -- consistent
+    with the 2026-04-25 revalidation note, the prior 0.66 having been a
+    false-tag artefact. Next step (user decision): requeue V3-EXQ-672b with a
+    NON-collapsed baseline so the gate's benefit is measurable (chip spawned).
+    PROMOTES/DEMOTES NOTHING.
   literature_evidence: |
     Pfeiffer & Foster (2013) PMID 23594744 [DOI: 10.1038/nature12112]:
     Hippocampal place-cell sequences depict future paths to remembered goals before
@@ -12234,11 +12248,28 @@
 
 - id: MECH-171
   title: "Progressive neurodegeneration creates a vicious cycle through sleep disruption: early attribution pipeline failure disrupts sleep architecture, which accelerates consolidation pipeline failure, which accelerates attribution failure. This predicts disproportionate disease-modifying effect of early sleep intervention, because it breaks the cycle before the schema scaffold collapses."
-  claim_type: mechanism_hypothesis
+  claim_type: derived_prediction
   subject: dementia.sleep_disruption_vicious_cycle
   polarity: asserts
   status: candidate
   epistemic_category: out_of_domain
+  governance_2026_06_14: >
+    User-adjudicated claim_type reclassification mechanism_hypothesis ->
+    derived_prediction (resolves the pending question flagged in the 06-12 +
+    06-13 notes). MECH-171 is a clinical-Alzheimer's prediction DERIVED from the
+    REE attribution/consolidation architecture, testable only in clinical
+    cohorts -- not a REE-substrate mechanism. Matches sibling treatment
+    (INV-048 -> derived_prediction 2026-04-17; MECH-173 derived_prediction;
+    MECH-172 reclassified same pass). epistemic_category stays out_of_domain.
+    Also: V3-EXQ-673 x3 reruns propagated to non_contributory in their runs/
+    pack manifests (the failure_autopsy_batch9 disposition had only reached the
+    flat manifests; the indexer scores the pack copy) -- this clears the 3
+    phantom "weakens" that re-surfaced the hold_candidate_resolve_conflict
+    mis-fire each cycle. PROMOTES/DEMOTES NOTHING (exp_conf -> 0, lit_conf 0.87).
+  what_would_answer: >
+    A clinical-cohort longitudinal study showing (or failing to show) that early
+    sleep intervention in MCI/pre-dementia has a disproportionate
+    disease-modifying effect relative to late intervention.
   governance_2026_06_12: >
     epistemic_category set out_of_domain (failure_autopsy_batch9_2026-06-12,
     user-adjudicated; IGW experiment-surfacing suppression + exp_conf-gating
@@ -12295,11 +12326,24 @@
 
 - id: MECH-172
   title: "Preservation of habit and procedural memory in early Alzheimer's disease, while episodic and contextual memory fail, is architecturally predicted by the separation of the model-free habit system (MECH-163 D1/D2, SNc) from the contextual attribution system (E3 hippocampal, requiring offline consolidation phases): the habit system does not require offline consolidation to function, so its relative preservation under early consolidation pipeline failure is not incidental but follows from the architectural separation."
-  claim_type: mechanism_hypothesis
+  claim_type: derived_prediction
   subject: dementia.habit_system_sparing_architectural_prediction
   polarity: asserts
   status: candidate
   epistemic_category: out_of_domain
+  governance_2026_06_14: >
+    User-adjudicated claim_type reclassification mechanism_hypothesis ->
+    derived_prediction (resolves the pending question flagged in the 06-10
+    note). MECH-172 is a clinical-Alzheimer's prediction DERIVED from the
+    habit/contextual-system architectural separation, testable only in a
+    clinical cohort (habit/procedural sparing while episodic/contextual memory
+    fails) -- not a REE-substrate mechanism. Matches sibling treatment
+    (INV-048 / MECH-173 derived_prediction; MECH-171 reclassified same pass).
+    epistemic_category stays out_of_domain. PROMOTES/DEMOTES NOTHING.
+  what_would_answer: >
+    A clinical Alzheimer's cohort showing (or failing to show) that procedural/
+    habit memory is preserved relative to episodic/contextual memory in the
+    early-to-middle stage, tracking consolidation-pipeline failure.
   governance_2026_06_10: >
     epistemic_category set out_of_domain (IGW experiment-surfacing suppression,
     not a promote/demote). The claim is empirical but its test domain is a clinical
@@ -13176,6 +13220,20 @@
   subject: sleep.novelty_adaptive_sleep_upregulation
   polarity: asserts
   status: candidate
+  v3_pending: true
+  governance_2026_06_14: >
+    User-adjudicated (decision-brief follow-up): set v3_pending hold.
+    V3-EXQ-677 (novelty sleep-upregulation probe) FAILed non_contributory +
+    degenerate -- the novelty manipulation did not take (C1: HIGH vs LOW novelty
+    E1 prediction-error diff 8.8e-7 < 0.01 threshold) and the sleep counts are
+    scheduler-pinned (SWS=80 / REM=60, zero cross-arm variance), so the current
+    substrate cannot vary sleep cadence by prediction-error load. The claim is
+    not testable on the present substrate. Held v3_pending pending a sleep-cadence
+    enrichment (PE-driven scaling of offline-update resources); the structured
+    recommended_substrate_queue_entry is drafted in
+    failure_autopsy_V3-EXQ-677_2026-06-14 (the enrichment decision is deferred
+    per user -- "consider after the autopsy is in"). exp_conf stays 0
+    (lit_conf 0.887); PROMOTES/DEMOTES NOTHING.
   depends_on:
     - INV-050
     - MECH-121
@@ -38918,7 +38976,8 @@
     - ARC-007
     - ARC-018
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#arc-085
-  notes: "Empirical anchor (verified): La Corte, Piolino & Cohen, 'Autobiographical hypermnesia as a particular form of mental time travel', Neurocase 31(4):188-192 (2025), DOI 10.1080/13554794.2025.2537950 (Paris Brain Institute) -- single case TL (~17yo), TEMPau + TEEAM; exceptionally detailed emotion/spatio-temporal autobiographical recall AND future projection richer than controls, consistent with shared retrospective/prospective machinery (the constructive-episodic-simulation / Schacter-Addis line); deliberate 'memory-palace' organisation (identity-indexed event field). Computational analogue for a later targeted read (not load-bearing): Lampinen et al., 'Towards mental time travel: a hierarchical memory for RL agents', arXiv:2105.14039. epistemic_category set substrate_conditional EXPLICITLY (overriding the architectural_commitment -> substrate_coherence inference): this is NOT yet the adopted substrate -- it is a candidate commitment gated on a V4 self-tagged event-token store that does not exist in V3. V3 REALITY: REE owns the two halves SEPARATELY -- ARC-007 (hippocampal store/replay of paths through residue-field terrain) and ARC-018 (explicit rollouts + post-commitment viability map); what is NEW is the claim they are ONE substrate (falsifier: corrupting the shared store degrades both past-recall and future-simulation fidelity TOGETHER, vs independent degradation under a two-store model). DO NOT treat as precognition / perfect memory (single case; vivid != accurate; simulation != prediction -- per the intake guardrail). V4/V5; off the V3 critical path. DO NOT build a parallel autobiographical event substrate in V3 until routed by an explicit version decision."
+  q060_taxonomy_decision: "2026-06-14 (ABM-1 / Q-060, user-adjudicated): autobiographical-event memory is a TAG / INDEXING CONVENTION over the existing episodic store (ARC-007), NOT a distinct first-class memory type with its own store. ARC-085 is therefore scoped as an identity-indexed, self/affect/provenance-tagged BINDING LAYER over the existing ARC-007 episodic event store -- the 'one self-tagged event-token store' IS the existing episodic store, made autobiographical by the fields each event token carries {self_state, perspective, affect, residue, source_status, committed_vs_imagined} plus an identity index that BOTH backward replay (ARC-007) AND forward re-composition (ARC-018) address. This is the parsimonious instantiation of ARC-085's own 'one substrate, not two parallel machineries' thesis: do NOT mint a third store. The decision keeps every downstream claim (MECH-365/366/361/368/429/430/431) as FIELD/GATE specialisations of the episodic token -- which is how they are already written -- rather than parallel substrates. The semantic (facts/relations) and task/procedural (policies/schemas) types stay distinct; only autobiographical-vs-episodic resolves to tag-not-type. NOT trivial: the index is still load-bearing V4 work (first-class provenance/perspective/affect/self_state fields + identity index + the one-way committed-vs-imagined gate). The empirical check that could overturn this design call toward distinct-type survives as Q-060.what_would_answer (the ARC-085 joint-degradation falsifier)."
+  notes: "Empirical anchor (verified): La Corte, Piolino & Cohen, 'Autobiographical hypermnesia as a particular form of mental time travel', Neurocase 31(4):188-192 (2025), DOI 10.1080/13554794.2025.2537950 (Paris Brain Institute) -- single case TL (~17yo), TEMPau + TEEAM; exceptionally detailed emotion/spatio-temporal autobiographical recall AND future projection richer than controls, consistent with shared retrospective/prospective machinery (the constructive-episodic-simulation / Schacter-Addis line); deliberate 'memory-palace' organisation (identity-indexed event field). Computational analogue for a later targeted read (not load-bearing): Lampinen et al., 'Towards mental time travel: a hierarchical memory for RL agents', arXiv:2105.14039. epistemic_category set substrate_conditional EXPLICITLY (overriding the architectural_commitment -> substrate_coherence inference): this is NOT yet the adopted substrate -- it is a candidate commitment gated on a V4 self-tagged event-token store that does not exist in V3. V3 REALITY: REE owns the two halves SEPARATELY -- ARC-007 (hippocampal store/replay of paths through residue-field terrain) and ARC-018 (explicit rollouts + post-commitment viability map); what is NEW is the claim they are ONE substrate (falsifier: corrupting the shared store degrades both past-recall and future-simulation fidelity TOGETHER, vs independent degradation under a two-store model). TAXONOMY DECISION 2026-06-14 (see q060_taxonomy_decision above): ARC-085 adopted as an INDEXING/BINDING CONVENTION over the existing ARC-007 episodic store, NOT a new parallel store. DO NOT treat as precognition / perfect memory (single case; vivid != accurate; simulation != prediction -- per the intake guardrail). V4/V5; off the V3 critical path. DO NOT build a parallel autobiographical event substrate in V3 until routed by an explicit version decision."
 - id: MECH-365
   title: "Provenance-bearing event token: every autobiographical event token carries an explicit provenance/commitment-status structure -- event_token = {time, place, self_state, other_agents, perspective, affect, residue, source_status, committed_vs_imagined} -- and a ONE-WAY gate ensures imagined / simulated future tokens can be used for planning without ever acquiring committed-history status. The scarce resource in mental time travel is not capacity but provenance: any path that lets a simulated event accrue committed weight is a confabulation bug."
   claim_type: mechanism_hypothesis
@@ -38962,7 +39021,9 @@
     - ARC-085
     - MECH-121
   location: docs/architecture/autobiographical_temporality_and_future_simulation.md#q-060
-  notes: "From the hyperthymesia intake (raw thought's REE-specific hypothesis: a four-way split of semantic / task / autobiographical-event / prospective-autobiographical-simulation memory). REE currently owns only the episodic<->semantic axis via MECH-121 (NREM SWR episodic->semantic transfer) and the orthogonal stored-vs-active distinction (INV-037/INV-038); there is no claim asserting autobiographical event memory as a distinct type. Sub-questions: (1) does a distinct autobiographical layer earn its keep, or is it a tag on episodic content? (2) how does residue attach to autobiographical memories without contaminating imagined futures (ties to MECH-365)? (3) where is the boundary between replay, counterfactual simulation, and future trajectory planning? epistemic_category set substrate_conditional EXPLICITLY (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the ARC-085 substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."
+  decision_2026_06_14: "DESIGN-ADJUDICATED (ABM-1, user call): autobiographical-event memory is a TAG / INDEXING CONVENTION over the existing episodic store (ARC-007), NOT a distinct first-class memory type. Sub-question (1) -- 'does a distinct autobiographical layer earn its keep, or is it a tag on episodic content?' -- answered: TAG (a self/affect/provenance-tagged, identity-indexed layer), not a separate type/store. Rationale: the features that distinguish autobiographical from semantic content {self_state, perspective, affect, residue, source_status, committed_vs_imagined} are fields on the episodic event token; the MECH-121 episodic->semantic pathway already models de-tagged content draining toward semantic (autobiographical = episodic content that RETAINS its self/affect tags and resists full semanticisation); every downstream cluster claim is already a field/gate ON the token, not a parallel store; and the tag reading is the parsimonious instantiation of ARC-085's 'one substrate, not two parallel machineries' thesis. The semantic and task/procedural types stay distinct; only autobiographical-vs-episodic resolves to tag-not-type. Recorded into ARC-085.q060_taxonomy_decision (ARC-085 = binding/indexing layer over ARC-007). Remains an open_question (history-informative) because the empirical falsifier below could reopen it; kept substrate_conditional so it does not drive a V3 experiment."
+  what_would_answer: "The ARC-085 joint-degradation falsifier (a V4 experiment, once the unified store exists): corrupt the shared event-token store and measure past-recall vs future-simulation fidelity. If both degrade TOGETHER, the single tagged/indexed store holds (confirms the tag reading). If they degrade INDEPENDENTLY, autobiographical and episodic-prospective draw on separable stores -- reopening Q-060 toward a distinct first-class type. Until that V4 experiment is possible the answer is the design adjudication above."
+  notes: "From the hyperthymesia intake (raw thought's REE-specific hypothesis: a four-way split of semantic / task / autobiographical-event / prospective-autobiographical-simulation memory). REE currently owns only the episodic<->semantic axis via MECH-121 (NREM SWR episodic->semantic transfer) and the orthogonal stored-vs-active distinction (INV-037/INV-038); there is no claim asserting autobiographical event memory as a distinct type. Sub-questions: (1) does a distinct autobiographical layer earn its keep, or is it a tag on episodic content? -- ANSWERED 2026-06-14: tag/indexing convention (see decision_2026_06_14). (2) how does residue attach to autobiographical memories without contaminating imagined futures (ties to MECH-365)? (3) where is the boundary between replay, counterfactual simulation, and future trajectory planning? epistemic_category set substrate_conditional EXPLICITLY (overriding open_question -> answer_state) so narrow_open_question does NOT fire -- this is a V4-parked question awaiting the ARC-085 substrate, not a V3-tractable one to narrow by experiment. V4/V5; off the V3 critical path. DO NOT queue an experiment against this in V3."
 - id: RA-001
   title: "Long-term clinical depression involves a chronicity-dependent reversal of large-scale network coupling: past a ~24-month chronicity threshold, the relationship between symptom severity and Central-Executive-Network (CEN) <-> Default-Mode-Network (DMN, precuneus) functional connectivity reverses sign (non-chronic: stronger CEN-DMN coupling at low severity, weaker at high; chronic: connectivity strengthens as symptoms worsen, co-occurring with entrenched rumination). The depressive brain-state is duration-indexed, not a single static regime."
   claim_type: research_anchor

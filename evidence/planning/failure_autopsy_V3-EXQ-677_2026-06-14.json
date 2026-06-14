@@ -1,0 +1,59 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-14T16:07:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3",
+      "queue_id": "V3-EXQ-677",
+      "claim_ids": ["MECH-180"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (not tested) -- C1 manipulation check failed, claim could not express itself",
+        "biological_reference": "clear -- experience-dependent SWA homeostasis (Tononi&Cirelli, Huber 2004) + novelty-biased replay (Wilson&McNaughton 1994); reference mechanism exists",
+        "prerequisites": "missing -- no wake->sleep prediction-error accumulator; sleep cadence is fixed by sleep_interval",
+        "implementation": "partial/stub -- sleep phases run but offline-resource amount is a fixed constant",
+        "environment": "unknown -- drift/switch manipulation did not register as an E1 prediction-error difference",
+        "measurement": "misleading -- C2/C3 read a scheduler-fixed counter with zero cross-arm variance",
+        "integration": "isolated -- novelty pathway and sleep-resource allocation are uncoupled",
+        "scale": "n/a -- goal_success 0 in both arms (separate baseline-health concern)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "experience-dependent sleep homeostasis (local SWA increase after high-learning wake) + novelty-biased hippocampal replay",
+        "dependencies": ["wake-phase PE/MEL accumulation", "hippocampal SWR replay prioritisation", "offline-resource budgeting"],
+        "is_formal_import": false,
+        "divergence": "substrate has the symbol of sleep (phases run) but not the functional role: no channel scales offline-phase amount by preceding-wake novelty/PE",
+        "lit_status": "present (lit_conf 0.887; Wilson&McNaughton 1994, Tononi&Cirelli 2003, Stickgold 2001, Louie&Wilson 2001)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling (autopsy) -- USER DISPOSITION: v3_pending hold (coherent: enrichment is V3 substrate work)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "MECH-180 held v3_pending. V3-EXQ-677 non_contributory + degenerate: novelty manipulation did not take (C1 high-vs-low E1 pred-error diff 8.8e-7 < 0.01) and sleep counts are scheduler-pinned (SWS=80/REM=60, zero cross-arm variance). The substrate cannot vary sleep cadence by prediction-error load. exp_conf stays 0 (lit_conf 0.887); promotes/demotes nothing.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "sleep-cadence-pe-driven-upregulation",
+        "title": "PE/novelty-driven scaling of offline-update resources (adaptive sleep cadence)",
+        "implementation_hint": "Add a wake-phase prediction-error / MEL accumulator that scales the AMOUNT (depth/count) of the subsequent offline phase, so SWS-write and REM-rollout budgets vary with preceding-wake novelty instead of being fixed by sleep_interval. Likely an enrichment of the existing sleep cluster (MECH-272 routing gate / MECH-285 replay sampler) rather than a new module.",
+        "unblocks_claims": ["MECH-180"],
+        "depends_on_unresolved": ["INV-050", "MECH-121", "MECH-285 (replay sampler, queued)"],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3",
+          "experiment_type": "v3_exq_677_mech180_novelty_sleep_upregulation_probe",
+          "metric": "SWS/REM upregulation ratio HIGH/LOW = 1.0 (zero variance; scheduler-fixed counts)",
+          "target": "ratio >= 1.25 with a non-degenerate adaptive sleep-resource metric"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "C2/C3 metrics are vacuous by construction: sleep counts derive from sleep_interval, not novelty/PE -> zero cross-arm variance regardless of behaviour.",
+        "The novelty manipulation (env drift + context switch) did not produce a measurable E1 prediction-error difference (C1) -- the manipulation needs validation before it can drive a sleep response.",
+        "goal_success=0 in both arms is a baseline-health concern shared with V3-EXQ-672a (MECH-057b baseline collapse) -- cross-check whether this env/training config yields a functional agent."
+      ],
+      "routing": "implement-substrate (deferred) + queue-experiment redesign after substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_note": "Enrichment (substrate_queue write) deferred by user: 'consider substrate enrichment after the autopsy is in'. MECH-180 set v3_pending now; substrate_queue entry NOT written this pass."
+}

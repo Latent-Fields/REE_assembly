@@ -1,1 +1,78 @@
-{"architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["MECH-057b"], "claim_ids_tested": ["MECH-057b"], "criteria": {"C1_harm_reduction": false, "C2_completion_improvement": false, "C3_gate_filters": true, "C4_not_deadlocked": true, "C5_e3_functional": true, "C6_baseline_not_collapsed": false, "C7_no_fatal_errors": true}, "degeneracy_reason": "", "degenerate_metrics": {}, "evidence_direction": "weakens", "evidence_direction_per_claim": {"MECH-057b": "weakens"}, "experiment_purpose": "evidence", "experiment_type": "v3_exq_672a_mech057b_trajectory_promotion_gate", "interpretation": {"criteria_non_degenerate": {"C1_harm_reduction": true, "C2_completion_improvement": true, "C3_gate_filters": true}, "label": "ready", "preconditions": [{"control": "ARM_1 eval candidate pool (gate enabled)", "description": "ARM_1 completion gate must suppress >= FILTER_FLOOR of the candidate pool; the relative quantile bar can only bite when candidate residue-completion scores have spread (positive control: gate enabled, >2 candidates/tick on the ARM_1 eval pool)", "measured": 0.4062419810110341, "met": true, "name": "arm1_gate_filters_nontrivial_fraction", "threshold": 0.1}]}, "metrics": {"fatal_count": 0, "goal_success_rate_ARM_0": 0.0, "mean_candidate_score_spread_ARM_1": 0.009285966661315237, "mean_completion_signal_ARM_0": 0.34383444761291576, "mean_completion_signal_ARM_1": 0.3438295599512455, "mean_e3_candidate_count_ARM_1": 19.000256607646907, "mean_filtered_fraction_ARM_1": 0.4062419810110341, "mean_harm_rate_ARM_0": 0.31101178049998973, "mean_harm_rate_ARM_1": 0.3313413991130478, "mean_precision_ARM_1": 1.9999960000080013}, "non_degenerate": true, "outcome": "FAIL", "params": {"drop_fraction": 0.4, "filter_floor": 0.1, "min_candidates": 2, "num_hazards": 2, "num_resources": 1, "seeds": [42, 43, 44], "size": 8}, "queue_id": "V3-EXQ-672a", "run_id": "v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3", "supersedes": "v3_exq_672_mech057b_trajectory_promotion_gate", "timestamp_utc": "2026-06-13T18:01:47.015086Z", "machine": "ree-cloud-1"}
+{
+ "architecture_epoch": "ree_hybrid_guardrails_v1",
+ "claim_ids": [
+  "MECH-057b"
+ ],
+ "claim_ids_tested": [
+  "MECH-057b"
+ ],
+ "criteria": {
+  "C1_harm_reduction": false,
+  "C2_completion_improvement": false,
+  "C3_gate_filters": true,
+  "C4_not_deadlocked": true,
+  "C5_e3_functional": true,
+  "C6_baseline_not_collapsed": false,
+  "C7_no_fatal_errors": true
+ },
+ "degeneracy_reason": "",
+ "degenerate_metrics": {},
+ "evidence_direction": "non_contributory",
+ "evidence_direction_per_claim": {
+  "MECH-057b": "non_contributory"
+ },
+ "experiment_purpose": "evidence",
+ "experiment_type": "v3_exq_672a_mech057b_trajectory_promotion_gate",
+ "interpretation": {
+  "criteria_non_degenerate": {
+   "C1_harm_reduction": true,
+   "C2_completion_improvement": true,
+   "C3_gate_filters": true
+  },
+  "label": "ready",
+  "preconditions": [
+   {
+    "control": "ARM_1 eval candidate pool (gate enabled)",
+    "description": "ARM_1 completion gate must suppress >= FILTER_FLOOR of the candidate pool; the relative quantile bar can only bite when candidate residue-completion scores have spread (positive control: gate enabled, >2 candidates/tick on the ARM_1 eval pool)",
+    "measured": 0.4062419810110341,
+    "met": true,
+    "name": "arm1_gate_filters_nontrivial_fraction",
+    "threshold": 0.1
+   }
+  ]
+ },
+ "metrics": {
+  "fatal_count": 0,
+  "goal_success_rate_ARM_0": 0.0,
+  "mean_candidate_score_spread_ARM_1": 0.009285966661315237,
+  "mean_completion_signal_ARM_0": 0.34383444761291576,
+  "mean_completion_signal_ARM_1": 0.3438295599512455,
+  "mean_e3_candidate_count_ARM_1": 19.000256607646907,
+  "mean_filtered_fraction_ARM_1": 0.4062419810110341,
+  "mean_harm_rate_ARM_0": 0.31101178049998973,
+  "mean_harm_rate_ARM_1": 0.3313413991130478,
+  "mean_precision_ARM_1": 1.9999960000080013
+ },
+ "non_degenerate": true,
+ "outcome": "FAIL",
+ "params": {
+  "drop_fraction": 0.4,
+  "filter_floor": 0.1,
+  "min_candidates": 2,
+  "num_hazards": 2,
+  "num_resources": 1,
+  "seeds": [
+   42,
+   43,
+   44
+  ],
+  "size": 8
+ },
+ "queue_id": "V3-EXQ-672a",
+ "run_id": "v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3",
+ "supersedes": "v3_exq_672_mech057b_trajectory_promotion_gate",
+ "timestamp_utc": "2026-06-13T18:01:47.015086Z",
+ "machine": "ree-cloud-1",
+ "evidence_direction_note": "Governance 2026-06-14 (user-adjudicated): reclassified weakens->non_contributory. The gate filters ~40% of candidates (C3 PASS) but C6_baseline_not_collapsed FAILED -- goal_success_rate=0.0 in BOTH arms and candidate-score spread=0.009, so harm/completion benefit (C1/C2) could not be measured against a functional baseline. No interpretable signal about the gate's benefit -> non_contributory. Retest via 672b with a non-collapsed baseline.",
+ "governance_applied_utc": "2026-06-14T16:07:16Z"
+}

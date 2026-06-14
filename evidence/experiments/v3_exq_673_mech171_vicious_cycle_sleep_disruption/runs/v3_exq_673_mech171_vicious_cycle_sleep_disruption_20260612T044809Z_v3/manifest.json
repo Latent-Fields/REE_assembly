@@ -1,44 +1,50 @@
 {
-  "schema_version": "experiment_pack/v1",
-  "architecture_epoch": "ree_hybrid_guardrails_v1",
-  "experiment_type": "v3_exq_673_mech171_vicious_cycle_sleep_disruption",
-  "run_id": "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T044809Z_v3",
-  "status": "FAIL",
-  "timestamp_utc": "2026-06-12T04:48:09Z",
-  "source_repo": {
-    "name": "ree-v3",
-    "commit": "",
-    "branch": "main"
-  },
-  "runner": {
-    "name": "ree-v3-harness",
-    "version": "3.0.0"
-  },
-  "artifacts": {
-    "metrics_path": "metrics.json",
-    "summary_path": "summary.md"
-  },
-  "stop_criteria_version": "stop_criteria/v1",
-  "claim_ids_tested": [
-    "MECH-171"
-  ],
-  "evidence_class": "simulation",
-  "evidence_direction": "does_not_support",
-  "evidence_direction_per_claim": {},
-  "experiment_purpose": "evidence",
-  "producer_capabilities": {
-    "sd005_split_latent": true,
-    "sd004_action_objects": true,
-    "sd006_multirate_clock": true
-  },
-  "environment": {
-    "env_id": "ree.causal_grid_world_v3",
-    "env_version": "3.0.0",
-    "dynamics_hash": "unknown",
-    "reward_hash": "unknown",
-    "observation_hash": "unknown",
-    "config_hash": "unknown",
-    "tier": "causal_grid_world_v3"
-  },
-  "failure_signatures": []
+ "schema_version": "experiment_pack/v1",
+ "architecture_epoch": "ree_hybrid_guardrails_v1",
+ "experiment_type": "v3_exq_673_mech171_vicious_cycle_sleep_disruption",
+ "run_id": "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T044809Z_v3",
+ "status": "FAIL",
+ "timestamp_utc": "2026-06-12T04:48:09Z",
+ "source_repo": {
+  "name": "ree-v3",
+  "commit": "",
+  "branch": "main"
+ },
+ "runner": {
+  "name": "ree-v3-harness",
+  "version": "3.0.0"
+ },
+ "artifacts": {
+  "metrics_path": "metrics.json",
+  "summary_path": "summary.md"
+ },
+ "stop_criteria_version": "stop_criteria/v1",
+ "claim_ids_tested": [
+  "MECH-171"
+ ],
+ "evidence_class": "simulation",
+ "evidence_direction": "non_contributory",
+ "evidence_direction_per_claim": {
+  "MECH-171": "non_contributory"
+ },
+ "experiment_purpose": "evidence",
+ "producer_capabilities": {
+  "sd005_split_latent": true,
+  "sd004_action_objects": true,
+  "sd006_multirate_clock": true
+ },
+ "environment": {
+  "env_id": "ree.causal_grid_world_v3",
+  "env_version": "3.0.0",
+  "dynamics_hash": "unknown",
+  "reward_hash": "unknown",
+  "observation_hash": "unknown",
+  "config_hash": "unknown",
+  "tier": "causal_grid_world_v3"
+ },
+ "failure_signatures": [],
+ "non_degenerate": false,
+ "degeneracy_reason": "All arms identical (ARM_A==ARM_B==ARM_C on every metric) and late_pred_loss==0.0",
+ "evidence_direction_note": "Governance 2026-06-14: propagated failure_autopsy_batch9_2026-06-12 disposition into the runs/ pack manifest (was does_not_support -> non_contributory). MECH-171 is out_of_domain (clinical multi-year Alzheimer's vicious cycle not instantiable in a 300-episode grid-world); the degenerate run is non-discriminative by domain, not counter-evidence.",
+ "governance_applied_utc": "2026-06-14T16:07:16Z"
 }

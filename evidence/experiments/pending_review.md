@@ -1,15 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-13T22:12:00Z`  
-Last review: `2026-06-13T22:11:49Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-14T16:11:58Z`  
+Last review: `2026-06-14T16:07:16Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
+## PASS (verify & close)
 
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3` | 2026-06-13T16:12 | MECH-180 | — |
-| `v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3` | 2026-06-13T18:01 | MECH-057b | — |
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_679_mech423_readiness_validation_diagnostic_20260614T102515Z_v3` | 2026-06-14T10:25 | (no claim tags) |
 
 ---
 
