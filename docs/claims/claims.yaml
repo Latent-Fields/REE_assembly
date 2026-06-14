@@ -20547,6 +20547,19 @@
     (the de-commit RELEASE leg is unbuilt; not a falsification). Does NOT change MECH-261's
     stable status (33 supports / strong evidence base); recorded so the 460d entry is not
     miscounted as opposing.
+  mem1_amendment_2026_06_14: >
+    MEM-1 (memory_lifecycle_v4) amendment: MECH-261's mode-conditioned
+    write-gating family is extended with an ALLOCATION-DECISION STAGE -- a
+    control-plane step that, before a write fires, selects integrate /
+    partial_overlap / separate over the hippocampal graph from
+    (context_similarity x temporal_distance INTERACTION, schema_fit, salience,
+    PE, uncertainty, goal_relevance). Per Verdict G1 (de Sousa 2026 intake) the
+    decision algorithm is the single NOVEL aspect and is carried as a DISTINCT
+    mechanism_hypothesis MECH-391 (substrate_conditional, v4) wired to MECH-261
+    via depends_on, NOT a new invariant (subsumed by MECH-094/261 + INV-039).
+    The false-linking-risk / reality-coherence cost the stage prices is INV-079.
+    V4 / substrate_conditional: the gates MECH-261 steers are V3-live, but the
+    allocation policy needs the V4 memory-lifecycle store -- DO NOT build in V3.
   depends_on:
     - SD-032a          # coordinator (source of operating_mode)
     - MECH-094         # hypothesis tag (the specific tag this generalises)
@@ -40667,10 +40680,7 @@
 - id: INV-080
   title: "Raw-episode preservation: consolidation_output MUST NOT replace source_episode_evidence -- a consolidated abstraction must retain a pointer to, and must not delete, the episodes it abstracts."
   claim_type: invariant
-  invariant_type: emergent
-  emergent_from:
-    - MECH-392
-  pending_substrate_reconfirmation: true
+  invariant_type: universal
   subject: memory.consolidation.raw_episode_preservation
   polarity: asserts
   status: candidate
@@ -40689,13 +40699,22 @@
   notes: >
     Consolidation-faults intake (arXiv:2605.12978, verified): memory utility rises then
     degrades below the no-memory baseline; agents preserving raw episodes double the
-    accuracy of forced-consolidation. No current claim states this as a standing
-    invariant (intake Section 2: IMPLICIT only). May amend ARC-020/MECH-094 rather than
-    standing alone -- registered as a candidate emergent invariant pending that
-    decision. invariant_type emergent: the obligation has no subject matter until the
-    consolidation-provenance layer (MECH-392) exists, so emergent_from MECH-392 (also in
-    depends_on per the validator subset rule); pending_substrate_reconfirmation true
-    because MECH-392 is candidate. substrate_conditional. DO NOT build in V3.
+    accuracy of forced-consolidation. MEM-8 lit pass (2026-06-13) sharpened the rule to
+    "no SILENT / ungoverned overwrite of the evidence base" (the biological default is
+    adaptive detail-loss: Sekeres 2018, Richards & Frankland 2017) -- it governs WHETHER
+    the overwrite is auditable/reversible, not "never forget".
+    Reclassified emergent -> universal (MEM-4, 2026-06-14, user-approved): this is a
+    substrate-independent decision-theoretic law about any model-building agent that
+    consolidates experience. The grounding source is substrate-agnostic (LLM agents), and
+    per invariant_types.md the emergent test (retract the SD/ARC -> subject becomes
+    ill-defined) FAILS here -- consolidation_output / source_episode_evidence are
+    well-formed wherever ANY consolidation operation exists, not only under MECH-392
+    (which would only IMPLEMENT preservation, not give the obligation its subject matter).
+    Same family as INV-049 (offline-update necessity, universal). emergent_from dropped and
+    pending_substrate_reconfirmation cleared (universal invariants are never flagged).
+    depends_on retained as informative links (MECH-392 / ARC-007 / ARC-020 / MECH-094 /
+    INV-049). epistemic_category stays substrate_conditional: the LAW is universal but no
+    V3 substrate exists to gather evidence on or build against -- DO NOT build in V3.
 
 # --- drives_motivation_v4 cluster (SD-060 + MECH-394/395 + Q-071) ---
 - id: SD-060

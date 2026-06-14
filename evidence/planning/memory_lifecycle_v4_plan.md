@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Memory Lifecycle: allocation gate + consolidation anti-overwrite + provenance/rollback (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-14
   scope_claims: [MECH-261, MECH-094, ARC-035, MECH-272, MECH-273, INV-039, INV-049, MECH-068, MECH-124, MECH-147, ARC-007, ARC-020, MECH-257, SD-017]
   sibling_plans: [sleep_substrate, hippocampal_planning_v4, self_model_v4, inference_belief_state_v4]
   roadmap_note: >
@@ -27,7 +27,7 @@ closure_plan:
     - id: "memory_lifecycle_v4:MEM-1"
       title: "Allocation-gate decision stage on MECH-261 (integrate / partial_overlap / separate)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-261, MECH-391]
@@ -38,8 +38,8 @@ closure_plan:
         - "ARC-035 (vmPFC stored->active converter, candidate) supplies the control-plane that would set thresholds + weights"
         - "DECISION the policy stage forces: the de Sousa 2026 inputs (context_similarity x temporal_distance interaction, schema_fit, salience, PE, uncertainty, goal_relevance) drive integrate vs partial_overlap vs separate -- temporal_distance x context_similarity must be an INTERACTION (similar contexts link even at 7 days), not additive (lit-pull verdict G3)"
         - "Lit DONE 2026-06-06: targeted_review_contextual_memory_allocation_gate VERDICT (de Sousa 2026 + Cai 2016 + Bakker 2008 + Tse 2007 + Sahay 2011; mean ~0.73; candidate-isolated)"
-      last_updated: 2026-06-10
-      completion_note: "Per the contextual-memory-allocation-gate intake (Section 3): the control-plane DECISION ALGORITHM for when to engage the existing gates is NOVEL (no current home). Verdict G1: amend MECH-261 with an allocation-decision stage rather than mint a new INV (subsumed by MECH-094/261 + INV-039). The policy is the work this node tracks; the gates it steers are V3-live."
+      last_updated: 2026-06-14
+      completion_note: "Per the contextual-memory-allocation-gate intake (Section 3): the control-plane DECISION ALGORITHM for when to engage the existing gates is NOVEL (no current home). Verdict G1: amend MECH-261 with an allocation-decision stage rather than mint a new INV (subsumed by MECH-094/261 + INV-039). The policy is the work this node tracks; the gates it steers are V3-live. CLOSED 2026-06-14 (IGW plan reconcile, user-approved): the allocation-decision stage is registered as the distinct mechanism_hypothesis MECH-391 (substrate_conditional/v4, depends_on MECH-261) with exactly the named decision variables, and the false-linking cost as INV-079 -- both minted 2026-06-10, so registration IS the deliverable. Residual artifact added this pass: MECH-261 now carries a dated mem1_amendment_2026_06_14 note acknowledging the allocation-decision-stage extension and cross-referencing MECH-391 + INV-079 (the MECH-391->MECH-261 link was previously one-directional). No new claim minted; Verdict G1 honored (mechanism_hypothesis, not a new INV). exp_conf 0 -- PROMOTES NOTHING; DO NOT build in V3."
     - id: "memory_lifecycle_v4:MEM-2"
       title: "Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing"
       phase: 1
@@ -76,7 +76,7 @@ closure_plan:
     - id: "memory_lifecycle_v4:MEM-4"
       title: "Raw-episode-preservation invariant (consolidation_output MUST NOT replace source_episode_evidence)"
       phase: 2
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-007, ARC-020, INV-080]
@@ -87,8 +87,8 @@ closure_plan:
         - "ARC-007 (hippocampal path store/replay residue field, architectural_commitment) IS the raw-episode-ish substrate that must not be overwritten by abstraction"
         - "ARC-020 (offline consolidation protected by typed authority/write boundaries, candidate) is the nearest existing isolation discipline; the anti-overwrite rule is an adjacent constraint within the offline locus"
         - "MECH-094 already carries a replay_origin audit flag; the new invariant generalises preservation from sim-vs-real to ALL consolidation transformations"
-      last_updated: 2026-06-10
-      completion_note: "Consolidation-faults intake (arXiv:2605.12978, VERIFIED): utility rises then degrades below the no-memory baseline; the regression traces to the consolidation STEP not the experience; agents preserving raw episodes double the accuracy of forced-consolidation. Standing rule: abstraction must never delete the evidence base. No current claim states this as an invariant -- candidate either new INV or amend ARC-020/MECH-094."
+      last_updated: 2026-06-14
+      completion_note: "Consolidation-faults intake (arXiv:2605.12978, VERIFIED): utility rises then degrades below the no-memory baseline; the regression traces to the consolidation STEP not the experience; agents preserving raw episodes double the accuracy of forced-consolidation. Standing rule: abstraction must never delete the evidence base. CLOSED 2026-06-14 (IGW plan reconcile, user-approved): the new-INV-vs-amend decision was already settled at registration -- INV-080 was minted 2026-06-10 as a NEW invariant stating this verbatim (depends_on ARC-007/ARC-020/MECH-094/INV-049/MECH-392), so registration IS the deliverable. This pass settled the open invariant_type question: RECLASSIFIED emergent -> universal. Rationale (invariant_types.md): the rule is a substrate-independent decision-theoretic law (grounding source arXiv:2605.12978 is substrate-agnostic; MEM-8 lit sharpened it to 'no SILENT/ungoverned overwrite'); the emergent test (retract the SD/ARC -> subject ill-defined) FAILS because consolidation_output/source_episode_evidence are well-formed wherever any consolidation op exists, not only under MECH-392; same family as the universal INV-049. emergent_from dropped, pending_substrate_reconfirmation cleared. epistemic_category stays substrate_conditional (no V3 substrate to test/build on). exp_conf 0 -- PROMOTES NOTHING; DO NOT build in V3."
     - id: "memory_lifecycle_v4:MEM-5"
       title: "Provenance + contradiction-flag + rollback layer on consolidated memory"
       phase: 3
