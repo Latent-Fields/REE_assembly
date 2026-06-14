@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-14T20:17:02Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-672b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-681",
-      "result": "PASS",
-      "completed_at": "2026-06-14T20:14:58.755047+00:00"
-    }
+  "last_tick_utc": "2026-06-14T20:48:36Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-666c",
+  "current_exq_started_utc": "2026-06-14T20:25:06.440789+00:00",
+  "current_title": "ARC-063 CRF availability-maintenance readiness -- clean fraction-gated re-run (666b pre-gap differentiation fix + enlarged maturation)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_OFF",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 50,
+    "episodes_total": 200,
+    "overall_pct": 2.8
+  },
+  "seconds_elapsed": 1410,
+  "seconds_remaining": 27312,
+  "recent_lines": [
+    "Seed 42 Condition ARM_0_OFF",
+    "[train] cell ARM_0_OFF seed=42 ep 50/200"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 746,
-  "runner_version": "r3153 8fc5511 2026-06-14 (running r3149 d34958e)",
+  "runner_version": "r3159 aa00f68 2026-06-14 (running r3149 d34958e)",
   "gpu": {
     "available": false
   },
