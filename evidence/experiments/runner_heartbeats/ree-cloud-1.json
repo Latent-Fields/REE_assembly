@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-14T20:03:07Z",
+  "last_tick_utc": "2026-06-14T20:13:12Z",
   "state": "running",
   "current_exq": "V3-EXQ-672b",
   "current_exq_started_utc": "2026-06-14T17:37:15.863435+00:00",
@@ -9,21 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_0_NO_GATE",
-    "runs_done": 1,
+    "run_label": "Seed 44 / ARM_0_NO_GATE",
+    "runs_done": 2,
     "runs_total": 6,
-    "episodes_done": 500,
+    "episodes_done": 10,
     "episodes_total": 500,
-    "overall_pct": 33.3
+    "overall_pct": 33.7
   },
-  "seconds_elapsed": 8751,
-  "seconds_remaining": 4046,
+  "seconds_elapsed": 9357,
+  "seconds_remaining": 32786,
   "recent_lines": [
-    "[train] ep 50/500  harm_rate=0.5910  e3_ticks=56  mean_candidates=32.00",
-    "[train] ep 60/500  harm_rate=0.5834  e3_ticks=67  mean_candidates=32.00",
-    "[train] ep 70/500  harm_rate=0.5620  e3_ticks=80  mean_candidates=32.00",
-    "[train] ep 80/500  harm_rate=0.5666  e3_ticks=89  mean_candidates=32.00",
-    "[train] ep 90/500  harm_rate=0.5690  e3_ticks=98  mean_candidates=32.00",
     "[train] ep 100/500  harm_rate=0.5665  e3_ticks=111  mean_candidates=32.00",
     "[train] ep 110/500  harm_rate=0.5741  e3_ticks=120  mean_candidates=32.00",
     "[train] ep 120/500  harm_rate=0.5712  e3_ticks=132  mean_candidates=32.00",
@@ -118,7 +113,12 @@
     "[train] ep 470/500  harm_rate=0.1246  e3_ticks=6551  mean_candidates=32.00",
     "[train] ep 480/500  harm_rate=0.1248  e3_ticks=6695  mean_candidates=32.00",
     "[train] ep 490/500  harm_rate=0.1247  e3_ticks=6814  mean_candidates=32.00",
-    "[train] ep 500/500  harm_rate=0.1244  e3_ticks=6976  mean_candidates=32.00"
+    "[train] ep 500/500  harm_rate=0.1244  e3_ticks=6976  mean_candidates=32.00",
+    "[ARM_0_NO_GATE] Seed 43 complete: harm_rate=0.1400 goal_success=0.2600 completion=0.3467 candidates=32.00 filtered=0.0000",
+    "verdict: PASS",
+    "Seed 44 Condition ARM_0_NO_GATE",
+    "[ARM_0_NO_GATE] Seed 44 starting...",
+    "[train] ep 10/500  harm_rate=0.1997  e3_ticks=86  mean_candidates=32.00"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
