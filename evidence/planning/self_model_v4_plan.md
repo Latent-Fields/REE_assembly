@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Self-Model Integration (finish self-attribution; self-as-object cutover)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-14
   scope_claims: [ARC-081, MECH-214, MECH-215, SD-030, INV-064]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -25,7 +25,7 @@ closure_plan:
     - id: "self_model_v4:SELF-1"
       title: "z_self promoted from body-state latent to a stateful self-model (DR-13 temporal depth)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-081]
@@ -35,8 +35,8 @@ closure_plan:
         - "V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exists today as a single-MLP + EMA body-state latent"
         - "DR-13 is the first cutover step: replace the single hidden layer + EMA with recurrence or E1 feedback so z_self carries a temporal self-model, not an instantaneous body snapshot"
         - "Without temporal depth there is no stateful subject for the later DR-10/DR-11/DR-12 self-object integration to attach to"
-      last_updated: 2026-06-10
-      completion_note: "DR-13 from v4_spec V4-2. This is the substrate floor for the whole plan: z_self must be a stateful self-model before it can be a privileged object-file slot (OBJ-3) or the subject of agentive prediction (MECH-215). No V3 substrate change; the EMA stays as the V3 self latent."
+      last_updated: 2026-06-14
+      completion_note: "DR-13 from v4_spec V4-2. This is the substrate floor for the whole plan: z_self must be a stateful self-model before it can be a privileged object-file slot (OBJ-3) or the subject of agentive prediction (MECH-215). No V3 substrate change; the EMA stays as the V3 self latent. MECHANISM RESOLVED 2026-06-14 (interactive IGW design-fork session): HYBRID -- z_self gains temporal depth via a light DEDICATED self-recurrence REGULARISED by E1 generative feedback (both motifs committed, not one). The recurrence supplies the stability-isolated, lesionable subject DR-10/11/12 + INV-064 attach to; the E1-feedback regulariser keeps it consistent with the E-stream generative account (SD-030/DR-12 stay E-stream-native). Residual sub-question = the regularisation-coupling strength (light = preserves stability-isolation; strong = collapses toward pure E1-feedback). Decision recorded on ARC-081 notes. DESIGN decision only; PROMOTES NOTHING (ARC-081 stays candidate/v4/substrate_coherence). BUILD is the V4 DR-13 cutover, gated by the self-model integration audit."
     - id: "self_model_v4:SELF-2"
       title: "Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)"
       phase: 2
@@ -284,3 +284,24 @@ each DR step, exactly which V3-era prerequisites must land first.
      two unrelated subsystems -- a cleaner, more biologically defensible SD-030
      + MECH-214 build order. Falsifiable revert: if the two streams need
      materially different comparator dynamics, split them.
+- **2026-06-14** -- SELF-1 (z_self -> stateful self-model, DR-13) MECHANISM
+  RESOLVED in an interactive IGW design-fork session. ARC-081 already commits the
+  stateful self-OBJECT cutover, so the *whether* was settled; SELF-1 forced only
+  the mechanism of temporal depth, which ARC-081 / v4_spec V4-2 left open
+  ("recurrence OR E1 feedback"). **DECISION: HYBRID** -- z_self gains a light
+  DEDICATED self-recurrence whose dynamics are REGULARISED by E1 generative
+  feedback, committing both motifs. The recurrence supplies the explicit,
+  lesionable, perturbation-isolated subject that DR-10/11/12 integration and the
+  INV-064 maturational-stability gate attach to (a free-running shared E1 latent
+  cannot be stability-isolated for the self); the E1-feedback regulariser keeps it
+  consistent with the E-stream generative account so it does not become a parallel
+  self-model divorced from the world-model -- SD-030 (E2_self, SELF-2) and DR-12
+  (E2-PE -> E3) stay E-stream-native and wire onto the regularised self-latent.
+  Honest cost: more machinery than either pure option, and the
+  regularisation-coupling strength becomes a tunable (light coupling preserves the
+  stability-isolation benefit; strong coupling collapses toward pure E1-feedback
+  Option B) -- that strength is the residual sub-question, not re-litigated here.
+  Recorded on ARC-081 `notes`. SELF-1 flipped open->done; node + frontmatter
+  last_updated 2026-06-14. **DESIGN decision only -- NO V3 substrate change (the
+  single-MLP + EMA stays the V3 self latent); PROMOTES NOTHING** (ARC-081 stays
+  candidate / architectural_commitment (substrate_coherence) / v4 / v3_pending).

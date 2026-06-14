@@ -37400,6 +37400,32 @@
     changes NO V3 behaviour. The self-OBJECT-slot substrate step is V4 and must NOT
     enter V3 closure. SD-005/SD-003/MECH-277/ARC-074 keep their existing V3 roles
     unchanged.
+  notes: >
+    SELF-1 DR-13 MECHANISM RESOLVED 2026-06-14 (IGW self_model_v4:SELF-1
+    interactive design-fork session). ARC-081 already commits the stateful
+    self-OBJECT cutover; SELF-1 forced only the MECHANISM by which z_self gains
+    temporal depth, which this claim and v4_spec V4-2 deliberately left open
+    ("replace the single hidden layer + EMA with recurrence OR E1 feedback").
+    DECISION: HYBRID -- z_self acquires a light DEDICATED self-recurrence whose
+    dynamics are REGULARISED/ANCHORED by E1 generative feedback, committing BOTH
+    motifs rather than choosing one. The dedicated self-recurrence supplies the
+    explicit, inspectable, lesionable, stability-isolated subject the later
+    DR-10/DR-11/DR-12 integration and INV-064 maturational-stability gate attach
+    to (a free-running shared E1 latent cannot be perturbation-isolated for the
+    self); the E1-feedback regulariser keeps that self-latent consistent with the
+    E-stream generative account of the body so it does not drift into a parallel
+    self-model divorced from the world-model -- SD-030 (E2_self forward-model,
+    SELF-2) and DR-12 (E2-PE -> E3 confidence) remain E-stream-native and wire
+    onto the regularised self-latent. Cost recorded honestly: the hybrid commits
+    more machinery than either pure option and introduces a regularisation-coupling
+    strength as a tunable -- how tightly the self-recurrence is anchored to E1
+    feedback is the residual sub-question (light coupling preserves the
+    stability-isolation benefit; strong coupling collapses toward pure E1-feedback
+    Option B). This is the DESIGN decision only; NO V3 substrate change (the
+    single-MLP + EMA stays as the V3 self latent); the build is the V4 DR-13
+    cutover gated by the self-model integration audit. PROMOTES NOTHING -- ARC-081
+    stays candidate / architectural_commitment (substrate_coherence) /
+    implementation_phase v4 / v3_pending.
   location: docs/architecture/arc_080_object_representation_primitive.md
 
 - id: ARC-082
