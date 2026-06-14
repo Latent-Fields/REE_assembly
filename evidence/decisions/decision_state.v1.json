@@ -1406,12 +1406,12 @@
     },
     "MECH-341": {
       "actor": "dgolden",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Ratify MECH-341 v3_pending -> provisional (binary within-class-representative preserver)",
       "decision_status": "applied",
-      "rationale": "2026-05-31 evening governance cycle 1908Z: v3_pending=true gate stands. Cluster autopsy applied; MECH-341 characterised as score-layer preserver, not in-isolation generator. V3-EXQ-614b + V3-EXQ-616 reclassified non_contributory; load-bearing evidence is in-stack ALL_ON across 614a/614b/615.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-31T19:22:15.759997Z"
+      "rationale": "RATIFIED 2026-06-14T21:12Z via commit 80f4fcf250 (user-directed): V3-EXQ-660 base PASS established the within-class-representative diversity preserver (4.862 vs 4.781 nats; exp_conf 0.871 > 0.62 gate); graded-in-K route retired (660a/660b non_contributory). v3_pending + pending_retest_after_substrate cleared; status candidate -> provisional. Committed-action CONVERSION caveat tracked downstream on GAP-A, not as a MECH-341 retest. This log entry reconciles decision_state, which had echoed the stale 2026-05-31 applied hold.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "",
+      "timestamp_utc": "2026-06-14T22:31:58.001435Z"
     },
     "MECH-342": {
       "actor": "user",
@@ -1927,7 +1927,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-14T22:00:14.417468Z",
+  "generated_at_utc": "2026-06-14T22:32:01.481092Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
