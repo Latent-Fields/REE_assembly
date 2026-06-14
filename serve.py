@@ -1270,7 +1270,13 @@ def _utc_age_seconds(iso: str, now) -> int | None:
         t = datetime.fromisoformat(iso.replace("Z", "+00:00"))
         if t.tzinfo is None:
             t = t.replace(tzinfo=timezone.utc)
-        return int((now - t).total_seconds())
+        # Clamp negative ages (a worker whose clock is slightly ahead of this
+        # host) to 0: a just-arrived heartbeat with a future-skewed timestamp is
+        # the freshest, not stale. Without this, the `0 <= age` freshness checks
+        # downstream flip an actively-heartbeating machine to
+        # fresh=False/display_fresh=False/state=stale on a few seconds of clock
+        # skew (observed: ree-cloud-2 reporting age=-2 -> display_fresh=False).
+        return max(0, int((now - t).total_seconds()))
     except Exception:
         return None
 

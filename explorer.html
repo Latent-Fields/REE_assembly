@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-13.1 -->
+<!-- EXPLORER_VERSION: 2026-06-14.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1581,6 +1581,20 @@
       padding: 14px 16px; margin-bottom: 10px; background: var(--card);
     }
     .exp-card.running { border-color: var(--accent); background: rgba(43,111,114,0.04); }
+    .exp-filter-banner {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      padding: 8px 12px; margin-bottom: 10px; border-radius: 6px;
+      border: 1px solid #e0c067; background: rgba(224,192,103,0.14);
+      font-size: 13px; color: var(--fg);
+    }
+    .exp-filter-banner[hidden] { display: none; }
+    .exp-filter-banner .exp-filter-term { font-family: monospace; font-weight: 600; }
+    .exp-filter-banner button {
+      margin-left: auto; padding: 3px 10px; border-radius: 4px; cursor: pointer;
+      border: 1px solid var(--accent); background: var(--card); color: var(--accent);
+      font-size: 12px; font-weight: 600;
+    }
+    .exp-filter-banner button:hover { background: var(--accent); color: #fff; }
     .exp-card.pass { border-left: 3px solid #2e7d32; }
     .exp-card.fail { border-left: 3px solid #c0392b; }
     .exp-card.failed { border-left: 4px solid #c0392b; background: rgba(192,57,43,0.06); border-color: #e8b4b0; }
@@ -6863,11 +6877,28 @@ END CONFLICT RESOLUTION`;
       els.expContent.innerHTML = `
         <div id="expShell">
           <div id="expSectionRunner"></div>
+          <div id="expRunningFilterBanner" class="exp-filter-banner" hidden></div>
           <div id="expSectionRunning"></div>
           <div id="expSectionQueue"></div>
           <div id="expSectionCompleted"></div>
           <div id="expRefreshNote" class="exp-refresh-note"></div>
         </div>`;
+      // Delegated handler on the stable banner container (its innerHTML is
+      // rebuilt each filter pass, so bind once here). Clearing the box and
+      // dispatching 'input' reuses the search box's normal side-effects
+      // (re-render table/graph/map + re-apply filter + persist state).
+      const banner = document.getElementById('expRunningFilterBanner');
+      if (banner) {
+        banner.addEventListener('click', (e) => {
+          if (!e.target || e.target.id !== 'expRunningFilterClear') return;
+          if (els.search) {
+            els.search.value = '';
+            els.search.dispatchEvent(new Event('input', { bubbles: true }));
+          } else {
+            applyExpFilter();
+          }
+        });
+      }
     }
 
     function machineDisplayExq(m) {
@@ -7378,13 +7409,19 @@ END CONFLICT RESOLUTION`;
     function applyExpFilter() {
       if (!els.expContent) return;
       const term = (els.search && els.search.value || '').trim().toLowerCase();
+      // Track how many Now Running cards the term hides so we can surface a
+      // discoverable "filtered" banner -- otherwise an active search silently
+      // blanks running machines and reads as missing telemetry.
+      let runningTotal = 0, runningHidden = 0;
       ['expSectionRunning', 'expSectionQueue', 'expSectionCompleted'].forEach(id => {
         const sec = document.getElementById(id);
         if (!sec) return;
         sec.querySelectorAll('.exp-card').forEach(card => {
           if (!term) { card.style.display = ''; return; }
           const hay = (card.dataset.expSearch || card.textContent || '').toLowerCase();
-          card.style.display = hay.includes(term) ? '' : 'none';
+          const match = hay.includes(term);
+          card.style.display = match ? '' : 'none';
+          if (id === 'expSectionRunning') { runningTotal++; if (!match) runningHidden++; }
         });
         // Hide version subheads (e.g. "V3 — N") that have no visible card left
         // before the next subhead, so a filtered list doesn't show empty groups.
@@ -7398,6 +7435,25 @@ END CONFLICT RESOLUTION`;
           sub.style.display = term && !anyVisible ? 'none' : '';
         });
       });
+      updateRunningFilterBanner(term, runningHidden, runningTotal);
+    }
+
+    // Surface a visible, dismissable banner when the shared search box is hiding
+    // Now Running cards. The global #search box filters the experiment view too,
+    // and its value persists across reloads (localStorage), so a leftover term
+    // silently blanks running machines -- which reads as broken telemetry rather
+    // than an active filter. The banner makes the filter discoverable + clearable.
+    function updateRunningFilterBanner(term, hiddenCount, totalCount) {
+      const banner = document.getElementById('expRunningFilterBanner');
+      if (!banner) return;
+      if (!term || hiddenCount <= 0) { banner.hidden = true; banner.innerHTML = ''; return; }
+      const noun = hiddenCount === 1 ? 'running card' : 'running cards';
+      const allHidden = totalCount > 0 && hiddenCount >= totalCount;
+      banner.innerHTML =
+        `<span>&#128269; Search <span class="exp-filter-term">${escapeHtml(term)}</span> is hiding `
+        + `${hiddenCount} ${noun}${allHidden ? ' (all of them)' : ''}.</span>`
+        + `<button type="button" id="expRunningFilterClear">Clear search</button>`;
+      banner.hidden = false;
     }
 
     async function renderExperiments() {
