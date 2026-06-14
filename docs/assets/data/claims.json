@@ -4277,7 +4277,7 @@
   },
   "MECH-341": {
     "epistemic_stance": "shown",
-    "status": "candidate",
+    "status": "provisional",
     "subject": "ethics_engine_3.scoring_trajectory_class_diversity_preservation",
     "title": "e3_scoring_preserves_trajectory_class_diversity. E3 score aggregation over CEM-supplied candidates must preserve trajectory-class diversity rather than collapse a diverse candidate pool onto a single deterministic ranking. Without explicit diversity preservation at the scoring step, downstream action selection becomes deterministic regardless of proposal-layer diversity (ARC-065 SP-CEM child), making the whole distributed diversity pathway rate-limited by Layer B. Mechanism options (not yet committed): (1) entropy bonus over candidate first-action classes added to E3 score; (2) class- stratified argmax with within-class proportional sampling; (3) jittered tie-breaking when top-K E3 scores are within epsilon. Final design pending diagnostic data on whether E3 collapse is near-tie or large-gap (see behavioral_diversity_isolation_plan.md Phase P2).",
     "type": "mechanism_hypothesis"

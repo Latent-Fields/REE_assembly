@@ -37738,10 +37738,10 @@
   claim_type: mechanism_hypothesis
   subject: ethics_engine_3.scoring_trajectory_class_diversity_preservation
   polarity: asserts
-  status: candidate
+  status: provisional   # 2026-06-14 governance RATIFICATION (user-directed): V3-EXQ-660 binary within-class-representative preserver accepted as sufficient V3 evidence (exp_conf 0.871 > 0.62 gate); v3_pending released. See dated note below.
   implementation_phase: v3
-  v3_pending: true
-  pending_retest_after_substrate: true   # 2026-06-07 governance: per failure_autopsy_V3-EXQ-614e (confirmed) -- 614e committed-class no-lift is a substrate_ceiling gated on ARC-065/GAP-A candidate-pool class diversity, not a falsification; keeps the substrate-limited FAIL tracked in the conflict ratio.
+  v3_pending: false   # 2026-06-14: cleared by governance ratification of the binary within-class preserver (660 base PASS). Promotion was held ONLY by this gate (06-11c note); released per user decision.
+  pending_retest_after_substrate: false   # 2026-06-14: cleared on ratification. The committed-action CONVERSION of the preserved diversity (the 614e/660 byte-identical committed-class entropy) is NOT a MECH-341 retest -- it is the shared E3 selection-authority ceiling, tracked DOWNSTREAM on behavioral_diversity_isolation:GAP-A (modulatory-bias-selection-authority; 569f/569g diagnose-first). MECH-341's own assertion (scoring-layer diversity PRESERVATION) is established; do NOT re-block this claim on the conversion work.
   claim_level: mechanistic
   registered_utc: "2026-05-25"
   governance_note_2026_06_13b: >
@@ -38039,6 +38039,27 @@
     not outstanding. narrow_supports_flag: MECH-341's supports remain stack-only / single-pathway
     -- the within-class GRADED sub-axis is unestablished and retired; non_contributory is NOT
     graded-axis clearance.
+    [2026-06-14 governance RATIFICATION (user-directed) -- v3_pending CLEARED, candidate -> provisional]:
+    Governance had HELD v3_pending across cycles (06-10 .. 06-11c) pending "governance ratification
+    + a temperature-graded confirmation". The graded-confirmation route is now RETIRED (660a/660b both
+    FAILed and were reclassified non_contributory; failure_autopsy_V3-EXQ-660b removed graded-in-K as a
+    gate because it over-specifies a PRESERVATION claim -- no 660c). The only remaining item was the
+    ratification DECISION, surfaced to the user 2026-06-14 (AskUserQuestion). DECISION: RATIFY the binary
+    within-class-representative preserver NOW. Basis: V3-EXQ-660 base PASS/supports established the lever
+    (within_class_rep_cond_entropy 4.862 vs legacy 4.781 nats); exp_conf rose 0.794 -> 0.871 (> the 0.62
+    candidate->provisional gate); genuine_exp = 3 supports : 0 weakens after the 660a/660b nested-manifest
+    scoring-bug fix. v3_pending was the SOLE remaining hold (06-11c). Cleared -> provisional.
+    EXPLICIT CAVEAT carried forward (not lost, just not gating THIS claim): MECH-341 asserts scoring-layer
+    diversity PRESERVATION, which 660 shows is load-bearing. It does NOT assert that the preserved diversity
+    reaches the COMMITTED action -- the committed-class entropy stayed byte-identical (614e/660), which is the
+    SHARED E3 selection-authority ceiling (the "decorative channel" finding, confirmed
+    failure_autopsy_569f-661-654a_2026-06-10) blocking ARC-065 GAP-A. That conversion work is tracked on
+    behavioral_diversity_isolation:GAP-A (modulatory-bias-selection-authority; 3 readiness-validated amends
+    06-03/06-06/06-10, behavioural conversion still 0; routed diagnose-first 2026-06-14 via /failure-autopsy
+    V3-EXQ-569g + an in-arm route-range collapse diagnostic). When that conversion lands, a fresh behavioural
+    confirmation MAY further strengthen MECH-341, but it is NOT required for the present provisional status:
+    the diversity-PRESERVATION assertion is the ratified scope. No demotion of any sibling; ARC-065 / ARC-062
+    unchanged (still candidate / v3_pending on the same GAP-A ceiling).
   literature_anchors:
     - "Rigotti et al. (2013) Nature 497:585 -- mixed selectivity in PFC encodes
        diverse trajectory contingencies; preservation across scoring layers is
