@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-14T18:37:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "autopsy_kind": "diagnostic_gate_clear_adjudication",
+  "targets": [
+    {
+      "run_id": "v3_exq_679_mech423_readiness_validation_diagnostic_20260614T102515Z_v3",
+      "queue_id": "V3-EXQ-679",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "adjudicated_outcome": "PASS",
+      "interpretation_label": "readiness_validated",
+      "gate_for": "EXP-0380 (V3-EXQ-680) MECH-423 super-additivity 3-arm ablation",
+      "failed_criterion": null,
+      "gate_clear_verdict": "genuine_non_vacuous",
+      "criteria_non_degenerate": {"R1": true, "R2": true, "R3": true},
+      "anti_vacuity_preconditions_met": {
+        "r1_shared_latent_grad_coupled": true,
+        "r2_iterative_loop_iterated": true,
+        "r3_e2_touchable_under_interleaved": true
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- diagnostic tags no claim; gates EXP-0380; gate scope correct",
+        "biological_reference": "n/a for the readiness gate; super-additivity biology bears on EXP-0380/MECH-423",
+        "prerequisites": "present -- trained substrate, warmup 24 ep, buffers 1000/1000",
+        "implementation": "complete -- 3 readouts on positive control + anti-vacuity preconditions (V3-EXQ-643 lesson)",
+        "environment": "adequate -- grid 6 / 4 hazards / 3 resources",
+        "measurement": "adequate / non-degenerate -- criteria_non_degenerate all true; preconditions confirm non-vacuity",
+        "integration": "coupled -- R3 interleaved consolidation touches E1 (8x) and E2 (8x)",
+        "scale": "adequate for a readiness gate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a for the readiness gate (instrumentation check); super-additivity ~ multisensory integration / inverse-effectiveness applies to EXP-0380",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "Diagnostic gate-clear adjudicated non-vacuous (failure_autopsy_V3-EXQ-679_2026-06-14): all 3 anti-vacuity preconditions fire on the trained positive control; criteria_non_degenerate all true. EXP-0380 (V3-EXQ-680) readiness substrate validated. No claim weighting (claim_ids=[]).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "watch_items": [
+        "R2 final_rel_delta on seeds 123/456 (0.045-0.047) sits just under the 0.05 tolerance with only 2 iterations; EXP-0380 integrated arms should not over-read iterative-inference settling headroom -- raise settle_iters (>10) / tighten rel_tol if tighter convergence matters there. Informational, not a blocker."
+      ],
+      "learning_extracted": [
+        "EXP-0380 readiness substrate (R1 grad coupling, R2 iterative-inference convergence, R3 interleaved cross-module consolidation) validated non-vacuously on a trained substrate across 3 seeds.",
+        "PASS is non-degenerate by construction -- anti-vacuity preconditions rule out starved-E2 / untrained-encoder masquerade (V3-EXQ-643 lesson working as intended).",
+        "R2 thin-margin watch-item recorded (see watch_items)."
+      ],
+      "routing": "queue-experiment (EXP-0380) -- ALREADY DONE by parallel session V3-EXQ-680; not re-queued by this autopsy"
+    }
+  ],
+  "cluster_pattern": null,
+  "concurrency_note": {
+    "exp_0380_already_queued": true,
+    "owning_session": "queue-exp0380-mech423-superadditivity-20260614T1805Z",
+    "queue_id": "V3-EXQ-680",
+    "script": "ree-v3/experiments/v3_exq_680_mech423_superadditivity_ablation.py",
+    "landed_commit": "121a188 (ree-v3 origin/main)",
+    "action_taken": "not re-queued -- user-confirmed 'leave it, don't duplicate'"
+  }
+}
