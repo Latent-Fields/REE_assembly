@@ -46,6 +46,30 @@ python scripts/build_claims_json.py   # rebuilds docs/assets/data/claims.json fo
 `governance.sh` runs `build_claims_json.py` automatically as its final step.
 `build_claims_json.py` runs `scripts/validate_claims.py` first (warn-only mode currently).
 
+**Derive-only gotcha — a claims.yaml-direct STATUS change needs a manual reconcile in the same pass.**
+This applies to ANY session that edits `claims.yaml` status / `v3_pending` directly — `/governance`,
+`/failure-autopsy`, `/implement-substrate`, `/claim-synthesis`, `/thought-digestion`, OR an ad-hoc
+ratification/demotion session — not just `/governance`. The governance pipeline is **derive-only**: it
+regenerates derived files from `claims.yaml` / `decision_log.v1.jsonl` / plan-doc frontmatter but
+**never edits a hand-authored source**, so a status change applied directly in `claims.yaml` (e.g. a
+promotion + `v3_pending: false`) does NOT propagate to two places, and **no later `/governance` run will
+sweep them**:
+1. **The owning closure-plan node's `phase`/`status`/`resume_condition` prose** (`evidence/planning/*_plan.md`
+   frontmatter). `closure_status.md` is derived FROM it, but the frontmatter itself is hand-kept. Update it
+   by hand + regenerate the snapshot/drift. NOTE: bumping the node's `last_updated` resets the
+   `stale_since_review` clock AND a legitimately-`partial` node with a PASS owner is Case-3-suppressed, so
+   `check_closure_drift.py` will NOT flag the stale prose for you.
+2. **`decision_state.v1.json`** — derives from the append-only `decision_log.v1.jsonl`; a direct claims.yaml
+   edit bypasses the log, so decision_state keeps echoing the last logged decision (e.g. a stale
+   `hold_pending_v3_substrate` / `applied`). Reconcile via
+   `evidence/experiments/scripts/record_decision.py --claim-id X --recommendation promote_to_provisional --decision-status applied ...`
+   then rebuild the index.
+
+(`promotion_demotion_recommendations.md` DOES reconcile — it recomputes from claims.yaml.) Do both in the
+SAME pass as the claims.yaml edit. Incident 2026-06-14: MECH-341 ratified in claims.yaml only (commit
+80f4fcf250); the GAP-B closure node + decision_state stayed stale across the next full `/governance` cycle.
+Full detail in the `/governance` skill Step 4 ("Derive-only gotcha").
+
 ## Lit/Exp Decoupling (Option E) -- Phase 3 Cutover Done 2026-05-01
 
 The governance pipeline finished its three-phase transition for how literature
