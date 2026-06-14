@@ -1,0 +1,56 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-14T22:27:22Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_680b_mech423_superadditivity_ablation_20260614T201913Z_v3",
+      "queue_id": "V3-EXQ-680b",
+      "claim_ids": ["MECH-423"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- 2/3 seeds express strong super-additivity (+1.57/+1.24); inconclusive reflects an underpowered/contaminated margin, not an absent effect. MECH-423 not weakened.",
+        "biological_reference": "clear -- multisensory super-additivity / inverse-effectiveness existence proof; lit-pull targeted_review_mech_423_integration_prerequisites present (2026-06-12).",
+        "prerequisites": "present with caveat -- R1 min_grad/R2/R3 met and readiness gate cleared; R1 cosine sub-check structurally inert (disjoint-slice probe).",
+        "implementation": "partial -- world-head co-training diverges on a subset of seeds (grad 46 -> R2 -1.43 in pair; grad 2e11 -> R2 -149 in exploratory triple); no grad clipping; unbounded score.",
+        "environment": "adequate -- grid 6 / 4 hazards / 3 resources.",
+        "measurement": "under-instrumented / misleading -- world_R2 unbounded below lets one divergent seed dominate delta_SD and inflate the margin; cosine negative-transfer guard inert.",
+        "integration": "coupled but unstable -- R3 interleaved consolidation touches both heads, but co-training is numerically unstable on some seeds.",
+        "scale": "likely insufficient -- n=3 with 1 unstable seed is underpowered for a 2-of-3 margin test."
+      },
+      "biological_reference": {
+        "closest_mechanism": "multisensory integration / inverse effectiveness (cortical + superior-colliculus multisensory neurons exceeding the unimodal sum); shared-representation MTL (Caruana 1997)",
+        "dependencies": ["shared latent carrying genuine cross-module gradient", "stable co-training", "iterative-inference settling", "interleaved consolidation"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- failure matches a numerical-instability signature, not a biological missing-dependency signature; substrate exhibits the mechanism on stable seeds.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-680b additive_below_margin (mean delta_pair +0.539 > 0, 0/3 seeds clear hardened margin 2.455). Autopsy 2026-06-14: the single -1.19 seed (456) is a numerical-instability artifact (world head diverged to R2 -1.43 with grad norm 46x the stable seeds; affordance head IMPROVED on the same seed; exploratory triple seed 123 grad 2e11 -> R2 -149) NOT a negative-transfer weakens -- the weakens gate (mean delta <= 0) was not entered and the R1 cosine negative-transfer guard is structurally inert (disjoint-slice probe). MECH-423 NOT weakened; 2/3 seeds show clean super-additivity (+1.57/+1.24). Margin poisoned by unbounded-below world_R2. pending_retest_after V3-EXQ-680c (grad-clip + bounded score + real cosine probe + n>=5).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate gap. Defect is the experiment training regime (no grad clipping), the unbounded-below score, and the disjoint-slice cosine probe -- all fixable in the experiment harness via the 680c redesign.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The -1.19 seed (456) is a numerical-instability artifact, not a negative-transfer weakens: world head diverged while affordance head improved; grad-norm spike; mean delta positive; weakens gate (mean<=0) not entered.",
+        "world_R2 unbounded-below + no grad clipping is a margin-poisoning measurement defect: one divergent seed dominates the across-seed delta SD and renders the hardened margin un-passable even with 2/3 seeds strongly super-additive.",
+        "The R1 cosine negative-transfer guard is inert as wired (disjoint-slice probe -> cosine identically 0.0); it must probe gradient alignment on shared encoder parameters to be able to fire.",
+        "The hardened delta-scaled + floored margin works as intended: it flips 680a's false PASS to a correct inconclusive on identical data and is strictly tighter (cannot manufacture a false PASS).",
+        "n=3 is underpowered for a 2-of-3 reliability margin once instability is present."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
