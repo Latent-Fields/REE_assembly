@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-14T22:09:02Z",
+  "last_tick_utc": "2026-06-14T22:39:06Z",
   "state": "running",
   "current_exq": "V3-EXQ-666c",
   "current_exq_started_utc": "2026-06-14T20:25:06.440789+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / ARM_2_MATURE_E2CTX_MAINTENANCE",
     "runs_done": 2,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 200,
-    "overall_pct": 22.2
+    "overall_pct": 27.8
   },
-  "seconds_elapsed": 6236,
-  "seconds_remaining": 20670,
+  "seconds_elapsed": 8040,
+  "seconds_remaining": 19194,
   "recent_lines": [
     "Seed 42 Condition ARM_0_OFF",
     "[train] cell ARM_0_OFF seed=42 ep 50/200",
@@ -33,7 +33,9 @@
     "[train] cell ARM_1_MATURE_E2CTX seed=42 ep 200/200",
     "[gap] cell ARM_1_MATURE_E2CTX seed=42 silence_ticks=2000 pre_gap_dist=1.701 n_maintained 4->0",
     "verdict: FAIL",
-    "Seed 42 Condition ARM_2_MATURE_E2CTX_MAINTENANCE"
+    "Seed 42 Condition ARM_2_MATURE_E2CTX_MAINTENANCE",
+    "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 ep 50/200",
+    "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=42 ep 100/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
