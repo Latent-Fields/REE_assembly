@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Sense-specific perceptual-manifold adaptors (V4 modality-heterogeneous perception roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-12
+  last_updated: 2026-06-14
   scope_claims: [ARC-087, MECH-372, Q-065, ARC-017, MECH-103, ARC-004, ARC-005, ARC-019]
   sibling_plans: [object_representation_v4, inference_belief_state_v4]
   roadmap_note: >
@@ -24,7 +24,7 @@ closure_plan:
     - id: "perceptual_adaptors_v4:PA-1"
       title: "Smell-vs-sight adaptor-depth fork (the first design decision)"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-087, MECH-372]
@@ -34,8 +34,8 @@ closure_plan:
         - "V3 LIVE perception is the near-raw / gradient end: smell-like sensing, gradient-only world signal, no deep visual adaptor (ARC-087 + MECH-372 both confirm V3 needs no adaptor)"
         - "ARC-017 minimal stream tags + MECH-103 per-modality encoder pathway already own the STREAM and FUSION layers, but NOT the per-sense transformation depth"
         - "DECISION the fork forces: does a V4 sense enter as a near-raw gradient primitive (smell: stronger/weaker, nearer/farther, attractive/aversive) or via a deep perceptual-manifold adaptor (sight: colour geometry, edges, figure-ground, depth, invariances, gaze salience)? Adaptor depth is per-sense, not uniform."
-      last_updated: 2026-06-10
-      completion_note: "MECH-372 establishes that modalities are NOT interchangeable raw streams of equal depth. Picking the depth axis (gradient-primitive vs manifold-constructor) is the precondition for every node below. This is a genuine representational gap, not a missing flag."
+      last_updated: 2026-06-14
+      completion_note: "MECH-372 establishes that modalities are NOT interchangeable raw streams of equal depth. Picking the depth axis (gradient-primitive vs manifold-constructor) is the precondition for every node below. This is a genuine representational gap, not a missing flag. RESOLVED 2026-06-14 (interactive design-fork): Option C -- ONE ORDERABLE DEPTH CONTINUUM WITH A BIOLOGICALLY-NAMED REGIME BOUNDARY (not single-uniform-mechanism Option A, not two-unrelated-kinds Option B). The thalamocortical senses (vision/audition/somatosensation/proprioception) share one canonical cortical microcircuit whose adaptor depth is dialed by input statistics (Sur rewiring); olfaction + interoception form a phylogenetically older gradient/chemical regime (thalamus-bypassing, paleocortical, non-topographic). Boundary = thalamic-relay + topographic neocortex. Cross-modal integration follows the boundary: within-family = shared-frame precision-weighting (Ernst&Banks 2002 / Gu 2008); cross-regime = coarse valence/salience channel -- matching the brain's actual integration topology and protecting multimodal integration. Recorded on ARC-087 (full rationale) + MECH-372 (developmental-ordering sharpening) + arch doc sense_specific_perceptual_manifolds.md PA-1 decision section. PROMOTES NOTHING (candidate/v4/substrate_conditional). Fixes the depth-axis structure inherited by PA-2..PA-6."
     - id: "perceptual_adaptors_v4:PA-2"
       title: "PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientation signal as the earliest V4 sense"
       phase: 2
@@ -233,3 +233,24 @@ honest to build.
   0.827 / Q-065 0.74; experimental_confidence stays 0.0 (V4 substrate_conditional
   -- lit grounds the design, does not promote). PA-7 status open -> done. No
   claims.yaml edits; no V3 queue / substrate touched.
+- **2026-06-14** (perceptual_adaptors_v4:PA-1, interactive design-fork) -- the
+  adaptor-depth fork RESOLVED as **Option C: one orderable depth continuum with a
+  biologically-named regime boundary**. Rejected Option A (single uniform mechanism)
+  and Option B (two unrelated adaptor kinds). The decision was made against the
+  human-brain existence proof (project rule: biology before formal definitions):
+  the thalamocortical senses (vision / audition / somatosensation / proprioception)
+  share one canonical cortical microcircuit whose adaptor depth is set by input
+  statistics + hierarchy (Sur et al. rewiring -> a continuum within that family),
+  while olfaction + interoception form a phylogenetically older gradient / chemical
+  regime that bypasses the thalamus, is paleocortical and non-topographic. The
+  boundary is NAMED (thalamic-relay + topographic neocortex), not arbitrary.
+  Cross-modal integration follows the boundary -- within-family co-registration via
+  shared-frame precision-weighting (Ernst & Banks 2002; Gu 2008), cross-regime via a
+  coarse valence / orientation / salience channel -- which is the integration topology
+  the brain actually exhibits and is what protects multimodal perception + integration
+  capacity (the concern that drove the call). Recorded on ARC-087 (full rationale) +
+  MECH-372 (developmental-ordering sharpening) + the home doc's "PA-1 decision"
+  section. No new hard depends_on edge (cross-regime valence channel rides ARC-005;
+  SD-012 / ARC-027 / ARC-088 cross-referenced, not depended-on). PA-1 status
+  open -> done. PROMOTES NOTHING (candidate / v4 / substrate_conditional; exp_conf
+  stays 0). Fixes the depth-axis structure inherited by PA-2..PA-6.

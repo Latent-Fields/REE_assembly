@@ -84,3 +84,68 @@ preprocessing grammar, and the shared world model should receive already-shaped 
 Because all three carry `epistemic_category: substrate_conditional`, they are suppressed from
 promotion/demotion and from the IGW `/queue-experiment` proposal lane during the V3 phase (same
 construction as the play-mode cluster) -- no `blocked_substrate` STOPs needed.
+
+## PA-1 decision -- adaptor-depth axis structure (2026-06-14)
+
+`perceptual_adaptors_v4:PA-1` was the cluster's first design fork: along what axis do adaptors
+differ, and how is that axis structured? Resolved in an interactive design-fork session as
+**Option C -- one orderable depth continuum with a biologically-named regime boundary** (not Option A
+"single uniform mechanism", not Option B "two unrelated kinds"). The decision was made against the
+human-brain existence proof (project rule: *biology before formal definitions*).
+
+**The two-regime structure adopted:**
+
+```text
+[ gradient / chemical regime ]                 [ metric-manifold regime ]
+  olfaction, interoception                       vision, audition, somatosensation,
+  - bypasses thalamus (bulb -> piriform)         vestibular / proprioception
+  - 3-layer paleocortex                          - thalamic relay -> 6-layer neocortex
+  - non-topographic (content-addressable,        - canonical cortical microcircuit
+    combinatorial; no spatial map)               - topographic maps (retinotopy / tonotopy /
+  - phylogenetically older                         somatotopy)
+                                                 - adaptor depth set by INPUT STATISTICS
+                                                   + hierarchy length
+              \__________ boundary = thalamic relay + topographic neocortex __________/
+```
+
+**Evidence that decided it.**
+
+| Observation | Source | What it settles |
+|---|---|---|
+| Auditory cortex builds **visual** orientation maps when fed retinal input | Sur et al. rewiring | The thalamocortical senses share **one** canonical mechanism; depth is a continuum dialed by input statistics (rules out Option B *within* that family) |
+| Olfaction bypasses the thalamus, is paleocortical and **non-topographic** | olfactory neuroanatomy (bulb -> piriform) | The gradient/chemical sense is a genuinely **distinct, older adaptor class** -- not merely a shallow manifold (rules out a pure Option A) |
+| Cross-modal integration is **shared-reference-frame precision/reliability weighting** for cues with a common estimand | Ernst & Banks 2002; Gu 2008 (PA-7) | Within-family senses co-register cheaply; this is the natural PA-5 currency *inside* the metric-manifold regime |
+| All perceptual spaces are metric | Shepard 1987 (PA-7) | The metric-manifold regime is internally a true continuum (depth = dimensionality / hierarchy), so the axis is orderable for PA-6 |
+
+**Why this protects multimodal perception + integration (the design concern that drove the call).**
+Option A would force chemical/gradient senses into a topographic-manifold mold they do not occupy in
+biology (degrading the gradient senses). Option B would deny the canonical mechanism the thalamocortical
+senses demonstrably share, fragmenting exactly the senses (vision + audition + touch + proprioception)
+that most need tight metric co-registration for spatial world-modelling. Option C keeps that family in
+one compatible regime -- they integrate via shared-frame precision-weighting -- while the gradient/
+chemical regime integrates through a **coarser valence / orientation / salience channel** (amygdala / OFC
+association), which is the integration topology the brain actually exhibits for olfaction.
+
+**Downstream consequences fixed by this decision.**
+
+- **PA-6** (adaptor-maturity curriculum): the developmental ordering is now principled -- the older
+  non-topographic regime enters first *as a regime*, not just because it is shallow. "Smell may have
+  been the first sense" is the regime-boundary statement.
+- **PA-4** (metric origin): the learned-vs-defined fork applies to the **metric-manifold regime**; the
+  gradient regime carries a near-identity / structural orientation prior by construction.
+- **PA-5** (cross-modal negotiation currency): the currency is now **two-tier** -- shared-frame
+  precision-weighting *within* the metric-manifold regime, plus a coarse cross-regime valence/salience
+  channel. The harder *unification* problem (structurally dissimilar manifolds; the PA-7 Gu-2008 caveat)
+  is correctly localised here and is **not** trivialised by PA-1.
+
+**Honest caveat (recorded on the claims).** "Smell = shallow" is an **architecture** statement
+(non-topographic / gradient), not a claim that olfaction is a low-information modality -- human odor
+perception is itself high-dimensional and object-like. PA-7's Louis-2007 entry grounds "orientation is
+cheap", not "olfaction is shallow".
+
+**Governance.** No new hard `depends_on` edge: the cross-regime valence channel rides ARC-005's
+control-plane precision routing (already in `depends_on`); cross-refs to the affect/valence machinery
+(SD-012 homeostatic drive, ARC-027 harm stream, ARC-088 anti-collapse map) are PA-5-downstream and
+recorded as cross-references, not build dependencies. Recorded on ARC-087 (full rationale) and MECH-372
+(developmental-ordering sharpening). Both stay `candidate` / `substrate_conditional` / `v4` -- **PROMOTES
+NOTHING** (exp_conf stays 0). Off the V3 / GAP-7 critical path; DO NOT build in V3.
