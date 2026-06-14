@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Plasticity-window neuromodulators (V4 OPENING-side roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-10
+  last_updated: 2026-06-14
   scope_claims: [INV-074, MECH-333, MECH-334, ARC-075, MECH-313, MECH-104, MECH-203, SD-037, MECH-205]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -28,18 +28,20 @@ closure_plan:
     - id: "plasticity_neuromodulation_v4:PLW-1"
       title: "Opening-vs-closure asymmetry framing + the V3-conservative-is-insufficient gate"
       phase: 1
-      status: open
+      status: blocked
+      blocker_class: decision_gate
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [INV-074, MECH-333]
       depends_on: []
       cross_plan_link: []
+      blocking_on: "The decision-to-build entry gate is UN-CLEARED (un-passed, not un-built). Two conjunctive conditions must hold before any opening-side substrate (PLW-2 onward) is honest to commission: (1) a CONCRETE V3 problem the opening side would unblock, AND (2) the V3-conservative form (scheduler-driven flag toggling, e.g. the goal-pipeline ARM_D writer-freeze) demonstrably INSUFFICIENT for that problem. As of 2026-06-14 neither is demonstrated -- there is no V3 failure that the existing scheduler-driven InfantCurriculumScheduler phase transitions cannot carry. An ARM_D PASS does NOT clear this gate; it only confirms scheduler-driven toggling is sufficient for the V3 goal-pipeline question (the opposite conclusion). The gate is a TRIGGER condition, not a substrate dependency -- it clears when a concrete V3 problem arises that defeats the conservative form, not by building anything."
       readiness_gate:
         - "CLOSURE side already built: INV-074 (crystallization necessity, universal invariant), MECH-334 (EWC residue write-protect, Kirkpatrick 2017 anchor), MECH-333 closure half -- landed 2026-05-17 in ree-v3/ree_core/policy/gated_policy.py (GatedPolicy.crystallize) + residue/field.py (ResidueField.snapshot_ewc_anchor)"
         - "OPENING side is the gap this plan opens: no ACh-analog plasticity-gain gate, no state-conditional plasticity scalar, no PV-analog closure clock, no BDNF-analog duration knob"
         - "ENTRY GATE before any opening-side substrate is commissioned (from the 2026-06-01 framing note): there must be a concrete V3 problem the opening side unblocks AND the V3-conservative form (scheduler-driven flag toggling, e.g. the goal-pipeline ARM_D writer-freeze) must be demonstrably insufficient for it. An ARM_D PASS does NOT authorise this work."
-      last_updated: 2026-06-10
-      completion_note: "The asymmetry is the spine of this plan: REE has the lock but not the key. This node tracks the decision-to-build gate, not a substrate. Source: docs/thoughts/2026-06-01_plasticity_window_neuromodulators.md."
+      last_updated: 2026-06-14
+      completion_note: "FRAMING DELIVERABLE COMPLETE; DECISION-TO-BUILD GATE UN-CLEARED (status open->blocked, blocker_class decision_gate, 2026-06-14, IGW PLW-1 reconcile). The asymmetry IS the spine of this plan -- REE has the lock (closure: INV-074/MECH-333/MECH-334) but not the key (opening: ACh/PV/BDNF gain gates) -- and that framing is now durably recorded across this plan doc + the canonical thought note (docs/thoughts/2026-06-01_plasticity_window_neuromodulators.md) + INV-074/MECH-333 governance notes. This node, however, ALSO tracks the decision-to-build entry gate, which is explicitly un-passed (see blocking_on). NOT flipped to done: done would read as 'gate passed / PLW-2+ authorised', which is false. NOT deferred: the generator drops deferred/done entirely, and this is a load-bearing gate worth keeping VISIBLE. blocked + decision_gate (mirrors object_reasoning_abstraction_v4:OBJ-ABS-1's visible-blocked treatment) keeps it out of the ready '(plan reconcile)' lane while the gate stays surfaced as blocked. No claims.yaml edit (framing already lives in plan + thought note; INV-074/MECH-333 carry their own governance notes). Source: docs/thoughts/2026-06-01_plasticity_window_neuromodulators.md."
     - id: "plasticity_neuromodulation_v4:PLW-2"
       title: "Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / Sale)"
       phase: 1
@@ -230,3 +232,21 @@ nodes carry no `owner_exq` and the drift checker stays dormant. The value is the
   question returned as proposed_claims for the orchestrator to assign IDs. The
   decision-to-build gate (PLW-1) and biology grounding (PLW-2) front-load the
   honesty checks before any substrate is registered.
+- **2026-06-14** -- IGW PLW-1 reconcile (interactive). PLW-1 was surfaced as a
+  ready "(plan reconcile)" item (IGW-20260614-151). It is NOT a flip-to-done: the
+  node bundles the opening-vs-closure asymmetry FRAMING (complete -- recorded here
+  + in the 2026-06-01 thought note + INV-074/MECH-333 governance notes) with the
+  decision-to-build ENTRY GATE, which is explicitly UN-CLEARED (no concrete V3
+  problem yet defeats the scheduler-driven conservative form; an ARM_D PASS would
+  confirm the conservative form is sufficient, not insufficient). User-confirmed
+  disposition: status `open` -> `blocked`, `blocker_class: decision_gate`, with an
+  explicit `blocking_on` recording the un-passed gate condition. Chosen over
+  `done` (would falsely imply the gate passed / PLW-2+ authorised) and over
+  `deferred` (the generator drops deferred/done, hiding a load-bearing gate);
+  `blocked` keeps the gate VISIBLE while removing it from the ready plan lane
+  (mirrors object_reasoning_abstraction_v4:OBJ-ABS-1). PROMOTES NOTHING; no
+  claims.yaml edit (INV-074 stays `substrate_ceiling` on biology per the
+  2026-06-13 V3-EXQ-655 STOP; MECH-333 stays candidate/substrate_conditional).
+  Node + frontmatter `last_updated` -> 2026-06-14. The gate clears only when a
+  concrete V3 problem arises that the conservative form cannot carry -- a future
+  trigger, not a build step.
