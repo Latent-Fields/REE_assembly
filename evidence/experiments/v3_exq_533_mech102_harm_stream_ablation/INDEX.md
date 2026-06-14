@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_533_mech102_harm_stream_ablation
 
-Generated: `2026-06-14T18:10:35.488627Z`
+Generated: `2026-06-14T19:56:52.692431Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

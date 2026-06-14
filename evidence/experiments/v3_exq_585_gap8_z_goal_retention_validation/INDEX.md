@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_585_gap8_z_goal_retention_validation
 
-Generated: `2026-06-14T18:10:35.488627Z`
+Generated: `2026-06-14T19:56:52.692431Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

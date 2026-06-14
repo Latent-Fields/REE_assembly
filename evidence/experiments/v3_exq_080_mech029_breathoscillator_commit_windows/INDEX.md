@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_080_mech029_breathoscillator_commit_windows
 
-Generated: `2026-06-14T18:10:35.488627Z`
+Generated: `2026-06-14T19:56:52.692431Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

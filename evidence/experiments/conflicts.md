@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-14T18:10:35.488627Z`
+Generated: `2026-06-14T19:56:52.692431Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -63,7 +63,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `MECH-256` | directional, mixed_evidence | 9 | 3 | 0.5 | `2026-05-17_sd_029_pain_precision_signal_seymour2019` | 15 |
 | `MECH-295` | directional, source_disagreement, mixed_evidence | 5 | 2 | 0.571 | `v3_exq_490j_mech295_cascade_gap4_tier1_severed_bridge_baseline_20260531T112417Z_v3` | 8 |
 | `MECH-318` | directional | 7 | 1 | 0.25 | `2026-05-11_mech_318_hierarchical_reasoning_frontal_sarafyazd_jazayeri_2019` | 8 |
-| `MECH-358` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-06-12_sd_059_striatal_avoidance_credit_boeke2017` | 4 |
 | `Q-001` | directional, source_disagreement, mixed_evidence | 2 | 1 | 0.667 | `2026-03-29_q001_gamma_vip_coherence_veit2022` | 4 |
 | `Q-002` | directional, source_disagreement, mixed_evidence | 3 | 2 | 0.8 | `v3_exq_170_q002_r_field_resolution_pair_20260330T070234Z_v3` | 7 |
 | `Q-003` | directional, source_disagreement | 3 | 2 | 0.8 | `2026-03-29_q003_network_ca_multiplexing_cahill2024` | 5 |
@@ -88,7 +87,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-032c` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-25_sd_032c_salience_network_switch_menon2010` | 4 |
 | `SD-047` | directional, source_disagreement, mixed_evidence | 8 | 2 | 0.4 | `v3_exq_510_sd047_mech095_live_env_comparator_gap_20260504T074619Z_v3` | 11 |
 | `SD-049` | directional, mixed_evidence | 7 | 2 | 0.444 | `2026-05-04_sd_049_temporal_community_schapiro2016` | 11 |
-| `SD-059` | directional, source_disagreement | 4 | 1 | 0.4 | `2026-06-12_sd_059_striatal_avoidance_credit_boeke2017` | 5 |
 
 ## Conflict Details
 
@@ -469,7 +467,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### INV-054
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.302, lit_conf=0.847, overall_confidence_legacy=0.575
+- Evidence breakdown: supports=6, weakens=3, conflict_ratio=0.667, exp_conf=0.301, lit_conf=0.847, overall_confidence_legacy=0.574
 - Recent entries:
   - `2026-04-18T23:49:49Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
   - `2026-04-20T04:42:02Z` `experimental` `v3_exq_435_inv054_phase_transition_sustained_recovery` direction=`weakens` confidence=0.75
@@ -489,7 +487,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=22, weakens=1, conflict_ratio=0.087, exp_conf=0.792, lit_conf=0.855, overall_confidence_legacy=0.824
+- Evidence breakdown: supports=22, weakens=1, conflict_ratio=0.087, exp_conf=0.791, lit_conf=0.855, overall_confidence_legacy=0.823
 - Recent entries:
   - `2026-04-18T16:48:57Z` `literature` `targeted_review_sd003_successor_evaluator` direction=`supports` confidence=0.78
   - `2026-05-15T19:56:10Z` `literature` `targeted_review_developmental_exploration_hippocampal_retrieval` direction=`supports` confidence=0.77
@@ -509,7 +507,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-070
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=1, weakens=6, conflict_ratio=0.286, exp_conf=0.332, lit_conf=0.733, overall_confidence_legacy=0.532
+- Evidence breakdown: supports=1, weakens=6, conflict_ratio=0.286, exp_conf=0.331, lit_conf=0.733, overall_confidence_legacy=0.532
 - Recent entries:
   - `2026-04-13T12:00:00Z` `literature` `targeted_review_connectome_mech_070` direction=`weakens` confidence=0.72
   - `2026-04-13T12:05:00Z` `literature` `targeted_review_connectome_mech_070` direction=`weakens` confidence=0.68
@@ -669,7 +667,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-094
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.8, lit_conf=0.846, overall_confidence_legacy=0.828
+- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.799, lit_conf=0.846, overall_confidence_legacy=0.827
 - Recent entries:
   - `2026-05-28T17:17:26Z` `literature` `targeted_review_e2_forward_model_action_divergence` direction=`supports` confidence=0.7
   - `2026-05-28T17:17:26Z` `literature` `targeted_review_e2_forward_model_action_divergence` direction=`supports` confidence=0.71
@@ -842,7 +840,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-118
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.151, lit_conf=0.801, overall_confidence_legacy=0.638
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.151, lit_conf=0.8, overall_confidence_legacy=0.638
 - Recent entries:
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.78
   - `2026-03-29T14:00:00Z` `literature` `targeted_review_connectome_mech_118` direction=`supports` confidence=0.72
@@ -902,7 +900,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-135
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, exp_conf=0.676, lit_conf=0.815, overall_confidence_legacy=0.745
+- Evidence breakdown: supports=8, weakens=2, conflict_ratio=0.4, exp_conf=0.675, lit_conf=0.815, overall_confidence_legacy=0.745
 - Recent entries:
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.68
   - `2026-03-29T11:05:00Z` `literature` `targeted_review_mech_135` direction=`supports` confidence=0.74
@@ -941,7 +939,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-153
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, exp_conf=0.337, lit_conf=0.842, overall_confidence_legacy=0.59
+- Evidence breakdown: supports=7, weakens=3, conflict_ratio=0.6, exp_conf=0.336, lit_conf=0.841, overall_confidence_legacy=0.588
 - Recent entries:
   - `2026-04-05T12:00:00Z` `literature` `targeted_review_connectome_mech_153` direction=`supports` confidence=0.71
   - `2026-04-05T12:00:00Z` `literature` `targeted_review_connectome_mech_153` direction=`supports` confidence=0.78
@@ -961,7 +959,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-155
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.225, lit_conf=0.866, overall_confidence_legacy=0.61
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.225, lit_conf=0.865, overall_confidence_legacy=0.609
 - Recent entries:
   - `2026-04-15T08:38:56Z` `literature` `targeted_review_connectome_mech_155` direction=`supports` confidence=0.74
   - `2026-04-15T08:38:56Z` `literature` `targeted_review_connectome_mech_155` direction=`supports` confidence=0.78
@@ -1081,7 +1079,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-220
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.199, lit_conf=0.859, overall_confidence_legacy=0.694
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.198, lit_conf=0.859, overall_confidence_legacy=0.694
 - Recent entries:
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.8
   - `2026-04-09T15:00:00Z` `literature` `targeted_review_connectome_mech_220` direction=`supports` confidence=0.72
@@ -1141,7 +1139,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-256
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.656, lit_conf=0.86, overall_confidence_legacy=0.758
+- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.656, lit_conf=0.859, overall_confidence_legacy=0.757
 - Recent entries:
   - `2026-05-08T18:02:53.257324Z` `experimental` `v3_exq_537b_sd029_decoupled_curricula` direction=`non_contributory` confidence=0
   - `2026-05-08T20:59:35.208807Z` `experimental` `v3_exq_537c_sd029_capacity_lift` direction=`non_contributory` confidence=0
@@ -1194,24 +1192,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Meta-RL predicts that PFC recurrent dynamics carry sufficient task-state information to support context-appropriate behaviour without a separate explicit rule-state-abstraction substrate. If REE's V3 substrate cannot be made to support context-conditioned behaviour using only recurrent latent dynamics (no MECH-318), the meta-RL account is the more parsimonious one and MECH-318 is potentially redundant.` (1)
   - `Meta-RL learning relies on a slow outer-loop training signal (dopamine in the biological reading); if REE's training schedule does not generate analogous slow shaping signals, the inner-loop adaptation that the framework requires will not emerge.` (1)
   - `If REE's existing latent-stack representations (z_world, z_self) when given recurrent dynamics are sufficient to support routine sequential action without an explicit MECH-318 substrate, then MECH-318 is a redundant claim and the relevant Pull 2 R2 verdict is wrong.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### MECH-358
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.316, lit_conf=0.799, overall_confidence_legacy=0.678
-- Recent entries:
-  - `2026-06-10T13:49:41Z` `experimental` `v3_exq_603l_escape_affordance_bridge_behavioural_retest` direction=`weakens` confidence=0.75
-  - `2026-06-11T21:36:09Z` `experimental` `v3_exq_603o_escape_affordance_bridge_behavioural_redesign` direction=`non_contributory` confidence=0
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.66
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.7
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.74
-- Recurring failure signatures:
-  - `Avoidance retrieval did NOT activate IL neurons; the IL route was selective to extinction -- a caution that mapping the SD-059 escape-credit pathway onto IL specifically (as opposed to PL->BLA->VS) would mis-assign the substrate.` (1)
-  - `The model treats reframing as a deliberately deployed cognitive-control instrument; if REE's bridge bonus fires non-selectively (not threat-gated) it would diverge from this account, which makes the threat-context gate a load-bearing guard.` (1)
-  - `Yoked extinction (matched shock, no instrumental control) did NOT confer the persistent threat reduction -- absent an action-contingent credit signal, mere safety exposure fails, matching SD-059's prediction that a global 'avoidance works' scalar without an affordance-indexed action credit is insufficient.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
@@ -1342,7 +1322,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-004
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=17, weakens=4, conflict_ratio=0.381, exp_conf=0.533, lit_conf=0.891, overall_confidence_legacy=0.712
+- Evidence breakdown: supports=17, weakens=4, conflict_ratio=0.381, exp_conf=0.533, lit_conf=0.89, overall_confidence_legacy=0.712
 - Recent entries:
   - `2026-04-28T04:42:02Z` `literature` `targeted_review_action_policy_decomposition` direction=`supports` confidence=0.85
   - `2026-04-28T04:42:02Z` `literature` `targeted_review_action_policy_decomposition` direction=`supports` confidence=0.82
@@ -1519,7 +1499,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-018
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.172, lit_conf=0.743, overall_confidence_legacy=0.553
+- Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.171, lit_conf=0.743, overall_confidence_legacy=0.552
 - Recent entries:
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`supports` confidence=0.78
   - `2026-04-21T08:46:35Z` `literature` `targeted_review_sd_018` direction=`mixed` confidence=0.65
@@ -1670,25 +1650,6 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `Shutts et al. show that the developmental acquisition of category-specific feature dimensions takes time and experience -- it is not innate and present at birth. For SD-049's curriculum hook, this is directly relevant: a developmentally-staged introduction of resource types should respect the timescale on which biological agents acquire identity-distinct categorisation. Introducing all three resource types from step 0 of episode 0 may produce learnable identity discrimination, but it does not test the developmental-trajectory question.` (1)
   - `The paper's finding that 8-9-month-old infants do NOT show the food/artifact feature distinction (while adult macaques do) is a falsifier-adjacent observation: identity-distinct goal categorisation may require substantial training-time exposure before it emerges. SD-049 validation should report whether identity discrimination emerges within a single training run; if not, the curriculum hook becomes load-bearing earlier than expected.` (1)
   - `Smith & Berridge show that liking is a circuit-level cooperative function (NAc + VP) while wanting is a single-locus-dominant function (NAc primary). For SD-049, this implies the substrate must support behavioral signatures where the two can be perturbed independently. With a single-resource substrate, no perturbation can separate them at the trajectory level -- both bottom out at 'approach the only resource'. SD-049's per-axis drive + multi-identity substrate makes the perturbation possible: e.g., satiate hunger axis (kill 'liking' for food) while leaving novelty deficit (preserve 'wanting' for novel cell), then observe whether trajectory still routes to novelty.` (1)
-- Suggested resolution actions:
-  - Run one targeted adjudication experiment with narrower stop criteria.
-  - Add one replication run with seed sweep to reduce variance ambiguity.
-  - If disagreement persists, split claim scope into separable subclaims.
-
-### SD-059
-- Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.316, lit_conf=0.859, overall_confidence_legacy=0.723
-- Recent entries:
-  - `2026-06-11T21:36:09Z` `experimental` `v3_exq_603o_escape_affordance_bridge_behavioural_redesign` direction=`non_contributory` confidence=0
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.78
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.66
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.7
-  - `2026-06-12T09:06:03Z` `literature` `targeted_review_sd_059` direction=`supports` confidence=0.74
-- Recurring failure signatures:
-  - `ilPFC inactivation increased freezing and decreased avoidance but the study provides no evidence for a positively-reinforced, action-specific escape response -- consistent with SD-059's claim that the suppression pathway alone does not compute the escape direction.` (1)
-  - `Avoidance retrieval did NOT activate IL neurons; the IL route was selective to extinction -- a caution that mapping the SD-059 escape-credit pathway onto IL specifically (as opposed to PL->BLA->VS) would mis-assign the substrate.` (1)
-  - `The model treats reframing as a deliberately deployed cognitive-control instrument; if REE's bridge bonus fires non-selectively (not threat-gated) it would diverge from this account, which makes the threat-context gate a load-bearing guard.` (1)
-  - `Yoked extinction (matched shock, no instrumental control) did NOT confer the persistent threat reduction -- absent an action-contingent credit signal, mere safety exposure fails, matching SD-059's prediction that a global 'avoidance works' scalar without an affordance-indexed action credit is insufficient.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
