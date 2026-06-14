@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_072b_q021_behavioral_flatness
 
-Generated: `2026-06-13T21:46:56.133215Z`
+Generated: `2026-06-14T18:10:35.488627Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

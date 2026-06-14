@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_508_arc033_e2_harm_s_body_damage_ablation
 
-Generated: `2026-06-13T21:46:56.133215Z`
+Generated: `2026-06-14T18:10:35.488627Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

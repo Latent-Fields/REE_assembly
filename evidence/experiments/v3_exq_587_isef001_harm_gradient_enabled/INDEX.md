@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_587_isef001_harm_gradient_enabled
 
-Generated: `2026-06-13T21:46:56.133215Z`
+Generated: `2026-06-14T18:10:35.488627Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
