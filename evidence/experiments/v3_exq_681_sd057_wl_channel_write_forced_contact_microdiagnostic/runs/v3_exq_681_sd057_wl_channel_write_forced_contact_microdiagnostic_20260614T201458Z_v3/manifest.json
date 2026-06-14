@@ -1,0 +1,82 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_681_sd057_wl_channel_write_forced_contact_microdiagnostic",
+  "run_id": "v3_exq_681_sd057_wl_channel_write_forced_contact_microdiagnostic_20260614T201458Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-14T20:14:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd057_wl_channel_write_validated",
+    "readiness_route": "n/a",
+    "preconditions": [
+      {
+        "name": "wl_instrument_positive_control_separates",
+        "description": "leg C1: a constructed 2-token IncentiveTokenBank (this run's GoalConfig) yields a drive-favored most_wanted that DIFFERS from a designated last-consumed type -- the SAME cross-target inequality statistic C2 routes on, on a positive control.",
+        "control": "2 deterministic probes: drive-favored most_wanted vs designated last-consumed (instrument-can-fire).",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "wl_channel_written_forced_contact",
+        "description": "leg C2: under FORCED contact the substrate's own update_z_goal L2-bind/L4-pointer path populated the bank with >= 2 distinct tokens at differing per-axis drive AND scored >= MIN_SCORED_STEPS consumption events -- the exact channels-written non-vacuity the 514n eval lacked (consumed tag never sourced).",
+        "control": "forced consumed-tag (NOT the post-consumption-cleared at-agent cell) + fixed drive spread.",
+        "measured": 40.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_forced_dissociation",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C2_forced_dissociation": true
+    },
+    "wl_readiness_gate": {
+      "definition": "SAME-STATISTIC non-vacuity for the forced WL DV: C1 constructed-bank cross-target separation == 1.0 AND C2 in-run bank populated >= 2 distinct tokens at differing per-axis drive with >= MIN_SCORED_STEPS scored. Below floor -> substrate_not_ready_requeue.",
+      "pc_separation_floor": 1.0,
+      "min_scored_steps": 5,
+      "drive_spread_floor": 0.001,
+      "wl_fraction": 0.3,
+      "null_dissoc_ceiling": 0.1
+    }
+  }
+}
