@@ -1,0 +1,54 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-14T20:14:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_569g_gapa_routerange_matched_entropy_falsifier_20260611T224954Z_v3",
+      "queue_id": "V3-EXQ-569g",
+      "claim_ids": ["ARC-065"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-065 not tested under conditions where it could express (applied modulatory_channel_route_range=0.0 in every scored arm); non_contributory, not a falsification",
+        "biological_reference": "clear -- BG-like modulatory-bias-vs-value-gap committed-action selection; not a formal import; no lit gap",
+        "prerequisites": "present-but-inactive -- route-range substrate (663 PASS) + authority (643a PASS) landed but inactive at the live arm select site",
+        "implementation": "partial / instrumentation defect -- readiness gate certifies the channel-representation spread (probe), NOT the applied per-candidate routed bias at committed selection; the two diverge 0.18 (readiness) vs 0.0 (in-arm)",
+        "environment": "adequate",
+        "measurement": "MISLEADING (load-bearing) -- C_R1B scored on arms where the enabling mechanism modulatory_channel_route_range reads exactly 0.0; the readiness gate guards the wrong statistic",
+        "integration": "partially coupled -- channel->authority->committed-action validated piecewise in probes but live arm shows 0 conversion",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia / cortico-striatal committed-action selection where neuromodulatory + contextual biases shift the committed choice only with sufficient gain relative to the value-difference",
+        "dependencies": ["forward-model-dominated primary score (E2 world_forward; F=88-89% of E3 score variance per V3-EXQ-571)", "modulatory bias channel with committed-selection authority"],
+        "is_formal_import": false,
+        "divergence": "none -- the failure is wiring/instrumentation (readiness gate certifies a different statistic than the one applied), not biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "non_contributory (precondition-unmet / instrumentation defect; NOT substrate_ceiling -- that is the self-route mis-label, V3-EXQ-642 pattern)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-14 autopsy V3-EXQ-569g]: 569g FAIL/non_contributory r1a_entropy_only_artefact MIS-LABELS the cause. The readiness probe certified ARM_1 modulatory_channel_route_range = 0.18 (clears floor), but ALL THREE falsifier arms applied route_range = 0.0 at the committed-selection site -- so C_R1B was scored on runs where the routing/authority mechanism-under-test was inert (V3-EXQ-642 precondition-unmet pattern, NOT a substrate ceiling). project_channel_range is range-preserving, so the in-arm cand_world_summaries re-collapsed (or routing did not fire in the arm path). ARC-065 unmoved (non_contributory, not a falsification). Routed diagnose-first: a claim-free in-arm route-range collapse diagnostic locates (i) live-arm summary re-collapse / (ii) project_channel_range / (iii) routing-source wiring BEFORE any 4th modulatory-bias-selection-authority amend; the next real GAP-A falsifier must gate on the IN-ARM applied route_range, not a probe statistic.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "note": "Entry already exists and already carries the 569f/661/654a failure records. Do NOT add a new entry or a 4th amend on an unlocated cause -- the claim-free diagnostic must first attribute the in-arm applied route_range=0.0 to (i) live-arm cand_world_summaries re-collapse / (ii) project_channel_range degeneracy / (iii) routing-source wiring-not-plumbed-into-arm-config. The amend follows the diagnostic, not this autopsy."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The GAP-A falsifier's readiness gate certifies the channel REPRESENTATION spread (a probe outside the scored arms), not the APPLIED per-candidate modulatory_channel_route_range at the live committed-selection tick; the two diverge (0.18 vs 0.0). Any future GAP-A falsifier must gate on the in-arm applied route_range measured on the same ticks as C_R1B.",
+        "Locate before amend: the applied 0.0 has three candidate causes -- (i) in-arm cand_world_summaries re-collapse despite candidate_summary_source=e2_world_forward, (ii) project_channel_range degeneracy on the live input, (iii) routing-source wiring not plumbed into the arm agent config (vs only the readiness probe). A claim-free diagnostic disambiguates before /implement-substrate.",
+        "SD-056-NaN prime suspect DISCONFIRMED for this lineage: 569f/569g C1_arm1_e2_world_forward_divergent=TRUE; V3-EXQ-617 already validated the SD-056 multistep stability amend. The blocker is the channel->committed-action conversion, not the predictor.",
+        "6th autopsy on the GAP-A conversion (569c/569e/614e/643/569f-661-654a/569g) = substrate-iteration recurrence, NOT claim-granularity debt on ARC-065 (one architectural commitment, not several mechanisms) -> diagnose-first, not /claim-synthesis."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "readiness gate certifies a channel-representation statistic in a probe (route_range 0.18) while the falsifier scores its primary DV on arms where the applied per-candidate routed bias reads 0.0 -- the mechanism-under-test is inert where the verdict is computed",
+    "is_independent_bugs": false,
+    "structural_property": "the GAP-A channel->committed-action conversion has been validated piecewise in isolated probes across 3 substrate amends, but the live behavioural arm re-collapses the conversion to 0 before it reaches committed selection; the readiness instrumentation has masked this by certifying the wrong (probe-side) statistic",
+    "readings": ["instrumentation_defect_readiness_gate_wrong_statistic", "genuine_conversion_ceiling_if_diagnostic_shows_live_summary_collapse_is_structural"]
+  }
+}
