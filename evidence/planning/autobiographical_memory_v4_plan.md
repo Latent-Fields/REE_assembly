@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Autobiographical Memory (V4 forward roadmap): unified event store, provenance, write-authority, imagination-learning constraints"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-14
   scope_claims: [ARC-085, MECH-365, MECH-366, MECH-368, MECH-361, MECH-252, MECH-253, MECH-261, Q-060, Q-062, MECH-429, MECH-430, MECH-431]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -24,7 +24,7 @@ closure_plan:
     - id: "autobiographical_memory_v4:ABM-1"
       title: "Memory-type taxonomy decision (Q-060): distinct autobiographical-event type, or a tag on episodic content?"
       phase: 1
-      status: open
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [Q-060, ARC-085]
@@ -34,8 +34,8 @@ closure_plan:
         - "V3 owns only the episodic<->semantic axis (MECH-121 NREM SWR episodic->semantic transfer) plus the orthogonal stored-vs-active distinction (INV-037/INV-038); there is NO memory-type taxonomy claim"
         - "DECISION the fork forces: is autobiographical-event memory a first-class type separate from semantic (facts/relations) and task/procedural (policies/schemas), or a self/affect tag on episodic content? Hyperthymesia intake motivates a four-way split (semantic / task / autobiographical-event / prospective-autobiographical-simulation)"
         - "This decision sets the shape of the ARC-085 store before any substrate is built; it is a taxonomy answer, not an experiment to narrow on the V3 substrate (Q-060 is substrate_conditional, narrow_open_question suppressed)"
-      last_updated: 2026-06-10
-      completion_note: "Q-060 is the gating design decision for the whole cluster. Per its notes: does a distinct autobiographical layer earn its keep, or is it a tag? The answer determines whether ARC-085 is a new store or an indexing convention over the existing hippocampal store. Decide before building."
+      last_updated: 2026-06-14
+      completion_note: "Q-060 is the gating design decision for the whole cluster. Per its notes: does a distinct autobiographical layer earn its keep, or is it a tag? The answer determines whether ARC-085 is a new store or an indexing convention over the existing hippocampal store. Decide before building. DECIDED 2026-06-14 (user-adjudicated): TAG / INDEXING CONVENTION over the existing ARC-007 episodic store -- NOT a distinct first-class type with its own store. The distinguishing features {self_state, perspective, affect, residue, source_status, committed_vs_imagined} are fields on the episodic event token; MECH-121 already drains de-tagged content toward semantic, so autobiographical = episodic content retaining its self/affect tags. ARC-085 thus scoped as an identity-indexed binding LAYER over ARC-007; downstream claims (MECH-365/366/361/368/429/430/431) stay field/gate specialisations, not parallel stores. Semantic + task/procedural types stay distinct; only autobiographical-vs-episodic is tag-not-type. NOT trivial -- the index (first-class provenance/perspective/affect fields + identity index + one-way committed-vs-imagined gate) is still load-bearing V4 work; this decision sets ARC-085's SHAPE so ABM-2 can build the right thing. Recorded into claims.yaml Q-060.decision_2026_06_14 + Q-060.what_would_answer (ARC-085 joint-degradation falsifier, V4) + ARC-085.q060_taxonomy_decision, and the arch-doc ARC-085/Q-060 sections. Q-060 kept open_question for the record (falsifier could reopen). PROMOTES NOTHING (all cluster claims candidate/v4/substrate_conditional)."
     - id: "autobiographical_memory_v4:ABM-2"
       title: "Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulation"
       phase: 2
@@ -220,7 +220,7 @@ which V3 does not have.
 
 | Step | Node | Claim | Phase leaning | The V3 readiness gate |
 |---|---|---|---|---|
-| taxonomy fork | ABM-1 | Q-060 | V4 (first decision) | MECH-121 episodic<->semantic only; no taxonomy claim; decide distinct-type vs tag |
+| taxonomy fork | ABM-1 | Q-060 | V4 (first decision) | DECIDED 2026-06-14: TAG/index over ARC-007 episodic store, not a distinct type (ABM-1 done) |
 | unified store | ABM-2 | ARC-085 | V4 | ARC-007 + ARC-018 present but separate; falsifier = joint degradation |
 | provenance token | ABM-3 | MECH-365 | V4 | MECH-094 + MECH-037 + INV-011 + SD-026; one-way committed gate |
 | imagination principle | ABM-4 | NEWCLAIM | V4 | folds into MECH-365; lit-pull Stickgold/Cai/Schapiro first |
@@ -276,3 +276,28 @@ which V3 does not have.
   imagination-learning LICIT/FORBIDDEN principle is folded into the MECH-365
   provenance gate (ABM-4) and returned as a NEWCLAIM stub, not registered here.
   `generation: v4` set so the V3 closure % is unaffected. No claims.yaml edits.
+- **2026-06-14** -- ABM-1 / Q-060 taxonomy decision RESOLVED (user-adjudicated,
+  interactive IGW plan-reconcile). **Autobiographical-event memory is a TAG /
+  INDEXING CONVENTION over the existing ARC-007 episodic store, NOT a distinct
+  first-class memory type with its own store.** ARC-085 is therefore scoped as
+  an identity-indexed, self/affect/provenance-tagged BINDING LAYER over the
+  existing episodic store -- the "one self-tagged event-token store" *is* the
+  existing episodic store, made autobiographical by the fields each token
+  carries plus an identity index that both backward replay (ARC-007) and
+  forward re-composition (ARC-018) address. Rationale: the distinguishing
+  features are fields on the episodic token; MECH-121 already drains de-tagged
+  content toward semantic; every downstream claim (MECH-365/366/361/368/429/
+  430/431) is already a field/gate ON the token, not a parallel store; and the
+  tag reading is the parsimonious instantiation of ARC-085's own "one substrate,
+  not two parallel machineries" thesis (a distinct type would mint a third
+  machinery). Semantic + task/procedural types stay distinct; only
+  autobiographical-vs-episodic resolves to tag-not-type. NOT trivial: the index
+  is still load-bearing V4 work (first-class provenance/perspective/affect/
+  self_state fields + identity index + the one-way committed-vs-imagined gate),
+  and this decision sets ARC-085's shape so ABM-2 builds the right thing.
+  Recorded into `claims.yaml` (Q-060 `decision_2026_06_14` + `what_would_answer`;
+  ARC-085 `q060_taxonomy_decision`) and the arch-doc ARC-085/Q-060 sections.
+  Q-060 kept `open_question` for the record (the ARC-085 joint-degradation
+  falsifier, a V4 experiment, could reopen it toward a distinct type). ABM-1
+  status open -> done. PROMOTES NOTHING (all cluster claims candidate / v4 /
+  substrate_conditional). No new claim minted.
