@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Play, Private Speech, Externalised DMN, Developmental Compression Ladder (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-13
+  last_updated: 2026-06-14
   scope_claims: [ARC-090, MECH-380, MECH-381, MECH-382, MECH-383, MECH-384, Q-068]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -22,7 +22,7 @@ closure_plan:
     - id: "developmental_dmn_v4:DMN-1"
       title: "V3 reduced form -- MECH-384 self-narration trace surface (the seed the ladder compresses)"
       phase: 1
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       unblocks_claims: [MECH-384, Q-068]
@@ -32,8 +32,8 @@ closure_plan:
         - "MECH-384 is the ONLY V3-compatible instantiation: implementation_phase v3, epistemic_category substrate_coherence; a debug/observability trace, not new substrate"
         - "Fields largely re-expose state REE already computes via MECH-094 (goal label, sensed gradient, active prediction, uncertainty, candidate action+reason, expected consequence, affective pressure, conflict flag, commitment threshold, stop condition)"
         - "POST-GREEN-BOARD + OFF the V3 critical path: build only if it helps REE-v3 pass existing tests more cleanly (intake scope guardrail)"
-      last_updated: 2026-06-10
-      completion_note: "This is the externalised 'private speech' surface in its V3 reduced form, before any developmental compression. simulation_or_commitment + self_reference_frame are its hooks for the Q-068 graded-vocabulary question. It is the only node here that could land in V3; everything below depends on a developmental curriculum and a control-driving narration surface that V3 lacks."
+      last_updated: 2026-06-14
+      completion_note: "This is the externalised 'private speech' surface in its V3 reduced form, before any developmental compression. simulation_or_commitment + self_reference_frame are its hooks for the Q-068 graded-vocabulary question. It is the only node here that could land in V3; everything below depends on a developmental curriculum and a control-driving narration surface that V3 lacks. RECONCILED-TO-DONE 2026-06-14 (interactive): the node's deliverable as a V4 forward-roadmap entry is the SCOPING/REGISTRATION of the V3 reduced form, which is complete -- MECH-384 (design_decision, substrate_coherence, v3, full 14-field trace + both hooks, depends_on [ARC-090, MECH-094]) and Q-068 (graded-vocabulary fork, substrate_conditional, v4, now carries a what_would_answer) are both fully registered, wired, and located. The trace IMPLEMENTATION stays deliberately UNBUILT: MECH-384 is optional, post-green-board, off the V3 critical path -- queuing a build now would violate the intake scope guardrail. DMN-8/ABM-9 did NOT satisfy this node (DMN-8 lit-grounded the five PILLAR claims ARC-090/MECH-380..383, not the MECH-384 observability decision; ABM-9 is the unrelated autobiographical-memory cluster). The buildable-when-useful signal persists on MECH-384's own claim status (candidate / implementation_phase v3), not on an open roadmap node, so closing DMN-1 loses nothing."
     - id: "developmental_dmn_v4:DMN-2"
       title: "Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)"
       phase: 1
@@ -275,3 +275,23 @@ the IGW proposal lane today: a V3 probe against any pillar would be vacuous.
   control signals, per Jones & Fernyhough's AVH model) is subsumed by MECH-094 (tag loss)
   + MECH-430 (provenance vector) + INV-061 (frame confusion) and is surfaced as a NOTE,
   not a new MECH.
+
+- **2026-06-14** -- DMN-1 RECONCILED-TO-DONE (`status: open -> done`; interactive). DMN-1 is the
+  only V3-flavoured node in this V4 roadmap, and its deliverable *as a roadmap node* is the
+  scoping/registration of the V3 reduced form -- which is complete: MECH-384 (the self-narration
+  trace, `design_decision` / `substrate_coherence` / `implementation_phase: v3`, full 14-field set +
+  `simulation_or_commitment` / `self_reference_frame` hooks, `depends_on: [ARC-090, MECH-094]`) and
+  Q-068 (the graded-vocabulary fork, `substrate_conditional` / v4) are both registered, wired, and
+  located. The trace **implementation stays deliberately unbuilt**: MECH-384 is optional,
+  post-green-board, and off the V3 critical path, so queuing a build now would violate the intake
+  scope guardrail -- "needs a step first" here would mean queuing a build the intake tells us *not*
+  to run yet. **DMN-8 / ABM-9 did not satisfy this node:** DMN-8 lit-grounded the five *pillar*
+  claims (ARC-090, MECH-380..383), not the MECH-384 observability decision, and ABM-9 is the
+  unrelated autobiographical-memory cluster. **Single-pass claim annotation:** added a
+  `what_would_answer` to Q-068 (it is an `asked`-bucket open_question that lacked one; the
+  discriminating signature is a V4 narration-surface episode where a behaviour/error is corrected
+  *only* when the finer {simulated, rehearsed, intended, committed, acted} vocabulary +
+  self_reference_frame are first-class, vs reducing entirely to the binary MECH-094/MECH-061
+  boundary) and a dated reconcile note to MECH-384. **PROMOTES NOTHING** (MECH-384 stays candidate /
+  v3 / exp_conf 0; Q-068 stays candidate / v4). The buildable-when-useful signal now persists on
+  MECH-384's own claim status, not on an open roadmap node.
