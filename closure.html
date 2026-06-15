@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-11.2 -->
+<!-- CLOSURE_VERSION: 2026-06-15.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -346,6 +346,19 @@
   .edge.cross-plan.sev-load-bearing:hover { stroke-width: 4; }
   .edge.cross-plan.sev-high { stroke-width: 2.1; }
   .edge.cross-plan.sev-high:hover { stroke-width: 3.4; }
+  /* both-done: BOTH endpoint nodes are status=done, so this link no longer
+     gates any active work. Recolour from the active purple to the green "done"
+     motif -- still visible (you can trace which finished nodes were linked) but
+     dropped out of the bundle of still-relevant purple strands. Placed AFTER all
+     .edge.cross-plan rules so it wins at equal specificity (source order). */
+  .edge.cross-plan.both-done { stroke: rgba(35,134,54,0.55); stroke-dasharray: 4 3; stroke-width: 1.5; }
+  .edge.cross-plan.both-done:hover { stroke: rgba(46,160,67,0.95); stroke-width: 2.6; stroke-dasharray: 4 3; }
+  /* within-plan both-done edge (already faded as resolved-lineage since the
+     predecessor is done) gets the same green tint for a consistent done cue. */
+  .edge.both-done { stroke: rgba(35,134,54,0.4); stroke-dasharray: 2 4; stroke-width: 1.1; }
+  .edge.both-done:hover { stroke: rgba(46,160,67,0.85); stroke-width: 1.7; }
+  /* keep node-hover strand-tracing working on done links (in green, not purple) */
+  .edge.both-done.nbr-hi { stroke: rgba(63,185,80,1.0); stroke-width: 3.0; }
   .edge-arrow { fill: rgba(139,148,158,0.7); }
 
   /* #3 click-to-highlight-graph: when a node is selected, fade non-tree elements */
@@ -552,7 +565,7 @@
   </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
-    solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan
+    solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan; <span style="color:#2ea043">green</span> = both endpoints done (link no longer gates work)
   </span>
 </div>
 
@@ -1116,6 +1129,9 @@ function renderGraph() {
     '</marker>' +
     '<marker id="arrow-cross" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">' +
     '<path d="M0,0 L10,5 L0,10 z" fill="rgba(163,113,247,0.85)"/>' +
+    '</marker>' +
+    '<marker id="arrow-done" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">' +
+    '<path d="M0,0 L10,5 L0,10 z" fill="rgba(46,160,67,0.85)"/>' +
     '</marker>';
   svg.appendChild(defs);
 
@@ -1492,9 +1508,15 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
   const isResolvedLineage =
     !isCross && fromNode && lineageStatuses.has(fromNode.status);
   const lineageCls = isResolvedLineage ? ' resolved-lineage' : '';
-  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev + lineageCls);
+  // both-done: BOTH endpoints are done, so the link (purple cross-plan or solid
+  // within-plan) no longer gates active work -- recolour it to the green done
+  // motif so it stays visible but drops out of the still-relevant strand bundle.
+  const bothDone =
+    fromNode && toNode && fromNode.status === 'done' && toNode.status === 'done';
+  const doneCls = bothDone ? ' both-done' : '';
+  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev + lineageCls + doneCls);
   path.setAttribute('d', d);
-  path.setAttribute('marker-end', isCross ? 'url(#arrow-cross)' : 'url(#arrow)');
+  path.setAttribute('marker-end', bothDone ? 'url(#arrow-done)' : (isCross ? 'url(#arrow-cross)' : 'url(#arrow)'));
   // #3 expose endpoints for click-to-highlight reachability styling
   if (fromNode) path.setAttribute('data-from', fromNode.id);
   if (toNode) path.setAttribute('data-to', toNode.id);
