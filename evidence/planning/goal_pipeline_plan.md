@@ -93,12 +93,13 @@ closure_plan:
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
       phase: 5
-      status: deferred
+      status: done
       severity: low
-      owner_exq: null
+      owner_exq: V3-EXQ-618
       unblocks_claims: []
       depends_on: ["goal_pipeline:GAP-4"]
-      last_updated: 2026-05-08
+      last_updated: 2026-06-15
+      completion_note: "Closed superseded-by-implementation 2026-06-15. The cascade migration was BUILT + LANDED (ree-v3 main 2026-05-31T13:00Z, 'SD-049 Phase 3 SD-032 consumer cascade') independent of this node's documented deferral trigger ('Phase 4 PASSes Tier-3 + reveals a drive-cascade fidelity gap', which never fired -- GAP-4 closed 2026-06-09 by re-scope/falsification, not a Tier-3 fidelity-gap). All seven named consumers now carry the optional per_axis_drive kwarg (ree_core/cingulate/{aic_analog,pcc_analog,pacc_analog,dacc,salience_coordinator}.py, ree_core/regulators/{broadcast_override,mech295_liking_bridge}.py), preserving bit-identical OFF when per_axis_drive is None; causal_grid_world surfaces obs_dict['per_axis_drive'] under per_axis_drive_enabled. Readiness validated by V3-EXQ-618 (2026-05-31T17:59Z, experiment_purpose=diagnostic, all 4 acceptance criteria PASS: C1 per_axis_drive evolves min_peak=0.027>floor 0.02; C2 no crashes; C3 AIC reads per-axis mean_l1=5.92; C4 MECH-295 axis routes mean_l1=0.169). 618 is tagged evidence_direction=non_contributory because a substrate-readiness diagnostic does not behaviourally test SD-049/MECH-295; that is correct and does NOT block GAP-5 closure (GAP-5 is a refactor with no load-bearing dependent claim -- unblocks_claims:[]). NOTE: the *behavioural* validation of the Phase 3 cascade (V3-EXQ-619, reserved/not-queued, replicates V3-EXQ-514g structure on the Phase 3 substrate) is owned by goal_pipeline:GAP-2, NOT this node -- 619's downstream_owed lists the GAP-2 cluster (SD-049/SD-015/MECH-229/MECH-230/MECH-117/ARC-030/ARC-032/Q-030). The original 'fidelity refactor for its own sake' justification was never demonstrated necessary; the cascade got pulled forward as substrate plumbing for GAP-2's behavioural line, which is the correct place its remaining behavioural test now lives. No claims.yaml/scoring edit (refactor, no dependent claim)."
     - id: "goal_pipeline:GAP-6"
       title: "MECH-269b V_s staleness-corrected consumer migration"
       phase: 6
@@ -229,7 +230,7 @@ Six gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-2** | SD-049 Phase 2 V3-EXQ-514 behavioural validation never PASSed: 514f reclassified non_contributory as pre-MECH-307 affect-stream confound; identity-recovery + wanting!=liking dissociation acceptance criteria untested under MECH-307-fixed substrate | load-bearing | SD-015, MECH-229 (non-degenerate retest), MECH-230, MECH-117 retest, MECH-216 retest, ARC-030, ARC-032, Q-030 |
 | **GAP-3** | SD-012 sustained-drive amendment: drive_level collapses to ~0.005 at exact step the agent contacts a resource (energy resets toward 1.0); multiplier (1 + 2*0.005) cancels almost all benefit amplification SD-012 was intended to provide | high | MECH-295 cascade non-collapse, MECH-216 schema wanting threshold crossing, SD-014 wanting EMA non-degeneration, ARC-030 approach drive |
 | **GAP-4** | MECH-295 cascade behavioural validation deferred: V3-EXQ-493 isolation 6/6 PASS confirms substrate, but EXQ-490f / EXQ-536a/b force-arm probe shows downstream cascade inert under realistic policy state (cue_fires=0 at relaxed activation floors; approach_commit_rate=0 even at z_goal_inject=0.3 + action-time fraction=1.0) | high | EXQ-471 catatonic-lock factorial diagnosis (Q-040), MECH-295 promotion, SD-029 substrate retest |
-| **GAP-5** | SD-049 Phase 3 SD-032 consumer cascade reading per_axis_drive directly: AIC, PCC, pACC, dACC adaptive control, salience-coordinator, override-regulator, MECH-295 liking-bridge currently read goal_state._last_drive_level (collapsed scalar) | medium | SD-032b cascade fidelity, MECH-258 + MECH-260 calibration; refactor not on acceptance-criterion path for any current claim |
+| **GAP-5** [DONE 2026-06-15] | SD-049 Phase 3 SD-032 consumer cascade reading per_axis_drive directly: AIC, PCC, pACC, dACC adaptive control, salience-coordinator, override-regulator, MECH-295 liking-bridge migrated from goal_state._last_drive_level (collapsed scalar) to the optional per_axis_drive vector. BUILT + LANDED ree-v3 main 2026-05-31; V3-EXQ-618 readiness PASS (4/4). | medium | SD-032b cascade fidelity, MECH-258 + MECH-260 calibration; refactor not on acceptance-criterion path for any current claim. Behavioural validation (V3-EXQ-619) owned by GAP-2. |
 | **GAP-6** | MECH-269b-followup-A staleness-corrected V_s in VsRolloutGate.gate: lower-priority follow-on after V3-EXQ-490b clears; gates the V_s monostrategy resolution that interacts with goal-pipeline behavioural tests | medium | SD-029 retest cohort (cross-plan with sleep_substrate_plan via V_s invalidation runtime) |
 | **GAP-7** | Object-bound incentive-salience layer missing: at resource contact the benefit signal is written as raw z_world / z_resource with no binding to object IDENTITY (L2) and no per-object wanting amplitude / incentive TOKEN (L3); plus measurement/wiring gaps at L1 (forced-seed positive control, blocked by the 626 harness bug) and L7 (dACC does not read z_goal directly). This is the "what happens to benefit ONCE contact occurs" gap, sequential to GAP-2's "get the agent to contact at all" | load-bearing | MECH-229 non-degenerate retest, MECH-230, MECH-117, ARC-030; L9 wanting!=liking dissociation (514k currently 0.0) |
 
@@ -375,6 +376,14 @@ Deliverables:
 
 ### Phase 5: SD-049 Phase 3 SD-032 consumer cascade (GAP-5)
 
+> **STATUS 2026-06-15: DONE (superseded-by-implementation).** The cascade was
+> built + landed (ree-v3 main 2026-05-31T13:00Z) and validated-ready by
+> V3-EXQ-618 (4/4 acceptance criteria PASS, non_contributory readiness
+> diagnostic), independent of the obsolete "Phase 4 Tier-3 fidelity-gap"
+> trigger described below. The *behavioural* validation of the cascade
+> (V3-EXQ-619, reserved) is owned by GAP-2, not GAP-5. See the GAP-5 frontmatter
+> `completion_note`. The narrative below is preserved as the original design.
+
 Cleanup-of-substrate-coverage refactor. Migrate AIC, PCC, pACC, dACC adaptive
 control, salience-coordinator, override-regulator, MECH-295 liking-bridge from
 reading `goal_state._last_drive_level` (collapsed scalar) to optionally reading
@@ -396,12 +405,16 @@ Deliverables:
    behavioural change); a regression run on the V3-EXQ-514 successor may be
    sufficient to confirm bit-identical OFF and activation correctness.
 
-Phase 5 is intentionally low-priority. Per the queue entry's `ready_blocked_by`
+Phase 5 was intentionally low-priority. Per the queue entry's `ready_blocked_by`
 field, "Cascade is a cleanup-of-substrate-coverage refinement, not an
 acceptance-criterion prerequisite." None of the goal-pipeline acceptance
-criteria require Phase 5 to land; Phases 1-4 are sufficient. Phase 5 is the
-right next step if and only if Phase 4 PASSes a Tier-3 retest and reveals a
-remaining drive-cascade fidelity issue.
+criteria require Phase 5 to land; Phases 1-4 are sufficient. The original gate
+was "land only if Phase 4 PASSes a Tier-3 retest and reveals a remaining
+drive-cascade fidelity issue." That gate never fired -- GAP-4 closed 2026-06-09
+by re-scope/falsification, not a Tier-3 fidelity-gap. The cascade was instead
+pulled forward 2026-05-31 as substrate plumbing for the GAP-2 behavioural line
+(514g -> 618 -> 619), built + validated-ready (V3-EXQ-618), and GAP-5 is now
+closed superseded-by-implementation (see the STATUS banner above).
 
 ### Phase 6: MECH-269b-followup-A staleness-corrected V_s in VsRolloutGate (GAP-6)
 
@@ -505,7 +518,7 @@ See [Resume ritual](#resume-ritual) below.
 | GAP-2 | 2 | blocked | Phase 1 PASS | Re-queue V3-EXQ-514 successor with phased training under MECH-307-fixed substrate | V3-EXQ-514g (TBD) | 2026-05-08 |
 | GAP-3 | 3 | done | (none) | Closed 2026-05-20: V3-EXQ-582a PASS (floor=0.9); MECH-306 registered; Option 1 EMA not discriminative winner (582 FAIL). | V3-EXQ-582a | 2026-05-20 |
 | GAP-4 | 4 | in-progress | 2-fork: (A) Tier-1 library rebuild + 483d/490g re-queue; (B) SD-XXX scaffolded SD-054 onboarding substrate | Two-fork disposition per 2026-05-29 cluster autopsy `failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md` -- Fork A (483c+524a) routes to library rebuild + cohort re-queue; Fork B (603c, absorbed into 591 family) routes to scaffolded SD-054 onboarding substrate-design memo + /implement-substrate. Both spawned as session chips 2026-05-29. Governance application of autopsy recommendations spawned as a third chip 2026-05-29 (per-claim direction overrides + SD-037 evidence_quality_note + new SD-XXX substrate_queue entry; will NOT auto-surface because 483c/524a/603c manifests already have evidence_direction set). See 2026-05-29 decision-log entry below. | V3-EXQ-490g, V3-EXQ-471a, V3-EXQ-475a, V3-EXQ-483c, V3-EXQ-524a, V3-EXQ-603c | 2026-05-29 |
-| GAP-5 | 5 | deferred | Phase 4 Tier-3 outcome | Migrate consumer cascade only if Phase 4 reveals drive-cascade fidelity gap | n/a (refactor) | 2026-05-08 |
+| GAP-5 | 5 | done | (superseded-by-implementation) | Closed 2026-06-15: cascade BUILT + LANDED (ree-v3 main 2026-05-31T13:00Z) independent of the obsolete 'Phase 4 Tier-3 fidelity-gap' trigger; all 7 consumers carry the per_axis_drive kwarg; V3-EXQ-618 readiness diagnostic PASS (4/4 criteria, non_contributory). Behavioural validation (V3-EXQ-619, reserved) is owned by GAP-2, not GAP-5. See frontmatter completion_note. | V3-EXQ-618 | 2026-06-15 |
 | GAP-6 | 6 | done | (none) | Substrate implemented (use_vs_gate_staleness_lookup wired end-to-end). V3-EXQ-490b C1 PASS; 490c/e/f factorial shows MECH-295 dominant cause. Monostrategy resolved by ARC-065 SP-CEM default 2026-05-17. Q-040b behavioral sufficiency continues under v_s_invalidation_runtime.md. | V3-EXQ-490b | 2026-05-17 |
 | GAP-7 | 7 | blocked_pending_substrate | L9 behavioural validation (gated on goal_pipeline:GAP-2 foraging contact); phase-2 L6 cue-recall + L7 dACC-wiring | **L1 CLOSED + L7 AUDIT DONE + L2-L3-L4 SUBSTRATE LANDED 2026-06-04.** L1: 626b forced-seed positive control PASS (full-run, reviewed). L7 audit: only E3 goal_proximity reads z_goal consequentially; dACC/cingulate/policy/governance stack z_goal-blind; L7 wiring folded into L2-L3 (nothing object-bound to read until then). **L2-L3-L4 LANDED: SD-057 (ree-v3 53f6427; claims 1f12a8e60f) -- IncentiveTokenBank in goal.py binds benefit to SD-049 object identity (L2 MECH-344), accrues a per-object slow-decay revaluable token with at-recall per-axis drive-specific wanting (L3 MECH-345), and seeds z_goal FROM the most-wanted object's embedding (L4 MECH-346; amends MECH-230). Default-OFF bit-identical, no trained params. Contracts 6/6 + 747/751 + 7/7 preflight.** V3-EXQ-636 (L2-L4 mechanism) PASS full-run 4/4 (binds 2 types, 5/6 wanting!=liking events ON, 0 OFF, legacy seeding intact). **PHASE-2 (L6+L7) LANDED 2026-06-04: SD-057 phase-2 (ree-v3 24f31e5; claims e79ef7207e) -- L6 MECH-347 cue-recall (GoalState.cue_pull + agent.cue_recall_wanting: a perceived cue raises wanting for the matched object before benefit, identity-matched/drive-specific; downstream MECH-295 approach + E3 goal_proximity unchanged) + L7 MECH-348 dACC object-discriminative readout (per-candidate goal_proximity -> dACC bundle goal_readout -> DACCtoE3Adapter bias; dACC no longer z_goal-blind). Default-OFF bit-identical, no trained params. Contracts: phase-2 5/5 + 750/757 + 7/7 preflight.** Validation V3-EXQ-637 (forced-cue diagnostic, claim_ids=[], decoupled from GAP-2) queued; dry-run PASS 4/4 (C1 cue fires; C2 identity-matched z_goal direction cos=1.0; C3 goal_readout reaches dACC; C4 OFF parity). **The full GAP-7 closure map (L0-L9 substrate) is now built. NEXT: (a) 637 full-run PASS; (b) the GAP-2-gated L9 behavioural retest of MECH-229/MECH-117/ARC-030 -- now the sole remaining critical-path dependency, owned by scaffolded_sd054_onboarding / goal_pipeline:GAP-2.** **RECLASSIFIED 2026-06-10 open -> blocked_pending_substrate (blocked_by goal_pipeline:GAP-2): substrate L0-L8 built, only the GAP-2-gated L9 remains, so this is not a live build node. The L6 cue-recall sub-thread is SETTLED -- V3-EXQ-640a landed 2026-06-06 + autopsied (failure_autopsy_V3-EXQ-640a_2026-06-06): the cue REACHES z_goal (per-fire pull ~0 is a saturation artifact; absolute z_goal_at_cue_fire ~0.5 vs 0.42 OFF), and the bottleneck is z_goal->approach selection-authority propagation = the 604a/624a/614d modulatory-bias 'drowning' shape; routed to substrate_queue modulatory-bias-selection-authority (implemented); 638b stays gated. GAP-2 itself nearly cleared 2026-06-10 (V3-EXQ-603m: survival 3/3 + contact 3/3 + consumption-gated z_goal 2/3; residual = G0-artifact re-val 603n queued). NOT V4: SD-057 binds to the SD-049 per-TYPE tag (V3); the ARC-080 token-instance object-file spine is the separate V4 concern that lists SD-057 as a consumer.** | V3-EXQ-636 (L2-L4) + V3-EXQ-637 (L6-L7); 626b (L1); 640a autopsied (L6 propagation); null (L9 gated on GAP-2) | 2026-06-10 |
 
@@ -560,7 +573,7 @@ PASS, per the 2026-05-08 governance redirect.
 
 | EXQ | Subject | Acceptance | Status |
 |---|---|---|---|
-| (regression on V3-EXQ-514 successor) | bit-identical OFF + activation correctness for per-axis drive consumer migration | identical metrics with per_axis_drive=None vs SD-049-OFF | not queued (Phase 5 deferred) |
+| V3-EXQ-618 | per-axis drive consumer-cascade readiness: per_axis_drive evolves; no crash; AIC reads per-axis; MECH-295 axis routes | C1 min_peak>0.02; C2 no crash; C3/C4 L1>0 | DONE 2026-05-31 -- 4/4 PASS (non_contributory readiness diagnostic); cascade landed ree-v3 main 2026-05-31 |
 
 ### Phase 6 cohort (MECH-269b-followup-A)
 
@@ -578,7 +591,7 @@ PASS, per the 2026-05-08 governance redirect.
 | GAP-2 / Phase 2 | SD-049-PHASE-2 | SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030 | sd_049_multi_resource_heterogeneity.md |
 | GAP-3 / Phase 3 | SD-012 + MECH-306 (drive_floor validated) | SD-012, MECH-306, MECH-216, ARC-051 | sustained_drive_anticipatory_wanting.md |
 | GAP-4 / Phase 4 | MECH-295 (priority=1) | MECH-295, ARC-030, MECH-117, Q-040 | mech_295_drive_liking_approach_bridge.md |
-| GAP-5 / Phase 5 | SD-049-PHASE-3 (priority=3, deferred) | SD-032b (read-side fidelity); no acceptance gate | sd_049_multi_resource_heterogeneity.md |
+| GAP-5 / Phase 5 | SD-049-PHASE-3 (DONE 2026-06-15; landed ree-v3 main 2026-05-31, V3-EXQ-618 readiness PASS) | SD-032b (read-side fidelity); no acceptance gate | sd_049_multi_resource_heterogeneity.md |
 | GAP-6 / Phase 6 | MECH-269b-followup-A (priority=1) | MECH-269b | v_s_invalidation_runtime.md |
 
 The substrate_queue.json design_doc field updates are made in the same session
@@ -1519,6 +1532,34 @@ Phase 5 to land; Phases 1-4 are sufficient. Decision: defer Phase 5 to "Phase
 4 Tier-3 outcome" trigger -- only land if Phase 4 reveals a remaining
 drive-cascade fidelity gap. Reason: smallest-step principle; Phase 5 has no
 load-bearing dependent claim.
+
+> **SUPERSEDED 2026-06-15 -- see next entry.** This deferral trigger never
+> fired (GAP-4 closed 2026-06-09 by re-scope/falsification, not a Tier-3
+> fidelity-gap). The cascade was instead pulled forward as substrate plumbing
+> for the GAP-2 behavioural line and is now closed done.
+
+### 2026-06-15 - Phase 5 / GAP-5 closed superseded-by-implementation
+
+The SD-049 Phase 3 SD-032 consumer cascade was BUILT + LANDED (ree-v3 main
+2026-05-31T13:00Z, "SD-049 Phase 3 SD-032 consumer cascade") independent of the
+2026-05-08 "Phase 4 Tier-3 fidelity-gap" deferral trigger above, which never
+fired. All seven named consumers now carry the optional `per_axis_drive` kwarg
+(`ree_core/cingulate/{aic_analog,pcc_analog,pacc_analog,dacc,salience_coordinator}.py`,
+`ree_core/regulators/{broadcast_override,mech295_liking_bridge}.py`), preserving
+bit-identical OFF when `per_axis_drive` is None; `causal_grid_world` surfaces
+`obs_dict['per_axis_drive']` under `per_axis_drive_enabled`. Readiness validated
+by V3-EXQ-618 (2026-05-31T17:59Z, `experiment_purpose=diagnostic`, all 4
+acceptance criteria PASS; tagged `evidence_direction=non_contributory` because a
+substrate-readiness diagnostic does not behaviourally test SD-049/MECH-295 --
+correct, and not a blocker for a refactor with `unblocks_claims:[]`). The
+cascade got pulled forward as substrate plumbing for the GAP-2 behavioural line
+(514g -> 618 -> 619), NOT for GAP-5's own (never-demonstrated) "fidelity refactor
+for its own sake" justification. The remaining *behavioural* validation
+(V3-EXQ-619, reserved/not-queued) is owned by goal_pipeline:GAP-2, not this
+node. Status -> done; owner_exq -> V3-EXQ-618; no claims.yaml/scoring edit
+(refactor, no dependent claim). Discovered during a user-requested read of the
+GAP-5 node, which exposed ~6 weeks of frontmatter drift (node still said
+`deferred / owner_exq:null / last_updated 2026-05-08` while the work had landed).
 
 ---
 
