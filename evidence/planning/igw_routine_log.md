@@ -172,3 +172,4 @@ One line per hourly tick. ASCII only.
 2026-06-15T01:56:58Z auto-defer IGW-20260615-202 hash=c2afe6f28cfa for 48h (reaped -> completed_resumable)
 2026-06-15T01:56:58Z reaped TASK_CLAIMS igw-auto-igw-202-proposal-exp-0187-mech-271-20260615T005545Z (ledger IGW-20260615-202 -> completed_resumable)
 2026-06-15T01:56:52Z skip IGW-20260615-199: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-15T02:57:01Z SPAWN IGW-20260615-201 skill=/queue-experiment prio=40 uuid=2349b2b1-809e-4bb3-ad92-33eeb375a25b pid=39208 worktree=igw-201-proposal-exp-0182-mech-048
