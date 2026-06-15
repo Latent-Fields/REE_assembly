@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T16:00:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_680d_mech423_superadditivity_ablation_20260615T044447Z_v3",
+      "queue_id": "V3-EXQ-680d",
+      "supersedes": "V3-EXQ-680c",
+      "claim_ids": ["MECH-423"],
+      "failed_criterion": "readiness_precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_fork": 3,
+      "self_route_route": "r1_grad_cosine_net_negative",
+      "adjudication": "precondition_unmet",
+      "adjudication_verdict": "self_route_mis_designed",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened / intact -- self-route is a mis-calibrated precondition, not a weakens; suppressed FORK-2 verdict would PASS; MECH-423 supported by its own PAIR>ISO data",
+        "biological_reference": "clear -- multisensory super-additivity / inverse effectiveness; lit present; failure not a missing-dependency biology signature",
+        "prerequisites": "coupling met (min_grad_norm ~4e-4..1e-3) but mis-gated: cosine sub-check fires on orthogonality noise",
+        "implementation": "co-training complete and FIXED (0/5 diverged, 680c-ordered stabilisation worked); readiness cosine readout defective",
+        "environment": "adequate (grid 6 / 4 hazards / 3 resources)",
+        "measurement": "misleading -- min(cosine)>=0 on a ~0-noise quantity self-excludes a passing run; conflates orthogonal with anti-aligned",
+        "integration": "coupled and stable across all 5 PAIR seeds",
+        "scale": "adequate (n=5; 5/5 usable)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "multisensory super-additivity / inverse effectiveness; shared-representation MTL (Caruana 1997)",
+        "dependencies": ["shared L-space latent (ARC-004)", "E1 world-model (ARC-001)", "E2 affordance-model (ARC-002)"],
+        "is_formal_import": false,
+        "divergence": "none -- failure is a readiness-gate measurement-design defect, not biology divergence; substrate exhibits the mechanism (PAIR>ISO 5/5)",
+        "lit_status": "present"
+      },
+      "key_quantities": {
+        "n_diverged_seeds": 0,
+        "n_usable_pair_seeds": 5,
+        "pair_world_r2_raw": {"42": 0.346, "123": 0.252, "456": 0.167, "789": 0.207, "1011": 0.147},
+        "pair_r1_cosine": {"42": 0.0506, "123": -0.0371, "456": -0.0149, "789": -0.0286, "1011": 0.0266},
+        "min_cos_over_usable_seeds": -0.0371,
+        "cosines_positive_fraction": "2/5",
+        "max_abs_cosine": 0.0506,
+        "integration_score_iso": {"42": 0.2072, "123": 0.2618, "456": 0.1367, "789": 0.1574, "1011": 0.2328},
+        "integration_score_pair": {"42": 0.8022, "123": 0.5990, "456": 0.5347, "789": 0.3654, "1011": 0.4431},
+        "pair_beats_iso_seeds": "5/5",
+        "recomputed_fork2_verdict": {
+          "delta_pair": [0.595, 0.337, 0.398, 0.208, 0.210],
+          "mean_delta_pair": 0.3497,
+          "delta_sd": 0.1430,
+          "margin": 0.2859,
+          "n_seeds_pass": 3,
+          "min_seeds_pass": 3,
+          "super_additive": true,
+          "would_have_been": "PASS / supports"
+        }
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-680d substrate_not_ready_requeue (FORK 3, min_cos=-0.0371, non_degenerate=false). Autopsy 2026-06-15: the 680c-ordered co-training stabilisation WORKED (0/5 PAIR seeds diverged; all world_R2 finite off-floor). On the stable substrate the shared-encoder cosines collapsed to ~0 (range -0.037..+0.051, 2/5 positive) -- the near-ORTHOGONAL regime, not negative transfer. The readiness gate's min(cos)>=0 test fires on orthogonality noise and self-excluded a run whose suppressed FORK-2 verdict would PASS (3/5 seeds clear margin 0.286; mean delta +0.35; PAIR>ISO 5/5). MECH-423 NOT weakened -- the self-route is a mis-calibrated precondition, not a negative-transfer finding (the manifest's /implement-substrate-or-narrow note is contradicted by its own PAIR>ISO data). pending_retest_after V3-EXQ-680e (magnitude-floored / tolerance-band readiness cosine gate; near-orthogonal = readiness-MET so the verdict runs).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after": "V3-EXQ-680e",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 680c-ordered co-training stabilisation worked: 0/5 PAIR seeds diverged, all world_R2 finite off-floor; the 680b/680c numerical instability is resolved.",
+        "The readiness cosine gate is the remaining defect: min(cosine over seeds) >= 0 requires all 5 seeds >= 0 (~1/32 likely), fires net_negative on -0.037 orthogonality noise, and self-excludes the run before the verdict.",
+        "First clean readiness measurement shows the near-orthogonal regime (cosines ~0, 2/5 positive) and super-additivity is empirically present (PAIR>ISO 5/5; gate-corrected verdict 3/5 over margin, mean delta +0.35).",
+        "Recurrence is iteration convergence (instability fixed -> gate-design defect exposed), not granularity-debt; no /claim-synthesis trigger."
+      ],
+      "routing": "queue-experiment",
+      "routing_target": "V3-EXQ-680e",
+      "routing_spec": "Fix the readiness cosine gate: route net_negative only on min_cos < -COS_FLOOR (or a majority of seeds beyond the floor); treat the near-orthogonal band |cos| <= COS_FLOOR as readiness-MET so the super-additivity verdict runs. Keep gentled co-training + inf/NaN guard + hardened SD-of-delta+abs-floor margin + n>=5. Pre-register the three forks (diverge / orthogonal-or-positive -> verdict runs / genuine net-negative -> implement-substrate)."
+    }
+  ],
+  "cluster_pattern": null,
+  "recurrence_note": "3rd autopsy in the MECH-423 line (680b/680c instability, 680d gate-design). Converging peel on a now-stable substrate, NOT granularity-debt; same-question re-queue, not /claim-synthesis. Re-evaluate only if 680e (corrected gate) returns a third structurally-distinct failure shape."
+}
