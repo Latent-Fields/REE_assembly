@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-15T09:12:31Z",
+  "last_tick_utc": "2026-06-15T09:42:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-591f",
   "current_exq_started_utc": "2026-06-15T08:57:30.060331+00:00",
@@ -9,18 +9,24 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / gate",
-    "runs_done": 0,
+    "run_label": "Seed 43 / gate",
+    "runs_done": 1,
     "runs_total": 5,
     "episodes_done": 0,
     "episodes_total": 160,
-    "overall_pct": 0.0
+    "overall_pct": 20.0
   },
-  "seconds_elapsed": 901,
-  "seconds_remaining": 14400,
+  "seconds_elapsed": 2709,
+  "seconds_remaining": 9850,
   "recent_lines": [
     "V3-EXQ-591f gate-criterion: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 spike_threshold=0.9940 level_floor=0.2000 ep_min=100 [sweep: ema_level(a=0.2) window_mean(W=20) ema_hold(H=5) crossing_count(>=3)] [diversity stack ON] [supersedes V3-EXQ-591e]",
-    "Seed 42 Condition gate-criterion"
+    "Seed 42 Condition gate-criterion",
+    "[train] gate-criterion seed=42 ep 50/160 phase=0 h_pos=0.098",
+    "[train] gate-criterion seed=42 ep 100/160 phase=0 h_pos=0.156",
+    "[train] gate-criterion seed=42 ep 150/160 phase=1 h_pos=1.100",
+    "[train] gate-criterion seed=42 ep 160/160 phase=1 h_pos=0.098",
+    "verdict: PASS",
+    "Seed 43 Condition gate-criterion"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
