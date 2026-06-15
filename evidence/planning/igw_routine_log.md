@@ -168,3 +168,4 @@ One line per hourly tick. ASCII only.
 2026-06-14T22:54:50Z ERROR generator launch failed: Command '['/opt/local/bin/python3', '/Users/dgolden/REE_Working/REE_assembly/scripts/generate_inter_governance_workset.py']' timed out after 180 seconds
 2026-06-14T22:51:44Z skip: generator failed (see ERROR above)
 2026-06-14T23:55:31Z skip IGW-20260614-202: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-15T00:55:37Z SPAWN IGW-20260615-202 skill=/queue-experiment prio=40 uuid=0dc5d5f6-17a9-4b77-b89c-b36313b489fb pid=26727 worktree=igw-202-proposal-exp-0187-mech-271
