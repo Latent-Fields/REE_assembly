@@ -1,0 +1,76 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T03:56:56Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_680c_mech423_superadditivity_ablation_20260614T233657Z_v3",
+      "queue_id": "V3-EXQ-680c",
+      "supersedes": "v3_exq_680b_mech423_superadditivity_ablation",
+      "claim_ids": ["MECH-423"],
+      "failed_criterion": "readiness_precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "non_degenerate": false,
+      "adjudication_flag": "precondition_unmet",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the substrate_not_ready / non_degenerate=false self-route is EXACTLY the response MECH-423's what_would_answer field prescribes for an unmet readiness gate; NOT a FAIL, NOT a weakening. 680b's 2/3 super-additive seeds (+1.57/+1.24) remain the live evidence.",
+        "biological_reference": "clear -- multisensory super-additivity / inverse-effectiveness existence proof; targeted_review_mech_423_integration_prerequisites present (2026-06-12). Failure signature is numerical instability, not a missing-biology-dependency. The one informative datum (net-negative transfer on the stable seed) IS biologically meaningful (Caruana 1997 related-task requirement; Yu/PCGrad 2020 conflicting gradients).",
+        "prerequisites": "unmet AND untestable -- readiness precondition (i) shared-latent cross-module gradient: cosine NaN on 4/5 seeds; genuinely net-negative (-0.399) on the 1 stable seed (789).",
+        "implementation": "partial -- GRAD_CLIP_NORM=1.0 + R2_SCORE_FLOOR=-1.0 did NOT cure the integrated-PAIR co-training divergence: world head pins at the -1 clamp on 4/5 seeds, encoder gradients overflow to inf. The clamp bounded the 680b margin-poisoning symptom, not the training dynamics.",
+        "environment": "adequate -- grid 6 / 4 hazards / 3 resources.",
+        "measurement": "under-instrumented / misleading -- min(per-seed cosine) is unguarded against inf/NaN gradients, so diverged seeds poison the aggregate to NaN and conflate 'diverged' with 'net-negative transfer'.",
+        "integration": "coupled but unstable -- shared-encoder co-training numerically unstable on 4/5 PAIR seeds despite grad clipping.",
+        "scale": "n=5 adequate by design but 4/5 diverged -> only 1 usable readiness datum."
+      },
+      "biological_reference": {
+        "closest_mechanism": "multisensory integration / inverse effectiveness (cortical + superior-colliculus multisensory neurons exceeding the unimodal sum); shared-representation MTL (Caruana 1997)",
+        "dependencies": ["stable shared-encoder co-training", "non-conflicting cross-module gradients on the shared latent", "iterative-inference settling", "interleaved consolidation"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- dominant failure is numerical instability; the secondary net-negative-transfer datum is a genuine (n=1) readiness signal, not a biology divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-680c substrate_not_ready_requeue (non_degenerate=false). Autopsy 2026-06-15: the readiness cosine NaN is poisoned by 4/5 PAIR seeds diverging to the world_R2 -1 clamp floor (encoder grads -> inf) despite GRAD_CLIP_NORM=1.0 -- the 680b-ordered grad-clip + bounded score did NOT cure the co-training instability. The one stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40) = negative-transfer readiness signal. MECH-423 NOT weakened (the self-route is the claim-designed non_degenerate response; 680b's 2/3 super-additive seeds stand). pending_retest_after V3-EXQ-680d (co-training stabilisation + inf/NaN-guarded cosine separating diverged seeds from genuine net-negative transfer).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate gap yet. Defect is the experiment training regime (grad-clip-1.0 insufficient to prevent PAIR co-training divergence) + the unguarded min(cosine) readiness aggregate -- both fixable in the 680d harness redesign. The negative-transfer question becomes a substrate gap ONLY if 680d, on a stabilised substrate, confirms persistent net-negative shared-encoder cosine across seeds.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_run": "V3-EXQ-680d",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "GRAD_CLIP_NORM=1.0 + bounded score did NOT stabilise the integrated co-training: the PAIR world head still diverges on 4/5 seeds (encoder grads -> inf). The clamp bounds the reported R2, not the training dynamics. Stronger stabiliser needed (LR reduction/warmup, detached shared-latent target, or per-objective gradient-norm balancing).",
+        "The readiness cosine aggregate min(per-seed cosine) is poisoned by inf/NaN gradients from diverged seeds -> NaN. Diverged seeds must be bucketed as a distinct 'diverged/non-finite' readiness category, separate from the net-negative-transfer test.",
+        "First genuine R1 datum (stable seed 789) is net-negative shared-encoder cosine -0.40 = negative-transfer regime; super-additivity not expected there. n=1 of 5 -- the load-bearing question for 680d on a stabilised substrate.",
+        "The self-route is claim-designed: MECH-423's what_would_answer explicitly specifies substrate_not_ready / non_degenerate=false (NOT a FAIL) when the integration machinery is not demonstrably doing cross-module work."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "successor": "V3-EXQ-680d",
+        "iteration_type": "lettered_implementation_fix",
+        "fixes": [
+          "stabilise integrated co-training so PAIR world_R2 is finite (off the -1 floor) on >=4/5 seeds before any cosine is read (LR/warmup, detached target, or PCGrad-style gradient-norm balance)",
+          "guard the readiness cosine: min over finite-gradient seeds only; emit n_diverged_seeds; route co_training_diverged when diverged seeds dominate, distinct from r1_grad_cosine_net_negative (which fires only on a FINITE net-negative cosine)"
+        ],
+        "preregistered_fork": [
+          "diverged seeds dominate again -> instability unfixed -> diagnose/stronger stabiliser, do not iterate blindly",
+          "stable substrate + cosine >=0 on >=3/5 -> readiness met -> super-additivity verdict runs (the actual MECH-423 test)",
+          "stable substrate + cosine net-negative on >=3/5 -> genuine readiness fail / substrate finding (shared-latent integration in the negative-transfer regime; super-additivity not expected) -> route /implement-substrate or narrow MECH-423, NOT a re-queue"
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "governance_followups_out_of_scope": [
+    "mark V3-EXQ-680b reviewed in review_tracker.json (prior autopsy e0b32efed3 landed; review-mark never written)"
+  ]
+}
