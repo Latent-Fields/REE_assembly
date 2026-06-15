@@ -1,0 +1,61 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T15:59:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic_20260615T101732Z_v3",
+      "queue_id": "V3-EXQ-603p",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "N/A (claim-free diagnostic; no claim tested, nothing to weaken/strengthen)",
+        "biological_reference": "clear: amygdala (BLA->CeA)/PAG threat-value + insular aversion; failure signature (forms on a minority of seeds, stronger LR destroys it) matches an under-trained/optimization-unstable value head, NOT a wrong mechanism; high prox_corr (0.44-0.83) where it forms confirms the head learns the correct hazard-proximity mapping",
+        "prerequisites": "present-but-immature: scaffold_train_harm_pathway (603k, 2026-06-09 amend) IS in the optimizer but converges on only 1/3 seeds under direct base measurement",
+        "implementation": "partial: symbol present (head trains, prox_corr correct where it forms) but functional role unreliable across seeds; 3x-LR collapses landscape to ~0",
+        "environment": "adequate: all cells reached hazard stage 3/3; proximity_harm 0.10-0.15 spans difficulty; positive control is the easiest regime",
+        "measurement": "adequate/non-vacuous: cross-arm dynamic range MET (0.057 > 0.02 floor); NaN prox_corr only when range=0 (constant -> undefined correlation, expected, not a metric bug)",
+        "integration": "isolated: Stage-H-only probe, no cross-module confound",
+        "scale": "likely insufficient: training budget/stability too low to converge reliably across seeds; raising LR 3x destabilizes (collapse) so the lever is steps/stability, not gain"
+      },
+      "biological_reference": {
+        "closest_mechanism": "amygdala (BLA->CeA)/periaqueductal-grey threat-value system + insular interoceptive aversion -- learned map from hazard-proximity cues onto an aversive value biasing action selection (E3.harm_eval_head(z_world) scoring E3.select candidates)",
+        "dependencies": ["sufficient and stable aversive teaching signal (Pavlovian/instrumental harm contingency) to shape the value head within the training budget", "z_world encoding of hazard proximity (SD-018 harm_obs[12] semantics)"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful biological translation, not a formal-definition import; the gap is training robustness/convergence, not mechanism design",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-603p (claim-free Stage-H base-harm-landscape diagnostic; non_contributory; non-degenerate -- cross-arm dynamic range 0.057 > 0.02, stage-0 z_goal lit 2/3). Positive control proximity_harm=0.10/harm_lr=1e-3 cleared harm_eval_range>=0.02 on only 1/3 seeds; all three standard cells clear 1/3 (a different seed each cell; seed 44 never); the 3x-LR rescue collapsed the landscape to ~0 on all seeds. Confirms the Stage-H harm-valuation pathway training (603k) is seed-fragile -- NOT a regime-difficulty result (per the script's own positive-control interpretation rule). The 'harm-pathway-survival leg VALIDATED 2026-06-09' status on scaffolded_sd054_onboarding rested on a narrow probe; seed-robustness is an open residual. Route: /implement-substrate (stabilize harm-pathway training to >=2/3 seeds at the easy regime; do NOT raise LR). Do NOT queue the V3-EXQ-603q bridge re-run until harm_eval_range>=0.02 clears >=2/3 seeds. SD-059/MECH-358 unchanged.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "sd_id_suggested": "scaffolded_sd054_onboarding",
+        "title": "Stage-H harm-valuation pathway: seed-robust harm-landscape training (>=2/3 seeds at the easy regime)",
+        "implementation_hint": "The harm-pathway-survival leg (scaffold_train_harm_pathway, validated 2026-06-09 by 603k) forms a discriminative, proximity-correlated harm landscape on only 1/3 seeds under direct base measurement, and a 3x harm-pathway LR collapses it to ~0. Stabilize/strengthen training so harm_eval_range>=0.02 clears >=2/3 seeds at proximity_harm=0.10 -- candidates: more training steps; LOWER LR with more steps; gradient stabilization; seed-robust init. NOT raising LR (collapses it). The mechanism is right (prox_corr 0.44-0.83 where it forms); the gap is convergence/robustness. RECOMMENDATION: flag the leg's 'VALIDATED 2026-06-09' status as over-stated (narrow probe) and bake a >=2/3-seed gate on the DIRECT harm_eval_range statistic into the readiness criterion so the leg stops flapping.",
+        "unblocks_claims": ["SD-059", "MECH-358", "MECH-313", "MECH-260", "Q-045"],
+        "depends_on_unresolved": ["harm-pathway training stability (603k leg) -- currently 1/3 seeds, target >=2/3"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic_20260615T101732Z_v3",
+          "experiment_type": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic",
+          "metric": "positive-control harm_disc_frac = 1/3 (proximity_harm=0.10, harm_lr=1e-3); all standard cells 1/3 with a different success seed each (seed 44 never); 3x-LR rescue 0/3 (landscape collapsed to ~1e-23). harm_eval_range where formed: 0.166/0.145/0.110 (prox_corr 0.44-0.83).",
+          "target": "harm_eval_range >= 0.02 on >= 2/3 seeds at the easy regime (proximity_harm=0.10)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Stage-H harm-valuation pathway (harm_eval_head(z_world), scaffold_train_harm_pathway) is seed-fragile: discriminative landscape on only 1/3 seeds at the easiest regime, success seed varies unsystematically with regime, seed 44 never forms",
+        "Raising harm-pathway LR is the wrong lever -- 3x LR collapses the landscape to ~0 on all seeds; fix is training stability/steps/init, not gain",
+        "Mechanism is right, convergence is the gap: prox_corr 0.44-0.83 where the landscape forms confirms the head learns the correct hazard-proximity mapping",
+        "The 'harm-pathway-survival leg VALIDATED 2026-06-09' (603k) status was a narrow probe; a direct harm_eval_range>=0.02 on >=2/3 seeds is the criterion that should gate it",
+        "603q bridge re-run premise (a regime exists where base clears >=2/3) is FALSE -- 603q is blocked on the substrate fix, not a located parameter"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
