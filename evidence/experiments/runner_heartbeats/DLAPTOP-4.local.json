@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-15T08:02:09Z",
+  "last_tick_utc": "2026-06-15T08:29:16Z",
   "state": "running",
   "current_exq": "V3-EXQ-684",
   "current_exq_started_utc": "2026-06-15T05:22:30.485409+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_PROPOSER",
-    "runs_done": 2,
+    "run_label": "Seed 42 / ARM_MATCHED_NOISE",
+    "runs_done": 3,
     "runs_total": 18,
-    "episodes_done": 60,
+    "episodes_done": 50,
     "episodes_total": 80,
-    "overall_pct": 15.3
+    "overall_pct": 20.1
   },
-  "seconds_elapsed": 9559,
-  "seconds_remaining": 70836,
+  "seconds_elapsed": 11187,
+  "seconds_remaining": 54887,
   "recent_lines": [
     "Seed 42 Condition ARM_PROPOSER",
     "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 10/80",
@@ -45,7 +45,16 @@
     "[train] arm=ARM_PROPOSER seed=44 phase=P0 ep 30/80",
     "[train] arm=ARM_PROPOSER seed=44 phase=P0 ep 40/80",
     "[train] arm=ARM_PROPOSER seed=44 phase=P0 ep 50/80",
-    "[train] arm=ARM_PROPOSER seed=44 phase=P0 ep 60/80"
+    "[train] arm=ARM_PROPOSER seed=44 phase=P0 ep 60/80",
+    "[train] arm=ARM_PROPOSER seed=44 phase=P1 ep 70/80",
+    "[train] arm=ARM_PROPOSER seed=44 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_MATCHED_NOISE",
+    "[train] arm=ARM_MATCHED_NOISE seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_MATCHED_NOISE seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_MATCHED_NOISE seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_MATCHED_NOISE seed=42 phase=P0 ep 40/80",
+    "[train] arm=ARM_MATCHED_NOISE seed=42 phase=P0 ep 50/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
