@@ -1,0 +1,108 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_680d_mech423_superadditivity_ablation",
+  "run_id": "v3_exq_680d_mech423_superadditivity_ablation_20260615T044447Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-15T04:44:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-423"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "route": "r1_grad_cosine_net_negative",
+    "fork": 3,
+    "preconditions": [
+      {
+        "name": "pair_seeds_finite_world_r2",
+        "measured": 5.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r1_shared_latent_grad_coupled",
+        "measured": 0.0004189779283478856,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r1_grad_cosine_not_net_negative",
+        "measured": -0.03710304945707321,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "r2_iterative_loop_iterated",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_e2_touchable_under_interleaved",
+        "measured": 8.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_interleaved_share_positive",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_blocked_share_zero",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "min_cos_over_usable_seeds": -0.03710304945707321
+  }
+}
