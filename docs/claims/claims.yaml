@@ -17159,6 +17159,20 @@
     resolved by this genuine multi-resource support). exp_conf 0.868 (genuine_exp_count 3),
     confirmed_established quadrant. MECH-229 is now a clean promote candidate (provisional -> active) for the
     engine to recommend next cycle; the prior substrate-degeneracy triage trail below is retained for history.
+    2026-06-15 (follow-on, /queue-experiment, PROMOTION PATH CLARIFIED): the automated gate for a PROVISIONAL
+    claim is provisional->stable (decision_criteria.v1.yaml: min_exp_conf 0.80 + min_experimental_entries 4 +
+    max_conflict_ratio 0.20). MECH-229 clears exp_conf (0.868) and conflict but has only 3 genuine experimental
+    entries (claim_evidence.v1.json genuine_exp_count=3), so the recommendations engine does NOT auto-surface a
+    promotion this cycle and the prior "promote provisional->active next cycle" expectation will not fire on its
+    own. User decision 2026-06-15 (AskUserQuestion: "queue a confirmatory run, then promote"): a confirmatory
+    independent-seed replication V3-EXQ-514p (seeds 45/46/47 vs 514o's 42/43/44; claim_ids=[MECH-229]) was QUEUED
+    + coordinator-ingested 2026-06-15 (dry-run smoke PASS: seed-45 C_WL 0.778, 9 scored WL steps, non_degenerate)
+    as the 4th genuine experimental entry. ON 514p PASS/supports: MECH-229 clears provisional->stable and SHOULD
+    be promoted -- apply the derive-only reconcile in that same pass (record_decision.py promote_to_stable +
+    rebuild index; GAP-2/GAP-7 are already done and unaffected). Status stays PROVISIONAL this session (no
+    premature promotion; the closure of goal_pipeline:GAP-2 + GAP-7 was on the 514o PASS and is independent of
+    the MECH-229 status label). If 514p self-routes substrate_not_ready (contact_guard_unmet -- the guard is
+    substrate-marginal, 514o passed 2/3) that is NOT a weakens and the promotion simply waits for a clean 4th entry.
     2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-514m CONFIRMED): the V3-EXQ-514m MECH-229 per-claim weakens is reclassified non_contributory (measurement_test_design_defect) and remains scoring-excluded. C_WL wanting!=liking dissoc=0.0 on all 3 seeds (zero variance) is a VACUOUS FAIL: the DV reads the SD-014 residue VALENCE_WANTING/VALENCE_LIKING channels, but the run's config omits valence_liking_enabled/tonic_5ht_enabled/schema_wanting_enabled and the custom eval loop never writes them, so |w-l|>0.1 can never fire independent of behaviour. The contact guard (the run's only non-vacuity gate) verifies foraging but not channel-write, so the self-routed weakens rests on an unmet non-degeneracy assumption (vacuous-criterion pattern; cf. V3-EXQ-642/660a). MECH-229 stays provisional with no genuine multi-resource support; the substrate-faithful retest is V3-EXQ-514n -- the SD-057 object-bound wanting-target!=liking-target dissociation (MECH-346 most-wanted z_goal pointer; use_incentive_token_bank already on) with a same-statistic WL non-vacuity readiness gate, NOT the legacy residue-valence read. No demotion; no substrate_queue create/amend (instrumentation defect, SD-057 substrate landed 2026-06-04). MECH-230=supports is unaffected and sound.
     2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l (the only genuine multi-resource wanting/liking test) re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate -- foraging-competence/benefit-contact ceiling, C6 wanting!=liking dissoc 0.0 on all 3 seeds (no reward-contact history to express in). narrow_supports_flag=true: remaining supports EXQ-074f/234/354 are degenerate single-resource, so this non_contributory does NOT resolve MECH-229 -- it stays provisional with no genuine multi-resource support, awaiting a fair test on the foraging-competence substrate.
     EXQ-074f PASS 4/4 seeds (2026-04-04): wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43,
