@@ -1,0 +1,99 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic",
+  "run_id": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic_20260615T101732Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-15T10:17:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "positive_control_harm_landscape_discriminative",
+        "kind": "readiness",
+        "description": "ARM_REGIME_0p10 (easiest regime; 603k trained a discriminative harm landscape here) must clear harm_eval_range>=0.02 on >=2/3 seeds -- the SAME statistic the diagnostic routes on, measured on the known-positive control. Below-floor => harm-pathway training or the readiness metric is broken (substrate_not_ready_requeue), NOT a regime-difficulty verdict.",
+        "control": "ARM_REGIME_0p10: bridge OFF, full 603k harm-pathway training, easiest proximity_harm=0.10.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "harm_eval_range_has_cross_arm_dynamic_range",
+        "kind": "readiness",
+        "description": "mean harm_eval_range must vary across the difficulty/training cells (spread >= floor) -- else the readout is pinned and the diagnostic is vacuous.",
+        "control": "4 cells (proximity_harm 0.10/0.12/0.15 + 3x-LR at 0.15).",
+        "measured": 0.057427684466044106,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_positive_control",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 positive-control seeds -- the curriculum is intact.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "cells_reached_hazard_stage": true,
+      "positive_control_clears": false,
+      "cross_arm_harm_range_dynamic_range": true,
+      "pag_freeze_present": true
+    },
+    "criteria": [
+      {
+        "name": "positive_control_harm_landscape_discriminative",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "actionable_regime_or_training_recommendation_found",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "grid": {
+      "positive_control_fails": "substrate_not_ready_requeue: harm-pathway training/metric broken at easy regime; diagnose harm-pathway optimizer/loss",
+      "hard_regime_cell_clears": "regime_difficulty_threshold_located: 603q uses the hardest clearing proximity_harm",
+      "train_rescue": "harm_train_strength_rescues_hard_regime: 603q keeps 0.15 + 3x harm-pathway LR",
+      "only_eased_clears": "hard_regime_breaks_harm_landscape_use_eased_regime: 603q eases proximity_harm to the hardest clearing cell",
+      "nothing_clears": "substrate_not_ready_requeue: escalate to /failure-autopsy on harm-pathway training"
+    }
+  }
+}
