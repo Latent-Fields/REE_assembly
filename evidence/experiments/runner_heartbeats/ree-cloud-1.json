@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-15T19:00:41Z",
+  "last_tick_utc": "2026-06-15T19:30:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-514q",
   "current_exq_started_utc": "2026-06-15T17:20:14.506388+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-229",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLED_WL",
-    "runs_done": 0,
+    "run_label": "Seed 43 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLED_WL",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 235,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 14.8
+    "overall_pct": 18.6
   },
-  "seconds_elapsed": 6027,
-  "seconds_remaining": 28790,
+  "seconds_elapsed": 7835,
+  "seconds_remaining": 30270,
   "recent_lines": [
     "[v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLED_WL",
@@ -26,7 +26,12 @@
     "[train] p0_guided seed=42 ep 130/265 mean_len=198.3 rv=0.00041",
     "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
     "[train] p1_foraging seed=42 ep 220/265 median_last=102.5 survival_gate=pass",
-    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.2595 contact_events=124 z_goal_at_contact=0.5119"
+    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.2595 contact_events=124 z_goal_at_contact=0.5119",
+    "[train] wl_eval seed=42 ep 265/265 wl_drive=0.667 wl_nodrive=0.667 delta=0.000 scored=9 distinct_tokens=3 run_populated=True goal_r=0.964",
+    "verdict: PASS seed=42 guard_pass=True (contact_rate=0.2595 z_goal_at_contact=0.5119)",
+    "Seed 43 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLED_WL",
+    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.3846 formed=False",
+    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.934 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
