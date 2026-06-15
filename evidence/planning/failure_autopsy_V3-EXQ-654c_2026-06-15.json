@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T16:08:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier_20260615T123848Z_v3",
+      "queue_id": "V3-EXQ-654c",
+      "supersedes": "V3-EXQ-654b",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "implementation_under_test": "ARC-063 CandidateRuleField",
+      "failed_criterion": "readiness",
+      "failed_criterion_name": "C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active = 0.0 < 0.30 floor)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C2 falsifier never ran; C1c gated scoring (4th consecutive); not a falsification",
+        "biological_reference": "clear; two missing-dependency signatures of the PFC/BG task-set rule-creator: (i) a separable context representation, (ii) a selectable maintained rule set under a conflict gate",
+        "prerequisites": "missing -- GAP-A context de-collapse is an unresolved upstream dependency feeding the CRF context key (crf_context_from_e2_world_forward)",
+        "implementation": "partial -- 666c maintenance amend fills+differentiates the pool (max_pairwise 0.0->1.711, real progress) but the activation gate locks it out under collapsed context",
+        "environment": "adequate -- SD-054 bipartite reef/forage falsifier env",
+        "measurement": "under-instrumented -- script records crf_n_active but not crf_n_matched (tracked in get_state, l.647); 666c readiness gated frac_MAINTAINED not frac_ACTIVE",
+        "integration": "partially coupled -- field matures but its output is gated out; GAP-A collapse couples in via the context key",
+        "scale": "adequate -- not a budget problem; activation is a gate failure, not a maturation-budget failure"
+      },
+      "biological_reference": {
+        "closest_mechanism": "non-Bayesian PFC/BG task-set rule-creator (Bongard & Nieder 2010; Miller & Cohen 2001; Frank 2006 conflict-graded availability gate; Collins & Frank 2014 cross-experience task-set accumulation)",
+        "dependencies": ["separable cross-state context representation", "availability/conflict gate calibrated so a maintained differentiated rule set wins selection rather than mutually crowding out"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful translation; biology is load-bearing in the correct direction (predicts a maintained differentiated rule set should be selectable, not gated out)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-309": "non_contributory", "ARC-062": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-654c (arc_062 GAP-B behavioural falsifier, MECH-309/ARC-062; implementation under test = ARC-063 CandidateRuleField) FAILed C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active = 0.0 < 0.30) for the 4th consecutive iteration -- but with an INVERTED signature: the 666c maintenance amend fixed the retire-churn (crf_max_pairwise_rule_dist 0.0 -> 1.711, minting stabilised at 12-16), so the pool now holds >=2 differentiated rules, yet activation collapsed to exactly 0.0. Code-grounded cause (failure_autopsy_V3-EXQ-654c_2026-06-15), two coupled faults: (1) the GAP-A monostrategy collapse reached the CRF context key (crf_context_from_e2_world_forward; consumed_summary spread 0.0089 < 0.05 floor) -> differentiated rules all co-match one collapsed context -> n_matched inflates; (2) gate_and_select theta = 0.15 + 0.25*(n_matched-1) climbs above the maintenance_floor 0.45 once >=3 rules co-match -> every matched rule gated out. The 666c PASS that marked the substrate ready=True measured frac_MAINTAINED (availability hold), not frac_ACTIVE (gate firing) -- maintained != active. non_contributory (C1 gated scoring; no claim weight). Route: implement-substrate amend crf-availability-maintenance for BOTH faults (de-collapse the CRF context key per the ARC-065/GAP-A fix; couple maintenance to theta(n_matched)) + a frac_ACTIVE readiness gate; flip crf-availability-maintenance ready True->False; re-queue 654d only after GAP-A context de-collapse. pending_retest_after_substrate. NO demotion -- the claims were never tested. Substrate-maturation recurrence, not claim-granularity debt (user-adjudicated 2026-06-15).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "crf-availability-maintenance",
+        "umbrella_owner": "ARC-062",
+        "title": "CRF activation under collapsed context: de-collapse CRF context key + couple maintenance to per-tick conflict-gate theta + frac_ACTIVE readiness gate",
+        "implementation_hint": "654c proved maintained != active: the 666c maintenance amend fills a differentiated pool (max_pairwise 1.711) but every matched rule is gated out (frac_active 0.0) because the GAP-A-collapsed e2_world_forward context (spread 0.0089) makes >=3 rules co-match -> gate_and_select theta=0.15+0.25*(n_matched-1) >= 0.65 > maintenance_floor 0.45. Amend BOTH: (1) sharpen/per-candidate-separate the e2_world_forward context feeding CRF mint/match (mirror ARC-065/GAP-A) so a small differentiated pool does not co-match one collapsed context; (2) couple maintained availability to the actual per-tick theta (maintain at max(maintenance_floor, theta(n_matched)+eps)) and/or cap n_competing and/or sharpen context_match_threshold. Upgrade the readiness gate to assert crf_frac_active >= 0.30 (gate firing) AND record crf_n_matched distribution -- NOT frac_maintained -- and flip this entry's ready=True back to not-ready until frac_active is demonstrated. Re-queue the GAP-B falsifier (654d) only after GAP-A context de-collapse, since the CRF amend is necessary-but-not-sufficient while the shared monostrategy collapse persists.",
+        "unblocks_claims": ["MECH-309", "ARC-062", "ARC-063"],
+        "depends_on_unresolved": ["behavioral-diversity-isolation:GAP-A context de-collapse (569g/682) -- shared upstream monostrategy collapse"],
+        "priority_suggested": 1,
+        "flip_ready_to_not_ready": true,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier_20260615T123848Z_v3",
+          "experiment_type": "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "crf_frac_active = 0.0 (vs 0.30 floor); inverted signature -- crf_max_pairwise_rule_dist 1.711 (pool now differentiates) but activation gate locks it out under collapsed context (consumed_summary spread 0.0089 < 0.05)",
+          "target": "crf_frac_active >= 0.30 on a majority of ARM_ON seeds (gate-firing rate, not frac_maintained)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "maintained != active: holding a rule's availability (666c frac_maintained) does not make it fire; the conflict gate sits between availability and activation, and under context-collapsed crowded matches the maintenance_floor (0.45) is below the gate theta (>=0.65 at n_matched>=3).",
+        "The GAP-A monostrategy collapse reaches the CRF context channel: crf_context_from_e2_world_forward inherited the collapse (e2 consumed-summary spread 0.0089) rather than escaping it; one upstream cause, two downstream blockers (CRF activation here, 569g/682 committed-action conversion).",
+        "The 666c churn fix is genuine progress: max_pairwise_dist 0.0->1.711 and stable 12-16 minting resolve the 654/654a/654b retire-churn lineage; remaining work is the activation gate + context key, not pool maturation.",
+        "Instrument the discriminator: crf_n_matched_last is tracked in the CRF (l.647) but unread by the script; recording it (+ theta-vs-availability margin on matched ticks) distinguishes never-matched from matched-but-gated-out."
+      ],
+      "recurrence_note": "4th consecutive autopsy on the same C1c precondition (654 -> 654a -> 654b -> 654c). User-adjudicated 2026-06-15 as substrate-maturation recurrence (ARC-063 implementation being debugged; blocker marches downstream one localised stage each iteration; each fix advances a real metric), NOT claim-granularity debt -- MECH-309/ARC-062 are well-defined and never tested. No /claim-synthesis. The strategic caveat (4 iterations, falsifier never ran) is addressed by gating 654d behind GAP-A rather than iterating the CRF in isolation again.",
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "single-target lineage; activation collapse downstream of a maturation fix",
+    "is_independent_bugs": false,
+    "structural_property": "The behavioral-diversity-isolation:GAP-A monostrategy/context collapse is a SHARED upstream cause feeding BOTH (a) the CRF rule-activation readiness (654c C1c, via the crf_context_from_e2_world_forward key) and (b) the 569g/682 committed-action conversion ceiling. The 654 leg's proximate blocker marched downstream across the lineage (per-episode cold-start -> retire-churn -> activation-gate-under-collapse) as each prior substrate fix landed.",
+    "readings": ["substrate_maturation"]
+  }
+}
