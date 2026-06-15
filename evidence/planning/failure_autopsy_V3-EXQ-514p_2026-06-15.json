@@ -1,0 +1,59 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T16:07:08Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514p_sd049_phase2_mech229_object_bound_wanting_liking_20260615T085728Z_v3",
+      "queue_id": "V3-EXQ-514p",
+      "claim_ids": ["MECH-229"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the as-scored criterion does not let MECH-229 incentive-salience content express",
+        "biological_reference": "clear -- Berridge & Robinson 2003 wanting!=liking; incentive salience is drive-state-modulated (specific PIT); the drive-dependence delta is the load-bearing discriminator and it is ~0",
+        "prerequisites": "present -- 603n substrate built; contact 3/3; bank populated; channels written (681-C4)",
+        "implementation": "complete -- instrument fires (PC-sep 1.0); L2-bind/L4-seed runs each consumption event",
+        "measurement": "misleading (load-bearing) -- raw-fraction C_WL bar 0.6 sits below the drive-uniform negative control (514o 0.717); wl_drive_minus_nodrive ~0 in PASS and FAIL",
+        "environment": "adequate -- SD-049 Phase-2 multi-resource env, per-axis drive present",
+        "integration": "n/a",
+        "scale": "adequate -- n_scored 27 > 514o n_scored 11"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge & Robinson incentive-salience wanting vs hedonic liking; drive-state-modulated specific PIT (Corbit/Balleine)",
+        "dependencies": ["drive-state modulation of cue wanting", "object-identity binding"],
+        "is_formal_import": false,
+        "divergence": "the object-bound test scores a raw categorical-mismatch fraction; the biology requires the dissociation to be DRIVE-COUPLED (WL_drive >> WL_nodrive), which the run does not gate",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-15 (failure_autopsy_V3-EXQ-514p): the MECH-229 per-claim weakens from V3-EXQ-514p is reclassified non_contributory (measurement_test_design_defect) and scoring-excluded. 514p cleared all readiness gates (contact guard 3/3, bank populated, positive-control separation 1.0) but the load-bearing criterion C_WL (raw fraction most-wanted != last-consumed, bar 0.6) does NOT isolate the drive-coupled incentive-salience content MECH-229 asserts: the within-eval drive-dependence control wl_drive_minus_nodrive is ~0 in BOTH the 514o PASS (0.083) and the 514p FAIL (0.074) -- exactly zero on 2 of 3 514p seeds -- and 514o's drive-uniform negative control (mean_wl_nodrive 0.717) itself clears the 0.6 bar. With n_resource_types=3 the raw fraction is dominated by ~(N-1)/N baseline categorical mismatch, drive or no drive. The self-routed genuine-weakens off-ramp (substrate_conditional, V4-1) is therefore NOT fired (unmet precondition; cf. V3-EXQ-642). RE-EXAMINE the 2026-06-15 promotion path: the substrate-ceiling-lifted / epistemic_category=standard / pending_retest_after_substrate=false / narrow_supports_flag=false reclassification all rest on the 514o PASS, which cleared the same non-isolating criterion at n=11/2 seeds; pause the provisional->stable promotion and treat 514o's supports as resting on a non-isolating criterion pending the corrected retest. MECH-229 stays provisional, pending_retest_after_substrate=[MECH-229], narrow_supports_flag=true. Retest = V3-EXQ-514q: make the drive-dependence delta the load-bearing criterion with an effect-size gate max(k*pstdev(delta), FLOOR), raw C_WL a non-vacuity check only. No demotion; no substrate_queue create/amend (test-design defect, SD-057 substrate built 2026-06-04, contact/bank achieved).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "fire_offramp": false,
+      "reexamine_predecessor": {
+        "run_id": "v3_exq_514o_sd049_phase2_mech229_object_bound_wanting_liking_20260615T022311Z_v3",
+        "queue_id": "V3-EXQ-514o",
+        "reason": "514o PASS/supports cleared the same non-isolating C_WL criterion at n_scored=11 / 2 guard-passing seeds; its drive-uniform negative control (0.717) clears the 0.6 pass bar. The 2026-06-15 governance action (ceiling-lifted, epistemic_category standard, pending_retest_after_substrate=false, narrow_supports_flag=false, provisional->stable promote candidate) rests on it.",
+        "recommended_action": "Governance: pause the MECH-229 promotion; reconsider the ceiling-lifted reclassification; treat 514o supports as resting on a non-isolating criterion (candidate for evidence_direction superseded/non_contributory) pending V3-EXQ-514q."
+      },
+      "learning_extracted": [
+        "Criterion-isolation rule: a raw 'labels differ' fraction over N categories is confounded by the (N-1)/N baseline mismatch; the PASS bar must sit above where the matched negative control lands, or the within-eval control-difference must itself be load-bearing.",
+        "The within-eval drive-dependence control (WL_drive - WL_nodrive) must be load-bearing for MECH-229, not merely reported.",
+        "A PASS on a non-isolating criterion is as untrustworthy as the FAIL; the 514o supports + the promotion built on it must be re-examined, not just the 514p FAIL."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "third autopsy on the MECH-229 / 514 lineage (514l ceiling, 514m vacuous-channels, 514p non-isolating-criterion); each a DIFFERENT non-contributory mode, not three structurally-distinct refutations",
+    "is_independent_bugs": true,
+    "structural_property": "MECH-229 has never had a mechanism-isolating fair test; 514l/514m could not express the claim, 514p could but the criterion does not isolate the drive-coupled content -- measurement-maturity debt, not claim-granularity debt",
+    "readings": ["measurement_test_design_defect"],
+    "claim_synthesis_trigger": "fired but NOT routed; re-evaluate if the corrected 514q retest also fails to discriminate on a fair test"
+  }
+}
