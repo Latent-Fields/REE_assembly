@@ -169,3 +169,6 @@ One line per hourly tick. ASCII only.
 2026-06-14T22:51:44Z skip: generator failed (see ERROR above)
 2026-06-14T23:55:31Z skip IGW-20260614-202: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-15T00:55:37Z SPAWN IGW-20260615-202 skill=/queue-experiment prio=40 uuid=0dc5d5f6-17a9-4b77-b89c-b36313b489fb pid=26727 worktree=igw-202-proposal-exp-0187-mech-271
+2026-06-15T01:56:58Z auto-defer IGW-20260615-202 hash=c2afe6f28cfa for 48h (reaped -> completed_resumable)
+2026-06-15T01:56:58Z reaped TASK_CLAIMS igw-auto-igw-202-proposal-exp-0187-mech-271-20260615T005545Z (ledger IGW-20260615-202 -> completed_resumable)
+2026-06-15T01:56:52Z skip IGW-20260615-199: no fresh runner heartbeat (experiment-lane item would just sit in queue)
