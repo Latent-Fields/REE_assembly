@@ -1,0 +1,67 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_685_arm_reuse_automated_hit_demo",
+  "run_id": "v3_exq_685_arm_reuse_automated_hit_demo_v3exq685_20260615T095533Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-15T09:55:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "criteria_non_degenerate": {
+      "automated_index_hit_fired": true,
+      "cross_driver_mode_isolation": true,
+      "flip_refused": true,
+      "provenance_stamped": true
+    },
+    "label": "arm_reuse_automated_index_hit_demonstrated",
+    "preconditions": [
+      {
+        "description": "the minted OFF cell is reuse_eligible (complete RNG reset, schema arm_fp/v1)",
+        "measured": 1,
+        "met": true,
+        "name": "mint_cell_reuse_eligible",
+        "threshold": 1
+      },
+      {
+        "description": "the real indexer registered the False-mode mint fingerprint as a reusable source",
+        "measured": 1,
+        "met": true,
+        "name": "false_mode_source_in_index",
+        "threshold": 1
+      }
+    ]
+  }
+}
