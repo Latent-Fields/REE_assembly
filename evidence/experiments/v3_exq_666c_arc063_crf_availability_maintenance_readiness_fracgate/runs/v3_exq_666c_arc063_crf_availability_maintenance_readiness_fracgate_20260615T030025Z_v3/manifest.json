@@ -1,0 +1,106 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_666c_arc063_crf_availability_maintenance_readiness_fracgate",
+  "run_id": "v3_exq_666c_arc063_crf_availability_maintenance_readiness_fracgate_20260615T030025Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-15T03:00:25.865158Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "crf_availability_maintenance_isolated_on_frac_maintained",
+    "route": "PASS -> governance flips substrate_queue crf-availability-maintenance ready=True (maintenance isolated on the crf_frac_maintained fraction); queue the 654c GAP-B behavioural re-run (committed-class entropy falsifier) on the field-populated maintained substrate",
+    "preconditions": [
+      {
+        "name": "field_minted_ge2_all_cells",
+        "kind": "readiness",
+        "description": "every cell must mint >=2 rules so a below-gate reading is maintenance-insufficiency, not field-not-engaged. Below floor -> substrate_not_ready_requeue.",
+        "control": "all (arm x seed) cells driven over the 654b hazard env",
+        "measured": 9,
+        "threshold": 2,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "e2ctx_full_pool_differentiated_supra_floor_pre_gap",
+        "kind": "readiness",
+        "description": "the differentiated pool the maintenance is supposed to HOLD must first exist at end-of-training: crf_max_pairwise_rule_dist > floor on the FULL pool of the e2ctx arms, measured PRE-GAP (666c fix -- the differentiation SOURCE readiness, before the silence gap erodes ARM_1; 666b read this post-gap and ARM_1's by-design erosion starved it). Below floor (e2ctx did not differentiate at end-of-training) -> substrate_not_ready_requeue, NOT a maintenance verdict (same-statistic V3-EXQ-643 lesson).",
+        "control": "min crf_max_pairwise_rule_dist_pre_gap over ARM_1+ARM_2 cells (e2ctx differentiation source ON, SD-056-trained e2)",
+        "measured": 1.597837209701538,
+        "threshold": 0.1,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "arm2_maintained_pool_count_nondegenerate",
+        "kind": "readiness",
+        "description": "the load-bearing criterion gates on crf_frac_maintained (a COUNT-fraction = n_maintained / n_slots). Count-readiness for a count-fraction gate: the ARM_2 positive control must hold >=2 maintained-reactivatable rules post-gap, else the fraction the gate reads is degenerate -> substrate_not_ready_requeue.",
+        "control": "min crf_n_maintained_reactivatable over ARM_2 (maintenance-ON positive control) after the silence gap",
+        "measured": 9,
+        "threshold": 2,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "arm2_maintained_pool_differentiated_nondegenerate",
+        "kind": "readiness",
+        "description": "a high crf_frac_maintained must not be a vacuous count of undifferentiated clones: the COUNTED maintained subset on the ARM_2 positive control must itself be differentiated (crf_maintained_pairwise_dist > floor). Below floor -> substrate_not_ready_requeue (the fraction is degenerate).",
+        "control": "min crf_maintained_pairwise_dist over ARM_2 cells after the silence gap (the differentiation of the silently-held pool)",
+        "measured": 1.7010613679885864,
+        "threshold": 0.1,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "frac_maintained_gate_discriminates_vs_arm1_no_maintenance": true,
+      "arm2_maintained_pool_differentiated": true,
+      "e2ctx_full_pool_differentiated_pre_gap": true,
+      "field_minted_ge2_all_cells": true
+    },
+    "criteria": [
+      {
+        "name": "ARM_2_MAINTENANCE_clears_frac_maintained_gate",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "ARM_1_NO_MAINTENANCE_below_frac_maintained_ceiling",
+        "load_bearing": false,
+        "passed": true
+      }
+    ]
+  }
+}
