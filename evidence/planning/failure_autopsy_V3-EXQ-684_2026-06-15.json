@@ -1,0 +1,84 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T17:39:14Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_684_modulatory_conversion_readiness_20260615T164543Z_v3",
+      "queue_id": "V3-EXQ-684",
+      "claim_ids": [],
+      "failed_criterion": "readiness_precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_fork": "matched_noise_control_not_lifting",
+      "adjudication": "precondition_unmet",
+      "adjudication_verdict": "precondition_test_mis_designed",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim-free; ARC-065 GAP-A readiness, not weighted)",
+        "biological_reference": "n/a (measurement/test-design question, not a formal-import)",
+        "prerequisites": "present (route_range 0.187 3/3 + e2 pairwise_dist 0.060 3/3 clear)",
+        "implementation": "complete + functional (gain/contrast conversion amend works; STD_G2 converts)",
+        "environment": "adequate (569g stack)",
+        "measurement": "MIS-DESIGNED: matched-noise positive control injects proposer-temperature variance, washed out by the F-dominated committed argmax (88-89% E3 variance, V3-EXQ-571), so it can never lift committed entropy -> readiness gate structurally unsatisfiable",
+        "integration": "fine",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- test-design / measurement defect, not a formal-definition import",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "key_quantities": {
+        "matched_noise_lift_seeds_over_proposer": 0,
+        "arm_proposer_selected_entropy": 0.549141,
+        "arm_matched_noise_selected_entropy": 0.549141,
+        "arm_legacy_e2wf_selected_entropy": 0.774586,
+        "arm_std_g2_selected_entropy": 0.988649,
+        "arm_std_g2_route_range": 0.426777,
+        "arm_legacy_route_range": 0.187306,
+        "c_conversion_pass": true,
+        "winning_arm": "ARM_STD_G2",
+        "conversion_arm_pass_seed_count": {
+          "ARM_STD_G1": 1,
+          "ARM_STD_G2": 2,
+          "ARM_SHORTLIST": 0
+        },
+        "route_ready": true,
+        "pdist_ready": true,
+        "control_ready": false
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-684 (claim-free GAP-A modulatory-conversion-readiness sweep) FAIL/non_contributory: the load-bearing C_CONVERSION PASSED (ARM_STD_G2 gain=2 committed entropy 0.989 strict-above legacy 0.775 + noise 0.549, 2/3 seeds) but the readiness precondition matched_noise_control_verify_lifts_over_proposer FAILed (matched-noise entropy 0.549 byte-identical to proposer, 0/3). Confirmed failure_autopsy_V3-EXQ-684_2026-06-15: the matched-noise positive control is MIS-DESIGNED -- it raises proposer temperature, but the F-dominated committed argmax (88-89% E3 variance, V3-EXQ-571) washes out undirected proposer variance, so it can never lift committed entropy on this substrate (the conversion ceiling it is meant to baseline above). The route-range + e2-divergence preconditions both cleared 3/3, and the DIRECTED gain lever (STD_G2) DID convert -- so this is a test-design defect, NOT a substrate ceiling and NOT a conversion-ceiling-persists verdict. The self-route substrate_not_ready_requeue is correct to not-promote but mislabels the cause (V3-EXQ-642 pattern). Route: /queue-experiment V3-EXQ-684a with a committed-layer metric-can-move control (or matched-noise reinterpreted as a negative control + C_CONVERSION = beats-legacy on >=2/3), carrying ARM_STD_G2 (gain=2) forward as the leading conversion config; on PASS, queue V3-EXQ-569h. ARC-065 / MECH-341 / ARC-062 / MECH-309 / MECH-294 NOT weakened. No substrate_queue create/amend (the conversion amend is implemented and functional).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Test-design fix on the readiness positive-control (inject metric-can-move at the committed-selection layer / reinterpret matched-noise as a negative control), NOT a substrate gap. The gap-relative conversion amend (e3_selector gain/contrast + shortlist) is IMPLEMENTED and FUNCTIONAL -- ARM_STD_G2 converts. No substrate_queue write."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after": "V3-EXQ-684a",
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The matched-noise verify-lift positive control must be injected at the committed-selection layer (post-F), not the proposer -- a proposer-temperature control is washed out by the F-dominated argmax and can never serve as a metric-can-move proof on this substrate.",
+        "ARM_STD_G2 (gain=2, additive std basis) is the identified working conversion config: committed entropy 0.775->0.989 over legacy, route range 0.187->0.427, 2/3 seeds. Carry forward as the leading 684a->569h candidate.",
+        "STD_G2's lift over LEGACY (the routed-but-unconverted bar) is the non-vacuous conversion signal; the beats-noise comparison is the vacuous part (the noise control is broken).",
+        "ARM_SHORTLIST hurt (entropy 0.337 < proposer 0.549); the gain path, not shortlist-then-modulate, is the lever that converts here.",
+        "PROCESS recurrence: matched-noise-at-proposer has now under-lifted twice (569g + 684), same signature -- it is the wrong instrument for an F-dominated substrate; instrumentation defects, not falsifications, dominate the GAP-A frontier."
+      ],
+      "routing": "queue-experiment",
+      "routing_target": "V3-EXQ-684a",
+      "routing_spec": {
+        "carry_forward_config": "ARM_STD_G2 (modulatory_authority_normalize_basis=std, authority_gain=2.0)",
+        "fix_options": [
+          "(a) committed-layer metric-can-move control: matched-magnitude undirected variance injected post-F at the committed-selection layer (CAN lift if metric alive); keep matched-noise-at-proposer as a NEGATIVE control.",
+          "(b) beats-legacy bar: reinterpret matched-noise-at-proposer as a NEGATIVE control (should NOT lift); C_CONVERSION = directed-gain strict-above LEGACY on >=2/3 (the non-vacuous bar STD_G2 already clears)."
+        ],
+        "recommendation": "HYBRID: matched-noise-at-proposer as negative control (must NOT lift) + load-bearing bar beats-LEGACY on >=2/3 (option b, STD_G2 already clears -> likely immediate PASS) + committed-layer metric-can-move control (option a) as a non-vacuity guard. Final design is the /queue-experiment session's call (user deferred).",
+        "on_pass": "queue V3-EXQ-569h (GAP-A falsifier with in-arm route-range gate) using the winning conversion config"
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "recurrence_note": "5th+ autopsy on the GAP-A 569 lineage (569c/569e/569f-661-654a/569g/684). NOT granularity-debt (claim-free target; /claim-synthesis does not fire); 684 shows PROGRESS (the directed gain lever converts). Load-bearing recurrence is a PROCESS pattern: matched-noise-at-proposer under-lifted in BOTH 569g and 684 -- the proposer-temperature verify-lift control is structurally unsuitable for an F-dominated committed-selection substrate."
+}
