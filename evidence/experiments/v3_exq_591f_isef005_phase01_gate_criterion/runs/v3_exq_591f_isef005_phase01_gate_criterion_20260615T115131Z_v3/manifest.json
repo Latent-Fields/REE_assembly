@@ -1,0 +1,84 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_591f_isef005_phase01_gate_criterion",
+  "run_id": "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-15T11:51:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sustained_level_criterion_discriminates_crossing_count",
+    "preconditions": [
+      {
+        "name": "early_policy_produces_nontrivial_h_pos",
+        "description": "Early-policy agent must actually explore (max per-episode H_pos clears a movement floor) for the discrimination result to be a real verdict rather than a degenerate non-moving artifact. SAME LEVEL statistic the gate routes on (per-episode pos_entropy).",
+        "measured": 2.4849,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "max per-episode H_pos across all seeds (the agent-moves positive control)",
+        "met": true
+      },
+      {
+        "name": "genuine_explorers_present",
+        "description": "At least 2 seeds explore genuinely (h_pos_mean >= floor AND >= 2 threshold crossings), so the 'admits explorers' discrimination leg is non-vacuous. Below -> no explorer signal to discriminate against -> substrate_not_ready_requeue. SAME genuine-explorer LEVEL statistic the C_gate_discriminates candidates route on.",
+        "measured": 3,
+        "threshold": 2,
+        "direction": "lower",
+        "control": "count of genuine-explorer seeds (591c/591d: seeds 42-44)",
+        "met": true
+      },
+      {
+        "name": "false_advancer_present",
+        "description": "At least 1 seed is a false advancer (baseline single-episode SPIKE gate admitted a non-explorer), so the 'rejects false-advancer' leg is non-vacuous. Below -> the single-episode gate was NOT over-permissive on this seed draw (report; do NOT record a discrimination PASS). SAME false-advancer statistic the C_gate_discriminates candidates route on.",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "count of false-advancer seeds (591c/591d: seed 45)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_gate_discriminates": true
+    },
+    "criteria": [
+      {
+        "name": "C_gate_discriminates",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}

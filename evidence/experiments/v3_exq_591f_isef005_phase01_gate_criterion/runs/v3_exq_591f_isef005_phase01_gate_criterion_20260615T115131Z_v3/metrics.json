@@ -1,0 +1,28 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "n_genuine_explorers": 3,
+    "n_false_advancers": 1,
+    "genuine_explorer_seeds": [
+      42,
+      43,
+      44
+    ],
+    "false_advancer_seeds": [
+      45
+    ],
+    "per_criterion_discriminates": {
+      "ema_hold": false,
+      "window_mean": false,
+      "crossing_count": true,
+      "ema_level": false
+    },
+    "discriminating_criteria": [
+      "crossing_count"
+    ],
+    "any_discriminates": true,
+    "recommended_criterion": "crossing_count",
+    "max_h_pos": 2.4849,
+    "n_seeds_total": 5
+  }
+}
