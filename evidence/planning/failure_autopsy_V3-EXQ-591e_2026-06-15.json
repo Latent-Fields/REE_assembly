@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T16:10:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_591e_isef005_phase01_gate_criterion_20260615T095228Z_v3",
+      "queue_id": "V3-EXQ-591e",
+      "supersedes": "V3-EXQ-591d",
+      "claim_ids": [],
+      "bears_on": "ARC-046 / infant_substrate:GAP-14 prereq (c-2)",
+      "failed_criterion": "negative_control",
+      "failed_leg": "rejects_every_false_advancer (seed-45 admitted @ ep137); admits-every-genuine-explorer leg now passes",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not_applicable_claim_free (ARC-046 architectural_commitment + substrate_ceiling; unweighted, not movable)",
+        "biological_reference": "clear -- developmental competence gates advance on sustained competence with hysteresis; dwell/long-integration is the faithful form",
+        "prerequisites": "present -- diversity stack armed at landed defaults; 3 genuine explorers + 1 false-advancer present",
+        "implementation": "partial -- carries the SYMBOL (smoothed level) but the WRONG statistic family (causal short-memory EMA latch vs retrospective full-memory oracle)",
+        "environment": "adequate -- 5-seed probe produced both genuine explorers and a false-advancer",
+        "measurement": "under-instrumented/misleading -- EMA latches on a transient the oracle averages away; full per-episode traces computed (script L272) then DISCARDED so no candidate can be verified offline",
+        "integration": "not_applicable -- offline replay over one substrate",
+        "scale": "adequate -- full 160-ep budget; seed-44 (mean 0.84) proves a discriminating regime exists"
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental Phase-0 exit gate (early motor-babbling competence threshold; BG/dopaminergic developmental-milestone gating)",
+        "dependencies": ["sustained competence over a window", "hysteresis / dwell-time before stage advance"],
+        "is_formal_import": false,
+        "divergence": "biology advances on sustained competence with hysteresis (dwell / long-integration), NOT a recency-weighted spike-sensitive EMA -- the biology sharpens the fix rather than diverging from it",
+        "lit_status": "present (no lit-pull required; biology already aligns with the sustained-competence form)"
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-591e (claim-free ARC-046 / infant_substrate:GAP-14 c-2 Phase 0->1 gate-CRITERION diagnostic; diversity stack armed at landed defaults; scheduler not mutated; supersedes 591d). FAIL, non_contributory, genuine non-degenerate (all 3 preconditions met, criteria_non_degenerate true). The 591d-prescribed EMA-of-LEVEL@0.2 candidate does NOT discriminate: it ADMITS the seed-45 false-advancer (ema_level advanced @ ep137) while correctly admitting genuine explorers 42/43/44 -- failing in the OPPOSITE direction from 591d (over-permissive, not over-conservative). Root cause: a causal one-way latching gate keyed on a short-memory EMA (alpha=0.2) latches on seed-45's late transient burst (h_pos_max 1.45, 2 supra-threshold episodes) over the 0.20 floor, whereas the discrimination oracle is the retrospective full-run mean (seed-45 global mean 0.14 < 0.20). The mismatch is the statistic FAMILY (causal short-memory latch vs retrospective full-memory oracle), not the floor value -- no floor fixes it. Measurement / test-design gap, NOT a substrate ceiling and NOT a claim falsification (claim-free; ARC-046 NOT weakened). Pre-registered next: V3-EXQ-591f persists the full per-episode traces and runs an OFFLINE multi-candidate criterion sweep (cumulative-mean-since-ep_min / large-window mean / EMA+dwell) verifiable before any candidate drives the gate (supersedes 591e for the gate-criterion question).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Test-design fix on the offline criterion (statistic family), not a substrate gap. Substrate is adequate -- seed-44 proves a discriminating regime exists. No substrate_queue write."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A causal one-way-latching gate keyed on a short-memory EMA (alpha=0.2) is gamed by an isolated transient: one ~1.45 episode latches the gate over the 0.20 floor regardless of the long-run mean (seed-45 admitted @ ep137 despite global mean 0.14). The discrimination oracle is the retrospective full-run mean -- a full-memory offline statistic. The mismatch is the statistic family, not the floor; no floor value fixes it.",
+        "The failure flipped sign from 591d (over-conservative -> over-permissive), confirming the genuine-vs-false-advancer boundary is real and narrow: 42/43/44 (means 0.32-0.84) vs 45 (0.14). The right criterion is a long-integration / dwell-gated statistic.",
+        "Biology sharpens the fix: developmental competence gates advance on sustained competence with hysteresis -- a dwell-time / cumulative-mean form is the faithful translation, not a recency-weighted spike-sensitive EMA.",
+        "Stop predicting causal-gate behaviour from summary stats. 591e computes the full per-episode h_pos_sequence (script L272) but discards it. 591f must persist the traces and select the criterion by an offline multi-candidate sweep -- converging in one run instead of one guess per fleet run."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "recurrence_checks": {
+    "claim_synthesis_fires": false,
+    "claim_synthesis_rationale": "2nd autopsy on the gate-criterion bears_on target (591d, 591e) with opposite failure signatures -- the granularity-debt SHAPE -- but the target is claim-free (ARC-046 is architectural_commitment + substrate_ceiling, promote/demote suppressed, unweighted). No coarse claim to decompose into testable children; the recurrence is criterion-design iteration on an offline diagnostic, not claim granularity debt.",
+    "process_recurrence": "Two consecutive single-candidate criterion guesses (591d, 591e), both derived by predicting a causal latching gate's behaviour from global summary statistics, both wrong, each costing a full fleet run because the per-episode traces are discarded. Fix is process-level and is what 591f encodes: persist traces + offline multi-candidate sweep."
+  },
+  "next_experiment": {
+    "queue_id_suggested": "V3-EXQ-591f",
+    "supersedes": "V3-EXQ-591e",
+    "scientific_question_unchanged": true,
+    "design": "Persist the full per-episode h_pos_sequence per seed in the manifest, then sweep multiple causal criterion families OFFLINE against the recorded traces, all gated by ep_min=100 and evaluated as latching gates exactly as production would run: (1) cumulative-mean-since-ep_min @ ~0.20; (2) large-window rolling mean @ ~0.20; (3) EMA + dwell/hysteresis (hold >= floor for K consecutive episodes -- the biologically-faithful sustained-competence form); optionally a small-alpha EMA continuity check. Keep the same non-vacuity preconditions and the same two-leg C_gate_discriminates acceptance. PASS -> winning criterion routes to /implement-substrate on infant_curriculum.py:_try_phase_0_to_1. If NO candidate discriminates -> genuine oracle/substrate pressure (re-open the oracle definition), not another re-parameterization.",
+    "user_confirmed_2026_06_15": "Persist traces + offline sweep (chosen over single cumulative-mean candidate and over persist-traces-only); diagnosis accepted (causal-latch vs retrospective-oracle, test-design fix)."
+  }
+}
