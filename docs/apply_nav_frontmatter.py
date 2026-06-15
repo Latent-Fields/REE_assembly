@@ -47,14 +47,15 @@ TOP_LEVEL = {
     "vignettes.md":                              {"title": "Vignettes",             "nav_order": 9},
     "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 10},
     "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 11},
-    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 13},
+    "visualizations.md":                          {"title": "Visualizations",        "nav_order": 12},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 14},
 }
 
 # ---------------------------------------------------------------------------
 # 2. Governance section (top-level parent + children)
 # ---------------------------------------------------------------------------
 
-GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 12, "has_children": True}
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 13, "has_children": True}
 GOVERNANCE_CHILDREN = {
     "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
     "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},

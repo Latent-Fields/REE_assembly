@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Fishtank visualization preview">
+  <defs>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#13315c"/>
+      <stop offset="1" stop-color="#0a1a33"/>
+    </linearGradient>
+    <radialGradient id="pellet" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#ffd27f"/>
+      <stop offset="1" stop-color="#f08a24"/>
+    </radialGradient>
+    <linearGradient id="jelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c4a7f0"/>
+      <stop offset="1" stop-color="#8b6fc0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- water -->
+  <rect x="0" y="0" width="480" height="300" fill="url(#water)"/>
+  <!-- caustic light shafts -->
+  <g opacity="0.10" fill="#bcd4ff">
+    <polygon points="60,0 110,0 80,300 40,300"/>
+    <polygon points="200,0 235,0 215,300 180,300"/>
+    <polygon points="360,0 400,0 380,300 345,300"/>
+  </g>
+  <!-- faint grid -->
+  <g opacity="0.06" stroke="#9fc0ff" stroke-width="1">
+    <path d="M0 60H480M0 120H480M0 180H480M0 240H480"/>
+    <path d="M80 0V300M160 0V300M240 0V300M320 0V300M400 0V300"/>
+  </g>
+
+  <!-- sand -->
+  <rect x="0" y="272" width="480" height="28" fill="#c79a4e"/>
+  <g fill="#5a4a2a" opacity="0.6">
+    <ellipse cx="70" cy="288" rx="9" ry="3"/>
+    <ellipse cx="190" cy="290" rx="11" ry="3"/>
+    <ellipse cx="330" cy="288" rx="8" ry="3"/>
+  </g>
+  <!-- seaweed -->
+  <g stroke="#3aa564" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.85">
+    <path d="M40 274 q-8 -22 4 -40 q10 -16 -2 -34"/>
+    <path d="M438 274 q9 -20 -3 -40 q-9 -16 3 -32"/>
+  </g>
+
+  <!-- pellets -->
+  <circle cx="150" cy="90" r="8" fill="url(#pellet)"/>
+  <circle cx="300" cy="150" r="8" fill="url(#pellet)"/>
+  <circle cx="225" cy="210" r="8" fill="url(#pellet)"/>
+
+  <!-- jellyfish hazards -->
+  <g>
+    <path d="M188 110 a22 18 0 0 1 44 0 z" fill="url(#jelly)"/>
+    <g stroke="#a98fdc" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M196 126 q-3 14 2 24"/><path d="M210 128 q0 14 0 24"/><path d="M224 126 q3 14 -2 24"/>
+    </g>
+  </g>
+  <g>
+    <path d="M338 168 a20 16 0 0 1 40 0 z" fill="url(#jelly)"/>
+    <g stroke="#a98fdc" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M346 182 q-2 12 2 20"/><path d="M358 184 q0 12 0 20"/><path d="M370 182 q2 12 -2 20"/>
+    </g>
+  </g>
+
+  <!-- agent fish -->
+  <g transform="translate(120,225)">
+    <ellipse cx="0" cy="0" rx="26" ry="14" fill="#e0473a"/>
+    <polygon points="-24,0 -42,-13 -42,13" fill="#c5392e"/>
+    <polygon points="2,-13 14,-26 22,-12" fill="#c5392e"/>
+    <circle cx="16" cy="-3" r="3.4" fill="#fff"/>
+    <circle cx="17" cy="-3" r="1.7" fill="#0a1a33"/>
+  </g>
+</svg>

@@ -104,6 +104,9 @@ echo "--- Step 6/7: Rebuilding contributor ledger ---"
 echo "--- Step 7/7: Refreshing governance_agenda.v1.json timestamps ---"
 "$PYTHON" scripts/refresh_governance_agenda_timestamp.py
 
+echo "--- Step 8: Rebuilding static site visualizations (brain map snapshot + fishtank) ---"
+"$PYTHON" scripts/build_site_visualizations.py
+
 echo ""
 echo "Done. Check evidence/experiments/pending_review.md for experiments awaiting review."
 echo "After editing claims.yaml, re-run step 4: python scripts/build_claims_json.py"
