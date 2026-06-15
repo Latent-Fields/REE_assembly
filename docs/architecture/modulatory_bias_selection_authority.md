@@ -208,11 +208,64 @@ OFF vs ARM_1 routing ON, both authority ON + e2_world_forward + SD-056 online). 
 per-claim behavioural retests of ARC-065 / MECH-294 / ARC-062 / MECH-309 / MECH-341.
 Those claims stay candidate / v3_pending / pending_retest_after_substrate; not weakened.
 
+## CONVERSION amend (gain/contrast + shortlist-then-modulate, 569g/682, 2026-06-15)
+
+The route-range amend (above) solved **reach**: V3-EXQ-682 (`no_collapse_reproduced`,
+2026-06-15) confirmed ARM_1 applies in-arm `route_range ~0.20` at the live select tick
+with **all four collapse causes ruled out** (live summary re-collapse / project_channel_range
+/ wiring / applied-zero), including on seed 43 (the seed where 569g's *conversion* failed).
+So the residual gap is **conversion**, exactly as `failure_autopsy_V3-EXQ-569g_2026-06-14`
+isolated: the gap-relative **additive** authority at gain 0.5 (`modrange = 0.5*raw_score_range`)
+is subdominant to the **F-dominated primary** (88-89% of E3 variance, V3-EXQ-571), so the
+routed range flips only near-tie **outliers**, not near-decisive winners (569g 1/3 seeds
+strict-above a temperature-matched control; 662 `TV>0` but no entropy lift). Upstream-magnitude
+sweeps (667/640a byte-identical) cannot fix this -- the authority **range-renormalizes its
+input** -- so only authority **gain** and arbitration **structure** are live levers.
+
+Two no-op-default conversion levers (`e3_selector.py` authority block + selection site):
+
+**(a) gain/contrast normalization** -- `E3Config.modulatory_authority_normalize_basis`:
+- `"range"` (default, bit-identical legacy): `target = gain * raw_score_range`, scaled by the
+  modulatory **range** -- outlier-sensitive, near-tie-only.
+- `"std"`: `target = gain * raw_score_std`, scaled by the modulatory **std** -- robust to
+  outliers, anchoring authority to the *typical* primary spread so the structured channel
+  competes against **near-decisive** candidates. `modulatory_authority_gain` stays sweepable.
+  *Safety:* additive gain `>= 1.0` breaks the safety bound (modulatory can override a
+  clearly-harmful rejection); keep gain `< 1.0` on the additive path for the shipped config,
+  or use lever (b).
+
+**(b) shortlist-then-modulate** -- `use_modulatory_shortlist_then_modulate` +
+`modulatory_shortlist_margin` (0.25): F (raw primary scores) filters to a near-tie set
+(candidates within `margin * raw_score_range` of the best raw score), then the modulatory
+channel (`_modulatory_accum`) **arbitrates the winner within that set** (argmin when committed,
+softmax-sampled when uncommitted). The structured channel is load-bearing **without
+out-magnitude-ing F**, and **safety is preserved at any internal strength** (clearly-harmful
+candidates outside the shortlist are never selectable). Takes precedence over the
+additive-authority rescale + argmin/stratified selection when enabled.
+
+**Diagnostics** on `last_score_diagnostics`: `modulatory_authority_normalize_basis`,
+`modulatory_shortlist_active`, `modulatory_shortlist_size`.
+
+**Contracts** (`tests/contracts/test_e3_score_bias_candidate_support.py`): conversion-amend
+OFF bit-identical; std-basis distinct scale_factor; shortlist restricts to the F near-tie set
+and preserves safety (worst-primary never selected even with overwhelming pull); shortlist
+arbitrates by the modulatory channel within the set. Full suite 1036 contracts + 7 preflight
+PASS with both levers OFF.
+
+**Validation:** V3-EXQ-684 claim-free readiness sweep (gain x {range,std} x shortlist vs a
+**verified-lifting** matched-noise control; committed-action entropy must MOVE with channel
+range AND beat the control, not merely reach the accumulator). On PASS, **V3-EXQ-569h**
+(the GAP-A falsifier with an in-arm applied-route-range non-vacuity gate) is queued with the
+winning conversion config. ARC-065 stays provisional / non_contributory /
+pending_retest_after_substrate; not weakened.
+
 ## See also
 
 - `ree-v3/ree_core/predictors/e3_selector.py` (additive authority + V3-EXQ-643a explicit
-  accumulator + route-range `project_channel_range`), `e3_score_diversity.py` (stratified
-  normalization), `ree_core/utils/config.py` (flags).
+  accumulator + route-range `project_channel_range` + conversion gain/contrast + shortlist),
+  `e3_score_diversity.py` (stratified normalization), `ree_core/utils/config.py` (flags).
+- 569g autopsy (the corrected conversion-ceiling diagnosis routing this amend):
+  `evidence/planning/failure_autopsy_V3-EXQ-569g_2026-06-14.{md,json}`.
 - Cluster autopsy: `evidence/planning/failure_autopsy_604a-624a-630_2026-06-03.{md,json}`.
 - 643 autopsy (root cause corrected by the 643a fix above):
   `evidence/planning/failure_autopsy_V3-EXQ-643_2026-06-06.{md,json}`.
