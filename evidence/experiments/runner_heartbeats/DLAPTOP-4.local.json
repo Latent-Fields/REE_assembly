@@ -1,48 +1,31 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-15T05:05:34Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 4,
-  "queue_id_at_head": "V3-EXQ-514p",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-665",
-      "result": "PASS",
-      "completed_at": "2026-06-10T23:30:56.846187+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514m",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:11:07.219449+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485e",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:52:25.324359+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-668",
-      "result": "PASS",
-      "completed_at": "2026-06-11T13:53:10.433581+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-682",
-      "result": "PASS",
-      "completed_at": "2026-06-15T03:20:44.390213+00:00"
-    }
+  "last_tick_utc": "2026-06-15T05:31:32Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-684",
+  "current_exq_started_utc": "2026-06-15T05:22:30.485409+00:00",
+  "current_title": "modulatory-bias-selection-authority CONVERSION readiness: does the routed channel range MOVE the committed argmax under gain/contrast (std basis) + shortlist-then-modulate, beating a verified-lifting matched-noise control? (behavioral_diversity_isolation:GAP-A; gates V3-EXQ-569h)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_PROPOSER",
+    "runs_done": 0,
+    "runs_total": 18,
+    "episodes_done": 0,
+    "episodes_total": 80,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 542,
+  "seconds_remaining": 19200,
+  "recent_lines": [
+    "Seed 42 Condition ARM_PROPOSER"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 82273,
-  "runner_version": "r3193 188e47b 2026-06-15 (running r3187 7225065)",
+  "runner_version": "r3195 4d6e49d 2026-06-15 (running r3187 7225065)",
   "gpu": {
     "available": false
   },
