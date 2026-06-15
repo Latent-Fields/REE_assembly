@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-15T06:01:40Z",
+  "last_tick_utc": "2026-06-15T06:31:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-591e",
   "current_exq_started_utc": "2026-06-15T04:45:40.517996+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / gate",
     "runs_done": 1,
     "runs_total": 5,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 160,
-    "overall_pct": 20.0
+    "overall_pct": 32.5
   },
-  "seconds_elapsed": 4558,
-  "seconds_remaining": 17397,
+  "seconds_elapsed": 6368,
+  "seconds_remaining": 14679,
   "recent_lines": [
     "V3-EXQ-591e gate-criterion: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 spike_threshold=0.9940 ema_level_floor=0.2000 ep_min=100 EMA_alpha=0.2 [diversity stack ON] [supersedes V3-EXQ-591d]",
     "Seed 42 Condition gate-criterion",
@@ -26,7 +26,9 @@
     "[train] gate-criterion seed=42 ep 150/160 phase=1 h_pos=1.100",
     "[train] gate-criterion seed=42 ep 160/160 phase=1 h_pos=0.098",
     "verdict: PASS",
-    "Seed 43 Condition gate-criterion"
+    "Seed 43 Condition gate-criterion",
+    "[train] gate-criterion seed=43 ep 50/160 phase=0 h_pos=0.641",
+    "[train] gate-criterion seed=43 ep 100/160 phase=0 h_pos=0.593"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
