@@ -1,1 +1,234 @@
-{"run_id": "v3_exq_514p_sd049_phase2_mech229_object_bound_wanting_liking_20260615T085728Z_v3", "experiment_type": "v3_exq_514p_sd049_phase2_mech229_object_bound_wanting_liking", "queue_id": "V3-EXQ-514p", "claim_ids": ["MECH-229"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260615T085728Z", "outcome": "FAIL", "evidence_direction": "weakens", "non_degenerate": true, "degeneracy_reason": "", "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (FULL 603n curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; harm-pathway training ON; ready=true 2026-06-11) + SD-049 Phase-2 hybrid encoder (SD-015 z_resource) + SD-057 object-bound incentive-salience layer (use_incentive_token_bank; MECH-344/345/346).", "condition": "CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL", "predecessor": "V3-EXQ-514o (confirmatory replication, NOT supersede)", "method_note": "MECH-229 wanting!=liking measured as the SD-057 OBJECT-BOUND wanting-target (MECH-346 most-wanted z_goal pointer = IncentiveTokenBank.most_wanted k*) != liking-target (last-consumed type) dissociation. THE 681-C4 FIX: the liking target AND the L2-bind resource_type are sourced from info['sd049_consumed_type_tag_this_tick'] returned by env.step() (the authoritative consumption signal), NOT _contacted_resource_type(obs_dict), which at eval read-time reads the post-consumption-cleared cell and returns None (the 514n n_scored_wl_steps=0 cause; V3-EXQ-681 C4 established consumed_tag_in_obs_dict=false / consumed_tag_in_info=true). At each consumption event the substrate's own L2 bind + L4 seed (agent.update_z_goal(resource_type=...)) runs, then the most-wanted pointer (wanting target) is compared to the consumed type (liking target). z_goal forms ECOLOGICALLY via the full 603n curriculum.", "readiness_note": "Retains the same-statistic WL non-vacuity readiness gate: leg 1 positive-control cross-target separation (instrument-can-fire) + leg 2 in-run bank populated >= 2 distinct tokens at differing per-axis drives (channels-written-this-run). Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false MECH-229 weakens. The positive control reads the SAME cross-target-inequality statistic C_WL routes on (V3-EXQ-643 lesson).", "contact_guard_note": "The full 603n lever stack is ported VERBATIM (_make_scaffold_cfg == 603n). The contact guard (z_goal@contact > 0.4) is substrate-marginal: 603n itself cleared G3 only 2/3 (seed44 0.374) and 514n got seed43 0.391; the ecological magnitude sits at ~0.4 +- noise AND env layout is default_rng(None) (OS-entropy), so a >= 2/3 pass is not robustly reproducible by any already-available lever. A contact_guard_unmet self-route is a SUBSTRATE-CEILING finding on the foraging-competence axis (route /implement-substrate), NOT a MECH-229 weakens.", "claim_tag_note": "claim_ids=[MECH-229] ONLY. MECH-230 is NOT re-tagged: its structured-z_goal support is already recorded by 514m and this run does not test that claim.", "pre_registered_thresholds": {"p2_zgoal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666, "wl_fraction": 0.6, "pc_separation_floor": 1.0, "min_scored_steps": 5, "drive_spread_floor": 0.001}, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "hazard_stage_budget": 40, "p1_budget": 50, "p2_budget": 15, "behav_eval_episodes": 15, "train_steps": 200, "n_resource_types": 3, "use_incentive_token_bank": true, "scaffold_train_harm_pathway": true, "config_basis": "V3-EXQ-603n (full lever stack ported verbatim; the substrate-readiness run that flipped scaffolded_sd054_onboarding ready=true)"}, "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "acceptance": {"contact_non_vacuity_met": true, "guard_fraction": 1.0, "n_guard_passing_seeds": 3, "wl_readiness_met": true, "pc_separation_frac": 1.0, "run_bank_populated_frac": 1.0, "C_WL_object_bound_wanting_neq_liking": false, "mean_object_bound_wl_dissoc_fraction": 0.5648148148148148, "mean_wl_nodrive_dissoc_fraction": 0.49074074074074076, "wl_drive_minus_nodrive": 0.07407407407407401, "n_scored_wl_steps_total": 27, "mean_goal_resource_r": 0.9336981874978969, "overall_pass": false, "per_seed_guard_pass": [true, true, true], "route_reason": "c_wl_unmet_genuine_weakens_run_offarm_overshoot"}, "interpretation": {"label": "residual_wl_open_falsifier", "readiness_route": "residual_wl_open_falsifier", "preconditions": [{"name": "wl_instrument_positive_control_separates", "description": "leg 1: a constructed 2-token IncentiveTokenBank (this run's GoalConfig) yields a drive-favored most-wanted that DIFFERS from a designated last-consumed type -- the SAME cross-target inequality statistic C_WL routes on, on a positive control.", "control": "2 deterministic probes: drive-favored most-wanted vs designated last-consumed (instrument-can-fire).", "measured": 1.0, "threshold": 1.0, "met": true}, {"name": "run_bank_populated_two_tokens_differing_drive", "description": "leg 2: per guard-passing seed the behavioural run's bank reached >= 2 distinct object tokens AND scored >= MIN_SCORED_STEPS consumption events (info consumed tag > 0) with both targets defined AND per-axis-drive spread > floor (channels-written-this-run -- the exact 514n n_scored=0 gap).", "control": "fraction of guard-passing seeds with a populated, drive-differentiated bank at consumption events.", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}], "criteria": [{"name": "C_WL_object_bound_wanting_neq_liking", "load_bearing": true, "passed": false}], "criteria_non_degenerate": {"C_WL": true}, "contact_guard": {"definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). A seed failing the guard is excluded from DV aggregation; < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens. 603n itself cleared G3 only 2/3; the leg is substrate-marginal (~0.4 +- noise, env layout default_rng(None)).", "min_fraction": 0.6666666666666666, "p2_zgoal_gate": 0.4, "contact_gate": 0.0}, "wl_readiness_gate": {"definition": "SAME-STATISTIC non-vacuity for the WL DV (the 514m/514n gap fix): leg 1 positive-control cross-target separation >= 1.0 AND leg 2 in-run bank populated >= 2 distinct tokens at differing per-axis drives on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false MECH-229 weakens.", "pc_separation_floor": 1.0, "min_scored_steps": 5, "drive_spread_floor": 0.001, "min_fraction": 0.6666666666666666}, "drive_dependence_control": {"definition": "WL_nodrive (drive-uniform most-wanted, per_axis_drive=None) is the within-eval drive-dependence control: a genuine MECH-229 drive-coupled dissociation has WL_drive >> WL_nodrive. Reported as the diagnostic wl_drive_minus_nodrive; not a load-bearing gate this run.", "mean_wl_drive": 0.5648148148148148, "mean_wl_nodrive": 0.49074074074074076}, "falsifier_offramp": {"definition": "Pre-registered Woo/Spelke off-ramp (substrate_queue SD-049-PHASE-2 row-6). If (a)+(b) met but (c) FAILs (genuine weakens), the disambiguating follow-on is an OFF/control arm (SD-049 identity / bank disabled -> wanting structurally == liking -> WL ~ 0) AND an OVERSHOOT arm (n_resource_types=5). JOINT failure across the SD-049-on AND overshoot arms routes MECH-229 -> substrate_conditional with a V4-1 multi-agent-ecology dependency (clean exit). This run is the SD-049-on arm; off/control + overshoot are queued only on a genuine weakens here.", "triggers_on": "route_reason == c_wl_unmet_genuine_weakens_run_offarm_overshoot", "joint_failure_routes_to": "substrate_conditional (MECH-229, dependency V4-1)"}}, "per_seed": [{"seed": 45, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.46462979912757874, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.2827461607949413, "p2_z_goal_norm_at_contact_peak": 0.47772687673568726, "p2_num_contact_events": 144, "object_bound_wl_dissoc_fraction": 0.75, "wl_nodrive_dissoc_fraction": 0.75, "n_scored_wl_steps": 8, "n_wl_dissoc_steps": 6, "n_wl_nodrive_dissoc_steps": 6, "distinct_tokens_max": 3, "drive_spread_max": 0.006999999342951924, "run_bank_populated": true, "goal_resource_r": 0.9614231988128069, "n_cosine_samples": 2214, "behav_contact_rate": 0.0036133694670280035, "pc_separation_frac": 1.0}, {"seed": 46, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.4837883412837982, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.2779605263157895, "p2_z_goal_norm_at_contact_peak": 0.5234577059745789, "p2_num_contact_events": 107, "object_bound_wl_dissoc_fraction": 0.4444444444444444, "wl_nodrive_dissoc_fraction": 0.2222222222222222, "n_scored_wl_steps": 9, "n_wl_dissoc_steps": 4, "n_wl_nodrive_dissoc_steps": 2, "distinct_tokens_max": 3, "drive_spread_max": 0.008499999588821083, "run_bank_populated": true, "goal_resource_r": 0.9502838924493562, "n_cosine_samples": 2217, "behav_contact_rate": 0.0040595399188092015, "pc_separation_frac": 1.0}, {"seed": 47, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.39604464173316956, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.17122719734660033, "p2_z_goal_norm_at_contact_peak": 0.4437507688999176, "p2_num_contact_events": 90, "object_bound_wl_dissoc_fraction": 0.5, "wl_nodrive_dissoc_fraction": 0.5, "n_scored_wl_steps": 10, "n_wl_dissoc_steps": 5, "n_wl_nodrive_dissoc_steps": 5, "distinct_tokens_max": 3, "drive_spread_max": 0.0049999995389953256, "run_bank_populated": true, "goal_resource_r": 0.8893874712315277, "n_cosine_samples": 2216, "behav_contact_rate": 0.004512635379061372, "pc_separation_frac": 1.0}], "machine": "ree-cloud-4"}
+{
+  "run_id": "v3_exq_514p_sd049_phase2_mech229_object_bound_wanting_liking_20260615T085728Z_v3",
+  "experiment_type": "v3_exq_514p_sd049_phase2_mech229_object_bound_wanting_liking",
+  "queue_id": "V3-EXQ-514p",
+  "claim_ids": [
+    "MECH-229"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260615T085728Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "non_degenerate": true,
+  "degeneracy_reason": "",
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "substrate": "scaffolded_sd054_onboarding (FULL 603n curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; harm-pathway training ON; ready=true 2026-06-11) + SD-049 Phase-2 hybrid encoder (SD-015 z_resource) + SD-057 object-bound incentive-salience layer (use_incentive_token_bank; MECH-344/345/346).",
+  "condition": "CURRICULUM_BUILT_SD049_PHASE2_OBJECT_BOUND_WL",
+  "predecessor": "V3-EXQ-514o (confirmatory replication, NOT supersede)",
+  "method_note": "MECH-229 wanting!=liking measured as the SD-057 OBJECT-BOUND wanting-target (MECH-346 most-wanted z_goal pointer = IncentiveTokenBank.most_wanted k*) != liking-target (last-consumed type) dissociation. THE 681-C4 FIX: the liking target AND the L2-bind resource_type are sourced from info['sd049_consumed_type_tag_this_tick'] returned by env.step() (the authoritative consumption signal), NOT _contacted_resource_type(obs_dict), which at eval read-time reads the post-consumption-cleared cell and returns None (the 514n n_scored_wl_steps=0 cause; V3-EXQ-681 C4 established consumed_tag_in_obs_dict=false / consumed_tag_in_info=true). At each consumption event the substrate's own L2 bind + L4 seed (agent.update_z_goal(resource_type=...)) runs, then the most-wanted pointer (wanting target) is compared to the consumed type (liking target). z_goal forms ECOLOGICALLY via the full 603n curriculum.",
+  "readiness_note": "Retains the same-statistic WL non-vacuity readiness gate: leg 1 positive-control cross-target separation (instrument-can-fire) + leg 2 in-run bank populated >= 2 distinct tokens at differing per-axis drives (channels-written-this-run). Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false MECH-229 weakens. The positive control reads the SAME cross-target-inequality statistic C_WL routes on (V3-EXQ-643 lesson).",
+  "contact_guard_note": "The full 603n lever stack is ported VERBATIM (_make_scaffold_cfg == 603n). The contact guard (z_goal@contact > 0.4) is substrate-marginal: 603n itself cleared G3 only 2/3 (seed44 0.374) and 514n got seed43 0.391; the ecological magnitude sits at ~0.4 +- noise AND env layout is default_rng(None) (OS-entropy), so a >= 2/3 pass is not robustly reproducible by any already-available lever. A contact_guard_unmet self-route is a SUBSTRATE-CEILING finding on the foraging-competence axis (route /implement-substrate), NOT a MECH-229 weakens.",
+  "claim_tag_note": "claim_ids=[MECH-229] ONLY. MECH-230 is NOT re-tagged: its structured-z_goal support is already recorded by 514m and this run does not test that claim.",
+  "pre_registered_thresholds": {
+    "p2_zgoal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666,
+    "wl_fraction": 0.6,
+    "pc_separation_floor": 1.0,
+    "min_scored_steps": 5,
+    "drive_spread_floor": 0.001
+  },
+  "scaffold_curriculum": {
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "hazard_stage_budget": 40,
+    "p1_budget": 50,
+    "p2_budget": 15,
+    "behav_eval_episodes": 15,
+    "train_steps": 200,
+    "n_resource_types": 3,
+    "use_incentive_token_bank": true,
+    "scaffold_train_harm_pathway": true,
+    "config_basis": "V3-EXQ-603n (full lever stack ported verbatim; the substrate-readiness run that flipped scaffolded_sd054_onboarding ready=true)"
+  },
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "acceptance": {
+    "contact_non_vacuity_met": true,
+    "guard_fraction": 1.0,
+    "n_guard_passing_seeds": 3,
+    "wl_readiness_met": true,
+    "pc_separation_frac": 1.0,
+    "run_bank_populated_frac": 1.0,
+    "C_WL_object_bound_wanting_neq_liking": false,
+    "mean_object_bound_wl_dissoc_fraction": 0.5648148148148148,
+    "mean_wl_nodrive_dissoc_fraction": 0.49074074074074076,
+    "wl_drive_minus_nodrive": 0.07407407407407401,
+    "n_scored_wl_steps_total": 27,
+    "mean_goal_resource_r": 0.9336981874978969,
+    "overall_pass": false,
+    "per_seed_guard_pass": [
+      true,
+      true,
+      true
+    ],
+    "route_reason": "c_wl_unmet_genuine_weakens_run_offarm_overshoot"
+  },
+  "interpretation": {
+    "label": "residual_wl_open_falsifier",
+    "readiness_route": "residual_wl_open_falsifier",
+    "preconditions": [
+      {
+        "name": "wl_instrument_positive_control_separates",
+        "description": "leg 1: a constructed 2-token IncentiveTokenBank (this run's GoalConfig) yields a drive-favored most-wanted that DIFFERS from a designated last-consumed type -- the SAME cross-target inequality statistic C_WL routes on, on a positive control.",
+        "control": "2 deterministic probes: drive-favored most-wanted vs designated last-consumed (instrument-can-fire).",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "run_bank_populated_two_tokens_differing_drive",
+        "description": "leg 2: per guard-passing seed the behavioural run's bank reached >= 2 distinct object tokens AND scored >= MIN_SCORED_STEPS consumption events (info consumed tag > 0) with both targets defined AND per-axis-drive spread > floor (channels-written-this-run -- the exact 514n n_scored=0 gap).",
+        "control": "fraction of guard-passing seeds with a populated, drive-differentiated bank at consumption events.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_WL_object_bound_wanting_neq_liking",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_WL": true
+    },
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). A seed failing the guard is excluded from DV aggregation; < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens. 603n itself cleared G3 only 2/3; the leg is substrate-marginal (~0.4 +- noise, env layout default_rng(None)).",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "wl_readiness_gate": {
+      "definition": "SAME-STATISTIC non-vacuity for the WL DV (the 514m/514n gap fix): leg 1 positive-control cross-target separation >= 1.0 AND leg 2 in-run bank populated >= 2 distinct tokens at differing per-axis drives on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false MECH-229 weakens.",
+      "pc_separation_floor": 1.0,
+      "min_scored_steps": 5,
+      "drive_spread_floor": 0.001,
+      "min_fraction": 0.6666666666666666
+    },
+    "drive_dependence_control": {
+      "definition": "WL_nodrive (drive-uniform most-wanted, per_axis_drive=None) is the within-eval drive-dependence control: a genuine MECH-229 drive-coupled dissociation has WL_drive >> WL_nodrive. Reported as the diagnostic wl_drive_minus_nodrive; not a load-bearing gate this run.",
+      "mean_wl_drive": 0.5648148148148148,
+      "mean_wl_nodrive": 0.49074074074074076
+    },
+    "falsifier_offramp": {
+      "definition": "Pre-registered Woo/Spelke off-ramp (substrate_queue SD-049-PHASE-2 row-6). If (a)+(b) met but (c) FAILs (genuine weakens), the disambiguating follow-on is an OFF/control arm (SD-049 identity / bank disabled -> wanting structurally == liking -> WL ~ 0) AND an OVERSHOOT arm (n_resource_types=5). JOINT failure across the SD-049-on AND overshoot arms routes MECH-229 -> substrate_conditional with a V4-1 multi-agent-ecology dependency (clean exit). This run is the SD-049-on arm; off/control + overshoot are queued only on a genuine weakens here.",
+      "triggers_on": "route_reason == c_wl_unmet_genuine_weakens_run_offarm_overshoot",
+      "joint_failure_routes_to": "substrate_conditional (MECH-229, dependency V4-1)"
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 45,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.46462979912757874,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.2827461607949413,
+      "p2_z_goal_norm_at_contact_peak": 0.47772687673568726,
+      "p2_num_contact_events": 144,
+      "object_bound_wl_dissoc_fraction": 0.75,
+      "wl_nodrive_dissoc_fraction": 0.75,
+      "n_scored_wl_steps": 8,
+      "n_wl_dissoc_steps": 6,
+      "n_wl_nodrive_dissoc_steps": 6,
+      "distinct_tokens_max": 3,
+      "drive_spread_max": 0.006999999342951924,
+      "run_bank_populated": true,
+      "goal_resource_r": 0.9614231988128069,
+      "n_cosine_samples": 2214,
+      "behav_contact_rate": 0.0036133694670280035,
+      "pc_separation_frac": 1.0
+    },
+    {
+      "seed": 46,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.4837883412837982,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.2779605263157895,
+      "p2_z_goal_norm_at_contact_peak": 0.5234577059745789,
+      "p2_num_contact_events": 107,
+      "object_bound_wl_dissoc_fraction": 0.4444444444444444,
+      "wl_nodrive_dissoc_fraction": 0.2222222222222222,
+      "n_scored_wl_steps": 9,
+      "n_wl_dissoc_steps": 4,
+      "n_wl_nodrive_dissoc_steps": 2,
+      "distinct_tokens_max": 3,
+      "drive_spread_max": 0.008499999588821083,
+      "run_bank_populated": true,
+      "goal_resource_r": 0.9502838924493562,
+      "n_cosine_samples": 2217,
+      "behav_contact_rate": 0.0040595399188092015,
+      "pc_separation_frac": 1.0
+    },
+    {
+      "seed": 47,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.39604464173316956,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.17122719734660033,
+      "p2_z_goal_norm_at_contact_peak": 0.4437507688999176,
+      "p2_num_contact_events": 90,
+      "object_bound_wl_dissoc_fraction": 0.5,
+      "wl_nodrive_dissoc_fraction": 0.5,
+      "n_scored_wl_steps": 10,
+      "n_wl_dissoc_steps": 5,
+      "n_wl_nodrive_dissoc_steps": 5,
+      "distinct_tokens_max": 3,
+      "drive_spread_max": 0.0049999995389953256,
+      "run_bank_populated": true,
+      "goal_resource_r": 0.8893874712315277,
+      "n_cosine_samples": 2216,
+      "behav_contact_rate": 0.004512635379061372,
+      "pc_separation_frac": 1.0
+    }
+  ],
+  "machine": "ree-cloud-4",
+  "evidence_direction_per_claim": {
+    "MECH-229": "non_contributory"
+  },
+  "evidence_direction_note": "2026-06-15 (/governance, failure_autopsy_V3-EXQ-514p CONFIRMED): 2026-06-15 (failure_autopsy_V3-EXQ-514p): the MECH-229 per-claim weakens from V3-EXQ-514p is reclassified non_contributory (measurement_test_design_defect) and scoring-excluded. 514p cleared all readiness gates (contact guard 3/3, bank populated, positive-control separation 1.0) but the load-bearing criterion C_WL (raw fraction most-wanted != last-consumed, bar 0.6) does NOT isolate the drive-coupled incentive-salience content MECH-229 asserts: the within-eval drive-dependence control wl_drive_minus_nodrive is ~0 in BOTH the 514o PASS (0.083) and the 514p FAIL (0.074) -- exactly zero on 2 of 3 514p seeds -- and 514o's drive-uniform negative control (mean_wl_nodrive 0.717) itself clears the 0.6 bar. With n_resource_types=3 the raw fraction is dominated by ~(N-1)/N baseline categorical mismatch, drive or no drive. The self-routed genuine-weakens off-ramp (substrate_conditional, V4-1) is therefore NOT fired (unmet precondition; cf. V3-EXQ-642). RE-EXAMINE the 2026-06-15 promotion path: the substrate-ceiling-lifted / epistemic_category=standard / pending_retest_after_substrate=false / narrow_supports_flag=false reclassification all rest on the 514o PASS, which cleared the same non-isolating criterion at n=11/2 seeds; pause the provisional->stable promotion and treat 514o's supports as resting on a non-isolating criterion pending the corrected retest. MECH-229 stays provisional, pending_retest_after_substrate=[MECH-229], narrow_supports_flag=true. Retest = V3-EXQ-514q: make the drive-dependence delta the load-bearing criterion with an effect-size gate max(k*pstdev(delta), FLOOR), raw C_WL a non-vacuity check only. No demotion; no substrate_queue create/amend (test-design defect, SD-057 substrate built 2026-06-04, contact/bank achieved).",
+  "evidence_quality_category": "measurement_test_design_defect"
+}

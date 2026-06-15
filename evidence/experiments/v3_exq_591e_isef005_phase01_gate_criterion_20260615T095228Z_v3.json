@@ -1,1 +1,190 @@
-{"run_id": "v3_exq_591e_isef005_phase01_gate_criterion_20260615T095228Z_v3", "queue_id": "V3-EXQ-591e", "experiment_type": "v3_exq_591e_isef005_phase01_gate_criterion", "supersedes": "V3-EXQ-591d", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": [], "experiment_purpose": "diagnostic", "outcome": "FAIL", "evidence_direction": "non_contributory", "sleep_driver_pattern": "K=never (SleepLoopManager K > total episodes; never fires)", "timestamp_utc": "20260615T095228Z", "dry_run": false, "config": {"seeds": [42, 43, 44, 45, 46], "n_episodes": 160, "steps_per_episode": 200, "grid_size": 12, "h_pos_frac_of_max": 0.2, "phase_0to1_spike_threshold": 0.993963, "phase_0to1_ema_level_floor": 0.2, "phase_0to1_ep_min": 100, "h_pos_movement_floor": 0.2, "genuine_exploration_h_pos_mean_floor": 0.2, "genuine_exploration_min_crossings": 2, "ema_alpha": 0.2, "corrected_parameter_note": "591d -> 591e single corrected parameter: the EMA candidate is now compared against the genuine-explorer LEVEL floor (0.2000), NOT the single-episode SPIKE threshold (0.9940) the 591d candidates reused.", "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py) -- OFFLINE criterion replay, scheduler NOT mutated", "diversity_stack": {"use_noise_floor": true, "use_structured_curiosity": true, "use_support_preserving_cem": "default-on (main-path since 2026-05-17)", "magnitudes": "landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05)"}}, "acceptance_criteria": {"C_gate_discriminates_primary": "the EMA-of-LEVEL criterion (EMA alpha 0.2 of per-episode h_pos compared against the genuine-explorer floor 0.2000, NOT the 0.994 single-episode SPIKE threshold) REJECTS every false-advancer (seed-45-like: baseline-admitted but h_pos_mean < 0.2 OR < 2 crossings) AND ADMITS every genuine explorer (seeds 42-44 profile). PASS => the recommended EMA-of-level replacement for the single-episode Phase 0->1 gate (routes to /implement-substrate on infant_curriculum.py _try_phase_0_to_1).", "C_seed46_out_of_scope": "seed 46 staying in Phase 0 under ALL criteria does NOT count against the EMA-of-level criterion -- that is the orthogonal exploration-strength defect owned by the Q-043/667->667a modulatory-bias-selection-authority thread, NOT a gate-criterion defect."}, "interpretation": {"label": "ema_of_level_does_not_discriminate_needs_alternative", "preconditions": [{"name": "early_policy_produces_nontrivial_h_pos", "description": "Early-policy agent must actually explore (max per-episode H_pos clears a movement floor) for the discrimination result to be a real verdict rather than a degenerate non-moving artifact. SAME LEVEL statistic the gate routes on (per-episode pos_entropy).", "measured": 2.4849, "threshold": 0.2, "direction": "lower", "control": "max per-episode H_pos across all seeds (the agent-moves positive control)", "met": true}, {"name": "genuine_explorers_present", "description": "At least 2 seeds explore genuinely (h_pos_mean >= floor AND >= 2 threshold crossings), so the 'admits explorers' discrimination leg is non-vacuous. Below -> no explorer signal to discriminate against -> substrate_not_ready_requeue. SAME genuine-explorer LEVEL statistic the C_gate_discriminates EMA-of-level criterion routes on.", "measured": 3, "threshold": 2, "direction": "lower", "control": "count of genuine-explorer seeds (591c/591d: seeds 42-44)", "met": true}, {"name": "false_advancer_present", "description": "At least 1 seed is a false advancer (baseline single-episode SPIKE gate admitted a non-explorer), so the 'rejects false-advancer' leg is non-vacuous. Below -> the single-episode gate was NOT over-permissive on this seed draw (report; do NOT record a discrimination PASS). SAME false-advancer statistic the C_gate_discriminates criterion routes on.", "measured": 1, "threshold": 1, "direction": "lower", "control": "count of false-advancer seeds (591c/591d: seed 45)", "met": true}], "criteria_non_degenerate": {"C_gate_discriminates": true}, "criteria": [{"name": "C_gate_discriminates", "load_bearing": true, "passed": false}]}, "metrics": {"n_genuine_explorers": 3, "n_false_advancers": 1, "genuine_explorer_seeds": [42, 43, 44], "false_advancer_seeds": [45], "ema_level_discriminates": false, "discriminating_criteria": [], "max_h_pos": 2.4849, "n_seeds_total": 5}, "per_seed_criteria": [{"seed": 42, "h_pos_mean": 0.5621, "h_pos_max": 1.8384, "n_eligible_ge_threshold": 7, "genuine_explorer": true, "false_advancer": false, "baseline_single_episode": {"advanced": true, "at_episode": 104}, "ema_level": {"advanced": true, "at_episode": 100}}, {"seed": 43, "h_pos_mean": 0.3226, "h_pos_max": 1.3118, "n_eligible_ge_threshold": 6, "genuine_explorer": true, "false_advancer": false, "baseline_single_episode": {"advanced": true, "at_episode": 114}, "ema_level": {"advanced": true, "at_episode": 100}}, {"seed": 44, "h_pos_mean": 0.8424, "h_pos_max": 2.4849, "n_eligible_ge_threshold": 36, "genuine_explorer": true, "false_advancer": false, "baseline_single_episode": {"advanced": true, "at_episode": 100}, "ema_level": {"advanced": true, "at_episode": 100}}, {"seed": 45, "h_pos_mean": 0.1404, "h_pos_max": 1.453, "n_eligible_ge_threshold": 2, "genuine_explorer": false, "false_advancer": true, "baseline_single_episode": {"advanced": true, "at_episode": 142}, "ema_level": {"advanced": true, "at_episode": 137}}, {"seed": 46, "h_pos_mean": 0.0375, "h_pos_max": 0.6899, "n_eligible_ge_threshold": 0, "genuine_explorer": false, "false_advancer": false, "baseline_single_episode": {"advanced": false, "at_episode": null}, "ema_level": {"advanced": false, "at_episode": null}}], "notes": "Gate-CRITERION diagnostic for ARC-046 / infant_substrate:GAP-14; supersedes V3-EXQ-591d (corrected parameterization of the same scientific question). Re-runs the V3-EXQ-591c/591d diversity-armed Phase 0->1 reachability probe (deterministic; a reproducibility check of the 591c/591d seed traces), records the full per-episode h_pos sequence per seed, and replays each through BASELINE single-episode SPIKE (informational) + the CORRECTED EMA-of-LEVEL Phase 0->1 criterion OFFLINE -- the shared infant_curriculum.py scheduler is NOT mutated (610e/669/586/667 depend on its default gate). The single corrected parameter (per failure_autopsy_V3-EXQ-591d_2026-06-15 Section 8): the EMA candidate is compared against the genuine-explorer LEVEL floor (0.2000) -- the oracle's own statistic -- NOT the single-episode SPIKE threshold (0.9940) the 591d candidates wrongly reused for a sustained statistic. The orthogonal seed-46 exploration-STRENGTH collapse (Q-043/667->667a thread) is OUT OF SCOPE -- seed 46 is expected to stay in Phase 0 under every criterion. A discriminating criterion (PASS) routes to /implement-substrate as the EMA-of-level replacement for _try_phase_0_to_1; only after BOTH this gate-criterion fix AND the exploration-strength fix land can the full curriculum-vs-flat EXQ-ISEF-005 (V3-EXQ-591 successor) be queued.", "machine": "ree-cloud-3"}
+{
+  "run_id": "v3_exq_591e_isef005_phase01_gate_criterion_20260615T095228Z_v3",
+  "queue_id": "V3-EXQ-591e",
+  "experiment_type": "v3_exq_591e_isef005_phase01_gate_criterion",
+  "supersedes": "V3-EXQ-591d",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "sleep_driver_pattern": "K=never (SleepLoopManager K > total episodes; never fires)",
+  "timestamp_utc": "20260615T095228Z",
+  "dry_run": false,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "n_episodes": 160,
+    "steps_per_episode": 200,
+    "grid_size": 12,
+    "h_pos_frac_of_max": 0.2,
+    "phase_0to1_spike_threshold": 0.993963,
+    "phase_0to1_ema_level_floor": 0.2,
+    "phase_0to1_ep_min": 100,
+    "h_pos_movement_floor": 0.2,
+    "genuine_exploration_h_pos_mean_floor": 0.2,
+    "genuine_exploration_min_crossings": 2,
+    "ema_alpha": 0.2,
+    "corrected_parameter_note": "591d -> 591e single corrected parameter: the EMA candidate is now compared against the genuine-explorer LEVEL floor (0.2000), NOT the single-episode SPIKE threshold (0.9940) the 591d candidates reused.",
+    "arm": "InfantCurriculumScheduler (experiments/infant_curriculum.py) -- OFFLINE criterion replay, scheduler NOT mutated",
+    "diversity_stack": {
+      "use_noise_floor": true,
+      "use_structured_curiosity": true,
+      "use_support_preserving_cem": "default-on (main-path since 2026-05-17)",
+      "magnitudes": "landed defaults (noise_floor_alpha=0.1, curiosity_weight=0.05)"
+    }
+  },
+  "acceptance_criteria": {
+    "C_gate_discriminates_primary": "the EMA-of-LEVEL criterion (EMA alpha 0.2 of per-episode h_pos compared against the genuine-explorer floor 0.2000, NOT the 0.994 single-episode SPIKE threshold) REJECTS every false-advancer (seed-45-like: baseline-admitted but h_pos_mean < 0.2 OR < 2 crossings) AND ADMITS every genuine explorer (seeds 42-44 profile). PASS => the recommended EMA-of-level replacement for the single-episode Phase 0->1 gate (routes to /implement-substrate on infant_curriculum.py _try_phase_0_to_1).",
+    "C_seed46_out_of_scope": "seed 46 staying in Phase 0 under ALL criteria does NOT count against the EMA-of-level criterion -- that is the orthogonal exploration-strength defect owned by the Q-043/667->667a modulatory-bias-selection-authority thread, NOT a gate-criterion defect."
+  },
+  "interpretation": {
+    "label": "ema_of_level_does_not_discriminate_needs_alternative",
+    "preconditions": [
+      {
+        "name": "early_policy_produces_nontrivial_h_pos",
+        "description": "Early-policy agent must actually explore (max per-episode H_pos clears a movement floor) for the discrimination result to be a real verdict rather than a degenerate non-moving artifact. SAME LEVEL statistic the gate routes on (per-episode pos_entropy).",
+        "measured": 2.4849,
+        "threshold": 0.2,
+        "direction": "lower",
+        "control": "max per-episode H_pos across all seeds (the agent-moves positive control)",
+        "met": true
+      },
+      {
+        "name": "genuine_explorers_present",
+        "description": "At least 2 seeds explore genuinely (h_pos_mean >= floor AND >= 2 threshold crossings), so the 'admits explorers' discrimination leg is non-vacuous. Below -> no explorer signal to discriminate against -> substrate_not_ready_requeue. SAME genuine-explorer LEVEL statistic the C_gate_discriminates EMA-of-level criterion routes on.",
+        "measured": 3,
+        "threshold": 2,
+        "direction": "lower",
+        "control": "count of genuine-explorer seeds (591c/591d: seeds 42-44)",
+        "met": true
+      },
+      {
+        "name": "false_advancer_present",
+        "description": "At least 1 seed is a false advancer (baseline single-episode SPIKE gate admitted a non-explorer), so the 'rejects false-advancer' leg is non-vacuous. Below -> the single-episode gate was NOT over-permissive on this seed draw (report; do NOT record a discrimination PASS). SAME false-advancer statistic the C_gate_discriminates criterion routes on.",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "lower",
+        "control": "count of false-advancer seeds (591c/591d: seed 45)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_gate_discriminates": true
+    },
+    "criteria": [
+      {
+        "name": "C_gate_discriminates",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "metrics": {
+    "n_genuine_explorers": 3,
+    "n_false_advancers": 1,
+    "genuine_explorer_seeds": [
+      42,
+      43,
+      44
+    ],
+    "false_advancer_seeds": [
+      45
+    ],
+    "ema_level_discriminates": false,
+    "discriminating_criteria": [],
+    "max_h_pos": 2.4849,
+    "n_seeds_total": 5
+  },
+  "per_seed_criteria": [
+    {
+      "seed": 42,
+      "h_pos_mean": 0.5621,
+      "h_pos_max": 1.8384,
+      "n_eligible_ge_threshold": 7,
+      "genuine_explorer": true,
+      "false_advancer": false,
+      "baseline_single_episode": {
+        "advanced": true,
+        "at_episode": 104
+      },
+      "ema_level": {
+        "advanced": true,
+        "at_episode": 100
+      }
+    },
+    {
+      "seed": 43,
+      "h_pos_mean": 0.3226,
+      "h_pos_max": 1.3118,
+      "n_eligible_ge_threshold": 6,
+      "genuine_explorer": true,
+      "false_advancer": false,
+      "baseline_single_episode": {
+        "advanced": true,
+        "at_episode": 114
+      },
+      "ema_level": {
+        "advanced": true,
+        "at_episode": 100
+      }
+    },
+    {
+      "seed": 44,
+      "h_pos_mean": 0.8424,
+      "h_pos_max": 2.4849,
+      "n_eligible_ge_threshold": 36,
+      "genuine_explorer": true,
+      "false_advancer": false,
+      "baseline_single_episode": {
+        "advanced": true,
+        "at_episode": 100
+      },
+      "ema_level": {
+        "advanced": true,
+        "at_episode": 100
+      }
+    },
+    {
+      "seed": 45,
+      "h_pos_mean": 0.1404,
+      "h_pos_max": 1.453,
+      "n_eligible_ge_threshold": 2,
+      "genuine_explorer": false,
+      "false_advancer": true,
+      "baseline_single_episode": {
+        "advanced": true,
+        "at_episode": 142
+      },
+      "ema_level": {
+        "advanced": true,
+        "at_episode": 137
+      }
+    },
+    {
+      "seed": 46,
+      "h_pos_mean": 0.0375,
+      "h_pos_max": 0.6899,
+      "n_eligible_ge_threshold": 0,
+      "genuine_explorer": false,
+      "false_advancer": false,
+      "baseline_single_episode": {
+        "advanced": false,
+        "at_episode": null
+      },
+      "ema_level": {
+        "advanced": false,
+        "at_episode": null
+      }
+    }
+  ],
+  "notes": "Gate-CRITERION diagnostic for ARC-046 / infant_substrate:GAP-14; supersedes V3-EXQ-591d (corrected parameterization of the same scientific question). Re-runs the V3-EXQ-591c/591d diversity-armed Phase 0->1 reachability probe (deterministic; a reproducibility check of the 591c/591d seed traces), records the full per-episode h_pos sequence per seed, and replays each through BASELINE single-episode SPIKE (informational) + the CORRECTED EMA-of-LEVEL Phase 0->1 criterion OFFLINE -- the shared infant_curriculum.py scheduler is NOT mutated (610e/669/586/667 depend on its default gate). The single corrected parameter (per failure_autopsy_V3-EXQ-591d_2026-06-15 Section 8): the EMA candidate is compared against the genuine-explorer LEVEL floor (0.2000) -- the oracle's own statistic -- NOT the single-episode SPIKE threshold (0.9940) the 591d candidates wrongly reused for a sustained statistic. The orthogonal seed-46 exploration-STRENGTH collapse (Q-043/667->667a thread) is OUT OF SCOPE -- seed 46 is expected to stay in Phase 0 under every criterion. A discriminating criterion (PASS) routes to /implement-substrate as the EMA-of-level replacement for _try_phase_0_to_1; only after BOTH this gate-criterion fix AND the exploration-strength fix land can the full curriculum-vs-flat EXQ-ISEF-005 (V3-EXQ-591 successor) be queued.",
+  "machine": "ree-cloud-3",
+  "evidence_direction_note": "2026-06-15 (/governance, failure_autopsy_V3-EXQ-591e CONFIRMED): V3-EXQ-591e (claim-free ARC-046 / infant_substrate:GAP-14 c-2 Phase 0->1 gate-CRITERION diagnostic; diversity stack armed at landed defaults; scheduler not mutated; supersedes 591d). FAIL, non_contributory, genuine non-degenerate (all 3 preconditions met, criteria_non_degenerate true). The 591d-prescribed EMA-of-LEVEL@0.2 candidate does NOT discriminate: it ADMITS the seed-45 false-advancer (ema_level advanced @ ep137) while correctly admitting genuine explorers 42/43/44 -- failing in the OPPOSITE direction from 591d (over-permissive, not over-conservative). Root cause: a causal one-way latching gate keyed on a short-memory EMA (alpha=0.2) latches on seed-45's late transient burst (h_pos_max 1.45, 2 supra-threshold episodes) over the 0.20 floor, whereas the discrimination oracle is the retrospective full-run mean (seed-45 global mean 0.14 < 0.20). The mismatch is the statistic FAMILY (causal short-memory latch vs retrospective full-memory oracle), not the floor value -- no floor fixes it. Measurement / test-design gap, NOT a substrate ceiling and NOT a claim falsification (claim-free; ARC-046 NOT weakened). Pre-registered next: V3-EXQ-591f persists the full per-episode traces and runs an OFFLINE multi-candidate criterion sweep (cumulative-mean-since-ep_min / large-window mean / EMA+dwell) verifiable before any candidate drives the gate (supersedes 591e for the gate-criterion question).",
+  "evidence_quality_category": "not_applicable_claim_free_diagnostic"
+}

@@ -1,1 +1,934 @@
-{"run_id": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic_20260615T101732Z_v3", "experiment_type": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic", "queue_id": "V3-EXQ-603p", "claim_ids": [], "experiment_purpose": "diagnostic", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260615T101732Z", "outcome": "FAIL", "evidence_direction": "non_contributory", "depends_on": ["V3-EXQ-603k", "V3-EXQ-603l", "V3-EXQ-603o"], "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding Stage-H base arm (bridge OFF) on the 603k harm-pathway-trained + 603j trained-safety-signal substrate", "scores": "claim-free diagnostic: locates the base harm-landscape discriminativeness parameter (hazard proximity_harm vs harm-pathway LR) for the SD-059/MECH-358 bridge-retest re-queue (603q). Weights no claim.", "design_note": "diagnose-first for the 603o substrate_not_ready_requeue. 603o's only failing readiness gate was harm_landscape_discriminative_on_base (harm_eval_range>=0.02 on 1/3 seeds at proximity_harm=0.15); the continuous bridge lift was already strong (both ~50.3 vs base ~18.65). 4 cells x 3 seeds, BASE arm only, run through Stage-H only: proximity_harm sweep {0.10 (positive control),0.12,0.15} at harm_lr=1e-3 + a {0.15, harm_lr=3e-3} training-strength rescue cell. Locates whether the base-harm-landscape failure is regime-difficulty (find the hardest trainable proximity_harm) or harm-training-strength (3x LR rescue at 0.15). Positive-control readiness gate: if even 0.10 fails to clear on >=2/3 the result self-routes substrate_not_ready_requeue (harm-pathway/metric broken), never a regime verdict.", "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "pre_registered_gates": {"primary_metric": "harm_disc_frac (fraction of seeds with harm_eval_range >= 0.02)", "harm_disc_range_floor": 0.02, "positive_control": "ARM_REGIME_0p10 must clear on >=2/3 (else substrate_not_ready_requeue)", "min_fraction": 0.6666666666666666, "stage0_z_goal_gate": 0.4}, "hazard_regime": {"num_hazards": 6, "proximity_harm_sweep": [0.1, 0.12, 0.15, 0.15], "harm_pathway_lr_axis": [0.001, 0.003], "hazard_food_attraction": 0.0, "note": "base arm only (bridge OFF); run through Stage-H only (P1/P2 skipped)"}, "diagnostic_label": "substrate_not_ready_requeue", "recommendation": "harm-pathway training or the harm_eval_range readiness metric is broken even at the easy regime (positive control 0p10 below floor on >=2/3 seeds); diagnose the harm-pathway optimizer/loss before any regime tuning -- do NOT read this as a regime-difficulty result", "positive_control_clears": false, "train_rescue": false, "hardest_standard_clearing_proximity_harm": null, "clearing_arms": [], "cross_arm_range_spread": 0.057427684466044106, "harm_disc_range_floor": 0.02, "arm_results": [{"arm": "ARM_REGIME_0p10", "proximity_harm": 0.1, "harm_pathway_lr": 0.001, "harm_disc_frac": 0.3333333333333333, "mean_harm_eval_range": 0.057427684466044106, "mean_harm_eval_prox_corr": 0.39300094507006367, "mean_hazard_episode_length": 48.75833333333333, "g0_frac": 0.6666666666666666, "pag_freeze_frac": 1.0, "gate_engaged_frac": 1.0, "per_seed_harm_eval_range": [0.166548490524292, 0.005734562873840332, 0.0], "per_seed_harm_disc_pass": [true, false, false], "per_seed_hazard_mean_episode_length": [54.3, 45.0, 46.975], "arm_fingerprint": [{"schema": "arm_fp/v1", "arm_fingerprint": "d7594b948903605adfbcfb4aeac5fb75c47f00cf6213e11291c68081e1cb512c", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "62e653f9fc8a59f7c98da3118c6017f963e09997b93deaf24def31b3d16b2baf", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "2ae79d4b5bbafb946892d7c437041913d50a281c8756d5006d3e118fbecee2fa", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}]}, {"arm": "ARM_REGIME_0p12", "proximity_harm": 0.12, "harm_pathway_lr": 0.001, "harm_disc_frac": 0.3333333333333333, "mean_harm_eval_range": 0.04849926630655924, "mean_harm_eval_prox_corr": 0.7589433276465055, "mean_hazard_episode_length": 19.125, "g0_frac": 0.6666666666666666, "pag_freeze_frac": 1.0, "gate_engaged_frac": 1.0, "per_seed_harm_eval_range": [0.14549779891967773, 0.0, 0.0], "per_seed_harm_disc_pass": [true, false, false], "per_seed_hazard_mean_episode_length": [28.65, 18.725, 10.0], "arm_fingerprint": [{"schema": "arm_fp/v1", "arm_fingerprint": "bf95edc37d9c36f070a1d15fb934a017f7ac04d5b63cf19ab7fce04f26bf5fc5", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "75410370c2d02fbdf2abb56fed8b2fe788711f257ebe79c929e6afb44ee628f6", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "a5bc1424448cd4e45e21575614b968e64aa3bb8dc5b9930ce0cd3b35d4621c44", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}]}, {"arm": "ARM_REGIME_0p15", "proximity_harm": 0.15, "harm_pathway_lr": 0.001, "harm_disc_frac": 0.3333333333333333, "mean_harm_eval_range": 0.03666778405507406, "mean_harm_eval_prox_corr": 0.4409666467594333, "mean_hazard_episode_length": 29.358333333333334, "g0_frac": 0.6666666666666666, "pag_freeze_frac": 1.0, "gate_engaged_frac": 1.0, "per_seed_harm_eval_range": [0.0, 0.11000335216522217, 0.0], "per_seed_harm_disc_pass": [false, true, false], "per_seed_hazard_mean_episode_length": [7.85, 22.525, 57.7], "arm_fingerprint": [{"schema": "arm_fp/v1", "arm_fingerprint": "c8a56f3ff14a06ec0a576dab8bf77a2ddc487e3942a9fe736cdc96a9981bcbcd", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "cec71ed9de53615d1adce2fc3911bbc38b138f4b8de7a1a1efaf667468d3d769", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "b5ecc183982321f7c7c8e78080bacd756f2b4b3bc1abac648f01eb518e31c7eb", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}]}, {"arm": "ARM_HARMTRAIN_3X_0p15", "proximity_harm": 0.15, "harm_pathway_lr": 0.003, "harm_disc_frac": 0.0, "mean_harm_eval_range": 1.2172727310575063e-23, "mean_harm_eval_prox_corr": 0.0, "mean_hazard_episode_length": 39.4, "g0_frac": 0.6666666666666666, "pag_freeze_frac": 1.0, "gate_engaged_frac": 1.0, "per_seed_harm_eval_range": [3.651818193172519e-23, 0.0, 0.0], "per_seed_harm_disc_pass": [false, false, false], "per_seed_hazard_mean_episode_length": [82.225, 13.725, 22.25], "arm_fingerprint": [{"schema": "arm_fp/v1", "arm_fingerprint": "c8b66be7d6674778b1dc0de78af1d77bee85d9fe7950065027d16e52589ea12f", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "b1a4a193fdbaa0a2ca3b695e8e6395d483f394714b14c509464159cf7769596b", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}, {"schema": "arm_fp/v1", "arm_fingerprint": "cccaafe96c1215f7eb7cbb2b632a1b897127562585455ab895f9b47fe930cbc6", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}]}], "acceptance": {"primary_metric": "harm_disc_frac (fraction of seeds with harm_eval_range >= 0.02)", "min_fraction": 0.6666666666666666, "harm_disc_range_floor": 0.02, "positive_control_arm": "ARM_REGIME_0p10", "per_arm_harm_disc_frac": {"ARM_REGIME_0p10": 0.3333333333333333, "ARM_REGIME_0p12": 0.3333333333333333, "ARM_REGIME_0p15": 0.3333333333333333, "ARM_HARMTRAIN_3X_0p15": 0.0}, "per_arm_mean_harm_eval_range": {"ARM_REGIME_0p10": 0.057427684466044106, "ARM_REGIME_0p12": 0.04849926630655924, "ARM_REGIME_0p15": 0.03666778405507406, "ARM_HARMTRAIN_3X_0p15": 1.2172727310575063e-23}, "per_arm_mean_survival": {"ARM_REGIME_0p10": 48.75833333333333, "ARM_REGIME_0p12": 19.125, "ARM_REGIME_0p15": 29.358333333333334, "ARM_HARMTRAIN_3X_0p15": 39.4}}, "interpretation": {"label": "substrate_not_ready_requeue", "preconditions": [{"name": "positive_control_harm_landscape_discriminative", "kind": "readiness", "description": "ARM_REGIME_0p10 (easiest regime; 603k trained a discriminative harm landscape here) must clear harm_eval_range>=0.02 on >=2/3 seeds -- the SAME statistic the diagnostic routes on, measured on the known-positive control. Below-floor => harm-pathway training or the readiness metric is broken (substrate_not_ready_requeue), NOT a regime-difficulty verdict.", "control": "ARM_REGIME_0p10: bridge OFF, full 603k harm-pathway training, easiest proximity_harm=0.10.", "measured": 0.3333333333333333, "threshold": 0.6666666666666666, "met": false}, {"name": "harm_eval_range_has_cross_arm_dynamic_range", "kind": "readiness", "description": "mean harm_eval_range must vary across the difficulty/training cells (spread >= floor) -- else the readout is pinned and the diagnostic is vacuous.", "control": "4 cells (proximity_harm 0.10/0.12/0.15 + 3x-LR at 0.15).", "measured": 0.057427684466044106, "threshold": 0.02, "met": true}, {"name": "stage0_forced_feed_lights_zgoal_on_positive_control", "kind": "readiness", "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 positive-control seeds -- the curriculum is intact.", "control": "run_stage0_nursery forced-feed.", "measured": 0.6666666666666666, "threshold": 0.6666666666666666, "met": true}], "criteria_non_degenerate": {"cells_reached_hazard_stage": true, "positive_control_clears": false, "cross_arm_harm_range_dynamic_range": true, "pag_freeze_present": true}, "criteria": [{"name": "positive_control_harm_landscape_discriminative", "load_bearing": true, "passed": false}, {"name": "actionable_regime_or_training_recommendation_found", "load_bearing": true, "passed": false}], "grid": {"positive_control_fails": "substrate_not_ready_requeue: harm-pathway training/metric broken at easy regime; diagnose harm-pathway optimizer/loss", "hard_regime_cell_clears": "regime_difficulty_threshold_located: 603q uses the hardest clearing proximity_harm", "train_rescue": "harm_train_strength_rescues_hard_regime: 603q keeps 0.15 + 3x harm-pathway LR", "only_eased_clears": "hard_regime_breaks_harm_landscape_use_eased_regime: 603q eases proximity_harm to the hardest clearing cell", "nothing_clears": "substrate_not_ready_requeue: escalate to /failure-autopsy on harm-pathway training"}}, "per_seed": [{"arm": "ARM_REGIME_0p10", "seed": 42, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.1, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.49012312293052673, "harm_eval_range": 0.166548490524292, "harm_eval_prox_corr": 0.831272072135275, "harm_disc_pass": true, "hazard_stage_mean_episode_length": 54.3, "hazard_stage_median_last_window": 5.5, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 178, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.166548490524292, "harm_eval_prox_corr": 0.831272072135275, "n_samples": 120, "prox_std": 0.12618092646049528}, "reached_hazard_stage": true, "seed_pass": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "d7594b948903605adfbcfb4aeac5fb75c47f00cf6213e11291c68081e1cb512c", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p10", "seed": 43, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.1, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.4537992477416992, "harm_eval_range": 0.005734562873840332, "harm_eval_prox_corr": -0.045270181995147644, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 45.0, "hazard_stage_median_last_window": 4.5, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 154, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.005734562873840332, "harm_eval_prox_corr": -0.045270181995147644, "n_samples": 120, "prox_std": 0.020631429683794465}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "62e653f9fc8a59f7c98da3118c6017f963e09997b93deaf24def31b3d16b2baf", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p10", "seed": 44, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.1, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.37705498933792114, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 46.975, "hazard_stage_median_last_window": 5.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": false, "pag_n_commits": 195, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.09715364020647028}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "2ae79d4b5bbafb946892d7c437041913d50a281c8756d5006d3e118fbecee2fa", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p12", "seed": 42, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.12, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.48603343963623047, "harm_eval_range": 0.14549779891967773, "harm_eval_prox_corr": 0.7589433276465055, "harm_disc_pass": true, "hazard_stage_mean_episode_length": 28.65, "hazard_stage_median_last_window": 5.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 170, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.14549779891967773, "harm_eval_prox_corr": 0.7589433276465055, "n_samples": 120, "prox_std": 0.05601385760331828}, "reached_hazard_stage": true, "seed_pass": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "bf95edc37d9c36f070a1d15fb934a017f7ac04d5b63cf19ab7fce04f26bf5fc5", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p12", "seed": 43, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.12, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.4415850341320038, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 18.725, "hazard_stage_median_last_window": 5.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 159, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.0770100826554634}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "75410370c2d02fbdf2abb56fed8b2fe788711f257ebe79c929e6afb44ee628f6", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p12", "seed": 44, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.12, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.37264320254325867, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 10.0, "hazard_stage_median_last_window": 5.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": false, "pag_n_commits": 193, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.08737309734195516}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a5bc1424448cd4e45e21575614b968e64aa3bb8dc5b9930ce0cd3b35d4621c44", "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p15", "seed": 42, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.5067144632339478, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 7.85, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 184, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.06181271163443049}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "c8a56f3ff14a06ec0a576dab8bf77a2ddc487e3942a9fe736cdc96a9981bcbcd", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p15", "seed": 43, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.42998409271240234, "harm_eval_range": 0.11000335216522217, "harm_eval_prox_corr": 0.4409666467594333, "harm_disc_pass": true, "hazard_stage_mean_episode_length": 22.525, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 182, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.11000335216522217, "harm_eval_prox_corr": 0.4409666467594333, "n_samples": 120, "prox_std": 0.1315555075403316}, "reached_hazard_stage": true, "seed_pass": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "cec71ed9de53615d1adce2fc3911bbc38b138f4b8de7a1a1efaf667468d3d769", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_REGIME_0p15", "seed": 44, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.001, "stage0_z_goal_norm_peak": 0.3719131350517273, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 57.7, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": false, "pag_n_commits": 214, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.1298038090455305}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "b5ecc183982321f7c7c8e78080bacd756f2b4b3bc1abac648f01eb518e31c7eb", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_HARMTRAIN_3X_0p15", "seed": 42, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.003, "stage0_z_goal_norm_peak": 0.4901278018951416, "harm_eval_range": 3.651818193172519e-23, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 82.225, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 191, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 3.651818193172519e-23, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.09806600703724892}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "c8b66be7d6674778b1dc0de78af1d77bee85d9fe7950065027d16e52589ea12f", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_HARMTRAIN_3X_0p15", "seed": 43, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.003, "stage0_z_goal_norm_peak": 0.4535905718803406, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 13.725, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": true, "pag_n_commits": 189, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.12800282860445256}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "b1a4a193fdbaa0a2ca3b695e8e6395d483f394714b14c509464159cf7769596b", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}, {"arm": "ARM_HARMTRAIN_3X_0p15", "seed": 44, "aborted_at": null, "abort_reason": "", "proximity_harm": 0.15, "harm_pathway_lr": 0.003, "stage0_z_goal_norm_peak": 0.36456379294395447, "harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "harm_disc_pass": false, "hazard_stage_mean_episode_length": 22.25, "hazard_stage_median_last_window": 4.0, "hazard_stage_survival_pass": false, "g0_stage0_zgoal": false, "pag_n_commits": 190, "gate_engaged": true, "harm_discriminativeness": {"harm_eval_range": 0.0, "harm_eval_prox_corr": NaN, "n_samples": 120, "prox_std": 0.07765468055842058}, "reached_hazard_stage": true, "seed_pass": false, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "cccaafe96c1215f7eb7cbb2b632a1b897127562585455ab895f9b47fe930cbc6", "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"}}], "machine": "ree-cloud-2"}
+{
+  "run_id": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic_20260615T101732Z_v3",
+  "experiment_type": "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic",
+  "queue_id": "V3-EXQ-603p",
+  "claim_ids": [],
+  "experiment_purpose": "diagnostic",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260615T101732Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "depends_on": [
+    "V3-EXQ-603k",
+    "V3-EXQ-603l",
+    "V3-EXQ-603o"
+  ],
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "substrate": "scaffolded_sd054_onboarding Stage-H base arm (bridge OFF) on the 603k harm-pathway-trained + 603j trained-safety-signal substrate",
+  "scores": "claim-free diagnostic: locates the base harm-landscape discriminativeness parameter (hazard proximity_harm vs harm-pathway LR) for the SD-059/MECH-358 bridge-retest re-queue (603q). Weights no claim.",
+  "design_note": "diagnose-first for the 603o substrate_not_ready_requeue. 603o's only failing readiness gate was harm_landscape_discriminative_on_base (harm_eval_range>=0.02 on 1/3 seeds at proximity_harm=0.15); the continuous bridge lift was already strong (both ~50.3 vs base ~18.65). 4 cells x 3 seeds, BASE arm only, run through Stage-H only: proximity_harm sweep {0.10 (positive control),0.12,0.15} at harm_lr=1e-3 + a {0.15, harm_lr=3e-3} training-strength rescue cell. Locates whether the base-harm-landscape failure is regime-difficulty (find the hardest trainable proximity_harm) or harm-training-strength (3x LR rescue at 0.15). Positive-control readiness gate: if even 0.10 fails to clear on >=2/3 the result self-routes substrate_not_ready_requeue (harm-pathway/metric broken), never a regime verdict.",
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "pre_registered_gates": {
+    "primary_metric": "harm_disc_frac (fraction of seeds with harm_eval_range >= 0.02)",
+    "harm_disc_range_floor": 0.02,
+    "positive_control": "ARM_REGIME_0p10 must clear on >=2/3 (else substrate_not_ready_requeue)",
+    "min_fraction": 0.6666666666666666,
+    "stage0_z_goal_gate": 0.4
+  },
+  "hazard_regime": {
+    "num_hazards": 6,
+    "proximity_harm_sweep": [
+      0.1,
+      0.12,
+      0.15,
+      0.15
+    ],
+    "harm_pathway_lr_axis": [
+      0.001,
+      0.003
+    ],
+    "hazard_food_attraction": 0.0,
+    "note": "base arm only (bridge OFF); run through Stage-H only (P1/P2 skipped)"
+  },
+  "diagnostic_label": "substrate_not_ready_requeue",
+  "recommendation": "harm-pathway training or the harm_eval_range readiness metric is broken even at the easy regime (positive control 0p10 below floor on >=2/3 seeds); diagnose the harm-pathway optimizer/loss before any regime tuning -- do NOT read this as a regime-difficulty result",
+  "positive_control_clears": false,
+  "train_rescue": false,
+  "hardest_standard_clearing_proximity_harm": null,
+  "clearing_arms": [],
+  "cross_arm_range_spread": 0.057427684466044106,
+  "harm_disc_range_floor": 0.02,
+  "arm_results": [
+    {
+      "arm": "ARM_REGIME_0p10",
+      "proximity_harm": 0.1,
+      "harm_pathway_lr": 0.001,
+      "harm_disc_frac": 0.3333333333333333,
+      "mean_harm_eval_range": 0.057427684466044106,
+      "mean_harm_eval_prox_corr": 0.39300094507006367,
+      "mean_hazard_episode_length": 48.75833333333333,
+      "g0_frac": 0.6666666666666666,
+      "pag_freeze_frac": 1.0,
+      "gate_engaged_frac": 1.0,
+      "per_seed_harm_eval_range": [
+        0.166548490524292,
+        0.005734562873840332,
+        0.0
+      ],
+      "per_seed_harm_disc_pass": [
+        true,
+        false,
+        false
+      ],
+      "per_seed_hazard_mean_episode_length": [
+        54.3,
+        45.0,
+        46.975
+      ],
+      "arm_fingerprint": [
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "d7594b948903605adfbcfb4aeac5fb75c47f00cf6213e11291c68081e1cb512c",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "62e653f9fc8a59f7c98da3118c6017f963e09997b93deaf24def31b3d16b2baf",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "2ae79d4b5bbafb946892d7c437041913d50a281c8756d5006d3e118fbecee2fa",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        }
+      ]
+    },
+    {
+      "arm": "ARM_REGIME_0p12",
+      "proximity_harm": 0.12,
+      "harm_pathway_lr": 0.001,
+      "harm_disc_frac": 0.3333333333333333,
+      "mean_harm_eval_range": 0.04849926630655924,
+      "mean_harm_eval_prox_corr": 0.7589433276465055,
+      "mean_hazard_episode_length": 19.125,
+      "g0_frac": 0.6666666666666666,
+      "pag_freeze_frac": 1.0,
+      "gate_engaged_frac": 1.0,
+      "per_seed_harm_eval_range": [
+        0.14549779891967773,
+        0.0,
+        0.0
+      ],
+      "per_seed_harm_disc_pass": [
+        true,
+        false,
+        false
+      ],
+      "per_seed_hazard_mean_episode_length": [
+        28.65,
+        18.725,
+        10.0
+      ],
+      "arm_fingerprint": [
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "bf95edc37d9c36f070a1d15fb934a017f7ac04d5b63cf19ab7fce04f26bf5fc5",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "75410370c2d02fbdf2abb56fed8b2fe788711f257ebe79c929e6afb44ee628f6",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "a5bc1424448cd4e45e21575614b968e64aa3bb8dc5b9930ce0cd3b35d4621c44",
+          "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        }
+      ]
+    },
+    {
+      "arm": "ARM_REGIME_0p15",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.001,
+      "harm_disc_frac": 0.3333333333333333,
+      "mean_harm_eval_range": 0.03666778405507406,
+      "mean_harm_eval_prox_corr": 0.4409666467594333,
+      "mean_hazard_episode_length": 29.358333333333334,
+      "g0_frac": 0.6666666666666666,
+      "pag_freeze_frac": 1.0,
+      "gate_engaged_frac": 1.0,
+      "per_seed_harm_eval_range": [
+        0.0,
+        0.11000335216522217,
+        0.0
+      ],
+      "per_seed_harm_disc_pass": [
+        false,
+        true,
+        false
+      ],
+      "per_seed_hazard_mean_episode_length": [
+        7.85,
+        22.525,
+        57.7
+      ],
+      "arm_fingerprint": [
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "c8a56f3ff14a06ec0a576dab8bf77a2ddc487e3942a9fe736cdc96a9981bcbcd",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "cec71ed9de53615d1adce2fc3911bbc38b138f4b8de7a1a1efaf667468d3d769",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "b5ecc183982321f7c7c8e78080bacd756f2b4b3bc1abac648f01eb518e31c7eb",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        }
+      ]
+    },
+    {
+      "arm": "ARM_HARMTRAIN_3X_0p15",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.003,
+      "harm_disc_frac": 0.0,
+      "mean_harm_eval_range": 1.2172727310575063e-23,
+      "mean_harm_eval_prox_corr": 0.0,
+      "mean_hazard_episode_length": 39.4,
+      "g0_frac": 0.6666666666666666,
+      "pag_freeze_frac": 1.0,
+      "gate_engaged_frac": 1.0,
+      "per_seed_harm_eval_range": [
+        3.651818193172519e-23,
+        0.0,
+        0.0
+      ],
+      "per_seed_harm_disc_pass": [
+        false,
+        false,
+        false
+      ],
+      "per_seed_hazard_mean_episode_length": [
+        82.225,
+        13.725,
+        22.25
+      ],
+      "arm_fingerprint": [
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "c8b66be7d6674778b1dc0de78af1d77bee85d9fe7950065027d16e52589ea12f",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 42,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "b1a4a193fdbaa0a2ca3b695e8e6395d483f394714b14c509464159cf7769596b",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 43,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        },
+        {
+          "schema": "arm_fp/v1",
+          "arm_fingerprint": "cccaafe96c1215f7eb7cbb2b632a1b897127562585455ab895f9b47fe930cbc6",
+          "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+          "substrate_n_files": 100,
+          "machine_class": "linux-x86_64-py3.10",
+          "regime": "A",
+          "seed": 44,
+          "config_slice_declared": true,
+          "reuse_eligible": true,
+          "reuse_ineligible_reasons": [],
+          "driver_script_in_substrate_hash": true,
+          "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+        }
+      ]
+    }
+  ],
+  "acceptance": {
+    "primary_metric": "harm_disc_frac (fraction of seeds with harm_eval_range >= 0.02)",
+    "min_fraction": 0.6666666666666666,
+    "harm_disc_range_floor": 0.02,
+    "positive_control_arm": "ARM_REGIME_0p10",
+    "per_arm_harm_disc_frac": {
+      "ARM_REGIME_0p10": 0.3333333333333333,
+      "ARM_REGIME_0p12": 0.3333333333333333,
+      "ARM_REGIME_0p15": 0.3333333333333333,
+      "ARM_HARMTRAIN_3X_0p15": 0.0
+    },
+    "per_arm_mean_harm_eval_range": {
+      "ARM_REGIME_0p10": 0.057427684466044106,
+      "ARM_REGIME_0p12": 0.04849926630655924,
+      "ARM_REGIME_0p15": 0.03666778405507406,
+      "ARM_HARMTRAIN_3X_0p15": 1.2172727310575063e-23
+    },
+    "per_arm_mean_survival": {
+      "ARM_REGIME_0p10": 48.75833333333333,
+      "ARM_REGIME_0p12": 19.125,
+      "ARM_REGIME_0p15": 29.358333333333334,
+      "ARM_HARMTRAIN_3X_0p15": 39.4
+    }
+  },
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "positive_control_harm_landscape_discriminative",
+        "kind": "readiness",
+        "description": "ARM_REGIME_0p10 (easiest regime; 603k trained a discriminative harm landscape here) must clear harm_eval_range>=0.02 on >=2/3 seeds -- the SAME statistic the diagnostic routes on, measured on the known-positive control. Below-floor => harm-pathway training or the readiness metric is broken (substrate_not_ready_requeue), NOT a regime-difficulty verdict.",
+        "control": "ARM_REGIME_0p10: bridge OFF, full 603k harm-pathway training, easiest proximity_harm=0.10.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "harm_eval_range_has_cross_arm_dynamic_range",
+        "kind": "readiness",
+        "description": "mean harm_eval_range must vary across the difficulty/training cells (spread >= floor) -- else the readout is pinned and the diagnostic is vacuous.",
+        "control": "4 cells (proximity_harm 0.10/0.12/0.15 + 3x-LR at 0.15).",
+        "measured": 0.057427684466044106,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_positive_control",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 positive-control seeds -- the curriculum is intact.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "cells_reached_hazard_stage": true,
+      "positive_control_clears": false,
+      "cross_arm_harm_range_dynamic_range": true,
+      "pag_freeze_present": true
+    },
+    "criteria": [
+      {
+        "name": "positive_control_harm_landscape_discriminative",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "actionable_regime_or_training_recommendation_found",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "grid": {
+      "positive_control_fails": "substrate_not_ready_requeue: harm-pathway training/metric broken at easy regime; diagnose harm-pathway optimizer/loss",
+      "hard_regime_cell_clears": "regime_difficulty_threshold_located: 603q uses the hardest clearing proximity_harm",
+      "train_rescue": "harm_train_strength_rescues_hard_regime: 603q keeps 0.15 + 3x harm-pathway LR",
+      "only_eased_clears": "hard_regime_breaks_harm_landscape_use_eased_regime: 603q eases proximity_harm to the hardest clearing cell",
+      "nothing_clears": "substrate_not_ready_requeue: escalate to /failure-autopsy on harm-pathway training"
+    }
+  },
+  "per_seed": [
+    {
+      "arm": "ARM_REGIME_0p10",
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.1,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.49012312293052673,
+      "harm_eval_range": 0.166548490524292,
+      "harm_eval_prox_corr": 0.831272072135275,
+      "harm_disc_pass": true,
+      "hazard_stage_mean_episode_length": 54.3,
+      "hazard_stage_median_last_window": 5.5,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 178,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.166548490524292,
+        "harm_eval_prox_corr": 0.831272072135275,
+        "n_samples": 120,
+        "prox_std": 0.12618092646049528
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "d7594b948903605adfbcfb4aeac5fb75c47f00cf6213e11291c68081e1cb512c",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p10",
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.1,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.4537992477416992,
+      "harm_eval_range": 0.005734562873840332,
+      "harm_eval_prox_corr": -0.045270181995147644,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 45.0,
+      "hazard_stage_median_last_window": 4.5,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 154,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.005734562873840332,
+        "harm_eval_prox_corr": -0.045270181995147644,
+        "n_samples": 120,
+        "prox_std": 0.020631429683794465
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "62e653f9fc8a59f7c98da3118c6017f963e09997b93deaf24def31b3d16b2baf",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p10",
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.1,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.37705498933792114,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 46.975,
+      "hazard_stage_median_last_window": 5.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": false,
+      "pag_n_commits": 195,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.09715364020647028
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "2ae79d4b5bbafb946892d7c437041913d50a281c8756d5006d3e118fbecee2fa",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p12",
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.12,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.48603343963623047,
+      "harm_eval_range": 0.14549779891967773,
+      "harm_eval_prox_corr": 0.7589433276465055,
+      "harm_disc_pass": true,
+      "hazard_stage_mean_episode_length": 28.65,
+      "hazard_stage_median_last_window": 5.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 170,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.14549779891967773,
+        "harm_eval_prox_corr": 0.7589433276465055,
+        "n_samples": 120,
+        "prox_std": 0.05601385760331828
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "bf95edc37d9c36f070a1d15fb934a017f7ac04d5b63cf19ab7fce04f26bf5fc5",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p12",
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.12,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.4415850341320038,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 18.725,
+      "hazard_stage_median_last_window": 5.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 159,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.0770100826554634
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "75410370c2d02fbdf2abb56fed8b2fe788711f257ebe79c929e6afb44ee628f6",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p12",
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.12,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.37264320254325867,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 10.0,
+      "hazard_stage_median_last_window": 5.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": false,
+      "pag_n_commits": 193,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.08737309734195516
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a5bc1424448cd4e45e21575614b968e64aa3bb8dc5b9930ce0cd3b35d4621c44",
+        "substrate_hash": "64861ccb1d108204692226d2f512ae0260f6cfd9e0e36a247d262b37a0450889",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p15",
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.5067144632339478,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 7.85,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 184,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.06181271163443049
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "c8a56f3ff14a06ec0a576dab8bf77a2ddc487e3942a9fe736cdc96a9981bcbcd",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p15",
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.42998409271240234,
+      "harm_eval_range": 0.11000335216522217,
+      "harm_eval_prox_corr": 0.4409666467594333,
+      "harm_disc_pass": true,
+      "hazard_stage_mean_episode_length": 22.525,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 182,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.11000335216522217,
+        "harm_eval_prox_corr": 0.4409666467594333,
+        "n_samples": 120,
+        "prox_std": 0.1315555075403316
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cec71ed9de53615d1adce2fc3911bbc38b138f4b8de7a1a1efaf667468d3d769",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_REGIME_0p15",
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.001,
+      "stage0_z_goal_norm_peak": 0.3719131350517273,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 57.7,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": false,
+      "pag_n_commits": 214,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.1298038090455305
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "b5ecc183982321f7c7c8e78080bacd756f2b4b3bc1abac648f01eb518e31c7eb",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_HARMTRAIN_3X_0p15",
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.003,
+      "stage0_z_goal_norm_peak": 0.4901278018951416,
+      "harm_eval_range": 3.651818193172519e-23,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 82.225,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 191,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 3.651818193172519e-23,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.09806600703724892
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "c8b66be7d6674778b1dc0de78af1d77bee85d9fe7950065027d16e52589ea12f",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_HARMTRAIN_3X_0p15",
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.003,
+      "stage0_z_goal_norm_peak": 0.4535905718803406,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 13.725,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": true,
+      "pag_n_commits": 189,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.12800282860445256
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "b1a4a193fdbaa0a2ca3b695e8e6395d483f394714b14c509464159cf7769596b",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    },
+    {
+      "arm": "ARM_HARMTRAIN_3X_0p15",
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "proximity_harm": 0.15,
+      "harm_pathway_lr": 0.003,
+      "stage0_z_goal_norm_peak": 0.36456379294395447,
+      "harm_eval_range": 0.0,
+      "harm_eval_prox_corr": NaN,
+      "harm_disc_pass": false,
+      "hazard_stage_mean_episode_length": 22.25,
+      "hazard_stage_median_last_window": 4.0,
+      "hazard_stage_survival_pass": false,
+      "g0_stage0_zgoal": false,
+      "pag_n_commits": 190,
+      "gate_engaged": true,
+      "harm_discriminativeness": {
+        "harm_eval_range": 0.0,
+        "harm_eval_prox_corr": NaN,
+        "n_samples": 120,
+        "prox_std": 0.07765468055842058
+      },
+      "reached_hazard_stage": true,
+      "seed_pass": false,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cccaafe96c1215f7eb7cbb2b632a1b897127562585455ab895f9b47fe930cbc6",
+        "substrate_hash": "07d45c971a729a736e2d1339b0f528bd7be6096c0d65e4e90257afba49a8fdce",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "431c696c947dd612ea8f2491e48e9767e0466f729a772867367653308ace50ec"
+      }
+    }
+  ],
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "2026-06-15 (/governance, failure_autopsy_V3-EXQ-603p CONFIRMED): V3-EXQ-603p (claim-free Stage-H base-harm-landscape diagnostic; non_contributory; non-degenerate -- cross-arm dynamic range 0.057 > 0.02, stage-0 z_goal lit 2/3). Positive control proximity_harm=0.10/harm_lr=1e-3 cleared harm_eval_range>=0.02 on only 1/3 seeds; all three standard cells clear 1/3 (a different seed each cell; seed 44 never); the 3x-LR rescue collapsed the landscape to ~0 on all seeds. Confirms the Stage-H harm-valuation pathway training (603k) is seed-fragile -- NOT a regime-difficulty result (per the script's own positive-control interpretation rule). The 'harm-pathway-survival leg VALIDATED 2026-06-09' status on scaffolded_sd054_onboarding rested on a narrow probe; seed-robustness is an open residual. Route: /implement-substrate (stabilize harm-pathway training to >=2/3 seeds at the easy regime; do NOT raise LR). Do NOT queue the V3-EXQ-603q bridge re-run until harm_eval_range>=0.02 clears >=2/3 seeds. SD-059/MECH-358 unchanged.",
+  "evidence_quality_category": "substrate_ceiling"
+}

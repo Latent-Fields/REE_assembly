@@ -3163,7 +3163,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-187": {
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "serotonin.incentive_salience_gain_regulation",
     "title": "Serotonin modulates the gain on dopaminergic incentive salience, converting the hard SD-012 threshold into an adaptive graded transduction function.",
@@ -5292,7 +5292,8 @@
     "status": "open",
     "subject": "policy.diversity_generation.arc062_minimum_diversity_floor",
     "title": "What is the minimum trajectory-class diversity floor (Rung 1 first_action_entropy threshold) required for the ARC-062 context discriminator to learn a reliable discriminative cut between reef and foraging contexts? Is the current SP-CEM entropy lift of 0.497 nats sufficient, or is a higher floor required? (Was proposed 2026-05-15 as Q-046 in behavioral_diversity_acceptance_criteria.md; never registered; re-registered under next available Q-id.)",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A parametric entropy sweep (noise_floor_min_temperature, curiosity_novelty_weight) over the SD-054 substrate that plots ARC-062 context-discriminator accuracy against upstream Rung-1 first_action_entropy and locates the floor: the entropy value below which discriminator accuracy is at chance and above which it rises monotonically. The question is answered when that floor is bracketed -- i.e. it is established whether the observed SP-CEM lift of 0.497 nats sits above the floor (sufficient) or below it (insufficient). NOTE (2026-06-15): cleanly answering this presupposes the behavioral_diversity_isolation:GAP-A conversion ceiling is lifted -- while committed behaviour does not move with the channel range (569g/682), discriminator accuracy cannot be read as a function of realised first_action_entropy.\n"
   },
   "Q-055": {
     "epistemic_stance": "asked",

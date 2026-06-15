@@ -17121,8 +17121,8 @@
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
-  pending_retest_after_substrate: false
-  narrow_supports_flag: false
+  pending_retest_after_substrate: true
+  narrow_supports_flag: true
   depends_on:
     - SD-005
     - SD-015
@@ -17146,6 +17146,26 @@
     Neurological basis: Barch & Dowd 2010 (wanting/liking in schizophrenia);
     Hollerman et al. 2000 (striatal goal representation). Full literature in MECH-112.
   evidence_quality_note: |
+    2026-06-15 (governance, failure_autopsy_V3-EXQ-514p CONFIRMED -- SUPERSEDES the promotion-path
+    prediction below): the confirmatory replication V3-EXQ-514p FAILed, and the per-claim weakens is
+    reclassified non_contributory (measurement_test_design_defect) and scoring-excluded. The load-bearing
+    criterion C_WL (raw fraction most-wanted != last-consumed, bar 0.6) does NOT isolate the drive-coupled
+    incentive-salience content MECH-229 asserts: the within-eval drive-dependence control
+    wl_drive_minus_nodrive is ~0 in BOTH the 514o PASS (0.083) and the 514p FAIL (0.074) -- exactly zero on
+    2/3 514p seeds -- and 514o's drive-uniform negative control (mean_wl_nodrive 0.717) itself clears the 0.6
+    bar. With n_resource_types=3 the raw fraction is dominated by ~(N-1)/N categorical baseline mismatch,
+    drive or no drive. CONSEQUENCE: the 514o supports + the 2026-06-15 04:00Z promotion path (the
+    substrate-ceiling-lifted / pending_retest_after_substrate=false / narrow_supports_flag=false
+    reclassification below) all rest on the SAME non-isolating criterion -- so the provisional->stable
+    promotion is PAUSED. MECH-229 stays provisional (NO demotion -- the mechanism is not refuted, only the
+    criterion is non-isolating); narrow_supports_flag -> true and pending_retest_after_substrate -> true
+    restored. epistemic_category stays standard (the substrate IS adequate -- SD-057 built 2026-06-04, contact
+    guard 3/3, bank populated, positive-control separation 1.0 -- so this is NOT a substrate ceiling; no
+    substrate_queue create/amend). Corrected retest = V3-EXQ-514q: make the drive-dependence delta
+    (wl_drive_minus_nodrive) the LOAD-BEARING criterion with an effect-size gate max(k*pstdev(delta), FLOOR),
+    raw C_WL a non-vacuity check only. The self-routed genuine-weakens off-ramp (substrate_conditional, V4-1)
+    is NOT fired (unmet precondition; cf. V3-EXQ-642). goal_pipeline:GAP-2/GAP-7 closure was on the 514o
+    behavioural dissociation and is independent of this criterion-isolation defect.
     2026-06-15 (governance): SUBSTRATE CEILING LIFTED. V3-EXQ-514o is a genuine, non-degenerate
     PASS/supports on the SD-049 multi-resource substrate -- exactly the retest pending_retest_after_substrate
     awaited. mean_object_bound_wl_dissoc_fraction = 0.80 (>= 0.6 pre-registered) with n_scored_wl_steps
@@ -38297,6 +38317,17 @@
   implementation_phase: v3
   claim_level: mechanistic
   registered_utc: "2026-05-25"
+  what_would_answer: >
+    A parametric entropy sweep (noise_floor_min_temperature, curiosity_novelty_weight)
+    over the SD-054 substrate that plots ARC-062 context-discriminator accuracy against
+    upstream Rung-1 first_action_entropy and locates the floor: the entropy value below
+    which discriminator accuracy is at chance and above which it rises monotonically. The
+    question is answered when that floor is bracketed -- i.e. it is established whether the
+    observed SP-CEM lift of 0.497 nats sits above the floor (sufficient) or below it
+    (insufficient). NOTE (2026-06-15): cleanly answering this presupposes the
+    behavioral_diversity_isolation:GAP-A conversion ceiling is lifted -- while committed
+    behaviour does not move with the channel range (569g/682), discriminator accuracy
+    cannot be read as a function of realised first_action_entropy.
   depends_on:
     - ARC-065
     - ARC-062
