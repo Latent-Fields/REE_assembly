@@ -1,48 +1,44 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-15T11:51:32Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-684",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-674",
-      "result": "PASS",
-      "completed_at": "2026-06-12T16:15:09.266501+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-676",
-      "result": "PASS",
-      "completed_at": "2026-06-13T00:02:02.227848+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514o",
-      "result": "PASS",
-      "completed_at": "2026-06-15T02:23:11.688880+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514p",
-      "result": "FAIL",
-      "completed_at": "2026-06-15T08:57:28.998528+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-591f",
-      "result": "PASS",
-      "completed_at": "2026-06-15T11:51:31.739807+00:00"
-    }
+  "last_tick_utc": "2026-06-15T12:23:36Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-684",
+  "current_exq_started_utc": "2026-06-15T11:53:33.879428+00:00",
+  "current_title": "modulatory-bias-selection-authority CONVERSION readiness: does the routed channel range MOVE the committed argmax under gain/contrast (std basis) + shortlist-then-modulate, beating a verified-lifting matched-noise control? (behavioral_diversity_isolation:GAP-A; gates V3-EXQ-569h)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_PROPOSER",
+    "runs_done": 1,
+    "runs_total": 18,
+    "episodes_done": 30,
+    "episodes_total": 80,
+    "overall_pct": 7.6
+  },
+  "seconds_elapsed": 1803,
+  "seconds_remaining": 17871,
+  "recent_lines": [
+    "Seed 42 Condition ARM_PROPOSER",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 40/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 50/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P0 ep 60/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P1 ep 70/80",
+    "[train] arm=ARM_PROPOSER seed=42 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_PROPOSER",
+    "[train] arm=ARM_PROPOSER seed=43 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER seed=43 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER seed=43 phase=P0 ep 30/80"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 667,
-  "runner_version": "r3196 dfbe52e 2026-06-15 (running r3177 b2833f8)",
+  "runner_version": "r3203 92f6131 2026-06-15 (running r3177 b2833f8)",
   "gpu": {
     "available": false
   },
