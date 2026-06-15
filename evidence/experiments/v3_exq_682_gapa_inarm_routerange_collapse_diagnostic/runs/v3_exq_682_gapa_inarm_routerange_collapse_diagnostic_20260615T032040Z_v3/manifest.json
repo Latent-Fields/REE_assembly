@@ -1,0 +1,86 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_682_gapa_inarm_routerange_collapse_diagnostic",
+  "run_id": "v3_exq_682_gapa_inarm_routerange_collapse_diagnostic_20260615T032040Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-15T03:20:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "diagnostic",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "no_collapse_reproduced",
+    "cause_label": "no_collapse_reproduced",
+    "cause_detail": {
+      "cfg_routing_on": true,
+      "cfg_route_source": "cand_world_summary",
+      "summaries_none_frac": 0.0,
+      "summary_pairwise_dist_mean": 0.064727,
+      "projected_range_mean": 0.203741,
+      "applied_route_range_mean": 0.204144,
+      "n_measure_ticks": 120
+    },
+    "preconditions": [
+      {
+        "name": "arm1_summaries_supra_floor_spread",
+        "kind": "readiness",
+        "description": "ARM_1 live in-arm cand_world_summaries cross-candidate spread clears the floor (the route input must carry range). FLOOR precondition: met when measured >= threshold.",
+        "measured": 0.064727,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "arm1_e2wf_source_active",
+        "kind": "readiness",
+        "description": "ARM_1 _candidate_world_summaries returned non-None (e2_world_forward source active). FLOOR precondition: met when 1 - summaries_none_frac >= threshold.",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "arm1_ticks_collected": true,
+      "arms_distinct_summary_source": true
+    },
+    "routing": {
+      "cause_iii_routing_not_wired_in_arm": "routing config off / wrong source in the arm agent -- re-check _make_agent wiring",
+      "cause_iii_summaries_none_e2wf_source_inactive": "e2_world_forward source returned None (e2 / current latent unavailable) -- check _candidate_world_summaries preconditions",
+      "cause_i_live_summary_recollapse": "DOMINANT HYPOTHESIS: in-arm cand_world_summaries collapse at the live tick despite e2_world_forward source -- e2 under-trained or monostrategy at select",
+      "cause_ii_project_channel_range_collapse": "summaries carry spread but the SVD projection flattens it -- re-examine project_channel_range",
+      "cause_iv_applied_zero_despite_upstream_ok": "upstream OK but e3 selector records 0 -- deeper wiring (route fold / range floor) in e3.select",
+      "no_collapse_reproduced": "the 569g symptom did NOT reproduce -- re-examine 569g harness vs this one",
+      "diagnostic_insufficient_ticks": "too few measurement ticks collected -- raise P1 budget or measure cap"
+    }
+  }
+}
