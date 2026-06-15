@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-15T08:32:17Z",
+  "last_tick_utc": "2026-06-15T08:42:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-603p",
   "current_exq_started_utc": "2026-06-14T23:36:59.931566+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_HARMTRAIN_3X_0p15",
-    "runs_done": 9,
+    "run_label": "Seed 43 / ARM_HARMTRAIN_3X_0p15",
+    "runs_done": 10,
     "runs_total": 12,
-    "episodes_done": 130,
+    "episodes_done": 20,
     "episodes_total": 170,
-    "overall_pct": 81.4
+    "overall_pct": 84.3
   },
-  "seconds_elapsed": 32118,
-  "seconds_remaining": 7606,
+  "seconds_elapsed": 32724,
+  "seconds_remaining": 6176,
   "recent_lines": [
     "[v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic] starting (dry_run=False)",
     "Seed 42 Condition ARM_REGIME_0p10",
@@ -67,7 +67,11 @@
     "verdict: FAIL seed=44 arm=ARM_REGIME_0p15 harm_range=0.0000 mean_len=57.7",
     "Seed 42 Condition ARM_HARMTRAIN_3X_0p15",
     "[train] stage0 ARM_HARMTRAIN_3X_0p15 seed=42 ep 20/170 z_goal_peak=0.4901",
-    "[train] p0 ARM_HARMTRAIN_3X_0p15 seed=42 ep 130/170 mean_len=200.0 rv=0.01125"
+    "[train] p0 ARM_HARMTRAIN_3X_0p15 seed=42 ep 130/170 mean_len=200.0 rv=0.01125",
+    "[train] hazard_avoidance ARM_HARMTRAIN_3X_0p15 seed=42 ep 170/170 mean_len=82.2 harm_range=0.0000 (floor 0.02: FAIL) harm_corr=nan pag_commits=191 gate_engaged=True",
+    "verdict: FAIL seed=42 arm=ARM_HARMTRAIN_3X_0p15 harm_range=0.0000 mean_len=82.2",
+    "Seed 43 Condition ARM_HARMTRAIN_3X_0p15",
+    "[train] stage0 ARM_HARMTRAIN_3X_0p15 seed=43 ep 20/170 z_goal_peak=0.4536"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
