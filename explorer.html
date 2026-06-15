@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-15.2 -->
+<!-- EXPLORER_VERSION: 2026-06-15.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -5823,7 +5823,12 @@ END CONFLICT RESOLUTION`;
     }
 
     let selectedId = null;
-    let currentView = 'list';
+    // Persisted across page reloads; defaults to the experiments view on first open.
+    const CURRENT_VIEW_STORAGE_KEY = 'ree_explorer.current_view.v1';
+    let currentView = (() => {
+      try { return localStorage.getItem(CURRENT_VIEW_STORAGE_KEY) || 'experiments'; }
+      catch (_) { return 'experiments'; }
+    })();
 
     function renderTable() {
       const filtered = applyFilters();
@@ -6795,6 +6800,7 @@ END CONFLICT RESOLUTION`;
 
     function setView(view) {
       currentView = view;
+      try { localStorage.setItem(CURRENT_VIEW_STORAGE_KEY, view); } catch (_) {}
       hideAllPrimaryViews();
 
       if (view === 'graph') {
