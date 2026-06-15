@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-15T01:09:51Z",
+  "last_tick_utc": "2026-06-15T01:40:01Z",
   "state": "running",
   "current_exq": "V3-EXQ-666c",
   "current_exq_started_utc": "2026-06-14T20:25:06.440789+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / ARM_0_OFF",
     "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 150,
     "episodes_total": 200,
-    "overall_pct": 66.7
+    "overall_pct": 75.0
   },
-  "seconds_elapsed": 17085,
-  "seconds_remaining": 8070,
+  "seconds_elapsed": 18895,
+  "seconds_remaining": 6052,
   "recent_lines": [
     "Seed 42 Condition ARM_0_OFF",
     "[train] cell ARM_0_OFF seed=42 ep 50/200",
@@ -61,7 +61,10 @@
     "[train] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=43 ep 200/200",
     "[gap] cell ARM_2_MATURE_E2CTX_MAINTENANCE seed=43 silence_ticks=2000 pre_gap_dist=1.701 n_maintained 9->9",
     "verdict: FAIL",
-    "Seed 44 Condition ARM_0_OFF"
+    "Seed 44 Condition ARM_0_OFF",
+    "[train] cell ARM_0_OFF seed=44 ep 50/200",
+    "[train] cell ARM_0_OFF seed=44 ep 100/200",
+    "[train] cell ARM_0_OFF seed=44 ep 150/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
