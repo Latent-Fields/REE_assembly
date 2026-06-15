@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-15T04:35:36Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-680d",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "last_tick_utc": "2026-06-15T05:06:19Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-591e",
+  "current_exq_started_utc": "2026-06-15T04:45:40.517996+00:00",
+  "current_title": "InfantCurriculumScheduler Phase 0->1 gate-CRITERION diagnostic: EMA-of-LEVEL @ ~0.20 floor (supersedes V3-EXQ-591d)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / gate",
+    "runs_done": 0,
+    "runs_total": 5,
+    "episodes_done": 0,
+    "episodes_total": 160,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 1238,
+  "seconds_remaining": 14400,
+  "recent_lines": [
+    "V3-EXQ-591e gate-criterion: seeds=[42, 43, 44, 45, 46] n_episodes=160 steps=200 spike_threshold=0.9940 ema_level_floor=0.2000 ep_min=100 EMA_alpha=0.2 [diversity stack ON] [supersedes V3-EXQ-591d]",
+    "Seed 42 Condition gate-criterion"
   ],
-  "runner_pid": 745,
-  "runner_version": "r3183 c61a433 2026-06-15 (running r3181 1631210)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 747,
+  "runner_version": "r3187 7225065 2026-06-15 (running r3185 489cdb0)",
   "gpu": {
     "available": false
   },
