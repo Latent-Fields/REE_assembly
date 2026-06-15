@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- PUBLIC_EXPLORER_VERSION: 2026-06-15.1 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REE Lab Window -- public, read-only explorer</title>
+  <meta name="description" content="A public, read-only window onto the REE (Reflective-Ethical Engine) claim-governed evidence trail: claims, mechanisms, reviewed experiments, and safe ways to contribute.">
+  <link rel="stylesheet" href="public_explorer.css">
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>REE Lab Window</h1>
+      <p class="tagline" id="tagline">A read-only window onto the REE evidence trail.</p>
+      <div class="banner">
+        Read-only public view. This shows <strong>reviewed</strong> evidence only and
+        deliberately withholds future-stage roadmap, operational detail, and anything
+        that would let an outsider optimise against pending tests. It is not the
+        internal working tool.
+      </div>
+      <p class="meta">
+        Generated <span id="gen-date">--</span>.
+        <a href="../public_explorer_policy.html">What this exposes &amp; withholds &rarr;</a>
+        &nbsp;|&nbsp;
+        <a id="repo-link" href="https://github.com/Latent-Fields/REE_assembly">GitHub repository</a>
+      </p>
+    </div>
+  </header>
+
+  <nav class="tabs wrap" role="tablist" aria-label="Explorer modes">
+    <button role="tab" id="tab-orientation" aria-controls="panel-orientation" aria-selected="true">Orientation</button>
+    <button role="tab" id="tab-evidence" aria-controls="panel-evidence" aria-selected="false">Evidence</button>
+    <button role="tab" id="tab-mechanisms" aria-controls="panel-mechanisms" aria-selected="false">Mechanism map</button>
+    <button role="tab" id="tab-contribute" aria-controls="panel-contribute" aria-selected="false">Contribute</button>
+  </nav>
+
+  <main class="wrap">
+    <section role="tabpanel" id="panel-orientation" aria-labelledby="tab-orientation" tabindex="0">
+      <div class="loading">Loading&hellip;</div>
+    </section>
+    <section role="tabpanel" id="panel-evidence" aria-labelledby="tab-evidence" tabindex="0" hidden>
+      <div class="loading">Loading&hellip;</div>
+    </section>
+    <section role="tabpanel" id="panel-mechanisms" aria-labelledby="tab-mechanisms" tabindex="0" hidden>
+      <div class="loading">Loading&hellip;</div>
+    </section>
+    <section role="tabpanel" id="panel-contribute" aria-labelledby="tab-contribute" tabindex="0" hidden>
+      <div class="loading">Loading&hellip;</div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      REE is developed by Daniel Golden (Latent Fields). This public explorer is a
+      static, read-only export of reviewed claims and evidence; the underlying registry
+      is the source of truth. Apache 2.0.
+    </div>
+  </footer>
+
+  <script src="public_explorer.js"></script>
+</body>
+</html>

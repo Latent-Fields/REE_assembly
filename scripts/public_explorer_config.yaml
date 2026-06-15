@@ -1,0 +1,167 @@
+# Curation config for the public REE Explorer ("Lab Window").
+#
+# This file holds the EDITORIAL / CURATORIAL choices that drive
+# scripts/export_public_explorer.py. Keeping them here (rather than in code)
+# means a non-programmer can adjust scope, taxonomy, and copy without touching
+# the exporter logic. Everything the exporter publishes is gated by the rules
+# below plus the hard-coded sensitive-pattern scrub in the script.
+#
+# SAFETY NOTE: widening `include_statuses`, or removing entries from
+# `exclude_implementation_phases` / `exclude_epistemic_categories`, makes MORE
+# material public. Re-read docs/public_explorer_policy.md before doing so, and
+# always review public_explorer_redaction_report.md after a run.
+
+schema_version: "public_explorer/v1"
+
+# ---------------------------------------------------------------------------
+# Claim scope (the "V3 + settled only" policy confirmed with the maintainer).
+# A claim is PUBLIC iff: status in include_statuses
+#                        AND implementation_phase not in exclude_implementation_phases
+#                        AND epistemic_category not in exclude_epistemic_categories
+#                        AND not deprecated.
+# Everything else is withheld and counted-by-reason in the redaction report.
+# ---------------------------------------------------------------------------
+scope:
+  # Settled / live statuses. Note the real registry has no "ratified"/"retracted";
+  # these are the actual settled values in claims.yaml.
+  include_statuses:
+    - active
+    - provisional
+    - stable
+    - implemented
+    - resolved
+    - candidate_resolved
+    - superseded
+  # Future-sensitive roadmap generations -> withheld so outsiders can't steer
+  # or pre-empt unbuilt work.
+  exclude_implementation_phases:
+    - v4
+    - v5
+    - v6
+    - post_v5
+  # substrate_conditional = depends on substrate not yet built (roadmap).
+  # substrate_ceiling is intentionally NOT excluded: it is surfaced as an
+  # honest "unresolved (substrate limitation)" state.
+  exclude_epistemic_categories:
+    - substrate_conditional
+
+# ---------------------------------------------------------------------------
+# Cognitive-function taxonomy for the Mechanism Map.
+# Each group lists subject-prefix tokens (the part of `subject:` before the
+# first dot). First match wins, in the order below; unmatched -> "Other".
+# This is a presentation grouping only, derived from existing `subject` fields.
+# ---------------------------------------------------------------------------
+cognitive_functions:
+  - name: "Memory & consolidation"
+    prefixes: [hippocampal, hippocampus, hippocampal_module, memory, consolidation, mem1, ca3, ca1, entorhinal]
+  - name: "Sleep & offline processing"
+    prefixes: [sleep, default_mode, dmn, offline, replay]
+  - name: "Harm modelling & ethics"
+    prefixes: [ethics, harm_stream, harm, moral, care, loveability, selfhood_personality_ethics]
+  - name: "Self / world attribution & perception"
+    prefixes: [perception, e1, e2, world, self, attribution, self_attribution, selfhood,
+               inference, agency, object, entities, environment, social, tpj,
+               responsibility, provenance, epistemology, sensory_stream_tags]
+  - name: "Attention & precision"
+    prefixes: [attention, precision, salience]
+  - name: "Goals, drives & commitment"
+    prefixes: [goal, goal_directed_agency, drive, commitment, residue, consequence,
+               policy, control_plane, motivation, rule_apprehension, agentic_extension]
+  - name: "Affect & valuation"
+    prefixes: [affect, affective, amygdala, cingulate, reward, valence, emotion,
+               e3, basal_ganglia, drive_affect]
+  - name: "Language & higher cognition"
+    prefixes: [language, cognitive_modes, cognition, coherence, pfc, reasoning, abstraction]
+  - name: "Development, play & learning"
+    prefixes: [development, developmental, play, learning, curriculum, plasticity]
+  - name: "Clinical & pharmacology"
+    prefixes: [psychiatric, dementia, pharmacology, clinical, disorder]
+  - name: "Architecture & substrate"
+    prefixes: [architecture, substrate, engine, foundation, encoder, latent_stack,
+               l_space, multirate, temporal, design]
+
+# ---------------------------------------------------------------------------
+# Closure plans that are safe to surface (node skeleton only: id/title/phase/
+# status). Anything NOT listed here is withheld. V4/V5 strategy plans
+# (loveability_ethical_agency_v5, arc_062_rule_apprehension, multi_agent_*)
+# carry forward-strategy and cross-machine operational notes -> never list them.
+# NOTE: closure-plan surfacing is OPTIONAL and OFF by default in v1 (the list is
+# empty). Populate deliberately after review.
+# ---------------------------------------------------------------------------
+public_closure_plans: []
+
+# ---------------------------------------------------------------------------
+# Orientation-mode copy. Plain language first. Kept here so wording can be
+# revised without touching code or HTML.
+# ---------------------------------------------------------------------------
+orientation:
+  tagline: "A cognitive architecture and an open evidence trail for building alignment into how an agent thinks, not bolting it on afterwards."
+  what_is_ree: >-
+    REE (Reflective-Ethical Engine) is a research programme. Its bet is that
+    alignment should live inside the generative machinery of agency -- in how an
+    agent attributes self versus world, models harm, forms and keeps
+    commitments, carries the residue of its past actions, and exercises care --
+    rather than being scored on after the fact. REE is built and tested as a
+    claim-governed system: every idea becomes an explicit claim, claims are
+    turned into experiments, experiments produce evidence, the evidence is
+    reviewed, and governance updates each claim's standing. This page is a
+    read-only window onto that trail.
+  what_v3_proves: >-
+    V3 is the current working substrate (internally tagged
+    "ree_hybrid_guardrails_v1"). It is where claims about memory, harm
+    modelling, commitment, self/world attribution and related mechanisms are
+    put to an experimental test. V3 is NOT a finished product or a claim that
+    the architecture "works": it is an apparatus for finding out which
+    mechanisms hold up and which do not. Many results weaken claims or leave
+    them unresolved -- that is the point of the exercise.
+  what_v3_does_not_prove: >-
+    Nothing here should be read as a deployable safe-AI system, a guarantee of
+    safety, or a settled scientific result. Reviewed PASS evidence on a narrow
+    experimental substrate is a small, local signal -- not proof that a
+    mechanism generalises. Weakened and unresolved claims are shown alongside
+    supported ones precisely so the picture stays honest.
+  how_to_read_evidence: >-
+    Each claim shows the direction of its reviewed evidence: supported,
+    weakened, mixed, unresolved, or superseded. "Supported" means at least one
+    reviewed experiment passed its pre-registered criteria; it does not mean
+    proven. Experiments that were superseded by a corrected re-run, or that hit
+    a vacuous test criterion, are excluded from scoring and labelled as such.
+    Pending (not-yet-reviewed) results are shown only as a count -- never as a
+    list -- so the page reflects reviewed evidence, not work in progress.
+  not_yet_inferred:
+    - "That a supported claim generalises beyond its narrow experimental substrate."
+    - "That the absence of a claim here means REE rejects the idea -- future-stage and unsettled claims are withheld by design."
+    - "That weakened or unresolved claims are dead ends; many are awaiting a richer substrate."
+    - "Any timeline, roadmap ordering, or what will be tested next -- that is deliberately not published."
+
+# ---------------------------------------------------------------------------
+# Contribution surface. Each path maps to a GitHub issue-form template.
+# The `template` is the filename under .github/ISSUE_TEMPLATE/.
+# ---------------------------------------------------------------------------
+help_wanted:
+  repo_url: "https://github.com/Latent-Fields/REE_assembly"
+  governance_caveat: >-
+    Suggestions are welcome but do not directly change any claim's standing.
+    Every contribution is reviewed by the maintainer and only enters governance
+    if and when it is accepted. This keeps the evidence trail auditable.
+  paths:
+    - id: literature_suggestion
+      label: "Suggest literature"
+      description: "Point to a paper or finding that supports, challenges, or is relevant to a claim or mechanism."
+      template: "literature_suggestion.yml"
+    - id: experiment_critique
+      label: "Critique an experiment"
+      description: "Question the design, interpretation, or pre-registered criteria of a reviewed experiment."
+      template: "experiment_critique.yml"
+    - id: replication_attempt
+      label: "Attempt a replication"
+      description: "Re-run or independently reproduce a published result and report what you found."
+      template: "replication_attempt.yml"
+    - id: documentation_improvement
+      label: "Improve documentation"
+      description: "Fix an error, ambiguity, or gap in the public docs or this explorer."
+      template: "documentation_improvement.yml"
+    - id: visualization_help
+      label: "Help with visualisation / front-end"
+      description: "Offer a clearer way to present the claims, evidence, or mechanism map."
+      template: "visualization_help.yml"

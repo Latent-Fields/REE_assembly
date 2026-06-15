@@ -1,0 +1,986 @@
+[
+  {
+    "function": "Goals, drives & commitment",
+    "count": 32,
+    "claims": [
+      {
+        "id": "ARC-005",
+        "title": "Control plane routes precision and modes.",
+        "claim_type": "Architectural commitment",
+        "state": "supported"
+      },
+      {
+        "id": "ARC-013",
+        "title": "Residue is persistent latent-space curvature; hippocampal paths form a cognitive map.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-065",
+        "title": "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "INV-004",
+        "title": "Post-commit consequence traces are persistent, not resettable.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-006",
+        "title": "Post-commit consequence traces cannot be erased, only integrated.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-012",
+        "title": "Responsibility arises through commitment, not prediction alone.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-052",
+        "title": "Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across terrain, transduction, and maintenance stages.",
+        "claim_type": "Invariant",
+        "state": "supported"
+      },
+      {
+        "id": "INV-066",
+        "title": "z_self subtraction (MECH-221) must precede any coherency-based control plane signal; coherency checks on contaminated z_world generate self-sealing false confirmations.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-005",
+        "title": "Path authority and interruptibility via norepinephrine-like control.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-006",
+        "title": "Serotonin-like modulation governs representational collapse.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-019",
+        "title": "Control plane shapes modes of cognition, not discrete choices.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-034",
+        "title": "Viability mapping updates are distinct from residue curvature updates.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-039",
+        "title": "Modes are stable regions in control-channel space, not separate modules.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-040",
+        "title": "Safety baseline and volatility are distinct control channels for arousal/readiness.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-047",
+        "title": "Pre-commitment mode manager commits with hysteresis and switching costs.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-048",
+        "title": "mu/kappa stability overlays modulate mode entropy and switching pressure.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-053",
+        "title": "Habenula-like aversive PE gate suppresses commitment under negative spikes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-056",
+        "title": "Residue should constrain trajectories before distorting core representations.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-057a",
+        "title": "Committed action sequences suppress sensory precision reweighting until execution completes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-060",
+        "title": "Pre-commit simulation and post-commit realized-error channels must stay responsibility-distinct via write-boundary enforcement.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-061",
+        "title": "Commit-boundary token reclassifies pre-commit vs post-commit error routing.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-062",
+        "title": "E3 uses coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility layer.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-063",
+        "title": "Control plane retains orthogonal tonic/phasic axes rather than collapsing into one scalar.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-090",
+        "title": "BG-level beta oscillations gate E3-to-action-selection propagation, not E3 internal updating.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-104",
+        "title": "Unexpected harm events spike commitment uncertainty (LC-NE volatility interrupt), enabling de-commitment.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-106",
+        "title": "Commitment threshold is asymmetrically modulated by outcome valence: positive outcomes lower it, negative outcomes raise it.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-216",
+        "title": "e1_predictive_wanting",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-229",
+        "title": "E3 produces reliably distinct wanting and liking behavioral signals: wanting drives persistent approach toward goal-encoded locations (incentive salience); liking produces only consummatory response at resource contact.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-230",
+        "title": "E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space, measurable as z_goal_norm > 0) distinct from harm avoidance, enabling hippocampal terrain navigation toward goal states.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-314a",
+        "title": "novelty_bonus_striatal_analog. A reward bonus that tracks recency-of-encounter; new or rarely-encountered states/actions receive a positive bonus independent of reward prediction error. Biological substrate: ventral striatum response to stimulus novelty (Wittmann et al. 2008 Neuron). Sub-flavour of MECH-314 structured curiosity bonus.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-319",
+        "title": "simulation_mode_rule_write_gating_categorical_replay_tag (SWR_machinery_substrate_REE_novel_function). The substrate-level instantiation of MECH-094's hypothesis-tag write gate at the rule-arbitration layer: a categorical write-gate keyed to a simulation-mode tag that suppresses arbitration-weight updates during ghost / replay / DMN passes, allowing rule-arbitration to be exercised without overwriting the active rule weights from non-realized data. Substrate-availability premise is well-anchored: SWR machinery (Joo & Frank 2018 review) + reverse-replay discriminable signature (Foster & Wilson 2006). The specific REE function (categorical write-gate keyed to a simulation tag suppressing arbitration-weight updates) is plausible biologically but unverified at cellular / synaptic level.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-006",
+        "title": "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Self / world attribution & perception",
+    "count": 26,
+    "claims": [
+      {
+        "id": "ARC-001",
+        "title": "E1 is the persistent predictive substrate.",
+        "claim_type": "Architectural commitment",
+        "state": "supported"
+      },
+      {
+        "id": "ARC-002",
+        "title": "E2 is the fast forward predictor of affordances.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-006",
+        "title": "Entities are sparse, persistent, bindable structures.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "ARC-010",
+        "title": "Social cognition uses mirror modelling and coupling.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-015",
+        "title": "Self-impact attribution and responsibility flow are required.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-017",
+        "title": "Minimal stream tags with typed exteroception and explicit reality-coherence lane.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "INV-018",
+        "title": "Agency is required; passive predictors are not REE.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-025",
+        "title": "Irreducible uncertainty is an epistemological constraint that cannot be engineered away.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-026",
+        "title": "A self is an operational prerequisite for responsible agency.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-027",
+        "title": "An external world is a structural prerequisite for grounded representation.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-031",
+        "title": "Functional persistence in a shared world, not abstract truth, is the operational goal of cognition.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-023",
+        "title": "Responsibility is geometric and path-dependent.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-031",
+        "title": "Derived social tags and empathy coupling via control-plane knobs.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-032",
+        "title": "OTHER_SELFLIKE detection is biased toward high recall to avoid empathy false negatives.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-036",
+        "title": "Other-harm triggers veto only under high-certainty catastrophic outcomes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-037",
+        "title": "Papez-like loop provides provenance gating and reality filtering.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-041",
+        "title": "Affective expression broadcasts control-plane regime to reduce social prediction load.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-044",
+        "title": "Hippocampal systems participate in relational binding and comparison.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-045",
+        "title": "Object-file-like buffers provide minimal entity persistence across time.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-067",
+        "title": "A machine-checkable phase/store/actor permission matrix is required to enforce commit-boundary write rules.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-095",
+        "title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-003",
+        "title": "Self-attribution via counterfactual E2: causal signature = E2(z_t, a_actual) minus E2(z_t, a_counterfactual).",
+        "claim_type": "Substrate design",
+        "state": "superseded"
+      },
+      {
+        "id": "SD-012",
+        "title": "Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands drive-scaled benefit signals.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-013",
+        "title": "E2_harm_s training requires counterfactual perturbation signal to produce unbiased causal_sig in confounded states.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-016",
+        "title": "E1 must expose a z_world-only ContextMemory query path that produces two downstream signals: an action-affordance bias for E2 (MECH-151) and a terrain precision weight for E3 harm/goal scoring (MECH-152); the existing bulk generate_prior() path is insufficient because it blends z_self and z_world and produces no cue-specific modulation.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-047",
+        "title": "Multi-source environmental dynamics: concurrent stochastic event sources at distinct spatial and temporal scales (spatial perturbation field + transient Poisson events + background drift sources) provide an agent-independent causal background dense enough for agency-detection comparators (MECH-095) and reafference cancellation (MECH-098) to be honestly tested at substrate level.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Architecture & substrate",
+    "count": 15,
+    "claims": [
+      {
+        "id": "ARC-004",
+        "title": "L-space is a multi-timescale latent stack.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-008",
+        "title": "Commitment eligibility is gated by tau, rho, and phi.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-022",
+        "title": "Hierarchical effect-object abstraction pipeline (E1→E2→DMN→Goal/Avoid→Hippocampus) — conflict with ARC-007/ARC-014, pending adjudication.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "INV-014",
+        "title": "Representation and regulation are strictly separated.",
+        "claim_type": "Invariant",
+        "state": "supported"
+      },
+      {
+        "id": "INV-016",
+        "title": "Stability is prioritized over maximal performance.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-021",
+        "title": "Subjective now is a control surface across temporal horizons.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-069",
+        "title": "Sensory prediction error, motor-sensory error, and harm/goal error are incommensurable and cannot be collapsed.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-089",
+        "title": "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging).",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-100",
+        "title": "z_world encoder requires event-type cross-entropy auxiliary loss during training.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-101",
+        "title": "z_world encoding requires reafference context to correctly attribute external vs self-caused change.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-231",
+        "title": "E2 operates as a short-horizon efference-copy forward model on z_self; its prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "SD-005",
+        "title": "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain).",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-007",
+        "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-008",
+        "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-009",
+        "title": "z_world encoder requires event-type cross-entropy auxiliary loss during training.",
+        "claim_type": "Substrate design",
+        "state": "supported"
+      }
+    ]
+  },
+  {
+    "function": "Harm modelling & ethics",
+    "count": 14,
+    "claims": [
+      {
+        "id": "ARC-012",
+        "title": "E3 does not require an explicit ethical cost term.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-027",
+        "title": "Harm stream runs as a parallel thalamic pathway independent of world latent space.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "ARC-033",
+        "title": "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "INV-001",
+        "title": "No explicit ethics module or moral scoring layer.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-005",
+        "title": "Harm to others contributes via mirror modelling, not symbolic rules.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-015",
+        "title": "Ethics emerges from constraint, not optimisation.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-028",
+        "title": "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-029",
+        "title": "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment.",
+        "claim_type": "Invariant",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-024",
+        "title": "Selfhood, personality, and ethics converge structurally.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-102",
+        "title": "Violence is a terminal error-correction mechanism triggered only when all other channels fail.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-010",
+        "title": "HARM stream is a dedicated sensory pathway separate from z_world processing.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-011",
+        "title": "Harm stream separates into sensory-discriminative (z_harm_s: proximity/intensity, Adelta-pathway analog, forward-predictable) and affective-motivational (z_harm_a: accumulated homeostatic deviation, C-fiber/paleospinothalamic analog).",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-019",
+        "title": "affective_harm_nonredundancy_constraint",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-020",
+        "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Affect & valuation",
+    "count": 13,
+    "claims": [
+      {
+        "id": "ARC-003",
+        "title": "E3 selects and commits trajectories.",
+        "claim_type": "Architectural commitment",
+        "state": "supported"
+      },
+      {
+        "id": "ARC-021",
+        "title": "Three BG-like cortico-striatal loops require distinct learning channels.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-046",
+        "title": "CeA analogue writes a mode prior into the SalienceCoordinator from fast salience classification of z_harm_a.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-071",
+        "title": "E2 harm prediction is better calibrated for agent-caused vs environment-caused transitions.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-074a",
+        "title": "BLA analogue applies an arousal-dependent multiplicative gain to HippocampalModule write strength.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-074c",
+        "title": "CeA analogue emits a fast subcortical priming signal (fast_prime) on low-frequency z_harm_a with an overridable decay window, distinct from MECH-046's cortical mode-prior write.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-074d",
+        "title": "BLA analogue emits a remap_signal on harm-PE spike when predictor-attribution flags specific latent codes — partial (~one-third) remap, NOT wholesale replacement.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-093",
+        "title": "z_beta modulates E3 heartbeat frequency, distinct from precision-weighting.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-259",
+        "title": "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-261",
+        "title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "SD-032a",
+        "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",
+        "claim_type": "Substrate design",
+        "state": "supported"
+      },
+      {
+        "id": "SD-032e",
+        "title": "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-035",
+        "title": "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus — two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Language & higher cognition",
+    "count": 12,
+    "claims": [
+      {
+        "id": "ARC-009",
+        "title": "Language is a symbolic mediation and coordination layer.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      },
+      {
+        "id": "ARC-016",
+        "title": "Modes are control-plane regimes applied to shared predictive machinery: the precision-to-commitment circuit.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "ARC-029",
+        "title": "Committed and uncommitted operating modes produce measurably distinct harm outcomes.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "INV-002",
+        "title": "Coherence includes temporal/phase binding, not just static metrics.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-003",
+        "title": "Language emerges as functional self-representation, not a bolt-on.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-007",
+        "title": "Language cannot override embodied harm sensing.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-013",
+        "title": "Cognition is predictive, iterative, and multi-timescale.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-030",
+        "title": "Viability is defined relative to the agent's continuity in a shared world, not as a scalar reward.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-044",
+        "title": "Approximate Bayesian contextual inference is architecturally impossible to co-compute with online encoding: prior construction (schema formation -- which context distinctions are structurally relevant) must precede posterior inference (attribution -- which evidence belongs to which context slot); a system attempting both online produces a degenerate prior that makes attribution uninformative regardless of training duration.",
+        "claim_type": "Invariant",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-026",
+        "title": "Ready vigilance primes restraint under high sensitivity without action.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-027",
+        "title": "Pathological modes reflect mis-tuned control-plane regimes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-028",
+        "title": "Ethical behavior depends on mode transitions and learning preservation.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      }
+    ]
+  },
+  {
+    "function": "Memory & consolidation",
+    "count": 10,
+    "claims": [
+      {
+        "id": "ARC-007",
+        "title": "Hippocampal systems store and replay paths through residue-field terrain.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "ARC-018",
+        "title": "Hippocampus generates explicit rollouts and post-commitment viability mapping.",
+        "claim_type": "Architectural commitment",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-022",
+        "title": "Hippocampal systems inject hypotheses gated by control plane.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-033",
+        "title": "E2 forward-prediction kernels seed hippocampal rollouts.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-073",
+        "title": "Valence is intrinsic to hippocampal map geometry, not applied downstream (ARC-007 reconciled via Q-020 Resolution A; provisional 2026-06-10).",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-205",
+        "title": "Hippocampal replay is surprise-gated and generative: episodes with high unexplained prediction error are prioritized, replayed with counterfactual variations via E2, and deprioritized only when forward models can account for the surprise.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-267",
+        "title": "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-001",
+        "title": "CEM-based trajectory search belongs in HippocampalModule, not E2.",
+        "claim_type": "Substrate design",
+        "state": "unresolved"
+      },
+      {
+        "id": "SD-002",
+        "title": "E1 associative prior must be wired into HippocampalModule for terrain-informed rollout search.",
+        "claim_type": "Substrate design",
+        "state": "unresolved"
+      },
+      {
+        "id": "SD-004",
+        "title": "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Other",
+    "count": 10,
+    "claims": [
+      {
+        "id": "INV-017",
+        "title": "Runaway behavior is a control failure, not representational.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-117",
+        "title": "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-119",
+        "title": "Low D_eff combined with low Hopfield stability (coherent but unfamiliar self-state) is a distinct pathological regime from high-D_eff dispersion.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-152",
+        "title": "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-268",
+        "title": "dACC conflict saturation: the dACC-analog (SD-032b) prediction-error / conflict signal caps and habituates under repeated identical outcomes; it does not grow unboundedly as conflict persists. Without saturation, a stuck governance loop can generate unbounded pe signal that never triggers a mode change, which is the control-theory signature of persistent rumination.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-306",
+        "title": "z_goal seeding under SD-012 requires sustained drive at contact, not instantaneous homeostatic drive alone: when the agent is well-fed, drive_level collapses at consumption and anti-correlates with benefit_exposure, so effective_benefit cannot cross the seeding threshold unless drive is floored or slow-traced.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-341",
+        "title": "e3_scoring_preserves_trajectory_class_diversity. E3 score aggregation over CEM-supplied candidates must preserve trajectory-class diversity rather than collapse a diverse candidate pool onto a single deterministic ranking. Without explicit diversity preservation at the scoring step, downstream action selection becomes deterministic regardless of proposal-layer diversity (ARC-065 SP-CEM child), making the whole distributed diversity pathway rate-limited by Layer B. Mechanism options (not yet committed): (1) entropy bonus over candidate first-action classes added to E3 score; (2) class- stratified argmax with within-class proportional sampling; (3) jittered tie-breaking when top-K E3 scores are within epsilon. Final design pending diagnostic data on whether E3 collapse is near-tie or large-gap (see behavioral_diversity_isolation_plan.md Phase P2).",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "SD-017",
+        "title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      },
+      {
+        "id": "SD-022",
+        "title": "Directional limb damage: body extension for genuine z_harm_s / z_harm_a causal independence",
+        "claim_type": "Substrate design",
+        "state": "supported"
+      },
+      {
+        "id": "SD-034",
+        "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied.",
+        "claim_type": "Substrate design",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Attention & precision",
+    "count": 9,
+    "claims": [
+      {
+        "id": "INV-008",
+        "title": "Precision is routed and depth-specific, not global.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "INV-009",
+        "title": "Attention is precision modulation, not symbolic control.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-002",
+        "title": "Precision control analogues shape cognitive regimes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-003",
+        "title": "Precision must be tau-scoped with lossy projections.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-007",
+        "title": "Attention must be fragmented across control axes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-043",
+        "title": "Dopamine-like modulation of precision-weighting for unsigned prediction errors.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-054",
+        "title": "Signed harm/benefit prediction-error precision channels remain distinct.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-059",
+        "title": "Confidence channel (uncertainty-derived precision) must remain distinct from residual error.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-266",
+        "title": "Asymmetric mode hysteresis in SalienceCoordinator: entering an operating mode uses a different threshold on the aggregate salience vector than exiting it, and the asymmetry is mode-specific. Schmitt-trigger extension of the existing SD-032a enter-threshold logic (currently enter-only / symmetric).",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Sleep & offline processing",
+    "count": 9,
+    "claims": [
+      {
+        "id": "ARC-011",
+        "title": "Offline integration (sleep) is required for stability.",
+        "claim_type": "Architectural commitment",
+        "state": "supported"
+      },
+      {
+        "id": "ARC-014",
+        "title": "Default Mode enables safe imagination without commitment.",
+        "claim_type": "Architectural commitment",
+        "state": "supported"
+      },
+      {
+        "id": "INV-010",
+        "title": "Offline integration exists and is required.",
+        "claim_type": "Invariant",
+        "state": "supported"
+      },
+      {
+        "id": "INV-011",
+        "title": "Imagination must be possible without belief update.",
+        "claim_type": "Invariant",
+        "state": "unresolved"
+      },
+      {
+        "id": "MECH-029",
+        "title": "Reflective/DMN mode supports moral evaluation of hippocampally-generated replay trajectories.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-030",
+        "title": "Sleep modes consolidate learning and ethical residue across regimes.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-094",
+        "title": "The system maintains a functional distinction between simulation-mode content and real-experience content, such that simulation content does not accumulate in the viability map as committed experience; failures of this distinction produce confabulation (simulated events encoded as real).",
+        "claim_type": "Mechanism hypothesis",
+        "state": "mixed"
+      },
+      {
+        "id": "MECH-122",
+        "title": "Thalamo-cortical spindle-equivalent bursts package E3/hippocampal replay content for z_theta delivery AND gate external sensory input, protecting the consolidation episode from interruption.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      },
+      {
+        "id": "MECH-124",
+        "title": "When harm-trace salience dominates offline replay content, consolidation selectively amplifies harm predictions, progressively contracting option space -- a distinct failure mode from Q-021 behavioral flatness.",
+        "claim_type": "Mechanism hypothesis",
+        "state": "supported"
+      }
+    ]
+  },
+  {
+    "function": "Clinical & pharmacology",
+    "count": 1,
+    "claims": [
+      {
+        "id": "INV-053",
+        "title": "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence.",
+        "claim_type": "Invariant",
+        "state": "mixed"
+      }
+    ]
+  },
+  {
+    "function": "Development, play & learning",
+    "count": 1,
+    "claims": [
+      {
+        "id": "ARC-019",
+        "title": "REE requires staged developmental training with explicit curriculum gates.",
+        "claim_type": "Architectural commitment",
+        "state": "unresolved"
+      }
+    ]
+  }
+]

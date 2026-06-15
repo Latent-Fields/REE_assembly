@@ -1,0 +1,21 @@
+name: "Visualisation / front-end help"
+description: "Offer a clearer way to present the claims, evidence, or mechanism map."
+title: "[viz] "
+labels: ["public-contribution", "visualization"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas and contributions to the public explorer's presentation are welcome.
+        The explorer is static (vanilla HTML/CSS/JS, no backend) by design.
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What would be clearer or more useful, and for whom?
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Mockup / prototype link (optional)

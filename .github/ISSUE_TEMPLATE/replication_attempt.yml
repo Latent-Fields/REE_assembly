@@ -1,0 +1,35 @@
+name: "Replication attempt"
+description: "Report an independent attempt to reproduce a published REE result."
+title: "[replication] "
+labels: ["public-contribution", "replication"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Replications — successful or not — are valuable. They are reviewed before
+        affecting any claim's standing.
+  - type: input
+    id: experiment
+    attributes:
+      label: Experiment / claim id being replicated
+      placeholder: "e.g. EXQ-655 / MECH-341"
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Your outcome
+      options: ["reproduced", "partially reproduced", "did not reproduce", "inconclusive"]
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: What you did
+      description: Environment, code/version used, parameters, seeds, and how you measured.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What you found

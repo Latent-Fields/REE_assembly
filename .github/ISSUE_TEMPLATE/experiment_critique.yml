@@ -1,0 +1,31 @@
+name: "Experiment critique"
+description: "Question the design, interpretation, or criteria of a reviewed experiment."
+title: "[critique] "
+labels: ["public-contribution", "experiment-critique"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Critiques of reviewed experiments are welcome. They are evaluated by the
+        maintainer and only affect governance if accepted after review.
+  - type: input
+    id: experiment
+    attributes:
+      label: Experiment id (from the explorer)
+      placeholder: "e.g. EXQ-655"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you questioning?
+      options: ["pre-registered criteria", "interpretation of the result", "confounds / controls", "statistical treatment", "claim tagging", "other"]
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: Your critique
+      description: Be specific about what you think is wrong and what would change your mind.
+    validations:
+      required: true

@@ -1,0 +1,33 @@
+name: "Literature suggestion"
+description: "Point to a paper or finding relevant to a REE claim or mechanism."
+title: "[lit] "
+labels: ["public-contribution", "literature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting literature. Note: suggestions are reviewed by the
+        maintainer and do not directly change any claim's standing until accepted.
+  - type: input
+    id: claim
+    attributes:
+      label: Related claim / mechanism id (if known)
+      placeholder: "e.g. MECH-094, ARC-001 — leave blank if unsure"
+  - type: input
+    id: reference
+    attributes:
+      label: Reference (DOI / URL / citation)
+    validations:
+      required: true
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Why is this relevant?
+      description: Does it support, challenge, or refine the claim? What is the key finding?
+    validations:
+      required: true
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Direction (your read)
+      options: ["supports", "challenges / weakens", "mixed / refines", "background / context"]

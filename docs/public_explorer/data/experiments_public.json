@@ -1,0 +1,1844 @@
+[
+  {
+    "id": "EXQ-655",
+    "title": "Inv074 crystallization necessity taskshift",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-13",
+    "reviewed": true,
+    "summary": "Governance 2026-06-13T20:04:39Z: all 5 claims unknown->non_contributory per confirmed failure_autopsy_V3-EXQ-655_2026-06-13. 7th necessity-test iteration; the pre-registered route-(a) task-distribution-shift redesign re-FAILed D2 (stripped REINFORCE control did not collapse entropy; D1~0 sign-inconsistent; ARM_4 bit-identical to ARM_0). Decisive substrate-incapacity confirmation -> substrate_ceil…",
+    "supersedes": "V3-EXQ-610f"
+  },
+  {
+    "id": "EXQ-468D",
+    "title": "Sd034 mech268 decommit hold behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-268",
+      "MECH-090"
+    ],
+    "date": "2026-06-13",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-468c"
+  },
+  {
+    "id": "EXQ-467D",
+    "title": "Mech266 mode stickiness behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-13",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-464D",
+    "title": "Mech266 competing goals behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-13",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-460D",
+    "title": "Sd034 closure control plane behavioural",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "SD-034",
+      "MECH-261"
+    ],
+    "date": "2026-06-13",
+    "reviewed": true,
+    "summary": "Governance 2026-06-13T20:04:39Z: SD-034 + MECH-261 reclassified weakens->non_contributory per confirmed failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (overrides the manifest self-stamped weakens). Closure NOW fires on the Leg-A env-completion hook (C1 PASS, n_closures 6/3/7 -- the *c n_closures=0 gap is closed); C2/C4 fail only because the de-commit RELEASE path is not yet built (subs…",
+    "supersedes": "V3-EXQ-460c"
+  },
+  {
+    "id": "EXQ-468C",
+    "title": "Sd034 mech268 commitment vs contradiction behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-268",
+      "MECH-090"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory per confirmed cluster autopsy failure_autopsy_SD-034-closure-cluster_2026-06-12 (governance 2026-06-12T22:16Z). SD-034 closure control-plane is wired but has no behavioural authority on the 603n foraging-competent substrate: env completion is not routed into ClosureOperator.emit_closure() and the closure-coupled release lacks a de-commitment hold. substrate_ceiling,…"
+  },
+  {
+    "id": "EXQ-467C",
+    "title": "Mech266 mode stickiness behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "non_contributory, substrate_ceiling, pending_retest_after_substrate. mean_dwell is an episode-length artifact (total_steps/n_runs) and n_switches=12==n_episodes -- genuine mode competition never occurred, so the hysteresis dose-response cannot express. Same mode-governance gap as 464c. Not a falsification."
+  },
+  {
+    "id": "EXQ-466C",
+    "title": "Sd034 satisficing residue discharge behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-094"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "non_contributory, substrate_ceiling, pending_retest_after_substrate. Near-clone of 460c -- n_closures=0 on 3/3 seeds despite n_sequence_completions=11/6/5 and beta elevated; the residue-discharge (MECH-094) is strictly downstream of an unfired closure. Not a falsification."
+  },
+  {
+    "id": "EXQ-464C",
+    "title": "Mech266 competing goals behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "non_contributory, substrate_ceiling, pending_retest_after_substrate. fraction_in_external_task=0.0 both arms all seeds; the mode-switching non-vacuity gate passed vacuously (n_switches=15==n_episodes counts the per-episode settle into internal_planning, not genuine competition). The asymmetric exit-rail has no mode to bind. Distinct mode-governance substrate gap, not the closure plane. Not a fals…"
+  },
+  {
+    "id": "EXQ-461C",
+    "title": "Mech090 sd033a delayed reward persistence behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-090",
+      "SD-034"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "non_contributory, substrate_ceiling, pending_retest_after_substrate. Cohort extension of the SD-034 closure cluster. Committed Hold windows formed (n_windows>0, the *b-cohort gap closed) but n_closure_coupled_resolutions=0 on the foraging agent, so SD-033a rule-persistence (measured only at closure resolutions) and the SD-034 coupling could not express. Same env->emit_closure-unwired / untrained-…"
+  },
+  {
+    "id": "EXQ-460C",
+    "title": "Sd034 verified but not released behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-261"
+    ],
+    "date": "2026-06-12",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory per confirmed cluster autopsy failure_autopsy_SD-034-closure-cluster_2026-06-12 (governance 2026-06-12T22:16Z). SD-034 closure control-plane is wired but has no behavioural authority on the 603n foraging-competent substrate: env completion is not routed into ClosureOperator.emit_closure() and the closure-coupled release lacks a de-commitment hold. substrate_ceiling,…"
+  },
+  {
+    "id": "EXQ-668",
+    "title": "Mech319 accumulated ghost write arbitration drift evidence",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-319"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-660B",
+    "title": "Mech341 within class pool size graded windowed readout",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true,
+    "summary": "2026-06-11 failure autopsy (failure_autopsy_V3-EXQ-660b_2026-06-11): V3-EXQ-660b (within-class-representative-diversity GRADED confirmation; windowed-readout redesign of 660a, supersedes 660a) FAILed the load-bearing C_GRADED 0/3 seeds (per-seed sampled-legacy windowed deltas noise around zero, non-monotone, mostly negative) and self-routed weakens, but is reclassified non_contributory (measureme…",
+    "supersedes": "V3-EXQ-660a"
+  },
+  {
+    "id": "EXQ-660A",
+    "title": "Mech341 within class pool size graded confirmation",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true,
+    "summary": "2026-06-11 failure autopsy (failure_autopsy_V3-EXQ-660a_2026-06-11): V3-EXQ-660a (within-class-representative-diversity GRADED confirmation; CEM pool-size sweep K=16->128) FAILed C_GRADED (1/3 seeds graded) and self-routed weakens, but is reclassified non_contributory (measurement_test_design_defect). Root cause: the primary readout within_class_rep_cond_entropy = H(rep_signature | committed_clas…"
+  },
+  {
+    "id": "EXQ-590B",
+    "title": "Mech314a novelty goldilocks",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-314a"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true,
+    "summary": "Reclassified does_not_support -> non_contributory per failure_autopsy_batch9_2026-06-12 (REE_assembly master ad3a165726). GENUINE adverse on the now-ready authority substrate: H_pos range 0.283 across gains (authority operative, NOT zero) but every nonzero gain matched or degraded exploration vs the gain=0 control (best 0.4188 < 0.4200; lift 1/3 seeds). NOT a demotion. The sub-hypothesis failure…"
+  },
+  {
+    "id": "EXQ-569G",
+    "title": "Gapa routerange matched entropy falsifier",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true,
+    "summary": "Reclassified weakens -> non_contributory per failure_autopsy_batch9_2026-06-12 (REE_assembly master ad3a165726). GENUINE adverse on the now-ready (643a-validated) modulatory-bias-selection-authority substrate: route_range 0.18 reached the E3 accumulator (C1 PASS) but ARM_1_E2WF selected-entropy 0.615 did NOT exceed the matched-noise control 0.704 (range reaches selection but carves no extra commi…",
+    "supersedes": "V3-EXQ-569f"
+  },
+  {
+    "id": "EXQ-514N",
+    "title": "Sd049 phase2 mech229 object bound wanting liking",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-229"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-514M",
+    "title": "Sd049 phase2 behavioural curriculum built",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "MECH-229",
+      "MECH-230"
+    ],
+    "date": "2026-06-11",
+    "reviewed": true,
+    "summary": "2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-514m CONFIRMED): MECH-229 per-claim weakens reclassified -> non_contributory (measurement_test_design_defect) and remains scoring-excluded. C_WL wanting!=liking dissoc=0.0 on all 3 seeds (zero variance) is a VACUOUS FAIL: the DV reads SD-014 residue VALENCE_WANTING/VALENCE_LIKING channels but the config omits valence_liking_enabled/tonic_5ht…",
+    "supersedes": "v3_exq_514l_sd049_phase3_mech229_wanting_liking_identity"
+  },
+  {
+    "id": "EXQ-660",
+    "title": "Mech341 within class representative diversity",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-10",
+    "reviewed": true,
+    "summary": "V3-EXQ-660 MECH-341 committed-class diversity RETEST on the GAP-A-ready (candidate_summary_source=e2_world_forward; V3-EXQ-649 PASS) + authority-ready (V3-EXQ-643a) stack, using the CORRECTED within-class-representative-diversity readout (supersedes V3-EXQ-614e, whose committed-class-entropy readout was the wrong matched axis for a within-class lever -- 614e autopsy Learning #2). C2 (PRIMARY) tes…",
+    "supersedes": "V3-EXQ-614e"
+  },
+  {
+    "id": "EXQ-569F",
+    "title": "Gapa e2wf matched entropy falsifier",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-06-10",
+    "reviewed": true,
+    "summary": "Reclassified weakens -> non_contributory by /governance 2026-06-10 per confirmed failure_autopsy_569f-661-654a_2026-06-10. Readiness fully met (consumed world-summary spread 0.196 > floor) and C1 (e2.world_forward divergent) PASSED -- the per-candidate diversity ARC-065 asserts is demonstrably present. The discrimination criterion C_R1B failed only because selected-action entropy is bit-identical…",
+    "supersedes": "V3-EXQ-569d"
+  },
+  {
+    "id": "EXQ-659",
+    "title": "Mech074a bla encoding gain replay bias",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-074a"
+    ],
+    "date": "2026-06-09",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-658",
+    "title": "Mech045 object file persistence",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-045"
+    ],
+    "date": "2026-06-09",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-610F",
+    "title": "Inv074 crystallization necessity",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-08",
+    "reviewed": true,
+    "summary": "governance 2026-06-08: set to non_contributory per confirmed failure_autopsy_V3-EXQ-610f_2026-06-08.",
+    "supersedes": "V3-EXQ-610e"
+  },
+  {
+    "id": "EXQ-614E",
+    "title": "Mech341 within class temperature authority on",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-07",
+    "reviewed": true,
+    "summary": "V3-EXQ-614e MECH-341 within-class temperature CLEAN RETEST with modulatory-bias-selection-authority ON (supersedes V3-EXQ-614d, which FAILed only because the score-side lever was zeroed at E3.select -- the float32 catastrophic-cancellation bug fixed by V3-EXQ-643a). C2 (PRIMARY) tests whether committed_class_entropy RISES with within-class temperature (per-arm >= 1 paired-lift seed); C1 is the su…",
+    "supersedes": "V3-EXQ-614d"
+  },
+  {
+    "id": "EXQ-604C",
+    "title": "Q044 mech314 subflavour ablation gapa ready",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-314a"
+    ],
+    "date": "2026-06-07",
+    "reviewed": true,
+    "summary": "MECH-314 structured-curiosity sub-flavour ablation on the now-VALIDATED GAP-A behavioral-diversity substrate (ARC-065 shared candidate channel + MECH-314a Phase-2 e2.world_forward candidate source, validated by V3-EXQ-649 PASS + V3-EXQ-648a; consumed candidate spread cleared the 0.05 floor at 0.090) plus the modulatory-bias-selection-authority gate (V3-EXQ-643a PASS after the float32 cancellation…",
+    "supersedes": "V3-EXQ-604b"
+  },
+  {
+    "id": "EXQ-604B",
+    "title": "Q044 mech314 subflavour ablation authority on",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-314a"
+    ],
+    "date": "2026-06-07",
+    "reviewed": true,
+    "summary": "2026-06-07 governance (failure_autopsy_gapA-cluster-604b-648a-649): NON-CONTRIBUTORY (substrate_ceiling), NOT a weakening of MECH-314/314a/314b/314c/Q-044. Ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). Class-uniform candidate pool: curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate range, so C1…",
+    "supersedes": "V3-EXQ-604a"
+  },
+  {
+    "id": "EXQ-468B",
+    "title": "Sd034 mech268 commitment vs contradiction behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-268",
+      "MECH-090"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-468b ran to completion but could not test SD-034/MECH-268/MECH-090: beta_release_events=0, episodes_with_contradiction=0, had_contradiction=false in every arm -- the GAP-3 counter-evidence-injection never triggered a contradiction and commitment never released, so the commitment-vs-contradiction dissociation cannot express. Identical substrate-not-engaged ceiling as i…"
+  },
+  {
+    "id": "EXQ-467B",
+    "title": "Mech266 mode stickiness behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-467b ran to completion but could not test MECH-266/SD-032a: the mode-dwell hysteresis dose-response is degenerate -- n_switches=0 at every ratio r in [0.1,0.5,1.0,1.5,2.0] (no mode switches at any operating point), so the predicted monotone dwell-vs-r curve cannot form. Identical substrate-not-engaged ceiling as its sibling V3-EXQ-464b (no reachable goal -> no interna…"
+  },
+  {
+    "id": "EXQ-466B",
+    "title": "Sd034 satisficing residue discharge behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-094"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-466b ran to completion but could not test SD-034/MECH-094: n_closures=0 and discharge_events=0 in every arm (including the positive arm) because the agent never tolerance-completes a waypoint; C3 (closure-OFF n_closures==0) passes only trivially. Predecessor V3-EXQ-466 hand-poke exercises discharge_domain; the gap is the goal-achievement layer (scaffolded_sd054_onboar…"
+  },
+  {
+    "id": "EXQ-464B",
+    "title": "Mech266 competing goals behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-266",
+      "SD-032a"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-464b ran to completion but could not test MECH-266/SD-032a: all arms sit at 100% external_task occupancy with 0 mode switches (0 steps in internal_planning/replay/consolidation), so the switch-cost asymmetry is measured against a degenerate no-switch baseline -- the script's own C3 non-vacuous guard fired. With no reachable goals there is no internal mode to switch in…"
+  },
+  {
+    "id": "EXQ-463B",
+    "title": "Mech268 dacc conflict saturation behavioural",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-268"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-461B",
+    "title": "Mech090 sd033a delayed reward persistence behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-090",
+      "SD-034"
+    ],
+    "date": "2026-06-04",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-461b ran to completion but could not test MECH-090/SD-033a/SD-034: n_windows=0 in every arm because the beta latch never releases (no resolution event forms), so persistence-across-delay and closure-coupled-resolution cannot be measured. Predecessor V3-EXQ-461 diagnostic PASSED (hand-poke), confirming the mechanism API; the gap is the goal-achievement layer (scaffolde…"
+  },
+  {
+    "id": "EXQ-633",
+    "title": "Mech094 simulation real writegate discriminative",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-094"
+    ],
+    "date": "2026-06-03",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-632",
+    "title": "Mech230 zgoal structured latent discriminative",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-230"
+    ],
+    "date": "2026-06-03",
+    "reviewed": true,
+    "summary": "[2026-06-03 failure autopsy V3-EXQ-632] FAIL re-read as non_contributory / substrate_ceiling, NOT does_not_support. Discriminative pair on z_goal structured-latent formation: negative control C3 (ablated absent) PASSED 3/3, but C1/C2/delta failed because 2/3 seeds (7, 13) made ZERO resource contact (num_contact_events=0) so z_goal never had benefit input to seed on. The one seed that foraged (42,…"
+  },
+  {
+    "id": "EXQ-614D",
+    "title": "Mech341 within class temperature committed class",
+    "status": "pass",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-03",
+    "reviewed": true,
+    "summary": "experiment_purpose=diagnostic; V3-EXQ-614d MECH-341 within-class temperature CORRECTED-HARNESS re-run (supersedes V3-EXQ-614c non_contributory). C2 reads committed-action class distribution (temperature-sensitive); C1 compares ARM_0 cross-seed mean to the 614b ALL_ON band; within-class firing diagnostics recorded. interpretation_label=PASS_C1_C3_only_within_class_active_no_committed_class_lift. C…",
+    "supersedes": "V3-EXQ-614c"
+  },
+  {
+    "id": "EXQ-460B",
+    "title": "Sd034 verified but not released behavioural",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-034",
+      "MECH-261"
+    ],
+    "date": "2026-06-03",
+    "reviewed": true,
+    "summary": "Behavioural successor V3-EXQ-460b ran to completion but could not test SD-034/MECH-260/MECH-261: in the live committed_mode_curriculum loop the agent commits (beta latch engages, p1_commitment_emerged=true seeds 43/44) but never tolerance-completes a waypoint, so n_closures=0 in every arm including ARM_EMERGENT_ON; beta_release and nogo_install are gated on a closure event that never fires. Prede…"
+  },
+  {
+    "id": "EXQ-630",
+    "title": "Arc029 acrosstick nav competence ecological",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-029",
+      "MECH-090"
+    ],
+    "date": "2026-06-02",
+    "reviewed": true,
+    "summary": "V3-EXQ-630 (2026-06-03 autopsy): C4 FAIL -- OFF baseline shows the same readiness-conditioned commitment collapse (arm0_baseline_delta 1.0) as the gated arms, so the across-tick nav_competence gate's contribution is unattributable. Environment confound: SD-022 limb-damage degrade drives commitment via running_variance independent of nav_competence readiness. evidence_direction non_contributory (r…"
+  },
+  {
+    "id": "EXQ-628",
+    "title": "Mech319 simulation mode rule gate replay falsifier evidence",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-319"
+    ],
+    "date": "2026-06-02",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-627",
+    "title": "Mech306 sustained drive trace validation",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-306"
+    ],
+    "date": "2026-06-02",
+    "reviewed": true,
+    "summary": "Evidence-purpose validation of MECH-306 (goal_seeding.sustained_drive_trace). 2-arm ablation isolates the load-bearing drive_floor lever: ARM_SUSTAINED (drive_floor=0.9, drive_ema_alpha=1.0) vs ARM_OFF (drive_floor=0.0). PASS=supports if the sustained trace lifts effective_benefit at contact, fires seeding in >=2/3 seeds, activates z_goal, AND the OFF arm confirms the collapse persists without th…"
+  },
+  {
+    "id": "EXQ-604A",
+    "title": "Q044 mech314 subflavour ablation sd056 substrate",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-314a"
+    ],
+    "date": "2026-06-02",
+    "reviewed": true,
+    "summary": "V3-EXQ-604a (2026-06-03 autopsy): C0 PASS (pairwise_dist 0.039 > 0.03 -- the SD-056 contrastive substrate fixed the 604 monomodal collapse), but C1/C2 FAIL with curiosity_bias_abs_mean = 0.0 in every arm including ARM_ALL_ON and selected_entropy identical across all 5 arms. The curiosity bias contributes zero authority at E3 action selection. NOT a MECH-314 falsification -- the test could not let…",
+    "supersedes": "V3-EXQ-604"
+  },
+  {
+    "id": "EXQ-063A",
+    "title": "Arc029 committed mode harm outcomes rc gate",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-029"
+    ],
+    "date": "2026-06-02",
+    "reviewed": true,
+    "supersedes": "v3_exq_063_arc029_committed_mode_harm_outcomes"
+  },
+  {
+    "id": "EXQ-614C",
+    "title": "Mech341 stratified within class temperature sweep",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-06-01",
+    "reviewed": true,
+    "summary": "2026-06-01T17:22:37Z governance: reclassified weakens->non_contributory per confirmed failure_autopsy_V3-EXQ-614c_2026-06-01 (both failing criteria are test-design defects: C2 vacuous score-layer-argmin metric is temperature-invariant; C1 mis-specified per-seed band vs cross-seed mean; C3 substrate-readiness PASS 3/3). instrumentation_defect, not substrate_ceiling. pending_retest gated on V3-EXQ-…",
+    "supersedes": "V3-EXQ-614b"
+  },
+  {
+    "id": "EXQ-592F",
+    "title": "Mech090 commitment state transition probe",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-090"
+    ],
+    "date": "2026-06-01",
+    "reviewed": true,
+    "summary": "V3-EXQ-592f (controlled state-machine probe, supersedes 592e; FAIL_NO_RELEASE_AUTHORITY): forced score_margin=0.01 (<floor 0.05) and nav_readiness=0.0 (<floor 0.3) while beta forced elevated and E3 committed pointer forced present produced zero state-occupancy suppression and zero decommit transitions across stages B/C/D. The nav predicate IS consulted (6 blocks/stage in C/D); the score-margin ad…",
+    "supersedes": "V3-EXQ-592e"
+  },
+  {
+    "id": "EXQ-592E",
+    "title": "Mech090 readiness conjunction validation",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "MECH-090"
+    ],
+    "date": "2026-06-01",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-592d"
+  },
+  {
+    "id": "EXQ-616",
+    "title": "Q054 mech341 entropy bias scale sweep",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true,
+    "summary": "2026-05-31 governance cycle (1908Z): applied failure_autopsy_MECH-341-cluster_2026-05-31. Per-claim direction overrides: Q-054=mixed (definitive negative answer to the scale-lever question; load-bearing diversity floor is at the proposer layer SP-CEM presence/absence, not the score layer; no entropy_bias_scale in [1.0,8.0] rescues a single-class candidate pool), MECH-341=non_contributory (clarifi…"
+  },
+  {
+    "id": "EXQ-615",
+    "title": "Arc065 rung1 matched entropy",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-615",
+    "title": "Arc065 rung1 matched entropy",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-614B",
+    "title": "Mech341 p3 behavioural falsifier 3arm sd056 amended",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341",
+      "ARC-065"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true,
+    "summary": "2026-05-31 governance cycle (1908Z): applied failure_autopsy_V3-EXQ-614b_2026-05-31 + failure_autopsy_MECH-341-cluster_2026-05-31. Per-claim direction overrides: MECH-341=non_contributory (SD-056 amend lifted ARM_1 ablate_B by +0.187 nats vs ARM_2 ALL_ON +0.116 nats; MECH-341 marginal contribution shrunk 0.158->0.087 nats because upstream cluster is now doing more of the diversity work at the can…",
+    "supersedes": "V3-EXQ-614a"
+  },
+  {
+    "id": "EXQ-592D",
+    "title": "Mech090 readiness conjunction validation",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-090"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-06-01 per failure_autopsy_V3-EXQ-592d_2026-06-01 (confirmed; user verdict 2026-06-01T05:55Z) and /governance cycle 2026-06-01T06:07Z. C1 baseline criterion has a measurement defect: n_commit_entries (transition-edge counter) is structurally unmeetable under ARM_0 rv-only entry semantic (agent enters P2 already committed; hold_rate=1.0; zero entries during measur…",
+    "supersedes": "V3-EXQ-592c"
+  },
+  {
+    "id": "EXQ-569E",
+    "title": "Sd056 mechanism probe pathway a vs b",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "ARC-065",
+      "MECH-341"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true,
+    "summary": "Per failure_autopsy_V3-EXQ-569e_2026-05-31.json (status=confirmed; verdict_cell=INSTRUMENTATION_FAILURE; epistemic_category=standard NOT substrate_ceiling). SD-056 contrastive E2 training (landed 2026-05-29) produces numerically explosive world_forward rollouts at the behavioural-runtime episode length: ON-arm rollout_traj_pairwise_dist_mean 1e16-1e18 with rollout_skipped_nonfinite up to 3478/347…"
+  },
+  {
+    "id": "EXQ-569D",
+    "title": "Sd056 action contrastive diversity falsifier floor recal",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-065",
+      "MECH-341"
+    ],
+    "date": "2026-05-31",
+    "reviewed": true,
+    "summary": "SD-056 matched-entropy FP-2 falsifier (569d, floor-recalibrated successor to 569c). Recalibrated C1 floor 0.05 -> 0.03 per autopsy Section 5 (clean separation noise 0.015 vs substrate-operative 0.045). C3 acceptance tightened to require strict-above matched-noise (not just >0.3 floor) so a PASS forecloses the 'entropy-only artefact' interpretation cell that 569c's grid missed. PASS = SD-056 subst…",
+    "supersedes": "V3-EXQ-569c"
+  },
+  {
+    "id": "EXQ-614A",
+    "title": "Mech341 p3 behavioural falsifier 3arm",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-341",
+      "ARC-065"
+    ],
+    "date": "2026-05-30",
+    "reviewed": true,
+    "summary": "experiment_purpose=evidence; Phase P3 behavioural falsifier per behavioral_diversity_isolation_plan.md R2.c rule. interpretation_label=PASS_C2_C3_only_mech341_load_bearing_in_stack_only. C1 (B_only Rung-1)=False, C2 (B necessity)=True, C3 (ALL_ON Rung-1)=True. Per-claim direction follows the interpretation grid; see manifest.result.interpretation_grid for the full mapping.",
+    "supersedes": "V3-EXQ-614"
+  },
+  {
+    "id": "EXQ-569C",
+    "title": "Sd056 action contrastive diversity falsifier",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "ARC-065",
+      "MECH-341"
+    ],
+    "date": "2026-05-30",
+    "reviewed": true,
+    "summary": "SD-056 matched-entropy FP-2 falsifier for GAP-A (behavioural diversity isolation, Theory 1 / Layer A). PASS = SD-056 lifts per-candidate z_world variance AND that variance propagates through hippocampal scoring + E3 aggregation into observable action-class diversity strictly above the matched-entropy random-noise control. FAIL with C1 holding but C2/C3 failing = per-candidate variance present but…",
+    "supersedes": "V3-EXQ-569b"
+  },
+  {
+    "id": "EXQ-611C",
+    "title": "Mech341 retune 6arm",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-05-29",
+    "reviewed": true,
+    "summary": "experiment_purpose=diagnostic; substrate-retune ablation, not behavioural evidence. Not weighted in confidence or conflict scoring per Phase-3 governance rules. PASS routes to behavioural successor under R2.c rule; FAIL routes to /diagnose-errors or further substrate revisit per the interpretation grid. See behavioral_diversity_isolation_plan.md R2.c rule and mech_341_e3_score_diversity_preservat…",
+    "supersedes": "V3-EXQ-611b"
+  },
+  {
+    "id": "EXQ-544A",
+    "title": "Mech313 noise floor substrate readiness",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-29",
+    "reviewed": true,
+    "supersedes": "v3_exq_544_mech313_noise_floor_substrate_readiness"
+  },
+  {
+    "id": "EXQ-611",
+    "title": "Mech341 substrate readiness 4arm",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-05-27",
+    "reviewed": true,
+    "summary": "experiment_purpose=diagnostic; substrate-readiness ablation, not behavioural evidence. Not weighted in confidence or conflict scoring per Phase-3 governance rules. PASS routes the next governance walk to queue B_only / ablate_B / ALL_ON behavioural successor; FAIL routes to substrate revisit (option-3 jitter or lambda tuning). See behavioral_diversity_isolation_plan.md R2.c rule."
+  },
+  {
+    "id": "EXQ-608",
+    "title": "Mech341 e3 score collapse diagnostic",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "date": "2026-05-26",
+    "reviewed": true,
+    "summary": "experiment_purpose=diagnostic; not weighted in confidence or conflict scoring. Interpretation drives next-experiment routing per behavioral_diversity_isolation_plan.md R2.a / R2.b decision rules. cross_seed_interpretation.majority_label = R2a_e3_collapse_confirmed_large_gap."
+  },
+  {
+    "id": "EXQ-605",
+    "title": "Q043 noise floor curiosity weight sweep",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-21",
+    "reviewed": true,
+    "summary": "Governance 2026-05-21: substrate_ceiling / measurement. Curiosity_scale (1x/5x/10x) and noise_alpha sweeps produce identical per-cell entropy and reef_fraction within each alpha row (e.g. all a0.1 arms 0.259/0.289). p1_any_calibration_zone false. Q-043 calibration grid untestable until curiosity/noise paths modulate behavior."
+  },
+  {
+    "id": "EXQ-604",
+    "title": "Q044 mech314 subflavour three arm ablation",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-314a"
+    ],
+    "date": "2026-05-21",
+    "reviewed": true,
+    "summary": "Governance 2026-05-21: substrate_ceiling. All four arms identical selected_action_entropy (0.244051) and monomodal collapse (seed 42 unique_actions=1) -- MECH-314 sub-flavour ablations exert no discriminable signal. Do not weaken Q-044/MECH-314; retest after structured-curiosity substrate carries information at action-selection."
+  },
+  {
+    "id": "EXQ-481B",
+    "title": "Vs commit release",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-090"
+    ],
+    "date": "2026-05-19",
+    "reviewed": true,
+    "supersedes": "v3_exq_481_vs_commit_release"
+  },
+  {
+    "id": "EXQ-573",
+    "title": "Arc065 bias scale sweep",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-05-16 governance review. All 10 arms produced identical entropy (delta=0 at 1x/5x/10x scale) because the bias channel is not propagating to E3 selection -- bias components are machine-epsilon regardless of scale factor. EXQ-571 confirmed: bias_fraction=0 for all components. The 10x scaling experiment confirmed the non-propagation but did not constitute a valid s…"
+  },
+  {
+    "id": "EXQ-572",
+    "title": "Intervention a dual attractor",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-572",
+    "title": "Intervention a dual attractor",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-572",
+    "title": "Intervention a dual attractor",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-572",
+    "title": "Intervention a dual attractor",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-571",
+    "title": "E3 score variance decomp",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-569",
+    "title": "Wpb matched entropy sweep",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-16",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-05-16 governance review. All 6 arms produced identical metrics (delta=0) because bias_fraction=0 for all diversity components (confirmed by EXQ-571 diagnostic: F dominates 88-89% of temporal variance, all bias components machine-epsilon). The structured-vs-random comparison was never activated -- the test condition was invalid. Original verdict: weakens."
+  },
+  {
+    "id": "EXQ-571",
+    "title": "E3 score variance decomp",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-570",
+    "title": "E2 rollout collapse diagnostic",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-570",
+    "title": "E2 rollout collapse diagnostic",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-570",
+    "title": "E2 rollout collapse diagnostic",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-567",
+    "title": "Wpb natural entropy sp cem",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true,
+    "summary": "ARM_1 (SP-CEM + stratified + ao_std_floor) vs ARM_0 (normal CEM) on natural selected_action_entropy and candidate support. PASS = SP-CEM meaningfully diversifies natural action selection. FAIL = SP-CEM does not lift natural entropy above the baseline threshold."
+  },
+  {
+    "id": "EXQ-567",
+    "title": "Wpb natural entropy sp cem",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true,
+    "summary": "ARM_1 (SP-CEM + stratified + ao_std_floor) vs ARM_0 (normal CEM) on natural selected_action_entropy and candidate support. PASS = SP-CEM meaningfully diversifies natural action selection. FAIL = SP-CEM does not lift natural entropy above the baseline threshold."
+  },
+  {
+    "id": "EXQ-563C",
+    "title": "Stratified cem bias calibration",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-15",
+    "reviewed": true,
+    "summary": "Diagnostic calibration run; tests 563c CEM flags and E3 bias diagnostics. Do not promote behavioural claims from this result alone.",
+    "supersedes": "v3_exq_563b_candidate_support_repair"
+  },
+  {
+    "id": "EXQ-563B",
+    "title": "Candidate support repair",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-14",
+    "reviewed": true,
+    "summary": "Diagnostic calibration run; do not promote behavioural agency claims from this result alone.",
+    "supersedes": "v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3"
+  },
+  {
+    "id": "EXQ-563A",
+    "title": "Action bias scaffold actuator test",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-14",
+    "reviewed": true,
+    "summary": "Superseded by v3_exq_563b_candidate_support_repair_20260514T205949Z_v3. EXQ-563a confirmed E3 score-bias seam using scaffold candidates; EXQ-563b extended with support-preserving CEM and dose-response analysis.",
+    "supersedes": "v3_exq_563_action_bias_actuator_test_20260514T183416Z_v3"
+  },
+  {
+    "id": "EXQ-563",
+    "title": "Action bias actuator test",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-14",
+    "reviewed": true,
+    "summary": "Superseded by v3_exq_563a_action_bias_scaffold_actuator_test_20260514T194658Z_v3. EXQ-563 could not test the action-bias actuator because CEM collapse left all candidates in one action class."
+  },
+  {
+    "id": "EXQ-563",
+    "title": "Candidate support collapse diagnosis",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-14",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-561",
+    "title": "Arc065 diversity stack heartbeat",
+    "status": "pass",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-065"
+    ],
+    "date": "2026-05-14",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-461",
+    "title": "Mech090 sd033a delayed reward persistence",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-090",
+      "SD-034"
+    ],
+    "date": "2026-05-12",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-503A",
+    "title": "Sd017 sleep phase discriminative phase2",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-05-09",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-503"
+  },
+  {
+    "id": "EXQ-500A",
+    "title": "Sd017 sleep phase readiness phase2",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-05-09",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-500"
+  },
+  {
+    "id": "EXQ-436A",
+    "title": "Sd017 arc045 mech166 context harm phase2",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-05-09",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-05-10T10:11Z (was weakens FAIL across SD-017/ARC-045/MECH-166). All three pass criteria registered n_seeds_passed=0/5. Per-seed diagnostics show waking and SWS_THEN_REM produced bit-identical metrics for every seed: seed 42 waking_slot_cosine_sim = sws_then_rem_slot_cosine_sim = 0.000966 (signed_diff = 0.0); waking_harm_rate_dangerous = sws_then_rem_harm_rate_da…",
+    "supersedes": "V3-EXQ-436"
+  },
+  {
+    "id": "EXQ-418L",
+    "title": "Sd017 action bias div phase2",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-05-09",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-05-10T10:11Z (was does_not_support FAIL). The experiment tests whether sleep produces action-bias diversification (SD-017). All seeds returned with_action_bias_div = without_action_bias_div bit-identical (seed 42: 0.000450 = 0.000450; signed_diff = 0.0; abs_diff = 0.0; slot_diversity 0.152 = 0.152). The action-bias-div metric itself is ~0.0003 across both arms,…",
+    "supersedes": "V3-EXQ-418a"
+  },
+  {
+    "id": "EXQ-265A",
+    "title": "Sd017 sleep phase methods validation phase2",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-05-09",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-265"
+  },
+  {
+    "id": "EXQ-418I",
+    "title": "Sd016 divweight sweep",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-05-04",
+    "reviewed": true,
+    "summary": "SD-016 Path 1 div_weight sweep at 1.0/2.0/5.0 (all arms: writepath_mode=off, temperature_learnable=False). PASS = at least one weight above 0.5 breaks the uniform attention rail in all seeds AND produces a behavioural delta, confirming that Path 1 alone can establish cue-indexed retrieval given strong enough gradient pressure. FAIL on C1 with C2 PASS = the attention bottleneck is categorically in…",
+    "supersedes": "V3-EXQ-418e"
+  },
+  {
+    "id": "EXQ-502",
+    "title": "Mech062 tri loop gate coordination",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-062"
+    ],
+    "date": "2026-04-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-501",
+    "title": "Sd035 amygdala analog vs binary",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-035"
+    ],
+    "date": "2026-04-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-500",
+    "title": "Sd017 sleep phase readiness",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-29",
+    "reviewed": true,
+    "summary": "Superseded by V3-EXQ-500a 2026-05-10 governance cycle. V3-EXQ-500a re-runs the same SD-017 single-arm sleep-phase readiness probe under the validated Phase-2 5-flag substrate template (sd016_writepath_mode='off', sd016_diversification_weight=0.5, use_per_stream_vs=True, use_anchor_sets=True, use_sd039_anchor_payload=True). The successor's substrate is the canonical configuration; this predecessor…"
+  },
+  {
+    "id": "EXQ-418H",
+    "title": "Sd016 env entropy precondition",
+    "status": "fail",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-28",
+    "reviewed": true,
+    "summary": "SD-016 env-entropy precondition probe. PURPOSE: test whether SD-023 landmarks (n_landmarks_a, n_landmarks_b in CausalGridWorldV2) supply enough cross-context z_world variation to satisfy the substrate-readiness gate that EXQ-418f/g established was missing. PASS = SD-023 landmarks ON produce cross-context cos_cross < 0.95 with separation_gap > H0+0.02 AND H0 (landmarks OFF) reproduces the EXQ-418f…",
+    "supersedes": "V3-EXQ-418g"
+  },
+  {
+    "id": "EXQ-418G",
+    "title": "Sd016 selectivity first 4arm",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-28",
+    "reviewed": true,
+    "summary": "2026-04-28T22Z governance: Reclassified does_not_support -> non_contributory. C1+C2+C3 PASS confirms substrate-side fixes (learnable temperature + entropy-minimisation loss) work as designed; C4+C5 FAIL traced to env-entropy precondition gap (action_class_entropy=1.105e-10 IDENTICAL across all 4 arms regardless of substrate arm; cue_context produces zero behavioural delta because z_world is near-…",
+    "supersedes": "V3-EXQ-418e"
+  },
+  {
+    "id": "EXQ-418F",
+    "title": "Sd016 attention uniformity probe",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-28",
+    "reviewed": true,
+    "summary": "SD-016 attention-uniformity diagnostic probe. PURPOSE: localise the cause of the EXQ-418d/418e attn_entropy_mean=ln(16) uniform-rail failure (slot-side fixes alone cannot move attention; queries must be the bottleneck). Reports query/key norms, raw and scaled dot-product distributions, slot argmax histogram, attention entropy stats, and the divisor that would produce target mean entropy 1.5 nats.…",
+    "supersedes": "V3-EXQ-418e"
+  },
+  {
+    "id": "EXQ-418F",
+    "title": "Sd016 attention uniformity probe",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-28",
+    "reviewed": true,
+    "summary": "SD-016 attention-uniformity diagnostic probe. PURPOSE: localise the cause of the EXQ-418d/418e attn_entropy_mean=ln(16) uniform-rail failure (slot-side fixes alone cannot move attention; queries must be the bottleneck). Reports query/key norms, raw and scaled dot-product distributions, slot argmax histogram, attention entropy stats, and the divisor that would produce target mean entropy 1.5 nats.…",
+    "supersedes": "V3-EXQ-418e"
+  },
+  {
+    "id": "EXQ-418E",
+    "title": "Sd016 diversification loss",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-27",
+    "reviewed": true,
+    "summary": "SD-016 ContextMemory Path 1 auxiliary diversification loss 4-arm ablation. PASS = the diversification loss term breaks slot symmetry where the v2 read+write substrate cannot (EXQ-418d FAIL across all 4 arms with bimodal seed pattern). FAIL on C1 or C2 at div_weight=0.5 invalidates Path 1 at this weight; follow-up is either a weight sweep (EXQ-418f at 1.0/2.0/5.0) or Path 2/3 from the original 3-p…",
+    "supersedes": "V3-EXQ-418d"
+  },
+  {
+    "id": "EXQ-418E",
+    "title": "Sd016 diversification loss",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-27",
+    "reviewed": true,
+    "summary": "SD-016 ContextMemory Path 1 auxiliary diversification loss 4-arm ablation. PASS = the diversification loss term breaks slot symmetry where the v2 read+write substrate cannot (EXQ-418d FAIL across all 4 arms with bimodal seed pattern). FAIL on C1 or C2 at div_weight=0.5 invalidates Path 1 at this weight; follow-up is either a weight sweep (EXQ-418f at 1.0/2.0/5.0) or Path 2/3 from the original 3-p…",
+    "supersedes": "V3-EXQ-418d"
+  },
+  {
+    "id": "EXQ-418D",
+    "title": "Sd016 writepath modes comparison",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-016",
+      "SD-017"
+    ],
+    "date": "2026-04-25",
+    "reviewed": true,
+    "summary": "SD-016 ContextMemory write-path 4-arm comparison (Part B routing study). Part A (key_proj.bias=False) is structural and applied uniformly across arms. Outcome PASS = the chosen production default (sd016_writepath_mode in {train_only, sense_only, both}) is empirically grounded; outcome FAIL = none of the active write modes restore content-conditioned attention + slot differentiation under matched…",
+    "supersedes": "V3-EXQ-418c"
+  },
+  {
+    "id": "EXQ-477",
+    "title": "Sd016 context memory slot store diagnostic",
+    "status": "fail",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-24",
+    "reviewed": true,
+    "summary": "Diagnostic probe of the SD-016 ContextMemory slot-store / attention-uniformity bug referenced in CLAUDE.md (SD-016 section) and in the 2026-04-24T07:36 TASK_CLAIMS retag note. Outcome MUST NOT be used to update SD-016 claim confidence. Result provides targeted localisation of which ContextMemory forward-path component produces uniform softmax. PRIMARY: (b) key_proj.bias dominates key content -- k…"
+  },
+  {
+    "id": "EXQ-449B",
+    "title": "Sd016 cue action proj consumer fix",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-24",
+    "reviewed": true,
+    "summary": "Diagnostic verification of the EXQ-449a consumer fix for SD-016 cue_action_proj. Outcome MUST NOT be used to update SD-016 claim confidence. Verifies that cue_action_proj output has per-channel variation across contexts after the [cue_context, z_world] concat fix in extract_cue_context. Consumer fix verified at the projection level (per-channel std clears 1e-3) but safe vs dangerous divergence is…",
+    "supersedes": "V3-EXQ-449a"
+  },
+  {
+    "id": "EXQ-418A",
+    "title": "Sd016 sd017 context conditioned action",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-24",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-418"
+  },
+  {
+    "id": "EXQ-449A",
+    "title": "Sd016 cue action proj forward path probe",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-21",
+    "reviewed": true,
+    "summary": "Diagnostic probe of SD-016 cue_action_proj forward path (EXP-0155). Outcome MUST NOT be used to update SD-016 claim confidence. Result identifies the specific blocker in the forward path and determines the fix plan for EXQ-418b re-run. detach is not the sole blocker. Forward-path tensor(s) below threshold: action_bias per-channel std < 1e-4 (constant output across contexts, g2). Requires redesign…"
+  },
+  {
+    "id": "EXQ-449A",
+    "title": "Sd016 cue action proj forward path probe",
+    "status": "pass",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-21",
+    "reviewed": true,
+    "summary": "Diagnostic probe of SD-016 cue_action_proj forward path (EXP-0155). Outcome MUST NOT be used to update SD-016 claim confidence. Result identifies the specific blocker in the forward path and determines the fix plan for EXQ-418b re-run. detach is not the sole blocker. Forward-path tensor(s) below threshold: action_bias per-channel std < 1e-4 (constant output across contexts, g2). Requires redesign…"
+  },
+  {
+    "id": "EXQ-449",
+    "title": "Sd016 cue action proj wiring probe",
+    "status": "fail",
+    "evidence_direction": "diagnostic",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "date": "2026-04-20",
+    "reviewed": true,
+    "summary": "Diagnostic probe of cue_action_proj wiring under sd016_enabled. Outcome should NOT be used to update SD-016 claim confidence. Result informs whether the existing wiring has any training signal path and whether auxiliary supervision is a viable fix. supervised arm failed to train cue_action_proj. Something in the forward pass or loss construction is broken; the fix strategy must change. Inspect gr…"
+  },
+  {
+    "id": "EXQ-418A",
+    "title": "Sd016 sd017 context conditioned action",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-20",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory 2026-04-22: action_bias_div=0.0 in BOTH WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 across 3 seeds (bit-identical). Same SD-016 cue_action_proj consumer collapse as EXQ-449 (per-channel std ~2.7e-8 in frozen-weights regime). Mechanism cannot be tested until SD-016 consumer wiring is fixed.",
+    "supersedes": "V3-EXQ-418"
+  },
+  {
+    "id": "EXQ-430",
+    "title": "Inv010 offline integration necessity",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "INV-010"
+    ],
+    "date": "2026-04-19",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory (governance 2026-04-19): C1 (SLEEP harm < NO_SLEEP) failed 0/3 seeds with seed 13 anomaly (4.7x variance vs seeds 42/7). SWS slots differentiated (C3 3/3) but did not translate to behavioral harm reduction -- symptom of missing MECH-261 mode-conditioned offline-write gating substrate. SD-032 cluster now IMPLEMENTED 2026-04-19; retest eligibility depends on MECH-261 s…"
+  },
+  {
+    "id": "EXQ-429",
+    "title": "Inv044 bayesian prior before posterior",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "INV-044"
+    ],
+    "date": "2026-04-19",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-418A",
+    "title": "Sd016 sd017 context conditioned action",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-19",
+    "reviewed": true,
+    "summary": "Reclassified non_contributory (governance 2026-04-19): zero differential signal (action_bias_div=0.0 in both WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 conditions, all seeds). Second occurrence of same wiring gap as sibling 20260418T230019Z -- context-conditioning substrate not wired through to policy. Treated as diagnostic probe of substrate wiring, not evidence against SD-017.",
+    "supersedes": "V3-EXQ-418"
+  },
+  {
+    "id": "EXQ-324B",
+    "title": "Sd020 harm surprise pe",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-020"
+    ],
+    "date": "2026-04-19",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-324a"
+  },
+  {
+    "id": "EXQ-429",
+    "title": "Inv044 bayesian prior before posterior",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "INV-044"
+    ],
+    "date": "2026-04-18",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-418A",
+    "title": "Sd016 sd017 context conditioned action",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-18",
+    "reviewed": true,
+    "summary": "Reclassified diagnostic (governance 2026-04-19): zero differential signal (action_bias_div=0.0 in both conditions, all seeds). Shared anomaly with EXQ-436: conditions produce identical metrics, suggesting context-conditioning substrate not wired through to policy. Treated as diagnostic probe of substrate wiring, not evidence against SD-017. | Reclassified diagnostic (governance 2026-04-19): zero…",
+    "supersedes": "V3-EXQ-418"
+  },
+  {
+    "id": "EXQ-324B",
+    "title": "Sd020 harm surprise pe",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-020"
+    ],
+    "date": "2026-04-18",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-324a"
+  },
+  {
+    "id": "EXQ-324B",
+    "title": "Sd020 harm surprise pe",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "SD-020"
+    ],
+    "date": "2026-04-18",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-324a"
+  },
+  {
+    "id": "EXQ-418",
+    "title": "Sd017 context conditioned action",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-16",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-324A",
+    "title": "Sd020 harm surprise pe",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-020"
+    ],
+    "date": "2026-04-16",
+    "reviewed": true,
+    "supersedes": "v3_exq_324_sd020_harm_surprise_pe"
+  },
+  {
+    "id": "EXQ-429",
+    "title": "Inv044 bayesian prior before posterior",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "INV-044"
+    ],
+    "date": "2026-04-15",
+    "reviewed": true,
+    "summary": "This manifest was a dry_run (2 episodes, 0 sleep cycles). Script is correct; dry_run flag caused n_sleep_cycles=0 and criteria to fail trivially. Superseded by the runner's full execution of V3-EXQ-429 (pending in queue)."
+  },
+  {
+    "id": "EXQ-308",
+    "title": "Mech033 kernel chain discriminative",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-033"
+    ],
+    "date": "2026-04-09",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-265",
+    "title": "Sd017 sleep phase methods validation",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "SD-017"
+    ],
+    "date": "2026-04-09",
+    "reviewed": true,
+    "summary": "Superseded by V3-EXQ-265a 2026-05-09. Original 265 ran 2026-04-09 BEFORE the SD-016 ContextMemory diversification loss landed (2026-04-25). C1+C2+C3 PASSed but C4 (WITH_SLEEP slot diversity higher than WITHOUT_SLEEP in >= 2/3 seeds) FAILed (mean WITH=0.279 vs WITHOUT=0.293 -- direction reversed). The C4 failure was driven by the SD-016 attention-uniformity confound (ContextMemory write path lande…"
+  },
+  {
+    "id": "EXQ-257",
+    "title": "Sd018 resource prox validation",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "SD-018"
+    ],
+    "date": "2026-04-06",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-196",
+    "title": "Arc018 rollout viability pair",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "ARC-018"
+    ],
+    "date": "2026-04-04",
+    "reviewed": true,
+    "summary": "Non-contributory (2026-04-06 governance). Harm_advantage=0.0 diagnostic of missing SD-004 substrate (action-object hippocampal map backbone). ARC-018 verdict deferred pending SD-004 implementation."
+  },
+  {
+    "id": "EXQ-184",
+    "title": "Mech033 kernel chain pair",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-033"
+    ],
+    "date": "2026-04-04",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-215",
+    "title": "Q002 residue resolution pair",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "Q-002"
+    ],
+    "date": "2026-04-03",
+    "reviewed": true,
+    "supersedes": "V3-EXQ-170"
+  },
+  {
+    "id": "EXQ-196",
+    "title": "Arc018 rollout viability pair",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "ARC-018"
+    ],
+    "date": "2026-04-01",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-184",
+    "title": "Mech033 kernel chain pair",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-033"
+    ],
+    "date": "2026-04-01",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-172",
+    "title": "Arc018 rollout viability pair",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "ARC-018"
+    ],
+    "date": "2026-03-30",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-171",
+    "title": "Mech033 kernel chain pair",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-033"
+    ],
+    "date": "2026-03-30",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-170",
+    "title": "Q002 r field resolution pair",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-002"
+    ],
+    "date": "2026-03-30",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-157",
+    "title": "Q017 control axis minimal subset",
+    "status": "error",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-017"
+    ],
+    "date": "2026-03-30",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-177",
+    "title": "Sd008 integration test",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "SD-008"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-172",
+    "title": "Arc018 rollout viability pair",
+    "status": "error",
+    "evidence_direction": "inconclusive",
+    "claim_ids": [
+      "ARC-018"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-171",
+    "title": "Mech033 kernel chain pair",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-033"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-170",
+    "title": "Q002 r field resolution pair",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-002"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-164A",
+    "title": "Mech142 axis decorrelation",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "MECH-063"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-159",
+    "title": "Q020 arc007 valence constraint pair",
+    "status": "fail",
+    "evidence_direction": "weakens",
+    "claim_ids": [
+      "Q-020"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-158",
+    "title": "Q018 rc conflict threshold calibration",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "Q-018"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-157",
+    "title": "Q017 control axis minimal subset",
+    "status": "error",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-017"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-157",
+    "title": "Q017 control axis minimal subset",
+    "status": "error",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-017"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-156",
+    "title": "Q016 tri loop arbitration policy pair",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-016"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-151",
+    "title": "Q006 ethics developmental pair",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-006"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-150",
+    "title": "Q005 sleep anneal pair",
+    "status": "fail",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-005"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-149",
+    "title": "Q004 tau r calibration pair",
+    "status": "error",
+    "evidence_direction": "mixed",
+    "claim_ids": [
+      "Q-004"
+    ],
+    "date": "2026-03-29",
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-623",
+    "title": "Mech104 volatility interrupt discriminative pair",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-104"
+    ],
+    "reviewed": true,
+    "supersedes": "V3-EXQ-126"
+  },
+  {
+    "id": "EXQ-610A",
+    "title": "Inv074 crystallization necessity",
+    "status": "superseded",
+    "evidence_direction": "superseded",
+    "claim_ids": [
+      "MECH-341"
+    ],
+    "reviewed": true,
+    "summary": "2026-06-01T17:22:37Z governance: superseded by V3-EXQ-610b (fresh 2026-06-01 rerun, same design, identical D2-control-not-collapsing signature). Diagnosis preserved in failure_autopsy_V3-EXQ-610a_2026-06-01 (env/test-bed ceiling). Excluded from indexer scoring; live disposition carried by 610b.",
+    "supersedes": "V3-EXQ-610",
+    "superseded_by": "V3-EXQ-610b"
+  },
+  {
+    "id": "EXQ-514L",
+    "title": "Sd049 phase3 mech229 wanting liking identity",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-229",
+      "MECH-230"
+    ],
+    "reviewed": true,
+    "summary": "2026-06-03 (failure_autopsy_V3-EXQ-514l): V3-EXQ-514l FAIL re-tagged non_contributory / epistemic_category substrate_ceiling / pending_retest_after_substrate. The author-stamped per-claim 'weakens' (SD-049, SD-015) is NOT trusted: every absolute/wiring criterion passed (C0/C1/C2a/C2d/C3/C4) but every discrimination criterion failed (C2b probe 0.447, C2c n_consumption_samples 23<30, C5 lift -0.004…",
+    "supersedes": "V3-EXQ-514k",
+    "superseded_by": "v3_exq_514m_sd049_phase2_behavioural_curriculum_built"
+  },
+  {
+    "id": "EXQ-514K",
+    "title": "Sd049 phase3 mech229 wanting liking identity",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-229",
+      "MECH-230"
+    ],
+    "reviewed": true,
+    "summary": "2026-06-01T17:22:37Z governance: SD-049/SD-015 reclassified weakens->non_contributory. The ecological wanting/liking dissociation (C6 dissoc=False, C5 goal_resource_r_lift=False, C2b/C2c identity-probe weak) is CONFOUNDED by GAP-2 (SP-CEM) and the missing object-bound incentive-salience substrate, per failure_autopsy_V3-EXQ-626_2026-06-01 routing: do not re-run ecological dissociation until objec…",
+    "supersedes": "V3-EXQ-514j"
+  },
+  {
+    "id": "EXQ-418K",
+    "title": "Sd016 context memory reef",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "SD-016"
+    ],
+    "reviewed": true,
+    "supersedes": "['V3-EXQ-418j']"
+  },
+  {
+    "id": "EXQ-332A",
+    "title": "Mech216 predictive wanting dense",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-216"
+    ],
+    "reviewed": true,
+    "supersedes": "V3-EXQ-332"
+  },
+  {
+    "id": "EXQ-332A",
+    "title": "Mech216 predictive wanting dense",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "MECH-216"
+    ],
+    "reviewed": true,
+    "supersedes": "V3-EXQ-332"
+  },
+  {
+    "id": "EXQ-332",
+    "title": "Mech216 predictive wanting",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "MECH-216"
+    ],
+    "reviewed": true,
+    "supersedes": "V3-EXQ-263b"
+  },
+  {
+    "id": "EXQ-266A",
+    "title": "Q020 valence geometry pair fixed",
+    "status": "fail",
+    "evidence_direction": "non_contributory",
+    "claim_ids": [
+      "Q-020"
+    ],
+    "reviewed": true,
+    "summary": "NON_CONTRIBUTORY 2026-04-11 governance (session b). Q-020 is resolved (Resolution A, 2026-04-02 literature synthesis: ARC-007 and MECH-073 co-true) -- experimental FAIL does not reopen the question. The FAIL reveals that residue terrain navigation is not yet learned: seed 42 degenerate training (harm_rate_train=1.0, agent stuck in harm loops), terrain_harm_corr_SHAPED=-1.11 (agent navigating towa…",
+    "supersedes": "V3-EXQ-266"
+  },
+  {
+    "id": "EXQ-266",
+    "title": "Q020 valence geometry pair",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "Q-020"
+    ],
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-266",
+    "title": "Q020 valence geometry pair",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "Q-020"
+    ],
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-264",
+    "title": "Arc033 e2 harm s forward",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "ARC-033"
+    ],
+    "reviewed": true
+  },
+  {
+    "id": "EXQ-263B",
+    "title": "Sd023 mech216 landmark wanting",
+    "status": "fail",
+    "evidence_direction": "does_not_support",
+    "claim_ids": [
+      "MECH-216"
+    ],
+    "reviewed": true,
+    "supersedes": "V3-EXQ-263a"
+  },
+  {
+    "id": "EXQ-263A",
+    "title": "Mech216 e1 predictive wanting",
+    "status": "pass",
+    "evidence_direction": "supports",
+    "claim_ids": [
+      "MECH-216"
+    ],
+    "reviewed": true
+  }
+]
