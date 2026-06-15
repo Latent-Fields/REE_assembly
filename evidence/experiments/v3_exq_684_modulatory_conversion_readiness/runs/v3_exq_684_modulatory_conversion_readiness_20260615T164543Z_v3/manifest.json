@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_684_modulatory_conversion_readiness",
+  "run_id": "v3_exq_684_modulatory_conversion_readiness_20260615T164543Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-15T16:45:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "legacy_e2wf_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_LEGACY_E2WF (e2_world_forward source) in-arm RAW cross-candidate RANGE of the modulatory bias ROUTED into the E3 selection authority (modulatory_channel_route_range, the V3-EXQ-662 statistic) clears the floor -- the channel range REACHES the bias the conversion levers rescale/arbitrate. SAME statistic the route-range substrate gates on (range, NOT magnitude). Below floor => routing not wired / e2 under-trained => substrate_not_ready_requeue, never a verdict.",
+        "control": "ARM_LEGACY_E2WF: use_modulatory_channel_routing + source=cand_world_summary; candidate_summary_source=e2_world_forward (genuinely action-divergent routed channel)",
+        "measured": 0.187306,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "legacy_e2wf_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_LEGACY_E2WF e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- confirms SD-056 trained the action-conditional divergence the routed channel re-sources. Range statistic. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_LEGACY_E2WF: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.060206,
+        "threshold": 0.03,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verify_lifts_over_proposer",
+        "kind": "readiness",
+        "description": "The matched-noise temperature control (ARM_MATCHED_NOISE, proposer @ T=2.5) selected-action entropy STRICTLY ABOVE the proposer reference (ARM_PROPOSER @ T=1.0) on >= MIN_SEEDS seeds -- the 569g gap: a non-lifting control cannot discriminate structured from random diversity (569g's ARM_2 under-lifted to entropy==proposer). Entropy statistic (the SAME the C_CONVERSION criterion routes on). Below floor => control_not_lifting => substrate_not_ready_requeue.",
+        "control": "ARM_MATCHED_NOISE vs ARM_PROPOSER per-seed selected-action entropy",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_CONVERSION_at_least_one_arm_strict_above_legacy_and_noise",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_CONVERSION": true
+    },
+    "routing": {
+      "conversion_mechanism_identified": "PASS -> the winning conversion arm config selects V3-EXQ-569h (the GAP-A falsifier with an in-arm route-range gate)",
+      "substrate_not_ready_requeue": "re-queue at higher P0 / check route-range wiring + that the matched-noise control lifts; do NOT promote to 569h",
+      "conversion_ceiling_persists_under_levers": "FAIL -> /failure-autopsy: the conversion ceiling survives gain/contrast + shortlist; do NOT auto-promote 569h"
+    }
+  }
+}
