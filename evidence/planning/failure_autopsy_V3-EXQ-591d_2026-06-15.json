@@ -1,0 +1,58 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T04:18:17Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_591d_isef005_phase01_gate_robustness_20260614T232048Z_v3",
+      "queue_id": "V3-EXQ-591d",
+      "claim_ids": [],
+      "bears_on": ["ARC-046", "infant_substrate:GAP-14"],
+      "failed_criterion": "discrimination",
+      "failed_leg": "admits_every_genuine_explorer (seeds 42/43 rejected; rejects-false-advancer leg PASSES)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not_applicable_claim_free",
+        "biological_reference": "clear; competence gates integrate over a window (sustained level) -- aligns with the diagnosis",
+        "prerequisites": "present; diversity stack armed, 3 genuine explorers + 1 false-advancer present",
+        "implementation": "partial; candidate criteria carry the robust-aggregation symbol but reuse the single-episode threshold 0.994 instead of a sustained ~0.2 floor",
+        "environment": "adequate; reachability probe produced both genuine explorers and a false-advancer",
+        "measurement": "under_instrumented_misleading; criteria binarize at 0.994 and discard the mean-LEVEL signal that separates the classes",
+        "integration": "not_applicable",
+        "scale": "adequate; full 160-ep budget, seed-44 proves a discriminating regime exists"
+      },
+      "biological_reference": {
+        "closest_mechanism": "developmental Phase-0 exit gate (early motor-babbling competence threshold; BG/dopaminergic milestone gating)",
+        "dependencies": ["windowed/sustained competence integration with hysteresis"],
+        "is_formal_import": false,
+        "divergence": "none; sustained-mean criterion at a moderate floor is the biologically-faithful form, single-episode spike threshold is the impoverished translation",
+        "lit_status": "not_required"
+      },
+      "recommended_epistemic_category": "not_applicable_claim_free_diagnostic",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-591d (claim-free ARC-046 / infant_substrate:GAP-14 Phase 0->1 gate-robustness diagnostic; diversity stack armed at landed defaults; scheduler not mutated). FAIL, non_contributory, genuine non-degenerate (all 3 preconditions met, criteria_non_degenerate true). Neither candidate robust criterion discriminates: K-of-N (5/10) and EMA (alpha 0.2) both REJECT the seed-45 false-advancer (the 591c over-permissiveness leg is fixed) AND reject genuine explorers 42/43 -- because both reuse the single-episode spike threshold (0.994) as the bar for a sustained statistic, while the genuine explorers' mean level (0.32-0.84) sits below it (they spike supra-0.994 only 6-7x of 160). The discriminating signal is the mean h_pos LEVEL (the oracle's own floor ~0.20), not crossing density. Measurement / test-design gap, NOT a substrate ceiling and NOT a claim falsification (claim-free; ARC-046 NOT weakened). Pre-registered next: V3-EXQ-591e re-parameterizes the replay criterion to EMA-of-LEVEL gated at ~0.20 (supersedes 591d for the gate-criterion question).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The genuine-explorer vs false-advancer discrimination is carried by the mean h_pos LEVEL (oracle floor ~0.2), not single-episode threshold-crossing density.",
+        "Robustification killed the seed-45 over-permissiveness (rejects-false-advancer leg PASSES for both K-of-N and EMA); the failure is entirely over-conservatism from the wrong threshold.",
+        "A discriminating criterion exists in the data: EMA/windowed-mean of h_pos gated at ~0.2 cleanly separates {0.32,0.56,0.84} from {0.14}. Fix is a re-parameterization, not a new mechanism."
+      ],
+      "next_experiment": {
+        "queue_id": "V3-EXQ-591e",
+        "supersedes": "V3-EXQ-591d",
+        "design": "Replay the same 5-seed h_pos traces through an EMA-of-LEVEL criterion (alpha ~0.2) compared against the genuine-explorer floor (~0.20 = GENUINE_EXPLORATION_H_POS_MEAN_FLOOR), NOT the single-episode spike threshold (0.994). Same non-vacuity preconditions + same two-leg C_gate_discriminates acceptance. A discriminating PASS routes to /implement-substrate on infant_curriculum.py:_try_phase_0_to_1.",
+        "user_choice": "EMA-of-level @ ~0.2 floor (AskUserQuestion 2026-06-15; over windowed-mean / multi-criterion sweep / direct implement-substrate)"
+      },
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence": {
+    "fires": false,
+    "reason": "591/591b/591c/591d is a developmental chain on distinct defects, not one claim with multiple distinct failure signatures. 591d is the FIRST dedicated autopsy on the ARC-046 gate-criterion target; no prior failure_autopsy_* targets it."
+  }
+}
