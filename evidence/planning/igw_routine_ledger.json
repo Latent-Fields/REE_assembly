@@ -870,7 +870,8 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-178-retest-after-substrate-arc-063 && claude --resume a2f8acbf-b6db-4b4d-95b5-6d60fd200b52",
       "task_claim_session_id": "igw-auto-igw-178-retest-after-substrate-arc-063-20260615T055834Z",
       "assigned_at": "2026-06-15T05:58:29Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-15T07:00:21Z"
     }
   ],
   "dispositions": [
@@ -1156,6 +1157,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-06-15T01:56:58Z",
       "re_eligible_after": "2026-06-17T01:56:58Z"
+    },
+    {
+      "stable_hash": "ee9660d493f2",
+      "igw_id_at_disposition": "IGW-20260615-178",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-063"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Retest after substrate: ARC-063",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-06-15T07:00:21Z",
+      "re_eligible_after": "2026-06-17T07:00:21Z"
     }
   ]
 }
