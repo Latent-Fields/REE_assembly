@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_504_mech153_supervised_context_labeling_3arm
 
-Generated: `2026-06-15T16:52:04.706806Z`
+Generated: `2026-06-15T17:45:31.733005Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

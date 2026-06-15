@@ -15753,7 +15753,7 @@
       "first_seen_date": "2026-04-13",
       "first_seen_subject": "cowork-2026-04-13-b: index rebuild + 5 proposals marked executed",
       "first_seen_week": "2026-04-13",
-      "genuine_exp_count": 4,
+      "genuine_exp_count": 3,
       "id": "MECH-229",
       "incoming_dependency_count": 2,
       "lifecycle": "governance_evidence_bearing",
@@ -23793,7 +23793,7 @@
       "depends_on_count": 5,
       "evidence_bearing": true,
       "evidence_quadrant": "novel_discovery",
-      "experiment_planned": false,
+      "experiment_planned": true,
       "first_seen_commit": "1f12a8e60f19",
       "first_seen_date": "2026-06-04",
       "first_seen_subject": "SD-057 + MECH-344/345/346: register object-bound incentive-salience layer (GAP-7 L2-L3-L4)",
@@ -24071,7 +24071,7 @@
       "status": "candidate",
       "substrate_active": true,
       "substrate_target": false,
-      "substrate_unblocked": false,
+      "substrate_unblocked": true,
       "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
       "type": "mechanism_hypothesis"
     },
@@ -24112,7 +24112,7 @@
       "status": "candidate",
       "substrate_active": true,
       "substrate_target": false,
-      "substrate_unblocked": false,
+      "substrate_unblocked": true,
       "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
       "type": "design_decision"
     },
@@ -50195,7 +50195,7 @@
       "dominant_class": "active_v3_closure",
       "evidenced_claims": 1,
       "first_week": "2026-04-13",
-      "genuine_exp_count": 4,
+      "genuine_exp_count": 3,
       "latest_week": "2026-04-13",
       "phase_counts": {
         "v3": 1
@@ -58680,7 +58680,7 @@
       }
     }
   ],
-  "generated_at_utc": "2026-06-15T16:19:08Z",
+  "generated_at_utc": "2026-06-15T17:44:24Z",
   "recent": {
     "churn_health": {
       "avg_outdeps": 3.977,
@@ -58961,7 +58961,7 @@
         "status": "candidate",
         "substrate_active": true,
         "substrate_target": false,
-        "substrate_unblocked": false,
+        "substrate_unblocked": true,
         "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
         "type": "design_decision"
       },
@@ -59831,7 +59831,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -59854,7 +59854,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
             "type": "mechanism_hypothesis",
             "week_count": 1
@@ -65198,7 +65198,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -66156,7 +66156,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -66189,7 +66189,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -66235,7 +66235,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
             "type": "mechanism_hypothesis",
             "week_count": 1
@@ -66362,7 +66362,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -67262,7 +67262,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -67285,7 +67285,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
             "type": "mechanism_hypothesis",
             "week_count": 1
@@ -67468,7 +67468,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -67491,7 +67491,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
             "type": "mechanism_hypothesis",
             "week_count": 1
@@ -69521,7 +69521,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -69556,7 +69556,7 @@
         "status": "candidate",
         "substrate_active": true,
         "substrate_target": false,
-        "substrate_unblocked": false,
+        "substrate_unblocked": true,
         "title": "Relief/safety escape-affordance bridge mechanism (instantiates SD-059): a pure-arithmetic regulator (ree_core/pfc/escape_affordance_bridge.py, sibling to the SD-058/MECH-357 gate) extending the MECH-357 scalar avoidance_efficacy into a per-first-action-class credit table. RELIEF half: a directed action under threat that drops z_harm_a (delta = prev - now > floor) credits relief_affordance[class] (EMA toward 1; MECH-302-consistent). SAFETY half: a directed action after which threat is absent (threat_scale <= 0) credits safety_affordance[class] (MECH-303/304-consistent response-produced safety). Approach bonus: under future threat, a per-candidate NEGATIVE (favoured) E3 score-bias toward credited classes = -clamp(approach_gain * threat_scale * combined_affordance[class], 0, bias_scale); the no-op/freeze class never gets a bonus. Three guards: bias_scale clamp, threat-context gate (zero when safe), per-tick leak.",
         "type": "mechanism_hypothesis"
       },
@@ -72473,7 +72473,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -72529,7 +72529,7 @@
             "status": "candidate",
             "substrate_active": true,
             "substrate_target": false,
-            "substrate_unblocked": false,
+            "substrate_unblocked": true,
             "title": "Relief/safety escape-affordance bridge: SD-058/MECH-357 supply an ilPFC freeze-SUPPRESSION gate but its avoidance_efficacy is a GLOBAL SCALAR that only penalises the no-op/freeze class -- compute_action_bias by design 'does NOT compute the escape direction'. V3-EXQ-603h (engaged-but-insufficient, readiness met) showed the consequence: the agent un-freezes but acquires no directed escape (seed-43 scalar efficacy 0.633 -> WORST survival 11.0). Moscarello & LeDoux 2013: active avoidance needs the LA/BA->NAcc relief/safety action-credit half that positively reinforces a SPECIFIC avoidance response, not only the suppression half. REE owns relief (MECH-302/SD-050) + safety (MECH-303/304/SD-052/SD-051) but they are UNWIRED to avoidance. SD-059 adds the architecture: an affordance-indexed (per-first-action-class) credit table that, when a directed action under threat drops z_harm_a (relief) or terminates the threat (safety), tags that action as an escape affordance approachable under future threat; MECH-358 is the bridge mechanism.",
             "type": "design_decision",
             "week_count": 1
@@ -73556,7 +73556,7 @@
         "component_id": "C675",
         "depends_on_count": 5,
         "evidence_bearing": true,
-        "experiment_planned": false,
+        "experiment_planned": true,
         "first_seen_date": "2026-06-04",
         "first_seen_week": "2026-06-01",
         "hub_targets": [
@@ -74891,7 +74891,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -74959,7 +74959,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -75096,7 +75096,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -75187,7 +75187,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -75301,7 +75301,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -76192,7 +76192,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "novel_discovery",
-            "experiment_planned": false,
+            "experiment_planned": true,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 10,
             "lifecycle": "governance_evidence_bearing",
@@ -96213,7 +96213,7 @@
         "dependency_referenced": true,
         "evidence_bearing": true,
         "evidence_quadrant": "novel_discovery",
-        "experiment_planned": false,
+        "experiment_planned": true,
         "genuine_exp_count": 1,
         "incoming_dependency_count": 10,
         "lifecycle": "governance_evidence_bearing",
@@ -103525,7 +103525,7 @@
     "claims_path": "docs/claims/claims.yaml",
     "component_edges": 2036,
     "dependency_edges": 2957,
-    "git_head": "82f5950b99"
+    "git_head": "76700fac1a"
   },
   "summary": {
     "claims_total": 817,

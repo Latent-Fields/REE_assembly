@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_059_sd010_mech102_advantage
 
-Generated: `2026-06-15T16:52:04.706806Z`
+Generated: `2026-06-15T17:45:31.733005Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
