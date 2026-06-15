@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-15T15:54:40Z",
+  "last_tick_utc": "2026-06-15T15:59:41Z",
   "state": "running",
   "current_exq": "V3-EXQ-684",
   "current_exq_started_utc": "2026-06-15T11:53:33.879428+00:00",
@@ -9,22 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_STD_G2",
-    "runs_done": 14,
+    "run_label": "Seed 42 / ARM_SHORTLIST",
+    "runs_done": 15,
     "runs_total": 18,
-    "episodes_done": 50,
+    "episodes_done": 10,
     "episodes_total": 80,
-    "overall_pct": 81.2
+    "overall_pct": 84.0
   },
-  "seconds_elapsed": 14467,
-  "seconds_remaining": 2660,
+  "seconds_elapsed": 14767,
+  "seconds_remaining": 1941,
   "recent_lines": [
-    "[train] arm=ARM_MATCHED_NOISE seed=43 phase=P0 ep 60/80",
-    "[train] arm=ARM_MATCHED_NOISE seed=43 phase=P1 ep 70/80",
-    "[train] arm=ARM_MATCHED_NOISE seed=43 phase=P1 ep 80/80",
-    "verdict: PASS",
-    "Seed 44 Condition ARM_MATCHED_NOISE",
-    "[train] arm=ARM_MATCHED_NOISE seed=44 phase=P0 ep 10/80",
     "[train] arm=ARM_MATCHED_NOISE seed=44 phase=P0 ep 20/80",
     "[train] arm=ARM_MATCHED_NOISE seed=44 phase=P0 ep 30/80",
     "[train] arm=ARM_MATCHED_NOISE seed=44 phase=P0 ep 40/80",
@@ -118,7 +112,13 @@
     "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 20/80",
     "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 30/80",
     "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 40/80",
-    "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 50/80"
+    "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 50/80",
+    "[train] arm=ARM_STD_G2 seed=44 phase=P0 ep 60/80",
+    "[train] arm=ARM_STD_G2 seed=44 phase=P1 ep 70/80",
+    "[train] arm=ARM_STD_G2 seed=44 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_SHORTLIST",
+    "[train] arm=ARM_SHORTLIST seed=42 phase=P0 ep 10/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
