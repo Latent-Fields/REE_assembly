@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-14T22:16:17Z`  
-Last review: `2026-06-14T22:15:34Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-15T04:13:16Z`  
+Last review: `2026-06-15T04:13:11Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_680b_mech423_superadditivity_ablation_20260614T201913Z_v3` | 2026-06-14T20:19 | MECH-423 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 

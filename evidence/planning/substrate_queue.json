@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
-  "last_updated_utc": "2026-06-14T20:52:00Z",
+  "last_updated_utc": "2026-06-15T04:16:17Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4356,8 +4356,8 @@
     {
       "sd_id": "crf-availability-maintenance",
       "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (activity-silent synaptic trace) + redefine the readiness readout to the maintained pool so a differentiated pool also persists [666a amend: maintenance confirmed functional, ready-gate re-stated on crf_frac_maintained -> V3-EXQ-666b]",
-      "status": "implemented_pending_validation",
-      "ready": false,
+      "status": "validated",
+      "ready": true,
       "design_doc": "REE_assembly/docs/architecture/arc_063_candidate_rule_field.md (availability-maintenance amend section, 2026-06-11)",
       "depends_on_unresolved": [],
       "depends_on_resolved": [
@@ -4393,7 +4393,7 @@
       "priority": 1,
       "priority_note": "Autopsy priority_suggested=1; strict 6a-ii.6 agrees (>=1 fresh failure record V3-EXQ-666 + unblocks 3 candidate claims MECH-309/ARC-062/ARC-063). No override.",
       "added_session": "governance-cycle-20260611T0701Z",
-      "last_seen_session": "governance-apply-batch9-20260612T0626Z",
+      "last_seen_session": "governance-cycle-20260615T0400Z",
       "implemented_session": "implement-substrate-crf-availability-maintenance-20260611T0751Z",
       "implemented_utc": "2026-06-11T08:02:54Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-666_2026-06-11.json",
@@ -4423,7 +4423,8 @@
           "note": "CRF availability-maintenance readiness diagnostic (supersedes V3-EXQ-666). Self-routed FAIL on its discrimination criterion -- but a measurement_test_design_defect, NOT a substrate failure. The maintenance mechanism WORKS and strictly dominates on the isolating statistic crf_frac_maintained (ARM_2 1.0/0.625/0.938 vs ARM_1 0.188/0.125/0.438 vs ARM_0 0.0, clean monotone 3/3 seeds); the lit-prescribed maintained-pool readout redefinition is validated (crf_frac_active ~0.016-0.031 in both e2ctx arms = the averaged-activity artefact). The pre-registered gate used the COUNT floor crf_n_maintained_reactivatable>=2, which differentiation-alone clears at behavioural-runtime gap density (ARM_1 holds 2/3/7 reactivatable), so it did not isolate maintenance -- the isolating FRACTION statistic was collected but not gated on. Reviewed/explained by failure_autopsy_V3-EXQ-666a_2026-06-11 (confirmed). Re-gated on crf_frac_maintained -> V3-EXQ-666b. ready stays False pending 666b PASS."
         }
       ],
-      "source_autopsy_666a": "evidence/planning/failure_autopsy_V3-EXQ-666a_2026-06-11.json"
+      "source_autopsy_666a": "evidence/planning/failure_autopsy_V3-EXQ-666a_2026-06-11.json",
+      "validation_note_2026_06_15": "V3-EXQ-666c PASS 2026-06-15 (claim-free fraction-gated readiness re-run, supersedes 666b): maintenance ISOLATED on crf_frac_maintained -- ARM_2 (maintenance on) mean_frac_maintained=0.854 > floor 0.625; ARM_0/ARM_1 controls=0.0. All 4 readiness preconditions met (field_minted>=2 all cells=9; e2ctx full-pool differentiation 1.598>0.1 pre-gap; ARM_2 maintained pool count 9 + differentiation 1.701 supra-floor), so the PASS is non-vacuous. ready False->True. NEXT (follow-on /queue-experiment): the V3-EXQ-654c arc_062:GAP-B committed-class entropy behavioural falsifier on this field-populated maintained substrate."
     },
     {
       "sd_id": "commitment-closure-control-plane",

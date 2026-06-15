@@ -23,7 +23,7 @@
     "MECH-423"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -100,5 +100,7 @@
         "passed": false
       }
     ]
-  }
+  },
+  "evidence_direction_note": "evidence_direction=superseded by V3-EXQ-680c (680c supersedes 680b per the EXQ supersession policy). 680b self-routed additive_below_margin/inconclusive (mean delta_pair +0.539>0, 0/3 seeds clear hardened margin 2.455); failure_autopsy_V3-EXQ-680b CONFIRMED the lone -1.19 seed (456) is a numerical-instability artifact (world head diverged, grad norm 46x stable; affordance head improved on the same seed), NOT negative transfer -- MECH-423 NOT weakened. Scoring-excluded. Governance 2026-06-15.",
+  "superseded_by": "v3_exq_680c_mech423_superadditivity_ablation"
 }

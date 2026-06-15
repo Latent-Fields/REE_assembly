@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603n_scaffolded_sd054_full_curriculum_readiness
 
-Generated: `2026-06-14T22:00:14.417468Z`
+Generated: `2026-06-15T04:11:31.677947Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

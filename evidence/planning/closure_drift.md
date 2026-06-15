@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-14T22:32:07Z
+Generated: 2026-06-15T04:15:17Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -10,7 +10,7 @@ Warn-only -- this script never blocks the governance pipeline.
 
 _None._
 
-## Suppressed (legitimately non-terminal) (11)
+## Suppressed (legitimately non-terminal) (10)
 
 Nodes whose `owner_exq` reached a terminal state but where suppression rules say the node is legitimately non-terminal (Case-3 self-tag or non-contributory manifest evidence_direction). Listed here for audit; not counted as drift.
 
@@ -20,7 +20,6 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | partial | V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg; V3-EXQ-544/545/544a historical diagnostics; Q-045/MECH-313/MECH-260 leg awaits behavioral_diversity_isolation:GAP-C / V3-EXQ-603i; GAP-B successor still owed | case_3_self_tag |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | V3-EXQ-460d/468d (closure-control-plane VALIDATION re-queues, supersede 460c/468c; ran 2026-06-13, PENDING /failure-autopsy) + V3-EXQ-461c/464c/466c/467c/629b (*c cohort, adjudicated non_contributory 2026-06-13 per failure_autopsy_SD-034-closure-cluster-ext_2026-06-12). 463b EXCLUDED from the *c rewire -- lone PASS/supports (MECH-268 dACC saturation measured directly, not closure-gated), no re-run needed. 462b/465b were NEVER scoped (MECH-267 rule-binding + MECH-094 intrusive-sim behavioural arms deferred per sd033_governance Phase 4/5 deliverables -- do not hunt for them as missing). | case_3_self_tag |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | in-progress | V3-EXQ-485f FAIL/non_contributory 2026-06-11 (trained-OFC-head retest of SD-033b/MECH-263; readiness-gate miscalibration -- cleared 0.00898 but ~50x below the 0.05 DV floor; reclassified non_contributory by the batch9 governance cycle, reviewed; successor V3-EXQ-485g owed). Lineage owner advanced 485e -> 485f. PREDECESSOR V3-EXQ-485e (evidence-grade trained-OFC-head behavioural arm; FAIL/non_contributory self-route substrate_not_ready_requeue, FLAGGED for /failure-autopsy 2026-06-11; predecessor V3-EXQ-485d substrate-readiness diagnostic, then 485c/485b representation-level MECH-263 diagnostics PASS 2026-06-04, NOT a supersession lineage) | case_3_self_tag |
-| goal_pipeline_plan.md | `goal_pipeline:GAP-2` | open | V3-EXQ-514n FAIL/non_contributory 2026-06-11 (SD-057 object-bound wanting!=liking dissociation retest; MECH-229; self-routed substrate_not_ready_requeue below the same-statistic WL non-vacuity gate; scoring-excluded, reviewed batch9; substrate_queue SD-049-PHASE-2 amended). Lineage owner advanced 514m -> 514n. PREDECESSOR V3-EXQ-514m vacuous FAIL (measurement_test_design_defect, non_contributory -- valence channels never written). | case_3_self_tag |
 | self_attribution_plan.md | `self_attribution:GAP-1` | blocked | V3-EXQ-445h | case_3_self_tag |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | V3-EXQ-265a | case_3_self_tag |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | in-progress | V3-EXQ-569g FAIL/non_contributory 2026-06-11T22:49Z (r1a_entropy_only_artefact; supersedes 569f) is the lineage FRONTIER. PREDECESSORS: V3-EXQ-569f FAIL/non_contributory 2026-06-10T00:12Z (r1a_entropy_only_artefact; supersedes 569d); V3-EXQ-649 PASS 2026-06-07T13:14Z (GAP-A shared-channel substrate-readiness VALIDATED READY; consumed cand_world_summaries spread 0.090>=0.05 floor); V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30 | manifest_evidence_direction=non_contributory |

@@ -23,7 +23,7 @@
     "MECH-423"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "inconclusive",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -93,5 +93,6 @@
         "kind": "readiness"
       }
     ]
-  }
+  },
+  "evidence_direction_note": "V3-EXQ-680c substrate_not_ready_requeue (non_degenerate=false). failure_autopsy_V3-EXQ-680c CONFIRMED: readiness cosine NaN poisoned by 4/5 PAIR seeds diverging to the world_R2 clamp floor despite GRAD_CLIP_NORM=1.0 (the 680b grad-clip+bounded-score redesign did NOT cure the co-training instability); the one stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40). MECH-423 NOT weakened (the self-route is claim-designed). Route /queue-experiment 680d (stabilise PAIR co-training + guard the cosine aggregate); no substrate gap. Governance 2026-06-15."
 }

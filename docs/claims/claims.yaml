@@ -2264,6 +2264,18 @@
     false-tag artefact. Next step (user decision): requeue V3-EXQ-672b with a
     NON-collapsed baseline so the gate's benefit is measurable (chip spawned).
     PROMOTES/DEMOTES NOTHING.
+  governance_2026_06_15: >
+    The requeued V3-EXQ-672b RAN with a NON-collapsed baseline (C6_baseline_not_collapsed=true,
+    goal_success_rate_ARM_0=0.26) -- so this is the FIRST GENUINE counted experiment for MECH-057b,
+    and it WEAKENS. The trajectory-promotion gate is functional and non-degenerate (C3_gate_filters
+    true: ARM_1 suppresses 40.6% of candidates; criteria_non_degenerate C1/C2/C3 all true), but it
+    delivers NO benefit: C1_harm_reduction FALSE (harm 0.343 gate-on vs 0.311 baseline -- marginally
+    worse) and C2_completion_improvement FALSE (0.34386 vs 0.34398 -- flat). User-adjudicated 2026-06-15
+    (governance): accepted as a genuine weakens (the gate works as wired but the predicted harm/completion
+    benefit is absent on this substrate), NOT routed to /failure-autopsy. exp_conf -> 0.325
+    (genuine weakens:1 against 3 lit-supports + 1 lit-mixed) -> raised hold_candidate_resolve_conflict.
+    Stays candidate / V3-pending (no demotion). Supersedes the stale "No genuine experiments" framing in
+    the evidence_quality_note below (that text predates 672b).
   literature_evidence: |
     Pfeiffer & Foster (2013) PMID 23594744 [DOI: 10.1038/nature12112]:
     Hippocampal place-cell sequences depict future paths to remembered goals before
@@ -17105,12 +17117,12 @@
   subject: drive.wanting_liking_behavioral_dissociation
   polarity: asserts
   status: provisional
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   implementation_phase: v3
   split_from: MECH-112
   registered: "2026-04-13"
-  pending_retest_after_substrate: true
-  narrow_supports_flag: true
+  pending_retest_after_substrate: false
+  narrow_supports_flag: false
   depends_on:
     - SD-005
     - SD-015
@@ -17134,6 +17146,19 @@
     Neurological basis: Barch & Dowd 2010 (wanting/liking in schizophrenia);
     Hollerman et al. 2000 (striatal goal representation). Full literature in MECH-112.
   evidence_quality_note: |
+    2026-06-15 (governance): SUBSTRATE CEILING LIFTED. V3-EXQ-514o is a genuine, non-degenerate
+    PASS/supports on the SD-049 multi-resource substrate -- exactly the retest pending_retest_after_substrate
+    awaited. mean_object_bound_wl_dissoc_fraction = 0.80 (>= 0.6 pre-registered) with n_scored_wl_steps
+    5/6/7 across seeds (the 681-C4 liking-source fix cured 514n's n_scored=0; the DV now sources the
+    consumed-type tag from info[sd049_consumed_type_tag_this_tick], not the post-consumption-cleared obs
+    cell), both readiness gates met, non_degenerate=true. This is the object-bound wanting-target !=
+    liking-target dissociation reaching BEHAVIOUR -- the distinction the coarse substrate previously could
+    not deliver. User-adjudicated 2026-06-15: epistemic_category substrate_ceiling -> standard (the ceiling
+    is demonstrably lifted, not merely deferred), pending_retest_after_substrate -> false, and
+    narrow_supports_flag -> false (the "remaining supports are degenerate single-resource" concern is
+    resolved by this genuine multi-resource support). exp_conf 0.868 (genuine_exp_count 3),
+    confirmed_established quadrant. MECH-229 is now a clean promote candidate (provisional -> active) for the
+    engine to recommend next cycle; the prior substrate-degeneracy triage trail below is retained for history.
     2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-514m CONFIRMED): the V3-EXQ-514m MECH-229 per-claim weakens is reclassified non_contributory (measurement_test_design_defect) and remains scoring-excluded. C_WL wanting!=liking dissoc=0.0 on all 3 seeds (zero variance) is a VACUOUS FAIL: the DV reads the SD-014 residue VALENCE_WANTING/VALENCE_LIKING channels, but the run's config omits valence_liking_enabled/tonic_5ht_enabled/schema_wanting_enabled and the custom eval loop never writes them, so |w-l|>0.1 can never fire independent of behaviour. The contact guard (the run's only non-vacuity gate) verifies foraging but not channel-write, so the self-routed weakens rests on an unmet non-degeneracy assumption (vacuous-criterion pattern; cf. V3-EXQ-642/660a). MECH-229 stays provisional with no genuine multi-resource support; the substrate-faithful retest is V3-EXQ-514n -- the SD-057 object-bound wanting-target!=liking-target dissociation (MECH-346 most-wanted z_goal pointer; use_incentive_token_bank already on) with a same-statistic WL non-vacuity readiness gate, NOT the legacy residue-valence read. No demotion; no substrate_queue create/amend (instrumentation defect, SD-057 substrate landed 2026-06-04). MECH-230=supports is unaffected and sound.
     2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l (the only genuine multi-resource wanting/liking test) re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate -- foraging-competence/benefit-contact ceiling, C6 wanting!=liking dissoc 0.0 on all 3 seeds (no reward-contact history to express in). narrow_supports_flag=true: remaining supports EXQ-074f/234/354 are degenerate single-resource, so this non_contributory does NOT resolve MECH-229 -- it stays provisional with no genuine multi-resource support, awaiting a fair test on the foraging-competence substrate.
     EXQ-074f PASS 4/4 seeds (2026-04-04): wanting_l1_fraction=0.96 vs liking_l1_fraction=0.43,
@@ -42331,6 +42356,19 @@
     consolidation are themselves mature -- captured as the readiness precondition above and motivating
     the lit-pull. EXP-0380 in manual_proposals.v1.json carries the ablation design. epistemic_category
     standard, V3-tractable in principle but gated on the readiness precondition.
+  evidence_quality_note: >
+    2026-06-15 (governance): the EXP-0380 ablation lineage 680 -> 680a -> 680b -> 680c has NOT yet
+    landed genuine experimental evidence; exp_conf stays 0.0 (all 6 entries are literature). 680a's
+    PASS was a false positive on a baseline-LEVEL-SD margin (superseded). 680b (hardened SD-of-delta +
+    absolute-floor margin) self-routed additive_below_margin/inconclusive -- mean delta_pair +0.539 > 0
+    but 0/3 seeds clear the margin; failure_autopsy_V3-EXQ-680b CONFIRMED the lone -1.19 seed (456) is a
+    numerical-instability artifact (world head diverged, grad norm 46x stable seeds; affordance head
+    improved on the same seed), NOT negative transfer -- MECH-423 NOT weakened. 680c (grad-clip + bounded
+    score) self-routed substrate_not_ready_requeue (non_degenerate=false): readiness cosine NaN poisoned
+    by 4/5 PAIR seeds diverging despite grad-clip 1.0; failure_autopsy_V3-EXQ-680c CONFIRMED -- the lone
+    stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40), MECH-423 NOT weakened.
+    Both autopsies route to /queue-experiment 680d (stabilise PAIR co-training + guard the cosine
+    aggregate); no substrate gap. 680d is the live path to a genuine super-additivity verdict.
 - id: MECH-424
   title: "Language prediction as a corrective / instantiating predictive stream: when language is modelled as an externalisation of internal cognition, predicting language inside the integrated substrate can INSTANTIATE cognitive structures not gained sensorimotorically, and can CORRECT or DEGRADE existing structures as a function of the language's quality. The bidirectional clause (good language repairs structure; bad language corrupts it) is the discriminating edge over language-as-scaffold."
   claim_type: mechanism_hypothesis

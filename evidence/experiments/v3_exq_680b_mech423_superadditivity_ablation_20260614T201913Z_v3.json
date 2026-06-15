@@ -1,1 +1,502 @@
-{"schema_version": "v1", "run_id": "v3_exq_680b_mech423_superadditivity_ablation_20260614T201913Z_v3", "experiment_type": "v3_exq_680b_mech423_superadditivity_ablation", "queue_id": "V3-EXQ-680b", "claim_ids": ["MECH-423"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "supersedes": "v3_exq_680a_mech423_superadditivity_ablation", "timestamp_utc": "20260614T201913Z", "started_utc": "2026-06-14T20:19:13.237072Z", "proposal_id": "EXP-0380", "sleep_driver_pattern": "N/A (CrossModuleConsolidator.consolidate() called directly; no sleep cycle)", "thresholds": {"min_grad_floor": 1e-06, "min_cosine": 0.0, "rel_tol": 0.05, "settle_iters": 10, "superadd_sd_mult": 2.0, "superadd_min_effect_floor": 0.02, "integration_effect_floor": 0.001, "min_seeds_pass": 2}, "config": {"arms": ["ARM_ISOLATED", "ARM_INTEGRATED_PAIR", "ARM_INTEGRATED_TRIPLE"], "seeds": [42, 123, 456], "train_episodes": 40, "steps_per_episode": 80, "p1_steps": 300, "eval_steps": 300, "grid_size": 6, "num_hazards": 4, "num_resources": 3}, "arm_results": [{"arm": "ARM_ISOLATED", "seed": 42, "world_r2": 0.07999352858245024, "affordance_r2": 0.12722736480024066, "integration_score": 0.2072208933826909, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": null, "R2": null, "R3": null, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "d9f333570275fb2a69cae91dc95b3b7934442554e75674882fe5c2f5a5aa3bfa", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_ISOLATED", "seed": 123, "world_r2": 0.05371509343884595, "affordance_r2": 0.2080460874035065, "integration_score": 0.26176118084235245, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": null, "R2": null, "R3": null, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "54f7ba9d836241838a86b7da867f51c6d7b3cbb77056b9c588fc04c25bbaa310", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 123, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_ISOLATED", "seed": 456, "world_r2": 0.013377551417010691, "affordance_r2": 0.12336794471846035, "integration_score": 0.13674549613547105, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": null, "R2": null, "R3": null, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "b64077bd79783d3c0d2e4ad02267a4f726d06ac8740ca970ff3a8a6d046dc23d", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 456, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_PAIR", "seed": 42, "world_r2": 0.8735748298580557, "affordance_r2": 0.900167749481204, "integration_score": 1.7737425793392596, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 5.26569938659668, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": true, "final_rel_delta": 0.0011310316622257233, "n_iters": 2}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "19c2772db59dc3b39136e5e13e270de3125af3b499518513850fd08ceca125ba", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_PAIR", "seed": 123, "world_r2": 0.7105535605904947, "affordance_r2": 0.787255131755612, "integration_score": 1.4978086923461067, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 3.1191675662994385, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": true, "final_rel_delta": 0.006813650950789452, "n_iters": 2}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e2eb658e09cce239e6b74bc46fd688de8e09539ba816d5638db33061db17dd05", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 123, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_PAIR", "seed": 456, "world_r2": -1.4280850895445116, "affordance_r2": 0.37791948242038054, "integration_score": -1.0501656071241312, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 46.297332763671875, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": true, "final_rel_delta": 0.0, "n_iters": 2}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "6c4161c8010f02b1cb039e512e77d4295359815af6a4a1c4bd25a06731fa7dcf", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 456, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_TRIPLE", "seed": 42, "world_r2": 0.8629692456868786, "affordance_r2": 0.8704812700967387, "integration_score": 1.7334505157836173, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 42.756446838378906, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": true, "final_rel_delta": 8.008363693079446e-06, "n_iters": 2}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "67d84b508e7d49db436940b2a5bee9711b2fdb47e60d8b8d2935898ea11d15a1", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_TRIPLE", "seed": 123, "world_r2": -149.05055480242783, "affordance_r2": -1.9776164075694638, "integration_score": -151.02817120999728, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 200528723968.0, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": false, "final_rel_delta": 0.9073671698570251, "n_iters": 10}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "9f2d0d0050fe7c713f3cafd7f83667e8f414d5f3647f4a5fcf3782433f4d166b", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 123, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}, {"arm": "ARM_INTEGRATED_TRIPLE", "seed": 456, "world_r2": -1.1684104539429025, "affordance_r2": 0.47012015870626434, "integration_score": -0.6982902952366382, "n_world_buffer": 1000, "n_e2_buffer": 1000, "R1": {"coupled": true, "min_grad_norm": 1.678776502609253, "mean_pairwise_cosine": 0.0, "n_modules": 2}, "R2": {"present": true, "converged": true, "final_rel_delta": 0.020801538601517677, "n_iters": 2}, "R3": {"interleaved_share": 1.0, "blocked_share": 0.0, "interleaved_n_updates": 16.0, "updates_e2_interleaved": 8.0, "interleaved_flag": 1.0}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "7c0f031242e27669580cecde080cb0f3366a092f2764d2ce7264effa6c83e3d7", "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f", "substrate_n_files": 100, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 456, "config_slice_declared": false, "reuse_eligible": false, "reuse_ineligible_reasons": ["fresh_evidence_run_no_reuse"], "driver_script_in_substrate_hash": true, "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"}}], "proxy_object_spine_note": "ARM_INTEGRATED_TRIPLE uses a PROXY object-binding head (ProxyObjectStream), NOT the ARC-080 object spine (candidate/v3_pending/v4; the only V3 object module entities/object_file_buffer.py is non-trainable). The TRIPLE delta is EXPLORATORY only and is NOT evidence about ARC-080; this run tags MECH-423 only.", "outcome": "FAIL", "result": "FAIL", "evidence_direction": "inconclusive", "evidence_direction_note": "Positive but below the pre-registered margin: mean delta 0.5386 > 0 but only 0/3 seeds clear margin 2.455. Additive-only (NOT weakens).", "interpretation": {"label": "additive_below_margin", "preconditions": [{"name": "r1_shared_latent_grad_coupled", "measured": 3.1191675662994385, "threshold": 1e-06, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "r1_grad_cosine_not_net_negative", "measured": 0.0, "threshold": 0.0, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "r2_iterative_loop_iterated", "measured": 2.0, "threshold": 2.0, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "r3_e2_touchable_under_interleaved", "measured": 8.0, "threshold": 1.0, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "r3_interleaved_share_positive", "measured": 1.0, "threshold": 1.0, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "r3_blocked_share_zero", "measured": 1.0, "threshold": 1.0, "direction": "lower", "met": true, "kind": "readiness"}], "criteria": [{"name": "superadditivity_margin_pair", "load_bearing": true, "passed": false}]}, "superadditivity": {"iso_scores": [0.2072208933826909, 0.26176118084235245, 0.13674549613547105], "pair_scores": [1.7737425793392596, 1.4978086923461067, -1.0501656071241312], "triple_scores_exploratory": [1.7334505157836173, -151.02817120999728, -0.6982902952366382], "delta_pair": [1.5665216859565687, 1.2360475115037541, -1.1869111032596023], "delta_triple_exploratory": [1.5262296224009264, -151.28993239083962, -0.8350357913721093], "baseline_across_seed_sd": 0.051175456352594066, "delta_across_seed_sd": 1.2275238741089485, "statistical_margin": 2.455047748217897, "min_effect_floor": 0.02, "margin": 2.455047748217897, "margin_basis": "max(SUPERADD_SD_MULT * pstdev(delta_pair), SUPERADD_MIN_EFFECT_FLOOR)", "n_seeds_pass": 0, "mean_delta_pair": 0.5385526980669069, "super_additive": false}, "elapsed_seconds": 501.971964597702, "non_degenerate": true, "degeneracy_reason": "", "degenerate_metrics": {}, "machine": "ree-cloud-2"}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_680b_mech423_superadditivity_ablation_20260614T201913Z_v3",
+  "experiment_type": "v3_exq_680b_mech423_superadditivity_ablation",
+  "queue_id": "V3-EXQ-680b",
+  "claim_ids": [
+    "MECH-423"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "supersedes": "v3_exq_680a_mech423_superadditivity_ablation",
+  "timestamp_utc": "20260614T201913Z",
+  "started_utc": "2026-06-14T20:19:13.237072Z",
+  "proposal_id": "EXP-0380",
+  "sleep_driver_pattern": "N/A (CrossModuleConsolidator.consolidate() called directly; no sleep cycle)",
+  "thresholds": {
+    "min_grad_floor": 1e-06,
+    "min_cosine": 0.0,
+    "rel_tol": 0.05,
+    "settle_iters": 10,
+    "superadd_sd_mult": 2.0,
+    "superadd_min_effect_floor": 0.02,
+    "integration_effect_floor": 0.001,
+    "min_seeds_pass": 2
+  },
+  "config": {
+    "arms": [
+      "ARM_ISOLATED",
+      "ARM_INTEGRATED_PAIR",
+      "ARM_INTEGRATED_TRIPLE"
+    ],
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "train_episodes": 40,
+    "steps_per_episode": 80,
+    "p1_steps": 300,
+    "eval_steps": 300,
+    "grid_size": 6,
+    "num_hazards": 4,
+    "num_resources": 3
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_ISOLATED",
+      "seed": 42,
+      "world_r2": 0.07999352858245024,
+      "affordance_r2": 0.12722736480024066,
+      "integration_score": 0.2072208933826909,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": null,
+      "R2": null,
+      "R3": null,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "d9f333570275fb2a69cae91dc95b3b7934442554e75674882fe5c2f5a5aa3bfa",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_ISOLATED",
+      "seed": 123,
+      "world_r2": 0.05371509343884595,
+      "affordance_r2": 0.2080460874035065,
+      "integration_score": 0.26176118084235245,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": null,
+      "R2": null,
+      "R3": null,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "54f7ba9d836241838a86b7da867f51c6d7b3cbb77056b9c588fc04c25bbaa310",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 123,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_ISOLATED",
+      "seed": 456,
+      "world_r2": 0.013377551417010691,
+      "affordance_r2": 0.12336794471846035,
+      "integration_score": 0.13674549613547105,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": null,
+      "R2": null,
+      "R3": null,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "b64077bd79783d3c0d2e4ad02267a4f726d06ac8740ca970ff3a8a6d046dc23d",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 456,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_PAIR",
+      "seed": 42,
+      "world_r2": 0.8735748298580557,
+      "affordance_r2": 0.900167749481204,
+      "integration_score": 1.7737425793392596,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 5.26569938659668,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": true,
+        "final_rel_delta": 0.0011310316622257233,
+        "n_iters": 2
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "19c2772db59dc3b39136e5e13e270de3125af3b499518513850fd08ceca125ba",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_PAIR",
+      "seed": 123,
+      "world_r2": 0.7105535605904947,
+      "affordance_r2": 0.787255131755612,
+      "integration_score": 1.4978086923461067,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 3.1191675662994385,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": true,
+        "final_rel_delta": 0.006813650950789452,
+        "n_iters": 2
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e2eb658e09cce239e6b74bc46fd688de8e09539ba816d5638db33061db17dd05",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 123,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_PAIR",
+      "seed": 456,
+      "world_r2": -1.4280850895445116,
+      "affordance_r2": 0.37791948242038054,
+      "integration_score": -1.0501656071241312,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 46.297332763671875,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": true,
+        "final_rel_delta": 0.0,
+        "n_iters": 2
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "6c4161c8010f02b1cb039e512e77d4295359815af6a4a1c4bd25a06731fa7dcf",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 456,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_TRIPLE",
+      "seed": 42,
+      "world_r2": 0.8629692456868786,
+      "affordance_r2": 0.8704812700967387,
+      "integration_score": 1.7334505157836173,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 42.756446838378906,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": true,
+        "final_rel_delta": 8.008363693079446e-06,
+        "n_iters": 2
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "67d84b508e7d49db436940b2a5bee9711b2fdb47e60d8b8d2935898ea11d15a1",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_TRIPLE",
+      "seed": 123,
+      "world_r2": -149.05055480242783,
+      "affordance_r2": -1.9776164075694638,
+      "integration_score": -151.02817120999728,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 200528723968.0,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": false,
+        "final_rel_delta": 0.9073671698570251,
+        "n_iters": 10
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "9f2d0d0050fe7c713f3cafd7f83667e8f414d5f3647f4a5fcf3782433f4d166b",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 123,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    },
+    {
+      "arm": "ARM_INTEGRATED_TRIPLE",
+      "seed": 456,
+      "world_r2": -1.1684104539429025,
+      "affordance_r2": 0.47012015870626434,
+      "integration_score": -0.6982902952366382,
+      "n_world_buffer": 1000,
+      "n_e2_buffer": 1000,
+      "R1": {
+        "coupled": true,
+        "min_grad_norm": 1.678776502609253,
+        "mean_pairwise_cosine": 0.0,
+        "n_modules": 2
+      },
+      "R2": {
+        "present": true,
+        "converged": true,
+        "final_rel_delta": 0.020801538601517677,
+        "n_iters": 2
+      },
+      "R3": {
+        "interleaved_share": 1.0,
+        "blocked_share": 0.0,
+        "interleaved_n_updates": 16.0,
+        "updates_e2_interleaved": 8.0,
+        "interleaved_flag": 1.0
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "7c0f031242e27669580cecde080cb0f3366a092f2764d2ce7264effa6c83e3d7",
+        "substrate_hash": "b318e4ea71a277d68d9265d1d873c0f31675d4bcd0470956562862635e93e09f",
+        "substrate_n_files": 100,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 456,
+        "config_slice_declared": false,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "fresh_evidence_run_no_reuse"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "7761ee3d81bd5ad364055f2f3ddb77d54a7a609f8ac0e0002b9cdfcb79f447eb"
+      }
+    }
+  ],
+  "proxy_object_spine_note": "ARM_INTEGRATED_TRIPLE uses a PROXY object-binding head (ProxyObjectStream), NOT the ARC-080 object spine (candidate/v3_pending/v4; the only V3 object module entities/object_file_buffer.py is non-trainable). The TRIPLE delta is EXPLORATORY only and is NOT evidence about ARC-080; this run tags MECH-423 only.",
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "evidence_direction=superseded by V3-EXQ-680c (680c supersedes 680b per the EXQ supersession policy). 680b self-routed additive_below_margin/inconclusive (mean delta_pair +0.539>0, 0/3 seeds clear hardened margin 2.455); failure_autopsy_V3-EXQ-680b CONFIRMED the lone -1.19 seed (456) is a numerical-instability artifact (world head diverged, grad norm 46x stable; affordance head improved on the same seed), NOT negative transfer -- MECH-423 NOT weakened. Scoring-excluded. Governance 2026-06-15.",
+  "interpretation": {
+    "label": "additive_below_margin",
+    "preconditions": [
+      {
+        "name": "r1_shared_latent_grad_coupled",
+        "measured": 3.1191675662994385,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r1_grad_cosine_not_net_negative",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r2_iterative_loop_iterated",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_e2_touchable_under_interleaved",
+        "measured": 8.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_interleaved_share_positive",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_blocked_share_zero",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "superadditivity_margin_pair",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "superadditivity": {
+    "iso_scores": [
+      0.2072208933826909,
+      0.26176118084235245,
+      0.13674549613547105
+    ],
+    "pair_scores": [
+      1.7737425793392596,
+      1.4978086923461067,
+      -1.0501656071241312
+    ],
+    "triple_scores_exploratory": [
+      1.7334505157836173,
+      -151.02817120999728,
+      -0.6982902952366382
+    ],
+    "delta_pair": [
+      1.5665216859565687,
+      1.2360475115037541,
+      -1.1869111032596023
+    ],
+    "delta_triple_exploratory": [
+      1.5262296224009264,
+      -151.28993239083962,
+      -0.8350357913721093
+    ],
+    "baseline_across_seed_sd": 0.051175456352594066,
+    "delta_across_seed_sd": 1.2275238741089485,
+    "statistical_margin": 2.455047748217897,
+    "min_effect_floor": 0.02,
+    "margin": 2.455047748217897,
+    "margin_basis": "max(SUPERADD_SD_MULT * pstdev(delta_pair), SUPERADD_MIN_EFFECT_FLOOR)",
+    "n_seeds_pass": 0,
+    "mean_delta_pair": 0.5385526980669069,
+    "super_additive": false
+  },
+  "elapsed_seconds": 501.971964597702,
+  "non_degenerate": true,
+  "degeneracy_reason": "",
+  "degenerate_metrics": {},
+  "machine": "ree-cloud-2",
+  "superseded_by": "v3_exq_680c_mech423_superadditivity_ablation"
+}
