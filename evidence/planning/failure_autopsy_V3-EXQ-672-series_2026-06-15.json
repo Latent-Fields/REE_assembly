@@ -1,0 +1,96 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-15T04:20:05Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_672b_mech057b_trajectory_promotion_gate_20260615T014701Z_v3",
+      "queue_id": "V3-EXQ-672b",
+      "claim_ids": ["MECH-057b"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact / not-yet-tested -- the gate never saw a discriminable spread of completion qualities, so a weakens against MECH-057b is unwarranted",
+        "biological_reference": "clear -- CA3 autoassociative pattern-completion gating commitment (Lisman & Grace 2005 subiculum->NAc->VP->VTA completion-to-dopamine loop; already partially in REE as ARC-028/MECH-105). Failure matches a missing-dependency signature, not falsification",
+        "prerequisites": "missing -- the reference mechanism requires candidates to differ in completion quality; the substrate presents mean_candidate_score_spread_ARM_1=0.009 and completion_signal pinned ~0.3439 across arms",
+        "implementation": "partial / proxy -- MECH-057b's claimed mechanism (HippocampalModule trajectory promotion policy) is unbuilt; 672b tests a harness quantile proxy ranking on hippocampal._score_trajectory",
+        "environment": "adequate (672b) -- num_resources 1->3 + correct resource readout gives a functional baseline (goal_success_rate_ARM_0=0.26)",
+        "measurement": "adequate (672b) -- the 672a resource_collected key bug is fixed; the FAIL is now genuine, not instrumentation",
+        "integration": "coupled but inert -- the gate fires (40.6% filtered) but acts on a non-discriminative ranking signal",
+        "scale": "unknown -- candidate-pool collapse may also reflect untrained/under-discriminative substrate at the test scale"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal sequence-completion verification gating trajectory promotion (CA3 pattern completion; Lisman & Grace 2005; Foster & Wilson reverse replay)",
+        "dependencies": ["a candidate pool with discriminable completion qualities (partial vs completed sequences)", "ResidueField terrain that varies across candidate trajectories", "ARC-028/MECH-105 completion->BetaGate coupling (present)"],
+        "is_formal_import": false,
+        "divergence": "the gate has the symbol of completion-verification (quantile filter on a completion score) but not the functional role: _score_trajectory carries spread 0.009 across the CEM candidate pool, so ranking on it is ranking on noise",
+        "lit_status": "present (ARC-028/MECH-105 coupling literature); no dedicated targeted_review for the candidacy gate's discriminability prerequisite"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Governance 2026-06-15 (user-adjudicated, failure_autopsy_V3-EXQ-672-series): reclassified weakens->non_contributory. V3-EXQ-672b fixed the 672a baseline-collapse instrumentation bug (now goal_success_rate_ARM_0=0.26, C6 PASS) and the completion gate fires (C3 PASS, 40.6% filtered, non_degenerate per check_degeneracy). But C1 (harm) and C2 (completion) FAIL because the gate ranks on a non-discriminative completion score: mean_candidate_score_spread_ARM_1=0.009 and mean_completion_signal is pinned ~0.3439 across both arms, so the dropped 40% are indistinguishable from the kept candidates (harm even rises slightly, ARM_1 0.343 > ARM_0 0.311, consistent with random removal). This is the monostrategy candidate-pool collapse (cf. ARC-065 GAP-A cand_world_pairwise_dist=0; V3-EXQ-543e/614e), surfaced on the hippocampal._score_trajectory channel. The run yields rich substrate information but no interpretable signal about whether MECH-057b's mechanism is correct -> non_contributory, not weakens. Note: MECH-057b had zero genuine prior evidence; this reclass returns it to zero (no illusory conflict resolution). Secondary: MECH-057b's claimed mechanism (HippocampalModule promotion policy) is unbuilt; 672b tests a harness quantile proxy. pending_retest_after_substrate gated on candidate-pool completion-score discriminability (ARC-065 GAP-A track).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "title": "Candidate-pool completion-score discriminability (hippocampal._score_trajectory cross-candidate spread)",
+        "implementation_hint": "672b shows the MECH-057b completion gate ranks on hippocampal._score_trajectory, whose cross-candidate spread is ~0.009 (completion_signal flat ~0.3439 across arms) under the monostrategy candidate pool ARC-065 GAP-A targets. The completion-score channel is downstream of cand_world_pairwise_dist; once GAP-A route-range/SD-056 lands divergent per-candidate world predictions on a trained substrate, re-check that mean_candidate_score_spread rises before re-scoring the MECH-057b gate.",
+        "unblocks_claims": ["MECH-057b"],
+        "depends_on_unresolved": ["ARC-065", "SD-056", "modulatory-bias-selection-authority (route-range, V3-EXQ-663/649)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_672b_mech057b_trajectory_promotion_gate_20260615T014701Z_v3",
+          "experiment_type": "v3_exq_672b_mech057b_trajectory_promotion_gate",
+          "metric": "mean_candidate_score_spread_ARM_1=0.009; mean_completion_signal flat 0.3439 across arms; gate filters 40.6% but C1 harm 0.343>0.311 and C2 completion delta ~1.2e-4 -> FAIL",
+          "target": "mean_candidate_score_spread above a non-vacuity floor (e.g. >= 0.05 in normalised units) AND ARM_1 harm < ARM_0 harm * 0.90 with completion_signal lift on a trained, divergent candidate pool"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "MECH-057b's completion gate ranks on hippocampal._score_trajectory; under monostrategy candidate-pool collapse that score has ~0.009 cross-candidate spread, so the gate filters indistinguishable candidates and cannot help -- a substrate-ceiling, not a falsification.",
+        "The 672 series is progressive instrumentation-peeling (672 mis-scaled absolute threshold -> 672a resource_collected readout bug + baseline collapse -> 672b genuine substrate finding), converging on one structural property at 672b, not three independent bugs.",
+        "The flat-completion-score channel is the same candidate-pool collapse documented for z_world (ARC-065 GAP-A cand_world_pairwise_dist=0; 543e/614e); any per-candidate ranking gate inherits it.",
+        "MECH-057b's actual mechanism (HippocampalModule promotion policy) remains unbuilt; the experiment tests a harness quantile proxy -- a retest needs both a discriminable pool and, ultimately, the real promotion-policy path.",
+        "A future MECH-057b retest must carry a mean_candidate_score_spread non-vacuity precondition before scoring C1/C2 (the explicit guard against re-running the same vacuous contrast)."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_672a_mech057b_trajectory_promotion_gate_20260613T180147Z_v3",
+      "queue_id": "V3-EXQ-672a",
+      "claim_ids": ["MECH-057b"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not-tested -- baseline structurally collapsed",
+        "biological_reference": "n/a (instrumentation)",
+        "prerequisites": "n/a",
+        "implementation": "instrumentation bug -- eval read info['resource_collected'], a key CausalGridWorldV2.step() never emits, so goal_success_rate was structurally 0.0 in both arms",
+        "environment": "n/a",
+        "measurement": "broken (fixed in 672b)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "(same as 672b)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "instrumentation; superseded by 672b",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Already governance-applied 2026-06-14 (non_contributory). Confirmed by this cluster autopsy: the FAIL was the broken resource_collected readout, not a substrate ceiling; retested by 672b. No change required.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["672a already correctly adjudicated non_contributory; the cluster autopsy confirms the readout-bug diagnosis and that 672b is the retest."],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Gate fires (C3 PASS) and baseline forages (C6 PASS at 672b), but the discrimination criteria (C1 harm, C2 completion) FAIL because the per-candidate completion-quality signal the gate ranks on is non-discriminative (spread ~0.009; completion_signal flat ~0.3439 across arms).",
+    "is_independent_bugs": false,
+    "structural_property": "The substrate has the wiring MECH-057b asserts (a trajectory-promotion gate can filter candidates) but does not carry the information at the granularity the claim asserts: the CEM candidate pool is monostrategy-collapsed, so hippocampal._score_trajectory has negligible cross-candidate spread and filtering on it is filtering on noise. Same structural collapse as ARC-065 GAP-A (cand_world_pairwise_dist=0).",
+    "readings": ["substrate_enrichment", "test_design_ceiling"]
+  }
+}
