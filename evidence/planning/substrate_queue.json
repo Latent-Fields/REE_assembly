@@ -3931,7 +3931,7 @@
       "harm_pathway_leg_status": "AMEND IMPLEMENTED 2026-06-16 (session implement-substrate-harm-pathway-leg-603q-20260616T0717Z): the harm-pathway STABILIZATION amend landed on experiments/scaffolded_sd054_onboarding.py per the confirmed failure_autopsy_V3-EXQ-603p_2026-06-15 (Branch B, user-confirmed). Root cause: a SINGLE Adam LR co-trains the latent_stack ENCODER (SD-018 proximity MSE backprops into it) AND the harm HEADS, so raising it collapses z_world to constant (range->0, the 3x-LR result) while 1e-3 under-converges most seeds. FIX (two no-op-default levers, bit-identical OFF): scaffold_harm_pathway_encoder_lr (decoupled, typically LOWER encoder LR; heads keep scaffold_harm_pathway_lr) + scaffold_harm_pathway_warmup_steps (linear LR warmup) -- stabilize convergence WITHOUT raising the global LR (the autopsy's explicit constraint). 102/102 scaffold contracts (97 prior + 5 new C16) + 7/7 preflight PASS; in-session proof-of-fix probe confirms the levers run end-to-end in the real 603p pipeline and the harm head learns the correct proximity mapping (prox_corr positive). ready STAYS false for the harm-pathway leg until V3-EXQ-603q's FIRST self-routing non-vacuity precondition (base harm_eval_range>=0.02 on >=2/3 seeds at proximity_harm=0.10) clears at full cloud scale; 603q self-routes substrate_not_ready_requeue if the amend under-performs (never a false bridge verdict). The ecological G1/G2/G3 legs (603n PASS) are UNAFFECTED. PRIOR (2026-06-15 governance, the amend-owed note): OVER-STATED VALIDATED 2026-06-09 flagged by failure_autopsy_V3-EXQ-603p_2026-06-15: the harm-pathway-survival leg (scaffold_train_harm_pathway) forms a discriminative proximity-correlated harm landscape (harm_eval_range>=0.02) on only 1/3 seeds under direct base measurement, and a 3x harm-pathway LR collapses it to ~0. /implement-substrate AMEND owed: stabilize training so harm_eval_range>=0.02 clears >=2/3 seeds at proximity_harm=0.10 (more steps / LOWER LR with more steps / grad-stabilization / seed-robust init; NOT raising LR). Bake a >=2/3-seed gate on the DIRECT harm_eval_range statistic into the readiness criterion. The ecological G1/G2/G3 legs (603n PASS) are UNAFFECTED -- this entry's ready stays True for those legs; the harm-pathway leg is the open sub-task.",
       "harm_pathway_stabilization_amend_2026_06_16": {
         "amend": "harm_pathway_training_stabilization_decoupled_encoder_lr_plus_warmup",
-        "status": "implemented_pending_validation",
+        "status": "implemented_validated_reduced_budget",
         "module": "experiments/scaffolded_sd054_onboarding.py",
         "new_levers": {
           "scaffold_harm_pathway_encoder_lr": "Optional[float], default None (decoupled lower encoder LR; heads keep base LR)",
@@ -3941,7 +3941,7 @@
         "contracts": "102/102 scaffolded (97 prior + 5 new C16) + 7/7 preflight PASS",
         "autopsy": "failure_autopsy_V3-EXQ-603p_2026-06-15",
         "validation_experiment": "V3-EXQ-603q",
-        "ready_blocked_by": "V3-EXQ-603q base-harm-landscape harm_eval_range>=0.02 on >=2/3 seeds at proximity_harm=0.10 (self-routing precondition; cloud establishes at full scale)",
+        "ready_blocked_by": "V3-EXQ-603q best-bridge continuous-survival > base on >=2/3 seeds (the SD-059/MECH-358 evidence); the base-discriminativeness >=2/3 readiness precondition is in-session VALIDATED 3/3 at reduced budget + retained as 603q's full-scale self-routing gate",
         "claims_affected": [
           "SD-059",
           "MECH-358",
@@ -3950,7 +3950,24 @@
           "Q-045"
         ],
         "do_not_raise_global_lr": "3x global harm_lr collapses the base harm landscape to ~1e-23 (603p ARM_HARMTRAIN_3X_0p15); the lever is encoder-LR-decoupling + warmup, not gain",
-        "session": "implement-substrate-harm-pathway-leg-603q-20260616T0717Z"
+        "session": "implement-substrate-harm-pathway-leg-603q-20260616T0717Z",
+        "validation_result": {
+          "probe": "scripts/_validate_603q_harm_amend.py (replicates the 603p positive-control cell, proximity_harm=0.10, levers ON)",
+          "budget": "reduced (P0=25, Stage-H=25, steps=140) -- about half the full 603p budget",
+          "harm_disc_frac": "3/3 (CLEARS >=2/3)",
+          "per_seed_harm_eval_range": {
+            "42": 0.0245,
+            "43": 0.0541,
+            "44": 0.0278
+          },
+          "per_seed_prox_corr": {
+            "42": 0.8,
+            "43": 0.699,
+            "44": 0.847
+          },
+          "vs_603p_full_budget_OFF": "[0.166 PASS, 0.0057 FAIL, 0.0 FAIL] = 1/3; the amend flipped seeds 43+44 FAIL->PASS at LOWER budget",
+          "note": "decisive: 3/3 clear the 0.02 floor with strong proximity correlations even at reduced budget; the full-scale >=2/3 establishment is V3-EXQ-603q's first self-routing precondition on cloud"
+        }
       }
     },
     {
