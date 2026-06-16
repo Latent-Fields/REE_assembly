@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-16T13:30:31Z",
+  "last_tick_utc": "2026-06-16T14:00:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603q",
   "current_exq_started_utc": "2026-06-16T08:10:30.107372+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-059",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_RELIEF_BRIDGE",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_RELIEF_BRIDGE",
+    "runs_done": 4,
     "runs_total": 15,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 24.8
+    "overall_pct": 27.2
   },
-  "seconds_elapsed": 19200,
-  "seconds_remaining": 55090,
+  "seconds_elapsed": 21005,
+  "seconds_remaining": 53323,
   "recent_lines": [
     "[v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -44,7 +44,12 @@
     "Seed 42 Condition ARM_RELIEF_BRIDGE",
     "[train] stage0 ARM_RELIEF_BRIDGE seed=42 ep 20/235 z_goal_peak=0.4814",
     "[train] p0 ARM_RELIEF_BRIDGE seed=42 ep 130/235 mean_len=190.2 rv=0.00006",
-    "[train] hazard_avoidance ARM_RELIEF_BRIDGE seed=42 ep 170/235 mean_len=56.1 median_last=4.5 auc=0.281 survival_gate=FAIL harm_range=0.2218 pag_commits=178 n_relief=394 n_safety=0 n_safety_trained=0 n_approach=1706"
+    "[train] hazard_avoidance ARM_RELIEF_BRIDGE seed=42 ep 170/235 mean_len=56.1 median_last=4.5 auc=0.281 survival_gate=FAIL harm_range=0.2218 pag_commits=178 n_relief=394 n_safety=0 n_safety_trained=0 n_approach=1706",
+    "[train] p1 ARM_RELIEF_BRIDGE seed=42 ep 220/235 median_last=200.0 survival_gate=pass",
+    "[train] p2 ARM_RELIEF_BRIDGE seed=42 ep 235/235 contact_rate=0.2536",
+    "verdict: FAIL seed=42 arm=ARM_RELIEF_BRIDGE mean_surv=56.1 g_h=False g0=True g1=True g2=True harm_range=0.2218 n_relief=394 n_safety=0",
+    "Seed 43 Condition ARM_RELIEF_BRIDGE",
+    "[train] stage0 ARM_RELIEF_BRIDGE seed=43 ep 20/235 z_goal_peak=0.4347"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
