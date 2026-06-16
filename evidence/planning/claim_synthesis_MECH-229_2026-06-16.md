@@ -110,3 +110,13 @@ Registered:
 - Architecture-doc stub added to `sd_057_object_bound_incentive_salience.md`.
 
 `build_claims_json.py` → 818 claims (+1), MECH-436 present, no validator warning on it. Indexer rebuilt clean (1338 runs). The SD-049-PHASE-2 substrate amend is NOT built (contingent on 514r; left for a post-514r `/implement-substrate` session).
+
+### 8.1 Phase-scoping correction (2026-06-16, follow-up)
+
+User invoked phase-follows-dependency (`feedback_phase_label_follows_dependency.md`, SD-031 instance). Checked the scope: **SD-049 is `implementation_phase: v3`** and its title already includes "a per-axis homeostatic drive system"; the differential-depletion / κ-scaling amend lives in the V3 env (`CausalGridWorld` / `agent.py`); the substrate_queue entry is `"sd_id": "SD-049-PHASE-2"`. So **SD-049-PHASE-2 is a V3 substrate amend, not V4** — MECH-436 was never V4-blocked. The genuinely-V4 cluster is `drives_motivation_v4` (MECH-394 / MECH-435 / SD-060 / MECH-359 — the multidrive *arbitration policy* + opportunity-cost currency, which sits *above* per-axis drive); MECH-436's dependency stops at the V3 env layer (differential depletion) and does **not** reach that cluster.
+
+Two corrections applied (under claim `claim-synthesis-mech229-followup-phase-20260616T2015Z`):
+1. **`epistemic_category: substrate_conditional → substrate_ceiling`** (user-approved). substrate_ceiling = "V3 substrate too coarse → ENRICH it (in V3)" — the accurate next-action signal now that the unblock path is confirmed V3 (the κ-scaling env amend). Identical promote/demote-suppress dispatch; no decision_state reconcile (category-only on a `candidate`, no status/`v3_pending` change).
+2. **V3-scoping wording fix** across MECH-436 `notes` + `what_would_answer`, the MECH-229 decomposition note, and the `sd_057` arch stub: the conditioning substrate is the V3 SD-049-PHASE-2 κ-scaling amend; the V4-1 multi-agent-ecology is an *optional richer home*, not the blocker; **V3-EXQ-514r disambiguates** whether env-enrichment is even needed (overshoot flips → build the V3 amend) vs a genuine weakens (overshoot fails to flip → no enrichment helps).
+
+On the broader "are the V4 drives really all V3?" — no, not on interlinking alone. The rule fires on a *demonstrated hard testability dependency*, reclassified one primitive at a time when a specific V3 experiment fails *because* it needs that primitive (SD-031 precedent) — not en masse on anticipated entanglement (the V4-containment discipline). The shared piece across wanting / cue / behavioral-diversity is *per-axis differentiation*, which is V3-deliverable; none has been shown to hard-depend on the V4 arbitration policy.

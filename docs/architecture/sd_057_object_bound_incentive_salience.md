@@ -114,13 +114,19 @@ Both no-op-default, bit-identical OFF, no trained parameters (no phased training
   currently-most-depleted drive axis (incentive-salience amplitude
   `~ base_value*(1+kappa*per_axis_drive)`, the L6 MECH-347 term) even when the
   liking/consummatory target does not. `candidate`, `epistemic_category:
-  substrate_conditional` -- the V3 P2 foraging env produces near-flat per-axis drive
-  (spread ~0.006, far below the most_wanted argmax-moving regime), so the claim
-  depends on the planned-but-not-built SD-049-PHASE-2 differential-depletion /
-  kappa-scaling amend (+ a pre-registered V4-1 multi-agent-ecology dependency).
-  Owning falsifier: V3-EXQ-514r (overshoot flips most_wanted => env/magnitude
-  artifact, NOT a weakens; overshoot fails to flip => genuine weakens). Lit-grounded
-  by `targeted_review_connectome_mech_347` (Berridge 2006 / Smith 2011 /
+  substrate_ceiling` -- the V3 P2 foraging env produces near-flat per-axis drive
+  (spread ~0.006, far below the most_wanted argmax-moving regime), so the response is
+  to ENRICH the V3 substrate via the SD-049-PHASE-2 differential-depletion /
+  kappa-scaling env amend. This is a **V3** amend: SD-049 is `implementation_phase: v3`
+  and already provides the per-axis homeostatic drive system, so the conditioning
+  substrate is V3 and MECH-436 is **not** V4-blocked. The pre-registered V4-1
+  multi-agent-ecology is a richer OPTIONAL home for the same differential-depletion
+  pressure, not the blocker; MECH-436's dependency stops at the V3 env layer
+  (differential depletion) and does NOT reach the V4 drive-arbitration policy
+  (MECH-394/435) that sits above per-axis drive. Owning falsifier: V3-EXQ-514r
+  (overshoot flips most_wanted => env/magnitude artifact => build the V3 amend, NOT a
+  weakens; overshoot fails to flip => genuine weakens, no enrichment helps).
+  Lit-grounded by `targeted_review_connectome_mech_347` (Berridge 2006 / Smith 2011 /
   DiFeliceantonio 2016 incentive salience). DO NOT build the substrate amend until
   514r resolves.
 
