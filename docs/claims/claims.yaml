@@ -21548,6 +21548,21 @@
     amended (SD-034, action=amend). The demote_to_candidate recommendation is DEFERRED again
     (user 2026-06-13): with the 460d/468d weakens now removed from scoring, re-evaluate the
     conflict_ratio post-rebuild before any provisional->candidate move.
+  implementation_note_2026_06_16: >
+    Leg C BUILT (substrate-only; NO status/v3_pending/confidence change). The
+    460d/468d *d retests set lateral_pfc_train_rule_bias_head=True but never added
+    the head to any optimizer (confirmed failure_autopsy_SD-034-closure-control-plane-d_2026-06-13),
+    so the SD-033a rule_state carried no task-shaped magnitude and the closure-coupled
+    de-commit had no net authority over the MECH-090 latch (460d C2/C4 FAIL). A
+    scaffold_train_rule_bias_head leg now trains agent.lateral_pfc.bias_head_parameters()
+    during scaffolded_sd054_onboarding P1 via the V3-EXQ-598b outcome-coupled E3-gradient
+    REINFORCE pattern (mirrors scaffold_train_harm_pathway; no-op default, bit-identical
+    OFF; ree_core untouched). 109/109 scaffolded contracts + 7/7 preflight; smoke: head
+    trains (max|dW| 0.0015>0, mean |bias| 0.039) ON / dW=0 exactly OFF. Validation
+    V3-EXQ-460e (supersedes 460d): non-cap-pinned ON<OFF de-commit DV + beta-engagement
+    + rule_bias-magnitude readiness gate. SD-034 stays provisional /
+    pending_retest_after_substrate; promotes nothing until 460e PASSes. See
+    docs/architecture/sd_034_governance_closure_operator.md Leg C amend.
   implementation_note: >
     IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
     (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-

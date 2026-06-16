@@ -9,7 +9,7 @@ nav_order: 12
 
 **Claim ID:** SD-034
 **Subject:** governance.closure_operator
-**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12 -- see amend section below)
+**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12; Leg C rule_bias_head training amend 2026-06-16 -- see amend sections below)
 **Registered:** 2026-04-20
 **Depends on:** SD-033 (governance cluster), SD-033a (lateral PFC analog rule_state), MECH-090 (BetaGate commitment latch), MECH-260 (dACC action-class No-Go), MECH-094 (hypothesis tag write gate), SD-032a (SalienceCoordinator), SD-032b (dACC analog)
 **Blocks:** EXP-0156 / V3-EXQ-460 (verified-but-not-released), EXP-0157 / V3-EXQ-461 (delayed-reward persistence), EXP-0162 / V3-EXQ-466 (satisficing / residue discharge), EXP-0164 / V3-EXQ-468 (commitment vs contradiction). All landing-diagnostic variants PASSed 2026-04-21.
@@ -224,6 +224,82 @@ reachable on the positive control AND `nogo_installed>=1` on >=2/3 seeds after t
 env->emit_closure wiring; and a non-cap-pinned de-commitment DV showing ON<OFF on >=2/3
 seeds. Phased training: N/A. MECH-094: env hook is waking-only + simulation-gated; the
 refractory is a control-state transition. Step-8.5 staleness: not triggered (no-op-default).
+
+## Amend: Leg C rule_bias_head training (commitment_closure:GAP-4) -- 2026-06-16
+
+The 2026-06-12 amend flagged Leg C as "experiment-side, NOT substrate" -- the `*d`
+retests were supposed to add the GAP-D `rule_bias_head` to a P1 optimizer and train it.
+The confirmed `failure_autopsy_SD-034-closure-control-plane-d_2026-06-13` found they did
+not: both `v3_exq_460d_*.py` and `v3_exq_468d_*.py` set
+`lateral_pfc_train_rule_bias_head=True` (un-zeroing the head's last Linear) but a grep for
+`optim|Adam|.backward(|bias_head_parameters` returned ZERO matches in either script. So
+the head stayed at random init -- the rule_state handed to the ClosureOperator's automatic
+rule-stability detector carried no task-shaped magnitude, the detector stayed inert (Leg A's
+explicit hook rescued C1 regardless), and the closure-coupled de-commit had **no net
+authority** over the MECH-090 latch: 460d C2_beta_release / C4 FAIL (ON latch occupancy
+>= OFF on seeds 43/44, 12.27 vs 10.07; 31.73 vs 27.67), and the agent committed-without-beta
+on 468d seeds 43/44 (`total_beta_elevated=0`). **Not a falsification of SD-034/MECH-261** --
+the literal "Leg C not built".
+
+This amend builds Leg C as a **scaffold-harness training leg** (the more durable place than
+a per-experiment loop -- it makes the onboarded agent's rule_state magnitude-bearing for any
+downstream commitment experiment), mirroring the existing `scaffold_train_harm_pathway` leg.
+ree_core is UNTOUCHED -- it calls the existing SD-033a/ARC-062 GAP-D
+`lateral_pfc.compute_bias` / `bias_head_parameters` substrate (landed 2026-05-17).
+
+**Module:** `ree-v3/experiments/scaffolded_sd054_onboarding.py`. A
+`scaffold_train_rule_bias_head` leg trains `agent.lateral_pfc.bias_head_parameters()` during
+**P1** (goal-unfrozen, ecological contact, commitment forms) via the V3-EXQ-598b
+outcome-coupled E3-gradient REINFORCE pattern. Episode-level (not per-step like the harm
+pathway): `run_p1` builds the optimizer + a persistent runtime (outcome buffer + EMA return
+baseline) via `Scheduler._make_rule_bias_pathway`; each `_train_episode` records a
+`(candidate_features = world_states[1] of the leading n_probe candidates, selected-candidate
+index)` snapshot every N steps and accumulates the episode return (`-harm`); at episode end
+`_rule_bias_episode_update` takes one Adam step -- advantage = `ep_return - EMA baseline`;
+`bias = lateral_pfc.compute_bias(candidate_features)` recomputed (gradient flows into the
+head); `loss = mean(-adv * log_softmax(-bias / T)[sel])`; grad-clip 1.0; step.
+
+**Trainable-head guard.** Requires the agent built with `use_lateral_pfc_analog=True` AND
+`lateral_pfc_train_rule_bias_head=True` (the GAP-D un-zero flag). With the head
+zeroed-and-frozen OR no lateral_pfc, `_rule_bias_params` returns `[]` -> optimizer None ->
+the leg is a clean inert no-op (surfaced as `rule_bias_pathway_enabled=False` on the P1
+manifest; never silently trains the baseline-OFF head).
+
+### Config (ScaffoldedSD054OnboardingConfig; all no-op default, bit-identical OFF)
+
+NOT surfaced through `REEConfig.from_dims` (matches the `scaffold_train_harm_pathway` /
+SD-054 env-only scheduler-config precedent -- the 460e experiment sets them on the scheduler
+config directly):
+
+- `scaffold_train_rule_bias_head` (bool, default False) -- master.
+- `scaffold_rule_bias_lr` (5e-4), `_batch_size` (32), `_record_every_n_steps` (4),
+  `_outcome_buf_max` (512), `_n_probe_candidates` (8), `_policy_temperature` (1.0),
+  `_adv_min_threshold` (0.005), `_ema_decay` (0.9) -- the 598b constants.
+
+`P1OnboardingResult` gains `rule_bias_pathway_enabled` + `rule_bias_diag` (REINFORCE
+counters + live per-candidate `|bias|` samples for the validation's non-vacuity gate).
+
+### Validation
+
+109/109 scaffolded contracts (102 prior + 7 new C17) + 7/7 preflight PASS; `v3_exq_460d
+--dry-run` unchanged (leg off). Activation smoke (run_p1, tiny scale, leg ON): rule_bias_head
+last-Linear `max|dW|=0.0015 > 0` (head TRAINS -- the 460d bug inverted), 3 REINFORCE steps
+over 57 snaps, mean per-candidate `|bias|=0.039` (non-trivial, vs ~0 for the untrained 460d
+head); leg OFF -> `max|dW|=0.0` exactly (bit-identical). Phased training: correctly phased by
+construction (P0 warms the encoder goal-frozen; the head trains in P1 after warmup -- the 598b
+P0->P1 discipline; no new encoder head). MECH-094: N/A (waking P1 training loop; no
+simulation/replay write surface; lateral_pfc.update keeps its MECH-319 simulation gate).
+Step-8.5 staleness: NOT triggered (no-op-default flag; no dependent claim's measured mechanism
+changed).
+
+**Validation experiment:** V3-EXQ-460e (supersedes 460d) via `/queue-experiment` -- the
+closure-control-plane re-run with `scaffold_train_rule_bias_head=True` +
+`lateral_pfc_train_rule_bias_head=True` + a **non-cap-pinned ON<OFF latch-occupancy-drop DV**
+for C2_beta_release + a beta-engagement non-vacuity gate + a rule_bias-magnitude readiness
+gate (`rule_bias_diag` mean `|bias|` > floor, else `substrate_not_ready_requeue`). Acceptance
+per the autopsy failure record: ON<OFF de-commit on a non-cap-pinned statistic on >=2/3 seeds
+with beta-engagement met. The `commitment-closure-control-plane` substrate_queue `ready` STAYS
+false until 460e scores a contributory PASS.
 
 ## Anchor Documents
 

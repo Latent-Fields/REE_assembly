@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
-  "last_updated_utc": "2026-06-16T13:43:13Z",
+  "last_updated_utc": "2026-06-16T20:12:26Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4549,16 +4549,21 @@
       "priority": 1,
       "autopsy_ref": "failure_autopsy_SD-034-closure-cluster_2026-06-12",
       "added_session": "governance-cycle-20260612T2216Z",
-      "last_seen_session": "governance-cycle-20260613T0858Z",
+      "last_seen_session": "implement-substrate-leg-c-gap4-20260616T1940Z",
       "note": "Created 2026-06-12 from confirmed SD-034 closure-cluster autopsy (action=amend target SD-034; SD-034 entry is status=implemented (unit-level), so the behavioural-arm gap is captured as this distinct pending task per 6a-iv create-when-target-implemented). Retest gate: n_closures>=1 reachable on the positive control AND non-cap-pinned de-commitment DV ON<OFF on >=2/3 seeds. Then re-issue 460c->460d / 468c->468d.",
       "implementation_log": [
         {
           "utc": "2026-06-12T23:26:37Z",
           "session": "implement-substrate-commitment-closure-control-plane-20260612T2302Z",
           "note": "Landed both substrate legs (no-op-default, bit-identical OFF). Leg A: REEConfig.use_closure_env_completion_hook + REEAgent.notify_env_completion -> closure_operator.emit_closure (closes 460c n_closures=0). Leg B: BetaGate de-commitment hold/refractory (apply_refractory + elevate no-op during window + propagate decrement) installed by ClosureOperator._fire via closure_decommit_hold_ticks (closes 468c committed_frac cap-pin). 1014 contracts + 7/7 preflight; 6 new in test_sd034_decommit_hold_and_env_hook.py; 460c --dry-run unchanged. claims.yaml SD-034 implementation_note only (no flag/confidence change). Leg C (trained GAP-D rule_bias_head + non-cap-pinned DV) is experiment-side in the *d retests. ready STAYS false pending V3-EXQ-460d/468d. Step-8.5: KEEP all evidence (no-op-default; substrate_dependencies.json landing recorded mechanism_changing=false)."
+        },
+        {
+          "utc": "2026-06-16T20:12:26Z",
+          "session": "implement-substrate-leg-c-gap4-20260616T1940Z",
+          "note": "Leg C BUILT (no-op-default; bit-identical OFF). scaffold_train_rule_bias_head leg in scaffolded_sd054_onboarding.py trains agent.lateral_pfc.bias_head_parameters() (SD-033a/ARC-062 GAP-D head) during P1 via the V3-EXQ-598b outcome-coupled E3-gradient REINFORCE (mirrors scaffold_train_harm_pathway; ree_core untouched). Closes the autopsy-confirmed gap: the *d retests set lateral_pfc_train_rule_bias_head=True but never added the head to any optimizer, so the rule_state carried no magnitude and the de-commit had no MECH-090 authority (460d C2/C4 FAIL). 109/109 scaffolded contracts (102 prior + 7 new C17, incl the REINFORCE-gradient-reaches-the-head load-bearing contract) + 7/7 preflight; v3_exq_460d --dry-run unchanged; smoke: head trains max|dW| 0.0015>0 + mean |bias| 0.039 ON / dW=0 exactly OFF. P1OnboardingResult gains rule_bias_pathway_enabled + rule_bias_diag (non-vacuity readout). claims.yaml SD-034 implementation_note_2026_06_16 only (no flag/status/confidence change). ready STAYS false pending V3-EXQ-460e."
         }
       ],
-      "next_step": "/queue-experiment V3-EXQ-460d (supersedes 460c) + V3-EXQ-468d (supersedes 468c): wire harness env sequence_complete -> agent.notify_env_completion; set use_closure_env_completion_hook=True + closure_decommit_hold_ticks>0 + lateral_pfc_train_rule_bias_head=True; gate readiness on n_closures>0 reachable on the positive control; read de-commitment on a non-cap-pinned statistic (post-completion uncommitted fraction / committed-run-length delta).",
+      "next_step": "/queue-experiment V3-EXQ-460e (supersedes 460d): closure-control-plane re-run with scaffold_train_rule_bias_head=True + lateral_pfc_train_rule_bias_head=True (Leg C now trains the head in P1); non-cap-pinned ON<OFF latch-occupancy-drop DV for C2_beta_release + beta-engagement non-vacuity gate + a rule_bias-magnitude readiness gate (P1OnboardingResult.rule_bias_diag mean |bias| > floor, else substrate_not_ready_requeue). Acceptance: ON<OFF de-commit on a non-cap-pinned statistic on >=2/3 seeds with beta-engagement met. ready flips true only on a contributory 460e PASS.",
       "governance_note_2026_06_13": "Validation re-queues ran: 460d C1_n_closures PASS (closure now FIRES on the env-completion hook -- the *c n_closures=0 gap CLOSED; MECH-260 supports) but C2_beta_release/C4 FAIL (de-commit behavioural authority residual; Leg C trained rule_bias_head still experiment-side); 468d precondition_unmet (contradiction injection 1/3 seeds). Both routed to /failure-autopsy this cycle. 461c/466c cohort siblings reclassified non_contributory."
     },
     {

@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-06-13T09:45:43Z",
+  "last_updated_utc": "2026-06-16T20:12:26Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -343,6 +343,21 @@
       ],
       "candidate_stale": [],
       "audit_note": "No-op-default flag (use_external_task_drive=False). Every existing experiment uses the default (drive off), so no dependent claim's measured mechanism changed. KEEP all evidence. The 464c/467c FAILs were already reclassified non_contributory + pending_retest_after_substrate by the 2026-06-13 cycle (this is the substrate they were deferred to); the retest is 464d/467d, not a re-weight of prior runs."
+    },
+    {
+      "substrate": "commitment-closure-control-plane (Leg C rule_bias_head training)",
+      "landed_utc": "2026-06-16T20:12:26Z",
+      "description": "scaffold_train_rule_bias_head leg: trains agent.lateral_pfc.bias_head_parameters() (SD-033a/ARC-062 GAP-D head) during scaffolded_sd054_onboarding P1 via the V3-EXQ-598b outcome-coupled E3-gradient REINFORCE pattern. No-op-default flag; bit-identical OFF; ree_core untouched. Routed by failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (460d/468d flag-set-but-untrained head -> de-commit authority absent).",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "SD-034",
+        "MECH-260",
+        "MECH-261",
+        "MECH-090",
+        "MECH-268"
+      ],
+      "candidate_stale": [],
+      "audit_note": "Step 8.5 NOT triggered: no-op-default flag (scaffold_train_rule_bias_head=False). Every existing experiment uses the default (leg off) -> no dependent claim measured mechanism changed. KEEP all evidence. The autopsy already reclassified 460d/468d non_contributory + pending_retest_after_substrate; the 460e re-run (leg ON) is the fresh evidence."
     }
   ]
 }
