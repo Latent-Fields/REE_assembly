@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-16T12:53:20Z
+Generated: 2026-06-16T20:37:29Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **79.7%** across 76 non-deferred nodes in 11 plan(s) with closure frontmatter.
+- Weighted progress: **80.0%** across 77 non-deferred nodes in 11 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **20** nodes.
-- Deferred (not required for v3 closure): 13 nodes.
-- Done: 56 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=3  deferred=13  done=56  in_progress=6  partial=2  upstream_blocked=2
+- Deferred (not required for v3 closure): 12 nodes.
+- Done: 57 nodes.
+- Status tally: blocked=7  blocked_pending_substrate=3  deferred=12  done=57  in_progress=6  partial=2  upstream_blocked=2
 
 ## Plans
 
@@ -20,8 +20,8 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 |------|-------|-------|----------|---------------|--------------|
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | blocked:3 upstream_blocked:1 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
-| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 57% | deferred:4 done:1 in_progress:2 partial:1 | 2026-06-14 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 61% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:2 partial:1 | 2026-06-14 |
+| `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 8 | 66% | deferred:3 done:2 in_progress:2 partial:1 | 2026-06-16 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 11 | 87% | deferred:2 done:7 in_progress:2 | 2026-06-12 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 8 | 87% | deferred:1 done:6 upstream_blocked:1 | 2026-05-31 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 88% | blocked_pending_substrate:2 done:13 | 2026-05-30 |
@@ -38,8 +38,8 @@ Ordered by phase, then severity. This is the answer to "what is left."
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | upstream_blocked | 1 | load-bearing | V3-EXQ-625c | RESUME the Phase 1b gate via a redesigned successor (V3-EXQ-625d, JOINT-COMPOSITE-ON) once | 2026-06-14 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-09 |
-| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654d QUEUED 2026-06-16T07:49Z (ree-v3 ori | AWAITING V3-EXQ-654d RUN + REVIEW (QUEUED 2026-06-16, ree-v3 origin/main 927fe1c; coordina | 2026-06-16 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460d/468d (closure-control-plane VALIDATI | AWAITING RUNNER EXECUTION (2026-06-12): the 2026-06-10 LIVE BLOCKER is LIFTED -- the scaff | 2026-06-13 |
+| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654d RAN FAIL/non_contributory 2026-06-16 | AWAITING V3-EXQ-654d RUN + REVIEW (QUEUED 2026-06-16, ree-v3 origin/main 927fe1c; coordina | 2026-06-16 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460e (QUEUED 2026-06-16, supersedes 460d; | AWAITING V3-EXQ-460e RUN + REVIEW (queued 2026-06-16, ree-v3 main f0fbbf6, coordinator DB  | 2026-06-16 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-09 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked | 2 | high | V3-EXQ-265a | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-05-31 |
@@ -53,11 +53,11 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MEC | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-06-14 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-03 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-08 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | in_progress | FP-2 matched-entropy falsifier ran TWICE (569f, 569g) -> both FAIL/non_contributory (r1a_entropy_only_artefact); blocked on the shared E3 selection-authority commit-coupling | medium | V3-EXQ-684a QUEUED 2026-06-15T18:41Z (ree-v3 mai | AWAITING V3-EXQ-684a RUN+REVIEW 2026-06-15 (the AUTHORITATIVE current state; see governanc | 2026-06-15 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | in_progress | FP-2 falsifier ran on the CONVERSION-armed (ARM_STD_G2) substrate after the 684a readiness PASS: V3-EXQ-569h FAIL/non_contributory (conversion_ceiling_persists_despite_routing) -- readiness MET (route_range 0.31 3/3, e2-divergence 3/3, non-degenerate) yet committed-action diversity does not lift (C_R1B 1/3, need 2/3). Pre-registered off-ramp hit: routed to /failure-autopsy + substrate enrichment | medium | V3-EXQ-569h TERMINAL FAIL/non_contributory 2026- | AWAITING V3-EXQ-569i RUN+REVIEW (the AUTHORITATIVE current state 2026-06-16; see substrate | 2026-06-16 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governanc | 2026-06-16 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 
-## Deferred -- not required for v3 closure (13)
+## Deferred -- not required for v3 closure (12)
 
 | plan | node | title | status | reason / blocker |
 |------|------|-------|--------|------------------|
@@ -67,15 +67,14 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-E` | Theory 5 (deferred): proposal-distribution bias (re-enters candidate set on R_X. | deferred | Re-enters candidate set only if R_X.c fires -- i.e. the full 4-substrate stack (Layers A+B |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-F` | Theory 6 (deferred): MECH-260 anti-recency contribution to behavioural diversity | deferred | Partially covered by Q-045 4-arm ablation (MECH-313 OFF / 313 only / 260 only / both ON) u |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-G` | Theory 7 (deferred): MECH-314 curiosity weight (Goldilocks calibration) | deferred | V3-EXQ-590a annotated pending_retest_after_substrate (MECH-111 broadcast novelty was scala |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-H` | Theory 8 (deferred): z_goal config-default confound | deferred | Confound check on V3-EXQ-550 (Theory 4). If GAP-D's R4-rule application surfaces an ARM_ON |
 | commitment_closure_plan.md | `commitment_closure:GAP-6` | MECH-260 vs SD-034 No-Go pulse boundary unclear (V4 flag) | deferred | depends_on: commitment_closure:GAP-4 |
 | commitment_closure_plan.md | `commitment_closure:GAP-7` | MECH-091 phase-reset deferred (SD-006 phase 2) | deferred | ext: SD-006 phase 2 async heartbeat |
-| sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P3` | Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consume | deferred | depends_on: sd_037_axis_a:P2 |
-| sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P4` | Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/O | deferred | depends_on: sd_037_axis_a:P3 |
+| sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P3` | Phase 3 -- verification diagnostic: confirm recalibrated thresholds lift consume | deferred | SUPERSEDED by sd_037_axis_b:P3 -- do NOT resume in axis (a). The within-plan depends_on (P |
+| sd_037_axis_a_consumer_input_recalibration_plan.md | `sd_037_axis_a:P4` | Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/O | deferred | SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The V3-EXQ-483f behavioural v |
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (56)
+## Done (57)
 
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
@@ -89,6 +88,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 - `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-cite` -- First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three 646 OFF-baseline ce
 - `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-fix` -- Driver-script_path coupling fix -- include_driver_script_in_hash so a consumer with its ow
 - `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-D` -- Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)
+- `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-H` -- Theory 8 (CLOSED-moot): z_goal config-default confound
 - `commitment_closure_plan.md` `commitment_closure:GAP-1` -- SD-033a bias head untrained (Go-side mechanically silent)
 - `commitment_closure_plan.md` `commitment_closure:GAP-10` -- StepHarness audit of governance write paths
 - `commitment_closure_plan.md` `commitment_closure:GAP-11` -- Phased rule_state training curriculum (GAP-3 deliverable 4 -- committed-mode elicitation)

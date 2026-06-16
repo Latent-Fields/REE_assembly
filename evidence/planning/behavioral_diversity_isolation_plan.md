@@ -126,15 +126,16 @@ closure_plan:
       last_updated: 2026-05-25
       resume_condition: "V3-EXQ-590a annotated pending_retest_after_substrate (MECH-111 broadcast novelty was scalar EMA -> argmax-invariant null on selection). Re-queue as V3-EXQ-590b is gated on MECH-314a per-candidate RBF novelty implementation AND behavioural diversity landing (i.e. resolution of GAP-B). Until both gates clear, theory 7 stays deferred and its falsifier is not queued."
     - id: "behavioral_diversity_isolation:GAP-H"
-      title: "Theory 8 (deferred): z_goal config-default confound"
+      title: "Theory 8 (CLOSED-moot): z_goal config-default confound"
       phase: "P4-extend"
-      status: deferred
+      status: done
       severity: low
       owner_exq: null
       unblocks_claims: []
       depends_on: ["behavioral_diversity_isolation:GAP-D"]
-      last_updated: 2026-05-25
-      resume_condition: "Confound check on V3-EXQ-550 (Theory 4). If GAP-D's R4-rule application surfaces an ARM_ON >> ARM_OFF asymmetry that maps to z_goal config-default rather than V_s substrate pathology (R4.a), this node becomes the dedicated re-run with z_goal matched across arms. Until GAP-D's R4 disposition lands in governance, theory 8 stays deferred."
+      last_updated: 2026-06-16
+      completion_note: "CLOSED-moot 2026-06-16 (deferred->done; deliverable obviated, no experiment owed). This node's resume trigger required GAP-D's R4 disposition to land as R4.a -- an ARM_ON >> ARM_OFF asymmetry mapping to a z_goal config-default confound rather than V_s substrate pathology. GAP-D actually closed as R4.b (V_s verisimilitude-staleness pathology confirmed; Theory 4 promoted, R4.b stamped 2026-05-29 on V3-EXQ-550 + V3-EXQ-601 diagnostic evidence). The R4.a reading the confound-check guarded against did not occur, so the dedicated z_goal-matched re-run is not needed. Marked done (resolved, not open V3-closure work) rather than deferred, since it is terminally obviated, not awaiting a trigger. REOPEN only if GAP-D's R4.b disposition is later revised to R4.a (mirrors GAP-D's own reopen clause -- if the supports-MECH-269 per-claim direction on the V3-EXQ-550 manifest is revised toward a z_goal-config reading)."
+      resume_condition: "CLOSED-moot 2026-06-16. GAP-D resolved R4.b (V_s pathology), not the R4.a (z_goal config-default) reading this confound-check required; deliverable obviated. Reopen only on an R4.b->R4.a revision."
 ---
 
 # Behavioural Diversity Isolation Plan (REE-v3)

@@ -37,7 +37,8 @@ closure_plan:
       unblocks_claims: [SD-037, MECH-280, MECH-281]
       depends_on: ["sd_037_axis_a:P2"]
       cross_plan_link: ["sd_037_axis_b:P3"]
-      last_updated: 2026-06-01
+      last_updated: 2026-06-16
+      resume_condition: "SUPERSEDED by sd_037_axis_b:P3 -- do NOT resume in axis (a). The within-plan depends_on (P2) is DONE, but axis (a) is empirically closed: P2 (sd_037_axis_a_phase2_recalibration_block.md, 2026-06-01) found every consumer-input distribution identically zero on fishtank baseline, so no threshold could be recalibrated and the override block was inert -> axis (a) ruled empirically unmeetable. The verification work is NOT deferred-awaiting-resumption here; it relocated to the axis (b) sustained-threat env curriculum and is tracked under sd_037_axis_b:P3 (currently blocked behind sd_037_axis_b:P1b). This node stays status:deferred (excluded from V3-closure %) rather than done because the verification it represents is still pending -- under axis (b), not axis (a)."
       completion_note: "Never reached -- axis (a) was abandoned at Phase 2 (inert override block). Deferred; the verification work re-applies on the axis (b) substrate (sd_037_axis_b:P3)."
     - id: "sd_037_axis_a:P4"
       title: "Phase 4 -- V3-EXQ-483f behavioural validation (4-arm 2x2 OFF_OFF/ON_OFF/OFF_ON/ON_ON on recalibrated substrate)"
@@ -48,7 +49,8 @@ closure_plan:
       unblocks_claims: [SD-037, MECH-280, MECH-281]
       depends_on: ["sd_037_axis_a:P3"]
       cross_plan_link: ["sd_037_axis_b:P4"]
-      last_updated: 2026-06-01
+      last_updated: 2026-06-16
+      resume_condition: "SUPERSEDED by sd_037_axis_b:P4 -- do NOT resume in axis (a). The V3-EXQ-483f behavioural validation is the SAME run shared with axis (b) Phase 4; it now sits behind the axis (b) substrate-readiness chain (sd_037_axis_b:P1b/P2/P3, currently blocked). A PASS there clears SD-037/MECH-280/MECH-281 pending_retest_after_substrate. Stays status:deferred (excluded from V3-closure %) rather than done because the validation is still pending under axis (b), not complete."
       completion_note: "Deferred with Phase 3. A PASS would clear SD-037/MECH-280/MECH-281 pending_retest_after_substrate. The behavioural validation is shared with axis (b) Phase 4 and now sits behind the axis (b) substrate-readiness chain."
 ---
 
