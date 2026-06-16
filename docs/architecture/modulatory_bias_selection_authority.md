@@ -259,6 +259,62 @@ range AND beat the control, not merely reach the accumulator). On PASS, **V3-EXQ
 winning conversion config. ARC-065 stays provisional / non_contributory /
 pending_retest_after_substrate; not weakened.
 
+## TOP-K shortlist amend (569h conversion-ceiling, 2026-06-16)
+
+**Routing.** V3-EXQ-569h (the GAP-A falsifier on the 684a-armed ARM_STD_G2 additive
+conversion config) landed FAIL/non_contributory 2026-06-16T10:11Z
+(`conversion_ceiling_persists_despite_routing`): readiness fully MET (route_range 0.31 3/3,
+e2-divergence 3/3, non-degenerate, negative control clean) but C_R1B (committed-action
+entropy strict-above BOTH matched-noise and proposer) cleared only **1/3** seeds. The active
+`failure_autopsy_V3-EXQ-569h` hands off `/implement-substrate` on this entry, and
+`critical_path_synthesis_2026-06-15` Path 2 recommends a real architectural change
+(shortlist-then-modulate) over another gain tweak.
+
+**Why the 2026-06-15 margin shortlist (lever (b)) was not enough.** V3-EXQ-684 ARM_SHORTLIST
+(margin 0.25) converted **0/3** with committed entropy **0.337** -- *below* the collapsed
+proposer (0.549). The manifest shows `modulatory_shortlist_size_mean` **6.25-8.54**: the
+margin cutoff `best_raw + 0.25*raw_score_range` admitted ~7 of ~8 candidates, i.e. a
+near-**whole, state-stable** eligible set. The committed-branch `argmin(_modulatory_accum)`
+over that set collapses to the modulatory channel's **global favourite** (monostrategy) --
+the additive arms, which blend F, preserved *more* diversity than the margin shortlist that
+let modulation solely decide over a near-whole set.
+
+### The fix (no-op default, bit-identical OFF): TOP-K shortlist mode
+
+Two new `E3Config` levers (mirrored on `REEConfig.from_dims`):
+- `modulatory_shortlist_mode`: `"margin"` (default, legacy bit-identical) | `"top_k"`.
+- `modulatory_shortlist_k` (default 3): the fixed shortlist size for `top_k`.
+
+In `top_k` mode the eligible set is the **k F-best candidates by primary score** (k smallest
+`raw_scores`, lower-is-better, `torch.topk(raw_scores, k, largest=False)`, k clamped to
+`[1, K]`). The within-set selection rule is **unchanged** (deterministic `argmin` of the
+routed `_modulatory_accum` when committed / softmax-multinomial when uncommitted).
+
+**Why top-k converts where margin collapsed.** A *small fixed* k gives an eligible set whose
+**membership rotates with state** (the k F-best change as the agent moves), so
+`argmin`-of-the-routed-channel within the rotating small set produces committed-action
+diversity that reflects genuine per-candidate structure -- and **beats unstructured
+matched-noise** (the C_R1B non-vacuity bar). The within-set rule stays *deterministic*, so
+the entropy comes from channel **structure**, not sampling noise -- guarding against a
+vacuous PASS. **Safety** preserved at any internal strength: only the k F-best are eligible,
+so a clearly-harmful candidate is never selectable.
+
+**Diagnostic.** `modulatory_shortlist_mode` added to `last_score_diagnostics` (pre-seed +
+active site), alongside the existing `modulatory_shortlist_active` / `_size`.
+
+**Contracts.** 22/22 conversion + shortlist contracts PASS (18 prior + 4 new top-k in
+`tests/contracts/test_e3_score_bias_candidate_support.py`): default-mode-margin +
+shortlist-OFF bit-identical; restricts-to-exactly-k + safety (worst-primary never selected);
+top_k set SMALLER than a loose-margin set on the same pool (the 569h fix, deterministic);
+within-top-k routed-modulatory argmin decides. Full ree-v3 contract suite 1045 passed.
+
+**Validation:** V3-EXQ-569i (a 569-lineage successor; 3-arm matched-entropy, in-arm
+route-range gate + e2-divergence gate + C_R1B strict-above BOTH matched-noise and proposer)
+arming the TOP-K shortlist as the conversion constant across arms. Pre-registers the
+conversion-ceiling off-ramp (readiness met + no C_R1B lift -> `conversion_ceiling_persists`,
+non_contributory, NOT an ARC-065 falsification). claim_ids=[ARC-065]. ARC-065 stays
+provisional / substrate_ceiling / pending_retest_after_substrate; not weakened.
+
 ## See also
 
 - `ree-v3/ree_core/predictors/e3_selector.py` (additive authority + V3-EXQ-643a explicit
