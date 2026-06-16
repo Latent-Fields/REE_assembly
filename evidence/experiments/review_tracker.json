@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-15T17:45:44Z",
+  "last_review_utc": "2026-06-16T13:43:13Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -685,7 +685,9 @@
     "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier",
     "v3_exq_685_arm_reuse_automated_hit_demo",
     "v3_exq_591f_isef005_phase01_gate_criterion",
-    "v3_exq_684_modulatory_conversion_readiness"
+    "v3_exq_684_modulatory_conversion_readiness",
+    "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
+    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3050,7 +3052,9 @@
     "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier_20260615T123848Z_v3",
     "v3_exq_685_arm_reuse_automated_hit_demo_v3exq685_20260615T095533Z_v3",
     "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3",
-    "v3_exq_684_modulatory_conversion_readiness_20260615T164543Z_v3"
+    "v3_exq_684_modulatory_conversion_readiness_20260615T164543Z_v3",
+    "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
+    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4340,6 +4344,15 @@
         "v3_exq_682_gapa_inarm_routerange_collapse_diagnostic_20260615T032040Z_v3"
       ],
       "note": "Governance cycle 2026-06-15T04:00Z. Pipeline regen clean (817 claims). 7 pending walked. MECH-423 680b->superseded(by 680c)+680c->non_contributory: both confirmed autopsies, MECH-423 NOT weakened, route /queue-experiment 680d; exp_conf stays 0.0; evidence_quality_note added. MECH-057b 672b accepted as GENUINE WEAKENS (first counted experiment; functional gate filters 40.6% but C1_harm_reduction + C2_completion_improvement both FALSE; non-degenerate); exp_conf 0.325; raised hold_candidate_resolve_conflict; governance_2026_06_15 note supersedes stale 'No genuine experiments' framing. MECH-229 514o PASS/supports (object-bound wanting!=liking dissoc 0.80>=0.6, n_scored 5/6/7, non-degenerate) = the awaited SD-049 retest -> SUBSTRATE CEILING LIFTED: epistemic_category substrate_ceiling->standard, pending_retest_after_substrate->false, narrow_supports_flag->false; exp_conf 0.868 confirmed_established (provisional, clean promote candidate). Claim-free diagnostics 591d (no gate criterion discriminates -> new Phase0->1 gate design needed; informs infant_substrate:GAP-14 c-2), 666c (crf-availability-maintenance isolated -> flip substrate_queue ready=True, queue 654c GAP-B), 682 (no_collapse_reproduced; route-range reaches accumulator -> confirms corrected 569g = genuine conversion ceiling, validates GAP-A gain/contrast amend) all MARKED REVIEWED. Standing V3 holds kept-held."
+    },
+    {
+      "utc": "2026-06-16T13:43:13Z",
+      "by": "governance-20260616T1252Z",
+      "reviewed": [
+        "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3",
+        "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3"
+      ],
+      "note": "Governance cycle 2026-06-16T12:52Z. Pipeline regen clean (817 claims). 3 pending walked. V3-EXQ-684a PASS/diagnostic (conversion_mechanism_identified; no claim tags; readiness validated) MARKED REVIEWED -- unblocked 569h. V3-EXQ-569h FAIL/non_contributory (conversion_ceiling_persists_despite_routing; supersedes 569g): readiness MET (route_range 0.31 3/3, e2-divergence 3/3, non_degenerate, negative control clean) but C_R1B committed-action diversity lift only 1/3 (need 2/3) -> ACCEPTED non_contributory (NO ARC-065 weakens; ARC-065 stays provisional/substrate_ceiling/pending_retest), MARKED REVIEWED, appended to substrate_queue ARC-065 + modulatory-bias-selection-authority failure_records; ROUTED to /failure-autopsy (user-directed). V3-EXQ-514q FAIL/weakens (MECH-229; supersedes 514p; label drive_delta_below_effect_size_genuine_weakens_run_offarm_overshoot) LEFT PENDING -- flagged for /failure-autopsy before any MECH-229 action (off-arm-overshoot route; MECH-229 V3-pending anyway). GAP-A closure node reconciled (owner->569h, in-progress, resume->autopsy+implement-substrate; drift 1->0). Step-3 agenda: 13 routine hold_pending_v3_substrate kept-held; MECH-057b + Q-054 DEFERRED with dated deferral notes (no status change)."
     }
   ]
 }

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_509_sd047_multi_source_substrate_readiness
 
-Generated: `2026-06-16T04:18:22.503556Z`
+Generated: `2026-06-16T12:53:13.569709Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

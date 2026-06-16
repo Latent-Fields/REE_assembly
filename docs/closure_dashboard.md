@@ -5,7 +5,7 @@ nav_order: 11
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-06-16T04:18:34Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-06-16T12:53:20Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 

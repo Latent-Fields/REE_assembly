@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_433f_sd029_eventcond_comparator_reef
 
-Generated: `2026-06-16T04:18:22.503556Z`
+Generated: `2026-06-16T12:53:13.569709Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
