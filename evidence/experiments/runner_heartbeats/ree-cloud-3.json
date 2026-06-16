@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-16T07:57:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-569h",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "last_tick_utc": "2026-06-16T08:29:13Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-603q",
+  "current_exq_started_utc": "2026-06-16T08:10:30.107372+00:00",
+  "current_title": "SD-059/MECH-358 escape-affordance bridge EVIDENCE re-run on the STABILIZED base harm landscape (5-arm continuous-survival; supersedes 603o)",
+  "current_claim_id": "SD-059",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_BASE_IA_ONLY",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 20,
+    "episodes_total": 235,
+    "overall_pct": 0.6
+  },
+  "seconds_elapsed": 1122,
+  "seconds_remaining": 39407,
+  "recent_lines": [
+    "[v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence] starting (dry_run=False)",
+    "Seed 42 Condition ARM_BASE_IA_ONLY",
+    "[train] stage0 ARM_BASE_IA_ONLY seed=42 ep 20/235 z_goal_peak=0.4969"
   ],
-  "runner_pid": 745,
-  "runner_version": "r3222 927fe1c 2026-06-16 (running r3220 80975a1)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 744,
+  "runner_version": "r3225 06d7856 2026-06-16 (running r3223 3103ad9)",
   "gpu": {
     "available": false
   },
