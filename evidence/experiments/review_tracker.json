@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-16T13:43:13Z",
+  "last_review_utc": "2026-06-16T19:50:40Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -683,6 +683,7 @@
     "v3_exq_591e_isef005_phase01_gate_criterion",
     "v3_exq_603p_base_harm_landscape_discriminativeness_diagnostic",
     "v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier",
+    "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier",
     "v3_exq_685_arm_reuse_automated_hit_demo",
     "v3_exq_591f_isef005_phase01_gate_criterion",
     "v3_exq_684_modulatory_conversion_readiness",
@@ -690,6 +691,7 @@
     "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3"
   ],
   "reviewed_run_ids": [
+    "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
     "2026-02-13T224000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
@@ -4353,6 +4355,14 @@
         "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3"
       ],
       "note": "Governance cycle 2026-06-16T12:52Z. Pipeline regen clean (817 claims). 3 pending walked. V3-EXQ-684a PASS/diagnostic (conversion_mechanism_identified; no claim tags; readiness validated) MARKED REVIEWED -- unblocked 569h. V3-EXQ-569h FAIL/non_contributory (conversion_ceiling_persists_despite_routing; supersedes 569g): readiness MET (route_range 0.31 3/3, e2-divergence 3/3, non_degenerate, negative control clean) but C_R1B committed-action diversity lift only 1/3 (need 2/3) -> ACCEPTED non_contributory (NO ARC-065 weakens; ARC-065 stays provisional/substrate_ceiling/pending_retest), MARKED REVIEWED, appended to substrate_queue ARC-065 + modulatory-bias-selection-authority failure_records; ROUTED to /failure-autopsy (user-directed). V3-EXQ-514q FAIL/weakens (MECH-229; supersedes 514p; label drive_delta_below_effect_size_genuine_weakens_run_offarm_overshoot) LEFT PENDING -- flagged for /failure-autopsy before any MECH-229 action (off-arm-overshoot route; MECH-229 V3-pending anyway). GAP-A closure node reconciled (owner->569h, in-progress, resume->autopsy+implement-substrate; drift 1->0). Step-3 agenda: 13 routine hold_pending_v3_substrate kept-held; MECH-057b + Q-054 DEFERRED with dated deferral notes (no status change)."
+    },
+    {
+      "utc": "2026-06-16T19:50:40Z",
+      "by": "failure-autopsy-654d-20260616T1939Z",
+      "reviewed": [
+        "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3"
+      ],
+      "note": "/failure-autopsy V3-EXQ-654d (arc_062 GAP-B rule-apprehension behavioural falsifier; FAIL/non_contributory; self-route substrate_not_ready_requeue; claim_ids MECH-309, ARC-062; substrate exercised ARC-063; supersedes 654c; 5th in the 654 lineage; machine ree-cloud-2). ADJUDICATION (confirmed failure_autopsy_V3-EXQ-654d_2026-06-16): C1c FAILED again (crf_frac_active 0.0 all 3 ARM_ON seeds). 654d ARMED the GAP-A de-collapse lever ARM_STD_G2 on both arms AND recorded the discriminator crf_mean_n_matched (7.08/7.29/8.70) -- the 654c-flagged instrument. LOAD-BEARING FINDING: the GAP-A conversion de-collapse is the WRONG LEVER for this gate. ARM_STD_G2 de-collapsed the E3 selection channel (consumed_summary spread cleared the 0.05 floor 2/3 seeds) but NOT the CRF rule-match context key; the 16 differentiated rules (max_pairwise_dist 1.711) match 7-8/tick and ALL gate out (theta=0.15+0.25*(n_matched-1)~=1.65 >> maintenance_floor 0.45). mean_prop_counterfactual_delta=0.0 confirms the gated-out rule_state never reaches committed action. The two CRF-locus faults the 654c autopsy named (context-key crowding + maintenance/conflict-gate calibration) remain un-amended (substrate bit-identical to 654c) and 654d proves them INDEPENDENT of GAP-A. NON_CONTRIBUTORY, NO weakens (C1 gated scoring; claims never tested). pending_retest_after_substrate. ROUTE (user-confirmed): implement-substrate AMEND crf-availability-maintenance at the CRF locus, UNGATED from GAP-A (fault-2 couple maintained availability to theta(n_matched) [pure gate calibration] + fault-1 de-collapse the CRF mint/match context key + keep frac_ACTIVE readiness gate); re-queue 654e on that gate, NOT on GAP-A. Recurrence (5th autopsy): HELD substrate-maturation, NOT claim-granularity debt (user re-confirmed 2026-06-16; blocker now isolated + measured). MECH-309/ARC-062/ARC-063 NOT demoted; no claims.yaml/scoring edits this session."
     }
   ]
 }
