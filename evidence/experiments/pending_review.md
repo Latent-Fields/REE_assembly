@@ -1,10 +1,20 @@
 # Pending Experiment Review
 
-Generated: `2026-06-15T17:45:45Z`  
+Generated: `2026-06-16T04:18:27Z`  
 Last review: `2026-06-15T17:45:44Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking_20260616T020619Z_v3` | 2026-06-16T02:06 | MECH-229 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3` | 2026-06-15T21:56 | (no claim tags) |
 
 ---
 

@@ -1,10 +1,19 @@
 {
-  "generated_at": "2026-06-15T17:47:03Z",
+  "generated_at": "2026-06-16T04:18:31Z",
   "counts": {
-    "drifted": 0,
+    "drifted": 1,
     "stale_since": 0,
-    "suppressed": 10
+    "suppressed": 9
   },
-  "drifted": [],
+  "drifted": [
+    {
+      "node_id": "behavioral_diversity_isolation:GAP-A",
+      "plan": "behavioral_diversity_isolation_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-684a QUEUED 2026-06-15T18:41Z (ree-v3 main 37ff9b6; coordinator /queue/active pending) is the LIVE OWNER -- the test-design-fixed conversion-readiness sweep (supersedes V3-EXQ-684; carries ARM_STD_G2 gain=2 std-basis forward + matched-noise-at-proposer as NEGATIVE control + committed-layer metric-can-move guard) whose PASS selects the ARM_STD_G2 config for V3-EXQ-569h. LINEAGE FRONTIER (ran): V3-EXQ-684 FAIL/non_contributory 2026-06-15 (claim-free readiness sweep; C_CONVERSION PASSED [ARM_STD_G2 0.989>legacy 0.775+noise 0.549, 2/3] but the matched-noise positive control was MIS-DESIGNED -> 684a fix); V3-EXQ-682 PASS 2026-06-15 (no_collapse_reproduced; REACH solved, residual was CONVERSION); V3-EXQ-569g FAIL/non_contributory 2026-06-11T22:49Z (r1a_entropy_only_artefact; supersedes 569f) was the prior frontier. PREDECESSORS: V3-EXQ-569f FAIL/non_contributory 2026-06-10T00:12Z (r1a_entropy_only_artefact; supersedes 569d); V3-EXQ-649 PASS 2026-06-07T13:14Z (GAP-A shared-channel substrate-readiness VALIDATED READY; consumed cand_world_summaries spread 0.090>=0.05 floor); V3-EXQ-567 (PASS); V3-EXQ-569 + V3-EXQ-573 (non_contributory); V3-EXQ-570 + V3-EXQ-571 + V3-EXQ-609 diagnostics landed; V3-EXQ-544a completed_supports 2026-05-30; V3-EXQ-569c claimed 2026-05-30",
+      "manifest": "evidence/experiments/v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3.json",
+      "autopsy": null
+    }
+  ],
   "stale_since": []
 }

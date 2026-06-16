@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-15T17:47:02Z
+Generated: 2026-06-16T04:18:34Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -53,7 +53,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MEC | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-06-14 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-03 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-08 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | in_progress | FP-2 matched-entropy falsifier ran TWICE (569f, 569g) -> both FAIL/non_contributory (r1a_entropy_only_artefact); blocked on the shared E3 selection-authority commit-coupling | medium | V3-EXQ-569g FAIL/non_contributory 2026-06-11T22: | 682-GATED NEXT STEP 2026-06-14 -- see governance_2026_06_14_pm2 for the AUTHORITATIVE corr | 2026-06-15 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-A` | Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM  | in_progress | FP-2 matched-entropy falsifier ran TWICE (569f, 569g) -> both FAIL/non_contributory (r1a_entropy_only_artefact); blocked on the shared E3 selection-authority commit-coupling | medium | V3-EXQ-684a QUEUED 2026-06-15T18:41Z (ree-v3 mai | AWAITING V3-EXQ-684a RUN+REVIEW 2026-06-15 (the AUTHORITATIVE current state; see governanc | 2026-06-15 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | BLOCKED-ON-HARM-PATHWAY-STABILIZATION-AMEND 2026-06-15 -- see governance_2026_06_15_pm for | 2026-06-15 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 
