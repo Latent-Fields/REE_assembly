@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Multi-slot Goal Deliberation, Counterfactual Branching, Interrupted-task Resumption (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-06-16
   scope_claims: [SD-046, SD-033e, MECH-264, MECH-265, SD-027, SD-028, MECH-254, MECH-255, Q-068, MECH-432, MECH-433, Q-077]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -35,7 +35,8 @@ closure_plan:
         - "V3 goal pipeline is SINGLE-STREAM: one z_goal, one SD-039 ghost-goal-bank rank, one E3-committed trajectory per heartbeat (goal_pipeline GAP-1 substrate landed 2026-05-11)"
         - "DECISION the fork forces: does the V4 substrate hold N>=2 simultaneously-active goal slots (SD-046 multi-slot GoalState, each with per-slot z_goal + drive coupling + age + persistence), or stay single-slot and only ADD a counterfactual-value monitor over the one stream? Every node below assumes the multi-slot answer; if V4 stays single-slot, GDL-3/4/5 collapse into a thinner monitor-only design"
         - "The single-stream pipeline must itself be honest first: goal_pipeline GAP-2 (cue/wanting -> action authority -> benefit-contact) is the live V3 bottleneck and is NOT yet closed (foraging/benefit-contact leg still substrate-blocked, 2026-06-10). A multi-slot arbitrator over a pipeline that cannot reliably commit ONE goal would be vacuous"
-      last_updated: 2026-06-14
+      last_updated: 2026-06-16
+      readiness_update_2026_06_16: "BUILD-GATE NOW CLEARED. The cross-plan build-gate cited here and throughout this plan -- goal_pipeline:GAP-2 (cue/wanting -> action authority -> benefit-contact) -- closed 2026-06-15 (goal_pipeline:GAP-2 status=done, owner V3-EXQ-514o PASS; the foraging/benefit-contact ceiling was explicitly CLEARED, n_scored_wl_steps 5/6/7, object-bound wanting!=liking dissoc 0.80). The 'goal_pipeline GAP-2 ... is NOT yet closed (2026-06-10)' line in this node's readiness_gate is now stale. This annotation records the gate-clear only; it does NOT graduate the node (already done) and PROMOTES NOTHING (SD-046 stays candidate/v4/substrate_conditional). The multi-slot deliberation pillars (GDL-3/4/5) remain blocked on their OWN substrate gates (SD-032b dACC, MECH-295 cross-alternative value spread), not on GAP-2."
       completion_note: "SD-046 is candidate / implementation_phase v4. This node is the design decision, not the build: choosing multi-slot is the precondition for the dACC-style cross-slot arbitrator and for every deliberation pillar below. Genuine architectural fork, not a missing flag. RESOLVED 2026-06-14 (interactive IGW design-fork session): MULTI-SLOT (N>=2) ADOPTED -- single-slot+monitor was rejected because GDL-3/4/5 (counterfactual switch, cross-slot arbitrator, interrupt/park/resume) and the multi-goal OCD over-binding failure mode are structurally multi-slot and cannot be hosted by a single-alternative monitor. SD-046 confirmed as written (dated decision note added to its claims.yaml notes). The discrete-slot (Cowan) vs flexible-precision-resource (Bays & Husain) sub-fork stays open as Q-077. BUILD remains gated on goal_pipeline GAP-2; this node records only the DESIGN decision. PROMOTES NOTHING (SD-046 stays candidate/v4/substrate_conditional)."
     - id: "goal_deliberation_v4:GDL-2"
       title: "PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)"
@@ -103,8 +104,8 @@ closure_plan:
         - "V3 has the CLOSURE side of the action arc (MECH-061 commit-boundary token v3; MECH-057a completion gate; beta gate) and world-staleness invalidation (V_s, goal_pipeline GAP-6 done) -- but NOT the 'was working on X, got interrupted, resume when capacity allows' span (memory project_interrupted_task_resumption_gap)"
         - "The event-arc spine (thought_intake_2026-06-05_cross_version_missing_bits): action = initiate -> persist -> INTERRUPT -> reorient -> RESUME -> closure. The interrupt->reorient->resume span is the underdeveloped one; resumption needs a parked goal slot to return to, hence the SD-046 multi-slot dependency (GDL-1) and the arbitrator that re-prioritises it (GDL-4)"
         - "Multi-step hippocampal planning (MECH-163) to reconstruct the parked task context on resume"
-      last_updated: 2026-06-10
-      completion_note: "PROSE-ONLY gap today (no claim). MECH-320 in claims.yaml is a tonic-vigor / opportunity-cost mechanism (v3, candidate_substrate_landed) and is NOT the resumption mechanism, despite the memory note's 'candidate MECH-320 sketch' phrasing -- do not reuse that ID. Proposing MECH-389: a parked-goal persistence + capacity-keyed re-prioritisation hypothesis that closes the event-arc interrupt->resume span."
+      last_updated: 2026-06-16
+      completion_note: "MECH-389 is now REGISTERED in claims.yaml (candidate / implementation_phase v4 / substrate_conditional / v3_pending) as the parked-goal persistence + capacity-keyed re-prioritisation hypothesis that closes the event-arc interrupt->resume span -- it is no longer a prose-only placeholder. It stays BLOCKED on the V3-autopsy graduation trigger (a 640+ run showing hazard-interrupt WITHOUT resume), not on registration. MECH-320 in claims.yaml is a tonic-vigor / opportunity-cost mechanism (v3, candidate_substrate_landed) and is NOT the resumption mechanism, despite the memory note's 'candidate MECH-320 sketch' phrasing -- do not reuse that ID."
     - id: "goal_deliberation_v4:GDL-6"
       title: "PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberation"
       phase: 2

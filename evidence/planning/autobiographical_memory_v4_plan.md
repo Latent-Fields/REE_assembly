@@ -53,7 +53,7 @@ closure_plan:
         - "FALSIFIER that licenses the single-store claim: corrupting the shared store must degrade past-recall AND future-simulation fidelity TOGETHER, vs independent degradation under a two-store model"
         - "Guardrail (intake): do NOT treat as precognition / perfect memory; vivid != accurate; simulation != prediction"
       last_updated: 2026-06-10
-      completion_note: "ARC-085: autobiographical memory is an identity-indexed event field (events bound to perspective, emotion, residue, self-state), not neutral storage; future-trajectory generation is forward re-composition of the SAME event tokens that replay reinstates backward. The architectural-commitment spine that the rest of this plan specialises."
+      completion_note: "ARC-085: autobiographical memory is an identity-indexed event field (events bound to perspective, emotion, residue, self-state), not neutral storage; future-trajectory generation is forward re-composition of the SAME event tokens that replay reinstates backward. The architectural-commitment spine that the rest of this plan specialises. READINESS NOTE 2026-06-16: both V3 claim gates are MET (ARC-007 active, ARC-018 active) and the only dependency ABM-1/Q-060 is now done (taxonomy resolved 2026-06-14 -> TAG/index over ARC-007). No unmet prerequisite remains; this node is buildable-now and can graduate by assigning an owner_exq to the single-store joint-degradation falsifier experiment. Annotation only -- adds no owner_exq, schedules no work."
     - id: "autobiographical_memory_v4:ABM-3"
       title: "Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)"
       phase: 3
@@ -83,12 +83,12 @@ closure_plan:
       depends_on: ["autobiographical_memory_v4:ABM-3"]
       cross_plan_link: []
       readiness_gate:
-        - "REE owns substrate components implicitly enforcing what learning is licit from imagination (MECH-094 provenance, MECH-272/MECH-273 sleep self-model aggregation) but NO explicit ARC-level claim articulating the principle"
+        - "REE owns substrate components implicitly enforcing what learning is licit from imagination (MECH-094 provenance, MECH-272/MECH-273 sleep self-model aggregation); the explicit ARC-level claim articulating the principle is now REGISTERED as ARC-092 (candidate / implementation_phase v4 / substrate_conditional) -- the 'NEWCLAIM stub' has been minted (annotation 2026-06-16)"
         - "LICIT from imagination: consistency checking, plan optimisation, schema integration"
         - "FORBIDDEN from imagination: durable world-model updates, prediction validation, novel-fact generation"
         - "Lit anchors to pull before registering (project rule: biology before formal definitions): Stickgold 2013, Cai 2009, Schapiro 2017 (CLS), confabulation literature, FEP epistemic value"
-      last_updated: 2026-06-10
-      completion_note: "Prose-only today (memory project_imagination_learning_constraints). The MECH-365 one-way committed-vs-imagined gate is its mechanism home; this node proposes the missing ARC-level PRINCIPLE that the gate implements. Registered as NEWCLAIM stub, not invented in claims.yaml. Couples directly to ABM-5 write-authority -- the FORBIDDEN list is exactly the durable-model-update path MECH-368 gates."
+      last_updated: 2026-06-16
+      completion_note: "Prose-only today (memory project_imagination_learning_constraints). The MECH-365 one-way committed-vs-imagined gate is its mechanism home; this node proposes the missing ARC-level PRINCIPLE that the gate implements. Now registered as ARC-092 in claims.yaml (candidate / v4 / substrate_conditional); was a NEWCLAIM stub at seed-time (updated 2026-06-16). Couples directly to ABM-5 write-authority -- the FORBIDDEN list is exactly the durable-model-update path MECH-368 gates."
     - id: "autobiographical_memory_v4:ABM-5"
       title: "Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)"
       phase: 4

@@ -82,8 +82,8 @@ closure_plan:
         - "V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-weight a trajectory's confidence"
         - "DR-12 cutover: wire E2 forward-PE -> E3 confidence so that low-confidence (poorly-modelled) regions discount their own viability estimates"
         - "v4_spec notes DR-12 is the most V3-tractable of the five (partly addressable in V3); it is sequenced here as the cheapest cutover step and a natural pilot"
-      last_updated: 2026-06-10
-      completion_note: "DR-12 from v4_spec V4-2. Together with DR-10 this is the (DR-10 + DR-12) pair that unblocks MECH-215 (self-model prerequisite for agentive prediction: the E2 self-transition accuracy half). The most landable DR; can be the first V4 experiment to gain an owner_exq."
+      last_updated: 2026-06-16
+      completion_note: "DR-12 from v4_spec V4-2. Together with DR-10 this is the (DR-10 + DR-12) pair that unblocks MECH-215 (self-model prerequisite for agentive prediction: the E2 self-transition accuracy half). The most landable DR; can be the first V4 experiment to gain an owner_exq. READINESS NOTE 2026-06-16 (V4-roadmap tractability audit): this node's gate is now SATISFIED. Its only depends_on (SELF-1) flipped open->done 2026-06-14, and the DR-12 cutover keys off E2 forward-PE magnitude (present in V3 today on the z_gamma forward model), NOT off a materialised stateful z_self -- so unlike SELF-3/SELF-5 it does not wait on the SELF-1 substrate build. This is the buildable-now graduation candidate; user adjudication needed to assign an owner_exq (does NOT graduate automatically). Annotation only -- no owner_exq added, no work scheduled."
     - id: "self_model_v4:SELF-5"
       title: "z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals"
       phase: 4

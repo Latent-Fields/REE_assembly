@@ -39,9 +39,9 @@ closure_plan:
       blocking_on: "MECH-163 is implementation_phase: v3 and held under hold_pending_v3_substrate (9 lit supports, 0 genuine exp entries). The VTA/hippocampal model-based system (goal-seeded proposal generation + multi-step rollout) has no V3 discrimination evidence; EXQ-237a was non_contributory (z_goal substrate limit). z_goal->approach propagation is the live bottleneck (640a autopsy; substrate_queue modulatory-bias-selection-authority)."
       readiness_gate:
         - "MECH-163 dual-system discrimination demonstrated in V3 (habit SNc/dorsal-striatum model-free vs VTA/hippocampal model-based): the planned system must show it can navigate to states a 1-step greedy policy cannot reach"
-        - "z_goal must be competitive with harm salience at E3 selection (goal_pipeline:GAP-2 foraging contact + the modulatory-bias-selection-authority substrate item); without it the planned system is observationally indistinguishable from habit"
+        - "z_goal must be competitive with harm salience at E3 selection (goal_pipeline:GAP-2 foraging contact + the modulatory-bias-selection-authority substrate item); without it the planned system is observationally indistinguishable from habit [READINESS MET 2026-06-16: goal_pipeline:GAP-2 CLOSED (status done) 2026-06-15 via V3-EXQ-514o PASS -- object-bound wanting!=liking dissociation demonstrated at E3, both readiness gates met, non_degenerate. This sub-gate is now satisfied. HPL-1 still BLOCKED on the remaining two refs: MECH-163 dual-system discrimination (candidate, phase v3, no V3 evidence) and ARC-071 transition machinery (candidate, v3_pending). Does not graduate the node.]"
         - "ARC-071 (composition_via_repeated_grounding, v3) -- the planned->habitual transition machinery MECH-163 presupposes -- landed so the division of labour is a continuum, not a static config"
-      last_updated: 2026-06-10
+      last_updated: 2026-06-16
       completion_note: "This is the ONLY node whose claim is implementation_phase: v3. It is the gate, not a V4 step: every V4 node below depends on it. Listed here so the plan's entry condition is explicit and so the V5 social tier's dependency on MECH-163 is visible from this plan."
     - id: "hippocampal_planning_v4:HPL-2"
       title: "PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)"

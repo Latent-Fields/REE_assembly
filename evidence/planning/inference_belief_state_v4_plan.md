@@ -72,8 +72,8 @@ closure_plan:
         - "V3 generator present: MECH-022 (hippocampal hypothesis injection gated by control plane) + ARC-007 pattern completion produce candidate hypotheses"
         - "V3 rollout present: ARC-018 explicit rollouts + post-commitment viability mapping; MECH-033 E2 kernels seed the rollouts"
         - "V4 cutover: a BOUNDED set of competing hypotheses (top-k), each carrying confidence/precision, predicted transitions, goal/antigoal relations, uncertainty; E3 evaluates trajectories OVER the set, not over one collapsed state (intake section 8)"
-      last_updated: 2026-06-10
-      completion_note: "Intake section 8 + 12 (InferredStateHypothesis schema). V3-minimal form = top-k state hypotheses + confidence weights + uncertainty flags. V4-fuller = structured belief distribution, hypothesis generation from hippocampal completion, updating from action/outcome evidence. This is the core representational step of the layer."
+      last_updated: 2026-06-16
+      completion_note: "Intake section 8 + 12 (InferredStateHypothesis schema). V3-minimal form = top-k state hypotheses + confidence weights + uncertainty flags. V4-fuller = structured belief distribution, hypothesis generation from hippocampal completion, updating from action/outcome evidence. This is the core representational step of the layer. READINESS NOTE 2026-06-16: the injection-path half of the blocker has partly cleared -- MECH-022 advanced candidate->provisional and now carries one genuine instrumented experiment (claim_evidence.v1.json genuine_exp_count=1, exp_conf=0.311, mixed) and ARC-018/ARC-007/MECH-033 rollout+completion are all active. The single-hypothesis injection path is therefore exercised and instrumented, but the one run is mixed/fail (not cleanly confirmed), so this stays blocked rather than graduating; revisit once MECH-022 has a clean PASS confirming the injection path before opening the top-k belief-SET extension."
     - id: "inference_belief_state_v4:INF-4"
       title: "Inferred affordance field (afford. not directly perceived; biases E3 candidates)"
       phase: 2

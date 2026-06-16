@@ -57,10 +57,10 @@ closure_plan:
       depends_on: ["object_representation_v4:OBJ-2"]
       cross_plan_link: []
       readiness_gate:
-        - "V3 BEGINNING present (no gate): SD-005 z_self split, SD-003 self-attribution, MECH-277 + ARC-059 stage 1 self-as-object, ARC-074 reward-free babbling Phase 0"
+        - "V3 BEGINNING present (no gate): SD-005 z_self split, MECH-256 single-pass self-attribution comparator + SD-029 z_harm_s instantiation (these SUPERSEDE SD-003 as of 2026-04-18), MECH-277 + ARC-059 stage 1 self-as-object, ARC-074 reward-free babbling Phase 0"
         - "V4 CUTOVER gated on: DR-10..DR-14 self-model integration audit; MECH-214 (goal E1-representable); MECH-215 (self-model prerequisite for agentive prediction); INV-064 (maturational-sequence necessity); SD-030 (E2 self-forward-model, V4-deferred)"
         - "MECH-163 multi-step hippocampal planning (shared V4-entry gate)"
-      last_updated: 2026-06-10
+      last_updated: 2026-06-16
       completion_note: "ARC-081 central correction: self-as-object is NOT flatly V4 -- it has a V3 beginning and a V4 object-file-slot cutover. The beginning is live; the cutover is the work this node tracks."
     - id: "object_representation_v4:OBJ-4"
       title: "PILLAR 3 -- tools/affordances object->action binding (ARC-082)"

@@ -185,7 +185,7 @@ closure_plan:
         - "L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neurons; Rich & Wallis 2016 value-encoding ensembles) -- the neuroscience anchor MECH-359's 'affect must be candidate-differentiated' currently LACKS; cross-ref Berridge & Robinson incentive salience already grounding SD-012/MECH-295"
         - "L2 expression-as-action-geometry (Dael/Mortillaro/Scherer 2012 body-action coding; Niv 2007 tonic-DA vigour as expression-intensity partner) -- harvest the basal-ganglia vigour pathway as the co-constitutive read-out partner for MECH-360"
         - "L3 affect-as-control-precision (Seth 2013; Critchley & Garfinkel interoceptive inference) for MECH-364 conflict/constraint-load; L4 slow-modulator decommit-friction (MECH-369) needs a value-INDEPENDENT modulator-class anchor -- flag: no owning substrate node exists yet"
-      last_updated: 2026-06-13
+      last_updated: 2026-06-16
       lit_pull_done_utc: "2026-06-13T18:06:40Z"
       lit_pull_outcome: >
         DONE 2026-06-13 (lit-pull-ae9-per-candidate-affect). 8 literature_evidence/v1
