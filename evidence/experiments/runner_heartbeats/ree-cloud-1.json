@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-16T21:47:48Z",
+  "last_tick_utc": "2026-06-16T22:12:55Z",
   "state": "running",
   "current_exq": "V3-EXQ-514r",
   "current_exq_started_utc": "2026-06-16T19:53:55.581452+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
     "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 18.6
+    "overall_pct": 27.4
   },
-  "seconds_elapsed": 6833,
-  "seconds_remaining": 19237,
+  "seconds_elapsed": 8340,
+  "seconds_remaining": 17157,
   "recent_lines": [
     "[v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
@@ -31,7 +31,9 @@
     "verdict: PASS seed=42 guard_pass=True (contact_rate=0.2709 z_goal_at_contact=0.5286)",
     "Seed 43 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.3783 formed=False",
-    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.945 gate=pass"
+    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.945 gate=pass",
+    "[train] p0_guided seed=43 ep 130/265 mean_len=200.0 rv=3.85174",
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
