@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_346",
+  "entry_id": "2026-06-16_mech_346_value_of_identity_gottfried2011",
+  "timestamp_utc": "2026-06-16T09:04:49Z",
+  "claim_ids_tested": [
+    "MECH-346"
+  ],
+  "source": {
+    "title": "The value of identity: olfactory notes on orbitofrontal cortex function.",
+    "authors": [
+      "Jay A. Gottfried",
+      "Christina Zelano"
+    ],
+    "year": 2011,
+    "venue": "Annals of the New York Academy of Sciences",
+    "doi": "10.1111/j.1749-6632.2011.06268.x",
+    "url": "https://doi.org/10.1111/j.1749-6632.2011.06268.x"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Conceptual/empirical review arguing that value representations are 'orphaned from their source' without object identity, and that OFC performs stimulus-specific predictive coding of both perceptual outcomes and expected values. Directly supports the design rationale of MECH-346 (seed the goal from identity, not bare value). Lower confidence because it is a review/position piece rather than a direct mechanistic test of a goal seed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is a conceptual argument; it does not provide a mechanistic demonstration that an identity representation is used to generate a prospective goal latent.",
+    "Evidence base is largely olfactory; generality to non-olfactory object goals is asserted rather than demonstrated."
+  ],
+  "tags": [
+    "mech_346",
+    "orbitofrontal_cortex",
+    "object_identity",
+    "predictive_coding",
+    "goal_pipeline"
+  ],
+  "mapping": {
+    "source_claim_statement": "Value-based models of OFC are incomplete without object identity; OFC encodes stimulus-specific predictive representations of both perceptual outcomes and expected value, so value cannot be divorced from the identity of its source.",
+    "ree_translation": "Provides the theoretical grounding for MECH-346's switch from a raw single z_resource value snapshot to an identity-bearing z_object seed: the 'value of identity' argument is precisely why a goal latent should be anchored to the most-wanted object rather than a scalar.",
+    "mapping_caveat": "This is a theoretical/review source; it motivates but does not test the specific seed-substitution mechanism. The mapping is at the level of design justification, not empirical confirmation.",
+    "source_context": "Review of OFC function with emphasis on olfactory predictive coding in rodents and humans."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Review-level support for design rationale; weighted down for being conceptual rather than a direct mechanistic test."
+  }
+}

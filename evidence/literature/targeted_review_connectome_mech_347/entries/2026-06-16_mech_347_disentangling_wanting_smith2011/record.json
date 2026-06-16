@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_347",
+  "entry_id": "2026-06-16_mech_347_disentangling_wanting_smith2011",
+  "timestamp_utc": "2026-06-16T09:04:49Z",
+  "claim_ids_tested": [
+    "MECH-347"
+  ],
+  "source": {
+    "title": "Disentangling pleasure from incentive salience and learning signals in brain reward circuitry.",
+    "authors": [
+      "Kyle S. Smith",
+      "Kent C. Berridge",
+      "J. Wayne Aldridge"
+    ],
+    "year": 2011,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1101920108",
+    "url": "https://doi.org/10.1073/pnas.1101920108"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Direct neural dissociation: dopamine stimulation in nucleus accumbens enhanced ONLY the motivation/incentive-salience component and did NOT alter hedonic impact or learned-prediction signals; the incentive-salience signal to the reward-proximal cue was separable from the learned prediction value of the distal cue. This is strong, mechanistically specific support for MECH-347's 'cue-pull with no revaluation' (incentive salience independent of value-update). Docked for rat ventral-pallidum/accumbens electrophysiology vs REE latent nudge.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Incentive salience enhancement required pharmacological dopamine stimulation; a purely cue-driven nudge without a gain/state signal may not reproduce the effect magnitude.",
+    "Incentive salience tracked the reward-PROXIMAL cue, not the distal predictive cue, so cue_pull strength should scale with proximity (consistent with REE's cue_recall_min_proximity) rather than mere predictive association."
+  ],
+  "tags": [
+    "mech_347",
+    "incentive_salience",
+    "wanting",
+    "nucleus_accumbens",
+    "ventral_pallidum",
+    "no_revaluation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Wanting (incentive salience), liking, and learned prediction are represented by separable signals in accumbens-pallidum circuitry; dopamine stimulation amplified only the motivation component without changing learned-prediction signals.",
+    "ree_translation": "Supports MECH-347's design that cue_pull nudges the goal (wanting) WITHOUT triggering a benefit gate or revaluation: the biology shows the wanting signal can be amplified while learned-prediction (value) signals are untouched, exactly the dissociation cue_pull assumes.",
+    "mapping_caveat": "The dissociation was produced by intra-accumbens drug microinjection; REE has no pharmacological analog and instantiates the nudge as a fixed-gain directional shift. The paper shows wanting CAN be dissociated from value, not that an ungated nudge is the normal driver.",
+    "source_context": "Rats, Pavlovian cue sequence for sucrose; ventral pallidum single-unit firing with intra-accumbens opioid vs dopamine microinjection."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Strong mechanistic dissociation directly matching the no-revaluation premise; transfer risk from rodent pharmacology to a latent nudge."
+  }
+}

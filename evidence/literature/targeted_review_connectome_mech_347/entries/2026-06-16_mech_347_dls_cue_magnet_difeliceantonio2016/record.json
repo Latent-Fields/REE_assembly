@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_347",
+  "entry_id": "2026-06-16_mech_347_dls_cue_magnet_difeliceantonio2016",
+  "timestamp_utc": "2026-06-16T09:04:49Z",
+  "claim_ids_tested": [
+    "MECH-347"
+  ],
+  "source": {
+    "title": "Dorsolateral neostriatum contribution to incentive salience: opioid or dopamine stimulation makes one reward cue more motivationally attractive than another.",
+    "authors": [
+      "Alexandra G. DiFeliceantonio",
+      "Kent C. Berridge"
+    ],
+    "year": 2016,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.13220",
+    "url": "https://doi.org/10.1111/ejn.13220"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Microinjection + behaviour showing limbic activation dynamically amplifies attraction toward a previously-learned Pavlovian cue, making it a 'stronger motivational magnet' at the expense of a competing cue, due to stronger motivation (not habit), with sign-trackers flexibly following the cue to a new location. Maps cleanly onto cue_pull as a directional, competing, motivation-driven pull toward the cued object. Docked for rat striatal microinjection and individual-difference dependence (sign- vs goal-trackers).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The cue-magnet effect was individual-difference dependent (sign-trackers vs goal-trackers) and required limbic drug activation; a uniform cue_pull may not capture this heterogeneity or its state-dependence.",
+    "Amplification was selective and competitive (one cue at the expense of another), implying cue_pull should arbitrate across competing cues rather than independently nudge toward each."
+  ],
+  "tags": [
+    "mech_347",
+    "incentive_salience",
+    "sign_tracking",
+    "cue_competition",
+    "dorsolateral_striatum",
+    "cue_recall"
+  ],
+  "mapping": {
+    "source_claim_statement": "Opioid or dopamine stimulation of dorsolateral striatum selectively amplifies the incentive attraction of a previously-learned Pavlovian cue, making it a stronger motivational magnet at the expense of a competing cue, via motivation rather than habit; sign-trackers flexibly track the cue to new locations.",
+    "ree_translation": "Supports MECH-347's cue_pull as a directional pull toward the strongest-perceived cued object (StepHarness derives the strongest-perceived type from SD-049 per-type proximity); the 'motivational magnet' that competitively dominates other cues matches a z_goal nudge toward the dominant cue without revaluation.",
+    "mapping_caveat": "Demonstrated via DLS pharmacological stimulation in rats with strong individual differences; REE's cue_pull is a deterministic fixed-gain nudge without a state/dopamine analog and without modelling sign- vs goal-tracker phenotypes, so the competitive arbitration the paper shows is only partially captured.",
+    "source_context": "Rats, autoshaping (sign- vs goal-tracking), intra-DLS DAMGO or amphetamine microinjection."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Behaviourally direct cue-pull analog; transfer risk elevated by rodent pharmacology and phenotype-dependence."
+  }
+}

@@ -1,0 +1,13 @@
+# Disentangling pleasure from incentive salience and learning signals (Smith, Berridge & Aldridge, 2011)
+
+*According to PubMed.* Smith, Berridge & Aldridge, *PNAS* 108(27):E255-E264. [DOI](https://doi.org/10.1073/pnas.1101920108)
+
+**What the paper did.** This is the empirical companion to the incentive-salience framework. Rats first learned a fixed Pavlovian cue sequence predicting sucrose. The authors then made intra-accumbens microinjections — an opioid-stimulating drug versus a dopamine-stimulating drug — while recording ventral pallidum firing, so they could read out three reward signals at once: hedonic "liking," incentive-salience "wanting," and learned associative prediction.
+
+**Key findings relevant to the claim.** The dissociation is the result. The dopamine-stimulating microinjection enhanced *only* the motivation/incentive-salience component; it did *not* alter hedonic impact and — this is the crucial line for MECH-347 — it did *not* alter the learned-prediction signals. Moreover, the incentive-salience signal was tied to the reward-*proximal* incentive cue, and was separable from firing to the learned prediction value of the reward-*distal* cue. Dedicated ventral-pallidum subpopulations, and even firing-rate dynamics, distinguished wanting from liking and from prediction.
+
+**How this maps to REE.** MECH-347's `cue_pull` nudges the goal (wanting) with *no benefit gate and no revaluation*. The biological worry one might raise is: can you really push "wanting" without disturbing the learned value? Smith et al. answer yes, and show the neural separability directly — the wanting signal was amplified while learned-prediction signals stayed put. That is the cleanest mechanistic warrant in this batch for an ungated, revaluation-free nudge. The proximity result is a bonus: incentive salience tracked the *proximal* cue, which lines up with REE gating `cue_pull` on `cue_recall_min_proximity` and deriving cue strength from SD-049 per-type proximity views.
+
+**Limitations and caveats.** Be honest about what the experiment licenses. (1) The dissociation was *produced by pharmacological dopamine stimulation*; the paper shows wanting *can* be dissociated from value, not that an ungated nudge is the brain's normal default driver. (2) REE has no pharmacological analog and instantiates the nudge as a fixed-gain directional shift, so the effect-magnitude control differs. (3) Rat accumbens/pallidum electrophysiology to REE latent dynamics is a real transfer step.
+
+**Confidence reasoning.** 0.76, supports — the highest in this batch. The no-revaluation premise is the explicit experimental result, in a strong venue with a clean dissociation design; I discount for the pharmacological induction and rodent-to-latent transfer.

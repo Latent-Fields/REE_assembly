@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_347",
+  "entry_id": "2026-06-16_mech_347_incentive_salience_case_berridge2006",
+  "timestamp_utc": "2026-06-16T09:04:49Z",
+  "claim_ids_tested": [
+    "MECH-347"
+  ],
+  "source": {
+    "title": "The debate over dopamine's role in reward: the case for incentive salience.",
+    "authors": [
+      "Kent C. Berridge"
+    ],
+    "year": 2006,
+    "venue": "Psychopharmacology",
+    "doi": "10.1007/s00213-006-0578-x",
+    "url": "https://doi.org/10.1007/s00213-006-0578-x"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, heavily-cited review establishing that dopamine attributes incentive salience ('wanting') to reward-related cues, dissociable from both hedonic 'liking' and associative learning, and that dopamine activation is SUFFICIENT to enhance cue-triggered incentive salience. Directly supports MECH-347's premise that a cue can pull behaviour toward an object WITHOUT a value/benefit gate or revaluation. Docked because it is a review and because REE's cue_pull lacks a dopamine-state-modulated gain analog.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Incentive salience is dynamically modulated by physiological/dopamine state; a cue_pull with a fixed gain and no state modulation may not capture the amplification the biology requires.",
+    "Wanting is described as integrating Pavlovian associative information WITH physiological state signals, so a purely cue-driven nudge ignoring drive state would be an incomplete instantiation."
+  ],
+  "tags": [
+    "mech_347",
+    "incentive_salience",
+    "wanting",
+    "dopamine",
+    "cue_recall",
+    "goal_pipeline"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dopamine attributes incentive salience to reward cues ('wanting'), which is dissociable from hedonic impact ('liking') and from associative learning; dopamine activation is sufficient to enhance cue-triggered incentive salience.",
+    "ree_translation": "MECH-347's cue_pull (a directional z_goal nudge with no benefit gate and no revaluation) is REE's instantiation of cue-triggered incentive salience: a cue makes its associated object more 'wanted' and pulls the goal toward it without re-deriving its value.",
+    "mapping_caveat": "The biology's 'wanting' is gated by dopamine/physiological state at the moment of cue re-encounter; REE's cue_pull uses a fixed cue_recall_gain (0.05) and derives strength from SD-049 proximity rather than a dopamine-analog state signal, so the no-gate framing is faithful but the magnitude control differs.",
+    "source_context": "Review synthesising rodent and human evidence on mesolimbic dopamine and reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Canonical conceptual grounding; mapping fidelity high for the no-revaluation premise, transfer risk from rodent-dominant evidence and missing state-modulated gain."
+  }
+}

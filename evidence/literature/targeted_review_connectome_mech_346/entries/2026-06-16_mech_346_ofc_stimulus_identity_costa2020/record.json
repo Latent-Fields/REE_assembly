@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_346",
+  "entry_id": "2026-06-16_mech_346_ofc_stimulus_identity_costa2020",
+  "timestamp_utc": "2026-06-16T09:04:49Z",
+  "claim_ids_tested": [
+    "MECH-346"
+  ],
+  "source": {
+    "title": "Primate Orbitofrontal Cortex Codes Information Relevant for Managing Explore-Exploit Tradeoffs.",
+    "authors": [
+      "Vincent D. Costa",
+      "Bruno B. Averbeck"
+    ],
+    "year": 2020,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2355-19.2020",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2355-19.2020"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Primate single-unit recording showing OFC strongly encodes the IDENTITY of the chosen stimulus and that value coding is stimulus-SPECIFIC (not value independent of identity). This is direct support for what/where factorization: value is bound to object identity, so a goal seeded from the most-wanted object's identity latent is biologically faithful. Docked for macaque bandit task vs REE objects and for the seed-vs-code distinction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Value coding in OFC is stimulus-specific rather than identity-agnostic, but the chosen-value and exploration-bonus signals are encoded at only intermediate levels, so identity is not the sole determinant of the goal-relevant signal.",
+    "OFC also encodes choice location and environment value (at low levels), suggesting the seed for goal-directed behaviour integrates more than object identity alone."
+  ],
+  "tags": [
+    "mech_346",
+    "orbitofrontal_cortex",
+    "stimulus_identity",
+    "successor_features",
+    "what_where_factorization"
+  ],
+  "mapping": {
+    "source_claim_statement": "OFC strongly encodes the identity of the chosen stimulus and the reward outcome, and OFC value coding is stimulus-specific rather than value independent of stimulus identity.",
+    "ree_translation": "MECH-346's bank.most_wanted(per_axis_drive) selects an object-IDENTITY latent (z_object) to seed z_goal; the finding that biological value is attached to specific stimulus identities (the 'what') rather than a free-floating scalar supports separating object identity from a raw resource snapshot.",
+    "mapping_caveat": "Stimulus-specific value coding in OFC supports binding value TO identity, but does not show the brain SELECTS a single 'most-wanted' identity to seed a downstream goal latent; the selection/arg-max step is REE-specific. Medial vs lateral OFC dissociate value vs identity coding, so a single z_object seed conflates two anatomically separable codes.",
+    "source_context": "Three male macaques, three-armed bandit with periodically replaced novel options; single-unit recording in OFC."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Strong primate electrophysiology; mapping fidelity limited by the arg-max-over-identity selection step and medial/lateral subregion dissociation."
+  }
+}
