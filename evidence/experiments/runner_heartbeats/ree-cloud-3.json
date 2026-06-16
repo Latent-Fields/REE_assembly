@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-16T20:17:27Z",
+  "last_tick_utc": "2026-06-16T20:47:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-603q",
   "current_exq_started_utc": "2026-06-16T08:10:30.107372+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-059",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / ARM_SAFETY_BRIDGE",
-    "runs_done": 8,
+    "run_label": "Seed 42 / ARM_RELIEF_SAFETY_BRIDGE",
+    "runs_done": 9,
     "runs_total": 15,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 235,
-    "overall_pct": 58.2
+    "overall_pct": 60.6
   },
-  "seconds_elapsed": 43616,
-  "seconds_remaining": 29829,
+  "seconds_elapsed": 45425,
+  "seconds_remaining": 28110,
   "recent_lines": [
     "[v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -79,7 +79,12 @@
     "Seed 44 Condition ARM_SAFETY_BRIDGE",
     "[train] stage0 ARM_SAFETY_BRIDGE seed=44 ep 20/235 z_goal_peak=0.3625",
     "[train] p0 ARM_SAFETY_BRIDGE seed=44 ep 130/235 mean_len=190.0 rv=0.00006",
-    "[train] hazard_avoidance ARM_SAFETY_BRIDGE seed=44 ep 170/235 mean_len=39.8 median_last=6.0 auc=0.199 survival_gate=FAIL harm_range=0.1789 pag_commits=190 n_relief=0 n_safety=20 n_safety_trained=20 n_approach=116"
+    "[train] hazard_avoidance ARM_SAFETY_BRIDGE seed=44 ep 170/235 mean_len=39.8 median_last=6.0 auc=0.199 survival_gate=FAIL harm_range=0.1789 pag_commits=190 n_relief=0 n_safety=20 n_safety_trained=20 n_approach=116",
+    "[train] p1 ARM_SAFETY_BRIDGE seed=44 ep 220/235 median_last=200.0 survival_gate=pass",
+    "[train] p2 ARM_SAFETY_BRIDGE seed=44 ep 235/235 contact_rate=0.2723",
+    "verdict: FAIL seed=44 arm=ARM_SAFETY_BRIDGE mean_surv=39.8 g_h=False g0=False g1=True g2=True harm_range=0.1789 n_relief=0 n_safety=20",
+    "Seed 42 Condition ARM_RELIEF_SAFETY_BRIDGE",
+    "[train] stage0 ARM_RELIEF_SAFETY_BRIDGE seed=42 ep 20/235 z_goal_peak=0.4877"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
