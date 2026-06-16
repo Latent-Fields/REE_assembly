@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-16T22:12:55Z",
+  "last_tick_utc": "2026-06-16T22:43:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-514r",
   "current_exq_started_utc": "2026-06-16T19:53:55.581452+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-229",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
-    "runs_done": 1,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
+    "runs_done": 2,
     "runs_total": 6,
-    "episodes_done": 170,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 27.4
+    "overall_pct": 35.2
   },
-  "seconds_elapsed": 8340,
-  "seconds_remaining": 17157,
+  "seconds_elapsed": 10152,
+  "seconds_remaining": 21248,
   "recent_lines": [
     "[v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
@@ -33,7 +33,14 @@
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.3783 formed=False",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.945 gate=pass",
     "[train] p0_guided seed=43 ep 130/265 mean_len=200.0 rv=3.85174",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.1929 contact_events=103 z_goal_at_contact=0.4082",
+    "[train] disambig_eval seed=43 ep 265/265 wl_drive=0.833 wl_nodrive=0.722 delta=0.111 overshoot_flip=1.000 overshoot_flips_seed=True wl_off=0.000 scored=18 distinct_tokens=3",
+    "verdict: PASS seed=43 guard_pass=True (contact_rate=0.1929 z_goal_at_contact=0.4082)",
+    "Seed 44 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.3782 formed=False",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.923 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
