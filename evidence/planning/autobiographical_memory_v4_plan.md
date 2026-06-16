@@ -117,7 +117,7 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [MECH-361]
       depends_on: ["autobiographical_memory_v4:ABM-2"]
-      cross_plan_link: []
+      cross_plan_link: ["affect_expression_v4:AE-4"]
       blocking_on: "substrate_conditional on the MECH-359 per-candidate affect substrate (off this plan) -- the per-candidate affective gradient must exist before it can be the write-weight."
       readiness_gate:
         - "MECH-261 (mode-conditioned write gating) -- MECH-361 amends its CONTENT schema (WHAT is written), not the gate (WHETHER a substrate may write)"
@@ -125,7 +125,7 @@ closure_plan:
         - "MECH-359 per-candidate affect substrate (off-plan dependency) must land first"
         - "MECH-094 provenance still applies: simulated candidates must not be indexed as real experience"
       last_updated: 2026-06-10
-      completion_note: "Enriches the event trace from state->action->outcome to state->candidates-considered->affective-gradients->selected-action->outcome->residue, and uses the gradient as memory write-weight and retrieval-query. The CONTENT-side specialisation of the ARC-085 token, sitting on the MECH-365 provenance schema."
+      completion_note: "Enriches the event trace from state->action->outcome to state->candidates-considered->affective-gradients->selected-action->outcome->residue, and uses the gradient as memory write-weight and retrieval-query. The CONTENT-side specialisation of the ARC-085 token, sitting on the MECH-365 provenance schema. Sole owner of MECH-361; affect_expression_v4:AE-4 cross-links here (dedup 2026-06-16)."
     - id: "autobiographical_memory_v4:ABM-7"
       title: "Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property"
       phase: 5

@@ -81,10 +81,11 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-361]
+      unblocks_claims: []
       depends_on: ["affect_expression_v4:AE-1"]
       cross_plan_link:
         - "sleep_substrate"
+        - "autobiographical_memory_v4:ABM-6"
       blocking_on: "AE-1 -- the episode schema enrichment (candidates-considered + affective gradients over candidates) requires the per-candidate affect vector to exist before it can be written into the trace."
       readiness_gate:
         - "AE-1 (MECH-359) per-candidate affect vector built"
@@ -92,7 +93,7 @@ closure_plan:
         - "MECH-094 provenance gate still applies on the enriched trace: simulated candidates considered must NOT be indexed as real experience"
         - "Biology lit-pull (none load-bearing yet; anchors named in claim: McGaugh 2004; Cahill & McGaugh 1998; Dolcos/LaBar/Cabeza 2004; Girardeau/Inema/Buzsaki 2017; Ballarini 2009 behavioural tagging; Bechara 1994 somatic markers) -- run before substrate build per biology-before-formal-definitions"
       last_updated: 2026-06-10
-      completion_note: "MECH-361 enriches the event trace from state->action->outcome to state->candidates-considered->affective-gradients->selected-action->outcome->residue, using the affect gradient as memory write-weight and retrieval-query. High-gradient episodes preferentially written; similar-gradient states retrieve prior action-affect-outcome arcs. substrate_conditional -- DO NOT build hippocampal write/retrieval integration in V3 until routed by experiment."
+      completion_note: "MECH-361 enriches the event trace from state->action->outcome to state->candidates-considered->affective-gradients->selected-action->outcome->residue, using the affect gradient as memory write-weight and retrieval-query. High-gradient episodes preferentially written; similar-gradient states retrieve prior action-affect-outcome arcs. substrate_conditional -- DO NOT build hippocampal write/retrieval integration in V3 until routed by experiment. DEDUP 2026-06-16: MECH-361 build owned by autobiographical_memory_v4:ABM-6 (the episode schema is written into the ARC-085 store); AE-4 cross-links rather than co-owns."
     - id: "affect_expression_v4:AE-5"
       title: "Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social"
       phase: 3
@@ -136,11 +137,12 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-370, SD-045, Q-063]
+      unblocks_claims: [MECH-370, Q-063]
       depends_on: ["affect_expression_v4:AE-2", "affect_expression_v4:AE-10"]
       cross_plan_link:
         - "commitment_closure"
         - "sleep_substrate"
+        - "object_reasoning_abstraction_v4:OBJ-ABS-2"
       blocking_on: "AE-10 -- MECH-369's value-INDEPENDENT slow decommit-friction/engagement-release modulator substrate (now owned by node AE-10, 2026-06-13) must be built before the compulsion cluster composes on top of it; MECH-370 needs the composed multi-term readout to exist; the answer to Q-063 (value-driven persistence vs field-state stickiness) cannot be adjudicated until that substrate exists."
       readiness_gate:
         - "MECH-369 most naturally AMENDS the slow-modulator layer (SD-037 orexin-analog gain cluster) with a NEW decommit-friction authority channel -- distinct from SD-037 (reweights z_harm/gates SD-012, no loop-release authority), MECH-268 (fast dACC PE urgency, not slow), MECH-106 (value-driven threshold, whereas MECH-369 is value-INDEPENDENT). Sits alongside SD-036 (GABA decay), MECH-186/187/188 (5-HT gain), SD-048 (inflammatory/allostatic harm-stream bias)"
@@ -149,7 +151,7 @@ closure_plan:
         - "Q-063 needs the SD-034 closure operator firing-vs-failing signal AND the INV-004/INV-006 residue firewall preserved so offline integration (MECH-272/273 sleep cluster) can reduce stickiness WITHOUT erasing legitimate harm residue"
         - "PRECISION GUARDRAIL: the Nagarajan microglia anchor is press-summary-verified and describes a FAST Ca2+ switch, NOT slowness -- 'slow modulation' is the REE abstraction; do not reduce compulsion to inflammation"
       last_updated: 2026-06-10
-      completion_note: "The compulsion cluster lets governance ask 'is this loop stuck because it is valued, or because the field is biased?'. MECH-369 = one value-independent stickiness TERM; MECH-370 = the composition is the right level of description; SD-045 = the runaway-chunking loop; Q-063 = the etiological discriminator. substrate_conditional -- DO NOT build or queue an experiment in V3 until routed by an explicit version decision."
+      completion_note: "The compulsion cluster lets governance ask 'is this loop stuck because it is valued, or because the field is biased?'. MECH-369 = one value-independent stickiness TERM; MECH-370 = the composition is the right level of description; SD-045 = the runaway-chunking loop; Q-063 = the etiological discriminator. substrate_conditional -- DO NOT build or queue an experiment in V3 until routed by an explicit version decision. DEDUP 2026-06-16: SD-045 (action-chunk cache) build owned by object_reasoning_abstraction_v4:OBJ-ABS-2; AE-7 only composes the compulsion-risk readout ON the cache and cross-links to it."
     - id: "affect_expression_v4:AE-8"
       title: "Developmental sparsification of the affect/memory substrate (MECH-362, Q-057) -- cross-cutting compass"
       phase: 4
@@ -174,7 +176,7 @@ closure_plan:
     - id: "affect_expression_v4:AE-9"
       title: "Biology grounding completion (per-candidate/option-specific value coding, expression-as-action-geometry, affect-as-precision lit-pulls + completion-set harvest)"
       phase: 2
-      status: in_progress
+      status: done
       lit_pull_status: done
       severity: medium
       owner_exq: null
@@ -212,7 +214,7 @@ closure_plan:
         concretises the still-open AE-7 'no owning roadmap node' planning gap (left for a
         separate planning decision). status in_progress (not done) because that no-owning-node
         gap and the AE-7 substrate decision remain.
-      completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaced a planning gap -- AE-7's 'slow-modulator-class distinction' (MECH-369) was referenced as a blocker but owned no roadmap node; RESOLVED 2026-06-13 (user-approved) by registering node AE-10 below + amending MECH-369 in claims.yaml with the Aston-Jones&Cohen 2005 LC-NE adaptive-gain grounding/substrate-home decision. Off V3 closure path; promotes nothing."
+      completion_note: "Affect_expression had NO dedicated grounding node; the biology for the novel MECH-359 per-candidate-affect spine was named only inside blocking_on prose. This node tracks the formal /lit-pull (project rule feedback_biology_before_formal_definitions) plus the completion-set harvest (OFC offer-value, BG vigour, interoceptive precision). It also surfaced a planning gap -- AE-7's 'slow-modulator-class distinction' (MECH-369) was referenced as a blocker but owned no roadmap node; RESOLVED 2026-06-13 (user-approved) by registering node AE-10 below + amending MECH-369 in claims.yaml with the Aston-Jones&Cohen 2005 LC-NE adaptive-gain grounding/substrate-home decision. Off V3 closure path; promotes nothing. STATUS open->done 2026-06-16: the lit-pull deliverable is complete and the planning gap it surfaced (MECH-369 had no owning node) was resolved 2026-06-13 by registering AE-10. Nothing outstanding."
     - id: "affect_expression_v4:AE-10"
       title: "Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction MECH-369 needs) -- AE-7 prerequisite"
       phase: 3

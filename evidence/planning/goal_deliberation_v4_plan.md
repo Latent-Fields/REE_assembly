@@ -130,15 +130,15 @@ closure_plan:
       blocker_class: deferred
       severity: medium
       owner_exq: null
-      unblocks_claims: [Q-068]
+      unblocks_claims: []
       depends_on: ["goal_deliberation_v4:GDL-3", "goal_deliberation_v4:GDL-5"]
-      cross_plan_link: []
+      cross_plan_link: ["developmental_dmn_v4:DMN-2"]
       readiness_gate:
         - "Q-068 is an OPEN QUESTION (answer_state): does REE need an explicit graded action-status vocabulary (simulated != rehearsed != intended != committed != acted, + a self_reference_frame), or do MECH-094 simulation/commit write-profiles (v3) + MECH-061 commit-boundary token (v3) already carry the distinction?"
         - "The question becomes decidable only once counterfactual branching (GDL-3) and parked/resumed tasks (GDL-5) exist: deliberation over unchosen alternatives is exactly where 'simulated vs intended vs committed' must be machine-distinguishable, and resumption needs to know a parked task's prior action-status"
         - "Resolve by working through whether the existing write-profiles disambiguate the new deliberation states; if not, register the vocabulary as a first-class annotation"
       last_updated: 2026-06-10
-      completion_note: "Q-068 (candidate, v4, open_question): deferred until the deliberation pillars create states that actually stress the existing write-profile vocabulary. Answering it earlier would be premature -- the distinguishing pressure does not exist in single-stream V3."
+      completion_note: "Q-068 (candidate, v4, open_question): deferred until the deliberation pillars create states that actually stress the existing write-profile vocabulary. Answering it earlier would be premature -- the distinguishing pressure does not exist in single-stream V3. DEDUP 2026-06-16: the Q-068 graded-action-status decision is owned by developmental_dmn_v4:DMN-2 (broader framing incl self-reference-frame axis); GDL-7 contributes the deliberation-stress framing as input and cross-links rather than co-deciding."
     - id: "goal_deliberation_v4:GDL-8"
       title: "Biology grounding completion (frontopolar deliberation, counterfactual/unchosen-value tracking, capacity-limited multi-slot lit-pulls + completion-set harvest)"
       phase: 2

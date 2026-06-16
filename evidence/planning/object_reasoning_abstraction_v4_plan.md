@@ -52,14 +52,14 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [SD-045]
       depends_on: ["object_reasoning_abstraction_v4:OBJ-ABS-1"]
-      cross_plan_link: []
+      cross_plan_link: ["affect_expression_v4:AE-7"]
       blocking_on: "Gated on ARC-021 three-loop framework (dorsolateral-loop slot) + SD-004 action-object substrate (the sequences chunks are made of) + MECH-290 backward credit sweep (chunk reinforcement). All three exist as claims; SD-045 is the cache that sits in their DLS slot."
       readiness_gate:
         - "ARC-021 three-BG-loop framework present (chunk cache lives in the dorsolateral-loop slot)"
         - "SD-004 action_object substrate (chunks are cached sequences of this) + MECH-290 backward credit sweep (updates chunk reinforcement) landed"
         - "V3 PULL-FORWARD TRIGGER (per SD-045 notes): if EXQ-495 V3-full-completion-gate or successors surface monostrategy persistence the planner-only architecture cannot escape, SD-045 is the highest-priority extension to pull into late-V3 (missing-habit-cache hypothesis for behavioural rigidity)"
       last_updated: 2026-06-10
-      completion_note: "SD-045 is the lightest and most likely-first reusable-unit substrate, and the only one with an explicit V3 pull-forward condition (monostrategy / OCD-ritual modelling via SD-033/SD-034). It is the natural first granularity for MECH-299 theta-packaging and MECH-300 chunk-graph traversal to test against."
+      completion_note: "SD-045 is the lightest and most likely-first reusable-unit substrate, and the only one with an explicit V3 pull-forward condition (monostrategy / OCD-ritual modelling via SD-033/SD-034). It is the natural first granularity for MECH-299 theta-packaging and MECH-300 chunk-graph traversal to test against. Sole owner of SD-045; affect_expression_v4:AE-7 cross-links here for the compulsion-risk readout (dedup 2026-06-16)."
     - id: "object_reasoning_abstraction_v4:OBJ-ABS-3"
       title: "PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world"
       phase: 2

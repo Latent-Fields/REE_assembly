@@ -47,17 +47,18 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       owner_exq: null
-      unblocks_claims: [MECH-147, MECH-391]
+      unblocks_claims: [MECH-391]
       depends_on: ["memory_lifecycle_v4:MEM-1"]
       cross_plan_link:
         - "sleep_substrate"
+        - "hippocampal_planning_v4:HPL-3"
       blocking_on: "MECH-147 (DG-mediated pattern separation, candidate, implementation_phase v4) is itself unbuilt in V3 -- there is no DG-like sparse non-redundant encoder of similar z_world. Active separation needs that substrate to write into."
       readiness_gate:
         - "MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_world before rollout"
         - "de Sousa 2026 open-question Q4: REE needs an explicit 'do not link' (separate) op distinct from 'no match' -- active separation, not just failed integration"
         - "SD-016 z_world-only cue-isolated query (the MEC-analog indexing layer this policy actuates against)"
       last_updated: 2026-06-10
-      completion_note: "Intake Q4: active separation is a first-class output of the allocation policy, paired with MECH-147 (DG) + an MEC-analog indexing layer (SD-016). Distinct from 'no match retrieved' -- the system can decide to keep two traces apart even when they overlap."
+      completion_note: "Intake Q4: active separation is a first-class output of the allocation policy, paired with MECH-147 (DG) + an MEC-analog indexing layer (SD-016). Distinct from 'no match retrieved' -- the system can decide to keep two traces apart even when they overlap. DEDUP 2026-06-16: MECH-147 (DG-equivalent pattern separation) build owned by hippocampal_planning_v4:HPL-3; MEM-2 consumes the separated encoder via cross-link rather than re-tracking the gate."
     - id: "memory_lifecycle_v4:MEM-3"
       title: "False-linking-risk / reality-coherence cost term (the single aspect with no REE home)"
       phase: 2
