@@ -1,0 +1,105 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-16T19:37:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "lineage": ["V3-EXQ-569c", "V3-EXQ-569e", "V3-EXQ-614e", "V3-EXQ-643", "V3-EXQ-569f/661/654a", "V3-EXQ-569g", "V3-EXQ-569h"],
+  "lineage_position": "7th GAP-A channel->committed-action conversion autopsy; 1st AFTER conversion-config identification (684a PASS)",
+  "targets": [
+    {
+      "run_id": "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
+      "queue_id": "V3-EXQ-569h",
+      "supersedes": "V3-EXQ-569g",
+      "claim_ids": ["ARC-065"],
+      "claim_ids_accurate": true,
+      "claim_ids_note": "single claim, re-evaluated not inherited; MECH-341 GAP-B NOT active (use_e3_score_diversity=False) so untagged; ARC-062/MECH-309/MECH-294 untouched",
+      "failed_criterion": "discrimination",
+      "preconditions_held": true,
+      "non_degenerate": true,
+      "facts": {
+        "arm1_route_range_mean": 0.309562,
+        "arm1_route_range_per_seed": [0.316201, 0.476866, 0.135618],
+        "arm1_route_range_floor": 0.01,
+        "arm1_route_range_seeds_above_floor": 3,
+        "arm1_e2_divergence_mean": 0.095262,
+        "arm1_e2_divergence_per_seed": [0.098597, 0.136645, 0.050545],
+        "arm1_e2_divergence_floor": 0.03,
+        "arm1_e2_divergence_seeds_above_floor": 3,
+        "selected_entropy_per_arm_mean": {"ARM_0_PROPOSER": 0.611248, "ARM_1_E2WF_STD_G2": 0.784565, "ARM_2_MATCHED_NOISE": 0.611248},
+        "selected_entropy_per_seed": {
+          "ARM_1_E2WF_STD_G2": {"42": 0.874133, "43": 0.688620, "44": 0.790942},
+          "ARM_0_PROPOSER": {"42": 0.905132, "43": 0.0, "44": 0.928613},
+          "ARM_2_MATCHED_NOISE": {"42": 0.905132, "43": 0.0, "44": 0.928613}
+        },
+        "arm1_seeds_strict_above_both": 1,
+        "min_seeds_for_pass": 2,
+        "per_arm_mean_is_collapse_seed_inflated": true,
+        "arm1_wins_only_collapse_seed": "seed 43 -- the only seed where ARM_0/ARM_2 proposer collapsed to entropy 0.0 (single action class); in seeds 42/44 (proposer already diverse) ARM_1 entropy is slightly BELOW proposer",
+        "matched_noise_lift_over_proposer_seeds": 0,
+        "matched_noise_bit_identical_to_proposer": true,
+        "matched_noise_framed_as": "confirmed 684/684a F-dominance property (informational, NON-gating) -- not a control defect"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- source exists (route_range 0.31 + e2-div 0.095 both 3/3); FAIL on conversion not falsification; ARC-065 unmoved",
+        "biological_reference": "clear/present -- BG gain/contrast committed-action selection gate; conversion under-power is a known dependency, not a formal-import divergence; lit present (generation side); no lit gap",
+        "prerequisites": "present -- route-range substrate + STD_G2 authority armed AND active in scored arm (3/3); SD-056 trained (e2 divergent 3/3)",
+        "implementation": "partial -- STD_G2 conversion is a committed-argmax SHIFT (beats legacy, 684a) but NOT a committed-diversity GAIN over an already-diverse proposer; only rescues the collapse seed (1/3)",
+        "environment": "adequate -- collapsed-proposer + matched-noise controls present; matched-noise washed out BY DESIGN (684/684a property)",
+        "measurement": "adequate (load-bearing) -- C_R1B scored where mechanism IS active (route_range 0.31); per-seed strict-above-both (1/3) load-bearing, per-arm mean is collapse-inflated",
+        "integration": "partially coupled -- range reaches authority + shifts argmax but conversion != committed-diversity gain vs proposer",
+        "scale": "adequate -- not budget/warmup (1/3 + reach amplified to 0.31 rule it out)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG-like / cortico-striatal committed-action selection gate applying DA-modulated gain/contrast against an F-dominated primary value",
+        "dependencies": ["sufficient selection-gate gain authority OR within-shortlist arbitration", "forward-model primary (F = 88-89% of E3 score variance, V3-EXQ-571)"],
+        "is_formal_import": false,
+        "divergence": "none -- conversion under-power matches a missing BG-dependency signature (gain sub-dominant to a strong upstream sampler), a discovered prerequisite not a falsification",
+        "lit_status": "present",
+        "lit_entry": "targeted_review_arc_065_behavioral_diversity_generation (covers GENERATION/source side; conversion-coupling is substrate engineering, not a lit-adjudicable divergence)",
+        "lit_pull_warranted": false
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-06-16 autopsy V3-EXQ-569h, confirmed]: 569h FAIL/non_contributory; ARC-065 unmoved (provisional, pending_retest_after_substrate). GAP-A committed-action-diversity falsifier ported onto the 684a-identified STD_G2 conversion substrate (use_modulatory_channel_routing + e2_world_forward summary + std-basis authority gain=2.0, ON all arms; supersedes 569g). Both non-vacuity preconditions HELD 3/3 (ARM_1 route_range 0.31 > 0.01; e2-divergence 0.095 > 0.03) -- substrate IS armed and reaching the select tick (reach amplified vs 569g 0.18). Discrimination FAILED: ARM_1 committed entropy strict-above BOTH collapsed-proposer and matched-noise (T=2.5) on only 1/3 seeds (needed 2/3); ARM_1 wins ONLY seed 43 -- the seed where the proposer collapsed to a single class. In the 2 seeds where the proposer is already diverse, ARM_1 entropy is slightly BELOW it. STD_G2 delivers a committed-argmax SHIFT (consistent with 684a beating legacy) but NOT a committed-diversity GAIN over an already-diverse proposer = genuine substrate CONVERSION CEILING (signal reaches modulation layer, does not convert to committed-action diversity), NOT a falsification of ARC-065. Matched-noise bit-identical to proposer (confirmed 684/684a F-dominance property; non-gating). Per-arm-mean (ARM_1 0.785 vs 0.611) is collapse-seed-inflated; per-seed strict-above-both (1/3) is load-bearing. Routed to /implement-substrate (amend modulatory-bias-selection-authority): residual lever = shortlist-then-modulate arbitration, never yet run in a 569-lineage matched falsifier with a verified-lifting noise control. ALSO surfaced /claim-synthesis: 7th GAP-A conversion autopsy + 1st post-identification (684a) failure = granularity-debt recurrence; candidate finer claim = 'committed-action diversity GAIN over an already-diverse proposer is separable from diversity GENERATION and channel REACH, gated by F-dominance, requires within-shortlist arbitration'. xref MECH-341/ARC-062/MECH-309/MECH-294 (one shared conversion fix). illusory-conflict guard: ARC-065 supports are narrow/single-pathway (source-existence probes only); committed-diversity DV never passed -> conflict persists, substrate is the named blocker.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "implementation_hint": "The gain/contrast lever is exhausted (684a identified gain=2.0 std-basis as best; 569h shows it converts only the collapse seed). The one residual architectural lever the 569g plan pre-registered but never ran in a properly-armed 569-lineage matched falsifier is SHORTLIST-THEN-MODULATE arbitration: F filters to a near-tie candidate set, then the modulatory channel arbitrates WITHIN it, so the structured channel is load-bearing without out-magnituding the F-dominated primary (88-89% of E3 variance). Run it with the STD_G2 config + a VERIFIED-LIFTING matched-noise control (so structured-vs-noise is discriminable, not collapsed to strict-above-proposer). A PASS closes the conversion ceiling; a FAIL confirms the granularity-debt reading and promotes the /claim-synthesis decomposition.",
+        "unblocks_claims": ["ARC-065", "MECH-341", "ARC-062", "MECH-309", "MECH-294"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
+          "experiment_type": "v3_exq_569h_gapa_conversion_committed_action_falsifier",
+          "metric": "ARM_1 (STD_G2 + e2_world_forward) committed-action entropy strict-above BOTH collapsed-proposer and matched-noise (T=2.5) on 1/3 seeds (needed 2/3); wins ONLY the collapse seed; route_range 0.31 reached 3/3 (preconditions held) -- a committed-argmax SHIFT, not a committed-diversity GAIN over an already-diverse proposer",
+          "target": "a working impl must produce committed-action entropy strict-above BOTH controls on >= 2/3 seeds with a structure a temperature/noise control cannot replicate, on the armed STD_G2 conversion substrate (route_range > floor in-arm)",
+          "governance_note_2026_06_16": "Already appended by the 2026-06-16T12:52Z governance cycle to this slot AND the ARC-065 slot; this autopsy CONFIRMS action=amend (do not duplicate). The active blocker has moved from CONVERSION-CONFIG-IDENTIFICATION (684a solved) to CONVERSION-IS-A-SHIFT-NOT-A-GAIN; residual lever = shortlist-then-modulate."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "ARC-065 'supports' are source-existence readiness probes only (route-range reaches, e2 diverges); the committed-action-diversity DV has never passed. non_contributory must NOT be read as conflict-resolved.",
+      "learning_extracted": [
+        "CONVERSION is a committed-argmax SHIFT, not a committed-diversity GAIN: STD_G2 reaches the select tick (route_range 0.31, > 569g 0.18) and moves the argmax vs legacy but adds no net committed diversity over an already-diverse proposer (only rescues the collapse seed, 1/3).",
+        "684a PASS and 569h FAIL are consistent, not contradictory: 684a tested strict-above-LEGACY (config moves committed entropy; true); 569h tests strict-above a matched proposer + noise control (config adds structured committed diversity; false in 2/3). The identification diagnostic over-promised vs the matched falsifier.",
+        "Per-arm-mean is collapse-seed-inflated here -- ARM_1 0.785 clears controls 0.611 only because seed-43 proposer collapsed to 0.0; always cross-check the discrimination claim against per-seed strict-above-both (1/3).",
+        "Matched-noise control still does not lift (ARM_2 == ARM_0 bit-identical) but this run correctly reframes that as the expected 684/684a F-dominance property (non-gating); a successor should still prefer a verified-lifting noise control so structured-vs-noise is discriminable.",
+        "Live levers remain authority STRUCTURE (shortlist-then-modulate) not magnitude (upstream magnitude range-renormalized away, 667/640a flat; reach solved at 0.31).",
+        "SD-056 disconfirmed as the blocker for this lineage (e2-divergence 3/3, C1 PASS); the blocker is the conversion arbitration, not the predictor."
+      ],
+      "routing": "implement-substrate",
+      "secondary_routing": "claim-synthesis",
+      "secondary_routing_reason": "7th GAP-A conversion autopsy + 1st post-identification (684a) failure with evolving signature = granularity-debt recurrence trigger; user-confirmed 2026-06-16 (Amend + surface /claim-synthesis). Candidate finer claim: committed-action diversity GAIN over an already-diverse proposer is separable from diversity GENERATION (source) and channel REACH (route-range), gated by F-dominance, requires within-shortlist arbitration. Testable (shortlist-then-modulate amend is its first falsifier) -> passes synthesis non-vacuity gate. NOT a demotion -- ARC-065 is coarse, not wrong."
+    }
+  ],
+  "claim_demotions": [],
+  "claims_unmoved": ["ARC-065"],
+  "lit_pull_commissions": [],
+  "cluster_pattern": {
+    "shape": "GAP-A channel->committed-action CONVERSION ceiling: non-vacuity preconditions hold (channel reaches the select tick with genuine range), discrimination criterion (committed-action diversity strict-above matched controls) fails; advances one link per amend",
+    "is_independent_bugs": false,
+    "structural_property": "the modulatory selection authority can REACH the committed-action argmax and SHIFT it, but cannot convert that reach into a committed-action diversity GAIN over an already-diverse proposer against an F-dominated primary (F = 88-89% of E3 score variance)",
+    "readings": ["substrate_iteration_one_residual_lever", "granularity_debt_finer_claim_needed"],
+    "adjudication_2026_06_16": "user routes BOTH (amend the residual shortlist-then-modulate lever + surface /claim-synthesis); the amend discriminates the two readings -- PASS = iteration closed, FAIL = granularity-debt confirmed"
+  }
+}
