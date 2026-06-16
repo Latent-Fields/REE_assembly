@@ -11,6 +11,48 @@ Overall V3 at snapshot time: **75.7% weighted, 23 nodes remaining** (52 done, 14
 
 ---
 
+## UPDATE -- overnight results 2026-06-15/16 (read this first)
+
+The four live experiments all landed. Net: **goal_pipeline GAP-2 + GAP-7 closed**; the three
+blocked clusters (GAP-A, GAP-B, GAP-C) each bottomed out at *substrate/readiness-not-ready ->
+/failure-autopsy (all three confirmed)*, not at a falsifier verdict -- and the autopsies revealed
+that **GAP-A now gates GAP-B as well**, so GAP-A is the single unblock for ~9 downstream nodes.
+
+- **goal_pipeline GAP-2 / GAP-7 -- CLOSED.** V3-EXQ-514o PASS/supports (object-bound wanting!=liking
+  dissociation, non_degenerate). MECH-229 -> provisional; 514p/514q queued toward the stable gate.
+- **GAP-A (684, conversion readiness) -- FAIL/non_contributory `substrate_not_ready_requeue`, autopsy confirmed.**
+  Route-range REACHES the E3 authority (0.187>0.01) and e2 divergence is present (0.060>0.03) -- both PASS.
+  The amend *partially works*: **ARM_STD_G2 (gain=2, std-basis) DID convert** (committed entropy
+  0.775 -> 0.989). The lone FAIL was the **matched-noise verify-control not lifting over the proposer
+  (0/3 seeds)** -- a readiness-GATE defect, not proof the amend fails. ARM_SHORTLIST
+  (shortlist-then-modulate, margin 0.25) converted 0/3. Route: fix the verify-control + lock the
+  converting gain=2 std-basis lever -> re-queue a 684 successor -> only then 569h. 569h stays blocked.
+- **GAP-B (654c, MECH-309/ARC-062 falsifier) -- FAIL/non_contributory, `substrate_ceiling`, autopsy confirmed.**
+  The 666c maintenance amend WORKED (retire-churn fixed, pool holds >=2 differentiated rules,
+  crf_max_pairwise_rule_dist 0.0->1.711) but **rule ACTIVATION collapsed to exactly 0.0** -- an inverted
+  signature. 666c's PASS measured `frac_MAINTAINED`, not `frac_ACTIVE` (maintained != active). Two coupled
+  faults: (1) **the GAP-A monostrategy collapse reached the CRF context key** (consumed-summary spread
+  0.0089 < 0.05) -> all differentiated rules co-match one collapsed context; (2) the gate theta
+  = 0.15 + 0.25*(n_matched-1) climbs above the 0.45 maintenance floor once >=3 rules co-match -> every
+  matched rule is gated out. Route: /implement-substrate amend `crf-availability-maintenance` for BOTH
+  faults + flip its `ready True->False` + add a `frac_ACTIVE` readiness gate; **654d re-queue is gated on
+  the GAP-A context de-collapse.** No claim demotion (claims never tested).
+- **GAP-C (603p, base-harm-landscape diagnostic) -- FAIL/non_contributory `substrate_not_ready_requeue`, autopsy confirmed.**
+  Positive control (easiest regime 0.10) cleared `harm_eval_range>=0.02` on only 1/3 seeds -> the
+  harm-pathway training / readiness metric is underpowered, **NOT a regime-difficulty verdict**. The
+  readout itself was non-vacuous (cross-arm spread 0.057). Route: /implement-substrate **amend
+  `scaffolded_sd054_onboarding` (harm-pathway leg)**; **603q is blocked on that fix landing**, not on a
+  parameter.
+
+**Revised choke picture:** GAP-A (conversion / context de-collapse) now gates sd_037_axis_b (P1b->P4),
+self_attribution (GAP-1/2/3), AND GAP-B (654d) -- ~9 downstream nodes. Its amend is *converging*
+(gain=2 std-basis converts), so the near-term work is (a) lock the converting lever + repair the
+verify-control (GAP-A), and independently (b) the GAP-C harm-pathway amend (isolated subsystem). The
+GAP-B amend is partly doable now (theta-coupling, frac_ACTIVE gate, ready->False) but its load-bearing
+fault #1 (context de-collapse) IS the GAP-A fix, so it is sequenced behind GAP-A.
+
+---
+
 ## The one-paragraph picture
 
 Two findings dominate. **(1) One choke point gates two whole paths.** Behavioural-diversity
