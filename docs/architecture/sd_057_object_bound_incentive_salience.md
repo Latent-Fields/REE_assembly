@@ -107,6 +107,23 @@ Both no-op-default, bit-identical OFF, no trained parameters (no phased training
   (0.0; DACCConfig). Biology: Balleine & O'Doherty 2010 (approach_commit should be
   goal-conditioned). MECH-094: waking action selection only.
 
+- **MECH-436 `drive.wanting_drive_state_modulation`** (drive-coupling leg, split
+  from MECH-229 on 2026-06-16 via `/claim-synthesis`). The finer claim that wanting
+  is not only dissociable from liking (MECH-229 leg a, established by V3-EXQ-514o)
+  but additionally **drive-state-modulated**: the most-wanted object tracks the
+  currently-most-depleted drive axis (incentive-salience amplitude
+  `~ base_value*(1+kappa*per_axis_drive)`, the L6 MECH-347 term) even when the
+  liking/consummatory target does not. `candidate`, `epistemic_category:
+  substrate_conditional` -- the V3 P2 foraging env produces near-flat per-axis drive
+  (spread ~0.006, far below the most_wanted argmax-moving regime), so the claim
+  depends on the planned-but-not-built SD-049-PHASE-2 differential-depletion /
+  kappa-scaling amend (+ a pre-registered V4-1 multi-agent-ecology dependency).
+  Owning falsifier: V3-EXQ-514r (overshoot flips most_wanted => env/magnitude
+  artifact, NOT a weakens; overshoot fails to flip => genuine weakens). Lit-grounded
+  by `targeted_review_connectome_mech_347` (Berridge 2006 / Smith 2011 /
+  DiFeliceantonio 2016 incentive salience). DO NOT build the substrate amend until
+  514r resolves.
+
 ## Architecture Context
 
 Sits between SD-012/MECH-306 (drive + sustained-drive trace -> benefit pulse, L0) and the existing E3 goal_proximity consumer (MECH-117/MECH-112 wanting term). Reuses the SD-049 per-type tag + per-axis drive and the SD-015 z_resource encoder unchanged. Closest existing per-item precedent is the SD-039 AnchorGoalPayload / MECH-292 ghost-goal bank (per-anchor z_goal snapshot), but that is an inactive-anchor retrospective store; the incentive token bank is a concurrent, drive-revaluable, per-OBJECT-TYPE store on the waking goal-seeding path.

@@ -17131,6 +17131,8 @@
   registered: "2026-04-13"
   pending_retest_after_substrate: true
   narrow_supports_flag: true
+  related_claims:
+    - MECH-436   # drive-coupling child split out 2026-06-16 (/claim-synthesis); MECH-229 retained as the narrowed umbrella for the established wanting!=liking dissociation (leg a), MECH-436 carries the drive-state-modulation leg (b), pending_retest_after_substrate, owning falsifier V3-EXQ-514r
   depends_on:
     - SD-005
     - SD-015
@@ -17154,6 +17156,18 @@
     Neurological basis: Barch & Dowd 2010 (wanting/liking in schizophrenia);
     Hollerman et al. 2000 (striatal goal representation). Full literature in MECH-112.
   evidence_quality_note: |
+    2026-06-16 (DECOMPOSITION, /claim-synthesis, failure_autopsy_V3-EXQ-514q CONFIRMED): MECH-229 split.
+    The 4-autopsy 514 lineage (514l/m/p/q, a distinct signature each) is granularity debt -- every genuine
+    MECH-229 support (514o object-bound fraction 0.80; 514q object_bound 0.70) lands on the wanting!=liking
+    object-bound dissociation (leg a), while every FAIL/churn circles a DRIVE-STATE-MODULATION leg the broad
+    claim never separately named. The drive-coupling leg (b) is now carried by the new child MECH-436
+    (candidate, substrate_conditional, pending_retest_after_substrate, owning falsifier V3-EXQ-514r;
+    lit-grounded by targeted_review_connectome_mech_347 incentive-salience pull). MECH-229 is RETAINED as the
+    narrowed umbrella for leg (a) -- status (provisional), epistemic_category (standard),
+    pending_retest_after_substrate (true) and narrow_supports_flag (true) all UNCHANGED this cycle (per the
+    confirmed autopsy section 8). The established (a) dissociation is NOT weakened by this split. Proposal:
+    evidence/planning/claim_synthesis_MECH-229_2026-06-16.md (user-approved per-child 2026-06-16, child tagged
+    substrate_conditional). See related_claims: MECH-436.
     2026-06-15 (governance, failure_autopsy_V3-EXQ-514p CONFIRMED -- SUPERSEDES the promotion-path
     prediction below): the confirmatory replication V3-EXQ-514p FAILed, and the per-claim weakens is
     reclassified non_contributory (measurement_test_design_defect) and scoring-excluded. The load-bearing
@@ -38664,6 +38678,61 @@
     z_goal via a cue). Biology: Berridge 2009 cue-triggered wanting; Corbit/Balleine
     2005/2011 specific PIT; Schultz 1997/98 DA-transfer-to-cue. Validation V3-EXQ-637.
   location: docs/architecture/sd_057_object_bound_incentive_salience.md
+
+- id: MECH-436
+  title: "Drive-state modulation of wanting (incentive salience): the homeostatic drive STATE modulates the wanting target and/or intensity dissociably from liking -- the most-wanted object tracks the currently-most-depleted drive axis (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive)) even when the liking/consummatory target does not. Split from MECH-229 2026-06-16: MECH-229 asserts wanting and liking are dissociable SIGNALS (the object-bound dissociation, established by V3-EXQ-514o); MECH-436 is the distinct, finer claim that wanting is additionally DRIVE-STATE-MODULATED -- the incentive-salience core the 514m/514p/514q lineage kept (in different broken ways) trying to express."
+  claim_type: mechanism_hypothesis
+  subject: drive.wanting_drive_state_modulation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  split_from: MECH-229
+  registered_utc: "2026-06-16"
+  pending_retest_after_substrate: true
+  depends_on:
+    - MECH-229   # parent umbrella: the wanting!=liking object-bound dissociation this modulation specializes
+    - SD-049     # multi-resource per-axis drive substrate -- the drive-state signal source
+    - MECH-347   # cue-recall wanting whose amplitude is base_value*(1+kappa*per_axis_drive) -- the drive-scaled implementation MECH-436 is the behavioural validation of
+    - MECH-346   # most-wanted z_object pointer (argmax over per-object wanting) -- the object-bound seed the drive term re-weights
+  what_would_answer: >
+    A drive-dependence delta mean(WL_drive - WL_nodrive) >= max(k*pstdev(delta), FLOOR),
+    measured where the in-run per-axis drive spread is in the argmax-moving regime (asserted
+    by a recalibrated readiness gate, NOT merely spread > 1e-3), with an overshoot positive
+    control that flips most_wanted and an OFF/bank-disabled control that floors at
+    wanting==liking. First falsifier ALREADY QUEUED: V3-EXQ-514r (overshoot + OFF + recalibrated
+    readiness). Overshoot flips most_wanted => drive CAN carve at adequate magnitude (the 514q
+    delta=0.0 is an env/magnitude artifact, substrate_conditional on SD-049-PHASE-2 differential
+    depletion, NOT a weakens); overshoot does NOT flip even at large drive => genuine MECH-436 weakens.
+  location: docs/architecture/sd_057_object_bound_incentive_salience.md
+  notes: >
+    Registered 2026-06-16 PROPOSAL-FIRST via /claim-synthesis (proposal:
+    evidence/planning/claim_synthesis_MECH-229_2026-06-16.md), at user direction, as the
+    drive-coupling child split out of MECH-229. Routed by failure_autopsy_V3-EXQ-514q_2026-06-16
+    (confirmed): the 4-autopsy 514 lineage (514l/m/p/q, distinct signatures each) is granularity
+    debt -- every genuine MECH-229 support (514o object-bound fraction 0.80; 514q object_bound 0.70)
+    lands on the wanting!=liking dissociation, while every FAIL/churn circles the drive-coupling
+    leg the broad claim never separately named. 514q isolated the blocker: in-run per-axis drive
+    spread ~0.0055-0.0085 is far below the magnitude that could flip an object-score-dominated
+    most_wanted argmax, so the drive-dependence delta is structurally 0.0 on the V3 P2 foraging env.
+    epistemic_category substrate_conditional (user-adjudicated 2026-06-16): the claim is testable in
+    principle but depends on an UPSTREAM substrate that is planned-but-not-built -- the
+    SD-049-PHASE-2 differential-depletion / kappa-scaling env amend (priority 2, NOT yet built;
+    contingent on V3-EXQ-514r resolving to the overshoot-flips branch) and the pre-registered V4-1
+    multi-agent-ecology dependency that generates differential per-axis depletion pressure.
+    promote/demote suppressed; conflict alerts fire; narrow_open_question does not. The right
+    response is to wait for / build the upstream substrate, NOT more experiments on the current env.
+    Biology-before-formal-definitions grounding (targeted_review_connectome_mech_347, pulled
+    2026-06-16): Berridge 2006 -- incentive salience integrates Pavlovian cue info WITH physiological
+    state signals; explicitly flags REE's fixed-gain cue_pull as a magnitude/state-modulation
+    simplification (the MECH-436 gap). Smith/Berridge/Aldridge 2011 (PNAS) -- dopamine stimulation
+    amplified ONLY the incentive-salience component, dissociable from liking and learned prediction.
+    DiFeliceantonio/Berridge 2016 -- limbic activation dynamically + competitively amplifies cue
+    attraction (one cue a stronger motivational magnet). Not a formal import: incentive salience IS
+    drive/state-modulated cue attraction. DOES NOT weaken MECH-229's established wanting!=liking
+    dissociation (leg a). Owning falsifier V3-EXQ-514r (queued 2026-06-16). DO NOT build the
+    SD-049-PHASE-2 substrate amend until 514r resolves.
 
 - id: MECH-348
   title: "dACC object-discriminative goal readout (L7): the dACC adaptive-control consumer reads per-candidate goal_proximity to the (SD-057 object-bound) z_goal, so its effort/value computation becomes object-discriminative -- approach_commit is goal-conditioned rather than z_goal-blind. Resolves the 2026-06-04 L7 audit finding that only E3 goal_proximity read z_goal consequentially and dACC was blind."
