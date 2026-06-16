@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-16T19:50:40Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
+      "queue_id": "V3-EXQ-654d",
+      "supersedes": "V3-EXQ-654c",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "substrate_exercised": "ARC-063",
+      "failed_criterion": "readiness",
+      "failed_precondition": "C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active 0.0 < 0.30)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C2 never fairly tested; C1c gated it out for the 5th time",
+        "biological_reference": "clear; sharpened missing-dependency signature: a maintained, differentiated rule set must be SELECTABLE under match-crowding -- the conflict gate suppresses all matched rules instead of electing one",
+        "prerequisites": "present at the GAP-A E3 locus (ARM_STD_G2 de-collapsed it on 2/3 seeds), MISSING at the CRF locus (context_tag separation + gate calibration unaddressed)",
+        "implementation": "partial -- pool mints + differentiates + matches 7-8/tick (real progress); the activation gate locks the matched pool out",
+        "environment": "adequate -- SD-054 bipartite reef/forage falsifier env intended",
+        "measurement": "adequate now -- 654d added crf_mean_n_matched, the discriminator 654c lacked; matched-but-gated-out is now measured not inferred",
+        "integration": "partially coupled -- field->lateral_pfc->E3 wired; field matures + matches but output gated out before committed action (prop_counterfactual_delta 0.0)",
+        "scale": "adequate -- not a budget problem; activation is a gate calibration failure"
+      },
+      "biological_reference": {
+        "closest_mechanism": "non-Bayesian PFC/BG task-set rule-creator with a conflict-graded hold-your-horses availability threshold (Bongard&Nieder 2010; Miller&Cohen 2001; Frank 2006; Cavanagh 2011; Collins&Frank 2014)",
+        "dependencies": ["separable context representation for distinct rules to key to distinct contexts", "availability/conflict gate calibrated so a maintained differentiated rule set can WIN selection rather than mutually crowding out"],
+        "is_formal_import": false,
+        "divergence": "the REE conflict gate theta grows linearly with n_matched while maintenance holds availability at a fixed floor, so under many co-matching rules the gate suppresses ALL instead of electing one -- a calibration gap, not a falsification",
+        "lit_status": "present (faithful translation; no lit-pull commission warranted)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654d (arc_062 GAP-B behavioural falsifier, MECH-309/ARC-062; implementation under test = ARC-063 CandidateRuleField) FAILed C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active = 0.0 < 0.30) for the 5th consecutive iteration. 654d ARMED the GAP-A de-collapse lever ARM_STD_G2 (modulatory selection authority, std basis, gain 2.0, channel routing) on both arms AND recorded the discriminator (crf_mean_n_matched). Result (failure_autopsy_V3-EXQ-654d_2026-06-16): the GAP-A conversion de-collapse is the WRONG LEVER for this gate -- it de-collapses the E3 selection channel (consumed_summary spread cleared the 0.05 floor on 2/3 seeds) but NOT the CRF rule-match context key. The CRF matched 7-8 rules per tick (crf_mean_n_matched 7.08/7.29/8.70, HIGHER than 654c's >=3) and gated EVERY one out: gate_and_select theta = 0.15 + 0.25*(n_matched-1) ~= 1.65 >> maintenance_floor 0.45. mean_prop_counterfactual_delta = 0.0 confirms the gated-out rule_state never reaches committed action. The two CRF-locus faults the 654c autopsy named (context-key crowding + maintenance/conflict-gate calibration) remain un-amended (substrate bit-identical to 654c); 654d proves they are INDEPENDENT of the GAP-A selection conversion. non_contributory (C1 gated scoring; no claim weight). Route: implement-substrate amend crf-availability-maintenance at the CRF locus, UNGATED from GAP-A -- couple maintained availability to theta(n_matched) (fault 2, pure gate calibration), de-collapse the CRF mint/match context key (fault 1, distinct from the E3 channel), keep the frac_ACTIVE readiness gate; re-queue 654e on that gate, NOT on GAP-A. pending_retest_after_substrate. NO demotion -- the claims were never tested. Substrate-maturation recurrence, not claim-granularity debt (user-adjudicated 2026-06-15, re-confirmed 2026-06-16).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "crf-availability-maintenance",
+        "title": "CRF availability maintenance: a maintained differentiated rule must WIN selection under match-crowding (fault-2 gate calibration, ungated from GAP-A)",
+        "implementation_hint": "Couple maintained availability to the per-tick theta(n_matched) (maintain at max(maintenance_floor, theta(n_matched)+eps)) and/or cap n_competing in theta and/or sharpen context_match_threshold so fewer rules spuriously co-match (fault 2 -- a pure CRF gate calibration, independent of GAP-A). Separately de-collapse the CRF mint/match context KEY so the minted rules' context_tags are separable (fault 1 at the CRF locus -- NOT the ARM_STD_G2/E3 selection channel, which 654d proved does not reach the CRF match context). Keep the crf_frac_active>=0.30 readiness gate before any GAP-B falsifier scores.",
+        "unblocks_claims": ["MECH-309", "ARC-062", "ARC-063"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
+          "experiment_type": "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "crf_frac_active = 0.0 (all 3 ARM_ON seeds) despite crf_mean_n_matched 7.08/7.29/8.70 and crf_max_pairwise_rule_dist 1.711 -- 16 differentiated rules match 7-8/tick and all gate out; theta(7)=1.65 >> maintenance_floor 0.45. GAP-A lever ARM_STD_G2 armed (E3 consumed_summary spread cleared floor 2/3 seeds) did NOT reduce CRF n_matched.",
+          "target": "crf_frac_active >= 0.30 (gate FIRING) on a majority of ARM_ON seeds, with crf_n_matched distribution recorded, before the GAP-B falsifier is scored"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "no_demotion": true,
+      "claims_never_tested": true,
+      "learning_extracted": [
+        "The GAP-A conversion de-collapse (ARM_STD_G2 at E3.select) and the CRF context-key collapse (gate_and_select match context) are two DISTINCT loci; the 654c 'gate 654d behind GAP-A' decision conflated them. 654d's controlled test (GAP-A armed, gate still locked, n_matched HIGHER) is the disambiguation.",
+        "maintained != active, now MEASURED: crf_mean_n_matched 7-8 + crf_frac_active 0.0; theta(7)=1.65 >> maintenance_floor 0.45; the conflict gate suppresses the whole maintained pool rather than electing a winner.",
+        "Fault 2 (maintenance vs theta(n_matched)) is a pure CRF gate calibration, fully independent of GAP-A -- it can be amended and validated without any GAP-A dependency.",
+        "The 666c churn fix continues to hold (max_pairwise_dist 1.711, stable 16-rule minting all seeds); remaining work is the conflict gate + CRF context-key separation, not pool maturation."
+      ],
+      "routing": "implement-substrate",
+      "routing_detail": "amend crf-availability-maintenance at the CRF locus (fault-2 maintenance-vs-theta gate + fault-1 CRF context-key separation + frac_ACTIVE readiness gate); re-queue 654e on the CRF frac_active gate, UNGATED from GAP-A; NO claim demotion",
+      "recurrence_read": {
+        "autopsy_count_on_target": 5,
+        "lineage": ["V3-EXQ-654", "V3-EXQ-654a", "V3-EXQ-654b", "V3-EXQ-654c", "V3-EXQ-654d"],
+        "verdict": "substrate-maturation recurrence, NOT claim-granularity debt",
+        "user_adjudicated": "2026-06-15, re-confirmed 2026-06-16",
+        "claim_synthesis_warranted": false,
+        "rationale": "claims never tested (C1 gated every run); blocker marches one well-localised stage downstream each iteration (cold-start washout -> retire-churn -> activation-gate-under-collapse -> now activation-gate calibration isolated and MEASURED, independent of GAP-A); single localized failure signature, not structurally-different falsifications; 654d strengthens the read by obtaining the crf_mean_n_matched discriminator"
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
