@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-16T23:13:14Z",
+  "last_tick_utc": "2026-06-16T23:43:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-514r",
   "current_exq_started_utc": "2026-06-16T19:53:55.581452+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-229",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
-    "runs_done": 2,
+    "run_label": "Seed 45 / CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
+    "runs_done": 3,
     "runs_total": 6,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 35.2
+    "overall_pct": 50.0
   },
-  "seconds_elapsed": 11959,
-  "seconds_remaining": 21248,
+  "seconds_elapsed": 13766,
+  "seconds_remaining": 13035,
   "recent_lines": [
     "[v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
@@ -40,7 +40,14 @@
     "verdict: PASS seed=43 guard_pass=True (contact_rate=0.1929 z_goal_at_contact=0.4082)",
     "Seed 44 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR",
     "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.3782 formed=False",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.923 gate=pass"
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.923 gate=pass",
+    "[train] p0_guided seed=44 ep 130/265 mean_len=200.0 rv=0.00010",
+    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=44 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=44 ep 235/265 contact_rate=0.2744 contact_events=126 z_goal_at_contact=0.3966",
+    "[train] disambig_eval seed=44 ep 265/265 wl_drive=0.600 wl_nodrive=0.600 delta=0.000 overshoot_flip=0.800 overshoot_flips_seed=True wl_off=0.000 scored=10 distinct_tokens=3",
+    "verdict: FAIL seed=44 guard_pass=False (contact_rate=0.2744 z_goal_at_contact=0.3966)",
+    "Seed 45 Condition CURRICULUM_BUILT_SD049_PHASE2_DRIVE_COUPLING_DISAMBIGUATOR"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
