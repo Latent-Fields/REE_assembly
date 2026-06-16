@@ -1,0 +1,90 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier",
+  "run_id": "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier_20260616T224009Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-16T22:40:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-065"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-065": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "r1b_diversity_reaches_committed_action",
+    "preconditions": [
+      {
+        "name": "arm1_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 (e2_world_forward source) IN-ARM RAW cross-candidate RANGE of the modulatory bias ROUTED into the E3 selection authority (modulatory_channel_route_range, the V3-EXQ-662 statistic, read LIVE at the select tick) clears the floor: the channel range REACHES the bias the top-k shortlist arbitrates. SAME range statistic the route-range substrate gates on. Below floor => routing not wired / e2 under-trained => substrate_not_ready_requeue, never a weakens.",
+        "control": "ARM_1: use_modulatory_channel_routing + source=cand_world_summary + top-k shortlist (k=3); candidate_summary_source=e2_world_forward (genuinely action-divergent routed channel)",
+        "measured": 0.267175,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "arm1_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- confirms SD-056 trained the action-conditional divergence the routed channel re-sources. RANGE statistic. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_1: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.081784,
+        "threshold": 0.03,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_arm1_e2_world_forward_divergent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_R1B_selected_entropy_strict_above_matched_noise_and_proposer",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C_R1B": true
+    },
+    "routing": {
+      "r1b_diversity_reaches_committed_action": "PASS -> R1.b cleared; GAP-A theory-1 (ARC-065) confirmed as a real diversity contributor that reaches committed action on the top-k conversion substrate",
+      "substrate_not_ready_requeue": "re-queue at higher P0 budget (or check route-range wiring / SD-056 training); do NOT weaken ARC-065",
+      "conversion_ceiling_persists_despite_routing": "OFF-RAMP -> deeper /implement-substrate or /claim-synthesis: even the TOP-K shortlist (the architectural change) does NOT move committed behaviour; substrate enrichment, NOT a falsification of ARC-065"
+    }
+  }
+}
