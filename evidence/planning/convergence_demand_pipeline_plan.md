@@ -1,7 +1,8 @@
 # Convergence Demand Pipeline -- closure-driven external-inspiration intake
 
-Status: PROPOSED (plan of record)
+Status: ACTIVE (plan of record)
 Created: 2026-06-17T15:11:59Z
+Activated: 2026-06-17T17:24:56Z (First Action #1 landed)
 Owner workstream: REE_convergence -> REE_assembly handoff
 Generation: meta/process (NOT a v3 closure node -- intentionally carries no
 `closure_plan` frontmatter so it does not enter the closure progress denominator)
@@ -122,8 +123,19 @@ Small and continuous beats another big survey.
 
 ## 8. First actions (chips)
 
-1. Build `convergence_demand_queue.v1.json` from Section 4 + add the "Sense" step
-   to the governance cadence.
+1. [DONE 2026-06-17] Build `convergence_demand_queue.v1.json` from Section 4 + add
+   the "Sense" step to the governance cadence.
+   - Queue file: `evidence/planning/convergence_demand_queue.v1.json`
+     (schema `convergence_demand_queue/v1`; 5 rows CDQ-001..CDQ-005 mirroring the
+     Section-4 table; append-only; every row carries `generation` +
+     `blocks_v3_critical_path: false` for V3 primacy).
+   - Sense hook: `/governance` **Step 6b** ("Convergence demand-queue Sense pass",
+     non-interactive, read-only over `closure_status.md` + `closure_drift.md`),
+     mirrored to both `.claude/skills/governance/SKILL.md` and
+     `.agents/skills/governance/SKILL.md`. Runs each governance cycle right after the
+     closure-drift reconcile (Step 5b) and appends a CDQ row for any node newly
+     verdicted mechanism-unclear / `substrate_ceiling`. Chosen as the lightest durable
+     hook (no new standing automation; piggybacks the existing governance cadence).
 2. Execute the HIGH-priority row (DreamCoder + DreamerV3 codebook) -- already
    spawned as chip task_88e97a80.
 3. Re-activate the handoff pipeline with that first targeted packet (validates

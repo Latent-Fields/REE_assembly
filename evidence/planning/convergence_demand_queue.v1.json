@@ -1,0 +1,158 @@
+{
+  "schema_version": "convergence_demand_queue/v1",
+  "title": "Convergence Demand Queue",
+  "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
+  "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
+  "last_updated_utc": "2026-06-17T17:24:56Z",
+  "append_only": true,
+  "invariants": {
+    "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
+    "v3_primacy": "A row whose external mechanism maps onto a V4/V5-leaning substrate is tagged generation: v4_leaning|v5_leaning and MUST NOT place a build dependency on the v3 critical path (blocks_v3_critical_path stays false on every row). The pipeline surfaces ideas; it does not reprioritise v3.",
+    "biology_before_formal_definitions": "Where an external mechanism instantiates a formal concept REE will own as an SD/MECH, commission a biology /lit-pull before registering."
+  },
+  "intake_state_legend": {
+    "NEW": "no intake exists in REE_convergence yet",
+    "PARTIAL": "an intake exists at the named sources/<name>/ path; extend it along the stated angle",
+    "COMPLETED": "intake done; pull the adapter through to a registered claim",
+    "IN_FLIGHT": "a row currently being executed by a chip/session (see in_flight pointer)"
+  },
+  "generation_legend": {
+    "v3": "mechanism maps onto existing V3 substrate / V3 claims; on the V3 work surface",
+    "v4_leaning": "registers candidate claims tagged generation:v4 (preparatory only; off the v3 critical path)",
+    "v5_leaning": "registers candidate claims tagged generation:v5 (preparatory only; off the v3 critical path)"
+  },
+  "rows": [
+    {
+      "row_id": "CDQ-001",
+      "target_nodes": [
+        "arc_062_rule_apprehension:GAP-B",
+        "arc_062_rule_apprehension:GAP-K",
+        "behavioral_diversity_isolation:GAP-B"
+      ],
+      "mechanism_gap": "Minted rules must stay mutually distinguishable to remain selectable (CRF conflict-gate lockout: theta=0.15+0.25*(n_matched-1) gates out 7-8 co-matching rules)",
+      "external_sources": [
+        {
+          "name": "DreamCoder",
+          "angle": "wake-sleep library abstraction; minted programs stay distinguishable to be selectable",
+          "intake_state": "NEW",
+          "path": "REE_convergence/sources/dreamcoder/"
+        },
+        {
+          "name": "DreamerV3 discrete latent codebook",
+          "angle": "categorical keys separable by construction",
+          "intake_state": "PARTIAL",
+          "path": "REE_convergence/sources/dreamer-v3/"
+        }
+      ],
+      "intake_state": "IN_FLIGHT",
+      "priority": "HIGH",
+      "generation": "v4_leaning",
+      "blocks_v3_critical_path": false,
+      "in_flight": "chip task_88e97a80 / session convergence-rule-distinguishability-intake-20260617T1500Z",
+      "registered_candidate_claims": ["MECH-437", "MECH-438"],
+      "last_known_state_note": "Intake executed this session: DreamCoder intake created (sources/dreamcoder/) + DreamerV3 codebook angle extended (sources/dreamer-v3/); promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617 submitted (re-activated the handoff pipeline, stale since 2026-02-24); MECH-437 (maintenance-side consolidation/refactor) + MECH-438 (construction-side separable-key codebook) registered candidate/substrate_conditional/generation:v4, wired into the arc_062 cluster depends_on (landed REE_assembly master dcca2cb). Sense step should treat CDQ-001 as satisfied unless a new mechanism gap surfaces."
+    },
+    {
+      "row_id": "CDQ-002",
+      "target_nodes": [
+        "behavioral_diversity_isolation:GAP-C",
+        "arc_062_rule_apprehension:GAP-H"
+      ],
+      "mechanism_gap": "Tonic, state-conditioned exploration noise floor (MECH-313 LC-NE analog) -- distinct from a fixed epsilon schedule",
+      "external_sources": [
+        {
+          "name": "NoisyNet",
+          "angle": "learned per-parameter, self-annealing, state-dependent noise",
+          "intake_state": "NEW",
+          "path": null
+        },
+        {
+          "name": "RND / Plan2Explore",
+          "angle": "model-disagreement curiosity = MECH-314 (secondary)",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "MED",
+      "generation": "v3",
+      "generation_basis": "Maps onto existing V3 claims MECH-313 (LC-NE noise floor) / MECH-314 (model-disagreement curiosity); target nodes are V3 closure nodes.",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": null
+    },
+    {
+      "row_id": "CDQ-003",
+      "target_nodes": [
+        "behavioral_diversity_isolation:GAP-B"
+      ],
+      "mechanism_gap": "Diversity must be maintained in a structure that survives the selection/commit step (conversion-to-committed-action)",
+      "external_sources": [
+        {
+          "name": "Quality-Diversity / MAP-Elites",
+          "angle": "Cully et al. 2015: explicit behavioral-descriptor archive surviving selection -- structurally the top-k shortlist fix already validated by V3-EXQ-569i",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "MED",
+      "generation": "v3",
+      "generation_basis": "Structurally the top-k shortlist fix already validated by V3-EXQ-569i (a V3 experiment); behavioral_diversity_isolation:GAP-B is a V3 closure node.",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": null
+    },
+    {
+      "row_id": "CDQ-004",
+      "target_nodes": [
+        "sd_037_axis_b:P1b",
+        "sd_037_axis_b:P2",
+        "sd_037_axis_b:P3",
+        "sd_037_axis_b:P4"
+      ],
+      "mechanism_gap": "Automatic curriculum that keeps a target signal (z_harm_a sustained-threat window) in a learnable band",
+      "external_sources": [
+        {
+          "name": "PLR / Prioritized Level Replay + POET",
+          "angle": "affective framing: active-avoidance / anxiety-as-pessimistic-prior RL",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "LOW",
+      "generation": "v3",
+      "generation_basis": "sd_037_axis_b is a V3 closure plan; P1b is in flight via V3-EXQ-625d.",
+      "blocks_v3_critical_path": false,
+      "in_flight": "P1b in flight via V3-EXQ-625d (separate; not this pipeline)",
+      "registered_candidate_claims": [],
+      "last_known_state_note": "Per Section 4: intake feeds the axis-(c) escalation only if V3-EXQ-625d exhausts the env-kwarg surface. Do not mine until 625d resolves."
+    },
+    {
+      "row_id": "CDQ-005",
+      "target_nodes": [
+        "arc_062_rule_apprehension:GAP-K"
+      ],
+      "mechanism_gap": "Gating which replayed/imagined transitions may write to the rule layer (replay write-gating)",
+      "external_sources": [
+        {
+          "name": "MuZero / EfficientZero reanalyze",
+          "angle": "reanalyze + hippocampal SWR prioritized replay",
+          "intake_state": "COMPLETED",
+          "path": "REE_convergence/sources/muzero/"
+        }
+      ],
+      "intake_state": "COMPLETED",
+      "priority": "LOW",
+      "generation": "v3",
+      "generation_basis": "arc_062_rule_apprehension:GAP-K is a V3 closure node; replay write-gating to the rule layer is V3 substrate.",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": "MuZero intake COMPLETED (sources/muzero/). Outstanding work is the Register step: pull the adapter through to a registered candidate claim wired into arc_062_rule_apprehension:GAP-K depends_on."
+    }
+  ]
+}
