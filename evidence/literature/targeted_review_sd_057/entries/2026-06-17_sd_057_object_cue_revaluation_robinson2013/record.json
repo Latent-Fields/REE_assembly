@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_057",
+  "entry_id": "2026-06-17_sd_057_object_cue_revaluation_robinson2013",
+  "timestamp_utc": "2026-06-17T09:05:34Z",
+  "claim_ids_tested": ["SD-057"],
+  "source": {
+    "title": "Instant transformation of learned repulsion into motivational \"wanting\".",
+    "authors": ["Mike J F Robinson", "Kent C Berridge"],
+    "year": 2013,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2013.01.016",
+    "url": "https://doi.org/10.1016/j.cub.2013.01.016"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Behavioural + Fos demonstration that incentive salience attaches to a SPECIFIC, discrete object-cue (a particular inserted lever) and is REVALUABLE on the fly -- a previously-repulsive object becomes an avidly-approached motivational magnet at first re-encounter in a new state. This grounds two of SD-057's pillars: object-specific binding of incentive value, and the revaluability of the per-object token (MECH-345). Discounted because the revaluation here is driven by physiological state, so it partly overlaps MECH-436's territory rather than isolating the object-binding architecture cleanly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The object-specific incentive transformation was driven by a physiological state change (sodium depletion); the paper does not isolate object-binding from drive-state modulation, so it cannot by itself distinguish SD-057's per-object token from MECH-436's drive gain acting on a single value.",
+    "Behaviour was directed at one discrete lever-cue; the competitive selection of a most-wanted object AMONG several simultaneously-represented object tokens (SD-057's argmax-seed step) is not tested."
+  ],
+  "tags": ["sd_057", "incentive_salience", "object_binding", "revaluation", "motivational_magnet", "berridge", "wanting"],
+  "mapping": {
+    "source_claim_statement": "A discrete Pavlovian cue (a briefly-inserted metal lever) that had always predicted an unpleasant intense-salt taste, and toward which rats had learned active repulsion, was instantly transformed into an attractive motivational magnet -- approached, jumped on, and gnawed -- the first time it was re-encountered in a novel sodium-depletion state, with elevated Fos in VTA, nucleus accumbens, ventral pallidum and orbitofrontal cortex; desire is recomputed at re-encounter by integrating Pavlovian information with current physiological state, not read off a cached learned value.",
+    "ree_translation": "SD-057's per-object incentive layer (MECH-345) posits a per-object slow-decay REVALUABLE incentive token whose wanting amplitude is recomputed at recall. Robinson & Berridge show incentive value is bound to a SPECIFIC discrete object and can be revalued -- even sign-reversed -- without re-learning, which is exactly the revaluable, object-bound token SD-057 maintains rather than a single overwritten attractor conflating liking and wanting.",
+    "mapping_caveat": "The revaluation is driven by physiological (salt-depletion) state, so the demonstration entangles object-binding (SD-057) with drive-state modulation (MECH-436); it supports that incentive value is object-specific and revaluable but does not separate those two mechanisms. Also a single-object behavioural test -- the cross-object competition that SD-057's most-wanted argmax requires is untested.",
+    "source_context": "Rat behaviour (autoshaping/approach to an inserted lever-CS predicting Dead-Sea-salt taste) plus Fos immunohistochemistry of mesocorticolimbic activation; induced sodium-depletion vs normal state."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Solid behavioural + Fos study. Mapping discounted because object-binding and drive-state revaluation are entangled here, and cross-object competition is not tested."
+  }
+}

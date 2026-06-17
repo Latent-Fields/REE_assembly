@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_057",
+  "entry_id": "2026-06-17_sd_057_sign_tracking_incentive_attribution_flagel2011",
+  "timestamp_utc": "2026-06-17T09:05:34Z",
+  "claim_ids_tested": ["SD-057"],
+  "source": {
+    "title": "A selective role for dopamine in stimulus-reward learning.",
+    "authors": ["Shelly B Flagel", "Jeremy J Clark", "Terry E Robinson", "Leah Mayo", "Alayna Czuj", "Ingo Willuhn", "Christina A Akers", "Sarah M Clinton", "Paul E M Phillips", "Huda Akil"],
+    "year": 2011,
+    "venue": "Nature",
+    "doi": "10.1038/nature09588",
+    "url": "https://doi.org/10.1038/nature09588"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Causal (dopamine-antagonist + fast-scan voltammetry) demonstration that incentive salience is a SEPARATE quantity from predictive value, and that it can be attributed to a discrete object-cue (the lever) versus the reward LOCATION (the food cup) -- the sign-tracker/goal-tracker split. This is the strongest available biological grounding for SD-057's central architectural move: separate goal-object (what) from goal-location (where) and bind a revaluable incentive quantity to the object identity. High source quality; mapping is conceptually strong but indirect (the paper studies individual-differences phenotypes, not an explicit per-object incentive layer).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Whether incentive salience attaches to the object-cue (sign-tracking) or the goal-location (goal-tracking) is an individual-differences phenotype in this work, not a within-agent per-object layer -- so the paper supports the SEPARABILITY of object-incentive from location-prediction but does not by itself license a single architecture that maintains a per-object incentive token for every object.",
+    "Incentive-salience attribution here required dopamine-dependent learning over training; an REE per-object token that is seeded or revalued without a corresponding learning signal would diverge from this mechanism."
+  ],
+  "tags": ["sd_057", "incentive_salience", "sign_tracking", "object_binding", "goal_object_vs_location", "dopamine", "wanting"],
+  "mapping": {
+    "source_claim_statement": "A reward-predicting cue can acquire two dissociable properties -- predictive value and incentive (motivational) value; dopamine is selectively required for the latter. In sign-trackers, incentive salience is attributed to the discrete lever-cue itself, which becomes an attractive 'motivational magnet' that is approached and engaged; in goal-trackers the same cue predicts reward but the animal instead approaches the food-delivery location.",
+    "ree_translation": "SD-057 inserts a per-object incentive layer that binds a revaluable incentive token to a specific object IDENTITY (the SD-049 per-type tag) and separates goal-object (what) from goal-location (where), replacing the single z_goal attractor that conflated them. Flagel et al. give the biological warrant: incentive salience is a distinct, separately-controlled quantity that the brain attaches to a specific object-cue, and that attachment is dissociable from where the reward is delivered -- exactly the what/where separation SD-057 builds.",
+    "mapping_caveat": "The object-vs-location dissociation in this paper is realised as a between-individual phenotype (sign- vs goal-trackers), not as an explicit within-agent per-object incentive store; it grounds the SEPARABILITY and object-binding of incentive salience but is silent on maintaining one revaluable token per object. Rat autoshaping with a single lever-cue and food reward -> REE multi-object foraging.",
+    "source_context": "Rat Pavlovian autoshaping (lever-CS -> food-US); flupenthixol dopamine blockade; fast-scan cyclic voltammetry of accumbens dopamine; sign-tracker vs goal-tracker phenotypes."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Causal + recording evidence in Nature, very high quality. Mapping discounted because the what/where separation is a phenotype contrast, not an explicit per-object layer; the architectural per-object token is REE's construct."
+  }
+}

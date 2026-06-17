@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_436",
+  "entry_id": "2026-06-17_mech_436_incentive_salience_state_model_zhang2009",
+  "timestamp_utc": "2026-06-17T09:05:34Z",
+  "claim_ids_tested": ["MECH-436"],
+  "source": {
+    "title": "A neural computational model of incentive salience.",
+    "authors": ["Jun Zhang", "Kent C Berridge", "Amy J Tindell", "Kyle S Smith", "J Wayne Aldridge"],
+    "year": 2009,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1000437",
+    "url": "https://doi.org/10.1371/journal.pcbi.1000437"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "An explicit computational model whose functional form is near-identical to MECH-436: a cached, previously-learned incentive value modulated multiplicatively on-the-fly by a physiological-state gain factor (kappa-like), so that cue-triggered 'wanting' rises with the relevant appetite even without re-learning. Mapping fidelity is unusually high for an architectural/mechanism claim, which is weighted heavily; source is a foundational, well-cited model paper, knocked slightly because it is a model validated against existing electrophysiology rather than a fresh empirical test, and the transfer from rat mesolimbic Pavlovian cues to REE's coarse per-axis drive vector carries moderate risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The state-modulation is multiplicative on a cached learned value, not additive: if REE's per-object incentive token has near-zero learned base_value the drive term cannot move the argmax (matches the V3-EXQ-514q in-run finding that a tiny per-axis drive spread cannot flip an object-score-dominated most_wanted).",
+    "Dynamic enhancement in the model is cue-SPECIFIC (raises salience of the appropriate CS without changing others); a REE implementation that applies a single scalar drive gain across all candidate objects would not reproduce the modelled selectivity."
+  ],
+  "tags": ["mech_436", "incentive_salience", "wanting_liking_dissociation", "physiological_state", "berridge", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Cue-triggered incentive salience ('wanting') cannot be captured by cached predictive value (temporal-difference) alone; it is recomputed at cue re-encounter by integrating prior learning with the current physiological state, so a model must modulate previously-learned values by appetite/addiction states to reproduce real-time fluctuations in wanting.",
+    "ree_translation": "MECH-436's incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive) is exactly this construction: the SD-057 per-object incentive token supplies the cached base_value, and the homeostatic per-axis drive supplies the state factor that scales it at recall, so the most-wanted object tracks the currently-most-depleted axis dissociably from the liking/consummatory target.",
+    "mapping_caveat": "The model's state factor acts on a learned cached value of a Pavlovian cue in rat mesolimbic circuitry; REE's per-axis homeostatic drive is a coarser engineered scalar and its 'objects' are foraging resources, not conditioned cues. The model demonstrates the FORM is sufficient to produce drive-modulated wanting in principle, but says nothing about whether the V3 P2 foraging env delivers an argmax-relevant drive spread -- precisely the substrate-ceiling gap MECH-436 carries.",
+    "source_context": "Computational model fit to rat behavioural and ventral-pallidum/mesolimbic electrophysiology across natural salt appetite and drug-induced sensitization states."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.30,
+    "notes": "Mapping_fidelity weighted heavily because the claim is a mechanism/form claim and the paper supplies almost exactly that form. Transfer_risk moderate: rat appetite axis -> REE per-axis drive vector."
+  }
+}

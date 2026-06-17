@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_436",
+  "entry_id": "2026-06-17_mech_436_wanting_never_liked_tindell2009",
+  "timestamp_utc": "2026-06-17T09:05:34Z",
+  "claim_ids_tested": ["MECH-436"],
+  "source": {
+    "title": "Dynamic computation of incentive salience: \"wanting\" what was never \"liked\".",
+    "authors": ["Amy J Tindell", "Kyle S Smith", "Kent C Berridge", "J Wayne Aldridge"],
+    "year": 2009,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2499-09.2009",
+    "url": "https://doi.org/10.1523/JNEUROSCI.2499-09.2009"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical demonstration of the exact dissociation MECH-436 names: ventral-pallidum firing to a salt-predicting cue is recomputed upward the instant the animal enters a salt-depletion state, before the salt has ever been tasted as 'liked' -- wanting is modulated by drive state independently of, and even opposite to, the liking history. Rigorous single-unit work in a high-quality venue; discounted for single-axis (sodium) scope and the rat-VP-to-REE transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The drive-state amplification was selective to the salt cue and immediate (first re-encounter, in extinction, before tasting) -- a REE mechanism that requires re-learning, or that spreads gain non-selectively, would not match.",
+    "The effect was demonstrated for a single, strong appetite (sodium depletion driving a large value swing); it does not establish that small or graded multi-axis drive differences produce a measurable wanting shift, which is the regime where V3-EXQ-514q found the effect collapsing."
+  ],
+  "tags": ["mech_436", "incentive_salience", "wanting_liking_dissociation", "ventral_pallidum", "salt_appetite", "electrophysiology"],
+  "mapping": {
+    "source_claim_statement": "Ventral pallidum neurons fire only weakly to a cue predicting a previously-disliked intense-salt taste, but fire vigorously to that same cue the first time it is encountered in a novel salt-depletion state -- before the salt is re-tasted and without new learning -- showing that cue-triggered 'wanting' is recomputed in real time by integrating prior Pavlovian associations with the current physiological appetite.",
+    "ree_translation": "This is the empirical instance of MECH-436's distinct claim: the homeostatic drive STATE modulates the wanting target/intensity dissociably from liking. The salt cue's 'liking' history is flat-or-negative, yet its wanting amplitude rises with the depletion-axis drive -- exactly 'the most-wanted object tracks the currently-most-depleted drive axis even when the liking/consummatory target does not.'",
+    "mapping_caveat": "Single-unit rat ventral-pallidum data for one appetite (sodium). REE's per-object incentive token and per-axis drive are engineered constructs; the paper shows the dissociation EXISTS in biology with a large drive swing, not that a graded, multi-axis, small-spread drive (the V3 regime) suffices to re-rank candidate objects.",
+    "source_context": "In-vivo single-unit recording in ventral pallidum of Sprague-Dawley rats; Pavlovian salt-cue under induced sodium-depletion vs normal state; cue-only extinction trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Strong empirical anchor for the drive-state-vs-liking dissociation; mapping is faithful but the magnitude/graded-spread question (the substrate-ceiling) is out of scope."
+  }
+}
