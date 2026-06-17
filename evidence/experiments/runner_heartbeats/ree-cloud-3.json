@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-17T12:26:54Z",
+  "last_tick_utc": "2026-06-17T12:57:04Z",
   "state": "running",
   "current_exq": "V3-EXQ-625d",
   "current_exq_started_utc": "2026-06-17T08:20:44.702738+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / SCAFFOLD_TRAINED_JOINT_COMPOSITE_569i_CONVERSION_AXIS_B_OVERLAY",
     "runs_done": 1,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 260,
     "episodes_total": 270,
-    "overall_pct": 54.3
+    "overall_pct": 65.4
   },
-  "seconds_elapsed": 14769,
-  "seconds_remaining": 8926,
+  "seconds_elapsed": 16579,
+  "seconds_remaining": 6755,
   "recent_lines": [
     "[v3_exq_625d_sd037_axis_b_phase1b_joint_composite] starting (dry_run=False)",
     "Seed 42 Condition SCAFFOLD_TRAINED_JOINT_COMPOSITE_569i_CONVERSION_AXIS_B_OVERLAY",
@@ -36,7 +36,12 @@
     "[train] stage0_nursery seed=43 ep 20/270 z_goal_peak=0.4182",
     "[train] stage0b_consolidate seed=43 ep 30/270 retention=0.905",
     "[train] p0_guided seed=43 ep 130/270 mean_len=200.0",
-    "[train] hazard_avoidance seed=43 ep 170/270 survival_gate=pass harm_eval_range=0.0000"
+    "[train] hazard_avoidance seed=43 ep 170/270 survival_gate=pass harm_eval_range=0.0000",
+    "[train] p1_foraging seed=43 ep 220/270 survival_gate=pass",
+    "[train] axisb_warmup seed=43 ep 230/270",
+    "[train] axisb_warmup seed=43 ep 240/270",
+    "[train] axisb_warmup seed=43 ep 250/270",
+    "[train] axisb_measure seed=43 ep 260/270"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
