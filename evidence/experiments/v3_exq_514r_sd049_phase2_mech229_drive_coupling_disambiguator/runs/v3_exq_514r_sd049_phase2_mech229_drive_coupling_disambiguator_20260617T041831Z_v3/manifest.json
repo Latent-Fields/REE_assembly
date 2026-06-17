@@ -20,7 +20,7 @@
   },
   "stop_criteria_version": "stop_criteria/v1",
   "claim_ids_tested": [
-    "MECH-229"
+    "MECH-436"
   ],
   "evidence_class": "simulation",
   "evidence_direction": "weakens",
@@ -67,5 +67,6 @@
       "sd_delta": 0.04444444444444447,
       "effect_margin": 0.15
     }
-  }
+  },
+  "claim_tag_correction_note": "2026-06-17 (governance): claim_ids_tested re-tagged MECH-229 -> MECH-436. 514r tests the drive-coupling leg-b split into MECH-436 by the 2026-06-16 /claim-synthesis; MECH-229's wanting!=liking CORE (514o PASS) is not under test. Self-route 'overshoot_cannot_flip_genuine_weakens' NOT governance-adjudicated (overshoot flipped most_wanted only 2/5 seeds; ambiguous genuine-weakens vs magnitude/env ceiling). FLAGGED for /failure-autopsy; left PENDING (not marked reviewed); no governance evidence_direction applied. MECH-436 is substrate_ceiling (promote/demote suppressed) so the interim self-stamp has no governance effect."
 }

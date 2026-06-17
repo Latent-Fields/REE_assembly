@@ -1,14 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-16T20:01:13Z`  
-Last review: `2026-06-16T19:50:40Z`  
+Generated: `2026-06-17T07:46:49Z`  
+Last review: `2026-06-17T07:46:42Z`  
 Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking_20260616T020619Z_v3` | 2026-06-16T02:06 | MECH-229 | — |
+| `v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator_20260617T041831Z_v3` | 2026-06-17T04:18 | MECH-436 | — |
 
 ---
 

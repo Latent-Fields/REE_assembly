@@ -30145,7 +30145,7 @@
   status: provisional
   implementation_phase: v3
   v3_pending: false
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-05-10"
   depends_on: []
@@ -30213,8 +30213,25 @@
     relative-weight-calibration question (Q-043) and the substrate-
     collapse question (Q-044, Q-045) are open and falsifiable in V3-
     EXQ-543b/c.
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false
   evidence_quality_note: >
+    [2026-06-17 governance: substrate_ceiling LIFTED. V3-EXQ-569i PASS
+    (non-degenerate; supersedes V3-EXQ-569h) -- the GAP-A top-k shortlist
+    conversion architecture change converts the upstream per-candidate
+    diversity RANGE into committed-action diversity: selected-action entropy
+    C_R1B strict-above BOTH matched-noise AND the proposer, preconditions
+    (arm1 route-range + e2_world_forward prediction spread supra-floor) met,
+    criteria_non_degenerate {C1:true, C_R1B:true}. This closes the
+    E3-commit-readout washout flagged 2026-06-10 (cross-candidate range
+    present but not ROUTED into the modulatory bias): the top-k shortlist now
+    routes it. epistemic_category substrate_ceiling -> standard;
+    pending_retest_after_substrate cleared; evidence_direction supports
+    (exp_conf 0.974, 0 weakens). ARC-065 is architectural_commitment so no
+    auto-promote mechanics; status stays provisional. The held
+    claim_synthesis_ARC-065_2026-06-16 proposal is closed unregistered
+    (569i PASS => the proposed finer committed-diversity-GAIN child is
+    correctly NOT needed; conversion converts).]
+
     Registered 2026-05-10 from Pull 1 lit-pull SYNTHESIS verdict 3
     (PROMOTE-TO-CLUSTER, conf 0.82) and Pull 4 R4 HYBRID-naming
     convention. Lit-pull anchors:
@@ -38892,7 +38909,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
-  pending_retest_after_substrate: true  # 2026-06-09 governance: failure_autopsy_V3-EXQ-603i -- bridge retest gated on (1) Stage-H nav/survival-competence leg + (2) MECH-303/304 threat-absence predictor wired (safety half 0/3 on 603i); claim_ids=[] so 603i weights nothing
+  pending_retest_after_substrate: false  # 2026-06-17 governance: CLEARED by V3-EXQ-603q PASS (harm-pathway stabilization amend landed -> base harm landscape discriminative -> fair test); was gated 2026-06-09 on the Stage-H nav/survival leg + MECH-303/304 wiring
   epistemic_category: standard
   claim_level: architectural
   registered_utc: "2026-06-08"
@@ -38953,6 +38970,14 @@
     non-vacuously and the both-arm showed ~35% longer mean hazard-stage survival (graded benefit
     invisible to the binary gate). Demotion threshold NOT reached (test was not fair). Retest pending
     a REDESIGN EXQ (603o: headroom hazard regime + continuous survival metric), NOT new substrate.
+    [2026-06-17 governance: V3-EXQ-603q PASS supports SD-059 (non-degenerate; supersedes 603o).
+    Continuous-survival redesign on the stabilized harm substrate: all 4 preconditions met (PAG
+    freeze + ilPFC gate engage on base; each enabled bridge half fires non-vacuously; base harm
+    landscape discriminative; Stage-0 lights z_goal), PRIMARY criteria both_bridge AND best_bridge
+    mean Stage-H survival lift >= 10% PASS (base 37.7 -> safety 46.6). Binary G_H 2/3 supplementary
+    (FALSE, explicitly NOT load-bearing per the redesign). evidence_direction supports
+    (exp_conf 0.775). pending_retest_after_substrate CLEARED. Promotion still HELD by the v3_pending
+    gate + single genuine run (n=1); a confirmatory run would move it toward provisional.]
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 - id: MECH-358
@@ -38963,7 +38988,7 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
-  pending_retest_after_substrate: true  # 2026-06-09 governance: failure_autopsy_V3-EXQ-603i -- bridge retest gated on (1) Stage-H nav/survival-competence leg + (2) MECH-303/304 threat-absence predictor wired (safety half 0/3 on 603i); claim_ids=[] so 603i weights nothing
+  pending_retest_after_substrate: false  # 2026-06-17 governance: CLEARED by V3-EXQ-603q PASS (harm-pathway stabilization amend landed -> base harm landscape discriminative -> fair test); was gated 2026-06-09 on the Stage-H nav/survival leg + MECH-303/304 wiring
   epistemic_category: standard
   claim_level: mechanistic
   registered_utc: "2026-06-08"
@@ -39012,6 +39037,12 @@
     the bridge fired non-vacuously and the both-arm showed ~35% longer mean hazard-stage survival.
     Demotion threshold NOT reached. Retest pending a REDESIGN EXQ (603o: headroom hazard regime +
     continuous survival metric), NOT new substrate.
+    [2026-06-17 governance: V3-EXQ-603q PASS supports MECH-358 (non-degenerate; supersedes 603o).
+    The escape-affordance bridge mechanism lifts Stage-H survival on the stabilized harm substrate:
+    both_bridge AND best_bridge mean survival lift >= 10% (base 37.7 -> safety 46.6), all 4
+    preconditions met, criteria_non_degenerate all true (binary G_H supplementary-only). per-claim
+    evidence_direction supports (exp_conf 0.775). pending_retest_after_substrate CLEARED; promotion
+    HELD by v3_pending + n=1 genuine run.]
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 # Registered 2026-06-09 -- candidate-differentiated affective gradients (V4/V5 cluster).
@@ -41201,6 +41232,13 @@
     magnitudes to state-driven gain; kept distinct and wired via depends_on).
     substrate_conditional on a V4 plasticity-gain substrate not yet built.
     DO NOT build in V3.
+    Falsifier (2026-06-17): if matched representation-update outcomes (targeted
+    plasticity selectivity, retention-vs-acquisition tradeoff) are achievable by gating
+    on the existing content signals alone (LC-NE/5-HT/orexin: MECH-313/MECH-104/
+    MECH-203/SD-037) WITHOUT a separate plasticity-gain channel, the separate-channel
+    commitment is falsified -- gain is not separably gated from content. Grounded by
+    Bear & Singer 1986 (conjunctive ACh x NE gating, content/gain separation):
+    targeted_review_plasticity_neuromodulation_v4.
 
 - id: MECH-398
   title: "ACh-analog basal-forebrain plasticity-gain gate: a state-conditional scalar in [0,1] multiplying cortical encoder learning rates and residue write magnitudes, driven by novelty/attention/arousal, distinct from LC-NE/5-HT/orexin content signals."
@@ -41226,6 +41264,14 @@
     incorporates inputs into long-term representations. Drivers (MECH-205 surprise EMA,
     SD-032a salience mode, drive_level) all live in V3. substrate_conditional on a V4
     plasticity-gain substrate not yet built. DO NOT build in V3.
+    Falsifier (2026-06-17): the gate is otiose if a state-conditional gain scalar
+    (driven by novelty/attention/arousal) produces no improvement in targeted-plasticity
+    selectivity over a scheduler-driven flag toggle (the V3-conservative form) on a task
+    where the toggle is demonstrably insufficient -- i.e. gating the learning rate by
+    state does not change WHICH inputs are incorporated vs an ungated/uniform rate.
+    Grounded by Kilgard & Merzenich 1998 (NB activity necessary for adult remapping) +
+    Froemke 2007 (transient cholinergic disinhibition window):
+    targeted_review_plasticity_neuromodulation_v4.
 
 - id: MECH-399
   title: "PV-interneuron inhibitory-maturation analog: a time-since-onset accumulator that monotonically lowers the plasticity-gain ceiling, replacing the current binary critical-period phase transition."

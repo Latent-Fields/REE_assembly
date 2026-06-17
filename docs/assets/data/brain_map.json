@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-16T12:54:27Z",
+  "generated_at": "2026-06-17T07:29:01Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -110,7 +110,7 @@
           "pass_runs": 4,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.715
+          "overall_confidence": 0.714
         },
         {
           "id": "ARC-018",
@@ -122,7 +122,7 @@
           "pass_runs": 4,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.735
+          "overall_confidence": 0.734
         },
         {
           "id": "ARC-031",
@@ -146,7 +146,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.697
+          "overall_confidence": 0.696
         },
         {
           "id": "ARC-038",
@@ -242,7 +242,7 @@
           "pass_runs": 7,
           "fail_runs": 1,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.822
+          "overall_confidence": 0.821
         }
       ],
       "implementation": "full",
@@ -349,7 +349,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "MECH-074b",
@@ -723,7 +723,7 @@
           "pass_runs": 0,
           "fail_runs": 11,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.855
+          "overall_confidence": 0.854
         },
         {
           "id": "MECH-261",
@@ -855,7 +855,19 @@
         "MECH-260"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-460e",
+          "title": "SD-034 closure-control-plane de-commit authority re-run on the TRAINED rule_bias_head (commitment_closure:GAP-4 Leg C); non-cap-pinned ON<OFF latch-occupancy-drop DV",
+          "status": "claimed",
+          "claim_ids": [
+            "SD-034",
+            "SD-034",
+            "MECH-260",
+            "MECH-261"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -925,7 +937,7 @@
           "pass_runs": 2,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.632
+          "overall_confidence": 0.631
         },
         {
           "id": "MECH-335",
@@ -1062,7 +1074,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.724
+          "overall_confidence": 0.723
         },
         {
           "id": "MECH-094",
@@ -1302,7 +1314,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.629
+          "overall_confidence": 0.628
         },
         {
           "id": "MECH-121",
@@ -1570,7 +1582,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.796
+          "overall_confidence": 0.795
         },
         {
           "id": "MECH-186",
@@ -1630,7 +1642,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.818
+          "overall_confidence": 0.817
         }
       ],
       "implementation": "full",
@@ -1815,7 +1827,7 @@
           "pass_runs": 8,
           "fail_runs": 9,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.751
+          "overall_confidence": 0.75
         },
         {
           "id": "ARC-052",
@@ -2297,7 +2309,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.523
+          "overall_confidence": 0.522
         }
       ],
       "implementation": "claim_only",
@@ -2348,7 +2360,7 @@
           "pass_runs": 0,
           "fail_runs": 6,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.614
+          "overall_confidence": 0.613
         }
       ],
       "implementation": "claim_only",
@@ -2440,7 +2452,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.596
+          "overall_confidence": 0.595
         },
         {
           "id": "MECH-128",
@@ -2464,7 +2476,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.538
+          "overall_confidence": 0.537
         },
         {
           "id": "MECH-153",
@@ -2476,7 +2488,7 @@
           "pass_runs": 1,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.587
+          "overall_confidence": 0.586
         },
         {
           "id": "MECH-154",
@@ -2536,7 +2548,7 @@
           "pass_runs": 1,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.643
+          "overall_confidence": 0.642
         }
       ],
       "implementation": "full",
@@ -2721,7 +2733,7 @@
           "pass_runs": 10,
           "fail_runs": 28,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.762
+          "overall_confidence": 0.761
         },
         {
           "id": "MECH-136",
@@ -2745,7 +2757,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.705
+          "overall_confidence": 0.704
         },
         {
           "id": "MECH-160",
@@ -2914,7 +2926,7 @@
           "pass_runs": 8,
           "fail_runs": 15,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.738
+          "overall_confidence": 0.737
         },
         {
           "id": "ARC-028",
@@ -2938,7 +2950,7 @@
           "pass_runs": 1,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.714
+          "overall_confidence": 0.713
         },
         {
           "id": "INV-008",
@@ -3172,7 +3184,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.53
+          "overall_confidence": 0.529
         },
         {
           "id": "MECH-072",
@@ -3391,7 +3403,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.856
+          "overall_confidence": 0.855
         },
         {
           "id": "MECH-312a",
@@ -3489,16 +3501,7 @@
         "MECH-324"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-654d",
-          "title": "ARC-062 GAP-B committed-class entropy falsifier on the GAP-A de-collapsed substrate (ARM_STD_G2 conversion lever armed)",
-          "status": "claimed",
-          "claim_ids": [
-            "MECH-309"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -3566,7 +3569,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.662
+          "overall_confidence": 0.661
         },
         {
           "id": "ARC-030",
@@ -3578,7 +3581,7 @@
           "pass_runs": 1,
           "fail_runs": 6,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.683
+          "overall_confidence": 0.682
         },
         {
           "id": "ARC-032",
@@ -3602,7 +3605,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.533
+          "overall_confidence": 0.532
         },
         {
           "id": "ARC-042",
@@ -3614,7 +3617,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.558
+          "overall_confidence": 0.557
         },
         {
           "id": "ARC-043",

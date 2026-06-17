@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-16T19:50:40Z",
+  "last_review_utc": "2026-06-17T07:46:42Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -688,7 +688,10 @@
     "v3_exq_591f_isef005_phase01_gate_criterion",
     "v3_exq_684_modulatory_conversion_readiness",
     "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
-    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3"
+    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3",
+    "v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking",
+    "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier",
+    "v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence"
   ],
   "reviewed_run_ids": [
     "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
@@ -3056,7 +3059,10 @@
     "v3_exq_591f_isef005_phase01_gate_criterion_20260615T115131Z_v3",
     "v3_exq_684_modulatory_conversion_readiness_20260615T164543Z_v3",
     "v3_exq_569h_gapa_conversion_committed_action_falsifier_20260616T101100Z_v3",
-    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3"
+    "v3_exq_684a_modulatory_conversion_readiness_20260615T215642Z_v3",
+    "v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking_20260616T020619Z_v3",
+    "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier_20260616T224009Z_v3",
+    "v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence_20260617T042830Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4363,6 +4369,16 @@
         "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3"
       ],
       "note": "/failure-autopsy V3-EXQ-654d (arc_062 GAP-B rule-apprehension behavioural falsifier; FAIL/non_contributory; self-route substrate_not_ready_requeue; claim_ids MECH-309, ARC-062; substrate exercised ARC-063; supersedes 654c; 5th in the 654 lineage; machine ree-cloud-2). ADJUDICATION (confirmed failure_autopsy_V3-EXQ-654d_2026-06-16): C1c FAILED again (crf_frac_active 0.0 all 3 ARM_ON seeds). 654d ARMED the GAP-A de-collapse lever ARM_STD_G2 on both arms AND recorded the discriminator crf_mean_n_matched (7.08/7.29/8.70) -- the 654c-flagged instrument. LOAD-BEARING FINDING: the GAP-A conversion de-collapse is the WRONG LEVER for this gate. ARM_STD_G2 de-collapsed the E3 selection channel (consumed_summary spread cleared the 0.05 floor 2/3 seeds) but NOT the CRF rule-match context key; the 16 differentiated rules (max_pairwise_dist 1.711) match 7-8/tick and ALL gate out (theta=0.15+0.25*(n_matched-1)~=1.65 >> maintenance_floor 0.45). mean_prop_counterfactual_delta=0.0 confirms the gated-out rule_state never reaches committed action. The two CRF-locus faults the 654c autopsy named (context-key crowding + maintenance/conflict-gate calibration) remain un-amended (substrate bit-identical to 654c) and 654d proves them INDEPENDENT of GAP-A. NON_CONTRIBUTORY, NO weakens (C1 gated scoring; claims never tested). pending_retest_after_substrate. ROUTE (user-confirmed): implement-substrate AMEND crf-availability-maintenance at the CRF locus, UNGATED from GAP-A (fault-2 couple maintained availability to theta(n_matched) [pure gate calibration] + fault-1 de-collapse the CRF mint/match context key + keep frac_ACTIVE readiness gate); re-queue 654e on that gate, NOT on GAP-A. Recurrence (5th autopsy): HELD substrate-maturation, NOT claim-granularity debt (user re-confirmed 2026-06-16; blocker now isolated + measured). MECH-309/ARC-062/ARC-063 NOT demoted; no claims.yaml/scoring edits this session."
+    },
+    {
+      "utc": "2026-06-17T07:46:42Z",
+      "by": "governance-20260616T2159Z",
+      "reviewed": [
+        "v3_exq_514q_sd049_phase2_mech229_drive_coupled_wanting_liking_20260616T020619Z_v3",
+        "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier_20260616T224009Z_v3",
+        "v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence_20260617T042830Z_v3"
+      ],
+      "note": "Governance cycle 2026-06-17T07:30Z (deferred 1h then run; machine slept mid-pipeline). 4 pending walked (3 landed during the gap, not in the 22:00Z pending_review). V3-EXQ-514q FAIL/MECH-229 (supersedes 514p): confirmed failure_autopsy_V3-EXQ-514q applied -- self-stamped weakens reclassified non_contributory + autopsy evidence_direction_note (C_WL_DRIVE delta=0.0 on 5/5 seeds; in-run drive spread ~0.006 sub-argmax-flip; readiness verified separability + spread>1e-3 but NOT argmax-relevance), scoring-excluded; epistemic_category substrate_ceiling + pending_retest already on the post-split leg-b claim MECH-436. claim_ids kept MECH-229 (user). substrate_queue amend SD-049-PHASE-2. MARKED REVIEWED. V3-EXQ-569i PASS/supports ARC-065 (non-degenerate; supersedes 569h): GAP-A top-k shortlist conversion landed -- C_R1B selected-action entropy strict-above BOTH matched-noise AND proposer, preconditions met, criteria_non_degenerate {C1,C_R1B}. SUBSTRATE CEILING LIFTED: ARC-065 epistemic_category substrate_ceiling->standard + pending_retest_after_substrate cleared (status stays provisional; architectural_commitment, no auto-promote). Held claim_synthesis_ARC-065 proposal closed unregistered (PASS => finer child not needed). MARKED REVIEWED. V3-EXQ-603q PASS/supports SD-059+MECH-358 (non-degenerate; supersedes 603o): escape-affordance bridge lifts Stage-H survival on the stabilized harm substrate (base 37.7->safety 46.6; both/best_bridge >=10%; binary G_H supplementary-only). pending_retest_after_substrate cleared on both; promotion HELD by v3_pending + n=1. MARKED REVIEWED. V3-EXQ-514r FAIL (the 514q overshoot disambiguator; supersedes 514q): LEFT PENDING, NOT marked reviewed. Re-tagged claim_ids/claim_ids_tested MECH-229->MECH-436 (flat + nested pack) to stop contaminating MECH-229's established core; self-route genuine-weakens NOT adjudicated (overshoot flipped most_wanted only 2/5 seeds = ambiguous magnitude/env ceiling vs genuine weakens) -> FLAGGED for /failure-autopsy. MECH-436 substrate_ceiling/suppressed so interim weakens has no governance effect. Step-3 agenda: 11 hold_pending_v3_substrate kept-held; MECH-057b keep-candidate/hold (conflict, V3-scoped); Q-054 keep-broad/acknowledge (all user-confirmed)."
     }
   ]
 }

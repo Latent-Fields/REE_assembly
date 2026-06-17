@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_660b_mech341_within_class_pool_size_graded_windowed_readout
 
-Generated: `2026-06-16T12:53:13.569709Z`
+Generated: `2026-06-17T07:47:48.679499Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
