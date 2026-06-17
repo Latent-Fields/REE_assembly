@@ -362,6 +362,67 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
     return sorted(out, key=lambda r: (r["timestamp_utc"], r["run_id"]))
 
 
+def load_error_manifests(reviewed: set, discussed: set,
+                         indexed_run_ids: set) -> list[dict]:
+    """Return ERROR-class manifests on disk not yet reviewed -> /diagnose-errors.
+
+    The experiment runner writes a synthetic ERROR manifest when a script
+    crashes before producing one (result==ERROR with empty output_file -- the
+    FAIL/ERROR-class twin of the fixed UNKNOWN silent-drop; incident
+    V3-EXQ-654e). Such a manifest carries outcome/result == "ERROR" and is
+    scoring-neutral (claim_ids=[]), so it is invisible to the PASS/FAIL
+    sections (1/2) and to the unclaimed-manifest section (which keys on
+    _manifest_pass_fail). Without this scanner the crash would surface only
+    via the runner_status section -- which depends on the runner_status file
+    materialising on origin, the exact path that left V3-EXQ-654e invisible.
+    Surfacing the durable manifest directly makes the crash reviewable and
+    routes it to /diagnose-errors.
+
+    Reports manifests that:
+      - have outcome OR result == "ERROR" (or "UNKNOWN"),
+      - are not in indexed_run_ids (ERROR records carry no claim tags, so they
+        are never indexed -- defensive),
+      - are not in reviewed (run_id), and
+      - have neither the manifest stem nor the run_id in discussed_dirs.
+
+    Mark discussed by adding the manifest stem (filename minus .json) to
+    discussed_experiment_dirs, same as the unclaimed-manifest section.
+    """
+    if not EVIDENCE_DIR.is_dir():
+        return []
+    out = []
+    for f in sorted(EVIDENCE_DIR.glob("*.json")):
+        if f.name in _NON_MANIFEST_FILES:
+            continue
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        run_id = d.get("run_id")
+        if not run_id:
+            continue
+        outcome = (d.get("outcome") or d.get("result") or "").upper()
+        if outcome not in ("ERROR", "UNKNOWN"):
+            continue
+        if run_id in indexed_run_ids or run_id in reviewed:
+            continue
+        stem = f.stem
+        if stem in discussed or run_id in discussed:
+            continue
+        out.append({
+            "manifest_stem": stem,
+            "run_id": run_id,
+            "outcome": outcome,
+            "queue_id": d.get("queue_id", "") or "",
+            "machine": d.get("machine", "") or "",
+            "result_summary": (d.get("result_summary", "") or "")[:80],
+            "timestamp_utc": d.get("timestamp_utc", "") or "",
+        })
+    return sorted(out, key=lambda r: (r["timestamp_utc"], r["run_id"]))
+
+
 def flat_only_silent_drop_guard(indexed_run_ids: set) -> list[str]:
     """WARN on evidence-grade flat-only manifests the indexer never scored.
 
@@ -433,6 +494,7 @@ def flat_only_silent_drop_guard(indexed_run_ids: set) -> list[str]:
 
 def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                          unclaimed: list[dict],
+                         error_manifests: list[dict],
                          last_review_utc: str) -> None:
     passes = [r for r in runs if r["status"] == "PASS"]
     fails  = [r for r in runs if r["status"] != "PASS"]
@@ -443,7 +505,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     flagged = [r for r in runs
                if r.get("adjudication") in BLOCKING_ADJUDICATIONS]
 
-    total_pending = len(runs) + len(runner_undiscussed) + len(unclaimed)
+    total_pending = (len(runs) + len(runner_undiscussed) + len(unclaimed)
+                     + len(error_manifests))
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     lines = [
@@ -454,7 +517,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f"Pending: **{total_pending}** item(s)"
         f" -- {len(passes)} PASS, {len(fails)} FAIL,"
         f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke),"
-        f" {len(unclaimed)} unclaimed manifest(s)"
+        f" {len(unclaimed)} unclaimed manifest(s),"
+        f" {len(error_manifests)} ERROR manifest(s)"
         f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication",
         "",
     ]
@@ -529,6 +593,29 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                 )
             lines.append("")
 
+        if error_manifests:
+            lines += ["## Needs diagnosis (ERROR manifests -> /diagnose-errors)", ""]
+            lines += [
+                "These are durable ERROR-class result manifests on disk -- most "
+                "commonly a runner-synthesized record for a crash-before-manifest "
+                "(a script that exited non-zero before writing any manifest; "
+                "incident V3-EXQ-654e). They are scoring-neutral (no claim tags) "
+                "so they never weight claim confidence, but each is a real code "
+                "crash that needs `/diagnose-errors` and a re-queue under a NEW "
+                "letter. Mark discussed by adding the **manifest stem** (filename "
+                "minus `.json`) to `discussed_experiment_dirs`.",
+                "",
+                "| Outcome | Manifest stem | Queue ID | Machine | Summary |",
+                "|---------|---------------|----------|---------|---------|",
+            ]
+            for r in error_manifests:
+                summary = r["result_summary"] or "—"
+                lines.append(
+                    f"| {r['outcome']} | `{r['manifest_stem']}` | "
+                    f"{r['queue_id'] or '?'} | {r['machine'] or '?'} | {summary} |"
+                )
+            lines.append("")
+
         if runner_undiscussed:
             lines += ["## Needs discussion (ERROR / UNKNOWN / smoke)", ""]
             lines += [
@@ -560,6 +647,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "- PASS/FAIL runs (claim-tagged): add run IDs to `reviewed_run_ids` in review_tracker.json",
         "- ERROR/UNKNOWN/smoke: add queue_id or dir_name to `discussed_experiment_dirs` in review_tracker.json",
         "- Unclaimed manifests (PASS/FAIL, no claim tags): add the manifest stem (filename minus `.json`) to `discussed_experiment_dirs`",
+        "- ERROR manifests (crash-before-manifest / runner ERROR record): run `/diagnose-errors`, re-queue under a NEW letter, then add the manifest stem to `discussed_experiment_dirs`",
         "- Diagnostic self-route flagged (`precondition_unmet` / `vacuous_pass`): adjudicate via `/failure-autopsy` before the label drives a governance action; clearing the run for review does not clear the adjudication flag (the manifest's `interpretation` is the source of truth -- a re-queued successor supersedes it).",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
@@ -572,7 +660,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     print(
         f"Written {OUTPUT.relative_to(ROOT)}"
         f" -- {len(runs)} indexed pending, {len(runner_undiscussed)} runner-only pending,"
-        f" {len(unclaimed)} unclaimed manifest(s)"
+        f" {len(unclaimed)} unclaimed manifest(s), {len(error_manifests)} ERROR manifest(s)"
     )
 
 
@@ -779,7 +867,12 @@ def main():
         u for u in load_unclaimed_manifests(reviewed, discussed, indexed_run_ids)
         if u["run_id"] not in pending_run_ids
     ]
-    write_pending_review(runs, runner_undiscussed, unclaimed, last_review_utc)
+    error_manifests = [
+        e for e in load_error_manifests(reviewed, discussed, indexed_run_ids)
+        if e["run_id"] not in pending_run_ids
+    ]
+    write_pending_review(runs, runner_undiscussed, unclaimed,
+                         error_manifests, last_review_utc)
     append_substrate_change_section()
 
 
