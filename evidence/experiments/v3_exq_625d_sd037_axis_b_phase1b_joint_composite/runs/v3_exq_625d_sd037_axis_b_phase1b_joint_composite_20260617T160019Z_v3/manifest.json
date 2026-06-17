@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite",
+  "run_id": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite_20260617T160019Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-17T16:00:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "r1_sustained_threat_curriculum_fired",
+        "kind": "readiness",
+        "description": "SD-029 scheduled_external_hazard must fire on the axis-(b) measurement env (external_hazard_event_count > 0 in 3/3 seeds). Below -> env overlay mis-applied -> substrate_not_ready_requeue.",
+        "control": "axis-(b) overlay on a dim-matched scaffold p2 env (scheduled_external_hazard interval=20 prob=0.7 adjacent_only).",
+        "measured": 9.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "r2_z_harm_a_nonzero",
+        "kind": "readiness",
+        "description": "z_harm_a NONZERO fraction must clear the floor on >= 2/3 seeds (the affective stream is populated; a flat-zero z_harm_a cannot cross). Below -> affective stream not engaged -> requeue.",
+        "control": "use_affective_harm_stream=True + scaffold_feed_harm_stream=True; axis-(b) hazard_harm=0.2 + proximity_harm_scale=0.2 lift the signal.",
+        "measured": 1.0,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "r3_conversion_route_range_operative",
+        "kind": "readiness",
+        "description": "The 569i conversion is OPERATIVE here: the IN-ARM modulatory_channel_route_range (the V3-EXQ-662 RANGE statistic, read LIVE at the select tick) > floor on >= 2/3 seeds. SAME RANGE statistic 569i gates on. Below -> SD-056 under-trained / routing not wired -> requeue, NEVER a verdict.",
+        "control": "569i-validated conversion config ON + SD-056 trained online on the axis-(b) env; positive control = e2_world_forward source with genuine per-candidate range.",
+        "measured": 0.084518,
+        "threshold": 0.01,
+        "met": false
+      },
+      {
+        "name": "r4_committed_action_diversity_entropy",
+        "kind": "readiness",
+        "description": "The committed policy is NOT monostrategy-locked: selected-action class ENTROPY > floor on >= 2/3 seeds (the 569i C_R1B floor). This is the diversity that MUST reach committed action for z_harm_a to be ABLE to oscillate -- a monostrategy-locked policy makes 0 crossings for a CONVERSION reason, not an env-capability reason -> requeue. ENTROPY statistic, matching the diversity the C3 crossing criterion presupposes.",
+        "control": "scaffold-trained competent policy + 569i conversion config; positive control = 569i ARM_1 selected-action entropy strict-above controls.",
+        "measured": 0.0,
+        "threshold": 0.3,
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C3_dynamic_crossings": true,
+      "R1_curriculum": true,
+      "R3_conversion": true,
+      "R4_diversity": true
+    },
+    "criteria": [
+      {
+        "name": "C3_dynamic_crossings_2of3",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  }
+}
