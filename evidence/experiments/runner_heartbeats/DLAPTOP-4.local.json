@@ -1,48 +1,34 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-17T17:57:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 5,
-  "queue_id_at_head": "V3-EXQ-460f",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-665",
-      "result": "PASS",
-      "completed_at": "2026-06-10T23:30:56.846187+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514m",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:11:07.219449+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485e",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:52:25.324359+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-668",
-      "result": "PASS",
-      "completed_at": "2026-06-11T13:53:10.433581+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-682",
-      "result": "PASS",
-      "completed_at": "2026-06-15T03:20:44.390213+00:00"
-    }
+  "last_tick_utc": "2026-06-17T18:28:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-468e",
+  "current_exq_started_utc": "2026-06-17T18:00:02.749481+00:00",
+  "current_title": "SD-034/MECH-268/MECH-090 commitment-vs-contradiction de-commit-hold retest on the BETA-ENGAGEMENT-amended substrate (use_closure_commit_beta_coupling): commit-with-beta now reliable so the contradiction-release / non-cap-pinned committed-frac-post DV is exercisable. Supersedes V3-EXQ-468d.",
+  "current_claim_id": "SD-034",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 30,
+    "episodes_total": 265,
+    "overall_pct": 3.8
+  },
+  "seconds_elapsed": 1719,
+  "seconds_remaining": 27287,
+  "recent_lines": [
+    "[v3_exq_468e_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
+    "Seed 42 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
+    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4603 formed=True",
+    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.991 gate=pass"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 97469,
-  "runner_version": "r3279 bda3417 2026-06-17 (running r3277 f4ceea4)",
+  "runner_version": "r3280 f455bc5 2026-06-17 (running r3277 f4ceea4)",
   "gpu": {
     "available": false
   },
