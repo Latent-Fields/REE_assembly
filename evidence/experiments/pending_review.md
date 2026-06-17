@@ -1,14 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-06-17T14:00:43Z`  
-Last review: `2026-06-17T12:51:00Z`  
-Pending: **2** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_460e_sd034_closure_control_plane_behavioural_20260617T085103Z_v3` | 2026-06-17T08:51 | MECH-260, MECH-261, SD-034 | — |
+Generated: `2026-06-17T15:23:58Z`  
+Last review: `2026-06-17T15:04:36Z`  
+Pending: **1** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## Unclaimed manifests (PASS/FAIL with no claim tags)
 

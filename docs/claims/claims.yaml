@@ -20446,6 +20446,7 @@
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_redesign: true
+  pending_retest_after_substrate: true  # commitment-closure-control-plane beta-engagement (460e autopsy 2026-06-17)
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -20482,6 +20483,15 @@
   evidence_quality_note: >
     Single-paper evidence. Lower confidence than the other MECH claims
     in this cluster. See SD-032 parent.
+
+    [2026-06-17 autopsy V3-EXQ-460e]: 460e (SD-034 closure-control-plane behavioural,
+    supersedes 460d) RAN terminal FAIL/non_contributory and self-routed
+    substrate_not_ready_requeue on beta_engagement_both_arms (1/3 seeds) BEFORE the C2
+    de-commit DV ran -- MECH-260's closure-coupled No-Go role was never exercised
+    (confirmed failure_autopsy_V3-EXQ-460e_2026-06-17; commit-without-beta dissociation,
+    code-confirmed). 460e MECH-260 entry = non_contributory (not a weaken). pending_retest_after_substrate
+    set (commitment-closure-control-plane beta-engagement amend). EXQ-445h remains the sole
+    valid MECH-260 support; this is non-scoring. NO status change (stays candidate).
 
     [2026-05-29 autopsy V3-EXQ-603a/b/c followon cluster]: Three-followon convergent confirmation of the 591 substrate-uniform z_goal-zero family. 603a/b/c all 1/3 surviving seeds; MECH-260 operative every cell (dacc_forward_calls up to 4791 in surviving cells) but effective N=1 across the chain. Confirms 490g-cohort autopsy (commit 12f0dda773) Cluster B disposition under the Q-045/MECH-313/MECH-260 lettered-followon lens (no fork). Adds 603a + 603b failure_records to SD-XXX-scaffolded-sd054-onboarding substrate entry. EXQ-445h remains the sole valid MECH-260 support; sub-margin 'weakens' or 'supports' appearances at N=1 across the 603 chain are not load-bearing.
 
@@ -20623,12 +20633,24 @@
   claim_level: mechanistic
   registered_utc: 2026-04-19
   last_updated_utc: 2026-04-19
+  pending_retest_after_substrate: true  # documentary: commitment-closure-control-plane beta-engagement (460e autopsy 2026-06-17); does NOT demote stable status
   governance_note_2026_06_13b: >
     PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-460d's MECH-261 entry reclassified
     weakens->non_contributory per confirmed failure_autopsy_SD-034-closure-control-plane-d
     (the de-commit RELEASE leg is unbuilt; not a falsification). Does NOT change MECH-261's
     stable status (33 supports / strong evidence base); recorded so the 460d entry is not
     miscounted as opposing.
+  governance_note_2026_06_17: >
+    V3-EXQ-460e (supersedes 460d) RAN terminal FAIL/non_contributory; per confirmed
+    failure_autopsy_V3-EXQ-460e_2026-06-17 its MECH-261 entry is non_contributory -- the
+    run self-routed substrate_not_ready_requeue on beta_engagement_both_arms (1/3 seeds)
+    BEFORE the C2 de-commit DV ran, so the mode-conditioned write-gate role MECH-261 plays
+    in closure was never exercised (commit-without-beta dissociation, code-confirmed). Like
+    the 460d entry this does NOT change MECH-261's stable status (33 supports / strong
+    evidence base); recorded so the 460e entry is not miscounted as opposing.
+    pending_retest_after_substrate set as a documentary marker (commitment-closure-control-plane
+    beta-engagement amend) -- it pairs with the non_contributory reclassification and does not
+    demote a stable claim.
   mem1_amendment_2026_06_14: >
     MEM-1 (memory_lifecycle_v4) amendment: MECH-261's mode-conditioned
     write-gating family is extended with an ALLOCATION-DECISION STAGE -- a
@@ -21564,6 +21586,24 @@
     + rule_bias-magnitude readiness gate. SD-034 stays provisional /
     pending_retest_after_substrate; promotes nothing until 460e PASSes. See
     docs/architecture/sd_034_governance_closure_operator.md Leg C amend.
+  governance_note_2026_06_17: >
+    V3-EXQ-460e (supersedes 460d) RAN terminal FAIL/non_contributory; adjudicated by
+    confirmed failure_autopsy_V3-EXQ-460e_2026-06-17 (analysis committed fb9fc52bc4;
+    applied this session). Leg C now WORKS (rule_bias_trained 1.0 3/3) but the MECH-090
+    bistable beta latch engaged on only 1/3 seeds (beta_engagement_both_arms 0.333 <
+    0.667), so the readiness gate self-routed substrate_not_ready_requeue BEFORE the C2
+    de-commit DV ran -- SD-034 was never exercised. Code-confirmed commit-without-beta
+    dissociation (agent.py:5843-5859: with both MECH-090 R-c gates OFF, beta elevates
+    only on E3 result.committed (running_variance < commit_threshold), which fires on 1/3
+    seeds on the 603n foraging substrate; the closure control-plane sets committed_trajectory
+    + fires closures regardless; the trained head biases SCORING not commit-entry
+    decisiveness). Seed 44 (beta engaged both arms; C2 ON 11.73 < OFF 14.87, non-cap-pinned)
+    is the positive existence proof the de-commit DV is sound. SD-034 stays provisional +
+    non_contributory (manifest self-stamped) + pending_retest_after_substrate (kept true);
+    NO status/confidence change. substrate_queue commitment-closure-control-plane amended
+    (action=amend; 5th failure_record + beta-engagement deliverable). NOT a falsification.
+    Escalation pre-registered by failure_autopsy_SD-034-closure-control-plane-d_2026-06-13
+    line 90. Closes via the post-amend 460f re-queue (held until /implement-substrate amend).
   implementation_note: >
     IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
     (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-

@@ -4549,13 +4549,14 @@
       "ready": false,
       "design_doc": "docs/architecture/sd_034_governance_closure_operator.md",
       "depends_on_unresolved": [
-        "commitment_closure:GAP-4 (461c/466c adjudicated non_contributory 2026-06-13; 460d/468d validation re-queues pending /failure-autopsy)"
+        "commitment_closure:GAP-4 (460e ran 2026-06-17: terminal FAIL/non_contributory, self-routed substrate_not_ready_requeue on beta_engagement_both_arms 1/3; Legs A/B/C built+working, beta-engagement is the residual gap. 460d/468d adjudicated non_contributory 2026-06-13.)"
       ],
       "unblocks_claims": [
         "SD-034",
         "MECH-260",
         "MECH-268",
-        "MECH-090"
+        "MECH-090",
+        "MECH-261"
       ],
       "failure_record": [
         {
@@ -4581,13 +4582,19 @@
           "experiment_type": "v3_exq_466c_sd034_satisficing_residue_discharge_behavioural",
           "metric": "n_closures = 0 on 3/3 seeds (both arms) despite n_sequence_completions=11/6/5 and total_beta_elevated=268/376/128",
           "target": "n_closures > 0 reachable on the positive control after env sequence_complete -> emit_closure + trained rule_bias_head"
+        },
+        {
+          "run_id": "v3_exq_460e_sd034_closure_control_plane_behavioural_20260617T085103Z_v3",
+          "experiment_type": "v3_exq_460e_sd034_closure_control_plane_behavioural",
+          "metric": "beta_engagement_both_arms = 0.333 (1/3 seeds); ON total_beta_elevated 0/0/176 across seeds 42/43/44 despite committed_steps 2415/2019/2213 + n_closures 7/6/5 (commit-without-beta dissociation on 2/3 seeds); rule_bias_trained 1.0 (Leg C works). Self-routed substrate_not_ready_requeue before the C2 de-commit DV ran. Seed 44 (beta engaged both arms) C2 PASSED: ON mean_beta_elevated 11.73 < OFF 14.87 (non-cap-pinned) -- positive existence proof the DV is sound.",
+          "target": "beta_engagement_both_arms met on >=2/3 guard seeds (ON+OFF total_beta_elevated>0 + ON n_sequence_completions>0), THEN the C2 non-cap-pinned de-commit DV ON<OFF on >=2/3 seeds"
         }
       ],
-      "implementation_hint": "On the 603n foraging-competent substrate the closure operator is wired but has no behavioural authority: (1) route env transition_type=='sequence_complete' into ClosureOperator.emit_closure(action_class, z_world) (explicit env-completion hook, unwired in *c cohort) and/or ensure a trained magnitude-bearing lateral-PFC rule_state (GAP-D train_rule_bias_head, landed 2026-05-17) so the automatic rule-stability detector can co-satisfy its conjunction; (2) add a de-commitment hold/refractory term so a closure-coupled beta release survives >1 tick and produces a measurable latch-occupancy drop; (3) behavioural arm reads de-commitment on a non-cap-pinned statistic (post-completion uncommitted fraction or committed-run-length delta), not a post/pre ratio against a 5-step pre-baseline.",
+      "implementation_hint": "On the 603n foraging-competent substrate the closure operator is wired but has no behavioural authority: (1) route env transition_type=='sequence_complete' into ClosureOperator.emit_closure(action_class, z_world) (explicit env-completion hook, unwired in *c cohort) and/or ensure a trained magnitude-bearing lateral-PFC rule_state (GAP-D train_rule_bias_head, landed 2026-05-17) so the automatic rule-stability detector can co-satisfy its conjunction; (2) add a de-commitment hold/refractory term so a closure-coupled beta release survives >1 tick and produces a measurable latch-occupancy drop; (3) behavioural arm reads de-commitment on a non-cap-pinned statistic (post-completion uncommitted fraction or committed-run-length delta), not a post/pre ratio against a 5-step pre-baseline. | BETA-ENGAGEMENT DELIVERABLE (added 2026-06-17 from failure_autopsy_V3-EXQ-460e): Legs A/B/C all BUILT and WORKING (460e: rule_bias_trained 1.0 3/3, closures fire 5-7), but beta still elevates on only 1/3 seeds because, with both MECH-090 R-c gates OFF, the bistable BetaGate elevates ONLY on E3 result.committed (running_variance < commit_threshold; agent.py:5843-5859) -- a decisive natural commit-entry that fires on 1/3 seeds on the 603n foraging substrate. The closure control-plane sets committed_trajectory + fires closures regardless (commit-without-beta dissociation), and the trained rule_bias_head biases per-candidate SCORING not commit-entry decisiveness, so it cannot rescue engagement. Two candidate mechanisms (implement-substrate to choose/sequence; user-confirmed list-both): (a) COUPLE closure->beta elevation so the env-hook/closure-installed commitment also elevates the bistable latch, decoupling the de-commit DV from the fragile natural running_variance crossing (readable on every seed where closure fires); (b) COMMIT-ENTRY DECISIVENESS -- adapt commit_threshold for the foraging substrate OR scaffold a more decisive P1 policy so result.committed fires on >=2/3 seeds. (c) budget escalation (eval 15 / P1 50) deprioritized secondary. Seed 44 is the positive existence proof: when beta engages, C2 ON<OFF passes.",
       "priority": 1,
-      "autopsy_ref": "failure_autopsy_SD-034-closure-cluster_2026-06-12",
+      "autopsy_ref": "failure_autopsy_SD-034-closure-cluster_2026-06-12; failure_autopsy_V3-EXQ-460e_2026-06-17 (beta-engagement fragility / commit-without-beta)",
       "added_session": "governance-cycle-20260612T2216Z",
-      "last_seen_session": "implement-substrate-leg-c-gap4-20260616T1940Z",
+      "last_seen_session": "failure-autopsy-460e-apply-20260617T1457Z",
       "note": "Created 2026-06-12 from confirmed SD-034 closure-cluster autopsy (action=amend target SD-034; SD-034 entry is status=implemented (unit-level), so the behavioural-arm gap is captured as this distinct pending task per 6a-iv create-when-target-implemented). Retest gate: n_closures>=1 reachable on the positive control AND non-cap-pinned de-commitment DV ON<OFF on >=2/3 seeds. Then re-issue 460c->460d / 468c->468d.",
       "implementation_log": [
         {
@@ -4601,8 +4608,9 @@
           "note": "Leg C BUILT (no-op-default; bit-identical OFF). scaffold_train_rule_bias_head leg in scaffolded_sd054_onboarding.py trains agent.lateral_pfc.bias_head_parameters() (SD-033a/ARC-062 GAP-D head) during P1 via the V3-EXQ-598b outcome-coupled E3-gradient REINFORCE (mirrors scaffold_train_harm_pathway; ree_core untouched). Closes the autopsy-confirmed gap: the *d retests set lateral_pfc_train_rule_bias_head=True but never added the head to any optimizer, so the rule_state carried no magnitude and the de-commit had no MECH-090 authority (460d C2/C4 FAIL). 109/109 scaffolded contracts (102 prior + 7 new C17, incl the REINFORCE-gradient-reaches-the-head load-bearing contract) + 7/7 preflight; v3_exq_460d --dry-run unchanged; smoke: head trains max|dW| 0.0015>0 + mean |bias| 0.039 ON / dW=0 exactly OFF. P1OnboardingResult gains rule_bias_pathway_enabled + rule_bias_diag (non-vacuity readout). claims.yaml SD-034 implementation_note_2026_06_16 only (no flag/status/confidence change). ready STAYS false pending V3-EXQ-460e."
         }
       ],
-      "next_step": "/queue-experiment V3-EXQ-460e (supersedes 460d): closure-control-plane re-run with scaffold_train_rule_bias_head=True + lateral_pfc_train_rule_bias_head=True (Leg C now trains the head in P1); non-cap-pinned ON<OFF latch-occupancy-drop DV for C2_beta_release + beta-engagement non-vacuity gate + a rule_bias-magnitude readiness gate (P1OnboardingResult.rule_bias_diag mean |bias| > floor, else substrate_not_ready_requeue). Acceptance: ON<OFF de-commit on a non-cap-pinned statistic on >=2/3 seeds with beta-engagement met. ready flips true only on a contributory 460e PASS.",
-      "governance_note_2026_06_13": "Validation re-queues ran: 460d C1_n_closures PASS (closure now FIRES on the env-completion hook -- the *c n_closures=0 gap CLOSED; MECH-260 supports) but C2_beta_release/C4 FAIL (de-commit behavioural authority residual; Leg C trained rule_bias_head still experiment-side); 468d precondition_unmet (contradiction injection 1/3 seeds). Both routed to /failure-autopsy this cycle. 461c/466c cohort siblings reclassified non_contributory."
+      "next_step": "/implement-substrate amend (beta-engagement deliverable, mechanisms a/b above) on THIS substrate; do NOT re-queue 460f or 468e until beta_engagement_both_arms is met on >=2/3 seeds (would re-derive the precondition miss -- 654d/654e anti-pattern). After the amend: re-queue 460f (de-commit retest) + 468e (MECH-090 commit-entry conjunction) on the amended substrate. (failure-autopsy-460e-apply-20260617T1457Z)",
+      "governance_note_2026_06_13": "Validation re-queues ran: 460d C1_n_closures PASS (closure now FIRES on the env-completion hook -- the *c n_closures=0 gap CLOSED; MECH-260 supports) but C2_beta_release/C4 FAIL (de-commit behavioural authority residual; Leg C trained rule_bias_head still experiment-side); 468d precondition_unmet (contradiction injection 1/3 seeds). Both routed to /failure-autopsy this cycle. 461c/466c cohort siblings reclassified non_contributory.",
+      "governance_note_2026_06_17": "V3-EXQ-460e (supersedes 460d) RAN terminal FAIL/non_contributory and was adjudicated by confirmed failure_autopsy_V3-EXQ-460e_2026-06-17 (analysis committed fb9fc52bc4; application this session). Leg C (scaffold_train_rule_bias_head) BUILT+WORKING -- the two 460d-failing gates (rule_bias_head_trained, closure_trigger_available) now PASS 3/3. Residual: beta-engagement (1/3). Code-confirmed commit-without-beta dissociation -> amend action stays open with the beta-engagement deliverable appended (4th leg). 460f + 468e HELD until the amend lands (user-confirmed). SD-034/MECH-260/MECH-261 stay candidate/provisional + non_contributory + pending_retest_after_substrate (never fairly tested -- the readiness gate self-routed before C2). ready stays false."
     },
     {
       "sd_id": "mode-governance-engagement",
