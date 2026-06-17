@@ -1,0 +1,120 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural",
+  "run_id": "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-17T22:27:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-034": "weakens",
+    "MECH-260": "supports",
+    "MECH-261": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "residual_decommit_authority_open",
+    "readiness_route": "residual_decommit_authority_open",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "rule_bias_head_trained",
+        "description": "Leg C readiness (the DIRECT anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| (rule_bias_diag) > floor on >= 2/3 seeds. The untrained 460d head produced ~0; below floor -> substrate_not_ready_requeue (the head did not train), NEVER a false weakens.",
+        "control": "P1OnboardingResult.rule_bias_diag mean |bias| with the scaffold_train_rule_bias_head leg enabled.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "beta_engagement_both_arms",
+        "description": "the 468d commit-without-beta guard, extended so the occupancy-drop comparison is valid: ON total_beta_elevated > 0 AND OFF total_beta_elevated > 0 AND ON n_sequence_completions > 0 on >= 2/3 guard seeds. Below floor -> substrate_not_ready_requeue.",
+        "control": "fraction of guard-passing seeds with both arms committing + ON completing a sequence.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_trigger_available_count",
+        "description": "ON-arm n_closures > 0 reachable on >= 2/3 guard seeds (closure HAD an opportunity to act). Below floor -> substrate_not_ready_requeue.",
+        "control": "ARM_CLOSURE_ON n_closures > 0 (Leg-A hook + trained head).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_n_closures",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_decommit_occupancy_drop",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_nogo_installed",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "decommit_dv": {
+      "definition": "C2 = ARM_CLOSURE_ON mean_beta_elevated_steps < ARM_CLOSURE_OFF mean_beta_elevated_steps with a >= DECOMMIT_MIN_DROP_FRAC relative drop (OFF must have committed above MIN_OFF_OCC). Non-cap-pinned continuous occupancy statistic; replaces 460d's count-based C2_beta_release + conjunctive cap-pinned C4.",
+      "decommit_min_drop_frac": 0.1,
+      "min_off_occ": 0.5
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure.",
+      "leg_b_decommit_hold_ticks": 5,
+      "leg_c_trained_rule_bias_head": "scaffold_train_rule_bias_head (598b REINFORCE in P1) -- the gap 460d left unbuilt."
+    }
+  }
+}
