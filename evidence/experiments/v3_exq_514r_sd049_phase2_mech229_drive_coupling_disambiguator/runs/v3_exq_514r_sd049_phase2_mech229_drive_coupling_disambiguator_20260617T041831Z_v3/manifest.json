@@ -1,0 +1,71 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator",
+  "run_id": "v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator_20260617T041831Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-17T04:18:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-229"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech229_drive_coupling_genuine_weakens_overshoot_cannot_flip",
+    "readiness_route": "mech229_drive_coupling_genuine_weakens_overshoot_cannot_flip",
+    "route_reason": "overshoot_cannot_flip_argmax_genuine_mech229_drive_coupling_weakens",
+    "disambiguation": {
+      "supports_if": "natural drive delta >= max(K_SD*pstdev(delta), DELTA_FLOOR)",
+      "substrate_ceiling_if": "overshoot flips argmax on >= 2/3 seeds (drive can carve at adequate magnitude; 514q FAIL is env/magnitude-limited -> /implement-substrate amend SD-049-PHASE-2)",
+      "genuine_weakens_if": "overshoot CANNOT flip even at OVERSHOOT_DRIVE_MAGNITUDE (drive cannot carve wanting in this substrate)",
+      "claim_scope_note": "tests MECH-229 sub-leg (b) drive-modulated wanting ONLY; sub-leg (a) wanting!=liking is established by V3-EXQ-514o PASS and is NOT under test here."
+    },
+    "recalibrated_readiness": {
+      "pc_argmax_relevance_frac": 1.0,
+      "definition": "constructed 2-token bank with base_value gap PC_BASE_VALUE_GAP; overshoot drive MUST flip the argmax while natural-magnitude drive (PC_NATURAL_DRIVE_SPREAD) must NOT -- asserts the overshoot magnitude is argmax-relevant for the in-run base_value spread, the 514q gap (it checked only spread > 1e-3)."
+    },
+    "overshoot": {
+      "magnitude": 5.0,
+      "flip_floor": 0.6,
+      "min_fraction_seeds": 0.6666666666666666
+    },
+    "effect_size_gate": {
+      "k_sd": 1.0,
+      "delta_floor": 0.15,
+      "mean_delta": 0.022222222222222233,
+      "sd_delta": 0.04444444444444447,
+      "effect_margin": 0.15
+    }
+  }
+}
