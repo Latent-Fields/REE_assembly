@@ -825,3 +825,47 @@ provide `obs_per_axis_drive=obs_dict["per_axis_drive"]` to
    semantically meaningful via the combiner); whether the encoder change
    re-opens SD-012-emergent invariants for reconfirmation is a governance
    call deferred to the next governance cycle.
+
+## Drive-coupling amend (kappa-scale + standing differential depletion) -- IMPLEMENTED 2026-06-17
+
+Routed by the confirmed `failure_autopsy_V3-EXQ-514r_2026-06-17` (overshoot
+disambiguator) to unblock the **MECH-436** drive-state-modulated-wanting leg
+(`candidate` / `substrate_ceiling` / `pending_retest_after_substrate`). 514r
+proved the drive channel CAN carve `most_wanted` at magnitude 5.0 (flips on 2/5
+guard-passing seeds, non-zero on all 5), so 514q's natural `delta = 0.0` is a
+drive-MAGNITUDE / environment artifact, **not** a falsification. The amend adds
+the two coupled levers the autopsy prescribed (kappa **load-bearing**), both
+no-op-default / bit-identical OFF; it **promotes nothing** (MECH-436 stays held
+until the retest scores).
+
+**Why both levers are needed.** `wanting[k] = base_value[k] * (1 + kappa *
+per_axis_drive[k])`. For drive to flip the argmax between a high-`base_value`
+object and a high-`drive` object, `kappa * (drive_i - drive_j)` must overcome the
+`base_value` ratio. Two facts block this on the current substrate: (i) the fixed
+`kappa = 2.0` times the in-run spread `~0.006` contributes `~0.012` -- swamped by
+real `base_value` gaps that **exceed 0.5** on seeds 45/46/47; (ii) the P2 foraging
+ecology **fully restores** the contacted axis to 0 on consumption, and the WL bank
+is scored *around* consumption events, so the spread at scoring time is equalised
+to `~0.006`. Scaling `kappa` (lever a) makes a realistic spread competitive with
+the real base-value landscape; making the depletion **stand** (lever b) keeps the
+spread argmax-relevant at the scoring moment.
+
+| Lever | Knob | Default (no-op) | Effect when set | Locus |
+|-------|------|-----------------|-----------------|-------|
+| (a) kappa scale (load-bearing) | `GoalConfig.incentive_drive_kappa_scale` (surfaced via `from_dims`) | `1.0` (effective kappa unchanged) | effective kappa = `incentive_drive_kappa_weight * incentive_drive_kappa_scale`; a realistic per-axis drive spread competes with real object `base_value` gaps | `ree_core/goal.py` `IncentiveTokenBank.wanting()` |
+| (b) standing differential depletion | `CausalGridWorldV2.per_axis_restoration_fraction` (env-only kwarg, not in `from_dims`) | `1.0` (full restore to 0 = pre-amend) | `restore = cur_drive * curve_mult * fraction`; `<1` leaves **standing** drive on restored axes -> a persistent argmax-relevant spread (paired with the existing divergent `per_axis_drive_decay`) | `ree_core/environment/causal_grid_world.py` |
+
+Contract: `ree-v3/tests/contracts/test_sd049_phase2_drive_coupling.py` (C1 kappa
+default bit-identical; C2 scale flips a `most_wanted` argmax the unscaled kappa
+cannot; C3 full restore bit-identical; C4 partial restore leaves standing drive on
+a real consumption step; C5 `from_dims` wiring; C6 clamp/fallback). MECH-094 N/A
+(env stream + waking bank arithmetic). Phased training N/A (scalar arithmetic).
+MECH-229 leg (a) (V3-EXQ-514o PASS 0.80) UNTOUCHED.
+
+**Validation experiment: V3-EXQ-514s** (the 514r-successor MECH-436 retest) --
+re-run the 514r overshoot + OFF/bank-disabled + recalibrated-argmax-relevance
+readiness controls on the kappa-scaled + partial-restoration substrate.
+Pre-registered promotion target: natural `mean(WL_drive - WL_nodrive) >=
+max(k*pstdev(delta), 0.15)` on `>=2/3` seeds converts MECH-436 `substrate_ceiling
+-> supports`. Non-vacuity preconditions self-route `substrate_not_ready_requeue`,
+never a false `weakens`. `claim_ids=[MECH-436]`.
