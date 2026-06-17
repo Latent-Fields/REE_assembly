@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Self-Model Integration (finish self-attribution; self-as-object cutover)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-06-17
   scope_claims: [ARC-081, MECH-214, MECH-215, SD-030, INV-064]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -72,9 +72,9 @@ closure_plan:
     - id: "self_model_v4:SELF-4"
       title: "E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability"
       phase: 3
-      status: open
+      status: in_progress
       severity: medium
-      owner_exq: null
+      owner_exq: "V4-EXQ-001"
       unblocks_claims: [MECH-215]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: []
@@ -82,7 +82,9 @@ closure_plan:
         - "V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-weight a trajectory's confidence"
         - "DR-12 cutover: wire E2 forward-PE -> E3 confidence so that low-confidence (poorly-modelled) regions discount their own viability estimates"
         - "v4_spec notes DR-12 is the most V3-tractable of the five (partly addressable in V3); it is sequenced here as the cheapest cutover step and a natural pilot"
-      last_updated: 2026-06-16
+      last_updated: 2026-06-17
+      resume_condition: "AWAITING V4-EXQ-001 RUN + REVIEW (DR-12 pilot, queued ree-v3/main 394ccf4). On PASS (dr12_pe_conditioning_changes_selection): the E2-PE -> E3-confidence wiring is live; queue the ecological-evidence successor (region-PE auto-source) that scores against MECH-215. On dr12_wiring_inert (FALSIFIER fired under met preconditions): DR-12 buys nothing -> /failure-autopsy. On substrate_not_ready_requeue: re-queue at adequate power. Status stays in_progress until that review."
+      build_2026_06_17: "BUILT (first-ever V4 substrate build; user-approved graduation_decision_2026_06_16). (1) /implement-substrate landed the no-op-default E2-forward-PE -> E3 confidence down-weight lever in ree-v3 ree_core/predictors/e3_selector.py score_trajectory() (use_pe_confidence_weighting / pe_confidence_weight / pe_confidence_mode + select(e2_forward_pe_per_candidate=[K]) per-candidate threading + diagnostics), E3Config + from_dims, agent set_injected_e2_forward_pe seam. Bit-identical OFF; 8/8 DR-12 contracts + full suite 1059 passed (1 pre-existing control_vector C4 flake). Landed ree-v3/main f5eba3b + 394ccf4 (config.py+agent.py swept intact into concurrent 42895f6, also on origin). Design doc docs/architecture/dr12_pe_conditioned_e3_confidence.md (swept into 9216447c2f). PROMOTES NOTHING -- MECH-215 untouched (candidate/v4); claims.yaml not modified. (2) /queue-experiment landed V4-EXQ-001 (DR-12 pilot, ree-v3/main 394ccf4; coordinator-DB confirmation pending) -- controlled caller-supplied-PE wiring falsifier, 3-arm OFF/DIFFERENTIAL/UNIFORM, smoke 3/3 seeds PASS. PRECEDENTS SET (first V4 experiment): architecture_epoch='ree_self_model_v1' (per v4_spec.md:267, parallel to V3 ree_hybrid_guardrails_v1; per-V4-track epoch like the ree_multi_agent_v1 example); run_id suffix '_v4'; V4-EXQ-NNN queue namespace (validate_queue.py queue_id pattern widened V3-EXQ -> V<gen>-EXQ). owner_exq=V4-EXQ-001 assigned HERE (at queue time, not before). VERIFIED generation-aware: check_closure_drift.py:497 skips non-v3 plans (so this owned generation:v4 node is NOT drift-flagged), and generate_closure_snapshot.py:260-263 + serve.py read_closure segment v4 out of the V3 overall_* -- a generation:v4 node carrying an owner_exq does NOT pollute the V3 closure %. v1 source is caller-supplied (controlled probe); ecological region-PE auto-source is the documented follow-on."
       completion_note: "DR-12 from v4_spec V4-2. Together with DR-10 this is the (DR-10 + DR-12) pair that unblocks MECH-215 (self-model prerequisite for agentive prediction: the E2 self-transition accuracy half). The most landable DR; can be the first V4 experiment to gain an owner_exq. READINESS NOTE 2026-06-16 (V4-roadmap tractability audit): this node's gate is now SATISFIED. Its only depends_on (SELF-1) flipped open->done 2026-06-14, and the DR-12 cutover keys off E2 forward-PE magnitude (present in V3 today on the z_gamma forward model), NOT off a materialised stateful z_self -- so unlike SELF-3/SELF-5 it does not wait on the SELF-1 substrate build. This is the buildable-now graduation candidate; user adjudication needed to assign an owner_exq (does NOT graduate automatically). Annotation only -- no owner_exq added, no work scheduled."
       graduation_decision_2026_06_16: "GRADUATION APPROVED (user, 2026-06-16 V4 tractability pass) -- SELF-4 is the first V4 node cleared to build. Build path (owner_exq assigned WITH the experiment, not before, to keep check_closure_drift.py dormant against this generation:v4 node until a real run exists): (1) /implement-substrate -- add a no-op-default confidence-by-PE lever in ree-v3 e3_selector.score_trajectory() that down-weights a trajectory's viability/confidence as a monotone function of E2 FORWARD-PE magnitude in that trajectory's region (E2 forward-PE is already produced on the z_gamma forward model; E3 already consumes E1-novelty + running-variance PE, so this is a new lever on existing machinery, bit-identical OFF). (2) /queue-experiment -- DR-12 pilot, architecture_epoch per v4_spec.md:267 (own V4 epoch parallel to ree_hybrid_guardrails_v1). FALSIFIER: if PE-conditioned confidence weighting does not change trajectory selection in high-PE (poorly-modelled) regions vs the unconditional-trust baseline, DR-12 buys nothing and the wiring is inert. unblocks MECH-215 (E2 self-transition-accuracy half). Cheapest possible V3->V4 cutover; proves the cutover pattern for the rest of the roadmap. NOT YET BUILT -- this records the decision; the implement-substrate+queue chain is the next step."
     - id: "self_model_v4:SELF-5"
@@ -322,3 +324,22 @@ each DR step, exactly which V3-era prerequisites must land first.
   right-TPJ self/other boundary as the V5 cross-link; one-comparator-two-streams
   design note) remain PROPOSAL-FIRST, unadjudicated -- not registered by this
   reconcile.
+- **2026-06-17** -- SELF-4 (DR-12) BUILT -- the FIRST-EVER V4 substrate build,
+  executing the user-approved `graduation_decision_2026_06_16`. (1) `/implement-substrate`
+  landed the no-op-default E2-forward-PE -> E3 confidence down-weight lever in
+  `ree-v3/ree_core/predictors/e3_selector.py` `score_trajectory()` (per-candidate
+  threading via `select(e2_forward_pe_per_candidate=...)`; bit-identical OFF; 8 DR-12
+  contracts + full suite 1059 passed). (2) `/queue-experiment` landed **V4-EXQ-001**
+  (DR-12 pilot; controlled caller-supplied-PE wiring falsifier; smoke 3/3 seeds PASS).
+  SELF-4 `status: open -> in_progress`, `owner_exq: null -> V4-EXQ-001` (assigned at
+  queue time, per the build-path rule). **PRECEDENTS for the V4 generation:**
+  `architecture_epoch = ree_self_model_v1` (parallel to V3's `ree_hybrid_guardrails_v1`;
+  per-V4-track epoch like v4_spec's `ree_multi_agent_v1` example); `run_id` suffix
+  `_v4`; `V4-EXQ-NNN` queue namespace (`validate_queue.py` pattern widened
+  `V3-EXQ` -> `V<gen>-EXQ`). **VERIFIED the generation-aware consumers keep V3 clean**
+  with an owned generation:v4 node: `check_closure_drift.py:497` skips non-`v3` plans
+  (no false drift flag); `generate_closure_snapshot.py:260-263` + `serve.py read_closure`
+  segment v4 out of `overall_*` (no V3 closure-% pollution). **PROMOTES NOTHING in V3** --
+  MECH-215 stays candidate/v4; no claims.yaml edit. v1 PE source is caller-supplied
+  (controlled probe); the ecological region-PE auto-source is the documented follow-on.
+  Substrate doc: `docs/architecture/dr12_pe_conditioned_e3_confidence.md`.
