@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-17T20:44:18Z",
+  "last_tick_utc": "2026-06-17T21:14:26Z",
   "state": "running",
   "current_exq": "V3-EXQ-460f",
   "current_exq_started_utc": "2026-06-17T17:55:34.255509+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_RETEST",
-    "runs_done": 3,
+    "run_label": "Seed 43 / ARM_CLOSURE_OFF",
+    "runs_done": 5,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 116.4
+    "overall_pct": 166.7
   },
-  "seconds_elapsed": 10124,
+  "seconds_elapsed": 11932,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460f_sd034_closure_control_plane_decommit_behavioural] starting (dry_run=False)",
@@ -34,7 +34,12 @@
     "Seed 43 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_RETEST",
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4157 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.959 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00250"
+    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.00250",
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.0996 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.4185 contact_events=207 z_goal_at_contact=0.4367",
+    "Seed 43 Condition ARM_CLOSURE_ON",
+    "Seed 43 Condition ARM_CLOSURE_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
