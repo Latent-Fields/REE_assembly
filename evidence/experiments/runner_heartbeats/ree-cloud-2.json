@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-17T14:57:36Z",
+  "last_tick_utc": "2026-06-17T15:27:40Z",
   "state": "running",
   "current_exq": "V3-EXQ-687",
   "current_exq_started_utc": "2026-06-17T08:20:40.537338+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "Q-045",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_2_mech260_only",
-    "runs_done": 6,
+    "run_label": "Seed 43 / ARM_2_mech260_only",
+    "runs_done": 7,
     "runs_total": 12,
-    "episodes_done": 170,
+    "episodes_done": 20,
     "episodes_total": 220,
-    "overall_pct": 56.4
+    "overall_pct": 59.1
   },
-  "seconds_elapsed": 23815,
-  "seconds_remaining": 17910,
+  "seconds_elapsed": 25619,
+  "seconds_remaining": 17133,
   "recent_lines": [
     "[v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation] starting (dry_run=False)",
     "Seed 42 Condition ARM_0_both_off",
@@ -77,7 +77,14 @@
     "Seed 42 Condition ARM_2_mech260_only",
     "[train] stage0 ARM_2_mech260_only seed=42 ep 20/220 z_goal_peak=0.4673",
     "[train] p0 ARM_2_mech260_only seed=42 ep 130/220 mean_len=192.0 rv=0.00002",
-    "[train] hazard ARM_2_mech260_only seed=42 ep 170/220 mean_len=63.5 survival_gate=FAIL"
+    "[train] hazard ARM_2_mech260_only seed=42 ep 170/220 mean_len=63.5 survival_gate=FAIL",
+    "[train] p1 ARM_2_mech260_only seed=42 ep 220/220 median_last=200.0 survival_gate=pass",
+    "[P2 eval] arm=ARM_2_mech260_only seed=42 eval_ep 10 of 30 measured=1620",
+    "[P2 eval] arm=ARM_2_mech260_only seed=42 eval_ep 20 of 30 measured=3510",
+    "[P2 eval] arm=ARM_2_mech260_only seed=42 eval_ep 30 of 30 measured=5130",
+    "verdict: PASS seed=42 arm=ARM_2_mech260_only entropy=0.0000 z_goal=0.5017 measured=5130 mech260_op=False",
+    "Seed 43 Condition ARM_2_mech260_only",
+    "[train] stage0 ARM_2_mech260_only seed=43 ep 20/220 z_goal_peak=0.4076"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
