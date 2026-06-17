@@ -4933,6 +4933,20 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "A drive-dependence delta mean(WL_drive - WL_nodrive) >= max(k*pstdev(delta), FLOOR), measured where the in-run per-axis drive spread is in the argmax-moving regime (asserted by a recalibrated readiness gate, NOT merely spread > 1e-3), with an overshoot positive control that flips most_wanted and an OFF/bank-disabled control that floors at wanting==liking. First falsifier ALREADY QUEUED: V3-EXQ-514r (overshoot + OFF + recalibrated readiness). Overshoot flips most_wanted => drive CAN carve at adequate magnitude (the 514q delta=0.0 is an env/magnitude artifact -> enrich the V3 env via the SD-049-PHASE-2 differential-depletion / kappa-scaling amend, NOT a weakens); overshoot does NOT flip even at large drive => genuine MECH-436 weakens. 514r is the disambiguator that decides which.\n"
   },
+  "MECH-437": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "policy.rule_distinguishability_maintenance_operator",
+    "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-438": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "policy.rule_key_constructive_separability",
+    "title": "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse).",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",

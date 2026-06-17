@@ -29638,6 +29638,17 @@
   registered_utc: "2026-05-08"
   brought_forward_utc: "2026-05-18"
   design_doc: docs/architecture/arc_063_candidate_rule_field.md
+  convergence_2026_06_17: >
+    Forward cross-ref (does NOT change status). The REE_convergence rule-distinguishability
+    intake (2026-06-17; promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617) registered
+    two V4-leaning candidate mechanisms for the CRF distinguishability problem this slot
+    owns -- the conflict-gate lockout (theta(n_matched) >> maintenance floor -> crf_frac_active
+    ->0; failure_autopsy_V3-EXQ-654d): MECH-437 (maintenance-side consolidation/refactor
+    operator, DreamCoder wake-sleep library-refactoring analog) and MECH-438 (construction-side
+    separable-key codebook, DreamerV3 categorical-latent analog). Both depend_on ARC-063 and
+    are the principled-mechanism candidates behind the substrate_queue crf-availability-maintenance
+    point-fix line. candidate/substrate_conditional/v4; OFF the V3 critical path (block no V3
+    closure node). Arch doc: docs/architecture/rule_distinguishability_maintenance.md.
   implementation_note: >
     2026-06-04: V3-tractable design landed (docs/architecture/arc_063_candidate_rule_field.md),
     then v1 SUBSTRATE IMPLEMENTED the same day. Resolves arc_062_rule_apprehension:GAP-B's blocker via a
@@ -43100,3 +43111,76 @@
     - MECH-261
   location: docs/architecture/plasticity_write_authority_gating.md#mech-431
   notes: "Reaped from the autobiographical_memory_v4:ABM-9 /lit-pull (2026-06-13). Refines MECH-368's plasticity_eligibility term from a scalar gate into the eligibility-THEN-capture STRUCTURE; MECH-285 (consolidation-priority by V_s residual) is a candidate capture-resource signal and MECH-261 gates the channel the tag lives in. Anchors (verified Ballarini in the ABM-9 pull; the cellular pair are canonical): Ballarini, Moncada, Martinez, Alen & Viola 2009 PNAS 106(34):14599 (behavioural tagging -- weak training yields LTM only if a novel experience supplies plasticity-related products within a critical window); Frey & Morris 1997 Nature 385:533 (synaptic tagging and capture); Redondo & Morris 2011 Nat Rev Neurosci (synaptic-tagging-and-capture hypothesis). FALSIFIER: if a single-stage eligibility test (no separate capture stage, no time window) prevents catastrophic interference on the online world-model/policy update path just as well, the two-factor structure earns no keep over MECH-368. V4/V5; off the V3 critical path; substrate_conditional on the MECH-368 gate + an online model-update write channel not yet built in V3. DO NOT build in V3 until routed by experiment."
+- id: MECH-437
+  title: "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
+  claim_type: mechanism_hypothesis
+  subject: policy.rule_distinguishability_maintenance_operator
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: "2026-06-17"
+  depends_on:
+    - ARC-063    # the CRF locus (strong-reading CandidateRuleField) this operator maintains
+    - MECH-309   # the diagnostic the rule-apprehension cluster serves (monomodal collapse without an apprehender)
+    - ARC-062    # the weak-reading selector half of the mint-then-weight split
+    - ARC-064    # the bottom-up regularity-mint source that populates the pool this operator keeps separable
+    - MECH-285   # sleep-side consolidation-priority signal this operator would reuse (waking-light + sleep-heavy)
+  location: docs/architecture/rule_distinguishability_maintenance.md#mech-437
+  notes: >
+    Registered 2026-06-17 from the REE_convergence rule-distinguishability intake
+    (promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617; comparison artifact
+    REE_convergence/sources/dreamcoder/comparison_table.md). External analog: DreamCoder
+    wake-sleep library learning (Ellis et al. 2021, PLDI; arXiv 2006.08381; Phil Trans R
+    Soc A 381:20220050 2023) -- minted abstractions are kept distinguishable by a periodic
+    non-gradient abstraction-sleep REFACTORING step under an MDL objective, the working
+    instance of exactly this operator. Targets the arc_062_rule_apprehension GAP-B CRF
+    conflict-gate lockout (theta=0.15+0.25*(n_matched-1); n_matched~7-8 -> theta~1.65 >>
+    maintenance floor ~0.45 -> crf_frac_active->0; failure_autopsy_V3-EXQ-654d). The
+    existing substrate_queue crf-availability-maintenance item is the point-fix line;
+    MECH-437 is the principled-mechanism candidate behind it. Complementary to MECH-438
+    (construction-side). FALSIFIER: if a periodic MDL-driven consolidation pass over the
+    minted-rule pool yields no improvement in crf_frac_active / committed-class entropy vs
+    a no-consolidation baseline on a substrate where >5 rules co-match (the lockout
+    regime), the maintained-distinguishability mechanism is falsified (the fix is
+    elsewhere -- minting too many rules, or the gate functional form itself). V4-leaning;
+    OFF the V3 critical path -- blocks no V3 closure node; substrate_conditional on a
+    consolidation-operator substrate not yet built. DO NOT build in V3 until routed by
+    experiment.
+- id: MECH-438
+  title: "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse)."
+  claim_type: mechanism_hypothesis
+  subject: policy.rule_key_constructive_separability
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: "2026-06-17"
+  depends_on:
+    - ARC-063    # the CRF locus whose context-tag space this constructs as a separable codebook
+    - MECH-309   # the diagnostic the rule-apprehension cluster serves
+    - ARC-062    # the weak-reading selector half of the mint-then-weight split
+    - ARC-064    # the bottom-up regularity-mint source whose keys this quantises
+    - MECH-269   # V_s representational precondition: keys must be discriminably represented before they can be quantised separably
+    - MECH-437   # complementary maintenance-side operator (construction bounds steady-state co-match; maintenance cleans residue)
+  location: docs/architecture/rule_distinguishability_maintenance.md#mech-438
+  notes: >
+    Registered 2026-06-17 from the REE_convergence rule-distinguishability intake
+    (promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617; comparison artifact
+    REE_convergence/sources/dreamer-v3/codebook_key_separability.md, claim
+    DREAMER-V3-MOD-002, probe DREAMER-V3-P-006). External analog: DreamerV3 categorical
+    discrete latents (Hafner et al. 2023; arXiv 2301.04104) -- 32 categoricals x 32
+    classes, one-hot, straight-through gradient -- keep world-state keys separable by
+    construction, bounding collision by codebook capacity. Construction-side answer to the
+    arc_062_rule_apprehension GAP-B CRF conflict-gate lockout. RISK (the construction-side
+    failure mode): a codebook too coarse collapses distinct rules onto one key, destroying
+    the discriminability the rule-apprehension layer exists to provide (the same
+    differentiation-vs-persistence tension ARC-063 names). FALSIFIER: if quantising
+    context keys onto a categorical codebook does not reduce mean n_matched below the
+    lockout threshold, OR reduces it only by collapsing distinct rules onto one key
+    (measured as a drop in committed-class entropy / route diversity), constructive
+    key-separability is falsified. V4-leaning; OFF the V3 critical path -- blocks no V3
+    closure node; substrate_conditional on a quantised-context-key substrate not yet
+    built. DO NOT build in V3 until routed by experiment.

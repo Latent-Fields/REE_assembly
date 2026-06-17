@@ -1,0 +1,155 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-RULE-DISTINGUISHABILITY-20260617",
+  "created_at_utc": "2026-06-17T15:39:03Z",
+  "updated_at_utc": "2026-06-17T15:39:03Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "rule-distinguishability",
+    "snapshot_ref": "git-dda0a6d",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "Paraphrased claims and citation links only; no copied upstream text, code, or weights are stored in either intake. License posture for the DreamCoder ec repository must be re-verified before any code-reference content_mode.",
+    "intake_path": "sources/dreamcoder",
+    "primary_links": [
+      "https://arxiv.org/abs/2006.08381",
+      "https://doi.org/10.1098/rsta.2022.0050",
+      "https://arxiv.org/abs/2301.04104"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": true,
+    "notes": "Two-source convergence intake (DreamCoder maintenance-side + DreamerV3 codebook construction-side) on rule-distinguishability. Primary sources are peer-reviewed/archival; intake is partial pending equation-level extraction of the DreamCoder refactoring algorithm and the DreamerV3 codebook-capacity tradeoff. Candidate claims are registered as candidate/substrate_conditional and promote nothing on their own."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MECH-437",
+      "MECH-438",
+      "ARC-063",
+      "ARC-062",
+      "MECH-309",
+      "ARC-064"
+    ],
+    "docs_paths": [
+      "docs/architecture/rule_distinguishability_maintenance.md",
+      "docs/architecture/arc_063_candidate_rule_field.md",
+      "sources/dreamcoder/comparison_table.md",
+      "sources/dreamer-v3/codebook_key_separability.md",
+      "reports/2026-06-17_rule_distinguishability_synthesis.md"
+    ],
+    "impact_areas": [
+      "control_plane",
+      "memory",
+      "governance"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-07-01T00:00:00Z"
+  },
+  "falsification": {
+    "claim_under_test": "Rule distinguishability at REE's CandidateRuleField locus should be achieved and maintained by a principled mechanism -- a maintenance-side consolidation operator (MECH-437, DreamCoder analog) and/or a construction-side separable-key codebook (MECH-438, DreamerV3 analog) -- rather than by the current reactive affine conflict-gate theta(n_matched).",
+    "could_be_wrong_if": [
+      "A periodic MDL-driven consolidation pass over the minted-rule pool yields no improvement in crf_frac_active / committed-class entropy vs a no-consolidation baseline on a substrate where more than 5 rules co-match (the lockout regime) -- falsifies MECH-437.",
+      "Quantising context keys onto a categorical codebook does not reduce mean n_matched below the lockout threshold, or reduces it only by collapsing distinct rules onto one key (drop in committed-class entropy / route diversity) -- falsifies MECH-438.",
+      "The CRF lockout turns out to be driven by minting too many rules or by the gate functional form itself, in which case neither distinguishability mechanism is the right fix."
+    ],
+    "test_plan_refs": [
+      "sources/dreamcoder/probes.md",
+      "sources/dreamer-v3/codebook_key_separability.md",
+      "reports/2026-06-17_rule_distinguishability_synthesis.md"
+    ],
+    "status": "planned",
+    "notes": "Falsifiers are pre-registered per candidate claim; V3-EXQ-654 lineage (crf_frac_active, committed-class entropy) supplies the metric instrumentation a future experiment would reuse."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete: the candidate claims are registered as candidate/substrate_conditional/V4-leaning, wired into depends_on of the arc_062 cluster, and block no V3 closure node. They do not move any existing claim status or conflict ratio. REE_assembly governance adjudication still required before any decide-to-build.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts in the arc_062 rule-apprehension cluster after registration.",
+      "Either candidate claim being mistakenly placed on the V3 critical path (owner_exq / blocker of a V3 closure node)."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "DREAMCODER-P-001",
+      "DREAMCODER-P-002",
+      "DREAMER-V3-P-006"
+    ],
+    "adapter_patch_refs": [
+      "sources/dreamcoder/integration_deltas.md",
+      "sources/dreamer-v3/codebook_key_separability.md"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "RULE-DIST-BENCH-001",
+        "metric": "post_registration_conflict_ratio_delta_arc062_cluster",
+        "comparator": "<=",
+        "target": "0.0 over 2 governance cycles",
+        "measurement_ref": "evidence/experiments/claim_evidence.v1.json",
+        "notes": "Registering the candidate claims must not increase unresolved conflict pressure in MECH-309 / ARC-062 / ARC-063."
+      },
+      {
+        "criterion_id": "RULE-DIST-BENCH-002",
+        "metric": "v3_closure_percent_unchanged",
+        "comparator": "=",
+        "target": "no change attributable to MECH-437/MECH-438",
+        "measurement_ref": "evidence/planning/closure_status.md",
+        "notes": "The V4-leaning candidates must keep the V3 closure percentage clean (no V3 plan node blocked on them)."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "planned",
+    "notes": "Decide-whether-to-build is a later governance step. If built, MECH-438 (construction-side) would amend candidate_rule_field.py context-key assignment; MECH-437 (maintenance-side) would add a consolidation operator reusing the ARC-063 sleep-vs-waking refinement asymmetry."
+  },
+  "deltas": [
+    {
+      "delta_id": "RULE-DIST-DELTA-001",
+      "title": "Maintenance-side distinguishability operator over the CRF pool (MECH-437, DreamCoder analog)",
+      "proposal": "Register a candidate REE claim that rule-pool distinguishability is a maintained property requiring a periodic non-gradient consolidation/refactor operator (compress / merge near-duplicates / retire dead rules) under an MDL-style separability objective, rather than a side effect of minting or a reactive gate.",
+      "rationale": "DreamCoder's abstraction-sleep refactoring is the working external instance of this operator; REE's CRF locus has only point-fix maintenance (theta-coupling, conflict-cap, context-match sharpening) and hits the GAP-B lockout.",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2006.08381",
+        "https://doi.org/10.1098/rsta.2022.0050"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "v4_leaning_off_v3_critical_path"
+      ]
+    },
+    {
+      "delta_id": "RULE-DIST-DELTA-002",
+      "title": "Construction-side separable-key codebook for minted rules (MECH-438, DreamerV3 analog)",
+      "proposal": "Register a candidate REE claim that minted-rule context keys should be assigned in a quantised / categorical codebook separable by construction, bounding the number of rules that co-match any context (n_matched) so theta(n_matched) stays below the availability ceiling -- without collapsing distinct rules onto a shared key.",
+      "rationale": "DreamerV3's categorical discrete latents keep world-state keys separable by construction (32 categoricals x 32 classes, straight-through); the analog bounds the CRF co-match count up front rather than gating it reactively.",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/2301.04104",
+        "https://ar5iv.org/html/2301.04104#A23"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "key_collapse_destroys_discriminability",
+        "v4_leaning_off_v3_critical_path"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "hybridize",
+    "anti_lock_in_review_required": false,
+    "notes": "Recommended outcome hybridize: the two mechanisms are complementary (construction bounds steady-state co-match; maintenance cleans residue). Final outcome and any decide-to-build set during REE_assembly governance adjudication; the candidate claims are already registered (candidate/substrate_conditional/V4-leaning)."
+  }
+}
