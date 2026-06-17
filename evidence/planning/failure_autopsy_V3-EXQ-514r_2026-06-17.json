@@ -1,0 +1,100 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-17T07:54:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator_20260617T041831Z_v3",
+      "queue_id": "V3-EXQ-514r",
+      "supersedes": "V3-EXQ-514q",
+      "claim_ids": ["MECH-436"],
+      "manifest_claim_ids_tag": ["MECH-229"],
+      "claim_ids_accuracy_note": "Manifest tags claim_ids=[MECH-229] (the broad umbrella), but the run exercises ONLY the drive-coupling sub-leg now carried by the child MECH-436 (split out at 514q). Governance should weight this run against MECH-436, NOT the established leg-(a) MECH-229 supports.",
+      "failed_criterion": "discrimination",
+      "self_route_overturned": true,
+      "self_route_label": "mech229_drive_coupling_genuine_weakens_overshoot_cannot_flip",
+      "adjudicated_label": "drive_magnitude_artifact_substrate_ceiling_overshoot_flips",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (MECH-436); the test let the drive-coupling claim express itself and overshoot proves the channel carries, so the FAIL bears on env/magnitude adequacy, not the claim. Leg-(a) MECH-229 wanting!=liking (object-bound, 514o PASS 0.80) is NOT under test and NOT weakened.",
+        "biological_reference": "clear -- incentive salience is drive/state-modulated cue attraction (Berridge 2006; Smith/Berridge/Aldridge 2011; DiFeliceantonio/Berridge 2016). Near-flat per-axis drive (spread ~0.005-0.009) is the missing-differential-depletion signature, not falsification.",
+        "prerequisites": "missing -- differential per-axis depletion across resource axes (SD-049-PHASE-2 env amend) AND a drive-to-score coupling kappa scaled to compete with REAL object base_value gaps.",
+        "implementation": "partial->adequate -- most_wanted = argmax base_value[k]*(1+kappa*per_axis_drive[k]) DOES respond to drive (positive control pc_argmax_relevance_frac=1.0 AND overshoot flips fully on 2/5 seeds), but kappa*(realistic spread) is swamped by real cross-object base_value gaps on 3/5 seeds.",
+        "environment": "too sparse -- CausalGridWorldV2 P2 produces near-uniform per-axis homeostatic need (drive_spread_max ~0.006); no differential depletion pressure across resource axes.",
+        "measurement": "adequate -- 514q's vacuity (readiness gate only checked spread>1e-3) is CURED: the recalibrated argmax-relevance gate confirms overshoot flips a realistic 0.5 base_value gap while natural drive does not (every seed); OFF/bank-disabled floor and overshoot arm are non-vacuous.",
+        "integration": "coupled -- bank -> most_wanted reached; overshoot moves it.",
+        "scale": "adequate -- 6 seeds [42-47], 73 total scored WL steps, BEHAV_EVAL_EPISODES 30."
+      },
+      "key_statistics": {
+        "natural_drive_delta_per_seed": [0.0, 0.111, 0.0, 0.0, 0.0],
+        "natural_drive_delta_mean": 0.0222,
+        "natural_drive_effect_margin": 0.15,
+        "C_WL_DRIVE_coupled_dissociation": false,
+        "overshoot_drive_magnitude": 5.0,
+        "overshoot_flip_floor": 0.6,
+        "overshoot_flip_fraction_per_seed_guard_passing": {"42": 0.727, "43": 1.0, "45": 0.077, "46": 0.231, "47": 0.389},
+        "overshoot_flip_fraction_excluded_seed_44": 0.8,
+        "overshoot_seed_pass_frac_guard_passing": 0.4,
+        "overshoot_seed_pass_frac_all_seeds_incl_44": 0.5,
+        "mean_overshoot_flip_fraction": 0.485,
+        "min_fraction_threshold": 0.6667
+      },
+      "non_vacuity": {
+        "contact_non_vacuity_met": true,
+        "guard_fraction": 0.833,
+        "n_guard_passing_seeds": 5,
+        "recalibrated_argmax_relevance_readiness_met": true,
+        "pc_argmax_relevance_frac": 1.0,
+        "off_floor_met": true,
+        "off_floor_frac": 1.0,
+        "run_bank_populated_frac": 1.0,
+        "non_degenerate": true,
+        "verdict": "Run is non-vacuous: overshoot flips a constructed realistic 0.5 base_value gap on 100% of seeds while natural-magnitude drive does NOT; the OFF/bank-disabled control floors at wanting==liking (0 dissociation) on every seed; bank holds 3 distinct tokens. The disambiguator got a fair test."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Incentive salience 'wanting' as drive/state-modulated cue attraction (Berridge 2006; Smith/Berridge/Aldridge 2011 PNAS; DiFeliceantonio/Berridge 2016).",
+        "dependencies": ["differential homeostatic depletion across resource axes (so per-axis drive genuinely varies)", "a drive-to-score coupling magnitude (kappa) scaled to compete with REAL object base_value gaps, not a 0.5 toy gap"],
+        "is_formal_import": false,
+        "divergence": "Environmental/substrate, not formal: the V3 ecology never produces the differential drive the mechanism consumes, and the fixed-gain kappa is too small relative to real object base_value, so drive-coupling cannot express at natural magnitude. Overshoot proves the channel carries.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-17 (failure_autopsy_V3-EXQ-514r, confirmed): the self-stamped MECH-229/MECH-436 weakens is reclassified non_contributory and scoring-excluded. 514r is the pre-registered overshoot disambiguator for MECH-436. The genuine-weakens precondition ('overshoot CANNOT flip most_wanted even at OVERSHOOT_DRIVE_MAGNITUDE=5.0') is FALSE: overshoot flips most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000), non-zero on all 5 (8-39% on 45/46/47), mean_overshoot_flip 0.485 (excluded seed 44 also flipped, 0.800 -> 3/6 across all seeds) -- the drive channel demonstrably carries. The script binarized at >=2/3 seeds (got 2/5) and mis-routed to weakens; a partial flip is 'drive CAN carve at adequate magnitude', i.e. 514q's natural delta=0.0 is a drive-MAGNITUDE/environment artifact, not a structural inability. Controls non-vacuous: recalibrated argmax-relevance readiness pc_argmax_relevance_frac=1.0 (overshoot flips a 0.5 base_value gap while natural-magnitude drive does not, every seed); OFF/bank-disabled floor frac=1.0 (wanting==liking -> 0 dissociation); bank populated 1.0. The positive control flips a 0.5 gap on 100% of seeds but real in-run base_value gaps on 45/46/47 exceed 0.5, so even magnitude 5.0 can't flip there -- the kappa-scaling half of the V3 env amend is load-bearing. MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate; the SD-049-PHASE-2 differential-depletion + kappa-scaling amend (priority 2) is now GREENLIT (the 514q 'DO NOT build until 514r resolves' hold is lifted). MECH-229 leg (a) wanting!=liking (object-bound, V3-EXQ-514o PASS 0.80) is UNAFFECTED. No demotion.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "sd_id_suggested": "",
+        "title": "",
+        "implementation_hint": "Greenlight the held SD-049-PHASE-2 drive-coupling env amend (the 514q 'DO NOT build until 514r resolves' hold is now lifted). Two coupled levers, kappa LOAD-BEARING: (a) scale the drive-to-score coupling kappa so a realistic per-axis drive spread competes with REAL object base_value gaps -- 514r's overshoot positive control flips a 0.5 base_value gap on 100% of seeds, but real in-run gaps on seeds 45/46/47 exceed 0.5, so even magnitude-5.0 drive cannot flip there at the current kappa; (b) make the P2 foraging ecology generate differential depletion across resource axes (per-axis drive spread reaching argmax-flipping magnitude, not the current ~0.006 -- 514r's natural delta is 0). The retest re-runs the 514r overshoot + OFF + recalibrated-readiness controls on the enriched substrate; a non-zero natural drive-coupled delta >= max(k*pstdev(delta), 0.15) on >=2/3 seeds would PROMOTE MECH-436.",
+        "unblocks_claims": ["MECH-436"],
+        "depends_on_unresolved": ["differential per-axis depletion in CausalGridWorldV2 P2 (env-adequacy)", "kappa drive-to-score coupling scaled to real object base_value gaps (NOT the 0.5 toy gap)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator_20260617T041831Z_v3",
+          "experiment_type": "v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator",
+          "metric": "Disambiguator: natural drive-coupled delta 0.0 (mean 0.022 < margin 0.15) BUT overshoot (mag 5.0) flips most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000) + non-zero on all 5 (mean_overshoot_flip 0.485; excluded seed 44 also 0.800 -> 3/6 all seeds). Non-vacuous: pc_argmax_relevance_frac 1.0 (overshoot flips a 0.5 gap, natural does not), off_floor_frac 1.0, bank populated 1.0. Real in-run base_value gaps on 45/46/47 exceed the 0.5 positive-control gap (even mag-5.0 can't flip).",
+          "target": "On the kappa-scaled + differential-depletion SD-049-PHASE-2 substrate, a non-zero natural drive-coupled delta mean(WL_drive - WL_nodrive) >= max(k*pstdev(delta), 0.15) on >=2/3 seeds, with the overshoot/OFF/recalibrated-readiness controls re-run -- which would convert MECH-436 from substrate_ceiling to a genuine supports."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "narrow_supports_flag is set on the parent MECH-229 (leg a). MECH-436 has no genuine supports yet; this non_contributory keeps it candidate/substrate_ceiling/pending_retest_after_substrate. The established MECH-229 leg-(a) supports (514o 0.80) are unaffected by this run and are NOT re-counted here.",
+      "leg_a_disposition": "MECH-229 (wanting!=liking object-bound dissociation, leg a) UNTOUCHED -- status provisional / flags unchanged / NOT weakened. 514r object_bound fraction 0.736 is consistent but not the load-bearing statistic.",
+      "mech436_disposition": "UNCHANGED: candidate / epistemic_category substrate_ceiling / v3_pending / pending_retest_after_substrate. The owning-falsifier 514r confirms drive CAN carve at adequate magnitude -> the substrate ceiling is real and the SD-049-PHASE-2 amend is greenlit (build hold lifted). NOT weakened, NOT promoted.",
+      "learning_extracted": [
+        "The genuine-weakens precondition 'overshoot CANNOT flip even at magnitude 5.0' is empirically false: overshoot flips most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000), non-zero on all 5 (mean 0.485), and on the excluded seed 44 (0.800). The drive channel carries -> the 514q natural delta=0.0 is a magnitude/env artifact, not a structural inability -> substrate_ceiling / non_contributory, NOT a weakens.",
+        "The script's >=2/3-seed binarization (got 2/5) read 'partial flip' as 'no flip' and mis-routed to weakens. The autopsy overturns the self-route: a substantial non-zero overshoot flip fraction is positive evidence the mechanism is wired, even when it misses the pre-registered seed-count threshold.",
+        "The recalibrated argmax-relevance readiness gate (overshoot must flip a 0.5 base_value gap while natural must not) cured 514q's vacuity (spread>1e-3 only) and passed on 100% of seeds -- but the REAL in-run object base_value gaps on 3/5 seeds exceed 0.5, so even magnitude-5.0 drive can't flip there. The fix is therefore NOT just env differential-depletion (514q's framing) but ALSO kappa-scaling to the real object-value landscape -- kappa load-bearing.",
+        "Fifth autopsy in the 514 lineage (514l/m/p/q/r). The /claim-synthesis split already happened at 514q (MECH-229 -> MECH-436); 514r is MECH-436's owning falsifier and disambiguates it cleanly. No further /claim-synthesis routing warranted."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "single-target lineage; owning falsifier for the 514q-split child MECH-436",
+    "is_independent_bugs": false,
+    "structural_property": "MECH-436 drive-coupling: drive CAN carve most_wanted at overshoot magnitude (2/5 seeds full, all non-zero) but NOT at natural magnitude on the current V3 P2 foraging env (near-flat per-axis drive ~0.006) NOR even at mag-5.0 where real object base_value gaps exceed 0.5 (3/5 seeds). The repair is the SD-049-PHASE-2 differential-depletion + kappa-scaling env amend, kappa load-bearing.",
+    "readings": ["substrate_enrichment (env differential depletion + kappa scaling to real base_value)", "test_design_ceiling (cured: overshoot/OFF/recalibrated-readiness controls now run and non-vacuous)"]
+  }
+}
