@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Plasticity-window neuromodulators (V4 OPENING-side roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-06-17
   scope_claims: [INV-074, MECH-333, MECH-334, ARC-075, MECH-313, MECH-104, MECH-203, SD-037, MECH-205]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -45,8 +45,8 @@ closure_plan:
     - id: "plasticity_neuromodulation_v4:PLW-2"
       title: "Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / Sale)"
       phase: 1
-      status: open
-      lit_pull_status: none
+      status: done
+      lit_pull_status: done
       severity: medium
       owner_exq: null
       unblocks_claims: ["MECH-398", "ARC-093"]
@@ -56,8 +56,8 @@ closure_plan:
         - "Project rule feedback_biology_before_formal_definitions: commission this /lit-pull BEFORE registering any ACh/PV/BDNF substrate claim; the opening-side claims have NO biology lit-pull today"
         - "Anchors named in the framing note: Hensch 2005 (PV/GABA critical-period closure), Bear & Singer 1986 (ACh+NE pairing abolishes plasticity), Froemke 2015 + Kilgard & Merzenich 1998 (nucleus basalis -> cortical remapping), Sale 2007 (GABA reduction reopens CP), Lehmann & Lowel 2008 + Trachtenberg 2015 (windows shift in gain, not binary)"
         - "Do NOT pull pre-emptively: gate the pull on PLW-1's decision-to-build passing first"
-      last_updated: 2026-06-10
-      completion_note: "INV-074/MECH-333 already carry strong closure-side anchors (Fagiolini & Hensch 2000, Kirkpatrick 2017). The opening-side ACh-gain mechanism is the ungrounded half. This node closes that grounding debt before substrate registration."
+      last_updated: 2026-06-17
+      completion_note: "DONE 2026-06-17 (/lit-pull, user-directed per the 2026-06-16 V4 tractability audit -- this was the only generation:v4 plan with lit_pull_status:none). Five literature_evidence/v1 entries written under evidence/literature/targeted_review_plasticity_neuromodulation_v4/ grounding the OPENING-side cluster: Kilgard & Merzenich 1998 (Science, NB activity ENABLES adult cortical remapping -> MECH-398 gate exists+necessary, conf 0.80 supports); Froemke/Merzenich/Schreiner 2007 (Nature, cholinergic disinhibition = a TRANSIENT self-rebalancing plasticity window -> MECH-398 mechanism + ARC-093 state-conditional gain, conf 0.78 supports); Bear & Singer 1986 (Nature, combined ACh+NE lesion abolishes OD plasticity, either alone ineffective -> MECH-398 multiplicative ACh x LC-NE composition + the content/gain hard-separation rule, conf 0.79 supports); Hensch 2005 (Nat Rev Neurosci, PV-interneuron maturation sets CP timing + area-specific timings -> MECH-399 closure clock + Q-072 layer-specificity, conf 0.80 supports); Sale 2007 (Nat Neurosci, enrichment reopens adult window via GABA-down/BDNF-up/PNN-down, benzodiazepine rescue -> ARC-093 re-openable continuous gain + MECH-400 duration knob, conf 0.76 MIXED -- weakens binary-irreversible closure). Index rebuilt (1728 lit entries). NOTE the PLW-2 readiness_gate's 'gate the pull on PLW-1 passing first' was OVERRIDDEN by explicit user direction: the grounding pull registers NOTHING by itself (proposal-first, per-child approval) and closing grounding debt before any substrate-claim registration is exactly what feedback_biology_before_formal_definitions requires, independent of PLW-1's decision-to-build status. PLW-1 (decision-to-build gate) remains BLOCKED/un-cleared; the proposed claims stay candidate/v4/substrate_conditional off the V3 closure path regardless. INV-074/MECH-333 already carry strong CLOSURE-side anchors (Fagiolini & Hensch 2000, Kirkpatrick 2017); the OPENING-side ACh-gain mechanism was the ungrounded half -- now grounded. Candidate-claim harvest (MECH-398/ARC-093/MECH-399/MECH-400/Q-072, each with an explicit falsifier) returned proposal-first for per-child user approval before any claims.yaml registration."
     - id: "plasticity_neuromodulation_v4:PLW-3"
       title: "PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate"
       phase: 2
@@ -250,3 +250,21 @@ nodes carry no `owner_exq` and the drift checker stays dormant. The value is the
   Node + frontmatter `last_updated` -> 2026-06-14. The gate clears only when a
   concrete V3 problem arises that the conservative form cannot carry -- a future
   trigger, not a build step.
+- **2026-06-17** -- PLW-2 biology grounding lit-pull COMPLETE (`/lit-pull`,
+  user-directed: the 2026-06-16 V4 tractability audit found this was the only
+  `generation:v4` plan with `lit_pull_status: none`). Five literature_evidence/v1
+  entries written under `evidence/literature/targeted_review_plasticity_neuromodulation_v4/`
+  -- Kilgard & Merzenich 1998, Froemke/Merzenich/Schreiner 2007, Bear & Singer
+  1986, Hensch 2005, Sale 2007 -- grounding the opening-side ACh-gain / state-
+  conditional-gain / PV-closure-clock / BDNF-duration cluster. PLW-2 status
+  `open` -> `done`, `lit_pull_status` `none` -> `done`. The PLW-2 readiness_gate's
+  "gate the pull on PLW-1 passing first" line was OVERRIDDEN by explicit user
+  direction: the grounding pull registers nothing by itself (proposal-first,
+  per-child approval) and `feedback_biology_before_formal_definitions` requires
+  the biology to PRECEDE any substrate-claim registration regardless of PLW-1's
+  decision-to-build status. PLW-1 stays BLOCKED/un-cleared; the proposed claims
+  (MECH-398 / ARC-093 / MECH-399 / MECH-400 / Q-072, each with an explicit
+  falsifier) stay candidate/v4/substrate_conditional off the V3 closure path and
+  were returned proposal-first for per-child user approval. PROMOTES NOTHING;
+  no V3 closure-% change (generation:v4). Index rebuilt (1728 literature
+  entries). Node + frontmatter `last_updated` -> 2026-06-17.

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_plasticity_neuromodulation_v4",
+  "entry_id": "2026-06-17_arc_093_mech_400_gaba_bdnf_reopen_window_sale2007",
+  "timestamp_utc": "2026-06-17T07:42:58Z",
+  "claim_ids_tested": ["ARC-093", "MECH-400"],
+  "source": {
+    "title": "Environmental enrichment in adulthood promotes amblyopia recovery through a reduction of intracortical inhibition.",
+    "authors": ["Alessandro Sale", "Jose Fernando Maya Vetencourt", "Paolo Medini", "Maria Cristina Cenni", "Laura Baroncelli", "Roberto De Pasquale", "Lamberto Maffei"],
+    "year": 2007,
+    "venue": "Nature Neuroscience 10(6):679-81",
+    "doi": "10.1038/nn1899",
+    "url": "https://doi.org/10.1038/nn1899"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.76,
+  "confidence_rationale": "Strong (Nat Neurosci) causal demonstration that the plasticity window is RE-OPENABLE in adulthood: environmental enrichment restored visual acuity and ocular dominance in adult amblyopic rats, via reduced GABAergic inhibition, increased BDNF, and reduced perineuronal-net density -- and benzodiazepine inhibition-enhancement PREVENTED it. 'Mixed' because it SUPPORTS the continuous re-openable gain reading (ARC-093) and grounds the BDNF duration knob (MECH-400) while WEAKENING any binary/irreversible closure assumption. Held at 0.76: a clean adult-reopening result, but a multi-factor manipulation (enrichment) where the gain channel is inferred from the molecular correlates rather than directly gated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Closure is REVERSIBLE: an adult intervention reduced inhibition and reopened a window thought permanently shut. A REE model treating crystallization (INV-074/MECH-334) as strictly one-way and irreversible would be biologically incomplete -- the biology keeps a re-opening pathway (lower inhibition / raise BDNF / strip PNNs), which is the gain knob (ARC-093) and duration knob (MECH-400) acting in the closure-recovery direction.",
+    "The reopening was a CONFOUNDED multi-factor effect (enrichment simultaneously lowered GABA, raised BDNF, reduced PNNs); the causal weight of each factor is not separable here. A REE design that attributes reopening to a single BDNF-analog duration knob (MECH-400) would over-claim specificity relative to what this paper isolates -- it shows the factors co-move, not that BDNF alone is the lever."
+  ],
+  "tags": ["arc-093", "mech-400", "plasticity_neuromodulation_v4", "bdnf", "gaba", "perineuronal_net", "window_reopening", "reversible_closure", "duration_knob"],
+  "mapping": {
+    "source_claim_statement": "Environmental enrichment in adult amblyopic rats restored normal visual acuity and ocular dominance; the effect was mediated by reduced GABAergic intracortical inhibition, accompanied by increased BDNF expression and reduced perineuronal-net density, and was prevented when cortical inhibition was pharmacologically enhanced (benzodiazepine infusion).",
+    "ree_translation": "Sale et al. establish that the plasticity window is not a one-way door: lowering inhibition (with BDNF up and PNNs down) reopens it in adulthood. This supports ARC-093's reading that plasticity gain is a continuous, state-conditional quantity that can be raised again, not a binary flag that latches shut -- and it grounds MECH-400, the BDNF-analog trophic window-DURATION knob, as a real biological lever in the reopening direction. It simultaneously WEAKENS any REE assumption that crystallization (INV-074 / MECH-334) is strictly irreversible: the biology retains a recovery pathway.",
+    "mapping_caveat": "This is a confounded multi-factor manipulation (enrichment co-varies GABA, BDNF and PNNs) in adult rat visual cortex; it shows the factors move together to reopen the window, not that any single factor (BDNF) is the isolated lever. REE has no GABA/BDNF/PNN; the transfer is to the FUNCTIONAL property -- closure is reversible and the gain ceiling can be re-raised -- not to the molecular mechanism. MECH-400 is explicitly the LOWEST-priority, deferred pillar; this entry grounds it without authorising it. Evidences ARC-093 (continuous re-openable gain) and MECH-400 (duration/reopening knob); does not by itself adjudicate the opening-gate mechanism (MECH-398).",
+    "source_context": "Adult amblyopic rats (Long-Evans); environmental enrichment vs standard housing; visual acuity / ocular-dominance readout; GABA, BDNF, perineuronal-net molecular assays; benzodiazepine causal control."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.44,
+    "notes": "Nat Neurosci, with a clean causal control (benzodiazepine rescue of closure) -- high source quality. Mapping fidelity moderate: the reversible-closure / re-openable-gain property transfers well to ARC-093, but the BDNF-specific reading for MECH-400 is weakened by the confounded multi-factor manipulation. Transfer risk moderate-high: adult sensory-cortex molecular physiology to an algorithmic gain/duration knob."
+  }
+}

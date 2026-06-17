@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_plasticity_neuromodulation_v4",
+  "entry_id": "2026-06-17_mech_398_nucleus_basalis_gates_cortical_plasticity_kilgard1998",
+  "timestamp_utc": "2026-06-17T07:42:58Z",
+  "claim_ids_tested": ["MECH-398"],
+  "source": {
+    "title": "Cortical map reorganization enabled by nucleus basalis activity.",
+    "authors": ["Michael P Kilgard", "Michael M Merzenich"],
+    "year": 1998,
+    "venue": "Science 279(5357):1714-8",
+    "doi": "10.1126/science.279.5357.1714",
+    "url": "https://doi.org/10.1126/science.279.5357.1714"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "Canonical, high-source-quality (Science, Merzenich lab) demonstration that basal-forebrain cholinergic activity is what ENABLES adult cortical plasticity: pairing a tone with nucleus basalis stimulation drives massive auditory-cortex remapping, while the same acoustic input without NB activation does not. This is the direct biological referent for the OPENING-side gate MECH-398 proposes -- a basal-forebrain ACh signal that gates whether sensory input is incorporated into long-term cortical representation. Held at 0.80 (not higher) because the transfer is from a phasic electrical-stimulation paradigm in rat AI to an algorithmic learning-rate scalar in REE; the mapping is to the abstract gating role, not the cholinergic pharmacology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Receptive fields were narrowed, broadened, or left unchanged depending on the acoustic parameters paired with NB activation -- the gate does not impose a fixed plasticity direction; it licenses input-driven change. A REE gain scalar that merely scales a single global learning rate (rather than letting the paired input shape WHAT is learned) would under-represent this: the biology gates plasticity ON, the content of the change still comes from the input stream.",
+    "Plasticity required PAIRING (NB activation coincident with the stimulus); NB stimulation alone or stimulus alone did not remap. A REE gate driven by a state scalar that is not temporally bound to the to-be-learned input would mislocalise plasticity -- the gating must be coincident with the encoder's exposure to the input it should incorporate."
+  ],
+  "tags": ["mech-398", "plasticity_neuromodulation_v4", "nucleus_basalis", "acetylcholine", "plasticity_gain_gate", "opening_side", "cortical_remapping"],
+  "mapping": {
+    "source_claim_statement": "Episodic electrical stimulation of the cholinergic nucleus basalis, paired with an auditory stimulus, produces progressive large-scale reorganization of adult primary auditory cortex; the basal forebrain plays an active instructional role in representational plasticity, marking which stimuli the cortex should incorporate.",
+    "ree_translation": "MECH-398 proposes a basal-forebrain ACh-analog plasticity-GAIN gate: a state-conditional scalar in [0,1] that multiplies encoder learning rates and residue write magnitudes, deciding WHEN representations update rather than WHAT they update to. Kilgard & Merzenich is the foundational evidence that such a basal-forebrain gating signal exists and is causally necessary for adult cortical plasticity -- without it the cortex still perceives and acts but stops remapping. This grounds the OPENING side of the plasticity window that REE currently lacks (it owns only the closure side: INV-074 / MECH-333 closure half / MECH-334).",
+    "mapping_caveat": "The experiment uses exogenous electrical NB stimulation as a permissive teaching signal in adult rat AI; REE's analogue is an endogenously-computed gain scalar driven by surprise/salience/arousal proxies (MECH-205 / SD-032a / drive). The transfer is to the property 'a basal-forebrain gating signal licenses representational update', NOT to acetylcholine receptor signalling or to the specific auditory-map readout. The paper evidences the EXISTENCE and gating role of the opening-side signal (MECH-398); it does not by itself adjudicate the state-conditional architecture (ARC-093) or the closure clock (MECH-399).",
+    "source_context": "Adult rat primary auditory cortex (AI); chronic NB electrical stimulation paired with tones; single-unit receptive-field mapping; in vivo."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Source quality very high (Science, definitive paradigm). Mapping fidelity moderate-high: the gating ROLE maps cleanly, but REE's gate is an endogenous scalar not an exogenous stimulation. Transfer risk moderate: rat sensory cortex to an algorithmic encoder, and electrical-stimulation teaching signal to a computed state scalar. Aggregate weighted toward source quality and the clean gating-role mapping."
+  }
+}

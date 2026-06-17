@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_plasticity_neuromodulation_v4",
+  "entry_id": "2026-06-17_mech_398_ach_ne_joint_plasticity_gate_bear1986",
+  "timestamp_utc": "2026-06-17T07:42:58Z",
+  "claim_ids_tested": ["MECH-398"],
+  "source": {
+    "title": "Modulation of visual cortical plasticity by acetylcholine and noradrenaline.",
+    "authors": ["Mark F Bear", "Wolf Singer"],
+    "year": 1986,
+    "venue": "Nature 320(6058):172-6",
+    "doi": "10.1038/320172a0",
+    "url": "https://doi.org/10.1038/320172a0"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "Foundational (Nature) result that pins down a load-bearing design constraint for MECH-398: in kitten visual cortex, combined destruction of BOTH the cholinergic AND noradrenergic inputs is required to abolish ocular-dominance plasticity -- lesioning either system alone leaves plasticity intact. This is the direct evidence for the multiplicative ACh x LC-NE composition the plan specifies, and it is the cleanest support for the hard separation rule: NE/LC-NE is an INPUT to the gain gate, not the gate itself. Held at 0.79 because it is an older lesion/depletion study in kitten developmental cortex with the usual pharmacological-specificity caveats; the design constraint it supports is nonetheless durable and independently corroborated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Single-system lesions (ACh-alone or NE-alone) did NOT abolish plasticity -- only the combined lesion did. A REE gate built as a single neuromodulatory input (ACh-analog alone, or collapsing NE into the same channel) would mis-predict redundancy: the biology shows the gate is conjunctive across at least two modulatory systems, so a one-input gate is more brittle than the substrate it models.",
+    "The authors note the catecholamine neurotoxin 6-OHDA can interfere directly with ACh action, and that earlier NA-depletion results conflicted -- a cautionary signature that crude single-transmitter manipulations conflate channels. A REE implementation that does not keep the plasticity-GAIN channel architecturally separate from the content channels (MECH-313 LC-NE / MECH-203 5-HT / SD-037 orexin) risks the same conflation that produced two decades of conflicting plasticity-modulation results."
+  ],
+  "tags": ["mech-398", "plasticity_neuromodulation_v4", "acetylcholine", "noradrenaline", "multiplicative_gate", "content_signal_separation", "opening_side"],
+  "mapping": {
+    "source_claim_statement": "In kitten striate cortex during the critical period, ocular-dominance plasticity is abolished only when BOTH cholinergic and noradrenergic cortical innervations are destroyed; lesions of either system alone are ineffective. The authors propose that acetylcholine and noradrenaline facilitate synaptic modification through a common (conjunctive) mechanism.",
+    "ree_translation": "Bear & Singer supplies the specific compositional form for MECH-398's gate. The plan's PLW-3 readiness gate states the natural composition is ACh-gate x LC-NE-gate multiplicative, with LC-NE living at MECH-313 (tonic) / MECH-104 (phasic) so the gate REUSES the existing content signal as an INPUT without collapsing into it. This paper is the direct evidence for that conjunctive composition (neither system alone suffices) and for the hard separation rule the plan insists on: the plasticity-gain gate is multiplicatively driven by neuromodulatory inputs (one of which is the LC-NE signal REE already models as content), but it is a distinct learning-rate gate, not the content signal itself.",
+    "mapping_caveat": "This is a 1986 lesion/depletion study in developing kitten cortex; ocular-dominance plasticity is a developmental critical-period phenomenon, whereas MECH-398 targets state-conditional gain at any stage. The transfer is to the COMPOSITIONAL property (conjunctive ACh x NE gating, neither sufficient alone), not to the developmental specificity or the lesion pharmacology. Evidences MECH-398's input structure; it does not speak to ARC-093's architectural commitment or to closure timing.",
+    "source_context": "Kitten primary visual cortex (striate); monocular deprivation during the critical period; combined vs single neuromodulatory lesions/depletions; ocular-dominance single-unit readout."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high but tempered by age and the era's pharmacological-specificity limits (the paper itself flags 6-OHDA cross-interference). Mapping fidelity high for the specific design constraint it supports (conjunctive ACh x NE composition + content/gain separation), which is exactly what the plan's PLW-3 readiness gate calls for. Transfer risk moderate: developmental kitten cortex to a state-conditional algorithmic gate."
+  }
+}

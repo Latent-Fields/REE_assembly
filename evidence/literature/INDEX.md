@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-16T12:53:13.569709Z`
+Generated: `2026-06-17T07:47:48.679499Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -231,6 +231,7 @@ Generated: `2026-06-16T12:53:13.569709Z`
 | `targeted_review_per_candidate_affect` | [`2026-06-13_mech_369_lc_ne_adaptive_gain_astonjones2005`](targeted_review_per_candidate_affect/entries/2026-06-13_mech_369_lc_ne_adaptive_gain_astonjones2005/record.json) | 8 | [`summary`](targeted_review_per_candidate_affect/entries/2026-06-13_mech_369_lc_ne_adaptive_gain_astonjones2005/summary.md) |
 | `targeted_review_perceptual_manifold_adaptors` | [`2026-06-12_q_065_mstd_cue_integration_gu2008`](targeted_review_perceptual_manifold_adaptors/entries/2026-06-12_q_065_mstd_cue_integration_gu2008/record.json) | 5 | [`summary`](targeted_review_perceptual_manifold_adaptors/entries/2026-06-12_q_065_mstd_cue_integration_gu2008/summary.md) |
 | `targeted_review_pfc_subdivision_architecture` | [`2026-04-27_sd_033b_ofc_cognitive_map_wilson2014`](targeted_review_pfc_subdivision_architecture/entries/2026-04-27_sd_033b_ofc_cognitive_map_wilson2014/record.json) | 20 | [`summary`](targeted_review_pfc_subdivision_architecture/entries/2026-04-27_sd_033b_ofc_cognitive_map_wilson2014/summary.md) |
+| `targeted_review_plasticity_neuromodulation_v4` | [`2026-06-17_mech_399_q_072_pv_critical_period_closure_hensch2005`](targeted_review_plasticity_neuromodulation_v4/entries/2026-06-17_mech_399_q_072_pv_critical_period_closure_hensch2005/record.json) | 5 | [`summary`](targeted_review_plasticity_neuromodulation_v4/entries/2026-06-17_mech_399_q_072_pv_critical_period_closure_hensch2005/summary.md) |
 | `targeted_review_play_commitment_loop_personality_window` | [`2026-05-17_inv_075_temperament_character_adolescence_zohar2018`](targeted_review_play_commitment_loop_personality_window/entries/2026-05-17_inv_075_temperament_character_adolescence_zohar2018/record.json) | 6 | [`summary`](targeted_review_play_commitment_loop_personality_window/entries/2026-05-17_inv_075_temperament_character_adolescence_zohar2018/summary.md) |
 | `targeted_review_pretend_play_counterfactual` | [`2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013`](targeted_review_pretend_play_counterfactual/entries/2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013/record.json) | 8 | [`summary`](targeted_review_pretend_play_counterfactual/entries/2026-05-16_mech198_pretend_erp_false_belief_kuhnpopp2013/summary.md) |
 | `targeted_review_proxy_progress_goal_maintenance` | [`2026-06-12_mech217_td_value_as_progress_proxy_sutton1988`](targeted_review_proxy_progress_goal_maintenance/entries/2026-06-12_mech217_td_value_as_progress_proxy_sutton1988/record.json) | 6 | [`summary`](targeted_review_proxy_progress_goal_maintenance/entries/2026-06-12_mech217_td_value_as_progress_proxy_sutton1988/summary.md) |

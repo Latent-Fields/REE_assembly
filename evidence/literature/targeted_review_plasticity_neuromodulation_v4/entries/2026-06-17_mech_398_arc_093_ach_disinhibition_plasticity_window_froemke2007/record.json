@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_plasticity_neuromodulation_v4",
+  "entry_id": "2026-06-17_mech_398_arc_093_ach_disinhibition_plasticity_window_froemke2007",
+  "timestamp_utc": "2026-06-17T07:42:58Z",
+  "claim_ids_tested": ["MECH-398", "ARC-093"],
+  "source": {
+    "title": "A synaptic memory trace for cortical receptive field plasticity.",
+    "authors": ["Robert C Froemke", "Michael M Merzenich", "Christoph E Schreiner"],
+    "year": 2007,
+    "venue": "Nature 450(7168):425-9",
+    "doi": "10.1038/nature06289",
+    "url": "https://doi.org/10.1038/nature06289"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (Nature; in vivo whole-cell recording in adult AI) and the single best mechanistic account of HOW cholinergic gating opens a plasticity window: NB pairing causes a rapid, stimulus-specific reduction of synaptic inhibition (seconds), followed by a slow excitatory increase and an activity-dependent inhibitory rebalancing (hours) that retunes the receptive field. This grounds MECH-398's gate as a transient disinhibition event and supports ARC-093's claim that plasticity GAIN is a state-conditional, time-limited window distinct from the steady-state content signals. Held at 0.78 because the disinhibition mechanism is specific to cortical E/I microcircuitry, whereas REE's encoder has no explicit inhibitory interneuron pool -- the transfer is to the functional shape (transient window then rebalance), not the synaptic implementation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The plasticity window was OPENED by disinhibition but CLOSED by a slow activity-dependent re-increase of inhibition that rebalanced excitation -- opening and closing are coupled by the same E/I machinery. A REE design that gates the opening (MECH-398) without a coupled rebalancing/closure mechanism (MECH-399 PV clock) risks runaway excitation: the biology never leaves the window open, it always rebalances.",
+    "The disinhibition was stimulus-SPECIFIC (only the paired stimulus's inputs were affected). A global REE gain scalar that opens plasticity for the whole encoder at once would over-generalise relative to this targeted, input-specific window -- arguing for the layer/input-specific resolution Q-072 raises rather than a single global gate."
+  ],
+  "tags": ["mech-398", "arc-093", "plasticity_neuromodulation_v4", "acetylcholine", "disinhibition", "ei_balance", "state_conditional_gain", "opening_side"],
+  "mapping": {
+    "source_claim_statement": "In adult rat AI, pairing sensory stimulation with cholinergic nucleus basalis activation induces a rapid (seconds) stimulus-specific reduction of synaptic inhibition, followed over hours by a large activity-dependent increase in excitation and a renewed inhibitory rebalancing, yielding a retuned receptive field. This restricted period of disinhibition is proposed as a fundamental mechanism for receptive-field plasticity and a memory trace for behaviourally significant stimuli.",
+    "ree_translation": "Froemke et al. supply the mechanistic shape MECH-398 and ARC-093 need: the cholinergic gate does not raise a steady plasticity level, it opens a TRANSIENT, state-conditional window (disinhibition) that then self-closes by rebalancing. ARC-093's architectural commitment -- that encoder/residue learning rates are multiplicatively gated by a state-conditional plasticity scalar separate from the content carried by LC-NE/5-HT/orexin -- is grounded here: the gate is a time-limited gain event tied to a neuromodulatory state, not a persistent property. It also motivates coupling the opening gate (MECH-398) to a closure mechanism (MECH-399 PV clock), since in biology the same E/I circuitry both opens and closes the window.",
+    "mapping_caveat": "REE's encoder has no explicit excitatory/inhibitory interneuron decomposition, so the disinhibition implementation does not transfer literally; what transfers is the functional shape -- a transient, neuromodulator-gated gain window that self-rebalances. The paper is adult AI single-unit/whole-cell, not a developmental critical period, so it speaks to state-conditional ADULT plasticity gain (ARC-093 / MECH-398) more than to developmental closure timing (MECH-399). Evidences MECH-398 and ARC-093; does not adjudicate the layer-specificity fork (Q-072) on its own, though the stimulus-specificity is suggestive.",
+    "source_context": "Adult rat primary auditory cortex; in vivo whole-cell recording; NB stimulation paired with tones; synaptic excitatory/inhibitory conductance measurement."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.40,
+    "notes": "Nature, in vivo whole-cell -- very high source quality and the definitive mechanism paper for cholinergic-gated cortical plasticity. Mapping fidelity moderate-high for the functional-shape transfer (transient state-gated window + self-rebalance); discounted because REE lacks an explicit E/I microcircuit. Transfer risk moderate: adult sensory cortex synaptic physiology to an algorithmic learning-rate gate."
+  }
+}

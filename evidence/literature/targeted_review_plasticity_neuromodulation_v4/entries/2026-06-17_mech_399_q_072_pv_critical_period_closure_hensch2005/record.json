@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_plasticity_neuromodulation_v4",
+  "entry_id": "2026-06-17_mech_399_q_072_pv_critical_period_closure_hensch2005",
+  "timestamp_utc": "2026-06-17T07:42:58Z",
+  "claim_ids_tested": ["MECH-399", "Q-072"],
+  "source": {
+    "title": "Critical period plasticity in local cortical circuits.",
+    "authors": ["Takao K Hensch"],
+    "year": 2005,
+    "venue": "Nature Reviews Neuroscience 6(11):877-88",
+    "doi": "10.1038/nrn1787",
+    "url": "https://doi.org/10.1038/nrn1787"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "The canonical review (Nat Rev Neurosci, Hensch) establishing that critical-period TIMING is set by the functional maturation of a specific PV-positive inhibitory interneuron subset, with structural consolidation via extracellular-matrix (PNN) reorganization. This is the direct grounding for MECH-399 (a PV-analog maturation clock that lowers the plasticity-gain ceiling) and for Q-072 (layer-specificity: different cortical areas have distinct critical-period timings). Held at 0.80 as a review rather than a single primary result, but it is the field-defining synthesis and the closure mechanism is exceptionally well replicated.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Closure timing is set by INHIBITORY (PV) maturation, not by a simple clock or by excitatory LTP/LTD -- Hensch notes canonical homosynaptic-plasticity models at excitatory synapses alone fail to predict in vivo critical-period manipulations. A REE closure clock (MECH-399) implemented as a pure time-since-onset accumulator, decoupled from any inhibitory-maturation / E-I-balance analogue, would be biologically unfaithful in the same way those excitatory-only models were.",
+    "Critical periods are area-specific (visual, auditory, somatosensory differ in timing) and are a CONTINUUM of local-circuit computations ending in structural consolidation, not a single binary switch. A single global REE plasticity-gain clock would contradict this -- the biology argues for the per-substrate / layer-specific resolution Q-072 raises, and against MECH-334's current binary on_phase3_entry transition as the final word."
+  ],
+  "tags": ["mech-399", "q-072", "plasticity_neuromodulation_v4", "parvalbumin", "gaba", "critical_period_closure", "ei_balance", "layer_specificity", "perineuronal_net"],
+  "mapping": {
+    "source_claim_statement": "Critical-period plasticity in cortex is triggered by the functional maturation of local inhibitory connections -- specifically a late-developing subset of parvalbumin-positive interneurons -- and is closed by structural consolidation via proteolytic reorganization of the extracellular matrix (perineuronal nets). Direct control over critical-period timing, duration, and closure is achieved by manipulating the excitation-inhibition balance; different cortical areas have distinct critical-period timings; plasticity is best viewed as a continuum of local-circuit computations rather than a binary switch.",
+    "ree_translation": "Hensch grounds two of the cluster's later pillars. MECH-399 proposes a PV-interneuron-analog inhibitory-maturation clock: a time-since-onset accumulator that monotonically lowers the plasticity-gain CEILING, replacing the current binary phase transition (MECH-334's on_phase3_entry crystallize). The biology says closure is precisely an inhibitory-maturation process gating a continuous decline in plasticity, not a flag flip. Q-072 asks whether REE needs one global plasticity scalar or per-substrate scalars; Hensch's area-specific critical-period timings (visual/auditory/somatosensory differ) are the biological argument for the layer-specific answer.",
+    "mapping_caveat": "REE has no parvalbumin interneurons or perineuronal nets; the transfer is to the FUNCTIONAL form -- closure as a continuous, inhibitory-maturation-gated lowering of a plasticity ceiling, and timing as area/layer-specific. MECH-399 is explicitly DEFERRED in the plan (it only matters once a continuous gain scalar exists to clamp, PLW-3); this entry grounds it in advance but does not authorise building it. Evidences MECH-399 and Q-072; the closure-side detail also touches MECH-334, already grounded separately under targeted_review_critical_period_crystallization (Pizzorusso 2002, Morishita 2010) -- not re-tagged here to avoid double-counting.",
+    "source_context": "Review of mammalian primary sensory cortex (chiefly rodent/cat visual cortex); ocular-dominance and other sensory critical periods; GABAergic circuit manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.40,
+    "notes": "Field-defining review by the principal investigator of the area; closure mechanism is among the most replicated in systems neuroscience. Source-quality slightly below a definitive single primary result only because it is a synthesis. Mapping fidelity moderate-high for the functional-form transfer (continuous inhibitory-maturation closure + area-specific timing). Transfer risk moderate: rodent sensory cortex to an algorithmic plasticity-ceiling clock with no inhibitory-interneuron analogue."
+  }
+}
