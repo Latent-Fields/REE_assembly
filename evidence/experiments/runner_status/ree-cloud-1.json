@@ -1,11 +1,34 @@
 {
   "schema_version": "v1",
-  "runner_pid": 417704,
-  "runner_started_at": "2026-06-13T07:05:38.890186+00:00",
-  "last_updated": "2026-06-14T10:25:15.475949+00:00",
+  "runner_pid": 1415947,
+  "runner_started_at": "2026-06-17T10:52:50.833959+00:00",
+  "last_updated": "2026-06-17T10:52:52.211271+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-687",
+      "backlog_id": "",
+      "claim_id": "Q-045",
+      "title": "Q-045 / MECH-313 / MECH-260 4-arm tonic-noise / exploration-floor ablation (both-OFF / 313-only / 260-only / both-ON) on the now-survival-competent scaffolded_sd054_onboarding substrate; ARC-062 gated-policy on all arms",
+      "description": "",
+      "estimated_minutes": 352.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-625d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-037 axis-(b) Phase-1b JOINT-COMPOSITE substrate-readiness falsifier: scaffold-trained policy + 569i-validated conversion config (top-k shortlist + authority gain=2.0 std + e2_world_forward) + MECH-341 + SD-056, z_harm_a dynamic crossings (sharpened C3a/C3b) under the axis-(b) sustained-threat overlay",
+      "description": "",
+      "estimated_minutes": 108.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3360,6 +3383,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_679_mech423_readiness_validation_diagnostic_20260614T102515Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 295.2
+    },
+    {
+      "queue_id": "V4-EXQ-001",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "DR-12 pilot (FIRST V4 experiment, self_model_v4:SELF-4): controlled wiring falsifier for the E2 forward-PE -> E3 confidence down-weight lever. ARM OFF (unconditional-trust) vs DIFFERENTIAL (high PE on the primary-best -> must flip away from the poorly-modelled region) vs UNIFORM (high PE on all -> must stay inert, the per-candidate control). PASS = wiring live; non-flip under met preconditions = inert wiring (DR-12 buys nothing).",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome=PASS label=dr12_pe_conditioning_changes_selection diff_flip=3/3 unif_inert=3/3 | [experiment_protocol] sentinel written: outcome=PASS queue_id=V4-EXQ-001 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V4-EXQ-001.json",
+      "started_at": "2026-06-17T10:52:50.848672+00:00",
+      "completed_at": "2026-06-17T10:52:52.210126+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1.4
     }
   ]
 }
