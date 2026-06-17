@@ -103,6 +103,7 @@ ASSIGN = {
     "efficiency_dimensionality_hypothesis.md": "foundations", "invariant_types.md": "foundations",
     "policy_primitive_granularity.md": "foundations", "claim_phase_provenance.md": "foundations",
     "reafference_comparator_family.md": "foundations", "non_deficit_action_drives.md": "foundations",
+    "version_layering_doctrine.md": "foundations",
 
     # --- Perception, Representation & Dynamics ---
     "residue_geometry.md": "representation", "sensory_stream_tags.md": "representation",
