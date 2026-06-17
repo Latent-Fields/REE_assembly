@@ -216,3 +216,4 @@ One line per hourly tick. ASCII only.
 2026-06-17T08:38:52Z no eligible item (skipped 196): IGW-20260617-001:skill /governance not allowed; IGW-20260617-002:skill /governance not allowed; IGW-20260617-008:skill /governance not allowed
 2026-06-17T09:39:15Z no eligible item (skipped 194): IGW-20260617-001:skill /governance not allowed; IGW-20260617-002:skill /governance not allowed; IGW-20260617-008:skill /governance not allowed
 2026-06-17T10:39:23Z no eligible item (skipped 194): IGW-20260617-001:skill /governance not allowed; IGW-20260617-002:skill /governance not allowed; IGW-20260617-008:skill /governance not allowed
+2026-06-17T11:39:35Z SPAWN IGW-20260617-193 skill=/queue-experiment prio=40 uuid=d57821c3-aef7-4696-b360-d1e051d43f61 pid=25904 worktree=igw-193-proposal-exp-0188-mech-271
