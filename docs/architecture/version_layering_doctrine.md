@@ -68,21 +68,40 @@ restriction on V4 ambition:
 
 ## Enforcement (mechanical guards)
 
-The doctrine is backed by code-level guards (own work item; see chip and
-`convergence_demand_pipeline_plan.md` Section 7):
+The doctrine is backed by code-level guards. **All three landed 2026-06-17** (the
+day of the 654e incident). The single anchor for every higher-version flag is the
+registry `ree-v3/ree_core/version_layering.py` (`GENERATION_FLAGS`): when a V4/V5
+master flag is added, it is appended there in the same pass, which keeps the
+no-op-default guard exhaustive. The first entry is DR-12
+(`e3.use_pe_confidence_weighting`).
 
-- **Guard A -- conditional DR-12 call-site.** Pass `e2_forward_pe_per_candidate`
-  only when the DR-12 feature is enabled / the injected value is non-None, so an
-  absent parameter cannot crash the default path.
-- **Guard B -- runner preflight V3-parity smoke (highest leverage).** Before a
-  worker claims any experiment, it runs the default-path `agent.select_action` on
-  dummy candidates with all V4/V5 flags off; if it raises, the worker **refuses
-  to claim** (logs + skips) rather than claiming and crash-burning experiments.
-  This self-quarantines a broken/skewed checkout -- it is the guard that would
-  have prevented the 654e burn.
-- **Guard C -- no-op-default test.** Construct the default agent/config; assert
-  every `generation: v4|v5` flag defaults off and the forward/select path runs
-  (ideally bit-identical to a pre-V4 baseline).
+- **Guard A -- conditional DR-12 call-site (`ree-v3/ree_core/agent.py`,
+  `select_action`).** The `e2_forward_pe_per_candidate` kwarg is built into the
+  `self.e3.select(...)` call **only** when `config.e3.use_pe_confidence_weighting`
+  is on OR an injected per-candidate PE is present
+  (`getattr(self, "_injected_e2_forward_pe", None) is not None`). The default V3
+  path therefore never passes the kwarg, so a skewed/older
+  `E3TrajectorySelector.select()` that lacks the parameter cannot raise a
+  `TypeError` on the V3 critical path -- the exact 654e fix.
+- **Guard B -- runner V3-parity smoke (highest leverage;
+  `ree-v3/experiment_runner.py` + `ree-v3/tests/v3_parity_smoke.py`).** The shared
+  `run_v3_parity_smoke()` builds a default tiny agent (every registered V4/V5 flag
+  asserted off via `version_layering.assert_all_off`) and runs the default-path
+  `agent.select_action` loop. It is wired two ways:
+  (1) the **startup regression preflight** runs `tests/preflight/test_v3_parity_smoke.py`
+  (the runner exits non-zero before claiming if it fails); (2) an **in-process,
+  HEAD-gated gate** (`_run_v3_parity_gate`) re-runs the smoke after each per-pass
+  `git pull` and, on any raise, sets a refuse-to-claim flag so the worker
+  **logs + skips claiming that pass** instead of crash-burning. The skew
+  self-heals on the next consistent pull (the runner does not exit). This is the
+  guard that catches a skew landing *mid-session* in a long-lived `--loop` runner.
+  Honoured via `--skip-preflight` / `REE_SKIP_PREFLIGHT=1`.
+- **Guard C -- no-op-default contract test
+  (`ree-v3/tests/contracts/test_version_layering_noop_default.py`).** Constructs
+  the default agent/config and asserts: C1 every `GENERATION_FLAGS` entry defaults
+  off; C2 every registered path resolves on a real config (renamed-flag drift
+  guard); C3 the default build is **bit-identical** to an explicit-all-V4/V5-OFF
+  build over the default `select_action` path; C4 that path runs without error.
 
 ## Why a doctrine and not just a test
 
