@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-17T01:13:41Z",
+  "last_tick_utc": "2026-06-17T01:43:45Z",
   "state": "running",
   "current_exq": "V3-EXQ-603q",
   "current_exq_started_utc": "2026-06-16T08:10:30.107372+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / ARM_NAV_CONTROL",
     "runs_done": 12,
     "runs_total": 15,
-    "episodes_done": 20,
+    "episodes_done": 170,
     "episodes_total": 235,
-    "overall_pct": 80.6
+    "overall_pct": 84.8
   },
-  "seconds_elapsed": 61390,
-  "seconds_remaining": 14183,
+  "seconds_elapsed": 63194,
+  "seconds_remaining": 11077,
   "recent_lines": [
     "[v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence] starting (dry_run=False)",
     "Seed 42 Condition ARM_BASE_IA_ONLY",
@@ -105,7 +105,9 @@
     "[train] p2 ARM_RELIEF_SAFETY_BRIDGE seed=44 ep 235/235 contact_rate=0.3592",
     "verdict: PASS seed=44 arm=ARM_RELIEF_SAFETY_BRIDGE mean_surv=116.5 g_h=True g0=False g1=True g2=True harm_range=0.2367 n_relief=543 n_safety=2259",
     "Seed 42 Condition ARM_NAV_CONTROL",
-    "[train] stage0 ARM_NAV_CONTROL seed=42 ep 20/235 z_goal_peak=0.4859"
+    "[train] stage0 ARM_NAV_CONTROL seed=42 ep 20/235 z_goal_peak=0.4859",
+    "[train] p0 ARM_NAV_CONTROL seed=42 ep 130/235 mean_len=190.3 rv=0.00003",
+    "[train] hazard_avoidance ARM_NAV_CONTROL seed=42 ep 170/235 mean_len=47.5 median_last=3.5 auc=0.237 survival_gate=FAIL harm_range=0.2747 pag_commits=180 n_relief=0 n_safety=0 n_safety_trained=0 n_approach=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
