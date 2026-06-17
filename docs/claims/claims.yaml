@@ -41296,6 +41296,12 @@
     closure CLOCK only matters once a continuous gain scalar (the ACh gate MECH-398)
     exists to clamp. substrate_conditional on a V4 plasticity-gain substrate not yet
     built. DO NOT build in V3.
+    Falsifier (2026-06-17): if a continuous time-since-onset gain-ceiling accumulator
+    yields no measurable benefit over the binary MECH-334 phase transition on the
+    retention-vs-plasticity tradeoff (no regime where graded closure outperforms the
+    flag flip), the continuous clock is redundant and MECH-399 is falsified. Grounded by
+    Hensch 2005 (closure is a continuous inhibitory-maturation process, not a binary
+    switch; area-specific timing): targeted_review_plasticity_neuromodulation_v4.
 
 - id: MECH-400
   title: "BDNF-analog trophic window-duration scalar: a duration multiplier on top of the plasticity-gain gate and closure clock."
@@ -41319,6 +41325,13 @@
     precociously opens and closes the CP). Deferred until gain/closure pillars are
     validated. substrate_conditional on a V4 plasticity-gain substrate not yet built.
     DO NOT build in V3.
+    Falsifier (2026-06-17): if varying a window-duration multiplier (on top of an
+    existing gain gate MECH-398 + closure clock MECH-399) produces no change in the
+    acquisition-vs-retention outcome that is not already captured by the gain and closure
+    knobs, the duration knob adds no independent control and MECH-400 is falsified.
+    Grounded by Sale 2007 (BDNF co-varies with window reopening, but confounded with
+    GABA/PNN -- duration-specific control is the open question):
+    targeted_review_plasticity_neuromodulation_v4.
 
 - id: MECH-401
   title: "Consolidation gated-write-authority: over-frequent rewriting of consolidated memory is a failure mode; the consolidation operator's authority to overwrite is gated by schema-stability / schedule-sensitivity, not run after every interaction."
@@ -41367,6 +41380,17 @@
     - ARC-093    # the gain commitment whose layer-scope this fork decides
     - MECH-398   # the gain gate this question parameterises
   location: evidence/planning/plasticity_neuromodulation_v4_plan.md
+  what_would_answer: >
+    A V4 experiment applying a single GLOBAL plasticity-gain scalar vs PER-SUBSTRATE
+    scalars across the encoder / residue / hippocampal / E2-forward layers. If
+    per-substrate gating measurably outperforms the global scalar -- a distinct optimal
+    gain per layer, or cross-layer interference (one layer over-writing while another
+    must retain) under a single global scalar -- the answer is LAYER-SPECIFIC. If a
+    single global scalar matches per-substrate outcomes on targeted-plasticity
+    selectivity and the retention-vs-acquisition tradeoff, the answer is GLOBAL.
+    Resolvable only against a V4 plasticity-gain substrate (substrate_conditional); do
+    NOT queue a V3 experiment. Biology (Hensch 2005, area-specific CP timing) is the
+    prior for layer-specific: targeted_review_plasticity_neuromodulation_v4.
   notes: >
     The pivotal design fork for the whole cluster. Biology says layer-specific (distinct
     cortical-area CP timings); REE must decide one global ACh scalar vs per-substrate
