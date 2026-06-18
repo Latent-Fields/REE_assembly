@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_055",
+  "entry_id": "2026-06-18_q_055_spindles_protect_weak_memories_denis2021",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-055"
+  ],
+  "source": {
+    "title": "Sleep Spindles Preferentially Consolidate Weakly Encoded Memories",
+    "authors": [
+      "Dan Denis",
+      "Dimitrios Mylonas",
+      "Craig Poskanzer",
+      "Verda Bursal",
+      "Jessica D. Payne",
+      "Robert Stickgold"
+    ],
+    "year": 2021,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0818-20.2021"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The cleanest counter-evidence to the Q-055 erosion hypothesis, and in humans: across wake, weak memories decay fastest, but a nap ATTENUATES that effect until forgetting rates are equalised across encoding strengths, with fast spindle density predicting the rescue of weak items specifically. If sleep selectively protects the weak/under-represented traces, its net effect on a diverse population would be DIVERSITY-PRESERVING, not winner-take-all. Confidence 0.70: strong human design with a physiological correlate, but it measures declarative word-pair retention, not behavioural trajectory diversity, so the mapping is by analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Contradicts a naive winner-take-all reading of sleep replay: sleep preferentially rescues WEAK traces rather than amplifying strong ones, so the net population-level effect can equalise rather than concentrate.",
+    "Effect is specific to weak items (spindles did not correlate with intermediate or strong item memory), so sleep's protective action is targeted at exactly the traces a diversity-erosion account predicts would be lost."
+  ],
+  "tags": [
+    "q-055",
+    "sleep",
+    "sleep-spindles",
+    "weak-memory-protection",
+    "diversity-preservation",
+    "arc-065",
+    "mech-120",
+    "counter-mechanism"
+  ],
+  "mapping": {
+    "source_claim_statement": "Compared with wake, sleep attenuates the rapid forgetting of weakly encoded memories until forgetting rates are equivalent across encoding strengths; fast sleep-spindle density (especially spindles coupled to slow oscillations) selectively predicts consolidation of the weak items.",
+    "ree_translation": "Direct support for the Q-055 diversity-PRESERVING arm. If SD-017 sleep preferentially protects weak / low-frequency trajectory classes -- the very ones a Hebbian winner-take-all account (MECH-120) predicts would be eroded -- then sleep is plausibly a NET POSITIVE for ARC-065 behavioural diversity, equalising rather than concentrating the trajectory-class distribution.",
+    "mapping_caveat": "This is declarative episodic memory (word pairs) in humans, not procedural/behavioural trajectory diversity. 'Weak memory' (low encoding strength) maps only loosely onto 'low-frequency / under-committed trajectory class'. The mechanism (spindle-SO coupling) protecting weak traces is suggestive but its applicability to REE's replay substrate is an inference, not a demonstration.",
+    "source_context": "Human nap study, n=54 (36 nap / 18 wake), word-pair associative memory at three encoding strengths; PSG with spindle/SO analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Robust human design with a clear physiological mediator (Stickgold group). Mapping fidelity moderate (declarative-memory-strength proxy for behavioural-diversity). This is the load-bearing entry for the 'sleep preserves diversity' position."
+  }
+}

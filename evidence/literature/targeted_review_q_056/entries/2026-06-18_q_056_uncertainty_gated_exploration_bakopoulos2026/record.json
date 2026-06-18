@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_056",
+  "entry_id": "2026-06-18_q_056_uncertainty_gated_exploration_bakopoulos2026",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-056"
+  ],
+  "source": {
+    "title": "Uncertainty-driven Adaptive Exploration",
+    "authors": [
+      "Leonidas Bakopoulos",
+      "Georgios Chalkiadakis"
+    ],
+    "year": 2026,
+    "venue": "AAMAS 2026 (full paper); arXiv:2509.03219",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2509.03219"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Direct ML analogue of MECH-343's core prediction: a state-conditioned exploration signal f(s) tied to uncertainty outperforms the constant-exploration instance f(s)=c and other fixed-schedule exploration methods (RND, UCB, NoisyNets) on hard MuJoCo tasks. Strongly relevant to the 'gated entropy > always-high entropy' half of Q-056. Held to 0.60 because the paper does NOT include a pure no-exploration arm (so the 'gated > OFF' half is untested here), the gating signal is generic uncertainty rather than REE's specific difficulty/stuck-state signal, and there is no goal/harm-constraint structure as in MECH-343.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Constant exploration f(s)=c is an internal control that the adaptive (state-conditioned) variants beat -- evidence that always-on fixed exploration is dominated by conditional exploration.",
+    "Tested only on dense-reward MuJoCo; authors flag sparse-reward domains as untested, which is closer to REE's hard-goal/blocked-path regime."
+  ],
+  "tags": [
+    "q-056",
+    "mech-343",
+    "adaptive-exploration",
+    "entropy",
+    "state-conditioned",
+    "reinforcement-learning",
+    "td3"
+  ],
+  "mapping": {
+    "source_claim_statement": "A generic framework that conditions the exploration signal on a per-state uncertainty estimate f(s) yields adaptive exploration that outperforms a constant-exploration instance f(s)=c and standard fixed exploration methods (RND, UCB, Noisy Nets) across six hard MuJoCo tasks (15 runs each).",
+    "ree_translation": "This is the ML evidence for MECH-343: making proposal entropy a function of state (here, uncertainty; in REE, stuck-state/difficulty) beats holding it constant. The f(s)=c control is the literature analogue of Q-056's 'always-high entropy' arm, and the adaptive variant is the analogue of the 'stuck-state-gated entropy' arm. Adaptive winning supports the prediction that conditional entropy dominates a fixed-high regime.",
+    "mapping_caveat": "No pure-exploitation (entropy-OFF) baseline is reported, so the experiment evidences 'gated > constant-high' but NOT the full three-way 'gated > both off and always-high' discrimination that Q-056/EXP-0176 requires. The gating variable is generic epistemic uncertainty / model-disagreement, not REE's difficulty-or-stuck-state signal, and there is no goal-progress or harm constraint -- so commitment-latency and no-harm-increase predictions are out of scope here.",
+    "source_context": "Deep RL (TD3 backbone), continuous-control MuJoCo robotics, dense reward; simulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Peer-reviewed (AAMAS 2026 full paper) but a single methods paper, not a meta-analysis. Mapping fidelity moderate: covers gated-vs-constant but not gated-vs-off; transfer risk moderate (MuJoCo continuous control -> REE discrete arbitration)."
+  }
+}

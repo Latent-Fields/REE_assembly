@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_055",
+  "entry_id": "2026-06-18_q_055_sws_preferential_replay_wei2016",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-055"
+  ],
+  "source": {
+    "title": "Synaptic Mechanisms of Memory Consolidation during Sleep Slow Oscillations",
+    "authors": [
+      "Yina Wei",
+      "Giri P. Krishnan",
+      "Maxim Bazhenov"
+    ],
+    "year": 2016,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3648-15.2016"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Strong, mechanistically explicit thalamocortical model directly showing that SWS slow oscillations + STDP convert hippocampal ripple input into PREFERENTIAL replay and persistent strengthening of specific cortical sequences. This is the substrate that MECH-120 invokes for the diversity-erosion arm of Q-055. Confidence held below 0.7 because it is a simulation (not behaviour), it does not measure diversity across a population of distinct trajectory classes, and 'preferential strengthening of one trace' does not by itself establish net erosion of the others.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hippocampal ripple input delivered during the slow oscillation produces input-SPECIFIC, persistent synaptic potentiation that biases subsequent replay toward the stimulated sequence -- the mechanistic basis for a winner-take-all drift if one trajectory class dominates the ripple input.",
+    "The model strengthens whichever sequence the ripple input carries; it provides no intrinsic mechanism that protects under-represented sequences from relative weakening."
+  ],
+  "tags": [
+    "q-055",
+    "sleep",
+    "slow-wave-sleep",
+    "replay",
+    "stdp",
+    "consolidation",
+    "arc-065",
+    "mech-120"
+  ],
+  "mapping": {
+    "source_claim_statement": "Interaction between slow cortical oscillations, hippocampal sharp-wave-ripple input, and spike-timing-dependent plasticity during deep sleep maps hippocampal memory traces to persistent cortical representations via PREFERENTIAL replay of specific cortical spike sequences.",
+    "ree_translation": "This is the candidate substrate for the Q-055 erosion arm: if SD-017 SWS replay preferentially strengthens whichever trajectory classes dominate the ripple input (typically the most-recently or most-heavily-weighted ones, per MECH-120), then ARC-065's waking-generated trajectory-class diversity could be systematically narrowed across a sleep cycle.",
+    "mapping_caveat": "The model studies strengthening of a single trained sequence, not the comparative fate of a DIVERSE population of trajectory classes. 'Preferential' here is relative to untrained noise, not relative to a set of co-existing learned behaviours. It demonstrates the strengthening mechanism but does not measure diversity loss, and says nothing about ARC-065's waking re-seeding (counter-mechanism a) or designed stochastic sampling in replay (counter-mechanism b).",
+    "source_context": "Computational thalamocortical network model with STDP; in silico, mammalian cortical architecture."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality, widely-cited model from the Bazhenov group. Mapping fidelity limited by the single-trace framing vs Q-055's population-diversity framing; transfer risk moderate (in-silico cortical model -> REE trajectory-class diversity)."
+  }
+}

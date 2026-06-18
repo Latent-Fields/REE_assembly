@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_056",
+  "entry_id": "2026-06-18_q_056_unexpected_uncertainty_exploration_payzanlenestour2012",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-056"
+  ],
+  "source": {
+    "title": "Do not Bet on the Unknown Versus Try to Find Out More: Estimation Uncertainty and \"Unexpected Uncertainty\" Both Modulate Exploration",
+    "authors": [
+      "Elise Payzan-LeNestour",
+      "Peter Bossaerts"
+    ],
+    "year": 2012,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2012.00150"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Important nuance for MECH-343: in humans, exploration IS modulated by uncertainty (supporting state-gated exploration over a fixed rate), but it is driven by a DILEMMA between an information-seeking motive and an avoid-the-unknown (danger) motive -- and the authors explicitly note prior evidence for uncertainty-driven exploration is mixed. This both supports the gating principle and warns that more-exploration-when-uncertain is not unconditionally adaptive, which maps onto MECH-343's harm/safety constraint. Confidence ~0.52: conceptually on-point human+simulation work, but older, restless-bandit paradigm, and indirect with respect to difficulty/stuck-state gating specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The evidence for uncertainty-driven exploration is explicitly described as MIXED -- a caution against assuming always-high or monotone-with-uncertainty exploration is optimal.",
+    "An avoid-the-unknown (danger) motive can SUPPRESS exploration under uncertainty, so a naive 'explore more when stuck' policy can be maladaptive when the unknown is hazardous -- directly relevant to MECH-343's no-harm-increase requirement."
+  ],
+  "tags": [
+    "q-056",
+    "mech-343",
+    "exploration",
+    "estimation-uncertainty",
+    "unexpected-uncertainty",
+    "safety-tradeoff",
+    "arc-018"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human exploration under uncertainty reflects a dilemma between two motives -- speeding up learning about the unknown (which may yield novel reward) and avoiding the unknown because it is potentially dangerous; both estimation uncertainty and 'unexpected uncertainty' modulate exploration, and the brain appears to differentiate the two motives.",
+    "ree_translation": "Supports the Q-056 premise that exploration should be conditioned on a state signal (uncertainty), not held at a fixed rate -- consistent with stuck-state-gated proposal entropy. But it adds the crucial constraint that MECH-343 itself encodes: gated exploration must NOT increase harm. The danger-avoidance motive is the behavioural analogue of MECH-343's requirement that difficulty-gated entropy show no harm increase and no random churn.",
+    "mapping_caveat": "This is a restless-bandit decision paradigm, not a sequential blocked-path goal environment; 'unexpected uncertainty' (environmental volatility) is related to but not the same as REE's stuck-state/difficulty signal. The support for gating is at the level of principle (exploration is uncertainty-modulated and two-motive), not a direct test of difficulty-gated proposal entropy against off and always-high arms.",
+    "source_context": "Human behavioural experiment plus simulation, restless multi-armed bandit; Bayesian-learning framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Influential conceptual+behavioural paper but older (2012) and indirect. Value is the safety-counter-motive nuance that aligns with MECH-343's harm constraint; kept mixed to flag that uncertainty-driven exploration evidence is itself contested."
+  }
+}

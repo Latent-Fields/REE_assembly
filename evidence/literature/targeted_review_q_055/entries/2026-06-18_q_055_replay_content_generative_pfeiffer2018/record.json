@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_055",
+  "entry_id": "2026-06-18_q_055_replay_content_generative_pfeiffer2018",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-055"
+  ],
+  "source": {
+    "title": "The content of hippocampal \"replay\"",
+    "authors": [
+      "Brad E. Pfeiffer"
+    ],
+    "year": 2018,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22824"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "A balanced review establishing that replay content is NOT a faithful re-run of dominant prior experience: it is biased toward reward, can run forward to guide future behaviour, and includes non-experienced / recombined sequences. This undercuts the premise that replay must reinforce already-dominant trajectory classes, and supports Q-055 counter-mechanism (b) that replay may be designed to sample/recombine rather than concentrate. Confidence 0.55 because it is a conceptual review (not a quantitative diversity measurement) and the same flexibility could in principle be neutral for diversity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Replay is not a veridical replay of the most-traversed path: it over-represents rewarded locations and can generate forward, recombined, or never-experienced sequences -- so a simple 'replay strengthens the dominant trace' erosion model is too crude.",
+    "Because replay can be generative/recombinative, sleep could in principle INCREASE trajectory-class diversity, the opposite of the winner-take-all worry."
+  ],
+  "tags": [
+    "q-055",
+    "sleep",
+    "replay-content",
+    "generative-replay",
+    "recombination",
+    "arc-065",
+    "mech-120",
+    "counter-mechanism"
+  ],
+  "mapping": {
+    "source_claim_statement": "The content of hippocampal replay correlates only partly with prior behaviour: replay over-represents rewarded experience, can be prospective (guiding future behaviour), and can reflect recombined or pre-existing network assemblies rather than faithful past trajectories.",
+    "ree_translation": "Bears on whether Q-055's erosion premise even holds. If REE's sleep replay (SD-017) inherits this generative/recombinative character, replay need not concentrate probability on already-dominant trajectory classes; it could re-seed or recombine them, supporting counter-mechanism (b) that sleep sampling is diversity-neutral or diversity-positive.",
+    "mapping_caveat": "This is a qualitative review of rodent place-cell replay content; it does not quantify behavioural-diversity gain or loss, and reward-biasing of replay could equally CONCENTRATE behaviour on high-reward classes (an erosion pathway). It reframes the question rather than settling it.",
+    "source_context": "Review of rodent hippocampal place-cell replay electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Authoritative single-author review (Annu-Rev-adjacent). Low-moderate mapping fidelity: it changes the framing of Q-055 but offers no direct diversity metric. Included to keep the erosion premise itself under scrutiny."
+  }
+}

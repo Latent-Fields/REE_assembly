@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_056",
+  "entry_id": "2026-06-18_q_056_dopamine_novelty_directed_exploration_wang2024",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-056"
+  ],
+  "source": {
+    "title": "Dopamine encoding of novelty facilitates efficient uncertainty-driven exploration",
+    "authors": [
+      "Yuhao Wang",
+      "Armin Lak",
+      "Sanjay G. Manohar",
+      "Rafal Bogacz"
+    ],
+    "year": 2024,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1011516"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Provides the biological grounding for MECH-343: a basal-ganglia model in which striatal pathways estimate reward mean AND variance and transient dopaminergic novelty signals drive DIRECTED (uncertainty-conditioned) exploration, which outperforms undirected and classic UCB strategies in simulation and fits behaviour. Supports the principle that exploration should be gated to a state signal rather than applied uniformly. Held to ~0.58 because the gating signal is novelty/value-uncertainty rather than goal-difficulty/stuck-state, and it is bandit-style choice rather than the sequential blocked-path setting of Q-056.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Directed (uncertainty-gated) exploration outperforms undirected exploration and classic UCB in simulation -- undirected/uniform exploration is dominated.",
+    "The biological gating signal is transient novelty/value-variance, not difficulty or goal-blockage, so it does not directly evidence stuck-state gating."
+  ],
+  "tags": [
+    "q-056",
+    "mech-343",
+    "dopamine",
+    "novelty",
+    "directed-exploration",
+    "uncertainty",
+    "basal-ganglia",
+    "arc-018"
+  ],
+  "mapping": {
+    "source_claim_statement": "Direct and indirect striatal pathways jointly estimate the mean and variance of reward, and mesolimbic dopaminergic novelty signals provide an uncertainty representation that drives efficient directed exploration -- outperforming UCB and undirected strategies in simulation and fitting behavioural data.",
+    "ree_translation": "Biological precedent for MECH-343's architecture: exploration in the brain is GATED by a computed state signal (uncertainty/novelty), not delivered as a uniform constant. This supports the general claim that conditional proposal entropy is the biologically realistic and performant regime, against an always-high (undirected) alternative.",
+    "mapping_caveat": "The gating variable here is reward-uncertainty / stimulus novelty, which is related to but not identical with REE's difficulty-or-stuck-state trigger; a stuck agent at a blocked goal is not necessarily in a high-novelty state. The setting is value-based action selection (bandit-like), not the sequential hard-goal/blocked-path environment Q-056 specifies, and there is no harm/safety channel.",
+    "source_context": "Basal-ganglia computational model validated against rodent electrophysiology and fitted to behavioural data; simulation comparisons."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "High-quality computational-neuroscience paper (Bogacz group, PLoS Comput Biol). Mapping fidelity moderate-low: supports gating-in-general and directed>undirected, but the gating signal differs from REE's difficulty trigger."
+  }
+}

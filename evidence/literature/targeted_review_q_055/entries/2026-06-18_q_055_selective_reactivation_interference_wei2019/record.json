@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_055",
+  "entry_id": "2026-06-18_q_055_selective_reactivation_interference_wei2019",
+  "timestamp_utc": "2026-06-18T09:05:54Z",
+  "claim_ids_tested": [
+    "Q-055"
+  ],
+  "source": {
+    "title": "Stimulation Augments Spike Sequence Replay and Memory Consolidation during Slow-Wave Sleep",
+    "authors": [
+      "Yina Wei",
+      "Giri P. Krishnan",
+      "Lisa Marshall",
+      "Thomas Martinetz",
+      "Maxim Bazhenov"
+    ],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1427-19.2019"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the most direct literature evidence for the Q-055 erosion mechanism: in a multi-memory setting, selectively augmenting replay of one trace actively INTERFERES with consolidation of the others, and the weak memories are hit hardest. That is precisely the dynamic by which sleep could erode behavioural diversity if replay is biased toward dominant trajectory classes. Held below 0.7 because it is simulation, the 'memories' are discrete cued traces rather than a continuum of trajectory classes, and the interference is shown under exogenous cueing rather than spontaneous replay.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Selectively augmenting one memory's replay during SWS interferes with consolidation of competing memories, with WEAK memories preferentially disadvantaged -- a direct competitive-interference route to diversity erosion.",
+    "The benefit is phase-gated (Down-to-Up transition); off-phase reactivation has little effect, so whichever traces happen to align with the optimal phase are strengthened at the expense of others."
+  ],
+  "tags": [
+    "q-055",
+    "sleep",
+    "slow-wave-sleep",
+    "targeted-memory-reactivation",
+    "competitive-interference",
+    "consolidation",
+    "arc-065",
+    "mech-120"
+  ],
+  "mapping": {
+    "source_claim_statement": "During SWS, presenting cues associated with a specific memory selectively augments replay and consolidation of that memory while interfering with consolidation of other -- particularly weak -- memories.",
+    "ree_translation": "Direct support for the Q-055 erosion arm: sleep replay is competitive, not additive. If ARC-065-generated trajectory classes vary in initial strength, SWS replay biased toward the strongest would actively suppress the weaker classes, narrowing diversity -- the mechanistic worst case MECH-120 warns about.",
+    "mapping_caveat": "Interference is demonstrated under EXOGENOUS targeted-memory-reactivation cueing, not spontaneous self-organised replay. Whether unprompted SWS replay in REE would show the same winner-take-all competition depends on what biases the spontaneous ripple content -- exactly the open empirical question Q-055 poses. Also, discrete cued associates are a poor proxy for a graded population of trajectory classes.",
+    "source_context": "Computational thalamocortical model with STDP and neuromodulatory state transitions; in silico."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Same high-quality modelling group. Mapping fidelity slightly higher than Wei2016 because it explicitly studies the multi-memory competitive case relevant to diversity; transfer risk moderate (cued TMR vs spontaneous replay; discrete memories vs trajectory-class continuum)."
+  }
+}
