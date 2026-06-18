@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_442",
+  "entry_id": "2026-06-18_mech_442_bg_winner_take_all_collapse_ponzi2007",
+  "timestamp_utc": "2026-06-18T07:25:17Z",
+  "claim_ids_tested": ["MECH-442"],
+  "source": {
+    "title": "Dynamical model of salience gated working memory, action selection and reinforcement based on basal ganglia and dopamine feedback.",
+    "authors": ["Adam Ponzi"],
+    "year": 2007,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2007.12.040"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.66,
+  "confidence_rationale": "A basal-ganglia dynamical model in which a double winner-take-all selects exactly ONE action, and learning drives a transition from an exploratory (random-action) phase to a STABLE DIRECTED phase where the agent always picks the single correct action. This is the biologically-faithful behavior of the selection gate -- diversity does NOT survive the commit; it collapses to one winner as the reward gradient strengthens. Directly weakens the reading that a per-niche-elite archive operates AT the committed argmax, and corroborates that F-dominance (MECH-439 winner-take-all collapse) is the gate's correct behavior. Moderate confidence: it is a model, and it weakens the at-argmax framing specifically, not the upstream-archive framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The basal-ganglia selection gate is a winner-take-all that resolves to a SINGLE action and, with learning, collapses from exploratory-random to stable-directed (always one action) -- so committed-action diversity does NOT survive the selection gate; it must be preserved upstream of it.", "F-dominance / single-optimum collapse at the commit (REE MECH-439) is the biologically CORRECT behavior of the selection gate, not a pathology to be fixed AT the gate -- which constrains MECH-442 to an upstream / eligible-set-restriction mechanism rather than an at-argmax per-niche store."],
+  "tags": ["mech_442", "basal_ganglia", "winner_take_all", "action_selection", "exploration_exploitation", "mech_439"],
+  "mapping": {
+    "source_claim_statement": "A basal-ganglia-based dynamical model uses a double winner-take-all that selects only one cue and only one action; through dopamine-modulated learning the system transitions from an exploratory phase, where actions are generated randomly, to a stable directed phase, where the agent always chooses the single correct action for each state.",
+    "ree_translation": "REE's committed-action gate (E3 argmin) is, like the biological basal-ganglia selection, a winner-take-all that collapses to a single action as the value gradient strengthens -- so F-dominance (MECH-439) is the FAITHFUL behavior of the gate, and committed-action diversity cannot be preserved by a structure operating AT the argmax. MECH-442's archive must therefore live upstream of / restrict the eligible set BEFORE the winner-take-all (which is exactly what the validated V3-EXQ-569i top-k shortlist does: it shortlists an eligible set, then the within-set selection runs).",
+    "mapping_caveat": "A firing-rate BG model is an abstraction; it weakens the at-the-argmax per-niche reading and corroborates the upstream / eligible-set-restriction reading, rather than weakening MECH-442 wholesale. It does not address whether a behavioral-descriptor eligible-set restriction outperforms the descriptor-free top-k.",
+    "source_context": "Firing-rate neural-network model of basal-ganglia anatomy (cortico-striatal synapses, dopamine three-factor plasticity) on a cue-reward association task with a delay period."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.40,
+    "notes": "Model-based but mechanistically explicit and canonical in framing (BG as winner-take-all selector that exploits once learned); weakens the at-argmax archive reading with good fidelity; transfer_risk moderate."
+  }
+}

@@ -4968,6 +4968,13 @@
     "title": "model_disagreement_directed_curiosity (RND / Plan2Explore analog). A mechanistic refinement of MECH-314's structured_curiosity_bonus: a PER-CANDIDATE, SELF-ANNEALING intrinsic curiosity signal derived from E2 FORWARD-MODEL DISAGREEMENT (an ensemble / dropout-variance proxy over E2 forward predictions) -- high where the forward model is uncertain, collapsing toward zero as a region is learned -- fed into E3 selection so it PROPAGATES per-candidate to the committed action, unlike the broadcast-novelty EMA channel found non-propagating in V3-EXQ-590a / EXQ-141b. The self-annealing-on-learning-progress property is the non-degeneracy guard against a cross-candidate-flat (degenerate) bonus. External analog: RND (Burda et al. 2018) predictor-error novelty; Plan2Explore (Sekar et al. 2020) ensemble model-disagreement. Maps to MECH-314c learning-progress / MECH-314b uncertainty-driven curiosity.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-442": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.behavioral_descriptor_committed_selection_archive",
+    "title": "Committed-action diversity survives the selection/commit step via a behavioral-descriptor eligible-set ARCHIVE (Quality-Diversity / MAP-Elites analog): the committed E3 selection should draw from a structure that, UPSTREAM of the winner-take-all commit, partitions the eligible candidate set by a behavioral descriptor (first-action / committed-action class / e2.world_forward strategy signature, NOT F-rank) and retains the F-best candidate WITHIN each behavioral niche, then commits by a coverage-aware rule -- so a behaviorally-distinct action stays selectable at a moderate primary-score (F) gap, bounded by the per-niche-elite safety envelope, rather than collapsing to F's single global optimum. The validated V3-EXQ-569i top-k shortlist is the descriptor-free degenerate instance (eligible-set axis = F-rank, near-ties only); MAP-Elites generalizes it to a behavioral-descriptor-indexed eligible-set archive paired with an active variability generator (MECH-313), predicted to convert per-candidate diversity into committed-action diversity more robustly than the thin near-tie shortlist. The F-dominated committed argmax itself (MECH-439) is biologically faithful and is NOT changed -- only the eligible-set structure feeding it.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",

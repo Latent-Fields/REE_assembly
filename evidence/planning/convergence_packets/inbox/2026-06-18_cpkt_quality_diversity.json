@@ -1,0 +1,152 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-QUALITY-DIVERSITY-20260618",
+  "created_at_utc": "2026-06-18T06:43:08Z",
+  "updated_at_utc": "2026-06-18T06:43:08Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "quality-diversity",
+    "snapshot_ref": "git-7ef27ff",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "Paraphrased claims and citation links only; no copied upstream text, code, or weights. MAP-Elites / QD is an algorithm family described across peer-reviewed venues; license posture for any specific reference implementation (pyribs, QDax) must be re-verified before any code-reference content_mode.",
+    "intake_path": "sources/quality-diversity",
+    "primary_links": [
+      "https://doi.org/10.1038/nature14422",
+      "https://arxiv.org/abs/1504.04909",
+      "https://doi.org/10.3389/frobt.2016.00040"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": true,
+    "notes": "Single-source convergence intake (MAP-Elites / Quality-Diversity, Cully et al. 2015) on the committed-action-diversity conversion ceiling. Primary sources are peer-reviewed/archival; intake is partial pending algorithm-level extraction of the archive-insertion + per-niche replacement rule and the outer-loop-vs-inner-loop scope reconciliation. The candidate claim is registered candidate/substrate_conditional/generation v3 and promotes nothing on its own."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MECH-442",
+      "ARC-065",
+      "MECH-341",
+      "MECH-439",
+      "MECH-294"
+    ],
+    "docs_paths": [
+      "docs/architecture/quality_diversity_committed_archive.md",
+      "evidence/planning/behavioral_diversity_isolation_plan.md",
+      "sources/quality-diversity/comparison_table.md",
+      "reports/2026-06-18_quality_diversity_conversion_ceiling_synthesis.md"
+    ],
+    "impact_areas": [
+      "control_plane",
+      "memory",
+      "governance"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-07-02T00:00:00Z"
+  },
+  "falsification": {
+    "claim_under_test": "Committed-action diversity should be preserved through the selection/commit step by an explicit behavioral-descriptor-indexed ARCHIVE of per-niche elites (MECH-442, MAP-Elites analog) -- generalizing the validated V3-EXQ-569i top-k shortlist (the descriptor-free degenerate archive) -- rather than collapsing to F's single global optimum at the bare E3 argmin (MECH-439 F-dominance).",
+    "could_be_wrong_if": [
+      "A behavioral-descriptor-indexed committed-selection archive does NOT lift committed-action-class entropy strict-above BOTH collapsed-proposer and matched-noise on >=2/3 seeds beyond what the descriptor-free top-k shortlist (V3-EXQ-569i) already achieves -- the archive earns no keep over the simpler top-k.",
+      "The archive lifts committed diversity only by selecting F-dominated / clearly-worse (unsafe) actions whose F-cost exceeds the per-niche-elite bound -- a quality/safety regression, falsifying the safety-preserving framing.",
+      "The conversion ceiling turns out to be driven entirely by F's variance share rather than the selection structure, in which case rebalancing F's E3 variance share directly (MECH-439) is the right fix and no archive structure helps."
+    ],
+    "test_plan_refs": [
+      "sources/quality-diversity/probes.md",
+      "sources/quality-diversity/integration_deltas.md",
+      "reports/2026-06-18_quality_diversity_conversion_ceiling_synthesis.md"
+    ],
+    "status": "planned",
+    "notes": "Falsifier is pre-registered per the candidate claim; the V3-EXQ-569i top-k PASS supplies the baseline the archive must beat, and the V3-EXQ-571 F-variance-share metric is the instrumentation a future 2x2 (F-de-collapse) x (archive vs top-k) ablation would reuse."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete: the candidate claim is registered candidate/substrate_conditional/generation v3, wired into the conversion-ceiling cluster's depends_on (ARC-065 / MECH-341 / MECH-439 / MECH-294), and blocks no V3 closure node (it amends the GAP-B conversion locus by generalizing the validated top-k structure; it does not flip GAP-B status). It does not move any existing claim status or conflict ratio. REE_assembly governance adjudication still required before any decide-to-build.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts in the conversion-ceiling cluster (ARC-065 / MECH-341 / MECH-439) after registration.",
+      "The candidate claim being mistakenly placed on a V3 closure node's build path (owner_exq / blocker), rather than a depends_on cross-ref."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "QD-P-001",
+      "QD-P-002"
+    ],
+    "adapter_patch_refs": [
+      "sources/quality-diversity/integration_deltas.md",
+      "sources/quality-diversity/comparison_table.md"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "QD-BENCH-001",
+        "metric": "post_registration_conflict_ratio_delta_conversion_ceiling_cluster",
+        "comparator": "<=",
+        "target": "0.0 over 2 governance cycles",
+        "measurement_ref": "evidence/experiments/claim_evidence.v1.json",
+        "notes": "Registering the candidate claim must not increase unresolved conflict pressure in ARC-065 / MECH-341 / MECH-439."
+      },
+      {
+        "criterion_id": "QD-BENCH-002",
+        "metric": "v3_closure_percent_unchanged",
+        "comparator": "=",
+        "target": "no change attributable to MECH-442",
+        "measurement_ref": "evidence/planning/closure_status.md",
+        "notes": "Registering MECH-442 must keep the V3 closure percentage clean (no V3 plan node blocked on it; GAP-B status unchanged)."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "planned",
+    "notes": "Decide-whether-to-build is a later governance step. If built, MECH-442 would amend ree-v3 e3_selector.py committed-selection: a behavioral-descriptor-indexed archive over the candidate set (per-niche F-elites, coverage-aware commit) generalizing the existing modulatory_shortlist_mode='top_k' machinery (the degenerate descriptor-free case)."
+  },
+  "deltas": [
+    {
+      "delta_id": "QD-DELTA-001",
+      "title": "Behavioral-descriptor committed-selection archive (MECH-442, MAP-Elites analog)",
+      "proposal": "Register a candidate REE claim that committed-action diversity survives the selection/commit step via an explicit behavioral-descriptor-indexed archive of per-niche elites -- partition the E3 candidate set by a behavioral descriptor (first-action / committed-action class / e2.world_forward strategy signature), retain the F-best candidate per niche, commit by a coverage-aware rule -- generalizing the validated V3-EXQ-569i top-k shortlist.",
+      "rationale": "MAP-Elites per-niche elite retention is the working external instance of diversity-survives-selection; REE's commit collapses to F's global optimum (MECH-439 F-dominance) and the only existing converter is the thin top-k near-tie shortlist.",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://doi.org/10.1038/nature14422",
+        "https://arxiv.org/abs/1504.04909"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "outer_loop_vs_inner_loop_scope_gap",
+        "per_niche_elite_safety_envelope_must_hold"
+      ]
+    },
+    {
+      "delta_id": "QD-DELTA-002",
+      "title": "Coverage-objective committed-selection-niche calibration (folded into MECH-442)",
+      "proposal": "Register (as a MECH-442 note) that the committed-selection-niche calibration -- which behavioral axis defines a niche; how many F-best-per-niche elites the commit draws from -- should derive from a coverage/diversity objective rather than a single hand-set top-k k; the 569i k=3 is the degenerate single-axis (F-rank) version.",
+      "rationale": "QD shows descriptor design + archive resolution, not a fixed k, governs how much diversity survives selection.",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://doi.org/10.3389/frobt.2016.00040",
+        "https://doi.org/10.1038/nature14422"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "descriptor_granularity_collapse_destroys_diversity"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "hybridize",
+    "anti_lock_in_review_required": false,
+    "notes": "Recommended outcome hybridize: combine REE's existing committed-selection converter (the validated V3-EXQ-569i top-k shortlist) with the MAP-Elites behavioral-descriptor archive structure -- i.e. register MECH-442 as a candidate AMENDING the GAP-B conversion locus (generalizing the descriptor-free top-k into a behavioral-descriptor-indexed per-niche-elite archive), NOT a parallel module. Final outcome and any decide-to-build set during REE_assembly governance adjudication; the candidate claim is registered candidate/substrate_conditional/generation v3 and promotes nothing."
+  }
+}

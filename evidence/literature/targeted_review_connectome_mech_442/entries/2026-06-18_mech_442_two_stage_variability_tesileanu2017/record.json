@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_442",
+  "entry_id": "2026-06-18_mech_442_two_stage_variability_tesileanu2017",
+  "timestamp_utc": "2026-06-18T07:25:17Z",
+  "claim_ids_tested": ["MECH-442"],
+  "source": {
+    "title": "Rules and mechanisms for efficient two-stage learning in neural circuits.",
+    "authors": ["Tiberiu Tesileanu", "Bence Olveczky", "Vijay Balasubramanian"],
+    "year": 2017,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.20944"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Computational/theoretical model formalizing the songbird two-stage architecture: a basal-ganglia tutor circuit (LMAN) injects exploratory variability AND a corrective bias, gradually consolidated into a separate motor (RA) student circuit. Supports the architectural separation of a variability/diversity generator from the committed motor output -- the structural premise behind locating MECH-442's archive upstream of / parallel to the commit. Capped because it is a model (not a measurement) and addresses tutor-student consolidation, not per-niche-elite retention.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The diversity here is a variability-injection-plus-corrective-bias mechanism (explore then consolidate), not a per-niche-elite archive that survives selection -- so it supports the generator/selector separation, not the specific MAP-Elites structure.", "Mismatches between the tutor (variability) signal and the student plasticity rule impair learning -- a warning that an REE diversity-injection coupled to the committed selector must be matched to the downstream learning rule or it degrades performance."],
+  "tags": ["mech_442", "two_stage_learning", "variability_generator", "lman", "basal_ganglia", "songbird"],
+  "mapping": {
+    "source_claim_statement": "In songbird learning, the basal-ganglia-related circuit LMAN both induces vocal exploration (variability) and contributes a corrective bias to the motor output, which is gradually consolidated in the downstream motor-cortex analog RA; an efficient two-stage learner requires the tutor's teaching signal to match the student's plasticity mechanism.",
+    "ree_translation": "The diversity-generating structure (REE: ARC-065 generation + MECH-313 variability) is architecturally SEPARATE from and upstream of the committed motor selector, and its output is consolidated downstream over time -- supporting MECH-442's framing of the archive as a generation-side / parallel structure feeding a commit, rather than a per-niche store read at the argmax.",
+    "mapping_caveat": "This is a model of tutor-student variability consolidation, not a measurement of per-niche-elite retention; it supports the separation-of-generator-from-selector architecture but is agnostic between a MAP-Elites archive and a simpler variability-injection-plus-bias account.",
+    "source_context": "Theoretical/computational model of the songbird LMAN->RA two-stage learning circuit, with reinforcement-learning derivation of the tutor signal."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.38,
+    "notes": "Solid eLife theory paper; mapping_fidelity moderate (architecture-level support for generator/selector separation, not the per-niche mechanism); transfer_risk moderate (songbird circuit model to REE E3/selection)."
+  }
+}

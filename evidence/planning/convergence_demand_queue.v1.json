@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-06-18T07:27:55Z",
+  "last_updated_utc": "2026-06-18T07:34:26Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -92,18 +92,18 @@
         {
           "name": "Quality-Diversity / MAP-Elites",
           "angle": "Cully et al. 2015: explicit behavioral-descriptor archive surviving selection -- structurally the top-k shortlist fix already validated by V3-EXQ-569i",
-          "intake_state": "IN_FLIGHT",
+          "intake_state": "COMPLETED",
           "path": "REE_convergence/sources/quality-diversity/"
         }
       ],
-      "intake_state": "IN_FLIGHT",
+      "intake_state": "COMPLETED",
       "priority": "MED",
       "generation": "v3",
       "generation_basis": "Structurally the top-k shortlist fix already validated by V3-EXQ-569i (a V3 experiment); behavioral_diversity_isolation:GAP-B is a V3 closure node.",
       "blocks_v3_critical_path": false,
-      "in_flight": "session convergence-cdq003-mapelites-intake-20260618T0643Z",
-      "registered_candidate_claims": [],
-      "last_known_state_note": "Mine step in flight 2026-06-18: REE_convergence/sources/quality-diversity/ intake created (MAP-Elites behavioral-descriptor archive adapted onto the E3 committed-selection locus / e3_selector top-k path); Register step pending proposal-first user approval (candidate MECH-440 amending the GAP-B conversion locus, depends_on ARC-065/MECH-341/MECH-439 + GAP-A 569i lineage)."
+      "in_flight": null,
+      "registered_candidate_claims": ["MECH-442"],
+      "last_known_state_note": "COMPLETED 2026-06-18 (session convergence-cdq003-mapelites-intake-20260618T0643Z). Mine: REE_convergence/sources/quality-diversity/ intake (schema-valid; MAP-Elites behavioral-descriptor archive adapted onto the E3 committed-selection locus / e3_selector top-k path) + synthesis report + README row. Promotion packet CPKT-QUALITY-DIVERSITY-20260618 GATE-READY, submitted via run_cross_repo_handoff.py (copied to evidence/planning/convergence_packets/inbox/). Register: candidate MECH-442 registered candidate/substrate_conditional/generation v3 (NOT MECH-440 -- collided with concurrent CDQ-002 which took 440/441; took next free id 442), wired into the GAP-B conversion-ceiling cluster depends_on (ARC-065/MECH-341/MECH-439/MECH-294/ARC-062 + MECH-313 added per lit-pull), arch stub docs/architecture/quality_diversity_committed_archive.md. /lit-pull run BEFORE registering (user-directed): evidence/literature/targeted_review_connectome_mech_442/ 5 PubMed entries, lit_conf 0.777, verdict SUPPORTED-with-refinement (archive lives UPSTREAM of the winner-take-all commit -- Ponzi 2007 weakens the at-argmax reading; F-dominance is biologically faithful). PROMOTES NOTHING; GAP-B node status untouched."
     },
     {
       "row_id": "CDQ-004",

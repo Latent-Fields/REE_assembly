@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_442",
+  "entry_id": "2026-06-18_mech_442_striatal_action_modules_markowitz2018",
+  "timestamp_utc": "2026-06-18T07:25:17Z",
+  "claim_ids_tested": ["MECH-442"],
+  "source": {
+    "title": "The Striatum Organizes 3D Behavior via Moment-to-Moment Action Selection.",
+    "authors": ["Jeffrey E Markowitz", "Winthrop F Gillis", "Celia C Beron", "Shay Q Neufeld", "Keiramarie Robertson", "Neha D Bhagat", "Ralph E Peterson", "Emalee Peterson", "Minsuk Hyun", "Scott W Linderman", "Bernardo L Sabatini", "Sandeep Robert Datta"],
+    "year": 2018,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2018.04.019"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-quality cellular recording + lesion study (Cell, Datta/Sabatini) showing the dorsolateral striatum encodes the identity and ordering of a discrete repertoire of sub-second 3D behavioral motifs and is required to assemble them into sequences. Directly evidences a structured behavioral-MODULE repertoire that the basal ganglia selects over -- the closest biological analog to MECH-442's behavioral-descriptor archive. Capped because the result is about sequence COMPOSITION over a module set, not per-niche-elite preservation against a value argmax.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The striatum encodes module identity/ordering and assembles sequences, but the paper does not show per-niche-elite preservation through a value-maximizing selection -- it evidences a repertoire + selection-over-it, not diversity surviving a strong reward gradient.", "Module selection here is facilitated by fast direct/indirect-pathway decorrelation (a competitive gating), consistent with a winner-take-all commit rather than simultaneous multi-niche retention at the output."],
+  "tags": ["mech_442", "striatum", "action_repertoire", "behavioral_modules", "basal_ganglia", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Dorsolateral striatum (DLS) neurons in the direct and indirect pathways systematically encode the identity and ordering of sub-second 3D behavioral motifs (modules); fast-timescale decorrelation between pathways facilitates this encoding, and DLS lesions prevent appropriate behavioral-sequence assembly.",
+    "ree_translation": "A structured repertoire of discrete behavioral modules, indexed and selected by the basal ganglia, is a real biological object -- the closest analog to MECH-442's behavioral-descriptor archive over candidate actions. It supports the existence of a behavioral-module store the committed selection draws from, locating that store in the striatal action-selection machinery rather than only at the final argmax.",
+    "mapping_caveat": "The study evidences a behavioral-module repertoire and selection/composition over it, NOT the specific MECH-442 property that behaviorally-distinct modules are RETAINED (per-niche elites) against a strong value gradient at the commit; pathway decorrelation here looks more like competitive winner-take-all gating than simultaneous per-niche retention.",
+    "source_context": "Freely-moving mice; 3D depth-imaging behavioral motif segmentation (MoSeq); DLS bulk + cellular photometry across direct/indirect pathways; DLS NMDA lesions."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Strong methods + venue; mapping_fidelity moderate because it shows a repertoire + selection-over-it (the archive EXISTS and BG selects from it) but not per-niche-elite retention against a value argmax; transfer_risk moderate (rodent spontaneous behavior to E3 committed trajectory selection)."
+  }
+}

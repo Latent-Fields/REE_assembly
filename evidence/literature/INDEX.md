@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-18T07:28:19.852835Z`
+Generated: `2026-06-18T07:33:42.098243Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -131,7 +131,7 @@ Generated: `2026-06-18T07:28:19.852835Z`
 | `targeted_review_connectome_mech_346` | [`2026-06-16_mech_346_value_of_identity_gottfried2011`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/summary.md) |
 | `targeted_review_connectome_mech_347` | [`2026-06-16_mech_347_incentive_salience_case_berridge2006`](targeted_review_connectome_mech_347/entries/2026-06-16_mech_347_incentive_salience_case_berridge2006/record.json) | 3 | [`summary`](targeted_review_connectome_mech_347/entries/2026-06-16_mech_347_incentive_salience_case_berridge2006/summary.md) |
 | `targeted_review_connectome_mech_436` | [`2026-06-17_mech_436_wanting_never_liked_tindell2009`](targeted_review_connectome_mech_436/entries/2026-06-17_mech_436_wanting_never_liked_tindell2009/record.json) | 2 | [`summary`](targeted_review_connectome_mech_436/entries/2026-06-17_mech_436_wanting_never_liked_tindell2009/summary.md) |
-| `targeted_review_connectome_mech_440` | [`2026-06-18_mech_440_two_stage_variability_tesileanu2017`](targeted_review_connectome_mech_440/entries/2026-06-18_mech_440_two_stage_variability_tesileanu2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_440/entries/2026-06-18_mech_440_two_stage_variability_tesileanu2017/summary.md) |
+| `targeted_review_connectome_mech_442` | [`2026-06-18_mech_442_two_stage_variability_tesileanu2017`](targeted_review_connectome_mech_442/entries/2026-06-18_mech_442_two_stage_variability_tesileanu2017/record.json) | 5 | [`summary`](targeted_review_connectome_mech_442/entries/2026-06-18_mech_442_two_stage_variability_tesileanu2017/summary.md) |
 | `targeted_review_connectome_q_017` | [`2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/record.json) | 4 | [`summary`](targeted_review_connectome_q_017/entries/2026-02-15_q017_connectome_neuromod_degeneracy_neuron2012/summary.md) |
 | `targeted_review_connectome_sd_004` | [`2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/record.json) | 4 | [`summary`](targeted_review_connectome_sd_004/entries/2026-03-29_sd_004_theta_sequences_goals_wikenheiser2015/summary.md) |
 | `targeted_review_connectome_sd_005` | [`2026-03-22_sd005_tpj_agency_attribution_farrer2002`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/record.json) | 4 | [`summary`](targeted_review_connectome_sd_005/entries/2026-03-22_sd005_tpj_agency_attribution_farrer2002/summary.md) |

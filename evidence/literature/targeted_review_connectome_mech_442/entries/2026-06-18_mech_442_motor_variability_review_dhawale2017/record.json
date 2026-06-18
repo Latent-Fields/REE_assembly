@@ -1,0 +1,33 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_442",
+  "entry_id": "2026-06-18_mech_442_motor_variability_review_dhawale2017",
+  "timestamp_utc": "2026-06-18T07:25:17Z",
+  "claim_ids_tested": ["MECH-442"],
+  "source": {
+    "title": "The Role of Variability in Motor Learning.",
+    "authors": ["Ashesh K Dhawale", "Maurice A Smith", "Bence P Olveczky"],
+    "year": 2017,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev-neuro-072116-031548"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.77,
+  "confidence_rationale": "Authoritative review (Annu Rev Neurosci) consolidating human + animal evidence that motor variability is a regulated FEATURE -- purposeful exploration of behavior space that, coupled with reinforcement, drives learning -- not unwanted noise. Maps with high fidelity onto the MECH-442 premise that behavioral diversity must be actively maintained (not a side-effect) to be useful. Caps below 0.8 because it grounds the necessity-and-regulation of diversity, not the specific archive-survives-the-commit-gate mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Variability is framed as exploration of motor space coupled to reinforcement, which is a noise-then-select picture (generate-and-reinforce), NOT a per-niche-elite archive that survives selection -- so it supports diversity-must-be-maintained without endorsing the specific MAP-Elites structure.", "The review notes variability is regulated structurally (task-dependent, dimension-specific), which warns that a single uniform behavioral-descriptor may be the wrong granularity."],
+  "tags": ["mech_442", "motor_variability", "reinforcement_learning", "exploration", "behavioral_diversity"],
+  "mapping": {
+    "source_claim_statement": "Trial-to-trial motor variability is not merely a consequence of a noisy nervous system; sensorimotor systems treat variability as purposeful, actively-regulated exploration of motor space that, coupled with reinforcement, drives motor learning, with dedicated neural circuits generating and regulating it.",
+    "ree_translation": "REE's requirement that behavioral diversity be a maintained, structured property (behavioral_diversity_isolation:GAP-B) -- rather than a side-effect of selection -- is biologically grounded: the nervous system maintains and regulates behavioral variability as a feature, which is the necessity MECH-442's archive (and the ARC-065 generation pathway it preserves) instantiates.",
+    "mapping_caveat": "The review grounds the diversity-is-a-regulated-feature necessity and an explore-then-reinforce loop, NOT the specific claim that diversity survives the commit step via a per-niche-elite archive; it is consistent with (but does not uniquely support) the MAP-Elites structure over a simple variability-injection-plus-selection account.",
+    "source_context": "Review across human psychophysics and animal (songbird, rodent) motor-learning models; reinforcement-learning framing of motor variability."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.30,
+    "notes": "High-tier review; mapping_fidelity good for the necessity-and-regulation premise; transfer_risk lower because the claim is about the general principle (variability as regulated feature) which transfers cleanly to REE's diversity-must-reach-behavior requirement."
+  }
+}
