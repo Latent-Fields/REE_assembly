@@ -1,0 +1,99 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T05:52:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite_20260617T160019Z_v3",
+      "queue_id": "V3-EXQ-625d",
+      "claim_ids": [],
+      "owner_node": "sd_037_axis_b:P1b",
+      "adjudicated_flag": "precondition_unmet",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "confirmed_internally_consistent: R3 conversion-operative 0/3 AND R4 committed-diversity 0/3 -> the run refused a verdict and weakened nothing. Correct by design. Autopsy confirms the self-route; the substantive question is WHY the preconditions fail on axis-b.",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- tags no claim; SD-037/MECH-280/MECH-281 stay substrate_ceiling/pending_retest",
+        "biological_reference": "partial -- saturated z_harm_a~6 -> single defensive action is the tonic-immobility/learned-helplessness regime (biologically faithful) but the WRONG regime for the risk-assessment-oscillation the C3 dynamic-crossing criterion presupposes",
+        "prerequisites": "missing -- the 569i conversion requires a divergent candidate pool (cand_world_pairwise_dist > floor) which the axis-b saturated-threat regime destroys; trained harm pathway also needs 603q stabilization (landscape forms on 1/3 seeds here)",
+        "implementation": "complete -- conversion config wired identically to 569i; the four readiness gates fired correctly",
+        "environment": "wrong_pressures -- axis-b overlay over-drives z_harm_a into saturation (tonic, not time-varying) AND collapses the candidate pool; overlay calibrated against an UNTRAINED harm pathway",
+        "measurement": "adequate -- C3 dynamic-crossings + four non-vacuity gates well-designed; self-route correct",
+        "integration": "isolated_then_unstable -- conversion works in isolation (569i) but interaction with the saturated-threat regime collapses it",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PAG-gated defensive-behaviour switching (freeze <-> flight <-> risk-assessment) under graded threat; amygdala/PAG affective-threat integration",
+        "dependencies": ["time-varying (sub-saturating) threat so the affective signal can relieve and re-engage", "divergent action-affordance representation under threat (not tunnel-visioned to one defensive response)"],
+        "is_formal_import": false,
+        "divergence": "saturated z_harm_a (~6, never relieves) is the tonic-immobility regime; the experiment needs the risk-assessment-oscillation regime which requires sub-saturating, time-varying threat",
+        "lit_status": "present (axis-b plan + orexin/PAG lit anchors already on file)"
+      },
+      "evidence_chain": {
+        "z_harm_a_mean_per_seed": [5.884021, 6.739252, 6.268984],
+        "z_harm_a_crossings_per_seed": [{"above_to_below": 0, "below_to_above": 0}, {"above_to_below": 0, "below_to_above": 0}, {"above_to_below": 0, "below_to_above": 0}],
+        "selected_action_class_entropy_per_seed": [0.0, 0.0, 0.0],
+        "selected_class_counts_per_seed": [{"0": 472}, {"0": 1061}, {"0": 1061}],
+        "cand_world_pairwise_dist_per_seed": [0.024494, 0.051144, 0.011799],
+        "cand_world_pairwise_dist_floor": 0.03,
+        "route_range_mean_per_seed": [0.084518, 0.0, 0.0],
+        "route_range_floor": 0.01,
+        "harm_eval_range_per_seed": [0.283006, 0.0, 0.0],
+        "comparison_569i": {
+          "run_id": "v3_exq_569i_gapa_conversion_topk_shortlist_falsifier_20260616T224009Z_v3",
+          "outcome": "PASS_supports_ARC-065",
+          "env": "scaffold p2 reef-bipartite, hazard_harm 0.05 (low), no sustained-threat overlay",
+          "arm1_cand_world_pairwise_dist_per_seed": [0.073024, 0.088716, 0.083611],
+          "arm1_route_range_per_seed": [0.247239, 0.313422, 0.240865],
+          "arm1_committed_entropy_per_seed": [1.232245, 0.0, 0.901202],
+          "note": "byte-identical conversion config; reef-bipartite STRUCTURALLY forces categorically-opposite first-action argmaxes (SD-054 bipartite extension) -> holds candidate divergence. The axis-b env has no such structural guarantee."
+        },
+        "three_coupled_mechanisms": {
+          "1_z_harm_a_saturation": "pinned ~6, 0 downward crossings regardless of diversity; trained harm pathway over-drives the 625b-era overlay ~14x (625b p70~0.43 on untrained base)",
+          "2_candidate_pool_collapse": "cand_world_pairwise_dist < floor 2/3 -> routed channel ~0 range (route_range 0.0 on 43/44) -> top-k shortlist has no structure to convert (confirms 614e z_world-collapse locus)",
+          "3_F_dominance_plus_seed_fragility": "seed 42 route_range operative (0.085) + top-k fired yet entropy 0.0 (saturated z_harm_a peaks F so the same action wins within top-3); seeds 43/44 harm_eval flat (0.0) = 603p harm-pathway seed-fragility, 603q stabilization not used"
+        }
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-625d self-routed substrate_not_ready_requeue (R3 0/3, R4 0/3) -- internally consistent, weakens nothing. Autopsy 2026-06-18: committed-action monostrategy-lock (entropy 0.0 3/3) is over-determined by the axis-b saturated-threat regime -- z_harm_a pinned ~6 (trained harm pathway over-drives the 625b-era overlay ~14x; 0 crossings), candidate-pool collapse (cand_world_pairwise_dist < floor 2/3), and F-dominance over the modulatory range (seed 42 route_range operative yet entropy 0). The 569i conversion PASS is env-conditional (reef-bipartite structural divergence guarantee, absent on axis-b). Route: 625e successor (sub-saturating + pulsed threat + 603q harm config + GAP-A conversion-propagation as hard upstream gate); conversion-propagation-under-threat amend pointer on the shared GAP-A / modulatory-bias-selection-authority ceiling. SD-037/MECH-280/MECH-281 unchanged.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "sd_037_axis_b",
+        "title": "axis-b env-regime recalibration for the trained-harm-pathway z_harm_a magnitude + GAP-A conversion-propagation-under-threat as a hard upstream gate",
+        "implementation_hint": "The 569i top-k conversion PASS is env-conditional (reef-bipartite structural candidate-divergence guarantee). On the axis-b saturated-threat env it does NOT propagate: z_harm_a saturates ~6 (trained harm pathway over-drives the 625b-era hazard_harm=0.2/proximity_harm_scale=0.2 overlay ~14x) and the candidate pool collapses (cand_world_pairwise_dist < 0.03 on 2/3). The 625e successor must (a) recalibrate the axis-b overlay ~10x DOWN into a sub-saturating band AND pulse/time-vary the threat so z_harm_a can relieve and cross 0.4 downward; (b) adopt the 603q-stabilized harm-pathway config (decoupled encoder LR + warmup) so the harm landscape forms on >=2/3 seeds; (c) keep the GAP-A conversion-propagation (R3/R4) as a hard upstream gate -- a recalibrated threat alone will not clear the candidate-pool collapse. The conversion-propagation half is a POINTER to the shared behavioral_diversity_isolation:GAP-A / modulatory-bias-selection-authority ceiling, not a new build.",
+        "unblocks_claims": ["SD-037", "MECH-280", "MECH-281"],
+        "depends_on_unresolved": ["behavioral_diversity_isolation:GAP-A (conversion must be shown to survive a threat-engaged, non-bipartite, harm-elevated candidate pool)", "scaffolded_sd054_onboarding 603q harm-pathway stabilization applied to the 625e config", "SD-029 axis-b env overlay recalibration for the trained-harm-pathway z_harm_a band + time-varying threat (experiment-design, 625e)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite_20260617T160019Z_v3",
+          "experiment_type": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite",
+          "metric": "selected_action_class_entropy 0.0 (3/3, monostrategy-lock); cand_world_pairwise_dist 0.024/0.051/0.012 (1/3 > floor); route_range 0.085/0.0/0.0; z_harm_a_mean ~6 with 0 threshold crossings",
+          "target": "a working axis-b regime needs cand_world_pairwise_dist > 0.03 AND route_range > 0.01 AND committed entropy > 0.3 on >=2/3 seeds (R3/R4) with z_harm_a in a sub-saturating, oscillation-capable band (C3a/C3b both fire)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "569i's conversion PASS is env-conditional: it rests on the reef-bipartite env's structural guarantee of categorically-opposite first-action argmaxes; it does not propagate to a saturated-threat regime that removes that guarantee.",
+        "The trained harm pathway changes z_harm_a magnitude ~14x vs the untrained base the axis-b overlay was calibrated against (625b p70~0.43 -> 625d mean~6); the overlay and the plan's target ranges need re-derivation, and the threat must be time-varying/pulsed so z_harm_a can cross downward (C3a fix), not just magnitude-tuned.",
+        "603p harm-pathway seed-fragility is implicated (flat harm_eval on 2/3 seeds); a 625d successor should adopt the 603q-stabilized harm config.",
+        "Nth autopsy circling the committed-action-diversity / F-dominance locus (569g/569h/614e + the GAP-A amend chain) -- granularity-debt signal; 625d adds the env-conditional-conversion edge."
+      ],
+      "routing": "queue-experiment",
+      "secondary_routing": ["implement-substrate (amend pointer above)", "claim-synthesis (GAP-A cluster, see claim_synthesis_recommendation)"]
+    }
+  ],
+  "claim_synthesis_recommendation": {
+    "raise": true,
+    "target": "ARC-065 / behavioral_diversity_isolation:GAP-A",
+    "rationale": "This is the Nth /failure-autopsy circling the committed-action-diversity / F-dominance / committed-argmax-collapse locus, each with a distinct failure signature (569g entropy-only artefact; 569h conversion-ceiling-persists; 614e z_world candidate-pool collapse; 460e beta-engagement; plus the long modulatory-bias-selection-authority amend chain gap-relative->float32->route-range->gain/contrast->top-k). The recurrence across separate autopsy sessions is the granularity-debt signal: the broad GAP-A claim is probably several finer testable claims (candidate-pool-divergence vs route-range-reach vs F-dominance-budget vs env-structural-precondition), not one. 625d adds the env-conditional-conversion edge (conversion success contingent on an upstream env-structural candidate-divergence guarantee). Proposal-first, lit-grounded decomposition -- NOT demotion (the claim is coarse, not wrong)."
+  },
+  "cluster_pattern": {
+    "shape": "committed-action monostrategy-lock (selected_action_class_entropy 0.0) when the candidate pool is non-divergent and/or the primary F-score is saturated -- the conversion substrate reaches the accumulator but does not move committed action",
+    "is_independent_bugs": false,
+    "structural_property": "scoring/proposer-layer diversity does not reach committed action unless an upstream candidate-pool-divergence precondition holds; that precondition is env-structural (reef-bipartite guarantees it; a saturated-threat regime destroys it)",
+    "readings": ["substrate_enrichment (conversion-propagation-under-threat)", "test_design_ceiling (axis-b env over-saturates the trained harm pathway; needs sub-saturating + time-varying threat)"]
+  }
+}
