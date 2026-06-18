@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T14:45:18Z",
+  "scope": "single",
+  "status": "confirmed",
+  "cluster_with": ["failure_autopsy_V3-EXQ-460f_2026-06-18"],
+  "targets": [
+    {
+      "run_id": "v3_exq_468e_sd034_mech268_decommit_hold_behavioural_20260618T060133Z_v3",
+      "queue_id": "V3-EXQ-468e",
+      "supersedes": "V3-EXQ-468d",
+      "claim_ids": ["SD-034", "MECH-268", "MECH-090"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "residual_perseveration_open",
+      "self_route_reason": "criteria_unmet_genuine_weakens",
+      "adjudication": "not_a_fair_test_weakens_substrate_ceiling",
+      "facts": {
+        "non_vacuity_gates": {"foraging_contact_guard": 1.0, "commitment_non_vacuity": 1.0},
+        "C1_beta_release_near_contradiction": {"ON": [43, 16, 58], "OFF": [14, 10, 0], "pass_all_seeds": true},
+        "C2_committed_frac_post_absolute": {"ON": [1.0, 1.0, 1.0], "OFF": [1.0, 1.0, 0.0], "decommit_gap": [0.0, 0.0, -1.0], "pass_all_seeds": false},
+        "seed44_off_zero_is_noncommit_artifact_not_decommit": true,
+        "dv_repinned_at_ceiling": "468c post/pre ratio pinned at 0.85; 468e absolute fraction re-pinned at 1.0 on ON arm",
+        "non_degenerate": true
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-034 partial; MECH-268 exercised+passed (C1); MECH-090 NOT fairly tested for C2 (latch-release is what C1 tested, and C1 passed)",
+        "biological_reference": "sustained counter-evidence -> task-set disengagement (Collins & Frank 2014; Rich & Shapiro 2009); release fires but does not unstick committed program -- authority must scale with re-commitment strength",
+        "prerequisites": "present (Legs A/B/C + beta coupling); residual = de-commit authority magnitude",
+        "implementation": "partial -- release lowers latch briefly near contradiction but does not drive committed_frac_post off the 1.0 ceiling",
+        "environment": "adequate (contradictions fire 7/8/9 ON)",
+        "measurement": "under-instrumented -- committed_frac_post_absolute saturates at 1.0 on ON, near-zero dynamic range for a partial de-commit",
+        "integration": "partially coupled -- release engaged every seed but decoupled by authority magnitude from a measurable committed-fraction drop",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC/dACC-driven release of a beta-band commitment latch under sustained counter-evidence; task-set disengagement",
+        "dependencies": ["dACC PE saturation (MECH-268)", "SD-034 closure", "MECH-090 bistable latch"],
+        "is_formal_import": false,
+        "divergence": "release authority magnitude insufficient vs natural re-commitment; not a biology divergence -- an authority/measurement gap",
+        "lit_status": "present (targeted_review_connectome_mech_268, targeted_review_sd_034)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction_per_claim": {
+        "SD-034": "non_contributory",
+        "MECH-090": "non_contributory",
+        "MECH-268": "supports"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-468e (supersedes 468d): beta-engagement amend cleared both non-vacuity gates (foraging-contact 1.0; commitment-non-vacuity 1.0 -- ON committed AND contradiction fired 3/3) so C1/C2 drove a verdict. C1 (beta_release_near_contradiction) PASSED 3/3 with ON>OFF (43/16/58 vs 14/10/0) -- MECH-268 dACC-saturation -> beta-release works proximally. C2 (committed_frac_post_absolute ON < OFF) FAILED 3/3: ON committed-fraction pinned at 1.0 every seed (full perseveration despite the release; seed-44 ON=1.0 vs OFF=0.0 is a non-commit artifact). Autopsy (failure_autopsy_V3-EXQ-468e_2026-06-18, confirmed): same structural property as 460f via an independent DV -- de-commit/release fires with correct sign but sub-threshold authority magnitude, and the absolute committed-fraction DV re-pinned at the 1.0 ceiling (468c->468e cap-pin escape moved 0.85->1.0, did not lift). SD-034 -> non_contributory + pending_retest_after_substrate (substrate-limited: de-commit-authority magnitude + graded-DV power). MECH-090 -> non_contributory: mis-attributed weakens (script ties it to the C2-gated overall, but the run tests MECH-090's latch RELEASE via C1, which passed 3/3) -- protect the active claim; record C1 release as a narrow non-scoring positive. MECH-268 -> supports (C1 3/3, narrow positive). Substrate amend: commitment-closure-control-plane de-commit-authority-magnitude lever (shared with 460f) + a graded within-arm post-contradiction de-commit DV; re-issue 468f alongside 460g.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "title": "de-commit authority magnitude + graded within-arm post-contradiction de-commit DV",
+        "implementation_hint": "Shared de-commit-authority-magnitude lever with 460f (scale the de-commit hold with committed-run length, OR convert to an active MECH-342-style maintenance-release pressure that drives the latch DOWN rather than briefly blocking re-elevation). 468e-specific: replace the 1.0-saturated committed_frac_post_absolute C2 DV with a graded within-arm post-contradiction measure with real dynamic range (time-to-recommit after a release event, or committed fraction in a tight post-release window).",
+        "unblocks_claims": ["SD-034", "MECH-090", "MECH-268", "MECH-260", "MECH-261"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_468e_sd034_mech268_decommit_hold_behavioural_20260618T060133Z_v3",
+          "experiment_type": "v3_exq_468e_sd034_mech268_decommit_hold_behavioural",
+          "metric": "C1 beta_release_near_contradiction PASS 3/3 (ON>OFF) but C2 committed_frac_post_absolute FAIL 3/3 -- ON pinned at 1.0 ceiling every seed (full perseveration despite release; DV re-pinned, no dynamic range)",
+          "target": "graded within-arm post-contradiction de-commit measure drops on ON AND ON < OFF on >= 2/3 guard seeds with the coupling engaged"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-268 supports (C1 3/3, narrow non-promoting); MECH-090 C1 release recorded as a narrow non-scoring positive observation, NOT a promoting support",
+      "claim_ids_correction": {
+        "MECH-090": "self-stamped weakens MIS-ATTRIBUTED -- script line 857 ties MECH-090 to the C2-gated overall PASS, but the run tests MECH-090's latch RELEASE via C1 (passed 3/3); MECH-090 is active; do not weaken (EXQ-048/MECH-057b class; mirror of the 460f MECH-261 correction)"
+      },
+      "learning_extracted": [
+        "Beta-engagement coupling engages the release on every seed (C1 3/3, ON>OFF) -- engagement is no longer the perseveration-side blocker (mirror of 460f de-commit side).",
+        "De-commit/release has the correct sign but sub-threshold authority magnitude -- a release pulse does not drive committed_frac_post off the 1.0 ceiling against strong natural re-commitment.",
+        "committed_frac_post_absolute re-pinned at 1.0 (468c->468e cap-pin escape moved 0.85->1.0, did not lift) -- needs a graded within-arm post-release DV with dynamic range. Not strictly degenerate (seed-44 OFF=0.0 shows it can vary) so it scores, but measurement-weak.",
+        "MECH-090 (active) must not be weakened by a C2-authority fail; the run tests its latch release (C1), which passed."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "all non-vacuity gates met (fair engagement); proximal de-commit/release event fires with correct sign; distal commitment DV unmoved because release authority is sub-threshold; both DVs additionally measurement-weak (460f swamped by baseline, 468e saturated at ceiling)",
+    "is_independent_bugs": false,
+    "structural_property": "the de-commit/release machinery fires but lacks the authority magnitude to move a downstream commitment statistic; confirmed across two independent DV instrumentations (460f occupancy, 468e post-contradiction committed-fraction)",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "granularity_debt": false,
+    "granularity_debt_watch": "460f/468e confirm one structural property via independent DVs (NOT granularity debt). Tip-point stands: if the post-amend retests 460g/468f still fail with a structurally-different signature, route the SD-034 closure cluster to /claim-synthesis."
+  }
+}
