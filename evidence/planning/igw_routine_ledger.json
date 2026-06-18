@@ -996,7 +996,10 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-182-proposal-exp-0184-mech-044 && claude --resume e2f4a4c3-a641-46ee-b215-2b1f834b7f6b",
       "task_claim_session_id": "igw-auto-igw-182-proposal-exp-0184-mech-044-20260618T060657Z",
       "assigned_at": "2026-06-18T06:06:52Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-06-18T07:08:08Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit ref MECH-044 since 2026-06-18T06:06:52Z: 3346ffe phase3-queue: snapshot 2026-06-18"
     }
   ],
   "dispositions": [
@@ -1106,7 +1109,7 @@
     },
     {
       "stable_hash": "f0c3b9b9e6d8",
-      "igw_id_at_disposition": "IGW-20260615-194",
+      "igw_id_at_disposition": "IGW-20260618-182",
       "owner_exq": null,
       "claim_ids": [
         "MECH-044"
@@ -1115,8 +1118,8 @@
       "title": "Proposal EXP-0151 (MECH-044)",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-06-15T18:56:59Z",
-      "re_eligible_after": "2026-06-17T18:56:58Z"
+      "noted_at": "2026-06-18T07:08:16Z",
+      "re_eligible_after": "2026-06-20T07:08:08Z"
     },
     {
       "stable_hash": "1839fabde877",
