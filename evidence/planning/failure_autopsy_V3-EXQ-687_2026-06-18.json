@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T05:53:43Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation_20260617T200433Z_v3",
+      "queue_id": "V3-EXQ-687",
+      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "failed_criterion": "negative_control",
+      "failed_preconditions": ["PRE_NONDEGEN", "PRE_MECH260"],
+      "passed_preconditions": ["PRE_REACH", "PRE_ZGOAL"],
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact - claims never exercised; not weakened (neither MECH-313 tonic noise nor MECH-260 anti-recency could move a committed action class collapsed upstream of both)",
+        "biological_reference": "clear - MECH-313 LC-NE tonic (Aston-Jones & Cohen 2005) + MECH-260 dACC anti-recency (Scholl & Klein-Flugge 2018) faithful; substrate blocks the test",
+        "prerequisites": "missing - GAP-A committed-action-diversity conversion stack (569i top-k shortlist) un-armed in _make_config; MECH-260 FIFO record/score decoupling under MECH-090 committed stepping",
+        "implementation": "partial - MECH-313 present-but-non-propagating (temperature channel invisible to argmax/committed path); MECH-260 wired-but-inert (dacc_max_suppression=0.0 with full FIFO len=8)",
+        "environment": "adequate - survival-competent 603q substrate; all 12 cells reach P2 alive",
+        "measurement": "adequate - the 4 pre-registered non-vacuity preconditions caught the vacuity exactly as designed",
+        "integration": "isolated_unstable - diversity/exploration channels do not reach the committed argmax",
+        "scale": "adequate - not a budget issue (12/12 cells completed, measured_steps 3780-5940)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-313 LC-NE tonic noise floor / MECH-260 dACC anti-recency monostrategy suppression",
+        "dependencies": ["committed-action-diversity conversion (GAP-A modulatory-bias-selection-authority TOP-K shortlist, 569i-validated)", "MECH-090 committed-stepping non-bypass of the dACC FIFO record/score streams"],
+        "is_formal_import": false,
+        "divergence": "none - the divergence is substrate-side (monostrategy lock), not a formal-definition import mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-687 (Q-045/MECH-313/MECH-260 4-arm tonic-noise ablation) self-routed substrate_not_ready_requeue -> non_contributory: PRE_NONDEGEN (committed selected_action_entropy=0.0, unique_actions=1 all 12 cells -- the same monostrategy lock as arc_062 GAP-B / sd_037 axis-b / GAP-A) AND PRE_MECH260 (dacc_max_suppression=0.0 with a full FIFO -- MECH-260 non-operative on the scaffolded_sd054 committed-stepping path) both failed. MECH-313's noise floor was active but non-propagating (temperature lift invisible to the argmax/committed path; the GAP-C r1a_entropy_only_artefact the degeneracy pre-check was built to catch). Not a falsification -- 687 did not arm the 569i-validated GAP-A conversion stack. Successor re-arms the conversion stack + adds a dacc_max_suppression>0 precondition. Claims unchanged.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The GAP-A committed-action-diversity conversion substrate (modulatory-bias-selection-authority TOP-K shortlist + channel-routing + e2_world_forward candidate source) already exists and was VALIDATED by V3-EXQ-569i PASS. 687 simply did not arm it. The residual MECH-260 suppression=0.0 item is diagnose-first inside the successor; it escalates to an /implement-substrate amend on the MECH-090 committed-stepping FIFO record/score decoupling ONLY if it reproduces with the conversion stack armed."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Q-045 collapse-vs-separate (does MECH-313 collapse into MECH-260) cannot be tested on a monostrategy-locked substrate: both mechanisms are downstream of the committed-action bottleneck.",
+        "PRE_NONDEGEN + PRE_MECH260 worked as designed: caught a non-propagating tonic-noise channel and a non-operative dACC channel and refused a false weakens.",
+        "MECH-260 is structurally non-operative on the scaffolded_sd054 frozen-P2 committed-stepping path (dacc_max_suppression=0.0 with a full FIFO) -- the documented call-path-bypass failure reproduced on the survival-competent substrate.",
+        "687 inherited the un-converted GAP-A ceiling because _make_config did not arm the 569i conversion stack -- the single most actionable gap for the successor."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": "687-successor (NEW letter) arming the 569i-validated GAP-A conversion stack across all four arms + a dacc_max_suppression>0 (>=2/3 dACC-arm seeds) non-vacuity precondition. Escalate the dACC FIFO record/score decoupling to /implement-substrate (MECH-090 committed-stepping bypass) ONLY if suppression stays 0.0 with a full FIFO after the conversion stack is armed."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "monostrategy committed-action lock: PRE_NONDEGEN (committed class collapsed) and PRE_MECH260 (committed-stepping decouples the dACC FIFO record/score streams) are two readouts of ONE structural property; MECH-313 non-propagation is the same lock denying the temperature channel committed-class authority.",
+    "is_independent_bugs": false,
+    "structural_property": "the substrate has the wiring the claims assert (noise floor, dACC anti-recency, gated policy) but does not deliver committed-action-class diversity at the granularity they need, because the GAP-A authority->TOP-K-shortlist conversion layer was not armed.",
+    "readings": ["substrate_conversion_unarmed", "test_design_ceiling"],
+    "sibling_nodes": ["arc_062_rule_apprehension:GAP-B", "sd_037_axis_b", "behavioral_diversity_isolation:GAP-A"]
+  }
+}
