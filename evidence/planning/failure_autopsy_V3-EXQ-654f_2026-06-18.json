@@ -1,0 +1,66 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T06:04:07Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
+      "queue_id": "V3-EXQ-654f",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C2 never adjudicated MECH-309/ARC-062; gated by the conversion ceiling",
+        "biological_reference": "clear -- Collins&Frank2014/Mansouri rule persistence (CRF matured); conversion ceiling is the BG/PFC selection-authority question GAP-A owns",
+        "prerequisites": "CRF now present (was the blocker through 654d); conversion substrate (top-k shortlist) now present BUT not armed in 654f",
+        "implementation": "complete (CRF) / wrong-lever-wired (conversion: additive ARM_STD_G2, not the 569i top-k shortlist)",
+        "environment": "adequate (SD-054 bipartite, foraging-competent stack)",
+        "measurement": "adequate (committed-class entropy is the correct class-keyed DV; within-class-rep is the negative control)",
+        "integration": "coupled but ceiling at the argmax -- bias reaches the E3 accumulator, does not move the F-dominated committed argmin",
+        "scale": "adequate (200ep P0; pool matured)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC/BG rule-selective persistence + BG selection authority over the committed action",
+        "dependencies": ["matured cross-episode rule pool (CRF, achieved)", "selection-authority conversion over F-dominated primary scores (GAP-A)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; the residual is an implementation/wiring gap (superseded conversion lever), not a biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654f: CRF-gate calibration amend WORKED (C1 fully met -- crf_frac_active 0.869/0.968/0.828 cleared the 0.30 floor, conflict-gate lockout gone, crf_mean_n_matched 2.18-3.81 admitted, differentiated pool max_pairwise_dist 1.711, propagation non-vacuous bias diff 0.020-0.052). C2 committed-class entropy lift FALSE (0/3 seeds; ARM_ON 1.0411 ~ ARM_OFF 1.0416). This is the FAIL_C1_holds_C2_fails branch = the shared selection-authority CONVERSION ceiling (behavioral_diversity_isolation:GAP-A; failure_autopsy_569g/569h/682), NOT a MECH-309/ARC-062 falsification. NOTE: 654f armed the SUPERSEDED additive lever ARM_STD_G2 (569h FAIL, 1/3); the 569i-validated TOP-K shortlist conversion (PASS/supports 2026-06-17) was not armed. non_contributory; route /queue-experiment 654g on the top-k shortlist conversion. Do NOT weaken.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "sd_id_suggested": "",
+        "title": "TOP-K shortlist conversion already landed + validated (569i)",
+        "implementation_hint": "No substrate write owed: the conversion substrate (modulatory-bias-selection-authority TOP-K shortlist, landed 2026-06-16, validated V3-EXQ-569i PASS 2026-06-17) already covers the residual blocker. The CRF locus is also done (crf-availability-maintenance amend, 42895f6). The owed work is an EXPERIMENT (654g) wiring the validated top-k lever into the GAP-B falsifier, not a new/amended substrate entry.",
+        "unblocks_claims": ["MECH-309", "ARC-062"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
+          "experiment_type": "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "C2 committed-class entropy lift 0/3 seeds (ARM_ON 1.0411 ~ ARM_OFF 1.0416) despite C1 fully met (crf_frac_active 0.83-0.97); conversion ceiling on the superseded ARM_STD_G2 additive lever",
+          "target": "committed-class entropy paired lift >= 0.05 nats on >= 2/3 seeds under the 569i-validated top-k shortlist conversion"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "CRF-gate calibration amend (crf-availability-maintenance) WORKED at full behavioural scale: crf_frac_active 0.0 (654d) -> 0.83-0.97 (654f); the conflict-gate lockout (theta>>floor) is resolved.",
+        "The GAP-B blocker is now cleanly dissociated: CRF locus FIXED; residual is the shared selection-authority conversion ceiling that GAP-A owns (same mechanism as 569g/569h/682).",
+        "654f armed the SUPERSEDED additive conversion lever (ARM_STD_G2, 569h FAIL) not the 569i-validated TOP-K shortlist (PASS/supports) -- because 654e was queued 2026-06-17 before 569i landed. The owed 654g must port onto the top-k shortlist.",
+        "The empty top-level interpretation is a result-nested emit gap shared by the whole 654 lineage (indexer reads manifest.get('interpretation') top-level); NOT a self-route-before-populate and NOT a 654f regression. Chip spawned for the top-level mirror fix.",
+        "Recurrence (6th autopsy on 654 target) is substrate-maturation not granularity-debt (user re-confirmed 2026-06-16); a single localized signature, now resolved at the CRF locus. No /claim-synthesis."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "C1-met (CRF matured + propagation non-vacuous) but C2 committed-class lift absent = the channel range reaches the E3 accumulator but does not move the F-dominated committed argmin",
+    "is_independent_bugs": false,
+    "structural_property": "GAP-B's residual blocker IS GAP-A's selection-authority conversion ceiling -- the two gaps converged onto one shared substrate, which GAP-A has now solved (569i TOP-K shortlist PASS). GAP-B is no longer blocked on an unbuilt substrate; only an experiment (654g) wiring the validated lever is owed.",
+    "readings": ["conversion_ceiling_under_superseded_additive_lever", "fixed_by_validated_top_k_shortlist"]
+  }
+}
