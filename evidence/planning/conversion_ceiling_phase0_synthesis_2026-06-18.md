@@ -50,3 +50,37 @@ The synthesis originally stated `569h` "collapses to entropy 0.0 with diverse in
 ## Evidence anchors
 
 `V3-EXQ-571` (F variance share), `569g/569h/569i` (conversion lineage), `684/684a` (shortlist-mode discriminator), `625d` (A+B composite), `654c/654d/654f` (D lineage, now closed), `460d/460e/460f` (C lineage), `614c/614d/614e/660/660a/660b/616` (E lineage), confirmed autopsies `failure_autopsy_V3-EXQ-{614e,569h,460f,460e,654c,654d,660b}_*`.
+
+---
+
+# Phase 1 — Biology grounding + fork resolution (2026-06-18)
+
+**Method:** biology-grounding workflow (run `wf_baf2ddeb-0a3`) — 5 motifs for "how does the brain stop one dominant value channel from monopolizing action selection?" -> hypothesis synthesis -> adversarial critic. Server throttling limited the completed sweep to 2 of 5 motifs (basal-ganglia selection + divisive normalization — the two fork horns); synthesis + critic ran on those two plus the experimental record. The 3 un-run motifs (directed-exploration/max-entropy commit, output-null preparatory geometry, quality-diversity archive) are an open back-fill, but cannot overturn a verdict anchored in 569h/569i.
+
+## FORK RESOLVED (critic-adjudicated): structural BOUNDING, not F-variance rebalancing.
+
+The synthesis initially favored *rebalancing* F (divisive normalization). The critic overturned it: the synthesis reasoned from the `V3-EXQ-684` MEAN-entropy ranking (where the shortlist arm was the known-collapsing **margin** mode, not top-k) and never engaged the decisive runs. The experimental record settles the fork the other way:
+- **569h** (rebalance lever = std-basis additive authority) -> **FAILED**, 1/3 seeds.
+- **569i** (structural-bound lever = top-k shortlist) -> **PASSED, resolved GAP-A**, 2/3 seeds.
+
+So the rebalance answer is already-tried and seed-fragile; the structural bound already works. The BG and divisive-normalization motifs converge on one principle — *no single afferent drives the gated output past threshold alone* — but the **V3-tractable realization is structural (keep F out of the final arbitration), not a normalization layer.**
+
+## Decisive next lever: conflict-graded shortlist (BG hyperdirect "hold")
+
+Replace the fixed `modulatory_shortlist_k=3` (e3_selector.py top-k block ~1148-1197) with a **conflict-graded** width: `k = clamp(round(k_max - (k_max-1)*gap_norm), 1, K)`, where `gap_norm` is the normalized top-F-score gap (already in scope via `raw_scores`/`raw_score_range`). Near-ties (small gap) -> wider k / slower commit (the STN threshold-raise); decisive F-gap -> k->1 / fast commit. F gates eligibility only; it is absent from the final modulatory argmin. Pure-arithmetic, no new substrate, **V3-tractable now**.
+
+**Falsifier (sharp):** the committed-entropy lift must **correlate with per-tick F-gap** (bin ticks by top-F-gap, regress committed entropy on gap). If it lifts uniformly regardless of gap, it has reduced to "just a bigger shortlist" and the conflict-grading adds nothing. Non-vacuity precondition: k must actually VARY across ticks (a flat k is the 684 margin-collapse failure mode) AND the eligible set must be genuinely diverse (SD-056 + ARC-065 GAP-A divergent pool — else top_k over a class-uniform pool is vacuous).
+
+## Hypothesis ranking (synthesis, critic-corrected)
+
+1. **conflict_graded_shortlist** — V3-tractable, principled extension of the one lever (569i top-k) that delivered a robust result. PURSUE FIRST.
+2. **divisive_normalization** — its V3-tractable form IS the std-basis authority that already FAILED (569h); only the true pooled-denominator form is novel, and that is **secretly V4** (needs per-channel score decomposition not available at the select site). PARK as a V4 candidate.
+3. **rank_preserving_F_to_eligibility_demotion** — F removed from the final argmin entirely, used only as a graded eligibility envelope; a stronger structural variant, mid-tractability. Fallback if conflict-graded-k's margin stays thin.
+4. **quality_diversity_archive** (MAP-Elites / CDQ-003) — a per-niche committed-action archive; lowest V3-tractability (stateful machinery), strongest as a V4 direction.
+
+## Discriminating experiment (Phase 2/3)
+
+2x2 on the foraging substrate with a trained `e2.world_forward` + ARC-065 GAP-A divergent candidates (the non-vacuity precondition): **Factor A** fixed-k=3 vs conflict-graded k; **Factor B** additive authority OFF vs (deferred) normalization ON. Primary readout: the V3-EXQ-571 per-channel F-variance-share decomposition + committed_action_class_entropy strict-above the matched-noise control on >=2/3 seeds, AND the per-tick F-gap x entropy correlation (the conflict-grading falsifier). Self-route `substrate_not_ready_requeue` if the eligible set is not diverse (vacuous top_k).
+
+**Net:** the campaign's V3 answer is the conflict-graded shortlist; F-variance rebalancing (divisive normalization) is the V4 direction for if/when the structural bound proves it caps committed diversity below the proposer ceiling.
+
