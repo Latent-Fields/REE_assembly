@@ -1,0 +1,109 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_468e_sd034_mech268_decommit_hold_behavioural",
+  "run_id": "v3_exq_468e_sd034_mech268_decommit_hold_behavioural_20260618T060133Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-18T06:01:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-268",
+    "MECH-090"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-034": "weakens",
+    "MECH-268": "supports",
+    "MECH-090": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "residual_perseveration_open",
+    "readiness_route": "residual_perseveration_open",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds (the foraging competence the *b cohort lacked).",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "commitment_and_contradiction_engaged",
+        "description": "the ON-arm eval actually committed (total_beta_elevated > 0) AND a counter-evidence injection fired during the eval (episodes_with_contradiction > 0) on >= 2/3 guard-passing seeds -- the EXACT n_closures=0 gap the *b cohort scored as evidence (now self-routed, never a false weakens).",
+        "control": "fraction of guard-passing seeds where the ON-arm beta latch engaged AND a contradiction fired.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_beta_release_near_contradiction",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_committed_frac_post_absolute_on_lt_off",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    },
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "commitment_non_vacuity_gate": {
+      "definition": "ON-arm total_beta_elevated > 0 AND episodes_with_contradiction > 0 on >= 2/3 guard-passing seeds. Below floor -> substrate_not_ready_requeue (non_contributory), NEVER a false weakens (the V3-EXQ-643 / V3-EXQ-514n same-precondition lesson applied to the commitment DV).",
+      "min_fraction": 0.6666666666666666,
+      "release_window": 20,
+      "c2_on_lt_off_margin": 0.05
+    },
+    "non_cap_pinned_dv": {
+      "definition": "468d C2 reads the ABSOLUTE post-contradiction committed fraction committed_post / post_window_steps in [0, 1] and tests ON < OFF by C2_ON_LT_OFF_MARGIN (the Leg-B de-commit hold keeps ON uncommitted after a contradiction-coupled release while OFF perseverates). Replaces the 468c cap-pinned post/pre ratio that could never drop below 0.85.",
+      "c2_on_lt_off_margin": 0.05
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure on env sequence_complete (waypoint) ticks.",
+      "leg_b_decommit_hold_ticks": 5,
+      "leg_c_trained_rule_bias_head": true
+    }
+  }
+}
