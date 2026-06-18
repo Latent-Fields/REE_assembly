@@ -1,20 +1,30 @@
 {
-  "generated_at": "2026-06-18T05:25:38Z",
+  "generated_at": "2026-06-18T06:15:55Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 1,
+    "stale_since": 2,
     "suppressed": 9
   },
   "drifted": [],
   "stale_since": [
     {
-      "node_id": "commitment_closure:GAP-4",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "in-progress",
-      "owner_exq": "V3-EXQ-460e (RAN 2026-06-17 terminal FAIL/non_contributory on ree-cloud-1, supersedes 460d; adjudicated by confirmed failure_autopsy_V3-EXQ-460e_2026-06-17 -- analysis committed fb9fc52bc4, post-autopsy application session failure-autopsy-460e-apply-20260617T1457Z). RESULT: Leg C (scaffold_train_rule_bias_head) BUILT+WORKING -- the two 460d-failing gates rule_bias_head_trained (1.0 3/3) + closure_trigger_available (5-7 closures 3/3) now PASS; self-routed substrate_not_ready_requeue on the THIRD gate beta_engagement_both_arms (1/3 seeds < 2/3) BEFORE the C2 de-commit DV ran. Code-confirmed COMMIT-WITHOUT-BETA dissociation (agent.py:5843-5859: with both MECH-090 R-c gates OFF, the bistable latch elevates only on E3 result.committed; closures fire independently -- seeds 42/43 committed_steps 2415/2019 but total_beta_elevated 0; trained head biases SCORING not commit-entry decisiveness). Seed 44 is the positive existence proof (beta engaged both arms, C2 PASS ON 11.73 < OFF 14.87 non-cap-pinned -> the DV is sound, the gap is engagement). NOT a falsification, NOT granularity debt. NEXT: /implement-substrate amend commitment-closure-control-plane (beta-engagement deliverable mechanisms a/b); 460f + 468e HELD until the amend lands (re-queuing now would re-derive beta_engagement=0 -- 654d/654e anti-pattern; user-confirmed 2026-06-17). Predecessors: V3-EXQ-460d/468d (ran 2026-06-13; both adjudicated non_contributory + pending_retest per confirmed failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 -- 460d C1 closure-fires PASS/MECH-260 supports but C2/C4 FAIL = de-commit authority absent because Leg C rule_bias_head was flag-set-but-untrained; 468d precondition_unmet contradiction 1/3 seeds). V3-EXQ-461c/464c/466c/467c/629b (*c cohort, non_contributory 2026-06-13). 463b EXCLUDED (lone PASS/supports, MECH-268 measured directly). 462b/465b NEVER scoped (MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them). 468e (MECH-090 commit-entry conjunction; the 468d successor) is OWED but HELD: the trained rule_bias_head prerequisite exists, but the 460e autopsy showed 468e is ALSO gated on the beta-engagement amend (the commit-entry conjunction makes elevation harder, so on the current substrate it would re-derive 468d's precondition_unmet at 1/3). Queue 468e + 460f together AFTER the beta-engagement amend lands.",
+      "node_id": "arc_062_rule_apprehension:GAP-H",
+      "plan": "arc_062_rule_apprehension_plan.md",
+      "node_status": "partial",
+      "owner_exq": "V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg; V3-EXQ-544/545/544a historical diagnostics; Q-045/MECH-313/MECH-260 leg now owned by V3-EXQ-687 (QUEUED 2026-06-17, the registered 4-arm tonic-noise ablation on the survival-competent scaffolded_sd054_onboarding substrate that 603q PASSed on; AWAITING RUN+REVIEW); GAP-B successor still owed",
       "node_last_updated": "2026-06-17",
       "reasons": [
-        "owner_exq pins V3-EXQ-460e but later same-lineage sibling V3-EXQ-460f has terminal evidence (manifest `v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3.json`)"
+        "failure_autopsy_V3-EXQ-687_2026-06-18.json (2026-06-18) reclassified Q-045"
+      ]
+    },
+    {
+      "node_id": "behavioral_diversity_isolation:GAP-B",
+      "plan": "behavioral_diversity_isolation_plan.md",
+      "node_status": "partial",
+      "owner_exq": "V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is the lineage FRONTIER (reclassified non_contributory / measurement_test_design_defect at governance cycle #5; the graded-in-K falsifier is RETIRED, no 660c; NOT a weakens) -- owner_exq leads with the frontier letter as of the 2026-06-12 closure-drift reconcile (advancing 660 -> 660b, the same convention as this cycle's 514m->514n / 485e->485f advances) so the structural lineage-advanced flag clears; the STANDING GAP-B EVIDENCE is UNCHANGED = predecessor V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z for MECH-341 (within-class-representative-diversity lift 4.862 vs legacy 4.781 nats; the binary within-class preserver is established). Owner re-pointed 660b -> 660 at governance cycle #5 2026-06-11 per confirmed failure_autopsy_V3-EXQ-660b: the graded-in-pool-size ratification the 660a/660b lineage was chasing is REMOVED AS A GATE (graded-in-K over-specifies a PRESERVATION claim), not outstanding -- no 660c. RETIRED graded-falsifier lineage: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; both readiness gates passed yet C_GRADED 0/3 seeds, sensitivity gate cleared only marginally 0.0568 + non-monotonically) was reclassified non_contributory (measurement_test_design_defect) at cycle #5, NOT a weakens; V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS",
+      "node_last_updated": "2026-06-17",
+      "reasons": [
+        "failure_autopsy_V3-EXQ-654f_2026-06-18.json (2026-06-18) reclassified ARC-062"
       ]
     }
   ]
