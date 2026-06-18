@@ -1,0 +1,83 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest",
+  "run_id": "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-18T06:49:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-436"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech436_enrichment_insufficient_substrate_ceiling",
+    "readiness_route": "mech436_enrichment_insufficient_substrate_ceiling",
+    "route_reason": "natural_below_margin_overshoot_still_flips_retune_sd049_phase2_amend",
+    "disambiguation": {
+      "supports_if": "natural drive-coupled delta >= max(K_SD*pstdev(delta), DELTA_FLOOR) on the enriched substrate -> MECH-436 substrate_ceiling -> supports (the LOAD-BEARING promotion path).",
+      "substrate_ceiling_if": "natural delta below margin BUT overshoot still flips argmax on >= 2/3 seeds -> the enrichment was insufficient (retune the SD-049-PHASE-2 env amend / kappa_scale). NOT a weakens.",
+      "genuine_weakens_if": "every readiness gate passed AND overshoot CANNOT flip even at OVERSHOOT_DRIVE_MAGNITUDE on the adequately-enriched substrate (drive cannot carve wanting even at maximal magnitude).",
+      "substrate_not_ready_if": "any readiness gate unmet (contact / argmax-relevance / OFF floor / bank populated / ENRICHED spread) -> substrate_not_ready_requeue, NEVER a weakens.",
+      "claim_scope_note": "tests MECH-436 (drive.wanting_drive_state_modulation) ONLY -- the drive-coupling leg split out of MECH-229 (2026-06-16). Sub-leg (a) wanting!=liking (object-bound, MECH-229) is established by V3-EXQ-514o PASS (0.80) and is NOT under test here; this run must not weaken it."
+    },
+    "sd049_phase2_drive_coupling_amend": {
+      "kappa_scale": 6.0,
+      "restoration_fraction": 0.3,
+      "enriched_decay": [
+        0.04,
+        0.01,
+        0.002
+      ],
+      "min_enriched_spread_floor": 0.1,
+      "note": "kappa LOAD-BEARING (failure_autopsy_V3-EXQ-514r); env amend enriches ONLY the WL scoring env so training survival/foraging competence is preserved."
+    },
+    "recalibrated_readiness": {
+      "pc_argmax_relevance_frac": 1.0,
+      "definition": "constructed 2-token bank with base_value gap PC_BASE_VALUE_GAP; overshoot drive MUST flip the argmax while natural-magnitude drive (PC_NATURAL_DRIVE_SPREAD) must NOT -- asserts the overshoot magnitude is argmax-relevant for the in-run base_value spread, the 514q gap (it checked only spread > 1e-3)."
+    },
+    "overshoot": {
+      "magnitude": 5.0,
+      "flip_floor": 0.6,
+      "min_fraction_seeds": 0.6666666666666666
+    },
+    "effect_size_gate": {
+      "k_sd": 1.0,
+      "delta_floor": 0.15,
+      "mean_delta": 0.06406604747162023,
+      "sd_delta": 0.10898197135605951,
+      "effect_margin": 0.15
+    }
+  }
+}
