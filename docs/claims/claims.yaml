@@ -3535,9 +3535,18 @@
   subject: ethics.violence_as_terminal_error_correction
   polarity: asserts
   status: active
-  epistemic_category: substrate_ceiling
-  evidence_quality_note: |
-    EXQ-123 FAIL (2026-03-29): harm gradient pair FAIL. First experimental entry.
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
+  governance_note_2026_06_18: >
+    Reclassified substrate_ceiling -> substrate_conditional (gov 2026-06-18 substrate-ceiling
+    orphan-routing pass). V5-bound, owner multi_agent_ecology_v5:MAE-4 (multi-channel coping
+    repertoire so violence is genuinely terminal). No V3/V4 enrichment can supply the alternative
+    social coping channels that the "all other channels fail" framing requires. Verified NOT a
+    pull-forward: nothing in V3/V4 depends on MECH-102; it depends downstream on V4 object-permanence
+    + self-model per the DEV-NEED-021 ordering. Awaits the planned MAE-1 MultiAgentCausalGridWorldV4
+    + MAE-4 richer-action repertoire. NOTE: rationale kept OFF the epistemic_category line on purpose
+    -- _load_claim_registry (build_experiment_indexes.py) does not strip trailing inline comments, so
+    a commented enum value mis-resolves to inference; see the parser-hardening follow-up.
   depends_on:
     - INV-029
     - INV-028
@@ -3573,6 +3582,7 @@
     options — predictably produce violence as a downstream consequence,
     regardless of the ethical framing applied to their actions.
   evidence_quality_note: |
+    EXQ-123 FAIL (2026-03-29): harm gradient pair FAIL. First experimental entry.
     EXQ-032b PASS (2026-03-19): Energy escalation ladder confirmed via ttype split.
     Random policy + CausalGridWorldV2. causal_sig by state energy:
       none (safe locomotion): -0.032
@@ -10987,7 +10997,17 @@
   subject: ethics.axiom_conflict_resolution
   polarity: open
   status: open
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
+  governance_note_2026_06_18: >
+    Reclassified substrate_ceiling -> substrate_conditional (gov 2026-06-18 substrate-ceiling
+    orphan-routing pass). V5-bound, owner multi_agent_ecology_v5:MAE-5 (context-sensitive self/other
+    comparator + moral residue; mechanism proposed as MECH-402). A genuine axiom conflict (preserve
+    self INV-026 vs preserve others INV-028) cannot be posed until a present OTHER exists in a shared
+    consequence space. NOT derivational (the lit verdict names a mechanism and validation is deferred
+    to the multi-agent tier) and NOT out_of_domain (the test domain is REE-V5). Verified NOT a
+    pull-forward: only V5 MECH-402 depends on Q-028. Rationale kept off the epistemic_category line
+    (see MECH-102 note re: _load_claim_registry inline-comment handling).
   depends_on:
     - INV-025
     - INV-026
@@ -11026,7 +11046,17 @@
   subject: ethics.loneliness_as_harm
   polarity: open
   status: open
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional
+  pending_retest_after_substrate: true
+  governance_note_2026_06_18: >
+    Reclassified substrate_ceiling -> substrate_conditional (gov 2026-06-18 substrate-ceiling
+    orphan-routing pass). V5-bound, owner multi_agent_ecology_v5:MAE-6 (loneliness as architectural
+    harm; harm-channel proposed as MECH-403). Unshared suffering depends on the ABSENCE of an
+    available OTHER to share with, only representable once others CAN be present (multi-agent). Strong
+    lit grounding (Holt-Lunstad 2010/2015) but validation is V5-bound. NOT out_of_domain (the
+    architectural question is in-domain at V5) and NOT purely derivational (it predicts specific V5
+    deficits beyond the INV-029 derivation). Verified NOT a pull-forward: only V5 MECH-403 depends on
+    Q-029. Rationale kept off the epistemic_category line (see MECH-102 note re: _load_claim_registry).
   depends_on:
     - INV-029
     - INV-028
@@ -35610,8 +35640,8 @@
   polarity: asserts
   status: candidate
   confidence: 0.0
-  epistemic_category: substrate_ceiling  # gov 2026-06-13: GAP-2 z_goal-seeding ceiling (per failure_autopsy_V3-EXQ-669a)
-  pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
   governance_note_2026_06_13: >
     PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-669a superseded (degenerate by construction:
     anchor/write/p01=0 in all arms incl the c4 sanity control) and its nursery-harness retest
@@ -35621,6 +35651,15 @@
     failure_autopsy_V3-EXQ-669a_2026-06-13). epistemic_category=substrate_ceiling +
     pending_retest_after_substrate: re-queue with a more context-diverse nursery / lower
     super_ordinal merge threshold. Not a falsification of the wanting-before-liking ordering.
+  governance_note_2026_06_18: >
+    Substrate-ceiling orphan-routing pass (gov 2026-06-18): epistemic_category substrate_ceiling
+    CONFIRMED correct -- the goal_pipeline:GAP-2 context-diversity ceiling is a genuine V3
+    enrichment (context-diverse nursery / lower super_ordinal merge threshold), not a planned-
+    upstream substrate, and the base substrate INF-ENV-003 (transient benefit patches) is already
+    implemented. Resolved the orphan by WIRING (not reclassification): added MECH-329 to
+    unblocks_claims on the goal_pipeline:GAP-2 substrate_queue entry SD-049-PHASE-2 (the wanting/
+    liking behavioural-validation owner). pending_retest_after_substrate stays true; no status/
+    category change.
   depends_on:
     - MECH-189
     - SD-014
