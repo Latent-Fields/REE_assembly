@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T06:03:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
+      "queue_id": "V3-EXQ-460f",
+      "claim_ids": ["SD-034", "MECH-260", "MECH-261"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-034 partially exercised (C2 DV ran non-vacuously, expressed on seed 42); MECH-261 NOT exercised (all closures hook-driven, n_automatic_fires=0 -> Leg-A hook bypassed the mode-conditioning predicate); MECH-260 exercised + passed (No-Go 3/3).",
+        "biological_reference": "Sequence-completion -> beta-latch release (Rich & Shapiro 2009 OFC completion cells; Collins & Frank 2014 task-set disengagement). Release magnitude must scale with strength of would-be re-commitment; fixed 5-tick block is sub-threshold against strong natural re-commit.",
+        "prerequisites": "present -- Legs A (hook) + B (refractory, hold=5) + C (trained head) all built and firing; the residual is de-commit-authority MAGNITUDE, not a missing leg.",
+        "implementation": "partial -- Leg-B refractory is a fixed 5-tick re-elevation block (~20-35 tick-blocks over 4-7 closures); insufficient authority over the latch when natural commit dominates. Coupling makes the DV readable only on the weak-natural-commit seed (42).",
+        "environment": "adequate -- guard 3/3; closures + sequence completions + No-Go fire all seeds.",
+        "measurement": "under-instrumented -- C2 is a between-arm, unpaired, stochastic-eval-episode occupancy comparison; cross-arm variance + natural-commit baseline dwarf a few-tick-per-closure refractory. A within-arm around-closure (pre-vs-post) occupancy delta would isolate it.",
+        "integration": "partially coupled -- beta-coupling engaged beta on every seed (460e fix) but added non-natural elevations only on the weak-commit seed (sd034_n_closure_coupled_elevations 36/52 on seed 42 vs 0/0 on 43/44); on strong-commit seeds the de-commit refractory is decoupled by magnitude from a measurable occupancy drop.",
+        "scale": "adequate -- not the binding gap (eval=15; closures fire 4-9)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG/STN beta-band commitment latch release at sequence completion (OFC sequence-completion cells, task-set disengagement)",
+        "dependencies": ["MECH-090 bistable BetaGate", "MECH-260 No-Go", "MECH-261 mode-conditioning (bypassed by Leg-A hook this run)", "SD-033a/Leg-C trained rule_bias_head"],
+        "is_formal_import": false,
+        "divergence": "de-commit release modeled as a fixed 5-tick re-elevation block; biology scales release with would-be re-commitment strength -- sub-threshold magnitude against strong natural commit-entry is the gap, not a wrong abstraction.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-034": "non_contributory",
+        "MECH-260": "supports",
+        "MECH-261": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-460f (supersedes 460e): the beta-engagement amend (use_closure_commit_beta_coupling) cleared all four readiness gates so the C2 de-commit occupancy-drop DV ran for the first time; it PASSED on seed 42 (ON 23.73 < OFF 35.67, -33.5%) but FAILED 2/3. Autopsy (failure_autopsy_V3-EXQ-460f_2026-06-18, confirmed): NOT a fair-test weakens. The coupling diagnostic sd034_n_closure_coupled_elevations fired 36/52 on seed 42 but 0/0 on seeds 43/44 -- on strong-natural-commit seeds result.committed always co-occurred with the closure-plane commit, so the coupling was inert and the DV reduced to the bare Leg-B 5-tick refractory, whose magnitude (~20-35 tick-blocks vs ~530-560 natural-commit elevated steps) is swamped; the between-arm unpaired occupancy DV is also underpowered for a few-tick-per-closure effect. Seed 42 (this run) + seed 44 (460e, ON 11.73 < OFF 14.87) are existence proofs that the de-commit mechanism has the correct sign. SD-034 -> non_contributory + pending_retest_after_substrate (substrate-limited: de-commit-authority magnitude + between-arm-DV power). MECH-261 -> non_contributory: all closures were hook-driven (n_automatic_fires=0), so the Leg-A env-completion hook bypassed the MECH-261 mode-conditioning predicate -- the run does not exercise it; do not weaken the stable claim. MECH-260 -> supports (No-Go nogo_installed >= 1 on 3/3, narrow positive). Substrate amend: commitment-closure-control-plane de-commit-authority-magnitude lever + within-arm around-closure C2 DV; re-issue 460g.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "sd_id_suggested": "commitment-closure-control-plane",
+        "title": "de-commit authority magnitude lever + within-arm around-closure C2 DV",
+        "implementation_hint": "Leg-B de-commit currently a fixed 5-tick re-elevation block whose magnitude is swamped by natural-commit latch occupancy (visible only on the weak-commit seed 42). (a) scale the de-commit hold with committed-run length (refractory proportional to committed_steps-since-entry) OR convert the de-commit to an active maintenance-release-pressure event (MECH-342 CommitMaintenanceRelease-style) that drives the latch DOWN rather than merely blocking re-entry; (b) redesign C2 to a within-arm around-closure occupancy delta (pre-vs-post-closure window on the ON arm) and tighten the non-vacuity gate to require sd034_n_closure_coupled_elevations > 0 on scored seeds so the closure (not a natural commit) is the elevation source the de-commit acts on.",
+        "unblocks_claims": ["SD-034", "MECH-260", "MECH-261"],
+        "depends_on_unresolved": ["MECH-342 CommitMaintenanceRelease (release-pressure pattern to mirror)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
+          "experiment_type": "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural",
+          "metric": "C2 de-commit occupancy drop PASS 1/3 seeds (seed 42 ON 23.73 < OFF 35.67 -33.5%; seeds 43/44 ON >= OFF). Coupling diagnostic 36/52 on seed 42, 0/0 on 43/44 -- refractory magnitude (~20-35 tick-blocks) swamped by ~530-560 natural-commit elevated steps.",
+          "target": "within-arm around-closure occupancy drop post-closure AND ON < OFF on >= 2/3 guard seeds with sd034_n_closure_coupled_elevations > 0 on scored seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "Beta-engagement coupling (460e fix) is seed-conditional: it engages the latch on the closure-plane commit only when natural running_variance crossing does NOT also fire (weak-commit seed 42); on strong-commit seeds 43/44 it is inert (sd034_n_closure_coupled_elevations 0/0) and the de-commit DV reduces to the bare Leg-B refractory.",
+        "Leg-B de-commit refractory has the correct sign (de-commit lowers occupancy: seed 42 -33.5%, 460e seed 44) but insufficient authority magnitude (fixed 5-tick block, ~20-35 tick-blocks vs ~530-560 natural-commit elevated steps).",
+        "C2 between-arm unpaired occupancy DV is underpowered for a few-tick-per-closure effect; a within-arm around-closure pre-vs-post delta would isolate the refractory from cross-arm stochastic variance + natural-commit baseline.",
+        "beta_engagement_both_arms readiness gate is necessary but not sufficient as a non-vacuity gate for the de-commit DV: it asserts beta elevates, not that the coupling makes the per-seed DV sensitive to the closure de-commit (require sd034_n_closure_coupled_elevations > 0 on scored seeds).",
+        "claim_ids hygiene: a Leg-A-hook-only run (n_automatic_fires=0) does NOT exercise MECH-261 mode-conditioning; it must not weaken the stable MECH-261 (the EXQ-048/MECH-057b inherited-tag failure-mode class)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "SD-034 closure lineage advancing one prerequisite link per autopsy: Leg-A hook (n_closures=0) -> Leg-C trained head (de-commit authority absent) -> beta-engagement fragility (460e) -> de-commit MAGNITUDE / DV power (460f).",
+    "is_independent_bugs": false,
+    "structural_property": "one closure->release mechanism being progressively wired; each autopsy closes one pre-registered prerequisite and surfaces the next. NOT granularity debt (consistent with the 460e autopsy). WATCH ITEM: 2nd consecutive next-prerequisite link past 460e -- if 460g fails again on a structurally-different signature, tip to /claim-synthesis.",
+    "readings": ["substrate_enrichment"]
+  }
+}
