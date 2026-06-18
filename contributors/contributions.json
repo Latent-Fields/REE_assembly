@@ -1,6 +1,6 @@
 {
   "schema_version": "contributions/v1",
-  "last_updated": "2026-06-17T12:48:32Z",
+  "last_updated": "2026-06-17T23:50:17Z",
   "compute": {
     "cost_model": {
       "electricity_kwh_rate": 0.27,
@@ -134,27 +134,32 @@
     }
   },
   "decisions": {
-    "total_governance_decisions": 301,
+    "total_governance_decisions": 302,
     "contributors": {
       "user": {
         "actor_id": "user",
         "decisions": 231,
-        "proportion": 0.7674
+        "proportion": 0.7649
       },
       "Daniel Golden": {
         "actor_id": "dgolden",
         "decisions": 34,
-        "proportion": 0.113
+        "proportion": 0.1126
       },
       "governance-2026-04-25T15:15": {
         "actor_id": "governance-2026-04-25T15:15",
         "decisions": 30,
-        "proportion": 0.0997
+        "proportion": 0.0993
       },
       "codex": {
         "actor_id": "codex",
         "decisions": 6,
         "proportion": 0.0199
+      },
+      "governance-20260617T1245Z": {
+        "actor_id": "governance-20260617T1245Z",
+        "decisions": 1,
+        "proportion": 0.0033
       }
     },
     "source": "evidence/decisions/decision_log.v1.jsonl"
@@ -162,28 +167,28 @@
   "coding": {
     "baseline_method": "git_co_authorship",
     "baseline_date": "2026-06-17",
-    "total_lines_analyzed": 975324,
-    "total_commits_analyzed": 3394,
+    "total_lines_analyzed": 11105375,
+    "total_commits_analyzed": 51392,
     "contributors": {
       "Claude (Anthropic)": {
-        "lines_added": 682562,
-        "commits": 1035,
-        "proportion_by_lines": 0.6998,
-        "proportion_by_commits": 0.3049,
+        "lines_added": 3518088,
+        "commits": 2708,
+        "proportion_by_lines": 0.3168,
+        "proportion_by_commits": 0.0527,
         "basis": "git_history_co_authorship"
       },
       "Codex (OpenAI)": {
         "lines_added": 0,
-        "commits": 2,
+        "commits": 3,
         "proportion_by_lines": 0.0,
-        "proportion_by_commits": 0.0006,
+        "proportion_by_commits": 0.0001,
         "basis": "git_history_co_authorship"
       },
       "Daniel Golden": {
-        "lines_added": 292762,
-        "commits": 2357,
-        "proportion_by_lines": 0.3002,
-        "proportion_by_commits": 0.6945,
+        "lines_added": 7587287,
+        "commits": 48681,
+        "proportion_by_lines": 0.6832,
+        "proportion_by_commits": 0.9472,
         "basis": "git_history_co_authorship"
       }
     },

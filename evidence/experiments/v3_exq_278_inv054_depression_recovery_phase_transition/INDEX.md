@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_278_inv054_depression_recovery_phase_transition
 
-Generated: `2026-06-17T13:59:05.611000Z`
+Generated: `2026-06-18T05:15:16.476388Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

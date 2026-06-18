@@ -333,6 +333,33 @@
       "selected_option": "Keep held under the V4 architectural commitment (correct path).",
       "timestamp_utc": "2026-06-06T07:53:48.739107Z"
     },
+    "ARC-088": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:00.986605Z"
+    },
+    "ARC-096": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.021463Z"
+    },
+    "ARC-097": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.055452Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -368,6 +395,24 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Hold -- conflict will self-resolve after 543i 19:10Z manifest correction + index rebuild",
       "timestamp_utc": "2026-05-19T21:27:25Z"
+    },
+    "INV-081": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.089546Z"
+    },
+    "INV-082": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.122925Z"
     },
     "MECH-025": {
       "actor": "user",
@@ -451,13 +496,13 @@
       "timestamp_utc": "2026-03-29T21:15:31.848348Z"
     },
     "MECH-057b": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "implementation_phase=v3, no V3 experimental runs yet. Standard V3-pending hold. No status change.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-03T02:50:00Z"
+      "rationale": "User acknowledged hold; conflict unresolved + exp_conf 0.319 below gate; stays candidate, no status change (/governance 2026-06-17 2349Z).",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep both as-is",
+      "timestamp_utc": "2026-06-18T05:15:01.391985Z"
     },
     "MECH-058": {
       "actor": "user",
@@ -784,13 +829,13 @@
       "timestamp_utc": "2026-04-04T08:56:55.583955Z"
     },
     "MECH-129": {
-      "actor": "dgolden",
-      "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "decision_status": "applied",
-      "rationale": "2026-06-06 insights-recs reclassification: claim is v3_pending AND implementation_phase=v4 -> deliberately V4-deferred by architectural commitment, not awaiting V3 substrate. Routed off hold_pending_v3_substrate/pending_user to held_v4_by_architectural_commitment (applied) per the 2026-04-27 misclassification fix. No claim status changes; promotion/demotion stays suppressed.",
-      "recommendation": "held_v4_by_architectural_commitment",
-      "selected_option": "Keep held under the V4 architectural commitment (correct path).",
-      "timestamp_utc": "2026-06-06T07:53:48.739107Z"
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.156659Z"
     },
     "MECH-130": {
       "actor": "dgolden",
@@ -864,6 +909,15 @@
       "selected_option": "Hold candidate; resolve conflict via upstream substrate landing",
       "timestamp_utc": "2026-05-10T12:24:30Z"
     },
+    "MECH-180": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.190021Z"
+    },
     "MECH-186": {
       "actor": "user",
       "decision_needed": "Conflict resolution before promotion",
@@ -908,6 +962,15 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "Promote now",
       "timestamp_utc": "2026-04-10T18:05:45.318260Z"
+    },
+    "MECH-217": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.224110Z"
     },
     "MECH-220": {
       "actor": "governance-2026-04-25T15:15",
@@ -1404,6 +1467,24 @@
       "selected_option": "Hold -- V3 substrate required before meaningful evidence can be collected",
       "timestamp_utc": "2026-05-19T21:27:25Z"
     },
+    "MECH-339": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.257364Z"
+    },
+    "MECH-340": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.290871Z"
+    },
     "MECH-341": {
       "actor": "dgolden",
       "decision_needed": "Ratify MECH-341 v3_pending -> provisional (binary within-class-representative preserver)",
@@ -1448,6 +1529,24 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Acknowledge all holds",
       "timestamp_utc": "2026-06-10T16:18:22Z"
+    },
+    "MECH-411": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.324238Z"
+    },
+    "MECH-436": {
+      "actor": "governance-20260617T2349Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "User acknowledged hold pending V3 substrate (/governance 2026-06-17 2349Z); stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Accept all holds",
+      "timestamp_utc": "2026-06-18T05:15:01.358022Z"
     },
     "Q-006": {
       "actor": "user",
@@ -1927,7 +2026,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-17T13:59:05.611000Z",
+  "generated_at_utc": "2026-06-18T05:15:16.476388Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -1,10 +1,21 @@
 {
-  "generated_at": "2026-06-17T14:02:36Z",
+  "generated_at": "2026-06-18T05:25:38Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 0,
-    "suppressed": 7
+    "stale_since": 1,
+    "suppressed": 9
   },
   "drifted": [],
-  "stale_since": []
+  "stale_since": [
+    {
+      "node_id": "commitment_closure:GAP-4",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "in-progress",
+      "owner_exq": "V3-EXQ-460e (RAN 2026-06-17 terminal FAIL/non_contributory on ree-cloud-1, supersedes 460d; adjudicated by confirmed failure_autopsy_V3-EXQ-460e_2026-06-17 -- analysis committed fb9fc52bc4, post-autopsy application session failure-autopsy-460e-apply-20260617T1457Z). RESULT: Leg C (scaffold_train_rule_bias_head) BUILT+WORKING -- the two 460d-failing gates rule_bias_head_trained (1.0 3/3) + closure_trigger_available (5-7 closures 3/3) now PASS; self-routed substrate_not_ready_requeue on the THIRD gate beta_engagement_both_arms (1/3 seeds < 2/3) BEFORE the C2 de-commit DV ran. Code-confirmed COMMIT-WITHOUT-BETA dissociation (agent.py:5843-5859: with both MECH-090 R-c gates OFF, the bistable latch elevates only on E3 result.committed; closures fire independently -- seeds 42/43 committed_steps 2415/2019 but total_beta_elevated 0; trained head biases SCORING not commit-entry decisiveness). Seed 44 is the positive existence proof (beta engaged both arms, C2 PASS ON 11.73 < OFF 14.87 non-cap-pinned -> the DV is sound, the gap is engagement). NOT a falsification, NOT granularity debt. NEXT: /implement-substrate amend commitment-closure-control-plane (beta-engagement deliverable mechanisms a/b); 460f + 468e HELD until the amend lands (re-queuing now would re-derive beta_engagement=0 -- 654d/654e anti-pattern; user-confirmed 2026-06-17). Predecessors: V3-EXQ-460d/468d (ran 2026-06-13; both adjudicated non_contributory + pending_retest per confirmed failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 -- 460d C1 closure-fires PASS/MECH-260 supports but C2/C4 FAIL = de-commit authority absent because Leg C rule_bias_head was flag-set-but-untrained; 468d precondition_unmet contradiction 1/3 seeds). V3-EXQ-461c/464c/466c/467c/629b (*c cohort, non_contributory 2026-06-13). 463b EXCLUDED (lone PASS/supports, MECH-268 measured directly). 462b/465b NEVER scoped (MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them). 468e (MECH-090 commit-entry conjunction; the 468d successor) is OWED but HELD: the trained rule_bias_head prerequisite exists, but the 460e autopsy showed 468e is ALSO gated on the beta-engagement amend (the commit-entry conjunction makes elevation harder, so on the current substrate it would re-derive 468d's precondition_unmet at 1/3). Queue 468e + 460f together AFTER the beta-engagement amend lands.",
+      "node_last_updated": "2026-06-17",
+      "reasons": [
+        "owner_exq pins V3-EXQ-460e but later same-lineage sibling V3-EXQ-460f has terminal evidence (manifest `v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3.json`)"
+      ]
+    }
+  ]
 }
