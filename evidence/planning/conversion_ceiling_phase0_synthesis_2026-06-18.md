@@ -1,4 +1,19 @@
-# Committed-Action-Diversity "Conversion Ceiling" — Phase 0 Disambiguation Synthesis
+# Committed-Action-Diversity "Conversion Ceiling" — Phase 0 + Phase 1 Synthesis
+
+> **VERSIONING NOTE — phase label follows dependency (do NOT read "V4" below as scope-excluded).**
+> Every "V4 / heavier-enrichment / secretly-V4" label in this document (output-null subspace,
+> divisive-normalization pooled-denominator + its per-channel score decomposition, cross-tick
+> QD/MAP-elites archive) is a **tractability + sequencing** judgment, NOT a scope exclusion. It means
+> *try the cheap, V3-tractable, validated-adjacent conflict-grading levers (k + commit-T) FIRST* — it
+> does **not** mean these enrichments are outside V3. The F-dominance / committed-action-diversity
+> ceiling blocks `generation:v3` closure nodes (`behavioral_diversity_isolation`, `arc_062:GAP-B`,
+> `sd_037 axis-b`), so lifting it is **on the V3 critical path**. Per phase-label-follows-dependency
+> (SD-031 precedent; REE_assembly/CLAUDE.md: *"a ceiling is never grounds to defer to V4 — if lifting
+> it is required for V3 completion, the enrichment is V3 work"*): if the conflict-grading levers FAIL
+> and lifting the ceiling **requires** one of the heavier enrichments, that enrichment is **recouped to
+> V3 by definition**. "V4" here predicts only *sequencing/readiness*, never *permission*. Version scope
+> is fluid and re-reviewed at each version boundary — each version is to be completable.
+
 
 **Date:** 2026-06-18
 **Method:** 7-agent characterize -> synthesize -> adversarial-critic workflow (read-only over manifests, confirmed failure-autopsies, and ree-v3 code). Run `wf_c03ff4f4-d45`.
