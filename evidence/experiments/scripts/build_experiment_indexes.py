@@ -1917,6 +1917,27 @@ def _write_todos(base_dir: Path, todos_by_experiment: dict[str, list[str]], gene
     (base_dir / "TODOs.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
+def _strip_inline_yaml_comment(value: str) -> str:
+    """Strip a trailing ' #...' inline comment from a scalar YAML value.
+
+    Cuts at the first '#' preceded by whitespace, so values that legitimately
+    contain '#' mid-token are unaffected (enum/flag fields never do). Used ONLY
+    for the enum-like registry fields parsed in `_load_claim_registry` -- NOT for
+    prose fields (evidence_quality_note / heterogeneity_note), whose free text may
+    contain '#'. Without this, a commented value like
+    `epistemic_category: substrate_conditional  # gov note` was captured as the
+    literal `"substrate_conditional  # gov note"`, which is not in
+    EPISTEMIC_CATEGORIES, so `_resolve_epistemic_category` fell back to inference
+    (standard / answer_state) and silently un-suppressed promote/demote/
+    narrow_open_question recommendations. Incident 2026-06-18 (substrate_ceiling
+    orphan-routing: MECH-102/Q-028/Q-029).
+    """
+    for i in range(1, len(value)):
+        if value[i] == "#" and value[i - 1] in (" ", "\t"):
+            return value[:i].strip()
+    return value.strip()
+
+
 def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     """Parse claim id/status/type/v3_pending/implementation_phase from docs/claims/claims.yaml.
 
@@ -1979,28 +2000,28 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             continue
 
         if current_id and line.startswith("  status:"):
-            current_status = line.split(":", 1)[1].strip()
+            current_status = _strip_inline_yaml_comment(line.split(":", 1)[1])
             continue
 
         if current_id and line.startswith("  claim_type:"):
-            current_type = line.split(":", 1)[1].strip()
+            current_type = _strip_inline_yaml_comment(line.split(":", 1)[1])
             continue
 
         if current_id and line.startswith("  invariant_type:"):
-            current_invariant_type = line.split(":", 1)[1].strip()
+            current_invariant_type = _strip_inline_yaml_comment(line.split(":", 1)[1])
             continue
 
         if current_id and line.startswith("  epistemic_category:"):
-            current_epistemic_category = line.split(":", 1)[1].strip()
+            current_epistemic_category = _strip_inline_yaml_comment(line.split(":", 1)[1])
             continue
 
         if current_id and line.startswith("  v3_pending:"):
-            val = line.split(":", 1)[1].strip().lower()
+            val = _strip_inline_yaml_comment(line.split(":", 1)[1]).lower()
             current_v3_pending = val in ("true", "yes", "1")
             continue
 
         if current_id and line.startswith("  implementation_phase:"):
-            current_impl_phase = line.split(":", 1)[1].strip()
+            current_impl_phase = _strip_inline_yaml_comment(line.split(":", 1)[1])
             continue
 
         if current_id and line.startswith("  evidence_quality_note:"):
@@ -2014,7 +2035,7 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             continue
 
         if current_id and line.startswith("  defer_promotion_until:"):
-            current_defer_until = line.split(":", 1)[1].strip().strip("\"'")
+            current_defer_until = _strip_inline_yaml_comment(line.split(":", 1)[1]).strip("\"'")
             continue
 
         if current_id and line.startswith("  heterogeneity_note:"):

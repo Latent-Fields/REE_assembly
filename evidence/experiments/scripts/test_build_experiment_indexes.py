@@ -365,6 +365,60 @@ def test_does_not_support_still_maps_to_weakens():
     assert b._normalize_direction("does_not_support") == "weakens"
 
 
+# ── inline-comment stripping on enum registry fields (2026-06-18) ────────────
+# Regression target: _load_claim_registry captured a commented enum value
+# (e.g. `epistemic_category: substrate_conditional  # note`) verbatim including
+# the comment, so it fell out of the allowlist and mis-resolved to inference,
+# silently un-suppressing promote/demote/narrow recommendations.
+
+def test_strip_inline_comment_basic():
+    assert b._strip_inline_yaml_comment(" substrate_conditional  # gov note") == "substrate_conditional"
+    assert b._strip_inline_yaml_comment(" false  # cleared 2026-04-22: PASS") == "false"
+    assert b._strip_inline_yaml_comment(" v3\t# tab-prefixed comment") == "v3"
+
+
+def test_strip_inline_comment_no_comment_is_identity():
+    assert b._strip_inline_yaml_comment(" substrate_ceiling") == "substrate_ceiling"
+    assert b._strip_inline_yaml_comment("active") == "active"
+
+
+def test_strip_inline_comment_hash_without_leading_space_kept():
+    # A '#' not preceded by whitespace is not a YAML comment; leave it.
+    assert b._strip_inline_yaml_comment("a#b") == "a#b"
+
+
+def test_load_registry_strips_enum_field_comments():
+    import tempfile
+    import os
+    yaml_text = (
+        "- id: MECH-TEST-1\n"
+        "  status: active\n"
+        "  claim_type: mechanism_hypothesis\n"
+        "  epistemic_category: substrate_conditional  # gov 2026-06-18: V5-bound owner MAE-4\n"
+        "  v3_pending: true  # set by some session\n"
+        "  implementation_phase: v3  # predicted\n"
+        "- id: Q-TEST-2\n"
+        "  status: open\n"
+        "  claim_type: open_question\n"
+        "  epistemic_category: derivational\n"  # no comment: must still work
+    )
+    fd, name = tempfile.mkstemp(suffix=".yaml")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            fh.write(yaml_text)
+        reg = b._load_claim_registry(b.Path(name))
+    finally:
+        os.unlink(name)
+    assert reg["MECH-TEST-1"]["epistemic_category"] == "substrate_conditional", reg["MECH-TEST-1"]
+    assert reg["MECH-TEST-1"]["v3_pending"] == "True", reg["MECH-TEST-1"]
+    assert reg["MECH-TEST-1"]["implementation_phase"] == "v3", reg["MECH-TEST-1"]
+    assert reg["Q-TEST-2"]["epistemic_category"] == "derivational", reg["Q-TEST-2"]
+    # resolver honours the now-clean explicit value
+    assert b._resolve_epistemic_category(
+        "mechanism_hypothesis", "", reg["MECH-TEST-1"]["epistemic_category"]
+    ) == "substrate_conditional"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
