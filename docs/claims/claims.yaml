@@ -21576,7 +21576,23 @@
   status: provisional
   implementation_phase: v3
   v3_pending: false
-  pending_retest_after_substrate: true  # commitment-closure-control-plane (gov 2026-06-13)
+  pending_retest_after_substrate: true  # commitment-closure-control-plane (gov 2026-06-13; 460f autopsy 2026-06-18)
+  governance_note_2026_06_18: >
+    V3-EXQ-460f (supersedes 460e; de-commit retest on the beta-engagement-amended
+    substrate) applied this cycle per confirmed failure_autopsy_V3-EXQ-460f_2026-06-18:
+    NOT a fair-test weakens -> non_contributory (substrate-limited). The beta-engagement
+    amend cleared all 4 readiness gates so the C2 de-commit occupancy-drop DV ran for the
+    first time (PASS seed 42 -33.5%, FAIL 2/3); but the coupling diagnostic
+    sd034_n_closure_coupled_elevations fired 36/52 on seed 42 vs 0/0 on 43/44 (on
+    strong-natural-commit seeds the coupling was inert and the DV reduced to the bare
+    Leg-B 5-tick refractory, swamped by ~530-560 natural-commit elevated steps; between-arm
+    DV underpowered). Seed 42 + 460e seed 44 are existence proofs of correct de-commit SIGN.
+    MECH-260 -> supports (No-Go 3/3); MECH-261 -> non_contributory (hook-driven closures
+    bypassed its mode-conditioning predicate -- NOT exercised, stable status protected).
+    pending_retest_after_substrate stays true; substrate_queue commitment-closure-control-plane
+    amended with the de-commit-magnitude lever + within-arm C2 DV (re-issue 460g). 460f manifest
+    evidence_direction_per_claim corrected to {SD-034 non_contributory, MECH-260 supports,
+    MECH-261 non_contributory}. No status change (SD-034 stays provisional).
   governance_note_2026_06_13: >
     demote_to_candidate recommendation (conflict_ratio 0.889, 4 weakens) HELD this
     cycle (illusory-demotion guard). Cohort siblings V3-EXQ-461c + 466c

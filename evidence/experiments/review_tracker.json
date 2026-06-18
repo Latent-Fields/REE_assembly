@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-18T05:21:48Z",
+  "last_review_utc": "2026-06-18T08:04:31Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -696,7 +696,10 @@
     "v3_exq_625d_sd037_axis_b_phase1b_joint_composite_20260617T160019Z_v3",
     "v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4",
     "v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation_20260617T200433Z_v3",
-    "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3"
+    "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
+    "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
+    "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural",
+    "V3-EXQ-460f"
   ],
   "reviewed_run_ids": [
     "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
@@ -3073,7 +3076,8 @@
     "v3_exq_625d_sd037_axis_b_phase1b_joint_composite_20260617T160019Z_v3",
     "v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4",
     "v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation_20260617T200433Z_v3",
-    "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3"
+    "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
+    "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4433,6 +4437,22 @@
         "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3"
       ],
       "subject": "Governance 2026-06-17T23:49Z mid-cycle addendum: 3 FAILs landed after the start snapshot (runner active). V3-EXQ-687 (Q-045/MECH-313/MECH-260 4-arm tonic-noise ablation) non_contributory, interpretation_label=substrate_not_ready_requeue -> clean self-route, weights nothing, MARKED REVIEWED. V3-EXQ-654f (MECH-309/ARC-062 arc_062 GAP-B falsifier, supersedes 654e) non_contributory all per-claim (empty interpretation block / label None anomaly noted; lineage self-route on the CRF-gate amend) -> weights nothing, MARKED REVIEWED. V3-EXQ-460f (SD-034/MECH-260/MECH-261 closure-control-plane de-commit, supersedes 460e) GENUINE weakens: ALL 4 preconditions MET (beta-engagement amend WORKED -- beta_engagement_both_arms 1.0, rule_bias_head_trained 1.0, 36 closure-coupled beta elevations) but load-bearing C2_decommit_occupancy_drop FAILED -> label residual_decommit_authority_open; per-claim SD-034 weakens / MECH-261 weakens (STABLE) / MECH-260 supports. LEFT PENDING + FLAGGED for /failure-autopsy (user); self-stamp left as-is to score until adjudicated (all 3 already carry pending_retest_after_substrate). Closure-plan reconcile DEFERRED (commitment_closure_plan.md held by active session gap8-sd033b-485g). NEXT: /failure-autopsy V3-EXQ-460f."
+    },
+    {
+      "utc": "2026-06-18T08:04:31Z",
+      "session": "governance-20260618T0804Z",
+      "reviewed_run_ids": [
+        "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural"
+      ],
+      "claim_ids_touched": [
+        "SD-034",
+        "MECH-260",
+        "MECH-261"
+      ],
+      "subject": "Governance 2026-06-18T08:04Z. APPLIED confirmed failure_autopsy_V3-EXQ-460f_2026-06-18 (user-adjudicated): V3-EXQ-460f -> non_contributory (substrate-limited de-commit magnitude + DV power); per-claim corrected to SD-034 non_contributory / MECH-260 supports (No-Go 3/3) / MECH-261 non_contributory (hook-driven, not exercised -- protects the STABLE claim from the self-stamped weakens). SD-034 governance_note_2026_06_18 added; pending_retest_after_substrate kept; substrate_queue commitment-closure-control-plane amended (de-commit-magnitude lever + within-arm C2 DV; re-issue 460g). MARKED REVIEWED. NOT marked reviewed (flagged for /failure-autopsy, left pending): V3-EXQ-468e (diagnostic; self-stamped weakens on STABLE MECH-090 NEUTRALIZED to non_contributory pending autopsy), V3-EXQ-688 x3 (MECH-044; precondition_unmet adjudication gate), V3-EXQ-514s (MECH-436 drive-coupling retest; non_contributory, diagnose-first)."
     }
   ]
 }

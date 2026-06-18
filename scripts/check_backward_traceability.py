@@ -61,6 +61,7 @@ TRACEABILITY_EXEMPT = {
     "MECH-172": "Alzheimer's procedural-memory preservation; 'play' = 'playing a musical instrument' (motor skill), not developmental play",
     "SD-049": "multi-resource heterogeneity substrate; 'curriculum' only in an incidental 'curriculum-introduction hook' aside",
     "MECH-191": "stereotyped behavioral-signal externalization; 'play-bow' is one cited example, claim is not developmental",
+    "MECH-442": "behavioral-descriptor committed-selection archive (MAP-Elites analog); 'repertoire' is the QD behavioral-repertoire archive + the biology lit-pull's 'behavioral-module repertoire', not developmental",
 }
 
 _CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL|RA)-\d+[a-z]?\b")
