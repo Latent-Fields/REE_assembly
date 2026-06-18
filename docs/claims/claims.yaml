@@ -43184,3 +43184,41 @@
     key-separability is falsified. V4-leaning; OFF the V3 critical path -- blocks no V3
     closure node; substrate_conditional on a quantised-context-key substrate not yet
     built. DO NOT build in V3 until routed by experiment.
+- id: MECH-439
+  title: "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced."
+  claim_type: mechanism_hypothesis
+  subject: selection.primary_score_variance_monopoly
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-06-18"
+  depends_on:
+    - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
+    - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of
+    - ARC-062    # rule-apprehension selector half; its committed reach is gated by the same F-dominance
+    - MECH-294   # selection-authority/binding substrate that must overcome F to move the committed argmax
+  location: evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md#mech-439
+  notes: >
+    Registered 2026-06-18 from the conversion-ceiling Phase 0 disambiguation workflow
+    (run wf_c03ff4f4-d45; synthesis evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md).
+    Phase 0 separated the "committed_action_class_entropy ~ 0" surface symptom into four
+    distinct loci (A representation-geometry mitigated, B selection F-dominance = this claim,
+    C de-commit authority orthogonal, D CRF gate-lockout closed, E within-class downstream of B).
+    LOAD-BEARING EVIDENCE: V3-EXQ-571 (F = 88-89% of E3 temporal variance in BOTH baseline and
+    full-diversity-stack arms); V3-EXQ-569h (committed lift non-robust 1/3 seeds WITH the candidate
+    pool supra-floor diverse -- pairwise_dist 0.095, route_range 0.31 -- proving the bottleneck is
+    selection-variance, not pool geometry); V3-EXQ-654f (D-gate unlocked, CRF counterfactual delta
+    reaches the accumulator yet committed entropy bit-identical ON vs OFF -- three channels converge
+    on this one bottleneck). PARTIAL CIRCUMVENTION already validated: V3-EXQ-569i top-k k=3
+    shortlist-then-modulate PASSES 2/3 seeds (thin margin 0.711 vs 0.650) where 569h/684 margin/whole-set
+    shortlist failed. FALSIFIER: a selection lever that lifts committed-action-class entropy strict-above
+    BOTH collapsed-proposer and matched-noise controls on >=2/3 seeds WITHOUT reducing F's E3 variance
+    share refutes the "F-monopoly caps committed diversity" framing; conversely, persistent flat committed
+    entropy under any diversity channel while F-share stays >0.85 supports it. Pre-registered discriminator:
+    the 2x2 (A de-collapse) x (B top-k shortlist) isolation under the C+D composite (synthesis doc).
+    V3-tractable now (the substrate exists -- this is testable, NOT substrate_ceiling); the open question
+    is whether the thin shortlist margin survives the composite or whether F's variance share must be
+    rebalanced directly. External analog on the maintain-diversity-against-a-dominant-fitness-gradient
+    side: Quality-Diversity / MAP-Elites (convergence demand-queue CDQ-003).
