@@ -1,59 +1,48 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-18T05:36:31Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-468e",
-  "current_exq_started_utc": "2026-06-17T18:00:02.749481+00:00",
-  "current_title": "SD-034/MECH-268/MECH-090 commitment-vs-contradiction de-commit-hold retest on the BETA-ENGAGEMENT-amended substrate (use_closure_commit_beta_coupling): commit-with-beta now reliable so the contradiction-release / non-cap-pinned committed-frac-post DV is exercisable. Supersedes V3-EXQ-468d.",
-  "current_claim_id": "SD-034",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
-    "runs_done": 6,
-    "runs_total": 3,
-    "episodes_done": 220,
-    "episodes_total": 265,
-    "overall_pct": 227.7
-  },
-  "seconds_elapsed": 41787,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_468e_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4603 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.991 gate=pass",
-    "[train] p0_guided seed=42 ep 130/265 mean_len=198.2 rv=0.00388",
-    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.1073 contact_events=60 z_goal_at_contact=0.4998",
-    "Seed 42 Condition ARM_SUBSTRATE_ON",
-    "Seed 42 Condition ARM_SUBSTRATE_OFF",
-    "[train] decommit_eval seed=42 ep 265/265 c1=True c2=False decommit_gap=0.0000 on_cfp_abs=1.0000 off_cfp_abs=1.0000 hook_fires=1 beta_elev=451 eps_contra=7 rel_near=43",
-    "verdict: FAIL seed=42 guard_pass=True commit_nonvacuity=True (contact_rate=0.1073 z_goal_at_contact=0.4998)",
-    "Seed 43 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
-    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4004 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.984 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=200.0 rv=0.00002",
-    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
-    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.2956 contact_events=152 z_goal_at_contact=0.4336",
-    "Seed 43 Condition ARM_SUBSTRATE_ON",
-    "Seed 43 Condition ARM_SUBSTRATE_OFF",
-    "[train] decommit_eval seed=43 ep 265/265 c1=True c2=False decommit_gap=0.0000 on_cfp_abs=1.0000 off_cfp_abs=1.0000 hook_fires=1 beta_elev=157 eps_contra=8 rel_near=16",
-    "verdict: FAIL seed=43 guard_pass=True commit_nonvacuity=True (contact_rate=0.2956 z_goal_at_contact=0.4336)",
-    "Seed 44 Condition CURRICULUM_BUILT_DECOMMIT_HOLD_VS_CONTRADICTION",
-    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4190 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.975 gate=pass",
-    "[train] p0_guided seed=44 ep 130/265 mean_len=200.0 rv=2.13033",
-    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=44 ep 220/265 median_last=200.0 survival_gate=pass"
+  "last_tick_utc": "2026-06-18T06:05:53Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-514s",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-514m",
+      "result": "FAIL",
+      "completed_at": "2026-06-11T13:11:07.219449+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-485e",
+      "result": "FAIL",
+      "completed_at": "2026-06-11T13:52:25.324359+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-668",
+      "result": "PASS",
+      "completed_at": "2026-06-11T13:53:10.433581+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-682",
+      "result": "PASS",
+      "completed_at": "2026-06-15T03:20:44.390213+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-468e",
+      "result": "FAIL",
+      "completed_at": "2026-06-18T06:01:34.851850+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 97469,
-  "runner_version": "r3280 f455bc5 2026-06-17 (running r3277 f4ceea4)",
+  "runner_version": "r3285 7428d28 2026-06-18 (running r3277 f4ceea4)",
   "gpu": {
     "available": false
   },
