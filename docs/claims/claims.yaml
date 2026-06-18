@@ -43261,3 +43261,95 @@
     is whether the thin shortlist margin survives the composite or whether F's variance share must be
     rebalanced directly. External analog on the maintain-diversity-against-a-dominant-fitness-gradient
     side: Quality-Diversity / MAP-Elites (convergence demand-queue CDQ-003).
+
+- id: MECH-440
+  title: "state_conditioned_self_annealing_noise_floor (NoisyNet learned-parametric-weight-noise analog). A mechanistic refinement of MECH-313's tonic exploration noise floor. MECH-313 is registered as a STATE-INDEPENDENT floor (a post-softmax max-entropy/temperature analog); V3-EXQ-687 found that floor NON-PROPAGATING -- the temperature was invisible to the argmax/committed action (selected_action_entropy=0.0, the r1a_entropy_only_artefact the degeneracy gate caught). MECH-440 asserts the LC-NE tonic floor must instead be injected as LEARNED PER-PARAMETER (factorised-Gaussian) WEIGHT NOISE in the E3 selection pathway, so it (i) PROPAGATES into the committed action (it changes which action is argmax, not just a discarded pre-commit temperature), (ii) is STATE-CONDITIONED by construction (weight noise x state-dependent activations perturbs different states differently, with no hand-set per-state schedule), and (iii) SELF-ANNEALS (a gradient-trained per-parameter sigma falls where the policy is confident and stays up where exploration pays, so the floor does not wash out committed-action diversity uniformly). External analog: NoisyNet (Fortunato et al. 2018)."
+  claim_type: mechanism_hypothesis
+  subject: policy.state_conditioned_self_annealing_noise_floor
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_ceiling
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  registered_utc: "2026-06-18"
+  depends_on:
+    - MECH-313   # parent: stochastic_noise_floor (LC-NE tonic analog), currently a STATE-INDEPENDENT floor; this refines it
+    - MECH-260   # dACC anti-recency (the other tonic-noise leg in the GAP-C / Q-045 cluster)
+    - Q-045      # the noise-floor-vs-anti-recency collapse question this refinement bears on
+    - ARC-065    # behavioural-diversity-generation pathway; this is substrate (a) LC-NE tonic, refined
+  location: docs/architecture/state_conditioned_exploration_noise_floor.md#mech-440
+  notes: >
+    Registered 2026-06-18 from Convergence Demand Pipeline row CDQ-002 (NoisyNet primary intake;
+    session convergence-cdq002-noisynet-intake-20260618T0643Z). Targets the mechanism gap named by
+    behavioral_diversity_isolation:GAP-C and arc_062_rule_apprehension:GAP-H ("Tonic, state-conditioned
+    exploration noise floor (MECH-313 LC-NE analog) -- distinct from a fixed epsilon schedule").
+    The necessity is established (ARC-065); the MECHANISM for state-conditioning + self-annealing +
+    PROPAGATION is the import. Distinct from the empirical-substrate failure that
+    failure_autopsy_V3-EXQ-687_2026-06-18 diagnoses (survival/monostrategy lock on the existing
+    scaffolded_sd054_onboarding substrate, addressed by chip task_6c970c2e + the queued 687-successor):
+    even a survival-competent substrate reproduces the 687 non-propagation if the floor stays a
+    post-softmax temperature.
+    BIOLOGY (lit-pull BEFORE registration, per SD-003 / SD-010-011 discipline): the LC-NE tonic
+    exploration signal is itself state/uncertainty-conditioned and annealed by controllability --
+    Aston-Jones & Cohen 2005 adaptive-gain theory (tonic exploration engaged when task utility wanes,
+    phasic exploitation when utility is high; ACC/OFC drive the mode; targeted_review_connectome_mech_313
+    astonjones2005, supports 0.78) and Tervo et al. 2014 Cell (LC->ACC noradrenergic input GATES the
+    switch into a stochastic/variable choice mode under environmental uncertainty and suppresses it when
+    model-based strategy works; targeted_review_connectome_mech_313 tervo2014, supports 0.82). So
+    MECH-313's state-INDEPENDENT framing is biologically under-specified; the NoisyNet refinement is the
+    biologically-correct shape, not just an engineering trick.
+    FALSIFIER: arming selection-head parametric weight noise produces committed (argmax)
+    selected_action_entropy STRICTLY ABOVE a matched-pre-commit-variance post-softmax temperature control
+    (the V3-EXQ-687 non-propagating arm) on >=2/3 seeds, with the diversity reaching the committed action
+    (non-degenerate). Refuted if it washes out at argmax identically to the temperature floor (reproduces
+    the r1a_entropy_only_artefact), or raises pre-commit entropy without raising committed-action
+    diversity (thrash, not carve).
+    REE LOCUS: the MECH-313 use_noise_floor / noise_floor lever in the E3 trajectory-selection /
+    committed-action pathway (e3_selector / select_action). Adapter delta: replace/augment the
+    post-softmax temperature with learned factorised-Gaussian weight noise on the selection-head /
+    modulatory-bias parameters; no-op default (sigma_init=0 / flag OFF = bit-identical), per the
+    V3-primacy version-layering doctrine. Convergence intake artifacts: REE_convergence/sources/noisynet/
+    + reports/2026-06-18_tonic_exploration_noise_synthesis.md; promotion packet
+    CPKT-TONIC-EXPLORATION-NOISE-20260618. CANDIDATE only -- promotes nothing, blocks no V3 closure node;
+    decide-whether-to-build is a later governance step.
+
+- id: MECH-441
+  title: "model_disagreement_directed_curiosity (RND / Plan2Explore analog). A mechanistic refinement of MECH-314's structured_curiosity_bonus: a PER-CANDIDATE, SELF-ANNEALING intrinsic curiosity signal derived from E2 FORWARD-MODEL DISAGREEMENT (an ensemble / dropout-variance proxy over E2 forward predictions) -- high where the forward model is uncertain, collapsing toward zero as a region is learned -- fed into E3 selection so it PROPAGATES per-candidate to the committed action, unlike the broadcast-novelty EMA channel found non-propagating in V3-EXQ-590a / EXQ-141b. The self-annealing-on-learning-progress property is the non-degeneracy guard against a cross-candidate-flat (degenerate) bonus. External analog: RND (Burda et al. 2018) predictor-error novelty; Plan2Explore (Sekar et al. 2020) ensemble model-disagreement. Maps to MECH-314c learning-progress / MECH-314b uncertainty-driven curiosity."
+  claim_type: mechanism_hypothesis
+  subject: curiosity.model_disagreement_directed_signal
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_ceiling
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  registered_utc: "2026-06-18"
+  depends_on:
+    - MECH-314   # parent: structured_curiosity_bonus; this refines its computational form + propagation
+    - ARC-065    # behavioural-diversity-generation pathway; this is substrate (b) frontopolar curiosity, refined
+  location: docs/architecture/state_conditioned_exploration_noise_floor.md#mech-441
+  notes: >
+    Registered 2026-06-18 from Convergence Demand Pipeline row CDQ-002 (RND / Plan2Explore SECONDARY
+    intake; session convergence-cdq002-noisynet-intake-20260618T0643Z). The directed-curiosity leg (b)
+    complementary to the MECH-440 undirected-floor leg (a): a tonic floor supplies baseline variability,
+    directed curiosity steers it toward informative regions (ARC-065 multi-substrate pathway). The
+    Q-044/MECH-314 curiosity leg of arc_062_rule_apprehension:GAP-H is already SATISFIED (V3-EXQ-604c);
+    MECH-441 does NOT reopen it -- it refines the curiosity MECHANISM (per-candidate model-disagreement
+    that propagates), addressing the V3-EXQ-590a/141b broadcast-EMA non-propagation.
+    BIOLOGY (lit-pull): frontopolar uncertainty-driven exploration is a dedicated directed-exploration
+    substrate distinct from value-based exploitation -- Daw et al. 2006 Nature (frontopolar + IPS
+    preferentially active during exploratory decisions; targeted_review_connectome_mech_314 daw2006,
+    supports 0.72). Grounds ARC-065 substrate (b); the disagreement-specific computation (RND/Plan2Explore)
+    is the computational form imported here.
+    FALSIFIER: a per-candidate, self-annealing model-disagreement bonus over E2 forward predictions raises
+    committed-action diversity (selected-action entropy / route diversity) above a matched-magnitude
+    constant-bonus control on >=2/3 seeds, with cross-candidate range above the non-degeneracy floor.
+    Refuted if the disagreement signal is cross-candidate flat (degenerate) or does not propagate to the
+    committed action (reproduces the V3-EXQ-590a broadcast-EMA non-propagation).
+    REE LOCUS: a model-disagreement readout over the E2 forward model -> the MECH-314 curiosity bonus into
+    E3 selection (adjacent to the DR-12 / SELF-4 E2 forward-PE work). No-op default (flag OFF / zero
+    curiosity weight = bit-identical), per the V3-primacy version-layering doctrine. Convergence intake
+    artifacts: REE_convergence/sources/rnd-plan2explore/ + reports/2026-06-18_tonic_exploration_noise_synthesis.md;
+    promotion packet CPKT-TONIC-EXPLORATION-NOISE-20260618. CANDIDATE only -- promotes nothing, blocks no
+    V3 closure node; decide-whether-to-build is a later governance step.

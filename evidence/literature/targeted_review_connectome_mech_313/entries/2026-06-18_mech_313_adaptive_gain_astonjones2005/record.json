@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_313",
+  "entry_id": "2026-06-18_mech_313_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-06-18T06:56:57Z",
+  "claim_ids_tested": ["MECH-313"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance.",
+    "authors": ["Gary Aston-Jones", "Jonathan D Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://doi.org/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Canonical, heavily-cited integrative theory grounded in monkey neurophysiology + modeling. Directly states the tonic LC-NE mode (the noise-floor substrate MECH-313 names) is engaged when task utility WANES and the phasic mode (exploitation) when decision utility is high, with ACC/OFC monitoring utility and driving the mode. This grounds a STATE-CONDITIONED, utility-modulated tonic exploration signal -- which is the biological warrant for refining MECH-313 toward NoisyNet's state-dependent, self-annealing noise. Confidence held below 0.85 because it is a review/theory (not a single decisive experiment) and because it supports the state-conditioned REFINEMENT, not MECH-313's currently-registered state-INDEPENDENT form.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-313 as registered describes a STATE-INDEPENDENT noise floor; Aston-Jones & Cohen's adaptive-gain theory holds that the LC-NE tonic exploration signal is itself conditioned on (and modulated by) task utility, so a state-independent floor is a biologically incomplete instantiation of the LC-NE mechanism MECH-313 cites."
+  ],
+  "tags": ["mech-313", "locus_coeruleus", "norepinephrine", "adaptive_gain", "exploration_exploitation", "tonic_noise_floor", "cdq-002"],
+  "mapping": {
+    "source_claim_statement": "LC neurons exhibit phasic (exploitation, driven by task-related decision outcomes) and tonic (exploration, engaged when task utility wanes -> disengagement and search for alternatives) modes; ACC and OFC monitor task-related utility and drive these LC modes to optimize utility over short and long timescales.",
+    "ree_translation": "The LC-NE tonic mode is REE's MECH-313 stochastic_noise_floor substrate. The paper warrants the CDQ-002 refinement: the floor should be STATE-CONDITIONED (tracks task utility/uncertainty) and SELF-ANNEALING (suppressed toward phasic exploitation as utility/certainty rises) -- the property NoisyNet's learned, state-dependent parametric noise supplies and MECH-313's current state-independent post-softmax temperature lacks.",
+    "mapping_caveat": "The paper grounds state-conditioning at the systems/utility level (ACC/OFC -> LC mode switching), not at the parameter-noise level NoisyNet uses; the mapping from 'tonic-vs-phasic mode' to 'learned per-parameter sigma' is an analogy, and the paper does not address whether such a floor propagates through to a committed/argmax action (the REE-side V3-EXQ-687 propagation question).",
+    "source_context": "Monkey neurophysiology + computational modeling; integrative review (2005)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (canonical review). Mapping fidelity moderate: grounds state-conditioning/utility-modulation strongly but at a different level of description than the parametric-noise mechanism. Transfer risk moderate (monkey systems neuroscience -> REE selection pathway)."
+  }
+}

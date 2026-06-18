@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_314",
+  "entry_id": "2026-06-18_mech_314_frontopolar_exploration_daw2006",
+  "timestamp_utc": "2026-06-18T06:56:57Z",
+  "claim_ids_tested": ["MECH-314"],
+  "source": {
+    "title": "Cortical substrates for exploratory decisions in humans.",
+    "authors": ["Nathaniel D Daw", "John P O'Doherty", "Peter Dayan", "Ben Seymour", "Raymond J Dolan"],
+    "year": 2006,
+    "venue": "Nature",
+    "doi": "10.1038/nature04766",
+    "url": "https://doi.org/10.1038/nature04766"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Landmark human fMRI study showing frontopolar cortex (and intraparietal sulcus) is preferentially active during decisions classified as EXPLORATORY (vs striatum/vmPFC for exploitative value-based choice), with choices fit by a computationally principled explore/exploit strategy. Grounds the ARC-065 substrate (b) frontopolar uncertainty-driven curiosity that MECH-314 names. Secondary to the MECH-313 primary; held at 0.72 because the paper establishes a DIRECTED-exploration neural substrate in general, not specifically the model-disagreement / learning-progress computational form (RND/Plan2Explore) the CDQ-002 secondary imports.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Daw et al. localise exploration to frontopolar cortex but do not show the exploratory drive is computed as model-disagreement / prediction-error novelty; if MECH-314 is implemented specifically as RND/ensemble-disagreement, the biological mapping is to 'uncertainty-driven frontopolar exploration' generally, and the disagreement-specific form is a computational choice not directly evidenced here."
+  ],
+  "tags": ["mech-314", "frontopolar_cortex", "exploration", "uncertainty", "curiosity", "directed_exploration", "cdq-002"],
+  "mapping": {
+    "source_claim_statement": "Human choices in a 4-armed bandit are well-characterised by a principled explore/exploit strategy; fMRI shows frontopolar cortex and intraparietal sulcus are preferentially active during exploratory decisions, while striatum and vmPFC show activity characteristic of value-based exploitative decisions. Action selection under uncertainty involves switching between exploratory and exploitative modes.",
+    "ree_translation": "Frontopolar uncertainty-driven exploration is the biological substrate (b) of ARC-065's behavioural-diversity-generation pathway and the anchor for MECH-314 structured_curiosity_bonus. The CDQ-002 secondary imports the COMPUTATIONAL form of this directed exploration (RND novelty / Plan2Explore model-disagreement) as the MECH-314 mechanism; Daw et al. supply the neural warrant that a dedicated directed-exploration substrate exists and is distinct from value-based exploitation.",
+    "mapping_caveat": "The paper evidences a directed-exploration substrate in general (frontopolar/IPS), not the specific model-disagreement / prediction-error computation RND/Plan2Explore use; the disagreement-specific mechanism is a computational mapping, and the human bandit task differs from REE's per-candidate curiosity-into-E3-selection locus.",
+    "source_context": "Human fMRI, 4-armed restless bandit, computational RL model-based classification of choices."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (Nature; foundational). Mapping fidelity moderate: grounds directed-exploration substrate but not the disagreement-specific computation. Transfer risk moderate (human bandit -> REE per-candidate curiosity channel)."
+  }
+}

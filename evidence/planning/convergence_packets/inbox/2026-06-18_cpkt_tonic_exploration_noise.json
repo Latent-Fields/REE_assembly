@@ -1,0 +1,162 @@
+{
+  "schema_version": "convergence_promotion_packet/v1",
+  "packet_id": "CPKT-TONIC-EXPLORATION-NOISE-20260618",
+  "created_at_utc": "2026-06-18T06:56:57Z",
+  "updated_at_utc": "2026-06-18T06:56:57Z",
+  "source": {
+    "repo_name": "REE_convergence",
+    "source_system_id": "tonic-exploration-noise",
+    "snapshot_ref": "git-cdq002",
+    "content_mode": "paraphrase_only",
+    "upstream_license_id": "NOASSERTION",
+    "license_review_status": "verified",
+    "license_review_notes": "Paraphrased claims and citation links only; no copied upstream text, code, or weights are stored in either intake. License posture for any NoisyNet / RND / Plan2Explore reference implementation must be re-verified before a code-reference content_mode is used.",
+    "intake_path": "sources/noisynet",
+    "primary_links": [
+      "https://arxiv.org/abs/1706.10295",
+      "https://arxiv.org/abs/1810.12894",
+      "https://arxiv.org/abs/2005.05960"
+    ],
+    "attribution_paths": []
+  },
+  "status": "proposed",
+  "evidence_summary": {
+    "evidence_status": "partial",
+    "primary_sources_verified": true,
+    "notes": "Two-source convergence intake (NoisyNet primary undirected-floor + RND/Plan2Explore secondary directed-curiosity) on the tonic, state-conditioned, self-annealing exploration mechanism the MECH-313/MECH-314 cluster needs. Primary sources are peer-reviewed/archival (ICLR/NeurIPS-tier + Nature/Cell biology anchors). Intake is partial pending equation-level extraction of the NoisyNet sigma trajectory and a REE-side E2-disagreement readout. A biology lit-pull (Aston-Jones & Cohen 2005, Tervo et al. 2014, Daw et al. 2006) precedes registration per the SD-003 / SD-010-011 discipline and SUPPORTS the state-conditioned + self-annealing refinement. Candidate claims register as candidate/substrate_ceiling and promote nothing on their own."
+  },
+  "ree_touchpoints": {
+    "claim_ids": [
+      "MECH-440",
+      "MECH-441",
+      "MECH-313",
+      "MECH-314",
+      "ARC-065",
+      "MECH-260",
+      "Q-045"
+    ],
+    "docs_paths": [
+      "docs/architecture/state_conditioned_exploration_noise_floor.md",
+      "evidence/literature/targeted_review_connectome_mech_313",
+      "evidence/literature/targeted_review_connectome_mech_314",
+      "sources/noisynet/comparison_table.md",
+      "sources/rnd-plan2explore/comparison_table.md",
+      "reports/2026-06-18_tonic_exploration_noise_synthesis.md"
+    ],
+    "impact_areas": [
+      "control_plane",
+      "commitment",
+      "governance"
+    ]
+  },
+  "promotion_gates": {
+    "separation_tests_defined": true,
+    "falsifiability_defined": true,
+    "rollback_plan_defined": true,
+    "owner": "ree-governance",
+    "decision_due_utc": "2026-07-02T00:00:00Z"
+  },
+  "falsification": {
+    "claim_under_test": "The tonic exploration noise floor that GAP-C/GAP-H name (MECH-313 LC-NE analog) should be a STATE-CONDITIONED, SELF-ANNEALING signal that PROPAGATES into the committed action -- achieved via learned per-parameter weight noise at the selection head (MECH-440, NoisyNet analog) and/or a per-candidate self-annealing model-disagreement curiosity signal (MECH-441, RND/Plan2Explore analog) -- rather than the current state-independent post-softmax temperature floor (which V3-EXQ-687 found non-propagating) or the broadcast-novelty EMA channel (V3-EXQ-590a non-propagating).",
+    "could_be_wrong_if": [
+      "Selection-head parametric weight noise does NOT raise committed (argmax) selected_action_entropy above a matched-pre-commit-variance post-softmax temperature control on >=2/3 seeds (washes out at argmax identically, reproducing the r1a_entropy_only_artefact) -- falsifies MECH-440.",
+      "Selection-head weight noise raises pre-commit entropy but NOT committed-action diversity (thrash, not carve) -- falsifies MECH-440.",
+      "A per-candidate self-annealing model-disagreement bonus is cross-candidate flat (degenerate) or does not propagate into committed-action selection (reproduces the V3-EXQ-590a broadcast-EMA failure) -- falsifies MECH-441.",
+      "The committed-action-diversity ceiling turns out to be driven entirely by the F-dominance selection-variance monopoly (MECH-439), in which case a propagating noise floor still loses to F-share and the fix is variance rebalancing, not the injection locus."
+    ],
+    "test_plan_refs": [
+      "sources/noisynet/probes.md",
+      "sources/rnd-plan2explore/probes.md",
+      "reports/2026-06-18_tonic_exploration_noise_synthesis.md"
+    ],
+    "status": "planned",
+    "notes": "Falsifiers are pre-registered per candidate claim; the V3-EXQ-687 four-arm tonic-noise instrumentation (selected_action_entropy, unique_actions) supplies the metric a future MECH-440 falsifier would reuse, contrasted against a matched-pre-commit-variance temperature control."
+  },
+  "governance_controls": {
+    "blast_radius": "interface",
+    "conflict_review_completed": true,
+    "conflict_review_notes": "Convergence-side conflict scan complete: the candidate claims register as candidate/substrate_ceiling/v3, wired into depends_on of the GAP-C cluster (MECH-313/MECH-260/Q-045/ARC-065) and the GAP-H curiosity leg (MECH-314/ARC-065), and block no V3 closure node. They do not move any existing claim status or conflict ratio. The biology lit-pull flags that MECH-313's state-independent framing is biologically under-specified (a refinement target, not a contradiction). REE_assembly governance adjudication still required before any decide-to-build.",
+    "probation_window_days": 14,
+    "rollback_conditions": [
+      "Any net increase in unresolved claim conflicts in the GAP-C / GAP-H exploration cluster after registration.",
+      "Either candidate claim being mistakenly placed on the V3 critical path (owner_exq / blocker of a V3 closure node)."
+    ],
+    "rollback_owner": "ree-governance"
+  },
+  "implementation_readiness": {
+    "mechanism_probe_ids": [
+      "NOISYNET-P-001",
+      "NOISYNET-P-002",
+      "RND-P-001",
+      "RND-P-002"
+    ],
+    "adapter_patch_refs": [
+      "sources/noisynet/integration_deltas.md",
+      "sources/rnd-plan2explore/integration_deltas.md"
+    ],
+    "benchmark_acceptance_criteria": [
+      {
+        "criterion_id": "TONIC-NOISE-BENCH-001",
+        "metric": "committed_action_entropy_weight_noise_vs_temperature_control",
+        "comparator": ">=",
+        "target": "strictly above matched-pre-commit-variance temperature control on >=2/3 seeds, non-degenerate",
+        "measurement_ref": "V3-EXQ-687 four-arm tonic-noise instrumentation",
+        "notes": "The MECH-440 propagation falsifier: selection-head weight noise must reach the committed action where the temperature floor did not."
+      },
+      {
+        "criterion_id": "TONIC-NOISE-BENCH-002",
+        "metric": "v3_closure_percent_unchanged",
+        "comparator": "=",
+        "target": "no change attributable to MECH-440/MECH-441",
+        "measurement_ref": "evidence/planning/closure_status.md",
+        "notes": "The candidates must keep the V3 closure percentage clean (no V3 plan node blocked on them)."
+      }
+    ],
+    "implementation_owner": "ree-implementation",
+    "status": "planned",
+    "notes": "Decide-whether-to-build is a later governance step. If built, MECH-440 would add a learned parametric-weight-noise lever to the E3 selection head (no-op default); MECH-441 would add an E2 forward-model disagreement readout feeding the MECH-314 curiosity bonus (no-op default). Both gated by the V3-primacy version-layering doctrine (bit-identical OFF)."
+  },
+  "deltas": [
+    {
+      "delta_id": "TONIC-NOISE-DELTA-001",
+      "title": "State-conditioned, self-annealing, propagating noise floor at the selection head (MECH-440, NoisyNet analog)",
+      "proposal": "Register a candidate REE claim that the MECH-313 tonic exploration floor should be injected as learned per-parameter (factorised-Gaussian) weight noise in the E3 selection pathway, so it propagates into the committed action, is state-conditioned by construction, and self-anneals via a gradient-trained per-parameter sigma -- rather than the current state-independent post-softmax temperature floor that V3-EXQ-687 found non-propagating.",
+      "rationale": "NoisyNet is the working external instance of a tonic floor that survives the argmax/commit step; REE's MECH-313 floor is discarded at argmax (V3-EXQ-687 r1a_entropy_only_artefact). Biology (Aston-Jones & Cohen 2005; Tervo et al. 2014) grounds the state-conditioned + self-annealing refinement.",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/1706.10295",
+        "https://doi.org/10.1146/annurev.neuro.28.061604.135709",
+        "https://doi.org/10.1016/j.cell.2014.08.037"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "weight_noise_thrash_destroys_committed_diversity",
+        "v3_substrate_ceiling_off_critical_path"
+      ]
+    },
+    {
+      "delta_id": "TONIC-NOISE-DELTA-002",
+      "title": "Per-candidate self-annealing model-disagreement curiosity (MECH-441, RND/Plan2Explore analog)",
+      "proposal": "Register a candidate REE claim that MECH-314 structured curiosity should be a per-candidate, self-annealing signal derived from E2 forward-model disagreement, fed into E3 selection so it propagates per-candidate to the committed action -- addressing the V3-EXQ-590a/141b broadcast-novelty-EMA non-propagation; self-annealing-on-learning-progress is the non-degeneracy guard.",
+      "rationale": "Plan2Explore's ensemble model-disagreement and RND's predictor-error novelty are the working external instances of self-annealing directed curiosity; biology (Daw et al. 2006) grounds a dedicated frontopolar directed-exploration substrate. Complementary to the MECH-440 undirected floor (ARC-065 substrates (a)+(b)).",
+      "target_scope": "control_plane",
+      "breaking_change": false,
+      "evidence_links": [
+        "https://arxiv.org/abs/1810.12894",
+        "https://arxiv.org/abs/2005.05960",
+        "https://doi.org/10.1038/nature04766"
+      ],
+      "risk_flags": [
+        "convergence_translation_risk",
+        "disagreement_signal_cross_candidate_flat_degenerate",
+        "v3_substrate_ceiling_off_critical_path"
+      ]
+    }
+  ],
+  "decisions": {
+    "recommended_outcome": "hybridize",
+    "anti_lock_in_review_required": false,
+    "notes": "Recommended outcome hybridize: the two mechanisms are complementary (MECH-440 undirected tonic floor + MECH-441 directed curiosity = ARC-065 substrates (a)+(b)). Final outcome and any decide-to-build set during REE_assembly governance adjudication; the candidate claims are already registered (candidate/substrate_ceiling/v3, user-approved per-child 2026-06-18)."
+  }
+}

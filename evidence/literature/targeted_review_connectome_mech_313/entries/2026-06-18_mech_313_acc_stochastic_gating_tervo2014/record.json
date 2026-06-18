@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_313",
+  "entry_id": "2026-06-18_mech_313_acc_stochastic_gating_tervo2014",
+  "timestamp_utc": "2026-06-18T06:56:57Z",
+  "claim_ids_tested": ["MECH-313"],
+  "source": {
+    "title": "Behavioral variability through stochastic choice and its gating by anterior cingulate cortex.",
+    "authors": ["Dougal G R Tervo", "Mikhail Proskurin", "Maxim Manakov", "Mayank Kabra", "Alison Vollmer", "Kristin Branson", "Alla Y Karpova"],
+    "year": 2014,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2014.08.037",
+    "url": "https://doi.org/10.1016/j.cell.2014.08.037"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Causal circuit-perturbation evidence in transgenic rats that LOCUS COERULEUS (noradrenergic) input into ACC gates the switch between a strategic (model-based) mode and a STOCHASTIC (variable/exploratory) mode, and that the stochastic mode is engaged specifically under uncertainty about environmental rules (when counter-prediction cannot win) and otherwise suppressed. This is the single strongest anchor for the CDQ-002 refinement: the noradrenergic exploration signal is STATE-CONDITIONED (gated on uncontrollability/uncertainty) and SELF-ANNEALING (suppressed when a model-based strategy suffices). Causal (not merely correlational) and directly about the LC-NE -> action-variability pathway. Held at 0.82 for rodent->REE transfer and because 'stochastic mode' is a discrete gate rather than a graded per-parameter floor.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's tonic noise floor is implemented as an always-on, state-independent term (current MECH-313), it contradicts Tervo et al.: biologically the noradrenergic variability signal is GATED on environmental uncertainty/uncontrollability and suppressed when model-based strategy works, rather than applied uniformly.",
+    "Tervo's stochastic mode IGNORES action-outcome associations when engaged; a noise floor that perturbs selection without this gating could degrade exploitation in controllable regimes -- the REE falsifier must show the floor self-anneals where the policy is competent."
+  ],
+  "tags": ["mech-313", "locus_coeruleus", "norepinephrine", "anterior_cingulate", "behavioral_variability", "state_conditioned", "self_annealing", "cdq-002"],
+  "mapping": {
+    "source_claim_statement": "Rats switch from history/model-based strategies to a 'stochastic' choice mode when facing a competitor they cannot defeat by counter-prediction; in this mode action-outcome associations are ignored and ACC engagement is suppressed. Circuit perturbations show locus coeruleus (noradrenergic) input into ACC controls switching between strategic and stochastic modes; under uncertainty about environmental rules, changed noradrenergic input alters ACC output and prevents erroneous beliefs from guiding decisions, enabling behavioural variation.",
+    "ree_translation": "The LC-NE -> ACC pathway is the biological controller for REE's MECH-313 tonic exploration floor. The paper grounds both CDQ-002 properties: state-conditioning (the variability signal is engaged by environmental uncertainty/uncontrollability) and self-annealing (it is suppressed when a model-based strategy is winning). This is the warrant for moving MECH-313 from a state-independent floor to a learned, state-dependent, self-annealing noise -- the NoisyNet analog -- and for the falsifier's requirement that the floor preserve, not wash out, committed behaviour in controllable regimes.",
+    "mapping_caveat": "Tervo's 'stochastic mode' is studied as a competitive-game switch in rats and is closer to a discrete mode gate than to a graded per-parameter noise scale; the mapping to a continuously self-annealing sigma is an interpretation. Rodent->REE transfer risk applies, and the paper does not address the argmax-propagation question directly.",
+    "source_context": "Transgenic rats, competitive matching-pennies-style task, optogenetic/chemogenetic circuit perturbation of the LC->ACC pathway."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (Cell, causal circuit perturbation). High mapping fidelity: the LC-NE -> behavioural-variability gating is exactly the MECH-313 substrate, and the uncertainty-gating result maps cleanly onto state-conditioning + self-annealing. Transfer risk moderate-to-high (rodent competitive task -> REE selection)."
+  }
+}
