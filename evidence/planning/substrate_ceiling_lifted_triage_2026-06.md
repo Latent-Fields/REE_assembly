@@ -160,8 +160,14 @@ blocker so the audit does not re-derive it every cycle. **No claim status / v3_p
 
 1. **(c) cohort (ARC-062, SD-033b, MECH-263, MECH-309):** no action -- let V3-EXQ-654g / 485h score,
    then governance reconciles `pending_retest_after_substrate`.
-2. **/implement-substrate routes (do NOT queue an experiment first):** SD-015 + SD-049 (foraging
-   scaffold port), MECH-294 (express binding-coherence as per-candidate range).
+2. **Substrate-build / wiring routes:** MECH-294 -> `/implement-substrate` (express binding-coherence
+   as per-candidate range; do NOT queue an experiment first). SD-015 + SD-049 -> **CORRECTION
+   (2026-06-19T19:51Z):** their foraging-competence scaffold is already BUILT --
+   `scaffolded_sd054_onboarding` is `ready=true` (flipped 2026-06-11, V3-EXQ-603n PASS) and its
+   substrate_queue note states the SD-049 Phase-2 / V3-EXQ-514l-successor validation is "now
+   queueable". So the next action is `/queue-experiment` (the 4-arm SD-049 Phase-2 behavioural
+   validation on the ready scaffold), NOT an `/implement-substrate` foraging-scaffold build.
+   Spawned as chip `task_8d6d977b`. MECH-294 spawned as chip `task_e8bd8fee`.
 3. **Gated-on-upstream (no action until the upstream front resolves):** MECH-280/281 (625e ->
    483f), MECH-262 (654g GAP-B PASS), SD-032b + ARC-046 (MECH-439 / GAP-A), MECH-334 (GAP-B + harness fix).
 4. **Stalled / no owner:** MECH-189 needs a `goal_pipeline:GAP-2` context-diversity substrate that
