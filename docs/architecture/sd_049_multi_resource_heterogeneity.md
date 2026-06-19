@@ -869,3 +869,48 @@ Pre-registered promotion target: natural `mean(WL_drive - WL_nodrive) >=
 max(k*pstdev(delta), 0.15)` on `>=2/3` seeds converts MECH-436 `substrate_ceiling
 -> supports`. Non-vacuity preconditions self-route `substrate_not_ready_requeue`,
 never a false `weakens`. `claim_ids=[MECH-436]`.
+
+## Drive-coupling amend: BOUNDED kappa raise + deeper standing spread -- IMPLEMENTED 2026-06-19
+
+Routed by the confirmed `failure_autopsy_V3-EXQ-514s_2026-06-18` (user-adjudicated:
+clean self-route, substrate-ceiling **PARTIALLY LIFTED**). 514s ran the 2026-06-17
+levers at `kappa_scale=6.0` + `restoration=0.3` and MET all five non-vacuity
+preconditions, proving **lever (b) standing-differential-depletion WORKED**
+(`enriched_spread_met` 1.0, `mean_drive_spread_max` 0.211 vs 514q's equalised
+`~0.006`). The residual shortfall is localized to **lever (a)**: the WL metric is
+argmax-flip-gated and on 3/5 seeds the real `base_value` gaps exceed what
+`kappa=6.0 x spread~0.2` flips at natural magnitude (natural delta mean 0.064 <
+margin 0.15; 2/5 seeds clear; overshoot mag 5.0 still flips 4/5).
+
+This amend is a **calibration** of the existing no-op-default levers -- NO new flag,
+NO `ree_core` default change. The bounded operating point (the V3-EXQ-514t retest
+config):
+
+| lever | retest value | bound rationale |
+|---|---|---|
+| (a) `incentive_drive_kappa_scale` | `6.0 -> 12.0` (effective kappa `2.0*12=24`) | a MODERATE `base_value` gap (1.0 vs 0.6) flips under a realistic standing spread `~0.25` while a CLEARLY-LARGER 10x gap (1.0 vs 0.10) does NOT -- drive carves near-ties without overriding a decisive gap. Kappa-alone could not close the gap *boundedly* (the `~0.2` natural spread is `~25x` smaller than the mag-5.0 overshoot), hence pairing with (b). |
+| (b) `per_axis_restoration_fraction` | `0.3 -> 0.15` (WL-scoring env only) | leaves `~0.43` standing drive on a just-consumed axis (vs `~0.35` at 0.3) so the divergent-decay per-axis differences -- and the argmax-relevant spread -- are larger at the WL scoring moment; less kappa needed per flip. Training ecology stays 603n-canonical so survival/foraging competence is preserved. |
+
+**Bounded constraints (the two new contracts).** `C7` OFF-floor-hard-zero: kappa
+multiplies ONLY the per-axis drive term, so at ZERO drive `wanting()==base_value`
+for ANY `kappa_scale` -- raising kappa cannot manufacture a drive-induced
+dissociation absent a drive signal (the substrate guarantee behind the
+`wl_off_floor_fraction ~ 0` control). `C8` bounded / MECH-229 leg-(a) intact: at
+`kappa_scale=12.0` a clearly-larger 10x `base_value` gap is NOT flipped by a
+realistic standing spread -> drive does not dominate `base_value` (a sated agent
+still wants the clearly-better object). Brackets `C2` (a moderate gap IS flipped).
+9/9 `test_sd049_phase2_drive_coupling.py` + goal/environment subsystem contracts +
+7/7 preflight PASS; the bounded kappa math verified against the live `wanting()`
+formula and the restoration lever against the live env.
+
+**MECH-229 leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNTOUCHED.** No claims.yaml
+status flips -- MECH-436 stays `candidate` / `substrate_ceiling` /
+`pending_retest_after_substrate` until the retest scores.
+
+**Validation experiment: V3-EXQ-514t** (the 514s-successor MECH-436 retest;
+supersedes V3-EXQ-514s) -- same overshoot + OFF + recalibrated-argmax-relevance +
+enriched-spread controls on the `kappa_scale=12.0` + `restoration=0.15` substrate.
+Same promotion target; the five non-vacuity preconditions self-route
+`substrate_not_ready_requeue` (never a false `weakens`); a preconditions-met FAIL
+with overshoot still flipping routes another bounded retune (514u), NOT a
+falsification. `claim_ids=[MECH-436]`; machine any.
