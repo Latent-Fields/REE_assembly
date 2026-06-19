@@ -20045,6 +20045,8 @@
   status: candidate
   implementation_phase: v3
   v3_pending: true
+  epistemic_category: substrate_ceiling  # explicit 2026-06-19 (confirmed failure_autopsy_V3-EXQ-445h): V3-tractable in principle but the substrate is too coarse to deliver the committed-action-shift distinction c2 needs (conversion ceiling / F-dominance)
+  pending_retest_after_substrate: true  # c2 retest gated on committed-action diversity (ARC-065 GAP-A / MECH-439); failure_autopsy_V3-EXQ-445h_2026-06-19
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-032
@@ -20101,6 +20103,8 @@
     alternative operating modes; pending_retest_after_substrate.
 
     [2026-05-08 governance]: EXQ-445h SD-032b does_not_support (4th consecutive null after 445/445a/b/c). MECH-258 (C1 wins=2/3) and MECH-260 (C3 wins=3/3) both supported in the same run. Caution flag: monostrategy may stem from substrate gaps not yet inventoried (e.g. previous-valence-on-unexpected, MECH-307 conjunction architecture, sleep substrate). Do NOT advance toward demote until the candidate-gap inventory broadens.
+
+    [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h -- supersedes the 2026-05-08 does_not_support framing]: All V3-EXQ-445-series c2 evidence is non-contributory -- the committed-action-entropy criterion (|entropy_ON-entropy_OFF|>=0.1) is floor-locked by the pre-conversion-ceiling monostrategy (action_class_entropy=0.0 in every arm incl OFF control; F-dominance V3-EXQ-571). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied precision-weighted conflict bias cannot move committed action until ARC-065 GAP-A / MECH-439 demonstrate committed-action diversity. pending_retest_after_substrate. epistemic_category set explicit substrate_ceiling this pass; manifests already carry non_contributory (exp_conf 0.413 -> 0.0). Routed /queue-experiment (gated): fixed-substrate c2 retest under GAP-A top-k / MECH-439 conflict-grade, never re-run under 445h.
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
     (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
@@ -20629,6 +20633,8 @@
     EXQ-445h remains the sole valid MECH-260 support. See Q-045.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
+
+    [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h]: c3 (entropy_ON>=entropy_OFF) PASS is vacuous (0.0>=0.0 under monostrategy) -- excluded as degenerate across the 445-series. MECH-260 status unaffected (exp_conf 0.799 confirmed_established, driven by V3-EXQ-463). Already carries substrate_ceiling + pending_retest_after_substrate.
 
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
