@@ -1,0 +1,21 @@
+# Ryan, D'Angelo, Kamino, Ostreicher, Moses & Rosenbaum (2015) — Relational learning and transitive expression in aging and amnesia
+
+**Claim tested:** MECH-044 (hippocampal systems participate in relational binding and comparison)
+**Direction:** supports · **Confidence:** 0.63
+**DOI:** [10.1002/hipo.22501](https://doi.org/10.1002/hipo.22501) · *Hippocampus*, 2015
+
+## What the paper does
+
+This is an empirical behavioural study (not a review) that adapts the transitivity paradigm — originally a rodent task from Bunsey & Eichenbaum (1996) — for humans. Participants learn pairwise relations (A→B, B→C, C→D) and are then probed with a novel pair (A→C?) that can only be answered by *inferring* across the learned relations. Three groups are compared: younger adults, older adults, and a well-characterised amnesic case (DA). Four conditions vary how much of the stimuli and relations are known pre-experimentally, from fully semantic/known to fully arbitrary. The headline pattern: with fully pre-experimentally-known relations, all three groups perform similarly; with arbitrary relations, older adults and DA are less accurate than younger adults; but older adults *improve* when they can lean on pre-existing pairwise knowledge to scaffold the inference, whereas DA can neither learn arbitrary relations nor use prior knowledge to make novel inferences.
+
+## Why it bears on MECH-044
+
+MECH-044 has two halves — relational *binding* and relational *comparison* — and this paper is the cleanest behavioural evidence in the set for the comparison/flexible-use half. Transitive inference is precisely a test of whether relations are stored in a form that supports *novel recombination*: you never saw A→C, so answering it means comparing and composing the relations you did learn. DA's inability to do this, against the backdrop of an otherwise functioning cognitive system, is direct behavioural evidence that intact hippocampal function is required to learn and flexibly compare relations. For REE this matters because a relational binding mechanism that only produced a static, non-recombinable code would not be worth much to downstream action selection; MECH-044 wants relations represented in a form that can be *used* flexibly, and transitivity is the canonical demonstration that the biology delivers exactly that.
+
+## Limitations and caveats
+
+This entry carries the lowest confidence of the three, for three concrete reasons. First, the decisive dissociation is a single amnesic case (n=1), and case DA's damage extends beyond the hippocampus to ventromedial prefrontal and anterior temporal cortex — the authors themselves attribute the *inability to use prior knowledge for flexible inference* partly to that extra-hippocampal damage. So the case cannot cleanly isolate the hippocampal contribution to flexible relational expression. Second, the paradigm taps relational *learning and inference accumulated over trials*, which is a step removed from the rapid, in-perception relational binding that is MECH-044's sharpest form — that online reading rests on Olsen et al. (2012), not here. Third, the older-adult result shows the relational deficit is graded and partly compensable by semantic scaffolding, i.e. not an all-or-none hippocampal switch. And, as with the other two entries, this is Ryan/Rosenbaum/Moses work in the Cohen/Eichenbaum relational-memory tradition — convergent within a school rather than independent.
+
+## Confidence reasoning
+
+Source quality (0.70) reflects a well-designed, published behavioural study, tempered by the n=1 amnesic dissociation and the multi-region lesion confound. Mapping fidelity is moderate (0.62): transitive inference is genuinely the flexible-comparison facet of MECH-044, but it is not the online-binding facet, so the paper supports part of the claim squarely and part only by extension. Transfer risk is the highest of the three (0.45): lesion confound, learning/inference rather than online binding, and the human-clinical → REE-module gap stack up. Net 0.63 — real, direct behavioural support for the comparison half of MECH-044, deliberately held in the moderate band because the cleanest evidence here is a confounded single case and the paradigm is one remove from the claim's sharpest form.

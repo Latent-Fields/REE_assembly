@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_044_relational_binding",
+  "entry_id": "2026-06-19_mech_044_relational_learning_transitive_ryan2015",
+  "timestamp_utc": "2026-06-19T14:37:15Z",
+  "claim_ids_tested": ["MECH-044"],
+  "source": {
+    "title": "Relational learning and transitive expression in aging and amnesia.",
+    "authors": ["Jennifer D Ryan", "Maria C D'Angelo", "Daphne Kamino", "Melanie Ostreicher", "Sandra N Moses", "R Shayna Rosenbaum"],
+    "year": 2015,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.22501",
+    "url": "https://doi.org/10.1002/hipo.22501"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Empirical (not review) human data using the transitivity paradigm: amnesic case DA, with significant hippocampal damage, could not learn arbitrary relations (A->B, B->C, ...) and could not flexibly infer novel relations (A->C?), while older adults showed a milder relational deficit partly rescued by pre-experimental knowledge. This is direct behavioural evidence that intact hippocampus is required to LEARN and FLEXIBLY COMPARE relations -- the comparison half of MECH-044. Confidence is moderate: the paradigm probes relational learning + flexible (transitive) inference more than online perception-loop binding, n=1 for the critical amnesic case, and case DA's deficit is confounded by additional vmPFC/anterior-temporal damage.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The critical amnesic case (DA) has damage extending beyond the hippocampus to ventromedial prefrontal and anterior temporal cortex, so the inability to flexibly express indirect relational knowledge cannot be attributed to hippocampal loss alone -- a clean hippocampus-only attribution is not available from this case.",
+    "Transitivity/inference probes relational LEARNING and flexible retrieval over trials, not the rapid online relational binding-within-perception that is the sharpest form of MECH-044; older adults could partly compensate using prior semantic knowledge, showing the relational deficit is not all-or-none.",
+    "n=1 for the decisive amnesic dissociation; generalisation rests on the aging cohort plus convergence with the wider relational-memory literature."
+  ],
+  "tags": ["mech-044", "relational_learning", "transitive_inference", "hippocampus", "amnesia", "flexible_comparison"],
+  "mapping": {
+    "source_claim_statement": "Learning arbitrary pairwise relations (A->B, B->C, C->D) and then flexibly inferring novel relations among them (A->C?) depends on the hippocampus: an amnesic case with hippocampal damage could not learn arbitrary relations nor make novel inferences, whereas healthy older adults showed a milder relational decline that prior knowledge could partly offset.",
+    "ree_translation": "MECH-044: hippocampal systems compare relational representations (not just bind them). The transitivity result is behavioural evidence for the COMPARISON/flexible-use half of the claim -- relations have to be represented in a form that supports novel recombination and inference, which is what REE wants from a relational binding mechanism that feeds downstream action selection, not just a static positional code.",
+    "mapping_caveat": "The paradigm taps relational LEARNING and flexible (transitive) inference accumulated over trials, which is a step removed from the rapid, in-perception relational binding that is MECH-044's sharpest form (that reading rests on Olsen et al. 2012). The decisive dissociation is a single amnesic case whose lesion extends beyond the hippocampus to vmPFC and anterior temporal cortex, so it cannot cleanly isolate hippocampal contribution. Human-clinical -> REE-module transfer applies, as does the shared theoretical lineage with the other two entries.",
+    "source_context": "Human behavioural study: younger adults, older adults, and developmental/acquired amnesic case DA on a four-condition transitivity paradigm varying pre-experimental knowledge of stimuli and relations."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "source_quality reflects a well-designed published behavioural study in Hippocampus, tempered by n=1 for the critical amnesic dissociation and the multi-region lesion confound. mapping_fidelity is moderate because transitive inference is the flexible-comparison facet of MECH-044 but not its online-binding facet. transfer_risk is the highest of the three entries: lesion confound + learning/inference (not online binding) + human-clinical -> REE-module gap."
+  }
+}

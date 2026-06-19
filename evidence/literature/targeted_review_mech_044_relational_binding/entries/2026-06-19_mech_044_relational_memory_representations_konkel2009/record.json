@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_044_relational_binding",
+  "entry_id": "2026-06-19_mech_044_relational_memory_representations_konkel2009",
+  "timestamp_utc": "2026-06-19T14:37:15Z",
+  "claim_ids_tested": ["MECH-044"],
+  "source": {
+    "title": "Relational memory and the hippocampus: representations and methods.",
+    "authors": ["Alex Konkel", "Neal J Cohen"],
+    "year": 2009,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/neuro.01.023.2009",
+    "url": "https://doi.org/10.3389/neuro.01.023.2009"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the Cohen/Eichenbaum relational-memory theory stated directly: the hippocampus forms representations of arbitrary/accidental relations among the elements of experience. It supplies the framework MECH-044 instantiates and, critically for REE, contrasts RELATIONAL representations with simple item/positional ones -- the type-vs-token distinction REE cares about. Backed by the finding that amnesic patients with hippocampal damage are similarly impaired across spatial, sequential and associative relations. Confidence is moderate-high: the framework fit is excellent but the paper is a review and the evidence cited is lesion/amnesia (a coarse instrument for an online-binding claim), and it shares a theoretical lineage with the other two entries.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Amnesia/lesion evidence shows the hippocampus is NECESSARY for relational memory but is a coarse instrument -- it cannot show relational binding happening online within the perception-action loop, which is the specific temporal reading MECH-044 needs (that part rests on the Olsen et al. eye-movement/MEG line, not this paper).",
+    "The theory is framed around memory for relations; reading it as support for in-the-loop perceptual relational comparison is a (defensible) extension beyond what amnesia probes directly measure."
+  ],
+  "tags": ["mech-044", "relational_memory", "hippocampus", "spatial_relations", "representations"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus forms representations of arbitrary or accidentally occurring relations among the constituent elements of experience; amnesic patients with hippocampal damage are similarly impaired on memory for spatial, sequential, and associative relations, so hippocampal function is best specified in terms of the relational representations it supports rather than a single task.",
+    "ree_translation": "MECH-044: hippocampal systems track RELATIONS between entities (spatial relations among objects, not just absolute positions) and compare them for binding consistency. Konkel & Cohen supply the theoretical frame -- 'relational representations' as the hippocampal currency -- and the empirical generality that spatial/sequential/associative relations are handled by the same system, which underwrites REE treating relational binding as one capacity rather than a per-modality trick.",
+    "mapping_caveat": "The supporting evidence is amnesia/lesion: it demonstrates the hippocampus is NECESSARY for relational memory but cannot localise the binding to the online perception-action window MECH-044 specifies. It also concerns memory for relations; extending it to in-the-loop perceptual relational comparison leans on the companion Olsen et al. (2012) evidence. The framework is human/clinical; REE's substrate is an engineered latent module.",
+    "source_context": "Human cognitive neuroscience review of relational memory theory, anchored in amnesic-patient performance across spatial, sequential and associative relational probes."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.38,
+    "notes": "mapping_fidelity high because this is the source theory MECH-044 instantiates and it explicitly contrasts relational vs item/positional representations (REE's type-vs-token concern). source_quality reflects an authoritative review citing converging amnesia data rather than new primary data. transfer_risk covers the lesion-coarseness gap (necessity, not online dynamics) plus the human-clinical -> REE-module transfer and the shared theoretical lineage with the other entries."
+  }
+}

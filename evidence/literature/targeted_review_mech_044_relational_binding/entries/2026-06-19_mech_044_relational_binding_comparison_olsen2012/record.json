@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_044_relational_binding",
+  "entry_id": "2026-06-19_mech_044_relational_binding_comparison_olsen2012",
+  "timestamp_utc": "2026-06-19T14:37:15Z",
+  "claim_ids_tested": ["MECH-044"],
+  "source": {
+    "title": "The hippocampus supports multiple cognitive processes through relational binding and comparison.",
+    "authors": ["Rosanna K Olsen", "Sandra N Moses", "Lily Riggs", "Jennifer D Ryan"],
+    "year": 2012,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2012.00146",
+    "url": "https://doi.org/10.3389/fnhum.2012.00146"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the biology anchor already named on the MECH-044 registration. The paper's thesis -- the hippocampus is obligatorily involved in binding disparate elements across space and time AND in the comparison of relational representations, operating online (hippocampal responses within the first ~100 ms of stimulus onset, during traditional perceptual-processing time, and with or without conscious awareness) -- is a near-paraphrase of MECH-044's claim that hippocampal systems do relational work inside the perception-action loop rather than only long-term storage. Mapping fidelity is high. Source is a synthesis/proposal review (not a single primary dataset), and the transfer from human/primate MTL to REE's engineered hippocampal-analog module is real, so confidence is held below 0.8.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper is a synthesis/proposal review marshalling amnesia, lesion, eye-movement, fMRI and MEG findings rather than one decisive experiment; it establishes that relational binding-and-comparison is a hippocampal function but does not by itself adjudicate any specific computational implementation.",
+    "The proposal that binding/comparison proceeds 'with or without conscious awareness' is the part most contested in the wider literature; if relational binding turned out to strictly require explicit, attention-gated encoding, the online perception-loop reading REE relies on would weaken."
+  ],
+  "tags": ["mech-044", "relational_binding", "hippocampus", "online_comparison", "perception_action_loop"],
+  "mapping": {
+    "source_claim_statement": "The hippocampus is obligatorily involved in the binding of disparate elements across both space and time, and in the comparison of such relational memory representations, doing so rapidly (within the first few hundred ms) and with or without conscious awareness, which is why its functional reach extends beyond long-term recognition memory into perception and discrimination.",
+    "ree_translation": "MECH-044: the hippocampal anchor system participates in RELATIONAL binding and comparison -- tracking relations between entities and checking binding consistency online inside the perception-action loop -- not merely storing/replaying long-term traces. Olsen et al.'s 'binding across space and time + comparison of relational representations, online' is the direct biological grounding for the relational facet of the ARC-006/MECH-044/MECH-045 object-file cluster (the coregistration-of-facets primitive in ARC-080).",
+    "mapping_caveat": "The paper grounds relational binding/comparison as a hippocampal FUNCTION in biological cognition; it says nothing about REE's particular substrate (an engineered z_world latent + hippocampal-analog module). It therefore licenses the concept of MECH-044 but cannot confirm that REE's implementation actually performs relational (vs absolute-position) coding -- that remains the experimental question owed by V3-EXQ-688/688a. Lit grounds the concept; experiments still owe the implementation test.",
+    "source_context": "Human cognitive neuroscience review: amnesic patients, lesion work, eye-movement recording, fMRI and MEG; visual perception, discrimination, and short- and long-delay recognition tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.35,
+    "notes": "Heavily weighted on mapping_fidelity because MECH-044 is an architectural/mechanistic mapping and this review is the canonical statement of exactly that mechanism. source_quality reflects that it is an influential, well-cited review synthesis rather than primary data. transfer_risk is the human-MTL -> REE-module gap plus the still-debated 'without awareness' clause."
+  }
+}
