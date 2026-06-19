@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_485h_sd033b_trained_ofc_head_behavioural",
+  "run_id": "v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-19T19:27:35.208224Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-033b": "weakens",
+    "MECH-263": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd033b_behavioural_functional_signature_absent",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor",
+        "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR (0.05 == DEVAL_SHIFT_MARGIN, the same statistic the load-bearing DVs route on). RANGE not magnitude. Below floor -> substrate_not_ready_requeue (stronger driver / budget), NEVER a weakens.",
+        "measured": 0.5006746649742126,
+        "threshold": 0.05,
+        "control": "trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained under the 485h paired threat-conditioned driver.",
+        "measured": 5.628096580505371,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_frozen_head_silent",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "disambiguation": {
+      "reading": "devalued_range_collapsed_isolated_loop_route_live_E3",
+      "note": "Disambiguation is RECORDED, not auto-stamped. Below the 0.05 bias-range floor -> substrate_not_ready_requeue (non_contributory), NEVER a weakens. Readiness-met + C1-fail is an honest result with the driver gap closed; route /failure-autopsy with bias_range_devalued + the live-E3 F-test to adjudicate T (threat-invariant bias) vs F (F-dominance conversion ceiling, MECH-439) before stamping a SD-033b weakens.",
+      "max_trained_bias_range_high": 0.5006746649742126,
+      "max_trained_bias_range_devalued": 0.015517503023147583,
+      "max_collapse_ratio": 0.11966861134298501,
+      "min_collapse_ratio": 0.0,
+      "n_threat_invariant_seeds": 0,
+      "n_range_collapsed_seeds": 3,
+      "n_f_dominance_seeds": 1,
+      "n_live_ready_seeds": 3
+    }
+  }
+}
