@@ -1,48 +1,34 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-19T20:16:42Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 9,
-  "queue_id_at_head": "V3-EXQ-689a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-665",
-      "result": "PASS",
-      "completed_at": "2026-06-10T23:30:56.846187+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-514m",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:11:07.219449+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485e",
-      "result": "FAIL",
-      "completed_at": "2026-06-11T13:52:25.324359+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-668",
-      "result": "PASS",
-      "completed_at": "2026-06-11T13:53:10.433581+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-682",
-      "result": "PASS",
-      "completed_at": "2026-06-15T03:20:44.390213+00:00"
-    }
+  "last_tick_utc": "2026-06-19T20:47:15Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-689a",
+  "current_exq_started_utc": "2026-06-19T20:25:15.324857+00:00",
+  "current_title": "MECH-439 conflict-grade GAP-BLIND control-arm falsifier (gap-concentrated vs uniform lift, via arm contrast); supersedes V3-EXQ-689",
+  "current_claim_id": "MECH-439",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_PROPOSER_CTRL",
+    "runs_done": 0,
+    "runs_total": 24,
+    "episodes_done": 30,
+    "episodes_total": 80,
+    "overall_pct": 1.6
+  },
+  "seconds_elapsed": 1320,
+  "seconds_remaining": 21840,
+  "recent_lines": [
+    "Seed 42 Condition ARM_PROPOSER_CTRL",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 30/80"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 12572,
-  "runner_version": "r3329 6b630eb 2026-06-19",
+  "runner_version": "r3330 b603c80 2026-06-19 (running r3329 6b630eb)",
   "gpu": {
     "available": false
   },
