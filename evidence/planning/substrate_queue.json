@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
-  "last_updated_utc": "2026-06-19T17:41:05Z",
+  "last_seen_session": "queue-625e-sd037-axisb-p1b-20260619T1906Z",
+  "last_updated_utc": "2026-06-19T19:17:17Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1224,8 +1224,8 @@
       "implementation_status": "implemented",
       "implemented_session": "implement-sd037-orexin-2026-04-25",
       "implemented_utc": "2026-04-25T00:00:00Z",
-      "last_seen_session": "governance-cycle-20260602T051900Z",
-      "last_updated_utc": "2026-06-01T07:49:25Z",
+      "last_seen_session": "queue-625e-sd037-axisb-p1b-20260619T1906Z",
+      "last_updated_utc": "2026-06-19T19:17:17Z",
       "metric_trajectory": {
         "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
@@ -1309,7 +1309,8 @@
       ],
       "validation_experiment": "V3-EXQ-483b",
       "status": "implemented",
-      "status_note": "Set 2026-06-02 (insights bookkeeping): implementation_status was already \"implemented\" (orexin/broadcast.override_regulator substrate landed 2026-04-25, readiness V3-EXQ-483b PASS; axis-(a) consumer-input distributions V3-EXQ-620b PASS). Top-level status was a stale null and misread as unimplemented in the 2026-06-02 insights pass. Remaining work is env-curriculum tuning (axis-(b) sustained-window C3 per V3-EXQ-625b autopsy, plan sections 5.2/5.4: shorten interval / lift prob / relax sustained-window def), NOT substrate. Route remaining validation via /queue-experiment, not /implement-substrate."
+      "status_note": "Set 2026-06-02 (insights bookkeeping): implementation_status was already \"implemented\" (orexin/broadcast.override_regulator substrate landed 2026-04-25, readiness V3-EXQ-483b PASS; axis-(a) consumer-input distributions V3-EXQ-620b PASS). Top-level status was a stale null and misread as unimplemented in the 2026-06-02 insights pass. Remaining work is env-curriculum tuning (axis-(b) sustained-window C3 per V3-EXQ-625b autopsy, plan sections 5.2/5.4: shorten interval / lift prob / relax sustained-window def), NOT substrate. Route remaining validation via /queue-experiment, not /implement-substrate.",
+      "axis_b_625d_autopsy_pointer_2026_06_19": "ENV-CONDITIONAL-CONVERSION finding (failure_autopsy_V3-EXQ-625d_2026-06-18; POINTER, not a new build). The axis-(b) P1b joint-composite falsifier V3-EXQ-625d self-routed substrate_not_ready_requeue (R3 0/3, R4 0/3): the committed-action monostrategy-lock is over-determined by the axis-(b) SATURATED-threat regime -- the TRAINED z_harm_a pinned ~6 (the 625b-era 0.2 overlay was calibrated against an UNTRAINED harm pathway and over-drives ~14x), candidate-pool collapse (cand_world_pairwise_dist < floor 2/3), and F-dominance over the modulatory range. KEY: the 569i top-k conversion PASS is ENV-CONDITIONAL -- it rests on the reef-bipartite env's structural guarantee of categorically-opposite first-action argmaxes, which the saturated-threat overlay removes; the conversion is NOT demonstrated to survive a THREAT-ENGAGED candidate pool. The conversion-propagation-under-threat requirement is the SHARED behavioral_diversity_isolation:GAP-A / modulatory-bias-selection-authority conversion-propagation ceiling -- no new SD-037 build is owed; the fix lives on the existing GAP-A substrate work, and P1b re-gates only once committed-action diversity is shown to reach committed action under a threat-engaged pool. IMMEDIATE next step is the recalibrated successor V3-EXQ-625e (queued 2026-06-19; supersedes 625d): axis-(b) threat magnitude 10x lower (0.2->0.02) + pulsed duty cycle (z_harm_a relieves -> can cross 0.4 downward) + 603q-stabilized harm pathway; R1-R4 guards unchanged (R3/R4 carry GAP-A as a hard upstream gate). SD-037/MECH-280/MECH-281 substrate_ceiling / pending_retest_after_substrate UNCHANGED; NO claims.yaml edit (tags no claim)."
     },
     {
       "added_session": "governance-2026-04-24T08:10",
