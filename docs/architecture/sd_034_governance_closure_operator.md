@@ -9,7 +9,7 @@ nav_order: 12
 
 **Claim ID:** SD-034
 **Subject:** governance.closure_operator
-**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12; Leg C rule_bias_head training amend 2026-06-16 -- see amend sections below)
+**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12; Leg C rule_bias_head training amend 2026-06-16; de-commit-authority MAGNITUDE amend 2026-06-19 -- see amend sections below)
 **Registered:** 2026-04-20
 **Depends on:** SD-033 (governance cluster), SD-033a (lateral PFC analog rule_state), MECH-090 (BetaGate commitment latch), MECH-260 (dACC action-class No-Go), MECH-094 (hypothesis tag write gate), SD-032a (SalienceCoordinator), SD-032b (dACC analog)
 **Blocks:** EXP-0156 / V3-EXQ-460 (verified-but-not-released), EXP-0157 / V3-EXQ-461 (delayed-reward persistence), EXP-0162 / V3-EXQ-466 (satisficing / residue discharge), EXP-0164 / V3-EXQ-468 (commitment vs contradiction). All landing-diagnostic variants PASSed 2026-04-21.
@@ -300,6 +300,83 @@ gate (`rule_bias_diag` mean `|bias|` > floor, else `substrate_not_ready_requeue`
 per the autopsy failure record: ON<OFF de-commit on a non-cap-pinned statistic on >=2/3 seeds
 with beta-engagement met. The `commitment-closure-control-plane` substrate_queue `ready` STAYS
 false until 460e scores a contributory PASS.
+
+## Amend: de-commit-authority MAGNITUDE (committed-run-scaled Leg-B refractory) -- 2026-06-19
+
+Routed by the confirmed `failure_autopsy_V3-EXQ-460f_2026-06-18` (user-adjudicated
+2026-06-18T08:04Z governance cycle). The 2026-06-17 beta-engagement amend WORKED -- all 4
+readiness gates cleared and the C2 de-commit occupancy-drop DV ran for the first time (PASS
+seed 42: ON 23.73 < OFF 35.67, -33.5%; FAIL 2/3). But on strong-natural-commit seeds the
+closure->beta coupling was INERT (`sd034_n_closure_coupled_elevations` 36/52 seed 42 vs 0/0
+seeds 43/44), so the DV reduced to the bare Leg-B 5-tick refractory whose magnitude (~20-35
+tick-blocks) is **swamped** by the ~530-560 natural-commit elevated steps. NOT a falsification
+(seed 42 + 460e seed 44 are existence proofs of the correct de-commit SIGN); the residual gap is
+de-commit-authority **MAGNITUDE** + **DV POWER** (the latter is experiment-side, see Validation).
+
+**The fix (part a; no-op-default, bit-identical OFF):** scale the Leg-B refractory installed at
+a closure fire by the **committed-run length** captured from the BetaGate *before* the closure's
+own `release()`, so a long committed run -- the exact source of the swamping latch occupancy --
+triggers a proportionally long post-closure hold:
+
+```
+n = closure_decommit_hold_ticks
+    + round(closure_decommit_hold_scale_with_run * committed_run_length)   # clamped to
+                                                                            # closure_decommit_hold_max_ticks (0=uncapped)
+```
+
+- `ree_core/heartbeat/beta_gate.py`: `BetaGate` gains a per-run `_committed_run_length` counter +
+  `committed_run_length` property + `sd034_committed_run_length` get_state key. Incremented once
+  per `propagate()` tick while elevated; reset on a FRESH `elevate()` (not-elevated -> elevated;
+  a re-elevate while already elevated leaves it unchanged) and on `release()`; cleared in
+  `reset()`. Pure bookkeeping -- never read unless the lever is armed, so bit-identical when off.
+- `ree_core/governance/closure_operator.py`: `ClosureOperatorConfig` gains
+  `decommit_hold_scale_with_run` (0.0) + `decommit_hold_max_ticks` (0). `_fire()` captures
+  `run_length_at_fire` from `beta_gate.committed_run_length` BEFORE step (a) `release()` (which
+  resets it), then step (a.2) installs the scaled hold. With scale 0.0 (default), `hold_ticks ==
+  decommit_hold_ticks` unchanged -> bit-identical to the fixed-hold path.
+- `ree_core/utils/config.py`: `REEConfig.closure_decommit_hold_scale_with_run` (0.0) +
+  `closure_decommit_hold_max_ticks` (0) + `from_dims` passthrough; `ree_core/agent.py` forwards
+  both into the `ClosureOperatorConfig` build via getattr fallback (absent flat attr ->
+  bit-identical), mirroring the `closure_decommit_hold_ticks` precedent.
+
+**On the autopsy's "EITHER...OR"** (committed-run-scaled refractory OR active MECH-342-style
+release-pressure): the closure `_fire()` ALREADY calls `beta_gate.release()` (drops the latch at
+the fire), so option B's "drive the latch DOWN rather than block re-entry" distinction is moot
+here -- the latch is already down at fire; the only lever is HOW LONG to keep it down, which is
+exactly the refractory. So the committed-run-scaled refractory is the faithful magnitude lever;
+an active release-pressure event would duplicate MECH-342 with no distinct mechanism (user-confirmed
+A-only, 2026-06-19).
+
+**Backward compatible:** `closure_decommit_hold_scale_with_run=0.0` by default -> the refractory
+uses `closure_decommit_hold_ticks` exactly as the 2026-06-12 Leg-B landing -> bit-identical; the
+run-length counter increments but is never read. 6 new contracts in
+`tests/contracts/test_sd034_decommit_magnitude.py` (C1 counter lifecycle + get_state; C2 scale 0.0
+bit-identical independent of a 40-tick run; C3 scale>0 -> `n = base + round(scale*run)` captured
+before release + longer-run->longer-hold; C4 max_ticks clamp; C5 from_dims + agent wiring; C6
+agent action stream bit-identical default vs explicit scale=0.0) + 7/7 preflight + full contract
+suite 1101 passed (the 3 failures -- `control_vector` C4 + 2 `runner_fail_branch` -- are the
+documented pre-existing flakes, CONFIRMED failing identically on a clean stash). Activation smoke
+(the 460f scenario, 530-step committed run then a closure fire): FIXED base5/scale0 -> 5 ticks
+suppressed (swamped); SCALED base5/scale0.1 -> 58 ticks (capped 60 -> 58) -- the de-commit
+authority now scales with the latch occupancy it must overcome.
+
+**Phased training:** N/A (control-state counter + scalar arithmetic; no learned parameters).
+**MECH-094:** N/A -- waking `select_action` control-state transition; no replay/memory write
+surface (the run-length counter only advances on the waking `propagate()` path). **Step-8.5
+staleness:** NOT triggered (no-op-default lever; no dependent claim's measured mechanism changed --
+KEEP all evidence). **Governance:** PROMOTES NOTHING; SD-034 provisional / MECH-260 candidate /
+MECH-261 stable, all non_contributory + pending_retest_after_substrate; `claims.yaml` NOT modified.
+
+**Validation experiment:** V3-EXQ-460g (supersedes V3-EXQ-460f) via `/queue-experiment` -- the
+de-commit retest arming the magnitude lever (`closure_decommit_hold_scale_with_run` + max_ticks)
+ON TOP of the beta-engagement-amended substrate, with **part (b)** the C2 DV redesigned to a
+WITHIN-ARM around-closure occupancy delta (pre-vs-post-closure window on the ON arm) and the
+non-vacuity gate tightened to `sd034_n_closure_coupled_elevations > 0` on scored seeds.
+Acceptance: ON<OFF de-commit on the within-arm non-cap-pinned statistic on >=2/3 seeds with the
+coupling non-vacuity gate met. Do NOT re-author 460d/460e/460f; the parallel V3-EXQ-468e
+(MECH-090 commit-entry conjunction) leg is separately owed. The
+`commitment-closure-control-plane` substrate_queue `ready` STAYS false until 460g scores a
+contributory PASS. Autopsy: `evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.md`.
 
 ## Anchor Documents
 
