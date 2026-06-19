@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-19T20:47:17Z",
+  "last_tick_utc": "2026-06-19T21:17:24Z",
   "state": "running",
   "current_exq": "V3-EXQ-468f",
   "current_exq_started_utc": "2026-06-19T18:59:49.853425+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-034",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST",
-    "runs_done": 3,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST",
+    "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 0,
     "episodes_total": 265,
-    "overall_pct": 116.4
+    "overall_pct": 200.0
   },
-  "seconds_elapsed": 6448,
+  "seconds_elapsed": 8255,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_468f_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
@@ -34,7 +34,15 @@
     "Seed 43 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST",
     "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.3996 formed=False",
     "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.955 gate=pass",
-    "[train] p0_guided seed=43 ep 130/265 mean_len=198.3 rv=0.00003"
+    "[train] p0_guided seed=43 ep 130/265 mean_len=198.3 rv=0.00003",
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=102.5 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.1000 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.1505 contact_events=64 z_goal_at_contact=0.4330",
+    "Seed 43 Condition ARM_SUBSTRATE_ON",
+    "Seed 43 Condition ARM_SUBSTRATE_OFF",
+    "[train] contradiction_eval seed=43 ep 265/265 c1=True c2_within=False decommit_gap=0.0000 pre_occ=1.000 post_occ=1.000 win_events=14 coupled=0 rel_near=7 eps_contra=4 between_arm_drop=False on_cfp_abs=1.0000 off_cfp_abs=1.0000",
+    "verdict: FAIL seed=43 guard_pass=True coupling_nonvacuous=False within_window=True rule_bias_trained=True (contact_rate=0.1505 z_goal_at_contact=0.4330)",
+    "Seed 44 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
