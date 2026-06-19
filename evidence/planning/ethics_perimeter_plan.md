@@ -121,6 +121,13 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 
 ### Phase 2 — V4 gates (DEFERRED; draft now, bind at V4 boundary)
 
+- [x] `docs/governance/experiment_ethics_preflight.md` — **keystone**: the ethics-preflight
+      schema + CONCRETE operational definitions for the SENT-2/4/8/10 qualifiers ("trivial
+      intensity" floor 0.10, intensity caps 0.40/2.00, duration cap ~100 ticks, repetition
+      cap, escape/decommitment-affordance-present, offline-integration-reduces-distress),
+      each grounded in real ree-v3 harm-stream/residue signals (z_harm_a, MECH-219 suffering
+      accumulator, MECH-302 relief comparator, ResidueField, SD-058/059 escape). DRAFT (binds
+      V4, NOT wired into `/queue-experiment` enforcement); landed 2026-06-19.
 - [ ] `docs/governance/sentience_welfare_risk_register.md` (SENT-0…12 full).
 - [ ] `docs/governance/ethical_assembly_routing_map.md` (Class 0–5 +
       prohibited combinations; SENT-13).
