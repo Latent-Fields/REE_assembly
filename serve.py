@@ -2229,6 +2229,12 @@ def _enrich_closure_v2(data: dict) -> dict:
 
     retest_ids = _closure_claim_ids_by_flag("pending_retest_after_substrate")
     ceil_ids = _closure_claim_ids_by_flag("epistemic_category: substrate_ceiling")
+    # Governance epistemic facet: SENT-*/GOV-* ethics-perimeter claims carry
+    # epistemic_category: governance_rule; a node that unblocks one is an ethics
+    # gate. substrate_conditional rounds out the per-node epistemic_category
+    # dominance order (governance_rule > substrate_ceiling > substrate_conditional).
+    gov_ids = _closure_claim_ids_by_flag("epistemic_category: governance_rule")
+    cond_ids = _closure_claim_ids_by_flag("epistemic_category: substrate_conditional")
     drift_map = _closure_drift_map()
 
     cusp_items: list[dict] = []
@@ -2280,7 +2286,9 @@ def _enrich_closure_v2(data: dict) -> dict:
             badges.append("EXQ")
             qid = exq_m.group(0).upper().replace("v3-exq", "V3-EXQ")
             n["exq_live"] = qid in live_exq_ids
-        for cid in n.get("unblocks_claims") or []:
+        unblocks = n.get("unblocks_claims") or []
+        unblocks_gov = False
+        for cid in unblocks:
             if cid in retest_ids:
                 flags.append("pending_retest")
                 if "RETEST" not in badges:
@@ -2288,8 +2296,42 @@ def _enrich_closure_v2(data: dict) -> dict:
             if cid in ceil_ids:
                 if "CEIL" not in badges:
                     badges.append("CEIL")
+            if cid in gov_ids:
+                unblocks_gov = True
         n["claim_flags"] = flags
         n["badges"] = badges
+
+        # Governance / welfare epistemic facet (read by closure.html chips).
+        #   epistemic_category: dominant flagged category of the claims this node
+        #     unblocks, emitted only when derivable so an absent value reads as
+        #     "standard" (the common case).
+        #   is_governance: the node advances governance work -- it sits in a
+        #     governance plan (substrate governance, e.g. sd033_governance) OR it
+        #     unblocks a governance_rule ethics-perimeter claim.
+        #   welfare_*: surfaced from the node's GOV-PROC-1 s2 ethical_metadata.
+        if unblocks_gov:
+            n["epistemic_category"] = "governance_rule"
+            if "GOV" not in badges:
+                badges.append("GOV")
+        elif any(cid in ceil_ids for cid in unblocks):
+            n["epistemic_category"] = "substrate_ceiling"
+        elif any(cid in cond_ids for cid in unblocks):
+            n["epistemic_category"] = "substrate_conditional"
+        em = n.get("ethical_metadata") if isinstance(
+            n.get("ethical_metadata"), dict) else {}
+        welfare_relevance = str(em.get("welfare_relevance") or "none").strip().lower()
+        requires_welfare_review = bool(em.get("requires_welfare_review"))
+        n["welfare_relevance"] = welfare_relevance
+        n["requires_welfare_review"] = requires_welfare_review
+        n["applicable_ethics_gates"] = list(em.get("applicable_ethics_gates") or [])
+        n["welfare_relevant"] = (
+            requires_welfare_review
+            or welfare_relevance in ("moderate", "high", "hard_review")
+        )
+        n["is_governance"] = (
+            unblocks_gov
+            or "governance" in str(n.get("plan_id") or "").lower()
+        )
         n["drift"] = drift_map.get(n.get("id"))
         n["active_blocker_short"] = _closure_active_blocker_short(
             n, nodes_by_id)
@@ -2425,6 +2467,16 @@ def read_closure() -> dict:
                 # incomplete once a downstream node hits a new blocker.
                 "resume_condition": n.get("resume_condition"),
                 "blocking_on": n.get("blocking_on"),
+                # ethical_metadata: the GOV-PROC-1 s2 carry-forward of the
+                # deferred SENT-*/GOV-* ethics gates onto the roadmap node they
+                # bite on (welfare_relevance / requires_welfare_review /
+                # applicable_ethics_gates / forbidden_combinations). Passed
+                # through verbatim so the governance/welfare epistemic facet can
+                # surface it; absence == welfare_relevance: none (Class 0/1).
+                "ethical_metadata": (
+                    n.get("ethical_metadata")
+                    if isinstance(n.get("ethical_metadata"), dict) else None
+                ),
             }
             # If a node id appears in multiple plans, keep first and record alias.
             if nid in nodes_by_id:

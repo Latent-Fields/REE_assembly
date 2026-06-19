@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-15.1 -->
+<!-- CLOSURE_VERSION: 2026-06-19.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -374,6 +374,18 @@
   #graph[data-ready-filter] .edge { opacity: 0.10; }
   #graph[data-ready-filter] .node.is-ready .node-rect { stroke-width: 4 !important; filter: brightness(1.3) drop-shadow(0 0 5px #2ea043); }
 
+  /* governance / welfare epistemic facet: dim everything except the matching
+     governance-layer nodes. Works inside ANY generation view -- on V3 it lights
+     the sd033_governance substrate-governance nodes; on V4/V5/V6 the welfare
+     facet lights the ethical_metadata carry-forward nodes (GOV-PROC-1 s2). */
+  #graph[data-facet="governance"] .node:not(.is-governance) .node-rect { opacity: 0.16; }
+  #graph[data-facet="governance"] .node:not(.is-governance) text { opacity: 0.16; }
+  #graph[data-facet="governance"] .node.is-governance .node-rect { stroke-width: 3.5 !important; filter: brightness(1.25) drop-shadow(0 0 5px #d2a8ff); }
+  #graph[data-facet="welfare"] .node:not(.is-welfare) .node-rect { opacity: 0.16; }
+  #graph[data-facet="welfare"] .node:not(.is-welfare) text { opacity: 0.16; }
+  #graph[data-facet="welfare"] .node.is-welfare .node-rect { stroke-width: 3.5 !important; filter: brightness(1.25) drop-shadow(0 0 5px #f0a868); }
+  #graph[data-facet] .edge { opacity: 0.10; }
+
   /* ready-filter toggle button */
   .ready-toggle {
     background: var(--bg-3); color: var(--text);
@@ -547,6 +559,10 @@
   <button type="button" data-filter="blocked">blocked</button>
   <button type="button" data-filter="in_progress">in-progress</button>
   <button type="button" data-filter="live_exq">live EXQ</button>
+  <span style="border-left:1px solid var(--border);padding-left:10px;margin-left:6px;color:var(--muted);" title="Governance epistemic facet: highlight the governance layer in the current generation view. governance = substrate-governance nodes (e.g. sd033_governance) + any node that unblocks a SENT-*/GOV-* ethics-perimeter claim. welfare-review = roadmap nodes carrying an ethical_metadata welfare/welfare-review tag (the GOV-PROC-1 s2 carry-forward; mostly V4/V5/V6).">facet</span>
+  <button type="button" data-facet="none" class="active">none</button>
+  <button type="button" data-facet="governance" title="Highlight governance-layer nodes (substrate governance + ethics-perimeter gate nodes).">governance</button>
+  <button type="button" data-facet="welfare" title="Highlight welfare-relevant roadmap nodes (ethical_metadata carry-forward of the deferred SENT-*/GOV-* gates).">welfare-review</button>
 </div>
 
 <div class="legend">
@@ -617,6 +633,7 @@ const BADGE_DESC = {
   EXQ: 'EXQ (blue) -- this node HAS an owner experiment; it does NOT mean one is running. Most are already complete (the card status -- done/blocked/etc -- is the real state). A node is actually running only when its border glows green and the node tooltip shows [LIVE]; that live flag is gated on a fresh runner heartbeat, so a crashed/stale runner no longer shows as running.',
   RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that claim must be re-tested once this substrate work lands.',
   CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
+  GOV: 'GOV -- unblocks a governance_rule claim (a SENT-*/GOV-* ethics-perimeter gate). The right response is to advance the owning governance artifact, not to run an experiment.',
 };
 
 // Raw hex per status (matches the --st-* CSS vars) for the status-tint wash on
@@ -640,6 +657,7 @@ let SELECTED_NODE_ID = null;
 // #5 ready-to-work filter state
 let READY_FILTER_ACTIVE = false;
 let STATUS_FILTER = 'all';
+let FACET_FILTER = 'none';   // governance/welfare epistemic facet highlight
 // derived sets (recomputed on render or when state changes)
 let NODES_BY_ID = {};
 let NEIGHBOURS_OF = {};   // id -> Set of directly-connected ids (any edge type)
@@ -655,6 +673,7 @@ async function load() {
   renderAll();
   wireReadyToggle();
   wireStatusFilter();
+  wireFacetFilter();
   wireGenSwitch();
   applyHighlightFromUrl();
   scheduleEasterEggs();
@@ -845,6 +864,30 @@ function applyStatusFilter() {
     else if (STATUS_FILTER === 'live_exq') show = n && n.exq_live;
     g.style.display = show ? '' : 'none';
   }
+}
+
+// Governance/welfare epistemic facet. Like the ready-to-work filter this only
+// toggles a data-attr on the <svg>; the CSS dims non-matching nodes. The
+// node-level is-governance / is-welfare classes are stamped at render time, so
+// switching generation re-stamps them and the facet keeps working across views.
+function wireFacetFilter() {
+  const bar = document.getElementById('filter-bar');
+  if (!bar) return;
+  bar.querySelectorAll('button[data-facet]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      FACET_FILTER = btn.getAttribute('data-facet') || 'none';
+      bar.querySelectorAll('button[data-facet]').forEach(b =>
+        b.classList.toggle('active', b === btn));
+      applyFacetFilter();
+    });
+  });
+}
+
+function applyFacetFilter() {
+  const svg = document.getElementById('graph');
+  if (!svg) return;
+  if (FACET_FILTER === 'none') svg.removeAttribute('data-facet');
+  else svg.setAttribute('data-facet', FACET_FILTER);
 }
 
 function applyHighlightFromUrl() {
@@ -1175,7 +1218,10 @@ function renderGraph() {
     const pos = nodePos[n.id];
     if (!pos) continue;
     const g = el('g');
-    g.setAttribute('class', 'node node-' + n.status);
+    let nodeCls = 'node node-' + n.status;
+    if (n.is_governance) nodeCls += ' is-governance';
+    if (n.welfare_relevant) nodeCls += ' is-welfare';
+    g.setAttribute('class', nodeCls);
     g.setAttribute('data-node-id', n.id);
     g.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
 
@@ -1621,6 +1667,14 @@ function showTip(ev, n) {
   if (n.badges && n.badges.length) html += '<dt>badges</dt><dd>' + n.badges.map(escapeHtml).join(', ') + '</dd>';
   if (n.claim_flags && n.claim_flags.length) html += '<dt>claim_flags</dt><dd>' + n.claim_flags.map(escapeHtml).join(', ') + '</dd>';
   if (n.unblocks_claims && n.unblocks_claims.length) html += '<dt>unblocks</dt><dd>' + n.unblocks_claims.map(escapeHtml).join(', ') + '</dd>';
+  if (n.epistemic_category) html += '<dt>epistemic</dt><dd>' + escapeHtml(n.epistemic_category) + '</dd>';
+  // Welfare carry-forward (GOV-PROC-1 s2): only surface when the node is tagged.
+  if (n.welfare_relevance && n.welfare_relevance !== 'none') {
+    html += '<dt>welfare</dt><dd>' + escapeHtml(n.welfare_relevance)
+      + (n.requires_welfare_review ? ' &middot; requires welfare review' : '') + '</dd>';
+    if (n.applicable_ethics_gates && n.applicable_ethics_gates.length)
+      html += '<dt>ethics gates</dt><dd>' + n.applicable_ethics_gates.map(escapeHtml).join(', ') + '</dd>';
+  }
   if (n.depends_on && n.depends_on.length) {
     // Annotate each lineage target with its status so done predecessors are
     // visually distinct from open ones in the tooltip too.
