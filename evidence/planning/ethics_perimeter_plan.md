@@ -1,3 +1,85 @@
+---
+# Closure-map governance-perimeter view. generation: governance keeps these
+# nodes OUT of the V3 closure % (read_closure counts only generation: v3) and
+# ethics_perimeter_plan.md is NOT on check_closure_drift.py's allowlist, so this
+# block renders as a standalone view without entering the V3 closure machinery.
+closure_plan:
+  id: ethics_perimeter
+  generation: governance
+  title: "Ethics Perimeter (governance layer)"
+  registered: 2026-06-19
+  scope_claims: [SENT-0, SENT-1, SENT-2, SENT-3, SENT-4, SENT-5, SENT-6, SENT-7, SENT-8, SENT-9, SENT-10, SENT-11, SENT-12, SENT-13, SENT-14, SENT-15, SENT-16, GOV-EXT-1, GOV-HEALTH-1, GOV-SEC-1, GOV-PROC-1, GOV-JUST-1]
+  nodes:
+    - id: "ethics_perimeter:P0-CATEGORY"
+      title: "Phase 0 -- governance_rule category + 22 SENT/GOV claims registered"
+      phase: 0
+      status: done
+      severity: load-bearing
+      unblocks_claims: [GOV-PROC-1]
+      last_updated: 2026-06-19
+    - id: "ethics_perimeter:P0-PLAN"
+      title: "Phase 0 -- plan-of-record created"
+      phase: 0
+      status: done
+      severity: high
+      depends_on: ["ethics_perimeter:P0-CATEGORY"]
+      last_updated: 2026-06-19
+    - id: "ethics_perimeter:P1-V3-BOUNDARY"
+      title: "Phase 1 -- SENT-0 + GOV-HEALTH-1 V3 bright lines (ree-v3 README + register stub)"
+      phase: 1
+      status: done
+      severity: high
+      unblocks_claims: [SENT-0, GOV-HEALTH-1]
+      depends_on: ["ethics_perimeter:P0-PLAN"]
+      last_updated: 2026-06-19
+    - id: "ethics_perimeter:P1-V3-WELFARE-TAG"
+      title: "Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as queue-experiment doc"
+      phase: 1
+      status: open
+      severity: medium
+      depends_on: ["ethics_perimeter:P1-V3-BOUNDARY"]
+      resume_condition: "descriptive-only V3 welfare tagging + preflight doc-habit; non-blocking, do before 2026-07-19 if cheap"
+    - id: "ethics_perimeter:P2-PREFLIGHT"
+      title: "Phase 2 keystone -- experiment-ethics preflight (operational SENT-2/4/8/10 thresholds)"
+      phase: 2
+      status: done
+      severity: load-bearing
+      unblocks_claims: [SENT-2, SENT-4, SENT-8, SENT-10]
+      depends_on: ["ethics_perimeter:P0-PLAN"]
+      last_updated: 2026-06-19
+    - id: "ethics_perimeter:P2-CARRYFORWARD"
+      title: "Phase 2 -- GOV-PROC-1 s2 carry-forward (ethical_metadata on 50 V4/V5/V6 roadmap nodes)"
+      phase: 2
+      status: done
+      severity: load-bearing
+      unblocks_claims: [GOV-PROC-1, SENT-13]
+      depends_on: ["ethics_perimeter:P0-PLAN"]
+      last_updated: 2026-06-19
+    - id: "ethics_perimeter:P2-V4-REGISTERS"
+      title: "Phase 2 -- V4 governance registers (welfare-risk full, assembly routing, indicator matrix, continuity/consent ladders)"
+      phase: 2
+      status: deferred
+      severity: medium
+      unblocks_claims: [SENT-1, SENT-5, SENT-9, SENT-12, SENT-13]
+      depends_on: ["ethics_perimeter:P2-PREFLIGHT", "ethics_perimeter:P2-CARRYFORWARD"]
+      resume_condition: "authored when each gate's first requires_welfare_review node activates (gains owner_exq); binds at V4 boundary"
+    - id: "ethics_perimeter:P3-V5V6-PERIMETER"
+      title: "Phase 3 -- V5/V6 perimeter registers (responsible release, external crosswalk, health/DPIA, security containment)"
+      phase: 3
+      status: deferred
+      severity: medium
+      unblocks_claims: [SENT-6, SENT-14, SENT-16, GOV-EXT-1, GOV-SEC-1, GOV-JUST-1]
+      depends_on: ["ethics_perimeter:P2-V4-REGISTERS"]
+      resume_condition: "authored on first V5/V6 node activation; SENT-14 release policy adopted_split_deferred"
+    - id: "ethics_perimeter:P4-TOOLING"
+      title: "Phase 4 -- ethics tooling (preflight/release-sensitivity checks, ethics explorer views, node-metadata lint)"
+      phase: 4
+      status: deferred
+      severity: medium
+      depends_on: ["ethics_perimeter:P3-V5V6-PERIMETER"]
+      resume_condition: "only after registers stable; check_node_ethics_metadata.py explicitly deferred"
+---
+
 # Ethics Perimeter — Plan of Record
 
 **Registered:** 2026-06-19
@@ -5,11 +87,16 @@
 **Status:** Phase 0 LANDED (this document + `governance_rule` epistemic category + SENT-*/GOV-* claim registration). Phases 1–3 DRAFTED here, DEFERRED.
 **Green-board guarantee:** NON-BLOCKING for the V3 green-board (Sunday 2026-07-19). Every node below `blocks_v3_green_board: false`.
 
-> This is a **governance plan-of-record**, not a closure plan. It is deliberately
-> outside `check_closure_drift.py`'s allowlist, so it does not enter the V3
-> closure %. It is the resume primitive for the ethics-perimeter work across
-> sessions — read it before touching any SENT-*/GOV-* claim or any
-> `docs/governance/` ethics register.
+> This is a **governance plan-of-record**, rendered on the closure map as the
+> **governance-perimeter view** via the `closure_plan:` frontmatter above
+> (`generation: governance`). It stays deliberately outside
+> `check_closure_drift.py`'s allowlist, and — because `read_closure` counts only
+> `generation: v3` toward the closure % — it does **not** enter the V3 closure %.
+> The `generation: governance` tab is a version-orthogonal lens (governance is a
+> standing layer, not a version peer of V3/V4/V5), so it sits beside the
+> generation switch the same way `deferred` does. It is the resume primitive for
+> the ethics-perimeter work across sessions — read it before touching any
+> SENT-*/GOV-* claim or any `docs/governance/` ethics register.
 
 ---
 

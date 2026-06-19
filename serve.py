@@ -2331,6 +2331,9 @@ def _enrich_closure_v2(data: dict) -> dict:
         n["is_governance"] = (
             unblocks_gov
             or "governance" in str(n.get("plan_id") or "").lower()
+            # the whole generation: governance tab IS the ethics-perimeter
+            # governance layer, so every node in it is governance.
+            or (n.get("generation") or CLOSURE_DEFAULT_GENERATION) == "governance"
         )
         n["drift"] = drift_map.get(n.get("id"))
         n["active_blocker_short"] = _closure_active_blocker_short(
