@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T20:24:49Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3",
+      "queue_id": "V3-EXQ-485h",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- behavioural expression blocked by a different claim (MECH-439 F-dominance conversion ceiling), not by the OFC mechanism; non_contributory, not weakens",
+        "biological_reference": "clear -- OFC outcome-value coding (Rudebeck & Murray 2018; Stalnaker 2021; Wilson-Niv 2014; lit_conf 0.863), faithful translation not a formal import; intact value signal that reaches the accumulator but cannot win against a dominant default controller = integration/conversion signature",
+        "prerequisites": "present -- 485e/f range-starvation AND 485g threat-conditioning gap both closed; head is genuinely state-conditioned (n_threat_invariant_seeds=0, range collapses at devaluation)",
+        "implementation": "complete -- head trains (delta 5.63), range real (0.50) and correctly state-conditioned",
+        "environment": "adequate -- SD-054 reef / aversive-devaluation pressure present",
+        "measurement": "adequate -- 485g-prescribed disambiguators (devalued-state bias range + live-E3 conversion) recorded; C2 separation-ratio degeneracy caught by criteria_non_degenerate",
+        "integration": "coupled but blocked -- OFC bias reaches E3 accumulator authority (range 0.50) but F monopolises committed selection (seed1 committed_shift 0.0)",
+        "scale": "adequate -- zero-conversion is structural (F-dominance), not under-training"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-value / specific-outcome coding driving candidate-differentiated action bias",
+        "dependencies": ["candidate-differentiated value inputs", "a selection stage that the modulatory bias can actually move (not F-monopolised)"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism level -- the OFC translation is faithful; the failure is a downstream conversion/integration ceiling (MECH-439), not OFC-mechanism falsification",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-19 (failure_autopsy_V3-EXQ-485h CONFIRMED; verdict non_contributory, override the manifest's provisional weakens per the script disambiguation note). V3-EXQ-485h is the 485g-designed T-vs-F disambiguator and the TERMINUS of the 485 behavioural lineage. Readiness MET 3/3 (cross-candidate bias range 0.50 high-threat >= 0.05 floor; head weight-delta 5.63, genuinely trained), C3 frozen-head silence control PASS 3/3, but C1 devaluation shift {0.017,0.080,0.012} (1/3) and C2 between-context TV {0.0036,0.0064,0.0105} ~0 (0/3, degenerate). DISAMBIGUATION RESOLVED: (T) threat-invariant bias REFUTED (n_threat_invariant_seeds=0; the bias range COLLAPSES at the devalued state, collapse ratio 0.12, n_range_collapsed=3 -- the paired threat-conditioned driver closed the 485g gap, the head is genuinely outcome-value-conditioned); (F) F-dominance conversion ceiling (MECH-439) IMPLICATED as the proximate cause -- the live-E3 leg (absent from 485g's isolated-OFC-softmax loop) shows the OFC bias reaching accumulator authority (range up to 0.50) with ZERO committed conversion (seed1 f_dominance_positive_adjacent, committed_shift 0.0), corroborated by near-zero shifts on seeds 0/2. The MECH-263 devaluation signature (a) is positively shown at the REPRESENTATION level (range is value-modulated); only the BEHAVIOURAL conversion fails, blocked at the shared F-dominated selector, and the proven F-bypass (569i top-k shortlist conversion, ARC-065 ceiling lifted) was NOT in this loop. Adjudicated non_contributory (NOT weakens, NOT demotion): the OFC mechanism is a faithful translation and was not given a fair behavioural-conversion test. SOLE genuine behavioural experimental entry for SD-033b + MECH-263 -- do not let it define exp_conf. Sequenced behind the MECH-439 F-rebalance (ARC-065 569i top-k / GAP-B 654g / 689a / 625e); the deferred retest (V3-EXQ-485i: route OFC bias through the proven 569i top-k channel) reprices after the conversion ceiling is addressed.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-033b",
+        "sd_id_suggested": null,
+        "title": "pfc.ofc_analog_outcome_structure -- behavioural validation gated on the MECH-439 conversion ceiling",
+        "implementation_hint": "Append a failure_record + metric_trajectory observation to the existing SD-033b queue entry: the implemented trained OFC head produces a genuine 0.50 STATE-CONDITIONED cross-candidate bias range (collapsing at devaluation) that reaches E3 accumulator authority but achieves ZERO committed conversion (F-dominance, live-E3 seed1). Behavioural validation is gated on the MECH-439 / modulatory-bias-selection-authority conversion ceiling (the proven 569i top-k bypass, ARC-065 ceiling lifted, not yet routed through the OFC channel). No NEW substrate to build -- the conversion-ceiling cluster (654g/689a/625e) already owns the F-rebalance; record 485h there only as a corroborating positive-adjacent failure record (weak: single-seed-explicit).",
+        "unblocks_claims": ["MECH-261", "MECH-263"],
+        "depends_on_unresolved": ["MECH-439 F-dominance conversion ceiling resolution", "ARC-065 569i top-k shortlist conversion routed through the OFC channel", "GAP-B falsifier V3-EXQ-654g"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3",
+          "experiment_type": "v3_exq_485h_sd033b_trained_ofc_head_behavioural",
+          "metric": "trained OFC head: cross-candidate bias range 0.50 high-threat (collapses to 0.0155 at devaluation, collapse ratio 0.12), reaches E3 authority (range 0.50) but committed_shift 0.0 (F-dominance, live-E3 seed1); C1 1/3, C2 0/3",
+          "target": "a working behavioural impl must produce devaluation_selection_shift > 0.05 (>= 2/3 seeds) AND between_context_tv >= 0.05 (>= 2/3) through a conversion-capable selector"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "(T) threat-invariant bias REFUTED -- the paired threat-conditioned driver closed the 485g gap; the head is genuinely state-conditioned (n_threat_invariant_seeds=0, range collapses at devaluation)",
+        "(F) F-dominance conversion ceiling (MECH-439) IMPLICATED via the live-E3 leg -- OFC bias reaches accumulator authority (0.50) but achieves zero committed conversion; the OFC channel joins the conversion-ceiling cluster as positive-adjacent evidence (weak, single-seed-explicit)",
+        "MECH-263 devaluation signature (a) is positively shown at the representation level; only the behavioural conversion fails",
+        "the manifest's provisional weakens is the script's pre-registered placeholder deliberately deferred to this autopsy; adjudicated non_contributory because the proven F-bypass (569i top-k) was not in the loop",
+        "the 485e->485g->485h lineage is a converging instrumentation-fix sequence terminated in one clean diagnosis -- NOT granularity debt; no /claim-synthesis"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control + readiness pass, every discrimination criterion fails -- with the live-E3 leg now showing the failure is at the F-dominated selector, not the OFC mechanism",
+    "is_independent_bugs": false,
+    "structural_property": "the F-dominance conversion ceiling (MECH-439, ~88-89% of E3 committed-selection variance) drowns every upstream modulatory channel that produces real differentiated signal; 485h is the OFC instance and the first in the series to measure the conversion step directly via the live E3 selector",
+    "readings": ["f_dominance_conversion_ceiling_confirmed", "threat_invariant_bias_refuted"]
+  },
+  "granularity_debt_check": {
+    "is_recurrence": true,
+    "prior_autopsies": ["failure_autopsy_V3-EXQ-485e_2026-06-11", "failure_autopsy_V3-EXQ-485g_2026-06-19"],
+    "autopsy_index_on_target": 3,
+    "is_granularity_debt": false,
+    "rationale": "converging instrumentation-fix sequence (range-starvation -> undisambiguated-conversion -> F-dominance-conversion-ceiling) terminated in one clean diagnosis; the failure implicates a DIFFERENT established claim (MECH-439) as the behavioural blocker, not SD-033b/MECH-263 being coarse. No /claim-synthesis.",
+    "claim_synthesis_routing": false
+  },
+  "mech_439_positive_adjacent": {
+    "is_positive_adjacent": true,
+    "strength": "weak -- single-seed-explicit (seed1 f_dominance_positive_adjacent) + 2-seed-corroborating (near-zero committed shifts)",
+    "action": "record as a corroborating failure_record in the conversion-ceiling cluster; do NOT count a supports or flip MECH-439 status on single-seed data"
+  }
+}
