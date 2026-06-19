@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-18T09:09:59.540971Z`
+Generated: `2026-06-19T09:25:04.753494Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -286,6 +286,8 @@ Generated: `2026-06-18T09:09:59.540971Z`
 | `targeted_review_q_054` | [`2026-06-12_q_054_valor_curriculum_achiam2018`](targeted_review_q_054/entries/2026-06-12_q_054_valor_curriculum_achiam2018/record.json) | 2 | [`summary`](targeted_review_q_054/entries/2026-06-12_q_054_valor_curriculum_achiam2018/summary.md) |
 | `targeted_review_q_055` | [`2026-06-18_q_055_sws_preferential_replay_wei2016`](targeted_review_q_055/entries/2026-06-18_q_055_sws_preferential_replay_wei2016/record.json) | 4 | [`summary`](targeted_review_q_055/entries/2026-06-18_q_055_sws_preferential_replay_wei2016/summary.md) |
 | `targeted_review_q_056` | [`2026-06-18_q_056_unexpected_uncertainty_exploration_payzanlenestour2012`](targeted_review_q_056/entries/2026-06-18_q_056_unexpected_uncertainty_exploration_payzanlenestour2012/record.json) | 3 | [`summary`](targeted_review_q_056/entries/2026-06-18_q_056_unexpected_uncertainty_exploration_payzanlenestour2012/summary.md) |
+| `targeted_review_q_057` | [`2026-06-19_q_057_memory_resolution_aimone2011`](targeted_review_q_057/entries/2026-06-19_q_057_memory_resolution_aimone2011/record.json) | 3 | [`summary`](targeted_review_q_057/entries/2026-06-19_q_057_memory_resolution_aimone2011/summary.md) |
+| `targeted_review_q_058` | [`2026-06-19_q_058_wta_collective_stability_rutishauser2010`](targeted_review_q_058/entries/2026-06-19_q_058_wta_collective_stability_rutishauser2010/record.json) | 3 | [`summary`](targeted_review_q_058/entries/2026-06-19_q_058_wta_collective_stability_rutishauser2010/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/record.json) | 5 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/summary.md) |
