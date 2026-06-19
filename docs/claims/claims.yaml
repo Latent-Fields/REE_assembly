@@ -9561,6 +9561,8 @@
     a 2-layer MLP ResourceEncoder can extract resource type from this without requiring
     changes to the grid world environment.
   registered_utc: 2026-03-29
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b STILL CEILINGED): MECH-307 is a spurious unblocks_claims match -- it only cleared the mixed-affect-stream confound on the 514f/514k evidence, it does NOT deliver z_resource-encoder-driven goal navigation. Real blocker = foraging-competence + z_goal-formation quality on the SD-049 reef (~0.2% consumption, failure_autopsy_V3-EXQ-514l). Route to /implement-substrate (scaffolded_sd054 foraging scaffold port), NOT a MECH-307 retest. See substrate_ceiling_lifted_triage_2026-06.md."
   evidence_quality_note: |
     2026-06-03 (governance, failure_autopsy_V3-EXQ-514l): V3-EXQ-514l re-tagged non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate. SD-049 Phase-2's stated deliverable (V3-EXQ-514 behavioural validation: goal_resource_r lift + identity probe + wanting!=liking dissociation) is NOT met -- 514j/k/l all FAIL row1b_joint_identity_probe_weak. Encoder/cascade wired+firing (C0/C1/C2a/C2d/C3 PASS); missing piece is upstream foraging-competence on the SD-049 multi-resource/reef substrate (~0.2% consumption, 23 vs 818 neighborhood samples). C5 lift is also a test-design defect (ARM_0 saturates goal_resource_r ~1.0). Discovered prerequisite, NOT falsification. Substrate routing: amend SD-049-PHASE-2 (port foraging-competence scaffold from scaffolded_sd054_onboarding); 514m non-saturating-C5 redesign deferred until substrate lands.
     Registered 2026-03-29 from EXQ-085g FAIL analysis (goal_resource_r=0.066 across all
@@ -13965,6 +13967,8 @@
     routed to /implement-substrate).
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): the ARC-046 Phase-0->1 gate-fix substrate landed and its (c-2) crossing-count criterion was wired 2026-06-19 (591f; commit b4dc264), but GAP-14 STAYS blocked on (c-1) seed-46 exploration-strength collapse -- the Q-043 magnitude lever is EXHAUSTED (V3-EXQ-667 FAIL: 4/5 seeds byte-identical across 8x knob scaling -> zero E3 selection authority), blocked on modulatory-bias-selection-authority / GAP-A. Queue 667a first; do NOT queue EXQ-ISEF-005 on the (c-2)-cleared signal alone. NOTE: 591 manifest still carries does_not_support (scored weakens) despite the claims.yaml non_contributory assertion -- separate evidence-record drift to fix."
 
 - id: MECH-189
   title: "During the child phase, high-salience benefit contacts under high contextual complexity are written to persistent ContextMemory as super-ordinal goal anchors that bias adult z_goal seeding across novel episodes."
@@ -13975,6 +13979,8 @@
   confidence: 0.0
   epistemic_category: substrate_ceiling  # gov 2026-06-13: GAP-2 z_goal-seeding/context-diversity ceiling (per failure_autopsy_V3-EXQ-669a)
   pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): INF-ENV-003 transient-benefit-patch SALIENCE is orthogonal to MECH-189's real blocker, which is goal_pipeline:GAP-2 z_world context-diversity -- the super-ordinal anchor store saturates to <=1 via merge_similarity collapse on near-identical nursery contexts (failure_autopsy_V3-EXQ-669a/669b). No context-diversity substrate is built or in flight. Do not re-queue the 669 line until a context-diversity substrate lands."
   governance_note_2026_06_13: >
     PM cycle (gov 2026-06-13T20:04Z): the super-ordinal write gate could not be exercised in
     V3-EXQ-669a (superseded; degenerate -- zero writes/anchors in all arms) nor in the
@@ -20049,6 +20055,8 @@
   pending_retest_after_substrate: true  # c2 retest gated on committed-action diversity (ARC-065 GAP-A / MECH-439); failure_autopsy_V3-EXQ-445h_2026-06-19
   claim_level: architectural
   registered_utc: 2026-04-19
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): MECH-269 per-region V_s landing is implemented but post_implementation_validation_status wired_but_inert on this env and has been SUPERSEDED as the operative blocker by the F-dominance conversion ceiling (MECH-439: F ~88-89% of E3 variance). dACC c2 (committed-action-entropy shift) is floor-locked because committed-action diversity does not exist (445h: action_class_entropy=0.0 all arms). Retest gated on the live MECH-439/GAP-A top-k conversion front (in flight as V3-EXQ-654g); never re-run on the 445h surface."
   instantiates: SD-032
   depends_on:
     - SD-032           # parent cluster
@@ -21992,6 +22000,8 @@
   pending_retest_after_substrate: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): SD-033a lateral_pfc_analog (consumer) is implemented and PASSes distractor-resistance (484), but rule-SELECTIVE persistence is untestable until an upstream rule-creator emits DIFFERENTIATED (non-monomodal) rule_state. That producer is arc_062_rule_apprehension:GAP-B / behavioral_diversity_isolation:GAP-A (monostrategy collapse; V3-EXQ-598b C3 FAIL trainable_not_monomodal); latest GAP-B falsifier V3-EXQ-654f FAIL/non_contributory 2026-06-18, 654g successor in flight. Retest MECH-262 only after a GAP-B PASS yields differentiated rule states (acceptance ~598c). Do not requeue on SD-033a alone."
   depends_on:
     - SD-033a          # substrate this mechanism instantiates
     - MECH-261         # write-gate context within which persistence operates
@@ -24028,6 +24038,8 @@
   implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Substrate-readiness validation: V3-EXQ-483b PASS (2026-05-08). [2026-05-30 consumer-cascade amend]: PAG wiring unchanged this pass (already landed). V3-EXQ-483d FAIL traced to dormant PAG path in the fishtank validation env (no sustained-threat curriculum -> override_signal climbed but exit_threshold scaling had nowhere to discharge). End-to-end PAG-engaging behavioural testability restored via V3-EXQ-483e amend successor which reuses SD-036+MECH-279 freeze-engaging substrate (V3-EXQ-475-style config: use_gabaergic_decay=True + use_pag_freeze_gate=True). pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. See SD-037 implementation_note 2026-05-30 paragraph for the parent consumer-cascade landing record."
   claim_level: mechanistic
   registered_utc: 2026-04-22
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): SD-037 broadcast.override_regulator is wired (483b PAG release 1.875x) but its multiplicative gain has a ZERO committed-freeze baseline -- PAG never engages at fishtank z_harm_a (483e: pag_release=0/12). Co-gated with MECH-281 on the SD-037 axis-b thread (sd_037_axis_b_sustained_threat_curriculum_plan.md): terminal retest V3-EXQ-483f is reserved/blocked behind 625e (GAP-A conversion-propagation-under-threat). 625d already FAILed/self-routed substrate_not_ready 2026-06-18. Do not requeue on the fishtank surface."
   depends_on:
     - SD-037    # parent: provides override_signal
     - MECH-279  # the freeze gate this raises the threshold of
@@ -24082,6 +24094,8 @@
   implementation_note: "PARTIALLY IMPLEMENTED 2026-04-25 as part of SD-037 landing. Drive-coupling axis wired at GoalState seeding (effective_drive amplified by override_goal_seeding_gain * override_signal in REEAgent.update_z_goal) and at SalienceCoordinator (operating-mode reweight via affinity_weights['override_signal']). PFC/BLA/beta-gate targets noted in claim title rely on the same override_signal but additional consumer wiring is deferred until those substrates need it. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) are V3-EXQ-483 secondary acceptance criteria. [2026-05-30 consumer-cascade amend, deferral closed]: Four additional consumer sites named in the claim title now wired. (i) LateralPFCAnalog (SD-033a deliberation, ree_core/pfc/lateral_pfc_analog.py): update() gains override_signal + override_eta_gain kwargs; eff_eta scaled by (1 + override_eta_gain * override_signal). Orexin-recruited state accelerates rule_state EMA learning. (ii) BLAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/bla.py): tick() gains override_signal + override_encoding_gain kwargs; final encoding_gain (after inverted-U + post-event window) scaled by (1 + override_encoding_gain * override_signal). Roozendaal 2011 anchor: orexin -> NE / amygdala enhanced LTP. (iii) CeAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/cea.py): tick() gains override_signal + override_amplitude_gain kwargs; both mode_prior and fast_prime scaled by (1 + override_amplitude_gain * override_signal), re-clipped to mode_prior_log_odds_max so CeA cannot over-rule cortex via the amplified path. (iv) BetaGate / agent.py urgency_interrupt path (MECH-090 motor side, ree_core/agent.py select_action MECH-091 block): urgency_threshold scaled by max(0.0, 1 - override_beta_interrupt_gain * override_signal). Orexin -> escape-from-freeze on the motor side, parallel to the already-wired PAG alpha_override path on the freeze-gate side; lower threshold under recruited state -> committed motor program more readily aborted on z_harm_a / z_harm_un urgency. All four new REEConfig gains default 0.0 (bit-identical OFF). 556/556 contracts + 7/7 preflight PASS with all four gains at default 0.0 (was 543 + 13 new MECH-281 contracts at tests/contracts/test_sd_037_consumer_cascade.py). Activation smoke 2026-05-30 (50 ticks drive=0.9 / harm=0.6 -> override_signal=0.768): BLA encoding_gain 2.5 -> 5.0 (2x at gain=1); CeA mode_prior 0.2 -> 0.4, fast_prime 0.15 -> 0.3 (2x each at gain=1); LateralPFC rule_state delta 0.0956 -> 0.2867 (3x at gain=2). MECH-094 preserved via existing simulation_mode arguments on BLA/CeA tick + MECH-319 simulation-mode-rule-gate on LateralPFC update. Validation experiment: V3-EXQ-483e queued (4-arm successor under 483 lineage; reuses SD-036+MECH-279 freeze-engaging substrate for PAG-engaging env condition; SalienceCoordinator enable via use_salience_coordinator=True; claim_ids=[SD-037, MECH-280, MECH-281]). Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) NOT executed this pass -- they are V3-EXQ-483 secondary acceptance criteria, now decisively testable end-to-end via 483e. pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. ree-v3/CLAUDE.md SD-037 consumer-cascade section appended 2026-05-30."
   claim_level: mechanistic
   registered_utc: 2026-04-22
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): co-gated with MECH-280 on SD-037 axis-b. Consumer outputs (BLA/CeA/BetaGate) are all zero at fishtank baseline (483e) so SD-037's multiplicative broadcast gain has nothing to scale -> cataplexy/PWS dissociation unreachable. Terminal retest V3-EXQ-483f blocked behind 625e/GAP-A. Needs env enrichment driving z_harm_a above BLA/CeA input thresholds, not more fishtank experiments."
   depends_on:
     - SD-037    # parent: provides override_signal
     - SD-012    # drive_level being coupled
@@ -25610,6 +25624,8 @@
   pending_retest_after_substrate: true
   claim_level: mechanistic
   registered_utc: 2026-04-26
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b STILL CEILINGED): modulatory-bias-selection-authority is implemented but cannot carve MECH-294 -- currency_coherence is a SCALAR (rescale-invisible), so the route-range authority and the 569i top-k shortlist have no per-candidate range to act on (V3-EXQ-661: committed-distribution TV ~0 incl gate-ON vs gate-OFF). Needs a prior /implement-substrate wiring step (express binding-coherence as cross-candidate range) BEFORE any behavioural falsifier. Primary lit falsifier (Kay-2020 theta) is out-of-substrate for V3."
   implementation_note: >
     Substrate IMPLEMENTED 2026-06-09 behind the no-op-default flag
     use_multi_content_theta_packet (bit-identical OFF). Sibling module
@@ -25927,6 +25943,8 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-26
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): goal_pipeline:GAP-4 was CLOSED 2026-06-09 (necessity reading falsified by V3-EXQ-490j; modulatory reading substrate-supported by 490j/493). The substrate_ceiling/pending_retest flags are retained ONLY for the OPTIONAL, non-GAP-blocking 490L modulatory-sufficiency retest, gated on scaffolded_sd054_onboarding (collapsed-candidate/weak-z_goal), NOT on MECH-307. Do not queue a MECH-307-driven retest."
   depends_on:
     - SD-012     # homeostatic drive (the input)
     - SD-014     # wanting/liking architecture (existing dissociation)
@@ -26858,6 +26876,8 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: "2026-05-03"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b STILL CEILINGED): MECH-307 is orthogonal (anticipatory-affect amendment), not the foraging-competence substrate SD-049 needs. Phase-2 V3-EXQ-514 validation blocked on ~0.2% consumption on the enriched reef (514l). Cohort drive-coupling lineage (MECH-229/436, 514n-514t) is live but SD-049's own 4-arm validation is deferred pending a foraging-competent policy; route to /implement-substrate foraging scaffold, not a MECH-307 retest. See substrate_ceiling_lifted_triage_2026-06.md."
   depends_on:
     - SD-012     # homeostatic drive: per-axis extension required, cascades into goal-conditioning pathway
     - SD-015     # z_resource encoder: the upstream substrate this enables
@@ -36571,6 +36591,8 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: "2026-05-17"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): the test_bed_enrichment destabilising-pressure env was built but is NOT the operative blocker -- crystallization-necessity cannot be exercised until ARC-062/MECH-333 produce a functionally-DIFFERENTIATED GatedPolicy at the Phase-3 boundary (same GAP-B diversity-generation front as MECH-309, in flight as 654g). Also fix the recurring harness no-op (assert policy trained + ewc_penalty in loss + true-negative ARM_0: entropy_bonus=0/noise-floor-off/E3-diversity-off) burned across 610c-f/655 before any retest."
   depends_on:
     - MECH-333   # open phase (must precede closure)
     - INV-074    # the invariant motivating this mechanism

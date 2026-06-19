@@ -12,7 +12,11 @@ ENRICHMENT, not more experiments on the existing substrate. The audit's job is
 to guarantee every such verdict has either a design owner, a deliberate park
 decision, or is surfaced as a genuine orphan that needs routing.
 
-Buckets (each claim lands in exactly one; precedence top-to-bottom):
+Buckets (each claim lands in exactly one). PRECEDENCE: `parked` is checked
+FIRST -- an explicit operator park decision (`ceiling_decision: deferred`)
+overrides substrate status, so an intentionally-deferred ceiling is never
+re-surfaced as `mapped` / `ceiling_may_have_lifted` just because its named
+substrate is implemented. The remaining buckets follow top-to-bottom:
 
   ceiling_may_have_lifted  Mapped AND the unblocking substrate_queue entry is
                            now status=implemented. The bounding substrate has
@@ -137,19 +141,31 @@ def audit(claims: list[dict], queue: list[dict]) -> dict:
 
         retest_owed = _truthy(c.get("pending_retest_after_substrate"))
         rec = {"id": cid, "status": c.get("status")}
+        # PRECEDENCE: an explicit operator park decision wins over substrate
+        # status. A `ceiling_decision: deferred` claim is intentionally parked
+        # (build/retest deferred), so it must NOT re-surface as `mapped` or
+        # `ceiling_may_have_lifted` just because its named substrate happens to
+        # be implemented -- that defeats the parking convention's whole purpose
+        # (stop re-flagging intentionally-parked ceilings every cycle). Remove
+        # the marker to re-route. This only affects claims carrying the explicit
+        # marker, so un-parked mapped+implemented ceilings still surface normally.
+        # (Reordered 2026-06-19: parked was previously checked AFTER mapped, which
+        # made the marker inert for every mapped+implemented claim -- the entire
+        # substrate_ceiling_lifted_triage_2026-06 bucket.)
+        #
         # ceiling-may-have-lifted is actionable only when the bounding substrate
         # has LANDED *and* a retest is still owed. A mapped+implemented ceiling
         # whose retest was already reconciled (no pending_retest flag) is a
         # genuinely closed loop -> plain `mapped`, not a re-surfaced action.
-        if mapped and implemented_owner is not None and retest_owed:
+        if parked:
+            rec["ceiling_routing_note"] = (c.get("ceiling_routing_note") or "").strip()[:160]
+            buckets["parked"].append(rec)
+        elif mapped and implemented_owner is not None and retest_owed:
             rec["unblocked_by"] = implemented_owner.get("sd_id")
             buckets["ceiling_may_have_lifted"].append(rec)
         elif mapped:
             rec["unblocked_by"] = [e.get("sd_id") for e in owners]
             buckets["mapped"].append(rec)
-        elif parked:
-            rec["ceiling_routing_note"] = (c.get("ceiling_routing_note") or "").strip()[:160]
-            buckets["parked"].append(rec)
         elif self_handled:
             rec["own_substrate_entry"] = [
                 {"sd_id": e.get("sd_id"), "status": e.get("status")} for e in own_entries
