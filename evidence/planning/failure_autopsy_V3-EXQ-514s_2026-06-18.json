@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-18T16:05:18Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3",
+      "queue_id": "V3-EXQ-514s",
+      "claim_ids": ["MECH-436"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- overshoot flips 4/5 + natural delta clears margin on 2/5 prove the drive channel carries and natural drive can carve where object base_value gaps are surmountable; the FAIL bears on amend magnitude (kappa), not the claim. MECH-229 leg (a) wanting!=liking untouched.",
+        "biological_reference": "clear -- Berridge incentive salience (drive/state-modulated cue attraction); the bimodal [0,0.2] natural delta matches 'drive re-weights wanting mainly when options are close in base value'.",
+        "prerequisites": "present (lever b) / partial (lever a) -- standing differential per-axis depletion now present (spread ~0.2, enriched_spread_frac 1.0); residual shortfall is the kappa coupling gain (scale 6.0 short of real base_value gaps on 3/5 seeds).",
+        "implementation": "adequate -- most_wanted responds to drive (natural 2/5, overshoot 4/5); kappa=6.0 sub-threshold vs real base_value on 3/5 seeds.",
+        "environment": "adequate (improved) -- the env amend produced the standing argmax-relevant spread it was built for; the 514q equalisation-to-0.006 defect is cured.",
+        "measurement": "adequate but coarse -- WL dissociation is argmax-flip-gated, so it discards genuine sub-flip continuous re-weighting; a continuous incentive-amplitude metric would capture it (deferred fork).",
+        "integration": "coupled -- bank -> most_wanted reached; overshoot + natural (2/5) move it.",
+        "scale": "adequate -- 6 seeds, 75 scored WL steps."
+      },
+      "biological_reference": {
+        "closest_mechanism": "incentive salience as drive/state-modulated cue attraction (Berridge 2006; Smith/Berridge/Aldridge 2011 PNAS; DiFeliceantonio/Berridge 2016)",
+        "dependencies": ["differential per-axis homeostatic depletion signal (standing spread, now present)", "kappa coupling gain scaled to compete with real object base_value (load-bearing, still short at 6.0)"],
+        "is_formal_import": false,
+        "divergence": "Not a formal import: incentive salience IS drive/state-modulated cue attraction. kappa has no a-priori correct value, so scaling it is legitimate substrate calibration -- bounded by the constraint that drive must not dominate base_value (OFF floor must stay hard-zero, leg-(a) wanting!=liking must stay intact; both currently honest).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-18 (failure_autopsy_V3-EXQ-514s, confirmed): clean self-route; substrate-ceiling PARTIALLY LIFTED. 514s armed the 514r-greenlit SD-049-PHASE-2 amend (kappa_scale=6.0 + per_axis_restoration_fraction=0.3). The self-route to mech436_enrichment_insufficient_substrate_ceiling is CORRECT and reached by the honest path: all five non-vacuity preconditions MET -- contact 5/6, argmax-relevance pc_frac=1.0, OFF/bank-disabled floor 1.0 (hard zero), bank populated 1.0, and the NEW enriched-spread precondition MET (mean_drive_spread_max=0.211, per-seed 0.19-0.23, floor 0.1) -- proving lever (b) standing-differential-depletion WORKED (vs 514q's equalised ~0.006). Natural drive-coupled delta mean 0.064 < margin 0.15 (sd 0.109; per-seed [-0.067, 0.176, 0.0, 0.211, 0.0] -> 2/5 clear the margin individually), while overshoot (mag 5.0) still flips most_wanted on 4/5 guard-passing seeds (>=2/3) -> enrichment insufficient, NOT a weakens. The load-bearing new finding: the amend PARTIALLY worked -- natural coupling moved from 514q's byte-identical 0.0 to a bimodal [0,0.2] (present on 2/5 seeds), overshoot rose 2/5->4/5. The residual shortfall is localized to the kappa-scaling lever (a): the WL metric is argmax-flip-gated, and on 3/5 seeds the real object base_value gaps still exceed what kappa_scale=6.0 x standing-spread~0.2 overcomes at natural magnitude (only the ~25x-larger overshoot flips there). MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED -- confirmed correct, NOT weakened, NOT promoted, NOT granularity debt: same signature as 514q/514r, now partially mitigated, so NO /claim-synthesis). Route: /implement-substrate amend SD-049-PHASE-2 -- raise incentive_drive_kappa_scale above 6.0 (bounded so drive does not swamp base_value: OFF floor stays 0, leg-(a) wanting!=liking intact), optionally deepen standing spread; re-issue V3-EXQ-514t. MECH-229 leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNAFFECTED. No demotion.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "sd_id_suggested": "SD-049-PHASE-2",
+        "title": "Raise drive-coupling kappa: incentive_drive_kappa_scale above 6.0 so natural-magnitude drive x standing spread (~0.2) overcomes real object base_value gaps on >=2/3 seeds",
+        "implementation_hint": "514s proved lever (b) standing-differential-depletion WORKED (enriched_spread 1.0, spread ~0.2 on all seeds) but kappa_scale=6.0 (lever a) is still short: natural delta bimodal [0,0.2], 2/5 seeds clear margin, overshoot 4/5. The WL metric is argmax-flip-gated, so on 3/5 seeds real base_value gaps exceed what kappa=6.0 x spread~0.2 flips at natural magnitude. Raise incentive_drive_kappa_scale above 6.0 (and/or per_axis_restoration_fraction below 0.3) BOUNDED so drive does not dominate base_value (OFF floor must stay hard-zero, MECH-229 leg-(a) wanting!=liking must stay intact). Re-issue V3-EXQ-514t with the 514r/514s controls. Deferred fork: a continuous incentive-amplitude metric (sub-flip re-weighting magnitude) if the kappa raise stalls.",
+        "unblocks_claims": ["MECH-436"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3",
+          "experiment_type": "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest",
+          "metric": "Amend partially worked: enriched_spread MET (mean_drive_spread_max 0.211 vs 514q ~0.006, all 5 seeds >= floor 0.1) + all 5 non-vacuity preconditions met. Natural drive-coupled delta mean 0.064 < margin 0.15 (sd 0.109; per-seed [-0.067,0.176,0.0,0.211,0.0] -> 2/5 clear margin), overshoot (mag 5.0) flips 4/5 seeds (>=2/3). Residual shortfall = kappa_scale=6.0 insufficient vs real base_value gaps on 3/5 seeds (argmax-flip-gated WL metric).",
+          "target": "On a higher-kappa SD-049-PHASE-2 substrate (incentive_drive_kappa_scale > 6.0, bounded), natural drive-coupled delta mean(WL_drive - WL_nodrive) >= max(k*pstdev(delta), 0.15) on >=2/3 seeds with the overshoot/OFF/recalibrated-readiness/enriched-spread controls re-run -- converts MECH-436 substrate_ceiling -> supports."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 514r-greenlit SD-049-PHASE-2 amend PARTIALLY worked: lever (b) standing-differential-depletion (per_axis_restoration_fraction=0.3 + divergent decay) produced an argmax-relevant standing per-axis spread ~0.2 on ALL seeds (enriched_spread_frac 1.0), curing the 514q equalisation-to-0.006 defect. Natural drive-coupling moved from 514q's byte-identical 0.0 to a bimodal [0,0.2] (2/5 seeds clear margin); overshoot rose 2/5->4/5.",
+        "The residual shortfall is localized to the kappa-scaling lever (a): kappa_scale=6.0 is insufficient. The WL dissociation metric is argmax-flip-gated, so on 3/5 seeds real object base_value gaps exceed what kappa=6.0 x standing-spread~0.2 overcomes at natural magnitude (only the ~25x-larger overshoot mag 5.0 flips there). Raise kappa, bounded so drive does not swamp base_value.",
+        "The self-route was CLEAN and CORRECT (unlike 514r, which the autopsy had to overturn): the substrate_ceiling branch was reached only after all five non-vacuity preconditions passed, with overshoot flipping a supermajority -- the script self-routed honestly and the autopsy confirms rather than overturns it.",
+        "kappa has no a-priori correct value (Berridge: incentive amplitude IS drive-scaled), so scaling it is legitimate substrate calibration, NOT p-hacking -- bounded by the constraint that drive must not dominate base_value (OFF floor stays hard-zero, leg-(a) wanting!=liking intact). The hard-zero OFF floor on 514s confirms the amend has not encroached on leg-(a).",
+        "Convergent (not divergent) recurrence: 6th run / 3rd autopsy circling MECH-436, but the SAME signature (natural drive below the argmax-flip threshold vs real base_value), now partially mitigated. NOT granularity debt -- the /claim-synthesis split already resolved that at 514q; no further /claim-synthesis warranted.",
+        "Deferred measurement fork: the argmax-flip-gated WL metric discards genuine sub-flip continuous re-weighting; a continuous incentive-amplitude metric would capture drive modulation that does not cross the argmax boundary -- queue only if the kappa amend stalls."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
