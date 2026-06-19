@@ -65,6 +65,13 @@ echo "--- Step 3/7: Generating pending review list ---"
 echo "--- Step 3b: Generating Option E shadow recommendations ---"
 "$PYTHON" scripts/generate_option_e_shadow.py
 
+echo "--- Step 3c-pre: Closure-plan frontmatter strict-YAML lint (warn-only) ---"
+# Catches an unquoted prose scalar (a stray ': ' in owner_exq / resume_condition /
+# governance_* etc.) that parses under the snapshot's stale on-disk artifact but
+# FAILS the strict yaml.safe_load the live explorer uses, silently dropping the
+# whole plan to frontmatter_pending. Incident 2026-06-19 (commit 4c0313b052).
+"$PYTHON" scripts/check_plan_frontmatter.py || true
+
 echo "--- Step 3c: Closure-plan drift check (warn-only) ---"
 "$PYTHON" scripts/check_closure_drift.py
 
