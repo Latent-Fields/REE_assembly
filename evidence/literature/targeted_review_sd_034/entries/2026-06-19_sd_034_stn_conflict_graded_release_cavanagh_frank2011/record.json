@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_034",
+  "entry_id": "2026-06-19_sd_034_stn_conflict_graded_release_cavanagh_frank2011",
+  "timestamp_utc": "2026-06-19T20:43:25Z",
+  "claim_ids_tested": ["MECH-446"],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold.",
+    "authors": ["Cavanagh JF", "Wiecki TV", "Cohen MX", "Figueroa CM", "Samanta J", "Sherman SJ", "Frank MJ"],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925",
+    "url": "https://doi.org/10.1038/nn.2925"
+  },
+  "evidence_class": "human_eeg_dbs",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Targeted single-entry addition for MECH-446 (de-commit-authority MAGNITUDE), recommended by the claim-synthesis decomposition spec (claim_synthesis_SD-034-closure_2026-06-19.md Section 5.2 Child B). Cavanagh, Frank et al. 2011 (Nat Neurosci 14:1462-1467) is the sharpest available anchor for the SPECIFIC MECH-446 form 'the brake magnitude scales with re-commitment / conflict pressure': mediofrontal theta (a conflict signal) raises the decision threshold proportionally to decision conflict, and subthalamic-nucleus DBS REVERSES that mediofrontal influence over the threshold -- demonstrating a graded, causally-manipulable hold whose strength tracks conflict rather than a fixed binary gate. This grounds the 'committed-run-scaled refractory' magnitude lever (a long committed run / high re-commitment pressure should trigger a proportionally stronger/longer de-commit). Held at 0.72 (below the Mayr & Keele 2000 backward-inhibition entry's 0.84) because (a) the STN brake is studied on conflict-graded RESPONSE-THRESHOLD modulation during decision-making, which is conceptually adjacent to but not identical with the post-COMPLETION de-commit refractory MECH-446 specifies; (b) the magnitude-scaling-with-committed-run-length form is the natural reading of conflict-graded release, not a directly measured 'scales with prior commitment duration' result; (c) the substrate is human EEG + DBS in Parkinson's patients, a transfer step from the REE closure-plane. NON-BLOCKING: MECH-446's magnitude form is already grounded by Mayr & Keele 2000 (post-completion refractory strength); this entry sharpens the scales-with-pressure component.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The STN conflict-graded brake modulates a DECISION THRESHOLD during ongoing choice (how much evidence to accumulate before committing), whereas MECH-446 specifies a POST-COMPLETION de-commit refractory (lowering latch occupancy after a closure fires). If the conflict-graded-threshold mechanism does not generalise to completion-driven release, the anchor over-reaches: it supports 'a graded, conflict-scaled hold exists and is causally real' but not specifically 'the post-closure de-commit scales with committed-run length'.",
+    "The 'magnitude scales with committed-run length' form (a long committed run triggers a proportionally long de-commit) is the REE-side engineering reading; Cavanagh & Frank measure scaling with trial-by-trial decision CONFLICT, not with the duration of a prior commitment. The mapping from 'conflict pressure' to 'committed-run length' is an inference, flagged as transfer risk.",
+    "Evidence is human scalp EEG + intraoperative/therapeutic STN-DBS in Parkinson's patients. The localisation (mediofrontal cortex -> STN hyperdirect pathway) is a basal-ganglia brake, consistent with REE's MECH-090/MECH-260 BG-analog locus, but the closure-operator's OFC/ACC completion-detection side is not what this paper measures."
+  ],
+  "tags": ["sd_034", "mech_446", "closure_operator", "decommit_magnitude", "stn_hold_your_horses", "conflict_graded_release", "decision_threshold"],
+  "mapping": {
+    "source_claim_statement": "Mediofrontal cortex exerts a conflict-graded influence over the decision threshold: under high decision conflict, mediofrontal theta increases and the response threshold rises (more evidence required before committing). Subthalamic-nucleus deep-brain stimulation reverses this mediofrontal influence, causally demonstrating that the STN implements a conflict-scaled hold ('hold your horses') whose magnitude tracks conflict rather than being a fixed all-or-none gate.",
+    "ree_translation": "MECH-446 (de-commit-authority magnitude, Child B of SD-034) asserts the closure-coupled de-commit lowers post-closure MECH-090 latch occupancy with authority MAGNITUDE sufficient to overcome the natural-commit occupancy it competes against, via a committed-run-scaled refractory (a longer committed run -> a proportionally longer de-commit). Cavanagh & Frank 2011 supports the GRADED-MAGNITUDE form of this brake: the biological hold is conflict-scaled and causally manipulable (STN-DBS reverses it), not a fixed binary refractory. This is the sharpest anchor for the 'scales with re-commitment pressure' component that the foundational Mayr & Keele 2000 backward-inhibition entry (post-completion refractory STRENGTH) does not directly address.",
+    "mapping_caveat": "Two transfer distinctions. First, the STN brake here scales with trial-level decision CONFLICT and modulates a pre-commit decision THRESHOLD, whereas MECH-446 specifies a POST-completion de-commit whose magnitude scales with committed-run length. The shared structure is 'a graded BG brake whose strength tracks a control variable' -- the control variable differs (conflict vs prior-commitment-duration). Second, the substrate is human EEG/DBS; the REE closure-plane is an artificial governance operator. The entry grounds the GRADEDNESS and CAUSAL REALITY of a conflict-scaled hold, which is the MECH-446-specific addition over Mayr & Keele; it does not independently establish the committed-run-length scaling, which remains the experimental question for the gated 460h re-queue.",
+    "source_context": "Human scalp EEG combined with subthalamic-nucleus deep-brain stimulation in Parkinson's disease patients, decision-conflict task. Trial-by-trial coupling of mediofrontal theta to decision threshold (drift-diffusion modelling); STN-DBS ON vs OFF reverses the mediofrontal-theta -> threshold relationship. Canonical for the 'hold your horses' STN-as-conflict-brake account (with Frank et al. 2007 Science)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (Nat Neurosci 2011; EEG+DBS causal design; foundational STN-conflict-brake reference). Mapping fidelity moderate-good: directly supports the graded/conflict-scaled magnitude of a BG hold, the MECH-446-specific component, but the conflict-vs-committed-run-length control-variable distinction and the pre-commit-threshold-vs-post-completion-refractory distinction lower fidelity. Transfer risk moderate-high (0.40) on those two distinctions plus the human-clinical-substrate step. Net direction supports MECH-446's graded-magnitude form; non-blocking sharpening on top of Mayr & Keele 2000."
+  }
+}
