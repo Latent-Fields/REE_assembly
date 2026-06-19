@@ -25625,7 +25625,7 @@
   claim_level: mechanistic
   registered_utc: 2026-04-26
   ceiling_decision: deferred
-  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b STILL CEILINGED): modulatory-bias-selection-authority is implemented but cannot carve MECH-294 -- currency_coherence is a SCALAR (rescale-invisible), so the route-range authority and the 569i top-k shortlist have no per-candidate range to act on (V3-EXQ-661: committed-distribution TV ~0 incl gate-ON vs gate-OFF). Needs a prior /implement-substrate wiring step (express binding-coherence as cross-candidate range) BEFORE any behavioural falsifier. Primary lit falsifier (Kay-2020 theta) is out-of-substrate for V3."
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b STILL CEILINGED): modulatory-bias-selection-authority is implemented but cannot carve MECH-294 -- currency_coherence is a SCALAR (rescale-invisible), so the route-range authority and the 569i top-k shortlist have no per-candidate range to act on (V3-EXQ-661: committed-distribution TV ~0 incl gate-ON vs gate-OFF). The prior /implement-substrate wiring step (express binding-coherence as cross-candidate range) is now LANDED 2026-06-19 (per-candidate co-binding coherence: theta_packet_compose_per_candidate_coherence, no-op default) -- the carve-able channel now exists (JOINT range>floor / SHUF ~0 / scalar mode-discrimination preserved; contract suite is the readiness gate). The behavioural falsifier on this channel is the SEPARATE next /queue-experiment step (still gated on candidate first-action diversity). Stays substrate_ceiling until that PASSes. Primary lit falsifier (Kay-2020 theta) is out-of-substrate for V3."
   implementation_note: >
     Substrate IMPLEMENTED 2026-06-09 behind the no-op-default flag
     use_multi_content_theta_packet (bit-identical OFF). Sibling module
@@ -25655,6 +25655,25 @@
     theta_packet_compose_use_joint_coherence (default True; False = legacy
     action-only ablation). Still candidate / v3_pending; this only makes the
     behavioural mode-discrimination successor valid to run.
+    AMEND 2026-06-19 (per-candidate co-binding coherence; route-range carve):
+    the 2026-06-09 compose-coherence gate left currency_coherence() a SCALAR --
+    the per-candidate compose PATTERN (cosine to the single bound action_proposal)
+    was identical across binding modes; the gate only scaled magnitude uniformly,
+    which the route-range authority's unit-range normalisation erases (joint==alt)
+    and floors (shuffled). V3-EXQ-661 confirmed it: committed-action histograms
+    byte-identical across modes, TV ~0 incl gate-ON-vs-OFF. The amend renders
+    coherence as a PER-CANDIDATE quantity with mode-distinct cross-candidate RANGE:
+    seal() binds, per V_s-gated stream, the action co-bound WITH that stream this
+    cycle + a currency weight (JOINT all four -> full range; ALTERNATION live +
+    held-prior at coherence_hold_weight -> distinct pattern; SHUFFLED none -> ~0),
+    and compose_per_candidate_coherence routes it via the existing _bdc_coherence
+    so the route-range authority + 569i top-k can carve it. New no-op flags
+    theta_packet_compose_per_candidate_coherence (default False) +
+    theta_packet_coherence_hold_weight (0.5); bit-identical OFF; currency_coherence()
+    untouched (scalar mode-discrimination preserved). PROMOTES NOTHING -- stays
+    candidate / substrate_ceiling / v3_pending; the 2026-04-26 hold stands; the
+    behavioural falsifier on this channel is the SEPARATE next /queue-experiment
+    step (no EXQ queued here -- the contract suite is the substrate-readiness gate).
     See ree-v3/CLAUDE.md "MECH-294" entry and
     docs/architecture/mech_294_multi_content_theta_packet.md.
   depends_on:

@@ -503,3 +503,71 @@ phased-training upgrade. The validation must guard candidate first-action divers
 **Governance.** MECH-294 is neither promoted nor weakened by this amend; it stays
 candidate / v3_pending. The 2026-04-26 hold stands until the behavioural successor
 PASSes. This pass only makes that successor *valid* to run.
+
+---
+
+## Per-candidate co-binding coherence amend (cross-candidate range) -- 2026-06-19
+
+**Routed by** the substrate-ceiling-lifted triage 2026-06-19
+(`evidence/planning/substrate_ceiling_lifted_triage_2026-06.md`, verdict (b) MECH-294
+STILL CEILINGED). The compose-coherence amend (2026-06-09, above) made the binding
+regime *gate* the action-only cosine, but `currency_coherence()` is a **scalar**: the
+per-candidate **pattern** (`align[K]` = cosine to the single bound `action_proposal`)
+is **identical across binding modes** -- the gate only scales magnitude uniformly. The
+route-range authority (modulatory-bias-selection-authority, 2026-06-10) normalises the
+routed `coherence` channel to unit range, **erasing** that uniform scaling
+(JOINT == ALTERNATION) and flooring SHUFFLED (coherence 0) to 0. **V3-EXQ-661** confirmed
+it empirically: committed-action histograms **byte-identical** across ARM_OFF / JOINT /
+ALT / SHUF / ALT_COH_OFF per seed (committed-distribution TV ~0, max 0.0097, incl
+C3 gate-ON-vs-OFF). The route-range readiness gate **V3-EXQ-663** correctly flags
+coherence as a no-range channel. So the authority + 569i top-k had nothing mode-distinct
+to carve.
+
+**The fix: a per-candidate co-binding coherence with mode-distinct cross-candidate
+RANGE.** At `seal()`, bind per V_s-gated content stream the `action_proposal` co-bound
+*with that stream this cycle* (`ThetaPacket.action_refs`) + a currency weight
+(`ThetaPacket.coherence_weights`), via a per-stream action snapshot
+(`_action_snapshots`) mirroring the existing content `_snapshots`:
+
+| regime | refs / weights | per-candidate coherence | cross-candidate range |
+|---|---|---|---|
+| **JOINT** | all four current -> ref = this-cycle action, w 1.0 | `cosine(cand, a)` | **full** |
+| **ALTERNATION** | live = this action (w 1.0); held = prior co-bound action (w `coherence_hold_weight`=0.5) | weighted mean over the live + held refs | **non-zero, PATTERN distinct from JOINT** (mixes prior actions; not a uniform scaling -> survives range-normalisation) |
+| **SHUFFLED** | nothing co-bound (w 0.0) | -- | **~0** (None -> authority below-floor) |
+
+`MultiContentThetaPacket.compose_per_candidate_coherence(cand_fa, bias_scale)` returns
+`clamp(-bias_scale * weighted_mean_s[w_s * cosine(cand, ref_s)], +/-bias_scale)` -- in
+action-space throughout (no cross-semantic comparison; cf. the V3-EXQ-657a autopsy).
+The agent compose block branches on
+`REEConfig.theta_packet_compose_per_candidate_coherence` (default `False`) and, when ON,
+sets `_bdc_coherence` to this per-candidate bias, so the **existing** route source
+`modulatory_channel_route_source="coherence"` now routes a mode-distinct per-candidate
+RANGE into the modulatory accumulator the route-range authority rescales + the 569i
+top-k shortlists. `currency_coherence()` is **not consulted or modified** -- the scalar
+mode-discrimination (JOINT 1.0 / ALT 0.25 / SHUF 0.0) is preserved bit-identically.
+
+**Config (no-op default; bit-identical OFF):**
+`theta_packet_compose_per_candidate_coherence` (False; consulted only when
+`theta_packet_compose_into_e3_bias` is also True) + `theta_packet_coherence_hold_weight`
+(0.5; held-stream prior-ref weight, 0.0 = pure currency-gating). Both wired through
+`REEConfig.from_dims`.
+
+**Smoke (2026-06-19):** JOINT range 0.1, SHUFFLED None/0, ALTERNATION range 0.02 with a
+joint-vs-alt bias-pattern cosine 0.82 (distinct pattern, not a uniform scaling). 8/8
+prior packet contracts + 7/7 preflight + the full contract suite PASS; 7 new contracts
+in `ree-v3/tests/contracts/test_mech294_per_candidate_coherence.py` (C1 JOINT
+range>floor / C2 SHUF ~0 / C3 scalar currency_coherence unregressed / C4 ALT pattern
+distinct from JOINT / C5 monostrategy -> ~0 range non-vacuity / C6 default-OFF + legacy
+compose unchanged / C7 agent compose fires + routes to the authority).
+
+**Validation.** The substrate-readiness gate is the contract suite -- the carve-able
+channel now **exists**. **No behavioural EXQ is queued here**: the MECH-294 behavioural
+falsifier on this channel is a SEPARATE later `/queue-experiment` step (per the task
+scope + the 661 implement-substrate log that called this MECH-294-side compose path out
+of scope). It must guard candidate first-action diversity (the V3-EXQ-661
+`joint_cem_first_action_diversity` precondition; C5 makes the vacuity explicit).
+
+**Governance.** MECH-294 is neither promoted nor weakened: it stays
+candidate / substrate_ceiling / v3_pending. The 2026-04-26 hold stands. The primary lit
+falsifier (Kay-2020 cross-cycle theta) is **out-of-substrate for V3**, so the V3 path is
+purely this per-candidate-range wiring + a downstream behavioural readout.
