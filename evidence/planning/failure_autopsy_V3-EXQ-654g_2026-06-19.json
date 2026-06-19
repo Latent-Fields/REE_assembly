@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T21:48:41Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier_20260619T213118Z_v3",
+      "queue_id": "V3-EXQ-654g",
+      "supersedes": "V3-EXQ-654f",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "bears_on": ["ARC-063"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C2 never adjudicated MECH-309/ARC-062; they are gated behind a downstream selection-authority ceiling they do not own. No evidence for or against.",
+        "biological_reference": "clear -- PFC rule abstraction (Collins & Frank 2014; Mansouri rule-maintenance) is achieved (CRF matures + propagates); the block is downstream BG/PFC action-selection authority (the F-dominated argmax MECH-439/GAP-A own).",
+        "prerequisites": "present -- CRF matured (crf_frac_active 0.58-0.94); the 569i top-k conversion lever (the single gap in 654f) is now armed and constant on both arms.",
+        "implementation": "complete -- cleanest GAP-B stack to date: full CRF stack + e2_world_forward context + trained bias-head P1 + 569i top-k, all constant; single-variable use_candidate_rule_field.",
+        "environment": "adequate -- SD-054 bipartite reef, foraging-competent.",
+        "measurement": "adequate -- committed-class entropy is the correct class-keyed DV; within-class-rep negative control behaved as designed.",
+        "integration": "coupled, ceiling at the argmax -- bias reaches accumulator, does not move the F-dominated commit (seed-44 ARM_ON==ARM_OFF byte-identical is the purest demonstration).",
+        "scale": "adequate -- 200-ep P0; pool matured."
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC rule abstraction / rule cells (Collins & Frank 2014 hierarchical structure learning; Mansouri rule maintenance); CandidateRuleField is the non-Bayesian rule-creator",
+        "dependencies": ["BG/PFC action-selection authority (the conversion step)", "downstream E3 argmax not F-dominated"],
+        "is_formal_import": false,
+        "divergence": "none at the rule-apprehension layer -- the CRF biological translation is faithful and works (matures, differentiates, propagates). The unmet dependency is downstream selection-authority (MECH-439 F-dominance), not a rule-apprehension translation gap.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-309": "non_contributory", "ARC-062": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-654g (arc_062 GAP-B behavioural falsifier; MECH-309 / ARC-062) -- FAIL / non_contributory. C1 fully met 5/5 (crf_frac_active 0.58-0.94, propagation non-vacuous); C2 committed-class-entropy lift FAILED (paired {-0.013, +0.047, 0.0}, 0/3 clear margin; +0.011 nats mean; seed-44 ARM_ON==ARM_OFF byte-identical despite live CRF). 654g armed the 569i-validated TOP-K shortlist conversion (the lever 654f lacked) and the ceiling persisted -- the top-k fix is channel-specific (GAP-A modulatory-bias only) and does not transfer to the CRF rule_state channel. This is the shared MECH-439 F-dominance conversion ceiling (branch b, pre-registered), the 2nd channel after V3-EXQ-485h OFC. MECH-309 / ARC-062 never adjudicated -- gated behind a downstream ceiling they do not own. Stay candidate / substrate_ceiling / pending_retest_after_substrate; NOT weakened. Retest = a 654h after the MECH-439 F-dominance rebalance lifts the conversion ceiling. CRF substrate complete.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "crf-availability-maintenance is complete and already carries a 2026-06-19 note recording 654g (C1 met, C2 non_contributory, residual is the shared MECH-439 F-dominance conversion ceiling, 2nd channel after 485h OFC, no further CRF amend owed). No F-dominance-rebalance substrate_queue entry exists yet -- that work is pre-substrate (V3-EXQ-689a is diagnosing whether conflict-grading converts before any substrate is committed). No substrate_queue write is owed from this autopsy."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "654g closes the wrong-lever confound 654f left open: 654f armed the superseded additive ARM_STD_G2 lever; 654g armed the 569i-validated top-k shortlist (constant on both arms) and the ceiling still persists.",
+        "The 569i top-k conversion fix is CHANNEL-SPECIFIC: it rescued the GAP-A modulatory-bias channel (569i PASS) but does NOT transfer to the CRF rule_state channel -- so channel-specific conversion wiring is not a general fix for the F-dominance ceiling.",
+        "654g is the 2nd independent channel today (after 485h OFC valuation bias) to reach the E3 accumulator and fail to convert at the shared F-dominated selector; with 569g/682 (GAP-A) that makes three structurally-different channels converging on MECH-439 F-dominance as the single shared blocker.",
+        "Seed-44 ARM_ON committed-class distribution is byte-identical to ARM_OFF despite CRF being active 78% of ticks with a nonzero within-arm counterfactual -- the purest conversion-ceiling signature in the 654 lineage (live channel, zero behavioural conversion).",
+        "Claim alignment intact: MECH-309/ARC-062 were never adjudicated -- gated behind a downstream ceiling they do not own. Not a falsification, not a weakens.",
+        "Granularity-debt determination (7th 654 autopsy): NOT debt -- signatures converged to one shared downstream blocker, not N distinct shapes; user re-confirmed 2026-06-16. No /claim-synthesis."
+      ],
+      "routing": "implement-substrate",
+      "routing_detail": "non_contributory; sequence GAP-B behind the MECH-439 F-dominance rebalance (existing V3-EXQ-689a falsifier chain + GAP-A conversion amend). No 654h now; a 654h re-running the GAP-B committed-class-entropy falsifier is pre-registered for after the conversion ceiling lifts. Mirrors the same-day 485h routing.",
+      "granularity_debt": {
+        "is_recurrence": true,
+        "autopsy_count_on_target": 7,
+        "prior_autopsies": ["654", "569f-661-654a (cluster)", "654b", "654c", "654d", "654f"],
+        "is_granularity_debt": false,
+        "determination": "Signatures converged (cold-start -> gate-lockout -> wrong-lever -> right-lever-but-ceiling) to one shared downstream ceiling (MECH-439 F-dominance) the claims do not own; nothing coarse to decompose. User re-confirmed substrate-maturation framing 2026-06-16. No /claim-synthesis."
+      },
+      "governance_handoff": {
+        "mark_reviewed": "active governance session 20260619T2141Z holds review_tracker.json + walks pending experiments -- left to it",
+        "supersede_predecessor": "set V3-EXQ-654f manifest evidence_direction: superseded (was already non_contributory/reviewed; no scoring change)",
+        "plan_frontmatter": "repoint arc_062_rule_apprehension:GAP-B owner_exq V3-EXQ-654f -> V3-EXQ-654g; refresh resume_condition to the post-MECH-439-rebalance 654h path; status stays in-progress",
+        "claim_status": "MECH-309/ARC-062/ARC-063 stay candidate/substrate_ceiling/v3_pending/pending_retest_after_substrate -- NO status change, NO weakens"
+      }
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "channel reaches E3 accumulator (live, matured, differentiated) but does not move the F-dominated committed argmax",
+    "is_independent_bugs": false,
+    "structural_property": "shared selection-authority conversion ceiling (MECH-439 F-dominance, F ~ 88-89% of E3 score variance); independent of which upstream channel supplies the bias (OFC valuation / GAP-A modulatory / CRF rule_state)",
+    "convergent_channels": ["V3-EXQ-485h OFC valuation bias", "V3-EXQ-569g/682 GAP-A modulatory bias", "V3-EXQ-654g CRF rule_state"],
+    "readings": ["shared_conversion_ceiling_mech_439_f_dominance"]
+  }
+}
