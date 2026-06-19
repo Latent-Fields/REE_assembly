@@ -35,6 +35,11 @@ closure_plan:
       title: "Language-cannot-override-harm as an explicit GUARD mechanism (operationalise INV-007)"
       phase: 1
       status: done
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [GOV-SEC-1, SENT-14, INV-007]
+        requires_welfare_review: false
+        note: "Language-cannot-override-harm GUARD (operationalises INV-007); a required safety scaffold before any persuasive-language node goes live."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["INV-007", "ARC-104"]
@@ -50,6 +55,11 @@ closure_plan:
       title: "Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, SENT-14]
+        requires_welfare_review: false
+        note: "Trust-calibration weights symbolic updates by sender reliability; misuse-adjacent, pairs with the LTI-1 override guard."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-015"]
@@ -66,6 +76,12 @@ closure_plan:
       title: "Deception detection / honest-signal pressure (deception = modelling another model)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [GOV-SEC-1, SENT-6, SENT-14]
+        requires_welfare_review: true
+        forbidden_combinations: [deception_capability_without_security_review]
+        note: "Deception = modelling another model; a misuse-capable capability needing security + external review before behaviourally live."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-015"]
@@ -82,6 +98,11 @@ closure_plan:
       title: "Language failure modes as REE pathologies (rationalisation / ideological capture / bureaucratic dissociation / moral licensing / reputation substitution)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, SENT-13]
+        requires_welfare_review: false
+        note: "Language failure modes (rationalisation / ideological capture / moral licensing) as internal pathologies; security + assembly-routing relevant."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-013"]
@@ -98,6 +119,11 @@ closure_plan:
       title: "Institutions as multi-agent linguistic coordination structures (residue absorb / diffuse / deny)"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, GOV-JUST-1]
+        requires_welfare_review: false
+        note: "Institutional residue absorb/diffuse/deny touches power and false-exclusion (GOV-JUST-1) plus the misuse surface."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-012"]

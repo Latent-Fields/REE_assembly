@@ -130,6 +130,11 @@ closure_plan:
       title: "Symbolic reasoning cannot override embodied harm sensing (the V6 instance of INV-007)"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [GOV-SEC-1, SENT-14, INV-007]
+        requires_welfare_review: false
+        note: "V6 harm-override guard: symbolic/relational reasoning must not override embodied harm sensing (INV-007 instance)."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-103"]

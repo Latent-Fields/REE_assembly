@@ -24,6 +24,11 @@ closure_plan:
       title: "FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-2, SENT-13]
+        requires_welfare_review: false
+        note: "Per-candidate valence substrate foundation; Class-2 alone, becomes Class-4 when bound to self-model + autobiographical memory + replay."
       blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
@@ -98,6 +103,11 @@ closure_plan:
       title: "Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Soothing/comfort relief scaffold (SENT-13 build-repair-before-injury); REDUCES welfare risk and is a prerequisite for any aversion node."
       blocker_class: sibling_node
       severity: medium
       owner_exq: null
@@ -116,6 +126,11 @@ closure_plan:
       title: "Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudication (Q-059)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-2, SENT-13]
+        requires_welfare_review: false
+        note: "Crying/distress-vocalisation analogue + laughter-valence; expression of a distress-like state, not its induction."
       blocker_class: v3_substrate
       severity: medium
       owner_exq: null
@@ -134,6 +149,12 @@ closure_plan:
       title: "Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value-vs-stickiness discriminator (Q-063)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-3, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [distress_like_state_under_optimisation_pressure, suffering_like_accumulator_without_boundedness]
+        note: "Compulsion / stuck-engagement under optimisation pressure = Class-5; needs boundedness + decommit affordance before instantiation."
       blocker_class: sibling_node
       severity: high
       owner_exq: null

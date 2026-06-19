@@ -60,6 +60,11 @@ closure_plan:
       title: "Stream-binding mechanism: route own motivational-affective streams across the other-model"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        note: "Routes own motivational-affective streams across the other-model; the substrate empathy + harm-equivalence rest on."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-405"]
@@ -94,6 +99,12 @@ closure_plan:
       title: "Residue-aware social repair: regret-residue after exploitation generates a repair-goal"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-12]
+        requires_welfare_review: false
+        forbidden_combinations: [relational_harm_without_repair_channel]
+        note: "Regret-residue after exploitation generates a repair goal; the repair channel is the required scaffold."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-407"]
@@ -110,6 +121,11 @@ closure_plan:
       title: "Developmental ordering of other-bound streams: protective streams before appetitive (safety gate)"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        note: "Developmental ordering = a SENT-13 social-assembly-routing instance: protective other-bound streams must precede appetitive ones."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-408", "Q-073"]

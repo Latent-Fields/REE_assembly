@@ -34,6 +34,11 @@ closure_plan:
       title: "Pre-linguistic-grounding gate: no affect adaptor before object/self/other primitives exist (the load-bearing ordering)"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Pre-linguistic-grounding ordering gate (SENT-13): no affect adaptor before object/self/other primitives exist."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-373, INV-003]
@@ -51,6 +56,11 @@ closure_plan:
       title: "Uncertainty-propagation invariant: parsed affect enters as a hypothesis (distribution), NEVER as ground truth"
       phase: 1
       status: open
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, SENT-14, INV-007]
+        requires_welfare_review: false
+        note: "Safety invariant: language-parsed affect enters as a distribution, never ground truth; guards against language overriding internal harm-sensing."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["INV-085"]
@@ -99,6 +109,11 @@ closure_plan:
       title: "Falsifiable test: language-parsed affect must change other-directed behaviour vs literal-semantics-only baseline (and must remain overridable)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, INV-007]
+        requires_welfare_review: false
+        note: "The overridable clause is the INV-007 guard at the behaviour boundary; language-parsed affect must remain overridable by harm-sensing."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-373, "INV-085"]

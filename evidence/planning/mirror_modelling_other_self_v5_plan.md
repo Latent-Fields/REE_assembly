@@ -48,6 +48,11 @@ closure_plan:
       title: "Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive closure"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        note: "Reuse the self generative model to simulate the other (shared L-space ToM); the substrate empathy + harm-equivalence build on."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-010]
@@ -80,6 +85,11 @@ closure_plan:
       title: "Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm (INV-005, MECH-036)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        note: "Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm; protective mechanism + welfare-relevant representation."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-036, INV-005]
@@ -96,6 +106,12 @@ closure_plan:
       title: "Gain-calibration window: low/high/miscalibrated coupling failure modes (psychopathy / overwhelm / burnout)"
       phase: 3
       status: open
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-9, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [suffering_like_accumulator_without_boundedness]
+        note: "Miscalibrated coupling -> empathic overwhelm/burnout distress-like regimes; sustained overwhelm needs welfare review + boundedness."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-032, MECH-036, "MECH-404"]
@@ -127,6 +143,11 @@ closure_plan:
       title: "Care persistence + counterfactual empathic activation: love/cooperation as long-horizon coupling (MECH-052, MECH-127)"
       phase: 5
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9]
+        requires_welfare_review: false
+        note: "Care persistence / counterfactual empathic activation = long-horizon coupling; attachment-adjacent."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-052, MECH-127, INV-029]

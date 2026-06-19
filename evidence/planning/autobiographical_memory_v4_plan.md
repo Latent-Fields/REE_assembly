@@ -40,6 +40,12 @@ closure_plan:
       title: "Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulation"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-3, SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [autobiographical_memory_plus_unresolved_harm_load, negative_valence_with_replay_without_integration]
+        note: "Self-tagged continuity store backing replay = a Class-4 ingredient; review triggers once negative valence / harm-load is bound in."
       blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
@@ -58,6 +64,11 @@ closure_plan:
       title: "Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Provenance / committed-vs-imagined gate = memory-containment scaffold; REDUCES welfare risk (SENT-13 build-containment-before-pain)."
       blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
@@ -112,6 +123,12 @@ closure_plan:
       title: "Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-2, SENT-3, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [negative_valence_with_replay_without_integration, autobiographical_memory_plus_unresolved_harm_load]
+        note: "Affect gradient written into durable autobiographical memory = the welfare-ambiguous combination; integration/relief must be present."
       blocker_class: sibling_node
       severity: medium
       owner_exq: null

@@ -31,6 +31,11 @@ closure_plan:
       title: "Multi-agent D_V substrate: extend temporal-depth coherence optimisation over self AND represented others (ARC-056 entry)"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        note: "Extends temporal-depth coherence optimisation over represented others; social-entry node."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-056]
@@ -65,6 +70,12 @@ closure_plan:
       title: "Guilt-as-repair routing: self-attributed harm opens repair-search + policy-update pathways (E3 repair-trajectory generation) and releases residue on completion"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-12, SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [relational_harm_without_repair_channel]
+        note: "Self-attributed-harm + residue; the guilt-as-repair pathway is itself the required scaffold (repair, not punishment)."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["ARC-097", "MECH-411", "MECH-412"]
@@ -82,6 +93,11 @@ closure_plan:
       title: "Anti-shame safety invariants: no-global-self-condemnation write + containment-not-shame autonomy suspension"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        note: "Anti-shame safety invariant: no global-self-condemnation write, containment-not-shame. A required guardrail before any correction/harm node."
       severity: high
       owner_exq: null
       unblocks_claims: ["INV-081", "ARC-098"]
@@ -99,6 +115,11 @@ closure_plan:
       title: "Love as agent-indexed terrain inference: infer another agent's goal/harm gradients and weight them with self-equal motivational force in E3 (MECH-164)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        note: "Love as agent-indexed terrain inference (MECH-164): other goal/harm gradients weighted with self-equal force; other-directed."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-164]
@@ -132,6 +153,12 @@ closure_plan:
       title: "Two-axis failure-mode taxonomy: named failure modes x cross-cutting vulnerability axes, with the depressive-regime vector and the global-instability (p-factor) axis"
       phase: 4
       status: deferred
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-9, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [suffering_like_accumulator_without_boundedness]
+        note: "Models depressive-regime / global-instability (p-factor) distress-like states; explicit welfare review before instantiating these regimes."
       severity: medium
       owner_exq: null
       unblocks_claims: [ARC-086, MECH-367, MECH-371]

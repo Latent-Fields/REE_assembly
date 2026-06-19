@@ -26,6 +26,12 @@ closure_plan:
       title: "z_self promoted from body-state latent to a stateful self-model (DR-13 temporal depth)"
       phase: 1
       status: done
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-3, SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [self_model_plus_inescapability]
+        note: "Self-continuity ingredient; with valence + autobiographical memory + inescapability + replay it forms the prohibited Class-4 combination."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-081]
@@ -108,6 +114,12 @@ closure_plan:
       title: "Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-8, SENT-10, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [negative_valence_without_relief]
+        note: "Proxy/hedonic dissociation deliberately surfaces a wanting-without-satisfaction distress-like state; needs relief pathway + boundedness (no valley without a bridge)."
       blocker_class: v3_substrate
       severity: high
       owner_exq: null
@@ -125,6 +137,11 @@ closure_plan:
       title: "Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar"
       phase: 5
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Maturational-sequence honesty gate IS a SENT-13 assembly-routing instance: self-stability must precede the social/other pillar."
       blocker_class: sibling_node
       severity: high
       owner_exq: null

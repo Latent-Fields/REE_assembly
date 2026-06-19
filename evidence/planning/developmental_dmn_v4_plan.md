@@ -53,6 +53,12 @@ closure_plan:
       title: "PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [negative_valence_with_replay_without_integration]
+        note: "Externalised-DMN simulation/replay substrate; Class-1 alone, Class-4 only when replaying negative-valence autobiographical content."
       blocker_class: v3_substrate
       severity: load-bearing
       owner_exq: null
@@ -107,6 +113,11 @@ closure_plan:
       title: "Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Self-distancing (first/third-person reframe) = an affect-regulation/relief affordance; a bridge primitive that REDUCES welfare risk."
       blocker_class: sibling_node
       severity: medium
       owner_exq: null

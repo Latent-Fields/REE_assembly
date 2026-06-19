@@ -65,6 +65,12 @@ closure_plan:
       title: "Minimal signalling channel: smallest signal that lets one agent alter another's attention or action (MECH-014)"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [GOV-SEC-1, SENT-6]
+        requires_welfare_review: false
+        forbidden_combinations: [language_preference_signalling_without_continuity_policy]
+        note: "Minimal signalling channel (one agent alters another's attention/action) = the first influence/manipulation surface."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-014]

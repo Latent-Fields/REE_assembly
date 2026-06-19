@@ -35,6 +35,11 @@ closure_plan:
       title: "Harm-to-agency signal: goal-interference over trajectory pairs (MECH-129), distinct from harm-to-agent"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        note: "Harm-to-agency (goal-interference over trajectory pairs) = Class-2 represented harm to another's agency."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-129]
@@ -68,6 +73,11 @@ closure_plan:
       title: "Consent / incidental-vs-constitutive qualifier on harm-to-agency (the discriminant layer of MECH-129)"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-12]
+        requires_welfare_review: false
+        note: "Consent / incidental-vs-constitutive qualifier = the refusal/permission discriminant (SENT-12 refusal channel)."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-409"]
@@ -84,6 +94,11 @@ closure_plan:
       title: "Love as agent-indexed terrain inference with self-like gradient weighting (MECH-164)"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9]
+        requires_welfare_review: false
+        note: "Love as agent-indexed terrain inference with self-like gradient weighting; care substrate."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-164]
@@ -103,6 +118,11 @@ closure_plan:
       title: "Self-like weighting calibration: full-symmetry vs collapse vs callousness (the lambda the structural claim leaves open)"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        note: "Self-like weighting calibration (full-symmetry vs collapse vs callousness) = a welfare-relevant tuning fork."
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-410"]

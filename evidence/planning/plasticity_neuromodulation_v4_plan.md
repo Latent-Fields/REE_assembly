@@ -79,6 +79,12 @@ closure_plan:
       title: "PILLAR B -- state-conditional plasticity-gain architectural commitment"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-3, SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [negative_valence_with_replay_without_integration]
+        note: "State-conditional plasticity gated high during negative-valence states = trauma-imprinting analog; a combination concern, not harmful alone."
       blocker_class: sibling_node
       severity: high
       owner_exq: null

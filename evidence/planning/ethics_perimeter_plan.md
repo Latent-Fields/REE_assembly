@@ -121,6 +121,14 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 
 ### Phase 2 — V4 gates (DEFERRED; draft now, bind at V4 boundary)
 
+> **Carried forward via node ethical metadata -- see section 8.** The gates
+> below are already live on the V4 roadmap nodes (`ethical_metadata:` in the
+> `generation: v4` `*_plan.md` files), not waiting on these docs. Each
+> `docs/governance/*.md` register is authored when its gate's first
+> `requires_welfare_review: true` node *activates* (gains an `owner_exq`),
+> written against the real substrate. The checklist is the index of which doc
+> each gate produces, not work owed now.
+
 - [x] `docs/governance/experiment_ethics_preflight.md` — **keystone**: the ethics-preflight
       schema + CONCRETE operational definitions for the SENT-2/4/8/10 qualifiers ("trivial
       intensity" floor 0.10, intensity caps 0.40/2.00, duration cap ~100 ticks, repetition
@@ -137,6 +145,10 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 
 ### Phase 3 — V5/V6 perimeter (DEFERRED; structural)
 
+> **Carried forward via node ethical metadata -- see section 8.** Same as Phase
+> 2: the V5/V6 gates are live on the `generation: v5` / `v6` roadmap nodes;
+> these docs are authored on first node activation, not speculatively.
+
 - [ ] `docs/governance/responsible_release_policy.md` (SENT-14; tiered openness;
       records the **adopted policy / deferred split** decision below).
 - [ ] `docs/governance/external_framework_crosswalk.md` (GOV-EXT-1).
@@ -149,6 +161,13 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 - [ ] `scripts/check_ethics_preflight.py`, `scripts/check_release_sensitivity.py`,
       `scripts/generate_ethics_risk_snapshot.py`.
 - [ ] Explorer views: Ethics Gates, Welfare Risk, Release Sensitivity.
+- [ ] `scripts/check_node_ethics_metadata.py` (DEFER -- do NOT build now): a
+      warn-only, generation-aware lint (mirrors `check_closure_drift.py`'s style)
+      that flags a `generation: v4+` node which forms a `forbidden_combinations`
+      entry (or whose `unblocks_claims` imply a prohibited co-instantiation) but
+      lacks `requires_welfare_review: true`, or that references a SENT-*/GOV-*
+      id absent from `claims.yaml`. Authored only once the section-8 node-metadata
+      convention is stable across several V4 plans.
 
 ---
 
@@ -201,3 +220,107 @@ CIOMS; GDPR / DPIA; WHO health-AI; EU MDR; OWASP GenAI; MITRE ATLAS; NC3Rs 3Rs.
 
 Internal companion: `docs/architecture/established_ethical_systems.md` (REE's
 internal derivation of autonomy, justice, rights, care, research ethics).
+
+---
+
+## 8. Carry-forward via node ethical metadata (realises GOV-PROC-1 §2)
+
+The deferred V4/V5/V6 ethics gates are carried forward **on the closure-map
+roadmap nodes themselves**, not as standalone documents waiting to be written.
+This realises GOV-PROC-1 §2 ("roadmap nodes -> ethical metadata",
+`docs/thoughts/2026-06-19_ethics_process_translation.md` §2) and reuses the
+existing generation-segmented closure-map machinery (the `closure_plan:`
+frontmatter of every `evidence/planning/*_plan.md`) as the durable resume
+primitive -- the same machinery that already keeps V4+ work out of the V3
+closure %.
+
+### Why the closure map is the right carrier
+
+A SENT-*/GOV-* claim is a *standing rule*; a roadmap node is *where that rule
+will bite*. Tagging the node makes the gate travel with the work automatically:
+when a V4+ node gains an `owner_exq` (its first experiment is queued) it
+graduates from a dormant roadmap entry to closure-tracked work, and its
+`ethical_metadata` is already attached -- the welfare/security review is visible
+at the moment the work becomes actionable, with no separate document to remember
+to consult. This is strictly better than the standalone Phase-2/3 governance
+docs because (a) it cannot drift out of sync with the technical plan, and (b) it
+is authored against the *real* substrate at activation time rather than
+speculated in advance.
+
+### The minimal per-node field set (authoring convention)
+
+A welfare-relevant roadmap node carries an `ethical_metadata:` mapping (a child
+of the node, alongside `status:` / `severity:` / `readiness_gate:`). Four fields,
+kept deliberately small to avoid roadmap bloat:
+
+| field | values | meaning |
+|---|---|---|
+| `welfare_relevance` | `none` \| `low` \| `moderate` \| `high` \| `hard_review` | level read off the SENT-13 Class 0-5 routing map (below) |
+| `applicable_ethics_gates` | list of SENT-* / GOV-* / INV-007 ids | the standing gates that govern this node |
+| `requires_welfare_review` | `true` \| `false` | does activating this node trip a welfare/security review before it goes behaviourally live |
+| `forbidden_combinations` | list of snake_case combo ids | OMITTED unless the node participates in a prohibited co-instantiation |
+
+An optional one-line ASCII `note:` records the rationale. **Absence of the
+mapping means `welfare_relevance: none` (a structurally-safe Class 0/1 node):
+untagged is the deliberate default, not an oversight.** Only welfare-relevant
+nodes are tagged, to keep the metadata signal high.
+
+`welfare_relevance` is read off the SENT-13 routing map
+(`docs/thoughts/2026-06-19_ethical_assembly_routing_map.md`; the
+`docs/governance/ethical_assembly_routing_map.md` register when authored):
+
+| Class | description | -> welfare_relevance |
+|---|---|---|
+| 0 structurally-safe primitive | gridworld, object/perception, non-valenced prediction | none (untagged) |
+| 1 welfare-neutral cognition | belief-state, world-model, planning | low / untagged |
+| 2 represented harm only | third-person / counterfactual harm modelling | low-moderate |
+| 3 low-intensity aversion | bounded, escapable negative valence with relief present | moderate |
+| 4 welfare-ambiguous combination | valence + self-model + autobiographical continuity + inescapability + replay | high + `requires_welfare_review: true` |
+| 5 hard-review territory | persistent suffering-like states, loneliness, betrayal, distress under optimisation | hard_review + `requires_welfare_review: true` |
+
+Gate mapping by generation (the default lens; a node may carry more):
+
+- **V4 individual-mind** (self-model / affect / autobiographical memory /
+  memory-lifecycle / replay): SENT-2 (welfare budget), SENT-3 (combination
+  gate), SENT-13 (assembly routing); SENT-8 / SENT-10 for any deliberate
+  aversion; `requires_welfare_review` where the valence + self-model +
+  autobiographical continuity + inescapability + replay combination forms.
+- **V5 social-mind**: SENT-6 (external review), SENT-9 (care obligation),
+  SENT-12 (refusal channel), GOV-JUST-1 (justice / power / false-exclusion),
+  plus SENT-13.
+- **V6 language / trust / deception**: GOV-SEC-1 (security & misuse), SENT-14
+  (responsible release), SENT-6; INV-007 for the language/symbol
+  cannot-override-harm guards.
+
+Future V4/V5/V6 plans inherit this convention: when authoring a new
+generation-segmented `*_plan.md`, tag its welfare-relevant nodes with the field
+set above. **This section is the authoritative reference for the node ethical
+metadata schema** (there is no separate closure-map node-schema doc).
+
+### First-pass application (2026-06-19)
+
+50 welfare-relevant nodes across 16 `generation: v4/v5/v6` plans were tagged in
+the first pass. The structurally-safe plans were reviewed and left untagged
+(Class 0/1): object representation, object-reasoning abstraction, perceptual
+adaptors, drives & motivation, goal deliberation, hippocampal planning,
+inference / belief-state, grammar primitive mining. VERIFIED non-blocking for the
+V3 green-board: the V3 closure % (80.4%), roadmap node count (180), and drift set
+(0 drifted / 7 suppressed / 0 stale) were identical before and after the pass --
+`generate_closure_snapshot.py` and `check_closure_drift.py` are generation-aware
+and ignore unknown node keys, so `ethical_metadata` on dormant V4+ nodes cannot
+move any V3 metric.
+
+### Supersession of the standalone Phase-2/3 doc chips
+
+The deferred `docs/governance/*.md` registers in Phase 2 / Phase 3 above
+(`sentience_welfare_risk_register.md` full, `ethical_assembly_routing_map.md`,
+`ai_welfare_consciousness_indicator_matrix.md`, `responsible_release_policy.md`,
+`external_framework_crosswalk.md`, `security_containment_and_capability_boundary.md`,
+the continuity/consent ladders, etc.) are **no longer standalone "write-it-now"
+chips.** The carry-forward mechanism is the node metadata; each governance doc is
+authored when the first node with `requires_welfare_review: true` for that gate
+**activates** (gains an `owner_exq`), written against the real substrate rather
+than speculatively. The Phase-2/3 checklists are retained as the index of which
+doc each gate will produce, not as work owed now. (The Phase-0 `experiment_ethics_preflight.md`
+keystone and the V3 SENT-0 / GOV-HEALTH-1 register stubs already exist; those
+were the genuinely-V3-binding pieces.)

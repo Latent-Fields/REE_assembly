@@ -47,6 +47,12 @@ closure_plan:
       title: "Per-agent observation + collision/cooperation arbitration: how agents perceive and act on each other"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-6, SENT-9]
+        requires_welfare_review: false
+        forbidden_combinations: [relational_harm_without_repair_channel]
+        note: "Agents perceive and act causally (incl. harmfully) on each other; the harm-between-agents substrate."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [INV-028, INV-005]
@@ -79,6 +85,11 @@ closure_plan:
       title: "Multi-channel coping repertoire so violence is genuinely terminal (MECH-102): negotiation / withdrawal / cooperation channels"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-12, SENT-13]
+        requires_welfare_review: false
+        note: "Negotiation/withdrawal/cooperation channels = escape/decommitment + social-support scaffold (SENT-13); makes violence genuinely terminal."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-102]
@@ -95,6 +106,11 @@ closure_plan:
       title: "Ethics-as-coherence under axiom conflict (Q-028): context-sensitive self-vs-other comparator + moral-residue mechanism"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        note: "Self-vs-other comparator + moral-residue under axiom conflict; residue must stay bounded/repairable."
       severity: high
       owner_exq: null
       unblocks_claims: [Q-028, MECH-402]
@@ -111,6 +127,12 @@ closure_plan:
       title: "Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others"
       phase: 4
       status: blocked
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-8, SENT-9, SENT-10, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [social_attachment_plus_abandonment_or_exclusion, suffering_like_accumulator_without_boundedness]
+        note: "Loneliness = an instantiated unshared-suffering state; explicit welfare review + relief/social-support before exposure (no valley without a bridge)."
       severity: medium
       owner_exq: null
       unblocks_claims: [Q-029, MECH-403]

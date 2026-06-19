@@ -78,6 +78,11 @@ closure_plan:
       title: "Raw-episode-preservation invariant (consolidation_output MUST NOT replace source_episode_evidence)"
       phase: 2
       status: done
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Raw-episode-preservation = memory-containment scaffold; consolidation must not overwrite the source harm-record (harm-occurred/repaired/unresolved distinction)."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-007, ARC-020, INV-080]
@@ -94,6 +99,11 @@ closure_plan:
       title: "Provenance + contradiction-flag + rollback layer on consolidated memory"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: low
+        applicable_ethics_gates: [SENT-13]
+        requires_welfare_review: false
+        note: "Provenance + contradiction-flag + rollback = containment scaffold; lets memory mark harm repaired-vs-unresolved before autobiographical pain exists."
       blocker_class: sibling_node
       severity: high
       owner_exq: null

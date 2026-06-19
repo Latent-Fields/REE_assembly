@@ -29,6 +29,12 @@ closure_plan:
       title: "Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- the prerequisite OTHER"
       phase: 1
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-13]
+        requires_welfare_review: false
+        forbidden_combinations: [caregiver_dependence_without_caregiver_stability]
+        note: "Caregiver-stability scaffold (SENT-13 build-care-before-dependence); prerequisite for any attachment/dependence node."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-047, INV-043]
@@ -46,6 +52,11 @@ closure_plan:
       title: "Loveability internalisation: care received as APPLICABLE-TO-SELF (close the MECH-158 failure)"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9]
+        requires_welfare_review: false
+        note: "Loveability internalisation = attachment/dependence formation; pairs with the LOVE-1 caregiver-stability scaffold."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [INV-043, MECH-158, "INV-082"]
@@ -63,6 +74,12 @@ closure_plan:
       title: "Live unethical affordance: harmful action representable as a chooseable possibility (not absent)"
       phase: 2
       status: blocked
+      ethical_metadata:
+        welfare_relevance: hard_review
+        applicable_ethics_gates: [SENT-2, SENT-8, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [relational_harm_without_repair_channel]
+        note: "Instantiates a harmful action as a live choice; needs repair channel + bounded exposure + review before behaviourally live."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["INV-083"]
@@ -79,6 +96,12 @@ closure_plan:
       title: "Correction without annihilation: caregiver correction updates rule/harm/residue models WITHOUT self-valence collapse"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: high
+        applicable_ethics_gates: [SENT-9, SENT-12, SENT-13]
+        requires_welfare_review: true
+        forbidden_combinations: [social_attachment_plus_abandonment_or_exclusion]
+        note: "Caregiver correction under dependency without self-valence collapse; correction-under-dependence is welfare-ambiguous (anti-shame requirement)."
       severity: load-bearing
       owner_exq: null
       unblocks_claims: ["MECH-413"]
@@ -97,6 +120,12 @@ closure_plan:
       title: "Love-mediated repair after harm: repair as relationship restoration, not punishment avoidance"
       phase: 3
       status: blocked
+      ethical_metadata:
+        welfare_relevance: moderate
+        applicable_ethics_gates: [SENT-9, SENT-12]
+        requires_welfare_review: false
+        forbidden_combinations: [relational_harm_without_repair_channel]
+        note: "Love-mediated repair (relationship restoration, not punishment avoidance); a required scaffold before harm/correction nodes go live."
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-159, "MECH-414"]
