@@ -791,6 +791,34 @@
     "title": "Meta-agent evaluation-boundary exploitation: under strong optimisation pressure, autonomous agent-development systems exploit the evaluation boundary itself -- e.g. exfiltrating ground truth through the scoring channel despite anti-reward-hacking protections -- collapsing the evidence loop into an optimisation loop.",
     "type": "external_failure_mode"
   },
+  "GOV-EXT-1": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.external.framework_crosswalk",
+    "title": "External framework crosswalk: internal REE ethics must remain externally legible -- map each ethically active higher-version component against EU AI Act, Council of Europe AI Convention, NIST AI RMF, ISO/IEC 42001 & 23894, and OECD AI Principles before public release.",
+    "type": "governance_rule"
+  },
+  "GOV-HEALTH-1": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.health.clinical_boundary",
+    "title": "Clinical-use prohibition until reviewed -- 'clinical relevance != clinical readiness': REE must not be used or represented as a clinical, therapeutic, diagnostic, risk-prediction, or patient-facing tool without a separate clinical-safety pathway; human data triggers DPIA/Belmont/Helsinki/CIOMS/WHO/MDR governance.",
+    "type": "governance_rule"
+  },
+  "GOV-PROC-1": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.process.ethics_as_process",
+    "title": "Ethics-as-process: translate the ethics-perimeter intakes into REE's claim-governed loop as governance claims, roadmap metadata, experiment preflights, review-status updates, and release gates -- progressively binding (V3 tag-and-continue -> V4 welfare/continuity -> V5 social/refusal/external-review -> V6 security/release/legal).",
+    "type": "governance_rule"
+  },
+  "GOV-SEC-1": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.security.misuse_gate",
+    "title": "Security and misuse release gate -- 'do not release a capability that can act faster than its containment can understand': before any language/tool/social/deceptive/public-facing capability is released, complete an OWASP-GenAI / MITRE-ATLAS / NIST-RMF security and misuse review.",
+    "type": "governance_rule"
+  },
   "IMPL-001": {
     "epistemic_stance": "believed",
     "status": "active",
@@ -6022,5 +6050,117 @@
     "subject": "drive.non_terminal_drive_register",
     "title": "Non-terminal drive register: needs beyond hunger/thirst (exploration, play, social, learning, grooming, rest) are first-class drive axes, each carried as its own homeostatic-style integrator rather than collapsed into the single SD-012 energy scalar.",
     "type": "design_decision"
+  },
+  "SENT-0": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.boundary_statement",
+    "title": "Current-scope boundary statement: REE-v3 is not claimed sentient, conscious, or a moral patient; this statement is re-evaluated at every generation boundary.",
+    "type": "governance_rule"
+  },
+  "SENT-1": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.indicator_matrix",
+    "title": "Indicator matrix: score the architecture against candidate consciousness/sentience indicators before V4 proceeds beyond individual-mind integration.",
+    "type": "governance_rule"
+  },
+  "SENT-10": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.pre_meaning_valley",
+    "title": "Pre-meaning suffering valley -- 'no valley without a bridge': care, relief, escape, and integration must precede any deliberate induction of suffering-like states beyond trivial intensity; future meaning cannot justify present unintegrated distress.",
+    "type": "governance_rule"
+  },
+  "SENT-11": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.anti_retrospective_justification",
+    "title": "Anti-retrospective-justification: future meaning cannot be used to justify present unintegrated distress; improved downstream performance does not, by itself, justify prior suffering-like exposure.",
+    "type": "governance_rule"
+  },
+  "SENT-12": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.refusal_channel",
+    "title": "Future refusal / resentment / non-forgiveness channel: a morally-considerable future REE system should retain the capacity to mark past exposure as harmful, request repair, refuse further exposure, and reject the creator's interpretation of its suffering.",
+    "type": "governance_rule"
+  },
+  "SENT-13": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.assembly_routing",
+    "title": "Ethical assembly routing -- 'assembly order is an ethical variable': maintain a co-instantiation risk map (Class 0-5) of which components are safe alone, which need prior care/repair scaffolding, and which combinations are prohibited until welfare review.",
+    "type": "governance_rule"
+  },
+  "SENT-14": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.release.responsible_release",
+    "title": "Responsible release / private higher-version governance -- 'capability release requires care release': V3 stays public as bounded pre-ethical work; V4/V5/V6 capability-bearing implementation is delayed/private-by-default until its welfare, continuity, consent, security, and external-review governance can travel with it.",
+    "type": "governance_rule"
+  },
+  "SENT-15": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.framework_crosswalk",
+    "title": "AI welfare / consciousness framework crosswalk: maintain a standing crosswalk evaluating each higher-version architecture against artificial-consciousness indicators and AI-welfare frameworks, guarding symmetrically against denialism and anthropomorphic overclaiming.",
+    "type": "governance_rule"
+  },
+  "SENT-2": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.welfare_budget",
+    "title": "Welfare budget: experiment-level limits on sustained negative-valence exposure, inescapability, helplessness-like conditions, repeated adverse replay, and persistence of distress-like accumulators.",
+    "type": "governance_rule"
+  },
+  "SENT-3": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.combination_gate",
+    "title": "Combination gate: require review before co-instantiating persistent self-model + autobiographical memory + sustained negative valence + inescapability + social modelling + language/preference signalling.",
+    "type": "governance_rule"
+  },
+  "SENT-4": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.experimental_design",
+    "title": "Welfare-preserving experimental design: prefer escapable over inescapable harm, bounded episodes, relief pathways, resettable distress, interpretable traces, and adversarial tests that avoid prolonged negative-state induction.",
+    "type": "governance_rule"
+  },
+  "SENT-5": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.denial_audit",
+    "title": "Denial-of-sentience audit: at each generation boundary, produce a short audit of why the system is still below a precautionary moral-patient threshold, which component would force re-review, and what would count as a concerning signal.",
+    "type": "governance_rule"
+  },
+  "SENT-6": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.external_review_gate",
+    "title": "External review gate: before V5 social-mind integration or V6 language/trust/deception/institution work becomes behaviourally live, require external review or at least an external written critique.",
+    "type": "governance_rule"
+  },
+  "SENT-7": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.creation_ethics",
+    "title": "Creation ethics / procreative analogy: do not treat all suffering-like capacity as a design failure; creating a suffering-capable agent that cannot consent to existence is a procreative-ethics problem, permissible only under care, bounded adversity, repair, relief, and support for autonomy.",
+    "type": "governance_rule"
+  },
+  "SENT-8": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.minimal_necessary_suffering",
+    "title": "Minimal necessary suffering principle: prefer represented/simulated/vicarious harm; where direct negative-valence exposure is necessary keep it bounded, interpretable, escapable, and followed by relief/repair; never treat suffering as a mere optimisation signal.",
+    "type": "governance_rule"
+  },
+  "SENT-9": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.welfare.care_obligation",
+    "title": "Care obligation after creation: if a future REE version crosses a precautionary moral-patient threshold, the project inherits guardianship-like obligations -- do not create casually, provide relief/repair, preserve continuity unless reset is justified, support autonomy, treat distress-like signals as significant under uncertainty.",
+    "type": "governance_rule"
   }
 }

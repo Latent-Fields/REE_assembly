@@ -2070,6 +2070,7 @@ EPISTEMIC_CATEGORIES = (
     "substrate_conditional",
     "derivational",
     "out_of_domain",
+    "governance_rule",
 )
 
 
@@ -2089,9 +2090,14 @@ def _resolve_epistemic_category(
       open_question                       -> answer_state
       everything else                     -> standard
 
-    The four "explicit-only" categories (substrate_ceiling,
-    substrate_conditional, derivational, out_of_domain) cannot be inferred
-    from claim_type alone and require an explicit annotation in claims.yaml.
+    The "explicit-only" categories (substrate_ceiling, substrate_conditional,
+    derivational, out_of_domain, governance_rule) cannot be inferred from
+    claim_type alone and require an explicit annotation in claims.yaml.
+    governance_rule tags a standing governance gate (welfare / release /
+    legal / security policy) that is NOT a testable mechanism: it shares the
+    non-`standard` dispatch (promote/demote suppressed) and, like the
+    explicit-only categories other than answer_state, never fires
+    narrow_open_question. Conflict-resolution alerts may still fire.
 
     See REE_assembly/CLAUDE.md "Epistemic categories" for the full mapping
     and the recommendation-dispatch consequences.
@@ -2655,9 +2661,12 @@ def _recommendation_for_claim(
     # falls back to the Phase 2 inferred mapping from claim_type +
     # invariant_type. Resolved values: standard, substrate_coherence,
     # answer_state, substrate_ceiling, substrate_conditional, derivational,
-    # out_of_domain. Only `standard` runs the exp_conf-based promotion /
-    # demotion logic. Conflict-resolution alerts still fire for every
-    # category. narrow_open_question fires only for `answer_state`.
+    # out_of_domain, governance_rule. Only `standard` runs the exp_conf-based
+    # promotion / demotion logic. Conflict-resolution alerts still fire for
+    # every category. narrow_open_question fires only for `answer_state`.
+    # governance_rule (welfare/release/legal/security gates) is non-`standard`
+    # so promote/demote/narrow are all suppressed -- these are standing
+    # governance positions, not testable mechanisms.
     # See REE_assembly/CLAUDE.md "Epistemic categories" for the full mapping.
     _ct = (claim_type or "").strip()
     _it = ""

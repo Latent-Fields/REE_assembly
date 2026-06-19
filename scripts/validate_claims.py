@@ -48,6 +48,7 @@ VALID_EPISTEMIC_CATEGORIES = {
     "substrate_conditional",
     "derivational",
     "out_of_domain",
+    "governance_rule",
 }
 
 SUBSTRATE_CLAIM_TYPES = {
