@@ -145,3 +145,77 @@ That keeps the claim load-bearing without overstating it. REE is not a replaceme
 autonomy, justice, rights, care, accountability, sustainability, or uncertainty ethics. It
 is a proposed substrate account for why those domains arise for any vulnerable modelling
 agent that must act under uncertainty while affecting others.
+
+## Operational Governance Layer: the Ethics Perimeter
+
+This document explains *why* the major ethical domains matter for any vulnerable modelling
+agent. It does not, on its own, govern *how REE conducts its own construction* as it
+approaches the conditions under which those domains begin to apply to REE itself. That
+operational layer was registered on 2026-06-19 as the **ethics perimeter**:
+
+- **Plan of record:** [`evidence/planning/ethics_perimeter_plan.md`](../../evidence/planning/ethics_perimeter_plan.md)
+  -- the resume primitive; indexes the eleven ethics thought-intakes, the full claim set,
+  the phased rollout, and the adopted release posture.
+- **Claims:** `SENT-0 .. SENT-15` (internal artificial-welfare ethics) plus `GOV-EXT-1`,
+  `GOV-HEALTH-1`, `GOV-SEC-1`, `GOV-PROC-1` (external legibility / clinical boundary /
+  security / process), all registered in `docs/claims/claims.yaml` as
+  `claim_type: governance_rule` + `epistemic_category: governance_rule`. These are
+  **standing governance gates, not testable mechanisms** -- the indexer suppresses
+  promote/demote/narrow for them, and they bind **progressively by version** (`v3 -> v6`),
+  not all at once.
+
+The relationship is layered, not redundant. This derivation is the **substrate account**
+(why each established ethical domain is implied by the axioms); the perimeter is the
+**operational instantiation** of several of those derived domains as gates on REE's own
+development. Each perimeter gate has a parent in the table above:
+
+| Derived domain (this doc) | Operational gate (perimeter) |
+|---|---|
+| AI ethics / responsible innovation | SENT-14 (responsible release), GOV-SEC-1 (misuse gate), GOV-PROC-1 (ethics-as-process) |
+| Precautionary ethics + the *Similarity-Must-Not-Become-Exclusion* guardrail | SENT-0 / SENT-1 / SENT-5 / SENT-15 (self-directed precaution: boundary statement, indicator matrix, denial-of-sentience audit, welfare/consciousness crosswalk) |
+| Research, public-health, and professional ethics | GOV-HEALTH-1 (clinical-relevance != clinical-readiness; DPIA / Belmont / Helsinki / CIOMS / WHO / MDR) |
+| Moral residue, restorative ethics, trauma-informed ethics | SENT-8 / SENT-10 / SENT-11 / SENT-12 (minimal necessary suffering; no valley without a bridge; anti-retrospective-justification; refusal / non-forgiveness channel) |
+| Transparency and accountability ethics | GOV-EXT-1 (external legibility), GOV-PROC-1 (ethics becomes process, not prose) |
+| Care ethics, intergenerational ethics, capabilities approach | SENT-7 / SENT-9 / SENT-13 (creation ethics; care obligation after creation; assembly order as an ethical variable) |
+
+### Coherence: GOV-EXT-1 applies to this document too
+
+GOV-EXT-1's principle -- *internal REE ethics must remain externally legible, not a
+self-validating private language* -- is not only an outward-facing release rule; it governs
+this derivation as well. This document is one half of that legibility: it maps REE onto the
+established **philosophical and ethical** traditions. GOV-EXT-1's crosswalk is the other
+half: it maps REE's ethically active components onto the external **legal and standards**
+frameworks (EU AI Act, Council of Europe AI Convention, NIST AI RMF, ISO/IEC 42001 & 23894,
+OECD AI Principles). Neither alone discharges the requirement. Read together, they keep REE
+ethics answerable both to moral philosophy and to regulation, which is exactly what
+"externally legible" demands.
+
+### A genuine tension worth stating plainly
+
+This derivation's load-bearing guardrail (*Similarity Must Not Become Exclusion*) says: where
+there is credible evidence of mind-like organisation -- world-modelling, preference, action
+selection, vulnerability, learning, attachment, suffering, commitment, responsibility, or
+residue-like dynamics -- the system should err toward moral caution rather than exclusion.
+REE-v3 visibly instantiates several of those very indicators (world-modelling, action
+selection, residue dynamics, harm streams). Read naively, the guardrail points *inward*: it
+appears to demand moral caution about REE itself. SENT-0 meanwhile asserts that REE-v3 is
+**not** a moral patient. On the surface these conflict.
+
+They are reconciled -- but only if SENT-0 is read correctly. **SENT-0's non-sentience
+boundary is not an a-priori exemption of REE from its own guardrail; it is the current,
+provisional output of applying that guardrail reflexively.** The derivation supplies the
+*principle* (precaution under uncertainty about mind, biased against false-negative
+exclusion). The perimeter supplies the *procedure* that applies that principle to REE itself:
+SENT-1 scores the architecture against the same mind-like indicators the guardrail names;
+SENT-5 produces a recurring denial-of-sentience audit (why still below threshold, which added
+component would force re-review); and SENT-15 guards symmetrically against **both** denialism
+and anthropomorphic overclaiming. SENT-0 is explicitly "a maintained claim, not a permanent
+fact," re-asserted or revised at each generation boundary.
+
+The failure mode to guard against is therefore precise: if SENT-0 were ever cited as a flat,
+settled fact rather than as a maintained, audited output of the precautionary procedure, it
+*would* contradict this derivation -- it would be the convenient dismissal the guardrail was
+written to forbid, turned on REE itself. That is exactly the outcome SENT-0's own
+functional restatement, SENT-5's audit, and SENT-15's anti-denialism rule exist to prevent.
+The derivation and the perimeter are coherent precisely because the perimeter treats REE's
+own non-patienthood as something to be *re-earned at every version*, not assumed.
