@@ -1,0 +1,127 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_468f_sd034_mech268_decommit_hold_behavioural",
+  "run_id": "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-19T22:44:56Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-268",
+    "MECH-090"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-268": "non_contributory",
+    "MECH-090": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "rule_bias_head_trained",
+        "description": "Leg C readiness (the DIRECT anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| > floor on >= 2/3 seeds. Below floor -> substrate_not_ready_requeue (the head did not train), NEVER a weakens.",
+        "control": "P1OnboardingResult.rule_bias_diag mean |bias|.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_coupling_and_contradiction_nonvacuous",
+        "description": "TIGHTENED non-vacuity (the brief): ON sd034_n_closure_coupled_elevations > 0 AND ON episodes_with_contradiction > 0 on >= 2/3 guard seeds -- the closure-plane coupling engaged the latch AND a contradiction fired (not the fragile natural commit-entry). Below floor -> substrate_not_ready_requeue (the 468e/460f inert-coupling signature).",
+        "control": "ARM_SUBSTRATE_ON sd034_n_closure_coupled_elevations + episodes_with_contradiction.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "within_arm_window_nonvacuous",
+        "description": "ON arm produced >= C2_MIN_WINDOW_EVENTS scored around-contradiction windows with mean pre-contradiction committed occupancy > WITHIN_PRE_OCC_FLOOR on >= 2/3 guard seeds -- there was something committed to de-commit. Below floor -> substrate_not_ready_requeue.",
+        "control": "ARM_SUBSTRATE_ON n_window_events + mean_pre_committed_occ.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_beta_release_near_contradiction",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_within_arm_around_contradiction_committed_occ_drop",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false
+    },
+    "contact_guard": {
+      "definition": "per-seed: P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 (603n G2 + G3). < 2/3 seeds passing -> substrate_not_ready_requeue, never a false weakens.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    },
+    "graded_within_arm_dv": {
+      "definition": "468f C2 reads a PAIRED within-ON-arm around-contradiction COMMITTED-occupancy delta: for each counter-evidence injection at tick t, committed occupancy in [t-W, t) vs (t, t+W]; the de-commit lowers post-contradiction occupancy below pre-contradiction occupancy by >= DECOMMIT_MIN_DROP_FRAC over >= C2_MIN_WINDOW_EVENTS windows (pre > WITHIN_PRE_OCC_FLOOR). Graded -- replaces the 468e committed_frac_post_absolute that re-pinned at the 1.0 ceiling 3/3.",
+      "contradiction_window": 10,
+      "window_min_ticks": 3,
+      "c2_min_window_events": 2,
+      "within_pre_occ_floor": 0.1,
+      "decommit_min_drop_frac": 0.1,
+      "release_window": 20
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure on env sequence_complete (waypoint) ticks.",
+      "leg_b_decommit_hold_ticks": 5,
+      "leg_b_magnitude_scale_with_run": 0.1,
+      "leg_b_magnitude_max_ticks": 60,
+      "leg_c_trained_rule_bias_head": true,
+      "beta_engagement_coupling": true
+    }
+  }
+}
