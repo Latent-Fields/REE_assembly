@@ -21630,7 +21630,7 @@
     ree-v3 code.
   location: evidence/literature/targeted_review_frontopolar_analog_prong_d/synthesis.md
 - id: SD-034
-  title: "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied."
+  title: "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied. [UMBRELLA NARROWED 2026-06-19: the de-commit-authority sub-property (closure->latch coupling + de-commit magnitude) is decomposed into children MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude); see those claims. SD-034 remains the umbrella design_decision -- closure-operator existence + five-part 'done' token firing + No-Go install are retained here and provisional; NOT demoted, NOT superseded.]"
   claim_type: design_decision
   subject: governance.closure_operator
   polarity: asserts
@@ -21638,6 +21638,32 @@
   implementation_phase: v3
   v3_pending: false
   pending_retest_after_substrate: true  # commitment-closure-control-plane (gov 2026-06-13; 460f autopsy 2026-06-18)
+  governance_note_2026_06_19_claimsynth: >
+    CLAIM-SYNTHESIS DECOMPOSITION (user-approved 2026-06-19T20:38Z; spec
+    evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md). Routed by confirmed
+    failure_autopsy_V3-EXQ-460g_2026-06-19 (7th autopsy; the 460f WATCH ITEM fired). The
+    7-autopsy chain (460b..460g, 2026-06-04..06-19) showed the single "behavioural de-commit
+    authority over the MECH-090 beta latch" sub-property bundles a multi-stage de-commit
+    PIPELINE: closure-firing (S1, closed via Leg-A hook, 460d C1 PASS), detector magnitude /
+    trained head (S2, a built substrate leg), closure->beta COUPLING engagement (S3), de-commit
+    MAGNITUDE (S4), and coupling-measurability-under-refractory (S5). Discrimination gate
+    (Step 3): granularity debt -- NOT vacuous/test-design (5 structurally-different signatures,
+    not one test iterated below resolution a la MECH-341 660-series), NOT substrate-not-ready
+    (Legs A+B+C + beta-coupling + magnitude lever all built and firing), NOT clean falsification
+    (seed-42 within-arm de-commit 0.333->0.0 in 460g + seed-44 460e ON<OFF are positive existence
+    proofs of correct sign). The decisive evidence is the DOUBLE DISSOCIATION across 460f/460g:
+    coupling ENGAGES yet magnitude INSUFFICIENT (460f seed 42, 36 coupled elevations but swamped)
+    vs magnitude HAS AUTHORITY yet coupling UNMEASURABLE (460g seed 42, 0.333->0.0 but counter 0) --
+    a single property cannot express that, two named children can. Decomposed S3->MECH-445
+    (closure->beta coupling engagement) + S4->MECH-446 (de-commit-authority magnitude); both
+    candidate, standard, v3_pending, pending_retest_after_substrate; both depends_on: SD-034.
+    S5 (coupling-measurability-under-refractory) is a MEASUREMENT/test-design property with no
+    biological mechanism -- REFUSED on the anti-proliferation rail (not a claim); it is the 460h
+    experiment fix (refractory-independent commit-intent counter), which is why both children carry
+    "refractory-independent coupling gate" in their what_would_answer. SD-034 stays a provisional
+    design_decision umbrella (closure-operator existence + five-part done token + No-Go install
+    retained); NOT demoted, NOT superseded. The gated 460h re-queue targets MECH-445/446, NOT this
+    coarse umbrella.
   governance_note_2026_06_18: >
     V3-EXQ-460f (supersedes 460e; de-commit retest on the beta-engagement-amended
     substrate) applied this cycle per confirmed failure_autopsy_V3-EXQ-460f_2026-06-18:
@@ -43721,6 +43747,98 @@
     replay-write locus jointly with MECH-443. CANDIDATE only -- promotes nothing, flips no node status;
     decide-whether-to-build is a later governance step; the more speculative of the CDQ-005 pair. DO NOT
     build in V3 until routed by experiment.
+
+# ============================================================================
+# SD-034 CLOSURE-CONTROL-PLANE de-commit-pipeline decomposition (2026-06-19)
+# Children of the SD-034 umbrella. Routed by confirmed failure_autopsy_V3-EXQ-460g
+# (7th autopsy); user-approved 2026-06-19T20:38Z. Spec:
+# evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md. The double
+# dissociation across 460f/460g (coupling engages w/o sufficient magnitude vs
+# magnitude w/ authority but unmeasurable coupling) is the proof these are two
+# mechanisms, not one. The S5 measurement property (coupling-measurability-under-
+# refractory) is REFUSED on the anti-proliferation rail -> it is the 460h experiment
+# fix, not a claim.
+# ============================================================================
+- id: MECH-445
+  title: "Closure->beta coupling engagement: a closure-plane commit (closure fired on a real sequence completion) elevates/binds the MECH-090 bistable latch via the use_closure_commit_beta_coupling path INDEPENDENT of a natural running_variance < commit_threshold commit-entry -- i.e. on seeds where the agent does not naturally commit decisively, the closure still drives a latch elevation the de-commit then acts on. Child A of the SD-034 de-commit-pipeline decomposition (S3)."
+  claim_type: mechanism_hypothesis
+  subject: governance.closure_beta_coupling
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  pending_retest_after_substrate: true  # commitment-closure-control-plane
+  registered_utc: "2026-06-19"
+  what_would_answer: >
+    On the foraging-competent 603n substrate with the beta-coupling amend ON, a
+    refractory-independent commit-intent counter (closure-plane e3._committed_trajectory
+    forming while not result.committed, counted BEFORE the elevate/refractory gate) is > 0
+    on >= 2/3 scored seeds, including a strong-natural-commit seed. Falsified if the
+    closure-plane commit only ever co-occurs with a natural result.committed (coupling inert
+    -- adds no elevation the natural path would not have produced) on >= 2/3 seeds.
+  depends_on:
+    - SD-034    # umbrella design_decision this child decomposes
+    - MECH-090  # the bistable latch the closure-plane commit engages
+    - SD-033a   # the rule_state the closure reads
+  location: docs/architecture/sd_034_governance_closure_operator.md#children-de-commit-pipeline-decomposition-2026-06-19
+  notes: >
+    Registered 2026-06-19 from claim-synthesis decomposition of the SD-034 de-commit-authority
+    sub-property (spec evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md, Section 5.2
+    Child A; user-approved 2026-06-19T20:38Z). LIT ANCHOR (existing SD-034 pull
+    evidence/literature/targeted_review_sd_034/): Collins & Frank 2014 (OPAL D1/D2 task-set
+    disengagement -- completion drives the committed program OFF); Smith & Graybiel 2013 (the
+    "stop" bracket terminates the action sequence). CLUSTER EVIDENCE IT EXPLAINS: 460e
+    (commit-without-beta dissociation, beta engaged 1/3); 460f (coupling fired 36/52 seed 42 but
+    0/0 on 43/44 -- engagement is seed-conditional). The seed-42 coupling (460f) is partial
+    positive support; the 43/44 inertness is the open failure. WHY DISTINCT FROM MECH-446:
+    coupling can engage with insufficient magnitude (460f seed 42, 36 coupled elevations yet
+    swamped). The what_would_answer uses a REFRACTORY-INDEPENDENT commit-intent gate so the
+    de-commit magnitude lever (MECH-446) does not zero this child's certifier (the S5 entanglement
+    that the refused measurement item, routed to 460h, exists to break). CANDIDATE only -- promotes
+    nothing; tested by the gated 460h re-queue (targets MECH-445/446, NOT the coarse SD-034 umbrella).
+- id: MECH-446
+  title: "De-commit-authority magnitude: the closure-coupled de-commit lowers post-closure latch occupancy with authority magnitude sufficient to overcome the natural-commit occupancy it competes against -- the committed-run-scaled refractory drives a within-arm around-closure occupancy drop (pre-closure vs post-closure window on the ON arm), scaling with committed-run length so a long committed run triggers a proportionally long de-commit. Child B of the SD-034 de-commit-pipeline decomposition (S4)."
+  claim_type: mechanism_hypothesis
+  subject: governance.closure_decommit_magnitude
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  pending_retest_after_substrate: true  # commitment-closure-control-plane
+  registered_utc: "2026-06-19"
+  what_would_answer: >
+    On the amended substrate (committed-run-scaled refractory ON), the ON-arm within-arm
+    post-closure latch occupancy is below the pre-closure occupancy by >= DECOMMIT_MIN_DROP_FRAC
+    on >= 2/3 seeds, measured on a refractory-independent coupling gate (so the lever does not
+    zero its own certifier). Falsified if a fairly-coupled, refractory-independent-gated run shows
+    no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold
+    authority) on >= 2/3 seeds.
+  depends_on:
+    - SD-034    # umbrella design_decision this child decomposes
+    - MECH-090  # the latch occupancy the de-commit lowers
+    - MECH-445  # coupling must engage for the magnitude to act on a closure-driven elevation
+    - MECH-342  # maintenance-release sibling -- the OTHER release pathway; cross-ref to keep the boundary clean
+  location: docs/architecture/sd_034_governance_closure_operator.md#children-de-commit-pipeline-decomposition-2026-06-19
+  notes: >
+    Registered 2026-06-19 from claim-synthesis decomposition of the SD-034 de-commit-authority
+    sub-property (spec evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md, Section 5.2
+    Child B; user-approved 2026-06-19T20:38Z). LIT ANCHOR: Mayr & Keele 2000 (backward inhibition:
+    post-completion refractory whose STRENGTH competes with re-activation of the just-abandoned set)
+    -- adequate grounding in the existing SD-034 pull; Cavanagh & Frank 2011 (STN conflict-graded
+    "hold-your-horses" release -- the sharpest anchor for the "magnitude scales with committed-run
+    length" form) recommended as a targeted single-entry addition to
+    evidence/literature/targeted_review_sd_034/entries/ (non-blocking; the magnitude form is already
+    grounded by Mayr & Keele). CLUSTER EVIDENCE IT EXPLAINS: 460f (5-tick refractory swamped by
+    ~530-560 elevated steps -- correct sign, sub-threshold magnitude); 468e (release fires C1 3/3 but
+    committed_frac pinned at 1.0 -- sub-threshold authority via an independent DV); 460g (committed-run-
+    scaled refractory HAS authority on seed 42, within-arm 0.333 -> 0.0 -- the existence proof). WHY
+    DISTINCT FROM MECH-445: magnitude can have authority with unmeasurable coupling (460g seed 42
+    dissociation). CANDIDATE only -- promotes nothing; tested by the gated 460h re-queue (targets
+    MECH-445/446, NOT the coarse SD-034 umbrella).
 
 # ============================================================================
 # ETHICS PERIMETER -- governance_rule claims (SENT-* / GOV-*)

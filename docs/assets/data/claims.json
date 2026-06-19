@@ -3709,7 +3709,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-260": {
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "cingulate.dacc_bias_suppression",
     "title": "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results.",
@@ -5024,6 +5024,22 @@
     "title": "staleness_gated_target_refresh_on_replay_write (MuZero/EfficientZero reanalyze analog). The second, more speculative leg of the CDQ-005 reanalyze import, complementary to MECH-443. Asserts that a replayed transition admitted to update the rule-arbitration layer should NOT write its stored (ghost-derived, possibly stale) target verbatim; the target should first be RECOMPUTED against the current model/policy before it updates the rule layer, and the write should be down-weighted or skipped when the recomputed target has not drifted from the stored one (low staleness => low update value). This is the MuZero reanalyze trick (re-run the model on stored trajectories to produce fresh targets) plus EfficientZero off-policy/staleness correction. It guards against the failure MECH-319 was built to prevent (overcommitment to ghost-derived arbitration weights) from re-entering THROUGH the admitted-write channel that MECH-443 opens: prioritized writing of STALE targets would re-introduce drift, so the priority signal (MECH-443) and the freshness signal (MECH-444) must operate together.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-445": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.closure_beta_coupling",
+    "title": "Closure->beta coupling engagement: a closure-plane commit (closure fired on a real sequence completion) elevates/binds the MECH-090 bistable latch via the use_closure_commit_beta_coupling path INDEPENDENT of a natural running_variance < commit_threshold commit-entry -- i.e. on seeds where the agent does not naturally commit decisively, the closure still drives a latch elevation the de-commit then acts on. Child A of the SD-034 de-commit-pipeline decomposition (S3).",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "On the foraging-competent 603n substrate with the beta-coupling amend ON, a refractory-independent commit-intent counter (closure-plane e3._committed_trajectory forming while not result.committed, counted BEFORE the elevate/refractory gate) is > 0 on >= 2/3 scored seeds, including a strong-natural-commit seed. Falsified if the closure-plane commit only ever co-occurs with a natural result.committed (coupling inert -- adds no elevation the natural path would not have produced) on >= 2/3 seeds.\n"
+  },
+  "MECH-446": {
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.closure_decommit_magnitude",
+    "title": "De-commit-authority magnitude: the closure-coupled de-commit lowers post-closure latch occupancy with authority magnitude sufficient to overcome the natural-commit occupancy it competes against -- the committed-run-scaled refractory drives a within-arm around-closure occupancy drop (pre-closure vs post-closure window on the ON arm), scaling with committed-run length so a long committed run triggers a proportionally long de-commit. Child B of the SD-034 de-commit-pipeline decomposition (S4).",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "On the amended substrate (committed-run-scaled refractory ON), the ON-arm within-arm post-closure latch occupancy is below the pre-closure occupancy by >= DECOMMIT_MIN_DROP_FRAC on >= 2/3 seeds, measured on a refractory-independent coupling gate (so the lever does not zero its own certifier). Falsified if a fairly-coupled, refractory-independent-gated run shows no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold authority) on >= 2/3 seeds.\n"
+  },
   "Q-001": {
     "epistemic_stance": "asked",
     "status": "active",
@@ -5894,7 +5910,7 @@
     "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "governance.closure_operator",
-    "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied.",
+    "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied. [UMBRELLA NARROWED 2026-06-19: the de-commit-authority sub-property (closure->latch coupling + de-commit magnitude) is decomposed into children MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude); see those claims. SD-034 remains the umbrella design_decision -- closure-operator existence + five-part 'done' token firing + No-Go install are retained here and provisional; NOT demoted, NOT superseded.]",
     "type": "design_decision"
   },
   "SD-035": {

@@ -378,6 +378,53 @@ coupling non-vacuity gate met. Do NOT re-author 460d/460e/460f; the parallel V3-
 `commitment-closure-control-plane` substrate_queue `ready` STAYS false until 460g scores a
 contributory PASS. Autopsy: `evidence/planning/failure_autopsy_V3-EXQ-460f_2026-06-18.md`.
 
+## Children (de-commit pipeline decomposition 2026-06-19)
+
+Routed by confirmed `failure_autopsy_V3-EXQ-460g_2026-06-19` (the 7th autopsy of this
+cluster; the 460f WATCH ITEM fired). User-approved 2026-06-19T20:38Z. Full spec:
+`evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md`.
+
+The 7-autopsy chain (460b..460g, 2026-06-04..06-19) showed the single SD-034 "behavioural
+de-commit authority over the MECH-090 beta latch" sub-property bundles a **multi-stage
+de-commit pipeline**: closure-firing (S1, closed via the Leg-A env-completion hook, 460d
+C1 PASS), detector magnitude / trained head (S2, a built substrate leg), closure->beta
+**coupling engagement** (S3), de-commit **magnitude** (S4), and coupling-measurability-
+under-refractory (S5). The decisive evidence is the **double dissociation** across 460f/460g:
+coupling ENGAGES yet magnitude is INSUFFICIENT (460f seed 42: 36 coupled elevations but
+swamped by ~530-560 natural-commit elevated steps) vs magnitude HAS AUTHORITY yet coupling
+is UNMEASURABLE (460g seed 42: within-arm occupancy 0.333 -> 0.0 but coupling counter 0).
+A single property cannot express that; two named children can.
+
+SD-034 stays the **umbrella `design_decision`** (closure-operator existence + five-part
+"done" token firing + No-Go install retained; provisional; NOT demoted, NOT superseded).
+The de-commit-authority sub-clause is decomposed into:
+
+- **MECH-445 -- closure->beta coupling engagement (S3).** A closure-plane commit elevates/binds
+  the MECH-090 latch via the `use_closure_commit_beta_coupling` path *independent of* a natural
+  `running_variance < commit_threshold` commit-entry. `depends_on: SD-034, MECH-090, SD-033a`.
+  Lit: Collins & Frank 2014 (OPAL task-set disengagement); Smith & Graybiel 2013 (stop-bracket).
+  Falsifier: a refractory-independent commit-intent counter `> 0` on >= 2/3 seeds incl. a
+  strong-natural-commit seed; falsified if the closure-plane commit only co-occurs with a natural
+  `result.committed` (coupling inert).
+- **MECH-446 -- de-commit-authority magnitude (S4).** The closure-coupled de-commit lowers
+  post-closure latch occupancy with authority sufficient to overcome the natural-commit occupancy
+  it competes against; the committed-run-scaled refractory drives a within-arm around-closure
+  occupancy drop scaling with committed-run length. `depends_on: SD-034, MECH-090, MECH-445,
+  MECH-342`. Lit: Mayr & Keele 2000 (post-completion refractory strength); Cavanagh & Frank 2011
+  (STN graded release -- targeted lit addition recommended, non-blocking). Falsifier: ON-arm
+  within-arm post-closure occupancy below pre-closure by >= `DECOMMIT_MIN_DROP_FRAC` on >= 2/3
+  seeds, measured on a refractory-independent coupling gate.
+
+**Refused (anti-proliferation rail) -- NOT a claim:** *coupling-measurability-under-refractory*
+(S5, the 460g signature where a strong-enough refractory suppresses the very coupling metric the
+de-commit is scored by) is a **measurement / test-design property** with no biological mechanism
+to ground. It is handled by the **460h experiment fix** -- a refractory-independent commit-intent
+counter (increments on the closure-plane commit INTENT, `e3._committed_trajectory` forming while
+`not result.committed`, BEFORE the elevate/refractory gate) -- which is why both children carry
+"refractory-independent coupling gate" in their falsifiers. The gated 460h re-queue targets the
+re-grained children **MECH-445 / MECH-446**, NOT the coarse SD-034 umbrella; new letter, do NOT
+re-author 460d/460e/460f/460g.
+
 ## Anchor Documents
 
 - Anchor doc: `REE_assembly/evidence/planning/sd033_governance_plan.md`
