@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-06-19T21:18:38.902489Z`
+Generated: `2026-06-19T21:42:19.704667Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -212,7 +212,7 @@ Total: **248** discrepant claims (standard-gating only).
 | `Q-035` | question | resolved | 0.892 | 0.000 | 0.892 | 0 | 15 | plausible_unproven |
 | `Q-046` | - | - | 0.761 | 0.000 | 0.761 | 0 | 2 | plausible_unproven |
 | `SD-003-SUCCESSOR` | - | - | 0.855 | 0.000 | 0.855 | 0 | 4 | plausible_unproven |
-| `SD-009` | design_decision | provisional | 0.738 | 0.000 | 0.738 | 0 | 2 | plausible_unproven |
+| `SD-009` | design_decision | provisional | 0.737 | 0.000 | 0.737 | 0 | 2 | plausible_unproven |
 | `SD-014` | design_decision | candidate | 0.881 | 0.000 | 0.881 | 0 | 13 | plausible_unproven |
 | `SD-027` | design_decision | candidate | 0.698 | 0.000 | 0.698 | 0 | 2 | plausible_unproven |
 | `SD-030` | design_decision | candidate | 0.830 | 0.000 | 0.830 | 0 | 4 | plausible_unproven |

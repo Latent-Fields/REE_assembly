@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-19T21:18:41Z
+Generated: 2026-06-19T21:42:22Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -38,7 +38,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | in_progress | 1 | load-bearing | V3-EXQ-625e | RESUME the Phase 1b gate via a redesigned successor (V3-EXQ-625d, JOINT-COMPOSITE-ON) once | 2026-06-19 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-19 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654f RAN FAIL/non_contributory 2026-06-18 | AWAITING V3-EXQ-654g QUEUE + RUN (654g NOT yet queued -- /queue-experiment owed). 654f (co | 2026-06-18 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460g (RAN terminal FAIL/non_contributory  | AWAITING /implement-substrate AMEND of commitment-closure-control-plane (de-commit-authori | 2026-06-19 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c | Closes when V3-EXQ-460h returns a contributory PASS (within-arm post-closure occupancy < p | 2026-06-19 21:30:31+00:00 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-09 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked | 2 | high | V3-EXQ-265a | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-05-31 |

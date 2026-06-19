@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-19T21:18:34.442794Z`
+Generated: `2026-06-19T21:50:05.464326Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -93,7 +93,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-007
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=29, weakens=6, conflict_ratio=0.343, exp_conf=0.566, lit_conf=0.855, overall_confidence_legacy=0.711
+- Evidence breakdown: supports=29, weakens=6, conflict_ratio=0.343, exp_conf=0.565, lit_conf=0.855, overall_confidence_legacy=0.71
 - Recent entries:
   - `2026-05-15T19:56:10Z` `literature` `targeted_review_developmental_exploration_hippocampal_retrieval` direction=`supports` confidence=0.77
   - `2026-05-15T19:56:10Z` `literature` `targeted_review_developmental_exploration_hippocampal_retrieval` direction=`supports` confidence=0.84
@@ -351,11 +351,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, source_disagreement, mixed_evidence
 - Evidence breakdown: supports=17, weakens=3, conflict_ratio=0.3, exp_conf=0.32, lit_conf=0.859, overall_confidence_legacy=0.643
 - Recent entries:
-  - `2026-06-10T00:40:25Z` `experimental` `v3_exq_654a_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`superseded` confidence=0.55
   - `2026-06-10T20:05:49Z` `experimental` `v3_exq_654b_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`non_contributory` confidence=0
   - `2026-06-15T12:38:48Z` `experimental` `v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`non_contributory` confidence=0
   - `2026-06-16T15:27:53Z` `experimental` `v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`non_contributory` confidence=0
-  - `2026-06-18T00:52:28Z` `experimental` `v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`non_contributory` confidence=0
+  - `2026-06-18T00:52:28Z` `experimental` `v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`superseded` confidence=0.55
+  - `2026-06-19T21:31:18Z` `experimental` `v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If ARC-062 weak reading at score_bias level (option iii) PASSes the SD-054 falsifier but the discriminator output cannot be sustained without continuous teaching signal, Gurney/Humphries/Redgrave's framework predicts the missing element is dopamine-gated cortico-striatal plasticity at the action-reinforcement interface — points the next investigation at downstream BG-side training rather than upstream architecture.` (1)
   - `If two-head ARC-062 produces stable but maladaptive policy partitions on SD-054 (e.g. always reef, never forage despite resource cues), the framework predicts D1/D2 imbalance as a common signature — diagnostic via the action-suppression vs action-promotion ratio in the gated-policy outputs.` (1)
@@ -609,7 +609,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, exp_conf=0.68, lit_conf=0.686, overall_confidence_legacy=0.683
+- Evidence breakdown: supports=14, weakens=9, conflict_ratio=0.783, exp_conf=0.679, lit_conf=0.686, overall_confidence_legacy=0.683
 - Recent entries:
   - `2026-06-04T05:32:55.847590Z` `experimental` `v3_exq_468b_sd034_mech268_commitment_vs_contradiction_behavioural` direction=`non_contributory` confidence=0
   - `2026-06-12T08:01:05Z` `experimental` `v3_exq_468c_sd034_mech268_commitment_vs_contradiction_behavioural` direction=`non_contributory` confidence=0
