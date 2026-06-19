@@ -1,48 +1,43 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-19T14:08:26Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-689",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-603n",
-      "result": "PASS",
-      "completed_at": "2026-06-10T20:14:27.777091+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-680",
-      "result": "FAIL",
-      "completed_at": "2026-06-14T18:48:21.014656+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-680a",
-      "result": "PASS",
-      "completed_at": "2026-06-14T19:16:57.362073+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-684a",
-      "result": "PASS",
-      "completed_at": "2026-06-15T21:56:42.743959+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-569i",
-      "result": "PASS",
-      "completed_at": "2026-06-16T22:40:09.575102+00:00"
-    }
+  "last_tick_utc": "2026-06-19T14:35:10Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-689",
+  "current_exq_started_utc": "2026-06-19T14:10:28.151343+00:00",
+  "current_title": "MECH-439 F-dominance conflict-grade 2-factor (2x2) falsifier: conflict-graded shortlist width x gap-scaled commit-T on the GAP-A foraging substrate",
+  "current_claim_id": "MECH-439",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / ARM_PROPOSER_CTRL",
+    "runs_done": 1,
+    "runs_total": 18,
+    "episodes_done": 20,
+    "episodes_total": 80,
+    "overall_pct": 6.9
+  },
+  "seconds_elapsed": 1482,
+  "seconds_remaining": 16211,
+  "recent_lines": [
+    "Seed 42 Condition ARM_PROPOSER_CTRL",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 40/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 50/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 60/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P1 ep 70/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_PROPOSER_CTRL",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 20/80"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 668,
-  "runner_version": "r3297 9785b72 2026-06-19 (running r3290 3346ffe)",
+  "runner_version": "r3298 40df9ca 2026-06-19 (running r3290 3346ffe)",
   "gpu": {
     "available": false
   },
