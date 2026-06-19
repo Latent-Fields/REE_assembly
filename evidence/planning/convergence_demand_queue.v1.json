@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-06-18T07:34:26Z",
+  "last_updated_utc": "2026-06-19T18:59:07Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -34,23 +34,23 @@
         {
           "name": "DreamCoder",
           "angle": "wake-sleep library abstraction; minted programs stay distinguishable to be selectable",
-          "intake_state": "NEW",
+          "intake_state": "COMPLETED",
           "path": "REE_convergence/sources/dreamcoder/"
         },
         {
           "name": "DreamerV3 discrete latent codebook",
           "angle": "categorical keys separable by construction",
-          "intake_state": "PARTIAL",
+          "intake_state": "COMPLETED",
           "path": "REE_convergence/sources/dreamer-v3/"
         }
       ],
-      "intake_state": "IN_FLIGHT",
+      "intake_state": "COMPLETED",
       "priority": "HIGH",
       "generation": "v4_leaning",
       "blocks_v3_critical_path": false,
-      "in_flight": "chip task_88e97a80 / session convergence-rule-distinguishability-intake-20260617T1500Z",
+      "in_flight": null,
       "registered_candidate_claims": ["MECH-437", "MECH-438"],
-      "last_known_state_note": "Intake executed this session: DreamCoder intake created (sources/dreamcoder/) + DreamerV3 codebook angle extended (sources/dreamer-v3/); promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617 submitted (re-activated the handoff pipeline, stale since 2026-02-24); MECH-437 (maintenance-side consolidation/refactor) + MECH-438 (construction-side separable-key codebook) registered candidate/substrate_conditional/generation:v4, wired into the arc_062 cluster depends_on (landed REE_assembly master dcca2cb). Sense step should treat CDQ-001 as satisfied unless a new mechanism gap surfaces."
+      "last_known_state_note": "COMPLETED. Mine+Register executed 2026-06-17 (session convergence-rule-distinguishability-intake-20260617T1500Z): DreamCoder intake created (sources/dreamcoder/) + DreamerV3 codebook angle extended (sources/dreamer-v3/); promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617 submitted; MECH-437 (maintenance-side consolidation/refactor) + MECH-438 (construction-side separable-key codebook) registered candidate/substrate_conditional/generation:v4, wired into the arc_062 cluster depends_on (landed REE_assembly master dcca2cb). HANDOFF reconciled 2026-06-19 (session convergence-handoff-reactivate-cdq-reconcile-20260619T1856Z): packet re-validated gate-ready; receipt CRCT-RULE-DISTINGUISHABILITY-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) and mirrored to REE_convergence/handoff/packets/receipts/ -- this re-activated the handoff pipeline (first batch since 2026-02-24). Direct claims.yaml registration superseded the tool register step; receipt promotes nothing. STALE BOOKKEEPING FIXED: prior in_flight pointer cited chip task_88e97a80, which is actually the closure-map process-lane task, not this work. Sense step should treat CDQ-001 as satisfied unless a new mechanism gap surfaces."
     },
     {
       "row_id": "CDQ-002",
@@ -80,7 +80,7 @@
       "blocks_v3_critical_path": false,
       "in_flight": "session convergence-cdq002-noisynet-intake-20260618T0643Z (Mine+Register DONE 2026-06-18)",
       "registered_candidate_claims": ["MECH-440", "MECH-441"],
-      "last_known_state_note": "Mine+Register executed 2026-06-18 (session convergence-cdq002-noisynet-intake-20260618T0643Z). NEW intakes sources/noisynet/ (primary, NoisyNet undirected tonic floor) + sources/rnd-plan2explore/ (secondary, RND/Plan2Explore directed model-disagreement curiosity); both schema-valid + ready_for_execution probe; cross-source synthesis reports/2026-06-18_tonic_exploration_noise_synthesis.md + README rows. Biology lit-pull BEFORE registering (Aston-Jones&Cohen 2005 adaptive gain + Tervo et al 2014 LC->ACC stochastic-choice gating + Daw et al 2006 frontopolar exploration; targeted_review_connectome_mech_313/_314) SUPPORTS the state-conditioned+self-annealing refinement (MECH-313's state-INDEPENDENT framing is biologically under-specified). Promotion packet CPKT-TONIC-EXPLORATION-NOISE-20260618 submitted via run_cross_repo_handoff.py (gate-ready; copied to evidence/planning/convergence_packets/inbox/). Registered (user-approved per-child) MECH-440 (state_conditioned_self_annealing_noise_floor, NoisyNet analog extending MECH-313; PROPAGATING weight-noise fixes the V3-EXQ-687 non-propagation) + MECH-441 (model_disagreement_directed_curiosity, RND/Plan2Explore analog extending MECH-314), both candidate/substrate_ceiling/v3/v3_pending, each with a falsifier, depends_on the GAP-C cluster (MECH-313/MECH-260/Q-045/ARC-065) + GAP-H curiosity leg (MECH-314/ARC-065); arch stub docs/architecture/state_conditioned_exploration_noise_floor.md; claims.json rebuilt (823 claims, validate_claims 0 errors). CANDIDATES ONLY -- promotes nothing, flips no node status, blocks no V3 node; GAP-C/GAP-H node frontmatter NOT touched."
+      "last_known_state_note": "Mine+Register executed 2026-06-18 (session convergence-cdq002-noisynet-intake-20260618T0643Z). NEW intakes sources/noisynet/ (primary, NoisyNet undirected tonic floor) + sources/rnd-plan2explore/ (secondary, RND/Plan2Explore directed model-disagreement curiosity); both schema-valid + ready_for_execution probe; cross-source synthesis reports/2026-06-18_tonic_exploration_noise_synthesis.md + README rows. Biology lit-pull BEFORE registering (Aston-Jones&Cohen 2005 adaptive gain + Tervo et al 2014 LC->ACC stochastic-choice gating + Daw et al 2006 frontopolar exploration; targeted_review_connectome_mech_313/_314) SUPPORTS the state-conditioned+self-annealing refinement (MECH-313's state-INDEPENDENT framing is biologically under-specified). Promotion packet CPKT-TONIC-EXPLORATION-NOISE-20260618 submitted via run_cross_repo_handoff.py (gate-ready; copied to evidence/planning/convergence_packets/inbox/). Registered (user-approved per-child) MECH-440 (state_conditioned_self_annealing_noise_floor, NoisyNet analog extending MECH-313; PROPAGATING weight-noise fixes the V3-EXQ-687 non-propagation) + MECH-441 (model_disagreement_directed_curiosity, RND/Plan2Explore analog extending MECH-314), both candidate/substrate_ceiling/v3/v3_pending, each with a falsifier, depends_on the GAP-C cluster (MECH-313/MECH-260/Q-045/ARC-065) + GAP-H curiosity leg (MECH-314/ARC-065); arch stub docs/architecture/state_conditioned_exploration_noise_floor.md; claims.json rebuilt (823 claims, validate_claims 0 errors). CANDIDATES ONLY -- promotes nothing, flips no node status, blocks no V3 node; GAP-C/GAP-H node frontmatter NOT touched. HANDOFF reconciled 2026-06-19: receipt CRCT-TONIC-EXPLORATION-NOISE-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) + mirrored to REE_convergence/handoff/packets/receipts/. Receipt promotes nothing (direct claims.yaml registration superseded the tool register step)."
     },
     {
       "row_id": "CDQ-003",
@@ -103,7 +103,7 @@
       "blocks_v3_critical_path": false,
       "in_flight": null,
       "registered_candidate_claims": ["MECH-442"],
-      "last_known_state_note": "COMPLETED 2026-06-18 (session convergence-cdq003-mapelites-intake-20260618T0643Z). Mine: REE_convergence/sources/quality-diversity/ intake (schema-valid; MAP-Elites behavioral-descriptor archive adapted onto the E3 committed-selection locus / e3_selector top-k path) + synthesis report + README row. Promotion packet CPKT-QUALITY-DIVERSITY-20260618 GATE-READY, submitted via run_cross_repo_handoff.py (copied to evidence/planning/convergence_packets/inbox/). Register: candidate MECH-442 registered candidate/substrate_conditional/generation v3 (NOT MECH-440 -- collided with concurrent CDQ-002 which took 440/441; took next free id 442), wired into the GAP-B conversion-ceiling cluster depends_on (ARC-065/MECH-341/MECH-439/MECH-294/ARC-062 + MECH-313 added per lit-pull), arch stub docs/architecture/quality_diversity_committed_archive.md. /lit-pull run BEFORE registering (user-directed): evidence/literature/targeted_review_connectome_mech_442/ 5 PubMed entries, lit_conf 0.777, verdict SUPPORTED-with-refinement (archive lives UPSTREAM of the winner-take-all commit -- Ponzi 2007 weakens the at-argmax reading; F-dominance is biologically faithful). PROMOTES NOTHING; GAP-B node status untouched."
+      "last_known_state_note": "COMPLETED 2026-06-18 (session convergence-cdq003-mapelites-intake-20260618T0643Z). Mine: REE_convergence/sources/quality-diversity/ intake (schema-valid; MAP-Elites behavioral-descriptor archive adapted onto the E3 committed-selection locus / e3_selector top-k path) + synthesis report + README row. Promotion packet CPKT-QUALITY-DIVERSITY-20260618 GATE-READY, submitted via run_cross_repo_handoff.py (copied to evidence/planning/convergence_packets/inbox/). Register: candidate MECH-442 registered candidate/substrate_conditional/generation v3 (NOT MECH-440 -- collided with concurrent CDQ-002 which took 440/441; took next free id 442), wired into the GAP-B conversion-ceiling cluster depends_on (ARC-065/MECH-341/MECH-439/MECH-294/ARC-062 + MECH-313 added per lit-pull), arch stub docs/architecture/quality_diversity_committed_archive.md. /lit-pull run BEFORE registering (user-directed): evidence/literature/targeted_review_connectome_mech_442/ 5 PubMed entries, lit_conf 0.777, verdict SUPPORTED-with-refinement (archive lives UPSTREAM of the winner-take-all commit -- Ponzi 2007 weakens the at-argmax reading; F-dominance is biologically faithful). PROMOTES NOTHING; GAP-B node status untouched. HANDOFF reconciled 2026-06-19: receipt CRCT-QUALITY-DIVERSITY-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) + mirrored to REE_convergence/handoff/packets/receipts/. Receipt promotes nothing (direct claims.yaml registration superseded the tool register step)."
     },
     {
       "row_id": "CDQ-004",

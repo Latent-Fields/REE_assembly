@@ -29,23 +29,27 @@ closure_plan:
     - id: "convergence_demand_pipeline:HIGH-DREAMCODER"
       title: "Execute HIGH row -- DreamCoder + DreamerV3 codebook intake -> registered candidate claim (arc_062 GAP-B/K, behavioral_diversity GAP-B)"
       phase: 2
-      status: in_progress
+      status: done
       severity: high
       depends_on: ["convergence_demand_pipeline:LOOP"]
-      resume_condition: "in flight as chip task_88e97a80; ends at a registered candidate claim wired into the target node depends_on"
+      last_updated: 2026-06-19
+      resume_condition: "DONE 2026-06-17: DreamCoder + DreamerV3-codebook intakes done; MECH-437 + MECH-438 registered candidate/substrate_conditional/generation:v4 wired into the arc_062 cluster depends_on (landed master dcca2cb). (Prior 'in flight as chip task_88e97a80' was a stale pointer -- task_88e97a80 is the closure-map process-lane task, not this work; reconciled 2026-06-19.)"
     - id: "convergence_demand_pipeline:HANDOFF-REACTIVATE"
       title: "Re-activate the REE_convergence -> REE_assembly handoff pipeline (first packet since 2026-02-24) on the HIGH row"
       phase: 2
-      status: open
+      status: done
       severity: medium
       depends_on: ["convergence_demand_pipeline:HIGH-DREAMCODER"]
-      resume_condition: "validates the end-to-end loop on one real stuck node before scaling to the MED rows"
+      last_updated: 2026-06-19
+      resume_condition: "DONE 2026-06-19: end-to-end loop validated on the three June rows. All 3 June packets re-validated gate-ready; receipts CRCT-RULE-DISTINGUISHABILITY/-TONIC-EXPLORATION-NOISE/-QUALITY-DIVERSITY-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) and mirrored back to REE_convergence/handoff/packets/receipts/ via run_cross_repo_handoff.py (first batch since 2026-02-24). Direct claims.yaml registration superseded the tool register step; receipts promote nothing."
     - id: "convergence_demand_pipeline:MED-ROWS"
       title: "Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Diversity/MAP-Elites diversity-survives-commit"
       phase: 3
-      status: open
+      status: done
       severity: medium
       depends_on: ["convergence_demand_pipeline:HANDOFF-REACTIVATE"]
+      last_updated: 2026-06-19
+      resume_condition: "DONE 2026-06-18..19: CDQ-002 (NoisyNet + RND/Plan2Explore -> MECH-440/441 candidate/substrate_ceiling/v3) and CDQ-003 (Quality-Diversity/MAP-Elites -> MECH-442 candidate/substrate_conditional/v3) Mine+Register complete with biology lit-pulls; both packets handed off + receipts mirrored 2026-06-19. Candidates only; no node promoted, no V3 dependency added."
     - id: "convergence_demand_pipeline:LOW-MUZERO"
       title: "Pull the COMPLETED MuZero/EfficientZero reanalyze adapter (replay write-gating, arc_062 GAP-K) through to a registered claim"
       phase: 3
@@ -129,9 +133,9 @@ mechanism gap -> intake action. Sources already (even partially) in
 
 | Closure node(s) | Mechanism gap | External source | Intake state | Priority |
 |---|---|---|---|---|
-| `arc_062_rule_apprehension:GAP-B`, `:GAP-K`; `behavioral_diversity_isolation:GAP-B` | Minted rules must stay mutually distinguishable to remain selectable (CRF conflict-gate lockout: theta=0.15+0.25*(n_matched-1) gates out 7-8 co-matching rules) | **DreamCoder** (wake-sleep library abstraction; minted programs stay distinguishable to be selectable) + **DreamerV3 discrete latent codebook** (categorical keys separable by construction) | DreamCoder NEW; DreamerV3 PARTIAL (`sources/dreamer-v3/`, extend codebook angle) | HIGH (in flight: chip task_88e97a80) |
-| `behavioral_diversity_isolation:GAP-C`; `arc_062_rule_apprehension:GAP-H` | Tonic, state-conditioned exploration noise floor (MECH-313 LC-NE analog) -- distinct from a fixed epsilon schedule | **NoisyNet** (learned per-parameter, self-annealing, state-dependent noise); secondary **RND / Plan2Explore** (model-disagreement curiosity = MECH-314) | NEW | MED |
-| `behavioral_diversity_isolation:GAP-B` (conversion-to-committed-action) | Diversity must be maintained in a structure that survives the selection/commit step | **Quality-Diversity / MAP-Elites** (Cully et al. 2015: explicit behavioral-descriptor archive surviving selection) -- structurally the top-k shortlist fix already validated by V3-EXQ-569i | NEW | MED |
+| `arc_062_rule_apprehension:GAP-B`, `:GAP-K`; `behavioral_diversity_isolation:GAP-B` | Minted rules must stay mutually distinguishable to remain selectable (CRF conflict-gate lockout: theta=0.15+0.25*(n_matched-1) gates out 7-8 co-matching rules) | **DreamCoder** (wake-sleep library abstraction; minted programs stay distinguishable to be selectable) + **DreamerV3 discrete latent codebook** (categorical keys separable by construction) | COMPLETED (DreamCoder + DreamerV3 codebook both intaken 2026-06-17) | HIGH -- DONE: MECH-437/438 registered + handed off (2026-06-19) |
+| `behavioral_diversity_isolation:GAP-C`; `arc_062_rule_apprehension:GAP-H` | Tonic, state-conditioned exploration noise floor (MECH-313 LC-NE analog) -- distinct from a fixed epsilon schedule | **NoisyNet** (learned per-parameter, self-annealing, state-dependent noise); secondary **RND / Plan2Explore** (model-disagreement curiosity = MECH-314) | COMPLETED -- MECH-440/441 registered + handed off (2026-06-18..19) | MED |
+| `behavioral_diversity_isolation:GAP-B` (conversion-to-committed-action) | Diversity must be maintained in a structure that survives the selection/commit step | **Quality-Diversity / MAP-Elites** (Cully et al. 2015: explicit behavioral-descriptor archive surviving selection) -- structurally the top-k shortlist fix already validated by V3-EXQ-569i | COMPLETED -- MECH-442 registered + handed off (2026-06-18..19) | MED |
 | `sd_037_axis_b:P1b` -> `P2`/`P3`/`P4` | Automatic curriculum that keeps a target signal (z_harm_a sustained-threat window) in a learnable band | **PLR / Prioritized Level Replay** + **POET**; affective framing: active-avoidance / anxiety-as-pessimistic-prior RL | NEW | LOW (P1b in flight via V3-EXQ-625d; intake feeds the axis-(c) escalation only if 625d exhausts the env-kwarg surface) |
 | `arc_062_rule_apprehension:GAP-K` (replay write-gating) | Gating which replayed/imagined transitions may write to the rule layer | **MuZero/EfficientZero reanalyze** + hippocampal SWR prioritized replay | MuZero COMPLETED (`sources/muzero/`) -- pull the adapter through to a registered claim | LOW |
 
@@ -193,7 +197,15 @@ Small and continuous beats another big survey.
      closure-drift reconcile (Step 5b) and appends a CDQ row for any node newly
      verdicted mechanism-unclear / `substrate_ceiling`. Chosen as the lightest durable
      hook (no new standing automation; piggybacks the existing governance cadence).
-2. Execute the HIGH-priority row (DreamCoder + DreamerV3 codebook) -- already
-   spawned as chip task_88e97a80.
-3. Re-activate the handoff pipeline with that first targeted packet (validates
-   the end-to-end loop on a real stuck node before scaling to the MED rows).
+2. [DONE 2026-06-17] Execute the HIGH-priority row (DreamCoder + DreamerV3
+   codebook) -> MECH-437 + MECH-438 registered candidate/substrate_conditional/
+   generation:v4, wired into the arc_062 cluster (landed master dcca2cb).
+3. [DONE 2026-06-19] Re-activate the handoff pipeline with the first targeted
+   packets (end-to-end loop validated on three real stuck nodes -- CDQ-001/002/003
+   -- before scaling). All three June packets re-validated gate-ready; receipts
+   CRCT-RULE-DISTINGUISHABILITY / -TONIC-EXPLORATION-NOISE / -QUALITY-DIVERSITY-20260619
+   authored (decision_ref `evidence/decisions/convergence_packet_adjudication_2026-06-19.md`)
+   and mirrored back to `REE_convergence/handoff/packets/receipts/` via
+   `run_cross_repo_handoff.py` -- the first batch since 2026-02-24. Direct
+   `claims.yaml` registration superseded the tool register step; the receipts are
+   acknowledgment lineage only and promote nothing.

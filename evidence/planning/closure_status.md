@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-19T18:58:28Z
+Generated: 2026-06-19T19:02:09Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -138,7 +138,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 83.3% across 6 non-deferred nodes in 1 plan(s).
-- **PROCESS**: 72.3% across 13 non-deferred nodes in 2 plan(s).
+- **PROCESS**: 92.3% across 13 non-deferred nodes in 2 plan(s).
 - **V4**: 27.9% across 92 non-deferred nodes in 13 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -224,7 +224,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-3` | Relational / propositional inference over named relations (transitivit | blocked | high | ARR-2 compositional generalisation in place (named relations exist as recombinable symbols | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-3` | Expression as emergent action geometry (MECH-360) -- the readout side  | blocked | high | AE-1 (MECH-359) per-candidate affect vector built -- expression style (hesitation, latency | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-4` | Candidate-gradient hippocampal episode schema (MECH-361) -- affect gra | blocked | high | AE-1 (MECH-359) per-candidate affect vector built | 2026-06-10 |
-| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HIGH-DREAMCODER` | Execute HIGH row -- DreamCoder + DreamerV3 codebook intake -> register | in_progress | high | in flight as chip task_88e97a80; ends at a registered candidate claim wired into the targe |  |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HIGH-DREAMCODER` | Execute HIGH row -- DreamCoder + DreamerV3 codebook intake -> register | done | high | DONE 2026-06-17: DreamCoder + DreamerV3-codebook intakes done; MECH-437 + MECH-438 registe | 2026-06-19 |
 | v4 | inference_belief_state_v4_plan.md | `inference_belief_state_v4:INF-4` | Inferred affordance field (afford. not directly perceived; biases E3 c | blocked | high | V3 rule field present: ARC-062 (weak-reading gated policy) live; ARC-063 (CandidateRule fi | 2026-06-10 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-3` | False-linking-risk / reality-coherence cost term (the single aspect wi | open | high | MECH-094 (sim-vs-real confabulation gate) is the nearest reality-coherence machinery V3 ha | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-3` | PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed an | blocked | high | MECH-269 AnchorSet / V_s substrate live in V3 (SD-040 adds a type-key projection alongside | 2026-06-10 |
@@ -234,7 +234,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-7` | Biology grounding for relational/compositional reasoning + analogy (li | deferred | medium | Per project rule feedback_biology_before_formal_definitions: compositional generalisation, | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-9` | Biology grounding completion (per-candidate/option-specific value codi | done | medium | L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neuro | 2026-06-16 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-9` | Biology grounding completion (emotional-modulation-of-consolidation wr | closed | medium | L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGau | 2026-06-13 |
-| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HANDOFF-REACTIVATE` | Re-activate the REE_convergence -> REE_assembly handoff pipeline (firs | open | medium | validates the end-to-end loop on one real stuck node before scaling to the MED rows |  |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HANDOFF-REACTIVATE` | Re-activate the REE_convergence -> REE_assembly handoff pipeline (firs | done | medium | DONE 2026-06-19: end-to-end loop validated on the three June rows. All 3 June packets re-v | 2026-06-19 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-3` | Explicit signed competitive multi-field coupling (ARC-084) | deferred | medium | REVERSAL TRIGGER: a V4 multi-field signed-edge layer exists, making the cooperative-only v | 2026-06-11 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-8` | Biology grounding completion (Vygotsky private speech, DMN, label-as-c | done | medium | DONE 2026-06-13: textbook analogies replaced with mechanism/neuroscience evidence under ev | 2026-06-13 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | closed | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-13 |
@@ -306,7 +306,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-4` | Metric-origin fork: per-sense perceptual metric LEARNED from similarit | open | high | Q-065 part (1): for each modality, is the perceptual metric self-organised from the statis | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-5` | Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-soc | blocked | medium | V4 social substrate exists (other-agent representation) -- the canonical soothing trigger  | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-6` | Laughter regime-transition discharge (MECH-364) + crying/distress-voca | blocked | medium | E3 conflict/constraint-load readout: ARC-016 already exposes an E3-derived prediction-vari | 2026-06-10 |
-| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:MED-ROWS` | Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Div | open | medium | depends_on: convergence_demand_pipeline:HANDOFF-REACTIVATE |  |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:MED-ROWS` | Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Div | done | medium | DONE 2026-06-18..19: CDQ-002 (NoisyNet + RND/Plan2Explore -> MECH-440/441 candidate/substr | 2026-06-19 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P3-V5V6-PERIMETER` | Phase 3 -- V5/V6 perimeter registers (responsible release, external cr | deferred | medium | authored on first V5/V6 node activation; SENT-14 release policy adopted_split_deferred |  |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-6` | ACh permissive write-gate on the surprise buffer (MECH-207) | blocked | medium | MECH-205 surprise buffer + MECH-206 CA1 PE comparator present (sleep_substrate stack) | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-5` | PILLAR C -- PV-interneuron inhibitory-maturation window-closure clock | deferred | medium | Biology-faithful refinement of MECH-333 closure / MECH-334: a time-since-onset accumulator | 2026-06-10 |
