@@ -1,0 +1,66 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T20:22:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3",
+      "queue_id": "V3-EXQ-460g",
+      "claim_ids": ["SD-034", "MECH-260", "MECH-261"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-034 partial (seed-42 within-arm de-commit 0.333->0.0 positive, but not certifiable as closure-coupled: coupling counter 0); MECH-261 NOT exercised (n_automatic_fires=0, hook-driven); MECH-260 exercised+passed (No-Go 3/3).",
+        "biological_reference": "clear -- Rich & Shapiro 2009 OFC completion cells, Collins & Frank 2014 task-set disengagement. The fault is the metric not the mechanism.",
+        "prerequisites": "present -- Legs A/B/C + beta coupling + magnitude lever all built and firing; no missing leg.",
+        "implementation": "partial / self-defeating -- the committed-run-scaled refractory (apply_refractory cap 60) and the coupling non-vacuity counter (counts refractory-surviving elevations) ride the same _refractory_remaining window; scaling one zeroes the other.",
+        "environment": "adequate -- guard 3/3; closures + completions + No-Go fire on all seeds.",
+        "measurement": "mis-instrumented (binding fault) -- sd034_n_closure_coupled_elevations counts elevations that survive the refractory; it should count closure-plane commit INTENTS (e3._committed_trajectory forming while not result.committed) BEFORE the elevate/refractory gate.",
+        "integration": "partially coupled but the de-commit lever and its coupling certifier are entangled.",
+        "scale": "adequate -- not the binding gap."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC sequence-completion -> beta-latch release (Rich & Shapiro 2009); task-set disengagement (Collins & Frank 2014)",
+        "dependencies": ["sequence-completion signal", "beta-latch (MECH-090)", "de-commit release pressure scaled to re-commitment strength"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism level; the divergence is implementation/measurement -- a refractory that blocks re-elevation also blocks the coupling-driven re-elevations used to certify the de-commit.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "non_contributory",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-460g (supersedes 460f): the committed-run-scaled de-commit-magnitude lever + the 460f-prescribed tightened coupling non-vacuity gate are SELF-DEFEATING -- the scaled refractory pins at the 60-tick cap on ~530-560-step runs, and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the gate counts can never fire (sd034_n_closure_coupled_elevations collapsed 36 -> 0 on seed 42, 0/3 overall). Autopsy (failure_autopsy_V3-EXQ-460g_2026-06-19, confirmed): the de-commit refractory HAS authority (seed-42 within-arm occupancy 0.333 -> 0.0, C2 PASS) but suppresses its own coupling certifier; the self-route substrate_not_ready_requeue is correct and conservative (no false weakens) but a larger-magnitude 460h would deepen the suppression. SD-034 -> non_contributory + keep pending_retest_after_substrate (measurement/test-design entanglement + granularity-debt recurrence; de-commit-authority not fairly certifiable on the current coupling metric). MECH-261 -> non_contributory: all closures hook-driven (n_automatic_fires=0), mode-conditioning bypassed -- do not weaken the stable claim. MECH-260 -> supports (No-Go nogo_installed >= 1 on 3/3, narrow positive). 7th autopsy in the SD-034 closure lineage; the 460f WATCH ITEM granularity-debt trigger fired -> route /claim-synthesis (primary) + 460h re-queue with a refractory-independent commit-intent coupling counter (secondary).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "title": "Refractory-independent closure-coupling readout (decouple the de-commit lever from its certifier)",
+        "implementation_hint": "The de-commit-magnitude lever (apply_refractory cap 60) suppresses sd034_n_closure_coupled_elevations because elevate() is a no-op during the refractory window. Add a refractory-INDEPENDENT coupling counter that increments on the closure-plane commit INTENT (e3._committed_trajectory forming while not result.committed) BEFORE the elevate/refractory gate, so the de-commit authority can be measured without the lever zeroing its own non-vacuity metric. Then 460h scores the within-arm around-closure occupancy drop (seed-42-style 0.333 -> 0.0) against the intent-based gate.",
+        "unblocks_claims": ["SD-034", "MECH-260", "MECH-261"],
+        "depends_on_unresolved": ["/claim-synthesis decomposition of the SD-034 closure cluster (target the re-grained child, not the coarse umbrella)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3",
+          "experiment_type": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude",
+          "metric": "sd034_n_closure_coupled_elevations ON: 36/0/0 (460f) -> 0/0/0 (460g); closure_coupling_nonvacuous 0/3; within_arm_window_nonvacuous 1/3 (seed-42 only: mean_pre_occ 0.333 -> mean_post 0.0, C2 PASS)",
+          "target": "a refractory-independent commit-intent coupling counter > 0 on >= 2/3 scored seeds AND ON within-arm post-closure occupancy < pre-closure by >= DECOMMIT_MIN_DROP_FRAC on >= 2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The committed-run-scaled de-commit refractory has de-commit authority (seed-42 within-arm 0.333 -> 0.0) but suppresses the closure-coupled-elevation counter it is measured by -- both ride the same _refractory_remaining window and elevate() is a no-op during it.",
+        "A coupling non-vacuity gate keyed on sd034_n_closure_coupled_elevations is confounded by any de-commit lever that blocks re-elevation; the fair readout is the closure-plane commit INTENT counted before the elevate/refractory gate.",
+        "The 460f-prescribed (a) magnitude + (b) tightened-gate pair are in mutual tension; iterating magnitude alone (a larger 460h hold) makes the coupling readout worse.",
+        "claim_ids hygiene: a Leg-A-hook-only run (n_automatic_fires=0) does not exercise MECH-261 mode-conditioning; do not weaken the stable claim."
+      ],
+      "routing": "claim-synthesis"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Recurrent SD-034-closure autopsy lineage (7th): each iteration closes one prerequisite and surfaces the next, structurally-different one -- closure-fires (460c/d) -> head-trained (460d/e) -> beta-engages (460e/f) -> refractory-strong-enough (460f) -> strong-refractory-suppresses-the-coupling-metric (460g). The two 460f-prescribed levers (magnitude + coupling non-vacuity gate) are now mutually tensioned.",
+    "is_independent_bugs": false,
+    "structural_property": "The coarse claim 'SD-034 ClosureOperator has behavioural de-commit authority over the MECH-090 latch' is granularity debt: it bundles several distinct testable sub-mechanisms (closure firing / closure->beta coupling engagement / de-commit-authority magnitude / coupling measurability under refractory) that the claim does not name, so each retest discovers a finer prerequisite rather than a clean falsification. The 460f WATCH ITEM pre-registered this as the /claim-synthesis trigger.",
+    "readings": ["granularity_debt_claim_synthesis", "measurement_test_design_entanglement"],
+    "primary_routing": "claim-synthesis",
+    "secondary_routing": "queue-experiment (460h, refractory-independent coupling counter)"
+  }
+}
