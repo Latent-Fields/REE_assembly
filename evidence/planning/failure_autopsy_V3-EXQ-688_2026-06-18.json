@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T13:48:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061915Z_v3",
+      "additional_run_ids": [
+        "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061935Z_v3",
+        "v3_exq_688_mech044_hippocampal_relational_binding_20260618T062812Z_v3"
+      ],
+      "queue_id": "V3-EXQ-688",
+      "claim_ids": ["MECH-044"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "readiness/precondition gate (G1 V_s_responsive + G2 boundary_events_fire); not an absolute or discrimination criterion. The C1-C3 experiment body never ran.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact_untested -- run early-exited at the P0 gate; MECH-044 was never put under test.",
+        "biological_reference": "partial -- MECH-044 grounded in Olsen et al. 2012 (online hippocampal relational work), but the ARC-006/MECH-044/MECH-045 cluster carries a recorded no-biology-lit-pull-at-registration flag (claims.yaml:37558); not the failure cause.",
+        "prerequisites": "missing -- use_per_stream_vs (MECH-269 Phase 1) was not armed by _build_agent, so the G1 precondition's dependency was absent.",
+        "implementation": "partial_harness -- MECH-269/MECH-288 substrate is IMPLEMENTED and available in V3; the experiment harness failed to arm (G1) / properly stimulate (G2) it.",
+        "environment": "n_a -- synthetic observations; env-trial code never reached.",
+        "measurement": "misleading -- G1 reads a constant default (per_stream_vs.get('z_world',1.0) with the flag off -> vs_change=0.0 by construction); G2 feeds i.i.d. white noise to a structured-transition detector.",
+        "integration": "n_a -- body never ran.",
+        "scale": "likely_insufficient_deeper -- untrained agent + synthetic obs risk a second vacuous result in the C1-C3 body even past a fixed readiness gate (SD-031/MECH-353/V3-EXQ-642 dimensionality-necessary-not-sufficient lesson)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal relational binding / comparison (CA1-CA3 relational memory; Olsen et al. 2012)",
+        "dependencies": ["MECH-269 per-stream verisimilitude (V_s)", "MECH-288 event segmenter boundary events", "discriminative z_world encoder"],
+        "is_formal_import": false,
+        "divergence": "none implicated by this run; the failure is a harness config/stimulus gap, not a biology-vs-formal mismatch.",
+        "lit_status": "absent (cluster no-biology-lit-pull-at-registration flag, claims.yaml:37558)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Do NOT set substrate_ceiling. The substrate is implemented/available; the fix is harness-side (arm the flag + structured stimulus + non-vacuity guards).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-688 (3 seeds, 2026-06-18) FAIL/non_contributory was a precondition_unmet vacuous self-route, NOT a substrate-readiness verdict: G1 V_s_responsive read per_stream_vs.get('z_world',1.0) while the harness left use_per_stream_vs=False, forcing vs_change=0.0 by construction; G2 boundary_events_fire fed the MECH-288 segmenter i.i.d. white noise (no structured transition) -> 0 events. MECH-269/MECH-288 substrate is implemented and available; the experiment harness simply did not arm/stimulate it. MECH-044 was never put under test. Routed to V3-EXQ-688a (arm use_per_stream_vs, structured-stimulus G2, non-vacuity + discriminative-encoder guards). NOT substrate_ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "No substrate gap. MECH-269 per_stream_vs and MECH-288 EventSegmenter are implemented and available in V3; the failure is a harness config (use_per_stream_vs unset) + probe-stimulus (white noise) defect. The fix is a re-issued experiment, not a substrate entry."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "self_route_adjudication": {
+        "manifest_label": "substrate_not_ready_requeue",
+        "gate_flag": "precondition_unmet",
+        "verdict": "untrustworthy_self_route",
+        "class": "V3-EXQ-642 vacuous/un-armed-substrate self-route",
+        "reason": "Both failing preconditions are guaranteed-fail artifacts of the config (G1 reads a flag-gated observable with the flag off -> constant default; G2 stimulus cannot elicit the gated signal), so the label carries no information about MECH-269/MECH-288 readiness."
+      },
+      "learning_extracted": [
+        "A readiness gate that reads a flag-gated observable (per_stream_vs) without arming the flag (use_per_stream_vs) is a vacuous instrumentation null -- it tests harness config, not the substrate.",
+        "Probing a structured-transition detector (MECH-288) with i.i.d. white noise guarantees a 0-event null; readiness probes must use the experiment-body class of stimulus.",
+        "The substrate_not_ready_requeue self-route was untrustworthy by construction; the precondition_unmet adjudication gate correctly held it.",
+        "Untrained agent + synthetic obs cannot fairly test relational binding even past a fixed readiness gate; the successor needs a discriminative-encoder / boundary-existence-proof non-vacuity guard on the C1-C3 body."
+      ],
+      "routing": "queue-experiment",
+      "successor_spec": {
+        "successor_id": "V3-EXQ-688a",
+        "id_rule": "new alphabetic suffix (bug-fix, same scientific question MECH-044); do NOT re-run under V3-EXQ-688 (runner skips completed ids)",
+        "claim_ids": ["MECH-044"],
+        "fixes": [
+          "Arm use_per_stream_vs=True in _build_agent (and per_stream_vs_streams covering z_world) so G1 measures the real MECH-269 V_s signal.",
+          "Redesign G2 to drive the MECH-288 segmenter with the structured relational/absolute manipulation (or a sustained step change), not torch.randn white noise.",
+          "Add non-vacuity prerequisites: assert per_stream_vs non-empty post-arm; require a boundary-event existence proof on the structured stimulus; gate the C1-C3 body on a discriminative-z_world check; self-route honestly when un-armed/untrained.",
+          "Use a trained/warmed encoder for the relational-sensitivity body (or document why an untrained module is the intended test surface)."
+        ]
+      },
+      "secondary_recommendation": {
+        "routing": "lit-pull",
+        "detail": "Optional, not blocking 688a: commission targeted_review for the MECH-044 hippocampal-relational-binding cluster (recorded no-biology-lit-pull-at-registration, claims.yaml:37558) so the claim is fairly weighted under the biology-before-formal-definitions rule.",
+        "selected_as_primary": false
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_check": {
+    "prior_autopsies_on_target": 0,
+    "recurrence": false,
+    "claim_synthesis_recommended": false,
+    "note": "First /failure-autopsy on MECH-044; one autopsy is a diagnosis, not a pattern."
+  }
+}
