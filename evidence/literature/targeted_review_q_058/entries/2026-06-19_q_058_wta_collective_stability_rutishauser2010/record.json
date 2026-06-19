@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_058",
+  "entry_id": "2026-06-19_q_058_wta_collective_stability_rutishauser2010",
+  "timestamp_utc": "2026-06-19T09:19:03Z",
+  "claim_ids_tested": ["Q-058"],
+  "source": {
+    "title": "Collective stability of networks of winner-take-all circuits",
+    "authors": ["Ueli Rutishauser", "Rodney J. Douglas", "Jean-Jacques Slotine"],
+    "year": 2010,
+    "venue": "Neural Computation",
+    "doi": "10.1162/NECO_a_00091",
+    "url": "https://doi.org/10.1162/NECO_a_00091"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Directly on Q-058's first and second sub-questions: it formalises competition-through-shared-inhibition (soft WTA) and derives the parameter ranges where coupled competitive modules are stable vs where strong positive feedback risks instability. This is exactly the 'which couplings need an explicit sign vs local softmax/WTA, and what is the safety cost' question. High mapping fidelity to the computational claim; confidence held below 0.8 because it is a stability-theory/simulation paper, not a biological measurement, and it does not address decommitment or residue-based veto specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "There is a critical trade-off: feedback strong enough to support selective amplification/decision-making is also strong enough to threaten stability -- so an REE design that simply strengthens competitive coupling to force conversion can drive the network into multistable/runaway persistent states.",
+    "Stability of a LARGE network of interconnected WTA modules is not guaranteed by stability of one module; coupling many competitive fields together can destabilise even when each field is individually well-behaved."
+  ],
+  "tags": ["q_058", "winner_take_all", "lateral_inhibition", "competition", "stability", "softmax", "decision_making"],
+  "mapping": {
+    "source_claim_statement": "Soft winner-take-all circuits implement selective amplification, signal restoration, and decision-making via recurrent excitation plus shared inhibitory feedback; using nonlinear contraction theory the authors derive parameter regimes in which a single WTA module, and arbitrarily aggregated networks of such modules, remain stable -- and show the high-gain regime that enables sophisticated computation sits next to multistable/persistent-activity regimes.",
+    "ree_translation": "Supports Q-058's claim that the FORM of competitive coupling matters: a local softmax/WTA (shared inhibition) already buys selection, amplification and decision-making without needing an explicit signed inter-field edge, and adding explicit positive-feedback couplings trades selection power against stability. This frames the safety differences between inhibition/competition/decommitment (MECH-090/ARC-030/MECH-254) as a contraction-stability budget, and warns that strengthening conversion via coupling has a runaway cost.",
+    "mapping_caveat": "This is a stability-theory + simulation result on abstract WTA modules, not a measurement of biological competitive coupling and not a study of decommitment or residue-based (harm-stream) veto. Mapping the 'sign vs softmax' question onto REE inter-field couplings is faithful at the computational level but says nothing directly about the waking/simulation/offline distinction (sub-question 3).",
+    "source_context": "Computational neuroscience / theory: soft WTA modules motivated by superficial-layer neocortical connectivity; nonlinear contraction theory with numerical verification."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Rigorous, well-cited theory paper; high mapping fidelity to the computational sub-questions of Q-058 because REE's couplings ARE WTA/softmax-like. Transfer risk low for the computational claim but it is silent on the biological-safety and offline-vs-waking aspects."
+  }
+}

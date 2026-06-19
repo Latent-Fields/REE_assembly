@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_057",
+  "entry_id": "2026-06-19_q_057_memory_resolution_aimone2011",
+  "timestamp_utc": "2026-06-19T09:19:03Z",
+  "claim_ids_tested": ["Q-057"],
+  "source": {
+    "title": "Resolving new memories: a critical look at the dentate gyrus, adult neurogenesis, and pattern separation",
+    "authors": ["James B. Aimone", "Wei Deng", "Fred H. Gage"],
+    "year": 2011,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2011.05.010",
+    "url": "https://doi.org/10.1016/j.neuron.2011.05.010"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Canonical review proposing the 'memory resolution' hypothesis: broadly-tuned immature young neurons contribute different information than highly specific mature neurons. This is the cleanest literature analogue of Q-057's single-cue (broad/immature) vs convergent-weak-input (specific/mature) recall distinction, and it frames maturation as a change in recall specificity. Confidence moderate: it is a conceptual/theoretical review (2011), the maturation axis is at the cell level (young vs mature neurons), not whole-system development, and the mapping to REE cue-authority is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper notes a persistent reconciliation problem -- the 'pattern separation' tested behaviourally does not match the computational/electrophysiological conception -- so importing 'pattern separation/completion' vocabulary into REE without operational care risks the same equivocation.",
+    "Resolution is framed as a continuum of neuronal tuning width, not a discrete developmental gate; an REE account that posits a sharp gate before action-release may over-discretise a graded property."
+  ],
+  "tags": ["q_057", "dentate_gyrus", "neurogenesis", "pattern_separation", "memory_resolution", "recall_specificity"],
+  "mapping": {
+    "source_claim_statement": "Under the 'memory resolution' hypothesis, broadly-tuned immature adult-born granule cells and highly specific mature granule cells make distinct information contributions; the fidelity (resolution) of a memory, and its spatial/contextual discriminability, depends on the balance of these contributions rather than on pattern separation alone.",
+    "ree_translation": "Supports Q-057's first sub-question by giving a mechanistic precedent for recall regimes that change with maturation: a broad, low-specificity (immature) regime versus a narrow, high-specificity (mature) regime. This is the biological shape of 'immature single-cue authority vs mature convergent-weak-input recall' and constrains how REE should think about MECH-362/ARC-019 cue specificity maturing over development.",
+    "mapping_caveat": "The maturation axis in this paper is the immature-vs-mature status of individual adult-born neurons, not organismal development of CA3 cue-authority. The hypothesis is theoretical and predates much of the causal optogenetic work; mapping 'tuning-width continuum' to REE's cue-authority gate is an analogy and risks the very pattern-separation equivocation the paper warns about.",
+    "source_context": "Theoretical/critical review of dentate gyrus, adult hippocampal neurogenesis, and pattern separation; rodent + computational framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Canonical Neuron review, well cited; but theoretical and cell-level rather than developmental-systems-level, so mapping fidelity and transfer risk are both moderate."
+  }
+}

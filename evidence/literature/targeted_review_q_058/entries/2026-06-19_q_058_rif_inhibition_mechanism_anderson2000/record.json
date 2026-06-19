@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_058",
+  "entry_id": "2026-06-19_q_058_rif_inhibition_mechanism_anderson2000",
+  "timestamp_utc": "2026-06-19T09:19:03Z",
+  "claim_ids_tested": ["Q-058"],
+  "source": {
+    "title": "Retrieval-induced forgetting: evidence for a recall-specific mechanism",
+    "authors": ["Michael C. Anderson", "Elizabeth L. Bjork", "Robert A. Bjork"],
+    "year": 2000,
+    "venue": "Psychonomic Bulletin & Review",
+    "doi": "10.3758/bf03214366",
+    "url": "https://doi.org/10.3758/bf03214366"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Classic dissociation showing that active inhibition (engaged specifically by competitive RECALL) produces forgetting that mere strengthening/re-exposure does not -- evidence that inhibition and strength-based competition are distinct mechanisms with distinct consequences. Directly supports Q-058's second sub-question (inhibition vs competition are not the same thing) and its third (the mechanism is engaged context-specifically, in the act of recall). Confidence moderate: human behavioural psychology, single classic study, indirect mapping to REE inter-field couplings.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Strengthening practiced items (re-exposure) did NOT impair competitors, but competitive recall did -- so an REE model that treats competition purely as relative-strength normalisation (softmax) will MISS the inhibitory suppression that only appears when the loser is actively retrieved against.",
+    "The inhibitory effect is recall-specific: it is engaged by the act of retrieval, implying competition modes are not interchangeable across waking-action vs passive/offline regimes."
+  ],
+  "tags": ["q_058", "retrieval_induced_forgetting", "inhibition", "competition", "recall_specific", "decommitment"],
+  "mapping": {
+    "source_claim_statement": "In the retrieval-practice paradigm, competitive recall of some category members (cue: 'fruit or__') impaired later recall of unpracticed members, whereas non-competitive re-exposure that strengthened the same items by an equal amount did NOT -- demonstrating that retrieval-induced forgetting is caused by inhibitory processes specific to the recall situation, not by increased strength-based competition.",
+    "ree_translation": "Supports Q-058's claim that inhibition and competition are mechanistically distinct with different safety/behavioural consequences: a softmax/relative-strength competition (re-exposure analogue) does not produce the active suppression that a true inhibitory de-commit does. Bears on the MECH-090/MECH-105 decommitment distinction and on whether an explicit signed (inhibitory) edge is needed beyond local softmax (MECH-090/ARC-030/MECH-254).",
+    "mapping_caveat": "This is human verbal-memory behaviour; the inhibition is inferred from recall accuracy, not measured at the circuit level. Mapping 'recall-specific inhibition' to REE inter-field decommitment couplings is a functional analogy, and the paradigm does not address simulation vs offline integration directly.",
+    "source_context": "Human adults, taxonomic-category retrieval-practice paradigm; competitive vs non-competitive practice conditions matched for facilitation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Foundational, well-replicated paradigm (source quality good for behavioural psych), but a single classic study and an inferential, non-circuit measure; mapping to REE couplings is a functional analogy hence moderate fidelity and non-trivial transfer risk."
+  }
+}

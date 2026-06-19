@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_057",
+  "entry_id": "2026-06-19_q_057_lost_infant_memory_recovery_guskjolen2018",
+  "timestamp_utc": "2026-06-19T09:19:03Z",
+  "claim_ids_tested": ["Q-057"],
+  "source": {
+    "title": "Recovery of \"Lost\" Infant Memories in Mice",
+    "authors": ["Axel Guskjolen", "Justin W. Kenney", "Juan de la Parra", "Bi-Ru Amy Yeung", "Sheena A. Josselyn", "Paul W. Frankland"],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.05.059",
+    "url": "https://doi.org/10.1016/j.cub.2018.05.059"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Strong causal optogenetic evidence that infant memory traces are stored but become naturally inaccessible -- an artificial (optogenetic) cue recovers them when the natural cue cannot. This directly evidences Q-057's sub-question (1) (immature cue-authority: trace exists, natural cue lacks authority to release it) and sub-question (3) (a developmental gate stands between an encoded trace and its ability to drive behaviour). Confidence is solid for the storage-vs-retrieval dissociation; held below 0.8 because 'optogenetic recovery' is a non-physiological cue and the REE mapping to convergent-weak-input recall is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The natural retrieval cue failed to release the infant memory even though the trace was intact -- a pure cue-authority failure, not a storage failure; any REE account that attributes early cue-authority loss to absent storage would be falsified by this.",
+    "Recovery required broad reactivation of tagged hippocampal AND cortical ensembles, implying the missing ingredient is distributed reinstatement, not a single-cue CA3 readout."
+  ],
+  "tags": ["q_057", "infantile_amnesia", "dentate_gyrus", "engram", "pattern_completion", "cue_authority", "retrieval_failure"],
+  "mapping": {
+    "source_claim_statement": "Contextual fear memories encoded by infant mice are not erased (storage failure) but become progressively inaccessible (retrieval failure); optogenetic reactivation of the channelrhodopsin-tagged dentate gyrus ensemble that was active at encoding is sufficient to recover the 'lost' memory up to three months later, accompanied by broader reactivation of tagged hippocampal and cortical ensembles.",
+    "ree_translation": "Directly supports Q-057's hypothesis that REE-v3's cue-authority limitation is a retrieval/release problem, not a storage problem: the trace can exist with insufficient authority for the natural cue to drive action, while a stronger/more complete reinstatement (analogue of convergent input) recovers it. Maps to MECH-362 (CA3/DG developmental anchor) and the 'developmental gate before a memory trace can influence action release' sub-question.",
+    "mapping_caveat": "Optogenetic reinstatement is an artificial, supra-physiological cue; it demonstrates the trace is recoverable but does not show that a *natural* convergent-weak-input cue would suffice, nor does it isolate single-cue vs convergent recall. The substrate transfer (rodent contextual fear -> REE action-release gating) is an analogy.",
+    "source_context": "Infant (P17) mice, contextual fear conditioning, ChR2 activity-tagging of dentate gyrus engram, optogenetic reactivation tested in adulthood."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "High-quality causal optogenetics from the Frankland/Josselyn group. Mapping fidelity moderate -- the storage/retrieval dissociation is exactly on-target, but the artificial cue and rodent-fear context limit direct transfer to REE's cue-authority instrumentation."
+  }
+}

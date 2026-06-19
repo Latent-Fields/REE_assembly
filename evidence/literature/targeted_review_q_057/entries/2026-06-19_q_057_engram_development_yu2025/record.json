@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_057",
+  "entry_id": "2026-06-19_q_057_engram_development_yu2025",
+  "timestamp_utc": "2026-06-19T09:19:03Z",
+  "claim_ids_tested": ["Q-057"],
+  "source": {
+    "title": "Long-Term Memory Engrams From Development to Adulthood",
+    "authors": ["Abigail L. Yu", "Laura A. DeNardo"],
+    "year": 2025,
+    "venue": "Hippocampus",
+    "doi": "10.1002/hipo.70032",
+    "url": "https://doi.org/10.1002/hipo.70032"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "High-quality recent review in a specialist journal directly addressing how engram cells change in encoding/consolidation/retrieval from development to adulthood across hippocampus + cortical/thalamic partners. Supports Q-057's core framing that a memory trace passes through developmental gates before it can be reliably consolidated and retrieved. Confidence held below source quality because the paper is descriptive about WHICH gates exist; it does not isolate a single-cue-authority vs convergent-weak-input recall mechanism, so the mapping to the specific REE sub-question is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review states that, compared with adults, much less is known about how or to what extent early-life memories undergo consolidation -- so any REE claim that fixes a specific developmental gate ordering is currently under-constrained by the biology.",
+    "Engram persistence depends on coordinated activity across hippocampus, retrosplenial cortex, mPFC and anterior thalamus; a single-region (CA3-only) account of cue-authority maturation may be incomplete."
+  ],
+  "tags": ["q_057", "engram", "development", "infantile_amnesia", "memory_consolidation", "developmental_gating"],
+  "mapping": {
+    "source_claim_statement": "Engram cells exist in the developing brain but their encoding, consolidation, retrieval and forgetting properties differ systematically from the adult; developmental differences in engram function contribute to infant memory generalization and infantile amnesia, and early-life consolidation is far less complete/understood than adult consolidation.",
+    "ree_translation": "Supports Q-057's premise that a memory trace must pass developmental gates (encoding fidelity, consolidation, retrieval accessibility) before it can influence action release -- i.e. REE-v3's cue-authority limitation may partly reflect an immature recall regime (broad, generalizing, weakly consolidated) rather than a mature convergent-weak-input recall regime. Maps to MECH-362 (CA3 developmental anchor) and ARC-019.",
+    "mapping_caveat": "The review is a synthesis of rodent + some human work and is explicitly descriptive about which gates exist; it does not operationalise 'single-cue authority' vs 'convergent-weak-input recall' as REE does, nor does it test offline integration as pruning vs consolidation. The mapping from 'immature engram retrieval' to REE's specific cue-authority instrumentation is an analogy, not a measured correspondence.",
+    "source_context": "Review of memory engram literature; primarily rodent optogenetic/activity-tagging studies with human developmental memory framing; four regions (hippocampus, RSC, mPFC, ATN)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Strong venue and recency; mapping fidelity moderate because the review frames developmental gates qualitatively. Transfer risk moderate: largely rodent engram work generalised to a computational substrate."
+  }
+}
