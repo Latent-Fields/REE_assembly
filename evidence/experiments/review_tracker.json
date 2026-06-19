@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-19T14:35:27Z",
+  "last_review_utc": "2026-06-19T15:13:01Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -699,9 +699,11 @@
     "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
     "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
     "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural",
-    "V3-EXQ-460f"
+    "V3-EXQ-460f",
+    "v3_exq_688a_mech044_hippocampal_relational_binding"
   ],
   "reviewed_run_ids": [
+    "v3_exq_688a_mech044_hippocampal_relational_binding_20260619T145702Z_v3",
     "v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
@@ -4470,6 +4472,22 @@
         "MECH-261"
       ],
       "subject": "Governance 2026-06-18T08:04Z. APPLIED confirmed failure_autopsy_V3-EXQ-460f_2026-06-18 (user-adjudicated): V3-EXQ-460f -> non_contributory (substrate-limited de-commit magnitude + DV power); per-claim corrected to SD-034 non_contributory / MECH-260 supports (No-Go 3/3) / MECH-261 non_contributory (hook-driven, not exercised -- protects the STABLE claim from the self-stamped weakens). SD-034 governance_note_2026_06_18 added; pending_retest_after_substrate kept; substrate_queue commitment-closure-control-plane amended (de-commit-magnitude lever + within-arm C2 DV; re-issue 460g). MARKED REVIEWED. NOT marked reviewed (flagged for /failure-autopsy, left pending): V3-EXQ-468e (diagnostic; self-stamped weakens on STABLE MECH-090 NEUTRALIZED to non_contributory pending autopsy), V3-EXQ-688 x3 (MECH-044; precondition_unmet adjudication gate), V3-EXQ-514s (MECH-436 drive-coupling retest; non_contributory, diagnose-first)."
+    },
+    {
+      "utc": "2026-06-19T15:13:01Z",
+      "session": "governance-20260619T1455Z",
+      "reviewed_run_ids": [
+        "v3_exq_688a_mech044_hippocampal_relational_binding_20260619T145702Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_688a_mech044_hippocampal_relational_binding"
+      ],
+      "claim_ids_touched": [
+        "MECH-044",
+        "SD-033b",
+        "MECH-263"
+      ],
+      "subject": "Governance 2026-06-19T14:55Z. V3-EXQ-688a (MECH-044 hippocampal relational binding, supersedes 688): clean HONEST self-route substrate_not_ready_requeue -- G1 V_s_responsive 0.167 + G2 boundary_events 1.0 BOTH ARMED (the 688 vacuity fixed) + G3 z_world_relational_discriminative 0.20 < 1.0 (untrained-encoder guard correctly fires). non_contributory, MECH-044 NOT tested/NOT weakened (exp_conf stays 0.0). MARKED REVIEWED; 688 x3 marked superseded. Trained-discriminative-encoder successor OWED (no substrate gap per 688 autopsy, action=none). NOT marked reviewed (flagged for /failure-autopsy, left pending): V3-EXQ-485g (SD-033b/MECH-263 trained-OFC-head behavioural, supersedes 485f) -- readiness MET (bias range 0.171, head trained delta 6.32) but C1 devaluation + C2 discrimination DVs fail with ZERO behavioural conversion despite real cross-candidate bias range = the MECH-439 F-dominance conversion-ceiling signature; self-stamped weakens NEUTRALIZED to non_contributory pending autopsy adjudication (genuine-weakens vs substrate_ceiling), so SD-033b/MECH-263 exp_conf 0.325->0.0 + their conflict-resolution rec auto-resolves; both stay pending_retest_after_substrate. 485f marked superseded. NEXT: /failure-autopsy V3-EXQ-485g. Prom/dem agenda: 5 pending_user (MECH-442/Q-054/Q-055/Q-056 holds + SD-033b conflict) accepted as holds, NO claims.yaml status changes."
     }
   ]
 }
