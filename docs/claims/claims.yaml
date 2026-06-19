@@ -13968,7 +13968,7 @@
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   ceiling_decision: deferred
-  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): the ARC-046 Phase-0->1 gate-fix substrate landed and its (c-2) crossing-count criterion was wired 2026-06-19 (591f; commit b4dc264), but GAP-14 STAYS blocked on (c-1) seed-46 exploration-strength collapse -- the Q-043 magnitude lever is EXHAUSTED (V3-EXQ-667 FAIL: 4/5 seeds byte-identical across 8x knob scaling -> zero E3 selection authority), blocked on modulatory-bias-selection-authority / GAP-A. Queue 667a first; do NOT queue EXQ-ISEF-005 on the (c-2)-cleared signal alone. NOTE: 591 manifest still carries does_not_support (scored weakens) despite the claims.yaml non_contributory assertion -- separate evidence-record drift to fix."
+  ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): the ARC-046 Phase-0->1 gate-fix substrate landed and its (c-2) crossing-count criterion was wired 2026-06-19 (591f; commit b4dc264), but GAP-14 STAYS blocked on (c-1) seed-46 exploration-strength collapse -- the Q-043 magnitude lever is EXHAUSTED (V3-EXQ-667 FAIL: 4/5 seeds byte-identical across 8x knob scaling -> zero E3 selection authority), blocked on modulatory-bias-selection-authority / GAP-A. Queue 667a first; do NOT queue EXQ-ISEF-005 on the (c-2)-cleared signal alone. NOTE (RESOLVED 2026-06-19): the 591 evidence-record drift is fixed -- both the pack (runs/<run_id>/manifest.json) and the nested flat manifest for v3_exq_591_isef005_curriculum_vs_flat_20260527T183919Z_v3 now carry evidence_direction=non_contributory (+ evidence_direction_per_claim ARC-046 + evidence_direction_note) per the failure_autopsy_V3-EXQ-591_2026-05-27 override; the indexer no longer scores the 591 weaken (ARC-046 genuine_exp_count 1->0, exp_conf 0.274->0.0). The pack was edited directly because this run's flat manifest is nested under the experiment-type dir (not evidence/experiments/<run_id>.json), so the flat-overlay merge does not reach it."
 
 - id: MECH-189
   title: "During the child phase, high-salience benefit contacts under high contextual complexity are written to persistent ContextMemory as super-ordinal goal anchors that bias adult z_goal seeding across novel episodes."
@@ -38477,6 +38477,7 @@
     - MECH-090   # commitment-entry predicate / score-margin admission (threshold gate)
     - MECH-342   # maintenance/commitment release authority
     - ARC-003    # E3 commitment / trajectory authority
+    - SD-061     # difficulty-gated proposal-entropy regulator -- builds blocker part 2 (IMPLEMENTED 2026-06-19)
   notes: >
     Registered 2026-06-03 as a WORKING HYPOTHESIS (user-proposed), not an
     established mechanism. Names a closed-loop control policy that couples
@@ -41255,6 +41256,57 @@
     precondition for arbitration (DRV-2, MECH-394) and the orienting drive (DRV-4,
     MECH-395). substrate_conditional on a V4 multidrive substrate not yet built.
     DO NOT build in V3.
+
+- id: SD-061
+  title: "Difficulty-gated proposal-entropy regulator: a stuck-state/impasse detector + a transient gain on the ARC-018/CEM PROPOSAL-generation layer (wider candidate set + within-class CEM sampling temperature), decaying as the impasse clears. Builds MECH-343's substrate_conditional blocker part 2 (the 'stuck-state detector + transient CEM temperature/candidate-count gain + decay not yet designed' piece named in MECH-343's evidence_quality_note); blocker part 1 (modulatory-bias-selection-authority) is already IMPLEMENTED via the 569i top-k shortlist conversion. The detector integrates goal-progress stall + E3 score margin + committed-action-class lock-in + dACC choice_difficulty into a graded stuck_score, GUARDED by goal salience (stuck-WITH-goal, not goal-abandonment); the regulator maps stuck_score to extra CEM candidates + a within-class temperature lift. Scoring, commitment (MECH-090/342) and selection authority (569i/MECH-341) are untouched -- a hard problem widens proposals, not behaviour."
+  claim_type: design_decision
+  subject: control_plane.difficulty_gated_proposal_entropy
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: architectural
+  registered_utc: "2026-06-19"
+  enables:
+    - MECH-343  # the mechanism whose substrate_conditional blocker part 2 this builds
+  depends_on:
+    - ARC-018   # hippocampal/CEM proposal layer the gain widens
+    - MECH-341  # E3 score-diversity preservation (selection side; untouched, composes downstream)
+    - MECH-090  # commit-entry predicate (untouched; commitment still gated normally)
+    - MECH-342  # maintenance-release predicate (untouched)
+    - SD-032b   # dACC choice_difficulty -- a detector input signal
+  distinct_from:
+    - MECH-313  # state-INDEPENDENT action-selection noise floor; SD-061 is state-DEPENDENT and acts on the PROPOSAL layer
+    - MECH-342  # release pressure on an ALREADY-committed latch; SD-061 widens proposals UPSTREAM of commitment
+  functional_restatement: >
+    Architectural decision (V3-tractable). Two coupled no-op-default modules
+    (ree_core/cingulate/stuck_state_detector.py + ree_core/policy/
+    difficulty_gated_proposal_entropy.py): a StuckStateDetector integrates four
+    signals REE already computes (goal-progress stall, E3 first-action score
+    margin, committed-action-class lock-in over a window, dACC choice_difficulty
+    inverted) into a graded stuck_score in [0,1] + is_stuck, gated by goal
+    salience and accumulated through an asymmetric EMA (fast rise, slow fall =
+    the MECH-343 entropy-decay hysteresis). A DifficultyGatedProposalEntropy
+    regulator maps stuck_score to (extra_candidates, temperature_gain) applied
+    to HippocampalModule.propose_trajectories (num_candidates += extra;
+    differentiable_cem_temperature *= gain, transient/restored). OFF =
+    bit-identical (verified). Pure-arithmetic, no learned parameters, MECH-094
+    simulation-gated.
+  evidence_quality_note: >
+    conf=0.0 by construction (substrate landed 2026-06-19, no behavioural
+    evidence yet). v3_pending until the Q-056 3-arm falsifier (entropy-off /
+    stuck-gated / always-high, matched easy/hard controls) returns evidence.
+    A claim-free substrate-readiness diagnostic (regulator OFF vs ON under an
+    induced stuck-state, confirming candidate_first_action_entropy rises under
+    stuck + decays after) is queued first. Routed by the Q-054/Q-055/Q-056
+    buildability triage (evidence/planning/q054_q055_q056_buildability_triage_2026-06-19.md).
+  implementation_note: >
+    IMPLEMENTED 2026-06-19 (ree-v3). See ree-v3/CLAUDE.md SD-061 section +
+    docs/architecture/sd_061_difficulty_gated_proposal_entropy.md. Builds
+    MECH-343 blocker part 2; MECH-343 stays candidate / substrate_conditional /
+    v3_pending (this PROMOTES NOTHING).
+  location: docs/architecture/sd_061_difficulty_gated_proposal_entropy.md
 
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."

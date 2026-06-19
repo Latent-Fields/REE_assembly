@@ -4696,6 +4696,30 @@
         "validation": "V3-EXQ-464d (competing-goals) + V3-EXQ-467d (mode-stickiness dose-response) -- successors (new letter) with use_external_task_drive=True + readiness gate restated to min_across_arms(fraction_in_external_task)>floor (~0.1) replacing n_switches>=1. Queued via /queue-experiment.",
         "depends_on_unresolved_note": "scaffolded_sd054_onboarding nav-competence (Stage-H) still unresolved; substrate + contracts land regardless (user-directed); validation may self-route substrate_not_ready, handled by the contact + occupancy gates."
       }
+    },
+    {
+      "sd_id": "SD-061",
+      "title": "Difficulty-gated proposal-entropy regulator (stuck-state detector + transient CEM proposal-widening). Builds MECH-343 substrate_conditional blocker part 2.",
+      "status": "implemented_pending_validation",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_061_difficulty_gated_proposal_entropy.md",
+      "depends_on_unresolved": [
+        "Q-056 3-arm falsifier (off/stuck-gated/always-high) not yet run"
+      ],
+      "unblocks_claims": [
+        "MECH-343",
+        "Q-056"
+      ],
+      "failure_record": null,
+      "implementation_hint": "IMPLEMENTED 2026-06-19. ree_core/cingulate/stuck_state_detector.py + ree_core/policy/difficulty_gated_proposal_entropy.py + agent wiring (_e3_tick proposal gain + select_action detector update + reset) + config no-op-default flags. OFF bit-identical; 8/8 contracts + preflight green. Next: claim-free substrate-readiness diagnostic (regulator OFF vs ON under induced stuck-state -> candidate_first_action_entropy rises under stuck + decays), then the Q-056 3-arm governance falsifier.",
+      "priority": 5,
+      "priority_note": "Q-056 buildability triage greenlit; off V3 green-board critical path.",
+      "autopsy_ref": "evidence/planning/q054_q055_q056_buildability_triage_2026-06-19.md",
+      "added_session": "q054-q055-q056-buildability-triage-20260619",
+      "last_seen_session": "q054-q055-q056-buildability-triage-20260619",
+      "implementation_log": [
+        "2026-06-19: SD-061 substrate landed (ree-v3). MECH-343 stays candidate/substrate_conditional/v3_pending (PROMOTES NOTHING). Validation experiment pending."
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2"
