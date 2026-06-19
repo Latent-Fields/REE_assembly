@@ -1,0 +1,48 @@
+{
+  "claim_ids_tested": [
+    "MECH-443"
+  ],
+  "source": {
+    "title": "Offline memory replay in recurrent neuronal networks emerges from constraints on online dynamics.",
+    "authors": [
+      "Aaron D Milstein",
+      "Sarah Tran",
+      "Grace Ng",
+      "Ivan Soltesz"
+    ],
+    "year": 2022,
+    "venue": "The Journal of Physiology",
+    "doi": "10.1113/JP283216"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A CA3 spiking-network model showing that biased (reward-salience-weighted) replay is an EMERGENT consequence of realistic network constraints: over-representation of salient/rewarded locations in the online code produces biased offline replay. Establishes substrate availability for MECH-443 -- prioritized replay does not need a bespoke priority module, it falls out of the population code. Substrate-availability anchor (like Joo&Frank for MECH-319), not a direct test of the write step, hence moderate-low confidence.",
+  "failure_signatures": [
+    "Substrate-availability evidence: it shows reward-biased replay can emerge, not that the bias gates a downstream rule/value write.",
+    "Bias arises from over-representation of salient positions in the population code; if REE's rule layer is not over-representing high-utility rules analogously, the emergent route does not transfer."
+  ],
+  "tags": [
+    "mech_443",
+    "ca3_model",
+    "substrate_availability",
+    "reward_bias"
+  ],
+  "mapping": {
+    "source_claim_statement": "Imposing experimentally-observed constraints (sparsity, selectivity, rhythmicity, adaptation, associative connectivity) on a CA3 recurrent network yields, as an emergent property, offline replay that is biased toward salient locations such as reward sites.",
+    "ree_translation": "MECH-443: a graded, reward/salience-weighted priority over replayed content is biologically cheap -- it emerges from the structure of the population code rather than requiring a dedicated priority computation, so wiring a priority signal into REE's replay write channel rests on an available substrate.",
+    "mapping_caveat": "This is a substrate-availability result: it shows biased replay can emerge from network constraints, not that the bias is read out as a write-strength onto a downstream rule-arbitration layer.",
+    "source_context": "Recurrent spiking network model of hippocampal CA3 optimized to match observed dynamics during simulated spatial exploration."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.42,
+    "notes": "Good substrate-availability anchor; deliberately weighted below the function-level papers because it shows emergence of the bias, not its downstream use."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_prioritization_mech_319",
+  "entry_id": "2026-06-19_mech_443_ca3_biased_replay_milstein2022",
+  "timestamp_utc": "2026-06-19T18:59:36Z",
+  "summary_path": "summary.md"
+}

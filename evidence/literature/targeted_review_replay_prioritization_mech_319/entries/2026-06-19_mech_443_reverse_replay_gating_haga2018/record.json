@@ -1,0 +1,46 @@
+{
+  "claim_ids_tested": [
+    "MECH-443"
+  ],
+  "source": {
+    "title": "Recurrent network model for learning goal-directed sequences through reverse replay.",
+    "authors": [
+      "Tatsuya Haga",
+      "Tomoki Fukai"
+    ],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.34171"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "A mechanistic CA3 model showing reverse replay, which occurs preferentially at REWARDED locations, selectively strengthens the goal-directed (forward) synaptic pathway -- i.e. reward-anchored replay GATES which downstream pathway is updated. This is the closest biological analog to 'replay gates which experiences update downstream representations', the core of MECH-443. Model rather than recording, and the write target is a synaptic pathway not a rule-arbitration weight, hence moderate confidence.",
+  "failure_signatures": [
+    "It is a synaptic-plasticity model in CA3, not a recording; the 'write' is potentiation of a place-cell pathway, an analog of (not identical to) a rule-arbitration weight update.",
+    "Selectivity arises from short-term depression / afterdepolarization interacting with symmetric STDP -- a specific cellular mechanism with no direct REE counterpart, so the WHY of the gating does not transfer even though the WHAT does."
+  ],
+  "tags": [
+    "mech_443",
+    "reverse_replay",
+    "write_gating",
+    "synaptic_plasticity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reverse replay, which is frequent at rewarded locations, biases synaptic transmission so that it selectively strengthens the forward (start-to-goal) pathway rather than both directions -- providing a mechanism by which reward-anchored replay determines which pathway is updated.",
+    "ree_translation": "MECH-443: replay does not just decide whether to write, it gates WHICH downstream pathway the write strengthens, and it does so anchored to reward/goal relevance -- a graded, content-selective write rather than MECH-319's all-or-nothing mode gate.",
+    "mapping_caveat": "The write target is a CA3 place-cell synaptic pathway, not REE's rule-arbitration weight; the gating mechanism (short-term depression + symmetric STDP) is cellular and has no REE counterpart, so only the functional pattern (reward-anchored replay selects the update target) transfers.",
+    "source_context": "Biophysically-constrained recurrent CA3 network model; W-maze and 2D open-field goal-directed navigation."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.42,
+    "notes": "Directly addresses the write-GATING step that the recording papers leave inferred, but it is a model and the substrate is synaptic, not rule-arbitration."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_prioritization_mech_319",
+  "entry_id": "2026-06-19_mech_443_reverse_replay_gating_haga2018",
+  "timestamp_utc": "2026-06-19T18:59:36Z",
+  "summary_path": "summary.md"
+}

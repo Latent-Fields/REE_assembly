@@ -1,0 +1,48 @@
+{
+  "claim_ids_tested": [
+    "MECH-443",
+    "MECH-444"
+  ],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay.",
+    "authors": [
+      "Marcelo G Mattar",
+      "Nathaniel D Daw"
+    ],
+    "year": 2018,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.79,
+  "confidence_rationale": "A normative theory, fit to rodent replay data, that derives exactly the two quantities MECH-443/MECH-444 posit: replay is ordered by UTILITY = gain x need, not uniformly. The 'gain' term is the policy-change a backup would produce -- the direct analog of value-prediction-error / staleness. High source quality (Nat Neurosci, unifies a large body of replay findings); the residual risk is that REE's rule-arbitration layer is not a tabular spatial value table, so the prioritization signal must be re-derived in REE's substrate, not transplanted.",
+  "failure_signatures": [
+    "Prioritization here is over a tabular spatial value function; mapping onto REE's rule-arbitration weights assumes an analogous 'gain' (policy-change-per-update) can be computed at the rule layer, which the substrate does not yet expose.",
+    "The theory is normative/computational, not a cellular demonstration that SWR events carry a graded priority signal -- it predicts the ordering that recordings show, it does not measure a write-strength gate."
+  ],
+  "tags": [
+    "mech_443",
+    "mech_444",
+    "prioritized_replay",
+    "expected_value_of_backup",
+    "planning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Which memories are replayed is governed by a normative priority -- the expected value of a backup, factorized as gain (how much the backup would change the policy) times need (how often the state will be visited) -- and this single rule reproduces the reward-, novelty- and goal-biases seen in hippocampal replay.",
+    "ree_translation": "MECH-443: the rule-write channel opened by MECH-319 should not admit replayed transitions uniformly but in priority order, weighted by an update-utility signal (gain x need). MECH-444: the 'gain' term IS a staleness/value-error measure -- a backup is high-gain precisely when the current estimate is most wrong/outdated, which motivates refreshing the write target against the current model before it updates the rule layer.",
+    "mapping_caveat": "Mattar & Daw prioritize accesses to a tabular spatial value function; REE's rule-arbitration layer is a parametric EMA over rule_state, so 'gain' cannot be read off directly and must be operationalized (e.g. surprise / value-prediction-error proxy). The theory supports the EXISTENCE of a graded priority and that it tracks update-utility, not the specific REE implementation.",
+    "source_context": "Computational model of nonlocal hippocampal replay in simulated spatial navigation (rat place-cell data as the comparison target)."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity: the gain x need decomposition is an unusually clean analog of MECH-443's priority and MECH-444's staleness term, but the tabular-vs-parametric gap is real."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_prioritization_mech_319",
+  "entry_id": "2026-06-19_mech_443_prioritized_memory_access_mattar2018",
+  "timestamp_utc": "2026-06-19T18:59:36Z",
+  "summary_path": "summary.md"
+}

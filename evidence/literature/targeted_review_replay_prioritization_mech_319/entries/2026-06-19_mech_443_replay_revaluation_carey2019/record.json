@@ -1,0 +1,49 @@
+{
+  "claim_ids_tested": [
+    "MECH-443",
+    "MECH-444"
+  ],
+  "source": {
+    "title": "Reward revaluation biases hippocampal replay content away from the preferred outcome.",
+    "authors": [
+      "Alyssa A Carey",
+      "Youki Tanaka",
+      "Matthijs A A van der Meer"
+    ],
+    "year": 2019,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-019-0464-6"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "The principled counterweight. Rats shifted behaviour TOWARD a restricted outcome but replay content shifted AWAY from it -- replay prioritization is NOT a simple reward-magnitude or behavioural-preference proportionality. Supports MECH-443's core (replay content is prioritized by motivational state, not recent experience) while refuting the naive shape of the priority function -- which is exactly the refinement the registration must encode (priority = update-utility/need, not reward level). Direct recordings, clean revaluation design.",
+  "failure_signatures": [
+    "Replay content moved AWAY from the currently most-valuable outcome, falsifying any MECH-443 implementation that equates priority with reward magnitude or current behavioural preference.",
+    "The dissociation between behaviour (toward restricted outcome) and replay (away from it) means a REE priority signal read off the action-value of the committed policy would point the wrong way."
+  ],
+  "tags": [
+    "mech_443",
+    "mech_444",
+    "counterweight",
+    "revaluation",
+    "need_vs_gain"
+  ],
+  "mapping": {
+    "source_claim_statement": "After motivational revaluation (hunger/thirst shifts), rats behaviourally favoured the restricted outcome, yet awake replay content was biased AWAY from that outcome and toward the non-restricted one; replay content is not limited to recent experience or trajectories toward the preferred goal.",
+    "ree_translation": "MECH-443: confirms replay is prioritized by internal/motivational state rather than recent experience (supports a non-uniform, state-conditioned write channel) BUT refutes the naive priority = reward-magnitude reading -- the priority must be an update-utility/need signal (cover under-sampled or to-be-needed states), consistent with Mattar & Daw's gain x need, not reward level. MECH-444: a target refreshed against 'current value' would mis-prioritize here; the relevant signal is need/coverage, not current preferred-outcome value.",
+    "mapping_caveat": "This is awake replay on a spatial T-maze under hunger/thirst revaluation; the away-from-preferred direction may be specific to coverage/exploration demands of that task and need not generalize to every prioritization regime, but it decisively rules out reward-magnitude as THE priority variable.",
+    "source_context": "Rodent hippocampal recordings; T-maze free choice between food and water under alternating hunger/thirst restriction."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.38,
+    "notes": "High source quality; counted as mixed because it both confirms state-conditioned prioritization and refutes the simplest priority function -- the most decision-relevant paper for how to SHAPE the MECH-443 signal."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_prioritization_mech_319",
+  "entry_id": "2026-06-19_mech_443_replay_revaluation_carey2019",
+  "timestamp_utc": "2026-06-19T18:59:36Z",
+  "summary_path": "summary.md"
+}

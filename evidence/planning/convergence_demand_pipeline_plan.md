@@ -53,9 +53,11 @@ closure_plan:
     - id: "convergence_demand_pipeline:LOW-MUZERO"
       title: "Pull the COMPLETED MuZero/EfficientZero reanalyze adapter (replay write-gating, arc_062 GAP-K) through to a registered claim"
       phase: 3
-      status: open
+      status: done
       severity: low
       depends_on: ["convergence_demand_pipeline:HANDOFF-REACTIVATE"]
+      last_updated: 2026-06-19
+      resume_condition: "DONE 2026-06-19 (session convergence-cdq005-muzero-reanalyze-20260619T1856Z; CDQ-005). MuZero/EfficientZero reanalyze intake (sources/muzero/, COMPLETED) pulled through to registered candidate claims MECH-443 (priority_weighted_replay_write_selection) + MECH-444 (staleness_gated_target_refresh_on_replay_write), both candidate/substrate_ceiling/generation:v3/v3_pending, each with a falsifier, wired (claim depends_on) into the GAP-K cluster (MECH-319/MECH-094/MECH-312/ARC-062). NON-DUPLICATIVE vs MECH-319 (the already-owned BINARY block-vs-admit gate, V3-EXQ-628 PASS): the pair adds the GRADED layer (which/how-strongly + freshness). Biology /lit-pull discharged BEFORE registering (evidence/literature/targeted_review_replay_prioritization_mech_319/, 5 sources, SUPPORTED-with-refinement; priority is update-utility/gain x need NOT reward magnitude). Arch stub docs/architecture/prioritized_replay_write_gating.md; GAP-K node convergence_2026_06_19 note added (no status/owner change). Promotion packet CPKT-MUZERO-REANALYZE-20260619 written + VALID + GATE-READY in REE_convergence/handoff/packets/outbox/. Candidates only -- promotes nothing, adds no V3 dependency. RESIDUAL (not blocking this node): the cross-repo handoff RUN + receipt-mirror of the new packet rides the HANDOFF-REACTIVATE cadence (which, like CDQ-002/003, treats direct claims.yaml registration as the load-bearing step; receipts promote nothing)."
 ---
 
 # Convergence Demand Pipeline -- closure-driven external-inspiration intake

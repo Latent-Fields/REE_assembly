@@ -43329,6 +43329,8 @@
   version_relevance: v3
   v3_pending: true
   registered_utc: "2026-06-18"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19: build-decision deliberately DEFERRED (parked, not orphaned). Convergence-intake forward refinement of the already-built MECH-313 tonic floor; OFF the V3 critical path (blocks no closure node). The committed-action-diversity conversion ceiling is already attacked via the live, validated 569i top-k shortlist. This marker tells the Step-6a-v substrate-ceiling audit the ceiling is intentionally parked (decide-whether-to-build is a later governance step), NOT awaiting a substrate-design owner; remove it to re-route to /failure-autopsy. User deferred the build twice."
   depends_on:
     - MECH-313   # parent: stochastic_noise_floor (LC-NE tonic analog), currently a STATE-INDEPENDENT floor; this refines it
     - MECH-260   # dACC anti-recency (the other tonic-noise leg in the GAP-C / Q-045 cluster)
@@ -43381,6 +43383,8 @@
   version_relevance: v3
   v3_pending: true
   registered_utc: "2026-06-18"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19: build-decision deliberately DEFERRED (parked, not orphaned). Convergence-intake forward refinement of the already-satisfied MECH-314 curiosity leg (V3-EXQ-604c); refines only the curiosity MECHANISM (per-candidate model-disagreement that propagates). OFF the V3 critical path (blocks no closure node); the conversion ceiling is already attacked via the live, validated 569i top-k shortlist. This marker tells the Step-6a-v substrate-ceiling audit the ceiling is intentionally parked (decide-whether-to-build is a later governance step), NOT awaiting a substrate-design owner; remove it to re-route to /failure-autopsy."
   depends_on:
     - MECH-314   # parent: structured_curiosity_bonus; this refines its computational form + propagation
     - ARC-065    # behavioural-diversity-generation pathway; this is substrate (b) frontopolar curiosity, refined
@@ -43419,6 +43423,8 @@
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-18"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19: build-decision deliberately DEFERRED (parked, not orphaned). Convergence-intake forward refinement (MAP-Elites generalization of the validated 569i top-k shortlist); OFF the V3 critical path (blocks no closure node). NOTE: this claim is epistemic_category substrate_conditional (NOT substrate_ceiling), so the Step-6a-v substrate-ceiling audit does not flag it today; the marker is applied for consistency with its MECH-440/441 cluster siblings and future-proofs the routing if it is ever re-categorized. The conversion ceiling is already attacked via the live, validated 569i top-k shortlist; the prose 'DO NOT build in V3 until routed by experiment' is now machine-readable here."
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output the archive preserves through the commit
     - MECH-341   # within-class diversity preserver (scoring-layer sibling); the archive is the committed-selection-layer complement
@@ -43463,6 +43469,106 @@
     yet built. OFF the V3 critical path -- blocks no V3 closure node; AMENDS the GAP-B conversion locus
     (generalizes the validated top-k structure) rather than minting a parallel module. CANDIDATE only --
     promotes nothing, flips no node status; decide-whether-to-build is a later governance step. DO NOT
+    build in V3 until routed by experiment.
+
+- id: MECH-443
+  title: "priority_weighted_replay_write_selection (MuZero/EfficientZero reanalyze + hippocampal prioritized-replay analog). A mechanistic refinement of MECH-319's simulation-mode rule-write gate. MECH-319 is a BINARY categorical gate: during a ghost/replay/DMN pass it either blocks arbitration-weight writes (normal) or admits them (the V3-EXQ-543c/628 falsifier flag) -- all-or-nothing, no ordering among the replayed transitions it admits. MECH-443 asserts that WHEN the replay write channel is open, the transitions admitted to update the rule-arbitration layer should not be written uniformly but in GRADED priority order, weighted by an update-utility signal (a surprise / value-prediction-error / coverage proxy), so a high-utility replayed transition writes more strongly and a low-utility one writes weakly or not at all. The external analog is EfficientZero/MuZero prioritized experience replay (priority ~ value-prediction error); the biology is hippocampal SWR replay, which is demonstrably prioritized rather than uniform. CRITICAL REFINEMENT FROM BIOLOGY: the priority is the value of the UPDATE (Mattar & Daw gain x need), NOT raw reward magnitude or current action-value -- Carey et al. 2019 shows replay can be biased AWAY from the currently-most-valuable outcome. MECH-443 is the WHICH/HOW-STRONGLY complement to MECH-319's WHETHER gate; it does not change the binary gate, it grades the admitted writes."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.priority_weighted_replay_write_selection
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_ceiling
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  registered_utc: "2026-06-19"
+  depends_on:
+    - MECH-319   # parent: the BINARY simulation-mode rule-write gate this grades (block-vs-admit -> priority-ordered admit)
+    - MECH-094   # the hypothesis-tag write-gate principle MECH-319 instantiates; the priority signal refines the same write channel
+    - MECH-312   # the rule-arbitration layer whose weight-updates are prioritized
+    - ARC-062    # rule-apprehension selector whose minted-rule write-path this gates
+  location: docs/architecture/prioritized_replay_write_gating.md#mech-443
+  notes: >
+    Registered 2026-06-19 from Convergence Demand Pipeline row CDQ-005 (MuZero/EfficientZero reanalyze
+    intake, REE_convergence/sources/muzero/; promotion packet CPKT-MUZERO-REANALYZE-20260619). Targets
+    the mechanism gap named by arc_062_rule_apprehension:GAP-K ("Gating which replayed/imagined
+    transitions may write to the rule layer (replay write-gating)"). MECH-319 (V3-EXQ-628 PASS/supports)
+    already owns the BINARY gate -- block vs admit during caller_sim=True. The non-duplicative import is
+    the GRADED priority OVER the admitted writes: MECH-319 says whether the channel is open; MECH-443
+    says which replayed transitions write, and how strongly, when it is. REE LOCUS: ree-v3
+    ree_core/regulators/simulation_mode_rule_gate.py (SimulationModeRuleGate) + the LateralPFCAnalog.update
+    / GatedPolicy.forward replay call sites -- the existing binary effective_simulation_mode(...) primitive
+    would be extended to carry a per-transition priority weight on the admitted write rather than a bool.
+    BIOLOGY (lit-pull BEFORE registration, per SD-003 / SD-010-011 discipline -- 2026-06-19,
+    evidence/literature/targeted_review_replay_prioritization_mech_319/, 5 sources, SYNTHESIS verdict
+    SUPPORTED-with-refinement): hippocampal replay is NOT uniform. Mattar & Daw 2018 Nat Neurosci
+    (doi:10.1038/s41593-018-0232-z, supports 0.79) derive replay as prioritized by expected-value-of-backup
+    = gain x need, reproducing reward/novelty/goal biases from one ordering rule. Olafsdottir et al. 2015
+    eLife (doi:10.7554/eLife.06063, supports 0.63) -- motivational relevance gates which sequences are
+    (pre)played. Haga & Fukai 2018 eLife (doi:10.7554/eLife.34171, supports 0.60) -- reward-anchored
+    reverse replay selectively GATES which downstream synaptic pathway is strengthened (the write-gating
+    step itself). Milstein et al. 2022 J Physiol (doi:10.1113/JP283216, supports 0.58) -- reward-biased
+    replay emerges from CA3 network constraints (substrate availability). LOAD-BEARING COUNTERWEIGHT
+    (Carey/Tanaka/van der Meer 2019 Nat Neurosci doi:10.1038/s41593-019-0464-6, mixed 0.62): replay can
+    be biased AWAY from the currently-preferred outcome -- so priority is update-utility/need, NOT reward
+    magnitude; a MECH-443 implementation that equates priority with reward level or committed-policy value
+    is biologically falsified. FALSIFIER: arming a per-transition update-utility (surprise/value-error)
+    priority weight on the admitted replay writes produces rule-arbitration retention/selectivity (or
+    committed-rule entropy) STRICTLY ABOVE a matched uniform-admit control (MECH-319 admit_writes=True with
+    equal total write mass) on >=2/3 seeds; if priority-weighting is inert vs uniform admit, OR if it helps
+    only by raising total write mass (a degenerate confound -- caught by the matched-mass control), MECH-443
+    earns no keep over the binary gate. Pre-registered discriminator: a (binary admit) vs (priority-weighted
+    admit) replay-write ablation at the LateralPFCAnalog write locus, with a matched-total-write-mass guard
+    and priority = surprise-proxy (NOT reward). V3-leaning (on the V3 work surface; MECH-319 gate + replay
+    call sites are built V3 substrate); substrate_ceiling because the existing gate is BINARY -- it cannot
+    carry a graded priority signal without enrichment of the write primitive. OFF the V3 critical path --
+    blocks no V3 closure node; AMENDS the GAP-K replay-write locus (grades the existing MECH-319 gate)
+    rather than minting a parallel module. CANDIDATE only -- promotes nothing, flips no node status;
+    decide-whether-to-build is a later governance step. DO NOT build in V3 until routed by experiment.
+
+- id: MECH-444
+  title: "staleness_gated_target_refresh_on_replay_write (MuZero/EfficientZero reanalyze analog). The second, more speculative leg of the CDQ-005 reanalyze import, complementary to MECH-443. Asserts that a replayed transition admitted to update the rule-arbitration layer should NOT write its stored (ghost-derived, possibly stale) target verbatim; the target should first be RECOMPUTED against the current model/policy before it updates the rule layer, and the write should be down-weighted or skipped when the recomputed target has not drifted from the stored one (low staleness => low update value). This is the MuZero reanalyze trick (re-run the model on stored trajectories to produce fresh targets) plus EfficientZero off-policy/staleness correction. It guards against the failure MECH-319 was built to prevent (overcommitment to ghost-derived arbitration weights) from re-entering THROUGH the admitted-write channel that MECH-443 opens: prioritized writing of STALE targets would re-introduce drift, so the priority signal (MECH-443) and the freshness signal (MECH-444) must operate together."
+  claim_type: mechanism_hypothesis
+  subject: policy.arbitration.staleness_gated_target_refresh_on_replay_write
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_ceiling
+  implementation_phase: v3
+  version_relevance: v3
+  v3_pending: true
+  registered_utc: "2026-06-19"
+  depends_on:
+    - MECH-319   # the binary write gate; MECH-444 refreshes the target on the writes MECH-319 admits
+    - MECH-443   # priority sibling: MECH-443 grades WHICH writes, MECH-444 grades the FRESHNESS of each write target -- they compose
+    - MECH-094   # the hypothesis-tag write-gate principle; staleness-refresh is a second guard on the same write channel
+  location: docs/architecture/prioritized_replay_write_gating.md#mech-444
+  notes: >
+    Registered 2026-06-19 from Convergence Demand Pipeline row CDQ-005 (MuZero/EfficientZero reanalyze
+    intake; promotion packet CPKT-MUZERO-REANALYZE-20260619). The more speculative leg, registered
+    separately from MECH-443 because it carries higher transfer risk and is independently falsifiable.
+    REE LOCUS: same simulation_mode_rule_gate.py / LateralPFCAnalog.update replay path; the extension is
+    a target-recompute-and-compare step on each admitted write rather than a verbatim stored-target write.
+    BIOLOGY (same 2026-06-19 lit-pull, evidence/literature/targeted_review_replay_prioritization_mech_319/):
+    the staleness-refresh is supported BY ANALOGY, not by a directly-documented cellular operation, hence
+    its lower confidence and separate registration. Mattar & Daw 2018 (doi:10.1038/s41593-018-0232-z) gain
+    term IS a staleness measure -- a backup has high gain precisely when the current estimate is most
+    wrong/outdated, the biological shadow of reanalyze's target-drift weighting. Olafsdottir et al. 2015
+    (doi:10.7554/eLife.06063) shows replay is GENERATIVE (constructs sequences through never-traversed
+    space) rather than verbatim playback -- offline replay produces goal-current content, not a re-emission
+    of the stale stored trace. HONEST CAVEAT (recorded in the entries' mapping_caveat): no recording study
+    demonstrates a literal "recompute-the-target-then-write" hippocampal operation; the reanalyze refresh is
+    an engineering construct whose biological warrant is the gain term + generative replay, not a measured
+    cellular mechanism. FALSIFIER: recomputing the replay write target against the current model before it
+    updates the rule layer (and down-weighting low-drift writes) produces LESS rule-arbitration drift /
+    overcommitment than writing the stored stale target, on >=2/3 seeds, on the MECH-319 admit_writes=True
+    (drift-inducing) substrate -- i.e. the V3-EXQ-628 block-vs-admit divergence is ATTENUATED by the refresh
+    relative to admit-with-stale-target; if the refresh does not attenuate drift versus stale-target writing,
+    the staleness gate is inert and MECH-444 earns no keep. Pre-registered discriminator: a (stale-target
+    admit) vs (refreshed-target admit) replay-write ablation on the 628 drift falsifier substrate. V3-leaning;
+    substrate_ceiling because the existing write primitive writes stored targets verbatim and cannot recompute
+    /compare without enrichment. OFF the V3 critical path -- blocks no V3 closure node; AMENDS the GAP-K
+    replay-write locus jointly with MECH-443. CANDIDATE only -- promotes nothing, flips no node status;
+    decide-whether-to-build is a later governance step; the more speculative of the CDQ-005 pair. DO NOT
     build in V3 until routed by experiment.
 
 # ============================================================================

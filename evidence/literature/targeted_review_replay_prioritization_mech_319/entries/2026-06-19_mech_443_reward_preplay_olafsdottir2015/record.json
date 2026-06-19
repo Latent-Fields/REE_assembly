@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "MECH-443",
+    "MECH-444"
+  ],
+  "source": {
+    "title": "Hippocampal place cells construct reward related sequences through unexplored space.",
+    "authors": [
+      "H Freyja Olafsdottir",
+      "Caswell Barry",
+      "Aman B Saleem",
+      "Demis Hassabis",
+      "Hugo J Spiers"
+    ],
+    "year": 2015,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.06063"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "Direct rodent place-cell recordings showing reward/motivational relevance gates which sequences are pre-played -- preplay occurred for the rewarded but not the unrewarded unexplored arm. Strong for MECH-443 (motivational relevance prioritizes replay content) and uniquely relevant to MECH-444 because the constructed sequences cover UNEXPLORED space -- generative recompute beyond stored experience, the biological shadow of reanalyze. Lower confidence than Mattar&Daw because it is preplay (pre-, not post-experience) and the link to a downstream WRITE/update is inferred, not measured.",
+  "failure_signatures": [
+    "This is preplay of never-traversed space; it shows motivational gating of replay CONTENT but does not measure a downstream rule/value update, so the write-gating step is inferred.",
+    "Reward here is a binary present/absent contrast, not a graded magnitude, so it supports prioritization-by-relevance but does not establish the shape of the priority function."
+  ],
+  "tags": [
+    "mech_443",
+    "mech_444",
+    "preplay",
+    "reward_bias",
+    "generative_replay"
+  ],
+  "mapping": {
+    "source_claim_statement": "Place-cell sequences for an unvisited region of space are pre-activated offline only when that region is made motivationally relevant (food delivered there); a matched unrewarded region produced no such preplay.",
+    "ree_translation": "MECH-443: motivational/relevance signals gate WHICH transitions are selected for replay, supporting a non-uniform priority over the replay write channel. MECH-444: the sequences are constructed for unexplored space -- replay is generative and goes beyond stored experience, the biological analog of reanalyze recomputing fresh targets rather than re-writing the stale stored ones.",
+    "mapping_caveat": "Preplay of unexplored space demonstrates motivational gating of replay CONTENT, not a measured downstream write to a rule/value layer; the update step MECH-443/444 gate is inferred from the content bias, not recorded.",
+    "source_context": "Rodent hippocampal place-cell ensemble recordings; rats viewed food delivered to an unvisited arm of an environment."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Direct electrophysiology and a clean rewarded-vs-unrewarded contrast, but preplay-of-unexplored-space is one inferential step from a write-update."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_replay_prioritization_mech_319",
+  "entry_id": "2026-06-19_mech_443_reward_preplay_olafsdottir2015",
+  "timestamp_utc": "2026-06-19T18:59:36Z",
+  "summary_path": "summary.md"
+}
