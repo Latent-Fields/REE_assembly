@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-19T15:04:35Z
+Generated: 2026-06-19T18:51:30Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,11 +8,11 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **81.2%** across 77 non-deferred nodes in 11 plan(s) with closure frontmatter.
+- Weighted progress: **79.3%** across 70 non-deferred nodes in 10 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **19** nodes.
 - Deferred (not required for v3 closure): 12 nodes.
-- Done: 58 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=3  deferred=12  done=58  in_progress=6  partial=2  upstream_blocked=1
+- Done: 51 nodes.
+- Status tally: blocked=7  blocked_pending_substrate=3  deferred=12  done=51  in_progress=6  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -25,7 +25,6 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 11 | 87% | deferred:2 done:7 in_progress:2 | 2026-06-12 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 8 | 87% | deferred:1 done:6 upstream_blocked:1 | 2026-05-31 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 15 | 88% | blocked_pending_substrate:2 done:13 | 2026-05-30 |
-| `arm_reuse_fingerprint_plan.md` | Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint) | 7 | 100% | done:7 | 2026-06-10 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-12 |
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
@@ -37,7 +36,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | in_progress | 1 | load-bearing | V3-EXQ-625d | RESUME the Phase 1b gate via a redesigned successor (V3-EXQ-625d, JOINT-COMPOSITE-ON) once | 2026-06-17 |
-| self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-18 |
+| self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-19 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654f RAN FAIL/non_contributory 2026-06-18 | AWAITING V3-EXQ-654g QUEUE + RUN (654g NOT yet queued -- /queue-experiment owed). 654f (co | 2026-06-18 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460f + V3-EXQ-468e (the de-commit and per | AWAITING /implement-substrate AMEND of commitment-closure-control-plane (de-commit-authori | 2026-06-18 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
@@ -47,13 +46,13 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-04 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | blocked_pending_substrate | 4 | medium | V3-EXQ-590 | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-09 |
-| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-15 |
-| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discrimination) | in_progress | 7 | medium | V3-EXQ-485f FAIL/non_contributory 2026-06-11 (tr | Trained-OFC-head SUBSTRATE landed 2026-06-09 (ree-v3 382db2c): OFCConfig.train_state_bias_ | 2026-06-17 |
+| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-19 |
+| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discrimination) | in_progress | 7 | medium | V3-EXQ-485g RAN FAIL 2026-06-19T14:54Z on ree-cl | Trained-OFC-head SUBSTRATE landed 2026-06-09 (ree-v3 382db2c): OFCConfig.train_state_bias_ | 2026-06-19 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | 660 base PASS/supports established the binary within-class preserver; MECH-341 RATIFIED candidate->provisional (v3_pending CLEARED 2026-06-14, commit 80f4fcf250, user-directed). Only remaining unblocks strand = ARC-062 falsifier, gated on the shared GAP-A selection-authority substrate (569g->682-gated) | load-bearing | V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is t | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-06-18 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MEC | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-06-18 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-03 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-08 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governanc | 2026-06-18 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governanc | 2026-06-19 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 
 ## Deferred -- not required for v3 closure (12)
@@ -73,19 +72,12 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (58)
+## Done (51)
 
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-D` -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-L` -- Biology lit-pull prerequisite for the socially-scaffolded rule-population sub-cluster (ARC
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:GATE` -- Section 9.0 hard prerequisite -- cross-instance determinism gate (610 OFF baseline minted 
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:MINT` -- Baseline pre-minting -- canonical baseline modules + low-priority cloud mint experiments f
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P0` -- Phase 0 -- instrument only: arm_fingerprint lib (substrate content-hash + per-cell fingerp
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-auto` -- First AUTOMATED index-HIT in the wild -- next genuinely-needed iteration (610g / 643c) re-
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-build` -- Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_reuse_cell refuse-by-
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-cite` -- First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three 646 OFF-baseline ce
-- `arm_reuse_fingerprint_plan.md` `arm_reuse_fingerprint:P1-fix` -- Driver-script_path coupling fix -- include_driver_script_in_hash so a consumer with its ow
 - `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-A` -- Theory 1 / Layer A: CEM elite-pool collapse to one action class (ARC-065 SP-CEM child)
 - `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-D` -- Theory 4 / Layer D: V_s regional verisimilitude staleness (MECH-269 / MECH-269b)
 - `behavioral_diversity_isolation_plan.md` `behavioral_diversity_isolation:GAP-H` -- Theory 8 (CLOSED-moot): z_goal config-default confound
@@ -134,23 +126,30 @@ Ordered by phase, then severity. This is the answer to "what is left."
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (0)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-- `evidence/planning/convergence_demand_pipeline_plan.md`
+_None -- every plan doc is mapped._
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 
 Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V4/V5 have no experiments yet, so their nodes carry no `owner_exq` and do not count toward the V3 closure percentage. Each node's gate is the V3-era prerequisite that must land first.
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
+- **GOVERNANCE**: 83.3% across 6 non-deferred nodes in 1 plan(s).
+- **PROCESS**: 72.3% across 13 non-deferred nodes in 2 plan(s).
 - **V4**: 27.9% across 92 non-deferred nodes in 13 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
 
 | gen | plan | node | title | status | sev | gate (readiness) | last_updated |
 |-----|------|------|-------|--------|-----|------------------|--------------|
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-CATEGORY` | Phase 0 -- governance_rule category + 22 SENT/GOV claims registered | done | load-bearing |  | 2026-06-19 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:GATE` | Section 9.0 hard prerequisite -- cross-instance determinism gate (610  | done | high |  | 2026-06-07 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-PLAN` | Phase 0 -- plan-of-record created | done | high | depends_on: ethics_perimeter:P0-CATEGORY | 2026-06-19 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P0` | Phase 0 -- instrument only: arm_fingerprint lib (substrate content-has | done | medium |  | 2026-06-06 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:MINT` | Baseline pre-minting -- canonical baseline modules + low-priority clou | done | low |  | 2026-06-07 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-1` | Two-levels-of-abstraction distinction (the load-bearing scoping claim) | done | load-bearing | No substrate prerequisite -- this is a DESIGN/SCOPING claim, registrable now as the spine  | 2026-06-13 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-1` | FOUNDATION -- per-candidate multi-channel affect vector substrate (MEC | blocked | load-bearing | V3 NARROW instance is already DONE and is NOT this node: V3-EXQ-643a PASS established the  | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-1` | Memory-type taxonomy decision (Q-060): distinct autobiographical-event | done | load-bearing | V3 owns only the episodic<->semantic axis (MECH-121 NREM SWR episodic->semantic transfer)  | 2026-06-14 |
@@ -179,19 +178,29 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-1` | Harm-to-agency signal: goal-interference over trajectory pairs (MECH-1 | blocked | load-bearing | MECH-163 multi-step hippocampal planning PASS (the V4/social entry gate; stays v3 -- it is | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-1` | z_self promoted from body-state latent to a stateful self-model (DR-13 | done | load-bearing | V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exist | 2026-06-14 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-2` | Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across | in_progress | high | ARC-088 is implementation_phase v3 (a unifying MAP over already-owned V3 affect machinery: | 2026-06-10 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:QUEUE` | Demand queue CDQ-001..005 (Section-4 rows) + governance Step-6b Sense  | done | high | First Action #1 landed 2026-06-17: convergence_demand_queue.v1.json + /governance Step-6b  | 2026-06-17 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-1` | Temporal Coherence Loop substrate (ARC-053/054/055 phase-coherent V(t) | deferred | high | REVERSAL TRIGGER 1: a V3 working-model failure mode the synaptic forms demonstrably cannot | 2026-06-11 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-2` | Oscillatory multiplexing + ephaptic coherence mechanisms (MECH-225/226 | deferred | high | REVERSAL TRIGGER (concrete, from the boundary doc): if the MECH-271 routing audit cannot d | 2026-06-11 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-BOUNDARY` | Phase 1 -- SENT-0 + GOV-HEALTH-1 V3 bright lines (ree-v3 README + regi | done | high | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-2` | Agent-policy novelty typing (MECH-130): world-state novelty != agent-p | blocked | high | MECH-111 curiosity/novelty signal is the V3 mechanism being TYPED -- it currently rewards  | 2026-06-10 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-build` | Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_r | done | medium |  | 2026-06-09 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-fix` | Driver-script_path coupling fix -- include_driver_script_in_hash so a  | done | medium |  | 2026-06-09 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:LOOP` | Sense -> Mine -> Register -> Adjudicate cadence (demand-driven, piggyb | done | medium | depends_on: convergence_demand_pipeline:QUEUE | 2026-06-17 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-1` | V3 reduced form -- MECH-384 self-narration trace surface (the seed the | done | medium | MECH-384 is the ONLY V3-compatible instantiation: implementation_phase v3, epistemic_categ | 2026-06-14 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-WELFARE-TAG` | Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as qu | open | medium | descriptive-only V3 welfare tagging + preflight doc-habit; non-blocking, do before 2026-07 |  |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-2` | Open, extensible affect-stream taxonomy (handles, not a final ontology | done | medium | V3 SEED present: affect_primitives.md already registers a three-way harm dissociation (SD- | 2026-06-13 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-2` | Grammar->substrate mapping table (the mining artifact): per primitive, | open | medium | No substrate gate to AUTHOR the table -- it is a living V5/V6 design artifact (doc + metho | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-2` | Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / | done | medium | Project rule feedback_biology_before_formal_definitions: commission this /lit-pull BEFORE  | 2026-06-17 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-cite` | First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three | done | low |  | 2026-06-09 |
+| process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-auto` | First AUTOMATED index-HIT in the wild -- next genuinely-needed iterati | done | low | The natural trigger is GONE: the WATCH MARKER fork resolved to (b). V3-EXQ-655 LANDED 2026 | 2026-06-15 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-2` | Compositional generalisation over named primitives (recombine grounded | blocked | load-bearing | language_emergence_bootstrap_v6: stable proto-symbols grounded to pre-linguistic primitive | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-2` | Unified autobiographical event-token store (ARC-085): ONE self-tagged  | blocked | load-bearing | ARC-007 retrospective replay (paths through residue-field terrain) -- present in V3, desig | 2026-06-10 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-3` | PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed  | blocked | load-bearing | V3 play substrate must land first: ARC-049 play_frame_tag in LatentState (L2 continuous si | 2026-06-10 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-2` | Multidrive arbitration / orchestration policy (which drive wins when s | blocked | load-bearing | V3 LIVE drive->approach plumbing the policy must compose over: MECH-295 (drive->liking->ap | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-2` | Typed causal-attribution ontology: ownership tags for self / world / b | blocked | load-bearing | V3/V4 BEGINNING present: ARC-015 (self-impact attribution + responsibility flow, provision | 2026-06-10 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-PREFLIGHT` | Phase 2 keystone -- experiment-ethics preflight (operational SENT-2/4/ | done | load-bearing | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-CARRYFORWARD` | Phase 2 -- GOV-PROC-1 s2 carry-forward (ethical_metadata on 50 V4/V5/V | done | load-bearing | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-3` | Stream-binding mechanism: route own motivational-affective streams acr | blocked | load-bearing | MECH-163 multi-step hippocampal planning PASS (V3 full-completion gate; also the V4 social | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-2` | PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module  | blocked | load-bearing | V3 HOOKS present: SD-032a operating_mode vocabulary (discrete-mode primitive, landed) + SD | 2026-06-10 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-3` | Predicate-argument-event bridge to ARC-063 CandidateRuleField: render  | blocked | load-bearing | ARC-063 CandidateRuleField rule_state behaviourally validated (the rules to be rendered mu | 2026-06-10 |
@@ -215,6 +224,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-3` | Relational / propositional inference over named relations (transitivit | blocked | high | ARR-2 compositional generalisation in place (named relations exist as recombinable symbols | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-3` | Expression as emergent action geometry (MECH-360) -- the readout side  | blocked | high | AE-1 (MECH-359) per-candidate affect vector built -- expression style (hesitation, latency | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-4` | Candidate-gradient hippocampal episode schema (MECH-361) -- affect gra | blocked | high | AE-1 (MECH-359) per-candidate affect vector built | 2026-06-10 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HIGH-DREAMCODER` | Execute HIGH row -- DreamCoder + DreamerV3 codebook intake -> register | in_progress | high | in flight as chip task_88e97a80; ends at a registered candidate claim wired into the targe |  |
 | v4 | inference_belief_state_v4_plan.md | `inference_belief_state_v4:INF-4` | Inferred affordance field (afford. not directly perceived; biases E3 c | blocked | high | V3 rule field present: ARC-062 (weak-reading gated policy) live; ARC-063 (CandidateRule fi | 2026-06-10 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-3` | False-linking-risk / reality-coherence cost term (the single aspect wi | open | high | MECH-094 (sim-vs-real confabulation gate) is the nearest reality-coherence machinery V3 ha | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-3` | PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed an | blocked | high | MECH-269 AnchorSet / V_s substrate live in V3 (SD-040 adds a type-key projection alongside | 2026-06-10 |
@@ -224,10 +234,12 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-7` | Biology grounding for relational/compositional reasoning + analogy (li | deferred | medium | Per project rule feedback_biology_before_formal_definitions: compositional generalisation, | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-9` | Biology grounding completion (per-candidate/option-specific value codi | done | medium | L1 option-specific / per-candidate value coding (Padoa-Schioppa 2006 OFC offer-value neuro | 2026-06-16 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-9` | Biology grounding completion (emotional-modulation-of-consolidation wr | closed | medium | L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGau | 2026-06-13 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HANDOFF-REACTIVATE` | Re-activate the REE_convergence -> REE_assembly handoff pipeline (firs | open | medium | validates the end-to-end loop on one real stuck node before scaling to the MED rows |  |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-3` | Explicit signed competitive multi-field coupling (ARC-084) | deferred | medium | REVERSAL TRIGGER: a V4 multi-field signed-edge layer exists, making the cooperative-only v | 2026-06-11 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-8` | Biology grounding completion (Vygotsky private speech, DMN, label-as-c | done | medium | DONE 2026-06-13: textbook analogies replaced with mechanism/neuroscience evidence under ev | 2026-06-13 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | closed | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-13 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-8` | Biology grounding: guilt-as-reparative-motivation vs shame-as-withdraw | closed | medium | L1 guilt-vs-shame (guilt-as-reparative-motivation vs shame-as-withdrawal/concealment) -- t | 2026-06-12 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P2-V4-REGISTERS` | Phase 2 -- V4 governance registers (welfare-risk full, assembly routin | deferred | medium | authored when each gate's first requires_welfare_review node activates (gains owner_exq);  |  |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-7` | Biology grounding for the social affect-binding + reciprocity-developm | deferred | medium | Per project rule feedback_biology_before_formal_definitions: the suffering/empathy social  | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-6` | PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD | blocked | medium | V3 HOOKS: MECH-089 theta-gamma packaging (formats content for E3) + SD-026 z_goal write ch | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-8` | Biology grounding completion (frontopolar deliberation, counterfactual | done | medium | L1 frontopolar/area-10 counterfactual deliberation (Koechlin & Hyafil 2007 branching; Boor | 2026-06-13 |
@@ -294,9 +306,12 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-4` | Metric-origin fork: per-sense perceptual metric LEARNED from similarit | open | high | Q-065 part (1): for each modality, is the perceptual metric self-organised from the statis | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-5` | Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-soc | blocked | medium | V4 social substrate exists (other-agent representation) -- the canonical soothing trigger  | 2026-06-10 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-6` | Laughter regime-transition discharge (MECH-364) + crying/distress-voca | blocked | medium | E3 conflict/constraint-load readout: ARC-016 already exposes an E3-derived prediction-vari | 2026-06-10 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:MED-ROWS` | Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Div | open | medium | depends_on: convergence_demand_pipeline:HANDOFF-REACTIVATE |  |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P3-V5V6-PERIMETER` | Phase 3 -- V5/V6 perimeter registers (responsible release, external cr | deferred | medium | authored on first V5/V6 node activation; SENT-14 release policy adopted_split_deferred |  |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-6` | ACh permissive write-gate on the surprise buffer (MECH-207) | blocked | medium | MECH-205 surprise buffer + MECH-206 CA1 PE comparator present (sleep_substrate stack) | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-5` | PILLAR C -- PV-interneuron inhibitory-maturation window-closure clock | deferred | medium | Biology-faithful refinement of MECH-333 closure / MECH-334: a time-since-onset accumulator | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | in_progress | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-17 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:LOW-MUZERO` | Pull the COMPLETED MuZero/EfficientZero reanalyze adapter (replay writ | open | low | depends_on: convergence_demand_pipeline:HANDOFF-REACTIVATE |  |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-4` | Attention = distributed precision-selection (a MAP, not a substrate -- | deferred | low | REVERSAL TRIGGER: a SPECIFIC attention-bottleneck failure that the existing distributed pr | 2026-06-11 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-6` | PILLAR D -- BDNF-analog trophic window-duration knob (lowest priority) | deferred | low | The duration knob sits ON TOP of the gain knob (PLW-3) and the closure clock (PLW-5); both | 2026-06-10 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-6` | Symbolic reasoning cannot override embodied harm sensing (the V6 insta | blocked | load-bearing | ARR-2 + ARR-4 in place (a reasoning capacity powerful enough to need this guard -- composi | 2026-06-10 |
@@ -319,6 +334,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-5` | Non-terminal failure-grade taxonomy as a transfer-world launch profile | deferred | medium | V3 LIVE scaffold substrate it formalises: scaffolded_sd054_onboarding (nursery / protected | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-6` | Prescriptive + diagnostic ethical-trajectory certification: CBF forwar | blocked | medium | MECH-145 (prescriptive CBF certificate, already implementation_phase: v5) needs (1) the RE | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-7` | Two-axis failure-mode taxonomy: named failure modes x cross-cutting vu | deferred | medium | ARC-086 (two-axis index) is epistemic_category substrate_conditional / implementation_phas | 2026-06-10 |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P4-TOOLING` | Phase 4 -- ethics tooling (preflight/release-sensitivity checks, ethic | deferred | medium | only after registers stable; check_node_ethics_metadata.py explicitly deferred |  |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-7` | Graded action-status vocabulary -- decide whether deliberation needs a | deferred | medium | Q-068 is an OPEN QUESTION (answer_state): does REE need an explicit graded action-status v | 2026-06-10 |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-7` | Schema-primed rapid assimilation (INV-039) | blocked | medium | stable, dense residue-field map from sustained V3 training (a sparse/unstable map reverts  | 2026-06-10 |
 | v4 | hippocampal_planning_v4_plan.md | `hippocampal_planning_v4:HPL-8` | Improvement-tier enrichments -- compression, dual-mode construction, a | deferred | medium | MECH-230/236/238 V3 navigation substrate present (metric-space goal encoding) -- the base  | 2026-06-10 |

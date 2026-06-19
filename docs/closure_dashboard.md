@@ -5,19 +5,19 @@ nav_order: 11
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-06-19T15:04:35Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-06-19T18:51:30Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
 ## Overall
 
-<p style="font-size:1.6em;font-weight:600;margin:.2em 0">81.2%</p>
+<p style="font-size:1.6em;font-weight:600;margin:.2em 0">79.3%</p>
 
-<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:81.2%"></div></div>
+<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:79.3%"></div></div>
 
-77 non-deferred nodes across 11 plan(s) · **58 done · 19 remaining · 12 deferred**.
+70 non-deferred nodes across 10 plan(s) · **51 done · 19 remaining · 12 deferred**.
 
-Status tally: `blocked`&nbsp;7 · `blocked_pending_substrate`&nbsp;3 · `deferred`&nbsp;12 · `done`&nbsp;58 · `in_progress`&nbsp;6 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
+Status tally: `blocked`&nbsp;7 · `blocked_pending_substrate`&nbsp;3 · `deferred`&nbsp;12 · `done`&nbsp;51 · `in_progress`&nbsp;6 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
 
 ## By plan
 
@@ -30,13 +30,12 @@ Status tally: `blocked`&nbsp;7 · `blocked_pending_substrate`&nbsp;3 · `deferre
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Commitment / Closure / Mode-Governance</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:86.7%"></div></div>&nbsp;<span style="color:#57606a">87%</span></td><td style="padding:6px 10px">11</td><td style="padding:6px 10px;color:#57606a">2026-06-12</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Sleep Substrate</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:87.1%"></div></div>&nbsp;<span style="color:#57606a">87%</span></td><td style="padding:6px 10px">8</td><td style="padding:6px 10px;color:#57606a">2026-05-31</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Infant Substrate Expansion</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:88.0%"></div></div>&nbsp;<span style="color:#57606a">88%</span></td><td style="padding:6px 10px">15</td><td style="padding:6px 10px;color:#57606a">2026-05-30</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">7</td><td style="padding:6px 10px;color:#57606a">2026-06-10</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Goal Pipeline (wanting / liking / drive cascade)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">7</td><td style="padding:6px 10px;color:#57606a">2026-06-12</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-033 Governance (OCD test battery sub-plan)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">8</td><td style="padding:6px 10px;color:#57606a">2026-05-29</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (a): Consumer-Input-Threshold Recalibration</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-05</td></tr>
 </tbody></table>
 
-_Plus 25 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
+_Plus 28 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
 
 Full node-by-node detail (remaining work, blockers, owners) is in the generated `evidence/planning/closure_status.md` snapshot.
 
