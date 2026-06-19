@@ -270,7 +270,7 @@ def _load_claims_meta() -> dict[str, dict]:
 
 _EPI_SUPPRESS_PROPOSAL = {
     "substrate_coherence", "substrate_ceiling", "substrate_conditional",
-    "derivational", "out_of_domain",
+    "derivational", "out_of_domain", "governance_rule",
 }
 _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
 
@@ -286,6 +286,7 @@ _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
 _TESTABLE_CLAIM_STATUSES = {"candidate", "provisional"}
 _UNTESTABLE_EPISTEMIC = {
     "substrate_ceiling", "substrate_conditional", "out_of_domain", "derivational",
+    "governance_rule",
 }
 
 
