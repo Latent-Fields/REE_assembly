@@ -1548,6 +1548,15 @@
       "selected_option": "Accept all holds",
       "timestamp_utc": "2026-06-18T05:15:01.358022Z"
     },
+    "MECH-442": {
+      "actor": "governance-20260619T1832Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Held: substrate_conditional + OFF V3 critical path (blocks no closure node). QD/MAP-Elites committed-selection archive AMENDS the GAP-B conversion locus; conversion ceiling already attacked via the live validated 569i top-k (descriptor-free degenerate instance). Author pre-deferred the build (decide-whether-to-build is a later /queue-experiment fork). Stays candidate, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-06-19T18:52:58.090603Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -1763,6 +1772,33 @@
       "recommendation": "narrow_open_question",
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-23T21:57:44Z"
+    },
+    "Q-054": {
+      "actor": "governance-20260619T1832Z",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Acknowledged; narrowing DEFERRED as premature per the claim's own note -- Q-054's answerability is gated on ARC-062 context-discriminator substrate readiness. No status change; stays open.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Keep broad question (flexibility, weaker experiment planning)",
+      "timestamp_utc": "2026-06-19T18:52:58.133967Z"
+    },
+    "Q-055": {
+      "actor": "governance-20260619T1832Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Held: implementation_phase=v3, SD-017 SWS sleep-vs-diversity interaction substrate not landed. Stays open, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-06-19T18:52:58.174989Z"
+    },
+    "Q-056": {
+      "actor": "governance-20260619T1832Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Held: implementation_phase=v3, MECH-343 difficulty-gated-entropy arm not yet built/run. Stays open, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-06-19T18:52:58.215375Z"
     },
     "SD-008": {
       "actor": "user",
@@ -2026,7 +2062,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-19T09:25:04.753494Z",
+  "generated_at_utc": "2026-06-19T18:53:09.161841Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
