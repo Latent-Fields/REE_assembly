@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T15:20:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485g_sd033b_trained_ofc_head_behavioural_20260619T145454Z_v3",
+      "queue_id": "V3-EXQ-485g",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- non-vacuous test (first in the 485 series) but conversion not isolated; non_contributory, not weakens",
+        "biological_reference": "clear -- OFC outcome-value coding (Rudebeck/Murray, Stalnaker); faithful translation not formal import; failure matches a missing-conversion-dependency signature",
+        "prerequisites": "partial -- trained head + non-vacuous 0.17 bias range present (485e/485f starvation fixed); threat-CONDITIONING of that range unverified",
+        "implementation": "partial -- head trains (delta 6.32) and produces 0.17 range, but the outcome-coupled driver gives zero anti-range gradient at low threat, so the head is not trained on the devaluation suppression C1 measures",
+        "environment": "adequate -- aversive-devaluation pressure present",
+        "measurement": "under-instrumented -- devalued-state bias range + per-task-role-context range NOT recorded (the decisive T-vs-F disambiguator); C2 separation_ratio degenerate (criteria_non_degenerate.C2=false)",
+        "integration": "isolated by design -- OFC is sole bias channel; readout is softmax(-ofc.compute_bias(bank)/T), NOT the live E3 selector, so F is absent from this loop",
+        "scale": "adequate -- P1=120 ep, head trained; zero-conversion is structural not under-training"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC-analog specific-outcome / state-value coding driving candidate-differentiated action bias",
+        "dependencies": ["candidate-differentiated value inputs", "a learned value-bias that CONVERTS into a selection shift under outcome devaluation", "threat-conditioned (not threat-invariant) bias"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- faithful translation (lit_conf 0.863), not the SD-003 formal-import class; the failure is a conversion/conditioning gap, not a biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-485g (first non-vacuous trained-OFC-head behavioural test): readiness MET (cross-candidate bias range 0.171 >= 0.05 floor, 2/3 seeds; head weight-delta 6.32, genuinely trained), C3 frozen-head silence control PASS, but C1 devaluation shift {0.001,0.0,0.010} << 0.05 (0/3) and C2 between-context TV ~0 (degenerate) -- a genuine 0.17 bias RANGE with ZERO behavioural conversion. Adjudicated substrate_ceiling / non_contributory, NOT a weakens: the OFC mechanism is a faithful translation (lit_conf 0.863) and was not given a fair conversion test (the outcome-coupled driver supplies zero anti-range gradient at low threat -- the suppression C1 measures -- and the devalued-state bias range, the decisive conversion-vs-conditioning disambiguator, was not recorded). The manifest's MECH-439 F-dominance self-route is an analogy to the broader conversion-ceiling pattern, NOT a mechanism measurable in 485g's isolated-OFC-softmax loop (F is absent from this readout). Routed to V3-EXQ-485h (disambiguating redesign: record devalued-state bias range + per-task-role-context range, close the driver gap with a paired high-threat/devalued contrast, optional live-E3-selector arm to test F-dominance directly). SD-033b + MECH-263 stay candidate / pending_retest_after_substrate -- sole genuine experimental entry for both; do not let this define exp_conf.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-033b",
+        "sd_id_suggested": null,
+        "title": "SD-033b OFC trained-head behavioural conversion (devaluation + task-role discrimination)",
+        "implementation_hint": "The implemented SD-033b trained state_bias_head produced a genuine non-vacuous cross-candidate bias range (0.171 >= 0.05 floor) for the first time (V3-EXQ-485g) but ZERO behavioural conversion (C1 devaluation shift <<0.05, C2 between-context TV ~0). The substrate-readout starvation of 485e/485f is fixed; the residual gap is CONVERSION (threat-conditioning of the bias and/or bias->selection conversion). The 485h redesign records the devalued-state bias range (the conversion-vs-conditioning disambiguator) + closes the driver's missing low-threat anti-range gradient. Do NOT mint a MECH-439 substrate entry from this run -- the conversion-ceiling cluster owns that and 485g cannot measure F in its isolated-softmax loop.",
+        "unblocks_claims": ["SD-033b", "MECH-263"],
+        "depends_on_unresolved": ["SD-033", "MECH-263", "MECH-261"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485g_sd033b_trained_ofc_head_behavioural_20260619T145454Z_v3",
+          "experiment_type": "v3_exq_485g_sd033b_trained_ofc_head_behavioural",
+          "metric": "C1 devaluation_selection_shift {0.001,0.0,0.010} << 0.05 margin (0/3) AND C2 between_context_selection_tv ~0 (degenerate, 0/3), with readiness MET (bias range 0.171 >= 0.05, head delta 6.32) and C3 control PASS -- genuine 0.17 bias range, zero behavioural conversion",
+          "target": "C1 devaluation_selection_shift > 0.05 beyond frozen control AND C2 between_context_tv >= 0.05 with non-degenerate separation, on >=2/3 seeds, with readiness met"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "First non-vacuous 485 result -- the 485e (range-starved) -> 485f (vacuous-readiness) -> 485g lineage is a sequence of test-instrumentation fixes; 485g is the first run where readiness is genuinely met (0.17 range) and the claim still does not convert. The wall moved from substrate-readout starvation to conversion.",
+        "The manifest's MECH-439 F-dominance self-route over-reads its own loop: the DV is the isolated OFC softmax with modulatory selection authority OFF, so F is not in this loop. F-dominance remains a credible broader-pattern hypothesis to test by routing the OFC bias through the live E3 selector (485h optional arm), not a mechanism measured here.",
+        "The outcome-coupled driver (adv_k = gain*threat*(mean_harm - harm_k)) is zero at threat~0, so the head gets no signal to flatten range when devalued -- exactly the suppression C1 measures. C1 was hard by construction; the non-circular fix is an explicit paired high-threat/devalued contrast term.",
+        "The decisive disambiguator -- OFC bias range at the devalued state (and per task-role context) -- was not recorded, so T (threat-conditioning gap) and F (conversion ceiling) are indistinguishable on this run. 485h is designed to record it."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control-passes + readiness-passes (non-vacuous) + every discrimination criterion fails -- the substrate-ceiling fingerprint, here at the OFC-bias->behaviour conversion link",
+    "is_independent_bugs": false,
+    "structural_property": "a genuine cross-candidate value-bias range (0.17) that does not convert into a behavioural devaluation/discrimination signature; conversion-vs-threat-conditioning locus undisambiguated because the devalued-state bias range was not measured and the readout bypasses the live E3 selector",
+    "readings": ["threat_conditioning_gap", "f_dominance_conversion_ceiling"]
+  }
+}
