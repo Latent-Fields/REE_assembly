@@ -42,7 +42,7 @@ Generated: 2026-06-19T14:11:25Z
 
 ## Substrate Bottlenecks
 
-- **Ready to build now** (`ready: true`, not yet implemented): **MECH-258**, **ARC-058** (both `candidate_v3_pending`). Everything else flagged ready is already `implemented`/`validated`.
+- **Ready-but-unbuilt substrates: none.** Every `ready: true` queue item is already `implemented`/`validated`. MECH-258 and ARC-058 carry the queue *claim*-status `candidate_v3_pending` but their substrate `implementation_status` is **implemented** — `candidate_v3_pending` is the claim's governance state (held until V3 evidence promotes it), not a build-queue state. There is no `/implement-substrate` work outstanding; the open work is *validation*, not construction.
 - **Highest failure-record concentration** (experiments that failed because the substrate was missing/insufficient):
   - **scaffolded_sd054_onboarding — 28 failure records** (now `ready: true`, readiness flipped 2026-06-11 via 603n; the long tail was the cue-to-action selection-authority ceiling).
   - **modulatory-bias-selection-authority — 15** (implemented; the dominant E3-selection bottleneck — F monopolises 88–89% of selection variance per V3-EXQ-571).
@@ -88,7 +88,7 @@ Generated: 2026-06-19T14:11:25Z
 ## Recommendations
 
 1. **Resolve the 4 `pending_user` governance decisions** (MECH-442, Q-054, Q-055, Q-056) and the **MECH-314a-Phase-2 architecture choice** — these are the only items blocked purely on human input, and MECH-314a unblocks a Phase-2 substrate chain. Highest leverage, zero compute.
-2. **Build the two ready substrates: MECH-258 and ARC-058** (`ready: true`, `candidate_v3_pending`). They are the only unimplemented features with all deps met. ARC-058 also unblocks MECH-257.
+2. **Unstick the SD-032b dACC-analog validation chain** — MECH-258 and ARC-058 are V3-scoped but *already implemented*; what blocks their promotion is V3 evidence, and their validator (the V3-EXQ-445 series) is 9 straight FAIL/ERROR/UNKNOWN iterations (all tagged to the downstream SD-032b, not to MECH-258/ARC-058 directly). The actionable step is a `/failure-autopsy` of the latest 445 iteration (445h FAIL, 2026-05-08) to determine whether the failure is in the dACC-analog wiring or a precondition, *not* `/implement-substrate` (which would no-op — the substrate is built).
 3. **Adjudicate the MECH-044 (688) / 654e / 514s pending-review items** before they age — 3 carry untrusted self-route labels (`precondition_unmet`) that must be autopsied, not trusted, before clearing any `v3_pending` flag or minting substrate. Run `/failure-autopsy` per `proposal_diagnostic_adjudication_gate`.
 4. **Decide INV-074's status explicitly** — 610f is the longest unresolved retest chain (6 letters, ERROR→FAIL). Either confirm MECH-341 makes crystallization unnecessary (close the chain) or redesign; don't leave it spinning.
 5. **Attack the dominant bottleneck, not the symptoms** — modulatory-bias-selection-authority (15 failure records; F monopolises 88–89% of E3 selection variance, V3-EXQ-571). The 543/ARC-062 and scaffolded_sd054 failure tails both terminate at the same selector. Per the conversion-ceiling synthesis, attack channel B (top-k shortlist, 569i thin margin) or rebalance F, rather than queuing more downstream diversity probes that drown at the selector.
