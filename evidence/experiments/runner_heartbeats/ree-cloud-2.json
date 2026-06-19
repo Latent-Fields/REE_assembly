@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-19T22:48:00Z",
+  "last_tick_utc": "2026-06-19T23:18:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-625e",
   "current_exq_started_utc": "2026-06-19T19:29:38.810621+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / SCAFFOLD_TRAINED_JOINT_COMPOSITE_569i_CONVERSION_AXIS_B_OVERLAY",
     "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 230,
     "episodes_total": 270,
-    "overall_pct": 87.7
+    "overall_pct": 95.1
   },
-  "seconds_elapsed": 11902,
-  "seconds_remaining": 1719,
+  "seconds_elapsed": 13709,
+  "seconds_remaining": 688,
   "recent_lines": [
     "[v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated] starting (dry_run=False)",
     "Seed 42 Condition SCAFFOLD_TRAINED_JOINT_COMPOSITE_569i_CONVERSION_AXIS_B_OVERLAY",
@@ -48,7 +48,9 @@
     "[train] stage0_nursery seed=44 ep 20/270 z_goal_peak=0.4281",
     "[train] stage0b_consolidate seed=44 ep 30/270 retention=0.862",
     "[train] p0_guided seed=44 ep 130/270 mean_len=198.3",
-    "[train] hazard_avoidance seed=44 ep 170/270 survival_gate=FAIL harm_eval_range=0.3898"
+    "[train] hazard_avoidance seed=44 ep 170/270 survival_gate=FAIL harm_eval_range=0.3898",
+    "[train] p1_foraging seed=44 ep 220/270 survival_gate=pass",
+    "[train] axisb_warmup seed=44 ep 230/270"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
