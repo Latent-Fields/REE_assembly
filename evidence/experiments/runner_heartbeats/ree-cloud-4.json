@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-19T22:17:46Z",
+  "last_tick_utc": "2026-06-19T22:47:58Z",
   "state": "running",
   "current_exq": "V3-EXQ-460h",
   "current_exq_started_utc": "2026-06-19T21:33:22.464693+00:00",
@@ -9,21 +9,31 @@
   "current_claim_id": "MECH-446",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
-    "runs_done": 0,
+    "run_label": "Seed 43 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
+    "runs_done": 3,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 16.4
+    "overall_pct": 103.8
   },
-  "seconds_elapsed": 2664,
-  "seconds_remaining": 14542,
+  "seconds_elapsed": 4476,
+  "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460h_sd034_decommit_refractory_independent] starting (dry_run=False)",
     "Seed 42 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
     "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4627 formed=True",
     "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.993 gate=pass",
-    "[train] p0_guided seed=42 ep 130/265 mean_len=198.2 rv=0.00005"
+    "[train] p0_guided seed=42 ep 130/265 mean_len=198.2 rv=0.00005",
+    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.0635 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.2984 contact_events=124 z_goal_at_contact=0.5129",
+    "Seed 42 Condition ARM_CLOSURE_ON",
+    "Seed 42 Condition ARM_CLOSURE_OFF",
+    "[train] closure_eval seed=42 ep 265/265 c1=True c2_within=True c3=True pre_occ=0.333 post_occ=0.000 win_events=2 intent=0 coupled=0 between_arm_drop=True n_closures=6 auto=0 hook=6 nogo=18",
+    "verdict: PASS seed=42 guard_pass=True coupling_nonvacuous=False closure_trigger=True within_window=True rule_bias_trained=True (contact_rate=0.2984 z_goal_at_contact=0.5129)",
+    "Seed 43 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
+    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4115 formed=True",
+    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.911 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
