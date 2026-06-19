@@ -1,7 +1,7 @@
 # Claim Synthesis -- SD-034 commitment-closure-control-plane cluster (de-commit-authority granularity-debt decomposition)
 
 - **Generated:** 2026-06-19T20:34:22Z
-- **Status:** PROPOSAL (proposal-first; nothing registered without per-child user approval)
+- **Status:** APPROVED 2026-06-19T20:38Z (user AskUserQuestion, all three as proposed: register Child A MECH-445, register Child B MECH-446, narrow SD-034 umbrella + confirm refusal of coupling-measurability-under-refractory). **Registration PENDING** -- blocked on the active `governance-cycle-20260619T2013Z` session holding uncommitted `claims.yaml` (cannot overwrite a live session's edits). Apply via the REGISTRATION-PENDING block in Section 5.5 the moment that session releases.
 - **Routed by:** confirmed `failure_autopsy_V3-EXQ-460g_2026-06-19` (PRIMARY action, user-adjudicated 2026-06-19). The 460f autopsy WATCH ITEM pre-registered this exact trigger; it fired on 460g.
 - **Cluster:** SD-034 ClosureOperator behavioural de-commit authority over the MECH-090 beta latch -- 7 autopsies (2026-06-04 .. 2026-06-19).
 - **Concurrency note:** an active `/governance` session (`governance-cycle-20260619T2013Z`, claimed 2026-06-19T20:13Z) holds the governance collision set (`claims.yaml`, `claims.json`, `substrate_queue.json`). This proposal touches NONE of those files. Registration (Step 7) is gated on (a) per-child user approval AND (b) that governance session releasing the collision set.
@@ -128,6 +128,18 @@ The SD-034 lit-pull exists: `evidence/literature/targeted_review_sd_034/entries/
 ### 5.3 REFUSED child (anti-proliferation rail)
 
 **"coupling-measurability-under-refractory" -- NOT minted.** The 460g signature S5 (the strong refractory suppresses the very coupling metric the de-commit is scored by) is a **measurement / test-design property**, not a biological mechanism. It has no `what_would_answer` that falsifies a *claim about cognition* -- its resolution is an instrumentation change (count closure-plane commit INTENTS before the elevate/refractory gate, per the 460g autopsy `recommended_substrate_queue_entry`). Minting it would manufacture an untested "claim" from a measurement artefact -- exactly what the discrimination gate exists to prevent. It is handled by the **460h experiment** (Section 6), and it is *why* Children A and B both carry "refractory-independent coupling gate" in their `what_would_answer`.
+
+### 5.5 REGISTRATION-PENDING apply-spec (user-approved 2026-06-19T20:38Z)
+
+Mechanical apply once `governance-cycle-20260619T2013Z` releases `claims.yaml` / `claims.json` / `substrate_queue.json`. Steps:
+
+1. `git -C REE_assembly pull --rebase origin master` (catch the governance commit); re-read the SD-034 insertion region + re-check max MECH id at write time (provisionally 445/446 -- bump if a concurrent session grabbed them; check `git log` too).
+2. Register **MECH-445** (Child A) + **MECH-446** (Child B) per Section 5.2 (claim_type mechanism_hypothesis, status candidate, epistemic_category standard, v3_pending true, pending_retest_after_substrate true, with the exact `what_would_answer` + `depends_on` listed).
+3. **Narrow SD-034:** append to the SD-034 title/clause that the de-commit-authority sub-property is decomposed into MECH-445 (coupling engagement) + MECH-446 (magnitude); add a `governance_note_2026_06_19_claimsynth` recording the decomposition + that SD-034 stays provisional (NOT demoted/superseded). Add MECH-445/446 to SD-034 reverse-deps (children `depends_on: SD-034`).
+4. Arch-doc stub: new "## Children (de-commit pipeline decomposition 2026-06-19)" section in `docs/architecture/sd_034_governance_closure_operator.md` naming both children + the refused measurement item.
+5. `python scripts/build_claims_json.py` (validator + claims.json; confirm both children appear, stance tally moves by +2 believed).
+6. Pathspec commit `-- docs/claims/claims.yaml docs/assets/data/claims.json docs/architecture/sd_034_governance_closure_operator.md evidence/planning/claim_synthesis_SD-034-closure_2026-06-19.md`; `git show --stat HEAD`; push `HEAD:master`.
+7. Targeted lit addition (non-blocking): Cavanagh & Frank 2011 entry into `evidence/literature/targeted_review_sd_034/entries/` as Child B's magnitude anchor.
 
 ### 5.4 Not minted, by design
 
