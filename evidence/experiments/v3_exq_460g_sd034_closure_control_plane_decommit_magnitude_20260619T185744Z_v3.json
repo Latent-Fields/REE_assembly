@@ -1,1 +1,398 @@
-{"run_id": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3", "experiment_type": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude", "queue_id": "V3-EXQ-460g", "claim_ids": ["SD-034", "MECH-260", "MECH-261"], "experiment_purpose": "evidence", "supersedes": "V3-EXQ-460f", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260619T185744Z", "outcome": "FAIL", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"SD-034": "non_contributory", "MECH-260": "non_contributory", "MECH-261": "non_contributory"}, "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)", "substrate": "scaffolded_sd054_onboarding (full curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; 603n config) + commitment control-plane (bistable BetaGate + SD-034 ClosureOperator + SD-033a LateralPFC + SD-032 dACC/salience) + subgoal_mode waypoint tolerance-band completion + commitment-closure-control-plane Legs A/B (env-completion hook + de-commit hold) + Leg C (scaffold_train_rule_bias_head) + beta-engagement coupling + the DE-COMMIT-AUTHORITY MAGNITUDE lever (committed-run-scaled Leg-B refractory, ree-v3 main 2cd0aa2).", "condition": "CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST", "method_note": "Supersedes 460f. 460f ran the C2 de-commit DV for the first time (seed-42 PASS, 2/3 FAIL) but on strong-natural-commit seeds the closure->beta coupling was inert so the bare 5-tick refractory was swamped by ~530-560 natural-commit elevated steps; the between-arm unpaired DV was also underpowered (failure_autopsy_V3-EXQ-460f). 460g (a) arms the committed-run-scaled refractory MAGNITUDE lever (the de-commit hold now scales with the run length it must overcome), (b) redesigns C2 to a PAIRED within-ON-arm around-closure pre-vs-post occupancy delta, and tightens the non-vacuity gate to require sd034_n_closure_coupled_elevations > 0 on scored seeds. Five readiness gates self-route substrate_not_ready_requeue when unmet -- never a false weakens. MECH-261 stays non_contributory unless the automatic mode-conditioned detector fires (460f autopsy protection).", "arm_note": "ARM_CLOSURE_ON (full closure + env hook + de-commit MAGNITUDE hold + bistable + coupling, on the TRAINED rule_bias_head; load-bearing within-arm C2) vs ARM_CLOSURE_OFF (same trained weights, closure off; between-arm diagnostic only).", "pre_registered_thresholds": {"p2_zgoal_gate": 0.4, "contact_gate": 0.0, "min_fraction": 0.6666666666666666, "c1_min_closures": 1, "c3_min_nogo": 1, "decommit_min_drop_frac": 0.1, "closure_window": 10, "window_min_ticks": 3, "c2_min_window_events": 2, "within_pre_occ_floor": 0.1, "rule_bias_mean_floor": 0.005, "closure_decommit_hold_ticks": 5, "closure_decommit_hold_scale_with_run": 0.1, "closure_decommit_hold_max_ticks": 60}, "scaffold_curriculum": {"stage0_budget": 20, "stage0b_budget": 10, "p0_budget": 100, "hazard_stage_budget": 40, "p1_budget": 50, "p2_budget": 15, "closure_eval_episodes_per_arm": 15, "train_steps": 200, "n_resource_types": 3, "scaffold_train_harm_pathway": true, "scaffold_train_rule_bias_head": true, "config_basis": "V3-EXQ-603n + Leg C (2026-06-16) + de-commit-magnitude amend (2026-06-19)"}, "stage_plan": [{"stage": "0", "name": "nursery_forced_feed", "method": "run_stage0_nursery", "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"}, {"stage": "1", "name": "guided_low_conflict", "method": "run_p0", "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"}, {"stage": "2", "name": "easy_foraging", "method": "run_p1 (early anneal)", "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"}, {"stage": "3", "name": "guarded_hazard", "method": "run_p1 (late anneal)", "desc": "hazard_food_attraction + proximity_harm ramp toward target"}, {"stage": "4", "name": "mature_test", "method": "run_p2", "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"}], "acceptance": {"contact_non_vacuity_met": true, "guard_fraction": 1.0, "n_guard_passing_seeds": 3, "rule_bias_trained_met": true, "rule_bias_trained_fraction": 1.0, "coupling_nonvacuity_met": false, "coupling_nonvacuity_fraction": 0.0, "closure_trigger_available_met": true, "closure_trigger_fraction": 1.0, "within_window_met": false, "within_window_fraction": 0.3333333333333333, "mech261_exercised": false, "C2_within_all_guard_passing": false, "C3_all_guard_passing": true, "criteria_pass_fraction": 0.3333333333333333, "n_seeds_pass": 1, "overall_pass": false, "per_seed_guard_pass": [true, true, true], "per_seed_criteria_pass": [true, false, false], "route_reason": "closure_coupling_not_engaged"}, "interpretation": {"label": "substrate_not_ready_requeue", "readiness_route": "substrate_not_ready_requeue", "preconditions": [{"name": "foraging_contact_guard", "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.", "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}, {"name": "rule_bias_head_trained", "description": "Leg C readiness (the DIRECT anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| > floor on >= 2/3 seeds. Below floor -> substrate_not_ready_requeue (the head did not train), NEVER a weakens.", "control": "P1OnboardingResult.rule_bias_diag mean |bias|.", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}, {"name": "closure_coupling_nonvacuous", "description": "TIGHTENED non-vacuity (the brief): ON sd034_n_closure_coupled_elevations > 0 AND ON n_sequence_completions > 0 on >= 2/3 guard seeds -- the closure-plane coupling engaged the latch (not the fragile natural commit-entry). Below floor -> substrate_not_ready_requeue (the 460f inert-coupling signature).", "control": "ARM_CLOSURE_ON sd034_n_closure_coupled_elevations.", "measured": 0.0, "threshold": 0.6666666666666666, "met": false}, {"name": "closure_trigger_available_count", "description": "ON-arm n_closures > 0 reachable on >= 2/3 guard seeds. Below floor -> substrate_not_ready_requeue.", "control": "ARM_CLOSURE_ON n_closures > 0 (Leg-A hook + trained head).", "measured": 1.0, "threshold": 0.6666666666666666, "met": true}, {"name": "within_arm_window_nonvacuous", "description": "ON arm produced >= C2_MIN_WINDOW_EVENTS scored around-closure windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR on >= 2/3 guard seeds -- there was something committed to de-commit. Below floor -> substrate_not_ready_requeue (nothing to measure).", "control": "ARM_CLOSURE_ON n_window_events + mean_pre_closure_occ.", "measured": 0.3333333333333333, "threshold": 0.6666666666666666, "met": false}], "criteria": [{"name": "C1_n_closures", "load_bearing": false, "passed": true}, {"name": "C2_within_arm_decommit_drop", "load_bearing": true, "passed": false}, {"name": "C3_nogo_installed", "load_bearing": false, "passed": true}], "criteria_non_degenerate": {"C1": false, "C2": false, "C3": false}, "decommit_dv": {"definition": "C2 (load-bearing, WITHIN-ARM, part b) = on ARM_CLOSURE_ON, mean post-closure beta-latch occupancy fraction < mean pre-closure occupancy fraction with a >= DECOMMIT_MIN_DROP_FRAC relative drop, over >= C2_MIN_WINDOW_EVENTS scored CLOSURE_WINDOW-tick windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR. Paired within-arm around-closure statistic -- replaces 460f's underpowered between-arm unpaired mean comparison (retained as a secondary diagnostic: between_arm_drop).", "decommit_min_drop_frac": 0.1, "closure_window": 10, "window_min_ticks": 3, "c2_min_window_events": 2, "within_pre_occ_floor": 0.1}, "magnitude_lever": {"closure_decommit_hold_ticks": 5, "closure_decommit_hold_scale_with_run": 0.1, "closure_decommit_hold_max_ticks": 60, "note": "Leg-B refractory scales with committed-run length (460f amend, ree-v3 main 2cd0aa2) so the de-commit authority scales with the natural-commit latch occupancy it must overcome."}, "amend_legs_under_test": {"leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure.", "leg_b_decommit_hold_magnitude": "committed-run-scaled refractory (460f amend).", "leg_c_trained_rule_bias_head": "scaffold_train_rule_bias_head (598b REINFORCE in P1).", "beta_engagement_coupling": "use_closure_commit_beta_coupling."}, "mech261_note": "MECH-261 mode-conditioning direction stays non_contributory unless the AUTOMATIC mode-conditioned detector fired (n_automatic_fires > 0); the 460f autopsy found all closures hook-driven, so it is protected from a self-stamped weakens."}, "per_seed": [{"seed": 42, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.46248123049736023, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.3103960396039604, "p2_z_goal_norm_at_contact_peak": 0.5001140832901001, "p2_num_contact_events": 146, "rule_bias_pathway_enabled": true, "rule_bias_mean_abs": 0.10000000894069672, "rule_bias_n_train_steps": 50, "rule_bias_trained": true, "ARM_CLOSURE_ON": {"n_closures": 9, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 9, "n_automatic_fires": 0, "beta_release_events": 351, "nogo_installed_total": 27, "total_committed_steps": 1830, "total_beta_elevated": 360, "mean_beta_elevated_steps": 24.0, "n_sequence_completions": 9, "n_eval_episodes": 15, "closure_present": true, "env_hook_enabled": true, "n_window_events": 2, "mean_pre_closure_occ": 0.3333333333333333, "mean_post_closure_occ": 0.0}, "ARM_CLOSURE_OFF": {"n_closures": 0, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 0, "n_automatic_fires": 0, "beta_release_events": 328, "nogo_installed_total": 0, "total_committed_steps": 1628, "total_beta_elevated": 336, "mean_beta_elevated_steps": 22.4, "n_sequence_completions": 8, "n_eval_episodes": 15, "closure_present": false, "env_hook_enabled": true, "n_window_events": 0, "mean_pre_closure_occ": 0.0, "mean_post_closure_occ": 0.0}, "criteria": {"C1": true, "C2": true, "C3": true}, "coupling_nonvacuous": false, "closure_trigger_available": true, "within_window_nonvacuous": true, "between_arm_drop": false, "pass": true}, {"seed": 43, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.4180683493614197, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.27805145046524354, "p2_z_goal_norm_at_contact_peak": 0.4620617926120758, "p2_num_contact_events": 107, "rule_bias_pathway_enabled": true, "rule_bias_mean_abs": 0.10000000894069672, "rule_bias_n_train_steps": 50, "rule_bias_trained": true, "ARM_CLOSURE_ON": {"n_closures": 6, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 6, "n_automatic_fires": 0, "beta_release_events": 419, "nogo_installed_total": 18, "total_committed_steps": 2216, "total_beta_elevated": 430, "mean_beta_elevated_steps": 28.666666666666668, "n_sequence_completions": 6, "n_eval_episodes": 15, "closure_present": true, "env_hook_enabled": true, "n_window_events": 0, "mean_pre_closure_occ": 0.0, "mean_post_closure_occ": 0.0}, "ARM_CLOSURE_OFF": {"n_closures": 0, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 0, "n_automatic_fires": 0, "beta_release_events": 444, "nogo_installed_total": 0, "total_committed_steps": 2215, "total_beta_elevated": 456, "mean_beta_elevated_steps": 30.4, "n_sequence_completions": 4, "n_eval_episodes": 15, "closure_present": false, "env_hook_enabled": true, "n_window_events": 0, "mean_pre_closure_occ": 0.0, "mean_post_closure_occ": 0.0}, "criteria": {"C1": true, "C2": false, "C3": true}, "coupling_nonvacuous": false, "closure_trigger_available": true, "within_window_nonvacuous": false, "between_arm_drop": false, "pass": false}, {"seed": 44, "aborted_at": null, "abort_reason": "", "guard_pass": true, "stage0_z_goal_norm_peak": 0.41671276092529297, "p1_survival_pass": true, "hazard_stage_survival_pass": true, "p2_contact_rate": 0.3079287031346036, "p2_z_goal_norm_at_contact_peak": 0.45240122079849243, "p2_num_contact_events": 100, "rule_bias_pathway_enabled": true, "rule_bias_mean_abs": 0.02629900215065474, "rule_bias_n_train_steps": 50, "rule_bias_trained": true, "ARM_CLOSURE_ON": {"n_closures": 5, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 5, "n_automatic_fires": 0, "beta_release_events": 110, "nogo_installed_total": 15, "total_committed_steps": 2217, "total_beta_elevated": 110, "mean_beta_elevated_steps": 7.333333333333333, "n_sequence_completions": 5, "n_eval_episodes": 15, "closure_present": true, "env_hook_enabled": true, "n_window_events": 0, "mean_pre_closure_occ": 0.0, "mean_post_closure_occ": 0.0}, "ARM_CLOSURE_OFF": {"n_closures": 0, "sd034_n_closure_coupled_elevations": 0, "n_hook_fires": 0, "n_automatic_fires": 0, "beta_release_events": 135, "nogo_installed_total": 0, "total_committed_steps": 2412, "total_beta_elevated": 135, "mean_beta_elevated_steps": 9.0, "n_sequence_completions": 3, "n_eval_episodes": 15, "closure_present": false, "env_hook_enabled": true, "n_window_events": 0, "mean_pre_closure_occ": 0.0, "mean_post_closure_occ": 0.0}, "criteria": {"C1": true, "C2": false, "C3": true}, "coupling_nonvacuous": false, "closure_trigger_available": true, "within_window_nonvacuous": false, "between_arm_drop": true, "pass": false}], "machine": "ree-cloud-1"}
+{
+  "run_id": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3",
+  "experiment_type": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude",
+  "queue_id": "V3-EXQ-460g",
+  "claim_ids": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "experiment_purpose": "evidence",
+  "supersedes": "V3-EXQ-460f",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260619T185744Z",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-261": "non_contributory",
+    "MECH-260": "supports"
+  },
+  "sleep_driver_pattern": "N/A (waking goal-pipeline onboarding scheduler; no sleep loop)",
+  "substrate": "scaffolded_sd054_onboarding (full curriculum: Stage-0 -> Stage-0b -> P0 -> Stage-H -> P1 -> P2; 603n config) + commitment control-plane (bistable BetaGate + SD-034 ClosureOperator + SD-033a LateralPFC + SD-032 dACC/salience) + subgoal_mode waypoint tolerance-band completion + commitment-closure-control-plane Legs A/B (env-completion hook + de-commit hold) + Leg C (scaffold_train_rule_bias_head) + beta-engagement coupling + the DE-COMMIT-AUTHORITY MAGNITUDE lever (committed-run-scaled Leg-B refractory, ree-v3 main 2cd0aa2).",
+  "condition": "CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
+  "method_note": "Supersedes 460f. 460f ran the C2 de-commit DV for the first time (seed-42 PASS, 2/3 FAIL) but on strong-natural-commit seeds the closure->beta coupling was inert so the bare 5-tick refractory was swamped by ~530-560 natural-commit elevated steps; the between-arm unpaired DV was also underpowered (failure_autopsy_V3-EXQ-460f). 460g (a) arms the committed-run-scaled refractory MAGNITUDE lever (the de-commit hold now scales with the run length it must overcome), (b) redesigns C2 to a PAIRED within-ON-arm around-closure pre-vs-post occupancy delta, and tightens the non-vacuity gate to require sd034_n_closure_coupled_elevations > 0 on scored seeds. Five readiness gates self-route substrate_not_ready_requeue when unmet -- never a false weakens. MECH-261 stays non_contributory unless the automatic mode-conditioned detector fires (460f autopsy protection).",
+  "arm_note": "ARM_CLOSURE_ON (full closure + env hook + de-commit MAGNITUDE hold + bistable + coupling, on the TRAINED rule_bias_head; load-bearing within-arm C2) vs ARM_CLOSURE_OFF (same trained weights, closure off; between-arm diagnostic only).",
+  "pre_registered_thresholds": {
+    "p2_zgoal_gate": 0.4,
+    "contact_gate": 0.0,
+    "min_fraction": 0.6666666666666666,
+    "c1_min_closures": 1,
+    "c3_min_nogo": 1,
+    "decommit_min_drop_frac": 0.1,
+    "closure_window": 10,
+    "window_min_ticks": 3,
+    "c2_min_window_events": 2,
+    "within_pre_occ_floor": 0.1,
+    "rule_bias_mean_floor": 0.005,
+    "closure_decommit_hold_ticks": 5,
+    "closure_decommit_hold_scale_with_run": 0.1,
+    "closure_decommit_hold_max_ticks": 60
+  },
+  "scaffold_curriculum": {
+    "stage0_budget": 20,
+    "stage0b_budget": 10,
+    "p0_budget": 100,
+    "hazard_stage_budget": 40,
+    "p1_budget": 50,
+    "p2_budget": 15,
+    "closure_eval_episodes_per_arm": 15,
+    "train_steps": 200,
+    "n_resource_types": 3,
+    "scaffold_train_harm_pathway": true,
+    "scaffold_train_rule_bias_head": true,
+    "config_basis": "V3-EXQ-603n + Leg C (2026-06-16) + de-commit-magnitude amend (2026-06-19)"
+  },
+  "stage_plan": [
+    {
+      "stage": "0",
+      "name": "nursery_forced_feed",
+      "method": "run_stage0_nursery",
+      "desc": "forced supra-threshold benefit; z_goal formation decoupled from survival"
+    },
+    {
+      "stage": "1",
+      "name": "guided_low_conflict",
+      "method": "run_p0",
+      "desc": "reef-refuge spawn, hfa=0, goal pipeline frozen; encoder/E2/E3 warm-up"
+    },
+    {
+      "stage": "2",
+      "name": "easy_foraging",
+      "method": "run_p1 (early anneal)",
+      "desc": "goal pipeline unfrozen, low hazard; ecological contact begins"
+    },
+    {
+      "stage": "3",
+      "name": "guarded_hazard",
+      "method": "run_p1 (late anneal)",
+      "desc": "hazard_food_attraction + proximity_harm ramp toward target"
+    },
+    {
+      "stage": "4",
+      "name": "mature_test",
+      "method": "run_p2",
+      "desc": "frozen-policy measurement under guarded hfa; substrate gate evaluated"
+    }
+  ],
+  "acceptance": {
+    "contact_non_vacuity_met": true,
+    "guard_fraction": 1.0,
+    "n_guard_passing_seeds": 3,
+    "rule_bias_trained_met": true,
+    "rule_bias_trained_fraction": 1.0,
+    "coupling_nonvacuity_met": false,
+    "coupling_nonvacuity_fraction": 0.0,
+    "closure_trigger_available_met": true,
+    "closure_trigger_fraction": 1.0,
+    "within_window_met": false,
+    "within_window_fraction": 0.3333333333333333,
+    "mech261_exercised": false,
+    "C2_within_all_guard_passing": false,
+    "C3_all_guard_passing": true,
+    "criteria_pass_fraction": 0.3333333333333333,
+    "n_seeds_pass": 1,
+    "overall_pass": false,
+    "per_seed_guard_pass": [
+      true,
+      true,
+      true
+    ],
+    "per_seed_criteria_pass": [
+      true,
+      false,
+      false
+    ],
+    "route_reason": "closure_coupling_not_engaged"
+  },
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "rule_bias_head_trained",
+        "description": "Leg C readiness (the DIRECT anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| > floor on >= 2/3 seeds. Below floor -> substrate_not_ready_requeue (the head did not train), NEVER a weakens.",
+        "control": "P1OnboardingResult.rule_bias_diag mean |bias|.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_coupling_nonvacuous",
+        "description": "TIGHTENED non-vacuity (the brief): ON sd034_n_closure_coupled_elevations > 0 AND ON n_sequence_completions > 0 on >= 2/3 guard seeds -- the closure-plane coupling engaged the latch (not the fragile natural commit-entry). Below floor -> substrate_not_ready_requeue (the 460f inert-coupling signature).",
+        "control": "ARM_CLOSURE_ON sd034_n_closure_coupled_elevations.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "closure_trigger_available_count",
+        "description": "ON-arm n_closures > 0 reachable on >= 2/3 guard seeds. Below floor -> substrate_not_ready_requeue.",
+        "control": "ARM_CLOSURE_ON n_closures > 0 (Leg-A hook + trained head).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "within_arm_window_nonvacuous",
+        "description": "ON arm produced >= C2_MIN_WINDOW_EVENTS scored around-closure windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR on >= 2/3 guard seeds -- there was something committed to de-commit. Below floor -> substrate_not_ready_requeue (nothing to measure).",
+        "control": "ARM_CLOSURE_ON n_window_events + mean_pre_closure_occ.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_n_closures",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_within_arm_decommit_drop",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_nogo_installed",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": false
+    },
+    "decommit_dv": {
+      "definition": "C2 (load-bearing, WITHIN-ARM, part b) = on ARM_CLOSURE_ON, mean post-closure beta-latch occupancy fraction < mean pre-closure occupancy fraction with a >= DECOMMIT_MIN_DROP_FRAC relative drop, over >= C2_MIN_WINDOW_EVENTS scored CLOSURE_WINDOW-tick windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR. Paired within-arm around-closure statistic -- replaces 460f's underpowered between-arm unpaired mean comparison (retained as a secondary diagnostic: between_arm_drop).",
+      "decommit_min_drop_frac": 0.1,
+      "closure_window": 10,
+      "window_min_ticks": 3,
+      "c2_min_window_events": 2,
+      "within_pre_occ_floor": 0.1
+    },
+    "magnitude_lever": {
+      "closure_decommit_hold_ticks": 5,
+      "closure_decommit_hold_scale_with_run": 0.1,
+      "closure_decommit_hold_max_ticks": 60,
+      "note": "Leg-B refractory scales with committed-run length (460f amend, ree-v3 main 2cd0aa2) so the de-commit authority scales with the natural-commit latch occupancy it must overcome."
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure.",
+      "leg_b_decommit_hold_magnitude": "committed-run-scaled refractory (460f amend).",
+      "leg_c_trained_rule_bias_head": "scaffold_train_rule_bias_head (598b REINFORCE in P1).",
+      "beta_engagement_coupling": "use_closure_commit_beta_coupling."
+    },
+    "mech261_note": "MECH-261 mode-conditioning direction stays non_contributory unless the AUTOMATIC mode-conditioned detector fired (n_automatic_fires > 0); the 460f autopsy found all closures hook-driven, so it is protected from a self-stamped weakens."
+  },
+  "per_seed": [
+    {
+      "seed": 42,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.46248123049736023,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.3103960396039604,
+      "p2_z_goal_norm_at_contact_peak": 0.5001140832901001,
+      "p2_num_contact_events": 146,
+      "rule_bias_pathway_enabled": true,
+      "rule_bias_mean_abs": 0.10000000894069672,
+      "rule_bias_n_train_steps": 50,
+      "rule_bias_trained": true,
+      "ARM_CLOSURE_ON": {
+        "n_closures": 9,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 9,
+        "n_automatic_fires": 0,
+        "beta_release_events": 351,
+        "nogo_installed_total": 27,
+        "total_committed_steps": 1830,
+        "total_beta_elevated": 360,
+        "mean_beta_elevated_steps": 24.0,
+        "n_sequence_completions": 9,
+        "n_eval_episodes": 15,
+        "closure_present": true,
+        "env_hook_enabled": true,
+        "n_window_events": 2,
+        "mean_pre_closure_occ": 0.3333333333333333,
+        "mean_post_closure_occ": 0.0
+      },
+      "ARM_CLOSURE_OFF": {
+        "n_closures": 0,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 0,
+        "n_automatic_fires": 0,
+        "beta_release_events": 328,
+        "nogo_installed_total": 0,
+        "total_committed_steps": 1628,
+        "total_beta_elevated": 336,
+        "mean_beta_elevated_steps": 22.4,
+        "n_sequence_completions": 8,
+        "n_eval_episodes": 15,
+        "closure_present": false,
+        "env_hook_enabled": true,
+        "n_window_events": 0,
+        "mean_pre_closure_occ": 0.0,
+        "mean_post_closure_occ": 0.0
+      },
+      "criteria": {
+        "C1": true,
+        "C2": true,
+        "C3": true
+      },
+      "coupling_nonvacuous": false,
+      "closure_trigger_available": true,
+      "within_window_nonvacuous": true,
+      "between_arm_drop": false,
+      "pass": true
+    },
+    {
+      "seed": 43,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.4180683493614197,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.27805145046524354,
+      "p2_z_goal_norm_at_contact_peak": 0.4620617926120758,
+      "p2_num_contact_events": 107,
+      "rule_bias_pathway_enabled": true,
+      "rule_bias_mean_abs": 0.10000000894069672,
+      "rule_bias_n_train_steps": 50,
+      "rule_bias_trained": true,
+      "ARM_CLOSURE_ON": {
+        "n_closures": 6,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 6,
+        "n_automatic_fires": 0,
+        "beta_release_events": 419,
+        "nogo_installed_total": 18,
+        "total_committed_steps": 2216,
+        "total_beta_elevated": 430,
+        "mean_beta_elevated_steps": 28.666666666666668,
+        "n_sequence_completions": 6,
+        "n_eval_episodes": 15,
+        "closure_present": true,
+        "env_hook_enabled": true,
+        "n_window_events": 0,
+        "mean_pre_closure_occ": 0.0,
+        "mean_post_closure_occ": 0.0
+      },
+      "ARM_CLOSURE_OFF": {
+        "n_closures": 0,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 0,
+        "n_automatic_fires": 0,
+        "beta_release_events": 444,
+        "nogo_installed_total": 0,
+        "total_committed_steps": 2215,
+        "total_beta_elevated": 456,
+        "mean_beta_elevated_steps": 30.4,
+        "n_sequence_completions": 4,
+        "n_eval_episodes": 15,
+        "closure_present": false,
+        "env_hook_enabled": true,
+        "n_window_events": 0,
+        "mean_pre_closure_occ": 0.0,
+        "mean_post_closure_occ": 0.0
+      },
+      "criteria": {
+        "C1": true,
+        "C2": false,
+        "C3": true
+      },
+      "coupling_nonvacuous": false,
+      "closure_trigger_available": true,
+      "within_window_nonvacuous": false,
+      "between_arm_drop": false,
+      "pass": false
+    },
+    {
+      "seed": 44,
+      "aborted_at": null,
+      "abort_reason": "",
+      "guard_pass": true,
+      "stage0_z_goal_norm_peak": 0.41671276092529297,
+      "p1_survival_pass": true,
+      "hazard_stage_survival_pass": true,
+      "p2_contact_rate": 0.3079287031346036,
+      "p2_z_goal_norm_at_contact_peak": 0.45240122079849243,
+      "p2_num_contact_events": 100,
+      "rule_bias_pathway_enabled": true,
+      "rule_bias_mean_abs": 0.02629900215065474,
+      "rule_bias_n_train_steps": 50,
+      "rule_bias_trained": true,
+      "ARM_CLOSURE_ON": {
+        "n_closures": 5,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 5,
+        "n_automatic_fires": 0,
+        "beta_release_events": 110,
+        "nogo_installed_total": 15,
+        "total_committed_steps": 2217,
+        "total_beta_elevated": 110,
+        "mean_beta_elevated_steps": 7.333333333333333,
+        "n_sequence_completions": 5,
+        "n_eval_episodes": 15,
+        "closure_present": true,
+        "env_hook_enabled": true,
+        "n_window_events": 0,
+        "mean_pre_closure_occ": 0.0,
+        "mean_post_closure_occ": 0.0
+      },
+      "ARM_CLOSURE_OFF": {
+        "n_closures": 0,
+        "sd034_n_closure_coupled_elevations": 0,
+        "n_hook_fires": 0,
+        "n_automatic_fires": 0,
+        "beta_release_events": 135,
+        "nogo_installed_total": 0,
+        "total_committed_steps": 2412,
+        "total_beta_elevated": 135,
+        "mean_beta_elevated_steps": 9.0,
+        "n_sequence_completions": 3,
+        "n_eval_episodes": 15,
+        "closure_present": false,
+        "env_hook_enabled": true,
+        "n_window_events": 0,
+        "mean_pre_closure_occ": 0.0,
+        "mean_post_closure_occ": 0.0
+      },
+      "criteria": {
+        "C1": true,
+        "C2": false,
+        "C3": true
+      },
+      "coupling_nonvacuous": false,
+      "closure_trigger_available": true,
+      "within_window_nonvacuous": false,
+      "between_arm_drop": true,
+      "pass": false
+    }
+  ],
+  "machine": "ree-cloud-1",
+  "evidence_direction_note": "2026-06-19 governance-apply of CONFIRMED failure_autopsy_V3-EXQ-460g: the committed-run-scaled de-commit MAGNITUDE lever + the 460f-prescribed tightened coupling non-vacuity gate are SELF-DEFEATING -- the scaled refractory pins at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so closure-coupled re-elevations can never fire (sd034_n_closure_coupled_elevations 36->0 seed42, 0/3). The de-commit refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS) but suppresses its own coupling certifier; the substrate_not_ready_requeue self-route is correct/conservative (no false weakens). SD-034 -> non_contributory + pending_retest; MECH-261 -> non_contributory (closures all hook-driven, n_automatic_fires=0, mode-conditioning bypassed -- protect the stable claim); MECH-260 -> supports (No-Go nogo_installed>=1 on 3/3, narrow positive). 7th SD-034-lineage autopsy; granularity-debt trigger FIRED -> route /claim-synthesis (primary) + 460h re-queue with a refractory-independent commit-intent coupling counter (secondary). 460f superseded.",
+  "failure_autopsy_ref": "failure_autopsy_V3-EXQ-460g_2026-06-19"
+}

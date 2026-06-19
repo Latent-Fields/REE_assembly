@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_485h_sd033b_trained_ofc_head_behavioural
+
+Generated: `2026-06-19T20:39:55.068165Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3` | `2026-06-19T19:27:35.208224Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3/summary.md) / [`manifest`](runs/v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3/manifest.json) / [`metrics`](runs/v3_exq_485h_sd033b_trained_ofc_head_behavioural_20260619T192735Z_v3/metrics.json) |

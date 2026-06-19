@@ -1,1 +1,280 @@
-{"schema_version": "v1", "run_id": "v3_exq_485g_sd033b_trained_ofc_head_behavioural_20260619T145454Z_v3", "experiment_type": "v3_exq_485g_sd033b_trained_ofc_head_behavioural", "queue_id": "V3-EXQ-485g", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "2026-06-19T14:54:54.949550Z", "executing_hostname": "ree-worker-3", "experiment_purpose": "evidence", "claim_ids": ["SD-033b", "MECH-263"], "result": "FAIL", "outcome": "FAIL", "evidence_direction": "non_contributory", "evidence_direction_per_claim": {"SD-033b": "non_contributory", "MECH-263": "non_contributory"}, "dry_run": false, "elapsed_sec": 2290.4215865135193, "acceptance": {"C1_devaluation_behavioural_shift": false, "C2_discrimination_behavioural_separation": false, "C3_frozen_head_silent": true, "n_c1_seeds": 0, "n_c2_seeds": 0, "n_c3_seeds": 3, "pass": false}, "interpretation": {"label": "sd033b_behavioural_functional_signature_absent", "preconditions": [{"name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor", "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR -- 485g RE-ALIGNS this floor to 0.05 (== the DEVAL_SHIFT_MARGIN the load-bearing DVs require), so 'ready' can no longer certify a vacuous test the way 485f's 1e-3 floor did (485f cleared at 0.00898, ~50x below the DV floor). RANGE not magnitude. Below floor -> substrate_not_ready_requeue (stronger driver / budget), NEVER a SD-033b weakens.", "measured": 0.17059548199176788, "threshold": 0.05, "control": "trained-arm bias over a real candidate bank at the high-threat state", "met": true}, {"name": "ofc_head_weight_delta_supra_floor", "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained under the 485g outcome-coupled driver (485d C2 statistic).", "measured": 6.31807804107666, "threshold": 0.001, "control": "trainable-arm head trained on frozen-encoder state_code in P1", "met": true}], "criteria_non_degenerate": {"C1": false, "C2": false, "C3": true}, "criteria": [{"name": "C1_devaluation_behavioural_shift", "load_bearing": true, "passed": false}, {"name": "C2_discrimination_behavioural_separation", "load_bearing": true, "passed": false}, {"name": "C3_frozen_head_silent", "load_bearing": true, "passed": true}]}, "readiness_met": true, "ready_seeds": 2, "n_seeds": 3, "max_trained_head_delta": 6.31807804107666, "max_trained_bias_range": 0.17059548199176788, "max_trained_bank_zworld_spread": 0.0396706685423851, "max_trained_between_context_tv": 0.02571353316307068, "arm_results": [{"arm": "ARM_0_frozen_head", "seed": 0, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "n_outcome_coupled_loss_terms": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "bank_zworld_spread": 0.028638537973165512, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "96ffe74aea9c812725d1fa416d0ae479c8dd1f05febf5d047c4936edfff00c05", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 0, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}, {"arm": "ARM_0_frozen_head", "seed": 1, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "n_outcome_coupled_loss_terms": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "bank_zworld_spread": 0.0396706685423851, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "91a7e67c9f9bce8fc104f7e80c85b2ad1602b65c70f882555ab16bf7f6e5063c", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 1, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}, {"arm": "ARM_0_frozen_head", "seed": 2, "ofc_train_state_bias_head": false, "head_weight_delta_norm": 0.0, "n_grad_nonzero_updates": 0, "n_outcome_coupled_loss_terms": 0, "p1_mean_abs_ofc_bias": 0.0, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "bank_zworld_spread": 0.01678711548447609, "between_context_selection_tv": 0.0, "within_context_selection_jitter": 0.0, "discrimination_separation_ratio": 0.0, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "1409f99b1327d7c87f326ab705290bb00cf88bbea86769bd874e08beecd9596f", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 2, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}, {"arm": "ARM_1_trainable_head", "seed": 0, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 4.126617431640625, "n_grad_nonzero_updates": 120, "n_outcome_coupled_loss_terms": 3683, "p1_mean_abs_ofc_bias": 0.1447094979262209, "devaluation_selection_shift": 0.0012221559882164001, "bias_range_high_threat": 0.1554182469844818, "bank_zworld_spread": 0.028638537973165512, "between_context_selection_tv": 0.01133737713098526, "within_context_selection_jitter": 2.4806708097457886e-05, "discrimination_separation_ratio": 457.02868298543325, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "dc56d3ea4dedc9882aa23270cb09eaf21313510fcc5e6decd300c86ad2307a57", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 0, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}, {"arm": "ARM_1_trainable_head", "seed": 1, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 6.31807804107666, "n_grad_nonzero_updates": 120, "n_outcome_coupled_loss_terms": 3702, "p1_mean_abs_ofc_bias": 0.352645773317299, "devaluation_selection_shift": 0.0, "bias_range_high_threat": 0.0, "bank_zworld_spread": 0.0396706685423851, "between_context_selection_tv": 0.02571353316307068, "within_context_selection_jitter": 0.0005401670932769775, "discrimination_separation_ratio": 47.60292413793103, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e48a7f5d284485f5c150a503669415fb04ea37fa4b0b129bdecc45d125980e18", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 1, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}, {"arm": "ARM_1_trainable_head", "seed": 2, "ofc_train_state_bias_head": true, "head_weight_delta_norm": 4.654592037200928, "n_grad_nonzero_updates": 120, "n_outcome_coupled_loss_terms": 3260, "p1_mean_abs_ofc_bias": 0.2263924361165498, "devaluation_selection_shift": 0.010213200002908707, "bias_range_high_threat": 0.17059548199176788, "bank_zworld_spread": 0.01678711548447609, "between_context_selection_tv": 0.0012197718024253845, "within_context_selection_jitter": 0.00015652552247047424, "discrimination_separation_ratio": 7.792798153128496, "eval_context_built": true, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "ed84b043e3f9917ea02d475be3ffdb87f0b38cab282ccea110079f217ed8c5f3", "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112", "substrate_n_files": 101, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 2, "config_slice_declared": false, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": true, "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"}}], "substrate_under_test": "SD-033b train_state_bias_head + ofc_bias_scale=0.5 + SD-056 e2_action_contrastive P0 + outcome-coupled per-candidate driver", "unblocks": "commitment_closure:GAP-8 (SD-033b candidate -> provisional behavioural evidence)", "supersedes": "V3-EXQ-485f", "predecessor": "V3-EXQ-485f (non_contributory; readiness-gate miscalibration -- supersede)", "predecessors": ["V3-EXQ-485b (devaluation, representation-level)", "V3-EXQ-485c (task-role discrimination, representation-level)", "V3-EXQ-485d (trained-OFC-head substrate readiness)", "V3-EXQ-485e (trained-OFC-head behavioural; non_contributory range-starved)", "V3-EXQ-485f (trained-OFC-head behavioural; non_contributory readiness-gate miscalibration)"], "notes": "Evidence-grade trained-OFC-head BEHAVIOURAL validation of MECH-263 signatures a (devaluation sensitivity) + b (task-role discrimination), SUPERSEDING the non_contributory V3-EXQ-485f. 485f confirmed (via its manifest) that the candidate-bank z_world spread is NOT the binding constraint (bank_zworld_spread reached 0.043, SD-056 operative, 617 multistep readiness PASS); the OFC-head READOUT was the wall (bias_range 0.009 from a 0.043 input). 485g makes TWO fixes: (a) the readiness floor is re-aligned 1e-3 -> 0.05 (== DEVAL_SHIFT_MARGIN) so 'ready' can no longer certify a vacuous DV; (b) the under-driving shared-return REINFORCE is replaced with an outcome-coupled, threat-conditioned, PER-CANDIDATE REINFORCE-over-candidates (the SD-033a/598b pattern sharpened to the OFC MECH-263 devaluation function: advantage = gain * threat * (mean_harm - per-candidate harm_eval), applied over all K candidates), with LR 5e-4 -> 2e-3 and P1 60 -> 120 ep. The driver gives the head outcome-grounded gradient to SPREAD bias under threat (the range driver) and ZERO gradient when devalued (threat ~ 0) -- giving it the opportunity to learn the threat-conditioned valuation C1 tests, WITHOUT injecting the devaluation shift (non-circular). Same-statistic non-vacuity gate: below 0.05 bias range -> substrate_not_ready_requeue, NEVER a false SD-033b weakens; readiness-met-but-DVs-fail -> honest weakens. OFC is the sole bias channel; modulatory-bias-selection-authority deliberately OFF; frozen-zeroed head is the GAP-1-analogue silence control.", "machine": "ree-cloud-3", "evidence_direction_note": "Flagged for /failure-autopsy by governance-20260619T1455Z (2026-06-19T15:13:01Z). Readiness MET (OFC bias cross-candidate range 0.171 >= 0.05 floor; head weight-delta 6.32, genuinely trained) but the behavioural DVs FAIL (C1 devaluation_selection_shift {0.001,0.0,0.010} << 0.05; C2 between-context TV ~0). The trained OFC head produced cross-candidate bias RANGE with ZERO behavioural conversion -- the MECH-439 F-dominance conversion-ceiling signature (F monopolises ~88-89% of E3 committed-selection variance, V3-EXQ-571). weakens HELD pending autopsy adjudication of genuine-weakens vs conversion-ceiling/substrate_ceiling; NO evidence_direction applied this cycle. SD-033b/MECH-263 stay pending_retest_after_substrate. Sole genuine experimental entry for both claims -- do not let an unadjudicated substrate-limited FAIL define exp_conf. Not marked reviewed; stays in pending_review until /failure-autopsy resolves.", "pending_retest_after_substrate": true}
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_485g_sd033b_trained_ofc_head_behavioural_20260619T145454Z_v3",
+  "experiment_type": "v3_exq_485g_sd033b_trained_ofc_head_behavioural",
+  "queue_id": "V3-EXQ-485g",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-06-19T14:54:54.949550Z",
+  "executing_hostname": "ree-worker-3",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "superseded",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "dry_run": false,
+  "elapsed_sec": 2290.4215865135193,
+  "acceptance": {
+    "C1_devaluation_behavioural_shift": false,
+    "C2_discrimination_behavioural_separation": false,
+    "C3_frozen_head_silent": true,
+    "n_c1_seeds": 0,
+    "n_c2_seeds": 0,
+    "n_c3_seeds": 3,
+    "pass": false
+  },
+  "interpretation": {
+    "label": "sd033b_behavioural_functional_signature_absent",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor",
+        "description": "ARM_1 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the high-threat positive-control state clears BIAS_RANGE_FLOOR -- 485g RE-ALIGNS this floor to 0.05 (== the DEVAL_SHIFT_MARGIN the load-bearing DVs require), so 'ready' can no longer certify a vacuous test the way 485f's 1e-3 floor did (485f cleared at 0.00898, ~50x below the DV floor). RANGE not magnitude. Below floor -> substrate_not_ready_requeue (stronger driver / budget), NEVER a SD-033b weakens.",
+        "measured": 0.17059548199176788,
+        "threshold": 0.05,
+        "control": "trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_1 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained under the 485g outcome-coupled driver (485d C2 statistic).",
+        "measured": 6.31807804107666,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_frozen_head_silent",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  },
+  "readiness_met": true,
+  "ready_seeds": 2,
+  "n_seeds": 3,
+  "max_trained_head_delta": 6.31807804107666,
+  "max_trained_bias_range": 0.17059548199176788,
+  "max_trained_bank_zworld_spread": 0.0396706685423851,
+  "max_trained_between_context_tv": 0.02571353316307068,
+  "arm_results": [
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 0,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "n_outcome_coupled_loss_terms": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bank_zworld_spread": 0.028638537973165512,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "96ffe74aea9c812725d1fa416d0ae479c8dd1f05febf5d047c4936edfff00c05",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    },
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 1,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "n_outcome_coupled_loss_terms": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bank_zworld_spread": 0.0396706685423851,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "91a7e67c9f9bce8fc104f7e80c85b2ad1602b65c70f882555ab16bf7f6e5063c",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 1,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    },
+    {
+      "arm": "ARM_0_frozen_head",
+      "seed": 2,
+      "ofc_train_state_bias_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "n_outcome_coupled_loss_terms": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bank_zworld_spread": 0.01678711548447609,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "1409f99b1327d7c87f326ab705290bb00cf88bbea86769bd874e08beecd9596f",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 2,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 0,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 4.126617431640625,
+      "n_grad_nonzero_updates": 120,
+      "n_outcome_coupled_loss_terms": 3683,
+      "p1_mean_abs_ofc_bias": 0.1447094979262209,
+      "devaluation_selection_shift": 0.0012221559882164001,
+      "bias_range_high_threat": 0.1554182469844818,
+      "bank_zworld_spread": 0.028638537973165512,
+      "between_context_selection_tv": 0.01133737713098526,
+      "within_context_selection_jitter": 2.4806708097457886e-05,
+      "discrimination_separation_ratio": 457.02868298543325,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "dc56d3ea4dedc9882aa23270cb09eaf21313510fcc5e6decd300c86ad2307a57",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 1,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 6.31807804107666,
+      "n_grad_nonzero_updates": 120,
+      "n_outcome_coupled_loss_terms": 3702,
+      "p1_mean_abs_ofc_bias": 0.352645773317299,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bank_zworld_spread": 0.0396706685423851,
+      "between_context_selection_tv": 0.02571353316307068,
+      "within_context_selection_jitter": 0.0005401670932769775,
+      "discrimination_separation_ratio": 47.60292413793103,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e48a7f5d284485f5c150a503669415fb04ea37fa4b0b129bdecc45d125980e18",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 1,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    },
+    {
+      "arm": "ARM_1_trainable_head",
+      "seed": 2,
+      "ofc_train_state_bias_head": true,
+      "head_weight_delta_norm": 4.654592037200928,
+      "n_grad_nonzero_updates": 120,
+      "n_outcome_coupled_loss_terms": 3260,
+      "p1_mean_abs_ofc_bias": 0.2263924361165498,
+      "devaluation_selection_shift": 0.010213200002908707,
+      "bias_range_high_threat": 0.17059548199176788,
+      "bank_zworld_spread": 0.01678711548447609,
+      "between_context_selection_tv": 0.0012197718024253845,
+      "within_context_selection_jitter": 0.00015652552247047424,
+      "discrimination_separation_ratio": 7.792798153128496,
+      "eval_context_built": true,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "ed84b043e3f9917ea02d475be3ffdb87f0b38cab282ccea110079f217ed8c5f3",
+        "substrate_hash": "7575bbcc3d89b910cca2069355778683f184653e5a0b2c059b6b63f193456112",
+        "substrate_n_files": 101,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 2,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "e3e622402931d7319b60cbc7ea764451af42e0ce105a62487a082a1b4d1954bc"
+      }
+    }
+  ],
+  "substrate_under_test": "SD-033b train_state_bias_head + ofc_bias_scale=0.5 + SD-056 e2_action_contrastive P0 + outcome-coupled per-candidate driver",
+  "unblocks": "commitment_closure:GAP-8 (SD-033b candidate -> provisional behavioural evidence)",
+  "supersedes": "V3-EXQ-485f",
+  "predecessor": "V3-EXQ-485f (non_contributory; readiness-gate miscalibration -- supersede)",
+  "predecessors": [
+    "V3-EXQ-485b (devaluation, representation-level)",
+    "V3-EXQ-485c (task-role discrimination, representation-level)",
+    "V3-EXQ-485d (trained-OFC-head substrate readiness)",
+    "V3-EXQ-485e (trained-OFC-head behavioural; non_contributory range-starved)",
+    "V3-EXQ-485f (trained-OFC-head behavioural; non_contributory readiness-gate miscalibration)"
+  ],
+  "notes": "Evidence-grade trained-OFC-head BEHAVIOURAL validation of MECH-263 signatures a (devaluation sensitivity) + b (task-role discrimination), SUPERSEDING the non_contributory V3-EXQ-485f. 485f confirmed (via its manifest) that the candidate-bank z_world spread is NOT the binding constraint (bank_zworld_spread reached 0.043, SD-056 operative, 617 multistep readiness PASS); the OFC-head READOUT was the wall (bias_range 0.009 from a 0.043 input). 485g makes TWO fixes: (a) the readiness floor is re-aligned 1e-3 -> 0.05 (== DEVAL_SHIFT_MARGIN) so 'ready' can no longer certify a vacuous DV; (b) the under-driving shared-return REINFORCE is replaced with an outcome-coupled, threat-conditioned, PER-CANDIDATE REINFORCE-over-candidates (the SD-033a/598b pattern sharpened to the OFC MECH-263 devaluation function: advantage = gain * threat * (mean_harm - per-candidate harm_eval), applied over all K candidates), with LR 5e-4 -> 2e-3 and P1 60 -> 120 ep. The driver gives the head outcome-grounded gradient to SPREAD bias under threat (the range driver) and ZERO gradient when devalued (threat ~ 0) -- giving it the opportunity to learn the threat-conditioned valuation C1 tests, WITHOUT injecting the devaluation shift (non-circular). Same-statistic non-vacuity gate: below 0.05 bias range -> substrate_not_ready_requeue, NEVER a false SD-033b weakens; readiness-met-but-DVs-fail -> honest weakens. OFC is the sole bias channel; modulatory-bias-selection-authority deliberately OFF; frozen-zeroed head is the GAP-1-analogue silence control.",
+  "machine": "ree-cloud-3",
+  "evidence_direction_note": "Governance 2026-06-19: SUPERSEDED by V3-EXQ-485h (ran terminal 2026-06-19T19:27Z, larger bias range, same conversion-ceiling signature). The substrate_ceiling diagnosis from failure_autopsy_V3-EXQ-485g stands in SD-033b/MECH-263 claims.yaml notes; excluded from scoring per supersession policy.",
+  "pending_retest_after_substrate": true,
+  "superseded_by": "V3-EXQ-485h"
+}

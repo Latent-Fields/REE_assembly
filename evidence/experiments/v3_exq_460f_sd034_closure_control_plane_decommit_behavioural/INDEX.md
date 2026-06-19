@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_460f_sd034_closure_control_plane_decommit_behavioural
 
-Generated: `2026-06-19T18:53:09.161841Z`
+Generated: `2026-06-19T20:39:55.068165Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
