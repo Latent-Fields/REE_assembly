@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-19T19:06:10.604388Z`
+Generated: `2026-06-19T21:18:34.442794Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -322,7 +322,7 @@ Generated: `2026-06-19T19:06:10.604388Z`
 | `targeted_review_sd_032c` | [`2026-04-25_sd_032c_salience_network_switch_menon2010`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/record.json) | 3 | [`summary`](targeted_review_sd_032c/entries/2026-04-25_sd_032c_salience_network_switch_menon2010/summary.md) |
 | `targeted_review_sd_032d` | [`2026-04-20_sd_032d_pcc_macaque_default_hayden2009`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/record.json) | 4 | [`summary`](targeted_review_sd_032d/entries/2026-04-20_sd_032d_pcc_macaque_default_hayden2009/summary.md) |
 | `targeted_review_sd_033a` | [`2026-04-27_sd_033a_a1_rule_selective_neurons_wallis2001`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a1_rule_selective_neurons_wallis2001/record.json) | 11 | [`summary`](targeted_review_sd_033a/entries/2026-04-27_sd_033a_a1_rule_selective_neurons_wallis2001/summary.md) |
-| `targeted_review_sd_034` | [`2026-04-27_sd_034_dual_operator_smith_graybiel2013`](targeted_review_sd_034/entries/2026-04-27_sd_034_dual_operator_smith_graybiel2013/record.json) | 6 | [`summary`](targeted_review_sd_034/entries/2026-04-27_sd_034_dual_operator_smith_graybiel2013/summary.md) |
+| `targeted_review_sd_034` | [`2026-06-19_sd_034_stn_conflict_graded_release_cavanagh_frank2011`](targeted_review_sd_034/entries/2026-06-19_sd_034_stn_conflict_graded_release_cavanagh_frank2011/record.json) | 7 | [`summary`](targeted_review_sd_034/entries/2026-06-19_sd_034_stn_conflict_graded_release_cavanagh_frank2011/summary.md) |
 | `targeted_review_sd_035` | [`2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/record.json) | 3 | [`summary`](targeted_review_sd_035/entries/2026-04-23_sd_035_cea_inhibitory_circuits_ciocchi2010/summary.md) |
 | `targeted_review_sd_037_orexin_kinetics` | [`2026-04-27_sd_037_pws_saturation_muscogiuri2021`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-27_sd_037_pws_saturation_muscogiuri2021/record.json) | 9 | [`summary`](targeted_review_sd_037_orexin_kinetics/entries/2026-04-27_sd_037_pws_saturation_muscogiuri2021/summary.md) |
 | `targeted_review_sd_047` | [`2026-05-03_sd_047_third_visual_pathway_pitcher2021`](targeted_review_sd_047/entries/2026-05-03_sd_047_third_visual_pathway_pitcher2021/record.json) | 5 | [`summary`](targeted_review_sd_047/entries/2026-05-03_sd_047_third_visual_pathway_pitcher2021/summary.md) |
