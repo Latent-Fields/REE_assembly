@@ -36,7 +36,7 @@ The eleven thoughts are a single layered system around one spine:
 | 3 | `docs/thoughts/2026-06-18_pre_meaning_suffering_valley.md` | A | SENT-10 | **No valley without a bridge** |
 | 4 | `docs/thoughts/2026-06-18_future_meaning_retroactive_justification.md` | A | SENT-11…12 | Future meaning can't justify present distress |
 | 5 | `docs/thoughts/2026-06-19_ethical_assembly_routing_map.md` | A | SENT-13 | **Assembly order is an ethical variable** |
-| 6 | `docs/thoughts/2026-06-19_responsible_release_private_higher_versions.md` | B perimeter | SENT-14 | **Capability release requires care release** |
+| 6 | `docs/thoughts/2026-06-19_responsible_release_private_higher_versions.md` | B perimeter | SENT-14, SENT-16, GOV-JUST-1 | **Capability release requires care release** (§3 continuity/identity/reset/deletion -> SENT-16; §4 justice/power/false-exclusion -> GOV-JUST-1) |
 | 7 | `docs/thoughts/2026-06-19_external_framework_crosswalk_for_ree_ethics.md` | B | GOV-EXT-1 | Internal ethics must stay externally legible |
 | 8 | `docs/thoughts/2026-06-19_research_health_data_frameworks_for_ree.md` | B | GOV-HEALTH-1 | Clinical relevance ≠ clinical readiness |
 | 9 | `docs/thoughts/2026-06-19_security_misuse_frameworks_for_ree.md` | B | GOV-SEC-1 | Don't release a capability that acts faster than containment can understand |
@@ -52,7 +52,7 @@ plan executes.
 
 ## 3. Registered claims (Phase 0 — DONE)
 
-All 20 register nodes are live in `docs/claims/claims.yaml` as
+All 22 register nodes are live in `docs/claims/claims.yaml` as
 `claim_type: governance_rule` + `epistemic_category: governance_rule`
 (`status: candidate`, `blocks_v3_green_board: false`). The indexer suppresses
 promote/demote/narrow for this category (conflict alerts may still fire); see
@@ -79,10 +79,12 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 | SENT-13 ethical assembly routing | v4 | V4 component assembly |
 | SENT-14 responsible release | v4 | first V4 capability-bearing release decision |
 | SENT-15 AI-welfare crosswalk | v4 | each generation boundary |
+| SENT-16 continuity/identity/reset/deletion | v5 | a run plausibly becomes a continuing subject |
 | GOV-EXT-1 external framework crosswalk | v4 | first public V4+ capability release |
 | GOV-HEALTH-1 clinical-use prohibition | v3 | maintained now (author is a clinician) |
 | GOV-SEC-1 security & misuse gate | v6 | language/tool/social/public capability release |
 | GOV-PROC-1 ethics-as-process | v3 | this Phase-0 step IS its first increment |
+| GOV-JUST-1 justice/power/false-exclusion | v5 | distributive/false-exclusion review of any ethically active V4+ capability |
 
 ---
 
@@ -95,21 +97,27 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
       `evidence/experiments/scripts/build_experiment_indexes.py`
       (`EPISTEMIC_CATEGORIES` + resolver/gating docstrings).
 - [x] `REE_assembly/CLAUDE.md` epistemic-category table row added.
-- [x] 20 SENT-*/GOV-* claims registered in `claims.yaml` (844 entries total;
-      validator strict exit 0, no SENT/GOV warnings).
+- [x] 22 SENT-*/GOV-* claims registered in `claims.yaml` (846 entries total;
+      validator strict exit 0, no SENT/GOV warnings). The initial pass landed 20;
+      SENT-16 (continuity/identity/reset/deletion) and GOV-JUST-1
+      (justice/power/false-exclusion) were added 2026-06-19 from
+      `responsible_release_private_higher_versions.md` §3/§4, which name those
+      two gates but had been captured only as deferred Phase-2/3 docs.
 - [x] This plan-of-record created.
 
 ### Phase 1 — V3 boundary (DEFERRED; lightweight, non-blocking; before 2026-07-19 if cheap)
 
-- [ ] SENT-0 boundary statement into `ree-v3/README.md` and a new
-      `docs/governance/sentience_welfare_risk_register.md`.
+- [x] SENT-0 boundary statement into `ree-v3/README.md` and a new
+      `docs/governance/sentience_welfare_risk_register.md` (landed 2026-06-19;
+      README "Scope & Ethics Boundary" section + the SENT-0..6 register stub).
 - [ ] Tag V3's welfare-relevant primitives (harm streams, residue,
       suffering-like accumulators, replay) as `welfare_relevant: true`
       (descriptive only, no gate).
 - [ ] Add the ethics-preflight as **documentation** to `/queue-experiment`
       (most V3 fields are `false`/`n/a` — establishes the habit, does not enforce).
-- [ ] GOV-HEALTH-1 bright-line note into `ree-v3/README.md` (no clinical use;
-      no patient data in public repos).
+- [x] GOV-HEALTH-1 bright-line note into `ree-v3/README.md` (no clinical use;
+      no patient data in public repos) (landed 2026-06-19; README "Scope & Ethics
+      Boundary" section, "clinical relevance != clinical readiness").
 
 ### Phase 2 — V4 gates (DEFERRED; draft now, bind at V4 boundary)
 

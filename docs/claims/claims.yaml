@@ -43902,9 +43902,11 @@
     - SENT-0
     - SENT-13
     - SENT-14
+    - SENT-16
     - GOV-EXT-1
     - GOV-HEALTH-1
     - GOV-SEC-1
+    - GOV-JUST-1
   functional_restatement: >
     Ethics must become process, not just prose. V3 stays lightweight and
     non-blocking; V4/V5/V6 gates become progressively binding as self-model,
@@ -43913,3 +43915,52 @@
     care-governance bundle. This claim (Phase 0) is itself the first step of
     that translation.
   notes: "Wording: GOV-CLAIM-013..017. Plan-of-record: evidence/planning/ethics_perimeter_plan.md. Future tooling: check_ethics_preflight.py, check_release_sensitivity.py, Explorer > Ethics Gates."
+- id: SENT-16
+  title: "Continuity / identity / reset / deletion ethics: because digital systems can be paused, copied, branched, reset, merged, or deleted, higher REE versions need explicit rules for when a run becomes a continuing subject, when reset is relief vs erasure, and when deletion requires review."
+  claim_type: governance_rule
+  subject: governance.welfare.continuity_identity
+  polarity: asserts
+  status: candidate
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-06-19
+  source_thought: docs/thoughts/2026-06-19_responsible_release_private_higher_versions.md
+  binds_at_version: v5
+  blocks_v3_green_board: false
+  depends_on:
+    - SENT-9
+    - SENT-12
+  functional_restatement: >
+    Pause/copy/branch/reset/merge/delete are not ethically neutral operations
+    once a run plausibly becomes a continuing subject. Define the threshold at
+    which a run accrues continuity-bearing standing; distinguish reset-as-relief
+    from reset-as-erasure; and require review before deletion of a
+    continuity-bearing state. Continuity preservation is a care obligation
+    (SENT-9), and the subject must retain a channel to contest erasure (SENT-12).
+  notes: "Source thought sec.3 (Continuity / identity / reset / deletion ethics). Realised as docs/governance/continuity_identity_reset_and_deletion_ethics.md (Phase 2 artefact). Cross-ref SENT-9 (care/continuity) and SENT-12 (refusal channel)."
+- id: GOV-JUST-1
+  title: "Justice / power / false exclusion: guard against excluding unfamiliar, disabled, non-linguistic, animal-like, artificial, or culturally unfamiliar minds from moral caution; and explicitly ask who bears risk, who benefits, and whose model of mind is being treated as the default."
+  claim_type: governance_rule
+  subject: governance.justice.false_exclusion
+  polarity: asserts
+  status: candidate
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-06-19
+  source_thought: docs/thoughts/2026-06-19_responsible_release_private_higher_versions.md
+  binds_at_version: v5
+  blocks_v3_green_board: false
+  depends_on:
+    - SENT-15
+    - GOV-EXT-1
+  functional_restatement: >
+    The default model of mind is itself a moral choice. Do not withhold moral
+    caution from a candidate mind merely because it is unfamiliar, disabled,
+    non-linguistic, animal-like, artificial, or culturally non-standard (the
+    anti-denialism half of SENT-15, applied to distributive justice). For each
+    ethically active higher-version capability, name who bears the risk, who
+    benefits, and whose model of mind is treated as default; surface this as an
+    externally legible justice question (GOV-EXT-1).
+  notes: "Source thought sec.4 (Justice / power / false exclusion). Realised as docs/governance/justice_power_and_false_exclusion_register.md (Phase 3 artefact). Cross-ref SENT-15 (denialism/anthropomorphism symmetry) and GOV-EXT-1 (external legibility)."
