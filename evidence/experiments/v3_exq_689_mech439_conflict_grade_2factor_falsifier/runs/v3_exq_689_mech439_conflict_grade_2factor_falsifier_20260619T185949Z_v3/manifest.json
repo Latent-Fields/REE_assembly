@@ -1,0 +1,106 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689_mech439_conflict_grade_2factor_falsifier",
+  "run_id": "v3_exq_689_mech439_conflict_grade_2factor_falsifier_20260619T185949Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-19T18:59:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-439": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "a1b1_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_A1B1 IN-ARM RAW cross-candidate RANGE of the modulatory bias routed into the E3 selection authority (modulatory_channel_route_range, read LIVE at the select tick) clears the floor: the divergent channel REACHES the bias the conflict-graded shortlist arbitrates. SAME range statistic the route-range substrate gates on. Below floor => routing not wired / e2 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_A1B1: candidate_summary_source=e2_world_forward (genuinely action-divergent), route-range routing + top-k shortlist ON",
+        "measured": 0.56597,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "a1b1_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_A1B1 e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- SD-056 trained the action-conditional divergence the eligible set needs. RANGE statistic. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_A1B1: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.164485,
+        "threshold": 0.03,
+        "met": true
+      },
+      {
+        "name": "a1b1_grading_quantities_and_gap_distribution_non_vacuous",
+        "kind": "readiness",
+        "description": "ARM_A1B1 conflict-graded k_effective varies across P1 ticks (spread >= 1), the gap-scaled commit T_eff varies (spread > eps), AND the per-tick F-gap spans >= gap_min_populated_bins gap bins. A flat k / flat T_eff / single-gap distribution (monostrategy-pinned gap) means the grading could not act -> the test is vacuous => substrate_not_ready_requeue, never a verdict label. Count statistic (seeds meeting all three).",
+        "control": "ARM_A1B1: both MECH-439 levers ON; k_effective_spread / t_eff_spread / n_populated_gap_bins read live",
+        "measured": 0,
+        "threshold": 2,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_a1b1_e2_world_forward_divergent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_PRIMARY_a1b1_selected_entropy_strict_above_both_controls",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_FGAP_committed_entropy_lift_correlates_with_F_gap",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C_PRIMARY": true,
+      "C_FGAP": false
+    },
+    "routing": {
+      "conflict_grade_converts_committed_diversity": "PASS -> MECH-439 first falsifier supports; conflict-grade moves committed behaviour and the lift is gap-correlated; toward supports",
+      "substrate_not_ready_requeue": "routing/SD-056 under-trained OR monostrategy-pinned gap (k/T_eff/gap not spread); re-queue at higher P0; do NOT weaken MECH-439",
+      "conversion_ceiling_persists_despite_conflict_grade": "OFF-RAMP -> the V4 directions in conversion_ceiling_phase0_synthesis (divisive normalization / output-null subspace / cross-tick QD archive); NOT a falsification of MECH-439",
+      "uniform_lift_grading_non_load_bearing": "the lift is real but NOT gap-concentrated -> a bigger fixed shortlist / hotter flat softmax; route to the rank_preserving_F_to_eligibility_demotion V3 fallback"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude",
+  "run_id": "v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-19T18:57:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-034",
+    "MECH-260",
+    "MECH-261"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-034": "non_contributory",
+    "MECH-260": "non_contributory",
+    "MECH-261": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "rule_bias_head_trained",
+        "description": "Leg C readiness (the DIRECT anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| > floor on >= 2/3 seeds. Below floor -> substrate_not_ready_requeue (the head did not train), NEVER a weakens.",
+        "control": "P1OnboardingResult.rule_bias_diag mean |bias|.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_coupling_nonvacuous",
+        "description": "TIGHTENED non-vacuity (the brief): ON sd034_n_closure_coupled_elevations > 0 AND ON n_sequence_completions > 0 on >= 2/3 guard seeds -- the closure-plane coupling engaged the latch (not the fragile natural commit-entry). Below floor -> substrate_not_ready_requeue (the 460f inert-coupling signature).",
+        "control": "ARM_CLOSURE_ON sd034_n_closure_coupled_elevations.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "closure_trigger_available_count",
+        "description": "ON-arm n_closures > 0 reachable on >= 2/3 guard seeds. Below floor -> substrate_not_ready_requeue.",
+        "control": "ARM_CLOSURE_ON n_closures > 0 (Leg-A hook + trained head).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "within_arm_window_nonvacuous",
+        "description": "ON arm produced >= C2_MIN_WINDOW_EVENTS scored around-closure windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR on >= 2/3 guard seeds -- there was something committed to de-commit. Below floor -> substrate_not_ready_requeue (nothing to measure).",
+        "control": "ARM_CLOSURE_ON n_window_events + mean_pre_closure_occ.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_n_closures",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_within_arm_decommit_drop",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_nogo_installed",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": false
+    },
+    "decommit_dv": {
+      "definition": "C2 (load-bearing, WITHIN-ARM, part b) = on ARM_CLOSURE_ON, mean post-closure beta-latch occupancy fraction < mean pre-closure occupancy fraction with a >= DECOMMIT_MIN_DROP_FRAC relative drop, over >= C2_MIN_WINDOW_EVENTS scored CLOSURE_WINDOW-tick windows with mean_pre_occ > WITHIN_PRE_OCC_FLOOR. Paired within-arm around-closure statistic -- replaces 460f's underpowered between-arm unpaired mean comparison (retained as a secondary diagnostic: between_arm_drop).",
+      "decommit_min_drop_frac": 0.1,
+      "closure_window": 10,
+      "window_min_ticks": 3,
+      "c2_min_window_events": 2,
+      "within_pre_occ_floor": 0.1
+    },
+    "magnitude_lever": {
+      "closure_decommit_hold_ticks": 5,
+      "closure_decommit_hold_scale_with_run": 0.1,
+      "closure_decommit_hold_max_ticks": 60,
+      "note": "Leg-B refractory scales with committed-run length (460f amend, ree-v3 main 2cd0aa2) so the de-commit authority scales with the natural-commit latch occupancy it must overcome."
+    },
+    "amend_legs_under_test": {
+      "leg_a_env_completion_hook": "REEAgent.notify_env_completion -> emit_closure.",
+      "leg_b_decommit_hold_magnitude": "committed-run-scaled refractory (460f amend).",
+      "leg_c_trained_rule_bias_head": "scaffold_train_rule_bias_head (598b REINFORCE in P1).",
+      "beta_engagement_coupling": "use_closure_commit_beta_coupling."
+    },
+    "mech261_note": "MECH-261 mode-conditioning direction stays non_contributory unless the AUTOMATIC mode-conditioned detector fired (n_automatic_fires > 0); the 460f autopsy found all closures hook-driven, so it is protected from a self-stamped weakens."
+  }
+}
