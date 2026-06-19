@@ -8,10 +8,11 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-046": "does_not_support"
+    "ARC-046": "non_contributory"
   },
+  "evidence_direction_note": "2026-06-19 evidence-record drift fix landing the failure_autopsy_V3-EXQ-591_2026-05-27 governance override (recorded in the ARC-046 claims.yaml evidence_quality_note but never written to this manifest). Reclassified does_not_support -> non_contributory: this was a substrate-uniform FAIL -- all 3 arms hit only 1/7 gate criteria across all 5 seeds (only C3 residue_cov, which saturates trivially in every arm), the InfantCurriculumScheduler stayed stuck in Phase 0 across all seeds (advancement gate H_pos >= 3.48 vs observed 0.03-1.08), z_goal collapsed to ~1e-7 in every arm, and C5/C6/C7 returned -1.0 'no data' sentinels everywhere. The failure shape is a discovered missing prerequisite (the test bed cannot produce non-trivial z_goal / phase advancement on the default V3 substrate), NOT a falsification of ARC-046's architectural commitment; it does not discriminate for or against the claim. ARC-046 is NOT weakened. epistemic_category=substrate_ceiling; pending_retest_after_substrate. Flat-manifest correction is authoritative over the pack via build_experiment_indexes._merge_flat_manifest_overrides (annotated flat overlays unannotated pack).",
   "timestamp_utc": "20260527T183919Z",
   "dry_run": false,
   "config": {
