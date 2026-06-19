@@ -9,7 +9,7 @@ nav_order: 12
 
 **Claim ID:** SD-034
 **Subject:** governance.closure_operator
-**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12; Leg C rule_bias_head training amend 2026-06-16; de-commit-authority MAGNITUDE amend 2026-06-19 -- see amend sections below)
+**Status:** IMPLEMENTED 2026-04-20 (validated 2026-04-21; design doc backfilled 2026-04-27; behavioural-authority amend `commitment-closure-control-plane` 2026-06-12; Leg C rule_bias_head training amend 2026-06-16; de-commit-authority MAGNITUDE amend 2026-06-19; refractory-independent commit-intent coupling certifier 2026-06-19 -- see amend sections below)
 **Registered:** 2026-04-20
 **Depends on:** SD-033 (governance cluster), SD-033a (lateral PFC analog rule_state), MECH-090 (BetaGate commitment latch), MECH-260 (dACC action-class No-Go), MECH-094 (hypothesis tag write gate), SD-032a (SalienceCoordinator), SD-032b (dACC analog)
 **Blocks:** EXP-0156 / V3-EXQ-460 (verified-but-not-released), EXP-0157 / V3-EXQ-461 (delayed-reward persistence), EXP-0162 / V3-EXQ-466 (satisficing / residue discharge), EXP-0164 / V3-EXQ-468 (commitment vs contradiction). All landing-diagnostic variants PASSed 2026-04-21.
@@ -424,6 +424,51 @@ counter (increments on the closure-plane commit INTENT, `e3._committed_trajector
 "refractory-independent coupling gate" in their falsifiers. The gated 460h re-queue targets the
 re-grained children **MECH-445 / MECH-446**, NOT the coarse SD-034 umbrella; new letter, do NOT
 re-author 460d/460e/460f/460g.
+
+## Amend: refractory-independent commit-intent coupling certifier (460h fix) -- 2026-06-19
+
+**Status:** IMPLEMENTED 2026-06-19 (substrate; MECH-445/446 stay candidate / v3_pending /
+pending_retest_after_substrate -- PROMOTES NOTHING). Routed by the confirmed
+`failure_autopsy_V3-EXQ-460g_2026-06-19` `recommended_substrate_queue_entry` (SECONDARY
+action; the Children decomposition above is the PRIMARY action and this amend's precondition).
+
+This lands the measurement fix the Refused item (S5, *coupling-measurability-under-refractory*)
+is routed to -- it is the 460h experiment fix, NOT a claim. The S5 self-defeating entanglement
+(code-confirmed): the 460f coupling non-vacuity gate keyed on `sd034_n_closure_coupled_elevations`,
+counted by `note_closure_coupled_elevation()` INSIDE the bistable elevate if-block guarded by
+`not beta_gate.is_elevated` (`agent.py`). Once the closure-coupled commit latches beta elevated
+for the long committed run (~530-560 steps) the per-ENTRY counter freezes, and the 460g
+committed-run-scaled de-commit-MAGNITUDE refractory (`apply_refractory` cap 60) blocks
+re-elevation so it cannot re-fire as a transition -- so scaling the de-commit authority UP
+suppresses its own certifier (counter 36 -> 0 on seed 42) even though the de-commit acted
+(within-arm occupancy 0.333 -> 0.0).
+
+**The fix (no-op-default; bit-identical OFF; rides `use_closure_commit_beta_coupling`):**
+`BetaGate` gains `_n_closure_commit_intent` + `note_closure_commit_intent()` +
+`sd034_n_closure_commit_intent` (get_state) + per-episode reset. `REEAgent.select_action`
+calls `note_closure_commit_intent()` when `_closure_commit_active and not result.committed`
+**BEFORE** the elevate/refractory gate, so the closure-plane commit INTENT is certified every
+E3 tick a closure-coupled commitment forms without a natural `running_variance` crossing --
+regardless of whether the latch is held elevated OR the de-commit-magnitude refractory then
+blocks the elevate. `sd034_n_closure_coupled_elevations` is retained (now measures
+refractory-/latch-surviving elevations only); the new counter is the refractory-INDEPENDENT
+**MECH-445** coupling-engagement certifier that **MECH-446**'s magnitude lever cannot zero.
+
+Pure control-state readout (no gate-state effect): the action stream is bit-identical with the
+coupling flag OFF (every existing experiment) AND ON. MECH-094 N/A (waking select_action
+readout; no replay/memory write surface). 3 new contracts (C6 primitive advances under an
+active refractory + get_state/reset; C7 the load-bearing property -- a blocked elevate gate
+freezes the coupled counter at 0 while the intent counter keeps certifying; C8 coupling-OFF
+intent stays 0).
+
+**Validation:** `V3-EXQ-460h` (supersedes the de-commit lineage; do NOT re-author 460d/e/f/g)
+arms the full amended substrate (`beta_gate_bistable` + `use_closure_commit_beta_coupling` +
+Leg-A env-completion hook + Leg-B committed-run-scaled refractory magnitude lever + Leg-C
+`scaffold_train_rule_bias_head`), keeps the 460g within-arm around-closure occupancy-delta C2 DV,
+and gates non-vacuity on `sd034_n_closure_commit_intent > 0` (NOT the coupled counter). Acceptance:
+closure-coupled commit-intent `> 0` on >= 2/3 seeds (MECH-445 precondition) AND ON within-arm
+post-closure occupancy `<` pre-closure by >= `DECOMMIT_MIN_DROP_FRAC` on >= 2/3 seeds (MECH-446
+scored). `claim_ids=[MECH-446]` (scored) + MECH-445 (coupling-engagement non-vacuity precondition).
 
 ## Anchor Documents
 
