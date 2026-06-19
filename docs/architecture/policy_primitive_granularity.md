@@ -2,7 +2,7 @@
 title: Policy Primitive Granularity — Architectural Family
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 6
+nav_order: 7
 ---
 
 # Policy Primitive Granularity — Architectural Family

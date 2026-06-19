@@ -2,7 +2,7 @@
 title: Non-Deficit Action Drives — Architectural Family
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 5
+nav_order: 6
 ---
 
 # Non-Deficit Action Drives — Architectural Family

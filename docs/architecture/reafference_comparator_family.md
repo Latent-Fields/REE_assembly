@@ -2,7 +2,7 @@
 title: Reafference Comparator Family
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 8
+nav_order: 9
 ---
 
 # Reafference Comparator Family

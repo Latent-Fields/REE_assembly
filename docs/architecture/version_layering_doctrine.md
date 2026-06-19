@@ -2,7 +2,7 @@
 title: "Version-Layering Doctrine: V3 Primacy"
 parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 ---
 
 # Version-Layering Doctrine: V3 Primacy
