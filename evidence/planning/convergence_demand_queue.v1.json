@@ -153,6 +153,29 @@
       "in_flight": "session convergence-cdq005-muzero-reanalyze-20260619T1856Z (Register DONE 2026-06-19)",
       "registered_candidate_claims": ["MECH-443", "MECH-444"],
       "last_known_state_note": "COMPLETED 2026-06-19 (session convergence-cdq005-muzero-reanalyze-20260619T1856Z). Register step executed: the MuZero/EfficientZero reanalyze intake (sources/muzero/, COMPLETED) pulled through to two registered candidate claims that EXTEND the already-owned MECH-319 binary simulation-mode rule-write gate (V3-EXQ-628 PASS/supports) -- NON-DUPLICATIVE: MECH-319 = WHETHER the replay channel is open; the new pair = the GRADED layer. MECH-443 (priority_weighted_replay_write_selection -- which/how-strongly admitted replayed transitions write, weighted by an update-utility/surprise/value-error proxy; MuZero/EfficientZero prioritized-replay analog) + MECH-444 (staleness_gated_target_refresh_on_replay_write -- recompute the write target against the current model before it updates the rule layer; MuZero reanalyze analog, the more speculative leg). Both candidate/substrate_ceiling/generation v3/v3_pending, each with a falsifier, depends_on MECH-319/MECH-094/MECH-312/ARC-062 (443) + MECH-319/MECH-443/MECH-094 (444); arch stub docs/architecture/prioritized_replay_write_gating.md. Biology /lit-pull BEFORE registering (SD-003/SD-010-011 discipline): evidence/literature/targeted_review_replay_prioritization_mech_319/, 5 sources, SYNTHESIS verdict SUPPORTED-with-refinement -- replay is demonstrably PRIORITIZED not uniform (Mattar & Daw 2018 gain x need; Olafsdottir 2015; Haga & Fukai 2018 write-gating; Milstein 2022 substrate availability) with the LOAD-BEARING refinement (Carey et al. 2019) that priority is update-utility, NOT reward magnitude. Promotion packet CPKT-MUZERO-REANALYZE-20260619 written + VALID + GATE-READY (handoff/packets/outbox/2026-06-19_cpkt_muzero_reanalyze.json). GAP-K node convergence_2026_06_19 note added (status/owner_exq/unblocks_claims UNCHANGED; last_updated bumped). PROMOTES NOTHING; off the V3 critical path. The actual cross-repo handoff RUN of the packet is left to the Convergence Demand Pipeline HANDOFF-REACTIVATE node (separate session)."
+    },
+    {
+      "row_id": "CDQ-006",
+      "target_nodes": [
+        "behavioral_diversity_isolation:GAP-B"
+      ],
+      "mechanism_gap": "Resolve the ONE open design fork MECH-442 left for the behavioral-descriptor committed-selection archive: descriptor choice (first-action class vs e2.world_forward strategy signature) + niche discretisation + standing-vs-per-tick archive scope, for REE's SMALL DISCRETE-ACTION PER-TICK INNER-LOOP selection (NOT QD's outer-loop population search). This is a DESIGN-RESOLUTION query (resolve a fork for the already-registered MECH-442), not a new-claim intake; a follow-on to CDQ-003.",
+      "external_sources": [
+        {
+          "name": "Quality-Diversity / MAP-Elites variants",
+          "angle": "CVT-MAP-Elites (Vassiliades 2018, niche discretisation) / CMA-ME + archive distillation (Fontaine 2020, per-niche elite insertion) / illumination-vs-optimization framing (Pugh/Soros/Stanley 2016); which variant's archive/insertion mechanism survives transplant into a per-tick inner loop (QD-LIM-001)",
+          "intake_state": "NEW",
+          "path": "REE_convergence/sources/quality-diversity/"
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "LOW",
+      "generation": "v3",
+      "generation_basis": "behavioral_diversity_isolation:GAP-B is a V3 closure node; MECH-442 is generation:v3 / substrate_conditional. OFF the V3 critical path (blocks no closure node).",
+      "blocks_v3_critical_path": false,
+      "in_flight": "session mech442-convergence-query-and-689successor-20260619T1920Z (query brief written 2026-06-19)",
+      "registered_candidate_claims": [],
+      "last_known_state_note": "NEW 2026-06-19. Routed Q1 from the MECH-442 decide-to-build packet (evidence/planning/mech_442_decide_to_build_2026-06-19.md, verdict (b) DESIGN GAP). The decide-whether-to-build audit found every archive design parameter SETTLED (per-niche-elite F-safety envelope = top-k guarantee; coverage-commit rule = MECH-341 stratified+entropy; MECH-313 pairing built) EXCEPT the descriptor + niche-resolution + standing-vs-per-tick fork -- which is exactly the QD intake's own unresolved probes QD-Q-001 / QD-P-002 / QD-LIM-001 (see sources/quality-diversity/comparison_table.md + integration_deltas.md QD-DELTA-002/004). Query brief: REE_convergence/sources/quality-diversity/2026-06-19_descriptor_variant_query.md (three sub-questions SQ1 descriptor / SQ2 discretisation / SQ3 standing-vs-per-tick + candidate-variant table + the MECH-442 falsifier the answer must predict). Indirect support from V3-EXQ-689 (2026-06-19): the cheaper F-gap-keyed alternative (MECH-439 conflict-grade) self-routed substrate_not_ready_requeue (gap_spread_seeds=0, F-gap monostrategy-pinned) -- a behavioral-descriptor partition is ORTHOGONAL to F-rank, so it does not depend on F-gap spread. REGISTERS NO new claims (MECH-442 already exists). Build stays gated on the MECH-439 689-successor (decision packet Q2). NOT YET HANDED to the convergence pipeline Sense/Mine loop -- this row is the demand; the plan-doc Section-4 mirror is left to the next convergence HANDOFF/governance reconcile (append-only demand-queue row landed first to avoid racing the active convergence sessions)."
     }
   ]
 }
