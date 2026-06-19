@@ -1,0 +1,112 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T14:23:23Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "corroborates": ["2026-05-25_sd_032_baseline_contamination_cluster.md", "failure_autopsy_V3-EXQ-455a_2026-05-25"],
+  "targets": [
+    {
+      "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+      "queue_id": "V3-EXQ-445h",
+      "claim_ids": ["SD-032b"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "missing (committed-action diversity ARC-065/MECH-439)",
+        "implementation": "complete (bias 2.0 applied; harm_a_forward_r2 ~0.94)",
+        "environment": "adequate",
+        "measurement": "misleading (c2 entropy-differential floor-locked by monostrategy)",
+        "integration": "partially coupled (bias reaches E3 but drowned at F-dominated argmin)",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC/aMCC adaptive control",
+        "dependencies": ["Shackman 2011 adaptive control", "Shenhav 2013 EVC", "Seymour 2019 precision-weighted pain", "Baliki 2010 ACC-NAc"],
+        "is_formal_import": false,
+        "divergence": "none at mechanism level; the test design is degenerate, not the claim",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "All V3-EXQ-445-series c2 evidence is non-contributory -- the committed-action-entropy criterion (|entropy_ON-entropy_OFF|>=0.1) is floor-locked by the pre-conversion-ceiling monostrategy (action_class_entropy=0.0 in every arm incl OFF control; F-dominance V3-EXQ-571). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied precision-weighted conflict bias cannot move committed action until ARC-065 GAP-A / MECH-439 demonstrate committed-action diversity. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "modulatory-bias-selection-authority",
+        "title": "committed-action diversity (already in flight: ARC-065 GAP-A top-k / MECH-439 conflict-grade)",
+        "implementation_hint": "No new substrate entry. SD-032b's c2 retest is a downstream beneficiary of the committed-action-diversity conversion work already tracked under modulatory-bias-selection-authority / ARC-065 GAP-A (V3-EXQ-569i PASS) and MECH-439 (V3-EXQ-689 queued). Queue the SD-032b c2 retest once that conversion is demonstrated.",
+        "unblocks_claims": ["SD-032b"],
+        "depends_on_unresolved": ["ARC-065 (GAP-A committed-action diversity)", "MECH-439 (F-dominance conflict-grade)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+          "experiment_type": "v3_exq_445h_sd032b_dacc_reef",
+          "metric": "c2 |entropy_ON-entropy_OFF| floor-locked at 0 (action_class_entropy=0.0 all arms incl OFF control)",
+          "target": "non-zero committed-action entropy differential on a GAP-A-converted substrate"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "dACC-analog substrate is functional but subordinate to the F-dominated committed argmin (conversion ceiling).",
+        "Behavioural-shift (committed-action entropy) criteria are degenerate on any pre-conversion-ceiling substrate -> whole 445-series c2/c3 non-contributory.",
+        "The 2026-05-25 cluster note's structured-field recommendation was never applied; the contaminated weakens/mixed had dragged SD-032b exp_conf down for ~6 weeks -- now applied."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+      "queue_id": "V3-EXQ-445h",
+      "claim_ids": ["MECH-258"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {"claim_alignment": "strengthened", "biological_reference": "clear", "prerequisites": "present", "implementation": "complete", "environment": "adequate", "measurement": "adequate", "integration": "coupled", "scale": "adequate"},
+      "biological_reference": {"closest_mechanism": "E2_harm_a precision-weighted pain PE forward model", "dependencies": ["Seymour 2019", "Chen 2023 AIC unsigned PE"], "is_formal_import": false, "divergence": "none", "lit_status": "present"},
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "c1 (harm_a_forward_r2 ~0.94, 2/3 seeds) is a genuine, entropy-independent support. MECH-258 exp_conf 0.89 (confirmed_established). The only hold on promotion is the governance v3_pending gate -- NOT missing evidence and NOT a fixed SD-032b validation.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["MECH-258 already has the evidence its promotion needs; 'blocked on V3 evidence' framing is incorrect -- it is blocked on the governance gate."],
+      "routing": "governance-promotion-review"
+    },
+    {
+      "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+      "queue_id": "V3-EXQ-445h",
+      "claim_ids": ["MECH-260"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {"claim_alignment": "intact", "biological_reference": "clear", "prerequisites": "missing (committed-action diversity)", "implementation": "complete", "environment": "adequate", "measurement": "misleading (c3 entropy>= vacuously true at 0>=0)", "integration": "partially coupled", "scale": "adequate"},
+      "biological_reference": {"closest_mechanism": "dACC bias suppression against recency (Scholl/Kolling 2015)", "dependencies": ["SD-032b"], "is_formal_import": false, "divergence": "none", "lit_status": "present"},
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "c3 (entropy_ON>=entropy_OFF) PASS is vacuous (0.0>=0.0 under monostrategy) -- excluded as degenerate across the 445-series. MECH-260 status unaffected (exp_conf 0.799 confirmed_established, driven by V3-EXQ-463). Already carries substrate_ceiling + pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["A monostrategy PASS is as contaminated as a monostrategy FAIL; symmetric exclusion avoids illusory conflict resolution."],
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T002953Z_v3",
+      "queue_id": "V3-EXQ-445h",
+      "claim_ids": ["ARC-058"],
+      "failed_criterion": "not_tested",
+      "four_layer_diagnosis": {"claim_alignment": "untested", "biological_reference": "clear", "prerequisites": "n/a", "implementation": "complete", "environment": "adequate", "measurement": "absent (shared-trunk arm not run)", "integration": "n/a", "scale": "n/a"},
+      "biological_reference": {"closest_mechanism": "shared HarmForwardTrunk + per-stream head (Horing & Buchel 2022)", "dependencies": ["MECH-258", "ARC-033"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "ARC-058 is NOT tagged in 445h (which ran only OFF vs ON_INDEPENDENT, the ARC-033 independent path). exp_conf 0.0, untested. 445h does not unblock it; ARC-058 needs a dedicated shared-trunk-vs-independent arm.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": ["445f->445h reef lineage dropped the shared-trunk arm that the original 445 3-arm ablation carried; ARC-058 has no V3 experimental evidence."],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "OFF-arm action_class_entropy = 0.0 across the entire V3-EXQ-445 series (11 SD-032b manifests); every entropy-based discrimination criterion (c2, c3) is floor-locked / vacuous.",
+    "is_independent_bugs": false,
+    "structural_property": "the SD-032 dACC cluster was tested under a pre-conversion-ceiling monostrategy regime in which the OFF arm could not produce behaviourally diverse rollouts; the substrate-under-test cannot break monostrategy because committed-action diversity (ARC-065 GAP-A / MECH-439) is upstream and unsolved.",
+    "readings": ["substrate_ceiling", "test_design_ceiling"]
+  }
+}

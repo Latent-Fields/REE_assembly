@@ -1,0 +1,59 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_445g_sd032b_dacc_reef",
+  "run_id": "v3_exq_445g_sd032b_dacc_reef_20260505T223845Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-05-05T22:38:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-032b",
+    "MECH-258",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-032b": "does_not_support",
+    "MECH-258": "supports",
+    "MECH-260": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "non_degenerate_per_claim": {
+    "SD-032b": false,
+    "MECH-260": false
+  },
+  "pending_retest_after_substrate_per_claim": [
+    "MECH-260",
+    "SD-032b"
+  ],
+  "degeneracy_reason": "c2_sd032b (|entropy_ON-entropy_OFF|>=0.1) and c3_mech260 (entropy_ON>=entropy_OFF) are floor-locked by monostrategy: action_class_entropy=0.0 across every seed and arm (incl OFF control), so the entropy-differential criterion can never fire and the entropy>= criterion is vacuously true (0>=0). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied bias cannot move committed action under the F-dominance conversion ceiling (V3-EXQ-571; diversity must act at/after E3 scoring). Not a weakening of SD-032b nor genuine support for MECH-260; non-contributory pending the ARC-065/MECH-439 committed-action-diversity substrate. MECH-258 c1 (forward-model R2) is entropy-independent and remains contributory. Autopsy: failure_autopsy_V3-EXQ-445h_2026-06-19; corroborates failure_autopsy_V3-EXQ-455a_2026-05-25."
+}
