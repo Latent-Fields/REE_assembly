@@ -17,11 +17,12 @@ GOV-HEALTH-1 asserts a bright line:
 > No patient-identifiable data in public repos; no identifiable human data
 > without a DPIA-style protocol.
 
-REE is developed by a consultant psychiatrist (HSE Ireland), and the REE repos
-are **public** on GitHub under `github.com/Latent-Fields`. Until now that line
-was **asserted** in the claim register and the ethics-perimeter plan, but never
-**verified** against what is actually published. This audit closes that gap by
-inspecting the git-tracked (i.e. published) content of every public REE repo.
+REE is developed by a consultant psychiatrist (HSE Ireland) under the
+`github.com/Latent-Fields` org. Until now the bright line was **asserted** in the
+claim register and the ethics-perimeter plan, but never **verified** against what
+is actually published. This audit closes that gap by inspecting the git-tracked
+content of every REE repo and (critically) **verifying each repo's actual GitHub
+visibility via the API** rather than assuming it from the namespace.
 
 This is a verification pass. The bright line itself is the policy; this document
 is evidence that the policy holds in practice as of the date above.
@@ -30,40 +31,48 @@ is evidence that the policy holds in practice as of the date above.
 
 ## 2. Scope
 
-**Published surface = git-tracked files only.** The audit deliberately respects
-`.gitignore` and ignores the untracked working tree, because the governance
-concern is what is *published*, not what sits locally. All nine repos below
-share the same public remote namespace (`github.com/Latent-Fields/<repo>.git`):
+**Published surface = git-tracked files in the PUBLIC repos.** The audit respects
+`.gitignore` and ignores the untracked working tree (the governance concern is
+what is *published*). Visibility was checked via `gh repo view --json visibility`
+on 2026-06-19T16:22Z -- **not assumed from the namespace.** Nine repos exist
+under the org; **five are public, four are private:**
 
-| Repo | Public remote | Tracked files |
-|------|---------------|---------------|
-| REE_assembly | Latent-Fields/REE_assembly | 16,520 |
-| ree-v3 | Latent-Fields/ree-v3 | 1,335 |
-| ree-v2 | Latent-Fields/ree-v2 | 4,037 |
-| ree-v1-minimal | Latent-Fields/ree-v1-minimal | 136 |
-| REE_convergence | Latent-Fields/REE_convergence | 274 |
-| REE_OpenClaw | Latent-Fields/REE_OpenClaw | 83 |
-| ree-experiments-lab (archived) | Latent-Fields/ree-experiments-lab | 471 |
-| REE_Working (umbrella) | Latent-Fields/REE_Working | 61 |
-| Strategy | Latent-Fields/Strategy | 24 |
+| Repo | Visibility | Tracked files | In GOV-HEALTH-1 scope |
+|------|-----------|---------------|------------------------|
+| REE_assembly | **PUBLIC** | 16,520 | yes (primary) |
+| ree-v3 | **PUBLIC** | 1,335 | yes |
+| ree-v2 | **PUBLIC** | 4,037 | yes |
+| ree-v1-minimal | **PUBLIC** | 136 | yes |
+| REE_OpenClaw | **PUBLIC** | 83 | yes |
+| REE_convergence | private | 274 | scanned (defence-in-depth) |
+| ree-experiments-lab (archived) | private | 471 | scanned (defence-in-depth) |
+| REE_Working (umbrella) | private | 61 | scanned (defence-in-depth) |
+| Strategy | private | 24 | scanned (defence-in-depth) |
 
-Total: ~22,940 tracked files searched.
+The **public surface that GOV-HEALTH-1's "no patient data in public repos" line
+actually governs is the five PUBLIC repos** (~22,100 tracked files). The four
+private repos were scanned anyway as defence-in-depth (a private repo can be
+flipped public, or a member added) -- all clean. Total searched: ~22,940 tracked
+files.
 
-> **Coverage note (added 2026-06-19T16:22Z).** `Strategy/` is a **separate,
-> independent public repo** nested inside the `REE_Working` working tree. From
-> the umbrella's `git status` it appears merely as an untracked directory
-> (`?? Strategy/`), so the first pass mis-filed it as an unpublished local draft.
-> It is in fact published at `Latent-Fields/Strategy` (`main`, in sync with
-> origin) and was therefore brought into scope and searched. It holds the
-> project's strategy / funding / governance / outreach planning docs. **Result:
-> CLEAN** -- the only email is a generic organisational funding address
-> (`funds@effectivealtruism.com`); the `outreach/` collaborator and
-> organisation files are empty templates (`(Names / notes)` placeholders) with
-> no real personal data; no phones, clinical identifiers, case narratives, or
-> secrets. If real collaborator contact details are ever added to those outreach
-> logs, note that the repo is **public** -- keep personal contact data out of
-> it (GDPR minimisation), consistent with GOV-HEALTH-1's public-repo-exclusion
-> principle generalised from patient data to personal data.
+> **Correction (2026-06-19T16:22Z).** An earlier draft of this audit asserted
+> that all of these repos were public "because they share the `Latent-Fields`
+> namespace." That assumption was **wrong** and was replaced with an API
+> visibility check -- precisely the unverified-assertion failure mode this audit
+> exists to retire. `REE_convergence`, `ree-experiments-lab`, the `REE_Working`
+> umbrella, and `Strategy` are **private**. `Strategy` in particular is a
+> *separate* private repo (its README states it is "intentionally private");
+> it merely appears as an untracked dir (`?? Strategy/`) from the umbrella's
+> `git status` because it is a nested independent repo. It holds candid
+> strategy / funding / outreach planning material and is correctly private.
+>
+> **Strategy scan result: CLEAN** -- the only email is a generic organisational
+> funding address (`funds@effectivealtruism.com`); the `outreach/` collaborator
+> and organisation files are empty templates (`(Names / notes)` placeholders);
+> no phones, clinical identifiers, case narratives, or secrets. Because it is
+> private, collaborator contact details added there in future are not a
+> public-exposure issue -- but keep the repo private and apply GDPR minimisation
+> regardless.
 
 **Out of scope (by design):** the project's legitimate synthetic / abstract use
 of terms like *harm*, *suffering*, *psychiatric*, *patient*, *care*, *repair* in
@@ -131,12 +140,13 @@ repo (no person-level data tables published).
 
 ### Conclusion
 
-> As of 2026-06-19, the public-tracked content of all nine REE repositories
-> contains **no patient-identifiable data, no real clinical notes/transcripts,
-> no real names tied to health context, no referral or service data, no
-> identifiable human-subject free text, and no leaked secrets.** GOV-HEALTH-1's
-> "no patient data in public repos" bright line is **verified to hold** at the
-> current HEAD of every repo.
+> As of 2026-06-19, the git-tracked content of all nine REE repositories -- the
+> five **public** ones that GOV-HEALTH-1 governs and the four private ones
+> scanned as defence-in-depth -- contains **no patient-identifiable data, no real
+> clinical notes/transcripts, no real names tied to health context, no referral
+> or service data, no identifiable human-subject free text, and no leaked
+> secrets.** GOV-HEALTH-1's "no patient data in public repos" bright line is
+> **verified to hold** at the current HEAD of every repo.
 
 This is the expected and hoped-for outcome: REE is a synthetic research
 substrate, and the published material is theory, code, claims, governance, and
@@ -161,7 +171,7 @@ literature synthesis -- not human data.
   clinical vignettes. They are not tracked in any repo, so they remain
   unpublished; the same check should be re-confirmed before any future
   `git add`. (Note: `Strategy/` was originally listed here in error -- it is a
-  *separate public repo*, not an unpublished draft; it has been moved into the
+  *separate, private repo*, not an unpublished draft; it has been moved into the
   audited-repo table in Section 2 with its own CLEAN result.)
 - **Vocabulary is not data.** This audit intentionally does not flag the
   thousands of legitimate uses of clinical/affective vocabulary in REE's
