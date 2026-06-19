@@ -57,6 +57,13 @@ SUBSTRATE_CLAIM_TYPES = {
     "architecture_hypothesis",
 }
 
+# Substrate-ceiling park marker (warn-only). A `substrate_ceiling` claim may
+# carry `ceiling_decision: deferred` to tell the governance Step 6a-v audit
+# (scripts/check_substrate_ceiling_audit.py) the build-decision is deliberately
+# parked -- the ceiling is NOT an orphan awaiting a substrate-design owner. When
+# set it must be a known value AND carry a `ceiling_routing_note` (reason + date).
+VALID_CEILING_DECISIONS = {"deferred"}
+
 # Statuses that count as terminal-positive for the flag-drift check.
 # 'implemented' is included per 2026-04-17 governance decision: SD-005 and other
 # 'implemented' substrates are wired into the codebase and should not trigger
@@ -201,6 +208,30 @@ def main():
                 f"{sorted(VALID_EPISTEMIC_CATEGORIES)} (indexer will fall back "
                 "to inference for invalid values)"
             ))
+
+    # Substrate-ceiling park marker (warn-only). `ceiling_decision`, when set,
+    # must be a known value and must be paired with a `ceiling_routing_note`
+    # (reason + date) so the Step 6a-v audit's "parked, not orphaned" exclusion
+    # is auditable rather than silent. The audit script tolerates a bare marker
+    # (treats any `ceiling_decision: deferred` as parked); these warns keep the
+    # registry honest. See scripts/check_substrate_ceiling_audit.py.
+    for c in claims:
+        cd = c.get("ceiling_decision")
+        if cd is None or not str(cd).strip():
+            continue
+        cid = c.get("id", "<unknown>")
+        cd_norm = str(cd).strip().lower()
+        if cd_norm not in VALID_CEILING_DECISIONS:
+            all_issues.append((
+                "WARN",
+                f"{cid}: ceiling_decision='{cd}' invalid; must be one of "
+                f"{sorted(VALID_CEILING_DECISIONS)} (audit treats any non-empty "
+                "value as parked)"))
+        if not str(c.get("ceiling_routing_note", "") or "").strip():
+            all_issues.append((
+                "WARN",
+                f"{cid}: ceiling_decision set but no `ceiling_routing_note` "
+                "-- record the park reason + date for the Step 6a-v audit trail"))
 
     # Epistemic-stance split (warn-only). An explicit `epistemic_stance` must be
     # one of shown|believed|asked (else build_claims_json falls back to the
