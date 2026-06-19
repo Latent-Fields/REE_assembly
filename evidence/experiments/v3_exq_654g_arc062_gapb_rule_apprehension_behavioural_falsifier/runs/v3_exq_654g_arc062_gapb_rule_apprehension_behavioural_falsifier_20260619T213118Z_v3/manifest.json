@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier",
+  "run_id": "v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier_20260619T213118Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-19T21:31:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-309",
+    "ARC-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "shared_selection_authority_conversion_ceiling_route_implement_substrate",
+    "preconditions": [
+      {
+        "name": "committed_class_axis_exercisable_both_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in BOTH arms. SAME-statistic family as C2 (class multiplicity bounds class entropy).",
+        "control": "SP-CEM multi-class candidate pool, both arms",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_divergence_both_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in BOTH arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.",
+        "control": "ARM_OFF + ARM_ON: SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.079757,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_bounded",
+        "kind": "readiness",
+        "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all cells",
+        "measured": 0.289286,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "arm_on_rule_field_differentiated_and_matured",
+        "kind": "readiness",
+        "description": "ARM_ON CandidateRuleField minted >= CRF_MIN_MINTED distinct rules AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P2 ticks (the crf_persist-matured pool clears the 0.30 floor the 654 per-episode cold-start could not), on a majority of ARM_ON seeds. Below-floor => substrate not matured => substrate_not_ready_requeue.",
+        "control": "ARM_ON crf frac-active (matured pool) + crf_n_minted_total",
+        "measured": 0.942214,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity_arm_on_bias_differs_from_arm_off",
+        "kind": "readiness",
+        "description": "paired-by-seed |mean_lateral_pfc_bias_abs(ARM_ON) - mean_lateral_pfc_bias_abs(ARM_OFF)| > floor on a majority of seeds. The trained head + matured field produce a DIFFERENT bias than the legacy collapsed source -- the 654 seed-42 byte-identical (~4.4e-5) propagation washout did not recur. Below-floor => vacuous propagation => substrate_not_ready_requeue (do NOT score the falsifier). Supported by the within-ARM_ON rule_state counterfactual delta (zeroing rule_state changes the bias).",
+        "control": "paired ARM_ON vs ARM_OFF mean lateral_pfc bias on the matched stack",
+        "measured": 0.04685226,
+        "threshold": 0.001,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_committed_class_entropy_lift",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a_class_axis_exercisable": true,
+      "C1b_gapa_divergence": true,
+      "C1c_arm_on_differentiated_matured": true,
+      "C1d_propagation_non_vacuity": true,
+      "C1d_within_arm_on_rule_state_counterfactual_nonzero": true,
+      "C2_paired_lift": false
+    }
+  }
+}
