@@ -99,6 +99,80 @@ Replace the fixed `modulatory_shortlist_k=3` (e3_selector.py top-k block ~1148-1
 
 **Net:** the campaign's V3 answer is the conflict-graded shortlist; F-variance rebalancing (divisive normalization) is the V4 direction for if/when the structural bound proves it caps committed diversity below the proposer ceiling.
 
+---
+
+# Campaign Status & Action Ladder (living tracker)
+
+> This section is the **resume primitive** for the MECH-439 F-dominance front. Phase 0 (root
+> disambiguation) and Phase 1 (biology fork) above are point-in-time analyses; this section tracks
+> where the campaign *is* and what fires next. Owned by closure node
+> `behavioral_diversity_isolation:GAP-I` + substrate-queue entry `f_dominance_conversion_ceiling`.
+> Keep `last_updated` current when the experiment chain advances.
+
+**Last updated:** 2026-06-19T22:02Z (f-dominance-front-standup) · **Owner experiment:** V3-EXQ-689a · **Claim:** MECH-439 (candidate; governance flips on the 689a result)
+
+## Where the campaign is
+
+| Item | State |
+|---|---|
+| Root disambiguation (Phase 0) | **DONE** — four roots; B (F-dominance) is the live root |
+| Biology fork (Phase 1) | **DONE** — structural BOUNDING wins, not F-variance rebalancing |
+| Lead lever implementation | **BUILT** — `e3_selector.py` `_gap_scaled_commit_pick` (~L745) + conflict-graded top-k block (~L1110-1210); both renderings of the BG hyperdirect conflict-grade |
+| Discriminating experiment | **QUEUED + CLAIMED** — V3-EXQ-689a (prio 400; claimed DLAPTOP-4.local 2026-06-19T20:25Z; supersedes 689) |
+| Downstream retests | **GATED** — held until this node closes (see registry below) |
+
+## Action ladder (current position: RUNG 1, in validation)
+
+Each rung fires only if the rung above it is refuted by its own experiment.
+
+1. **conflict_graded_shortlist + gap_scaled_commit_T** — V3, BUILT, **in validation via 689a**.
+   `k = clamp(round(k_max-(k_max-1)*gap_norm), 1, K)` bounds the eligible set (hard safety) +
+   `T_eff = base + alpha*(1-gap_norm)` softens the committed argmax. F gates eligibility only,
+   absent from the final argmin. **Falsifier:** the lift must be *gap-concentrated* — ARM_A1B1
+   (gap-scaled both) strict-above BOTH gap-blind controls (ARM_FIXED_KMAX + ARM_FIXED_HOT_T) on
+   committed-class entropy ≥2/3 seeds. Non-vacuity: k or T_eff must actually vary across ticks AND
+   the pool must be divergent (else top-k over a class-uniform pool is vacuous → `substrate_not_ready_requeue`).
+2. **rank_preserving_F_to_eligibility_demotion** — V3, fallback if rung-1's margin stays thin / the
+   lift is uniform (gap-blind controls match). F removed from the final argmin entirely; used only as
+   a graded eligibility envelope. (Build owed only if reached.)
+3. **divisive_normalization (pooled-denominator)** — V4-leaning; the V3-tractable std-basis additive
+   form already FAILED 569h. Recouped to V3 if the structural bound caps committed entropy below the
+   proposer ceiling (phase-label-follows-dependency).
+4. **output_null preparatory subspace** — V4; needs a learned candidate subspace orthogonal to the
+   F-readout (Kaufman/Churchland/Shenoy 2014). Recoupable.
+5. **cross_tick quality_diversity archive (MAP-Elites, CDQ-003)** — V4; persistent niche store.
+   Within-pool form already exists (MECH-341 stratified_select).
+
+## 689a result → routing (pre-registered)
+
+| 689a outcome | Reading | Action |
+|---|---|---|
+| ARM_A1B1 strict-above BOTH gap-blind controls ≥2/3, lift gap-concentrated | conflict-grading is load-bearing | MECH-439 candidate→**supports**; ceiling lifted; **release the downstream retests** (registry below) |
+| Lift UNIFORM (gap-blind controls match ARM_A1B1) | "just a bigger shortlist" | escalate **rung 2** (rank_preserving_F_to_eligibility_demotion) |
+| NO lift (ARM_A1B1 ≈ collapsed controls) | structural bound caps below proposer ceiling | escalate **rung 3+** (divisive-norm / output-null / QD-archive), recouped to V3 |
+| Non-vacuity floor miss (k/T_eff flat, or pool not divergent) | test could not run | `substrate_not_ready_requeue` — re-queue, NOT a verdict |
+
+## Downstream-unblock registry (what releases when GAP-I closes)
+
+Every one of these is currently blocked at the shared F-dominated selector and **must not be
+re-queued on the current selector** (they will re-confirm the ceiling). They release on a 689a PASS.
+
+| Retest | Claim(s) | Owner / note |
+|---|---|---|
+| arc_062:GAP-B **654h** | MECH-309, ARC-062 | pre-registered (failure_autopsy_V3-EXQ-654g_2026-06-19); GAP-B committed-class-entropy falsifier re-run after the ceiling lifts |
+| **485i** OFC behavioural | MECH-263, SD-033b | deferred (failure_autopsy_V3-EXQ-485h_2026-06-19); route OFC bias through the validated channel |
+| **445h-successor** dACC c2 | MECH-260 (+ dACC) | gated (claims.yaml MECH-269 ceiling_routing_note); committed-action-entropy shift floor-locked until conversion exists |
+| **625e** SD-037 axis-b | SD-037, MECH-280, MECH-281 | R3/R4 conversion-propagation-under-threat gate (in flight; self-routes substrate_not_ready until conversion lands) |
+| **687-successor** GAP-C | Q-045, MECH-313, MECH-260 | inherited the un-converted GAP-A ceiling by construction (failure_autopsy_V3-EXQ-687_2026-06-18) |
+
+## Operational note (actionable now)
+
+689a is the **highest-priority** queued experiment (prio 400) but is **claimed by the Mac**
+(DLAPTOP-4.local), the dispreferred runner — all three cloud workers are busy (cloud-1 468f,
+cloud-2 625e, cloud-4 460h). If a cloud worker frees up before 689a completes, prefer re-routing it
+to cloud (wake a worker / release the Mac claim) per the prefer-cloud-over-laptop policy. The front
+does not advance until 689a produces a manifest.
+
 ## Phase 1 backfill (3 throttled motifs, single-agent pass 2026-06-18)
 
 The 3 motifs the workflow couldn't complete were back-filled read-only. Verdict: the standing recommendation STANDS, with one refinement — a co-primary V3 lever the synthesis never scored.

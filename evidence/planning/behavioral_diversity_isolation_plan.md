@@ -3,8 +3,8 @@ closure_plan:
   id: behavioral_diversity_isolation
   title: "Behavioural Diversity Isolation"
   registered: 2026-05-25
-  last_updated: 2026-06-17
-  scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
+  last_updated: 2026-06-19
+  scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, MECH-439, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
   sibling_plans: [arc_062_rule_apprehension, commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution]
   nodes:
     - id: "behavioral_diversity_isolation:GAP-A"
@@ -144,6 +144,18 @@ closure_plan:
       last_updated: 2026-06-16
       completion_note: "CLOSED-moot 2026-06-16 (deferred->done; deliverable obviated, no experiment owed). This node's resume trigger required GAP-D's R4 disposition to land as R4.a -- an ARM_ON >> ARM_OFF asymmetry mapping to a z_goal config-default confound rather than V_s substrate pathology. GAP-D actually closed as R4.b (V_s verisimilitude-staleness pathology confirmed; Theory 4 promoted, R4.b stamped 2026-05-29 on V3-EXQ-550 + V3-EXQ-601 diagnostic evidence). The R4.a reading the confound-check guarded against did not occur, so the dedicated z_goal-matched re-run is not needed. Marked done (resolved, not open V3-closure work) rather than deferred, since it is terminally obviated, not awaiting a trigger. REOPEN only if GAP-D's R4.b disposition is later revised to R4.a (mirrors GAP-D's own reopen clause -- if the supports-MECH-269 per-claim direction on the V3-EXQ-550 manifest is revised toward a z_goal-config reading)."
       resume_condition: "CLOSED-moot 2026-06-16. GAP-D resolved R4.b (V_s pathology), not the R4.a (z_goal config-default) reading this confound-check required; deliverable obviated. Reopen only on an R4.b->R4.a revision."
+    - id: "behavioral_diversity_isolation:GAP-I"
+      title: "F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root behind GAP-A's local conversion ceiling. The shared blocker that 3 structurally-different channels converge on (CRF rule_state 654g, OFC valuation 485h, modulatory bias 569g/682)."
+      phase: 2
+      status: in-progress
+      severity: load-bearing
+      owner_exq: "V3-EXQ-689a RAN-PENDING (queued prio 400; claimed DLAPTOP-4.local 2026-06-19T20:25Z; supersedes V3-EXQ-689 which self-routed substrate_not_ready_requeue on gap_spread 0/3). The 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier from conversion_ceiling_phase0_synthesis_2026-06-18 Phase 2/3. Lead lever BUILT (e3_selector.py _gap_scaled_commit_pick + conflict-graded top-k block); 689a is the validation, not a build."
+      unblocks_claims: [MECH-439, MECH-309, ARC-062, ARC-063, MECH-263, MECH-260, Q-045, SD-037]
+      depends_on: ["behavioral_diversity_isolation:GAP-A"]
+      substrate_queue_entry: f_dominance_conversion_ceiling
+      last_updated: 2026-06-19
+      registered_note: "Registered 2026-06-19 (f-dominance-front-standup) to give the MECH-439 F-dominance front a tracked owner -- previously only a phase0_synthesis_2026_06_18 cross-ref on GAP-A. Root taxonomy (conversion_ceiling_phase0_synthesis): A z_world-collapse MITIGATED / B F-dominance = THIS NODE / C de-commit-authority ORTHOGONAL (commitment_closure) / D CRF gate-lockout CLOSED (654f) / E within-class symptom-of-B. The conflict-grading attack ladder + downstream-unblock registry + F-variance metric trajectory live in substrate_queue.json[f_dominance_conversion_ceiling] and conversion_ceiling_phase0_synthesis_2026-06-18.md Campaign Status section. Per phase-label-follows-dependency this is generation:v3 (it blocks v3 closure nodes); if a heavier rung is required to lift it, that enrichment is recouped to V3 by definition."
+      resume_condition: "PASS (V3-EXQ-689a ARM_A1B1 gap-scaled-both strict-above BOTH gap-blind controls FIXED_KMAX+FIXED_HOT_T on committed-class entropy >=2/3 seeds, lift gap-CONCENTRATED) -> conflict-grading is load-bearing -> MECH-439 candidate->supports, ceiling lifted, governance unblocks the downstream retests (arc_062:GAP-B 654h, 485i OFC, 445h dACC c2, 625e SD-037 axis-b, 687-successor GAP-C). UNIFORM lift (gap-blind controls match ARM_A1B1) = 'just a bigger shortlist' -> escalate fallback rung 2 (rank_preserving_F_to_eligibility_demotion). NO lift (ARM_A1B1 ~ collapsed controls) = structural bound caps below proposer ceiling -> rung 3+ (divisive-norm/output-null/QD-archive, recouped to V3). substrate_not_ready_requeue (non-vacuity floor miss: k/T_eff not varying, or pool not divergent) -> re-queue, NOT a verdict. Do NOT queue any downstream behavioural retest (654h/485i/445h) on the current selector before this node closes -- they will re-confirm the ceiling."
 ---
 
 # Behavioural Diversity Isolation Plan (REE-v3)

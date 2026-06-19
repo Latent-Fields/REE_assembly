@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "implement-460h-mech446-decommit-20260619T205707Z",
- "last_updated_utc": "2026-06-19T21:41:27Z",
+ "last_seen_session": "f-dominance-front-standup-20260619T2200Z",
+ "last_updated_utc": "2026-06-19T22:02:10Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
   "sd_id": null,
@@ -4744,6 +4744,121 @@
    "implementation_log": [
     "2026-06-19: SD-061 substrate landed (ree-v3). MECH-343 stays candidate/substrate_conditional/v3_pending (PROMOTES NOTHING). Validation experiment pending."
    ]
+  },
+  {
+   "sd_id": "f_dominance_conversion_ceiling",
+   "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion.",
+   "status": "lead_lever_built_experiment_in_flight_v3_exq_689a",
+   "ready": false,
+   "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
+   "depends_on_resolved": [
+    "behavioral_diversity_isolation:GAP-A (SD-056/ARC-065 e2_world_forward divergent pool -- Root A mitigated, the non-vacuity precondition for any F-bounding lever)",
+    "crf-availability-maintenance (Root D CRF gate-lockout CLOSED 654f -- isolates B as the residual)",
+    "modulatory-bias-selection-authority (the channel whose range reaches the accumulator but cannot move the F-dominated argmin)"
+   ],
+   "depends_on_unresolved": [
+    "V3-EXQ-689a (the 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier; queued prio 400, claimed DLAPTOP-4.local 2026-06-19T20:25Z; PASS validates the lead lever, FAIL escalates the fallback ladder below)"
+   ],
+   "unblocks_claims": [
+    "MECH-439",
+    "MECH-309",
+    "ARC-062",
+    "ARC-063",
+    "MECH-263",
+    "MECH-260",
+    "Q-045",
+    "MECH-313",
+    "SD-037",
+    "MECH-280",
+    "MECH-281"
+   ],
+   "fallback_ladder": [
+    {
+     "rung": 1,
+     "lever": "conflict_graded_shortlist + gap_scaled_commit_T",
+     "tractability": "V3 (built; e3_selector.py _gap_scaled_commit_pick + conflict-graded top-k block)",
+     "status": "BUILT, in validation via V3-EXQ-689a",
+     "note": "BG hyperdirect conflict-grade: k=clamp(round(k_max-(k_max-1)*gap_norm),1,K) bounds the eligible set (hard safety) + T_eff=base+alpha*(1-gap_norm) softens the committed argmax; F gates eligibility only, absent from the final argmin. Falsifier: lift must CORRELATE with per-tick top-F gap (gap-blind controls must NOT match), else it is 'just a bigger shortlist'."
+    },
+    {
+     "rung": 2,
+     "lever": "rank_preserving_F_to_eligibility_demotion",
+     "tractability": "V3 (mid; arithmetic restructure of the select site)",
+     "status": "fallback if rung-1 margin stays thin",
+     "note": "F removed from the final argmin entirely, used only as a graded eligibility envelope. Stronger structural variant of rung 1."
+    },
+    {
+     "rung": 3,
+     "lever": "divisive_normalization_pooled_denominator",
+     "tractability": "V4-leaning (needs per-channel score decomposition not available at the select site; the V3-tractable std-basis additive form already FAILED 569h)",
+     "status": "recoup-to-V3 if the structural bound caps committed entropy below the proposer ceiling",
+     "note": "phase-label-follows-dependency: if REQUIRED to lift a V3 closure node, recouped to V3 by definition."
+    },
+    {
+     "rung": 4,
+     "lever": "output_null_preparatory_subspace",
+     "tractability": "V4 (needs a learned candidate subspace orthogonal to the F-readout; Kaufman/Churchland/Shenoy 2014)",
+     "status": "V4 roadmap",
+     "note": "reframes WHY top-k works (a crude discrete null-space keeping F out of within-set arbitration)."
+    },
+    {
+     "rung": 5,
+     "lever": "cross_tick_quality_diversity_archive",
+     "tractability": "V4 (stateful MAP-Elites niche store; convergence CDQ-003)",
+     "status": "V4 direction",
+     "note": "within-pool form already exists as MECH-341 stratified_select; the persistent cross-tick store is the new contribution."
+    }
+   ],
+   "failure_record": [
+    {
+     "run_id": "v3_exq_571_*",
+     "experiment_type": "v3_exq_571_e3_variance_decomposition",
+     "metric": "F share of E3 committed-selection temporal variance = 0.886 baseline / 0.894 with full diversity stack (stack does not dent F's share)",
+     "target": "a lever that drops F's share below ~0.85 OR lifts committed-class entropy strict-above controls without dropping F-share (refutes the monopoly framing)"
+    },
+    {
+     "run_id": "v3_exq_569h_*",
+     "experiment_type": "v3_exq_569h_additive_authority",
+     "metric": "committed-action-class lift non-robust 1/3 seeds WITH candidate pool supra-floor (pairwise_dist 0.095, route_range 0.31) -- the rebalance lever (std-basis additive authority) failed",
+     "target": ">=2/3 seeds strict-above both controls"
+    },
+    {
+     "run_id": "v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier_20260619T213118Z_v3",
+     "experiment_type": "v3_exq_654g_arc062_gapb",
+     "metric": "CRF rule_state channel matured (crf_frac_active 0.58-0.94) + 569i top-k armed -> committed-class lift 0/3 (seed-44 ARM_ON==ARM_OFF byte-identical despite live CRF). The 569i top-k fix is CHANNEL-SPECIFIC (does not transfer from GAP-A modulatory-bias to CRF rule_state)",
+     "target": "committed-class entropy ARM_ON strict-above ARM_OFF >=2/3 after the F-dominance lift"
+    },
+    {
+     "run_id": "v3_exq_485h_*",
+     "experiment_type": "v3_exq_485h_ofc_behavioural",
+     "metric": "OFC valuation bias reaches accumulator authority 0.50 with ZERO committed conversion (2nd convergent channel)",
+     "target": "OFC bias moves committed action after the F-dominance lift"
+    }
+   ],
+   "metric_trajectory": {
+    "primary_metric": "F_share_of_E3_committed_selection_variance / committed_action_class_entropy_lift_over_gapblind_controls",
+    "primary_metric_description": "F = the primary harm/goal score. Its share of E3 committed-selection temporal variance (V3-EXQ-571) measures how much the final argmin is monopolised by one channel; the derived committed-action-class entropy lift of the conflict-graded arm over the gap-blind controls (689a) measures whether a structural bound converts per-candidate diversity to committed diversity.",
+    "direction": "lower_is_better (F-share) / higher_is_better (committed-entropy lift)",
+    "target": "V3-EXQ-689a ARM_A1B1 (gap-scaled k AND commit-T) committed-class entropy strict-above BOTH gap-blind controls (ARM_FIXED_KMAX + ARM_FIXED_HOT_T) on >=2/3 seeds, with the lift correlating with per-tick top-F gap (conflict-grading non-vacuity). Equivalently: lift strict-above both collapsed-proposer AND matched-noise on >=2/3 seeds.",
+    "observations": [
+     "V3-EXQ-571: F-share 0.886 baseline / 0.894 full-stack -- the founding measurement; the diversity stack does not move F.",
+     "V3-EXQ-569h: rebalance lever (std-basis additive authority) FAIL 1/3 with pool supra-floor -- selection-variance is the bottleneck, not pool geometry.",
+     "V3-EXQ-569i: structural-bound lever (top-k k=3) PASS 2/3, thin margin 0.711 vs 0.650 -- the structural bound works locally at near-ties; ARC-065 GAP-A local conversion closed.",
+     "V3-EXQ-654f: CRF channel reaches accumulator post-D-fix, committed entropy bit-identical ON/OFF.",
+     "V3-EXQ-654g (2026-06-19): CRF + 569i top-k armed, committed-class lift 0/3 -- the 569i top-k fix is channel-specific (does not transfer to the CRF rule_state channel). seed-44 byte-identical despite live CRF.",
+     "V3-EXQ-485h (2026-06-19): OFC valuation bias reaches authority 0.50, zero committed conversion -- 2nd convergent channel.",
+     "V3-EXQ-689: self-routed substrate_not_ready_requeue (gap_spread 0/3; F-gap pinned near-tie; per-gap-bin regression uncomputable).",
+     "V3-EXQ-689a (IN FLIGHT): redesign with gap-BLIND control arms (FIXED_KMAX + FIXED_HOT_T) so gap-concentrated-vs-uniform lift is an arm contrast (sidesteps the uncomputable per-gap-bin regression)."
+    ],
+    "prediction": "If conflict-grading is load-bearing, ARM_A1B1 lifts committed-class entropy gap-CONCENTRATED (strict-above the gap-blind controls) -> MECH-439 supports, ceiling lifted, downstream retests unblock. If the lift is UNIFORM (gap-blind controls match ARM_A1B1) -> 'just a bigger shortlist', escalate to rung 2 (rank_preserving_F_to_eligibility_demotion). If NO lift at all (ARM_A1B1 ~ collapsed controls) -> structural bound caps below proposer ceiling -> rung 3+ (divisive-norm/output-null/QD-archive), recouped to V3 by phase-label-follows-dependency."
+   },
+   "implementation_hint": "Lead lever BUILT (e3_selector.py _gap_scaled_commit_pick line ~745 + conflict-graded top-k block ~1110-1210). No further build owed at rung 1 -- the action is the EXPERIMENT (689a). On 689a result, governance routes per the fallback ladder: PASS -> MECH-439 candidate->supports + unblock the downstream retests; UNIFORM-lift -> build rung 2; NO-lift -> build a rung 3+ enrichment (recouped to V3). Downstream retests gated on a PASS: arc_062:GAP-B 654h (pre-registered), 485i OFC (deferred, route OFC bias through the validated channel), 445h dACC c2 (gated), 625e SD-037 axis-b (R3/R4 conversion-propagation gate), 687-successor GAP-C.",
+   "priority": 1,
+   "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
+   "added_session": "f-dominance-front-standup-20260619T2200Z",
+   "last_seen_session": "f-dominance-front-standup-20260619T2200Z",
+   "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork)",
+   "pending_retest_after_substrate": true
   }
  ],
  "schema_version": "substrate_queue/v2"
