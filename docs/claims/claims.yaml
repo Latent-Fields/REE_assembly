@@ -43482,6 +43482,8 @@
   version_relevance: v3
   v3_pending: true
   registered_utc: "2026-06-19"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19: build-decision deliberately DEFERRED (parked, not orphaned). Convergence-intake (CDQ-005 MuZero/EfficientZero reanalyze) forward refinement of MECH-319 replay write-gating; OFF the V3 critical path. Marker tells the Step-6a-v substrate-ceiling audit the ceiling is intentionally parked; remove to re-route to /failure-autopsy."
   depends_on:
     - MECH-319   # parent: the BINARY simulation-mode rule-write gate this grades (block-vs-admit -> priority-ordered admit)
     - MECH-094   # the hypothesis-tag write-gate principle MECH-319 instantiates; the priority signal refines the same write channel
@@ -43537,6 +43539,8 @@
   version_relevance: v3
   v3_pending: true
   registered_utc: "2026-06-19"
+  ceiling_decision: deferred
+  ceiling_routing_note: "2026-06-19: build-decision deliberately DEFERRED (parked, not orphaned). Convergence-intake (CDQ-005 MuZero/EfficientZero reanalyze) forward refinement of MECH-319 replay write-gating; OFF the V3 critical path. Marker tells the Step-6a-v substrate-ceiling audit the ceiling is intentionally parked; remove to re-route to /failure-autopsy."
   depends_on:
     - MECH-319   # the binary write gate; MECH-444 refreshes the target on the writes MECH-319 admits
     - MECH-443   # priority sibling: MECH-443 grades WHICH writes, MECH-444 grades the FRESHNESS of each write target -- they compose
