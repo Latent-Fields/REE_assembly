@@ -156,9 +156,10 @@ operational layer was registered on 2026-06-19 as the **ethics perimeter**:
 - **Plan of record:** [`evidence/planning/ethics_perimeter_plan.md`](../../evidence/planning/ethics_perimeter_plan.md)
   -- the resume primitive; indexes the eleven ethics thought-intakes, the full claim set,
   the phased rollout, and the adopted release posture.
-- **Claims:** `SENT-0 .. SENT-15` (internal artificial-welfare ethics) plus `GOV-EXT-1`,
-  `GOV-HEALTH-1`, `GOV-SEC-1`, `GOV-PROC-1` (external legibility / clinical boundary /
-  security / process), all registered in `docs/claims/claims.yaml` as
+- **Claims:** `SENT-0 .. SENT-16` (internal artificial-welfare ethics, incl. SENT-16
+  continuity/identity/reset/deletion) plus `GOV-EXT-1`, `GOV-HEALTH-1`, `GOV-SEC-1`,
+  `GOV-PROC-1`, `GOV-JUST-1` (external legibility / clinical boundary / security /
+  process / justice-and-false-exclusion), all registered in `docs/claims/claims.yaml` as
   `claim_type: governance_rule` + `epistemic_category: governance_rule`. These are
   **standing governance gates, not testable mechanisms** -- the indexer suppresses
   promote/demote/narrow for them, and they bind **progressively by version** (`v3 -> v6`),
@@ -172,11 +173,11 @@ development. Each perimeter gate has a parent in the table above:
 | Derived domain (this doc) | Operational gate (perimeter) |
 |---|---|
 | AI ethics / responsible innovation | SENT-14 (responsible release), GOV-SEC-1 (misuse gate), GOV-PROC-1 (ethics-as-process) |
-| Precautionary ethics + the *Similarity-Must-Not-Become-Exclusion* guardrail | SENT-0 / SENT-1 / SENT-5 / SENT-15 (self-directed precaution: boundary statement, indicator matrix, denial-of-sentience audit, welfare/consciousness crosswalk) |
+| Precautionary ethics + the *Similarity-Must-Not-Become-Exclusion* guardrail | SENT-0 / SENT-1 / SENT-5 / SENT-15 (self-directed precaution: boundary statement, indicator matrix, denial-of-sentience audit, welfare/consciousness crosswalk); GOV-JUST-1 (the same anti-exclusion guardrail applied to distributive justice) |
 | Research, public-health, and professional ethics | GOV-HEALTH-1 (clinical-relevance != clinical-readiness; DPIA / Belmont / Helsinki / CIOMS / WHO / MDR) |
 | Moral residue, restorative ethics, trauma-informed ethics | SENT-8 / SENT-10 / SENT-11 / SENT-12 (minimal necessary suffering; no valley without a bridge; anti-retrospective-justification; refusal / non-forgiveness channel) |
 | Transparency and accountability ethics | GOV-EXT-1 (external legibility), GOV-PROC-1 (ethics becomes process, not prose) |
-| Care ethics, intergenerational ethics, capabilities approach | SENT-7 / SENT-9 / SENT-13 (creation ethics; care obligation after creation; assembly order as an ethical variable) |
+| Care ethics, intergenerational ethics, capabilities approach | SENT-7 / SENT-9 / SENT-13 / SENT-16 (creation ethics; care obligation after creation; assembly order as an ethical variable; continuity/identity/reset/deletion ethics) |
 
 ### Coherence: GOV-EXT-1 applies to this document too
 
