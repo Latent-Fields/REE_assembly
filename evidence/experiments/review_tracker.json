@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-18T08:04:31Z",
+  "last_review_utc": "2026-06-19T14:35:27Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -3077,7 +3077,12 @@
     "v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4",
     "v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation_20260617T200433Z_v3",
     "v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3",
-    "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3"
+    "v3_exq_460f_sd034_closure_control_plane_decommit_behavioural_20260617T222759Z_v3",
+    "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061915Z_v3",
+    "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061935Z_v3",
+    "v3_exq_688_mech044_hippocampal_relational_binding_20260618T062812Z_v3",
+    "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3",
+    "v3_exq_468e_sd034_mech268_decommit_hold_behavioural_20260618T060133Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3404,6 +3409,18 @@
         "v3_exq_582a_gap3_drive_floor_sweep"
       ],
       "subject": "goal_pipeline:GAP-3 closure. V3-EXQ-582a PASS (drive_floor=0.9, A1-A4 all hold; OFF arm 0 seedings). Option 2 validated over Option 1 (582 FAIL). MECH-306 sustained_drive_trace registered candidate_substrate_landed. GAP-3 marked done; GAP-4 in-progress (Tier-1 cascade retests unblocked with drive_floor)."
+    },
+    {
+      "utc": "2026-06-19T14:35:27Z",
+      "batch": "diagnostic-adjudication-gate close-out (688/514s/468e)",
+      "summary": "Adjudicated diagnostic self-routes per proposal_diagnostic_adjudication_gate. V3-EXQ-688 (MECH-044, 3 runs, flagged precondition_unmet): self-route 'substrate_not_ready_requeue' REJECTED as untrustworthy/vacuous (un-armed use_per_stream_vs + white-noise G2) -> non_contributory, epistemic stays standard (NOT substrate_ceiling), MECH-044 UNWEAKENED (weakens=0), routed to V3-EXQ-688a (already queued). V3-EXQ-514s (MECH-436, non_contributory FAIL): clean self-route confirmed genuine substrate_ceiling (kappa_scale=6.0 short) -> amend SD-049-PHASE-2 (routed /implement-substrate), pending_retest_after_substrate=true. V3-EXQ-468e (SD-034/MECH-268/MECH-090): autopsied earlier this cycle. Autopsy artifacts: failure_autopsy_V3-EXQ-{688,514s,468e}_2026-06-18. No claims.yaml/manifest/scoring edits in this close-out.",
+      "run_ids": [
+        "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061915Z_v3",
+        "v3_exq_688_mech044_hippocampal_relational_binding_20260618T061935Z_v3",
+        "v3_exq_688_mech044_hippocampal_relational_binding_20260618T062812Z_v3",
+        "v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3",
+        "v3_exq_468e_sd034_mech268_decommit_hold_behavioural_20260618T060133Z_v3"
+      ]
     }
   ],
   "review_history": [
