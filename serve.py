@@ -1658,13 +1658,23 @@ CLOSURE_KNOWN_PLANS = [
     "deferred_by_commitment_plan.md",
 ]
 
+# Canonical closure-status weight map -- the SINGLE SOURCE OF TRUTH shared with
+# scripts/generate_closure_snapshot.py (which imports this constant so the live
+# map and the static snapshot can never report different %). None == excluded
+# from the progress denominator (deferred work is not part of "what closes v3").
+# upstream_blocked / blocked_pending_substrate are blocked variants (serve.py
+# already colours them as blocked), so they carry the same 0.1 partial credit;
+# pending_governance_stamp is work done-but-awaiting-a-stamp (0.4).
 CLOSURE_STATUS_WEIGHTS = {
     "done": 1.0,
     "partial": 0.5,
     "in_progress": 0.4,
     "in-progress": 0.4,
     "blocked": 0.1,
+    "upstream_blocked": 0.1,
+    "blocked_pending_substrate": 0.1,
     "tracked": 0.2,
+    "pending_governance_stamp": 0.4,
     "open": 0.0,
     "deferred": None,   # excluded from progress denominator
     "deferred V4": None,

@@ -42,21 +42,34 @@ DRIFT_REPORT = PLANNING_DIR / "closure_drift.md"
 # evidence/planning snapshot above is invisible there). Regenerated every run.
 DOCS_DASHBOARD = REPO_ROOT / "docs" / "closure_dashboard.md"
 
-# Mirror of serve.py CLOSURE_STATUS_WEIGHTS. None == excluded from the progress
-# denominator (deferred work is not part of "what closes v3").
-STATUS_WEIGHTS = {
-    "done": 1.0,
-    "partial": 0.5,
-    "in_progress": 0.4,
-    "blocked": 0.1,
-    "upstream_blocked": 0.1,
-    "blocked_pending_substrate": 0.1,
-    "tracked": 0.2,
-    "pending_governance_stamp": 0.4,
-    "open": 0.0,
-    "deferred": None,
-    "deferred_v4": None,
-}
+# Closure-status weights: import serve.py's CLOSURE_STATUS_WEIGHTS as the SINGLE
+# SOURCE OF TRUTH so the static snapshot and the live /api/closure map can never
+# report different % (they drifted once -- serve.py was missing upstream_blocked /
+# blocked_pending_substrate / pending_governance_stamp, zero-crediting nodes the
+# snapshot scored). `import serve` is stdlib-only and side-effect-free (~0.1s, no
+# server bind). The inline fallback keeps the snapshot self-contained if serve.py
+# is unavailable and MUST stay byte-identical to serve.py CLOSURE_STATUS_WEIGHTS.
+# None == excluded from the progress denominator (deferred is not "what closes v3").
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # repo root for `import serve`
+try:
+    from serve import CLOSURE_STATUS_WEIGHTS as STATUS_WEIGHTS
+except Exception:  # pragma: no cover - keep the snapshot self-contained
+    STATUS_WEIGHTS = {
+        "done": 1.0,
+        "partial": 0.5,
+        "in_progress": 0.4,
+        "in-progress": 0.4,
+        "blocked": 0.1,
+        "upstream_blocked": 0.1,
+        "blocked_pending_substrate": 0.1,
+        "tracked": 0.2,
+        "pending_governance_stamp": 0.4,
+        "open": 0.0,
+        "deferred": None,
+        "deferred V4": None,
+        "deferred_v4": None,
+        "deferred_v5": None,
+    }
 
 # Deferred == not required for v3 closure (excluded from the progress denominator).
 DEFERRED_STATUSES = {"deferred", "deferred_v4"}
