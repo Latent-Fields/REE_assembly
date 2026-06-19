@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-19T21:47:41Z",
+  "last_tick_utc": "2026-06-19T22:17:48Z",
   "state": "running",
   "current_exq": "V3-EXQ-468f",
   "current_exq_started_utc": "2026-06-19T18:59:49.853425+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 203.8
+    "overall_pct": 221.4
   },
-  "seconds_elapsed": 10072,
+  "seconds_elapsed": 11879,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_468f_sd034_mech268_decommit_hold_behavioural] starting (dry_run=False)",
@@ -44,7 +44,9 @@
     "verdict: FAIL seed=43 guard_pass=True coupling_nonvacuous=False within_window=True rule_bias_trained=True (contact_rate=0.1505 z_goal_at_contact=0.4330)",
     "Seed 44 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_PERSEVERATION_GRADED_DV_RETEST",
     "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4200 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.859 gate=pass"
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.859 gate=pass",
+    "[train] p0_guided seed=44 ep 130/265 mean_len=196.4 rv=0.00163",
+    "[train] hazard_avoidance seed=44 ep 170/265 median_last=103.5 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
