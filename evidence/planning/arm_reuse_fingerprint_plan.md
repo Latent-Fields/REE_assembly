@@ -1,6 +1,11 @@
 ---
 closure_plan:
   id: arm_reuse_fingerprint
+  # generation: process -- this is an infrastructure/tooling lane, not V3
+  # substrate science. It owns no scientific claims, so it is segmented out of
+  # the V3 closure % (read_closure counts only generation: v3) and rendered on
+  # the shared `process` tab alongside the convergence intake pipeline.
+  generation: process
   title: "Arm-Reuse Fingerprint (baseline-arm reuse via substrate fingerprint)"
   registered: 2026-06-10
   last_updated: 2026-06-10

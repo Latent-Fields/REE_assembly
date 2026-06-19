@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-19.2 -->
+<!-- CLOSURE_VERSION: 2026-06-19.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -513,6 +513,7 @@
     <button type="button" data-gen="v5">V5</button>
     <button type="button" data-gen="v6">V6</button>
     <button type="button" data-gen="governance" title="Governance-perimeter view: the version-orthogonal ethics/governance layer (SENT-*/GOV-* gates, ethics_perimeter_plan.md). A standing layer, not a version peer of V3-V6; excluded from the V3 closure %.">governance</button>
+    <button type="button" data-gen="process" title="Process / meta lane: cross-cutting pipelines that own no substrate science -- convergence external-inspiration intake + arm-reuse tooling. Not a version; excluded from the V3 closure %.">process</button>
     <button type="button" data-gen="deferred" title="Deferred-by-commitment parking lot: substrate deliberately not built, each with its reversal trigger.">deferred</button>
   </span>
   <span class="gen" id="gen"></span>
@@ -714,6 +715,7 @@ function renderAll() {
       isV3View() ? 'REE V3 Closure Map'
       : GEN_VIEW === 'deferred' ? 'REE Deferred-by-Commitment (parked)'
       : GEN_VIEW === 'governance' ? 'REE Governance Perimeter'
+      : GEN_VIEW === 'process' ? 'REE Process / Meta Pipelines'
       : 'REE ' + GEN_VIEW.toUpperCase() + ' Roadmap';
   }
   const ovTitle = document.querySelector('.overall .title');
@@ -722,6 +724,7 @@ function renderAll() {
       isV3View() ? 'Overall ree-v3 closure'
       : GEN_VIEW === 'deferred' ? 'Deferred-by-commitment (parking lot; excluded from every %)'
       : GEN_VIEW === 'governance' ? 'Ethics-perimeter governance layer (version-orthogonal; excluded from v3 %)'
+      : GEN_VIEW === 'process' ? 'Process / meta pipelines (intake + tooling; own no substrate science; excluded from v3 %)'
       : GEN_VIEW.toUpperCase() + ' roadmap progress (excluded from v3 %)';
   }
   document.getElementById('gen').textContent =

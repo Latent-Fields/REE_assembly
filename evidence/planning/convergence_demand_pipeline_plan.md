@@ -1,13 +1,70 @@
+---
+# Process-lane plan. generation: process keeps these nodes OUT of the V3 closure
+# % (read_closure counts only generation: v3) and renders them on the shared
+# `process` tab alongside the arm-reuse tooling lane. This pipeline owns no
+# scientific claims directly -- it TERMINATES in candidate claims registered into
+# OTHER nodes' depends_on -- so its nodes track the intake machinery, not science.
+closure_plan:
+  id: convergence_demand_pipeline
+  generation: process
+  title: "Convergence Demand Pipeline (closure-driven external-inspiration intake)"
+  registered: 2026-06-17
+  last_updated: 2026-06-19
+  scope_claims: []
+  nodes:
+    - id: "convergence_demand_pipeline:QUEUE"
+      title: "Demand queue CDQ-001..005 (Section-4 rows) + governance Step-6b Sense hook"
+      phase: 1
+      status: done
+      severity: high
+      last_updated: 2026-06-17
+      resume_condition: "First Action #1 landed 2026-06-17: convergence_demand_queue.v1.json + /governance Step-6b Sense pass"
+    - id: "convergence_demand_pipeline:LOOP"
+      title: "Sense -> Mine -> Register -> Adjudicate cadence (demand-driven, piggybacks governance)"
+      phase: 1
+      status: done
+      severity: medium
+      depends_on: ["convergence_demand_pipeline:QUEUE"]
+      last_updated: 2026-06-17
+    - id: "convergence_demand_pipeline:HIGH-DREAMCODER"
+      title: "Execute HIGH row -- DreamCoder + DreamerV3 codebook intake -> registered candidate claim (arc_062 GAP-B/K, behavioral_diversity GAP-B)"
+      phase: 2
+      status: in_progress
+      severity: high
+      depends_on: ["convergence_demand_pipeline:LOOP"]
+      resume_condition: "in flight as chip task_88e97a80; ends at a registered candidate claim wired into the target node depends_on"
+    - id: "convergence_demand_pipeline:HANDOFF-REACTIVATE"
+      title: "Re-activate the REE_convergence -> REE_assembly handoff pipeline (first packet since 2026-02-24) on the HIGH row"
+      phase: 2
+      status: open
+      severity: medium
+      depends_on: ["convergence_demand_pipeline:HIGH-DREAMCODER"]
+      resume_condition: "validates the end-to-end loop on one real stuck node before scaling to the MED rows"
+    - id: "convergence_demand_pipeline:MED-ROWS"
+      title: "Execute MED demand rows -- NoisyNet/RND exploration-floor; Quality-Diversity/MAP-Elites diversity-survives-commit"
+      phase: 3
+      status: open
+      severity: medium
+      depends_on: ["convergence_demand_pipeline:HANDOFF-REACTIVATE"]
+    - id: "convergence_demand_pipeline:LOW-MUZERO"
+      title: "Pull the COMPLETED MuZero/EfficientZero reanalyze adapter (replay write-gating, arc_062 GAP-K) through to a registered claim"
+      phase: 3
+      status: open
+      severity: low
+      depends_on: ["convergence_demand_pipeline:HANDOFF-REACTIVATE"]
+---
+
 # Convergence Demand Pipeline -- closure-driven external-inspiration intake
 
 Status: ACTIVE (plan of record)
 Created: 2026-06-17T15:11:59Z
 Activated: 2026-06-17T17:24:56Z (First Action #1 landed)
 Owner workstream: REE_convergence -> REE_assembly handoff
-Generation: meta/process (NOT a v3 closure node -- intentionally carries no
-`closure_plan` frontmatter so it does not enter the closure progress denominator)
+Generation: process (rendered on the closure map's shared `process` tab via the
+`closure_plan:` frontmatter above; still excluded from the V3 closure % because
+`read_closure` counts only `generation: v3`)
 
-> This is a process plan, not a v3 closure node. It describes how external
+> This is a process plan, not a v3 substrate node. It describes how external
 > AI-assembly projects are mined on demand to unstick *specific* open closure
 > nodes, and how that mining terminates in **registered candidate claims** in
 > `REE_assembly` rather than survey prose in `REE_convergence`.
