@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-mode-governance-engagement-20260613T0945Z",
-  "last_updated_utc": "2026-06-19T13:48:47Z",
+  "last_updated_utc": "2026-06-19T15:29:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1028,12 +1028,19 @@
         "MECH-261"
       ],
       "design_doc": "evidence/planning/commitment_closure_plan.md",
-      "failure_record": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_485g_sd033b_trained_ofc_head_behavioural_20260619T145454Z_v3",
+          "experiment_type": "v3_exq_485g_sd033b_trained_ofc_head_behavioural",
+          "metric": "C1 devaluation_selection_shift {0.001,0.0,0.010} << 0.05 margin (0/3) AND C2 between_context_selection_tv ~0 (degenerate, 0/3), with readiness MET (bias range 0.171 >= 0.05, head delta 6.32) and C3 control PASS -- genuine 0.17 bias range, zero behavioural conversion",
+          "target": "C1 devaluation_selection_shift > 0.05 beyond frozen control AND C2 between_context_tv >= 0.05 with non-degenerate separation, on >=2/3 seeds, with readiness met"
+        }
+      ],
       "implementation_hint": "Registered pre-implementation. See SD-033 parent.\n",
       "implementation_status": "implemented",
       "implemented_session": "implement-sd033b-2026-04-26",
       "implemented_utc": "2026-04-26T00:00:00Z",
-      "last_seen_session": "governance-2026-04-28T2156Z",
+      "last_seen_session": "governance-apply-485g-autopsy-20260619T1524Z",
       "metric_trajectory": {
         "direction": "context_dependent",
         "observations": [

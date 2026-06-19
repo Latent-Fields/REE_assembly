@@ -20637,7 +20637,6 @@
     [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h]: c3 (entropy_ON>=entropy_OFF) PASS is vacuous (0.0>=0.0 under monostrategy) -- excluded as degenerate across the 445-series. MECH-260 status unaffected (exp_conf 0.799 confirmed_established, driven by V3-EXQ-463). Already carries substrate_ceiling + pending_retest_after_substrate.
 
   epistemic_category: substrate_ceiling
-  pending_retest_after_substrate: true
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -21092,6 +21091,7 @@
   implementation_phase: v3
   v3_pending: false
   pending_retest_after_substrate: true
+  epistemic_category: substrate_ceiling
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
@@ -21146,6 +21146,26 @@
     proper substrate address, distinct from the subjective-valuation
     function covered by SD-033c / ARC-035 / MECH-151 / MECH-152.
   evidence_quality_note: >
+    2026-06-19 (governance-apply, failure_autopsy_V3-EXQ-485g CONFIRMED ->
+    epistemic_category substrate_ceiling): V3-EXQ-485g is the FIRST non-vacuous
+    trained-OFC-head behavioural test (485e range-starved, 485f vacuous-readiness,
+    both fixed): readiness MET (cross-candidate bias range 0.171 >= 0.05 floor,
+    2/3 seeds; head weight-delta 6.32, genuinely trained), C3 frozen-head silence
+    control PASS, but C1 devaluation shift {0.001,0.0,0.010} << 0.05 (0/3) and C2
+    between-context TV ~0 (degenerate, 0/3) -- a genuine 0.17 bias RANGE with ZERO
+    behavioural conversion. Adjudicated substrate_ceiling / non_contributory, NOT a
+    weakens: the OFC mechanism is a faithful translation (lit_conf 0.863) and was
+    not given a fair conversion test (the outcome-coupled driver supplies zero
+    anti-range gradient at low threat, and the devalued-state bias range -- the
+    decisive conversion-vs-conditioning disambiguator -- was not recorded). The
+    manifest MECH-439 F-dominance self-route is an ANALOGY to the broader
+    conversion-ceiling pattern, NOT measurable in 485g's isolated-OFC-softmax loop
+    (modulatory selection authority OFF -> F absent from this readout). Routed to
+    V3-EXQ-485h (record devalued-state + per-task-role-context bias range, close the
+    driver gap with a paired high-threat/devalued contrast, optional live-E3-selector
+    arm). Sole genuine experimental entry for SD-033b -- do not let it define exp_conf
+    (held non_contributory; conflict-ratio rec auto-resolved). Substrate_queue SD-033b
+    failure_record amended with the 485g entry.
     2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-485e CONFIRMED):
     V3-EXQ-485e (evidence-grade trained-OFC-head behavioural) FAILed
     non_contributory via its same-statistic non-vacuity gate (readiness_met=false;
@@ -22046,6 +22066,7 @@
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_substrate: true
+  epistemic_category: substrate_ceiling
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -22093,6 +22114,19 @@
     than as alternatives matches REE's model-based architecture: E2
     queries a structured task model for specific-outcome predictions.
   evidence_quality_note: >
+    2026-06-19 (governance-apply, failure_autopsy_V3-EXQ-485g CONFIRMED ->
+    epistemic_category substrate_ceiling): V3-EXQ-485g is the FIRST non-vacuous
+    trained-OFC-head behavioural test of the MECH-263 devaluation/discrimination
+    signatures: readiness MET (bias range 0.171 >= 0.05, 2/3 seeds; head trained,
+    delta 6.32), C3 control PASS, but C1 devaluation {0.001,0.0,0.010} << 0.05 (0/3)
+    + C2 between-context TV ~0 (degenerate, 0/3) -- genuine 0.17 bias range, ZERO
+    behavioural conversion. substrate_ceiling / non_contributory, NOT a weakens:
+    faithful translation (lit_conf 0.863) not given a fair conversion test (zero
+    anti-range driver gradient at low threat; devalued-state bias range -- the
+    decisive conversion-vs-conditioning disambiguator -- unrecorded). The manifest
+    F-dominance self-route is an analogy, NOT measurable in the isolated-OFC-softmax
+    loop (selection authority OFF). Routed V3-EXQ-485h disambiguating redesign. Sole
+    genuine experimental entry for MECH-263 -- do not define exp_conf.
     2026-06-11 (governance cycle #4, failure_autopsy_V3-EXQ-485e CONFIRMED):
     V3-EXQ-485e (trained-OFC-head behavioural) FAILed non_contributory via its
     same-statistic non-vacuity gate (readiness_met=false; cross-candidate bias
