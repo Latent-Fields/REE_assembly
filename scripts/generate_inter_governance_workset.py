@@ -222,7 +222,7 @@ def _strip_yaml_scalar(value: str) -> str:
 
 def _load_claims_meta() -> dict[str, dict]:
     """claim_id -> {status, claim_type, epistemic_category, invariant_type,
-    implementation_phase, version_relevance}.
+    implementation_phase, version_relevance, v3_pending}.
 
     Line-based block parser (same shape as _claim_retest_ids) so we never pay a
     full yaml.safe_load on the large registry. First occurrence of each field
@@ -231,6 +231,9 @@ def _load_claims_meta() -> dict[str, dict]:
     implementation_phase / version_relevance feed _is_deferred_beyond_v3 so the
     experiment-proposal lane can suppress claims scoped to V4+ (we work V3 until
     it is finished, then reassess the roadmap before V4 work begins).
+    v3_pending feeds _claim_v3_testable so the experiment lanes can suppress
+    claims the governance V3-pending gate ignores (R5; mirrors R1 in
+    igw_routine_tick._claim_is_v3_testable).
     """
     out: dict[str, dict] = {}
     if not CLAIMS_YAML.exists():
@@ -239,7 +242,7 @@ def _load_claims_meta() -> dict[str, dict]:
     fields: dict[str, str] = {}
     keys = (
         "status", "claim_type", "epistemic_category", "invariant_type",
-        "implementation_phase", "version_relevance",
+        "implementation_phase", "version_relevance", "v3_pending",
     )
 
     def _flush() -> None:
@@ -270,6 +273,20 @@ _EPI_SUPPRESS_PROPOSAL = {
     "derivational", "out_of_domain",
 }
 _CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
+
+# --- R5: experiment-lane testability gate -----------------------------------
+# Mirrors R1 (igw_routine_tick._claim_is_v3_testable). A /queue-experiment
+# cannot yield contributory V3 evidence for a claim the governance V3-pending
+# gate is designed to ignore, so surfacing one as a `ready` experiment-lane IGW
+# item is a structural NO-OP. R1 filters these at spawn time; R5 keeps them out
+# of the workset's `ready` set at the SOURCE, so most of what R1 would reject
+# never reaches it. Keep these two sets identical to R1's UNTESTABLE_EPISTEMIC /
+# TESTABLE_CLAIM_STATUSES. Note _EPI_SUPPRESS_PROPOSAL above is intentionally a
+# SUPERSET (adds substrate_coherence) used only by the proposal lane.
+_TESTABLE_CLAIM_STATUSES = {"candidate", "provisional"}
+_UNTESTABLE_EPISTEMIC = {
+    "substrate_ceiling", "substrate_conditional", "out_of_domain", "derivational",
+}
 
 
 def _is_deferred_beyond_v3(meta: dict | None) -> bool:
@@ -333,6 +350,38 @@ def _resolve_epistemic_category(meta: dict | None) -> str:
     if ctype in ("open_question", "question"):
         return "answer_state"
     return "standard"
+
+
+def _claim_v3_testable(cid: str,
+                       claims_meta: dict[str, dict] | None) -> tuple[bool, str]:
+    """Return (testable, reason) for one claim -- R5, mirroring R1
+    (igw_routine_tick._claim_is_v3_testable).
+
+    NOT v3-testable when claims.yaml shows v3_pending true, an untestable
+    resolved epistemic_category (substrate_ceiling / substrate_conditional /
+    out_of_domain / derivational), or a status outside {candidate, provisional}.
+    An unknown claim (absent from the registry, e.g. a regen lag) fails OPEN so
+    a registry gap never silently starves the experiment lanes -- the same
+    fail-open contract R1 uses. Keeping this in lockstep with R1 is what makes
+    R5 a source-side reduction of NO-OP spawns rather than a divergent second
+    filter.
+
+    Note: _load_claims_meta stores fields as strings (yaml scalars), so
+    v3_pending arrives as the string "true", not a bool (R1 parses real YAML and
+    sees the bool). Compare on the lowercased string accordingly.
+    """
+    meta = (claims_meta or {}).get(cid)
+    if meta is None:
+        return True, ""  # unknown -> fail open (matches R1)
+    if (meta.get("v3_pending") or "").strip().lower() in ("true", "1", "yes"):
+        return False, f"{cid} v3_pending"
+    ec = _resolve_epistemic_category(meta)
+    if ec in _UNTESTABLE_EPISTEMIC:
+        return False, f"{cid} epistemic_category={ec}"
+    st = (meta.get("status") or "").strip().lower()
+    if st not in _TESTABLE_CLAIM_STATUSES:
+        return False, f"{cid} status={st}"
+    return True, ""
 
 
 def _claims_with_experimental_evidence() -> set[str]:
@@ -639,6 +688,11 @@ def _proposed_experiments(
 
     The old version returned every proposed entry, surfacing stale proposals
     whose claim had moved on. We now skip a proposal when ANY of:
+      * (R5, 2026-06-18) the claim is not v3-testable per _claim_v3_testable --
+        the same predicate the R1 runtime backstop uses: v3_pending: true, an
+        untestable epistemic_category, or a status outside {candidate,
+        provisional}. This subsumes the old dead-status check and closes the
+        v3_pending leak that surfaced MECH-270/271/337 as ready proposals.
       * its claim's claims.yaml status is resolved/superseded/deprecated
         (e.g. Q-035 EXP-0087 -- claim already resolved),
       * its claim's resolved epistemic_category is one that promote/demote (and
@@ -697,8 +751,16 @@ def _proposed_experiments(
         if cid not in claims_meta:  # FM5: unregistered / placeholder claim id
             continue
         meta = claims_meta.get(cid) or {}
-        if (meta.get("status") or "").strip().lower() in _CLAIM_DEAD_STATUSES:
+        # R5: the same testability predicate the R1 runtime backstop uses --
+        # status in {candidate, provisional}, NOT v3_pending, epistemic_category
+        # not in the untestable set. Subsumes the old _CLAIM_DEAD_STATUSES check
+        # (candidate/provisional excludes resolved/superseded/deprecated) AND
+        # closes the v3_pending leak that surfaced MECH-270/271/337 as ready
+        # proposals (2026-06-18 audit). Mirrors igw_routine_tick.
+        if not _claim_v3_testable(cid, claims_meta)[0]:
             continue
+        # Proposal lane additionally suppresses substrate_coherence (foundational
+        # design IS the substrate -- a SUPERSET of the R1 untestable set).
         if _resolve_epistemic_category(meta) in _EPI_SUPPRESS_PROPOSAL:
             continue
         if _is_deferred_beyond_v3(meta):
@@ -1323,9 +1385,29 @@ def build_workset() -> dict:
                     f"substrate_ceiling -- awaiting substrate enrichment "
                     f"(no ready substrate_queue entry targets {cid})"
                 ]
+        # R5: hold a non-v3-testable retest target -- v3_pending, an untestable
+        # epistemic_category (substrate_ceiling / substrate_conditional /
+        # out_of_domain / derivational), or a non-candidate status. The
+        # governance V3-pending gate ignores such claims, so a headless
+        # /queue-experiment is a structural NO-OP. Keep it visible as `blocked`
+        # rather than `ready` (mirrors R1 in igw_routine_tick). A
+        # substrate_ceiling claim WITHOUT a ready substrate already carries the
+        # "awaiting enrichment" blocker set above; only add a reason when none
+        # exists yet (e.g. INV-074: substrate_ceiling WITH a ready substrate
+        # entry, which previously rendered `ready`).
+        testable, untest_reason = _claim_v3_testable(cid, claims_meta)
+        held_not_testable = not testable and not blocker_strs
+        if held_not_testable:
+            blocker_strs = [f"not v3-testable: {untest_reason}"]
         status = "blocked" if blocker_strs else "ready"
         if status == "ready":
             why_now = "claims.yaml pending_retest_after_substrate=true."
+        elif held_not_testable:
+            why_now = (
+                f"Held by the governance V3-pending gate ({untest_reason}) -- a "
+                f"/queue-experiment cannot yield contributory evidence. See "
+                f"blocked_by. (R5; mirrors R1.)"
+            )
         elif is_ceiling:
             why_now = (
                 f"substrate_ceiling -- awaiting substrate enrichment; blocked by "
