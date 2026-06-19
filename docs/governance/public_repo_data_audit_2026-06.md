@@ -32,7 +32,7 @@ is evidence that the policy holds in practice as of the date above.
 
 **Published surface = git-tracked files only.** The audit deliberately respects
 `.gitignore` and ignores the untracked working tree, because the governance
-concern is what is *published*, not what sits locally. All eight repos below
+concern is what is *published*, not what sits locally. All nine repos below
 share the same public remote namespace (`github.com/Latent-Fields/<repo>.git`):
 
 | Repo | Public remote | Tracked files |
@@ -45,8 +45,25 @@ share the same public remote namespace (`github.com/Latent-Fields/<repo>.git`):
 | REE_OpenClaw | Latent-Fields/REE_OpenClaw | 83 |
 | ree-experiments-lab (archived) | Latent-Fields/ree-experiments-lab | 471 |
 | REE_Working (umbrella) | Latent-Fields/REE_Working | 61 |
+| Strategy | Latent-Fields/Strategy | 24 |
 
-Total: ~22,900 tracked files searched.
+Total: ~22,940 tracked files searched.
+
+> **Coverage note (added 2026-06-19T16:22Z).** `Strategy/` is a **separate,
+> independent public repo** nested inside the `REE_Working` working tree. From
+> the umbrella's `git status` it appears merely as an untracked directory
+> (`?? Strategy/`), so the first pass mis-filed it as an unpublished local draft.
+> It is in fact published at `Latent-Fields/Strategy` (`main`, in sync with
+> origin) and was therefore brought into scope and searched. It holds the
+> project's strategy / funding / governance / outreach planning docs. **Result:
+> CLEAN** -- the only email is a generic organisational funding address
+> (`funds@effectivealtruism.com`); the `outreach/` collaborator and
+> organisation files are empty templates (`(Names / notes)` placeholders) with
+> no real personal data; no phones, clinical identifiers, case narratives, or
+> secrets. If real collaborator contact details are ever added to those outreach
+> logs, note that the repo is **public** -- keep personal contact data out of
+> it (GDPR minimisation), consistent with GOV-HEALTH-1's public-repo-exclusion
+> principle generalised from patient data to personal data.
 
 **Out of scope (by design):** the project's legitimate synthetic / abstract use
 of terms like *harm*, *suffering*, *psychiatric*, *patient*, *care*, *repair* in
@@ -114,7 +131,7 @@ repo (no person-level data tables published).
 
 ### Conclusion
 
-> As of 2026-06-19, the public-tracked content of all eight REE repositories
+> As of 2026-06-19, the public-tracked content of all nine REE repositories
 > contains **no patient-identifiable data, no real clinical notes/transcripts,
 > no real names tied to health context, no referral or service data, no
 > identifiable human-subject free text, and no leaked secrets.** GOV-HEALTH-1's
@@ -134,15 +151,18 @@ literature synthesis -- not human data.
   is no history-rewrite concern arising from this audit. (Had anything been
   found, the procedure would have been to surface it and stop for instruction
   before any history rewrite -- nothing triggered that path.)
-- **Untracked working-tree files are out of scope because they are not
-  published.** For awareness only, the umbrella working tree currently holds
-  several untracked, *unpublished* drafts (e.g. `REE_funding_landscape_*.md`,
-  `REE_gamma_*` prompt decks including a psychiatrist-facing one, `Strategy/`,
-  `unknown_triage_map_*.json`). None of these are tracked, so none are public.
-  **Recommendation:** apply the same GOV-HEALTH-1 check to any of these before
-  they are ever `git add`-ed -- particularly the psychiatrist-facing prompt deck
-  -- to confirm they carry no real clinical vignettes. No action required while
-  they remain untracked.
+- **Untracked working-tree drafts -- scanned, clean, remain unpublished.** The
+  umbrella working tree holds several genuinely untracked, *unpublished* drafts:
+  `REE_funding_landscape_and_LTFF_application.md`, the `REE_gamma_*` prompt decks
+  (including a psychiatrist-facing one), and `unknown_triage_map_2026-06-02.json`.
+  These were scanned with the same email / phone / clinical-narrative patterns as
+  a precaution (follow-up 2026-06-19T16:22Z): **zero hits** -- no emails, no
+  patient/clinical-record markers, no case narratives. They carry no real
+  clinical vignettes. They are not tracked in any repo, so they remain
+  unpublished; the same check should be re-confirmed before any future
+  `git add`. (Note: `Strategy/` was originally listed here in error -- it is a
+  *separate public repo*, not an unpublished draft; it has been moved into the
+  audited-repo table in Section 2 with its own CLEAN result.)
 - **Vocabulary is not data.** This audit intentionally does not flag the
   thousands of legitimate uses of clinical/affective vocabulary in REE's
   architecture; doing so would be noise. The signal sought was structured
