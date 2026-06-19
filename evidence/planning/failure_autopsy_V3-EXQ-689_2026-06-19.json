@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-19T19:12:42Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_689_mech439_conflict_grade_2factor_falsifier_20260619T185949Z_v3",
+      "queue_id": "V3-EXQ-689",
+      "claim_ids": ["MECH-439"],
+      "failed_criterion": "readiness_precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "adjudication_of_self_route": "precondition_unmet_but_stated_cause_wrong",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- untested at the load-bearing level. MECH-439's FIRST falsifier did not reach its falsifying criterion (C_FGAP uncomputable). C_PRIMARY 2/3 strict-above-both is fragile (1 genuine seed, 1 near-zero technical pass, 1 regression). Neither supported nor weakened.",
+        "biological_reference": "clear -- BG hyperdirect conflict-grade (STN raises the decision threshold under conflict / near-ties). Frank 2006, Cavanagh 2011. Working existence proof for the class.",
+        "prerequisites": "present -- route-range 0.566 (floor 0.01), e2 pairwise_dist 0.164 (floor 0.03), C1 e2-divergent PASS. The GAP-A-ready substrate prerequisites are met.",
+        "implementation": "complete -- both conflict-grade levers ENGAGED: k_effective varied across P1 ticks on 3/3 seeds, t_eff varied on 3/3 seeds. The grading is implemented and active. The self-route's 'grading could not act / monostrategy-pinned gap' is contradicted by the manifest.",
+        "environment": "wrong pressure (the gap) -- the SD-054 reef-bipartite foraging F-gap is pinned in the near-tie bin (gap_bin_tick_counts overwhelmingly bin 0). The ecology does not produce the decisive-vs-near-tie F-gap VARIATION the C_FGAP regression needs. This near-tie concentration is itself a manifestation of the F-dominance MECH-439 asserts.",
+        "measurement": "under-instrumented for the falsifier -- C_FGAP (per-gap-bin committed-entropy slope vs gap) needs >= GAP_MIN_POPULATED_BINS=3 populated bins; the near-tie regime yields <=2 (a1b1_gap_bins_used=2). fgap_computable=false. The grading-non-vacuity readiness gate CONFLATED 'levers engaged' (true) with 'gap distribution spans enough bins to compute the falsifier' (false), so it self-routed substrate_not_ready instead of measurement-redesign.",
+        "integration": "coupled -- all bias channels wired; the conflict-grade levers compose with the GAP-A stack.",
+        "scale": "adequate -- P0=60 (the proven 569i budget); thousands of P1 ticks per arm. Re-queue at higher P0 will NOT spread an ecology-pinned F-gap."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Basal-ganglia hyperdirect (STN) conflict-graded commitment threshold",
+        "dependencies": ["F-dominated primary harm/goal evaluation (E3)", "near-tie detection (top-F gap)", "BG eligibility gating (shortlist) + commit-temperature"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the conflict-grade class is biologically faithful; the failure is measurement/test-design, not a formal-import mismatch.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-689 (MECH-439 FIRST falsifier) self-routed substrate_not_ready_requeue on the grading-non-vacuity precondition (gap_spread 0/3 seeds; F-gap pinned in the near-tie bin, a1b1_gap_bins_used=2 < 3). ADJUDICATED (failure_autopsy_V3-EXQ-689_2026-06-19) as a test-design/measurement gap, NOT substrate-under-trained: the GAP-A readiness preconditions PASSED (route_range 0.566, e2 pairwise_dist 0.164, C1 divergent) and BOTH conflict-grade levers ENGAGED (k_effective varied 3/3, t_eff varied 3/3). The failed precondition's stated cause ('monostrategy-pinned gap -> grading could not act') is wrong: the grading DID act; the true cause is the foraging F-gap is structurally concentrated in the near-tie bin, so the load-bearing C_FGAP gap-correlation falsifier (real conflict-grading vs uniform bigger-k/hotter-T lift) is UNCOMPUTABLE. This near-tie concentration is itself a manifestation of the F-dominance MECH-439 asserts. C_PRIMARY (entropy strict-above both controls) passed 2/3 but FRAGILE: seed42 genuine (1.426 vs 1.129), seed43 near-zero->near-zero technical on a class-2-collapsed seed (0.0182 vs 0.0047), seed44 a REGRESSION (0.427 vs 0.817); the matched-noise flat-T=2.5 control did not lift (identical entropy to proposer). Re-queue at higher P0 (the self-route prescription) will NOT fix an ecology-pinned gap. Routed /queue-experiment (V3-EXQ-689a redesign): LEAD with gap-BLIND control arms (FIXED-k_max + FIXED-peak-T at matched magnitude) so 'gap-concentrated lift vs uniform lift' is an arm contrast (sidesteps the uncomputable regression); supporting: quantile-adaptive gap binning + decouple 'levers engaged' from 'falsifier computable' in the readiness gate. MECH-439 stays candidate / standard / V3-tractable -- neither supported nor weakened (load-bearing falsifier unevaluated).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Not a substrate need. The GAP-A-ready substrate is functional (divergence + routing + both conflict-grade levers engaged). The gap is in the C_FGAP falsifier's measurement design on the F-dominated foraging regime; routed to /queue-experiment 689a, not /implement-substrate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The conflict-grade levers ENGAGE on the GAP-A-ready foraging substrate: Factor A graded-k and Factor B gap-scaled commit-T both vary across P1 ticks on 3/3 seeds. Implementation is live, not inert.",
+        "ARM_A1B1 committed-action entropy lifts strictly above BOTH the collapsed-proposer baseline AND the matched-noise control on 2/3 seeds (C_PRIMARY pass) -- a partial positive signal that conflict-grading moves committed behaviour -- but it is FRAGILE (one genuine seed, one near-zero technical pass on a monostrategy-collapsed seed, one regression) and is NOT the load-bearing falsifier.",
+        "The load-bearing C_FGAP falsifier (is the lift gap-CONCENTRATED = real conflict-grading, or uniform = a bigger fixed shortlist / hotter flat softmax) is UNCOMPUTABLE on this substrate: the foraging top-F gap is pinned in the near-tie bin (<=2 populated bins, slope needs >=3), so the entropy-vs-gap regression has no x-axis spread.",
+        "The near-tie F-gap concentration is itself a manifestation of the F-dominance MECH-439 asserts -- the experiment design did not anticipate that the phenomenon under test would collapse the gap-distribution its own falsifier depends on.",
+        "The self-route's prescription ('re-queue at higher P0') is misdirected: more training cannot open an ecology-pinned gap; the fix is a measurement/test-design redesign (gap-blind control arms), not more compute.",
+        "Generalisable readiness-gate lesson: the grading-non-vacuity precondition bundled 'levers engaged' (k/T_eff vary) with 'falsifier computable' (gap spans >=3 bins). These should be SEPARATE gates -- a levers-engaged + falsifier-uncomputable run should route to measurement-redesign, never substrate_not_ready_requeue."
+      ],
+      "redesign_spec": {
+        "successor_queue_id": "V3-EXQ-689a",
+        "supersedes": "V3-EXQ-689",
+        "scientific_question_unchanged": true,
+        "lead_mechanism": "gap_blind_control_arms",
+        "spec": "Add FIXED-k_max and FIXED-peak-T control arms (matched magnitude, gap-BLIND) so the 'gap-concentrated lift vs uniform lift' distinction is tested by an ARM CONTRAST instead of the uncomputable per-gap-bin regression. ARM_A1B1 (gap-SCALED both levers) vs ARM_FIXED_KMAX (k pinned at k_max=6, gap-blind) and ARM_FIXED_HOT_T (T pinned at the peak base+alpha=2.5, gap-blind, distinct from matched_noise which keeps the collapsed proposer source). conflict-grade is load-bearing iff ARM_A1B1 beats BOTH gap-blind controls -- if a fixed-large-k / fixed-hot-T lifts entropy as much as the gap-scaled version, the lift is NOT conflict-grading.",
+        "supporting_mechanisms": [
+          "Quantile-adaptive gap binning (bin by gap quantiles matched to the near-tie-dominated distribution, so even a concentrated gap yields >=3 populated bins) -- retains the regression falsifier as a secondary readout.",
+          "Decouple the readiness gate: separate 'levers engaged' (k/T_eff vary) from 'gap-spread for the regression'. levers-engaged + regression-uncomputable should NOT self-route substrate_not_ready_requeue."
+        ],
+        "non_vacuity_preserved": "Keep the route-range + e2-divergence + levers-engaged (k/T_eff vary) readiness gates; below floor still self-routes substrate_not_ready_requeue (never a false weakens).",
+        "claim_ids": ["MECH-439"]
+      },
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

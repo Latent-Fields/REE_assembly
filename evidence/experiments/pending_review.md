@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-19T18:53:30Z`  
-Last review: `2026-06-19T15:29:00Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-19T19:18:05Z`  
+Last review: `2026-06-19T19:12:42Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_460g_sd034_closure_control_plane_decommit_magnitude_20260619T185744Z_v3` | 2026-06-19T18:57 | MECH-260, MECH-261, SD-034 | — |
 
 ---
 
