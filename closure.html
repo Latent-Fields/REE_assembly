@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-20.1 -->
+<!-- CLOSURE_VERSION: 2026-06-20.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -512,6 +512,33 @@
     0%, 100% { transform: rotate(-20deg); }
     50% { transform: rotate(20deg); }
   }
+
+  /* basal-ganglia fiasco egg: the F-dominance conversion ceiling, dramatised.
+     A coronal basal-ganglia cartoon tries to select; the F-value signal
+     Pac-Mans the candidate-action diversity dots, leaving one stubborn
+     monostrategy survivor. Commiserates ARC-107/MECH-448/MECH-439 progress. */
+  .egg-bg-brain { position: absolute; opacity: 0; transition: opacity .45s ease; }
+  .egg-bg-brain.lit { opacity: 1; }
+  .egg-bg-brain.lit .bg-gp { animation: gp-glow 1.0s ease-in-out infinite; }
+  .egg-cand { position: absolute; width: 18px; height: 18px; border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,0,0,.45); opacity: 0; }
+  .egg-cand.in { animation: cand-in .3s ease-out forwards; }
+  .egg-cand.eaten { animation: cand-eat .35s ease-in forwards; }
+  .egg-cand.survivor { animation: cand-survive 1.1s ease-in-out infinite; }
+  .egg-fdom { position: absolute; width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 32%, #ffe680, #f5a623);
+    color: #5a3d00; font-weight: 800; font-size: 25px; line-height: 40px;
+    text-align: center; font-family: Georgia, "Times New Roman", serif;
+    box-shadow: 0 0 16px rgba(245,166,35,.85); z-index: 2;
+    transition: left 3.2s linear; animation: bg-chomp .26s ease-in-out infinite; }
+  .egg-dopa { position: absolute; width: 8px; height: 8px; border-radius: 50%;
+    background: #ffe066; box-shadow: 0 0 7px #f5a623; opacity: 0; }
+  @keyframes cand-in { from { opacity:0; transform: scale(0);} to { opacity:1; transform: scale(1);} }
+  @keyframes cand-eat { 0%{opacity:1; transform: scale(1);} 45%{transform: scale(1.5);} 100%{opacity:0; transform: scale(0) rotate(200deg);} }
+  @keyframes cand-survive { 0%,100%{ transform: scale(1); filter: brightness(1);} 50%{ transform: scale(1.28); filter: brightness(1.35);} }
+  @keyframes bg-chomp { 0%,100%{ transform: scale(1) rotate(-5deg);} 50%{ transform: scale(1.16) rotate(7deg);} }
+  @keyframes gp-glow { 0%,100%{ filter: brightness(1);} 50%{ filter: brightness(1.9) drop-shadow(0 0 5px #ffe066);} }
+  @keyframes dopa-burst { 0%{opacity:1; transform: translate(0,0) scale(1);} 100%{opacity:0; transform: translate(var(--dx),var(--dy)) scale(.4);} }
 </style>
 </head>
 <body>
@@ -1838,6 +1865,27 @@ function scheduleEasterEggs() {
     }
   }, 2200);
 
+  // Basal-ganglia fiasco egg: fires once when there is real progress on
+  // instantiating the action-selection substrate (V3 view only -- it is V3
+  // work). Commiserates the F-dominance conversion ceiling.
+  setTimeout(() => {
+    const bg = bgProgress();
+    if (!BG_EGG_FIRED && isV3View() && bg.done > 0) {
+      BG_EGG_FIRED = true;
+      fireBasalGanglia();
+    }
+  }, 3200);
+
+  // Hidden replay: type "bg" (basal ganglia) anywhere to summon it again.
+  let bgKeys = '';
+  window.addEventListener('keydown', (e) => {
+    if (!e.key || e.key.length !== 1) return;
+    const tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return;
+    bgKeys = (bgKeys + e.key.toLowerCase()).slice(-2);
+    if (bgKeys === 'bg') { bgKeys = ''; fireBasalGanglia(); }
+  });
+
   // Hidden re-trigger: click page title 5 times to replay top-applicable egg.
   document.getElementById('page-title').addEventListener('click', () => {
     TITLE_CLICKS++;
@@ -1861,6 +1909,143 @@ function toast(msg, ms) {
 }
 
 function eggLayer() { return document.getElementById('egg-layer'); }
+
+// ---- basal-ganglia fiasco egg --------------------------------------------
+// Commiserates the F-dominance conversion ceiling: REE keeps trying to
+// instantiate a basal ganglia (action selection), and the F-value signal
+// monopolises ~88% of E3 selection variance, collapsing the candidate-action
+// diversity to one stubborn monostrategy (the fishtank fish, swimming the same
+// route). ARC-107 gave the selector a "constitution" (MECH-448) -- progress! --
+// but it still picks F. Pokes fun at both of us; Daniel treats basal ganglia
+// for a living, and I have misread my share of autopsies.
+let BG_EGG_FIRED = false;
+
+// Weighted-ish progress across the action-selection / basal-ganglia substrate
+// plans. Used only to gate + caption the egg, so a simple done-fraction over
+// non-deferred nodes is enough.
+function bgProgress() {
+  const BG_PLANS = new Set([
+    'arc_062_rule_apprehension', 'commitment_closure', 'behavioral_diversity_isolation',
+  ]);
+  let done = 0, total = 0;
+  for (const n of ((CLOSURE_FULL && CLOSURE_FULL.nodes) || [])) {
+    if (!BG_PLANS.has(n.plan_id)) continue;
+    if (n.status === 'deferred' || n.status === 'deferred_v4') continue;
+    total++;
+    if (n.status === 'done') done++;
+  }
+  return { done, total, frac: total ? done / total : 0 };
+}
+
+// A small coronal basal-ganglia cartoon (striatum + globus pallidus, both
+// hemispheres). The .bg-gp slivers glow ("dopamine") while it is on screen.
+const BG_SVG =
+  '<svg width="150" height="104" viewBox="0 0 150 104">' +
+  '<ellipse cx="75" cy="54" rx="68" ry="44" fill="#2a2f3a" stroke="#5b6675" stroke-width="1.5"/>' +
+  '<path d="M75 12 V96" stroke="#3b4654" stroke-width="1"/>' +
+  // left hemisphere: caudate (comma), putamen (wedge), globus pallidus (sliver)
+  '<path d="M46 32 q-13 7 -10 24 q9 -2 13 -11 q3 -9 -3 -13z" fill="#7c6fb0"/>' +
+  '<path d="M42 44 l16 5 l-9 18 z" fill="#b06f8e"/>' +
+  '<path d="M52 49 l9 3 l-6 12 z" fill="#d2a24a" class="bg-gp"/>' +
+  // right hemisphere (mirror)
+  '<path d="M104 32 q13 7 10 24 q-9 -2 -13 -11 q-3 -9 3 -13z" fill="#7c6fb0"/>' +
+  '<path d="M108 44 l-16 5 l9 18 z" fill="#b06f8e"/>' +
+  '<path d="M98 49 l-9 3 l6 12 z" fill="#d2a24a" class="bg-gp"/>' +
+  '<text x="75" y="100" text-anchor="middle" font-size="9" fill="#8b949e">basal ganglia</text>' +
+  '</svg>';
+
+const BG_QUIPS = [
+  'ARC-107 gave the basal ganglia a constitution. It read it, then voted F.',
+  'The striatum has spoken. It said F. Daniel: "...I treat this for a living."',
+  '88% of the variance, one smug nucleus. Behold: a basal ganglia with favourites.',
+  'Claude misread the autopsy, the agent misread the room, the basal ganglia misread the brief. Team effort.',
+  'MECH-439 to MECH-448: three letters of progress, one dopamine signal hogging the mic.',
+  'Action selection: instantiated. Action diversity: see the monostrategy fish.',
+  'We built a basal ganglia and it picked a favourite on day one. Daniel was not surprised.',
+];
+
+function dopaBurst(layer, cx, cy) {
+  for (let i = 0; i < 9; i++) {
+    const d = document.createElement('div');
+    d.className = 'egg-dopa';
+    d.style.left = (cx - 4) + 'px';
+    d.style.top = (cy - 4) + 'px';
+    const ang = (i / 9) * 2 * Math.PI;
+    d.style.setProperty('--dx', Math.round(Math.cos(ang) * 46) + 'px');
+    d.style.setProperty('--dy', Math.round(Math.sin(ang) * 46) + 'px');
+    d.style.animation = 'dopa-burst 0.9s ease-out forwards';
+    layer.appendChild(d);
+    setTimeout(() => d.remove(), 1000);
+  }
+}
+
+function fireBasalGanglia() {
+  const layer = eggLayer();
+  const cx = window.innerWidth / 2;
+  const bandY = Math.max(150, Math.round(window.innerHeight / 2) - 20);
+
+  // the basal ganglia, lit up, above the action row
+  const brain = document.createElement('div');
+  brain.className = 'egg-bg-brain';
+  brain.style.left = (cx - 75) + 'px';
+  brain.style.top = (bandY - 118) + 'px';
+  brain.innerHTML = BG_SVG;
+  layer.appendChild(brain);
+  requestAnimationFrame(() => brain.classList.add('lit'));
+
+  // candidate-action diversity dots in a row
+  const colors = ['#58a6ff', '#2ea043', '#d29922', '#a371f7', '#f85149'];
+  const n = colors.length;
+  const span = 280;
+  const x0 = cx - span / 2;
+  const dots = [];
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement('div');
+    d.className = 'egg-cand in';
+    d.style.background = colors[i];
+    d.style.left = (x0 + i * (span / (n - 1)) - 9) + 'px';
+    d.style.top = (bandY - 9) + 'px';
+    layer.appendChild(d);
+    dots.push(d);
+  }
+
+  // the F-dominance chomper sweeps left->right, eating all but the last dot
+  const F = document.createElement('div');
+  F.className = 'egg-fdom';
+  F.textContent = 'F';
+  F.style.top = (bandY - 20) + 'px';
+  F.style.left = (x0 - 54) + 'px';
+  layer.appendChild(F);
+  requestAnimationFrame(() => { F.style.left = (x0 + span + 14) + 'px'; });
+
+  const sweep = 3200;
+  for (let i = 0; i < n - 1; i++) {
+    setTimeout(() => { dots[i].className = 'egg-cand eaten'; }, 360 + i * (sweep / n));
+  }
+  // the lone survivor: monostrategy
+  setTimeout(() => { dots[n - 1].className = 'egg-cand survivor'; }, 360 + (n - 1) * (sweep / n));
+
+  // dopamine burst from the striatum + a wry speech bubble
+  setTimeout(() => {
+    dopaBurst(layer, cx, bandY - 64);
+    const bubble = document.createElement('div');
+    bubble.className = 'egg-bubble';
+    bubble.style.left = Math.max(12, cx - 130) + 'px';
+    bubble.style.top = (bandY - 168) + 'px';
+    bubble.style.maxWidth = '262px';
+    bubble.style.fontSize = '12px';
+    bubble.textContent = BG_QUIPS[Math.floor(Math.random() * BG_QUIPS.length)];
+    bubble.style.animation = 'bubble-pop 4.8s ease-out forwards';
+    layer.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 5000);
+  }, sweep + 300);
+
+  setTimeout(() => { F.remove(); brain.remove(); dots.forEach(d => d.remove()); }, 6800);
+
+  const bg = bgProgress();
+  toast('basal ganglia online -- ' + Math.round(bg.frac * 100) + '% built, still picking F');
+}
+// ---------------------------------------------------------------------------
 
 function fire25() {
   // A small fish swims by — callback to the fishtank, the monostrategy fish dropping in to say hi.
