@@ -123,3 +123,37 @@ The `targeted_review_connectome_mech_442` lit-pull already answered the architec
 3. **Do NOT** queue a minimal-archive experiment yet (the 2×2 discriminator) — it would duplicate the 689-successor's test surface and faces the same `gap_spread_seeds=0` non-vacuity risk.
 
 **MECH-442 disposition unchanged:** candidate / substrate_conditional / generation:v3 / ceiling_decision:deferred; OFF the V3 critical path; AMENDS behavioral_diversity_isolation:GAP-B. This packet replaces the prose "decide-whether-to-build is a later governance step" with a concrete, routed decision.
+
+---
+
+## 6. 689a verdict (2026-06-20) — Q2 resolved: conflict-grade FAILED, but a cheaper sub-lever surfaced
+
+The Q2 gating run completed. **V3-EXQ-689 self-routed `substrate_not_ready_requeue`** (F-gap near-tie-pinned, gap-bin regression uncomputable). Its autopsy (`failure_autopsy_V3-EXQ-689_2026-06-19`, user-ratified) **redesigned it gap-blind** as **V3-EXQ-689a** — replacing the uncomputable per-gap-bin regression with an **arm-contrast** (does the both-levers cell beat the *flat* controls `FIXED_KMAX` / `FIXED_HOT_T`, isolating gap-CONCENTRATED lift from "a bigger fixed shortlist / hotter flat softmax"). 689a ran 8 arms × 3 seeds (~21h, on `DLAPTOP-4.local`, swap-contended).
+
+**Result: `FAIL` / `non_contributory` / `conversion_ceiling_persists_despite_conflict_grade`** (`v3_exq_689a_..._20260620T175346Z_v3.json`). NON-VACUOUS (readiness PASSED: route_range 0.624 3/3, e2-pairwise 0.187 3/3, levers engaged k 3/3 + t_eff 3/3) — so this is a *real* verdict, not a self-route.
+
+Per-arm committed-action-class entropy (mean; per-seed 42/43/44):
+
+| arm | mean | s42 | s43 | s44 |
+|---|---|---|---|---|
+| PROPOSER_CTRL / MATCHED_NOISE (collapsed) | 0.677 | 1.276 | 0.005 | 0.750 |
+| A0B0 (top-k baseline, divergent pool) | 0.371 | 0.480 | 0.098 | 0.536 |
+| A1B0 (Factor A: graded-k) | 0.440 | — | — | — |
+| **A0B1 (Factor B alone: gap-scaled commit-T)** | **0.850** | **1.360** | **0.569** | 0.620 |
+| **A1B1 (BOTH levers — pre-registered PRIMARY)** | **0.387** | 0.655 | **0.005** | 0.502 |
+| FIXED_KMAX (gap-blind Factor-A control) | 0.546 | 1.148 | 0.179 | 0.311 |
+| FIXED_HOT_T (gap-blind Factor-B control) | 0.591 | 1.018 | 0.009 | 0.745 |
+
+- **The pre-registered PRIMARY `A1B1` (both levers, 0.387) lost to everything** — below both gap-blind controls (0.546, 0.591) AND below the collapsed baseline (0.677). `C_GAPBLIND` and `C_PRIMARY` both FAIL, **0/3 seeds**. The combined "grade the commit by the top-F gap" mechanism does **not** convert. (Not a *weakens* of MECH-439 — the pre-registered off-ramp; `evidence_direction: non_contributory`.)
+- **DECOMPOSITION (the load-bearing new finding): Factor B alone (`A0B1`, gap-scaled commit-temperature) is the only converter** — mean 0.850, the highest arm; strictly above its OWN flat-hot control (`FIXED_HOT_T`) AND the proposer on **2/3 seeds**, and on seed-43 it **held 0.569 while every other arm monostrategy-collapsed to ~0.005**. Because it beats `FIXED_HOT_T` (a flat-hot softmax over the same divergent pool), the lift is the **gap-SCALING**, not merely a hotter temperature.
+- **Factor A (conflict-graded shortlist width) is HARMFUL** — `A1B0` (0.440) barely clears top-k, and adding A to B (`A1B1` 0.387) *destroys* B's benefit (re-introduces the seed-43 collapse B alone prevented).
+
+### Repriced MECH-442 disposition
+
+This is the **FAIL branch of Q2 — but with a twist that changes the routing:**
+
+1. The **combined 2-factor conflict-grade FAILED**, so it does **NOT** raise the archive's pre-registered bar to "beyond conflict-grade" (conflict-grade never established itself as a converter).
+2. **BUT the F-keyed approach is NOT exhausted** — `A0B1` (gap-scaled commit-T alone) is a **live, cheaper V3 lever** that lifted on 2/3 seeds and resisted collapse. So the strict "→ rank_preserving_F_to_eligibility_demotion / V4 directions / archive case strengthens" off-ramp is **premature**: there is a cheaper intermediate probe.
+3. **Next step before building the archive: a Factor-B-alone retest** (a 689-successor with `A0B1` as the *primary* cell — gap-scaled commit-T ON, conflict-graded-k OFF — vs top-k + the flat-hot control, pre-registered for ≥2/3 strict-above + collapse-resistance). If Factor-B-alone **robustly converts**, it is the cheapest fix to the conversion ceiling and the archive stays deferred indefinitely. If it **also fails** (≤1/3 robust), *then* the F-keyed family is genuinely exhausted and the behavioral-descriptor archive (CDQ-006) becomes the justified path.
+
+**Net:** MECH-442 **stays deferred** (candidate / substrate_conditional / ceiling_decision:deferred — unchanged). The build is **not** triggered. CDQ-006 (the convergence descriptor-variant query) **stays queued** as the eventual fallback. The immediate live work moved from "the archive" to **"retest Factor-B-alone (gap-scaled commit-T) as the standalone converter"** — a result the gating run handed us for free. No claim status changed; MECH-439 stays candidate (non_contributory, pre-registered off-ramp — neither promoted nor weakened).
