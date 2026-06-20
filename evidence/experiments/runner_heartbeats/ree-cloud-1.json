@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-20T05:19:41Z",
+  "last_tick_utc": "2026-06-20T05:49:48Z",
   "state": "running",
   "current_exq": "V3-EXQ-693",
   "current_exq_started_utc": "2026-06-19T22:47:17.928887+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-049",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / ARM_1_2type_homeostatic",
-    "runs_done": 4,
+    "run_label": "Seed 44 / ARM_1_2type_homeostatic",
+    "runs_done": 5,
     "runs_total": 12,
     "episodes_done": 0,
     "episodes_total": 250,
-    "overall_pct": 33.3
+    "overall_pct": 41.7
   },
-  "seconds_elapsed": 23543,
-  "seconds_remaining": 39500,
+  "seconds_elapsed": 25351,
+  "seconds_remaining": 34175,
   "recent_lines": [
     "[v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation] starting (dry_run=False)",
     "Seed 42 Condition ARM_0_OFF_single_resource",
@@ -41,7 +41,12 @@
     "[eval] arm=ARM_1 seed=42 contributes=False id_acc=0.799 (n=2020) margin=0.004 wl_frac=0.000 (scored=0) anova_f=441.154 contact=0.0153 pc_sep=1.00",
     "verdict: FAIL arm=ARM_1 seed=42 contributes=False guard_pass=True",
     "Seed 43 Condition ARM_1_2type_homeostatic",
-    "[ARM_1/2type_homeostatic] seed 43 sd049=True n_types=2"
+    "[ARM_1/2type_homeostatic] seed 43 sd049=True n_types=2",
+    "[train] p2_guard arm=ARM_1 seed=43 ep 235/250 contact_rate=0.1280 events=47 z_goal_at_contact=0.4207",
+    "[eval] arm=ARM_1 seed=43 contributes=True id_acc=0.742 (n=2411) margin=0.005 wl_frac=0.000 (scored=0) anova_f=556.474 contact=0.0402 pc_sep=1.00",
+    "verdict: PASS arm=ARM_1 seed=43 contributes=True guard_pass=True",
+    "Seed 44 Condition ARM_1_2type_homeostatic",
+    "[ARM_1/2type_homeostatic] seed 44 sd049=True n_types=2"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
