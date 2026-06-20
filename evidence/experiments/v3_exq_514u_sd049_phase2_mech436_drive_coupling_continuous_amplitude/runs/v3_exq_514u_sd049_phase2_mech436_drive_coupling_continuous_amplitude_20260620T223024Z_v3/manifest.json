@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_514u_sd049_phase2_mech436_drive_coupling_continuous_amplitude",
+  "run_id": "v3_exq_514u_sd049_phase2_mech436_drive_coupling_continuous_amplitude_20260620T223024Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-20T22:30:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-436"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech436_drive_coupled_continuous_amplitude_supports",
+    "readiness_route": "mech436_drive_coupled_continuous_amplitude_supports",
+    "route_reason": "continuous_amplitude_shift_cleared_effect_margin_on_enriched_substrate",
+    "disambiguation": {
+      "supports_if": "continuous drive-coupled amplitude shift toward the depleted axis >= max(CONT_K_SD*pstdev(per_seed_shift), CONT_FLOOR) on >= 2/3 seeds -> MECH-436 substrate_ceiling -> supports (the LOAD-BEARING promotion path; the measurement-redesign metric).",
+      "substrate_ceiling_if": "continuous shift below margin BUT overshoot still flips argmax on >= 2/3 seeds -> the enrichment / measurement is insufficient at this kappa (retune). NOT a weakens.",
+      "genuine_weakens_if": "every readiness gate passed AND overshoot CANNOT flip even at OVERSHOOT_DRIVE_MAGNITUDE on the adequately-enriched substrate (drive cannot carve wanting even at maximal magnitude).",
+      "substrate_not_ready_if": "any readiness gate unmet (contact / argmax-relevance / flip OFF floor / continuous OFF floor / bank populated / ENRICHED spread) -> substrate_not_ready_requeue, NEVER a weakens.",
+      "claim_scope_note": "tests MECH-436 (drive.wanting_drive_state_modulation) ONLY -- the drive-coupling leg split out of MECH-229 (2026-06-16). Sub-leg (a) wanting!=liking (object-bound, MECH-229) is established by V3-EXQ-514o PASS (0.80) and is NOT under test here; this run must not weaken it (the hard-zero OFF floor confirms drive is not manufacturing a comparator artifact)."
+    },
+    "measurement_redesign": {
+      "continuous_metric": "amplitude_shift = share_natural[k_dep] - share_uniform[k_dep], the normalized-wanting re-weighting toward the most-depleted axis k_dep under natural per-axis drive vs the uniform-drive baseline. Sub-flip (no argmax cross required); robust to the argmax destabilisation that exploded the 514t flip-gated SD.",
+      "why": "failure_autopsy_V3-EXQ-514t: the argmax-flip-gated WL delta is the diagnosed ceiling (coarse + interacts pathologically with high kappa). The kappa-magnitude lever is exhausted (non-monotone: 6.0->12.0 regressed +0.064 -> -0.037); this run reverts to moderate kappa (6.0) and reads the continuous metric instead."
+    },
+    "sd049_phase2_drive_coupling_amend": {
+      "kappa_scale": 6.0,
+      "kappa_eff_note": "effective kappa = incentive_drive_kappa_weight(2.0) * 6.0 = 12 (moderate; the 514s bimodal-positive point; <= the C8 bounded-kappa upper bound that 12.0/kappa_eff=24 violated).",
+      "restoration_fraction": 0.15,
+      "enriched_decay": [
+        0.04,
+        0.01,
+        0.002
+      ],
+      "min_enriched_spread_floor": 0.1,
+      "note": "lever (b) done (enriched_spread ~0.19 met on all 514t seeds; not deepened). env amend enriches ONLY the WL scoring env so training survival/foraging competence is preserved."
+    },
+    "recalibrated_readiness": {
+      "pc_argmax_relevance_frac": 1.0,
+      "definition": "constructed 2-token bank with base_value gap PC_BASE_VALUE_GAP; overshoot drive MUST flip the argmax while natural-magnitude drive (PC_NATURAL_DRIVE_SPREAD) must NOT. Continuous positive control: overshoot continuous shift > natural continuous shift (diagnostic)."
+    },
+    "overshoot": {
+      "magnitude": 5.0,
+      "flip_floor": 0.6,
+      "min_fraction_seeds": 0.6666666666666666
+    },
+    "continuous_effect_size_gate": {
+      "cont_k_sd": 1.0,
+      "cont_floor": 0.05,
+      "mean_cont": 0.16382080528133397,
+      "sd_cont": 0.021958690018802147,
+      "cont_effect_margin": 0.05,
+      "seed_clear_frac": 1.0
+    },
+    "flip_effect_size_gate_secondary": {
+      "k_sd": 1.0,
+      "delta_floor": 0.15,
+      "mean_delta": -0.13333333333333336,
+      "sd_delta": 0.11879019787470309,
+      "effect_margin": 0.15
+    }
+  }
+}
