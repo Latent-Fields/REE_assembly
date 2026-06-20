@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-15.3 -->
+<!-- EXPLORER_VERSION: 2026-06-20.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7175,6 +7175,21 @@ END CONFLICT RESOLUTION`;
       return `${days}d ${remHrs}h ${mins}m ${s}s`;
     }
 
+    // Compact days/hours/minutes for the coordination panel "left" readout.
+    // Hides days and/or hours when they are zero; shows seconds for < 1 min.
+    function fmtDHM(secs) {
+      secs = Math.max(0, Math.round(secs));
+      if (secs < 60) return `${secs}s`;
+      const days = Math.floor(secs / 86400);
+      const hrs = Math.floor((secs % 86400) / 3600);
+      const mins = Math.floor((secs % 3600) / 60);
+      const parts = [];
+      if (days) parts.push(`${days}d`);
+      if (hrs) parts.push(`${hrs}h`);
+      parts.push(`${mins}m`);
+      return parts.join(' ');
+    }
+
     function inferVersion(item) {
       if (item.ree_version) {
         const v = item.ree_version.toLowerCase();
@@ -8737,8 +8752,8 @@ END CONFLICT RESOLUTION`;
           remaining = Math.max(0, Math.round(elapsed * (100 / pct - 1)));
         }
         var timeTxt = (elapsed || remaining)
-          ? (' &mdash; ' + (elapsed ? (elapsed < 120 ? elapsed + 's' : Math.round(elapsed / 60) + 'm') + ' elapsed' : '')
-             + (remaining ? (' ~' + (remaining < 120 ? remaining + 's' : Math.round(remaining / 60) + 'm') + ' left') : ''))
+          ? (' &mdash; ' + (elapsed ? fmtDHM(elapsed) + ' elapsed' : '')
+             + (remaining ? (' ~' + fmtDHM(remaining) + ' left') : ''))
           : '';
         var bar = hasProgress
           ? ('<div style="margin:3px 0 2px;height:5px;background:#e8e8e8;'
