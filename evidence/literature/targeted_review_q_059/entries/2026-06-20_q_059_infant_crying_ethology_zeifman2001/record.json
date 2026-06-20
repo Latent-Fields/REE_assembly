@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_059",
+  "entry_id": "2026-06-20_q_059_infant_crying_ethology_zeifman2001",
+  "timestamp_utc": "2026-06-20T09:04:30Z",
+  "claim_ids_tested": ["Q-059"],
+  "source": {
+    "title": "An ethological analysis of human infant crying: answering Tinbergen's four questions",
+    "authors": ["Debra M Zeifman"],
+    "year": 2001,
+    "venue": "Developmental Psychobiology",
+    "doi": "10.1002/dev.1005"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Comparative ethological synthesis (Tinbergen's four questions: causation, survival value, ontogeny, phylogeny) of distress vocalisation. Crying is reconstructed as a primarily acoustic, GRADED signal that is a fairly reliable -- if imperfect -- indicator of need for care, whose primary function is to recruit caregiving, and which is subject to 'corruption through dishonesty'. This grounds the crying/distress-vocalisation half of Q-059 directly: distress vocalisation is a plausible guardrail counterpart to laughter, and -- like non-Duchenne laughter -- it is an honest-on-average signal with built-in spoofability. Held at moderate confidence because the paper is about infant-to-caregiver crying, not the adult social-field adjudication Q-059 ultimately concerns.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Crying is a graded, honest-on-average signal with documented potential for dishonest exaggeration; a REE distress-vocalisation guardrail keyed on signal intensity alone would be exploitable the same way, so the guardrail must weight provenance/context, not just amplitude.",
+    "The signal's function is caregiver RECRUITMENT (an asymmetric care relationship), not symmetric peer social-field repair; importing it as a peer-level guardrail risks a category error about what relationship the signal regulates."
+  ],
+  "tags": ["q_059", "crying", "distress_vocalisation", "honest_signalling", "ethology", "care_recruitment"],
+  "mapping": {
+    "source_claim_statement": "Human infant crying evolved as a primarily acoustic, graded distress signal; it is a fairly reliable but imperfect indicator of need for parental care, its primary function is to promote caregiving, and it carries potential for corruption through dishonesty.",
+    "ree_translation": "Q-059 asks whether REE needs a crying/distress-vocalisation guardrail analogue to its laughter mechanism. Zeifman grounds the candidate: distress vocalisation is a real, graded social-guardrail signal that recruits care/repair and, crucially, is honest-on-average-but-spoofable -- the same dual nature that makes laughter require adjudication. The two signals form a complementary repair-recruiting pair (laughter eases/bonds; crying recruits care under threat/distress).",
+    "mapping_caveat": "The evidence is about infant-to-caregiver crying within an asymmetric care relationship, whereas Q-059's adjudication concern is largely peer-level social-field dynamics; the honest-signalling logic transfers, but the relationship structure (care recruitment vs symmetric repair) does not, so do not over-map. Also says nothing about REE substrate or the v4/substrate_conditional build decision.",
+    "source_context": "Ethological review integrating avian, mammalian and nonhuman-primate distress/begging vocalisation experiments plus cross-cultural ethnographic records of infant care."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Well-regarded comparative synthesis organised by Tinbergen's four questions, lifting source quality despite being a review. Mapping fidelity moderate: it nails distress vocalisation as a graded, spoofable guardrail signal but in a care-recruitment rather than peer-repair frame. Transfer risk reflects both the animal-to-human breadth of its evidence base and the infant-care -> REE-social-field jump."
+  }
+}

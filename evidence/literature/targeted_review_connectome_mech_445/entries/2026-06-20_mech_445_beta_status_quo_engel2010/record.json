@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_445",
+  "entry_id": "2026-06-20_mech_445_beta_status_quo_engel2010",
+  "timestamp_utc": "2026-06-20T09:04:30Z",
+  "claim_ids_tested": ["MECH-445"],
+  "source": {
+    "title": "Beta-band oscillations--signalling the status quo?",
+    "authors": ["Andreas K Engel", "Pascal Fries"],
+    "year": 2010,
+    "venue": "Current Opinion in Neurobiology",
+    "doi": "10.1016/j.conb.2010.02.015"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Canonical, heavily-cited review establishing the framework that beta-band activity/coupling indexes maintenance of the current sensorimotor or cognitive state, expressed more strongly when the status quo is intended or PREDICTED than when change is expected. This directly motivates MECH-445's mechanism shape -- a closure event (which predicts that the just-completed state should be held) elevating a beta-coupled latch. But it is a hypothesis review, not primary data, and it does not test the specific claim that a completion/closure signal drives latch elevation INDEPENDENT of an evidence-threshold commit. Mapping is analogical, so confidence is held to moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review frames beta as maintaining whatever state currently obtains; it does not isolate a completion-triggered drive separable from ongoing evidence-based maintenance, so it cannot by itself adjudicate MECH-445's independence-from-natural-commit claim.",
+    "Pathologically enhanced beta produces 'abnormal persistence of the status quo' -- a caution that a closure->beta->latch path, if mis-tuned, predicts perseveration / failure to de-commit rather than adaptive holding."
+  ],
+  "tags": ["mech_445", "beta_oscillations", "status_quo_maintenance", "bistable_latch", "commitment"],
+  "mapping": {
+    "source_claim_statement": "Beta-band activity and beta-band coupling are expressed more strongly when maintenance of the current sensorimotor or cognitive state is intended or predicted than when a change is expected; beta activity is related to keeping the 'status quo'.",
+    "ree_translation": "MECH-445's use_closure_commit_beta_coupling path is the engineered analogue of this: a closure-plane commit (closure fired on a real sequence completion) is exactly an event predicting that the current state should be maintained, and so should elevate/bind the MECH-090 bistable latch via beta coupling -- including on seeds where running_variance never naturally drops below commit_threshold.",
+    "mapping_caveat": "Engel & Fries describe beta as a correlate of maintaining the state that already obtains; MECH-445 asserts a stronger causal, completion-gated drive that is dissociable from natural variance-based commit entry. The review is consistent with that mechanism but does not demonstrate the dissociation. Treat as framework support, not confirmation of independence.",
+    "source_context": "Synthetic review of human and animal electrophysiology spanning top-down cognitive processing, the motor system, and movement-disorder pathophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Architectural claim, so mapping_fidelity is weighted heavily and caps the aggregate. Transfer risk is non-trivial: biological beta coupling -> an engineered closure_commit_beta_coupling latch is an analogy, not a mechanistic identity. High source quality reflects the review's canonical standing but it is hypothesis-level."
+  }
+}

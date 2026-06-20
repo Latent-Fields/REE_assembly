@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_445",
+  "entry_id": "2026-06-20_mech_445_beta_transient_bursts_echeverria2022",
+  "timestamp_utc": "2026-06-20T09:04:30Z",
+  "claim_ids_tested": ["MECH-445"],
+  "source": {
+    "title": "Transient beta activity and cortico-muscular connectivity during sustained motor behaviour",
+    "authors": ["Irene Echeverria-Altuna", "Andrew J Quinn", "Nahid Zokaei", "Mark W Woolrich", "Anna C Nobre", "Freek van Ede"],
+    "year": 2022,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2022.102281"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Direct MEG+EMG empirical test (n=18) of whether beta activity/connectivity is sustained when a motor state is sustained. It is NOT: even during continuous isometric gripping, motor beta and cortico-muscular coupling occurred as short transient bursts, and sustained demand did not prolong beta-event duration. This qualifies MECH-445's 'beta coupling elevation' reading: a closure-driven latch elevation is unlikely to be a tonic beta level and must instead be cashed out as elevated burst RATE / coupling probability. Mixed rather than weakens, because the finding is fully compatible with a burst-rate implementation of the same mechanism -- it refutes only the naive tonic-maintenance reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Motor beta and cortico-muscular beta connectivity were transient (short bursts) even when motor behaviour was sustained -- a tonic 'beta latch held high for the duration of commitment' reading of MECH-445 is not supported by the muscle-coupling data.",
+    "Sustained motor requirements did not prolong beta-event duration relative to rest, so 'closure elevates the latch' cannot be operationalised as 'closure lengthens a beta event'; it must be a change in burst rate / occupancy."
+  ],
+  "tags": ["mech_445", "beta_bursts", "transient_dynamics", "cortico_muscular_coupling", "bistable_latch"],
+  "mapping": {
+    "source_claim_statement": "During sustained isometric contraction, motor beta activity and cortico-muscular beta connectivity are not sustained but occur as short transient bursts; sustained motor demand does not prolong beta-event duration.",
+    "ree_translation": "If MECH-445's closure_commit_beta_coupling path 'elevates/binds' the latch via a beta-like signal, the elevation should be read as raised burst rate or coupling-probability/occupancy of the latch-binding signal, not a tonically raised beta level held for the whole commitment epoch.",
+    "mapping_caveat": "The study measured cortico-MUSCULAR beta during a peripheral gripping task, not the cortico-cortical or internal latch dynamics MECH-445 concerns; the transient-burst result may not transfer cleanly to a central commitment latch, and REE's latch is an engineered bistable variable, not a beta rhythm. Used here as a constraint on how to read 'elevation', not as a verdict on the mechanism.",
+    "source_context": "MEG + EMG in 18 healthy humans performing a sustained isometric grip (gripping) task."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "Solid modern empirical methods (single-trial burst analysis, MEG+EMG) lift source quality. Mapping fidelity is moderate: the paper constrains the temporal form of any beta-coupling claim but addresses cortico-muscular, not central commitment, dynamics. Transfer risk is matched to that gap. Net effect on MECH-445 is a calibration constraint, hence mixed/0.5 rather than a confidence-lowering refutation."
+  }
+}

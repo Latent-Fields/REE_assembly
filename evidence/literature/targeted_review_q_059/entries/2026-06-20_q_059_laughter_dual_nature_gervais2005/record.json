@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_059",
+  "entry_id": "2026-06-20_q_059_laughter_dual_nature_gervais2005",
+  "timestamp_utc": "2026-06-20T09:04:30Z",
+  "claim_ids_tested": ["Q-059"],
+  "source": {
+    "title": "The evolution and functions of laughter and humor: a synthetic approach",
+    "authors": ["Matthew Gervais", "David Sloan Wilson"],
+    "year": 2005,
+    "venue": "The Quarterly Review of Biology",
+    "doi": "10.1086/498281"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Landmark synthetic review that establishes, as a load-bearing empirical distinction, that laughter is NOT a single monotone-affiliative signal: Duchenne (spontaneous, emotionally genuine, affiliative, contagion-promoting) versus non-Duchenne laughter, the latter co-opted for strategic, manipulative, and exclusionary uses -- the 'dark side' of laughter. This is precisely Q-059's premise that social laughter must be adjudicated as social-field repair vs damage/exclusion rather than treated as uniformly affiliative. Strong support for the QUESTION being well-posed; it does not, of course, tell REE whether to build the guardrail, only that the biological signal genuinely bifurcates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Because non-Duchenne laughter is volitional and co-optable, a REE laughter/affiliation analogue that scored all laughter as bond-positive would mis-handle exactly the exclusionary/dominance cases Q-059 flags -- the review documents that these cases are real and frequent, not edge artefacts.",
+    "Duchenne and non-Duchenne laughter share surface form but diverge in function and sincerity; any adjudicator keyed only on the acoustic/behavioural surface (not on provenance/context) will be systematically spoofable."
+  ],
+  "tags": ["q_059", "laughter", "duchenne_non_duchenne", "social_signal", "exclusion", "affiliation_guardrail"],
+  "mapping": {
+    "source_claim_statement": "Laughter comprises two empirically distinct types: Duchenne (stimulus-driven, emotionally genuine, affiliative, a medium for playful emotional contagion and social bonding) and non-Duchenne (volitional, co-opted through biological and cultural evolution for strategic ends), the latter giving rise to the 'dark side' of laughter -- exclusion, dominance, derision.",
+    "ree_translation": "Q-059 asks whether REE needs a distress/crying guardrail counterpart to its laughter analogue (MECH-110/MECH-364) and how social laughter should be adjudicated as social-field repair vs damage. Gervais & Wilson supply the biological warrant for the adjudication half: laughter is structurally two-faced, so a REE social-affect channel cannot treat laughter as uniformly affiliative and must condition on provenance/context (Duchenne-like spontaneous vs non-Duchenne-like strategic).",
+    "mapping_caveat": "The review is about human (and hominid-evolutionary) laughter, not about REE's engineered social field; it motivates the NEED for adjudication but offers no mechanism for it, and says nothing directly about the crying/distress-vocalisation guardrail half of Q-059. It also leaves implementation_phase open -- the substrate_conditional v4 framing of Q-059 is untouched by this evidence.",
+    "source_context": "Synthetic evolutionary review integrating ethology, psychology, neuroscience and phylogeny of laughter/humor in humans and hominid ancestors."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Canonical, highly cited Q Rev Biol synthesis -- high source quality. Mapping fidelity is good because the Duchenne/non-Duchenne split maps almost one-to-one onto Q-059's repair-vs-damage adjudication premise. Transfer risk is modest: Q-059 is itself a design question, so the relevant transfer is 'does the human bifurcation motivate a REE guardrail?', for which a documented, robust biological bifurcation is strong grounding."
+  }
+}
