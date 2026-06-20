@@ -4906,7 +4906,24 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-689a-apply-20260620T1827Z",
+      "last_seen_session": "implement-substrate-mech-448-20260620T1842Z",
+      "implementation_log": [
+        {
+          "session": "implement-substrate-mech-448-20260620T1842Z",
+          "utc": "2026-06-20T18:55Z",
+          "lever": "MECH-448 rank-preserving F->eligibility demotion (ARC-107 LEAD)",
+          "status": "BUILT (no-op default, bit-identical OFF). MECH-448 stays candidate -- PROMOTES NOTHING; ready stays false until the falsifier scores.",
+          "what": "e3_selector.py E3TrajectorySelector._f_eligibility_envelope: F renormalised vs the competing field by a divisive-normalisation analog (merit=max-cost; elig=merit/(f_eligibility_dn_sigma+sum merit); eligible = elig>=f_eligibility_envelope_floor, an ABSOLUTE share floor so the envelope is graded/conflict-scaled/env-general -- decisive F narrows, near-tie widens -- NOT a hard top-k). Rank-preserving (eligible set is an F-rank prefix). Added as a new 'f_demotion' mode of the EXISTING shortlist-then-modulate block so _modulatory_accum arbitrates the committed action WITHIN the F-eligible set with F REMOVED from the final argmin (reused, not duplicated).",
+          "config": "E3Config use_f_eligibility_demotion (False) + f_eligibility_envelope_floor (0.30) + f_eligibility_dn_sigma (0.0); REEConfig.from_dims surfaced.",
+          "divergence_ledger": "canonical DN (Carandini & Heeger 2012; Louie/Khaw/Glimcher 2013) is order-preserving+pooled-symmetric; REE removes F from the commit argmin = rank-ALTERING at commit, EXCEEDS canonical DN (QD/MAP-Elites/CDQ-003). Load-bearing; lit-anchored by the targeted_review_connectome_mech_439 grounding extension, falsifier-validated.",
+          "safety": "clearly-harmful candidate -> near-zero merit -> below floor -> excluded (no global disinhibition); contract-verified.",
+          "precondition_689c": "V3-EXQ-689c was PENDING/not-landed at build time (coordinator queue status pending, ree-cloud-3, no results row) -> no gap-CONCENTRATED parametric win -> PROCEED branch (design note s5.2/s5.3); the no-op-default lever commits nothing about scope.",
+          "validation": "10/10 new contracts (tests/contracts/test_mech_448_f_eligibility_demotion.py) + 8/8 preflight + 1158 full contracts pass (the 3 fails are pre-existing unrelated runner ERROR-branch flakes, confirmed failing on a clean stash). Agent smoke: OFF 0/20 vs ON 20/20 demote-at-commit; bit-identical OFF.",
+          "falsifier_next": "689a-successor on the demotion lever (arc_107 design note s4 acceptance): committed-action-class entropy reaches the proposer ceiling on >=2/3 seeds AND order preserved on the numerators AND no harmful class disinhibited; NON-DEGENERACY f_eligibility_excluded_count>0 on a DIVERGENT pool. Run on the GAP-A-ready foraging substrate (SD-056 e2.world_forward + ARC-065 GAP-A candidate_summary_source=e2_world_forward). NOT queued here -- sequenced /queue-experiment.",
+          "design_doc": "REE_assembly/docs/architecture/mech_448_f_eligibility_demotion.md",
+          "ree_v3_status_doc": "ree-v3/CLAUDE.md (MECH-448 / ARC-107 entry, 2026-06-20)"
+        }
+      ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",
       "pending_retest_after_substrate": true,
       "candidate_cluster_members": [
