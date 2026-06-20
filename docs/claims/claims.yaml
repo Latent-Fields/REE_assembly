@@ -43050,11 +43050,48 @@
   claim_type: open_question
   subject: research.structured_uncertainty_field_object
   polarity: asks
-  status: candidate
+  status: resolved
+  resolution: answered_negative
+  resolution_note: |
+    RESOLVED 2026-06-20 (governance disposition of the R1 /lit-pull novelty drill, landed REE_assembly
+    master 499c251dcb; verdict ANSWERED-NEGATIVE). The DLIF / structured-uncertainty field is NOT a
+    distinct mathematical object: it is a re-notation / engineering synthesis of existing formalisms.
+    DLIF ~= factor-graph unification of directed+undirected models (Frey 2003) + active inference on
+    factor graphs (de Vries & Friston 2017) + structure learning by expansion + Bayesian model reduction
+    (Smith et al 2020) / Bayesian nonparametrics (Fox et al 2011) + scale-free Renormalising Generative
+    Models (Friston et al 2024) + ARC-013 residue. A SINGLE existing framework -- hierarchical active
+    inference in its scale-free RGM form, on Forney factor graphs, with structure learning -- already
+    jointly delivers the four load-bearing capacities (a) directed update + (b) cyclic coherence +
+    (c) latent birth/death/merge/split + (d) granularity/scale shift, plus action coupling, precision,
+    and offline consolidation. Coverage matrix earned cell-by-cell in
+    evidence/literature/targeted_review_q_079/SYNTHESIS.md (non-degeneracy guard satisfied). Confirms
+    pilot HA1 (field-first buys representational ergonomics, not new computational power) / HA6
+    (combination-of-known-pieces is a weaker claim than 'a new object') / R1 (novelty is the drill's
+    first question -- answered: no).
+    DISPOSITION:
+    (1) Repo question CLOSED: do NOT build the standalone 'structured-uncertainty-fields' repo. It was
+        gated on ANSWERED-POSITIVE + SD-062 utility; the ANSWERED-NEGATIVE result removes the novelty
+        leg. (A runnable INTEGRATION of these existing pieces with REE's residue channel could still be
+        an engineering artifact, but that is an SD-062 utility decision, not a math-novelty claim, and
+        remains gated -- not reopened here.)
+    (2) The ONLY candidate-distinct ingredient is residue/non-erasure (every surveyed formalism scores
+        N; BMR + the RG operator are structurally ANTI-residue). The falsifier requires residue shown
+        SEPARABLE from salience + uncertainty (HA2 = ARC-013's OPEN evidence path V3-EXQ-587) -- a REE
+        agent experiment, not a literature result -- so it does NOT flip this verdict and this drill must
+        NOT read as independent confirmation OR disconfirmation of ARC-013 (R2). ARC-013's V3-EXQ-587
+        marker is left UNTOUCHED. If -- and only if -- V3-EXQ-587 later shows residue separable, a NARROW
+        residue-object sub-question reopens (not the full DLIF).
+    (3) Field/projection/residue vocabulary is kept as a thinking aid via the existing
+        ARC-084 / ARC-013 / MECH-363 cross-refs (depends_on / related_claims above) -- no new claims
+        (anti-proliferation).
+    out_of_domain => promote/demote AND narrow_open_question are suppressed by the indexer regardless;
+    this lit evidence is informational. No decision_log entry / decision_state reconcile is owed for an
+    out_of_domain close.
   epistemic_category: out_of_domain
   version_relevance: v4_v5
   v3_pending: false
   registered_utc: "2026-06-20"
+  resolved_utc: "2026-06-20"
   source_thought:
     - docs/thoughts/2026-06-20_structured_uncertainty_layer_for_ree_agent_design.md
     - docs/thoughts/2026-06-20_brain_native_hybrid_inference_objects.md
@@ -43109,7 +43146,9 @@
     RECOMMENDATION: close Q-079 as a synthesis note + close the repo question (do NOT build
     structured-uncertainty-fields); leave ARC-013 V3-EXQ-587 untouched; keep field/projection vocabulary as
     the existing ARC-084/ARC-013/MECH-363 cross-refs (no new claims). out_of_domain => promote/demote
-    suppressed; this lit evidence is informational. Disposition awaiting /governance.
+    suppressed; this lit evidence is informational. DISPOSITION APPLIED 2026-06-20 (governance):
+    status candidate->resolved (resolution: answered_negative); see resolution_note above. Repo question
+    closed (do NOT build structured-uncertainty-fields); ARC-013 V3-EXQ-587 left untouched.
   literature_evidence:
     - evidence/literature/targeted_review_q_079/SYNTHESIS.md   # R1 coverage matrix + ANSWERED-NEGATIVE verdict (5 entries, lit_conf 0.849)
 
