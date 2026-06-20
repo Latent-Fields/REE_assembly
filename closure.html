@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-19.3 -->
+<!-- CLOSURE_VERSION: 2026-06-20.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -346,6 +346,16 @@
   .edge.cross-plan.sev-load-bearing:hover { stroke-width: 4; }
   .edge.cross-plan.sev-high { stroke-width: 2.1; }
   .edge.cross-plan.sev-high:hover { stroke-width: 3.4; }
+  /* plan-level cross-link: the cross_plan_link target is a whole upstream PLAN
+     (a bare plan id), not a specific node, so it is anchored to the top of that
+     plan's column. Drawn fainter, with a longer dash and an open arrowhead feel,
+     so a "depends on the whole plan X" reference reads differently from a precise
+     node->node cross-plan link. Previously these silently failed to render at all
+     (drawEdge bailed on the unresolved target), so a plan's within-generation
+     upstream dependencies were invisible on the roadmap views. */
+  .edge.cross-plan.plan-level { stroke: rgba(163,113,247,0.42); stroke-dasharray: 7 5; stroke-width: 1.4; }
+  .edge.cross-plan.plan-level:hover { stroke: rgba(190,150,255,0.95); stroke-width: 2.6; stroke-dasharray: 7 5; }
+  .edge.cross-plan.plan-level.nbr-hi { stroke: rgba(190,150,255,1.0); stroke-width: 2.8; }
   /* both-done: BOTH endpoint nodes are status=done, so this link no longer
      gates any active work. Recolour from the active purple to the green "done"
      motif -- still visible (you can trace which finished nodes were linked) but
@@ -583,7 +593,7 @@
   </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
-    solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan; <span style="color:#2ea043">green</span> = both endpoints done (link no longer gates work)
+    solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan; long-dash faint purple = plan-level cross-link (depends on a whole plan, anchored to its column head); <span style="color:#2ea043">green</span> = both endpoints done (link no longer gates work)
   </span>
 </div>
 
@@ -660,6 +670,14 @@ let SELECTED_NODE_ID = null;
 let READY_FILTER_ACTIVE = false;
 let STATUS_FILTER = 'all';
 let FACET_FILTER = 'none';   // governance/welfare epistemic facet highlight
+// Plan lookup across ALL generations (built once from CLOSURE_FULL). Lets the
+// node tooltip recognise whether a depends_on / cross_plan_link target is a
+// whole-plan reference (a bare plan id), a node, or a dangling/unresolved id,
+// and which generation it lives in -- so cross-generation references read as
+// "-> sleep_substrate (v3 plan)" instead of looking like a same-view node.
+let PLAN_TITLE_BY_ID = {};   // plan_id -> title
+let PLAN_GEN_BY_ID = {};     // plan_id -> generation
+let NODE_GEN_BY_ID = {};     // node_id -> generation (all generations)
 // derived sets (recomputed on render or when state changes)
 let NODES_BY_ID = {};
 let NEIGHBOURS_OF = {};   // id -> Set of directly-connected ids (any edge type)
@@ -671,6 +689,7 @@ let PLANS_ORDERED = [];     // array of plan objects in the same order
 async function load() {
   const r = await fetch('/api/closure');
   CLOSURE_FULL = await r.json();
+  buildPlanLookups();        // global plan/node -> title/generation maps (all gens)
   applyGenView();            // builds CLOSURE as the GEN_VIEW slice of CLOSURE_FULL
   renderAll();
   wireReadyToggle();
@@ -679,6 +698,36 @@ async function load() {
   wireGenSwitch();
   applyHighlightFromUrl();
   scheduleEasterEggs();
+}
+
+// Build the cross-generation plan/node lookup tables once from the full payload.
+function buildPlanLookups() {
+  PLAN_TITLE_BY_ID = {}; PLAN_GEN_BY_ID = {}; NODE_GEN_BY_ID = {};
+  const f = CLOSURE_FULL || {};
+  for (const p of (f.plans || [])) {
+    PLAN_TITLE_BY_ID[p.id] = p.title || p.id;
+    PLAN_GEN_BY_ID[p.id] = p.generation || 'v3';
+  }
+  for (const n of (f.nodes || [])) {
+    NODE_GEN_BY_ID[n.id] = n.generation || 'v3';
+  }
+}
+
+// Classify a depends_on / cross_plan_link target so tooltips can label it
+// honestly: a node in the current view, a node in another generation, a whole
+// plan reference, or a dangling id that resolves to nothing.
+//   -> { kind: 'node'|'plan'|'unresolved', gen, sameView, label }
+function classifyRef(target) {
+  if (NODES_BY_ID[target]) {
+    return { kind: 'node', gen: NODE_GEN_BY_ID[target] || GEN_VIEW, sameView: true };
+  }
+  if (NODE_GEN_BY_ID[target]) {              // a node, but in another generation
+    return { kind: 'node', gen: NODE_GEN_BY_ID[target], sameView: false };
+  }
+  if (PLAN_GEN_BY_ID[target]) {              // a whole-plan reference
+    return { kind: 'plan', gen: PLAN_GEN_BY_ID[target], sameView: PLAN_GEN_BY_ID[target] === GEN_VIEW };
+  }
+  return { kind: 'unresolved', gen: null, sameView: false };
 }
 
 // Build CLOSURE (the view the renderers read) as the slice of CLOSURE_FULL for
@@ -1194,6 +1243,11 @@ function renderGraph() {
 
   // place nodes
   const nodePos = {};
+  // planAnchorPos: the top-of-column position for each plan, used to anchor
+  // plan-level cross-links (cross_plan_link targets that name a whole upstream
+  // plan rather than a specific node). Routing them to the column head makes the
+  // "depends on the whole plan X" reference land visibly on X's column.
+  const planAnchorPos = {};
   for (let i = 0; i < planOrder.length; i++) {
     const planId = planOrder[i];
     const planNodes = CLOSURE.nodes.filter(n => n.plan_id === planId)
@@ -1208,6 +1262,7 @@ function renderGraph() {
       const x = xOf(i);
       const y = yStart + j * (nodeH + nodeGap);
       nodePos[n.id] = { x, y, w: colW, h: nodeH, plan_id: planId };
+      if (j === 0) planAnchorPos[planId] = nodePos[n.id];
     }
   }
 
@@ -1217,7 +1272,19 @@ function renderGraph() {
   }
   for (let ci = 0; ci < CLOSURE.cross_links.length; ci++) {
     const e = CLOSURE.cross_links[ci];
-    drawEdge(svg, nodePos[e.from], nodePos[e.to], true, nodesById[e.from], nodesById[e.to], ci);
+    let toPos = nodePos[e.to];
+    let toNode = nodesById[e.to];
+    let planLevel = false;
+    // If the target is not a node in this view but IS a plan present in this
+    // view, the link references the whole plan: anchor it to that plan's column
+    // head and render it as a plan-level cross-link. (Cross-generation targets
+    // are filtered out upstream by applyGenView and stay textual in the tooltip.)
+    if (!toPos && planAnchorPos[e.to]) {
+      toPos = planAnchorPos[e.to];
+      toNode = { id: e.to, title: PLAN_TITLE_BY_ID[e.to] || e.to, _isPlan: true };
+      planLevel = true;
+    }
+    drawEdge(svg, nodePos[e.from], toPos, true, nodesById[e.from], toNode, ci, planLevel);
   }
 
   // nodes
@@ -1513,7 +1580,7 @@ function onMinimapClick(ev) {
   window.scrollTo({ top: Math.max(0, graphTopDoc + ty - window.innerHeight / 2), behavior: 'smooth' });
 }
 
-function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
+function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx, planLevel) {
   if (!fromPos || !toPos) return;
   let d;
   if (isCross && Math.abs(fromPos.x - toPos.x) >= 1) {
@@ -1567,7 +1634,8 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
   const bothDone =
     fromNode && toNode && fromNode.status === 'done' && toNode.status === 'done';
   const doneCls = bothDone ? ' both-done' : '';
-  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev + lineageCls + doneCls);
+  const planLevelCls = planLevel ? ' plan-level' : '';
+  path.setAttribute('class', 'edge' + (isCross ? ' cross-plan' : '') + sev + lineageCls + doneCls + planLevelCls);
   path.setAttribute('d', d);
   path.setAttribute('marker-end', bothDone ? 'url(#arrow-done)' : (isCross ? 'url(#arrow-cross)' : 'url(#arrow)'));
   // #3 expose endpoints for click-to-highlight reachability styling
@@ -1584,7 +1652,16 @@ function drawEdge(svg, fromPos, toPos, isCross, fromNode, toNode, crossIdx) {
     const fromStatus = fromNode.status ? ' [' + fromNode.status + ']' : '';
     const toStatus = toNode.status ? ' [' + toNode.status + ']' : '';
     let tipText;
-    if (isCross) {
+    if (isCross && planLevel) {
+      // Target is a whole upstream plan (a bare plan id), anchored to that
+      // plan's column head. Say so explicitly so it does not read as a precise
+      // node->node dependency.
+      tipText =
+        'plan-level cross-link (depends on the whole plan)\n' +
+        fromNode.id + fromStatus + '\n  "' + fromTitle + '"\n' +
+        '  -> ' + toNode.id + ' [plan]\n' +
+        '     "' + toTitle + '"';
+    } else if (isCross) {
       tipText =
         'cross-plan link\n' +
         fromNode.id + fromStatus + '\n  "' + fromTitle + '"\n' +
@@ -1653,6 +1730,24 @@ function fitNodeLabel(textEl, fullId, maxPx) {
   // pathologically long suffix: leave "…:<suffix>" (best effort, never clips the token)
 }
 
+// Render a depends_on / cross_plan_link target as an escaped, kind-marked
+// string for the tooltip: node status, whole-plan reference, cross-generation,
+// or dangling/unresolved (e.g. a retained back-pointer to a node id that no
+// longer exists). Keeps the notes honest about what each link actually points at.
+function annotateRef(id) {
+  const c = classifyRef(id);
+  let suffix = '';
+  if (c.kind === 'node') {
+    const st = NODES_BY_ID[id] && NODES_BY_ID[id].status ? ' [' + NODES_BY_ID[id].status + ']' : '';
+    suffix = st + (c.sameView ? '' : ' (' + c.gen + ')');
+  } else if (c.kind === 'plan') {
+    suffix = c.sameView ? ' (plan)' : ' (' + c.gen + ' plan)';
+  } else {
+    suffix = ' (unresolved)';
+  }
+  return escapeHtml(id + suffix);
+}
+
 function showTip(ev, n) {
   const tip = document.getElementById('tip');
   let html = '<h4>' + escapeHtml(n.id) + '</h4><dl>';
@@ -1683,16 +1778,13 @@ function showTip(ev, n) {
       html += '<dt>ethics gates</dt><dd>' + n.applicable_ethics_gates.map(escapeHtml).join(', ') + '</dd>';
   }
   if (n.depends_on && n.depends_on.length) {
-    // Annotate each lineage target with its status so done predecessors are
-    // visually distinct from open ones in the tooltip too.
-    const deps = n.depends_on.map(id => {
-      const dep = NODES_BY_ID[id];
-      const st = dep && dep.status ? ' [' + dep.status + ']' : '';
-      return escapeHtml(id + st);
-    });
-    html += '<dt>lineage</dt><dd>' + deps.join(', ') + '</dd>';
+    // Annotate each lineage target with its status (done predecessors stay
+    // visually distinct from open ones) plus a kind marker so a whole-plan or
+    // dangling/back-pointer reference is not mistaken for a same-view node.
+    html += '<dt>lineage</dt><dd>' + n.depends_on.map(annotateRef).join(', ') + '</dd>';
   }
-  if (n.cross_plan_link && n.cross_plan_link.length) html += '<dt>x-plan</dt><dd>' + n.cross_plan_link.map(escapeHtml).join(', ') + '</dd>';
+  if (n.cross_plan_link && n.cross_plan_link.length)
+    html += '<dt>x-plan</dt><dd>' + n.cross_plan_link.map(annotateRef).join(', ') + '</dd>';
   if (n.blocking_external && n.blocking_external.length) html += '<dt>ext blocker</dt><dd>' + n.blocking_external.map(escapeHtml).join('; ') + '</dd>';
   if (n.last_updated) html += '<dt>updated</dt><dd>' + escapeHtml(String(n.last_updated)) + '</dd>';
   html += '</dl>';

@@ -34,7 +34,7 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [MECH-299, MECH-300]
       depends_on: []
-      cross_plan_link: ["object_representation:OBJ-1"]
+      cross_plan_link: ["object_representation_v4:OBJ-1"]
       blocking_on: "Gated on building the FIRST reusable-unit substrate -- a unit ABOVE the atomic action -- so the abstraction-scaling claims have a second granularity to scale into. The fork: SD-045 action-chunk cache (OBJ-ABS-2) OR SD-040/MECH-296 type-instance match (OBJ-ABS-3) OR SD-042 option library (OBJ-ABS-5). All three are implementation_phase v4 and themselves gated on their own V3-era prerequisites (ARC-021 / SD-004 / MECH-269 / MECH-290 / a richer environment). V3's vocabulary is FIXED at z_world + atomic actions, so this is a missing substrate LAYER, not a missing flag -- no V3 pull-forward exists except SD-045's monostrategy-persistence trigger (per the OBJ-ABS-2 readiness gate). Resolves to open when a version decision (V4, or a fired SD-045 pull-forward) commits to which reusable-unit substrate is built first."
       readiness_gate:
         - "V3 substrate vocabulary is FIXED at z_world + atomic actions (per MECH-299 notes: no second granularity exists for theta to scale into)"
@@ -69,7 +69,7 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [SD-040]
       depends_on: ["object_reasoning_abstraction_v4:OBJ-ABS-1"]
-      cross_plan_link: ["object_representation:OBJ-1"]
+      cross_plan_link: ["object_representation_v4:OBJ-1"]
       blocking_on: "Gated on MECH-269 AnchorSet substrate (the pool getting a new type-key projection) + SD-039 anchor payload schema (the entry SD-040 adds a field to). Both V3-live; SD-040 extends them, it does not replace them."
       readiness_gate:
         - "MECH-269 AnchorSet / V_s substrate live in V3 (SD-040 adds a type-key projection alongside the existing z_world payload)"

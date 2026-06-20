@@ -6,7 +6,7 @@ closure_plan:
   registered: 2026-06-10
   last_updated: 2026-06-12
   scope_claims: [ARC-056, MECH-164, MECH-145, MECH-146, ARC-086, MECH-367, MECH-371, INV-067, INV-068, INV-069, INV-070, INV-071, INV-072, ARC-054]
-  sibling_plans: [relational_harm_moral_semantics_v5, mirror_modelling, self_model_v4, object_representation_v4]
+  sibling_plans: [relational_harm_moral_semantics_v5, mirror_modelling_other_self_v5, self_model_v4, object_representation_v4]
   roadmap_note: >
     FORWARD ROADMAP, not a closure map. This is the V5 (SOCIAL mind) tier of the
     3-tier partition: V4 = individual mind (object permanence + self-model;
@@ -40,7 +40,7 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [ARC-056]
       depends_on: []
-      cross_plan_link: ["mirror_modelling", "relational_harm_moral_semantics_v5", "object_representation_v4:OBJ-5"]
+      cross_plan_link: ["mirror_modelling_other_self_v5", "relational_harm_moral_semantics_v5", "object_representation_v4:OBJ-5"]
       blocking_on: "ARC-056's J_ethical(pi) = beta_self*D_V_self + sum_j beta_j*D_V_j requires a per-agent D_{V,j} term, which needs a per-agent representation (others-as-object, object_representation_v4:OBJ-5 / ARC-083) that does not exist in V3. Gated additionally on MECH-163 multi-step hippocampal planning (V4-social entry gate) and on the mirror-modelling other-terrain readout."
       readiness_gate:
         - "V3/V4 PREREQUISITE (DEV-NEED-021): otherness inference REQUIRES object persistence (object_representation_v4:OBJ-2) + a stable self (object_representation_v4:OBJ-3 / self_model_v4); a beta_j-weighted other has no referent until a per-agent token-keyed slot exists (object_representation_v4:OBJ-5 / ARC-083)"
@@ -124,7 +124,7 @@ closure_plan:
       owner_exq: null
       unblocks_claims: [MECH-164]
       depends_on: ["ethics_as_coherence_v5:ETH-1"]
-      cross_plan_link: ["mirror_modelling", "object_representation_v4:OBJ-5"]
+      cross_plan_link: ["mirror_modelling_other_self_v5", "object_representation_v4:OBJ-5"]
       blocking_on: "MECH-164 requires the hippocampal terrain to be instantiable from ANOTHER agent's perspective (their goal/harm gradients) -- an other-indexed terrain readout that needs the mirror-modelling substrate + a per-agent slot (ARC-083). Depends on MECH-163 (already in MECH-164 depends_on) and SD-011 dual nociceptive streams (V3-live)."
       readiness_gate:
         - "V3 BEGINNING present: INV-005 (harm to others via mirror modelling) is the negative-side precursor and SD-011 (dual nociceptive streams) is V3-live (provisional 2026-04-18); MECH-164 generalises INV-005 to the FULL terrain -- harm gradient AND goal gradient -- with explicit other-indexing"
