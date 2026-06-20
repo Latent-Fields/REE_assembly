@@ -1,0 +1,54 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation",
+  "run_id": "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-20T14:34:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-049",
+    "SD-015"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-049": "non_contributory",
+    "SD-015": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "readiness_route": "substrate_not_ready_requeue",
+    "route_reason": "non_vacuity_unmet",
+    "c5_fix_note": "goal_resource_r is measured as a NON-SATURATING identity-discrimination margin (same-type minus different-type cosine of z_goal vs per-type mean z_resource), so ARM_0 ~0 by absence of type structure -- the 514l C5 defect (legacy cosine(z_goal,z_world) saturating ARM_0 ~1.0) is fixed. The legacy saturating cosine is reported per arm as a diagnostic only.",
+    "non_vacuity_note": "R1 consumption + R2 identity-probe-fireable + R3 WL-channel-fireable (same-statistic 514n gate). Any unmet -> substrate_not_ready_requeue (FAIL; both claims non_contributory), NEVER a false weakens. A WL-flat-only outcome with non-vacuity met is the SD-049 falsifier-branch substrate_conditional re-route candidate (route via /failure-autopsy), NOT a standalone weakens."
+  }
+}
