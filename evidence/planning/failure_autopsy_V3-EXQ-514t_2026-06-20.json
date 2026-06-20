@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T06:42:22Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3",
+      "queue_id": "V3-EXQ-514t",
+      "claim_ids": ["MECH-436"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- overshoot 4/5 proves the channel carries at adequate magnitude; FAIL bears on kappa calibration + flip-gated measurement, not the claim; MECH-229 leg (a) untouched",
+        "biological_reference": "clear -- Berridge incentive salience = drive/state-modulated cue attraction; kappa bounded ABOVE (drive must not dominate base_value), 12.0 overshot that bound",
+        "prerequisites": "present -- standing differential per-axis spread ~0.19 met on all seeds (enriched_spread_frac 1.0); lever (b) done",
+        "implementation": "adequate but over-amplified -- at kappa_eff=24 most_wanted -> argmax(per_axis_drive), argmax destabilisation",
+        "environment": "adequate -- env amend produced the standing spread it was built for",
+        "measurement": "under-instrumented (THE suspect layer) -- argmax-flip-gated WL delta discards continuous sub-flip re-weighting AND interacts pathologically with high kappa (chaotic flips -> SD explosion -> false-negative + sign instability)",
+        "integration": "coupled -- bank -> most_wanted reached; overshoot + 1/5 natural move it",
+        "scale": "adequate -- 6 seeds, 72 scored WL steps"
+      },
+      "biological_reference": {
+        "closest_mechanism": "incentive salience as drive/state-modulated cue attraction (Berridge 2006; Smith/Berridge/Aldridge 2011 PNAS; DiFeliceantonio/Berridge 2016)",
+        "dependencies": ["differential homeostatic per-axis depletion signal", "kappa coupling gain bounded above so drive does not dominate base_value", "an argmax-relevant standing per-axis drive spread at the WL scoring moment"],
+        "is_formal_import": false,
+        "divergence": "none -- biology directly grounds the claim; the FAIL is calibration-band (kappa over-amplified) + measurement (coarse flip-gate), not biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-20 (failure_autopsy_V3-EXQ-514t, confirmed): clean self-route; substrate-ceiling PERSISTS. 514t armed the 514s bounded-kappa amend (kappa_scale=12.0 + per_axis_restoration_fraction=0.15). The self-route to mech436_enrichment_insufficient_substrate_ceiling is CORRECT and reached by the honest path: all five non-vacuity preconditions MET -- contact 5/6, argmax-relevance pc_frac=1.0, OFF/bank-disabled floor 1.0 (hard zero), bank populated 1.0, enriched-spread MET (mean_drive_spread_max=0.192, per-seed 0.15-0.23, floor 0.1, lever (b) WORKING). Natural drive-coupled delta mean -0.037 +/- 0.188 (margin 0.188; per-seed [-0.333, 0.0, -0.150, 0.100, 0.200] -> 1/5 clears, 2/5 STRONGLY NEGATIVE), while overshoot (mag 5.0) still flips most_wanted on 4/5 guard-passing seeds (>= 2/3) -> enrichment insufficient, NOT a weakens. THE LOAD-BEARING NEW FINDING: the kappa-magnitude lever is EXHAUSTED as a monotone repair. Doubling kappa 6.0 -> 12.0 REGRESSED the natural delta rather than improving it (514s mean +0.064 / sd 0.109 / 2-of-5-clear -> 514t mean -0.037 / sd 0.188 / 1-of-5-clear, two seeds strongly negative). At kappa_eff=24 the drive term over-amplifies base_value and most_wanted -> argmax(per_axis_drive), flipping chaotically through a near-tie landscape that the argmax-flip-gated WL metric reads as sign-unstable noise. The 'needs more kappa' hypothesis is FALSIFIED; the suspect is now the MEASUREMENT layer. MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED -- confirmed correct, NOT weakened, NOT promoted, NOT granularity debt: same signature as 514q/r/s, now with a falsified monotone-kappa lever, so NO /claim-synthesis). Route: /queue-experiment 514u measurement-redesign -- add a CONTINUOUS incentive-amplitude metric (drive's sub-flip shift of the wanting score toward the depleted axis) alongside the flip-gated delta, at a MODERATE kappa (toward 6.0; do NOT exceed 6.0, the 514s C8 bounded-kappa invariant). MECH-229 leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNAFFECTED. No demotion.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "sd_id_suggested": "SD-049-PHASE-2",
+        "title": "MECH-436 drive-coupling: kappa-magnitude lever exhausted -> route to measurement redesign",
+        "implementation_hint": "The kappa-magnitude lever is EXHAUSTED as a monotone repair (6.0 positive-but-short, 12.0 noisy-negative -- non-monotone). The substrate enrichment is ADEQUATE (enriched_spread ~0.19 met on all seeds; lever (b) done). Do NOT raise kappa above 6.0 (violates the 514s C8 bounded-kappa invariant: drive must not dominate base_value). The next iteration is a MEASUREMENT redesign (a /queue-experiment metric change, NOT another env/kappa substrate lever): add a continuous incentive-amplitude readout (drive's sub-flip shift of the wanting score toward the depleted axis) alongside the argmax-flip-gated WL delta, run at a MODERATE kappa (toward 6.0 or a bounded (1.0, 6.0] sweep). The flip-gated metric is the diagnosed ceiling -- it discards continuous sub-flip re-weighting and interacts pathologically with high kappa.",
+        "unblocks_claims": ["MECH-436"],
+        "depends_on_unresolved": ["V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric (to be queued)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3",
+          "experiment_type": "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest",
+          "metric": "natural drive-coupled WL delta mean -0.037 +/- 0.188 (margin 0.188); REGRESSED from 514s (+0.064, sd 0.109) at kappa 6.0 -> 12.0; 2/5 seeds strongly negative; overshoot still flips 4/5",
+          "target": "natural delta >= max(K_SD*pstdev(delta), 0.15) on >= 2/3 seeds -- but on a CONTINUOUS incentive-amplitude metric at moderate kappa, NOT the flip-gated delta at raised kappa (that path is falsified)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The kappa-magnitude lever (incentive_drive_kappa_scale) is NON-MONOTONE and EXHAUSTED as a repair: 6.0 gave bimodal-positive (mean +0.064, 2/5 clear); 12.0 gave noisy-negative (mean -0.037, sd 0.188, 2/5 strongly negative). More kappa does not help and actively hurts -- the 514s 'needs more kappa' prediction is FALSIFIED.",
+        "kappa is bounded ABOVE as well as below: at kappa_eff=24 (12*2) the drive term dominates base_value and most_wanted -> argmax(per_axis_drive), destabilising the argmax through a near-tie landscape (the 514s C8 bounded-kappa invariant is the operative ceiling; 12.0 violated it).",
+        "The argmax-flip-gated WL metric is the diagnosed suspect layer: it discards continuous sub-flip re-weighting (itself genuine incentive-salience modulation) AND interacts pathologically with high kappa (chaotic flips -> SD explosion -> false negative). The 514s Section 7 deferred continuous-amplitude metric ('IF the kappa amend stalls') is now the live route -- the amend has stalled.",
+        "Lever (b) standing-differential-depletion is DONE: enriched_spread ~0.19 met on all seeds; the env enrichment is adequate, the regression is over-amplification + measurement, not a spread failure.",
+        "A negative natural delta is NOT evidence drive carves wanting toward liking: the overshoot positive control (4/5) confirms the channel works at adequate magnitude; the negative seeds are the flip-gate registering chaotic argmax flips under over-amplified drive, a measurement artifact."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "supersession": {
+    "this_run_supersedes": "V3-EXQ-514s",
+    "governance_action_on_predecessor": "set evidence_direction: superseded on v3_exq_514s_sd049_phase2_mech436_drive_coupling_retest_20260618T064933Z_v3 manifest; rebuild index"
+  },
+  "indexing_note": "514t landed after the 2026-06-20T06:18Z pipeline index build (unclaimed manifest; run_id not yet in claim_evidence.v1.json). Governance must: (a) set evidence_direction non_contributory on the manifest (non_degenerate already true -> indexer marks scoring_excluded); (b) add the run_id to review_tracker reviewed_run_ids; (c) rebuild the index so it enters claim_evidence.v1.json as scoring-excluded; (d) apply the 514s supersession.",
+  "granularity_debt_check": "7th run / 5th autopsy on MECH-436 (514q split, 514r, 514s, 514t). SAME failure signature throughout (natural drive below the argmax-flip threshold), now extended by a falsified monotone-kappa lever -- convergent, not divergent. /claim-synthesis split already resolved the granularity debt at 514q. NO further /claim-synthesis warranted.",
+  "protect": "MECH-229 leg (a) wanting!=liking object-bound dissociation (V3-EXQ-514o PASS 0.80) is NOT under test and NOT weakened."
+}
