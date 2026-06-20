@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-20T08:18:55Z`
+Generated: `2026-06-20T09:19:16Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,36 +9,15 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **190** (ready 19, in_flight 1, blocked 150)
-- Pending review: **4**
+- Items: **190** (ready 18, in_flight 1, blocked 151)
+- Pending review: **0**
 - Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-689a, V3-EXQ-690, V3-EXQ-691, V3-EXQ-693
+- Live EXQs: V3-EXQ-514u, V3-EXQ-689a, V3-EXQ-690, V3-EXQ-691, V3-EXQ-693
 
-- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-690, SD-015 -> V3-EXQ-693, SD-049 -> V3-EXQ-693
+- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-690, MECH-436 -> V3-EXQ-514u, SD-015 -> V3-EXQ-693, SD-049 -> V3-EXQ-693
 
 ## Work packages
-
-### IGW-20260620-001 -- Complete governance review (4 pending)
-
-- **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 4 item(s) -- must clear before new work packages.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260620-001
-Title: Complete governance review (4 pending)
-Lane: governance | Skill: /governance
-Status: ready
-Why now: pending_review.md lists 4 item(s) -- must clear before new work packages.
-
-Instructions:
-- Run /governance from REE_assembly; walk pending_review with user.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
 
 ### IGW-20260620-165 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
@@ -163,8 +142,8 @@ Instructions:
 ### IGW-20260620-176 -- Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20
-- **Blocked by:** ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3
-- **Why now:** substrate_queue entry status=phase_2_implemented with 1 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.
+- **Blocked by:** ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric (queued, supersedes 514t)
+- **Why now:** substrate_queue entry status=phase_2_implemented with 2 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -174,8 +153,8 @@ Title: Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
 Claims: SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030
-Blocked by: ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3
-Why now: substrate_queue entry status=phase_2_implemented with 1 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.
+Blocked by: ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3; free-text: V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric (queued, supersedes 514t)
+Why now: substrate_queue entry status=phase_2_implemented with 2 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.
 
 Instructions:
 - Use /implement-substrate for the SD/MECH named in title.
@@ -673,8 +652,8 @@ Instructions:
 ### IGW-20260620-174 -- Retest after substrate: MECH-229
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28
-- **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]
-- **Why now:** Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+- **Blocked by:** SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric (queued, supersedes 514t)
+- **Why now:** Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -684,8 +663,8 @@ Title: Retest after substrate: MECH-229
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: MECH-229
-Blocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]
-Why now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.
+Blocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]; free-text (via SD-049-PHASE-2): V3-EXQ-514u measurement-redesign continuous incentive-amplitude metric (queued, supersedes 514t)
+Why now: Blocked by 3 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -888,7 +867,7 @@ Lane: experiment | Skill: (monitor -- do not re-queue)
 Status: in_flight
 Gap(s): behavioral_diversity_isolation:GAP-I
 Owner EXQ: V3-EXQ-689a RAN-PENDING (queued prio 400; claimed DLAPTOP-4.local 2026-06-19T20:25Z; supersedes V3-EXQ-689 which self-routed substrate_not_ready_requeue on gap_spread 0/3). The 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier from conversion_ceiling_phase0_synthesis_2026-06-18 Phase 2/3. Lead lever BUILT (e3_selector.py _gap_scaled_commit_pick + conflict-graded top-k block); 689a is the validation, not a build.
-Claims: MECH-439, MECH-309, ARC-062, ARC-063, MECH-263, MECH-260, Q-045, SD-037
+Claims: MECH-439, MECH-309, ARC-062, ARC-063, MECH-263, MECH-260, Q-045, SD-037, MECH-445, MECH-446
 Why now: PASS (V3-EXQ-689a ARM_A1B1 gap-scaled-both strict-above BOTH gap-blind controls FIXED_KMAX+FIXED_HOT_T on committed-class entropy >=2/3 seeds, lift gap-CONCENTRATED) -> conflict-grading is load-bearing -> MECH-439 candidate->supports, ceili
 
 Instructions:
@@ -2180,8 +2159,8 @@ Instructions:
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 40
 - **Gap(s):** commitment_closure:GAP-4
-- **Owner EXQ:** V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)
-- **Why now:** Closes when V3-EXQ-460h returns a contributory PASS (within-arm post-closure occupancy < pre-closure by >= DECOMMIT_MIN_DROP_FRAC on >= 2/3 seeds, on the refractory-independent commit-intent non-vacuity gate) for the re-grained children MEC
+- **Owner EXQ:** V3-EXQ-460i (GATED, not yet queued -- the de-commit retest of MECH-445/446 on the F-dominance commit-entry-decisiveness lever; see governance_2026_06_20 + resume_condition). PREDECESSOR V3-EXQ-460h RAN terminal FAIL/non_contributory 2026-06-20 (confirmed failure_autopsy_V3-EXQ-460h_2026-06-20). [HISTORICAL 460h owner record:] V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)
+- **Why now:** Closes when the de-commit retest (V3-EXQ-460i) returns a CONTRIBUTORY PASS for MECH-445 + MECH-446 on the F-dominance commit-ENTRY-decisiveness lever (substrate_queue f_dominance_conversion_ceiling -- the commit/release-duration FACE of roo
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -2191,9 +2170,9 @@ Title: OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjun
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
 Gap(s): commitment_closure:GAP-4
-Owner EXQ: V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)
+Owner EXQ: V3-EXQ-460i (GATED, not yet queued -- the de-commit retest of MECH-445/446 on the F-dominance commit-entry-decisiveness lever; see governance_2026_06_20 + resume_condition). PREDECESSOR V3-EXQ-460h RAN terminal FAIL/non_contributory 2026-06-20 (confirmed failure_autopsy_V3-EXQ-460h_2026-06-20). [HISTORICAL 460h owner record:] V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)
 Claims: SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342
-Why now: Closes when V3-EXQ-460h returns a contributory PASS (within-arm post-closure occupancy < pre-closure by >= DECOMMIT_MIN_DROP_FRAC on >= 2/3 seeds, on the refractory-independent commit-intent non-vacuity gate) for the re-grained children MEC
+Why now: Closes when the de-commit retest (V3-EXQ-460i) returns a CONTRIBUTORY PASS for MECH-445 + MECH-446 on the F-dominance commit-ENTRY-decisiveness lever (substrate_queue f_dominance_conversion_ceiling -- the commit/release-duration FACE of roo
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -4877,7 +4856,7 @@ Instructions:
 
 </details>
 
-### IGW-20260620-002 -- Held pending substrate: MECH-443
+### IGW-20260620-001 -- Held pending substrate: MECH-443
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60
 - **Blocked by:** V3 substrate implementation / per-claim retest
@@ -4886,7 +4865,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260620-002
+REE inter-governance work item: IGW-20260620-001
 Title: Held pending substrate: MECH-443
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -4901,7 +4880,31 @@ Instructions:
 
 </details>
 
-### IGW-20260620-003 -- Held pending substrate: MECH-444
+### IGW-20260620-002 -- Held pending substrate: MECH-444
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60
+- **Blocked by:** V3 substrate implementation / per-claim retest
+- **Why now:** promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260620-002
+Title: Held pending substrate: MECH-444
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: MECH-444
+Blocked by: V3 substrate implementation / per-claim retest
+Why now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260620-003 -- Held pending substrate: MECH-445
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60
 - **Blocked by:** V3 substrate implementation / per-claim retest
@@ -4911,10 +4914,10 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260620-003
-Title: Held pending substrate: MECH-444
+Title: Held pending substrate: MECH-445
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
-Claims: MECH-444
+Claims: MECH-445
 Blocked by: V3 substrate implementation / per-claim retest
 Why now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.
 
