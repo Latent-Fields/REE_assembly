@@ -41501,6 +41501,48 @@
     v3_pending (this PROMOTES NOTHING).
   location: docs/architecture/sd_061_difficulty_gated_proposal_entropy.md
 
+- id: SD-062
+  title: "Claims-index as a typed multi-axis structured-uncertainty graph: the REE claims registry is (and should be explicitly maintained as) a typed dependency-and-coherence graph carrying per-claim multi-axis state -- truth/evidence confidence, implementation-dependence, conflict burden, roadmap relevance, experiment status, ethical risk, v3-blocking status, dispatch -- with directed AND coherence edge types, so evidence/conflict/roadmap/ethics/implementation pressure can propagate without collapsing a claim into a single scalar confidence."
+  claim_type: design_decision
+  subject: governance.claims_index_structured_uncertainty_graph
+  polarity: asserts
+  status: candidate
+  epistemic_category: derivational
+  claim_level: governance
+  version_relevance: v3_v4
+  v3_pending: false
+  registered_utc: "2026-06-20"
+  source_thought:
+    - docs/thoughts/2026-06-20_claims_index_as_structured_uncertainty_graph.md
+    - docs/thoughts/2026-06-20_dlif_claims_index_pilot_result.md
+  location: docs/thoughts/2026-06-20_dlif_claims_index_pilot_result.md
+  related_claims:
+    - Q-079   # the abstract structured-uncertainty object SD-062 is the claims-index application of (whether literally the SAME object is HA3 in the pilot, unresolved -- related, NOT depends_on)
+  what_would_answer: |
+    The 2026-06-20 pilot axis-audit (pilot_result.md s7) shows 7 of 9 proposed axes are ALREADY
+    first-class in claims.yaml (depends_on [844 edges], implementation_phase, v3_pending + a literal
+    blocks_v3_green_board field, version_relevance, exp/lit confidence split, indexer conflict_ratio,
+    epistemic_category/epistemic_stance) -- so this decision is ~80-90% already realised. ADOPT
+    (decision correct + worth the small remaining work) iff an explorer view built on the existing
+    fields PLUS the two missing pieces -- (a) an explicit per-claim ethical-risk axis or a typed edge
+    into the SENT-*/GOV-* governance_rule layer, (b) richer typed edge labels beyond depends_on
+    (contradicts / refines / tested_by / narrows / dispatches_to) -- demonstrably answers the governance
+    queries (most load-bearing / most under-evidenced / most conflict-burdened / which experiment cuts
+    the most uncertainty) BETTER than today's explorer. REJECT/CLOSE if the existing fields already
+    answer those queries unaided (the 'graph' would add vocabulary without improving a decision -- the
+    DLIF kill-criterion). Non-degeneracy guard: compare against the CURRENT explorer's actual output on
+    the same queries, not a strawman tag-list. OUT OF SCOPE: any probabilistic-inference engine,
+    factor-graph message passing, or claims-registry rewrite -- none is a v3 strict green-board dependency.
+  notes: |
+    GENUINELY-NEW node from the 2026-06-20 DLIF / structured-uncertainty thought cluster (Track A
+    intake; pilot_result.md is the spec). epistemic_category derivational set EXPLICITLY (overriding the
+    design_decision -> standard inference): this is a governance-tooling decision answered by the schema
+    audit + an adoption call, NOT a REE agent experiment, so promote/demote + narrow_open_question are
+    correctly suppressed. Off the REE-v3 strict green-board path (target 2026-07-19); light v3 utility
+    only. Sibling of Q-079 (the abstract object); the claim that the claims-index and the agent use
+    literally the SAME object is HA3 in pilot_result.md and is NOT asserted here -- hence related_claims,
+    not depends_on.
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
@@ -43002,6 +43044,55 @@
     Children MECH-447 (lever-sufficiency) / MECH-448 (residual-ceiling) / MECH-449 (Go-NoGo constitution)
     + ARC-107 (the architecture) registered alongside; /claim-synthesis post-689a discriminates
     genuinely-independent children from design alternatives (anti-proliferation rail).
+
+- id: Q-079
+  title: "Is there a distinct, useful mathematical object -- a 'structured uncertainty field' / dynamic latent-scale inference field (DLIF) -- that jointly provides directed evidence update, cyclic coherence constraint, latent-node birth/death/merge/split, granularity/scale shift, action coupling, precision modulation, offline consolidation, AND residue/non-erasure; or does it collapse to a re-notation of existing formalisms (dynamic factor graphs + Bayesian-nonparametric structure learning + active inference + ARC-013 residue)?"
+  claim_type: open_question
+  subject: research.structured_uncertainty_field_object
+  polarity: asks
+  status: candidate
+  epistemic_category: out_of_domain
+  version_relevance: v4_v5
+  v3_pending: false
+  registered_utc: "2026-06-20"
+  source_thought:
+    - docs/thoughts/2026-06-20_structured_uncertainty_layer_for_ree_agent_design.md
+    - docs/thoughts/2026-06-20_brain_native_hybrid_inference_objects.md
+    - docs/thoughts/2026-06-20_dynamic_latent_scale_inference_field_capture.md
+    - docs/thoughts/2026-06-20_dynamic_latent_scale_inference_field_research_map.md
+    - docs/thoughts/2026-06-20_latent_information_fields_graphs_as_projections.md
+    - docs/thoughts/2026-06-20_dynamic_latent_information_field_minimal_formal_specification.md
+    - docs/thoughts/2026-06-20_dynamic_latent_information_field_critical_review_and_learning.md
+    - docs/thoughts/2026-06-20_dlif_claims_index_pilot_result.md
+  location: docs/thoughts/2026-06-20_dlif_claims_index_pilot_result.md
+  depends_on:
+    - ARC-084   # cognifold = single interacting state-space + typed signed coupling: the existing REE substrate that the field-native framing (cluster P1/P3) folds onto
+    - ARC-013   # residue = persistent latent-space curvature: existing home of 'residue as field deformation' (cluster P2); its open evidence path is V3-EXQ-587
+  related_claims:
+    - MECH-363  # diffuse long-range competitive coupling = stability requirement (neighbours the structured-uncertainty-layer framing)
+    - SD-062    # the claims-index application of the same framing (whether literally the SAME object = HA3, unresolved)
+  what_would_answer: |
+    ANSWERED-NEGATIVE (object is NOT novel -> close as a synthesis note, do NOT build a standalone repo):
+    if an R1 literature drill (the cluster's research_map is its start) finds a SINGLE existing formalism
+    -- e.g. dynamic factor graphs + Bayesian-nonparametric structure learning, or hierarchical active
+    inference -- that already jointly delivers directed evidence update + cyclic coherence + latent-node
+    birth/death/merge/split + scale-shift, such that DLIF adds only notation (pilot_result.md HA1/HA6).
+    ANSWERED-POSITIVE (warrants a distinct object, possibly its own repo) ONLY if NO single formalism
+    covers the combination AND the residue/non-erasure component is shown SEPARABLE from salience +
+    uncertainty (pilot_result.md HA2 = ARC-013's open V3-EXQ-587), not merely re-described. Non-degeneracy
+    guard: the drill must enumerate each candidate formalism's ACTUAL coverage against all four capacities,
+    not assert a gap. Resolved by literature + derivation, NOT a REE agent experiment (hence out_of_domain);
+    off the v3 strict green-board path (target 2026-07-19). The hidden-cause gridworld agent test is V4+.
+  notes: |
+    GENUINELY-NEW research-line umbrella node from the 2026-06-20 DLIF / structured-uncertainty thought
+    cluster (Track A intake). Folds cluster propositions P1 (structured-uncertainty layer), P2 (residue as
+    field deformation -> ARC-013), P3 (graphs-as-projections / field-native -> ARC-084) via the depends_on
+    cross-refs above -- those are NOT re-registered as separate claims (already owned; anti-proliferation).
+    The standalone 'structured-uncertainty-fields' repo is GATED on an ANSWERED-POSITIVE here + SD-062
+    utility; not now. Highest-value preserved residue (pilot_result.md R1): treat 'is it novel or a
+    re-notation?' as the drill's FIRST question, not its conclusion -- the overclaim risk the cluster's
+    own critical review flagged.
+
 - id: MECH-423
   title: "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable."
   claim_type: mechanism_hypothesis
