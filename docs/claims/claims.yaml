@@ -8222,6 +8222,14 @@
     calls E1.shy_normalise(decay) when shy_enabled=True. Config: REEConfig.shy_enabled
     (bool, default False), REEConfig.shy_decay_rate (float, default 0.85). EXQ-245a
     queued for validation.
+    V3-EXQ-691 (Q-055, 2026-06-20, PASS/supports -- governance 2026-06-20): supports the
+    MECH-120-as-protective-risk-mitigated reading -- SHY-style SWS denoising during
+    consolidation did NOT erode committed-action-class diversity (arm-A sleep-ON preserves
+    2/3 seeds, non_degenerate=true). NUANCE (governance-flagged): sleep-ON eroded marginally
+    MORE than the sleep-OFF control (t2 0.569 vs 0.645), so the Hebbian-erosion risk is
+    BOUNDED/non-catastrophic rather than absent -- not a clean protective win over no-sleep.
+    exp_conf 0.575 (< 0.62 promotion gate) + implementation_phase v3 -> status candidate
+    unchanged (held_pending_v3_substrate).
 
 - id: MECH-121
   title: "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation."
@@ -11871,6 +11879,7 @@
     EXQ-418a rerun 2026-04-19T10:24 (non_contributory -- governance 2026-04-19): Second occurrence of same zero-differential-signal pattern (action_bias_div=0.0 in both WITH_SLEEP_SD016 and WITHOUT_SLEEP_SD016 conditions, all seeds). Confirms wiring gap persists; same diagnostic classification applied.
     EXQ-418a + EXQ-436 04-20 reruns (non_contributory -- governance 2026-04-22): Same bit-identical zero-signal pattern repeats in third + fourth attempts. Root cause now diagnosed as SD-016 cue_action_proj consumer collapse (per-channel std ~2.7e-8 in frozen-weights regime). SD-017/ARC-045/MECH-166 cannot be discriminated until SD-016 consumer wiring fix lands; spawned diagnostic owns the fix.
     Promoted provisional -> stable 2026-04-24 (governance): 5 supporting literature entries, 0 opposing, 1 mixed, conf 0.903. No contributing genuine experimental evidence yet -- all SD-017 ablation runs to date are non_contributory because of the upstream SD-016 ContextMemory attention-uniformity bug (V3-EXQ-477 diagnostic 2026-04-24 localised to key_proj.bias dominance, bias_over_content_ratio=4.24). Promotion rests on the consolidated sleep-phase biology literature; experimental confirmation deferred to post-SD-016-fix ablation re-run.
+    V3-EXQ-691 (Q-055, 2026-06-20, PASS/supports -- governance 2026-06-20): first non-vacuous experimental support (non_degenerate=true). Sleep-phase consolidation PRESERVES (does not collapse) committed-action-class diversity with the 569i top-k conversion armed -- arm-A (sleep-ON) t2 entropy >= 50% of t0 on 2/3 seeds; readiness met (sleep cycles fire 75 write-passes vs 0 OFF; t0 supra-floor; knob not inert). NUANCE (governance-flagged): arm-A t2 (0.569) was marginally BELOW the sleep-OFF control t2 (0.645) -- sleep did NOT net-protect diversity vs no-sleep; the PASS criterion is preserve-not-collapse, NOT sleep-beats-control. Supports the offline-consolidation-does-not-erode-diversity reading; status stable unchanged.
 
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."

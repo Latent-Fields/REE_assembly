@@ -62,6 +62,8 @@ TRACEABILITY_EXEMPT = {
     "SD-049": "multi-resource heterogeneity substrate; 'curriculum' only in an incidental 'curriculum-introduction hook' aside",
     "MECH-191": "stereotyped behavioral-signal externalization; 'play-bow' is one cited example, claim is not developmental",
     "MECH-442": "behavioral-descriptor committed-selection archive (MAP-Elites analog); 'repertoire' is the QD behavioral-repertoire archive + the biology lit-pull's 'behavioral-module repertoire', not developmental",
+    "MECH-443": "priority-weighted replay write-selection (MuZero/EfficientZero reanalyze); 'play' matches '(pre)played' (hippocampal preplay/replay sequence), not developmental play",
+    "MECH-444": "staleness-gated target refresh on replay-write; 'play' matches 'verbatim playback' (replay-playback), not developmental play",
 }
 
 _CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL|RA)-\d+[a-z]?\b")

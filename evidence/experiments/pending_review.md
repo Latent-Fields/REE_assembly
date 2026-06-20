@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-20T09:15:56Z`  
-Last review: `2026-06-20T09:12:44Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-20T11:53:08Z`  
+Last review: `2026-06-20T11:40:43Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3` | 2026-06-20T10:58 | ARC-062 | — |
 
 ---
 

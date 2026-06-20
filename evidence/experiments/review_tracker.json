@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-20T09:12:44Z",
+  "last_review_utc": "2026-06-20T11:40:43Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -706,7 +706,9 @@
     "v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier",
     "v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness",
     "v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3",
-    "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest"
+    "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest",
+    "v3_exq_691_q055_sleep_consolidation_diversity_persistence",
+    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
@@ -3101,7 +3103,8 @@
     "v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3",
     "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3",
     "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
-    "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3"
+    "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3",
+    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3936,6 +3939,22 @@
         "v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone"
       ],
       "subject": "/governance 2026-06-08T14:01Z. 7 pending walked (5 FAIL/2 PASS), all autopsy-explained or self-routed. 5 FAILs all non_contributory (no claim weakening): 610f (INV-074/MECH-313/333/334/341) CORRECTED manifest evidence_direction unknown->non_contributory flat+runpack per confirmed failure_autopsy_V3-EXQ-610f (was blanket-weakening 5 claims; 6th necessity-iteration, stripped REINFORCE control didn't collapse entropy under noise -> D2 premise never instantiated; substrate_ceiling; task-shift redesign routed); 624c (MECH-320/ARC-068) pos-control valid 2/5 seeds; 603g+603f-17:33 (claim-free) survival/hazard-avoidance leg G1 0/3, eq-notes applied + substrate_queue scaffolded_sd054_onboarding failure_record amend; 651a (ARC-060) C3 null confounded by weak z_goal (GAP-2). All FAIL claims already pending_retest. 2 PASS: 604c (MECH-314/314a/b/c/Q-044, supersedes 604b) GAP-A-ready retest, per-claim 314/314a/Q-044 supports + 314b/314c mixed -> LIFTED v3_pending + cleared pending_retest on MECH-314 family (GAP-A ready_validated); post-lift exp_conf 314/314a=0.773 confirmed_established but genuine_exp_count=1 so indexer holds promotion pending replication (no promote this cycle); 652 (SD-057/MECH-346/347) PASS, kept v3_pending held per user. 0 promote/demote actions (all Decision Queue entries are holds)."
+    },
+    {
+      "utc": "2026-06-20T11:40:43Z",
+      "session": "governance-cycle-20260620T1140Z",
+      "reviewed_run_ids": [
+        "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_691_q055_sleep_consolidation_diversity_persistence",
+        "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
+      ],
+      "claim_ids_touched": [
+        "SD-017",
+        "MECH-120"
+      ],
+      "subject": "Governance 2026-06-20T11:40Z. 2 pending: 1 PASS REVIEWED + 1 FAIL FLAGGED for /failure-autopsy. REVIEWED: V3-EXQ-691 (q055_sleep_consolidation_diversity_persistence) PASS/supports SD-017+MECH-120, non_degenerate=true -- sleep-phase consolidation PRESERVES committed-action-class diversity (arm-A sleep-ON 2/3 seeds preserve, t2>=50% t0, readiness met). NUANCE flagged: arm-A t2 0.569 marginally BELOW sleep-OFF control 0.645 (preserve-not-collapse, NOT sleep-beats-control); evidence_quality_note added to both claims; SD-017 stays stable, MECH-120 stays candidate (exp_conf 0.575<0.62 + v3_pending). FLAGGED for /failure-autopsy (NOT reviewed, stays pending, no evidence stamp): V3-EXQ-690 (q054_arc062_diversity_floor_sweep) FAIL self-route substrate_not_ready_requeue, non_degenerate=false -- R1 realised first-action entropy RANGE=0.0 across all 4 noise-floor arms (monostrategy collapse = live MECH-439 F-dominance conversion-ceiling signature), R3 discriminator degenerate; pre-registered non-weakening branch fired, NOT an ARC-062 falsification; ARC-062 stays candidate/substrate_ceiling/v3_pending/pending_retest. Prom/dem: 4 pending_user MECH-443/444/445/446 all confirmed hold_pending_v3_substrate (no status change). Hygiene: MECH-443/444 added to check_backward_traceability TRACEABILITY_EXEMPT (incidental 'preplay/playback' keyword, not developmental play; G2 exit 0)."
     }
   ],
   "review_log": [
