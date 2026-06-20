@@ -1,10 +1,32 @@
 # Pending Experiment Review
 
-Generated: `2026-06-19T21:50:12Z`  
-Last review: `2026-06-19T21:41:27Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-20T06:28:07Z`  
+Last review: `2026-06-20T06:26:10Z`  
+Pending: **4** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3` | 2026-06-19T22:44 | MECH-090, MECH-268, SD-034 | — |
+| `v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3` | 2026-06-19T23:34 | (no claim tags) | — |
+| `v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3` | 2026-06-20T01:47 | MECH-445, MECH-446 | — |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+
+## Unclaimed manifests (PASS/FAIL with no claim tags)
+
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| FAIL | `v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3` | v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest | V3-EXQ-514t | non_contributory |
 
 ---
 
