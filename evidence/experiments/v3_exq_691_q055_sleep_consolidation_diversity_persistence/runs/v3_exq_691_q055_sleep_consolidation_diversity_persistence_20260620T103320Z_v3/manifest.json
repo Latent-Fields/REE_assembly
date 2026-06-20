@@ -1,0 +1,102 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_691_q055_sleep_consolidation_diversity_persistence",
+  "run_id": "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-20T10:33:20Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-017",
+    "MECH-120"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-017": "supports",
+    "MECH-120": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sleep_preserves_diversity",
+    "readiness": {
+      "r1_sleep_cycles_fire": true,
+      "r1_seeds_writes_positive": 3,
+      "r2_t0_diversity_supra_floor": true,
+      "r2_seeds_t0_above_floor": 2,
+      "t0_floor": 0.2,
+      "r3_sleep_knob_not_inert": true,
+      "armA_consolidation_write_passes_mean": 75.0,
+      "armB_consolidation_write_passes_mean": 0.0,
+      "min_seeds_required": 2,
+      "readiness_ok": true
+    },
+    "persistence": {
+      "armA_per_seed_labels": [
+        "preserves",
+        "erodes",
+        "preserves"
+      ],
+      "n_preserves": 2,
+      "n_increases": 0,
+      "n_erodes": 1,
+      "n_persist_or_increase": 2,
+      "persist_fraction": 0.5,
+      "increase_fraction": 1.1,
+      "collapse_floor": 0.1,
+      "persistence_pass": true,
+      "reading": "preserves"
+    },
+    "entropy_per_arm": {
+      "ARM_SLEEP_ON": {
+        "t0": 0.711149,
+        "t1": 0.67202,
+        "t2": 0.56882
+      },
+      "ARM_SLEEP_OFF": {
+        "t0": 0.711149,
+        "t1": 0.67202,
+        "t2": 0.645283
+      },
+      "ARM_REPLAY_ABLATED": {
+        "t0": 0.711149,
+        "t1": 0.67202,
+        "t2": 0.573342
+      }
+    },
+    "routing": {
+      "sleep_preserves_diversity": "PASS -> SD-017 preserves trajectory-class diversity; supports SD-017 + INV-049; MECH-120 protective risk mitigated",
+      "sleep_increases_diversity": "PASS -> sleep broadens episodic-replay sampling beyond the waking policy; supports SD-017 (surprising)",
+      "sleep_erodes_diversity": "FAIL -> Hebbian winner-take-all erodes diversity; weakens SD-017-preserves-diversity, supports MECH-120 erosion risk; route to /implement-substrate (ARC-065 during consolidation)",
+      "substrate_not_ready_requeue": "non-vacuity gate unmet (sleep did not fire / no t0 diversity / sleep knob inert); re-queue, do NOT weaken either claim"
+    }
+  }
+}
