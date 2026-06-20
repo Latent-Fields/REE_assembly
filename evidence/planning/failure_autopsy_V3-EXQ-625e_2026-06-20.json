@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T08:31:19Z",
+  "scope": "single",
+  "status": "confirmed",
+  "owner_node": "sd_037_axis_b:P1b",
+  "owner_plan": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
+  "targets": [
+    {
+      "run_id": "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3",
+      "queue_id": "V3-EXQ-625e",
+      "supersedes": "V3-EXQ-625d",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "readiness preconditions R3 (conversion operative, 1/3) and R4 (committed-action diversity entropy, 0/3) unmet; r1/r2 engagement axis MET; load-bearing C3_dynamic_crossings_2of3 never reached a residual verdict because the self-route fired on R3/R4.",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "trustworthy_as_non_weakening_but_hold_not_requeue",
+      "gate_direction_audit": {
+        "r3_displayed_measured": 0.197728,
+        "r3_displayed_is": "route_range_max_over_seeds (seed 42); NOT the gate verdict",
+        "r3_true_verdict": "r3_conversion_operative_frac=0.333 (1/3 seeds clear the COMPOUND per-seed gate route_range>0.01 AND cand_world_pairwise_dist>0.03)",
+        "r3_is_gate_direction_bug": false,
+        "r3_failing_subfloor": "cand_world_pairwise_dist (GAP-A candidate-pool divergence) collapses on 2/3 seeds (0.0586 / 0.0230 / 0.0012 vs floor 0.03)",
+        "r4_measured": 0.0,
+        "r4_floor": 0.3,
+        "r4_is_gate_direction_bug": false,
+        "r4_signature": "MECH-439 F-dominance conversion ceiling (selected_class_counts {\"0\":4000} all seeds = pure monostrategy)"
+      },
+      "facts": {
+        "z_harm_a_mean_per_seed": [4.910152, 4.712256, 4.801794],
+        "z_harm_a_max_per_seed": [4.935285, 4.742625, 4.82687],
+        "crossing_threshold": 0.4,
+        "n_crossings_total": 0,
+        "recalibration_primary_goal": "desaturate z_harm_a into a sub-saturating oscillation-capable band via 10x lower (0.2->0.02) + pulsed ON40/OFF40 threat",
+        "recalibration_primary_goal_met": false,
+        "z_harm_a_625d_vs_625e": "~6.3 (625d) -> ~4.8 (625e); still ~12x above the 0.4 threshold",
+        "selected_action_class_entropy_per_seed": [0.0, 0.0, 0.0],
+        "cand_world_pairwise_dist_per_seed": [0.0586, 0.0230, 0.0012],
+        "route_range_per_seed": [0.1977, 0.0815, 0.0048],
+        "modulatory_shortlist_size_mean": 3.0,
+        "modulatory_authority_active_ticks": 4000,
+        "harm_eval_range_per_seed": [0.194, 0.151, 0.390],
+        "harm_eval_range_625d": [0.283, 0.0, 0.0],
+        "harm_landscape_seed_fragility_603q_fixed": true,
+        "reached_p1": [true, true, true],
+        "p1_survival_pass": [true, true, true]
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (tags no claim; SD-037/MECH-280/MECH-281 stay substrate_ceiling / pending_retest_after_substrate)",
+        "biological_reference": "partial -- saturated z_harm_a ~4.8 = tonic-immobility/learned-helplessness regime, biologically faithful but the wrong regime for the risk-assessment-oscillation C3 presupposes",
+        "prerequisites": "missing (two): (1) divergent candidate pool for the 569i conversion (cand_world_pairwise_dist > floor) collapses on 2/3 seeds; (2) z_harm_a sub-saturating oscillation band not reached. 603q harm-landscape-formation prerequisite NOW MET.",
+        "implementation": "complete -- conversion wired (shortlist 3.0, authority active 4000 ticks); readiness gates fired and refused a verdict; 603q stabilization landed",
+        "environment": "wrong pressures (persists) -- 10x lower + pulsed threat did NOT desaturate z_harm_a or restore candidate-pool divergence",
+        "measurement": "adequate with a gap -- self-route correct, but R1-R4 lacks a z_harm_a-oscillation-band precondition, masking the saturation blocker behind the r3/r4 fail",
+        "integration": "isolated->unstable -- 569i conversion works on reef-bipartite (569i PASS) but collapses under the axis-(b) saturated-threat + candidate-pool-collapse regime; F-dominance reasserts",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PAG risk-assessment oscillation vs tonic-immobility freeze (defensive-state continuum)",
+        "dependencies": ["divergent candidate pool (BG-like action-affordance diversity)", "sub-saturating phasic threat signal"],
+        "is_formal_import": false,
+        "divergence": "the axis-(b) overlay delivers a tonic (saturated z_harm_a) regime, not the phasic risk-assessment regime the C3 dynamic-crossing criterion presupposes; recalibration aimed for phasic and did not reach it",
+        "lit_status": "present (sustained-threat curriculum plan grounds the SD-029 axis-b design)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-625e (supersedes 625d) self-routed substrate_not_ready_requeue (R3 1/3, R4 0/3) -- internally consistent, weakens nothing. Autopsy 2026-06-20: the 625d-prescribed recalibration (axis-(b) threat 10x-lower + pulsed ON40/OFF40; 603q-stabilized harm pathway) did NOT clear the two blockers. (1) Committed-action monostrategy persists (entropy 0.0 3/3; cand_world_pairwise_dist < floor 2/3) -- the MECH-439 F-dominance conversion ceiling reasserting under the axis-(b) foraging composite; 625e empirically answers conversion_ceiling_phase0_synthesis open-Q#1 (the thin 569i top-k margin does NOT survive the full composite; 569i's committed-diversity demo was env-conditional on the reef-bipartite structural guarantee, absent on axis-(b)). (2) z_harm_a stayed saturated (~4.8 mean, 0 crossings of 0.4) despite the 10x magnitude reduction + pulsing -- the trained harm pathway maps even a 10x-reduced pulsed harm stream to a saturated affective latent, so C3 dynamic crossings are unreachable by env-recalibration alone (a missing readiness precondition: no z_harm_a-oscillation-band gate). 603q stabilization DID fix the harm-landscape seed-fragility (harm_eval_range nonzero 3/3 vs 625d 1/3). Route: HOLD P1b, sequenced behind the MECH-439/689a F-rebalance chain; do NOT blindly requeue an axis-(b) recalibration. SD-037/MECH-280/MECH-281 unchanged.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-037",
+        "title": "axis-b P1b: hold behind MECH-439/689a F-rebalance; record z_harm_a-saturation-non-controllability + 569i env-conditionality re-confirmed",
+        "implementation_hint": "Add an axis_b_625e_autopsy_pointer_2026_06_20 field to the SD-037 substrate_queue entry (sibling to axis_b_625d_autopsy_pointer_2026_06_19). Record the two 625e findings (F-dominance reasserts under the axis-(b) composite confirming 569i env-conditionality; z_harm_a saturation not controllable by env-magnitude recalibration) and point sd_037_axis_b:P1b's hard upstream gate at the shared MECH-439 / behavioral_diversity_isolation:GAP-A F-rebalance ceiling (689 -> 689a chain). POINTER to existing substrate work, NOT a new build. Do NOT mark anything ready.",
+        "unblocks_claims": ["SD-037", "MECH-280", "MECH-281"],
+        "depends_on_unresolved": ["MECH-439 F-dominance F-rebalance (689a falsifier chain)", "z_harm_a oscillation-capable-band readiness precondition (R1-R4 set gap) + free-text z_harm_a operating-range substrate question"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3",
+          "experiment_type": "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated",
+          "metric": "committed-action entropy 0.0 3/3 (r4 0/3) + cand_world_pairwise_dist < 0.03 on 2/3 (r3 1/3) + z_harm_a pinned ~4.8 (0 crossings of 0.4) despite 10x-lower pulsed threat",
+          "target": "a working substrate must clear r4 entropy > 0.3 AND r3 cand_world_pairwise_dist > 0.03 on >= 2/3 seeds AND bring z_harm_a into a band that crosses 0.4 both ways -- none achievable by axis-(b) recalibration; gated on MECH-439 F-rebalance"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The 569i conversion PASS is env-conditional, re-confirmed under recalibration: the thin top-k margin does NOT survive the full axis-(b) composite (committed entropy 0.0); 625e is the empirical answer to conversion_ceiling_phase0_synthesis open-Q#1 -- F-dominance reasserts under the foraging substrate's natural monostrategy. Strengthens the MECH-439 hard-ceiling framing.",
+        "z_harm_a saturation is NOT controllable by env-overlay magnitude scaling under the trained harm pathway: 10x reduction + pulsing moved z_harm_a only ~6.3 -> ~4.8, 0 crossings of 0.4. C3 is unreachable by axis-(b) recalibration alone; implies a z_harm_a operating-range substrate question or a crossing-threshold mis-spec relative to the trained band.",
+        "The R1-R4 readiness set lacks a 'z_harm_a oscillation-capable band' precondition, so the saturation blocker is masked behind the r3/r4 fail; add one to prevent a future vacuous C3 verdict.",
+        "603q harm-pathway stabilization validated as a side-effect: harm_eval_range nonzero 3/3 (vs 625d 1/3); the seed-fragility branch of the 625d learning is closed.",
+        "Granularity-debt recurrence is already discharged (625d /claim-synthesis flag on ARC-065/GAP-A + conversion_ceiling_phase0_synthesis MECH-439 decomposition); 625e confirms the synthesis empirically rather than demanding a new decomposition. Route = sequence P1b behind MECH-439/689a, NOT re-flag /claim-synthesis."
+      ],
+      "supersession": {
+        "supersedes_run": "v3_exq_625d_sd037_axis_b_phase1b_joint_composite",
+        "scoring_impact": "none -- both 625d and 625e tag claim_ids=[] / non_contributory; supersession is queue-lineage bookkeeping. Governance MAY set evidence_direction=superseded on the 625d manifest for tidiness; it changes no confidence/conflict score.",
+        "claims_yaml_change": "none"
+      },
+      "routing": "governance-disposition (non_contributory; HOLD sd_037_axis_b:P1b behind MECH-439/689a) + implement-substrate amend POINTER (action=amend, SD-037). NOT a re-queue, NOT lit-pull, NOT demotion."
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_flag": {
+    "recurrence": "second-or-later autopsy on sd_037_axis_b:P1b (625b/625d/625e)",
+    "claim_synthesis_recommended": false,
+    "reason": "already discharged -- 625d autopsy raised the /claim-synthesis flag on ARC-065/GAP-A and conversion_ceiling_phase0_synthesis_2026-06-18 decomposed the locus into 4 roots and registered MECH-439. 625e confirms the synthesis (root B reasserts under the axis-(b) composite); the load-bearing next step is the MECH-439/689a F-rebalance chain."
+  }
+}
