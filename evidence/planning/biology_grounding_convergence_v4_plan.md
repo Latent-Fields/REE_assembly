@@ -55,29 +55,32 @@ closure_plan:
         anchors the plan; the BG-2..BG-7 nodes are the convergence backlog it
         spawns.
     - id: "biology_grounding_convergence_v4:BG-2"
-      title: "Action selector (E3) grounding L2 -> L3 [V3 instance -- mirrors GAP-I]"
+      title: "Action selector (E3) grounding L2 -> L3 [V3 instance -- mirrors GAP-I (falsifier front) + GAP-J (build front)]"
       phase: 2
       status: in_progress
       severity: load-bearing
       owner_exq: null
-      unblocks_claims: [MECH-439]
+      unblocks_claims: [MECH-439, ARC-107, MECH-448, MECH-449]
       depends_on: ["biology_grounding_convergence_v4:BG-1"]
       cross_plan_link: ["behavioral_diversity_isolation"]
       readiness_gate:
-        - "V3-OWNED by behavioral_diversity_isolation:GAP-I (generation:v3, owner V3-EXQ-689a). This node MIRRORS that grounding-level status and does NOT duplicate or own it -- no owner_exq, generation:v4"
-        - "Neural analog: basal-ganglia disinhibitory competition (hyperdirect/STN conflict-graded hold), NOT argmax-over-value. Divergence: deterministic argmin over a near-monopolised scalar F (88-89% committed-selection variance, V3-EXQ-571)"
-        - "L2 -> L3 transition gated on 689a's load-bearing/gap-concentrated verdict: gap-concentrated lift => L3 (import validated); uniform lift => decorative, escalate to rank-preserving F->eligibility demotion; readiness-met-no-lift => blocker downstream (commit latch, BG-3)"
+        - "V3-OWNED by behavioral_diversity_isolation:GAP-I (falsifier front, generation:v3) AND behavioral_diversity_isolation:GAP-J (the ARC-107 BG-selector-constitution BUILD front, generation:v3, lead MECH-448 / follow-on MECH-449). This node MIRRORS that grounding-level status and does NOT duplicate or own it -- no owner_exq, generation:v4"
+        - "Neural analog: basal-ganglia disinhibitory competition (direct/indirect Go-NoGo + hyperdirect/STN conflict-graded hold + pallidal permission gate), NOT argmax-over-value. Divergence: deterministic argmin over a near-monopolised scalar F (88-89% committed-selection variance, V3-EXQ-571)"
+        - "L2 -> L3 transition: 689a SETTLED no-lift (conflict-grade near-tie family exhausted; A1B1 0/3) => the import as a near-tie parametric tweak is NOT validated -> escalate to the rank-preserving F->eligibility demotion build (MECH-448) carried by GAP-J. L3 promotion now gated on GAP-J's MECH-448 falsifier (committed-class entropy strict-above the conflict-grade controls >=2/3). 689c (Factor-B-alone, in flight) conditions build scope (GAP-J resume_condition; design note s0)"
       last_updated: 2026-06-20
       completion_note: >
         The selector is the worked example of the framework and the only
         currently-V3 slice. Its grounding convergence (F->eligibility-set +
-        stochastic-commit) is the existing GAP-I campaign; this node exists only
-        so the grounding programme is visible as a whole. Do not edit GAP-I from
-        here -- the live F-dominance campaign owns it.
+        stochastic-commit) is the F-dominance campaign: the GAP-I falsifier
+        front (689a settled no-lift) plus the GAP-J build front (ARC-107
+        BG-selector constitution; MECH-448 rank-preserving F->eligibility
+        demotion lead, MECH-449 Go/No-Go follow-on). This node exists only so
+        the grounding programme is visible as a whole. Do not edit GAP-I or
+        GAP-J from here -- the live F-dominance campaign owns them.
     - id: "biology_grounding_convergence_v4:BG-3"
       title: "Commitment / de-commit latch grounding L1 -> L3"
       phase: 3
-      status: open
+      status: in_progress
       severity: high
       owner_exq: null
       unblocks_claims: [SD-034, MECH-090]
@@ -85,14 +88,32 @@ closure_plan:
       cross_plan_link: ["commitment_closure"]
       readiness_gate:
         - "Neural analog: BG/thalamic commit + maintenance-release. Divergence: beta-gate refractory dynamics are tuned, not bio-sourced"
-        - "Biology lit-pull on commit/maintenance-release dynamics owed before any refractory re-grounding (biology-before-formal-definitions)"
-        - "Gated behind BG-2: if 689a routes readiness-met-no-lift, the blocker is here (the commit latch), and this node becomes the live grounding front"
+        - "Biology lit-pull on commit/maintenance-release dynamics owed before any refractory re-grounding (biology-before-formal-definitions) -- DONE 2026-06-20, evidence/literature/targeted_review_commit_release_duration_latch/ (5 anchors; L1->L2 reached; load-bearing divergence D1 = duration set by tuned refractory vs biology's graded urgency/behaviour-co-extensive maintenance)"
+        - "Gated behind BG-2: if 689a routes readiness-met-no-lift, the blocker is here (the commit latch), and this node becomes the live grounding front -- FIRED: 689a routed readiness-met/no-lift 2026-06-20, BG-3 is now the live grounding front"
       last_updated: 2026-06-20
       completion_note: >
-        SD-034 / MECH-090 / MECH-342 cluster. Refractory-too-long maps to
-        rigidity/perseveration; too-short maps to distractibility/disorganisation
-        (psychiatric column). Owning substrate work is commitment_closure_plan;
-        this node tracks the grounding-validation step only.
+        SD-034 / MECH-090 / MECH-342 (+ MECH-445 / MECH-446) cluster.
+        Refractory-too-long maps to rigidity/perseveration; too-short maps to
+        distractibility/disorganisation (psychiatric column). Owning substrate work
+        is commitment_closure_plan; this node tracks the grounding-validation step only.
+        GROUNDING L1->L2 DONE 2026-06-20 (lit-pull triggered by 689a readiness-met/no-lift):
+        evidence/literature/targeted_review_commit_release_duration_latch/SYNTHESIS.md --
+        5 anchors (Resulaj 2009 change-of-mind/de-commit; Jin 2014 BG start/stop +
+        sustained maintenance; Thura 2022 commitment-as-state-transition + urgency-set
+        timing; Loh/Rolls/Deco 2007 one-stability-parameter -> both psychiatric poles;
+        Seif 2025 catatonia = No-Go over-pressure over-maintenance pole). Each cluster
+        component now has >=1 biological anchor; the load-bearing divergence (D1: REE
+        times the hold with a tuned committed-run-scaled refractory, biology times it
+        with a graded BG/pallidal urgency signal and/or behaviour-co-extensive
+        maintenance) is stated with a named falsifier; the two-poled psychiatric column
+        is anchored. Status open->in_progress (L2 reached). L2->L3 is gated on a REE
+        falsifier, NOT more literature: the 460i-successor (refractory-independent /
+        graded-release lever vs the fixed refractory) on the f_dominance_conversion_ceiling
+        commit-entry-decisiveness rung -- which is itself gated behind the GAP-I
+        selection-face front (do NOT queue on the current selector before GAP-I closes).
+        Distinct from the SELECTION-face grounding (targeted_review_connectome_mech_439,
+        ARC-107 MECH-448/449); cross-referenced where the No-Go/indirect pathway is the
+        shared locus of the over-maintenance pole.
     - id: "biology_grounding_convergence_v4:BG-4"
       title: "Drive / incentive salience grounding L2 -> L3"
       phase: 3
