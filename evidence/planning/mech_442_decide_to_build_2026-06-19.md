@@ -157,3 +157,17 @@ This is the **FAIL branch of Q2 — but with a twist that changes the routing:**
 3. **Next step before building the archive: a Factor-B-alone retest** (a 689-successor with `A0B1` as the *primary* cell — gap-scaled commit-T ON, conflict-graded-k OFF — vs top-k + the flat-hot control, pre-registered for ≥2/3 strict-above + collapse-resistance). If Factor-B-alone **robustly converts**, it is the cheapest fix to the conversion ceiling and the archive stays deferred indefinitely. If it **also fails** (≤1/3 robust), *then* the F-keyed family is genuinely exhausted and the behavioral-descriptor archive (CDQ-006) becomes the justified path.
 
 **Net:** MECH-442 **stays deferred** (candidate / substrate_conditional / ceiling_decision:deferred — unchanged). The build is **not** triggered. CDQ-006 (the convergence descriptor-variant query) **stays queued** as the eventual fallback. The immediate live work moved from "the archive" to **"retest Factor-B-alone (gap-scaled commit-T) as the standalone converter"** — a result the gating run handed us for free. No claim status changed; MECH-439 stays candidate (non_contributory, pre-registered off-ramp — neither promoted nor weakened).
+
+## 7. Correction — biological-fidelity steer (2026-06-20, supersedes the Section-6 framing)
+
+**User steer (2026-06-20, strong, anti-shortcut):** build REE with *biological fidelity*. Do **not** pursue cheap parametric near-tie levers as a substitute for — or a reason to skip — the biologically-faithful build, *even when the lever moves the metric*. The fidelity is load-bearing for the psychiatry-model and complexity-layering goals (ARC-106 anti-shortcut corollary). My Section-6 framing ("next step before the archive = a Factor-B-alone retest"; "if Factor-B-alone robustly converts it is the *cheapest fix* and the archive stays deferred indefinitely") was the rejected shortcut reasoning and **does not govern**.
+
+**Corrected disposition:**
+
+1. **The faithful conversion path is the ARC-107 BG-constitution — MECH-448 (rank-preserving F→eligibility / Go-No-Go demotion: F removed from the final argmin, used only as a graded basal-ganglia disinhibitory envelope).** This is the build, **regardless of what V3-EXQ-689c shows.** It is already in flight (`implement-substrate-mech-448`).
+
+2. **V3-EXQ-689c (the Factor-B-alone retest) is PURE NO-AUTHORITY CONFIRMATORY DATA** (user decision 2026-06-20: keep it queued as an observation). A 689c **PASS does NOT lower the bar** for skipping the faithful build, and does **NOT** make MECH-442's archive "deferred indefinitely." It records the parametric fact for the divergence ledger; nothing more.
+
+3. **MECH-442 (the QD behavioral-descriptor archive) decision is re-anchored to biological fidelity,** not "whichever lever is cheapest to make committed-action-class entropy move." The decide-to-build question is now subordinate to: *does the faithful BG-constitution (MECH-448) resolve the F-dominance conversion ceiling?* — not *can a thin near-tie lever pass a metric?*
+
+4. **No claim status changed** (MECH-439 / MECH-442 stay candidate). Substrate_queue / claims.yaml routing edits are owned by the parallel governance / implement-substrate sessions (disjoint resources).
