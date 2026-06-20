@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-20.4 -->
+<!-- CLOSURE_VERSION: 2026-06-20.5 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -2004,12 +2004,13 @@ function scheduleEasterEggs() {
   }, 1500);
 
   // Per-plan completion: each plan that's at 100% gets its own celebration.
+  // Stagger them -- toast() writes to a single shared element, so firing every
+  // completed plan in one tick makes each note flash and get overwritten by the
+  // next (only the last survives). Spacing them out lets each plan's card pulse
+  // and one-liner actually be read, and the eye gets walked through each plan.
   setTimeout(() => {
-    for (const p of CLOSURE.plans) {
-      if (!p.frontmatter_pending && (p.progress || 0) >= 1.0) {
-        celebratePlan(p);
-      }
-    }
+    const completed = CLOSURE.plans.filter(p => !p.frontmatter_pending && (p.progress || 0) >= 1.0);
+    completed.forEach((p, i) => setTimeout(() => celebratePlan(p), i * 2600));
   }, 2200);
 
   // Basal-ganglia fiasco egg: fires once when there is real progress on
@@ -2632,13 +2633,14 @@ function celebratePlan(p) {
   const notes = {
     sd033_governance: 'OCD battery: discharged.',
     commitment_closure: 'committed, closed, released.',
-    goal_pipeline: 'wanting met liking met approach.',
+    goal_pipeline: 'wanting met, liking met, approach.',
     self_attribution: 'agency claimed.',
     sleep_substrate: 'sleep substrate: lights out.',
   };
   const msg = notes[p.id];
   if (msg) {
-    setTimeout(() => toast(msg, 3000), 600);
+    // 2000ms shows comfortably and clears before the next staggered plan (2600ms apart).
+    setTimeout(() => toast(msg, 2000), 400);
   }
 }
 
