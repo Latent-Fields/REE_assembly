@@ -1,0 +1,81 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T08:33:34Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
+      "queue_id": "V3-EXQ-460h",
+      "claim_ids": ["MECH-446", "MECH-445"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_note": "Run self-routed at the readiness preconditions (closure_coupling_nonvacuous 1/3 + within_arm_window_nonvacuous 1/3) BEFORE the load-bearing C2 discrimination DV was scored. precondition_unmet adjudication, not a fair C2 FAIL.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (both children); seed-44 strengthens MECH-445, seed-42 strengthens MECH-446; neither weakened (the 2/3 commit-intent zeros are strong-natural-commit redundancy, out-of-regime, not falsifications)",
+        "biological_reference": "clear -- Collins & Frank 2014 / Smith & Graybiel 2013 (closure drives committed program off), Mayr & Keele 2000 (post-completion refractory magnitude); failure resembles measuring a backup mechanism on subjects whose primary already commits",
+        "prerequisites": "present -- Legs A/B/C + beta coupling + committed-run-scaled magnitude lever + refractory-independent commit-intent certifier all built and firing",
+        "implementation": "complete (substrate); the 460g-prescribed certifier fix landed and works (seed-44 proves decoupling). Gap is experiment regime, not substrate",
+        "environment": "adequate -- 603n foraging, guard 3/3, closures + completions on all seeds",
+        "measurement": "the binding fault -- two non-vacuity gates (commit-intent vs within-window) fire on disjoint seeds, empty intersection, so C2 never scorable on a coupling-certified seed; plus attribution confound on strong-natural-commit seeds",
+        "integration": "regime-dependent -- closure coupling engages iff natural commit weak; de-commit windows rich iff natural commit strong; anti-correlated; the closure de-commit is subdominant to the F-driven natural commit",
+        "scale": "seed-44 windows under-powered (1 of 5 closures cleared the window gate); more eval episodes help window power but not the commit-intent disjointness"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC/striatal sequence-completion 'stop' bracket releasing the committed program (Collins & Frank 2014 OPAL task-set disengagement; Smith & Graybiel 2013) + Mayr & Keele 2000 backward-inhibition refractory magnitude",
+        "dependencies": ["MECH-090 bistable latch", "F-driven natural commit (running_variance < commit_threshold)", "SD-033a rule_state"],
+        "is_formal_import": false,
+        "divergence": "n/a -- mechanism class confirmed by existence proofs (seed 44 coupling, seed 42 de-commit); the gap is regime coverage + measurement-design, not biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_note": "Keep candidate/v3_pending; NOT substrate_ceiling (substrate expresses both children on their respective seeds) and NOT a falsification. Dominant reading = measurement/regime-coverage gap that the cluster lens resolves into the commit/release-duration face of the F-dominance conversion ceiling.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-445": "non_contributory",
+        "MECH-446": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-460h (supersedes 460g): the refractory-independent commit-intent certifier WORKED (decoupled from the de-commit-magnitude lever -- seed-44 sd034_n_closure_commit_intent=375 where 460g's coupled-elevation counter collapsed 36->0), closing the S5 self-defeat. Self-routes substrate_not_ready_requeue because the two non-vacuity certifiers fire on DISJOINT seeds: commit-intent (MECH-445 coupling) fires only where the F-driven natural commit is weak (seed 44, OFF committed_steps=0) while the within-arm de-commit window (MECH-446) has power only where natural commit is strong (seed 42) -- empty intersection, so C2 is never scorable on a coupling-certified seed. Existence proofs: MECH-445 seed-44 (375 commit-intent, OFF beta=0); MECH-446 seed-42 (within-arm 0.333->0.0, C2 PASS). NOT a falsification, NOT a substrate ceiling. Cluster reading (user-directed): the SD-034 de-commit is the COMMIT/RELEASE-DURATION FACE of the F-dominance conversion ceiling, not orthogonal (root C reclassified) -- the closure-coupled de-commit is a modulatory channel subdominant to the same F-driven natural commit that monopolises the candidate argmax (V3-EXQ-571 88-89%). MECH-445 -> non_contributory + pending_retest_after_substrate (its what_would_answer falsifier needs regime-scoping to weak-natural-commit seeds; the 2/3 commit-intent zeros are strong-natural-commit redundancy, not inert coupling). MECH-446 -> non_contributory + pending_retest_after_substrate. MECH-261 -> not exercised (n_automatic_fires=0). Route: gate the 460i de-commit retest on a commit-entry-decisiveness lever in the F-dominance front (f_dominance_conversion_ceiling / GAP-I / MECH-439 extended to commit-entry/latch-occupancy), NOT a re-queue on the current selector.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "Commit-entry-decisiveness / natural-commit latch-occupancy lever (de-commit / root-C face of F-dominance)",
+        "implementation_hint": "The F-dominance front's current levers (conflict-graded-k, gap-scaled commit-T; MECH-439) act at E3 SELECTION and do not shorten the F-driven natural-commit latch occupancy (~2400-2600 committed steps on strong seeds) that swamps the SD-034 closure de-commit. Add a commit-ENTRY-decisiveness / latch-occupancy lever (e.g. gap-scaled commit-entry threshold or natural-commit run-length cap) so the F-driven natural commit is less monolithic; this makes weak-natural-commit the norm across seeds so MECH-445 commit-intent fires broadly AND MECH-446 de-commit windows become closure-attributable on the same seeds -- dissolving the 460h disjoint-certifier problem. Gate the 460i de-commit retest on this lever, NOT a re-queue on the current selector. Fallback if the lever is far out: a bespoke closure-exclusive de-commit eval mode in commitment-closure-control-plane (beta elevates only via _closure_commit_active during the eval) as a local per-experiment instance of the same fix.",
+        "unblocks_claims": ["MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["f_dominance_conversion_ceiling", "MECH-439", "behavioral_diversity_isolation:GAP-I", "commitment-closure-control-plane (commitment_closure:GAP-4)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
+          "experiment_type": "v3_exq_460h_sd034_decommit_refractory_independent",
+          "metric": "closure de-commit measurable only where F-driven natural commit weak (seed 44 OFF committed_steps=0, commit_intent=375); swamped where strong (seeds 42/43 OFF committed_steps 2414/2609, commit_intent=0). commit-intent and within-arm-window non-vacuity certifiers disjoint across seeds (empty intersection); C2 never scorable on a coupling-certified seed",
+          "target": "a regime where >= 2/3 seeds have weak natural commit so MECH-445 commit-intent>0 AND MECH-446 within-arm post-closure occupancy drop >= DECOMMIT_MIN_DROP_FRAC co-occur on the same seeds; achieved by a commit-entry-decisiveness lever that prevents F-driven natural commit from monopolising the latch"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-445 narrow positive existence proof on seed 44 (commit_intent=375, OFF beta=0); MECH-446 narrow positive on seed 42 (within-arm 0.333->0.0, C2 PASS). Both 1/3, non-scoring; recorded as existence proofs not supports.",
+      "what_would_answer_refinement": {
+        "claim_id": "MECH-445",
+        "issue": "Falsification clause 'coupling inert on >= 2/3 seeds' is mis-specified: it conflates 'coupling inert' with 'coupling redundant on a strong-natural-commit seed'. A strong-natural-commit seed produces a spurious 'inert' reading (the 460h 42/43 commit-intent=0).",
+        "recommended_fix": "Regime-scope the MECH-445 what_would_answer falsifier to weak-natural-commit seeds (where the coupling is load-bearing); the strong-natural-commit seeds are out-of-scope, not falsifications. User-confirmed 2026-06-20."
+      },
+      "learning_extracted": [
+        "The 460g->460h refractory-independent commit-intent certifier fix is CONFIRMED working (seed-44 commit_intent=375; decoupled from the magnitude lever); the S5 self-defeat is closed.",
+        "commit-intent fires 1/3 because only 1/3 seeds are in the weak-natural-commit regime the coupling is defined for -- regime coverage, not a broken certifier.",
+        "The commit-intent and within-arm-window certifiers are anti-correlated by construction; their empty intersection is the binding fault; no refractory tweak fixes it.",
+        "Reducing F's grip on natural commit-entry decisiveness resolves BOTH halves at once -- the 460h disjoint-seed problem dissolves under the F-dominance commit-decisiveness lever; no bespoke SD-034 eval knob needed.",
+        "Root C (de-commit) is the commit/release-duration face of root B (F-dominance), NOT orthogonal -- contradicts the standing conversion_ceiling_phase0_synthesis_2026-06-18.md root-C classification.",
+        "MECH-445 what_would_answer falsifier must be regime-scoped to weak-natural-commit seeds.",
+        "MECH-261 not exercised (n_automatic_fires=0); do not tag/weaken the stable claim."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "A secondary/modulatory channel reaches its accumulator but cannot carve against a dominant primary selector. F-dominance at the E3 committed selection (V3-EXQ-571, 88-89% variance) is the canonical instance; V3-EXQ-460h is its commit/release-duration face (closure de-commit subdominant to the F-driven natural commit); V3-EXQ-514t is the same meta-shape at a different primary (per-axis drive vs base_value in the IncentiveTokenBank); V3-EXQ-625e (SD-037 axis-b) is a 689a-gated F-front downstream.",
+    "is_independent_bugs": false,
+    "structural_property": "F-driven (and analogously base_value-driven) primary commitment/selection is too dominant for a modulatory channel to carve against; this is one structural property surfacing at distinct control points (candidate argmax = root B; commit/release duration = root C/460h; wanting argmax = 514t).",
+    "readings": ["f_dominance_conversion_ceiling", "commit_release_duration_face_of_F_dominance"],
+    "cross_referenced_in_flight": ["V3-EXQ-514t (MECH-436 drive-coupling; own active autopsy)", "V3-EXQ-625e (SD-037 axis-b; own active autopsy)"],
+    "governance_flag": "Recommend updating conversion_ceiling_phase0_synthesis_2026-06-18.md root C from 'OPEN, ORTHOGONAL' to 'commit/release-duration face of root B (F-dominance)'; add 460h failure record to the f_dominance_conversion_ceiling substrate entry; register 514t/625e convergence as candidate cluster members. This autopsy provides the evidence and does not edit those governance-owned files."
+  }
+}
