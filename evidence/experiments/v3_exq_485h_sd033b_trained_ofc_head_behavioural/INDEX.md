@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_485h_sd033b_trained_ofc_head_behavioural
 
-Generated: `2026-06-19T20:39:55.068165Z`
+Generated: `2026-06-20T21:05:06.565298Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

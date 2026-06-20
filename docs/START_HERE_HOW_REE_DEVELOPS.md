@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # How REE Develops
 
 **One sentence:** REE develops by converting claims into experiments, experiments into evidence, evidence into governance decisions, and decisions back into architecture and implementation.

@@ -1,5 +1,4 @@
 ---
-title: Public Explorer — policy & safety note
 nav_exclude: true
 ---
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_452_mech257_dual_function_e2
 
-Generated: `2026-06-19T18:53:09.161841Z`
+Generated: `2026-06-20T21:05:06.565298Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
