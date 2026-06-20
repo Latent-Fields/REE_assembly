@@ -158,6 +158,10 @@ is deferred to post-689a regardless); both should be confirmed filed at the regi
 
 ### 6.1 MECH-439's fate: **NARROW-AND-RETAIN as the umbrella + existence claim; spawn two candidate children**
 
+> **USER-CONFIRMED 2026-06-20 at the proposal-review gate:** this disposition (6.1 narrow-and-retain),
+> NOT the 6.5 pure-umbrella alternative. The post-689a registration session should register on this
+> structure (per-child evidence direction still per the Section-7 689a-outcome map).
+
 Recommended disposition (one of two presented; see 6.5 for the alternative):
 
 - **MECH-439 narrows to its existence/bound content (Child 1)** and is **retained as the umbrella**
