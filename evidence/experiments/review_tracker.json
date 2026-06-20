@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-20T12:08:11Z",
+  "last_review_utc": "2026-06-20T15:35:16Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -710,7 +710,9 @@
     "v3_exq_691_q055_sleep_consolidation_diversity_persistence",
     "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3",
     "v3_exq_690_q054_arc062_diversity_floor_sweep",
-    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
+    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3",
+    "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation",
+    "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
@@ -3107,7 +3109,8 @@
     "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
     "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3",
     "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3",
-    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
+    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3",
+    "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4568,6 +4571,22 @@
       ],
       "claim_ids_touched": [],
       "subject": "Governance 2026-06-20T06:18Z. 4 pending: 1 PASS diagnostic MARKED DISCUSSED + 3 FAIL all FLAGGED for /failure-autopsy (left pending, NO evidence stamp this cycle). DISCUSSED: V3-EXQ-694 (sd061_difficulty_gated_proposal_entropy_readiness, no claim tags) PASS readiness diagnostic, ADJUDICATION=verified (criteria_non_degenerate C1 detector-nonvacuous + C2 regulator-load-bearing both true; detector fired under induced impasse) -> SD-061 difficulty-gated proposal-entropy regulator is wired + load-bearing, eligible for a scientific behavioural test; NO claims.yaml change (SD-061 stays candidate/v3_pending). FLAGGED for /failure-autopsy (NOT marked reviewed, stay pending, no evidence_direction applied; predecessor supersession deferred to autopsy-application step): (1) V3-EXQ-468f (SD-034/MECH-268/MECH-090, supersedes 468e) FAIL self-route substrate_not_ready_requeue -- closure_coupling_and_contradiction_nonvacuous=0.0 (mechanism never engaged), both load-bearing criteria degenerate; (2) V3-EXQ-460h (MECH-445/446 FIRST evidence, supersedes 460g) FAIL self-route substrate_not_ready_requeue -- coupling non-vacuous on only 1/3 seeds, refractory-independent commit-intent amend did NOT rescue, within_arm_window 1/3, mech261_exercised=false; (3) V3-EXQ-625e (SD-037 axis-b P1b diagnostic, supersedes 625d) FAIL self-route substrate_not_ready_requeue, indexer-FLAGGED precondition_unmet -- committed_action_diversity_entropy=0.0 (monostrategy = MECH-439 F-dominance conversion-ceiling signature); per diagnostic-adjudication gate the self-route must NOT drive action until autopsied. Cross-cutting: 468f+460h+625e are 3 more channels failing to CONVERT at the committed-action layer, consistent with the live MECH-439 F-dominance campaign (689a queued falsifier). Prom/dem: 3 pending_user (MECH-443/444/446) all confirmed hold_pending_v3_substrate, NO status change."
+    },
+    {
+      "utc": "2026-06-20T15:35:16Z",
+      "session": "governance-cycle-20260620T1535Z",
+      "reviewed_run_ids": [
+        "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation",
+        "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3"
+      ],
+      "claim_ids_touched": [
+        "SD-049",
+        "SD-015"
+      ],
+      "subject": "Governance 2026-06-20T15:35Z. 1 pending FAIL: V3-EXQ-693 (SD-049 Phase-2 4-arm substrate-gradient validation) consumed confirmed failure_autopsy_V3-EXQ-693 (user-approved apply-as-recommended). DISPOSITION non_contributory (run-level, both claims) -- R3 WL-channel-fireable=false (n_scored_wl_steps_total=0 across all 4 arms/3 seeds) is an INSTRUMENTATION gap (stale 514l-fork WL-scoring harness), NOT a substrate ceiling/falsification: tokens bind (distinct_tokens 2/3/5), drive ANOVA F up to 1480, identity probe PASS 0.71-0.77 -- only the WL!=liking scoring leg is hard-zero, while the 514t lineage scores the SAME most_wanted read cleanly (72 steps). SD-015 identity probe PASSED non-vacuously -> narrow_supports note on the claim (NOT a supports entry). APPLIED: SD-049 + SD-015 evidence_quality_note (both UNCHANGED candidate/substrate_ceiling/v3_pending + pending_retest already true); 693 manifest evidence_direction_note + narrow_supports_flag; substrate_queue SD-049-PHASE-2 amended (693 failure_record, 7 entries); index rebuilt -> both 693 entries non_contributory/scoring_excluded. 693 MARKED REVIEWED. Prom/dem: MECH-443/444/445/446 all confirmed hold_pending_v3_substrate (exp_conf=0.0 lit-only, NO status change). NEXT: /queue-experiment 693a (port 514r/s/t WL-scoring harness; NEW letter, same scientific question). No claims.yaml status change -> no decision_state reconcile owed."
     }
   ]
 }
