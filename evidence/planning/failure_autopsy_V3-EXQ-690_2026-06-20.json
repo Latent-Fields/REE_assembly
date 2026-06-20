@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T12:01:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3",
+      "queue_id": "V3-EXQ-690",
+      "claim_ids": ["ARC-062"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-062 never got a fair test of its Q-054 floor question; the swept lever did not move the upstream entropy the floor verdict reads against. The ARC-062 context discriminator itself works above chance where context is sampled (reef-vs-forage balanced accuracy 0.74 mean; 0.82/0.90 on the 2 seeds with reef exposure). NOT weakened.",
+        "biological_reference": "clear -- BG action-selection bottleneck + missing hyperdirect (cortico-STN) conflict-graded hold; same reference mechanism as the f-dominance cluster.",
+        "prerequisites": "missing (shared) -- (1) the conflict-graded committed-selection lever (V3-EXQ-689a, BUILT, in flight); (2) a committed-argmax-reaching lever in place of the MECH-313 selection-softmax-temperature floor used here.",
+        "implementation": "complete but lever-target-mismatched -- MECH-313 noise floor is fully wired and DID lift the effective selection-softmax temperature on ARM_T_MID(1.75)/ARM_T_HIGH(2.75) (effective_T=max(baseline_T=1.0+alpha=0.0, min_temperature)). But the committed first action is an argmin over the F-dominated scores (committed_trajectory.actions[:,0], MECH-090), which is temperature-invariant; the temperature only spreads the uncommitted multinomial. Result: byte-identical metrics across all 4 arms.",
+        "environment": "adequate -> wrong-pressures (conditional) -- per-seed reef/forage exposure is uncontrolled: seed 44 visited 0 reef ticks (context_scorable=false, discriminator at chance 0.5), seed 43 was reef-dominated (8909 reef / 2962 forage), only seed 42 had a balanced split AND gating_weight_range > 0.001. So R3 (discriminator non-degenerate on a majority of arms) was lost to environmental sampling, NOT to an ARC-062 architectural failure.",
+        "measurement": "adequate -- R1 (entropy RANGE across the 4 arms) correctly caught the inert lever; the readiness/non-vacuity gates fired as designed and the script self-routed rather than emitting a false floor verdict.",
+        "integration": "coupled, ceiling at the argmax -- the temperature reaches the selection softmax but cannot move the F-dominated committed argmin. Same E3-committed-argmax bottleneck the cluster identifies.",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia action-selection bottleneck with the hyperdirect (cortico-STN) conflict-graded hold (k=f(top-F gap), the BG-hyperdirect analog the MECH-439 falsifier translates)",
+        "dependencies": ["BG hyperdirect / STN conflict-graded threshold-raise (Frank 2006 Hold-your-horses; Cavanagh/Cohen/Frank 2011)", "a committed-selection lever that bounds the eligible SET rather than spreading the softmax sample"],
+        "is_formal_import": false,
+        "divergence": "The MECH-313 noise floor is a faithful LC-NE tonic-temperature translation, but it is the WRONG lever for the committed-argmax question: a selection-softmax-temperature floor cannot move a deterministic committed argmin regardless of F-dominance. The architecturally-correct lever bounds the eligible set (569i top-k / 689a conflict-graded width).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-690 (Q-054 ARC-062 minimum trajectory-class diversity floor sweep) self-routed substrate_not_ready_requeue (R1 realised-committed-first-action-entropy RANGE across the 4 noise-floor-min_temperature arms = 0.0 < 0.2 floor; R3 discriminator non-degenerate 0/4 arms). Autopsy 2026-06-20 (failure_autopsy_V3-EXQ-690_2026-06-20): the self-route is trustworthy and NON-WEAKENING. The 4 arms (min_temp 0.30/1.00/1.75/2.75, alpha held 0.0) produced BYTE-IDENTICAL per-seed metrics (seed 42 = 0.285896 nats / 0.823767 acc in every arm) -- a 2.75x effective-temperature change moved nothing. Root cause (code-confirmed): the committed first action is an argmin over the F-dominated scores (MECH-090), which is temperature-invariant; the MECH-313 noise-floor temperature only spreads the uncommitted multinomial, so it is architecturally incapable of moving committed first-action entropy. This is (a) the live MECH-439 F-dominance conversion ceiling reasserting -- the diversity-floor-sweep instance of the f-dominance convergent fingerprint (cf. failure_autopsy_f-dominance-conversion-cluster_2026-06-20; F = 88-89% E3 committed-selection variance, V3-EXQ-571) -- expressed as BETWEEN-ARM lever-inertness, NOT a within-seed monostrategy (committed entropy is non-zero 0.28-0.73 nats, seed 42 commits 5 distinct action classes); and (b) a test-design lever-target mismatch. It does NOT mask an ARC-062-specific cause: the ARC-062 discriminator scores above chance where context is sampled (0.74 mean; 0.82/0.90 on the 2 reef-exposed seeds); the R3 degeneracy is environmental (seed 44 = 0 reef ticks). ARC-062 stays candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate, UNCHANGED. Re-running 690 on the current noise-floor lever reproduces R1=0.0; requeue 690a is gated on V3-EXQ-689a (the conflict-graded shortlist keystone, BUILT, in flight on DLAPTOP-4.local), NOT on the current selector, and must (i) sweep a committed-argmax-REACHING lever (569i top-k k / 689a conflict-graded shortlist width) for the Q-054 floor question instead of the MECH-313 selection-softmax temperature, and (ii) control per-seed reef/forage exposure so R3 is not lost to environmental sampling.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": "f_dominance_conversion_ceiling",
+        "title": "F-dominance committed-selection variance monopoly (MECH-439): the diversity-floor-sweep face",
+        "implementation_hint": "Append V3-EXQ-690 as a failure_record on the existing f_dominance_conversion_ceiling entry: a MECH-313 noise-floor-temperature diversity-floor sweep that produced byte-identical metrics across all 4 arms (R1 entropy-range = 0.0) because a selection-softmax temperature cannot move the F-dominated committed argmin -- the diversity-floor-sweep instance of the convergent fingerprint. ARC-062 is already in unblocks_claims. No new substrate entry needed; 689a remains the keystone gate.",
+        "unblocks_claims": ["ARC-062"],
+        "depends_on_unresolved": ["V3-EXQ-689a (conflict-graded shortlist keystone; BUILT, status=claimed DLAPTOP-4.local, no results row -- in flight)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3",
+          "experiment_type": "v3_exq_690_q054_arc062_diversity_floor_sweep",
+          "metric": "R1 realised-committed-first-action-entropy RANGE across 4 min_temperature arms = 0.0 (byte-identical per-seed metrics across a 0.30->2.75 effective-temperature sweep); R3 discriminator non-degenerate 0/4 arms",
+          "target": "a committed-argmax-reaching lever (569i top-k k / 689a conflict-graded width) must move realised committed first-action entropy across arms by > 0.2 nats with the discriminator non-degenerate on a majority of arms before the Q-054 floor question is answerable"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A selection-softmax TEMPERATURE floor (MECH-313 noise floor) is architecturally incapable of moving a deterministic committed ARGMIN regardless of F-dominance -- the Q-054 floor sweep used a lever that cannot reach the committed first action it measures (lever-target mismatch).",
+        "The F-dominance conversion ceiling shows two distinct faces: within-seed monostrategy collapse (625e {0:4000}) AND between-arm lever-inertness (690 byte-identical arms). 690 is the latter: committed entropy is non-zero per seed but invariant to the swept lever -- the realised entropy comes from the seed's reef/forage environment trajectory, not the lever.",
+        "ARC-062's discriminator is intact and above-chance where context is sampled; the R3 degeneracy is uncontrolled per-seed reef exposure (seed 44 = 0 reef ticks), so a 690a redesign must guarantee balanced reef/forage exposure (or gate the discriminator readout on context_scorable) independent of the F-dominance gate.",
+        "690 is the diversity-floor-sweep member of the f-dominance convergent cluster; it adds no independent root, it confirms the same E3-committed-argmax bottleneck under a 4th lever (noise-floor temperature), and it remains blocked on the SAME 689a keystone."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "diversity-floor-sweep instance of the f-dominance committed-action conversion ceiling: bias/lever reaches the E3 selection layer but cannot move the F-dominated committed argmin; discrimination criterion FAILS while readiness self-routes",
+    "is_independent_bugs": false,
+    "structural_property": "F monopolises the committed argmax (88-89% E3 variance, V3-EXQ-571); a selection-softmax temperature lever is one more channel that drowns at the same argmin",
+    "readings": ["substrate_enrichment (689a conflict-graded shortlist lifts it)", "test_design_ceiling (near-ties levers cap below the proposer ceiling; rank-preserving F->eligibility demotion needed)"]
+  }
+}
