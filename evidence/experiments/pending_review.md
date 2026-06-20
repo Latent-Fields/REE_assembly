@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-20T16:13:42Z`  
+Generated: `2026-06-20T18:07:08Z`  
 Last review: `2026-06-20T15:35:16Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_689a_mech439_conflict_grade_gapblind_falsifier_20260620T175346Z_v3` | 2026-06-20T17:53 | MECH-439 | — |
 
 ---
 
