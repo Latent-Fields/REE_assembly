@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+  "timestamp_utc": "2026-06-20T18:39:00Z",
+  "claim_ids_tested": [
+    "ARC-107",
+    "MECH-448"
+  ],
+  "source": {
+    "title": "Role of the basal ganglia in the control of purposive saccadic eye movements",
+    "authors": [
+      "Hikosaka, O.",
+      "Takikawa, Y.",
+      "Kawagoe, R."
+    ],
+    "year": 2000,
+    "venue": "Physiological Reviews",
+    "doi": "10.1152/physrev.2000.80.3.953",
+    "pmid": "10893428",
+    "volume": "80",
+    "issue": "3",
+    "pages": "953-978"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Hikosaka's saccade work is the best-characterised single instance of the BG permission-gate in action, with electrophysiology: the SNr tonically inhibits the superior colliculus, the caudate disinhibits the SC to PERMIT a saccade, the STN/GPe can FURTHER enhance the SNr-SC inhibition (a No-Go strengthening), and -- crucially for ARC-107 -- the whole gate is strongly modulated by behavioural CONTEXT (working memory, expectation, attention, reward expectation). It grounds three ARC-107 components at once (permission-to-commit gate, STN-enhanced No-Go, context arbitration) and is the cleanest evidence that the gate is set by MORE than a single value scalar -- exactly the precondition MECH-448 needs. Held below 0.8 by modality specificity (oculomotor) and because reward-expectation FACILITATION of the rewarded saccade is itself a value-monopoly risk (the substrate can also collapse onto the high-value option), which is a double-edged grounding the mapping must flag.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Hikosaka shows the SNr-SC permission gate is modulated by working memory, expectation, attention and reward -- multiple context channels gain access. But he ALSO shows reward expectation FACILITATES the rewarded saccade: if a single value signal dominates the caudate input, the gate preferentially opens for the high-value target and the others stay inhibited. This is the biological version of the F-monopoly: a context-modulated gate can STILL collapse onto one channel if that channel monopolises the disinhibiting input -- precisely the ceiling MECH-448 must break, now shown to exist in the substrate itself.",
+    "The gate's flexibility comes from the caudate carrying genuinely DIFFERENT context signals (memory vs attention vs reward), not one score. A REE permission gate fed only by F would reproduce the structure but none of the flexibility; the entry grounds the requirement that the eligibility/permission input be multi-channel, not the sufficiency of adding a gate.",
+    "STN/GPe can ENHANCE SNr-SC inhibition (strengthen No-Go); an over-active version is the over-braking / akinesia pole, while loss of it is premature/involuntary saccades (the impulsive pole). The same dual-direction failure ARC-107's psychiatric column tracks appears here in the oculomotor gate."
+  ],
+  "tags": [
+    "arc_107",
+    "mech_448",
+    "snr",
+    "superior_colliculus",
+    "caudate",
+    "disinhibition",
+    "permission_to_commit",
+    "context_arbitration",
+    "reward_expectation",
+    "saccades",
+    "basal_ganglia"
+  ],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia control saccades via sustained SNr inhibition of the superior colliculus; a purposive saccade requires selecting the right cortical signal, achieved by caudate-driven disinhibition of the SC (removing the SNr brake), with an additional GPe/STN mechanism that can further enhance the SNr-SC inhibition. The sensorimotor signals are strongly modulated by behavioural context -- working memory, expectation, attention -- and reward expectation facilitates the rewarded saccade.",
+    "ree_translation": "Hikosaka 2000 is the worked, electrophysiologically-grounded instance of three ARC-107 components operating together: (1) the pallidal-like PERMISSION-TO-COMMIT gate (SNr tonic inhibition of SC, released by caudate disinhibition -- commitment as brake-release, grounding MECH-448's eligibility/permission framing); (2) STN-enhanced bounded NO-GO (GPe/STN strengthening SNr-SC inhibition -- the indirect/hyperdirect suppression MECH-449 generalises); and (3) CONTEXT ARBITRATION (the gate set by working memory / attention / expectation, the 'context arbitration' step in the design-note selection pipeline). It is the strongest single demonstration that the BG permission gate is set by MULTIPLE context channels, not one scalar -- the precondition ARC-107 says REE's selector lacks.",
+    "mapping_caveat": "DOUBLE-EDGED grounding -- flag explicitly. Hikosaka also shows reward expectation FACILITATES the rewarded saccade, i.e. a value signal can preferentially open the gate for the high-value target. So the same paper that grounds 'multi-channel context arbitration' also shows the substrate CAN collapse onto a single dominant (reward) channel -- the biological analog of REE's F-monopoly. The entry therefore grounds the STRUCTURE (a context-modulated permission gate) and simultaneously documents the FAILURE MODE (value-monopoly at the gate) MECH-448 must break; it does not show that adding a gate is SUFFICIENT. Modality is oculomotor (saccades), one step removed from REE's abstract committed-action classes, so the transfer is functional. Literal SNr/SC tonic GABAergic inhibition has no REE counterpart (same divergence as Chevalier-Deniau).",
+    "source_context": "Comprehensive Physiological Reviews synthesis of decades of primate single-unit recording in the caudate-SNr-SC oculomotor circuit during memory-guided and reward-biased saccade tasks; the most complete electrophysiological account of a BG permission gate."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.4,
+    "notes": "Source quality very high (Physiological Reviews, primate electrophysiology, decades of work, definitive for the oculomotor BG circuit). Mapping fidelity good -- grounds three ARC-107 components together and directly evidences the multi-channel-gate precondition -- but discounted because the same data show a value-monopoly failure mode at the gate (double-edged). Transfer risk moderate: oculomotor modality + literal tonic inhibition -> abstract committed-action permission is a functional translation, not a 1:1 import."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_arc_107_pallidal_disinhibition_chevalier1990",
+  "timestamp_utc": "2026-06-20T18:39:00Z",
+  "claim_ids_tested": [
+    "ARC-107",
+    "MECH-448"
+  ],
+  "source": {
+    "title": "Disinhibition as a basic process in the expression of striatal functions",
+    "authors": [
+      "Chevalier, G.",
+      "Deniau, J. M."
+    ],
+    "year": 1990,
+    "venue": "Trends in Neurosciences",
+    "doi": "10.1016/0166-2236(90)90109-n",
+    "pmid": "1695403",
+    "volume": "13",
+    "issue": "7",
+    "pages": "277-280"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the foundational statement of DISINHIBITION as the basal ganglia's basic output operation: BG output nuclei tonically inhibit their motor targets, and striatal activation transiently PAUSES that inhibition, releasing (disinhibiting) the target to act. It is the precise grounding for ARC-107's 'pallidal-like permission-to-commit gate (rather than bare argmax)': commitment is granted by REMOVING a default brake, not by a candidate winning a scalar comparison. It also grounds the no-op-default design of MECH-448 (the lever is OFF/permission-denied by default; eligibility is granted, not assumed). Held below 0.8 because it is a short conceptual review (TINS), its mechanism is literal tonic GABAergic inhibition REE does not possess, and the disinhibition idea, while robust, is the simplest version of a gate that REE will implement very differently (an algorithmic permission predicate, not a released brake).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Chevalier-Deniau's gate is a tonically-ON brake that striatal input pauses; REE's selector has no default brake -- the committed action is whatever minimises J, granted unconditionally. ARC-107's permission gate must therefore ADD a default-deny step (no candidate commits until permission is granted), which is a genuine structural addition, not a reweighting; a selector that keeps unconditional argmin cannot express 'permission-to-commit' however its scores are tuned.",
+    "Disinhibition only produces flexible behaviour if the pause is applied SELECTIVELY to the right target; if the same dominant signal (F) decides which target gets disinhibited, the permission gate is just argmin with extra steps and the conversion ceiling persists at the gate. The biology's flexibility depends on the striatal pattern that selects the pause being richer than one scalar -- the same precondition MECH-448 must satisfy.",
+    "Because the default state is full inhibition (nothing acts), an over-tight or mis-set permission gate yields global akinesia/avolition (nothing converts) -- the bradykinetic failure mode -- exactly the 'envelope too tight' pole MECH-448's psychiatric column names; disinhibition makes that pole the DEFAULT failure, which the falsifier's non-degeneracy / safety checks must distinguish from a genuine ceiling."
+  ],
+  "tags": [
+    "arc_107",
+    "mech_448",
+    "disinhibition",
+    "permission_to_commit",
+    "tonic_inhibition",
+    "snr",
+    "gpi",
+    "pallidal_gate",
+    "basal_ganglia",
+    "action_selection"
+  ],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia contribute to movement initiation by arousing executive motor centres via a DISINHIBITORY mechanism: tonically-active GABAergic output neurons (SNr/GPi) hold downstream motor targets under sustained inhibition, and phasic striatal input transiently pauses this inhibition, disinhibiting (releasing) the selected target. The BG output functions as a movement template specifying which motor elements are engaged.",
+    "ree_translation": "ARC-107 specifies a 'pallidal-like permission-to-commit gate (rather than bare argmax)'. Chevalier & Deniau 1990 is the canonical grounding for that gate: in biology, commitment is granted by REMOVING a default inhibitory brake from the selected action, not by a candidate winning a scalar contest. This grounds two ARC-107/MECH-448 design choices: (1) the gate is DEFAULT-DENY -- no action commits until permission (disinhibition) is granted, which is the structural opposite of REE's current unconditional argmin; (2) MECH-448's no-op-default, bit-identical-OFF design mirrors the tonically-inhibited resting state (eligibility/permission is granted, never assumed). The 'output as movement template' framing also supports the eligibility-ENVELOPE idea: BG output specifies WHICH elements are engaged (an eligibility set), within which the action is shaped, rather than emitting a single winner.",
+    "mapping_caveat": "LITERAL-MECHANISM DIVERGENCE. Chevalier-Deniau disinhibition is implemented as literal tonic GABAergic inhibition that is phasically paused; REE has no tonic-brake substrate and will implement 'permission' as an algorithmic predicate over an eligible set (a commit-entry gate), not a released inhibition. The grounding is of the FUNCTIONAL logic (default-deny, grant-by-release, eligibility-as-template), explicitly not the GABAergic mechanism. The default-full-inhibition resting state also means the DEFAULT failure of a mis-set gate is global akinesia (nothing converts), so the REE falsifier must use its non-degeneracy + safety checks to tell a too-tight permission gate apart from a genuine upstream conversion ceiling.",
+    "source_context": "Foundational Trends in Neurosciences review (1990) establishing disinhibition as the basal ganglia's basic output operation; one of the most-cited conceptual statements of BG output physiology, drawing on SNr/SC and SNr/thalamus electrophysiology."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high for a foundational conceptual review (canonical, heavily cited) but capped below empirical papers as it is a short TINS synthesis. Mapping fidelity good on the FUNCTIONAL logic ARC-107 imports (permission-by-release, default-deny, eligibility-as-template) which is exactly the pallidal-gate framing. Transfer risk moderate: the literal tonic-GABAergic mechanism does not exist in REE, so 'disinhibition' becomes an algorithmic permission predicate -- a functional translation that ARC-106 G1 endorses but which is not a 1:1 import."
+  }
+}

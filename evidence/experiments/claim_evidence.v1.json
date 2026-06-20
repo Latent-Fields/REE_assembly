@@ -3048,7 +3048,7 @@
       }
     },
     "ARC-041": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.145, lit_conf=0.721",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.144, lit_conf=0.721",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -3065,8 +3065,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.145,
-      "experimental_confidence_decoupled": 0.145,
+      "experimental_confidence": 0.144,
+      "experimental_confidence_decoupled": 0.144,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -4471,7 +4471,7 @@
       }
     },
     "ARC-065": {
-      "confidence_rationale": "exp=6 entry(s), lit=46 entry(s), exp_conf=0.967, lit_conf=0.863",
+      "confidence_rationale": "exp=6 entry(s), lit=46 entry(s), exp_conf=0.966, lit_conf=0.863",
       "direction_counts": {
         "mixed": 5,
         "supports": 47,
@@ -4493,8 +4493,8 @@
         "C": 6
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.967,
-      "experimental_confidence_decoupled": 0.967,
+      "experimental_confidence": 0.966,
+      "experimental_confidence_decoupled": 0.966,
       "fail_runs": 0,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -4507,7 +4507,7 @@
       "latest_timestamp_utc": "2026-06-16T22:40:09Z",
       "literature_confidence": 0.863,
       "literature_confidence_parallel": 0.863,
-      "overall_confidence": 0.915,
+      "overall_confidence": 0.914,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -6523,6 +6523,136 @@
       "source_counts": {
         "experimental": 0,
         "literature": 4
+      }
+    },
+    "ARC-107": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.857",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:connectome_mechanistic_review": 1,
+        "lit:theoretical_review": 3
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+      "latest_timestamp_utc": "2026-06-20T18:39:00Z",
+      "literature_confidence": 0.857,
+      "literature_confidence_parallel": 0.857,
+      "overall_confidence": 0.857,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-107",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+            "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+            "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+          ],
+          "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-107",
+          "confidence": 0.7,
+          "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+            "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+            "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+          ],
+          "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-107",
+          "confidence": 0.7,
+          "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+            "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+            "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+          ],
+          "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-107",
+          "confidence": 0.71,
+          "confidence_rationale": "This is the foundational statement of DISINHIBITION as the basal ganglia's basic output operation: BG output nuclei tonically inhibit their motor targets, and striatal activation transiently PAUSES that inhibition, releasing (disinhibiting) the target to act. It is the precise grounding for ARC-107's 'pallidal-like permission-to-commit gate (rather than bare argmax)': commitment is granted by REMOVING a default brake, not by a candidate winning a scalar comparison. It also grounds the no-op-default design of MECH-448 (the lever is OFF/permission-denied by default; eligibility is granted, not assumed). Held below 0.8 because it is a short conceptual review (TINS), its mechanism is literal tonic GABAergic inhibition REE does not possess, and the disinhibition idea, while robust, is the simplest version of a gate that REE will implement very differently (an algorithmic permission predicate, not a released brake).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Chevalier-Deniau's gate is a tonically-ON brake that striatal input pauses; REE's selector has no default brake -- the committed action is whatever minimises J, granted unconditionally. ARC-107's permission gate must therefore ADD a default-deny step (no candidate commits until permission is granted), which is a genuine structural addition, not a reweighting; a selector that keeps unconditional argmin cannot express 'permission-to-commit' however its scores are tuned.",
+            "Disinhibition only produces flexible behaviour if the pause is applied SELECTIVELY to the right target; if the same dominant signal (F) decides which target gets disinhibited, the permission gate is just argmin with extra steps and the conversion ceiling persists at the gate. The biology's flexibility depends on the striatal pattern that selects the pause being richer than one scalar -- the same precondition MECH-448 must satisfy.",
+            "Because the default state is full inhibition (nothing acts), an over-tight or mis-set permission gate yields global akinesia/avolition (nothing converts) -- the bradykinetic failure mode -- exactly the 'envelope too tight' pole MECH-448's psychiatric column names; disinhibition makes that pole the DEFAULT failure, which the falsifier's non-degeneracy / safety checks must distinguish from a genuine ceiling."
+          ],
+          "run_id": "2026-06-20_arc_107_pallidal_disinhibition_chevalier1990",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-107",
+          "confidence": 0.74,
+          "confidence_rationale": "Hikosaka's saccade work is the best-characterised single instance of the BG permission-gate in action, with electrophysiology: the SNr tonically inhibits the superior colliculus, the caudate disinhibits the SC to PERMIT a saccade, the STN/GPe can FURTHER enhance the SNr-SC inhibition (a No-Go strengthening), and -- crucially for ARC-107 -- the whole gate is strongly modulated by behavioural CONTEXT (working memory, expectation, attention, reward expectation). It grounds three ARC-107 components at once (permission-to-commit gate, STN-enhanced No-Go, context arbitration) and is the cleanest evidence that the gate is set by MORE than a single value scalar -- exactly the precondition MECH-448 needs. Held below 0.8 by modality specificity (oculomotor) and because reward-expectation FACILITATION of the rewarded saccade is itself a value-monopoly risk (the substrate can also collapse onto the high-value option), which is a double-edged grounding the mapping must flag.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Hikosaka shows the SNr-SC permission gate is modulated by working memory, expectation, attention and reward -- multiple context channels gain access. But he ALSO shows reward expectation FACILITATES the rewarded saccade: if a single value signal dominates the caudate input, the gate preferentially opens for the high-value target and the others stay inhibited. This is the biological version of the F-monopoly: a context-modulated gate can STILL collapse onto one channel if that channel monopolises the disinhibiting input -- precisely the ceiling MECH-448 must break, now shown to exist in the substrate itself.",
+            "The gate's flexibility comes from the caudate carrying genuinely DIFFERENT context signals (memory vs attention vs reward), not one score. A REE permission gate fed only by F would reproduce the structure but none of the flexibility; the entry grounds the requirement that the eligibility/permission input be multi-channel, not the sufficiency of adding a gate.",
+            "STN/GPe can ENHANCE SNr-SC inhibition (strengthen No-Go); an over-active version is the over-braking / akinesia pole, while loss of it is premature/involuntary saccades (the impulsive pole). The same dual-direction failure ARC-107's psychiatric column tracks appears here in the oculomotor gate."
+          ],
+          "run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
       }
     },
     "CANDIDATE-autonomic-rebound-parasympathetic-recovery": {
@@ -15106,7 +15236,7 @@
       }
     },
     "MECH-089": {
-      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.583, lit_conf=0.866",
+      "confidence_rationale": "exp=12 entry(s), lit=10 entry(s), exp_conf=0.582, lit_conf=0.866",
       "direction_counts": {
         "mixed": 4,
         "supports": 14,
@@ -15128,8 +15258,8 @@
         "C": 12
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.583,
-      "experimental_confidence_decoupled": 0.583,
+      "experimental_confidence": 0.582,
+      "experimental_confidence_decoupled": 0.582,
       "fail_runs": 7,
       "genuine_exp_count": 12,
       "genuine_exp_direction_counts": {
@@ -16289,7 +16419,7 @@
       }
     },
     "MECH-099": {
-      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.328, lit_conf=0.888",
+      "confidence_rationale": "exp=6 entry(s), lit=7 entry(s), exp_conf=0.327, lit_conf=0.888",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -16308,8 +16438,8 @@
         "C": 6
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.328,
-      "experimental_confidence_decoupled": 0.328,
+      "experimental_confidence": 0.327,
+      "experimental_confidence_decoupled": 0.327,
       "fail_runs": 6,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -19180,7 +19310,7 @@
       }
     },
     "MECH-150": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.145, lit_conf=0.728",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.144, lit_conf=0.728",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -19197,8 +19327,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.145,
-      "experimental_confidence_decoupled": 0.145,
+      "experimental_confidence": 0.144,
+      "experimental_confidence_decoupled": 0.144,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -19211,7 +19341,7 @@
       "latest_timestamp_utc": "2026-04-02T13:20:00Z",
       "literature_confidence": 0.728,
       "literature_confidence_parallel": 0.728,
-      "overall_confidence": 0.534,
+      "overall_confidence": 0.533,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -24345,7 +24475,7 @@
       }
     },
     "MECH-230": {
-      "confidence_rationale": "exp=2 entry(s), lit=11 entry(s), exp_conf=0.795, lit_conf=0.827",
+      "confidence_rationale": "exp=2 entry(s), lit=11 entry(s), exp_conf=0.794, lit_conf=0.827",
       "direction_counts": {
         "mixed": 2,
         "supports": 10,
@@ -24365,8 +24495,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.795,
-      "experimental_confidence_decoupled": 0.795,
+      "experimental_confidence": 0.794,
+      "experimental_confidence_decoupled": 0.794,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -27992,7 +28122,7 @@
       }
     },
     "MECH-286": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.831",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.83",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -28018,9 +28148,9 @@
       },
       "latest_run_id": "2026-06-10_mech_286_orexin_feeding_integration_saper2006",
       "latest_timestamp_utc": "2026-06-10T09:04:21Z",
-      "literature_confidence": 0.831,
-      "literature_confidence_parallel": 0.831,
-      "overall_confidence": 0.831,
+      "literature_confidence": 0.83,
+      "literature_confidence_parallel": 0.83,
+      "overall_confidence": 0.83,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -31711,7 +31841,7 @@
       }
     },
     "MECH-341": {
-      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.852, lit_conf=0.776",
+      "confidence_rationale": "exp=3 entry(s), lit=3 entry(s), exp_conf=0.851, lit_conf=0.776",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -31728,8 +31858,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.852,
-      "experimental_confidence_decoupled": 0.852,
+      "experimental_confidence": 0.851,
+      "experimental_confidence_decoupled": 0.851,
       "fail_runs": 0,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -34816,15 +34946,16 @@
       }
     },
     "MECH-446": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.71",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.745",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 2,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 2,
       "evidence_class_counts": {
+        "lit:behavioral_human": 1,
         "lit:human_eeg_dbs": 1
       },
       "evidence_level_counts": {},
@@ -34839,11 +34970,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-06-19_sd_034_stn_conflict_graded_release_cavanagh_frank2011",
-      "latest_timestamp_utc": "2026-06-19T20:43:25Z",
-      "literature_confidence": 0.71,
-      "literature_confidence_parallel": 0.71,
-      "overall_confidence": 0.71,
+      "latest_run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+      "latest_timestamp_utc": "2026-06-20T18:41:17Z",
+      "literature_confidence": 0.745,
+      "literature_confidence_parallel": 0.745,
+      "overall_confidence": 0.745,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -34863,12 +34994,252 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-19T20:43:25Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-446",
+          "confidence": 0.66,
+          "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Change-of-mind in the paper is driven by post-commitment evidence still in the processing pipeline; REE's de-commit is triggered by a closure/completion token, not by late-arriving evidence. If REE's release is read as the same mechanism, the mapping over-claims.",
+            "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
+          ],
+          "run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 2,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 2
+      }
+    },
+    "MECH-448": {
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.857",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 5,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 5,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:connectome_mechanistic_review": 1,
+        "lit:theoretical_review": 3
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+      "latest_timestamp_utc": "2026-06-20T18:39:00Z",
+      "literature_confidence": 0.857,
+      "literature_confidence_parallel": 0.857,
+      "overall_confidence": 0.857,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-448",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+            "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+            "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+          ],
+          "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-448",
+          "confidence": 0.7,
+          "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+            "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+            "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+          ],
+          "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-448",
+          "confidence": 0.7,
+          "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+            "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+            "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+          ],
+          "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-448",
+          "confidence": 0.71,
+          "confidence_rationale": "This is the foundational statement of DISINHIBITION as the basal ganglia's basic output operation: BG output nuclei tonically inhibit their motor targets, and striatal activation transiently PAUSES that inhibition, releasing (disinhibiting) the target to act. It is the precise grounding for ARC-107's 'pallidal-like permission-to-commit gate (rather than bare argmax)': commitment is granted by REMOVING a default brake, not by a candidate winning a scalar comparison. It also grounds the no-op-default design of MECH-448 (the lever is OFF/permission-denied by default; eligibility is granted, not assumed). Held below 0.8 because it is a short conceptual review (TINS), its mechanism is literal tonic GABAergic inhibition REE does not possess, and the disinhibition idea, while robust, is the simplest version of a gate that REE will implement very differently (an algorithmic permission predicate, not a released brake).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Chevalier-Deniau's gate is a tonically-ON brake that striatal input pauses; REE's selector has no default brake -- the committed action is whatever minimises J, granted unconditionally. ARC-107's permission gate must therefore ADD a default-deny step (no candidate commits until permission is granted), which is a genuine structural addition, not a reweighting; a selector that keeps unconditional argmin cannot express 'permission-to-commit' however its scores are tuned.",
+            "Disinhibition only produces flexible behaviour if the pause is applied SELECTIVELY to the right target; if the same dominant signal (F) decides which target gets disinhibited, the permission gate is just argmin with extra steps and the conversion ceiling persists at the gate. The biology's flexibility depends on the striatal pattern that selects the pause being richer than one scalar -- the same precondition MECH-448 must satisfy.",
+            "Because the default state is full inhibition (nothing acts), an over-tight or mis-set permission gate yields global akinesia/avolition (nothing converts) -- the bradykinetic failure mode -- exactly the 'envelope too tight' pole MECH-448's psychiatric column names; disinhibition makes that pole the DEFAULT failure, which the falsifier's non-degeneracy / safety checks must distinguish from a genuine ceiling."
+          ],
+          "run_id": "2026-06-20_arc_107_pallidal_disinhibition_chevalier1990",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-448",
+          "confidence": 0.74,
+          "confidence_rationale": "Hikosaka's saccade work is the best-characterised single instance of the BG permission-gate in action, with electrophysiology: the SNr tonically inhibits the superior colliculus, the caudate disinhibits the SC to PERMIT a saccade, the STN/GPe can FURTHER enhance the SNr-SC inhibition (a No-Go strengthening), and -- crucially for ARC-107 -- the whole gate is strongly modulated by behavioural CONTEXT (working memory, expectation, attention, reward expectation). It grounds three ARC-107 components at once (permission-to-commit gate, STN-enhanced No-Go, context arbitration) and is the cleanest evidence that the gate is set by MORE than a single value scalar -- exactly the precondition MECH-448 needs. Held below 0.8 by modality specificity (oculomotor) and because reward-expectation FACILITATION of the rewarded saccade is itself a value-monopoly risk (the substrate can also collapse onto the high-value option), which is a double-edged grounding the mapping must flag.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Hikosaka shows the SNr-SC permission gate is modulated by working memory, expectation, attention and reward -- multiple context channels gain access. But he ALSO shows reward expectation FACILITATES the rewarded saccade: if a single value signal dominates the caudate input, the gate preferentially opens for the high-value target and the others stay inhibited. This is the biological version of the F-monopoly: a context-modulated gate can STILL collapse onto one channel if that channel monopolises the disinhibiting input -- precisely the ceiling MECH-448 must break, now shown to exist in the substrate itself.",
+            "The gate's flexibility comes from the caudate carrying genuinely DIFFERENT context signals (memory vs attention vs reward), not one score. A REE permission gate fed only by F would reproduce the structure but none of the flexibility; the entry grounds the requirement that the eligibility/permission input be multi-channel, not the sufficiency of adding a gate.",
+            "STN/GPe can ENHANCE SNr-SC inhibition (strengthen No-Go); an over-active version is the over-braking / akinesia pole, while loss of it is premature/involuntary saccades (the impulsive pole). The same dual-direction failure ARC-107's psychiatric column tracks appears here in the oculomotor gate."
+          ],
+          "run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        }
+      ],
+      "runs_total": 5,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 5
+      }
+    },
+    "MECH-449": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.803",
+      "direction_counts": {
+        "mixed": 0,
+        "supports": 3,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:behavioral_animal": 1,
+        "lit:theoretical_review": 2
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+      "latest_timestamp_utc": "2026-06-20T18:39:00Z",
+      "literature_confidence": 0.803,
+      "literature_confidence_parallel": 0.803,
+      "overall_confidence": 0.803,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-449",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+            "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+            "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+          ],
+          "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-449",
+          "confidence": 0.7,
+          "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+            "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+            "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+          ],
+          "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-449",
+          "confidence": 0.7,
+          "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_439",
+          "failure_signatures": [
+            "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+            "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+            "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+          ],
+          "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:39:00Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
       }
     },
     "MECH-900": {
@@ -44927,16 +45298,16 @@
       }
     },
     "SD-034": {
-      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.841",
+      "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.852",
       "direction_counts": {
         "mixed": 1,
-        "supports": 5,
+        "supports": 6,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 6,
+      "entries_total": 7,
       "evidence_class_counts": {
-        "lit:behavioral_human": 1,
+        "lit:behavioral_human": 2,
         "lit:computational_model": 1,
         "lit:electrophysiology_single_unit": 3,
         "lit:fmri_connectivity": 1
@@ -44953,31 +45324,13 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-04-27_sd_034_dual_operator_smith_graybiel2013",
-      "latest_timestamp_utc": "2026-04-27T16:52:15Z",
-      "literature_confidence": 0.841,
-      "literature_confidence_parallel": 0.841,
-      "overall_confidence": 0.841,
+      "latest_run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+      "latest_timestamp_utc": "2026-06-20T18:41:17Z",
+      "literature_confidence": 0.852,
+      "literature_confidence_parallel": 0.852,
+      "overall_confidence": 0.852,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-034",
-          "confidence": 0.68,
-          "confidence_rationale": "Barnes/Graybiel find that sensorimotor striatal neurons develop characteristic spike patterns at the START and END of learned action sequences -- the 'task-bracketing' signature -- with the end-bracket sharpened by advance cueing. The end-bracket is the biological signal closest to SD-034's closure token: a specific neural event that marks sequence completion. Confidence at 0.68 because while the bracketing phenomenon is well-established in rodent striatum, the mechanistic link to commitment release and rule_state deactivation is inferential -- the paper describes the neural signature without demonstrating that downstream structures use it as a closure-release signal.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_sd_034",
-          "failure_signatures": [
-            "The task-bracketing signature is a property of sensorimotor striatum acquired through over-training. If SD-034's closure operator must function during initial rule acquisition (before bracketing has crystallised), this evidence is off-target.",
-            "Bracketing in Graybiel's paradigm marks procedural sequence boundaries. SD-034 concerns closure of symbolic rule_states held in lateral PFC. The mapping from sensorimotor habit-boundary to cognitive-rule-completion is analogical, not direct.",
-            "If the end-bracket is a population-level readout signal for external observers (i.e. an emergent pattern) rather than a causally used signal consumed by downstream structures, it is a correlate of completion rather than the closure token SD-034 posits."
-          ],
-          "run_id": "2026-04-21_sd_034_task_bracketing_barnes2011",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-21T00:09:03Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-034",
@@ -45049,12 +45402,29 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-04-27T16:52:15Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-034",
+          "confidence": 0.66,
+          "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
+          "evidence_class": "lit:behavioral_human",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Change-of-mind in the paper is driven by post-commitment evidence still in the processing pipeline; REE's de-commit is triggered by a closure/completion token, not by late-arriving evidence. If REE's release is read as the same mechanism, the mapping over-claims.",
+            "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
+          ],
+          "run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 6,
+      "runs_total": 7,
       "source_counts": {
         "experimental": 0,
-        "literature": 6
+        "literature": 7
       }
     },
     "SD-035": {
@@ -124172,6 +124542,274 @@
       "timestamp_utc": "2026-06-20T17:53:46Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-107",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+        "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+        "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+      ],
+      "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-107",
+      "confidence": 0.7,
+      "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+        "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+        "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+      ],
+      "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-107",
+      "confidence": 0.7,
+      "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+        "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+        "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+      ],
+      "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-107",
+      "confidence": 0.71,
+      "confidence_rationale": "This is the foundational statement of DISINHIBITION as the basal ganglia's basic output operation: BG output nuclei tonically inhibit their motor targets, and striatal activation transiently PAUSES that inhibition, releasing (disinhibiting) the target to act. It is the precise grounding for ARC-107's 'pallidal-like permission-to-commit gate (rather than bare argmax)': commitment is granted by REMOVING a default brake, not by a candidate winning a scalar comparison. It also grounds the no-op-default design of MECH-448 (the lever is OFF/permission-denied by default; eligibility is granted, not assumed). Held below 0.8 because it is a short conceptual review (TINS), its mechanism is literal tonic GABAergic inhibition REE does not possess, and the disinhibition idea, while robust, is the simplest version of a gate that REE will implement very differently (an algorithmic permission predicate, not a released brake).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Chevalier-Deniau's gate is a tonically-ON brake that striatal input pauses; REE's selector has no default brake -- the committed action is whatever minimises J, granted unconditionally. ARC-107's permission gate must therefore ADD a default-deny step (no candidate commits until permission is granted), which is a genuine structural addition, not a reweighting; a selector that keeps unconditional argmin cannot express 'permission-to-commit' however its scores are tuned.",
+        "Disinhibition only produces flexible behaviour if the pause is applied SELECTIVELY to the right target; if the same dominant signal (F) decides which target gets disinhibited, the permission gate is just argmin with extra steps and the conversion ceiling persists at the gate. The biology's flexibility depends on the striatal pattern that selects the pause being richer than one scalar -- the same precondition MECH-448 must satisfy.",
+        "Because the default state is full inhibition (nothing acts), an over-tight or mis-set permission gate yields global akinesia/avolition (nothing converts) -- the bradykinetic failure mode -- exactly the 'envelope too tight' pole MECH-448's psychiatric column names; disinhibition makes that pole the DEFAULT failure, which the falsifier's non-degeneracy / safety checks must distinguish from a genuine ceiling."
+      ],
+      "run_id": "2026-06-20_arc_107_pallidal_disinhibition_chevalier1990",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-107",
+      "confidence": 0.74,
+      "confidence_rationale": "Hikosaka's saccade work is the best-characterised single instance of the BG permission-gate in action, with electrophysiology: the SNr tonically inhibits the superior colliculus, the caudate disinhibits the SC to PERMIT a saccade, the STN/GPe can FURTHER enhance the SNr-SC inhibition (a No-Go strengthening), and -- crucially for ARC-107 -- the whole gate is strongly modulated by behavioural CONTEXT (working memory, expectation, attention, reward expectation). It grounds three ARC-107 components at once (permission-to-commit gate, STN-enhanced No-Go, context arbitration) and is the cleanest evidence that the gate is set by MORE than a single value scalar -- exactly the precondition MECH-448 needs. Held below 0.8 by modality specificity (oculomotor) and because reward-expectation FACILITATION of the rewarded saccade is itself a value-monopoly risk (the substrate can also collapse onto the high-value option), which is a double-edged grounding the mapping must flag.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Hikosaka shows the SNr-SC permission gate is modulated by working memory, expectation, attention and reward -- multiple context channels gain access. But he ALSO shows reward expectation FACILITATES the rewarded saccade: if a single value signal dominates the caudate input, the gate preferentially opens for the high-value target and the others stay inhibited. This is the biological version of the F-monopoly: a context-modulated gate can STILL collapse onto one channel if that channel monopolises the disinhibiting input -- precisely the ceiling MECH-448 must break, now shown to exist in the substrate itself.",
+        "The gate's flexibility comes from the caudate carrying genuinely DIFFERENT context signals (memory vs attention vs reward), not one score. A REE permission gate fed only by F would reproduce the structure but none of the flexibility; the entry grounds the requirement that the eligibility/permission input be multi-channel, not the sufficiency of adding a gate.",
+        "STN/GPe can ENHANCE SNr-SC inhibition (strengthen No-Go); an over-active version is the over-braking / akinesia pole, while loss of it is premature/involuntary saccades (the impulsive pole). The same dual-direction failure ARC-107's psychiatric column tracks appears here in the oculomotor gate."
+      ],
+      "run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-448",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+        "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+        "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+      ],
+      "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-448",
+      "confidence": 0.7,
+      "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+        "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+        "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+      ],
+      "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-448",
+      "confidence": 0.7,
+      "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+        "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+        "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+      ],
+      "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-448",
+      "confidence": 0.71,
+      "confidence_rationale": "This is the foundational statement of DISINHIBITION as the basal ganglia's basic output operation: BG output nuclei tonically inhibit their motor targets, and striatal activation transiently PAUSES that inhibition, releasing (disinhibiting) the target to act. It is the precise grounding for ARC-107's 'pallidal-like permission-to-commit gate (rather than bare argmax)': commitment is granted by REMOVING a default brake, not by a candidate winning a scalar comparison. It also grounds the no-op-default design of MECH-448 (the lever is OFF/permission-denied by default; eligibility is granted, not assumed). Held below 0.8 because it is a short conceptual review (TINS), its mechanism is literal tonic GABAergic inhibition REE does not possess, and the disinhibition idea, while robust, is the simplest version of a gate that REE will implement very differently (an algorithmic permission predicate, not a released brake).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Chevalier-Deniau's gate is a tonically-ON brake that striatal input pauses; REE's selector has no default brake -- the committed action is whatever minimises J, granted unconditionally. ARC-107's permission gate must therefore ADD a default-deny step (no candidate commits until permission is granted), which is a genuine structural addition, not a reweighting; a selector that keeps unconditional argmin cannot express 'permission-to-commit' however its scores are tuned.",
+        "Disinhibition only produces flexible behaviour if the pause is applied SELECTIVELY to the right target; if the same dominant signal (F) decides which target gets disinhibited, the permission gate is just argmin with extra steps and the conversion ceiling persists at the gate. The biology's flexibility depends on the striatal pattern that selects the pause being richer than one scalar -- the same precondition MECH-448 must satisfy.",
+        "Because the default state is full inhibition (nothing acts), an over-tight or mis-set permission gate yields global akinesia/avolition (nothing converts) -- the bradykinetic failure mode -- exactly the 'envelope too tight' pole MECH-448's psychiatric column names; disinhibition makes that pole the DEFAULT failure, which the falsifier's non-degeneracy / safety checks must distinguish from a genuine ceiling."
+      ],
+      "run_id": "2026-06-20_arc_107_pallidal_disinhibition_chevalier1990",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-448",
+      "confidence": 0.74,
+      "confidence_rationale": "Hikosaka's saccade work is the best-characterised single instance of the BG permission-gate in action, with electrophysiology: the SNr tonically inhibits the superior colliculus, the caudate disinhibits the SC to PERMIT a saccade, the STN/GPe can FURTHER enhance the SNr-SC inhibition (a No-Go strengthening), and -- crucially for ARC-107 -- the whole gate is strongly modulated by behavioural CONTEXT (working memory, expectation, attention, reward expectation). It grounds three ARC-107 components at once (permission-to-commit gate, STN-enhanced No-Go, context arbitration) and is the cleanest evidence that the gate is set by MORE than a single value scalar -- exactly the precondition MECH-448 needs. Held below 0.8 by modality specificity (oculomotor) and because reward-expectation FACILITATION of the rewarded saccade is itself a value-monopoly risk (the substrate can also collapse onto the high-value option), which is a double-edged grounding the mapping must flag.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Hikosaka shows the SNr-SC permission gate is modulated by working memory, expectation, attention and reward -- multiple context channels gain access. But he ALSO shows reward expectation FACILITATES the rewarded saccade: if a single value signal dominates the caudate input, the gate preferentially opens for the high-value target and the others stay inhibited. This is the biological version of the F-monopoly: a context-modulated gate can STILL collapse onto one channel if that channel monopolises the disinhibiting input -- precisely the ceiling MECH-448 must break, now shown to exist in the substrate itself.",
+        "The gate's flexibility comes from the caudate carrying genuinely DIFFERENT context signals (memory vs attention vs reward), not one score. A REE permission gate fed only by F would reproduce the structure but none of the flexibility; the entry grounds the requirement that the eligibility/permission input be multi-channel, not the sufficiency of adding a gate.",
+        "STN/GPe can ENHANCE SNr-SC inhibition (strengthen No-Go); an over-active version is the over-braking / akinesia pole, while loss of it is premature/involuntary saccades (the impulsive pole). The same dual-direction failure ARC-107's psychiatric column tracks appears here in the oculomotor gate."
+      ],
+      "run_id": "2026-06-20_arc_107_snr_permission_gate_hikosaka2000",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-449",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+        "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+        "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+      ],
+      "run_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-449",
+      "confidence": 0.7,
+      "confidence_rationale": "Mink's center-surround model is the canonical statement of the exact selection STRUCTURE ARC-107 imports: the basal ganglia do not generate movement; they broadly INHIBIT competing motor programs (the surround / No-Go) while focally REMOVING inhibition from the selected one (the center / Go via disinhibition). This is precisely 'an upstream signal's strength is necessary but not sufficient -- it also needs lawful access' (design note s1): access is granted by focal disinhibition, denied to competitors by surround inhibition. It grounds MECH-449's bounded-Go-plus-bounded-No-Go constitution AND the pallidal-permission-gate framing (a winner is the one whose inhibition is released, not the one with the highest scalar). Held below 0.8 because it is a conceptual review (not a single decisive experiment) and its currency is motor programs, not abstract committed-action classes; and because the surround-inhibition idea has been partly contested downstream (the strict center-surround anatomy is debated even if the focused-selection function is robust).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Mink's selection works by REMOVING tonic inhibition from the chosen program and INCREASING it on competitors; REE's argmin has no tonic-inhibition / permission layer at all -- the committed action is simply the lowest-J candidate, so there is nothing to 'release' and no surround to suppress competitors. The model names exactly the missing machinery ARC-107 must build (permission gate + No-Go surround), so a selector that only sharpens the scalar will not reproduce the function.",
+        "If the focal-release signal itself is driven by the same dominant scalar (F), then the 'center' is always F's argmax and the surround always suppresses the non-F channels -- the diversity ceiling reappears in the gating layer. Mink's function only yields behavioural flexibility if the center can be set by a channel OTHER than the monopolising score; this is the same residual-ceiling risk MECH-448 targets, relocated to the disinhibition step.",
+        "The model is about preventing UNWANTED movements (surround inhibition stops interference), not about maximising committed-action DIVERSITY; importing it naively could over-suppress and NARROW the repertoire (the bradykinesia/over-No-Go failure mode) rather than widening it -- the psychiatric failure-mode column must track this both-directions risk."
+      ],
+      "run_id": "2026-06-20_arc_107_focused_selection_surround_inhibition_mink1996",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-449",
+      "confidence": 0.7,
+      "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_439",
+      "failure_signatures": [
+        "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+        "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+        "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+      ],
+      "run_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:39:00Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-446",
+      "confidence": 0.66,
+      "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Change-of-mind in the paper is driven by post-commitment evidence still in the processing pipeline; REE's de-commit is triggered by a closure/completion token, not by late-arriving evidence. If REE's release is read as the same mechanism, the mapping over-claims.",
+        "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
+      ],
+      "run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-034",
+      "confidence": 0.66,
+      "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
+      "evidence_class": "lit:behavioral_human",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Change-of-mind in the paper is driven by post-commitment evidence still in the processing pipeline; REE's de-commit is triggered by a closure/completion token, not by late-arriving evidence. If REE's release is read as the same mechanism, the mapping over-claims.",
+        "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
+      ],
+      "run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -124210,7 +124848,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-20T18:07:06.633871Z",
+  "generated_at_utc": "2026-06-20T18:46:22.838638Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

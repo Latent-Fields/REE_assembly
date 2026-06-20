@@ -87,6 +87,17 @@ entry), **Ablation falsifier** (the test that proves it load-bearing not
 decorative), and **Psychiatric failure mode** (the ARC-106-mandated clinical
 mapping -- what breaks if this component breaks).
 
+> **ARC-106 grounding (L2, landed 2026-06-20).** The lit-pull that anchors each
+> component below at ARC-106 level L2, with the per-component divergence-ledger
+> entries and psychiatric-failure-mode mappings worked in full, is:
+> `evidence/literature/targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md`
+> (extends the existing MECH-439 BG-selector review; 5 new entries -- Kravitz 2010
+> D1/D2 opponency, Mink 1996 focused selection, Chevalier & Deniau 1990
+> disinhibition, Hikosaka 2000 SNr permission gate, Maia & Frank 2011 Go/No-Go
+> disorders -- plus the pre-existing STN/normalisation entries for components 2 and 4).
+> This discharges the §6 step-1 unconditional grounding chip. None of the
+> components is yet at L3 -- that requires the post-689a/689c falsifier.
+
 ### 3.1 MECH-448 -- Rank-preserving F->eligibility demotion (LEAD)
 
 - **Function (pallidal permission over an F-graded eligibility set):** F decides
@@ -127,10 +138,15 @@ mapping -- what breaks if this component breaks).
 - **REE translation:** generalise MECH-260 (existing No-Go) into a bounded
   Go/No-Go pressure set over the eligibility envelope; MECH-448 demotion is ONE
   component of the broader governance.
-- **Divergence (ARC-106 ledger):** TBD by lit-pull; direct/indirect pathway
-  opponency is well-characterised, the divergence is REE's collapse of
-  multi-loop cortico-striatal arbitration into a single shared commitment
-  interface (s4 "contextual loops").
+- **Divergence (ARC-106 ledger, L2-anchored 2026-06-20):** direct/indirect
+  pathway opponency is causally established (Kravitz 2010: D1/D2 are genuinely
+  SEPARATE, oppositely-signed populations; Mink 1996: focal-go + surround-no-go).
+  REE's divergence: it folds Go and No-Go into algorithmic eligibility pressures
+  over an abstract candidate set -- no separate populations, no vigour axis -- and
+  collapses multi-loop cortico-striatal arbitration into a single shared
+  commitment interface (s4 "contextual loops"). **Reuse-before-duplicate (G2):**
+  MECH-260 already hosts a No-Go-like function; MECH-449 must GENERALISE it, not
+  add a parallel module. Full ledger entry: grounding synthesis §2.1.
 - **Ablation falsifier:** a built Go/No-Go constitution CONVERTS >=1
   previously-gated downstream channel beyond what MECH-447/448 achieve;
   over-specification if it does not.
@@ -190,7 +206,10 @@ into committed action**, not entropy.
    conflict-hold / direct-indirect Go-NoGo / pallidal permission gate / value
    divisive normalisation. Produces ARC-106 L2 anchors + divergence-ledger
    entries for 3.1-3.2. Routes to `targeted_review_connectome_mech_439`
-   extension.
+   extension. **DONE 2026-06-20:**
+   `targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md` + 5 new
+   entries (Kravitz/Mink/Chevalier-Deniau/Hikosaka/Maia-Frank). All five
+   components at L2 with divergence ledger + psychiatric column drafted.
 2. **Claim re-grain (gated on 689c):** /claim-synthesis over MECH-447/448/449 --
    decide genuinely-independent children vs design alternatives; set MECH-447
    disposition from 689a+689c; elevate MECH-448 to active build; hold MECH-449
@@ -213,4 +232,5 @@ into committed action**, not entropy.
 - Autopsy: `evidence/experiments/failure_autopsy_V3-EXQ-689a_2026-06-20.md`
 - Conversion-ceiling Phase-0/1 synthesis: `conversion_ceiling_phase0_synthesis_2026-06-18.md`
 - Claims: ARC-107, MECH-447, MECH-448, MECH-449, Q-078 (claims.yaml); ARC-106 grounding framework `docs/architecture/arc_106_biology_grounding_framework.md`
+- ARC-106 grounding synthesis (L2 anchors + divergence ledger + psychiatric column): `evidence/literature/targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md`
 - Substrate queue rung: `f_dominance_conversion_ceiling` (substrate_queue.json)

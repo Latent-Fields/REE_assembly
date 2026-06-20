@@ -1,0 +1,62 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_arc_107_gonogo_imbalance_disorders_maia2011",
+  "timestamp_utc": "2026-06-20T18:39:00Z",
+  "claim_ids_tested": [
+    "ARC-107",
+    "MECH-449",
+    "MECH-448"
+  ],
+  "source": {
+    "title": "From reinforcement learning models to psychiatric and neurological disorders",
+    "authors": [
+      "Maia, Tiago V.",
+      "Frank, Michael J."
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2723",
+    "pmid": "21270784",
+    "pmc": "PMC4408000",
+    "volume": "14",
+    "issue": "2",
+    "pages": "154-162"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "This is the canonical mapping from cortico-basal-ganglia Go/No-Go (D1/D2) imbalance to specific psychiatric and neurological disorders -- exactly the ARC-106-mandated psychiatric-failure-mode column for the MECH-449 Go/No-Go constitution. It grounds the disorder analogs ARC-107 must carry: No-Go over-pressure / dopamine-depletion -> Parkinsonian bradykinesia and perseveration; Go over-pressure / excess dopamine -> impulsivity and the manic/hyperkinetic pole; OCD-spectrum and Tourette's as cortico-striatal Go/No-Go and braking pathologies; ADHD and addiction as Go/No-Go learning-asymmetry disorders. Confidence held at 0.7 because it grounds the CLINICAL MAPPING (which is what the psychiatric column needs) rather than REE-specific behaviour, and because mapping a REE selector failure to a disorder is a model-of-a-model step that ARC-106 flags as 'earned, not assumed' (a REE failure must actually match the signature, not just share a label).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Maia & Frank make the failure modes BIDIRECTIONAL and dopamine-graded: too little Go (or too much No-Go) -> bradykinesia, perseveration, anhedonic action-collapse (Parkinsonian / depressive pole); too much Go (or too little No-Go) -> impulsivity, premature responding, the manic/hyperkinetic pole. This is the exact dyad MECH-448's psychiatric column names (envelope too tight -> avolition; envelope too wide -> impulsivity/mania), now sourced to a canonical clinical-computational review.",
+    "OCD-spectrum and the loss of inhibitory braking map to cortico-striatal Go/No-Go pathology -- grounding ARC-107's 'OCD-spectrum braking loss' failure mode; but the review also warns these mappings are model-dependent, so a REE component's breakage must reproduce the SPECIFIC signature (e.g. perseveration with intact value learning) to earn the disorder label, not merely resemble it.",
+    "The same RL/Go-No-Go machinery underlies MULTIPLE disorders distinguished by WHICH parameter is off (learning rate asymmetry, tonic vs phasic dopamine, D1 vs D2 balance); a single REE selector knob that, when mis-set, could produce several of these signatures is a strength for clinical modelling but a risk for attribution -- the falsifier must localise which failure a given lever produces."
+  ],
+  "tags": [
+    "arc_107",
+    "mech_449",
+    "mech_448",
+    "go_nogo",
+    "d1_d2",
+    "psychiatric_failure_modes",
+    "parkinsons",
+    "perseveration",
+    "impulsivity",
+    "ocd",
+    "computational_psychiatry",
+    "dopamine"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reinforcement-learning models of dopamine and cortico-basal-ganglia-thalamo-cortical circuits explain key features of several disorders: Parkinson's disease (dopamine depletion -> impaired Go learning, bradykinesia, and medication-induced impulsivity), Tourette's syndrome and OCD (cortico-striatal Go/No-Go and inhibitory-control pathology), ADHD and addiction (Go/No-Go learning asymmetries and altered dopaminergic reinforcement), and schizophrenia. The disorders are distinguished by which RL/Go-No-Go parameter is disturbed.",
+    "ree_translation": "ARC-106 requires every grounded component to carry a psychiatric-failure-mode column: a component is only psychiatrically interpretable if its breakage maps to a recognisable disorder. Maia & Frank 2011 is the canonical source for that column on the ARC-107 Go/No-Go constitution (MECH-449) and the F->eligibility demotion (MECH-448). It grounds: No-Go over-pressure / under-Go -> perseveration, bradykinesia, anhedonic action-collapse (the current REE failure: nothing but F converts, the 'envelope too tight' pole); Go over-pressure / under-No-Go -> impulsivity, premature commitment, the manic/hyperkinetic pole (the 'envelope too wide -> disinhibition' pole); OCD-spectrum loss of inhibitory braking -> the braking-loss failure mode ARC-107 names. This is what lets a REE conversion-ceiling result read as a testable model of psychomotor narrowing rather than just a failed experiment (ARC-106 S7).",
+    "mapping_caveat": "MODEL-OF-A-MODEL step, flagged by ARC-106 itself ('clinical interpretability is earned, not assumed'). Maia & Frank ground the CLINICAL mapping (Go/No-Go imbalance <-> disorder), which is what the psychiatric column needs, but they do NOT speak to REE; a REE selector failure earns a disorder label only if it reproduces the SPECIFIC signature (e.g. perseveration WITH intact value learning, or impulsive commitment under conflict), not merely a shared word. The review also covers human/animal dopaminergic disorders, a domain transfer away from REE's abstract selector; and several disorders share the same machinery, so a single mis-set REE lever could superficially resemble several -- the falsifier must localise which failure each lever actually produces. Per ARC-106 S7 guardrail: do not force a disorder label where the analogy is weak.",
+    "source_context": "Highly-cited Nature Neuroscience review establishing the computational-psychiatry / computational-neurology programme, mapping RL and cortico-basal-ganglia Go/No-Go models onto Parkinson's, Tourette's, OCD, ADHD, addiction, and schizophrenia."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (Nature Neuroscience, field-defining review for computational psychiatry, heavily cited). Mapping fidelity good for the PURPOSE -- it is the reference that supplies the psychiatric-failure-mode column ARC-106 mandates -- but it grounds the clinical mapping, not REE behaviour, so it is a model-of-a-model. Transfer risk moderate: human/animal disorders -> REE selector is a real domain jump, and the disorder label must be EARNED by signature-matching per ARC-106 S7, not assumed from shared vocabulary."
+  }
+}

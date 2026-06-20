@@ -1,0 +1,67 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_arc_107_d1d2_gonogo_opponency_kravitz2010",
+  "timestamp_utc": "2026-06-20T18:39:00Z",
+  "claim_ids_tested": [
+    "ARC-107",
+    "MECH-449",
+    "MECH-448"
+  ],
+  "source": {
+    "title": "Regulation of parkinsonian motor behaviours by optogenetic control of basal ganglia circuitry",
+    "authors": [
+      "Kravitz, Alexxai V.",
+      "Freeze, Benjamin S.",
+      "Parker, Philip R. L.",
+      "Kay, Kenneth",
+      "Thwin, Myo T.",
+      "Deisseroth, Karl",
+      "Kreitzer, Anatol C."
+    ],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09159",
+    "pmid": "20613723",
+    "pmc": "PMC3552484",
+    "volume": "466",
+    "issue": "7306",
+    "pages": "622-626"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the canonical CAUSAL demonstration that the direct (D1, Go) and indirect (D2, No-Go) striatal pathways exert bidirectional, OPPONENT control over action: bilateral optogenetic excitation of indirect-pathway MSNs produced a parkinsonian state (increased freezing, bradykinesia, decreased locomotor initiation) while excitation of direct-pathway MSNs reduced freezing and increased locomotion, and direct-pathway activation rescued the 6-OHDA parkinsonian deficit. It is the strongest available grounding for ARC-107's claim that committed-action selection should be governed by bounded Go (promotion) and No-Go (suppression) pressures rather than by a single scalar, and it anchors the MECH-448 divergence: biology realises rank-alteration through TWO genuinely separate, oppositely-signed populations, not through a single divisively-normalised value scalar. Held below 0.8 by the species/modality transfer (mouse motor initiation vs REE's abstract committed-action-class selection) and because the paper measures gross movement vigour, not the specific 'a non-dominant value channel converts to committed action' phenomenon MECH-448/449 target.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Kravitz shows Go and No-Go are SEPARATE, oppositely-signed neuronal populations whose balance sets behaviour; REE's current selector has no No-Go channel separate from the value scalar F (MECH-260 dACC suppression is channel-specific, not a bounded constitution), so the biological opponency is exactly the structure ARC-107 must add and the current argmin lacks.",
+    "The effect is on motor vigour / movement gating (freeze vs locomote), one level coarser than 'which committed action class wins'; a paper this coarse cannot, on its own, validate that a Go/No-Go constitution recovers committed-action-class DIVERSITY rather than just toggling action on/off -- that discriminant is what the REE falsifier (note s8) must carry, not the literature.",
+    "Bilateral, sustained, non-physiological excitation of an entire pathway is the manipulation; it demonstrates the pathways CAN bidirectionally control behaviour, not that the brain's normal graded Go/No-Go balance maps onto REE's per-candidate eligibility envelope -- over-reading this as 'REE needs two literal MSN populations' would be the cargo-cult failure ARC-106 G1/G2 guard against."
+  ],
+  "tags": [
+    "arc_107",
+    "mech_448",
+    "mech_449",
+    "direct_pathway",
+    "indirect_pathway",
+    "go_nogo",
+    "d1_d2",
+    "striatum",
+    "optogenetics",
+    "action_selection",
+    "basal_ganglia",
+    "opponency"
+  ],
+  "mapping": {
+    "source_claim_statement": "Direct-pathway (D1) and indirect-pathway (D2) striatal medium spiny neurons exert opposing, causal control over movement: indirect-pathway activation elicits a parkinsonian state (freezing, bradykinesia, fewer locomotor initiations) and direct-pathway activation facilitates movement and rescues parkinsonian deficits. The two parallel pathways are genuinely opponent channels, not a single graded value signal.",
+    "ree_translation": "ARC-107 proposes that E3 committed-action selection be governed by an explicit Go/No-Go eligibility constitution (MECH-449) over a pallidal-like permission gate, with F demoted from sole authority to a graded eligibility envelope (MECH-448). Kravitz 2010 is the causal biological grounding that bounded Go (direct/promote) and No-Go (indirect/suppress) channels are the substrate's real selection primitive -- the brain does NOT let one scalar own the gate; it arbitrates two oppositely-signed pressures. This directly anchors why MECH-448's 'remove F from the committed argmin and let it set eligibility only' is rank-ALTERING and biologically legitimate: biology achieves rank alteration via opponent population competition, a stronger operation than the order-preserving, pooled-symmetric divisive normalisation of the canonical value-DN literature (Carandini 2012 / Louie 2013, this review's existing entries).",
+    "mapping_caveat": "LOAD-BEARING DIVERGENCE. Biology implements opponency with two distinct neuronal populations operating on movement vigour/gating; REE has neither separate populations nor a vigour axis -- its 'No-Go' would be an algorithmic eligibility-suppression pressure over an abstract candidate set, and its 'Go' an eligibility-promotion pressure, both folded into a single scoring/selection step. The paper grounds the FUNCTION (bounded opponent gating beats single-scalar monarchy) but not the IMPLEMENTATION; reading it as a mandate for two literal channels would violate ARC-106 G2 (reuse-before-duplicate) given MECH-260 already hosts a No-Go-like function. The paper also cannot certify that opponent gating recovers committed-action DIVERSITY (vs merely on/off gating) -- that is the REE falsifier's job.",
+    "source_context": "In vivo optogenetics in BAC-transgenic mice (D1-Cre / D2-Cre, Cre-dependent ChR2 in dorsal striatum), measuring freezing, bradykinesia, locomotor initiation in open field and in a 6-OHDA Parkinson's-disease model; Nature, highly cited foundational causal study."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (Nature, causal optogenetic gold-standard, foundational, heavily replicated). Mapping fidelity moderate-high on the FUNCTION (opponent Go/No-Go gating is the BG selection primitive ARC-107 imports) but discounted because the readout is motor vigour, one level coarser than committed-action-class selection. Transfer risk elevated: mouse motor gating -> REE abstract committed-action eligibility is a real species+modality+level jump; the grounding is of the reference architecture, not of REE's specific lever working."
+  }
+}
