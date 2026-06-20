@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T15:24:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3",
+      "queue_id": "V3-EXQ-693",
+      "claim_ids": ["SD-049", "SD-015"],
+      "failed_criterion": "non_vacuity_unmet (R3 WL-channel-fireable=false; non_contributory, never a weakens)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- WL leg never expressed; SD-015 identity leg DID express (probe 0.71-0.77)",
+        "biological_reference": "clear -- Berridge wanting!=liking / specific PIT; FAIL not at biology",
+        "prerequisites": "present -- tokens bind (distinct_tokens_max = n_resource_types 2/3/5), per-axis drive spread 0.009-0.015, identity discriminable",
+        "implementation": "partial / stale harness -- 693 WL-scoring conjunction is a pre-514n fork; does not reproduce the working 514t scoring conditions",
+        "environment": "adequate -- ~50-150 contact events/run, all types contacted",
+        "measurement": "under-instrumented (THE layer) -- R3 non-vacuity guard structurally cannot fire in 693's fork; the whole composite gates on it",
+        "integration": "partially coupled -- bank<->z_goal seeding reached; the WL readout is the broken coupling",
+        "scale": "adequate -- 3 seeds x 4 arms; thousands of identity/ANOVA samples"
+      },
+      "biological_reference": {
+        "closest_mechanism": "object-bound drive-modulated incentive salience that dissociates from consummatory liking (Berridge; specific PIT, Corbit/Balleine)",
+        "dependencies": ["SD-049 per-type tags + per-axis drive", "SD-015 z_resource encoder", "SD-057 IncentiveTokenBank.most_wanted"],
+        "is_formal_import": false,
+        "divergence": "none -- the dissociation is a direct biological reading; the FAIL is a measurement-harness signature, not a biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "unchanged (non_contributory re-queue; NOT substrate_ceiling)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-20 (failure_autopsy_V3-EXQ-693, confirmed): V3-EXQ-693 FAIL self-routed substrate_not_ready_requeue / non_vacuity_unmet (R3 WL-channel-fireable=false). non_contributory -- CORRECT, NOT a weakens. Root cause is an INSTRUMENTATION gap, NOT a substrate ceiling: 693 forked from V3-EXQ-514l (pre-514n) and its wanting!=liking scoring harness is hard-zero (n_scored_wl_steps_total=0, run_bank_populated_frac=0.0 across all 4 arms / 3 seeds) while the contemporaneous 514t lineage scores the SAME IncentiveTokenBank.most_wanted object-bound read cleanly (run_bank_populated_frac=1.0, 72 scored WL steps). Tokens DO bind (distinct_tokens_max = n_resource_types 2/3/5), per-axis drive spread present (0.009-0.015), identity probe PASS (0.71-0.77, ~4.4k samples), ANOVA PASS (F up to 1480) -- the FAIL is localized solely to the WL scoring leg. SD-049 stays candidate / substrate_ceiling / v3_pending (UNCHANGED). Route: /queue-experiment 693a porting the working 514r/s/t WL-scoring + non-vacuity precondition; amend SD-049-PHASE-2 substrate_queue with this failure record. WATCH (gated, unadjudicated): C_GR discrimination-margin lift ARM_2-ARM_0=0.0067 (threshold 0.4; -0.0087 ARM_3). NOT a /claim-synthesis trigger (514q split already resolved lineage granularity debt).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "sd_id_suggested": "SD-049-PHASE-2",
+        "title": "Port the working 514t WL-scoring harness into the SD-049 Phase-2 4-arm validation (R3 non-vacuity)",
+        "implementation_hint": "693 forked from 514l (pre-514n) so its wanting!=liking scoring harness is hard-zero (R3 unfireable) while the SAME IncentiveTokenBank.most_wanted machinery scores 72 WL steps in 514t. The SD-049/SD-057 substrate is proven working; the fix is harness-side -- port the 514r/s/t most_wanted-vs-last-consumed object-bound read + the bank-population / non-vacuity precondition that makes R3 fire into the 693a re-issue. NOT a new substrate lever.",
+        "unblocks_claims": ["SD-049", "SD-015"],
+        "depends_on_unresolved": ["514t WL-scoring harness (port; same-repo, no upstream block)", "goal_pipeline:GAP-2 contact regime (free-text: contact density adequate this run)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3",
+          "experiment_type": "v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation",
+          "metric": "n_scored_wl_steps_total=0 and run_bank_populated_frac=0.0 across all 4 arms / 3 seeds (R3 WL-channel-fireable=false), despite distinct_tokens_max=n_resource_types (2/3/5) and drive_spread 0.009-0.015",
+          "target": ">= MIN_SCORED_STEPS(5) scored WL steps with >=2 distinct tokens on >=2/3 seeds (514t achieves 72 scored steps / run_bank_populated_frac=1.0 on the same machinery)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "R3 WL non-vacuity is hard-zero in 693 because its WL-scoring harness is a pre-514n fork (queued as the 514l successor); the SD-049/SD-057 substrate itself is proven working by the contemporaneous 514t (72 scored WL steps, run_bank_populated_frac=1.0).",
+        "Cloned experiments inherit scoring quirks; source fixes (514n/o/...t bank-population + non-vacuity) do NOT auto-propagate across separate files -- mirror by hand + re-validate.",
+        "SD-015 identity-recovery leg fired non-vacuously (probe 0.71-0.77, ~4.4k samples) -- a per-leg partial positive worth a narrow note, under-credited by the composite-FAIL blanket non_contributory.",
+        "C_GR discrimination-margin lift is near-zero (ARM_2-ARM_0=0.0067 vs 0.4; negative in ARM_3) even where it would fire -- gated behind R3 and unadjudicated; carry as the likely real SD-049 Phase-2 conversion question into 693a."
+      ],
+      "routing": "implement-substrate (amend SD-049-PHASE-2) + queue-experiment (693a measurement re-issue)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "WL non-vacuity hard-zero from a stale (pre-514n) scoring-harness fork; the SAME machinery scores cleanly in the live 514t lineage",
+    "is_independent_bugs": false,
+    "structural_property": "harness drift, not a substrate property -- the substrate carries the read (tokens bind, drive differentiates, most_wanted fireable) but 693's fork never co-activates its scoring conditions",
+    "readings": ["measurement_harness_port"]
+  }
+}
