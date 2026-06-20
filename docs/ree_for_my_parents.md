@@ -347,6 +347,33 @@ retold in the tale's voice. Failures count; they are often the best ones.*
 - **The False Soul-Gate** — the civil war in the workshop; the maker wins by letting the
   world strike the false gate. *(Part VI.)*
 
+#### The Blow That Lit the Seam
+
+The goblin took a doubled spell to the boss on the voting box — two levers wound together,
+meant to pry one honest near-tie open. It struck clean and well-made; the lantern showed every
+blow landing true, and no part of it glanced or slipped. And the boss did not move. Not a
+stagger, not a flinch — the same vote it always cast. The strike had not failed because it was
+clumsy. It had failed because it was *well-aimed and still not enough*, which is the worst kind
+of true: nothing to fix, nothing to blame, only a boss that drinks force and asks for more.
+
+But the lantern caught a seam. Of the two levers, one alone had widened the vote a little — the
+way a held breath finally lets a word out — and the other, swung beside it, slammed the very
+door it was meant to open. Two patches that cancelled. The goblin understood then that he had
+been trying to win the old way, more force at the same gate, and the gate was built to swallow
+force. You could strike that boss forever and only tire your arm.
+
+So he did the slower, costlier thing, and he did it on purpose. He would not crown a cheap
+trick just because a number had twitched under it; a thing that moves the meter is not thereby
+the right thing. He went back to the law itself and began to redraft it: F may say who is
+*eligible* to be chosen, and no more — it may set the field, but it may not cast the final vote,
+and it may never, in the redrawing, open a door to harm. The draft is written. It sits behind a
+latch, untried, waiting for the world to strike *it*. The boss still sits on the box. The gate
+is still shut, and the goblin is still at the table, and the lantern is still tied to the blade.
+
+*(Extends Part VII. The blow is a real experiment that did not break the ceiling it aimed at;
+the redrawn law is a new design for how the chooser grants the vote — drafted and built behind
+a switch, but not yet proven, and not yet turned on.)*
+
 <!-- EPISODES:END -->
 
 ---
