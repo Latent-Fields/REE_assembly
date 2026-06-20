@@ -2061,6 +2061,54 @@ def _is_inactive_claim_status(status: str) -> bool:
     return str(status).strip().lower() in {"legacy", "superseded", "retired", "applied"}
 
 
+# Claim statuses that are answered or closing: a REE experiment can no longer
+# change the claim's disposition, so it must not seed an EXPERIMENTAL proposal.
+# Distinct from _is_inactive_claim_status (which drops the whole backlog item for
+# already-dead claims and is shared by several call sites). These statuses still
+# flow through the backlog / literature path; only experimental-proposal
+# generation is suppressed. ("resolved"=answered, "retiring"=closing,
+# "open"=an open_question whose disposition is settled via the answer_state
+# narrow_open_question path, not a promote/demote-style experiment probe; an
+# open_question is restated as a MECH/SD before it is experiment-promotable.)
+_ANSWERED_OR_CLOSING_CLAIM_STATUSES = {"resolved", "open", "retiring"}
+
+# Resolved epistemic_category values whose questions are settled by literature,
+# derivation, or policy rather than by a REE experiment. (answer_state and the
+# substrate_* categories are intentionally NOT here -- they keep their own
+# recommendation handling in _recommendation_for_claim.)
+_NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES = {
+    "out_of_domain",
+    "derivational",
+    "governance_rule",
+}
+
+
+def _is_experiment_ineligible_claim(registry_meta: dict[str, Any]) -> bool:
+    """True when a claim must not seed an experimental (EXP-*) proposal.
+
+    Two independent reasons (either suffices):
+      * the claim status is answered/closing (a REE run cannot move it), or
+      * its resolved epistemic_category is one settled outside REE experiments
+        (literature / derivation / policy).
+
+    Warn-safe: missing/blank fields resolve to eligible (False) so absent
+    metadata never silently suppresses a genuine proposal. Uses
+    _resolve_epistemic_category so an inferred answer_state (open_question
+    default) is handled by the status rule, not mis-skipped here.
+    """
+    if not isinstance(registry_meta, dict):
+        return False
+    status = str(registry_meta.get("status", "")).strip().lower()
+    if status in _ANSWERED_OR_CLOSING_CLAIM_STATUSES:
+        return True
+    epistemic_category = _resolve_epistemic_category(
+        str(registry_meta.get("claim_type", "")),
+        str(registry_meta.get("invariant_type", "")),
+        str(registry_meta.get("epistemic_category", "")),
+    )
+    return epistemic_category in _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES
+
+
 # ── Phase 3 wave 2: epistemic-category resolver ──────────────────────────────
 EPISTEMIC_CATEGORIES = (
     "standard",
@@ -4511,7 +4559,20 @@ def _write_planning_outputs(
         conflict_ratio = float(signals.get("conflict_ratio", 0.0))
         needed = set(item.get("evidence_needed", []))
 
-        if "experimental" in needed:
+        # Experimental-proposal-eligibility gate: do NOT mint an EXP-* proposal
+        # for a claim a REE experiment can't or shouldn't settle -- answered/
+        # closing statuses (resolved/open/retiring) or a resolved epistemic_
+        # category settled by literature/derivation/policy (out_of_domain/
+        # derivational/governance_rule). The backlog loop only drops
+        # _is_inactive_claim_status claims, so these still arrive here carrying
+        # an "experimental" need (live residue: Q-020->EXP-0056, Q-035->EXP-0112,
+        # and Q-079 once it next regenerates). The literature branch below is
+        # left intact (out_of_domain is answered by literature).
+        experiment_ineligible = _is_experiment_ineligible_claim(
+            claim_registry.get(claim_id, {})
+        )
+
+        if "experimental" in needed and not experiment_ineligible:
             target_repo = exploratory_repo if conflict_ratio >= 0.7 else default_exp_repo
             exp_type = _suggest_experiment_type(claim_id, matrix)
             discriminative_pair_required = (
