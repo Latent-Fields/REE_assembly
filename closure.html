@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-20.3 -->
+<!-- CLOSURE_VERSION: 2026-06-20.4 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -559,6 +559,21 @@
   @keyframes gp-glow { 0%,100%{ filter: brightness(1);} 50%{ filter: brightness(1.9) drop-shadow(0 0 5px #ffe066);} }
   @keyframes dopa-burst { 0%{opacity:1; transform: translate(0,0) scale(1);} 100%{opacity:0; transform: translate(var(--dx),var(--dy)) scale(.4);} }
 
+  /* Father's Day egg: the goblin tale's quiet tribute. A small soul-spark rises;
+     hearts drift up; Steve trots through; a line from the tale surfaces. Fires on
+     the Father's Day weekend, or by typing "dad". See fireFathersDay(). */
+  .egg-heart { position: absolute; font-size: 20px; opacity: 0; }
+  .egg-soul  { position: absolute; width: 26px; height: 26px; border-radius: 50%;
+    background: radial-gradient(circle at 38% 34%, #fff6cf, #ffd25a 55%, #f5a623);
+    box-shadow: 0 0 18px rgba(255,210,90,.9), 0 0 38px rgba(245,166,35,.5);
+    opacity: 0; }
+  @keyframes soul-rise {
+    0%   { opacity: 0; transform: translateY(14px) scale(0.5); }
+    25%  { opacity: 1; transform: translateY(0) scale(1); }
+    80%  { opacity: 1; transform: translateY(-70px) scale(1.05); }
+    100% { opacity: 0; transform: translateY(-96px) scale(0.9); }
+  }
+
   /* Spoiler-safe "eggs you've found" gallery. Opens on Shift + 5 title-clicks.
      Only lists eggs already in the local ledger -- never reveals unseen ones. */
   #egg-menu {
@@ -573,12 +588,18 @@
     box-shadow: 0 12px 48px rgba(0,0,0,0.6);
   }
   .egg-menu-head { display: flex; justify-content: space-between; align-items: center;
-    font-weight: 700; font-size: 14px; margin-bottom: 10px; }
-  .egg-menu-close, .egg-menu-replay {
+    font-weight: 700; font-size: 14px; margin-bottom: 10px; gap: 10px; }
+  .egg-menu-head-btns { display: flex; gap: 8px; align-items: center; }
+  .egg-menu-close, .egg-menu-replay, .egg-menu-toggle {
     background: var(--bg-3); color: var(--text);
     border: 1px solid var(--border); border-radius: 8px;
     padding: 4px 12px; font-size: 12px; cursor: pointer; white-space: nowrap; }
-  .egg-menu-replay:hover, .egg-menu-close:hover { border-color: var(--st-done); }
+  .egg-menu-replay:hover, .egg-menu-close:hover, .egg-menu-toggle:hover { border-color: var(--st-done); }
+  .egg-menu-detail { padding: 2px 0 10px; }
+  .egg-menu-what, .egg-menu-why { font-size: 12px; color: var(--muted); margin-top: 5px; line-height: 1.45; }
+  .egg-menu-what span, .egg-menu-why span {
+    display: inline-block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--st-done); margin-right: 6px; opacity: 0.9; }
   .egg-menu-row { display: flex; justify-content: space-between; align-items: center;
     gap: 12px; padding: 9px 0; border-top: 1px solid var(--border); }
   .egg-menu-label { font-weight: 600; font-size: 13px; }
@@ -2003,14 +2024,25 @@ function scheduleEasterEggs() {
     }
   }, 3200);
 
-  // Hidden replay: type "bg" (basal ganglia) anywhere to summon it again.
-  let bgKeys = '';
+  // Father's Day egg: fires once on the Father's Day weekend (3rd Sun of June,
+  // and the Saturday before -- the gift window). The goblin tale's quiet tribute.
+  setTimeout(() => {
+    if (!FD_EGG_FIRED && isFathersDayWindow()) {
+      FD_EGG_FIRED = true;
+      fireFathersDay();
+      markEggSeen('fathersday', 'load');
+    }
+  }, 2600);
+
+  // Hidden replay: type "bg" (basal ganglia) or "dad" (Father's Day) anywhere.
+  let keyBuf = '';
   window.addEventListener('keydown', (e) => {
     if (!e.key || e.key.length !== 1) return;
     const tag = (e.target && e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'textarea') return;
-    bgKeys = (bgKeys + e.key.toLowerCase()).slice(-2);
-    if (bgKeys === 'bg') { bgKeys = ''; fireBasalGanglia(); markEggSeen('bg','replay'); }
+    keyBuf = (keyBuf + e.key.toLowerCase()).slice(-3);
+    if (keyBuf.slice(-2) === 'bg') { fireBasalGanglia(); markEggSeen('bg','replay'); }
+    if (keyBuf === 'dad') { keyBuf = ''; fireFathersDay(); markEggSeen('fathersday','replay'); }
   });
 
   // Hidden re-trigger: click page title 5 times to replay top-applicable egg.
@@ -2058,12 +2090,27 @@ const EGG_SEED_THRESHOLD = 0.80;   // user has seen every progress-milestone egg
 // Static metadata. The gallery shows the TRIGGER (how it was revealed); the
 // Replay button shows the actual egg -- so even the menu doesn't print punchlines.
 const EGG_META = {
-  m25:  { label: 'Milestone 25%',  how: 'Reached 25% overall closure',  threshold: 0.25, fire: () => fire25()  },
-  m50:  { label: 'Milestone 50%',  how: 'Reached 50% overall closure',  threshold: 0.50, fire: () => fire50()  },
-  m75:  { label: 'Milestone 75%',  how: 'Reached 75% overall closure',  threshold: 0.75, fire: () => fire75()  },
-  m90:  { label: 'Milestone 90%',  how: 'Reached 90% overall closure',  threshold: 0.90, fire: () => fire90()  },
-  m100: { label: 'Milestone 100%', how: 'Reached 100% overall closure', threshold: 1.00, fire: () => fire100() },
-  bg:   { label: 'Basal-ganglia fiasco', how: 'Action-selection substrate progress (or type "bg")', threshold: 99, fire: () => fireBasalGanglia() },
+  m25:  { label: 'Milestone 25%',  how: 'Reached 25% overall closure',  threshold: 0.25, fire: () => fire25(),
+          what: 'A lone fish swims across the screen.',
+          why: 'A callback to the fishtank visualization, where the agent\'s monostrategy showed up as a single fish swimming the exact same route every time. Embodied views surface behavioural patterns faster than metrics do, so the fish became the mascot for "it only ever does the one thing."' },
+  m50:  { label: 'Milestone 50%',  how: 'Reached 50% overall closure',  threshold: 0.50, fire: () => fire50(),
+          what: 'Steve the dog trots across the bottom of the screen, tail wagging.',
+          why: 'Steve is the house mascot. Halfway to a closed map earns a wordless cameo and a "Steve approves" nod -- a light reward for sustained progress.' },
+  m75:  { label: 'Milestone 75%',  how: 'Reached 75% overall closure',  threshold: 0.75, fire: () => fire75(),
+          what: 'Five stars drop in and settle into a pentagon.',
+          why: 'REE rests on five axioms (the Synthese-paper foundation). Three-quarters closed earns the constellation -- the five axioms holding the structure together.' },
+  m90:  { label: 'Milestone 90%',  how: 'Reached 90% overall closure',  threshold: 0.90, fire: () => fire90(),
+          what: 'Sleep "zZz" bubbles drift up the screen.',
+          why: 'A nod to the sleep substrate and the INV-049 "I cracked it" moment. At 90% the map is nearly closed, so it earns a rest.' },
+  m100: { label: 'Milestone 100%', how: 'Reached 100% overall closure', threshold: 1.00, fire: () => fire100(),
+          what: 'Confetti, shamrocks, and pulsing nodes, captioned "Discharge summary: stable."',
+          why: 'Daniel is a consultant psychiatrist, so a fully closed map gets discharged rather than merely finished. The shamrocks are the HSE/Ireland tip of the hat.' },
+  bg:   { label: 'Basal-ganglia fiasco', how: 'Action-selection substrate progress (or type "bg")', threshold: 99, fire: () => fireBasalGanglia(),
+          what: 'A coronal basal-ganglia cartoon lights up while an "F" Pac-Man sweeps a row of candidate-action dots, eating every colour but one -- the surviving monostrategy.',
+          why: 'Commiserates the F-dominance "conversion ceiling": REE keeps trying to instantiate a basal ganglia (action selection), but the F-value signal monopolises ~88% of E3 selection variance and collapses candidate-action diversity to one stubborn strategy. ARC-107/MECH-448 gave the selector a "constitution" -- real progress -- and it still votes F. An in-joke at both ends: Daniel treats the basal ganglia for a living, and Claude has misread its share of autopsies.' },
+  fathersday: { label: "Father's Day", how: 'Opened on the Father\'s Day weekend (or type "dad")', threshold: 99, fire: () => fireFathersDay(),
+          what: 'A small soul-spark rises over the map, hearts drift up, Steve trots through, and a line from the goblin tale surfaces.',
+          why: 'The closure map\'s Father\'s Day tribute. The goblin "had no spawn to add to the throng" and spent the ghost of tears not due on building something durable instead -- a kind of fathering. Continuity is not only spawn. Reads the full tale at REE for My Parents. Fires on the Father\'s Day weekend, or any time you type "dad".' },
 };
 
 function eggStore() {
@@ -2123,6 +2170,30 @@ function closeEggMenu() {
   if (menu) menu.style.display = 'none';
 }
 
+// Detailed-descriptions toggle for the gallery. Spoiler-safe: details are only
+// ever rendered for eggs already in the ledger (i.e. ones you've actually found).
+let EGG_MENU_DETAILS = false;
+
+// What-it-is / why-it-exists block for one found egg. Pulls prose from EGG_META;
+// synthesises a description for per-plan completion eggs (key "plan:<id>").
+function eggDetailsBlock(k) {
+  let what = '', why = '';
+  const meta = EGG_META[k];
+  if (meta) { what = meta.what || ''; why = meta.why || ''; }
+  else if (k.indexOf('plan:') === 0) {
+    const id = k.slice(5);
+    const p = (CLOSURE.plans || []).find(pp => pp.id === id);
+    const nm = p ? (p.label || p.id) : id;
+    what = 'The "' + nm + '" closure plan reached 100%: its card pulses and a one-line toast fires.';
+    why = 'Marks a single closure plan fully closed -- a per-plan milestone, distinct from the overall-percentage eggs.';
+  }
+  if (!what && !why) return '';
+  return '<div class="egg-menu-detail">' +
+    (what ? '<div class="egg-menu-what"><span>What it is</span>' + escapeHtml(what) + '</div>' : '') +
+    (why  ? '<div class="egg-menu-why"><span>Why it exists</span>' + escapeHtml(why) + '</div>' : '') +
+    '</div>';
+}
+
 function openEggMenu() {
   const s = eggStore() || {};
   const keys = Object.keys(s).sort((a, b) => {
@@ -2138,13 +2209,16 @@ function openEggMenu() {
     rows = keys.map((k) => {
       const e = s[k];
       const via = e.via === 'seeded' ? 'assumed' : e.via;
-      return '<div class="egg-menu-row">' +
-        '<div>' +
-          '<div class="egg-menu-label">' + escapeHtml(e.label) + '</div>' +
-          '<div class="egg-menu-how">' + escapeHtml(e.how) + '</div>' +
-          '<div class="egg-menu-via">how revealed: ' + escapeHtml(via) + '</div>' +
+      return '<div class="egg-menu-item">' +
+        '<div class="egg-menu-row">' +
+          '<div>' +
+            '<div class="egg-menu-label">' + escapeHtml(e.label) + '</div>' +
+            '<div class="egg-menu-how">' + escapeHtml(e.how) + '</div>' +
+            '<div class="egg-menu-via">how revealed: ' + escapeHtml(via) + '</div>' +
+          '</div>' +
+          '<button class="egg-menu-replay" data-egg-key="' + escapeHtml(k) + '">Replay</button>' +
         '</div>' +
-        '<button class="egg-menu-replay" data-egg-key="' + escapeHtml(k) + '">Replay</button>' +
+        (EGG_MENU_DETAILS ? eggDetailsBlock(k) : '') +
       '</div>';
     }).join('');
   }
@@ -2154,13 +2228,18 @@ function openEggMenu() {
     '<div class="egg-menu-panel">' +
       '<div class="egg-menu-head">' +
         '<span>Eggs you\'ve found (' + keys.length + ')</span>' +
-        '<button class="egg-menu-close" id="egg-menu-close">close</button>' +
+        '<div class="egg-menu-head-btns">' +
+          (keys.length ? '<button class="egg-menu-toggle" id="egg-menu-toggle">' + (EGG_MENU_DETAILS ? 'Hide details' : 'Show details') + '</button>' : '') +
+          '<button class="egg-menu-close" id="egg-menu-close">close</button>' +
+        '</div>' +
       '</div>' +
       rows +
-      '<div class="egg-menu-foot">Shift + 5 title-clicks opens this. Only eggs you\'ve actually triggered appear here.</div>' +
+      '<div class="egg-menu-foot">Shift + 5 title-clicks opens this. Only eggs you\'ve actually triggered appear here. "Show details" explains what each egg represents and why it exists.</div>' +
     '</div>';
   menu.style.display = 'flex';
   menu.querySelector('#egg-menu-close').onclick = closeEggMenu;
+  const tg = menu.querySelector('#egg-menu-toggle');
+  if (tg) tg.onclick = () => { EGG_MENU_DETAILS = !EGG_MENU_DETAILS; openEggMenu(); };
   menu.onclick = (ev) => { if (ev.target === menu) closeEggMenu(); };
   menu.querySelectorAll('.egg-menu-replay').forEach((btn) => {
     btn.onclick = () => {
