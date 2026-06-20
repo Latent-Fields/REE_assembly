@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-19T23:48:18Z",
+  "last_tick_utc": "2026-06-20T00:18:26Z",
   "state": "running",
   "current_exq": "V3-EXQ-460h",
   "current_exq_started_utc": "2026-06-19T21:33:22.464693+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
     "runs_done": 6,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 200.0
+    "overall_pct": 203.8
   },
-  "seconds_elapsed": 8096,
+  "seconds_elapsed": 9904,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460h_sd034_decommit_refractory_independent] starting (dry_run=False)",
@@ -42,7 +42,9 @@
     "Seed 43 Condition ARM_CLOSURE_OFF",
     "[train] closure_eval seed=43 ep 265/265 c1=True c2_within=False c3=True pre_occ=0.000 post_occ=0.000 win_events=0 intent=0 coupled=0 between_arm_drop=True n_closures=7 auto=0 hook=7 nogo=21",
     "verdict: FAIL seed=43 guard_pass=True coupling_nonvacuous=False closure_trigger=True within_window=False rule_bias_trained=True (contact_rate=0.1878 z_goal_at_contact=0.4233)",
-    "Seed 44 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST"
+    "Seed 44 Condition CURRICULUM_BUILT_TRAINED_RULE_BIAS_DECOMMIT_MAGNITUDE_RETEST",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4247 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.855 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
