@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_conflict_decision_threshold_cavanagh2011",
+  "timestamp_utc": "2026-06-20T08:50:06Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "Subthalamic nucleus stimulation reverses mediofrontal influence over decision threshold",
+    "authors": [
+      "Cavanagh, James F.",
+      "Wiecki, Thomas V.",
+      "Cohen, Michael X.",
+      "Figueroa, Christina M.",
+      "Samanta, Johan",
+      "Sherman, Scott J.",
+      "Frank, Michael J."
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2925",
+    "pmid": "21946325",
+    "volume": "14",
+    "issue": "11",
+    "pages": "1462-1467"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This is the causal empirical keystone for the conflict-graded decision-threshold mechanism MECH-439's fix translates, and it carries the 'Cohen' seed author. In humans, trial-to-trial increases in mediofrontal activity (EEG theta, 4-8 Hz) raised the decision threshold (evidence-accumulation bound, via drift-diffusion fits) as a FUNCTION OF CONFLICT; deep brain stimulation of the STN REVERSED this relationship, producing impulsive choice; and intracranial STN-area recordings showed increased slow-band activity during the same high-conflict decisions. So the cortico-STN conflict-graded hold is not merely simulated (Frank 2006) -- it is causally demonstrated and direction-specific (disrupt STN -> lose the conflict-dependent threshold raise -> premature commitment). That is direct support for the dependency MECH-439 names as missing. Held below 0.8 by the same temporal-bound-vs-discrete-set divergence as Frank 2006, plus a binary-choice-vs-many-action-classes scope gap (the threshold here is a two-alternative DDM bound, not a multi-class shortlist width).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The measured threshold is a two-alternative drift-diffusion bound; REE's committed-action-diversity problem is over many action classes. A mechanism that raises a scalar binary bound need not widen a multi-class consideration set -- the empirical support is for the conflict->threshold link, not for the specific top-k set-widening operationalisation.",
+    "STN DBS reversing the mediofrontal-threshold relationship shows the hold is NECESSARY for conflict-dependent caution; it does not show that adding such a hold to an otherwise F-dominated selector SUFFICES to produce committed-action diversity -- necessity in the lesion direction does not establish sufficiency in the enrichment direction MECH-439 needs."
+  ],
+  "tags": [
+    "mech_439",
+    "subthalamic_nucleus",
+    "decision_threshold",
+    "decision_conflict",
+    "mediofrontal_theta",
+    "deep_brain_stimulation",
+    "drift_diffusion_model",
+    "hyperdirect_pathway",
+    "impulsivity"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mediofrontal cortex (EEG theta power) raises the evidence-accumulation decision threshold in proportion to decision conflict, buying time before commitment; the STN is the substrate that enforces this hold. Deep brain stimulation of the STN reverses the mediofrontal-theta-to-threshold relationship and produces impulsive (premature) choices, and STN-area intracranial activity rises during high-conflict decisions -- causal, direction-specific evidence for a cortico-STN conflict-graded threshold.",
+    "ree_translation": "MECH-439's missing dependency is exactly a conflict-graded hold over committed selection: at near-ties (high conflict), commitment to the F-argmax should be delayed/widened so a non-dominant stream can convert. Cavanagh 2011 supplies the causal human evidence that such a hold is real, conflict-scaled, and cortico-STN-implemented, and that REMOVING it (STN DBS) collapses behaviour to premature commitment -- the biological mirror of REE's F-dominated argmax snapping to the leading score regardless of the modulatory field. The proposed fix (689a, k=f(F-gap)) is the REE re-introduction of this hold.",
+    "mapping_caveat": "Two load-bearing divergences. (1) The empirically-measured quantity is a CONTINUOUS scalar decision threshold (evidence-accumulation bound) in a TWO-ALTERNATIVE drift-diffusion task; REE's k=f(F-gap) is a DISCRETE shortlist width over MANY action classes. Raising a binary bound is not the same operation as widening a multi-class set, and the empirical paper validates only the former. (2) The causal manipulation is a LESION (STN DBS removes the hold and produces impulsivity), which establishes the hold is NECESSARY for conflict-dependent caution but NOT that adding a hold to an already-F-dominated selector is SUFFICIENT to generate committed-action diversity. MECH-439 needs the sufficiency (enrichment) direction; this paper gives the necessity (lesion) direction. A 689a PASS would extend the evidence into the sufficiency direction REE actually requires.",
+    "source_context": "Human study: scalp EEG (mediofrontal theta) + drift-diffusion modelling of decision threshold in healthy/conflict tasks, plus STN deep-brain-stimulation manipulation and intracranial STN-area recordings in Parkinson's-disease patients. Causal, multimodal, clinical population for the DBS arm."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high: Nature Neuroscience, causal DBS + intracranial recording + computational modelling in humans, direction-specific result. Mapping fidelity good on the conflict->threshold link but discounted for the binary-bound-vs-multiclass-set operational gap. Transfer risk moderate-elevated: clinical DBS population, two-alternative task, and lesion (necessity) rather than enrichment (sufficiency) direction; the manipulation removes the hold rather than adding one to an F-dominated selector."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_bg_msprt_optimal_bogacz2007",
+  "timestamp_utc": "2026-06-20T08:50:06Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "The basal ganglia and cortex implement optimal decision making between alternative actions",
+    "authors": [
+      "Bogacz, Rafal",
+      "Gurney, Kevin"
+    ],
+    "year": 2007,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco.2007.19.2.442",
+    "pmid": "17206871",
+    "volume": "19",
+    "issue": "2",
+    "pages": "442-477"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the canonical 'optimal decision threshold' paper (the Bogacz seed line). It shows the cortico-basal-ganglia circuit, with the STN computing a normalization term across ALL competing channels, exactly implements the multihypothesis sequential probability ratio test (MSPRT) -- the asymptotically optimal test for choosing among N alternatives. It is MIXED for MECH-439: it strongly SUPPORTS the framing that the BG bottleneck is fundamentally about arbitrating one channel against the WHOLE competing field (the F-monopoly is precisely a failure to normalize F against the field), but it WEAKENS the specific top-k operationalisation. The biologically-optimal STN operation is a CONTINUOUS GLOBAL NORMALIZATION over all alternatives, not a discrete near-ties shortlist truncation. By MSPRT, the principled lever is a rank-preserving renormalization of F against the competing scores -- i.e. the cluster autopsy's Reading-2 (direct F-variance rebalancing / F->eligibility demotion) -- with k=f(F-gap) as a coarse local approximation that acts only at near-ties. So the strongest biological theory of BG decision making points PAST the proposed top-k fix toward the alternative lever, which is the load-bearing finding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MSPRT optimality requires the STN to normalize each channel against the SUM over ALL alternatives on every step (a continuous global term); k=f(F-gap) only widens a discrete set at near-ties and performs no global renormalization, so it is a local approximation that cannot recover the optimal computation when F dominates the global sum -- the regime MECH-439 targets.",
+    "Under MSPRT the decision quantity is a likelihood RATIO (each option normalized by the field), so a single score that dominates the field stays dominant after normalization unless its variance/scale is itself rebalanced; this is the formal statement that near-ties set-widening cannot fix an F-monopoly and that rank-preserving F demotion (Reading-2) is the biologically-principled lever."
+  ],
+  "tags": [
+    "mech_439",
+    "subthalamic_nucleus",
+    "basal_ganglia",
+    "MSPRT",
+    "optimal_decision_making",
+    "normalization",
+    "decision_threshold",
+    "action_selection",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "The anatomy and physiology of the cortico-basal-ganglia loop are exactly those required to implement the multihypothesis sequential probability ratio test (MSPRT), the asymptotically optimal statistical test for decision making among multiple alternatives. The STN provides the normalization term -- it pools activity across all competing cortical channels so that each channel's evidence is evaluated as a likelihood ratio against the whole field, and the basal-ganglia output gates the winner when its normalized evidence crosses threshold.",
+    "ree_translation": "MECH-439 says F monopolises ~88-89% of E3 committed-selection variance, so the committed argmax cannot reflect the modulatory field. Read through MSPRT, this is precisely a NORMALIZATION failure: REE commits on F's raw dominance rather than on F evaluated as a likelihood ratio AGAINST the competing field. The optimal BG computation is a continuous global normalization (the STN term); MECH-439's proposed fix (k=f(F-gap) top-k) is a discrete, near-ties-only approximation of that normalization. Bogacz & Gurney therefore grounds the PROBLEM (commit-on-normalized-evidence, not on raw-F) while pointing the principled SOLUTION toward continuous rank-preserving F-renormalization rather than the shortlist truncation.",
+    "mapping_caveat": "LOAD-BEARING DIVERGENCE -- this entry is the reason its direction is 'mixed'. The biologically-optimal STN operation is a CONTINUOUS GLOBAL NORMALIZATION across ALL alternatives on every step. REE's k=f(F-gap) is neither continuous nor global: it widens a discrete shortlist only when the top-F gap is small. Where F dominates the global sum (exactly the F-monopoly regime MECH-439 targets), no amount of near-ties set-widening recovers the optimal likelihood-ratio computation, because the dominant channel stays dominant after a purely local widening. The MSPRT account thus predicts that the proposed top-k lever is a coarse approximation that will cap committed entropy below the proposer ceiling (the autopsy's Reading-2), and that the principled lever is direct rank-preserving F->eligibility demotion (a renormalization), NOT a shortlist. A 689a result that lifts entropy WITHOUT F-gap correlation would corroborate this reading; a 689a PASS that DOES correlate with F-gap would show the local approximation is good enough on this substrate. Either way the divergence sharpens, not softens, the planning fork.",
+    "source_context": "Analytical + computational-model paper in Neural Computation deriving the MSPRT correspondence for cortico-basal-ganglia anatomy; predictions validated against existing single-unit/physiology data; abstract, normative (not species-specific) -- the transfer question is normative-model-to-REE-substrate, not animal-to-human."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high: the canonical normative theory of BG decision making, analytically derived, physiology-validated. Mapping fidelity moderate: the optimality/normalization FRAMEWORK maps tightly onto the F-monopoly diagnosis, but the specific optimal operation (continuous global normalization) DIVERGES from the proposed discrete top-k, which is the load-bearing content. Transfer risk moderate: a normative model transfers cleanly in principle, but its optimality guarantees assume a likelihood-ratio formulation REE's E3 selector does not currently implement, so the 'optimal lever' it endorses (F-renormalization) is a different build than 689a."
+  }
+}

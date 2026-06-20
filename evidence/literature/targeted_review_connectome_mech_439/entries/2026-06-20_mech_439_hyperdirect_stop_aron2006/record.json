@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_hyperdirect_stop_aron2006",
+  "timestamp_utc": "2026-06-20T08:50:06Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "Cortical and subcortical contributions to Stop signal response inhibition: role of the subthalamic nucleus",
+    "authors": [
+      "Aron, Adam R.",
+      "Poldrack, Russell A."
+    ],
+    "year": 2006,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4682-05.2006",
+    "pmid": "16510720",
+    "volume": "26",
+    "issue": "9",
+    "pages": "2424-2433"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "This is the foundational fMRI paper localising the STN to response inhibition and coining the 'hyperdirect' (right-IFC -> STN) hypothesis -- the Aron & Poldrack seed line and the source of the 'hold' / global-NoGo primitive in MECH-439's scope. It grounds the EXISTENCE and anatomy of the hyperdirect hold: the STN suppresses thalamocortical output to block response execution, and Stop-related STN activity scales with inhibition speed. It is MIXED because the mechanism it characterises is a GLOBAL, NON-SELECTIVE BRAKE (cancel ALL responses), which is the OPPOSITE of conflict-graded widening of the consideration set. MECH-439's fix is GRADED (k scales with the F-gap), aligning with the Frank/Cavanagh conflict-threshold lineage, NOT with Aron's all-or-none global stop. So Aron & Poldrack supports that the hyperdirect HOLD primitive is real and STN-mediated, while flagging that REE's GRADED use is a refinement of (not identical to) the canonical global-NoGo -- a load-bearing distinction, because a blunt global brake would suppress diversity, not create it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The canonical hyperdirect signal is a GLOBAL NoGo that cancels all responses non-selectively; applied naively to E3 it would suppress the committed action entirely (a freeze), not widen the consideration set -- the graded k=f(F-gap) is required precisely because the raw Aron global-stop is the wrong primitive for generating diversity.",
+    "Aron & Poldrack localise the hold to a STOPPING context (an external stop signal), not to value/conflict-graded action selection among competing GO options; transferring the hyperdirect hold from reactive stopping to graded committed-selection requires the Frank/Cavanagh conflict-threshold bridge and is not directly evidenced here."
+  ],
+  "tags": [
+    "mech_439",
+    "subthalamic_nucleus",
+    "hyperdirect_pathway",
+    "response_inhibition",
+    "stop_signal",
+    "global_nogo",
+    "inferior_frontal_cortex",
+    "fmri",
+    "action_selection"
+  ],
+  "mapping": {
+    "source_claim_statement": "Response inhibition (stopping an already-initiated action) activates the right inferior frontal cortex (IFC) and the STN; Stop-related activation in both scales with inhibition speed and is correlated across subjects. The authors propose the STN suppresses thalamocortical output to block response execution, possibly via a direct IFC->STN 'hyperdirect' projection -- a fast, global brake on the motor system.",
+    "ree_translation": "MECH-439's scope includes the hyperdirect 'hold' / global-NoGo as the primitive its fix invokes. Aron & Poldrack is the foundational localisation of that primitive: the STN can rapidly raise the bar on committing a response, anatomically via the hyperdirect pathway. In REE terms, this grounds the EXISTENCE of a fast cortico-STN hold over committed selection -- the structural ingredient absent from the current E3 argmax. The proposed k=f(F-gap) is the GRADED deployment of this hold (widen the consideration set proportionally to conflict) rather than the raw all-or-none stop.",
+    "mapping_caveat": "LOAD-BEARING DIVERGENCE. The Aron-Poldrack hyperdirect signal is a GLOBAL, NON-SELECTIVE BRAKE -- it cancels ALL pending responses (a reactive stop), which is the opposite of REE's goal of WIDENING the committed-action distribution. A naive port of the global-NoGo to E3 would FREEZE the committed action (suppress everything), not increase committed-action diversity. MECH-439's fix is therefore NOT the Aron global stop; it is the Frank/Cavanagh GRADED conflict-threshold (k scales with the F-gap), which uses the same STN/hyperdirect hardware for a graded purpose. Aron & Poldrack thus grounds the hold's hardware and existence but is the WRONG functional mode for the diversity goal -- the entry is mixed because it simultaneously evidences the primitive and warns against its raw form. Additional transfer gap: this is reactive STOPPING (external stop signal), not value/conflict-graded selection among competing GO options; the bridge from stopping to graded selection is supplied by Frank 2006 / Cavanagh 2011, not here.",
+    "source_context": "Human fMRI (two experiments, including high-resolution 7T-localised STN) during a Stop-signal task; healthy adults; reactive response-inhibition paradigm. The 'hyperdirect' label is proposed as a hypothesis to be confirmed by later tract-level work."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: foundational, heavily cited, coined the hyperdirect-stopping hypothesis, 7T-localised STN. Mapping fidelity moderate-low: it grounds the hold PRIMITIVE and its anatomy but characterises a GLOBAL non-selective brake, the wrong functional mode for a diversity-generating graded lever -- the graded use comes from the Frank/Cavanagh lineage. Transfer risk elevated: reactive-stopping context (external stop signal) rather than conflict-graded GO-selection, so the functional transfer to E3 committed selection is indirect."
+  }
+}

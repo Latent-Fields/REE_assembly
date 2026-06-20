@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_stn_conflict_threshold_frank2006",
+  "timestamp_utc": "2026-06-20T08:50:06Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "Hold your horses: a dynamic computational role for the subthalamic nucleus in decision making",
+    "authors": [
+      "Frank, Michael J."
+    ],
+    "year": 2006,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2006.03.006",
+    "pmid": "16945502",
+    "volume": "19",
+    "issue": "8",
+    "pages": "1120-1136"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the canonical computational model of the exact mechanism MECH-439's proposed fix translates: the subthalamic nucleus (STN), driven by cortical response conflict, dynamically raises the response threshold via the cortico-subthalamic-pallidal (hyperdirect) pathway, and this matters MOST when there are multiple competing responses. That is the qualitative content of the conflict-graded hold k=f(F-gap) -- small top-score gap (near-tie / high conflict) widens the consideration window so a non-dominant stream can still win. Confidence is held below 0.8 by one load-bearing structural divergence: Frank's STN raises a CONTINUOUS, TEMPORAL threshold (it buys time within a within-trial evidence accumulator), whereas REE's lever widens a DISCRETE consideration set (top-k) at a single commit step with no within-trial temporal accumulation. The biology's hold helps only because more evidence accrues during the delay and can overturn the leading option; REE's set-widening helps only if a modulatory channel can outweigh F WITHIN the shortlist scoring. Where F still dominates the shortlist (the 654g/625e failures), widening k does not move the argmax -- precisely the gap the divergence predicts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frank's STN hold buys TIME on a within-trial accumulator so that additional evidence can overturn the leading option; REE's E3 commit step has no within-trial temporal accumulation, so substituting top-k set-width for a temporal hold only helps if a non-F channel already outscores F within the shortlist -- where F monopolises the shortlist scoring (654g seed-44 byte-identical, 625e monostrategy) the analog of the hold is inert.",
+    "The model's benefit is contingent on there being multiple genuinely-competing cortical responses at near-equal strength; if one score (F) dominates the cortical input itself, the cortico-STN conflict signal is small and the threshold is never raised -- the diversity ceiling re-appears one level upstream, in the conflict signal, not just at the argmax."
+  ],
+  "tags": [
+    "mech_439",
+    "subthalamic_nucleus",
+    "hyperdirect_pathway",
+    "decision_threshold",
+    "response_conflict",
+    "basal_ganglia",
+    "action_selection",
+    "hold_your_horses",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "The STN, omitted from earlier basal-ganglia action-selection models, modulates WHEN a response is executed: increased cortical response conflict drives dynamic upward adjustments of the response threshold via cortico-subthalamic-pallidal pathways, reducing premature responding. This has substantial effects on WHICH response is ultimately selected, particularly when there are multiple competing responses.",
+    "ree_translation": "MECH-439 holds that the primary harm/goal score F monopolises ~88-89% of E3 committed-selection variance, so modulatory channels cannot move the committed argmax except at near-ties. The proposed fix (V3-EXQ-689a: _gap_scaled_commit_pick + conflict-graded top-k, k=f(top-F gap)) is the REE analog of Frank's cortico-STN hold: when the top-F gap is small (the near-tie / high-conflict regime), widen the committed-selection consideration set (raise the effective threshold for snapping to the F-argmax) so a non-dominant stream can convert to committed action. Frank 2006 is the foundational computational statement that a conflict-graded threshold-raising hold over BG action selection is a real, simulated mechanism -- not an ad hoc engineering patch.",
+    "mapping_caveat": "LOAD-BEARING DIVERGENCE (not a caveat to wave away). Frank's mechanism raises a CONTINUOUS TEMPORAL threshold on a within-trial accumulator -- it delays commitment in time so MORE EVIDENCE can accumulate and overturn the early leader. REE's k=f(F-gap) widens a DISCRETE set (top-k) at a single commit step and has no within-trial temporal accumulation: it substitutes set-width for time. The two are only equivalent if widening the set is accompanied by a competing signal that can outscore F within the shortlist. The biology predicts the hold is USELESS without an independent accumulation process capable of reversing the leader given time; REE's analog is correspondingly useless where F also dominates the within-shortlist scoring. This is exactly the residual-ceiling (Reading-2) risk the cluster autopsy flags, and it means a 689a PASS confirms the hold-analog only if the lift correlates with the per-tick F-gap (the pre-registered falsifier).",
+    "source_context": "Neural-network computational model of cortico-basal-ganglia circuitry (direct/indirect/hyperdirect pathways) during response selection; validated against Parkinson's-disease and pharmacological-challenge data on premature responding and decision conflict; single-author foundational paper, heavily replicated downstream."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: canonical, foundational, heavily cited, and its novel predictions were subsequently confirmed empirically (Cavanagh 2011, Frank 2015). Mapping fidelity high on the QUALITATIVE mechanism (conflict-graded threshold raising during multi-option competition) but discounted for the temporal-threshold-vs-discrete-set-width structural gap. Transfer risk moderate: model-to-model transfer is reasonable, but REE lacks the within-trial temporal accumulator that carries the biology's benefit, so the analog can be inert in exactly the F-dominated regime MECH-439 targets."
+  }
+}

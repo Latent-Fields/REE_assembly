@@ -1,0 +1,25 @@
+# Cavanagh, Wiecki, Cohen … Frank (2011) — STN stimulation reverses mediofrontal influence over decision threshold
+
+**Source:** Cavanagh, J.F., Wiecki, T.V., Cohen, M.X., Figueroa, C.M., Samanta, J., Sherman, S.J., Frank, M.J. (2011). *Nature Neuroscience* 14(11):1462-1467. [DOI 10.1038/nn.2925](https://doi.org/10.1038/nn.2925) · PMID 21946325. (According to PubMed.)
+
+**Claim under test:** MECH-439 — and specifically the causal, empirical leg of the cortico-STN conflict-graded threshold its fix translates. (This paper carries the **Cohen** seed author of the "Bogacz & Cohen" threshold-adaptation line.)
+
+## What the paper did
+
+This is the human, causal counterpart to Frank's 2006 model. Subjects performed a decision task while scalp EEG was recorded; the authors fit a drift-diffusion model (DDM) to behaviour and asked how the decision threshold — the amount of evidence required before commitment — varied trial to trial. They found that increases in mediofrontal (mPFC) EEG theta power (4-8 Hz) predicted an *increased* decision threshold, scaled to the degree of decision conflict: when options conflicted, the cortex raised the bar and bought time. They then tested the STN's causal role directly. In Parkinson's-disease patients with bilateral STN deep brain stimulation (DBS), stimulation *reversed* the mediofrontal-theta-to-threshold relationship, producing impulsive (premature) choices. Intracranial recordings from the STN area showed increased slow-band (2.5-5 Hz) activity during the same high-conflict decisions. Together this is direction-specific causal evidence: mediofrontal conflict signals raise the threshold, the STN enforces it, and disrupting the STN removes the conflict-dependent hold.
+
+## Why it grounds the proposed fix
+
+Frank 2006 showed the conflict-graded hold is computationally coherent; Cavanagh 2011 shows it is *real and causal* in humans. The cluster autopsy's core diagnosis is that REE's E3 selector is a faithful translation of the basal-ganglia winner-take-all bottleneck but an *incomplete* one — it lacks the hyperdirect conflict-graded hold that, in real brains, lets a non-dominant stream change the committed action at near-ties. This paper is the cleanest demonstration that exactly such a hold exists, is conflict-scaled, is cortico-STN-implemented, and that *removing* it collapses behaviour to premature, impulsive commitment. That collapse is the biological mirror of REE's symptom: an F-dominated argmax that snaps to the leading score regardless of the modulatory field (485h authority 0.50 → committed shift 0.0; 654g byte-identical arms). MECH-439's fix (689a, `k=f(F-gap)`) is the re-introduction of the missing hold — and this paper is why that re-introduction is a biological correction, not an ad hoc lever.
+
+## The load-bearing divergences (treated as load-bearing)
+
+Two gaps matter, and per the biology-first discipline I record them as load-bearing rather than smoothing them over.
+
+1. **Binary bound vs multi-class set.** The empirically-measured quantity is a *continuous scalar* decision threshold in a *two-alternative* DDM. REE's `k=f(F-gap)` is a *discrete shortlist width* over *many* action classes. Raising a binary evidence bound and widening a multi-class consideration set are not the same operation; the paper validates the conflict→threshold *link*, not the specific top-k operationalisation. If the brain's conflict-graded mechanism is fundamentally a scalar bound on a two-way race, the right REE analog might be a continuous rank-preserving renormalisation of F, not a discrete set truncation — which again points at the autopsy's Reading-2.
+
+2. **Necessity (lesion) vs sufficiency (enrichment).** The causal manipulation is a *lesion*: STN DBS *removes* the hold and produces impulsivity. That establishes the hold is *necessary* for conflict-dependent caution. It does **not** establish that *adding* a hold to an already-F-dominated selector *suffices* to generate committed-action diversity. MECH-439 needs the sufficiency direction. The empirical literature gives us the necessity direction cleanly; 689a is precisely the experiment that would extend the evidence into the sufficiency direction REE actually requires. This is the right way to read a 689a FAIL: not a bare null, but a finding that the hold is necessary-but-not-sufficient on the current substrate, triaging toward direct F-variance rebalancing.
+
+## Confidence
+
+I assign **supports, confidence 0.75**. Source quality is very high — Nature Neuroscience, causal DBS plus intracranial recording plus computational modelling, with a direction-specific result. Mapping fidelity is good on the conflict→threshold link but discounted for the binary-bound-vs-multiclass-set operational gap. Transfer risk is moderate-to-elevated: a clinical DBS population, a two-alternative task, and a lesion (necessity) rather than enrichment (sufficiency) manipulation. The paper makes the *existence and causal force* of the missing dependency about as solid as human neuroscience gets, while leaving the specific operationalisation and the sufficiency question to 689a.
