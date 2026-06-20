@@ -72,6 +72,16 @@ echo "--- Step 3c-pre: Closure-plan frontmatter strict-YAML lint (warn-only) ---
 # whole plan to frontmatter_pending. Incident 2026-06-19 (commit 4c0313b052).
 "$PYTHON" scripts/check_plan_frontmatter.py || true
 
+echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
+# Flags depends_on / cross_plan_link targets that are neither a node id nor a plan
+# id -- typos that silently drop edges from closure.html instead of erroring.
+# Incident 2026-06-20 (object_representation:OBJ-1 missing _v4; mirror_modelling vs
+# mirror_modelling_other_self_v5), found only by manual audit. Exits non-zero on any
+# dangling ref (excluding the one exempt sleep_substrate:GAP-2 back-pointer); kept
+# warn-only here -- run `python scripts/check_closure_links.py` directly as a strict
+# gate. Promote to blocking once the closure frontmatter is stable.
+"$PYTHON" scripts/check_closure_links.py || true
+
 echo "--- Step 3c: Closure-plan drift check (warn-only) ---"
 "$PYTHON" scripts/check_closure_drift.py
 
