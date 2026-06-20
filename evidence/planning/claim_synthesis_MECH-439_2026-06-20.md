@@ -282,3 +282,94 @@ narrowing that flips its stance to `shown` needs the owning closure node
   carries a `what_would_answer`; Child 1 reuses MECH-439's id rather than manufacturing a redundant
   claim; Children 2/3 are mutually-exclusive rivals with a single pre-registered discriminator (689a),
   not speculative spawn.
+
+---
+
+## 9. Code-inspection finding -- E3 commit-stage stochasticity (sharpens the MECH-448 build spec)
+
+**Date:** 2026-06-20T09:16Z. **Type:** static code fact (no experiment, no claims.yaml edit). **Not
+blocked on V3-EXQ-689a** -- a determinism property of the substrate that holds whichever way 689a resolves.
+
+**Routing anchor.** The divisive-normalization lit pair landed for this cluster --
+`evidence/literature/targeted_review_connectome_mech_439/2026-06-20_mech_439_canonical_normalization_carandini2012`
+(Carandini & Heeger canonical normalization) and `..._value_divisive_normalization_louie2013`
+(Louie/Glimcher value normalization) -- establishes a **load-bearing precondition** on the Section-6.4
+Reading-2 / MECH-448 lever (rank-preserving F->eligibility demotion / divisive renormalization of the
+primary score F): **canonical divisive normalization is ORDER-PRESERVING.** Dividing the E3 score vector
+by a pooled-field denominator does NOT by itself demote F below its competitors -- it only **compresses**
+the F-vs-rest margin. So a divisive-norm lift materialises **only if** E3's final commit is STOCHASTIC
+(softmax / temperature / sampling). Under a hard deterministic argmin with no temperature, divisive
+normalization is **INERT** (order preserved -> same winner).
+
+### 9.1 Verdict: the DEFAULT committed selection is a DETERMINISTIC argmin over F (no temperature)
+
+Traced from the 689a entry point (`ree-v3/experiments/v3_exq_689a_mech439_conflict_grade_gapblind_falsifier.py`)
+and the GAP-A top-k commit pick (`_gap_scaled_commit_pick`) into the committed-action path,
+`ree-v3/ree_core/predictors/e3_selector.py` `E3TrajectorySelector.select()` (def line 776):
+
+- The commit gate is variance-based, not score-based:
+  `committed = self._running_variance < effective_threshold` (line 1178; harm-variance variant line 1176).
+- **Committed branch, all-default flags -> `selected_idx = int(scores.argmin().item())` (line 1361): a HARD
+  DETERMINISTIC ARGMIN over the F-dominated scores.** (Two sibling default-argmin sites: line 1304 within an
+  active shortlist; line 1354 the Factor-B standalone envelope <= 1 fallback.)
+- The `temperature` arg (`select(..., temperature=1.0)`, line 779) feeds `probs = F.softmax(-scores / temperature)`
+  (line 1144), but `probs` is consumed **only on the UNcommitted branch** via `torch.multinomial(probs, 1)`
+  (line 1384). On the **committed** branch the temperature is **irrelevant** -- argmin ignores it. (MECH-313
+  NoiseFloor's tonic-temperature lift likewise only reaches the uncommitted multinomial; it cannot soften the
+  committed argmin.)
+
+So at the live committed-selection site -- exactly where the F-dominance ceiling bites (V3-EXQ-571: F = ~88-89%%
+of committed-selection variance) -- **the default is a deterministic argmin.** Per the Carandini-Heeger / Louie
+anchors, a divisive renormalization of F that **keeps F in this argmin** is order-preserving and **behaviourally
+null** (it compresses the margin but never crosses it).
+
+### 9.2 A stochastic commit stage ALREADY EXISTS (behind no-op-default flags) -- the lever does not start from zero
+
+The substrate already carries a gap-scaled stochastic committed pick, off by default:
+
+- **MECH-439 Factor B `use_gap_scaled_commit_temperature`** (E3Config default `False`, config.py:575) ->
+  `_gap_scaled_commit_pick` (e3_selector.py:745-774): `T_eff = base_temperature + gap_scaled_commit_entropy_alpha
+  * (1 - gap_norm)` then `probs = F.softmax(-cost / T_eff); torch.multinomial(probs, 1)`. **base_temperature =
+  the `select()` `temperature` arg (default 1.0); `gap_scaled_commit_entropy_alpha` default 1.0** (config.py:576).
+  Fired at the committed site (lines 1300-1302) and inside an active shortlist (1300) / Factor-B-standalone
+  envelope (1356).
+- **MECH-341 `stratified_select`** (`use_e3_score_diversity` default `False`, config.py:2249) softmax-samples
+  across first-action-class representatives (lines 1329, 1378) -- a second stochastic committed path.
+- The 689a script itself exercises this stage in several arms (`ARM_*B1` enable Factor B; `ARM_FIXED_HOT_T`
+  sets `gap_scaled_alpha=0.0` + base `T=2.5` -> a flat hot softmax over the eligible set), so the stochastic
+  commit machinery is wired and tested -- it is simply OFF in the baseline.
+
+### 9.3 Implication for the MECH-448 rung-2 build spec
+
+The DEFAULT is deterministic, so a naive "divide F by a pooled denominator" change applied to the existing
+committed path would be **INERT** -- which would read as a (false) no-lift result for Reading-2. The lit anchors
+therefore split the MECH-448 lever into two architecturally distinct routes, and **sharpen which one the
+Section-6.4 claim text already commits to:**
+
+- **Route 1 -- eligibility demotion (the Section-6.4 framing; deterministic-safe).** Remove F from the final
+  argmin entirely; use F **only** as a graded eligibility envelope, and let a non-F channel (the routed
+  modulatory accumulator) decide the within-envelope winner. This changes the **ranking basis**, not just the
+  margin, so it lifts committed diversity **even under a deterministic argmin within the eligible set.** The
+  divisive-norm anchors *reinforce* this framing: pure renormalization that keeps F in the argmin cannot demote
+  it; only removing F from the decision basis can.
+- **Route 2 -- divisive renormalize + stochastic commit (two-part build).** Keep F in the composed score but
+  divisively compress its margin against the competing field, **then** commit stochastically so the compressed
+  margin can be crossed by sampling. **The stochastic half is NOT new code** -- it is the existing MECH-439
+  Factor B lever: set `use_gap_scaled_commit_temperature=True`, tune through `gap_scaled_commit_entropy_alpha`
+  + the base `temperature`. Per the anchors, Route 2 is **null without the stochastic stage** -- so any
+  MECH-448 experiment of the renormalize-but-keep-F variety MUST arm `use_gap_scaled_commit_temperature`
+  (or a MECH-341 stratified-softmax commit); running it against the default hard argmin would confound an
+  order-preserving inert lever with a genuine ceiling.
+
+**Net for MECH-448 registration / its rung-2 experiment:** (a) the default commit is deterministic argmin, so
+the divisive-norm precondition is real; (b) if MECH-448 is built as Route 1 (F->eligibility demotion, the
+Section-6.4 text), it is deterministic-safe and needs no new sampling stage; (c) if built as Route 2 (divisive
+renormalization with F retained), it is a **two-part build** whose stochastic half is the *already-implemented*
+Factor B `use_gap_scaled_commit_temperature` lever (tuning surface = `gap_scaled_commit_entropy_alpha` + base
+`temperature`), and the experiment must enable it or the lever is inert by construction. Either way the rung-2
+test must NOT run against the bare deterministic-argmin default for the renormalize-with-F-retained arm.
+
+Cross-ref: the two divisive-norm lit entries above; Section 6.4 (MECH-448 claim text, "F removed from the final
+argmin, used as a graded eligibility envelope only" = Route 1); the GAP-A `modulatory-bias-selection-authority`
+top-k shortlist + route-range amends (`ree-v3/CLAUDE.md`) that supply the non-F within-envelope channel Route 1
+needs; V3-EXQ-571 (the 88-89%% F-variance share the demotion must break).
