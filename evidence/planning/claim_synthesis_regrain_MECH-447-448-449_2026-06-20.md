@@ -270,3 +270,41 @@ is the parametric-partial-rescue discriminator -- folded into the deferred follo
 - Claims: MECH-447, MECH-448, MECH-449, ARC-107, Q-078, MECH-439 (claims.yaml)
 - Closure homes: `behavioral_diversity_isolation:GAP-I`; `biology_grounding_convergence_v4:BG-2`/BG-3
 - Substrate rung: `f_dominance_conversion_ceiling` (substrate_queue.json)
+
+---
+
+## 8. DEFERRED REGISTRATION EXECUTED -- 2026-06-20 (weaken-now; 689c NOT awaited)
+
+The Section-6.1 deferred decision was executed on 2026-06-20T18:55Z
+(session `claimsynth-regrain-447-execute-20260620T1855Z`). **The 689c-gated trigger map (Section 6.1)
+did NOT drive it** -- two things changed after this doc was written (18:39Z):
+
+1. **689c never landed** as a gate. At execution time the coordinator DB still showed `V3-EXQ-689c`
+   `pending` / unclaimed / no result row.
+2. **The MECH-442 Section-7 biological-fidelity / anti-shortcut steer** (commit `feb5184824`, 2026-06-20,
+   *after* this doc) **stripped 689c of all decision authority** -- it is no-authority confirmatory /
+   divergence-ledger data only; "a 689c PASS does NOT lower the bar" for skipping the faithful build.
+   This **kills the Section-6.1 gap-concentrated-PASS -> register-a-Factor-B-partial-rescue-child branch**:
+   registering a parametric near-tie lever child is exactly the rejected shortcut.
+
+Under **every surviving branch**, MECH-447 weakens with **no child**. The user adjudicated **weaken-now,
+do not wait for 689c** (the outcome is invariant to it). Executed:
+
+- **MECH-447 -> `status: superseded`** (`superseded_by: [MECH-448, MECH-449]`, `superseded_utc:
+  2026-06-20`) with a `supersession_note` recording: (a) its pre-registered falsifier V3-EXQ-689a refuted
+  the as-written both-levers sufficiency form (ARM_A1B1 0.387 = baseline, 0/3 strict-above both control
+  sets, readiness met, non_degenerate); (b) the 2x2 dissociation (A inert / B converts seed-fragile /
+  AxB destructive); (c) the Factor-B-alone effect is no-authority data earning no rescue child per the
+  s7 steer, and 689c does not gate the disposition. This supersession_note ALSO discharges the
+  "unconditional 689a evidence_quality_note" the follow-on owed (it had been added to MECH-448 only, not
+  MECH-447).
+- **MECH-448 / MECH-449 -- no status change** (correct as registered; build-path elevation owned by the
+  substrate_queue + `implement-substrate-mech-448` session, which proceeds regardless of 689c).
+- **Closure reconcile:** `behavioral_diversity_isolation:GAP-J` got an additive `governance_2026_06_20c`
+  note (the disposition prose lived in GAP-J, not GAP-I/BG-2 as Section-7 hand-off guessed) marking the
+  re-grain DONE + the partial-rescue branch dead + 689c no-authority. `decision_log.v1.jsonl` appended.
+  `docs/assets/data/claims.json` rebuilt via `build_claims_json.py`.
+- **Indexer / `governance.sh` NOT run** (concurrency): two live lit-pull sessions held
+  `claim_evidence.v1.json` -- running the indexer would clobber their in-flight edits.
+  `promotion_demotion_recommendations.md` + `decision_state.v1.json` regen defers to the next
+  `/governance` cycle (recommendations.md self-reconciles from claims.yaml; a `superseded` claim drops out).
