@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_079",
+  "entry_id": "2026-06-20_q_079_factor_graph_deep_temporal_active_inference_devries2017",
+  "timestamp_utc": "2026-06-20T17:29:23Z",
+  "claim_ids_tested": ["Q-079"],
+  "source": {
+    "title": "A Factor Graph Description of Deep Temporal Active Inference",
+    "authors": ["Bert de Vries", "Karl J. Friston"],
+    "year": 2017,
+    "venue": "Frontiers in Computational Neuroscience, 11:95",
+    "doi": "10.3389/fncom.2017.00095",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5651277/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "Direction convention: 'weakens' = weakens the distinct-novel-object reading. This paper puts active inference -- directed generative model, variational message passing, AND policy/action selection by expected-free-energy minimisation -- ON a Forney-style factor graph. That places capacities (a) directed update, (b) cyclic/undirected coherence (factor-graph substrate), AND action coupling under ONE object and ONE inference algorithm. It is the bridge entry showing the DLIF 'action loop' is not extra to the graphical-model substrate. Held at 0.72 because it does not itself demonstrate (c) structure learning or (d) scale -- those are the companion entries (Smith 2020, RGM 2024).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The factor-graph active-inference formulation assumes a specified generative model structure; latent-node birth/death (capacity c) requires the separate structure-learning machinery (Smith 2020 / Bayesian model reduction).",
+    "Scale/granularity (capacity d) is present only as fixed hierarchical depth here, not as a renormalisation operator (that is the RGM 2024 contribution)."
+  ],
+  "tags": ["q-079", "active_inference", "factor_graphs", "forneylab", "action_coupling", "dlif"],
+  "mapping": {
+    "source_claim_statement": "Active inference -- perception, learning, and policy selection -- can be specified entirely as message passing (free-energy minimisation) on a Forney-style factor graph representing a deep temporal generative model.",
+    "ree_translation": "DLIF's 'action coupling' capacity, which the research map attributes to active inference as a separate formalism from the graphical-model substrate, is in fact realised ON the factor graph itself. (a) directed update + (b) cyclic coherence + action selection are one object, not three to be unified.",
+    "mapping_caveat": "Covers (a)+(b)+action coupling + precision (precision = inverse variance is intrinsic to AI). Does not deliver (c) or (d) by itself, and contains no residue/non-erasure primitive. Weakens, does not fully collapse, the DLIF novelty claim.",
+    "source_context": "Tutorial / methodological paper in computational neuroscience; synthetic agent, no clinical or moral content."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Authored by Friston (active inference's originator) + de Vries (ForneyLab). High fidelity to the 'one substrate carries inference + action' claim. Transfer risk moderate: REE's selection/commitment machinery is not literally EFE-minimisation, so 'action coupling exists in AI' transfers as an existence proof, not as REE's exact mechanism."
+  }
+}

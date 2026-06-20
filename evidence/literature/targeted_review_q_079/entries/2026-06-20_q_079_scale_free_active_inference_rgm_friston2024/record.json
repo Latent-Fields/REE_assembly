@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_079",
+  "entry_id": "2026-06-20_q_079_scale_free_active_inference_rgm_friston2024",
+  "timestamp_utc": "2026-06-20T17:29:23Z",
+  "claim_ids_tested": ["Q-079"],
+  "source": {
+    "title": "From pixels to planning: scale-free active inference (Renormalising Generative Models)",
+    "authors": ["Karl Friston", "Conor Heins", "Tim Verbelen", "Lancelot Da Costa", "Tommaso Salvatori", "Dimitrije Markovic", "Alexander Tschantz", "Magnus Koudahl", "Christopher Buckley", "Thomas Parr"],
+    "year": 2024,
+    "venue": "arXiv:2407.20292 (cs.LG)",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2407.20292"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "Direction convention: 'weakens' = weakens the distinct-novel-object reading. This is the decisive single-formalism entry for capacity (d) AND for the four-capacity combination. The Renormalising Generative Model is one discrete state-space model whose renormalisation-group operator coarse-grains/refines across scale (d), which learns its own structure/compositionality (c), embedded in active inference so it does directed inference + action (a) on a factor-graph-compatible substrate that carries undirected factors (b). One object, all four capacities + offline learning. Held at 0.7: it is a 2024 preprint (not yet a settled peer-reviewed venue at pull time) and the four-capacity unification is read off the construction rather than benchmarked against REE's exact list.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Preprint, large (multi-section) paper; the 'covers all four capacities' reading is architectural inference, not a benchmark against REE's capacity list.",
+    "Contains no residue/non-erasure primitive; the RG operator explicitly DISCARDS 'irrelevant details' at each coarse-graining -- structurally anti-residue, like Bayesian model reduction."
+  ],
+  "tags": ["q-079", "active_inference", "renormalising_generative_models", "scale_free", "renormalisation_group", "dlif"],
+  "mapping": {
+    "source_claim_statement": "A Renormalising Generative Model (RGM) is a discrete state-space model with a renormalisation-group operator that coarse-grains a description while retaining properties of interest; each level is renormalisable so the model generates and infers causes at any scale, learns compositionality over space and time, and is used for active inference and learning in a dynamic setting.",
+    "ree_translation": "DLIF capacity (d) granularity/scale shift -- the sensory -> trajectory -> goal zoom the cluster wants -- is exactly the RG operator. Combined with structure learning (c, Smith 2020 / intrinsic to RGM) and the factor-graph active-inference substrate (a+b+action, de Vries 2017), the RGM is a SINGLE existing object that already jointly delivers the four DLIF capacities the research map called 'the gap is the combination'.",
+    "mapping_caveat": "The unification is read off the model's construction, not measured against REE's exact capacity inventory; and the RG operator's coarse-graining DISCARDS detail, so it does not implement residue/non-erasure. Weakens the novelty claim for (a)-(d); does not address residue.",
+    "source_context": "Machine-learning preprint; demonstrated on image classification, video/music generation, Atari-like games. No moral/clinical content."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative author list (Friston + VERSES/active-inference group) but a 2024 preprint at pull time. Mapping fidelity good for capacity (d) and the combination; transfer risk raised because 'scale-free by construction' is an architectural claim demonstrated on perception/games, not on REE's ethical-granularity zoom (note HA4: perceptual coarsening != ethical-precedence selection -- one RG operator may not be the right model for the ethical-constraint scale)."
+  }
+}

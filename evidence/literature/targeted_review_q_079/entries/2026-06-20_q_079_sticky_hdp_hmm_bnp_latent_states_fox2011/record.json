@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_079",
+  "entry_id": "2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011",
+  "timestamp_utc": "2026-06-20T17:29:23Z",
+  "claim_ids_tested": ["Q-079"],
+  "source": {
+    "title": "A sticky HDP-HMM with application to speaker diarization",
+    "authors": ["Emily B. Fox", "Erik B. Sudderth", "Michael I. Jordan", "Alan S. Willsky"],
+    "year": 2011,
+    "venue": "The Annals of Applied Statistics, 5(2A):1020-1056",
+    "doi": "10.1214/10-AOAS395",
+    "url": "https://arxiv.org/abs/0905.2592"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Direction = 'mixed' because this entry cuts both ways for Q-079. It covers capacity (c) -- truly unbounded latent-state birth/death, with full Bayesian posterior over the NUMBER of states and split-merge moves -- more completely than the active-inference 'spare-slot' expansion (Smith 2020), which strengthens ANSWERED-NEGATIVE for (c). BUT it covers ONLY (c): Bayesian nonparametrics gives no cyclic-coherence object (b), no scale/granularity operator (d), and no action coupling. So it also supports the research map's point that no single NON-active-inference formalism covers the combination. Held at 0.6: high methodological quality, but it speaks to one capacity, in a non-agent setting, building on Teh et al 2006 HDP.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Covers only latent-state cardinality (capacity c); provides nothing for cyclic coherence (b), scale shift (d), or action coupling.",
+    "State discovery is offline-batch posterior inference over time-series segments, not online action-coupled graph transformation."
+  ],
+  "tags": ["q-079", "bayesian_nonparametrics", "hdp_hmm", "latent_structure", "split_merge", "dlif"],
+  "mapping": {
+    "source_claim_statement": "A hierarchical Dirichlet process prior over HMM transition matrices supports a countably infinite state space, enabling full Bayesian posterior inference over the NUMBER of latent states; the sticky extension controls switching rate and a split-merge sampler proposes birth/merge of states.",
+    "ree_translation": "DLIF capacity (c) -- latent-node birth/death/merge/split with genuinely unbounded cardinality -- is a mature, separate formalism (BNP). It is the strongest single-capacity coverage of (c), but it delivers ONLY (c).",
+    "mapping_caveat": "This is the non-degeneracy cross-check: it proves (c) is well-covered AND that a NON-active-inference formalism covers only one capacity. The four-capacity combination requires assembling BNP-style structure learning WITH the active-inference substrate -- an engineering synthesis, not a new mathematical object.",
+    "source_context": "Bayesian statistics / time-series; speaker diarization benchmark. No agent, no action, no moral content."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Top-tier authors and venue (Jordan/Willsky; Annals of Applied Statistics). Mapping fidelity moderate because it covers a single capacity and in a passive batch-inference setting far from REE's online action-coupled use."
+  }
+}

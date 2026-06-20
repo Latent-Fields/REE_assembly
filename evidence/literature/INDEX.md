@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-20T09:09:48.680699Z`
+Generated: `2026-06-20T17:33:56.733564Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -292,6 +292,7 @@ Generated: `2026-06-20T09:09:48.680699Z`
 | `targeted_review_q_057` | [`2026-06-19_q_057_memory_resolution_aimone2011`](targeted_review_q_057/entries/2026-06-19_q_057_memory_resolution_aimone2011/record.json) | 3 | [`summary`](targeted_review_q_057/entries/2026-06-19_q_057_memory_resolution_aimone2011/summary.md) |
 | `targeted_review_q_058` | [`2026-06-19_q_058_wta_collective_stability_rutishauser2010`](targeted_review_q_058/entries/2026-06-19_q_058_wta_collective_stability_rutishauser2010/record.json) | 3 | [`summary`](targeted_review_q_058/entries/2026-06-19_q_058_wta_collective_stability_rutishauser2010/summary.md) |
 | `targeted_review_q_059` | [`2026-06-20_q_059_laughter_social_regulation_palagi2022`](targeted_review_q_059/entries/2026-06-20_q_059_laughter_social_regulation_palagi2022/record.json) | 3 | [`summary`](targeted_review_q_059/entries/2026-06-20_q_059_laughter_social_regulation_palagi2022/summary.md) |
+| `targeted_review_q_079` | [`2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/record.json) | 5 | [`summary`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/record.json) | 5 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/summary.md) |

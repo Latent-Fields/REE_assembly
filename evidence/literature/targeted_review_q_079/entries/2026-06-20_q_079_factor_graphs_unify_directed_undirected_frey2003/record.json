@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_079",
+  "entry_id": "2026-06-20_q_079_factor_graphs_unify_directed_undirected_frey2003",
+  "timestamp_utc": "2026-06-20T17:29:23Z",
+  "claim_ids_tested": ["Q-079"],
+  "source": {
+    "title": "Extending Factor Graphs so as to Unify Directed and Undirected Graphical Models",
+    "authors": ["Brendan J. Frey"],
+    "year": 2003,
+    "venue": "Proc. 19th Conf. on Uncertainty in Artificial Intelligence (UAI 2003)",
+    "doi": "",
+    "url": "https://arxiv.org/abs/1212.2486"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.74,
+  "confidence_rationale": "Direction convention for the Q-079 novelty question: 'weakens' = weakens the distinct-novel-object (ANSWERED-POSITIVE) reading by showing an existing formalism already covers a needed capacity. High mapping fidelity: factor graphs are a canonical, well-understood substrate; the unification of directed (Bayes-net) and undirected (MRF) models on ONE graph is exactly capacities (a) directed evidence update + (b) cyclic coherence under a single object. Confidence held below 0.8 only because Frey's factor graph alone does not deliver (c) structure birth/death or (d) scale.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A single static factor graph does not natively perform latent-node birth/death/merge/split (capacity c) -- structure is assumed specified.",
+    "Factor graphs do not natively provide granularity/scale shift (capacity d) without an explicit multiscale construction layered on top."
+  ],
+  "tags": ["q-079", "factor_graphs", "graphical_models", "message_passing", "dlif"],
+  "mapping": {
+    "source_claim_statement": "Factor graphs subsume both Bayesian networks (directed) and Markov random fields (undirected) in a single representation, and a common sum-product / message-passing algorithm performs inference over both.",
+    "ree_translation": "DLIF capacities (a) directed evidence update and (b) cyclic coherence constraint are NOT two separate formalisms needing a new unifying object -- the factor graph already unifies them. The DLIF cluster's 'directed-update + cyclic-coherence' pairing (pilot P1) is the standard factor-graph offering.",
+    "mapping_caveat": "Frey's result covers only capacities (a)+(b). It says nothing about (c) latent-node dynamics, (d) scale shift, action coupling, or residue. It weakens the claim that (a)+(b) jointly is novel; it does not by itself collapse the full DLIF combination.",
+    "source_context": "Probabilistic graphical-model theory; no agent, no neural substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.20,
+    "notes": "Canonical, heavily cited result. Transfer risk low because the claim is purely about representational equivalence, which transfers exactly to REE's cognifold (a typed signed state-space = a typed factor graph)."
+  }
+}
