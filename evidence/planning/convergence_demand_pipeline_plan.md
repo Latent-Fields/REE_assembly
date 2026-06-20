@@ -144,6 +144,48 @@ mechanism gap -> intake action. Sources already (even partially) in
 Maintained alongside this doc as a structured file: `convergence_demand_queue.v1.json`
 (created by the first progress chip; mirrors this table for tooling).
 
+### 4a. Routable-demand fields (added 2026-06-20)
+
+The table above tells you what is stuck and which external source maps onto it,
+but not *where the demand goes next* or *what is holding it back* — those lived
+only in each row's prose `last_known_state_note`, invisible to any dispatcher.
+Three machine-readable fields per row close that gap (backfilled onto
+CDQ-001..006; minted on every new row by `/governance` Step 6b):
+
+- **`routing_target`** (enum) — the downstream action once the row is unblocked:
+  - `convergence_intake` — Mine a `REE_convergence/sources/<name>/` source then
+    Register candidate claim(s) into `claims.yaml` wired into the node's
+    `depends_on`. The native route (CDQ-001/002/003/005).
+  - `design_query` — resolve a design fork on an **already-registered** claim;
+    registers no new claim; routes to `/thought-digestion` or `/claim-synthesis`
+    (CDQ-006, the MECH-442 descriptor fork).
+  - `experiment` — needs a discriminative run; routes to `/queue-experiment`.
+  - `decide_to_build` — claim(s) registered; needs a decide-whether-to-build
+    adjudication before any substrate build.
+
+  A biology `/lit-pull` is deliberately **not** a `routing_target`: under the
+  Section-3 `biology_before_formal_definitions` discipline it is a mandatory
+  precondition sub-step of `convergence_intake`/`design_query`, not a terminal
+  route (CDQ-002/003/005 each ran one before registering).
+
+- **`blocks_on`** (array) — machine-readable gates; `[]` = dispatchable now. Each
+  entry `{"kind": "experiment"|"claim"|"substrate", "id", "clears_when", "note"}`.
+  Encodes blockers that were prose-only — e.g. CDQ-004's "do not mine until
+  V3-EXQ-625d resolves" and CDQ-006's gate on the MECH-439 689-successor.
+
+- **`completion_criterion`** (object) — the exit gate: when the demand is
+  satisfied. `{"kind": "claims_registered"|"design_resolved"|"experiment_pass"|
+  "decision_recorded", "detail", "satisfied"}`. For `claims_registered`,
+  `satisfied` is true once `registered_candidate_claims` is non-empty AND those
+  claims are wired into the node's `depends_on`; the other kinds are set
+  explicitly when the named artifact lands.
+
+A dispatcher's "is this row ready?" check is then derivable
+(`blocks_on` all clear AND `completion_criterion.satisfied == false`) with no
+stored status field to drift. This is the schema prerequisite for the optional
+next step — `/governance` Step 6b actually *emitting* a routed work-item for the
+highest-priority unblocked row instead of only parking it.
+
 ## 5. The loop (cadence)
 
 Small and continuous beats another big survey.

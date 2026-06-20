@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-06-19T19:06:46Z",
+  "last_updated_utc": "2026-06-20T06:34:00Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -21,9 +21,36 @@
     "v4_leaning": "registers candidate claims tagged generation:v4 (preparatory only; off the v3 critical path)",
     "v5_leaning": "registers candidate claims tagged generation:v5 (preparatory only; off the v3 critical path)"
   },
+  "routing_target_legend": {
+    "_added_utc": "2026-06-20T06:34:00Z",
+    "_purpose": "The downstream action a dispatcher routes a row to once it is unblocked. Lets a router act on a demand without re-reading last_known_state_note prose.",
+    "convergence_intake": "Mine a REE_convergence/sources/<name>/ source then Register candidate claim(s) into claims.yaml wired into the target node depends_on; the native route, used when the demand terminates in a NEW claim",
+    "design_query": "Resolve a design fork on an already-registered claim; registers NO new claim; route to /thought-digestion or /claim-synthesis",
+    "experiment": "Needs a discriminative run; route to /queue-experiment",
+    "decide_to_build": "Claim(s) already registered; needs a decide-whether-to-build adjudication before any substrate build",
+    "_note_lit_pull": "A biology /lit-pull is NOT a routing_target -- it is a mandatory precondition sub-step of convergence_intake/design_query under the biology_before_formal_definitions invariant, not a terminal route"
+  },
+  "blocks_on_legend": {
+    "_schema": "array of gate objects; [] means dispatchable now. Each entry: {kind: experiment|claim|substrate, id: <EXQ/MECH/node id>, clears_when: <one-line condition>, note: <why>}",
+    "_purpose": "Encodes blockers that were previously prose-only in last_known_state_note so a dispatcher can check dispatchability without reading prose"
+  },
+  "completion_criterion_legend": {
+    "_schema": "object {kind: claims_registered|design_resolved|experiment_pass|decision_recorded, detail: <one-line>, satisfied: <bool>}; the demand's exit gate (when is the demand satisfied)",
+    "claims_registered": "satisfied once registered_candidate_claims is non-empty AND those claims are wired into the target node depends_on",
+    "design_resolved": "satisfied once a design decision is recorded for the named fork (design_query rows)",
+    "experiment_pass": "satisfied once the named EXQ passes (experiment rows)",
+    "decision_recorded": "satisfied once a decide-whether-to-build verdict is logged"
+  },
   "rows": [
     {
       "row_id": "CDQ-001",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "MECH-437 + MECH-438 registered candidate and wired into the arc_062 GAP-B/GAP-K + behavioral_diversity GAP-B depends_on",
+        "satisfied": true
+      },
       "target_nodes": [
         "arc_062_rule_apprehension:GAP-B",
         "arc_062_rule_apprehension:GAP-K",
@@ -54,6 +81,13 @@
     },
     {
       "row_id": "CDQ-002",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "MECH-440 + MECH-441 registered candidate and wired into the GAP-C cluster + GAP-H curiosity leg depends_on",
+        "satisfied": true
+      },
       "target_nodes": [
         "behavioral_diversity_isolation:GAP-C",
         "arc_062_rule_apprehension:GAP-H"
@@ -84,6 +118,13 @@
     },
     {
       "row_id": "CDQ-003",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "MECH-442 registered candidate and wired into the behavioral_diversity GAP-B conversion-ceiling cluster depends_on",
+        "satisfied": true
+      },
       "target_nodes": [
         "behavioral_diversity_isolation:GAP-B"
       ],
@@ -107,6 +148,20 @@
     },
     {
       "row_id": "CDQ-004",
+      "routing_target": "convergence_intake",
+      "blocks_on": [
+        {
+          "kind": "experiment",
+          "id": "V3-EXQ-625d",
+          "clears_when": "resolves AND exhausts the env-kwarg surface",
+          "note": "intake feeds the axis-(c) escalation only if 625d exhausts the env-kwarg surface; do not mine until 625d resolves"
+        }
+      ],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "a PLR/POET automatic-curriculum candidate claim registered + wired into sd_037_axis_b, IF the axis-(c) escalation is reached",
+        "satisfied": false
+      },
       "target_nodes": [
         "sd_037_axis_b:P1b",
         "sd_037_axis_b:P2",
@@ -133,6 +188,13 @@
     },
     {
       "row_id": "CDQ-005",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "MECH-443 + MECH-444 registered candidate/substrate_ceiling and wired into arc_062 GAP-K depends_on; decide-to-build adjudicated 2026-06-19 (443 (b) DESIGN GAP, 444 (c) DON'T-BUILD-yet, both ceiling_decision: deferred markers held)",
+        "satisfied": true
+      },
       "target_nodes": [
         "arc_062_rule_apprehension:GAP-K"
       ],
@@ -156,6 +218,20 @@
     },
     {
       "row_id": "CDQ-006",
+      "routing_target": "design_query",
+      "blocks_on": [
+        {
+          "kind": "experiment",
+          "id": "MECH-439 V3-EXQ-689-successor (689a chain)",
+          "clears_when": "reprices the behavioral-descriptor archive's marginal value vs the MECH-439 F-dominance conversion ceiling",
+          "note": "build stays gated per the MECH-442 decide-to-build packet Q2"
+        }
+      ],
+      "completion_criterion": {
+        "kind": "design_resolved",
+        "detail": "one descriptor + niche-discretisation + standing-vs-per-tick decision for the MECH-442 per-tick committed-selection archive, backed by an external MAP-Elites variant and predicting the MECH-442 falsifier (resolves QD-Q-001/QD-P-002/QD-LIM-001)",
+        "satisfied": false
+      },
       "target_nodes": [
         "behavioral_diversity_isolation:GAP-B"
       ],
