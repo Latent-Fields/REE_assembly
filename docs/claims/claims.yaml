@@ -43810,12 +43810,34 @@
   pending_retest_after_substrate: true  # commitment-closure-control-plane
   registered_utc: "2026-06-19"
   what_would_answer: >
-    On the foraging-competent 603n substrate with the beta-coupling amend ON, a
-    refractory-independent commit-intent counter (closure-plane e3._committed_trajectory
-    forming while not result.committed, counted BEFORE the elevate/refractory gate) is > 0
-    on >= 2/3 scored seeds, including a strong-natural-commit seed. Falsified if the
-    closure-plane commit only ever co-occurs with a natural result.committed (coupling inert
-    -- adds no elevation the natural path would not have produced) on >= 2/3 seeds.
+    REGIME-SCOPED to WEAK-natural-commit seeds (OFF-arm committed_steps ~ 0, where the closure
+    coupling is load-bearing rather than redundant with the F-driven natural commit). SUPPORTED if,
+    on the foraging-competent 603n substrate with the beta-coupling amend ON, a refractory-independent
+    commit-intent counter (closure-plane e3._committed_trajectory forming while not result.committed,
+    counted BEFORE the elevate/refractory gate) is > 0 on >= 2/3 of the in-regime (weak-natural-commit)
+    seeds. FALSIFIED if, among those weak-natural-commit seeds, the closure-plane commit only ever
+    co-occurs with a natural result.committed (coupling inert -- adds no elevation the natural path would
+    not have produced) on >= 2/3 of them. STRONG-natural-commit seeds (high OFF-arm committed_steps) are
+    OUT OF SCOPE: a commit-intent=0 there is redundancy with the natural commit, NOT inert coupling, and
+    does NOT count toward falsification. [REGIME-SCOPED 2026-06-20 per confirmed
+    failure_autopsy_V3-EXQ-460h (user-confirmed): the prior unscoped clause mis-read the 460h seeds 42/43
+    commit-intent=0 -- which are strong-natural-commit redundancy -- as inert coupling on 2/3.]
+  evidence_quality_note: |
+    V3-EXQ-460h (refractory-independent commit-intent retest; confirmed failure_autopsy_V3-EXQ-460h_2026-06-20,
+    supersedes 460g) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending).
+    NARROW NON-SCORING POSITIVE (existence proof, 1/3): seed 44 reported sd034_n_closure_commit_intent=375 with
+    OFF-arm committed_steps=0 and ON total_beta_elevated=355 (OFF=0) -- the closure coupling was the SOLE commit
+    driver, decoupled from the MECH-446 de-commit-magnitude lever (460g's coupled-elevation counter collapsed
+    36->0 on the same lever; the refractory-independent commit-intent fix is CONFIRMED WORKING, closing the 460g
+    S5 self-defeat). The run self-routed substrate_not_ready_requeue before C2 (MECH-446) was scorable: the
+    commit-intent (MECH-445) and within-arm-window (MECH-446) non-vacuity certifiers fire on DISJOINT seeds
+    (commit-intent only where natural commit is WEAK; window only where it is STRONG), empty intersection. NOT a
+    falsification (the 2/3 commit-intent=0 seeds 42/43 are strong-natural-commit redundancy, out of regime -- see
+    the regime-scoped what_would_answer). CLUSTER READING (user-directed): the closure->beta coupling is the
+    engagement face of the SD-034 de-commit, itself the COMMIT/RELEASE-DURATION FACE of the F-dominance conversion
+    ceiling (MECH-439, F ~88-89% E3 variance V3-EXQ-571), NOT orthogonal. Retest gated on the F-dominance
+    commit-entry-decisiveness lever (460i; substrate_queue f_dominance_conversion_ceiling), NOT a re-queue on the
+    current selector.
   depends_on:
     - SD-034    # umbrella design_decision this child decomposes
     - MECH-090  # the bistable latch the closure-plane commit engages
@@ -43855,6 +43877,22 @@
     zero its own certifier). Falsified if a fairly-coupled, refractory-independent-gated run shows
     no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold
     authority) on >= 2/3 seeds.
+  evidence_quality_note: |
+    V3-EXQ-460h (confirmed failure_autopsy_V3-EXQ-460h_2026-06-20, supersedes 460g) -> non_contributory +
+    pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). NARROW NON-SCORING POSITIVE
+    (existence proof, 1/3): seed 42 within-arm around-closure occupancy dropped 0.333 -> 0.0 (C2 PASS) --
+    correct de-commit sign + magnitude. BUT seed 42 is a coupling-UNCERTIFIED seed (commit-intent=0, strong
+    natural commit OFF committed_steps=2414), so the drop cannot be ATTRIBUTED to the closure-coupled de-commit
+    (it could be the natural-commit release). C2 was never scorable on a MECH-445-coupling-certified seed: the
+    MECH-445 (commit-intent) and MECH-446 (within-arm-window) non-vacuity certifiers fire on DISJOINT seeds
+    (anti-correlated by construction -- coupling engages where natural commit is weak; rich windows where it is
+    strong), empty intersection. NOT a falsification, NOT a substrate ceiling (the substrate expresses the
+    de-commit on seed 42). CLUSTER READING (user-directed): the de-commit-authority magnitude is the
+    COMMIT/RELEASE-DURATION FACE of the F-dominance conversion ceiling (MECH-439) -- a modulatory channel
+    subdominant to the same F-driven natural commit (~2400-2600 committed steps) that monopolises the candidate
+    argmax. Retest (460i) gated on the F-dominance commit-entry-decisiveness / natural-commit-latch-occupancy
+    lever (substrate_queue f_dominance_conversion_ceiling), which makes weak-natural-commit the norm across seeds
+    so coupling-certification and the de-commit window co-occur -- NOT a re-queue on the current selector.
   depends_on:
     - SD-034    # umbrella design_decision this child decomposes
     - MECH-090  # the latch occupancy the de-commit lowers

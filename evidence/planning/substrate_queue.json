@@ -13,8 +13,8 @@
    "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
   }
  },
- "last_seen_session": "f-dominance-front-standup-20260619T2200Z",
- "last_updated_utc": "2026-06-19T22:02:10Z",
+ "last_seen_session": "autopsy-apply-460h-20260620T0843Z",
+ "last_updated_utc": "2026-06-20T08:50:22Z",
  "next_implement_substrate": {
   "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
   "sd_id": null,
@@ -4747,7 +4747,7 @@
   },
   {
    "sd_id": "f_dominance_conversion_ceiling",
-   "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion.",
+   "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion. [2026-06-20: now ALSO owns the SD-034 closure de-commit (root C) as the COMMIT/RELEASE-DURATION FACE -- reclassified from open/orthogonal by failure_autopsy_V3-EXQ-460h; the selection-face levers do not shorten natural-commit latch occupancy, so a commit-entry-decisiveness lever is added below.]",
    "status": "lead_lever_built_experiment_in_flight_v3_exq_689a",
    "ready": false,
    "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
@@ -4770,7 +4770,9 @@
     "MECH-313",
     "SD-037",
     "MECH-280",
-    "MECH-281"
+    "MECH-281",
+    "MECH-445",
+    "MECH-446"
    ],
    "fallback_ladder": [
     {
@@ -4807,6 +4809,14 @@
      "tractability": "V4 (stateful MAP-Elites niche store; convergence CDQ-003)",
      "status": "V4 direction",
      "note": "within-pool form already exists as MECH-341 stratified_select; the persistent cross-tick store is the new contribution."
+    },
+    {
+     "rung": 6,
+     "face": "commit/release-duration (root C de-commit) -- PARALLEL to the selection-face rungs 1-5, NOT an escalation of them",
+     "lever": "commit_entry_decisiveness / natural_commit_latch_occupancy",
+     "tractability": "V3 (arithmetic on in-scope tensors: a gap-scaled commit-ENTRY threshold or a natural-commit run-length cap)",
+     "status": "OWED -- gates the 460i de-commit retest (MECH-445/446)",
+     "note": "The F-dominance front's current levers (conflict-graded-k, gap-scaled commit-T; MECH-439) act at E3 SELECTION and do not shorten the F-driven natural-commit latch occupancy (~2400-2600 committed steps on strong seeds) that swamps the SD-034 closure de-commit. Add a commit-ENTRY-decisiveness / latch-occupancy lever (e.g. gap-scaled commit-entry threshold or natural-commit run-length cap) so the F-driven natural commit is less monolithic; this makes weak-natural-commit the norm across seeds so MECH-445 commit-intent fires broadly AND MECH-446 de-commit windows become closure-attributable on the same seeds -- dissolving the 460h disjoint-certifier problem. Gate the 460i de-commit retest on this lever, NOT a re-queue on the current selector. Fallback if the lever is far out: a bespoke closure-exclusive de-commit eval mode in commitment-closure-control-plane (beta elevates only via _closure_commit_active during the eval) as a local per-experiment instance of the same fix."
     }
    ],
    "failure_record": [
@@ -4833,6 +4843,12 @@
      "experiment_type": "v3_exq_485h_ofc_behavioural",
      "metric": "OFC valuation bias reaches accumulator authority 0.50 with ZERO committed conversion (2nd convergent channel)",
      "target": "OFC bias moves committed action after the F-dominance lift"
+    },
+    {
+     "run_id": "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
+     "experiment_type": "v3_exq_460h_sd034_decommit_refractory_independent",
+     "metric": "closure de-commit measurable only where F-driven natural commit weak (seed 44 OFF committed_steps=0, commit_intent=375); swamped where strong (seeds 42/43 OFF committed_steps 2414/2609, commit_intent=0). commit-intent and within-arm-window non-vacuity certifiers disjoint across seeds (empty intersection); C2 never scorable on a coupling-certified seed",
+     "target": "a regime where >= 2/3 seeds have weak natural commit so MECH-445 commit-intent>0 AND MECH-446 within-arm post-closure occupancy drop >= DECOMMIT_MIN_DROP_FRAC co-occur on the same seeds; achieved by a commit-entry-decisiveness lever that prevents F-driven natural commit from monopolising the latch"
     }
    ],
    "metric_trajectory": {
@@ -4848,7 +4864,8 @@
      "V3-EXQ-654g (2026-06-19): CRF + 569i top-k armed, committed-class lift 0/3 -- the 569i top-k fix is channel-specific (does not transfer to the CRF rule_state channel). seed-44 byte-identical despite live CRF.",
      "V3-EXQ-485h (2026-06-19): OFC valuation bias reaches authority 0.50, zero committed conversion -- 2nd convergent channel.",
      "V3-EXQ-689: self-routed substrate_not_ready_requeue (gap_spread 0/3; F-gap pinned near-tie; per-gap-bin regression uncomputable).",
-     "V3-EXQ-689a (IN FLIGHT): redesign with gap-BLIND control arms (FIXED_KMAX + FIXED_HOT_T) so gap-concentrated-vs-uniform lift is an arm contrast (sidesteps the uncomputable per-gap-bin regression)."
+     "V3-EXQ-689a (IN FLIGHT): redesign with gap-BLIND control arms (FIXED_KMAX + FIXED_HOT_T) so gap-concentrated-vs-uniform lift is an arm contrast (sidesteps the uncomputable per-gap-bin regression).",
+     "V3-EXQ-460h (2026-06-20): SD-034 closure de-commit (root C) is the COMMIT/RELEASE-DURATION FACE of F-dominance, not orthogonal. The refractory-independent commit-intent fix works (seed-44 commit_intent=375 where 460g collapsed 36->0) but the de-commit is measurable only where the F-driven natural commit is WEAK (seed 44 OFF committed_steps=0); swamped where strong (42/43, 2414/2609). MECH-445/446 non_contributory + pending_retest; 460i gated on the commit-entry-decisiveness lever (new rung), NOT the selection lever."
     ],
     "prediction": "If conflict-grading is load-bearing, ARM_A1B1 lifts committed-class entropy gap-CONCENTRATED (strict-above the gap-blind controls) -> MECH-439 supports, ceiling lifted, downstream retests unblock. If the lift is UNIFORM (gap-blind controls match ARM_A1B1) -> 'just a bigger shortlist', escalate to rung 2 (rank_preserving_F_to_eligibility_demotion). If NO lift at all (ARM_A1B1 ~ collapsed controls) -> structural bound caps below proposer ceiling -> rung 3+ (divisive-norm/output-null/QD-archive), recouped to V3 by phase-label-follows-dependency."
    },
@@ -4856,9 +4873,21 @@
    "priority": 1,
    "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
    "added_session": "f-dominance-front-standup-20260619T2200Z",
-   "last_seen_session": "f-dominance-front-standup-20260619T2200Z",
-   "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork)",
-   "pending_retest_after_substrate": true
+   "last_seen_session": "autopsy-apply-460h-20260620T0843Z",
+   "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face)",
+   "pending_retest_after_substrate": true,
+   "candidate_cluster_members": [
+    {
+     "queue_id": "V3-EXQ-514t",
+     "claim": "MECH-436",
+     "note": "drive-coupled wanting vs base_value (IncentiveTokenBank primary) -- same 'modulatory drowns at the dominant primary' meta-shape at a different primary; kappa magnitude lever exhausted (failure_autopsy_V3-EXQ-514t_2026-06-20). Own in-flight autopsy; cross-referenced, not adjudicated here."
+    },
+    {
+     "queue_id": "V3-EXQ-625e",
+     "claim": "SD-037",
+     "note": "SD-037 axis-b -- 689a-gated F-front downstream; r4=0.0 monostrategy, MECH-439 F-dominance reasserting under the axis-b composite (failure_autopsy_V3-EXQ-625e_2026-06-20). Own in-flight autopsy."
+    }
+   ]
   }
  ],
  "schema_version": "substrate_queue/v2"

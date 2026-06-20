@@ -1,6 +1,6 @@
 {
   "schema_version": "inter_governance_workset/v1.1",
-  "generated_at": "2026-06-20T06:19:24Z",
+  "generated_at": "2026-06-20T08:18:55Z",
   "generator": "scripts/generate_inter_governance_workset.py",
   "summary": {
     "total": 190,
@@ -11,7 +11,6 @@
     "pending_review_count": 4,
     "queue_pending": 0,
     "live_exqs": [
-      "V3-EXQ-514t",
       "V3-EXQ-689a",
       "V3-EXQ-690",
       "V3-EXQ-691",
@@ -875,7 +874,7 @@
       "owner_exq": null,
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-001",
       "agent_brief": "REE inter-governance work item: IGW-20260620-001\nTitle: Complete governance review (4 pending)\nLane: governance | Skill: /governance\nStatus: ready\nWhy now: pending_review.md lists 4 item(s) -- must clear before new work packages.\n\nInstructions:\n- Run /governance from REE_assembly; walk pending_review with user.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -905,7 +904,7 @@
         "ARC-046",
         "DEV-NEED-008"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-165",
       "agent_brief": "REE inter-governance work item: IGW-20260620-165\nTitle: Implement substrate: ARC-046 (unblocks ARC-046)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: ARC-046, DEV-NEED-008\nBlocked by: ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-\nWhy now: substrate_queue entry status=implemented with 2 unresolved prerequisite(s); blocks retest of ARC-046. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -958,7 +957,7 @@
         "ARC-068",
         "SD-054-readiness"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-167",
       "agent_brief": "REE inter-governance work item: IGW-20260620-167\nTitle: Implement substrate: escape-affordance-bridge (unblocks ARC-060)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-058, MECH-357, ARC-060, MECH-320, ARC-068, SD-054-readiness\nBlocked by: ready_blocked_by: V3-EXQ-603l scored 4-arm escape-affordance-bridge behavioural validation must clear G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY before ready=True. Both non-vacuity readiness prereqs are now GREEN: relief ha; SD-058 [no-substrate-entry]: SD-058; MECH-357 [no-substrate-entry]: MECH-357; MECH-303 [no-substrate-entry]: MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry]: SD-011 (z_harm_a)\nWhy now: substrate_queue entry status=IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS \n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -996,7 +995,7 @@
         "MECH-263",
         "MECH-260"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-169",
       "agent_brief": "REE inter-governance work item: IGW-20260620-169\nTitle: Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-063)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-439, MECH-309, ARC-062, ARC-063, MECH-263, MECH-260\nBlocked by: ready=false (no ready_blocked_by detail); free-text: V3-EXQ-689a (the 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier; queued prio 400, claimed DLAPTOP-4.local 2026-06-19T20:25Z; PASS validates \nWhy now: substrate_queue entry status=lead_lever_built_experiment_in_flight_v3_exq_689a with 2 unresolved prerequisite(s); blocks retest of ARC-063. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1031,7 +1030,7 @@
         "DEV-NEED-006",
         "MECH-189"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-173",
       "agent_brief": "REE inter-governance work item: IGW-20260620-173\nTitle: Implement substrate: INF-ENV-003 (unblocks MECH-189)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: DEV-NEED-006, MECH-189\nBlocked by: ready=false (no ready_blocked_by detail)\nWhy now: substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of MECH-189. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -1071,7 +1070,7 @@
         "MECH-216",
         "ARC-030"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-175",
       "agent_brief": "REE inter-governance work item: IGW-20260620-175\nTitle: Implement substrate: SD-049 (unblocks MECH-229)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030\nBlocked by: ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi\nWhy now: substrate_queue entry status=phase_1_implemented with 1 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1110,7 +1109,7 @@
         "MECH-216",
         "ARC-030"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-176",
       "agent_brief": "REE inter-governance work item: IGW-20260620-176\nTitle: Implement substrate: SD-049-PHASE-2 (unblocks MECH-229)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030\nBlocked by: ready_blocked_by: Phase 2 hybrid encoder IMPLEMENTED 2026-05-04 (Option C per verdict.md). V3-EXQ-514 behavioural validation queued. PASS unblocks SD-049 v3_pending clearance. FAIL on row-6 falsifier (joint ARM_2+ARM_3\nWhy now: substrate_queue entry status=phase_2_implemented with 1 unresolved prerequisite(s); blocks retest of MECH-229. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1144,7 +1143,7 @@
         "MECH-309",
         "ARC-062"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-178",
       "agent_brief": "REE inter-governance work item: IGW-20260620-178\nTitle: Implement substrate: SD-054 (unblocks MECH-260)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-054, MECH-309, ARC-062\nBlocked by: ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.; ARC-062 [implemented]\nWhy now: substrate_queue entry status=candidate_v3_pending with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 3,
@@ -1196,7 +1195,7 @@
         "SD-032b",
         "ARC-030"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-179",
       "agent_brief": "REE inter-governance work item: IGW-20260620-179\nTitle: Implement substrate: MECH-307 (unblocks MECH-260)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: Q-040, SD-049, SD-015, MECH-111, SD-032b, ARC-030\nBlocked by: ready=false (no ready_blocked_by detail)\nWhy now: substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1237,7 +1236,7 @@
         "MECH-090",
         "MECH-261"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-180",
       "agent_brief": "REE inter-governance work item: IGW-20260620-180\nTitle: Implement substrate: commitment-closure-control-plane (unblocks MECH-260)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-034, MECH-260, MECH-268, MECH-090, MECH-261\nBlocked by: ready=false (no ready_blocked_by detail); free-text: commitment_closure:GAP-4 (460e ran 2026-06-17: terminal FAIL/non_contributory, self-routed substrate_not_ready_requeue on beta_engagement_both_arms 1/3; Legs A/\nWhy now: substrate_queue entry status=amend_implemented_pending_validation with 2 unresolved prerequisite(s); blocks retest of MECH-260. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 5,
@@ -1284,7 +1283,7 @@
         "SD-033e",
         "SD-034"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-182",
       "agent_brief": "REE inter-governance work item: IGW-20260620-182\nTitle: Implement substrate: SD-033 (unblocks MECH-261)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034\nBlocked by: ready=false (no ready_blocked_by detail); MECH-094 [no-substrate-entry]: MECH-094; MECH-261 [no-substrate-entry]: MECH-261; ARC-035 [no-substrate-entry]: ARC-035; MECH-116 [no-substrate-entry]: MECH-116; MECH-151 [no-substrate-entry]: MECH-151; MECH-152 [no-substrate-entry]: MECH-152; MECH-235 [no-substrate-entry]: MECH-235\nWhy now: substrate_queue entry status=unknown with 8 unresolved prerequisite(s); blocks retest of MECH-261. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1321,7 +1320,7 @@
         "MECH-261",
         "MECH-264"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-183",
       "agent_brief": "REE inter-governance work item: IGW-20260620-183\nTitle: Implement substrate: SD-033c (unblocks MECH-261)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-261, MECH-264\nBlocked by: ready=false (no ready_blocked_by detail); SD-033 [unknown]; ARC-035 [no-substrate-entry]: ARC-035; MECH-151 [no-substrate-entry]: MECH-151; MECH-152 [no-substrate-entry]: MECH-152; MECH-235 [no-substrate-entry]: MECH-235; MECH-261 [no-substrate-entry]: MECH-261\nWhy now: substrate_queue entry status=unknown with 7 unresolved prerequisite(s); blocks retest of MECH-261. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -1358,7 +1357,7 @@
         "MECH-262",
         "SD-029"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-185",
       "agent_brief": "REE inter-governance work item: IGW-20260620-185\nTitle: Implement substrate: ARC-062 (unblocks MECH-262)\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-309, ARC-062, SD-033a, MECH-262, SD-029\nBlocked by: ready=false (no ready_blocked_by detail)\nWhy now: substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of MECH-262. See blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 5,
@@ -1394,7 +1393,7 @@
       "unblocks": [
         "Q-068"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-035",
       "agent_brief": "REE inter-governance work item: IGW-20260620-035\nTitle: Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): developmental_dmn_v4:DMN-2\nClaims: Q-068\nWhy now: Plan gap open on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1427,7 +1426,7 @@
       "unblocks": [
         "INV-078"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-075",
       "agent_brief": "REE inter-governance work item: IGW-20260620-075\nTitle: Inferred state must not collapse to perceived observation (invariant)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): inference_belief_state_v4:INF-2\nClaims: INV-078\nWhy now: Plan gap open on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1460,7 +1459,7 @@
       "unblocks": [
         "ARC-099"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-086",
       "agent_brief": "REE inter-governance work item: IGW-20260620-086\nTitle: Enabling-conditions register: the pre-linguistic substrate inventory communication needs before it can bootstrap\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): language_emergence_bootstrap_v6:LANG-2\nClaims: ARC-099\nWhy now: Plan gap open on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1497,7 +1496,7 @@
         "ARC-006",
         "MECH-045"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-127",
       "agent_brief": "REE inter-governance work item: IGW-20260620-127\nTitle: PILLAR 1 -- token-instance object-file substrate (permanence through occlusion)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): object_representation_v4:OBJ-2\nClaims: ARC-080, ARC-006, MECH-045\nWhy now: Plan gap open on object_representation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_representation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1532,7 +1531,7 @@
         "MECH-372",
         "ARC-019"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-132",
       "agent_brief": "REE inter-governance work item: IGW-20260620-132\nTitle: PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientation signal as the earliest V4 sense\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): perceptual_adaptors_v4:PA-2\nClaims: MECH-372, ARC-019\nWhy now: Plan gap open on perceptual_adaptors_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/perceptual_adaptors_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1567,7 +1566,7 @@
         "MECH-215",
         "ARC-081"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-155",
       "agent_brief": "REE inter-governance work item: IGW-20260620-155\nTitle: z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): self_model_v4:SELF-3\nClaims: MECH-215, ARC-081\nWhy now: Plan gap open on self_model_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -1602,7 +1601,7 @@
         "MECH-261",
         "MECH-263"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-161",
       "agent_brief": "REE inter-governance work item: IGW-20260620-161\nTitle: Substrate (blocked): SD-033b\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-261, MECH-263\nBlocked by: SD-033 [unknown]; MECH-263 [no-substrate-entry]: MECH-263; MECH-261 [no-substrate-entry]: MECH-261\nWhy now: substrate_queue ready=true but 3 unresolved prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 2,
@@ -1642,7 +1641,7 @@
         "MECH-295",
         "MECH-307"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-162",
       "agent_brief": "REE inter-governance work item: IGW-20260620-162\nTitle: Substrate (blocked): scaffolded_sd054_onboarding\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: ARC-030, MECH-117, MECH-230, MECH-260, MECH-295, MECH-307\nBlocked by: SD-054 [candidate_v3_pending]; MECH-307 [implemented]\nWhy now: substrate_queue ready=true but 2 unresolved prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 6,
@@ -1674,7 +1673,7 @@
       "unblocks": [
         "ARC-046"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-164",
       "agent_brief": "REE inter-governance work item: IGW-20260620-164\nTitle: Retest after substrate: ARC-046\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: ARC-046\nBlocked by: ARC-046 [implemented]; free-text (via ARC-046): goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-\nWhy now: substrate_ceiling -- awaiting substrate enrichment; blocked by 2 unresolved prerequisite(s). See blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1717,7 +1716,7 @@
       "unblocks": [
         "ARC-060"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-166",
       "agent_brief": "REE inter-governance work item: IGW-20260620-166\nTitle: Retest after substrate: ARC-060\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: ARC-060\nBlocked by: escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)\nWhy now: Blocked by 5 unresolved substrate prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1754,7 +1753,7 @@
       "unblocks": [
         "ARC-063"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-168",
       "agent_brief": "REE inter-governance work item: IGW-20260620-168\nTitle: Retest after substrate: ARC-063\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: ARC-063\nBlocked by: f_dominance_conversion_ceiling [lead_lever_built_experiment_in_flight_v3_exq_689a]; free-text (via f_dominance_conversion_ceiling): V3-EXQ-689a (the 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier; queued prio 400, claimed DLAPTOP-4.local 2026-06-19T20:25Z; PASS validates \nWhy now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1789,7 +1788,7 @@
       "unblocks": [
         "ARC-068"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-170",
       "agent_brief": "REE inter-governance work item: IGW-20260620-170\nTitle: Retest after substrate: ARC-068\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: ARC-068\nBlocked by: escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)\nWhy now: Blocked by 5 unresolved substrate prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1816,7 +1815,7 @@
       "unblocks": [
         "MECH-102"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-171",
       "agent_brief": "REE inter-governance work item: IGW-20260620-171\nTitle: Retest after substrate: MECH-102\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-102\nBlocked by: not v3-testable: MECH-102 epistemic_category=substrate_conditional\nWhy now: Held by the governance V3-pending gate (MECH-102 epistemic_category=substrate_conditional) -- a /queue-experiment cannot yield contributory evidence. See blocked_by. (R5; mirrors R1.)\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1843,7 +1842,7 @@
       "unblocks": [
         "MECH-189"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-172",
       "agent_brief": "REE inter-governance work item: IGW-20260620-172\nTitle: Retest after substrate: MECH-189\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-189\nBlocked by: INF-ENV-003 [implemented]\nWhy now: substrate_ceiling -- awaiting substrate enrichment; blocked by 1 unresolved prerequisite(s). See blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1874,7 +1873,7 @@
       "unblocks": [
         "MECH-229"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-174",
       "agent_brief": "REE inter-governance work item: IGW-20260620-174\nTitle: Retest after substrate: MECH-229\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-229\nBlocked by: SD-049 [phase_1_implemented]; SD-049-PHASE-2 [phase_2_implemented]\nWhy now: Blocked by 2 unresolved substrate prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1909,7 +1908,7 @@
       "unblocks": [
         "MECH-260"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-177",
       "agent_brief": "REE inter-governance work item: IGW-20260620-177\nTitle: Retest after substrate: MECH-260\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-260\nBlocked by: scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); commitment-closure-control-plane [amend_implemented_pending_validation]; free-text (via commitment-closure-control-plane): commitment_closure:GAP-4 (460e ran 2026-06-17: terminal FAIL/non_contributory, self-routed substrate_not_ready_requeue on beta_engagement_both_arms 1/3; Legs A/; f_dominance_conversion_ceiling [lead_lever_built_experiment_in_flight_v3_exq_689a]; free-text (via f_dominance_conversion_ceiling): V3-EXQ-689a (the 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier; queued prio 400, claimed DLAPTOP-4.local 2026-06-19T20:25Z; PASS validates \nWhy now: substrate_ceiling -- awaiting substrate enrichment; blocked by 7 unresolved prerequisite(s). See blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1963,7 +1962,7 @@
       "unblocks": [
         "MECH-261"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-181",
       "agent_brief": "REE inter-governance work item: IGW-20260620-181\nTitle: Retest after substrate: MECH-261\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-261\nBlocked by: SD-033b [implemented]; SD-033 [unknown] (transitive via SD-033b); MECH-263 [no-substrate-entry] (transitive via SD-033b): MECH-263; MECH-261 [no-substrate-entry] (transitive via SD-033b): MECH-261; SD-033c [unknown]; SD-033 [unknown] (transitive via SD-033c); ARC-035 [no-substrate-entry] (transitive via SD-033c): ARC-035; MECH-151 [no-substrate-entry] (transitive via SD-033c): MECH-151; MECH-152 [no-substrate-entry] (transitive via SD-033c): MECH-152; MECH-235 [no-substrate-entry] (transitive via SD-033c): MECH-235; MECH-261 [no-substrate-entry] (transitive via SD-033c): MECH-261; scaffolded_sd054_onboarding [G1/G2/G3 ecological legs CLEARED 2026-06-10 (V3-EXQ-603m: P1 survival 3/3, P2 contact 3/3, P2 ecological consumption-gated z_goal 2/3; non-vacuity MET harm_eval range 0.075 + reached-P2-alive 3/3). Builds on the harm-pathway-survival leg VALIDATED 2026-06-09 (V3-EXQ-603k PASS). 603m FAILed the pre-registered gate at G0 ONLY -- the Stage-0 nursery positive control z_goal>0.4 held 1/3 (0.477/0.389/0.371), missing by 0.011/0.029. Confirmed autopsy failure_autopsy_V3-EXQ-603m_2026-06-10: G0 is a measurement/developmental-sequencing artifact (mature ecological 0.4 threshold applied to the un-warmed Stage-0 substrate; ecological P2 z_goal exceeds nursery z_goal for every seed), NOT a foraging/goal-formation failure. ready STAYS false: residual = the corrected-G0 re-validation V3-EXQ-603n (queued 2026-06-10; G0 measured post-Stage-0b-consolidation OR positive-control floor >0.3, G3 unchanged at the load-bearing ecological 0.4). RESOLVED 2026-06-11: V3-EXQ-603n PASSED (ree-cloud-2 2026-06-10T20:14:27Z) -- corrected G0 cleared 3/3 at the recalibrated Stage-0 positive-control floor 0.3, G3 held at the load-bearing ecological 0.4, all four legs >=2/3, non-vacuity met. ready FLIPPED true; see readiness_flip_2026_06_11. goal_pipeline:GAP-2 Stage B (SD-049 Phase-2 behavioural validation, V3-EXQ-514l successor) now queueable.]; SD-054 [candidate_v3_pending] (transitive via scaffolded_sd054_onboarding); MECH-307 [implemented] (transitive via scaffolded_sd054_onboarding); commitment-closure-control-plane [amend_implemented_pending_validation]; free-text (via commitment-closure-control-plane): commitment_closure:GAP-4 (460e ran 2026-06-17: terminal FAIL/non_contributory, self-routed substrate_not_ready_requeue on beta_engagement_both_arms 1/3; Legs A/\nWhy now: Blocked by 16 unresolved substrate prerequisite(s) -- see blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -1990,7 +1989,7 @@
       "unblocks": [
         "MECH-262"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-184",
       "agent_brief": "REE inter-governance work item: IGW-20260620-184\nTitle: Retest after substrate: MECH-262\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nClaims: MECH-262\nBlocked by: ARC-062 [implemented]\nWhy now: substrate_ceiling -- awaiting substrate enrichment; blocked by 1 unresolved prerequisite(s). See blocked_by.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -2023,7 +2022,7 @@
         "MECH-309",
         "ARC-062"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-018",
       "agent_brief": "REE inter-governance work item: IGW-20260620-018\nTitle: MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): arc_062_rule_apprehension:GAP-B\nOwner EXQ: V3-EXQ-654g RAN FAIL/non_contributory 2026-06-19T21:31Z (run_id v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier_20260619T213118Z_v3; ree-cloud-4; supersedes V3-EXQ-654f; reviewed /governance 2026-06-19). THE GAP-B BEHAVIOURAL LINEAGE TERMINUS: first run on the de-locked CRF stack wired to the 569i-validated top-k shortlist conversion. C1 (non-vacuity) FULLY MET on all 5 preconditions (class axis exercisable 1.0; GAP-A divergence 0.080 > 0.05; ARM_ON crf_frac_active 0.94 > 0.30; propagation non-vacuous, within-arm counterfactual delta 0.0021 nonzero -- the rule_state reaches committed action). C2 (PRIMARY committed-class entropy lift) FAILED: ARM_ON 0.6728 vs ARM_OFF 0.6614 = +0.011 nats, 0/3 seeds clear the 0.05-nat margin. Pre-registered C1-holds/C2-fails branch = non_contributory, the SHARED selection-authority CONVERSION ceiling (behavioral_diversity_isolation:GAP-A; MECH-439 F-dominance live root), NOT a MECH-309/ARC-062 falsification. SECOND independent behavioural channel after V3-EXQ-485h (OFC outcome-value bias) to corroborate MECH-439 as the live root. CRF instrumentation lineage CLEANLY TERMINATED (CRF done at 654f); residual is the F-dominance ceiling, not a 654-specific gap. Route: /implement-substrate (GAP-A gain/contrast amend); the OFC behavioural retest is sequenced behind the conversion-ceiling chain (ARC-065 569i top-k ceiling-lifted / 689a / 625e). MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate -- NOT weakened. PRIOR FRONTIER (now superseded) V3-EXQ-654f RAN FAIL/non_contributory 2026-06-18T00:52Z (run_id v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3; ree-cloud-1; supersedes V3-EXQ-654e -- the recovery re-queue of the phantom-completed-no-manifest 654e, science unchanged; reviewed /governance 2026-06-18, non_contributory self-route, weights nothing; the CRF-gate calibration amend did not produce a contributory committed-class-entropy verdict, a 654g successor on a de-locked CRF/monostrategy substrate is owed). PRIOR FRONTIER V3-EXQ-654e QUEUED 2026-06-17 (ree-v3 main 488ec03; supersedes V3-EXQ-654d; claim_ids=[MECH-309, ARC-062]; priority 335, machine any) -- the GAP-B committed-class-entropy falsifier ported onto the CRF-GATE CALIBRATION AMEND (crf-availability-maintenance at the CRF locus, UNGATED from GAP-A; amend landed ree-v3 main 42895f6 2026-06-17). The 654d autopsy proved GAP-A de-collapse is the WRONG lever (gate-lockout independent of GAP-A); the amend's three CRF-locus levers (crf_mature_context_match_threshold=0.7 sharpen + crf_tolerance_conflict_cap=3 + crf_maintenance_couple_to_theta=True) are armed on ARM_ON so the maintained differentiated pool clears the conflict gate (contracts C20-C24 + smoke: crowded-pool frac_active 0.000->0.98). C1c crf_frac_active>=0.30 self-routing precondition RETAINED (now expected to clear; if not -> substrate_not_ready_requeue, NEVER a false weakens); conversion-ceiling off-ramp retained (C1 holds/C2 absent -> non_contributory + /implement-substrate or /claim-synthesis). AWAITING 654e RUN + REVIEW. PREDECESSOR: V3-EXQ-654d RAN FAIL/non_contributory 2026-06-16T15:27Z (ree-cloud-2; run_id v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3) -- REVIEWED + autopsied 2026-06-16 (failure_autopsy_V3-EXQ-654d_2026-06-16, status=confirmed). [QUEUED 2026-06-16T07:49Z, ree-v3 origin/main 927fe1c; supersedes V3-EXQ-654c; claim_ids=[MECH-309, ARC-062]; priority 315, machine any] -- the GAP-B falsifier ported onto the GAP-A DE-COLLAPSED substrate now that the gate cleared (V3-EXQ-684a PASS, conversion_mechanism_identified). Arms the 684a-validated ARM_STD_G2 conversion lever (modulatory_authority_normalize_basis=std + authority_gain=2.0 + use_modulatory_channel_routing + source=cand_world_summary) as a matched-stack constant on BOTH arms; only use_candidate_rule_field swept; CRF mature+maintenance+persist + trained-bias-head P1 unchanged; records crf_n_matched_last (the 654c discriminator). Pre-registered C1a/C1b/C1c/C1d preconditions each self-route substrate_not_ready_requeue (C1c crf_frac_active<0.30 routes to the CRF maintenance-theta amend, autopsy part ii -- NOT implemented in code, ready=False); three-branch map (PASS->supports; C1-holds/C2-fails->shared CONVERSION ceiling under ARM_STD_G2->non_contributory+/implement-substrate; C1-fails->substrate_not_ready_requeue); NO weakens branch. RESULT (failure_autopsy_V3-EXQ-654d_2026-06-16, confirmed): C1c FAILED again (crf_frac_active 0.0 all 3 ARM_ON seeds) -- the C1-fail branch. But 654d ARMED ARM_STD_G2 on both arms AND recorded the discriminator crf_mean_n_matched (7.08/7.29/8.70 -- the 654c-flagged instrument). LOAD-BEARING FINDING: the GAP-A conversion de-collapse is the WRONG LEVER for this gate -- ARM_STD_G2 de-collapsed the E3 selection channel (consumed_summary spread cleared the 0.05 floor 2/3 seeds) but NOT the CRF rule-match context KEY; the 16 differentiated rules (max_pairwise_dist 1.711) match 7-8/tick and ALL gate out (theta=0.15+0.25*(n_matched-1)~=1.65 >> maintenance_floor 0.45). mean_prop_counterfactual_delta=0.0 confirms the gated-out rule_state never reaches committed action. NON_CONTRIBUTORY, NO weakens -- the two CRF-locus faults the 654c autopsy named (context-key crowding + maintenance/theta calibration) remain un-amended (substrate bit-identical to 654c) and 654d proves them INDEPENDENT of the GAP-A selection conversion. ROUTE (user-confirmed): /implement-substrate AMEND crf-availability-maintenance at the CRF locus, UNGATED from GAP-A (couple maintained availability to theta(n_matched) [pure gate calibration] + de-collapse the CRF mint/match context key [distinct from the E3 channel] + keep frac_ACTIVE readiness gate); re-queue 654e on that gate, NOT on GAP-A. PREDECESSOR V3-EXQ-654c RAN FAIL/non_contributory 2026-06-15T12:38Z (run_id v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier_20260615T123848Z_v3; reviewed /governance 2026-06-15; supersedes V3-EXQ-654b; claim_ids=[MECH-309, ARC-062]) -- FAILed C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active = 0.0 < 0.30) for the 4th consecutive iteration, but with an INVERTED signature confirmed by failure_autopsy_V3-EXQ-654c_2026-06-15 (status=confirmed): the 666c maintenance amend FIXED the retire-churn (crf_max_pairwise_rule_dist 0.0 -> 1.711, minting stabilised at 12-16) so the pool now holds >=2 differentiated rules -- yet activation collapsed to exactly 0.0 because the GAP-A-collapsed e2_world_forward context (consumed_summary spread 0.0089 < 0.05) makes >=3 rules co-match, so gate_and_select theta = 0.15+0.25*(n_matched-1) >= 0.65 > maintenance_floor 0.45 and every matched rule is gated OUT. MAINTAINED != ACTIVE. C2 committed-class entropy DV never scored (C1 gates it). MECH-309/ARC-062 NOT weakened (non_contributory, substrate_ceiling, pending_retest_after_substrate). ROUTING (substrate_queue crf-availability-maintenance AMENDED + ready flipped True->False this cycle): de-collapse the CRF context key (sharpen/per-candidate-separate e2_world_forward feeding CRF mint/match, mirror GAP-A) + couple maintained availability to per-tick theta + upgrade the readiness gate to assert crf_frac_active>=0.30 (gate FIRING, not frac_maintained); re-queue the GAP-B falsifier (654d) ONLY AFTER GAP-A context de-collapse, since the CRF amend is necessary-but-not-sufficient while the shared monostrategy collapse persists. PREDECESSOR V3-EXQ-654b TERMINAL FAIL 2026-06-10T20:05Z (non_contributory, substrate_not_ready_requeue; reviewed /governance 2026-06-10) -- the longer-maturation (P0+P1 100->240 ep) re-run of 654a still did NOT clear the C1c crf_frac_active>=0.30 floor (measured 0.130), so the committed-class falsifier DV never scored; supersedes V3-EXQ-654a. PREDECESSOR V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification.\nClaims: MECH-309, ARC-062\nWhy now: V3-EXQ-654g RAN + ADJUDICATED 2026-06-19 (FAIL/non_contributory; C1 fully met, C2 +0.011 nats 0/3 seeds = the SHARED MECH-439 F-dominance conversion ceiling, NOT a falsification). The CRF instrumentation lineage is CLEANLY TERMINATED; GAP-B\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2064,7 +2063,7 @@
         "ARC-062",
         "ARC-065"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-030",
       "agent_brief": "REE inter-governance work item: IGW-20260620-030\nTitle: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): behavioral_diversity_isolation:GAP-B\nOwner EXQ: V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is the lineage FRONTIER (reclassified non_contributory / measurement_test_design_defect at governance cycle #5; the graded-in-K falsifier is RETIRED, no 660c; NOT a weakens) -- owner_exq leads with the frontier letter as of the 2026-06-12 closure-drift reconcile (advancing 660 -> 660b, the same convention as this cycle's 514m->514n / 485e->485f advances) so the structural lineage-advanced flag clears; the STANDING GAP-B EVIDENCE is UNCHANGED = predecessor V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z for MECH-341 (within-class-representative-diversity lift 4.862 vs legacy 4.781 nats; the binary within-class preserver is established). Owner re-pointed 660b -> 660 at governance cycle #5 2026-06-11 per confirmed failure_autopsy_V3-EXQ-660b: the graded-in-pool-size ratification the 660a/660b lineage was chasing is REMOVED AS A GATE (graded-in-K over-specifies a PRESERVATION claim), not outstanding -- no 660c. RETIRED graded-falsifier lineage: V3-EXQ-660b TERMINAL FAIL/weakens 2026-06-11T13:43Z (windowed-readout redesign of 660a, supersedes 660a; both readiness gates passed yet C_GRADED 0/3 seeds, sensitivity gate cleared only marginally 0.0568 + non-monotonically) was reclassified non_contributory (measurement_test_design_defect) at cycle #5, NOT a weakens; V3-EXQ-660a TERMINAL FAIL/weakens 2026-06-11T03:26Z (graded-confirmation CEM pool-size dose-response; C_GRADED graded on only 1/3 seeds -> the within-class lift does NOT scale with pool size; preconditions MET; FLAGGED for /failure-autopsy, LEFT PENDING 2026-06-11 governance, no evidence stamp applied; NO supersede of 660). PREDECESSOR + STANDING EVIDENCE V3-EXQ-660 LANDED PASS/supports 2026-06-10T04:41Z (MECH-341 within-class-representative-diversity retest on the GAP-A-ready/authority-ready stack; within_class_rep_cond_entropy PRIMARY DV, swept 4.862 vs legacy 4.781 nats; supersedes 614e; folded into claims.yaml 2026-06-10, MECH-341 supports / v3_pending HELD -- this base supports is preserved regardless of the 660a graded-axis FAIL). Earlier predecessor: V3-EXQ-614e autopsy applied 2026-06-07 (non_contributory substrate_ceiling); V3-EXQ-649 GAP-A readiness PASS\nClaims: MECH-341, ARC-062, ARC-065\nWhy now: MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN GAP-B strand is ARC-062: queue its falsifier ONLY after the shared GAP-A modulatory-bias-selection-authority substrate lands (the 569g->682-gated com\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2104,7 +2103,7 @@
         "MECH-299",
         "MECH-300"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-121",
       "agent_brief": "REE inter-governance work item: IGW-20260620-121\nTitle: Substrate-vocabulary expansion is the gating fork (atomic-only V3 has no second granularity)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked_pending_substrate\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-1\nClaims: MECH-299, MECH-300\nWhy now: Plan gap blocked_pending_substrate on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2139,7 +2138,7 @@
         "SD-037",
         "MECH-281"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-147",
       "agent_brief": "REE inter-governance work item: IGW-20260620-147\nTitle: Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curric\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): sd_037_axis_b:P1b\nOwner EXQ: V3-EXQ-625e\nClaims: SD-037, MECH-281\nWhy now: RESUME the Phase 1b gate via a redesigned successor (V3-EXQ-625d, JOINT-COMPOSITE-ON) once behavioral_diversity_isolation demonstrates that scoring-layer diversity reaches COMMITTED ACTION (dynamic behavioural sequences) -- the GAP-A 569-li\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2192,7 +2191,7 @@
         "Q-045",
         "SD-037"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-032",
       "agent_brief": "REE inter-governance work item: IGW-20260620-032\nTitle: F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root behind GAP-A's local conversion ceiling\nLane: experiment | Skill: (monitor -- do not re-queue)\nStatus: in_flight\nGap(s): behavioral_diversity_isolation:GAP-I\nOwner EXQ: V3-EXQ-689a RAN-PENDING (queued prio 400; claimed DLAPTOP-4.local 2026-06-19T20:25Z; supersedes V3-EXQ-689 which self-routed substrate_not_ready_requeue on gap_spread 0/3). The 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier from conversion_ceiling_phase0_synthesis_2026-06-18 Phase 2/3. Lead lever BUILT (e3_selector.py _gap_scaled_commit_pick + conflict-graded top-k block); 689a is the validation, not a build.\nClaims: MECH-439, MECH-309, ARC-062, ARC-063, MECH-263, MECH-260, Q-045, SD-037\nWhy now: PASS (V3-EXQ-689a ARM_A1B1 gap-scaled-both strict-above BOTH gap-blind controls FIXED_KMAX+FIXED_HOT_T on committed-class entropy >=2/3 seeds, lift gap-CONCENTRATED) -> conflict-grading is load-bearing -> MECH-439 candidate->supports, ceili\n\nInstructions:\n- Monitor runner/machines. Do NOT re-queue same EXQ ID. On finish: /governance + plan reconcile.\n- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2231,7 +2230,7 @@
       "unblocks": [
         "INV-079"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-103",
       "agent_brief": "REE inter-governance work item: IGW-20260620-103\nTitle: False-linking-risk / reality-coherence cost term (the single aspect with no REE home)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): memory_lifecycle_v4:MEM-3\nClaims: INV-079\nWhy now: Plan gap open on memory_lifecycle_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/memory_lifecycle_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2268,7 +2267,7 @@
         "ARC-035",
         "MECH-393"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-105",
       "agent_brief": "REE inter-governance work item: IGW-20260620-105\nTitle: Retrieval-scope vs action-authority split (reflection-retrieval != action-authority-retrieval)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): memory_lifecycle_v4:MEM-6\nClaims: MECH-257, ARC-035, MECH-393\nWhy now: Plan gap open on memory_lifecycle_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/memory_lifecycle_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2295,7 +2294,7 @@
       "owner_exq": null,
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-163",
       "agent_brief": "REE inter-governance work item: IGW-20260620-163\nTitle: Queue depth low (0 pending)\nLane: ops | Skill: (manual)\nStatus: ready\nWhy now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 0,
@@ -2324,7 +2323,7 @@
       "unblocks": [
         "MECH-419"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-005",
       "agent_brief": "REE inter-governance work item: IGW-20260620-005\nTitle: Compositional generalisation over named primitives (recombine grounded symbols to novel combinations)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): abstract_relational_reasoning_v6:ARR-2\nClaims: MECH-419\nWhy now: Plan gap blocked on abstract_relational_reasoning_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/abstract_relational_reasoning_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2360,7 +2359,7 @@
       "unblocks": [
         "ARC-103"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-009",
       "agent_brief": "REE inter-governance work item: IGW-20260620-009\nTitle: Symbolic reasoning cannot override embodied harm sensing (the V6 instance of INV-007)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): abstract_relational_reasoning_v6:ARR-6\nClaims: ARC-103\nBlocked by: abstract_relational_reasoning_v6:ARR-2 [blocked]; abstract_relational_reasoning_v6:ARR-4 [blocked]\nWhy now: Plan gap blocked on abstract_relational_reasoning_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/abstract_relational_reasoning_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2393,7 +2392,7 @@
       "unblocks": [
         "MECH-359"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-010",
       "agent_brief": "REE inter-governance work item: IGW-20260620-010\nTitle: FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-1\nClaims: MECH-359\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2426,7 +2425,7 @@
       "unblocks": [
         "ARC-085"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-023",
       "agent_brief": "REE inter-governance work item: IGW-20260620-023\nTitle: Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulati\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-2\nClaims: ARC-085\nWhy now: Plan gap blocked on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2461,7 +2460,7 @@
       "unblocks": [
         "MECH-365"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-024",
       "agent_brief": "REE inter-governance work item: IGW-20260620-024\nTitle: Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-3\nClaims: MECH-365\nBlocked by: autobiographical_memory_v4:ABM-2 [blocked]\nWhy now: Plan gap blocked on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2496,7 +2495,7 @@
       "unblocks": [
         "ARC-090"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-036",
       "agent_brief": "REE inter-governance work item: IGW-20260620-036\nTitle: PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): developmental_dmn_v4:DMN-3\nClaims: ARC-090\nBlocked by: developmental_dmn_v4:DMN-2 [open]\nWhy now: Plan gap blocked on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2533,7 +2532,7 @@
         "MECH-435",
         "MECH-295"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-041",
       "agent_brief": "REE inter-governance work item: IGW-20260620-041\nTitle: Multidrive arbitration / orchestration policy (which drive wins when several are active)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): drives_motivation_v4:DRV-2\nClaims: MECH-394, MECH-435, MECH-295\nWhy now: Plan gap blocked on drives_motivation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/drives_motivation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2568,7 +2567,7 @@
       "unblocks": [
         "ARC-056"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-044",
       "agent_brief": "REE inter-governance work item: IGW-20260620-044\nTitle: Multi-agent D_V substrate: extend temporal-depth coherence optimisation over self AND represented others (ARC-056 entry)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-1\nClaims: ARC-056\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2603,7 +2602,7 @@
       "unblocks": [
         "ARC-096"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-045",
       "agent_brief": "REE inter-governance work item: IGW-20260620-045\nTitle: Typed causal-attribution ontology: ownership tags for self / world / body / model / commitment / OTHER / shared / accide\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-2\nClaims: ARC-096\nBlocked by: ethics_as_coherence_v5:ETH-1 [blocked]\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2642,7 +2641,7 @@
         "MECH-411",
         "MECH-412"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-046",
       "agent_brief": "REE inter-governance work item: IGW-20260620-046\nTitle: Guilt-as-repair routing: self-attributed harm opens repair-search + policy-update pathways (E3 repair-trajectory generat\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-3\nClaims: ARC-097, MECH-411, MECH-412\nBlocked by: ethics_as_coherence_v5:ETH-2 [blocked]\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2675,7 +2674,7 @@
       "unblocks": [
         "MECH-405"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-052",
       "agent_brief": "REE inter-governance work item: IGW-20260620-052\nTitle: Stream-binding mechanism: route own motivational-affective streams across the other-model\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): fast_empathy_v5:EMP-3\nClaims: MECH-405\nWhy now: Plan gap blocked on fast_empathy_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/fast_empathy_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2710,7 +2709,7 @@
       "unblocks": [
         "MECH-406"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-053",
       "agent_brief": "REE inter-governance work item: IGW-20260620-053\nTitle: Falsifiable dissociation: prediction != reciprocity-reward != residue-aware repair (A/B/C/D)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): fast_empathy_v5:EMP-4\nClaims: MECH-406\nBlocked by: fast_empathy_v5:EMP-3 [blocked]\nWhy now: Plan gap blocked on fast_empathy_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/fast_empathy_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2743,7 +2742,7 @@
       "unblocks": [
         "SD-033e"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-056",
       "agent_brief": "REE inter-governance work item: IGW-20260620-056\nTitle: PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): goal_deliberation_v4:GDL-2\nClaims: SD-033e\nWhy now: Plan gap blocked on goal_deliberation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/goal_deliberation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2782,7 +2781,7 @@
         "MECH-415",
         "ARC-063"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-062",
       "agent_brief": "REE inter-governance work item: IGW-20260620-062\nTitle: Predicate-argument-event bridge to ARC-063 CandidateRuleField: render minted rules as 'if context, then action-object, c\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): grammar_primitive_mining_v6:GRAM-3\nClaims: MECH-415, ARC-063\nBlocked by: grammar_primitive_mining_v6:GRAM-2 [open]\nWhy now: Plan gap blocked on grammar_primitive_mining_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/grammar_primitive_mining_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2826,7 +2825,7 @@
         "ARC-009",
         "INV-003"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-065",
       "agent_brief": "REE inter-governance work item: IGW-20260620-065\nTitle: Language-bootstrap-from-ecology: proto-language stabilises from grounded proto-communication in the social ecology (gram\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): grammar_primitive_mining_v6:GRAM-6\nClaims: ARC-101, ARC-009, INV-003\nBlocked by: grammar_primitive_mining_v6:GRAM-3 [blocked]; grammar_primitive_mining_v6:GRAM-4 [blocked]\nWhy now: Plan gap blocked on grammar_primitive_mining_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/grammar_primitive_mining_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2859,7 +2858,7 @@
       "unblocks": [
         "MECH-163"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-066",
       "agent_brief": "REE inter-governance work item: IGW-20260620-066\nTitle: GATE -- multi-step hippocampally-planned system validated in V3 (MECH-163)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-1\nClaims: MECH-163\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2894,7 +2893,7 @@
       "unblocks": [
         "ARC-040"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-067",
       "agent_brief": "REE inter-governance work item: IGW-20260620-067\nTitle: PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-2\nClaims: ARC-040\nBlocked by: hippocampal_planning_v4:HPL-1 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2929,7 +2928,7 @@
       "unblocks": [
         "MECH-385"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-076",
       "agent_brief": "REE inter-governance work item: IGW-20260620-076\nTitle: Belief-state hypothesis set (top-k latent-state hypotheses with precision)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): inference_belief_state_v4:INF-3\nClaims: MECH-385\nBlocked by: inference_belief_state_v4:INF-2 [open]\nWhy now: Plan gap blocked on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -2965,7 +2964,7 @@
       "unblocks": [
         "MECH-387"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-078",
       "agent_brief": "REE inter-governance work item: IGW-20260620-078\nTitle: Safety-route inference (infer route to safety from partial map/cue/gradient)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): inference_belief_state_v4:INF-5\nClaims: MECH-387\nBlocked by: inference_belief_state_v4:INF-3 [blocked]; inference_belief_state_v4:INF-4 [blocked]\nWhy now: Plan gap blocked on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3000,7 +2999,7 @@
         "MECH-373",
         "INV-003"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-081",
       "agent_brief": "REE inter-governance work item: IGW-20260620-081\nTitle: Pre-linguistic-grounding gate: no affect adaptor before object/self/other primitives exist (the load-bearing ordering)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_affect_adaptor_v6:LAA-1\nClaims: MECH-373, INV-003\nWhy now: Plan gap blocked on language_affect_adaptor_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_affect_adaptor_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3035,7 +3034,7 @@
       "unblocks": [
         "INV-085"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-082",
       "agent_brief": "REE inter-governance work item: IGW-20260620-082\nTitle: Uncertainty-propagation invariant: parsed affect enters as a hypothesis (distribution), NEVER as ground truth\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_affect_adaptor_v6:LAA-2\nClaims: INV-085\nBlocked by: language_affect_adaptor_v6:LAA-1 [blocked]\nWhy now: Plan gap open on language_affect_adaptor_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_affect_adaptor_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3071,7 +3070,7 @@
       "unblocks": [
         "MECH-373"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-083",
       "agent_brief": "REE inter-governance work item: IGW-20260620-083\nTitle: The adaptor itself: a lightweight LanguageAffectAdaptor (SLM-class) text -> distribution-over-affect\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_affect_adaptor_v6:LAA-3\nClaims: MECH-373\nBlocked by: language_affect_adaptor_v6:LAA-1 [blocked]; language_affect_adaptor_v6:LAA-2 [open]\nWhy now: Plan gap blocked on language_affect_adaptor_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_affect_adaptor_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3106,7 +3105,7 @@
       "unblocks": [
         "MECH-014"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-087",
       "agent_brief": "REE inter-governance work item: IGW-20260620-087\nTitle: Minimal signalling channel: smallest signal that lets one agent alter another's attention or action (MECH-014)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_emergence_bootstrap_v6:LANG-3\nClaims: MECH-014\nBlocked by: language_emergence_bootstrap_v6:LANG-2 [open]\nWhy now: Plan gap blocked on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3143,7 +3142,7 @@
         "MECH-010",
         "ARC-099"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-088",
       "agent_brief": "REE inter-governance work item: IGW-20260620-088\nTitle: Joint-attention coordination games: signalling emerges under partial observability + coordination pressure (the emergenc\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_emergence_bootstrap_v6:LANG-4\nClaims: MECH-010, ARC-099\nBlocked by: language_emergence_bootstrap_v6:LANG-3 [blocked]\nWhy now: Plan gap blocked on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3176,7 +3175,7 @@
       "unblocks": [
         "MECH-015"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-092",
       "agent_brief": "REE inter-governance work item: IGW-20260620-092\nTitle: Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_trust_deception_institutions_v6:LTI-2\nClaims: MECH-015\nWhy now: Plan gap blocked on language_trust_deception_institutions_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_trust_deception_institutions_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3211,7 +3210,7 @@
       "unblocks": [
         "MECH-015"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-093",
       "agent_brief": "REE inter-governance work item: IGW-20260620-093\nTitle: Deception detection / honest-signal pressure (deception = modelling another model)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_trust_deception_institutions_v6:LTI-3\nClaims: MECH-015\nBlocked by: language_trust_deception_institutions_v6:LTI-2 [blocked]\nWhy now: Plan gap blocked on language_trust_deception_institutions_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_trust_deception_institutions_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3246,7 +3245,7 @@
         "ARC-047",
         "INV-043"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-096",
       "agent_brief": "REE inter-governance work item: IGW-20260620-096\nTitle: Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- the prerequisite OTHER\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-1\nClaims: ARC-047, INV-043\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3285,7 +3284,7 @@
         "MECH-158",
         "INV-082"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-097",
       "agent_brief": "REE inter-governance work item: IGW-20260620-097\nTitle: Loveability internalisation: care received as APPLICABLE-TO-SELF (close the MECH-158 failure)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-2\nClaims: INV-043, MECH-158, INV-082\nBlocked by: loveability_ethical_agency_v5:LOVE-1 [blocked]\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3320,7 +3319,7 @@
       "unblocks": [
         "INV-083"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-098",
       "agent_brief": "REE inter-governance work item: IGW-20260620-098\nTitle: Live unethical affordance: harmful action representable as a chooseable possibility (not absent)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-3\nClaims: INV-083\nBlocked by: loveability_ethical_agency_v5:LOVE-1 [blocked]\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3356,7 +3355,7 @@
       "unblocks": [
         "MECH-413"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-099",
       "agent_brief": "REE inter-governance work item: IGW-20260620-099\nTitle: Correction without annihilation: caregiver correction updates rule/harm/residue models WITHOUT self-valence collapse\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-4\nClaims: MECH-413\nBlocked by: loveability_ethical_agency_v5:LOVE-2 [blocked]; loveability_ethical_agency_v5:LOVE-3 [blocked]\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3398,7 +3397,7 @@
         "MECH-158",
         "INV-084"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-101",
       "agent_brief": "REE inter-governance work item: IGW-20260620-101\nTitle: Ethical agency as care-biased choice among live alternatives (kindness is NOT constraint compliance)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-6\nClaims: INV-043, MECH-158, INV-084\nBlocked by: loveability_ethical_agency_v5:LOVE-2 [blocked]; loveability_ethical_agency_v5:LOVE-3 [blocked]; loveability_ethical_agency_v5:LOVE-4 [blocked]; loveability_ethical_agency_v5:LOVE-5 [blocked]\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3433,7 +3432,7 @@
         "MECH-031",
         "MECH-032"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-107",
       "agent_brief": "REE inter-governance work item: IGW-20260620-107\nTitle: Otherness inference: tag an entity OTHER_SELFLIKE without symbolic identity (MECH-031/032)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-1\nClaims: MECH-031, MECH-032\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3468,7 +3467,7 @@
       "unblocks": [
         "ARC-010"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-108",
       "agent_brief": "REE inter-governance work item: IGW-20260620-108\nTitle: Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive clo\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-2\nClaims: ARC-010\nBlocked by: mirror_modelling_other_self_v5:MIRROR-1 [blocked]\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3505,7 +3504,7 @@
         "ARC-010",
         "MECH-051"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-109",
       "agent_brief": "REE inter-governance work item: IGW-20260620-109\nTitle: Precision-weighted coupling apparatus (ARC-010 signed coupling): the alpha_k / coupling-strength control that scales oth\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-3\nClaims: ARC-010, MECH-051\nBlocked by: mirror_modelling_other_self_v5:MIRROR-2 [blocked]\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3542,7 +3541,7 @@
         "MECH-036",
         "INV-005"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-110",
       "agent_brief": "REE inter-governance work item: IGW-20260620-110\nTitle: Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm (INV-005, MECH-036)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-4\nClaims: MECH-036, INV-005\nBlocked by: mirror_modelling_other_self_v5:MIRROR-3 [blocked]\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3577,7 +3576,7 @@
         "INV-028",
         "ARC-047"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-114",
       "agent_brief": "REE inter-governance work item: IGW-20260620-114\nTitle: Multi-agent substrate: MultiAgentCausalGridWorldV4 + per-agent REEAgent instances + inter-agent arbitration\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-1\nClaims: INV-028, ARC-047\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3614,7 +3613,7 @@
         "INV-028",
         "INV-005"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-115",
       "agent_brief": "REE inter-governance work item: IGW-20260620-115\nTitle: Per-agent observation + collision/cooperation arbitration: how agents perceive and act on each other\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-2\nClaims: INV-028, INV-005\nBlocked by: multi_agent_ecology_v5:MAE-1 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3649,7 +3648,7 @@
       "unblocks": [
         "SD-045"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-122",
       "agent_brief": "REE inter-governance work item: IGW-20260620-122\nTitle: PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-2\nClaims: SD-045\nBlocked by: object_reasoning_abstraction_v4:OBJ-ABS-1 [blocked_pending_substrate]\nWhy now: Plan gap blocked on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3688,7 +3687,7 @@
         "MECH-299",
         "MECH-300"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-126",
       "agent_brief": "REE inter-governance work item: IGW-20260620-126\nTitle: PILLAR D -- theta-packaging + cognitive-map traversal scale to the active abstraction level (MECH-299 / MECH-300)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-6\nClaims: MECH-299, MECH-300\nBlocked by: object_reasoning_abstraction_v4:OBJ-ABS-2 [blocked]; object_reasoning_abstraction_v4:OBJ-ABS-3 [blocked]; object_reasoning_abstraction_v4:OBJ-ABS-5 [blocked]\nWhy now: Plan gap blocked on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3728,7 +3727,7 @@
         "MECH-103",
         "MECH-396"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-135",
       "agent_brief": "REE inter-governance work item: IGW-20260620-135\nTitle: PILLAR C -- cross-modal negotiation currency: making heterogeneous sense geometries mutually negotiable in one world mod\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): perceptual_adaptors_v4:PA-5\nClaims: Q-065, MECH-103, MECH-396\nBlocked by: perceptual_adaptors_v4:PA-2 [open]; perceptual_adaptors_v4:PA-3 [blocked]\nWhy now: Plan gap blocked on perceptual_adaptors_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/perceptual_adaptors_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3763,7 +3762,7 @@
         "INV-074",
         "MECH-333"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-137",
       "agent_brief": "REE inter-governance work item: IGW-20260620-137\nTitle: Opening-vs-closure asymmetry framing + the V3-conservative-is-insufficient gate\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): plasticity_neuromodulation_v4:PLW-1\nClaims: INV-074, MECH-333\nWhy now: Plan gap blocked on plasticity_neuromodulation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/plasticity_neuromodulation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3798,7 +3797,7 @@
       "unblocks": [
         "MECH-398"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-138",
       "agent_brief": "REE inter-governance work item: IGW-20260620-138\nTitle: PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): plasticity_neuromodulation_v4:PLW-3\nClaims: MECH-398\nWhy now: Plan gap blocked on plasticity_neuromodulation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/plasticity_neuromodulation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3831,7 +3830,7 @@
       "unblocks": [
         "MECH-129"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-141",
       "agent_brief": "REE inter-governance work item: IGW-20260620-141\nTitle: Harm-to-agency signal: goal-interference over trajectory pairs (MECH-129), distinct from harm-to-agent\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): relational_harm_moral_semantics_v5:RHM-1\nClaims: MECH-129\nWhy now: Plan gap blocked on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3867,7 +3866,7 @@
       "unblocks": [
         "MECH-164"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-144",
       "agent_brief": "REE inter-governance work item: IGW-20260620-144\nTitle: Love as agent-indexed terrain inference with self-like gradient weighting (MECH-164)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): relational_harm_moral_semantics_v5:RHM-4\nClaims: MECH-164\nBlocked by: relational_harm_moral_semantics_v5:RHM-1 [blocked]; relational_harm_moral_semantics_v5:RHM-2 [blocked]\nWhy now: Plan gap blocked on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3900,7 +3899,7 @@
       "unblocks": [
         "SD-030"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-154",
       "agent_brief": "REE inter-governance work item: IGW-20260620-154\nTitle: Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_model_v4:SELF-2\nClaims: SD-030\nWhy now: Plan gap blocked on self_model_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3935,7 +3934,7 @@
       "unblocks": [
         "ARC-088"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-011",
       "agent_brief": "REE inter-governance work item: IGW-20260620-011\nTitle: Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across the affect stack\nLane: plan | Skill: (plan reconcile)\nStatus: in_progress\nGap(s): affect_expression_v4:AE-2\nClaims: ARC-088\nWhy now: Plan gap in_progress on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -3978,7 +3977,7 @@
         "MECH-090",
         "MECH-342"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-033",
       "agent_brief": "REE inter-governance work item: IGW-20260620-033\nTitle: OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): commitment_closure:GAP-4\nOwner EXQ: V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)\nClaims: SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342\nWhy now: Closes when V3-EXQ-460h returns a contributory PASS (within-arm post-closure occupancy < pre-closure by >= DECOMMIT_MIN_DROP_FRAC on >= 2/3 seeds, on the refractory-independent commit-intent non-vacuity gate) for the re-grained children MEC\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4017,7 +4016,7 @@
         "ARC-045",
         "MECH-166"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-160",
       "agent_brief": "REE inter-governance work item: IGW-20260620-160\nTitle: SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A\nLane: experiment | Skill: /queue-experiment\nStatus: upstream_blocked\nGap(s): sleep_substrate:GAP-2\nOwner EXQ: V3-EXQ-265a\nClaims: SD-017, ARC-045, MECH-166\nWhy now: Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_autopsy_V3-EXQ-543l_2026-05-27 (confirmed) routed 543l to substrate_ceiling (FAIL branch-e at escalated floor=0.5 / aux=0.3, basin_stable=true, all four \n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/sleep_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4048,7 +4047,7 @@
       "unblocks": [
         "MECH-191"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-186",
       "agent_brief": "REE inter-governance work item: IGW-20260620-186\nTitle: Proposal EXP-0186 (MECH-191)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-191\nWhy now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -4073,7 +4072,7 @@
       "unblocks": [
         "ARC-050"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-187",
       "agent_brief": "REE inter-governance work item: IGW-20260620-187\nTitle: Proposal EXP-0199 (ARC-050)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: ARC-050\nWhy now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -4098,7 +4097,7 @@
       "unblocks": [
         "INV-050"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-188",
       "agent_brief": "REE inter-governance work item: IGW-20260620-188\nTitle: Proposal EXP-0201 (INV-050)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: INV-050\nWhy now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -4123,7 +4122,7 @@
       "unblocks": [
         "INV-065"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-189",
       "agent_brief": "REE inter-governance work item: IGW-20260620-189\nTitle: Proposal EXP-0203 (INV-065)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: INV-065\nWhy now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -4148,7 +4147,7 @@
       "unblocks": [
         "MECH-085"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-190",
       "agent_brief": "REE inter-governance work item: IGW-20260620-190\nTitle: Proposal EXP-0205 (MECH-085)\nLane: experiment | Skill: /queue-experiment\nStatus: ready\nClaims: MECH-085\nWhy now: insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -4173,7 +4172,7 @@
       "owner_exq": null,
       "blocked_by": [],
       "unblocks": [],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-051",
       "agent_brief": "REE inter-governance work item: IGW-20260620-051\nTitle: Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as queue-experiment doc\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): ethics_perimeter:P1-V3-WELFARE-TAG\nWhy now: descriptive-only V3 welfare tagging + preflight doc-habit; non-blocking, do before 2026-07-19 if cheap\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_perimeter_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4206,7 +4205,7 @@
       "unblocks": [
         "ARC-100"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-061",
       "agent_brief": "REE inter-governance work item: IGW-20260620-061\nTitle: Grammar->substrate mapping table (the mining artifact): per primitive, which substrate, which version, grounded-or-merel\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): grammar_primitive_mining_v6:GRAM-2\nClaims: ARC-100\nWhy now: Plan gap open on grammar_primitive_mining_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/grammar_primitive_mining_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4239,7 +4238,7 @@
       "unblocks": [
         "Q-070"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-080",
       "agent_brief": "REE inter-governance work item: IGW-20260620-080\nTitle: Inference failure-mode register + biology grounding (lit-pulls)\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): inference_belief_state_v4:INF-7\nClaims: Q-070\nWhy now: Plan gap open on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4276,7 +4275,7 @@
         "ARC-019",
         "MECH-397"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-136",
       "agent_brief": "REE inter-governance work item: IGW-20260620-136\nTitle: Adaptor-maturity curriculum gate: each sense admitted when its adaptor is mature, not all at once\nLane: plan | Skill: (plan reconcile)\nStatus: ready\nGap(s): perceptual_adaptors_v4:PA-6\nClaims: MECH-372, ARC-019, MECH-397\nWhy now: Plan gap open on perceptual_adaptors_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/perceptual_adaptors_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4311,7 +4310,7 @@
       "unblocks": [
         "MECH-420"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-006",
       "agent_brief": "REE inter-governance work item: IGW-20260620-006\nTitle: Relational / propositional inference over named relations (transitivity, role-binding, relational chaining)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): abstract_relational_reasoning_v6:ARR-3\nClaims: MECH-420\nBlocked by: abstract_relational_reasoning_v6:ARR-2 [blocked]\nWhy now: Plan gap blocked on abstract_relational_reasoning_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/abstract_relational_reasoning_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4348,7 +4347,7 @@
         "MECH-421",
         "Q-074"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-007",
       "agent_brief": "REE inter-governance work item: IGW-20260620-007\nTitle: Analogy / structure-mapping across grounded domains (relational alignment, not surface match)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): abstract_relational_reasoning_v6:ARR-4\nClaims: MECH-421, Q-074\nBlocked by: abstract_relational_reasoning_v6:ARR-3 [blocked]\nWhy now: Plan gap blocked on abstract_relational_reasoning_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/abstract_relational_reasoning_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4384,7 +4383,7 @@
       "unblocks": [
         "MECH-422"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-008",
       "agent_brief": "REE inter-governance work item: IGW-20260620-008\nTitle: Grammatical realisation of the event-arc: tense / aspect / because / but / unless / done / again\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): abstract_relational_reasoning_v6:ARR-5\nClaims: MECH-422\nBlocked by: abstract_relational_reasoning_v6:ARR-2 [blocked]; abstract_relational_reasoning_v6:ARR-3 [blocked]\nWhy now: Plan gap blocked on abstract_relational_reasoning_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/abstract_relational_reasoning_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4419,7 +4418,7 @@
       "unblocks": [
         "MECH-360"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-012",
       "agent_brief": "REE inter-governance work item: IGW-20260620-012\nTitle: Expression as emergent action geometry (MECH-360) -- the readout side of the affect vector\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-3\nClaims: MECH-360\nBlocked by: affect_expression_v4:AE-1 [blocked]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4450,7 +4449,7 @@
         "affect_expression_v4:AE-1 [blocked]"
       ],
       "unblocks": [],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-013",
       "agent_brief": "REE inter-governance work item: IGW-20260620-013\nTitle: Candidate-gradient hippocampal episode schema (MECH-361) -- affect gradient as write-weight + retrieval-query\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-4\nBlocked by: affect_expression_v4:AE-1 [blocked]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4488,7 +4487,7 @@
         "MECH-370",
         "Q-063"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-016",
       "agent_brief": "REE inter-governance work item: IGW-20260620-016\nTitle: Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-7\nClaims: MECH-370, Q-063\nBlocked by: affect_expression_v4:AE-2 [in_progress]; affect_expression_v4:AE-10 [blocked]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4523,7 +4522,7 @@
       "unblocks": [
         "MECH-369"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-017",
       "agent_brief": "REE inter-governance work item: IGW-20260620-017\nTitle: Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction \nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-10\nClaims: MECH-369\nBlocked by: affect_expression_v4:AE-2 [in_progress]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4560,7 +4559,7 @@
         "ARC-092",
         "MECH-365"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-025",
       "agent_brief": "REE inter-governance work item: IGW-20260620-025\nTitle: Imagination-learning licit/forbidden principle (ARC-level, folded into the provenance gate)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-4\nClaims: ARC-092, MECH-365\nBlocked by: autobiographical_memory_v4:ABM-3 [blocked]\nWhy now: Plan gap open on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4598,7 +4597,7 @@
         "MECH-368",
         "Q-062"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-026",
       "agent_brief": "REE inter-governance work item: IGW-20260620-026\nTitle: Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-5\nClaims: MECH-368, Q-062\nBlocked by: autobiographical_memory_v4:ABM-3 [blocked]; autobiographical_memory_v4:ABM-4 [open]\nWhy now: Plan gap blocked on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4633,7 +4632,7 @@
       "unblocks": [
         "MECH-380"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-037",
       "agent_brief": "REE inter-governance work item: IGW-20260620-037\nTitle: PILLAR -- private speech as external cognitive-control surface (MECH-380): Vygotskian internalisation ladder\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): developmental_dmn_v4:DMN-4\nClaims: MECH-380\nBlocked by: developmental_dmn_v4:DMN-3 [blocked]\nWhy now: Plan gap blocked on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4669,7 +4668,7 @@
       "unblocks": [
         "MECH-381"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-038",
       "agent_brief": "REE inter-governance work item: IGW-20260620-038\nTitle: PILLAR -- developmental compression ladder (MECH-381): externalise-then-internalise across the whole curriculum\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): developmental_dmn_v4:DMN-5\nClaims: MECH-381\nBlocked by: developmental_dmn_v4:DMN-3 [blocked]; developmental_dmn_v4:DMN-4 [blocked]\nWhy now: Plan gap blocked on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4702,7 +4701,7 @@
       "unblocks": [
         "MECH-395"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-043",
       "agent_brief": "REE inter-governance work item: IGW-20260620-043\nTitle: Orienting/surveying drive: pre-approach active-sensing control state\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): drives_motivation_v4:DRV-4\nClaims: MECH-395\nWhy now: Plan gap blocked on drives_motivation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/drives_motivation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4739,7 +4738,7 @@
         "INV-081",
         "ARC-098"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-047",
       "agent_brief": "REE inter-governance work item: IGW-20260620-047\nTitle: Anti-shame safety invariants: no-global-self-condemnation write + containment-not-shame autonomy suspension\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-4\nClaims: INV-081, ARC-098\nBlocked by: ethics_as_coherence_v5:ETH-2 [blocked]\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4774,7 +4773,7 @@
       "unblocks": [
         "MECH-164"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-048",
       "agent_brief": "REE inter-governance work item: IGW-20260620-048\nTitle: Love as agent-indexed terrain inference: infer another agent's goal/harm gradients and weight them with self-equal motiv\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-5\nClaims: MECH-164\nBlocked by: ethics_as_coherence_v5:ETH-1 [blocked]\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4810,7 +4809,7 @@
       "unblocks": [
         "MECH-407"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-054",
       "agent_brief": "REE inter-governance work item: IGW-20260620-054\nTitle: Residue-aware social repair: regret-residue after exploitation generates a repair-goal\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): fast_empathy_v5:EMP-5\nClaims: MECH-407\nBlocked by: fast_empathy_v5:EMP-3 [blocked]; fast_empathy_v5:EMP-4 [blocked]\nWhy now: Plan gap blocked on fast_empathy_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/fast_empathy_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4847,7 +4846,7 @@
         "MECH-408",
         "Q-073"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-055",
       "agent_brief": "REE inter-governance work item: IGW-20260620-055\nTitle: Developmental ordering of other-bound streams: protective streams before appetitive (safety gate)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): fast_empathy_v5:EMP-6\nClaims: MECH-408, Q-073\nBlocked by: fast_empathy_v5:EMP-3 [blocked]\nWhy now: Plan gap blocked on fast_empathy_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/fast_empathy_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4882,7 +4881,7 @@
       "unblocks": [
         "MECH-264"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-057",
       "agent_brief": "REE inter-governance work item: IGW-20260620-057\nTitle: PILLAR 2 -- counterfactual-value tracking and switch-to-alternative gate (MECH-264)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): goal_deliberation_v4:GDL-3\nClaims: MECH-264\nBlocked by: goal_deliberation_v4:GDL-2 [blocked]\nWhy now: Plan gap blocked on goal_deliberation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/goal_deliberation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4919,7 +4918,7 @@
         "MECH-265",
         "SD-046"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-058",
       "agent_brief": "REE inter-governance work item: IGW-20260620-058\nTitle: PILLAR 3 -- relative-importance monitoring across competing goals + dACC cross-slot arbitrator (MECH-265, SD-046)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): goal_deliberation_v4:GDL-4\nClaims: MECH-265, SD-046\nBlocked by: goal_deliberation_v4:GDL-2 [blocked]\nWhy now: Plan gap blocked on goal_deliberation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/goal_deliberation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4954,7 +4953,7 @@
       "unblocks": [
         "MECH-389"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-059",
       "agent_brief": "REE inter-governance work item: IGW-20260620-059\nTitle: PILLAR 4 -- interrupted-task resumption / Zeigarnik (the event-arc's weak interrupt->reorient->resume span)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): goal_deliberation_v4:GDL-5\nClaims: MECH-389\nBlocked by: goal_deliberation_v4:GDL-4 [blocked]\nWhy now: Plan gap blocked on goal_deliberation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/goal_deliberation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -4989,7 +4988,7 @@
       "unblocks": [
         "MECH-147"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-068",
       "agent_brief": "REE inter-governance work item: IGW-20260620-068\nTitle: DG-equivalent pattern separation before rollout proposal (MECH-147)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-3\nClaims: MECH-147\nBlocked by: hippocampal_planning_v4:HPL-1 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5024,7 +5023,7 @@
       "unblocks": [
         "MECH-148"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-069",
       "agent_brief": "REE inter-governance work item: IGW-20260620-069\nTitle: Pure time cells -- temporal scaffolding for E3 credit assignment (MECH-148)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-4\nClaims: MECH-148\nBlocked by: hippocampal_planning_v4:HPL-1 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5059,7 +5058,7 @@
       "unblocks": [
         "MECH-149"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-070",
       "agent_brief": "REE inter-governance work item: IGW-20260620-070\nTitle: CA1 mismatch novelty gate on rollout injection (MECH-149)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-5\nClaims: MECH-149\nBlocked by: hippocampal_planning_v4:HPL-1 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5094,7 +5093,7 @@
       "unblocks": [
         "MECH-386"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-077",
       "agent_brief": "REE inter-governance work item: IGW-20260620-077\nTitle: Inferred affordance field (afford. not directly perceived; biases E3 candidates)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): inference_belief_state_v4:INF-4\nClaims: MECH-386\nBlocked by: inference_belief_state_v4:INF-3 [blocked]\nWhy now: Plan gap blocked on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5129,7 +5128,7 @@
       "unblocks": [
         "MECH-388"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-079",
       "agent_brief": "REE inter-governance work item: IGW-20260620-079\nTitle: Epistemic action pressure (information-gathering as survival-relevant, not just curiosity)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): inference_belief_state_v4:INF-6\nClaims: MECH-388\nBlocked by: inference_belief_state_v4:INF-3 [blocked]\nWhy now: Plan gap blocked on inference_belief_state_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/inference_belief_state_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5166,7 +5165,7 @@
         "MECH-418",
         "MECH-031"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-084",
       "agent_brief": "REE inter-governance work item: IGW-20260620-084\nTitle: Consumption wiring: parsed other-affect prior feeds the V5 empathy stream-binding layer (not a parallel path)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_affect_adaptor_v6:LAA-4\nClaims: MECH-418, MECH-031\nBlocked by: language_affect_adaptor_v6:LAA-3 [blocked]\nWhy now: Plan gap blocked on language_affect_adaptor_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_affect_adaptor_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5204,7 +5203,7 @@
         "MECH-373",
         "INV-085"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-085",
       "agent_brief": "REE inter-governance work item: IGW-20260620-085\nTitle: Falsifiable test: language-parsed affect must change other-directed behaviour vs literal-semantics-only baseline (and mu\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_affect_adaptor_v6:LAA-5\nClaims: MECH-373, INV-085\nBlocked by: language_affect_adaptor_v6:LAA-3 [blocked]; language_affect_adaptor_v6:LAA-4 [blocked]\nWhy now: Plan gap blocked on language_affect_adaptor_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_affect_adaptor_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5239,7 +5238,7 @@
       "unblocks": [
         "ARC-063"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-089",
       "agent_brief": "REE inter-governance work item: IGW-20260620-089\nTitle: Signal-to-rule minting: repeated signal/action/outcome regularities become CandidateRuleField rules (ARC-063 bridge)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_emergence_bootstrap_v6:LANG-5\nClaims: ARC-063\nBlocked by: language_emergence_bootstrap_v6:LANG-4 [blocked]\nWhy now: Plan gap blocked on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5280,7 +5279,7 @@
         "MECH-010",
         "MECH-010"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-090",
       "agent_brief": "REE inter-governance work item: IGW-20260620-090\nTitle: Convention robustness: partner variation + repair distinguish true convention from overfitted co-adaptation\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_emergence_bootstrap_v6:LANG-6\nClaims: MECH-010, MECH-010\nBlocked by: language_emergence_bootstrap_v6:LANG-4 [blocked]\nWhy now: Plan gap blocked on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5315,7 +5314,7 @@
       "unblocks": [
         "MECH-308"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-091",
       "agent_brief": "REE inter-governance work item: IGW-20260620-091\nTitle: Language-as-play-game substrate reuse: the bootstrap runs inside play_mode, not a parallel language-acquisition module (\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_emergence_bootstrap_v6:LANG-7\nClaims: MECH-308\nBlocked by: language_emergence_bootstrap_v6:LANG-4 [blocked]\nWhy now: Plan gap blocked on language_emergence_bootstrap_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_emergence_bootstrap_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5348,7 +5347,7 @@
       "unblocks": [
         "MECH-013"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-094",
       "agent_brief": "REE inter-governance work item: IGW-20260620-094\nTitle: Language failure modes as REE pathologies (rationalisation / ideological capture / bureaucratic dissociation / moral lic\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_trust_deception_institutions_v6:LTI-4\nClaims: MECH-013\nWhy now: Plan gap blocked on language_trust_deception_institutions_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_trust_deception_institutions_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5384,7 +5383,7 @@
       "unblocks": [
         "MECH-012"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-095",
       "agent_brief": "REE inter-governance work item: IGW-20260620-095\nTitle: Institutions as multi-agent linguistic coordination structures (residue absorb / diffuse / deny)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): language_trust_deception_institutions_v6:LTI-5\nClaims: MECH-012\nBlocked by: language_trust_deception_institutions_v6:LTI-2 [blocked]; language_trust_deception_institutions_v6:LTI-4 [blocked]\nWhy now: Plan gap blocked on language_trust_deception_institutions_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/language_trust_deception_institutions_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5421,7 +5420,7 @@
         "MECH-159",
         "MECH-414"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-100",
       "agent_brief": "REE inter-governance work item: IGW-20260620-100\nTitle: Love-mediated repair after harm: repair as relationship restoration, not punishment avoidance\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): loveability_ethical_agency_v5:LOVE-5\nClaims: MECH-159, MECH-414\nBlocked by: loveability_ethical_agency_v5:LOVE-4 [blocked]\nWhy now: Plan gap blocked on loveability_ethical_agency_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/loveability_ethical_agency_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5454,7 +5453,7 @@
       "unblocks": [
         "MECH-391"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-102",
       "agent_brief": "REE inter-governance work item: IGW-20260620-102\nTitle: Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): memory_lifecycle_v4:MEM-2\nClaims: MECH-391\nWhy now: Plan gap blocked on memory_lifecycle_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/memory_lifecycle_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5493,7 +5492,7 @@
         "MECH-124",
         "MECH-392"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-104",
       "agent_brief": "REE inter-governance work item: IGW-20260620-104\nTitle: Provenance + contradiction-flag + rollback layer on consolidated memory\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): memory_lifecycle_v4:MEM-5\nClaims: MECH-094, MECH-068, MECH-124, MECH-392\nWhy now: Plan gap blocked on memory_lifecycle_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/memory_lifecycle_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5533,7 +5532,7 @@
         "MECH-036",
         "MECH-404"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-111",
       "agent_brief": "REE inter-governance work item: IGW-20260620-111\nTitle: Gain-calibration window: low/high/miscalibrated coupling failure modes (psychopathy / overwhelm / burnout)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-5\nClaims: MECH-032, MECH-036, MECH-404\nBlocked by: mirror_modelling_other_self_v5:MIRROR-3 [blocked]; mirror_modelling_other_self_v5:MIRROR-4 [blocked]\nWhy now: Plan gap open on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5573,7 +5572,7 @@
         "MECH-127",
         "INV-029"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-113",
       "agent_brief": "REE inter-governance work item: IGW-20260620-113\nTitle: Care persistence + counterfactual empathic activation: love/cooperation as long-horizon coupling (MECH-052, MECH-127)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-7\nClaims: MECH-052, MECH-127, INV-029\nBlocked by: mirror_modelling_other_self_v5:MIRROR-4 [blocked]; mirror_modelling_other_self_v5:MIRROR-6 [blocked]\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5610,7 +5609,7 @@
         "MECH-095",
         "MECH-099"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-116",
       "agent_brief": "REE inter-governance work item: IGW-20260620-116\nTitle: Agency detection with a structurally-distinct OTHER (MECH-095 retest; MECH-099 richer-causation attribution)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-3\nClaims: MECH-095, MECH-099\nBlocked by: multi_agent_ecology_v5:MAE-2 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5645,7 +5644,7 @@
       "unblocks": [
         "MECH-102"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-117",
       "agent_brief": "REE inter-governance work item: IGW-20260620-117\nTitle: Multi-channel coping repertoire so violence is genuinely terminal (MECH-102): negotiation / withdrawal / cooperation cha\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-4\nClaims: MECH-102\nBlocked by: multi_agent_ecology_v5:MAE-2 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5683,7 +5682,7 @@
         "Q-028",
         "MECH-402"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-118",
       "agent_brief": "REE inter-governance work item: IGW-20260620-118\nTitle: Ethics-as-coherence under axiom conflict (Q-028): context-sensitive self-vs-other comparator + moral-residue mechanism\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-5\nClaims: Q-028, MECH-402\nBlocked by: multi_agent_ecology_v5:MAE-3 [blocked]; multi_agent_ecology_v5:MAE-4 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5721,7 +5720,7 @@
         "ARC-010",
         "INV-005"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-120",
       "agent_brief": "REE inter-governance work item: IGW-20260620-120\nTitle: ARC-010 mirror-modelling cutover: other-agent state re-represented through the self's own predictive machinery\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-7\nClaims: ARC-010, INV-005\nBlocked by: multi_agent_ecology_v5:MAE-3 [blocked]; multi_agent_ecology_v5:MAE-2 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5756,7 +5755,7 @@
       "unblocks": [
         "SD-040"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-123",
       "agent_brief": "REE inter-governance work item: IGW-20260620-123\nTitle: PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-3\nClaims: SD-040\nBlocked by: object_reasoning_abstraction_v4:OBJ-ABS-1 [blocked_pending_substrate]\nWhy now: Plan gap blocked on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5793,7 +5792,7 @@
         "MECH-296",
         "MECH-297"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-124",
       "agent_brief": "REE inter-governance work item: IGW-20260620-124\nTitle: PILLAR B retrieval -- prototype-readout operator + type-V_s gating (MECH-296 / MECH-297)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-4\nClaims: MECH-296, MECH-297\nBlocked by: object_reasoning_abstraction_v4:OBJ-ABS-3 [blocked]\nWhy now: Plan gap blocked on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5828,7 +5827,7 @@
       "unblocks": [
         "SD-042"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-125",
       "agent_brief": "REE inter-governance work item: IGW-20260620-125\nTitle: PILLAR C -- option library (SD-042): named reusable subroutines (init-set / termination / internal-policy)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_reasoning_abstraction_v4:OBJ-ABS-5\nClaims: SD-042\nBlocked by: object_reasoning_abstraction_v4:OBJ-ABS-1 [blocked_pending_substrate]\nWhy now: Plan gap blocked on object_reasoning_abstraction_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_reasoning_abstraction_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5863,7 +5862,7 @@
       "unblocks": [
         "ARC-081"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-128",
       "agent_brief": "REE inter-governance work item: IGW-20260620-128\nTitle: PILLAR 2 -- self-as-object cutover (ARC-081): z_self -> privileged object-file slot\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_representation_v4:OBJ-3\nClaims: ARC-081\nBlocked by: object_representation_v4:OBJ-2 [open]\nWhy now: Plan gap open on object_representation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_representation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5898,7 +5897,7 @@
       "unblocks": [
         "ARC-082"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-129",
       "agent_brief": "REE inter-governance work item: IGW-20260620-129\nTitle: PILLAR 3 -- tools/affordances object->action binding (ARC-082)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_representation_v4:OBJ-4\nClaims: ARC-082\nBlocked by: object_representation_v4:OBJ-2 [open]\nWhy now: Plan gap blocked on object_representation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_representation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5934,7 +5933,7 @@
       "unblocks": [
         "ARC-083"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-130",
       "agent_brief": "REE inter-governance work item: IGW-20260620-130\nTitle: PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-file slots\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): object_representation_v4:OBJ-5\nClaims: ARC-083\nBlocked by: object_representation_v4:OBJ-2 [open]; object_representation_v4:OBJ-3 [open]\nWhy now: Plan gap blocked on object_representation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_representation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -5971,7 +5970,7 @@
         "ARC-087",
         "MECH-372"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-133",
       "agent_brief": "REE inter-governance work item: IGW-20260620-133\nTitle: PILLAR B -- deep-adaptor (sight) perceptual-manifold constructor: metric/geometry before world-model entry\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): perceptual_adaptors_v4:PA-3\nClaims: ARC-087, MECH-372\nBlocked by: perceptual_adaptors_v4:PA-2 [open]\nWhy now: Plan gap blocked on perceptual_adaptors_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/perceptual_adaptors_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6006,7 +6005,7 @@
       "unblocks": [
         "Q-065"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-134",
       "agent_brief": "REE inter-governance work item: IGW-20260620-134\nTitle: Metric-origin fork: per-sense perceptual metric LEARNED from similarity statistics vs partly DEFINED (structural prior)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): perceptual_adaptors_v4:PA-4\nClaims: Q-065\nBlocked by: perceptual_adaptors_v4:PA-3 [blocked]\nWhy now: Plan gap open on perceptual_adaptors_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/perceptual_adaptors_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6041,7 +6040,7 @@
       "unblocks": [
         "ARC-093"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-139",
       "agent_brief": "REE inter-governance work item: IGW-20260620-139\nTitle: PILLAR B -- state-conditional plasticity-gain architectural commitment\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): plasticity_neuromodulation_v4:PLW-4\nClaims: ARC-093\nBlocked by: plasticity_neuromodulation_v4:PLW-3 [blocked]\nWhy now: Plan gap blocked on plasticity_neuromodulation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/plasticity_neuromodulation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6076,7 +6075,7 @@
       "unblocks": [
         "Q-072"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-140",
       "agent_brief": "REE inter-governance work item: IGW-20260620-140\nTitle: Layer-specificity adjudication (one global scalar vs per-substrate gates)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): plasticity_neuromodulation_v4:PLW-7\nClaims: Q-072\nBlocked by: plasticity_neuromodulation_v4:PLW-4 [blocked]\nWhy now: Plan gap open on plasticity_neuromodulation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/plasticity_neuromodulation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6109,7 +6108,7 @@
       "unblocks": [
         "MECH-130"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-142",
       "agent_brief": "REE inter-governance work item: IGW-20260620-142\nTitle: Agent-policy novelty typing (MECH-130): world-state novelty != agent-policy novelty\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): relational_harm_moral_semantics_v5:RHM-2\nClaims: MECH-130\nWhy now: Plan gap blocked on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6144,7 +6143,7 @@
       "unblocks": [
         "MECH-409"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-143",
       "agent_brief": "REE inter-governance work item: IGW-20260620-143\nTitle: Consent / incidental-vs-constitutive qualifier on harm-to-agency (the discriminant layer of MECH-129)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): relational_harm_moral_semantics_v5:RHM-3\nClaims: MECH-409\nBlocked by: relational_harm_moral_semantics_v5:RHM-1 [blocked]\nWhy now: Plan gap blocked on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6179,7 +6178,7 @@
       "unblocks": [
         "MECH-410"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-145",
       "agent_brief": "REE inter-governance work item: IGW-20260620-145\nTitle: Self-like weighting calibration: full-symmetry vs collapse vs callousness (the lambda the structural claim leaves open)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): relational_harm_moral_semantics_v5:RHM-5\nClaims: MECH-410\nBlocked by: relational_harm_moral_semantics_v5:RHM-4 [blocked]\nWhy now: Plan gap blocked on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6214,7 +6213,7 @@
       "unblocks": [
         "SD-037"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-148",
       "agent_brief": "REE inter-governance work item: IGW-20260620-148\nTitle: Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b manifest; emit a non-empty per-knob overri\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): sd_037_axis_b:P2\nClaims: SD-037\nBlocked by: sd_037_axis_b:P1b [in_progress]\nWhy now: Plan gap blocked on sd_037_axis_b.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6253,7 +6252,7 @@
         "MECH-280",
         "MECH-281"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-149",
       "agent_brief": "REE inter-governance work item: IGW-20260620-149\nTitle: Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lift consumer outputs above zero; acceptanc\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): sd_037_axis_b:P3\nClaims: SD-037, MECH-280, MECH-281\nBlocked by: sd_037_axis_b:P2 [blocked]\nWhy now: Plan gap blocked on sd_037_axis_b.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6292,7 +6291,7 @@
         "MECH-280",
         "MECH-281"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-150",
       "agent_brief": "REE inter-governance work item: IGW-20260620-150\nTitle: Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nGap(s): sd_037_axis_b:P4\nOwner EXQ: V3-EXQ-483f\nClaims: SD-037, MECH-280, MECH-281\nBlocked by: sd_037_axis_b:P3 [blocked]\nWhy now: Plan gap blocked on sd_037_axis_b.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6331,7 +6330,7 @@
         "MECH-258",
         "MECH-260"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-151",
       "agent_brief": "REE inter-governance work item: IGW-20260620-151\nTitle: ARC-033 vs ARC-058 path arbitration (forensic 445h read)\nLane: experiment | Skill: /queue-experiment\nStatus: blocked\nGap(s): self_attribution:GAP-1\nOwner EXQ: V3-EXQ-445h\nClaims: ARC-033, ARC-058, MECH-258, MECH-260\nWhy now: Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that (a) EXQ-445h dropped the ON_SHARED arm (CONDITIONS=[OFF, ON_INDEPENDENT] only); (b) the earlier three-arm EXQ-445 and EXQ-445b runs that did include \n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6373,7 +6372,7 @@
         "ARC-033",
         "SD-013"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-152",
       "agent_brief": "REE inter-governance work item: IGW-20260620-152\nTitle: SD-029 / MECH-256 retest under full substrate stack\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_attribution:GAP-2\nClaims: SD-029, MECH-256, ARC-033, SD-013\nWhy now: RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblockable once SP-CEM lands in the main agent action path') is STALE and was satisfiable the day after it was written: ARC-065 SP-CEM was LANDED AS MAIN-PAT\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6415,7 +6414,7 @@
       "unblocks": [
         "MECH-214"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-157",
       "agent_brief": "REE inter-governance work item: IGW-20260620-157\nTitle: z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_model_v4:SELF-5\nClaims: MECH-214\nBlocked by: self_model_v4:SELF-3 [open]\nWhy now: Plan gap blocked on self_model_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6450,7 +6449,7 @@
       "unblocks": [
         "MECH-214"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-158",
       "agent_brief": "REE inter-governance work item: IGW-20260620-158\nTitle: Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_model_v4:SELF-6\nClaims: MECH-214\nBlocked by: self_model_v4:SELF-5 [blocked]\nWhy now: Plan gap blocked on self_model_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6485,7 +6484,7 @@
       "unblocks": [
         "INV-064"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-159",
       "agent_brief": "REE inter-governance work item: IGW-20260620-159\nTitle: Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_model_v4:SELF-7\nClaims: INV-064\nBlocked by: self_model_v4:SELF-3 [open]\nWhy now: Plan gap blocked on self_model_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6526,7 +6525,7 @@
         "Q-044",
         "Q-045"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-019",
       "agent_brief": "REE inter-governance work item: IGW-20260620-019\nTitle: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending\nLane: experiment | Skill: /queue-experiment\nStatus: partial\nGap(s): arc_062_rule_apprehension:GAP-H\nOwner EXQ: V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg; V3-EXQ-544/545/544a historical diagnostics; Q-045/MECH-313/MECH-260 leg now owned by V3-EXQ-687 (QUEUED 2026-06-17, the registered 4-arm tonic-noise ablation on the survival-competent scaffolded_sd054_onboarding substrate that 603q PASSed on; AWAITING RUN+REVIEW); GAP-B successor still owed\nClaims: ARC-065, Q-043, Q-044, Q-045\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validated GAP-A; do not queue another GAP-H curiosity retest for that leg. Hold the remaining Q-045/MECH-313/MECH-260 survival/noise-floor leg until V3-EXQ-60\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6574,7 +6573,7 @@
         "MECH-317",
         "MECH-318"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-020",
       "agent_brief": "REE inter-governance work item: IGW-20260620-020\nTitle: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending\nLane: experiment | Skill: /queue-experiment\nStatus: blocked_pending_substrate\nGap(s): arc_062_rule_apprehension:GAP-I\nOwner EXQ: V3-EXQ-606b\nClaims: ARC-064, MECH-316, MECH-317, MECH-318\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creator/discriminator substrate that populates DIFFERENTIATED rule_state into SD-033a; scaffolded_sd054_onboarding is the candidate vehicle). The MECH-318 \n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6616,7 +6615,7 @@
       "unblocks": [
         "MECH-319"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-022",
       "agent_brief": "REE inter-governance work item: IGW-20260620-022\nTitle: MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidence falsifier LANDED PASS (supports) 2026-\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): arc_062_rule_apprehension:GAP-K\nOwner EXQ: V3-EXQ-546 (done, diagnostic/non_contributory); V3-EXQ-628 LANDED PASS 2026-06-02 (experiment_purpose=evidence; supports MECH-319; replay/caller_sim=True admit_writes block-vs-admit rule_state divergence falsifier; 3/3 seeds)\nClaims: MECH-319\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]; arc_062_rule_apprehension:GAP-H [partial]; arc_062_rule_apprehension:GAP-I [blocked_pending_substrate]\nWhy now: IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence slice; do not re-queue that slice. GAP-K closure waits on the GAP-B successor, GAP-H remaining legs, and GAP-I multi-rule-context substrate.\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6661,7 +6660,7 @@
         "MECH-368",
         "MECH-361"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-029",
       "agent_brief": "REE inter-governance work item: IGW-20260620-029\nTitle: Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imaginat\nLane: plan | Skill: (plan reconcile)\nStatus: closed\nGap(s): autobiographical_memory_v4:ABM-9\nClaims: ARC-085, MECH-365, MECH-366, MECH-368, MECH-361\nWhy now: Plan gap closed on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6698,7 +6697,7 @@
         "MECH-260",
         "Q-045"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-031",
       "agent_brief": "REE inter-governance work item: IGW-20260620-031\nTitle: Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): behavioral_diversity_isolation:GAP-C\nOwner EXQ: V3-EXQ-603k (Stage-H harm-pathway training; queued 2026-06-09; owns the PRIMARY nav/survival-competence leg this node waits on). Predecessors absorbed: V3-EXQ-603i TERMINAL FAIL 2026-06-08 (non_contributory substrate_ceiling, autopsied + applied /governance 2026-06-09T04:30Z) surfaced two co-equal substrate gaps -- PRIMARY nav/survival-competence ceiling (-> 603k) + SECONDARY safety-half starvation, the latter now closed at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (safety-half trained-signal; safety_signal 0.89; claim_ids=[]). Prior 603a/b/c/f/g/h lineage non_contributory substrate-ceiling\nClaims: MECH-313, MECH-260, Q-045\nWhy now: AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governance_2026_06_16). The Branch-B harm-pathway stabilization amend is LANDED (experiments/scaffolded_sd054_onboarding.py: decoupled encoder LR scaffold_harm\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/behavioral_diversity_isolation_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6740,7 +6739,7 @@
         "SD-033b",
         "MECH-263"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-034",
       "agent_brief": "REE inter-governance work item: IGW-20260620-034\nTitle: SD-033b behavioural validation (devaluation + perceptual discrimination)\nLane: experiment | Skill: /queue-experiment\nStatus: in_progress\nGap(s): commitment_closure:GAP-8\nOwner EXQ: V3-EXQ-485h RAN FAIL 2026-06-19T19:27Z (supersedes V3-EXQ-485g; 2nd non-vacuous trained-OFC-head test -- an even LARGER cross-candidate bias range 0.50 vs 485g 0.17, head delta 5.63, still ZERO behavioural conversion; self-stamped weakens NEUTRALIZED to non_contributory, flagged for a fresh /failure-autopsy, left PENDING -- see governance_2026_06_19b). PRIOR FRONTIER V3-EXQ-485g RAN FAIL 2026-06-19T14:54Z on ree-cloud-3 (supersedes V3-EXQ-485f; trained-OFC-head behavioural arm, claim_ids=[SD-033b, MECH-263]). Readiness MET this time (the 485f vacuity fix worked: OFC bias cross-candidate range 0.171 >= the re-aligned 0.05 DV floor; head genuinely trained, weight-delta 6.32, 120 grad updates / 3683 outcome-coupled loss terms) but the load-bearing behavioural DVs FAIL (C1 devaluation_selection_shift {0.001,0.0,0.010} << 0.05; C2 between-context TV ~0). The trained head produced real cross-candidate bias RANGE with ZERO behavioural conversion -- the MECH-439 F-dominance conversion-ceiling signature (F ~88-89% of E3 committed-selection variance, V3-EXQ-571). FLAGGED for /failure-autopsy by governance-20260619T1455Z (user-confirmed): the self-stamped weakens was NEUTRALIZED to non_contributory pending adjudication of genuine-weakens vs conversion-ceiling/substrate_ceiling; SD-033b/MECH-263 exp_conf 0.325->0.0, conflict-resolution rec auto-resolved, both stay pending_retest_after_substrate. NOT marked reviewed (stays in pending_review until the autopsy resolves). 485f marked superseded. Lineage owner advanced 485f -> 485g. PREDECESSORS: 485e (FAIL/non_contributory, autopsied 2026-06-11), 485d (substrate-readiness diagnostic), 485c/485b representation-level MECH-263 diagnostics PASS 2026-06-04 (NOT a supersession lineage).\nClaims: SD-033b, MECH-263\nWhy now: Trained-OFC-head SUBSTRATE landed 2026-06-09 (ree-v3 382db2c): OFCConfig.train_state_bias_head / REEConfig.ofc_train_state_bias_head (default False -> last Linear zeroed, bit-identical OFF) + OFCAnalog.bias_head_parameters(); the SD-033b an\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6777,7 +6776,7 @@
         "MECH-394",
         "SD-060"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-042",
       "agent_brief": "REE inter-governance work item: IGW-20260620-042\nTitle: Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)\nLane: plan | Skill: (plan reconcile)\nStatus: closed\nGap(s): drives_motivation_v4:DRV-3\nClaims: MECH-394, SD-060\nWhy now: Plan gap closed on drives_motivation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/drives_motivation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6814,7 +6813,7 @@
         "INV-081",
         "MECH-371"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-050",
       "agent_brief": "REE inter-governance work item: IGW-20260620-050\nTitle: Biology grounding: guilt-as-reparative-motivation vs shame-as-withdrawal, moral-repair, typed-causal-attribution, and p-\nLane: plan | Skill: (plan reconcile)\nStatus: closed\nGap(s): ethics_as_coherence_v5:ETH-8\nClaims: ARC-097, INV-081, MECH-371\nWhy now: Plan gap closed on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6849,7 +6848,7 @@
         "DEV-NEED-003",
         "MECH-314"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-073",
       "agent_brief": "REE inter-governance work item: IGW-20260620-073\nTitle: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra\nLane: experiment | Skill: /queue-experiment\nStatus: blocked_pending_substrate\nGap(s): infant_substrate:GAP-13\nOwner EXQ: V3-EXQ-590\nClaims: DEV-NEED-003, MECH-314\nWhy now: Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; V3-EXQ-649 GAP-A shared-channel PASS). DO NOT re-queue V3-EXQ-590 on the MECH-111 novelty_bonus_weight design (still broadcast). RESUME path: once th\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6890,7 +6889,7 @@
         "DEV-NEED-008",
         "ARC-046"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-074",
       "agent_brief": "REE inter-governance work item: IGW-20260620-074\nTitle: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)\nLane: experiment | Skill: /queue-experiment\nStatus: blocked_pending_substrate\nGap(s): infant_substrate:GAP-14\nOwner EXQ: V3-EXQ-591\nClaims: DEV-NEED-008, ARC-046\nWhy now: 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirme\n\nInstructions:\n- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.\n- Plan doc: REE_assembly/evidence/planning/infant_substrate_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6928,7 +6927,7 @@
         "ARC-080",
         "ARC-006"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-131",
       "agent_brief": "REE inter-governance work item: IGW-20260620-131\nTitle: Biology grounding completion (object-files / permanence / affordances / self / ToM lit-pulls)\nLane: plan | Skill: (plan reconcile)\nStatus: in_progress\nGap(s): object_representation_v4:OBJ-6\nClaims: ARC-080, ARC-006\nWhy now: Plan gap in_progress on object_representation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/object_representation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6963,7 +6962,7 @@
         "MECH-129",
         "MECH-164"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-146",
       "agent_brief": "REE inter-governance work item: IGW-20260620-146\nTitle: Biology grounding for relational harm + love-as-care (harm-to-agency, ToM-of-goals, empathy-as-shared-circuit lit-pulls)\nLane: plan | Skill: (plan reconcile)\nStatus: closed\nGap(s): relational_harm_moral_semantics_v5:RHM-6\nClaims: MECH-129, MECH-164\nWhy now: Plan gap closed on relational_harm_moral_semantics_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/relational_harm_moral_semantics_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -6996,7 +6995,7 @@
       "unblocks": [
         "MECH-215"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-156",
       "agent_brief": "REE inter-governance work item: IGW-20260620-156\nTitle: E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability\nLane: plan | Skill: (plan reconcile)\nStatus: in_progress\nGap(s): self_model_v4:SELF-4\nOwner EXQ: V4-EXQ-001\nClaims: MECH-215\nWhy now: AWAITING V4-EXQ-001 RUN + REVIEW (DR-12 pilot, queued ree-v3/main 394ccf4). On PASS (dr12_pe_conditioning_changes_selection): the E2-PE -> E3-confidence wiring is live; queue the ecological-evidence successor (region-PE auto-source) that sc\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_model_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7031,7 +7030,7 @@
       "unblocks": [
         "MECH-355"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-014",
       "agent_brief": "REE inter-governance work item: IGW-20260620-014\nTitle: Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-5\nClaims: MECH-355\nBlocked by: affect_expression_v4:AE-2 [in_progress]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7068,7 +7067,7 @@
         "MECH-364",
         "Q-059"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-015",
       "agent_brief": "REE inter-governance work item: IGW-20260620-015\nTitle: Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudicatio\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): affect_expression_v4:AE-6\nClaims: MECH-364, Q-059\nBlocked by: affect_expression_v4:AE-2 [in_progress]\nWhy now: Plan gap blocked on affect_expression_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/affect_expression_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7111,7 +7110,7 @@
         "MECH-312c",
         "MECH-312d"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-021",
       "agent_brief": "REE inter-governance work item: IGW-20260620-021\nTitle: MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): arc_062_rule_apprehension:GAP-J\nClaims: MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d\nBlocked by: arc_062_rule_apprehension:GAP-B [in_progress]\nWhy now: Plan gap blocked on arc_062_rule_apprehension.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/arc_062_rule_apprehension_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7150,7 +7149,7 @@
       "unblocks": [
         "MECH-361"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-027",
       "agent_brief": "REE inter-governance work item: IGW-20260620-027\nTitle: Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-6\nClaims: MECH-361\nBlocked by: autobiographical_memory_v4:ABM-2 [blocked]\nWhy now: Plan gap blocked on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7185,7 +7184,7 @@
       "unblocks": [
         "MECH-366"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-028",
       "agent_brief": "REE inter-governance work item: IGW-20260620-028\nTitle: Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): autobiographical_memory_v4:ABM-7\nClaims: MECH-366\nBlocked by: autobiographical_memory_v4:ABM-2 [blocked]\nWhy now: Plan gap blocked on autobiographical_memory_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/autobiographical_memory_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7221,7 +7220,7 @@
       "unblocks": [
         "MECH-382"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-039",
       "agent_brief": "REE inter-governance work item: IGW-20260620-039\nTitle: Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): developmental_dmn_v4:DMN-6\nClaims: MECH-382\nBlocked by: developmental_dmn_v4:DMN-2 [open]; developmental_dmn_v4:DMN-4 [blocked]\nWhy now: Plan gap blocked on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7256,7 +7255,7 @@
       "unblocks": [
         "MECH-383"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-040",
       "agent_brief": "REE inter-governance work item: IGW-20260620-040\nTitle: Labels as top-down perceptual-control signals (MECH-383): self-directed labels tune perceptual search\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): developmental_dmn_v4:DMN-7\nClaims: MECH-383\nBlocked by: developmental_dmn_v4:DMN-4 [blocked]\nWhy now: Plan gap blocked on developmental_dmn_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/developmental_dmn_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7294,7 +7293,7 @@
         "MECH-145",
         "MECH-146"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-049",
       "agent_brief": "REE inter-governance work item: IGW-20260620-049\nTitle: Prescriptive + diagnostic ethical-trajectory certification: CBF forward-invariance + backward-reachability barrier certi\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): ethics_as_coherence_v5:ETH-6\nClaims: MECH-145, MECH-146\nBlocked by: ethics_as_coherence_v5:ETH-1 [blocked]; ethics_as_coherence_v5:ETH-5 [blocked]\nWhy now: Plan gap blocked on ethics_as_coherence_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/ethics_as_coherence_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7333,7 +7332,7 @@
         "MECH-254",
         "MECH-255"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-060",
       "agent_brief": "REE inter-governance work item: IGW-20260620-060\nTitle: PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberatio\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): goal_deliberation_v4:GDL-6\nClaims: SD-027, SD-028, MECH-254, MECH-255\nWhy now: Plan gap blocked on goal_deliberation_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/goal_deliberation_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7368,7 +7367,7 @@
       "unblocks": [
         "MECH-416"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-063",
       "agent_brief": "REE inter-governance work item: IGW-20260620-063\nTitle: V5/V6 frame inventory: feeding / hazard / contact / interruption / help-harm / give-receive / request-response / belief-\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): grammar_primitive_mining_v6:GRAM-4\nClaims: MECH-416\nBlocked by: grammar_primitive_mining_v6:GRAM-2 [open]\nWhy now: Plan gap blocked on grammar_primitive_mining_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/grammar_primitive_mining_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7403,7 +7402,7 @@
       "unblocks": [
         "MECH-417"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-064",
       "agent_brief": "REE inter-governance work item: IGW-20260620-064\nTitle: Aspect / event-arc as closure map: starting / ongoing / repeated / interrupted / resumed / completed / failed / abandone\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): grammar_primitive_mining_v6:GRAM-5\nClaims: MECH-417\nBlocked by: grammar_primitive_mining_v6:GRAM-2 [open]\nWhy now: Plan gap blocked on grammar_primitive_mining_v6.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/grammar_primitive_mining_v6_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7438,7 +7437,7 @@
       "unblocks": [
         "MECH-207"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-071",
       "agent_brief": "REE inter-governance work item: IGW-20260620-071\nTitle: ACh permissive write-gate on the surprise buffer (MECH-207)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-6\nClaims: MECH-207\nBlocked by: hippocampal_planning_v4:HPL-1 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7473,7 +7472,7 @@
       "unblocks": [
         "INV-039"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-072",
       "agent_brief": "REE inter-governance work item: IGW-20260620-072\nTitle: Schema-primed rapid assimilation (INV-039)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): hippocampal_planning_v4:HPL-7\nClaims: INV-039\nBlocked by: hippocampal_planning_v4:HPL-2 [blocked]\nWhy now: Plan gap blocked on hippocampal_planning_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/hippocampal_planning_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7512,7 +7511,7 @@
         "INV-049",
         "MECH-401"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-106",
       "agent_brief": "REE inter-governance work item: IGW-20260620-106\nTitle: Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): memory_lifecycle_v4:MEM-7\nClaims: MECH-261, INV-039, INV-049, MECH-401\nWhy now: Plan gap blocked on memory_lifecycle_v4.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/memory_lifecycle_v4_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7549,7 +7548,7 @@
       "unblocks": [
         "MECH-041"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-112",
       "agent_brief": "REE inter-governance work item: IGW-20260620-112\nTitle: Affective expression as mode-broadcast: emit own control-plane regime to reduce the OTHER'S prediction load (MECH-041)\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): mirror_modelling_other_self_v5:MIRROR-6\nClaims: MECH-041\nBlocked by: mirror_modelling_other_self_v5:MIRROR-2 [blocked]\nWhy now: Plan gap blocked on mirror_modelling_other_self_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/mirror_modelling_other_self_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7586,7 +7585,7 @@
         "Q-029",
         "MECH-403"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-119",
       "agent_brief": "REE inter-governance work item: IGW-20260620-119\nTitle: Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): multi_agent_ecology_v5:MAE-6\nClaims: Q-029, MECH-403\nBlocked by: multi_agent_ecology_v5:MAE-2 [blocked]\nWhy now: Plan gap blocked on multi_agent_ecology_v5.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/multi_agent_ecology_v5_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7624,7 +7623,7 @@
         "MECH-257",
         "MECH-094"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-153",
       "agent_brief": "REE inter-governance work item: IGW-20260620-153\nTitle: MECH-257 dual-function 3-arm ablation re-queue\nLane: plan | Skill: (plan reconcile)\nStatus: blocked\nGap(s): self_attribution:GAP-3\nClaims: MECH-257, MECH-094\nBlocked by: self_attribution:GAP-1 [blocked]; self_attribution:GAP-2 [blocked]\nWhy now: Plan gap blocked on self_attribution.\n\nInstructions:\n- Update plan-of-record doc and closure frontmatter when complete.\n- Plan doc: REE_assembly/evidence/planning/self_attribution_plan.md\n- Workset: http://localhost:8000/workset",
       "closure_links": [
@@ -7657,7 +7656,7 @@
       "unblocks": [
         "MECH-443"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-002",
       "agent_brief": "REE inter-governance work item: IGW-20260620-002\nTitle: Held pending substrate: MECH-443\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-443\nBlocked by: V3 substrate implementation / per-claim retest\nWhy now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -7684,7 +7683,7 @@
       "unblocks": [
         "MECH-444"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-003",
       "agent_brief": "REE inter-governance work item: IGW-20260620-003\nTitle: Held pending substrate: MECH-444\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-444\nBlocked by: V3 substrate implementation / per-claim retest\nWhy now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,
@@ -7711,7 +7710,7 @@
       "unblocks": [
         "MECH-446"
       ],
-      "generated_at": "2026-06-20T06:19:24Z",
+      "generated_at": "2026-06-20T08:18:55Z",
       "id": "IGW-20260620-004",
       "agent_brief": "REE inter-governance work item: IGW-20260620-004\nTitle: Held pending substrate: MECH-446\nLane: substrate | Skill: /implement-substrate\nStatus: blocked\nClaims: MECH-446\nBlocked by: V3 substrate implementation / per-claim retest\nWhy now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.\n\nInstructions:\n- Use /implement-substrate for the SD/MECH named in title.\n- Workset: http://localhost:8000/workset",
       "unblock_count": 1,

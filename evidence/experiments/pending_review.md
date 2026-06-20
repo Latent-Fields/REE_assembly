@@ -1,22 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-20T08:34:45Z`  
-Last review: `2026-06-20T08:31:59Z`  
-Pending: **2** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-20T09:00:53Z`  
+Last review: `2026-06-20T08:47:05Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3` | 2026-06-20T01:47 | MECH-445, MECH-446 | — |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| FAIL | `v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3` | v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest | V3-EXQ-514t | non_contributory |
+| `v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3` | 2026-06-20T03:14 | MECH-436 | — |
 
 ---
 

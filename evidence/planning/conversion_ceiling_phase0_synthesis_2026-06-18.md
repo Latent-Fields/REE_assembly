@@ -27,7 +27,7 @@ The "single root = z_world candidate collapse (GAP-A)" hypothesis is **falsified
 |------|-------|---------------------|-------------|
 | **A** — candidate `z_world` collapse (all K candidates identical after one E2 forward step) | representation-geometry | **mitigated** (SD-056 / ARC-065 GAP-A `candidate_summary_source=e2_world_forward` re-sourcing) | necessary upstream *gate*, no longer the live blocker |
 | **B** — F-dominance at the committed argmax | selection-structure | **LIVE ROOT** | attack first |
-| **C** — de-commit authority magnitude | commitment-dynamics | **open, orthogonal** | own amend (commitment-closure-control-plane); not bundled with B |
+| **C** — de-commit authority magnitude | commitment-dynamics | **commit/release-duration face of root B (F-dominance)** — reclassified 2026-06-20 (V3-EXQ-460h), was "open, orthogonal" | owned by the F-dominance front: a commit-ENTRY-decisiveness / natural-commit-latch-occupancy lever on `f_dominance_conversion_ceiling` (the selection-face levers k + commit-T do NOT shorten latch occupancy). NOT a standalone commitment-closure-control-plane amend |
 | **D** — CRF conflict-gate lockout | gating-calibration | **CLOSED** (`V3-EXQ-654f`: `crf_frac_active` 0.0 -> 0.83-0.97 via the crf-availability-maintenance amend, A held constant) | resolved |
 | **E** — within-class diversity (MECH-341) | — | **downstream symptom of B** (gated by A) | not a root |
 
@@ -36,7 +36,7 @@ The "single root = z_world candidate collapse (GAP-A)" hypothesis is **falsified
 The primary harm/goal score **F accounts for ~88-89% of E3 committed-selection variance** (`V3-EXQ-571`: 0.886 baseline, 0.894 with the full diversity stack — **the diversity stack does not dent F's share**). Consequently every diversity channel — modulatory (B), within-class (E), and the now-unlocked CRF rule-bias (D-post-fix) — **drowns at the same F-dominated committed argmax.** Decisive proof of convergence: `V3-EXQ-654f` shows that with D's gate unlocked the CRF counterfactual delta (0.01-0.025) *reaches* the accumulator, yet committed-class entropy is **bit-identical** ARM_ON vs ARM_OFF per seed. Three nominally-separate channels feed one bottleneck.
 
 **Causal map:**
-`A (identical z_world -> class-uniform pool)` and `B (F = 88-89% of E3 variance)` are **parallel** contributors to the `committed_entropy ~ 0` surface symptom (not A->B: 569h shows B fails with A's output supra-floor). Both `A` and `B` gate `E` (within-class branch only fires with >=2 candidates per class, and its lift cannot move an F-dominated argmin). `C` (fixed 5-tick de-commit refractory cannot move a between-arm occupancy statistic against ~530-560 natural-commit steps) is a separate control-plane gap — dissociated from A/B by the 460e "inverse tell" (beta engagement fails on the *high*-rule-bias/saturated seeds and passes on the low-bias seed). `D` was independent of A (654d armed the GAP-A de-collapse and CRF `n_matched` *rose* to 7-8) and is now closed at the CRF locus alone.
+`A (identical z_world -> class-uniform pool)` and `B (F = 88-89% of E3 variance)` are **parallel** contributors to the `committed_entropy ~ 0` surface symptom (not A->B: 569h shows B fails with A's output supra-floor). Both `A` and `B` gate `E` (within-class branch only fires with >=2 candidates per class, and its lift cannot move an F-dominated argmin). `C` (fixed 5-tick de-commit refractory cannot move a between-arm occupancy statistic against ~530-560 natural-commit steps) is a separate control-plane gap — dissociated from A/B by the 460e "inverse tell" (beta engagement fails on the *high*-rule-bias/saturated seeds and passes on the low-bias seed). **[RECLASSIFIED 2026-06-20 — V3-EXQ-460h: `C` is NOT orthogonal. The ~530-560 (strong-seed ~2400-2600) natural-commit steps that swamp the de-commit ARE the F-driven E3 commitment (`result.committed` <- `running_variance < commit_threshold` <- F-dominated score; V3-EXQ-571 F=88-89%), so `C` is the *commit/release-duration face of root B*. The closure-coupled de-commit is a modulatory channel subdominant to the same F-driven commit: measurable only where the F-commit is WEAK (460h seed 44, OFF committed_steps=0), swamped where strong (seeds 42/43). Same "every modulatory channel drowns at the F-dominated commitment" shape as B, one control point down. See open questions 4/5 (now resolved) + the Campaign Status root-C fold-in.]** `D` was independent of A (654d armed the GAP-A de-collapse and CRF `n_matched` *rose* to 7-8) and is now closed at the CRF locus alone.
 
 ## Decisive attack point
 
@@ -55,8 +55,8 @@ A 2x2 isolation — **(A de-collapsed ON/OFF) x (B top-k k=3 shortlist ON/OFF)**
 1. Does the thin `569i` top-k margin (0.711 vs 0.650, 2/3 seeds) survive the full 625d/654g composite, or does F-dominance reassert under the foraging substrate's natural monostrategy?
 2. Is F's 88-89% E3 variance share an intrinsic primary-score property that a shortlist can only locally circumvent (near-ties), capping committed entropy below the proposer ceiling — i.e. is there a hard substrate ceiling even with the best selection lever? (= the MECH-439 question.)
 3. Will fixing B re-open D? A top-k shortlist that changes which candidates reach the CRF `gate_and_select` MATCH context could perturb `n_matched` — re-verify `crf_frac_active` under the B fix.
-4. Is C (de-commit) truly orthogonal, or does the bistable latch's commit-ENTRY decisiveness share a hidden upstream with B's F-dominated argmin (both need a decisive `result.committed`)? The 460e dissociation is strong but C and A co-occur on the same monostrategy seeds.
-5. For C, is the underpowered between-arm occupancy DV masking a real-but-small de-commit effect? A within-arm pre/post-closure delta DV must run before C is adjudicated substrate_ceiling vs measurement artifact.
+4. Is C (de-commit) truly orthogonal, or does the bistable latch's commit-ENTRY decisiveness share a hidden upstream with B's F-dominated argmin (both need a decisive `result.committed`)? The 460e dissociation is strong but C and A co-occur on the same monostrategy seeds. **[RESOLVED 2026-06-20 — V3-EXQ-460h: NOT orthogonal. C shares B's F-dominated commit decisiveness exactly; the de-commit is subdominant to the F-driven natural commit. Root C reclassified to the commit/release-duration face of B.]**
+5. For C, is the underpowered between-arm occupancy DV masking a real-but-small de-commit effect? A within-arm pre/post-closure delta DV must run before C is adjudicated substrate_ceiling vs measurement artifact. **[ADDRESSED 2026-06-20 — the within-arm pre/post-closure delta DV ran (460f/460g/460h). 460h existence proofs (seed-42 within-arm 0.333->0.0 C2 PASS; seed-44 commit-intent=375) show the de-commit fires with the correct sign: it is neither a clean substrate_ceiling nor a pure measurement artifact but a REGIME-COVERAGE gap (commit-intent and within-window certifiers fire on disjoint seeds) dissolved by the F-dominance commit-entry-decisiveness lever (root B). MECH-445/446 non_contributory + pending_retest.]**
 
 ## Correction note (critic-adjudicated)
 
@@ -64,7 +64,7 @@ The synthesis originally stated `569h` "collapses to entropy 0.0 with diverse in
 
 ## Evidence anchors
 
-`V3-EXQ-571` (F variance share), `569g/569h/569i` (conversion lineage), `684/684a` (shortlist-mode discriminator), `625d` (A+B composite), `654c/654d/654f` (D lineage, now closed), `460d/460e/460f` (C lineage), `614c/614d/614e/660/660a/660b/616` (E lineage), confirmed autopsies `failure_autopsy_V3-EXQ-{614e,569h,460f,460e,654c,654d,660b}_*`.
+`V3-EXQ-571` (F variance share), `569g/569h/569i` (conversion lineage), `684/684a` (shortlist-mode discriminator), `625d` (A+B composite), `654c/654d/654f` (D lineage, now closed), `460d/460e/460f/460g/460h` (C lineage; C reclassified to the commit/release-duration face of B by `failure_autopsy_V3-EXQ-460h_2026-06-20`), `614c/614d/614e/660/660a/660b/616` (E lineage), `514t` (MECH-436 drive vs base_value — same meta-shape at a different primary; own in-flight autopsy) + `625e` (SD-037 axis-b; 689a-gated F-front downstream) as candidate cluster members, confirmed autopsies `failure_autopsy_V3-EXQ-{614e,569h,460f,460e,460h,654g,485h,654c,654d,660b}_*`.
 
 ---
 
@@ -109,7 +109,21 @@ Replace the fixed `modulatory_shortlist_k=3` (e3_selector.py top-k block ~1148-1
 > `behavioral_diversity_isolation:GAP-I` + substrate-queue entry `f_dominance_conversion_ceiling`.
 > Keep `last_updated` current when the experiment chain advances.
 
-**Last updated:** 2026-06-19T22:02Z (f-dominance-front-standup) · **Owner experiment:** V3-EXQ-689a · **Claim:** MECH-439 (candidate; governance flips on the 689a result)
+**Last updated:** 2026-06-20T08:47Z (autopsy-apply-460h: root C folded into the front) · **Owner experiment:** V3-EXQ-689a (selection face) · **Claim:** MECH-439 (candidate; governance flips on the 689a result)
+
+> **Root C folded in (2026-06-20, V3-EXQ-460h).** The SD-034 closure de-commit (root C), previously
+> "open, orthogonal", is reclassified as the **commit/release-duration face of root B (F-dominance)**.
+> The de-commit is a modulatory channel subdominant to the same F-driven natural commit that
+> monopolises the candidate argmax: measurable only where the F-commit is weak (460h seed 44, OFF
+> committed_steps=0), swamped where strong (seeds 42/43, ~2400-2600 committed steps). The front's
+> existing levers (conflict-graded-k, gap-scaled commit-T; MECH-439) act at **selection** and do NOT
+> shorten the natural-commit latch occupancy — so the de-commit face needs an **additional
+> commit-ENTRY-decisiveness / natural-commit-latch-occupancy lever** (substrate_queue
+> `f_dominance_conversion_ceiling`, new rung). The 460i de-commit retest (MECH-445 + MECH-446) is
+> gated on that lever, NOT a re-queue on the current selector. **Candidate cluster members** of the
+> same one-structural-property front (each with its own in-flight autopsy): **V3-EXQ-514t** (MECH-436
+> drive vs `base_value` in the IncentiveTokenBank — same "modulatory drowns at the dominant primary"
+> shape at a different primary) and **V3-EXQ-625e** (SD-037 axis-b — 689a-gated F-front downstream).
 
 ## Where the campaign is
 
@@ -164,6 +178,7 @@ re-queued on the current selector** (they will re-confirm the ceiling). They rel
 | **445h-successor** dACC c2 | MECH-260 (+ dACC) | gated (claims.yaml MECH-269 ceiling_routing_note); committed-action-entropy shift floor-locked until conversion exists |
 | **625e** SD-037 axis-b | SD-037, MECH-280, MECH-281 | R3/R4 conversion-propagation-under-threat gate (in flight; self-routes substrate_not_ready until conversion lands) |
 | **687-successor** GAP-C | Q-045, MECH-313, MECH-260 | inherited the un-converted GAP-A ceiling by construction (failure_autopsy_V3-EXQ-687_2026-06-18) |
+| **460i** SD-034 de-commit (root-C face) | MECH-445, MECH-446 | gated (failure_autopsy_V3-EXQ-460h_2026-06-20); commit/release-duration face — release on the commit-ENTRY-decisiveness / latch-occupancy lever (NEW substrate rung), NOT the selection lever; commitment_closure:GAP-4 |
 
 ## Operational note (actionable now)
 
