@@ -25,6 +25,13 @@ closure_plan:
     by gaining an owner_exq once its first grounding-validation experiment is
     queued -- EXCEPT BG-2, whose validation is already V3-owned by
     behavioral_diversity_isolation:GAP-I (it mirrors, never duplicates).
+    PULL-INTO-V3: generation is per-plan (generate_closure_snapshot.py reads it at
+    the plan level and stamps every node), so a node that becomes REQUIRED to
+    close a V3 node is NOT retagged in place here. It is instantiated as a node in
+    the OWNING v3 closure plan (where it counts toward the V3 %) and the backlog
+    node becomes its cross_plan_link mirror -- exactly the BG-2 <-> GAP-I pattern,
+    already live. Trigger = phase-label-follows-dependency (work that blocks a v3
+    closure node IS v3 by definition; enrichment is recouped to V3).
   nodes:
     - id: "biology_grounding_convergence_v4:BG-1"
       title: "Grounding method + standing constraint (the framework itself)"
@@ -194,6 +201,30 @@ deferral:
   gain knob is already falsified).
 - **BG-5 (goal)**, **BG-6 (attention)**, **BG-7 (ethics)** are later-generation
   and mostly map-not-build; BG-6/BG-7 are explicitly containment-only / honest-no-analog.
+
+## Promotion to V3 (pull-in path)
+
+If a grounding node turns out to be **required for V3 completion** (not merely a
+better-finish enrichment), it is pulled into V3 like this -- `generation` is a
+**per-plan** field, so you never just retag one node here:
+
+1. **Trigger.** The node's grounding work becomes a prerequisite for closing a
+   live V3 closure node. By `phase-label-follows-dependency`, that work is V3 by
+   definition (a heavier rung needed to lift a V3 node is recouped to V3).
+2. **Instantiate in the owning V3 plan.** Add the work as a node in the V3
+   closure plan that owns the component (e.g. `commitment_closure_plan` for BG-3,
+   the relevant V3 node for BG-4) with an `owner_exq`. *There* it counts toward
+   the V3 closure %.
+3. **Demote this node to a mirror.** The BG node here becomes a `cross_plan_link`
+   pointer to the new V3 node (status `in_progress`, `owner_exq: null`), so the
+   programme stays legible end-to-end without double-counting.
+
+This is not hypothetical: **BG-2 ↔ `behavioral_diversity_isolation:GAP-I` is the
+pattern already running.** The selector grounding was the first node to be V3-
+required; it lives as a counted V3 node in GAP-I, and BG-2 is its mirror. BG-3
+(commitment) and BG-4 (drive) follow the same route the moment 689a / 514u make
+them V3-blocking. Each BG node's `readiness_gate` already names the V3-era
+prerequisite that fires the trigger.
 
 ## Convergence backlog source
 
