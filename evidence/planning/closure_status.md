@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-20T12:19:36Z
+Generated: 2026-06-20T13:27:08Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -138,7 +138,7 @@ _None -- every plan doc is mapped._
 Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V4/V5 have no experiments yet, so their nodes carry no `owner_exq` and do not count toward the V3 closure percentage. Each node's gate is the V3-era prerequisite that must land first.
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
-- **GOVERNANCE**: 83.3% across 6 non-deferred nodes in 1 plan(s).
+- **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **PROCESS**: 100.0% across 13 non-deferred nodes in 2 plan(s).
 - **V4**: 27.6% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
@@ -190,7 +190,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-fix` | Driver-script_path coupling fix -- include_driver_script_in_hash so a  | done | medium |  | 2026-06-09 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:LOOP` | Sense -> Mine -> Register -> Adjudicate cadence (demand-driven, piggyb | done | medium | depends_on: convergence_demand_pipeline:QUEUE | 2026-06-17 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-1` | V3 reduced form -- MECH-384 self-narration trace surface (the seed the | done | medium | MECH-384 is the ONLY V3-compatible instantiation: implementation_phase v3, epistemic_categ | 2026-06-14 |
-| governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-WELFARE-TAG` | Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as qu | open | medium | descriptive-only V3 welfare tagging + preflight doc-habit; non-blocking, do before 2026-07 |  |
+| governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-WELFARE-TAG` | Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as qu | done | medium | depends_on: ethics_perimeter:P1-V3-BOUNDARY | 2026-06-20 |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-2` | Open, extensible affect-stream taxonomy (handles, not a final ontology | done | medium | V3 SEED present: affect_primitives.md already registers a three-way harm dissociation (SD- | 2026-06-13 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-2` | Grammar->substrate mapping table (the mining artifact): per primitive, | open | medium | No substrate gate to AUTHOR the table -- it is a living V5/V6 design artifact (doc + metho | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-2` | Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / | done | medium | Project rule feedback_biology_before_formal_definitions: commission this /lit-pull BEFORE  | 2026-06-17 |

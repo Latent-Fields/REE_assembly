@@ -35,10 +35,10 @@ closure_plan:
     - id: "ethics_perimeter:P1-V3-WELFARE-TAG"
       title: "Phase 1 -- tag V3 welfare-relevant primitives + ethics-preflight as queue-experiment doc"
       phase: 1
-      status: open
+      status: done
       severity: medium
       depends_on: ["ethics_perimeter:P1-V3-BOUNDARY"]
-      resume_condition: "descriptive-only V3 welfare tagging + preflight doc-habit; non-blocking, do before 2026-07-19 if cheap"
+      last_updated: 2026-06-20
     - id: "ethics_perimeter:P2-PREFLIGHT"
       title: "Phase 2 keystone -- experiment-ethics preflight (operational SENT-2/4/8/10 thresholds)"
       phase: 2
@@ -197,11 +197,20 @@ cross-refs, and the `SENT-CLAIM-*/GOV-CLAIM-*` prose wordings in its `notes`.
 - [x] SENT-0 boundary statement into `ree-v3/README.md` and a new
       `docs/governance/sentience_welfare_risk_register.md` (landed 2026-06-19;
       README "Scope & Ethics Boundary" section + the SENT-0..6 register stub).
-- [ ] Tag V3's welfare-relevant primitives (harm streams, residue,
+- [x] Tag V3's welfare-relevant primitives (harm streams, residue,
       suffering-like accumulators, replay) as `welfare_relevant: true`
-      (descriptive only, no gate).
-- [ ] Add the ethics-preflight as **documentation** to `/queue-experiment`
+      (descriptive only, no gate). (landed 2026-06-20; descriptive
+      `welfare_relevant = True` class markers on `HarmEncoder` /
+      `AffectiveHarmEncoder` (`ree-v3/ree_core/latent/stack.py`),
+      `ResidueField` (`residue/field.py`), MECH-219 `HarmSufferingAccumulator`
+      (`affect/harm_suffering_accumulator.py`), `SleepLoopManager`
+      (`sleep/phase_manager.py`) + `SleepReplaySampler` (`sleep/replay_sampler.py`),
+      each cross-referencing SENT-0 + the register stub.)
+- [x] Add the ethics-preflight as **documentation** to `/queue-experiment`
       (most V3 fields are `false`/`n/a` — establishes the habit, does not enforce).
+      (landed 2026-06-20; `/queue-experiment` SKILL.md Step 2.6, mirrored to both
+      `.claude/` and `.agents/`; condenses the P2-PREFLIGHT keystone
+      `docs/governance/experiment_ethics_preflight.md`.)
 - [x] GOV-HEALTH-1 bright-line note into `ree-v3/README.md` (no clinical use;
       no patient data in public repos) (landed 2026-06-19; README "Scope & Ethics
       Boundary" section, "clinical relevance != clinical readiness").
