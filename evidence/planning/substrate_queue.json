@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "autopsy-apply-460h-20260620T0843Z",
-  "last_updated_utc": "2026-06-20T15:35:16Z",
+  "last_updated_utc": "2026-06-20T18:30:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4762,7 +4762,7 @@
     {
       "sd_id": "f_dominance_conversion_ceiling",
       "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion. [2026-06-20: now ALSO owns the SD-034 closure de-commit (root C) as the COMMIT/RELEASE-DURATION FACE -- reclassified from open/orthogonal by failure_autopsy_V3-EXQ-460h; the selection-face levers do not shorten natural-commit latch occupancy, so a commit-entry-decisiveness lever is added below.]",
-      "status": "lead_lever_built_experiment_in_flight_v3_exq_689a",
+      "status": "conflict_grade_near_tie_parametric_family_exhausted__build_rank_preserving_F_to_eligibility_demotion_MECH448_lead_MECH449_followon",
       "ready": false,
       "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
       "depends_on_resolved": [
@@ -4771,7 +4771,8 @@
         "modulatory-bias-selection-authority (the channel whose range reaches the accumulator but cannot move the F-dominated argmin)"
       ],
       "depends_on_unresolved": [
-        "V3-EXQ-689a (the 2-factor k=f(gap) x commit-T=f(gap) gap-blind-controlled falsifier; queued prio 400, claimed DLAPTOP-4.local 2026-06-19T20:25Z; PASS validates the lead lever, FAIL escalates the fallback ladder below)"
+        "rank-preserving F->eligibility demotion lever build (MECH-448 lead; e3_selector.py, not yet built) -- ELEVATED to LEAD by user decision 2026-06-20 after V3-EXQ-689a exhausted the conflict-grade near-tie parametric family",
+        "MECH-449 Go/No-Go eligibility governance (substrate_conditional, broader follow-on)"
       ],
       "unblocks_claims": [
         "MECH-439",
@@ -4786,21 +4787,26 @@
         "MECH-280",
         "MECH-281",
         "MECH-445",
-        "MECH-446"
+        "MECH-446",
+        "MECH-447",
+        "MECH-448",
+        "MECH-449",
+        "ARC-107",
+        "Q-078"
       ],
       "fallback_ladder": [
         {
           "rung": 1,
           "lever": "conflict_graded_shortlist + gap_scaled_commit_T",
           "tractability": "V3 (built; e3_selector.py _gap_scaled_commit_pick + conflict-graded top-k block)",
-          "status": "BUILT, in validation via V3-EXQ-689a",
+          "status": "EXHAUSTED -- V3-EXQ-689a FAIL/non_contributory: both-levers ARM_A1B1 0/3 above collapsed AND gap-blind controls; destructive A x B; Factor B alone marginal 2/3 but seed-fragile. The conflict-grade near-tie parametric family is NOT the conversion fix.",
           "note": "BG hyperdirect conflict-grade: k=clamp(round(k_max-(k_max-1)*gap_norm),1,K) bounds the eligible set (hard safety) + T_eff=base+alpha*(1-gap_norm) softens the committed argmax; F gates eligibility only, absent from the final argmin. Falsifier: lift must CORRELATE with per-tick top-F gap (gap-blind controls must NOT match), else it is 'just a bigger shortlist'."
         },
         {
           "rung": 2,
           "lever": "rank_preserving_F_to_eligibility_demotion",
           "tractability": "V3 (mid; arithmetic restructure of the select site)",
-          "status": "fallback if rung-1 margin stays thin",
+          "status": "ELEVATED to LEAD build (user decision 2026-06-20) -- rung 1 conflict-grade near-tie family exhausted by 689a; routed to /implement-substrate (ARC-107 BG-selector constitution).",
           "note": "F removed from the final argmin entirely, used only as a graded eligibility envelope. Stronger structural variant of rung 1."
         },
         {
@@ -4869,6 +4875,12 @@
           "experiment_type": "v3_exq_690_q054_arc062_diversity_floor_sweep",
           "metric": "R1 realised-committed-first-action-entropy RANGE across 4 min_temperature arms = 0.0 (byte-identical per-seed metrics across a 0.30->2.75 effective-temperature sweep); R3 discriminator non-degenerate 0/4 arms. 4th confirmed inert lever (noise-floor temperature) -- a selection-softmax temperature floor (MECH-313) is architecturally incapable of moving a deterministic committed argmin (lever-target mismatch).",
           "target": "a committed-argmax-reaching lever (569i top-k k / 689a conflict-graded shortlist width) must move realised committed first-action entropy across arms by > 0.2 nats with the discriminator non-degenerate on a majority of arms before the Q-054 floor question is answerable"
+        },
+        {
+          "run_id": "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier_20260620T175346Z_v3",
+          "experiment_type": "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier",
+          "metric": "ARM_A1B1 (both conflict-grade levers, gap-scaled) committed-action-class entropy 0.387 = A0B0 baseline 0.371; 0/3 seeds strict-above collapsed-proposer controls AND 0/3 above gap-blind controls (FIXED_KMAX 0.546 / FIXED_HOT_T 0.591). Readiness met (route 0.624, e2 0.187, levers engaged 3/3), non_degenerate. Dissociation: A0B1 commit-T-alone 0.850 (2/3 above both control sets); A1B0 width-alone 0.440 inert; destructive A x B.",
+          "target": "a constitutional lever (rank-preserving F->eligibility demotion / Go-NoGo eligibility governance) lifts committed-action-class entropy strict-above BOTH control sets on >=2/3 seeds WITHOUT disinhibiting harmful classes (order preserved on the numerators)"
         }
       ],
       "metric_trajectory": {
@@ -4885,16 +4897,17 @@
           "V3-EXQ-485h (2026-06-19): OFC valuation bias reaches authority 0.50, zero committed conversion -- 2nd convergent channel.",
           "V3-EXQ-689: self-routed substrate_not_ready_requeue (gap_spread 0/3; F-gap pinned near-tie; per-gap-bin regression uncomputable).",
           "V3-EXQ-689a (IN FLIGHT): redesign with gap-BLIND control arms (FIXED_KMAX + FIXED_HOT_T) so gap-concentrated-vs-uniform lift is an arm contrast (sidesteps the uncomputable per-gap-bin regression).",
-          "V3-EXQ-460h (2026-06-20): SD-034 closure de-commit (root C) is the COMMIT/RELEASE-DURATION FACE of F-dominance, not orthogonal. The refractory-independent commit-intent fix works (seed-44 commit_intent=375 where 460g collapsed 36->0) but the de-commit is measurable only where the F-driven natural commit is WEAK (seed 44 OFF committed_steps=0); swamped where strong (42/43, 2414/2609). MECH-445/446 non_contributory + pending_retest; 460i gated on the commit-entry-decisiveness lever (new rung), NOT the selection lever."
+          "V3-EXQ-460h (2026-06-20): SD-034 closure de-commit (root C) is the COMMIT/RELEASE-DURATION FACE of F-dominance, not orthogonal. The refractory-independent commit-intent fix works (seed-44 commit_intent=375 where 460g collapsed 36->0) but the de-commit is measurable only where the F-driven natural commit is WEAK (seed 44 OFF committed_steps=0); swamped where strong (42/43, 2414/2609). MECH-445/446 non_contributory + pending_retest; 460i gated on the commit-entry-decisiveness lever (new rung), NOT the selection lever.",
+          "V3-EXQ-689a (2026-06-20): conflict-grade BOTH-levers ARM_A1B1 committed entropy 0.387 = baseline, 0/3 above collapsed AND gap-blind controls -- the near-tie parametric lever family is EXHAUSTED. 2x2 dissociation: Factor B (gap-scaled commit-T) alone 0.850 (2/3 above both control sets) but seed-fragile (0.569 not collapse on seed-43); Factor A (graded shortlist width) inert 0.440; destructive A x B (A1B1 collapses to baseline). User-adjudicated ELEVATE the constitutional build (ARC-107): lead MECH-448 rank-preserving F->eligibility demotion, follow-on MECH-449 Go/No-Go governance."
         ],
         "prediction": "If conflict-grading is load-bearing, ARM_A1B1 lifts committed-class entropy gap-CONCENTRATED (strict-above the gap-blind controls) -> MECH-439 supports, ceiling lifted, downstream retests unblock. If the lift is UNIFORM (gap-blind controls match ARM_A1B1) -> 'just a bigger shortlist', escalate to rung 2 (rank_preserving_F_to_eligibility_demotion). If NO lift at all (ARM_A1B1 ~ collapsed controls) -> structural bound caps below proposer ceiling -> rung 3+ (divisive-norm/output-null/QD-archive), recouped to V3 by phase-label-follows-dependency."
       },
-      "implementation_hint": "Lead lever BUILT (e3_selector.py _gap_scaled_commit_pick line ~745 + conflict-graded top-k block ~1110-1210). No further build owed at rung 1 -- the action is the EXPERIMENT (689a). On 689a result, governance routes per the fallback ladder: PASS -> MECH-439 candidate->supports + unblock the downstream retests; UNIFORM-lift -> build rung 2; NO-lift -> build a rung 3+ enrichment (recouped to V3). Downstream retests gated on a PASS: arc_062:GAP-B 654h (pre-registered), 485i OFC (deferred, route OFC bias through the validated channel), 445h dACC c2 (gated), 625e SD-037 axis-b (R3/R4 conversion-propagation gate), 687-successor GAP-C.",
+      "implementation_hint": "Conflict-grade near-tie parametric family EXHAUSTED by V3-EXQ-689a (rung 1 FAIL/non_contributory). LEAD build now = rung 2 rank-preserving F->eligibility demotion (MECH-448): remove F from the final committed argmin, use it ONLY as a graded eligibility envelope (rank-preserving renormalisation vs the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439), behind a no-op-default flag in e3_selector.py, so a modulatory/diversity channel arbitrates within the F-eligible set WITHOUT disinhibiting harmful classes. Broader follow-on = MECH-449 Go/No-Go eligibility governance (the ARC-107 BG-selector constitution). Falsifier = committed-action-class entropy strict-above BOTH control sets on >=2/3 seeds, order preserved on the numerators (F still ranks within-eligible), no global disinhibition of harmful classes. Routed to /implement-substrate. Downstream retests (arc_062:GAP-B 654h, 485i OFC, 445h dACC c2, 625e SD-037 axis-b, 687-successor GAP-C) gated on the constitutional lever PASS, NOT the exhausted conflict-grade selector.",
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-cycle-20260620T1208Z",
-      "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face)",
+      "last_seen_session": "governance-689a-apply-20260620T1827Z",
+      "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",
       "pending_retest_after_substrate": true,
       "candidate_cluster_members": [
         {
