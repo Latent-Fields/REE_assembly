@@ -1,0 +1,69 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T06:43:37Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
+      "queue_id": "V3-EXQ-468f",
+      "claim_ids": ["SD-034", "MECH-268", "MECH-090"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-034 unclear / MECH-268 not fairly tested / MECH-090 not fairly tested -- the closure coupling never engaged so no claim could express itself; C1's 3/3 pass is degenerate (natural release, not closure-coupled)",
+        "biological_reference": "clear -- sustained counter-evidence -> task-set disengagement (Collins & Frank 2014; Rich & Shapiro 2009); the BG-like closure->beta coupling never fired so the de-commit had nothing to release",
+        "prerequisites": "present-but-inert -- Legs A/B/C + beta-engagement + magnitude lever landed; residual is coupling does not ENGAGE on strong-natural-commit seeds (MECH-445) AND the script measures it with the suppressed counter",
+        "implementation": "measurement gap -- non-vacuity gate keys on sd034_n_closure_coupled_elevations (suppressed by the 460g magnitude refractory) instead of the landed 460h sd034_n_closure_commit_intent certifier",
+        "environment": "adequate -- contradictions fire on every ON seed (6/4/5); guard 2/3",
+        "measurement": "under-instrumented / wrong counter -- suppressed per-entry counter + occupancy DV pinned at the 1.0 ceiling",
+        "integration": "isolated -- env-completion hook fires (n_hook_fires 3/4/1) but does not couple to a measurable beta elevation; commit-intent uninstrumented",
+        "scale": "adequate -- eval 15 episodes; releases + contradictions fire; not the binding gap"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG/OFC commitment-closure: sustained counter-evidence -> task-set disengagement (Collins & Frank 2014; Rich & Shapiro 2009 OFC sequence-completion)",
+        "dependencies": ["closure->beta coupling engagement (MECH-445)", "de-commit refractory authority (MECH-446)", "trained rule_bias_head (Leg-C)"],
+        "is_formal_import": false,
+        "divergence": "the reference disengagement mechanism never fired here -- the coupling did not engage, so the FAIL is a discovered-prerequisite + measurement artifact, not a falsification",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "no_change (self-route substrate_not_ready_requeue is correct; SD-034 provisional / MECH-268 candidate / MECH-090 active all stay non_contributory + pending_retest)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-034": "non_contributory",
+        "MECH-268": "non_contributory",
+        "MECH-090": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-468f (supersedes 468e; de-commit-MAGNITUDE-amended substrate): FAIL, self-route substrate_not_ready_requeue. Load-bearing coupling non-vacuity precondition unmet (sd034_n_closure_coupled_elevations = 0 on all 3 ON-arm seeds despite the env-completion hook firing 3/4/1), so neither load-bearing criterion drove a verdict (criteria_non_degenerate C1/C2 both false; 0/3 criteria). Autopsy (failure_autopsy_V3-EXQ-468f_2026-06-20, confirmed): doubly non-contributory -- (1) the closure->beta coupling genuinely did not engage on the foraging substrate's natural strong-commit seeds (the MECH-445 gap; cluster with V3-EXQ-460h, which certified coupling on only 1/3 seeds via the correct counter), AND (2) 468f keyed its gate on sd034_n_closure_coupled_elevations, the per-ENTRY counter the 460g de-commit-magnitude refractory structurally suppresses (the S5 entanglement), instead of the landed 460h refractory-independent sd034_n_closure_commit_intent certifier -- a 468-lineage instrumentation lag. C1's 3/3 pass is degenerate (natural release, not closure-coupled), so -- unlike 468e -- 468f carries no narrow MECH-268 positive. SD-034 / MECH-268 / MECH-090 -> non_contributory + pending_retest_after_substrate (protect active MECH-090; 468e's narrow MECH-268 positive on the prior beta-engagement substrate is not invalidated). Re-issue 468g with the non-vacuity gate re-keyed to sd034_n_closure_commit_intent, gated on MECH-445 coupling engagement >= 2/3 seeds.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "commitment-closure-control-plane",
+        "implementation_hint": "Append the 468f failure record. NO new substrate need: the refractory-independent sd034_n_closure_commit_intent certifier already exists (460h amend, 2026-06-19) and the shared coupling-engagement gap is already recorded via 460g/460h. The actionable residual is a 468-lineage INSTRUMENTATION LAG -- the perseveration script must adopt the landed commit-intent counter for its non-vacuity gate (the 468g re-issue, experiment-side). The binding substrate gap remains MECH-445 coupling engagement on natural strong-commit seeds (460h 1/3).",
+        "unblocks_claims": ["SD-034", "MECH-268", "MECH-090", "MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["MECH-445 closure->beta coupling engagement >= 2/3 seeds on the foraging substrate"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
+          "experiment_type": "v3_exq_468f_sd034_mech268_decommit_hold_behavioural",
+          "metric": "sd034_n_closure_coupled_elevations = 0 on all 3 ON-arm seeds (per-entry counter suppressed by the 460g magnitude refractory); closure_coupling_and_contradiction_nonvacuous = 0.0; criteria_non_degenerate C1/C2 both false; 0/3 criteria pass",
+          "target": "non-vacuity gate re-keyed to sd034_n_closure_commit_intent > 0 (460h certifier) AND MECH-445 coupling engagement >= 2/3 guard seeds before the perseveration C1/C2 DV can drive a verdict"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "468f keyed its load-bearing coupling non-vacuity gate on sd034_n_closure_coupled_elevations -- the per-ENTRY counter the 460g de-commit-magnitude refractory structurally suppresses -- and did NOT adopt the 460h refractory-independent sd034_n_closure_commit_intent certifier (grep: zero matches in the 468f script). 468-lineage instrumentation lag behind the 460-lineage.",
+        "C1's 3/3 pass is degenerate (criteria_non_degenerate.C1=false): with coupled_elev=0 the beta-releases-near-contradiction are natural, not closure-coupled, so C1 carries no MECH-268/MECH-090 signal. Unlike 468e (non-degenerate C1 -> narrow MECH-268 supports), 468f carries no narrow positive -- all three non_contributory.",
+        "Cluster with 460h: the genuine binding gap is MECH-445 closure->beta coupling engagement -- certified on only 1/3 seeds even with the correct counter (460h). A 468g re-issue will keep self-routing substrate_not_ready_requeue until MECH-445 clears >= 2/3 seeds; that is the real substrate work, not a perseveration-DV problem.",
+        "MECH-090 (active) must not be weakened by a degraded/degenerate C1; 468e's narrow MECH-268 positive on the prior beta-engagement substrate is not invalidated by 468f (different substrate, suppressed counter)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "closure->beta coupling does not engage on the foraging substrate's natural strong-commit seeds; the de-commit/perseveration DV has nothing to measure",
+    "is_independent_bugs": false,
+    "structural_property": "ONE MECH-445 coupling-engagement gap rendered through two channels on the same de-commit-MAGNITUDE-amended substrate: 460h (de-commit side, correct refractory-independent counter, 1/3 seeds) and 468f (perseveration side, suppressed per-entry counter, 0/3). 468f additionally lags the 460h instrumentation upgrade.",
+    "readings": ["substrate_coupling_engagement_gap_MECH445", "test_design_instrumentation_lag_468_lineage"],
+    "co_targets": ["V3-EXQ-460h (MECH-445/MECH-446; autopsied in a parallel live session 2026-06-20)"]
+  }
+}

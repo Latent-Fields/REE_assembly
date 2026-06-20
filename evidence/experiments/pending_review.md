@@ -1,14 +1,13 @@
 # Pending Experiment Review
 
-Generated: `2026-06-20T06:28:07Z`  
-Last review: `2026-06-20T06:26:10Z`  
-Pending: **4** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-20T08:32:17Z`  
+Last review: `2026-06-20T08:31:59Z`  
+Pending: **3** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3` | 2026-06-19T22:44 | MECH-090, MECH-268, SD-034 | — |
 | `v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3` | 2026-06-19T23:34 | (no claim tags) | — |
 | `v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3` | 2026-06-20T01:47 | MECH-445, MECH-446 | — |
 
