@@ -250,5 +250,6 @@ into committed action**, not entropy.
 - Autopsy: `evidence/experiments/failure_autopsy_V3-EXQ-689a_2026-06-20.md`
 - Conversion-ceiling Phase-0/1 synthesis: `conversion_ceiling_phase0_synthesis_2026-06-18.md`
 - Claims: ARC-107, MECH-447, MECH-448, MECH-449, Q-078 (claims.yaml); ARC-106 grounding framework `docs/architecture/arc_106_biology_grounding_framework.md`
-- ARC-106 grounding synthesis (L2 anchors + divergence ledger + psychiatric column): `evidence/literature/targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md`
+- ARC-106 grounding synthesis (SELECTION face -- L2 anchors + divergence ledger + psychiatric column): `evidence/literature/targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md`
+- ARC-106 grounding synthesis (COMMIT/RELEASE-DURATION face -- the s2 last-row post-commit latch / s5 "commitment instability" risk; BG-3 cluster SD-034/MECH-090/MECH-342/MECH-445/MECH-446; load-bearing divergence = tuned beta-gate refractory vs biology's graded BG/pallidal urgency + behaviour-co-extensive maintenance; psychiatric poles perseveration/catatonia vs distractibility/disorganisation): `evidence/literature/targeted_review_commit_release_duration_latch/SYNTHESIS.md` (BG-3 grounding, lit-pull-bg3 session 2026-06-20)
 - Substrate queue rung: `f_dominance_conversion_ceiling` (substrate_queue.json)

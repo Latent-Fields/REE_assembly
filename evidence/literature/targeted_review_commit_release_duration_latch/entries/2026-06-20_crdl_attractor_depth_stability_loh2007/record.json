@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_release_duration_latch",
+  "entry_id": "2026-06-20_crdl_attractor_depth_stability_loh2007",
+  "timestamp_utc": "2026-06-20T18:41:17Z",
+  "claim_ids_tested": ["MECH-090", "MECH-342"],
+  "source": {
+    "title": "A dynamical systems hypothesis of schizophrenia.",
+    "authors": ["Marco Loh", "Edmund T Rolls", "Gustavo Deco"],
+    "year": 2007,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.0030228",
+    "url": "https://doi.org/10.1371/journal.pcbi.0030228"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Influential integrate-and-fire attractor model showing that a SINGLE stability parameter -- the depth of an attractor basin (set by NMDA/GABA conductances) -- controls how long a network holds a state, and that moving it in opposite directions yields opposite clinical pictures: too-shallow -> instability/distractibility, too-deep (the complementary direction the authors and Rolls' later work develop) -> over-stable/perseverative. This is the closest formal analog to REE's premise that ONE refractory/maintenance parameter sets commitment DURATION and that both psychiatric poles of the BG-3 column fall out of mis-setting it. Computational (not empirical) and about cortical working-memory attractors rather than a motor commitment latch, which caps fidelity/transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model is about prefrontal/temporal working-memory and semantic attractors, not a basal-ganglia motor commitment latch; the persistence mechanism is recurrent NMDA-stabilised firing, not a refractory timer. Equating attractor depth with REE's refractory parameter is an analogy at the level of 'one stability knob, two failure poles', not a mechanistic identity.",
+    "The paper anchors the SHALLOW (distractibility/instability) pole empirically within the model; the DEEP (perseveration) pole is the complementary direction developed in the surrounding Rolls/Deco programme rather than the headline result here, so the over-maintenance pole leans on the framework's symmetry, not on this paper's primary simulation."
+  ],
+  "tags": ["mech_090", "mech_342", "attractor_depth", "stability", "distractibility", "perseveration", "bg_3", "psychiatric_failure_mode"],
+  "mapping": {
+    "source_claim_statement": "A reduced depth in the basins of attraction of cortical attractor states (e.g. via reduced NMDA receptor conductance) destabilises network activity against the stochastic fluctuations from spiking noise, decreasing the stability of short-term-memory states and increasing distractibility; the depth of the attractor basin is the single parameter trading stability against flexibility.",
+    "ree_translation": "Attractor depth is the biological cousin of REE's commitment-duration parameter (the committed-run-scaled refractory / maintenance gain). One stability knob sets how long a state is held against noise: set it too low and the held state collapses early (distractibility / disorganisation -- the under-maintenance pole of the BG-3 column); set it too high and the state cannot be displaced (perseveration / rigidity -- the over-maintenance pole). REE's MECH-090 hold and MECH-342 release are the engineered version of this depth trade-off.",
+    "mapping_caveat": "This is a computational model of cortical working-memory/semantic attractors, not a BG motor commitment latch, and the persistence mechanism is recurrent NMDA-stabilised firing rather than a refractory timer. The mapping is at the level of control STRUCTURE -- a single stability parameter whose mis-setting produces opposite clinical poles -- not a mechanistic identity. The deep-attractor (perseveration) pole is the symmetric complement developed across the Rolls/Deco programme; this specific paper foregrounds the shallow (distractibility) pole.",
+    "source_context": "Integrate-and-fire spiking network simulations of cortical attractor dynamics; NMDA and GABA conductance manipulations related to schizophrenia symptom clusters (cognitive/negative/positive)."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.50,
+    "notes": "Source quality solid (PLoS Comput Biol, Rolls/Deco, widely cited) but it is a model, not data. Mapping fidelity is the highest in this set (0.70) for the SPECIFIC claim being grounded -- that one stability parameter sets duration and both psychiatric poles -- because the model is literally about that trade-off. Transfer risk moderate (0.50): cortical WM attractor onto a motor commitment latch; both are persistence mechanisms but different substrates and the timer-vs-recurrence distinction is real."
+  }
+}

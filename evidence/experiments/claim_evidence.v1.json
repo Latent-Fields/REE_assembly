@@ -5110,7 +5110,7 @@
       }
     },
     "ARC-071": {
-      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.837",
+      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.836",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -5139,9 +5139,9 @@
       },
       "latest_run_id": "2026-05-10_arc_071_visuomotor_chunk_size_sakai2003",
       "latest_timestamp_utc": "2026-05-10T17:17:14Z",
-      "literature_confidence": 0.837,
-      "literature_confidence_parallel": 0.837,
-      "overall_confidence": 0.837,
+      "literature_confidence": 0.836,
+      "literature_confidence_parallel": 0.836,
+      "overall_confidence": 0.836,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -15368,21 +15368,22 @@
       }
     },
     "MECH-090": {
-      "confidence_rationale": "exp=18 entry(s), lit=16 entry(s), exp_conf=0.678, lit_conf=0.685",
+      "confidence_rationale": "exp=18 entry(s), lit=19 entry(s), exp_conf=0.678, lit_conf=0.708",
       "direction_counts": {
-        "mixed": 11,
-        "supports": 14,
+        "mixed": 12,
+        "supports": 16,
         "unknown": 0,
         "weakens": 9
       },
-      "entries_total": 34,
+      "entries_total": 37,
       "evidence_class_counts": {
         "exp:simulation": 18,
         "lit:behavioral_human": 1,
+        "lit:computational_model": 1,
         "lit:connectome_mechanistic_review": 3,
         "lit:electrophysiology_eeg": 1,
         "lit:electrophysiology_lfp": 3,
-        "lit:electrophysiology_single_unit": 3,
+        "lit:electrophysiology_single_unit": 5,
         "lit:fmri_lesion": 1,
         "lit:theoretical_review": 4
       },
@@ -15400,64 +15401,13 @@
         "unknown": 0,
         "weakens": 4
       },
-      "latest_run_id": "2026-06-02_mech_090_stn_decision_threshold_cavanagh2011",
-      "latest_timestamp_utc": "2026-06-02T15:35:42Z",
-      "literature_confidence": 0.685,
-      "literature_confidence_parallel": 0.685,
-      "overall_confidence": 0.682,
+      "latest_run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+      "latest_timestamp_utc": "2026-06-20T18:41:17Z",
+      "literature_confidence": 0.708,
+      "literature_confidence_parallel": 0.708,
+      "overall_confidence": 0.693,
       "pass_runs": 8,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.72,
-          "confidence_rationale": "Strong single-unit electrophysiology from VTA dopamine neurons in rats performing a delay/magnitude choice task. The load-bearing finding for this lit-pull: VTA-DA cue-evoked activity initially reflected the *better* option (the one with higher subjective value) even when the rat subsequently selected a different option. Mapped to REE, this is direct neural evidence for a dopaminergic readiness signal over a leading candidate that is upstream of the commit decision -- the system can represent 'the better option is X and I am preparing it' before commitment, and commitment can fire on a different option only by overriding that preparation. The implication for REE: there is an empirically grounded readiness/value signal whose state at the moment of commit-entry distinguishes 'I committed because the prepared plan was ready' from 'I committed because the world stopped surprising me'. The current rv-only predicate is blind to this distinction. Confidence is moderate-to-high but not maximal: the paper is about choice between two known options rather than about commitment versus exploration, and the framing 'premature-commit pathology' is the user's framing of an associated literature rather than a primary claim of this specific paper. The paper anchors a body of Roesch / Schoenbaum work where impulsive choice phenotypes (premature commit) map onto dysregulated DA readiness signals; this entry is the cleanest single load-bearing finding from that body of work.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "weakens",
-          "experiment_type": "targeted_review_connectome_mech_090",
-          "failure_signatures": [
-            "commit_fires_without_dopaminergic_readiness_signal_for_a_specified_option",
-            "rv_only_predicate_cannot_distinguish_prepared_plan_from_arbitrary_collapse"
-          ],
-          "run_id": "2026-05-28_mech090_premature_commit_pathology_roesch2007",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-05-28T17:00:25Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.74,
-          "confidence_rationale": "Recent (2025) single-unit + causal optogenetic Nature paper showing basal-ganglia OUTPUT (SNr) bidirectionally and movement-specifically licenses AND suppresses ongoing forelimb movements in real time. Establishes the EFFECTOR for maintenance-time motor-program release exists at the BG-output / motor-latch level and is continuous and granular, distinct from slow goal-level disengagement. Strong source; transfer risk elevated by mouse-to-REE-latch gap and because the paper frames pauses as movement-enabling rather than the release per se.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_090_release_motor_cessation",
-          "failure_signatures": [
-            "Falasconi frame SNr firing PAUSES as movement-ENABLING (release of a movement) and INCREASES as suppression -- the sign convention is movement-specific and bidirectional, so a naive 'increase = abort' reading is wrong; the abort of a committed program is the increase-firing suppression on that specific movement channel.",
-            "Suppression is movement-specific (one neuron pauses for movement A while increasing to suppress A when movement B runs) -- a global non-specific brake would be the wrong model for a targeted commitment release."
-          ],
-          "run_id": "2026-06-02_mech_090_bg_output_suppression_falasconi2025",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-02T15:35:42Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "MECH-090",
-          "confidence": 0.82,
-          "confidence_rationale": "Canonical, high-quality psychophysics + bounded-accumulation model directly demonstrating that an ALREADY-INITIATED action is revised/reversed by post-decisional evidence still in the processing pipeline. Maps tightly onto the 592f reach axis (release of an already-committed action on continued degraded decisiveness). Mapping fidelity high; transfer risk moderate (perceptual-decision reach task vs REE commitment latch, but the structural primitive -- post-commit evidence can abort -- is exactly the gap).",
-          "evidence_class": "lit:behavioral_human",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_mech_090_release_motor_cessation",
-          "failure_signatures": [
-            "The reversal is graded and evidence-driven (bounded accumulation continues post-decision), NOT a one-shot threshold flag -- a Schmitt-style K-consecutive-ticks-below-floor release at the latch would discard the continued-accumulation dynamics this paper shows are the mechanism.",
-            "Changes of mind improve accuracy when the initial decision was erroneous but can also wrongly reverse a correct decision; a maintenance-time release driven by transient low decisiveness risks premature abort of a correct-but-hard commitment."
-          ],
-          "run_id": "2026-06-02_mech_090_changes_of_mind_resulaj2009",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-06-02T15:35:42Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-090",
@@ -15491,12 +15441,63 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-02T15:35:42Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.62,
+          "confidence_rationale": "Influential integrate-and-fire attractor model showing that a SINGLE stability parameter -- the depth of an attractor basin (set by NMDA/GABA conductances) -- controls how long a network holds a state, and that moving it in opposite directions yields opposite clinical pictures: too-shallow -> instability/distractibility, too-deep (the complementary direction the authors and Rolls' later work develop) -> over-stable/perseverative. This is the closest formal analog to REE's premise that ONE refractory/maintenance parameter sets commitment DURATION and that both psychiatric poles of the BG-3 column fall out of mis-setting it. Computational (not empirical) and about cortical working-memory attractors rather than a motor commitment latch, which caps fidelity/transfer.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "The model is about prefrontal/temporal working-memory and semantic attractors, not a basal-ganglia motor commitment latch; the persistence mechanism is recurrent NMDA-stabilised firing, not a refractory timer. Equating attractor depth with REE's refractory parameter is an analogy at the level of 'one stability knob, two failure poles', not a mechanistic identity.",
+            "The paper anchors the SHALLOW (distractibility/instability) pole empirically within the model; the DEEP (perseveration) pole is the complementary direction developed in the surrounding Rolls/Deco programme rather than the headline result here, so the over-maintenance pole leans on the framework's symmetry, not on this paper's primary simulation."
+          ],
+          "run_id": "2026-06-20_crdl_attractor_depth_stability_loh2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.63,
+          "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+            "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+          ],
+          "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-090",
+          "confidence": 0.6,
+          "confidence_rationale": "Strong multi-region monkey recordings (PMd, M1, dlPFC, GPe, GPi; Cisek lab) showing commitment as a STATE TRANSITION off a deliberation manifold, with a rising urgency signal (baseline + slope) that sets WHEN commitment happens and pallidal activity dominated by urgency. Directly anchors MECH-090's gate-open-as-state-transition and, decisively, names the variable that sets commitment TIMING in biology -- a graded, BG-mediated urgency signal -- which is what REE's tuned refractory parameter diverges from. Mixed because it strongly SUPPORTS the latch-as-state-transition while the urgency-set timing WEAKENS any reading that a fixed refractory is the biological duration law.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Commitment timing in the data is set by a graded, dynamically-rising urgency signal (BG/pallidal-mediated), not by a fixed-duration refractory. A REE latch whose release is timed by a tuned refractory parameter departs from this graded-urgency control and cannot reproduce urgency-dependent shortening/lengthening of the committed epoch.",
+            "Deciding and executing are two modes of ONE integrated dynamical system here; REE separates an E3 selection event from a downstream commit-gated routing variable, so the 'fall off the decision manifold at commitment' is modelled as a discrete gate flip rather than a continuous trajectory."
+          ],
+          "run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 34,
+      "runs_total": 37,
       "source_counts": {
         "experimental": 18,
-        "literature": 16
+        "literature": 19
       }
     },
     "MECH-091": {
@@ -18003,7 +18004,7 @@
       }
     },
     "MECH-119": {
-      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.63, lit_conf=0.786",
+      "confidence_rationale": "exp=2 entry(s), lit=3 entry(s), exp_conf=0.629, lit_conf=0.786",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -18020,8 +18021,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.63,
-      "experimental_confidence_decoupled": 0.63,
+      "experimental_confidence": 0.629,
+      "experimental_confidence_decoupled": 0.629,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -18034,7 +18035,7 @@
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.786,
       "literature_confidence_parallel": 0.786,
-      "overall_confidence": 0.724,
+      "overall_confidence": 0.723,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -27162,7 +27163,7 @@
       }
     },
     "MECH-273": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.697, lit_conf=0.868",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.696, lit_conf=0.868",
       "direction_counts": {
         "mixed": 1,
         "supports": 4,
@@ -27180,8 +27181,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.697,
-      "experimental_confidence_decoupled": 0.697,
+      "experimental_confidence": 0.696,
+      "experimental_confidence_decoupled": 0.696,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -31966,16 +31967,17 @@
       }
     },
     "MECH-342": {
-      "confidence_rationale": "exp=0 entry(s), lit=1 entry(s), exp_conf=0, lit_conf=0.756",
+      "confidence_rationale": "exp=0 entry(s), lit=4 entry(s), exp_conf=0, lit_conf=0.834",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 1,
+        "mixed": 1,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "lit:computational_model": 1
+        "lit:computational_model": 2,
+        "lit:electrophysiology_single_unit": 2
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -31989,11 +31991,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "2026-06-05_fatigue_cost_evidence_accumulator_meyniel2013",
-      "latest_timestamp_utc": "2026-06-05T19:44:17Z",
-      "literature_confidence": 0.756,
-      "literature_confidence_parallel": 0.756,
-      "overall_confidence": 0.756,
+      "latest_run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+      "latest_timestamp_utc": "2026-06-20T18:41:17Z",
+      "literature_confidence": 0.834,
+      "literature_confidence_parallel": 0.834,
+      "overall_confidence": 0.834,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -32012,12 +32014,63 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-05T19:44:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-342",
+          "confidence": 0.62,
+          "confidence_rationale": "Influential integrate-and-fire attractor model showing that a SINGLE stability parameter -- the depth of an attractor basin (set by NMDA/GABA conductances) -- controls how long a network holds a state, and that moving it in opposite directions yields opposite clinical pictures: too-shallow -> instability/distractibility, too-deep (the complementary direction the authors and Rolls' later work develop) -> over-stable/perseverative. This is the closest formal analog to REE's premise that ONE refractory/maintenance parameter sets commitment DURATION and that both psychiatric poles of the BG-3 column fall out of mis-setting it. Computational (not empirical) and about cortical working-memory attractors rather than a motor commitment latch, which caps fidelity/transfer.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "The model is about prefrontal/temporal working-memory and semantic attractors, not a basal-ganglia motor commitment latch; the persistence mechanism is recurrent NMDA-stabilised firing, not a refractory timer. Equating attractor depth with REE's refractory parameter is an analogy at the level of 'one stability knob, two failure poles', not a mechanistic identity.",
+            "The paper anchors the SHALLOW (distractibility/instability) pole empirically within the model; the DEEP (perseveration) pole is the complementary direction developed in the surrounding Rolls/Deco programme rather than the headline result here, so the over-maintenance pole leans on the framework's symmetry, not on this paper's primary simulation."
+          ],
+          "run_id": "2026-06-20_crdl_attractor_depth_stability_loh2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-342",
+          "confidence": 0.63,
+          "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+            "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+          ],
+          "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-342",
+          "confidence": 0.6,
+          "confidence_rationale": "Strong multi-region monkey recordings (PMd, M1, dlPFC, GPe, GPi; Cisek lab) showing commitment as a STATE TRANSITION off a deliberation manifold, with a rising urgency signal (baseline + slope) that sets WHEN commitment happens and pallidal activity dominated by urgency. Directly anchors MECH-090's gate-open-as-state-transition and, decisively, names the variable that sets commitment TIMING in biology -- a graded, BG-mediated urgency signal -- which is what REE's tuned refractory parameter diverges from. Mixed because it strongly SUPPORTS the latch-as-state-transition while the urgency-set timing WEAKENS any reading that a fixed refractory is the biological duration law.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Commitment timing in the data is set by a graded, dynamically-rising urgency signal (BG/pallidal-mediated), not by a fixed-duration refractory. A REE latch whose release is timed by a tuned refractory parameter departs from this graded-urgency control and cannot reproduce urgency-dependent shortening/lengthening of the committed epoch.",
+            "Deciding and executing are two modes of ONE integrated dynamical system here; REE separates an E3 selection event from a downstream commit-gated routing variable, so the 'fall off the decision manifold at commitment' is modelled as a discrete gate flip rather than a continuous trajectory."
+          ],
+          "run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 0,
-        "literature": 1
+        "literature": 4
       }
     },
     "MECH-346": {
@@ -34946,17 +34999,18 @@
       }
     },
     "MECH-446": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.745",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.763",
       "direction_counts": {
         "mixed": 0,
-        "supports": 2,
+        "supports": 3,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 2,
+      "entries_total": 3,
       "evidence_class_counts": {
         "lit:behavioral_human": 1,
-        "lit:human_eeg_dbs": 1
+        "lit:human_eeg_dbs": 1,
+        "lit:theoretical_review": 1
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -34972,9 +35026,9 @@
       },
       "latest_run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
       "latest_timestamp_utc": "2026-06-20T18:41:17Z",
-      "literature_confidence": 0.745,
-      "literature_confidence_parallel": 0.745,
-      "overall_confidence": 0.745,
+      "literature_confidence": 0.763,
+      "literature_confidence_parallel": 0.763,
+      "overall_confidence": 0.763,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -34998,6 +35052,23 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-446",
+          "confidence": 0.5,
+          "confidence_rationale": "Directly anchors the OVER-MAINTENANCE psychiatric pole of the BG-3 column: catatonia (stupor, rigidity, stereotypies) framed as impaired inhibitory control / over-engagement of the basal-ganglia INDIRECT (No-Go) pathway via reduced GABAergic tone and D2 dysfunction. This is the clinical endpoint REE predicts for a latch whose release fails / refractory runs too long, and it ties the over-maintenance pole to the same No-Go machinery (MECH-260/MECH-449) the selection-face grounding uses. Confidence capped by venue: a single-author narrative review in a lower-tier journal, not primary data.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Catatonia's clinical picture is multi-determined (GABA, D2, glutamate, serotonin, ACh) and treatment-responsive to benzodiazepines; reducing it to 'the commitment latch failed to release' is a deliberate simplification that omits most of the syndrome's neurochemistry.",
+            "The review is a narrative synthesis, single author, lower-tier venue -- it proposes a unifying indirect-pathway framework rather than demonstrating it; it grounds the DIRECTION of the over-maintenance pole, not a quantitative duration law."
+          ],
+          "run_id": "2026-06-20_crdl_catatonia_indirect_pathway_seif2025",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "MECH-446",
           "confidence": 0.66,
           "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
           "evidence_class": "lit:behavioral_human",
@@ -35013,10 +35084,10 @@
           "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 2,
+      "runs_total": 3,
       "source_counts": {
         "experimental": 0,
-        "literature": 2
+        "literature": 3
       }
     },
     "MECH-448": {
@@ -45298,19 +45369,20 @@
       }
     },
     "SD-034": {
-      "confidence_rationale": "exp=0 entry(s), lit=7 entry(s), exp_conf=0, lit_conf=0.852",
+      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.837",
       "direction_counts": {
         "mixed": 1,
-        "supports": 6,
+        "supports": 8,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 7,
+      "entries_total": 9,
       "evidence_class_counts": {
         "lit:behavioral_human": 2,
         "lit:computational_model": 1,
-        "lit:electrophysiology_single_unit": 3,
-        "lit:fmri_connectivity": 1
+        "lit:electrophysiology_single_unit": 4,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 1
       },
       "evidence_level_counts": {},
       "evidence_quadrant": "plausible_unproven",
@@ -45326,47 +45398,11 @@
       },
       "latest_run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
       "latest_timestamp_utc": "2026-06-20T18:41:17Z",
-      "literature_confidence": 0.852,
-      "literature_confidence_parallel": 0.852,
-      "overall_confidence": 0.852,
+      "literature_confidence": 0.837,
+      "literature_confidence_parallel": 0.837,
+      "overall_confidence": 0.837,
       "pass_runs": 0,
       "recent_entries": [
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-034",
-          "confidence": 0.55,
-          "confidence_rationale": "OpAL formalises the D1-Go / D2-NoGo opponent actor architecture in striatum. For SD-034 the relevant piece is not the learning rule but the architectural commitment: the model maintains separate positive-valued and negative-valued action representations that are combined at choice time, and dopamine state determines how sharply a just-selected action is subsequently re-selectable. This is the substrate on which a No-Go bias against a just-completed action-class (which SD-034 requires as one output of the closure operator) would be implemented. The paper also formalises how task-set disengagement interacts with incentive motivation, which is directly relevant to SD-034's closure-then-release dynamic. Confidence is only 0.55 (mixed) because OpAL does not itself posit a closure operator -- it describes the substrate a closure operator would act on. Evidence is supports for the architectural prerequisite but silent on SD-034's specific claim about the closure token itself.",
-          "evidence_class": "lit:computational_model",
-          "evidence_direction": "mixed",
-          "experiment_type": "targeted_review_sd_034",
-          "failure_signatures": [
-            "OpAL is a model, not a neural measurement. Supporting a closure-operator architecture at the algorithmic level does not guarantee the biology implements closure the same way.",
-            "The D1/D2 opponency in OpAL is about reinforcement learning, not about committed-rule-state release. SD-034 requires a top-down release signal distinct from value learning; OpAL does not model this pathway.",
-            "If the closure-induced No-Go is implemented at the cortical level (e.g. via mPFC -> striatum bias) rather than within-striatum via D2, OpAL's architecture is the wrong substrate for the SD-034 mechanism."
-          ],
-          "run_id": "2026-04-24_sd_034_opal_collins_frank2014",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-24T17:30:12Z"
-        },
-        {
-          "architecture_epoch": "ree_hybrid_guardrails_v1",
-          "claim_id": "SD-034",
-          "confidence": 0.7,
-          "confidence_rationale": "Rich & Shapiro record from rat prelimbic (PL) and infralimbic (IL) medial PFC during a plus-maze task requiring switches between hippocampus-dependent and caudate-dependent strategies. They find that distinct PL/IL neuronal populations selectively code strategy switches -- firing changes occur specifically when the rat changes memory strategy while performing identical motor behaviour, and do not occur when the rat learns new contingencies within the same strategy. PL dynamics anticipate learning, IL dynamics lag -- the pair behaves like an initiator (PL) / establisher (IL) circuit. This is the best-matched biological substrate for SD-034's closure operator: a circuit that explicitly signals 'the current rule-level cognitive mode is ending; a new one is starting' separately from the ongoing action. Confidence 0.70 because while the switch-coding signal exists, the paper does not demonstrate (a) that the switch signal is causally required for the switch, (b) that it fires specifically at rule-satisfaction as opposed to generic change, or (c) that it interacts with a No-Go / refractory mechanism in the way SD-034 posits.",
-          "evidence_class": "lit:electrophysiology_single_unit",
-          "evidence_direction": "supports",
-          "experiment_type": "targeted_review_sd_034",
-          "failure_signatures": [
-            "Rich & Shapiro identify neurons that code strategy switches in correlation; the paper does not lesion or silence PL/IL cells to demonstrate that the switch signal is causally required. If the signal is downstream of an upstream closure-detector, PL/IL is a readout not a generator.",
-            "Switches in this paradigm are externally cued by contingency change. SD-034's closure operator must detect endogenous satisfaction of a committed rule_state without external signal; a different substrate or readout may be needed for that case.",
-            "IL lag behind PL suggests sequential roles; if closure in REE needs a single-shot token rather than a staged initiator-then-establisher sequence, the SD-034 implementation may not map cleanly to this two-region architecture."
-          ],
-          "run_id": "2026-04-24_sd_034_strategy_switch_rich2009",
-          "source_type": "literature",
-          "status": "SOURCE",
-          "timestamp_utc": "2026-04-24T17:30:12Z"
-        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-034",
@@ -45406,6 +45442,40 @@
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "SD-034",
+          "confidence": 0.63,
+          "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+          "evidence_class": "lit:electrophysiology_single_unit",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+            "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+          ],
+          "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-034",
+          "confidence": 0.5,
+          "confidence_rationale": "Directly anchors the OVER-MAINTENANCE psychiatric pole of the BG-3 column: catatonia (stupor, rigidity, stereotypies) framed as impaired inhibitory control / over-engagement of the basal-ganglia INDIRECT (No-Go) pathway via reduced GABAergic tone and D2 dysfunction. This is the clinical endpoint REE predicts for a latch whose release fails / refractory runs too long, and it ties the over-maintenance pole to the same No-Go machinery (MECH-260/MECH-449) the selection-face grounding uses. Confidence capped by venue: a single-author narrative review in a lower-tier journal, not primary data.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_commit_release_duration_latch",
+          "failure_signatures": [
+            "Catatonia's clinical picture is multi-determined (GABA, D2, glutamate, serotonin, ACh) and treatment-responsive to benzodiazepines; reducing it to 'the commitment latch failed to release' is a deliberate simplification that omits most of the syndrome's neurochemistry.",
+            "The review is a narrative synthesis, single author, lower-tier venue -- it proposes a unifying indirect-pathway framework rather than demonstrating it; it grounds the DIRECTION of the over-maintenance pole, not a quantitative duration law."
+          ],
+          "run_id": "2026-06-20_crdl_catatonia_indirect_pathway_seif2025",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-20T18:41:17Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "SD-034",
           "confidence": 0.66,
           "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
           "evidence_class": "lit:behavioral_human",
@@ -45421,10 +45491,10 @@
           "timestamp_utc": "2026-06-20T18:41:17Z"
         }
       ],
-      "runs_total": 7,
+      "runs_total": 9,
       "source_counts": {
         "experimental": 0,
-        "literature": 7
+        "literature": 9
       }
     },
     "SD-035": {
@@ -124777,6 +124847,125 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.62,
+      "confidence_rationale": "Influential integrate-and-fire attractor model showing that a SINGLE stability parameter -- the depth of an attractor basin (set by NMDA/GABA conductances) -- controls how long a network holds a state, and that moving it in opposite directions yields opposite clinical pictures: too-shallow -> instability/distractibility, too-deep (the complementary direction the authors and Rolls' later work develop) -> over-stable/perseverative. This is the closest formal analog to REE's premise that ONE refractory/maintenance parameter sets commitment DURATION and that both psychiatric poles of the BG-3 column fall out of mis-setting it. Computational (not empirical) and about cortical working-memory attractors rather than a motor commitment latch, which caps fidelity/transfer.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "The model is about prefrontal/temporal working-memory and semantic attractors, not a basal-ganglia motor commitment latch; the persistence mechanism is recurrent NMDA-stabilised firing, not a refractory timer. Equating attractor depth with REE's refractory parameter is an analogy at the level of 'one stability knob, two failure poles', not a mechanistic identity.",
+        "The paper anchors the SHALLOW (distractibility/instability) pole empirically within the model; the DEEP (perseveration) pole is the complementary direction developed in the surrounding Rolls/Deco programme rather than the headline result here, so the over-maintenance pole leans on the framework's symmetry, not on this paper's primary simulation."
+      ],
+      "run_id": "2026-06-20_crdl_attractor_depth_stability_loh2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.63,
+      "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+        "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+      ],
+      "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-090",
+      "confidence": 0.6,
+      "confidence_rationale": "Strong multi-region monkey recordings (PMd, M1, dlPFC, GPe, GPi; Cisek lab) showing commitment as a STATE TRANSITION off a deliberation manifold, with a rising urgency signal (baseline + slope) that sets WHEN commitment happens and pallidal activity dominated by urgency. Directly anchors MECH-090's gate-open-as-state-transition and, decisively, names the variable that sets commitment TIMING in biology -- a graded, BG-mediated urgency signal -- which is what REE's tuned refractory parameter diverges from. Mixed because it strongly SUPPORTS the latch-as-state-transition while the urgency-set timing WEAKENS any reading that a fixed refractory is the biological duration law.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Commitment timing in the data is set by a graded, dynamically-rising urgency signal (BG/pallidal-mediated), not by a fixed-duration refractory. A REE latch whose release is timed by a tuned refractory parameter departs from this graded-urgency control and cannot reproduce urgency-dependent shortening/lengthening of the committed epoch.",
+        "Deciding and executing are two modes of ONE integrated dynamical system here; REE separates an E3 selection event from a downstream commit-gated routing variable, so the 'fall off the decision manifold at commitment' is modelled as a discrete gate flip rather than a continuous trajectory."
+      ],
+      "run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-342",
+      "confidence": 0.62,
+      "confidence_rationale": "Influential integrate-and-fire attractor model showing that a SINGLE stability parameter -- the depth of an attractor basin (set by NMDA/GABA conductances) -- controls how long a network holds a state, and that moving it in opposite directions yields opposite clinical pictures: too-shallow -> instability/distractibility, too-deep (the complementary direction the authors and Rolls' later work develop) -> over-stable/perseverative. This is the closest formal analog to REE's premise that ONE refractory/maintenance parameter sets commitment DURATION and that both psychiatric poles of the BG-3 column fall out of mis-setting it. Computational (not empirical) and about cortical working-memory attractors rather than a motor commitment latch, which caps fidelity/transfer.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "The model is about prefrontal/temporal working-memory and semantic attractors, not a basal-ganglia motor commitment latch; the persistence mechanism is recurrent NMDA-stabilised firing, not a refractory timer. Equating attractor depth with REE's refractory parameter is an analogy at the level of 'one stability knob, two failure poles', not a mechanistic identity.",
+        "The paper anchors the SHALLOW (distractibility/instability) pole empirically within the model; the DEEP (perseveration) pole is the complementary direction developed in the surrounding Rolls/Deco programme rather than the headline result here, so the over-maintenance pole leans on the framework's symmetry, not on this paper's primary simulation."
+      ],
+      "run_id": "2026-06-20_crdl_attractor_depth_stability_loh2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-342",
+      "confidence": 0.63,
+      "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+        "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+      ],
+      "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-342",
+      "confidence": 0.6,
+      "confidence_rationale": "Strong multi-region monkey recordings (PMd, M1, dlPFC, GPe, GPi; Cisek lab) showing commitment as a STATE TRANSITION off a deliberation manifold, with a rising urgency signal (baseline + slope) that sets WHEN commitment happens and pallidal activity dominated by urgency. Directly anchors MECH-090's gate-open-as-state-transition and, decisively, names the variable that sets commitment TIMING in biology -- a graded, BG-mediated urgency signal -- which is what REE's tuned refractory parameter diverges from. Mixed because it strongly SUPPORTS the latch-as-state-transition while the urgency-set timing WEAKENS any reading that a fixed refractory is the biological duration law.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Commitment timing in the data is set by a graded, dynamically-rising urgency signal (BG/pallidal-mediated), not by a fixed-duration refractory. A REE latch whose release is timed by a tuned refractory parameter departs from this graded-urgency control and cannot reproduce urgency-dependent shortening/lengthening of the committed epoch.",
+        "Deciding and executing are two modes of ONE integrated dynamical system here; REE separates an E3 selection event from a downstream commit-gated routing variable, so the 'fall off the decision manifold at commitment' is modelled as a discrete gate flip rather than a continuous trajectory."
+      ],
+      "run_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "MECH-446",
+      "confidence": 0.5,
+      "confidence_rationale": "Directly anchors the OVER-MAINTENANCE psychiatric pole of the BG-3 column: catatonia (stupor, rigidity, stereotypies) framed as impaired inhibitory control / over-engagement of the basal-ganglia INDIRECT (No-Go) pathway via reduced GABAergic tone and D2 dysfunction. This is the clinical endpoint REE predicts for a latch whose release fails / refractory runs too long, and it ties the over-maintenance pole to the same No-Go machinery (MECH-260/MECH-449) the selection-face grounding uses. Confidence capped by venue: a single-author narrative review in a lower-tier journal, not primary data.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Catatonia's clinical picture is multi-determined (GABA, D2, glutamate, serotonin, ACh) and treatment-responsive to benzodiazepines; reducing it to 'the commitment latch failed to release' is a deliberate simplification that omits most of the syndrome's neurochemistry.",
+        "The review is a narrative synthesis, single author, lower-tier venue -- it proposes a unifying indirect-pathway framework rather than demonstrating it; it grounds the DIRECTION of the over-maintenance pole, not a quantitative duration law."
+      ],
+      "run_id": "2026-06-20_crdl_catatonia_indirect_pathway_seif2025",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-446",
       "confidence": 0.66,
       "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
@@ -124788,6 +124977,40 @@
         "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
       ],
       "run_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-034",
+      "confidence": 0.63,
+      "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+      "evidence_class": "lit:electrophysiology_single_unit",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+        "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+      ],
+      "run_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-20T18:41:17Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "SD-034",
+      "confidence": 0.5,
+      "confidence_rationale": "Directly anchors the OVER-MAINTENANCE psychiatric pole of the BG-3 column: catatonia (stupor, rigidity, stereotypies) framed as impaired inhibitory control / over-engagement of the basal-ganglia INDIRECT (No-Go) pathway via reduced GABAergic tone and D2 dysfunction. This is the clinical endpoint REE predicts for a latch whose release fails / refractory runs too long, and it ties the over-maintenance pole to the same No-Go machinery (MECH-260/MECH-449) the selection-face grounding uses. Confidence capped by venue: a single-author narrative review in a lower-tier journal, not primary data.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_commit_release_duration_latch",
+      "failure_signatures": [
+        "Catatonia's clinical picture is multi-determined (GABA, D2, glutamate, serotonin, ACh) and treatment-responsive to benzodiazepines; reducing it to 'the commitment latch failed to release' is a deliberate simplification that omits most of the syndrome's neurochemistry.",
+        "The review is a narrative synthesis, single author, lower-tier venue -- it proposes a unifying indirect-pathway framework rather than demonstrating it; it grounds the DIRECTION of the over-maintenance pole, not a quantitative duration law."
+      ],
+      "run_id": "2026-06-20_crdl_catatonia_indirect_pathway_seif2025",
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-06-20T18:41:17Z"
@@ -124848,7 +125071,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-20T18:46:22.838638Z",
+  "generated_at_utc": "2026-06-20T18:51:21.116435Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

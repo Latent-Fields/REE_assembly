@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_release_duration_latch",
+  "entry_id": "2026-06-20_crdl_bg_sequence_parse_maintain_jin2014",
+  "timestamp_utc": "2026-06-20T18:41:17Z",
+  "claim_ids_tested": ["MECH-090", "SD-034", "MECH-342"],
+  "source": {
+    "title": "Basal ganglia subcircuits distinctively encode the parsing and concatenation of action sequences.",
+    "authors": ["Xin Jin", "Fatuel Tecuapetla", "Rui M Costa"],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3632",
+    "url": "https://doi.org/10.1038/nn.3632"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "High-quality in vivo basal-ganglia recordings (Costa lab, Nat Neurosci) showing two dissociable population signals that map directly onto REE's commit latch: (a) start/stop neurons that bracket a committed sequence (the commit-entry and commit-release boundaries -- SD-034's done-token / MECH-090's gate-open events) and (b) sustained/inhibited neurons whose activity persists across the WHOLE sequence and covaries with execution rate (the maintenance signal -- MECH-090 hold, MECH-342 maintenance). Mapping is functional, not mechanistic; rodent operant sequence onto an ANN routing variable. The 2010 Jin & Costa nigrostriatal start/stop paper is the same lineage and is cited in-text.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Start/stop and sustained signals emerge through sequence LEARNING; they are not a fixed gate. A REE latch with a pre-set refractory parameter does not reproduce the learned, action-specific emergence of these boundaries.",
+    "Direct and indirect pathways are concomitantly active at sequence initiation but diverge during execution -- a two-pathway structure REE collapses into a single commitment-gated routing variable. The duration of the sustained signal is set by execution/behavioural state, not by a standalone timer."
+  ],
+  "tags": ["mech_090", "sd_034", "mech_342", "basal_ganglia", "start_stop", "maintenance", "bg_3"],
+  "mapping": {
+    "source_claim_statement": "In mice learning rapid action sequences, basal-ganglia neurons signal the start and stop of an entire sequence (parsing), while a separate population shows sustained or inhibited activity throughout sequence execution (concatenation) that covaries with the rate of execution of the individual elements; these signals emerge with learning and are action-specific.",
+    "ree_translation": "The start/stop signals are the biological form of REE's commit-entry and commit-release boundary events -- the MECH-090 gate opening at completion and the SD-034 done-token that releases the latch. The sustained-throughout-the-sequence population is the maintenance signal MECH-090 implements as a commitment-gated routing variable held across a committed run, and that MECH-342 modulates with mid-commitment readiness.",
+    "mapping_caveat": "These are rodent nigrostriatal/pallidal recordings during learned operant sequences; REE's latch is a single ANN routing variable, not a two-pathway striatal circuit. The biological sustained signal's duration is set by behaviour/execution rate (it covaries with how fast elements are produced), NOT by a standalone refractory timer -- which is the exact divergence the BG-3 node flags. Treat as a functional analogy for the maintenance/boundary STRUCTURE, not for the duration-setting MECHANISM.",
+    "source_context": "In vivo electrophysiology, mice, self-paced operant lever-press sequence task; direct/indirect pathway identification."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high (Nat Neurosci, Costa lab, clean in vivo dissociation, replicated lineage with Jin & Costa 2010 Nature). Mapping fidelity moderate: the start/stop + sustained STRUCTURE maps cleanly, but REE collapses two pathways into one variable and the sustained signal's duration is behaviour-set not timer-set. Transfer risk moderate: rodent learned operant onto ANN commit latch."
+  }
+}

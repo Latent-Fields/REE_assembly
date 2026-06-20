@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-20T18:46:22.838638Z`
+Generated: `2026-06-20T18:51:21.116435Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -42,7 +42,7 @@ Generated: `2026-06-20T18:46:22.838638Z`
 | `targeted_review_candidate_support_preserving_cem` | [`2026-05-14_arc_065_information_theoretic_mpc_williams2017`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/record.json) | 5 | [`summary`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
-| `targeted_review_commit_release_duration_latch` | [`2026-06-20_crdl_change_of_mind_resulaj2009`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_change_of_mind_resulaj2009/record.json) | 1 | [`summary`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_change_of_mind_resulaj2009/summary.md) |
+| `targeted_review_commit_release_duration_latch` | [`2026-06-20_crdl_deliberation_commitment_urgency_thura2022`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/record.json) | 5 | [`summary`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/summary.md) |
 | `targeted_review_connectome_arc_007` | [`2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-04-14_arc_016_precision_action_hierarchy_limanowski2024`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/record.json) | 9 | [`summary`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/summary.md) |
 | `targeted_review_connectome_arc_018` | [`2026-03-29_arc_018_prioritized_replay_mattar2018`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/record.json) | 5 | [`summary`](targeted_review_connectome_arc_018/entries/2026-03-29_arc_018_prioritized_replay_mattar2018/summary.md) |

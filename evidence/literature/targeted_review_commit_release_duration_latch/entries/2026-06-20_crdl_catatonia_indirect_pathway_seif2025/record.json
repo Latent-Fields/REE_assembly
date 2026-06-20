@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_release_duration_latch",
+  "entry_id": "2026-06-20_crdl_catatonia_indirect_pathway_seif2025",
+  "timestamp_utc": "2026-06-20T18:41:17Z",
+  "claim_ids_tested": ["SD-034", "MECH-446"],
+  "source": {
+    "title": "Does Dysregulation Of The Indirect Pathway Contribute To The Pathophysiology Of Catatonia Through Neurotransmitter Imbalance?",
+    "authors": ["Pegah Seif"],
+    "year": 2025,
+    "venue": "Clinical Neuropsychiatry",
+    "doi": "10.36131/cnfioritieditore20250306",
+    "url": "https://doi.org/10.36131/cnfioritieditore20250306"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.50,
+  "confidence_rationale": "Directly anchors the OVER-MAINTENANCE psychiatric pole of the BG-3 column: catatonia (stupor, rigidity, stereotypies) framed as impaired inhibitory control / over-engagement of the basal-ganglia INDIRECT (No-Go) pathway via reduced GABAergic tone and D2 dysfunction. This is the clinical endpoint REE predicts for a latch whose release fails / refractory runs too long, and it ties the over-maintenance pole to the same No-Go machinery (MECH-260/MECH-449) the selection-face grounding uses. Confidence capped by venue: a single-author narrative review in a lower-tier journal, not primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Catatonia's clinical picture is multi-determined (GABA, D2, glutamate, serotonin, ACh) and treatment-responsive to benzodiazepines; reducing it to 'the commitment latch failed to release' is a deliberate simplification that omits most of the syndrome's neurochemistry.",
+    "The review is a narrative synthesis, single author, lower-tier venue -- it proposes a unifying indirect-pathway framework rather than demonstrating it; it grounds the DIRECTION of the over-maintenance pole, not a quantitative duration law."
+  ],
+  "tags": ["sd_034", "mech_446", "catatonia", "indirect_pathway", "no_go", "over_maintenance", "bg_3", "psychiatric_failure_mode"],
+  "mapping": {
+    "source_claim_statement": "Catatonia -- stupor, rigidity, stereotypies -- is proposed to arise from dysregulation of the basal ganglia's indirect pathway: reduced GABAergic tone, D2 receptor dysfunction and glutamatergic hyperactivity impair inhibitory control, and benzodiazepines (GABA-A enhancers) are first-line treatment, consistent with an inhibitory/indirect-pathway locus.",
+    "ree_translation": "Catatonia is the clinical face of REE's OVER-MAINTENANCE failure of the commit/de-commit latch: a committed (or held-still) state that cannot be released because the No-Go / indirect-pathway brake is over-engaged or the de-commit signal (SD-034 closure release, MECH-446 magnitude) is too weak to overcome it. It is the BG-3 column's 'refractory-too-long -> rigidity/perseveration' pole made clinically concrete, and it locates that pole in the same indirect-pathway/No-Go machinery REE models in MECH-260/MECH-449.",
+    "mapping_caveat": "Catatonia is a multi-determined syndrome (GABA, D2, glutamate, 5-HT, ACh) that is benzodiazepine-responsive; mapping it onto a single failed latch-release is a deliberate functional simplification, useful for the psychiatric-failure-mode column but not a claim that REE's latch IS the catatonia mechanism. The review is a narrative synthesis, not primary evidence, so it grounds the DIRECTION/plausibility of the over-maintenance pole, not its quantitative form.",
+    "source_context": "Narrative review synthesising clinical, neuroimaging and preclinical literature (1980-2025) on catatonia, basal-ganglia pathways and neurotransmitters."
+  },
+  "confidence_components": {
+    "source_quality": 0.50,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.50,
+    "notes": "Source quality modest: single-author narrative review in Clinical Neuropsychiatry (lower-tier), recent (2025), synthesising rather than demonstrating. Mapping fidelity moderate: catatonia-as-over-maintenance/No-Go-over-pressure is a clean directional anchor for the BG-3 over-maintenance pole and ties it to REE's existing No-Go machinery, but the syndrome is multi-determined. Transfer risk moderate: human clinical syndrome onto an ANN latch parameter is analogy-level."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_release_duration_latch",
+  "entry_id": "2026-06-20_crdl_change_of_mind_resulaj2009",
+  "timestamp_utc": "2026-06-20T18:41:17Z",
+  "claim_ids_tested": ["MECH-446", "SD-034"],
+  "source": {
+    "title": "Changes of mind in decision-making.",
+    "authors": ["Arbora Resulaj", "Roozbeh Kiani", "Daniel M Wolpert", "Michael N Shadlen"],
+    "year": 2009,
+    "venue": "Nature",
+    "doi": "10.1038/nature08275",
+    "url": "https://doi.org/10.1038/nature08275"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical, high-prestige (Nature, Shadlen lab) human psychophysics that operationalises a post-commitment reversal window -- the strongest existing biological reference for REE's de-commit authority (MECH-446) and the closure-triggered release of a commitment (SD-034). Mapping fidelity is moderate: REE's de-commit is a closure/No-Go-triggered release of a maintained latch, whereas the paper's change-of-mind is driven by evidence already in the sensorimotor processing pipeline at the moment of commitment. The shared, load-bearing point is that commitment in biology is NOT absolute -- it admits a bounded reversal/release window -- which is exactly the dynamic REE's latch must support.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Change-of-mind in the paper is driven by post-commitment evidence still in the processing pipeline; REE's de-commit is triggered by a closure/completion token, not by late-arriving evidence. If REE's release is read as the same mechanism, the mapping over-claims.",
+    "The reversal window in the paper is short and evidence-bounded; a REE latch whose release is set by a tuned refractory parameter (not by an evidence/processing deadline) can over- or under-shoot this window with no biological constraint pinning the duration."
+  ],
+  "tags": ["mech_446", "sd_034", "change_of_mind", "de_commit", "commitment_latch", "bg_3"],
+  "mapping": {
+    "source_claim_statement": "After an initial decision is committed (movement initiated), the brain can still reverse or reaffirm it by exploiting evidence that was already in the processing pipeline at the moment of commitment; the frequency of changes of mind depends on task difficulty and on whether the initial choice was correct.",
+    "ree_translation": "Commitment is a maintained-but-releasable state, not an irreversible argmin. REE's de-commit-authority magnitude (MECH-446) and the SD-034 closure operator that releases the MECH-090 latch are the engineered analog of this bounded post-commit reversal: a committed action class can be released (lowered latch occupancy) by a downstream signal rather than persisting to exhaustion.",
+    "mapping_caveat": "The biological reversal is driven by continued evidence accumulation past the commitment bound; REE's release is driven by a closure/completion token and a committed-run-scaled refractory. The two share the FUNCTION (commitment admits a bounded release) but not the trigger. Do not read this paper as evidence that REE's specific refractory-timed release matches the biological reversal window -- it anchors the existence of the window, not its duration law.",
+    "source_context": "Human psychophysics; random-dot motion discrimination reported by reaching movements; hand trajectories reveal mid-movement changes of mind without new external information."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality near-ceiling (Nature, replicated paradigm, foundational). Mapping fidelity capped at moderate because the reversal trigger differs (pipelined evidence vs closure token). Transfer risk moderate: human reaching psychophysics -> ANN committed-action latch is a functional analogy, and the de-commit substrate is an engineered refractory, not an evidence-accumulation bound."
+  }
+}

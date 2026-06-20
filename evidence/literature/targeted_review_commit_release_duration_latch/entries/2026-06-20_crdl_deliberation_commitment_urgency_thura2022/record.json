@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_commit_release_duration_latch",
+  "entry_id": "2026-06-20_crdl_deliberation_commitment_urgency_thura2022",
+  "timestamp_utc": "2026-06-20T18:41:17Z",
+  "claim_ids_tested": ["MECH-342", "MECH-090"],
+  "source": {
+    "title": "Integrated neural dynamics of sensorimotor decisions and actions.",
+    "authors": ["David Thura", "Jean-Francois Cabana", "Albert Feghaly", "Paul Cisek"],
+    "year": 2022,
+    "venue": "PLoS Biology",
+    "doi": "10.1371/journal.pbio.3001861",
+    "url": "https://doi.org/10.1371/journal.pbio.3001861"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Strong multi-region monkey recordings (PMd, M1, dlPFC, GPe, GPi; Cisek lab) showing commitment as a STATE TRANSITION off a deliberation manifold, with a rising urgency signal (baseline + slope) that sets WHEN commitment happens and pallidal activity dominated by urgency. Directly anchors MECH-090's gate-open-as-state-transition and, decisively, names the variable that sets commitment TIMING in biology -- a graded, BG-mediated urgency signal -- which is what REE's tuned refractory parameter diverges from. Mixed because it strongly SUPPORTS the latch-as-state-transition while the urgency-set timing WEAKENS any reading that a fixed refractory is the biological duration law.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Commitment timing in the data is set by a graded, dynamically-rising urgency signal (BG/pallidal-mediated), not by a fixed-duration refractory. A REE latch whose release is timed by a tuned refractory parameter departs from this graded-urgency control and cannot reproduce urgency-dependent shortening/lengthening of the committed epoch.",
+    "Deciding and executing are two modes of ONE integrated dynamical system here; REE separates an E3 selection event from a downstream commit-gated routing variable, so the 'fall off the decision manifold at commitment' is modelled as a discrete gate flip rather than a continuous trajectory."
+  ],
+  "tags": ["mech_342", "mech_090", "urgency", "commitment_state_transition", "pallidum", "bg_3", "divergence"],
+  "mapping": {
+    "source_claim_statement": "Across PMd, M1, dlPFC, GPe and GPi, neural activity during a dynamic decision unfolds on a low-dimensional 'decision manifold' defined by sensory evidence and a rising urgency signal; at the moment of commitment the cortical state falls off this manifold into a choice-dependent movement trajectory. Pallidal activity during deliberation is primarily defined by urgency, consistent with a basal-ganglia-mediated gating/timing of commitment within one integrated decision-action system.",
+    "ree_translation": "Commitment is the discrete transition REE models as the MECH-090 gate flipping (deliberation -> committed routing). The biological variable that sets WHEN that transition fires -- and by extension how long deliberation is maintained before commitment -- is a graded urgency signal carried prominently by the pallidum, the BG output REE's gate abstracts. MECH-342's maintenance-release (release when readiness/value degrades mid-commitment) is the de-commit-side counterpart of this graded urgency control.",
+    "mapping_caveat": "Monkey reaching decisions onto an ANN commit latch. The paper's commitment is a continuous fall-off from a deliberation manifold within ONE integrated system; REE implements a discrete gate between a selection event and a routing variable. Most importantly, the urgency signal sets commitment TIMING graded-ly and dynamically; REE sets latch duration with a tuned refractory. Use this paper to anchor that biology TIMES commitment with a graded BG/urgency signal -- i.e. to justify why a fixed refractory is a divergence -- NOT to claim REE's gate matches the manifold geometry.",
+    "source_context": "In vivo multi-electrode recordings, macaque monkeys, dynamic 'tokens' decision-making task with changing evidence; dimensionality reduction across 5 cortical/pallidal regions."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (PLoS Biol, Cisek lab, 5-region simultaneous analysis, recent). Mapping fidelity moderate-low: the commitment-as-state-transition maps well and the urgency-timing finding is the key divergence anchor, but REE's discrete-gate vs the paper's continuous-manifold-fall-off differ, and the urgency variable has no direct REE counterpart yet. Transfer risk moderate: macaque reaching onto ANN latch."
+  }
+}
