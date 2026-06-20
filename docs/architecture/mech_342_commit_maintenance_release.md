@@ -2,7 +2,7 @@
 title: "MECH-342: Maintenance-time readiness-driven commitment-release coupling"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 5
+nav_order: 8
 ---
 
 # MECH-342: Maintenance-time readiness-driven commitment-release coupling

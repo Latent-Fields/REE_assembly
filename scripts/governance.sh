@@ -124,6 +124,19 @@ echo "--- Step 7/7: Refreshing governance_agenda.v1.json timestamps ---"
 echo "--- Step 8: Rebuilding static site visualizations (brain map snapshot + fishtank) ---"
 "$PYTHON" scripts/build_site_visualizations.py
 
+echo "--- Step 9: Left-nav tidiness (hide unplaced docs; warn on titled leaks) ---"
+# Self-maintaining sidebar: re-stamps known pages and hides any new titled-but-
+# unplaced doc so plan/design docs never leak raw into the menu. --check first so
+# a genuine leak is loud in the log even though the run also auto-hides it.
+"$PYTHON" docs/apply_nav_frontmatter.py --check || echo "  (nav leak above will be auto-hidden by the stamping run)"
+"$PYTHON" docs/apply_nav_frontmatter.py
+
+echo "--- Step 10: Refreshing the goblin tale's campaign stanza (from closure snapshot) ---"
+# Updates ONLY the CAMPAIGN_STATE marker block in docs/ree_for_my_parents.md
+# (and the private canonical tale if present). Never writes an episode; never
+# names the soul. Depends on the Step 3c-bis closure snapshot.
+"$PYTHON" scripts/update_goblin_tale.py
+
 echo ""
 echo "Done. Check evidence/experiments/pending_review.md for experiments awaiting review."
 echo "After editing claims.yaml, re-run step 4: python scripts/build_claims_json.py"

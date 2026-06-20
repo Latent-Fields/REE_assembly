@@ -1,3 +1,10 @@
+---
+title: "MECH-448: Rank-preserving F->eligibility demotion (ARC-107 LEAD lever)"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 9
+---
+
 # MECH-448: Rank-preserving F->eligibility demotion (ARC-107 LEAD lever)
 
 **Claim ID:** MECH-448

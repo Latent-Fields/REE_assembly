@@ -1,3 +1,10 @@
+---
+title: State-conditioned exploration (MECH-440 / MECH-441)
+parent: "Control, Precision & Neuromodulation"
+grandparent: Architecture
+nav_order: 17
+---
+
 # State-conditioned exploration (MECH-440 / MECH-441)
 
 Status: candidate / substrate_ceiling / v3_pending. Registered 2026-06-18 from Convergence

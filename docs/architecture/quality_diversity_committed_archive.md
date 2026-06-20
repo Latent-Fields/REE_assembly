@@ -1,3 +1,10 @@
+---
+title: Behavioral-Descriptor Committed-Selection Archive (conversion-ceiling locus)
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 2
+---
+
 # Behavioral-Descriptor Committed-Selection Archive (conversion-ceiling locus)
 
 **Status:** architecture stub for candidate claim MECH-442 (candidate / substrate_conditional / implementation_phase v3 / version_relevance v3). Registered 2026-06-18 from a REE_convergence intake (Quality-Diversity / MAP-Elites, demand-queue row CDQ-003). **V3-leaning (on the V3 work surface); off no closure node's build path — registering it blocks no V3 closure node and adds depends_on cross-refs only.** Decide-whether-to-build is a later governance step.

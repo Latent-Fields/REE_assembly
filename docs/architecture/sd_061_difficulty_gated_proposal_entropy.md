@@ -1,3 +1,10 @@
+---
+title: "SD-061: difficulty_gated_proposal_entropy"
+parent: "Goals, Drives & Motivation"
+grandparent: Architecture
+nav_order: 16
+---
+
 # SD-061: difficulty_gated_proposal_entropy
 
 **Claim ID:** SD-061

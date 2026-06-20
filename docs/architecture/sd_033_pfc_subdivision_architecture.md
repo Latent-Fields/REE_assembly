@@ -2,7 +2,7 @@
 title: "SD-033: PFC Subdivision Architecture"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 8
+nav_order: 13
 ---
 
 # SD-033: PFC Subdivision Architecture

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Experiment Ethics Preflight (DRAFT)
 
 **Status:** DRAFT. Binds at **V4**. **NON-BLOCKING for the V3 green-board (2026-07-19).**

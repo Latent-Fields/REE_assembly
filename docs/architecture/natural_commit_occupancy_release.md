@@ -1,3 +1,10 @@
+---
+title: "Commit/release-DURATION lever: graded natural-commit-occupancy release"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 3
+---
+
 # Commit/release-DURATION lever: graded natural-commit-occupancy release
 
 **Status:** IMPLEMENTED 2026-06-20 (substrate; PROMOTES NOTHING)

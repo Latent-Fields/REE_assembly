@@ -46,16 +46,17 @@ TOP_LEVEL = {
     "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 8},
     "vignettes.md":                              {"title": "Vignettes",             "nav_order": 9},
     "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 10},
-    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 11},
-    "visualizations.md":                          {"title": "Visualizations",        "nav_order": 12},
-    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 14},
+    "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 11},
+    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 12},
+    "visualizations.md":                          {"title": "Visualizations",        "nav_order": 13},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 15},
 }
 
 # ---------------------------------------------------------------------------
 # 2. Governance section (top-level parent + children)
 # ---------------------------------------------------------------------------
 
-GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 13, "has_children": True}
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 14, "has_children": True}
 GOVERNANCE_CHILDREN = {
     "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
     "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},
@@ -128,6 +129,7 @@ ASSIGN = {
     "receptor_subtype_intervention_layer.md": "control", "sd_024_da_modulated_rbf_density.md": "control",
     "mech_313_stochastic_noise_floor.md": "control", "sd_036_gabaergic_decay_regulator.md": "control",
     "sd_037_broadcast_override_regulator.md": "control", "mech_271_routing_v3_substrate_plan.md": "control",
+    "state_conditioned_exploration_noise_floor.md": "control",
 
     # --- Memory & Hippocampus ---
     "hippocampal_systems.md": "memory", "hippocampal_braid.md": "memory",
@@ -156,6 +158,7 @@ ASSIGN = {
     "sd_059_escape_affordance_bridge.md": "goals", "trainable_relief_safety_affordance_learners.md": "goals",
     "mech_111_per_candidate_novelty.md": "goals", "mech_314_structured_curiosity_bonus.md": "goals",
     "mech_314a_phase2_novelty_source_design.md": "goals",
+    "sd_061_difficulty_gated_proposal_entropy.md": "goals",
 
     # --- Affect, Harm & Nociception ---
     "affect_primitives.md": "affect", "affect_terminology_instinct_protoemotion.md": "affect",
@@ -178,6 +181,9 @@ ASSIGN = {
     "mech_342_commit_maintenance_release.md": "pfc", "rule_apprehension_layer.md": "pfc",
     "arc_063_candidate_rule_field.md": "pfc", "phased_rule_state_training_curriculum.md": "pfc",
     "sd_055_differentiable_cem_selection.md": "pfc",
+    "dr12_pe_conditioned_e3_confidence.md": "pfc", "mech_448_f_eligibility_demotion.md": "pfc",
+    "natural_commit_occupancy_release.md": "pfc", "quality_diversity_committed_archive.md": "pfc",
+    "rule_distinguishability_maintenance.md": "pfc",
 
     # --- Language ---
     "language.md": "language", "arcuate_fasciculus.md": "language",
@@ -185,6 +191,7 @@ ASSIGN = {
     # --- Sleep & Offline Integration ---
     "sleep.md": "sleep", "sleep_aggregation_cluster.md": "sleep",
     "sd_017_sleep_phase_architecture.md": "sleep", "compact_consolidation_principle.md": "sleep",
+    "prioritized_replay_write_gating.md": "sleep",
 
     # --- Social & Clinical ---
     "social.md": "social", "psychiatric_failure_axes.md": "social",
@@ -253,6 +260,8 @@ TOP_EXCLUDE = [
     "FINAL_OUTPUT.md", "MIGRATION.md", "REE_ARCHITECTURE_SNAPSHOT_2026-02-17.md",
     "REE_MIN_SPEC.md", "REE_overview.md", "V1_PROGRESS_AND_LEARNING.md",
     "changelog.md", "repo_meta.md", "README.md", "repo_meta.md",
+    # Reachable by URL / linked from Home, deliberately kept out of the themed sidebar.
+    "START_HERE_HOW_REE_DEVELOPS.md", "public_explorer_policy.md",
 ]
 
 # Whole subdirectories whose .md/.html pages are excluded from the sidebar.
@@ -313,6 +322,116 @@ def title_of(abs_path):
         pass
     base = os.path.splitext(os.path.basename(abs_path))[0]
     return base.replace("_", " ").replace("-", " ").title()
+
+
+# ---------------------------------------------------------------------------
+# Tidiness sweep: hide any titled-but-unplaced page so new docs never leak
+# raw into the left sidebar. This is the self-maintaining guard the nightly
+# routine relies on -- see scripts/governance.sh and the /update-docs skill.
+# ---------------------------------------------------------------------------
+
+def _placed_set():
+    """Every docs-relative path this script explicitly positions in the nav."""
+    placed = set(TOP_LEVEL.keys())
+    placed |= set(GOVERNANCE_CHILDREN.keys())
+    placed |= {"architecture/" + b for b in ASSIGN}
+    placed |= {"architecture/" + k for k in SUBDIR_ASSIGN}
+    placed |= {"architecture/" + b for b in ARCH_SCRATCH}
+    placed |= set(TOP_EXCLUDE)
+    placed.add("governance_section.md")
+    placed.add("architecture/overview.md")
+    return placed
+
+
+def _has_frontmatter(text):
+    return text.startswith("---\n")
+
+
+def _fm_block(text):
+    if not _has_frontmatter(text):
+        return ""
+    end = text.find("\n---\n", 4)
+    return text[4:end] if end != -1 else ""
+
+
+def scan_unplaced():
+    """Return (leaks, hidden_no_fm) over docs/.
+
+    leaks       = pages with a `title:` and no `nav_exclude`, not explicitly
+                  placed -> these WOULD render raw in the sidebar (the drift).
+    hidden_no_fm = architecture/top-level pages with no frontmatter and not in
+                  ASSIGN/TOP_LEVEL -> invisible today (just-the-docs needs a
+                  title), surfaced only as a reminder to file them into a theme.
+    """
+    placed = _placed_set()
+    leaks, hidden_no_fm = [], []
+    import re as _re
+    for root, _dirs, files in os.walk(DOCS):
+        rel_root = os.path.relpath(root, DOCS).replace("\\", "/")
+        parts = rel_root.split("/")
+        if any(p in EXCLUDE_SUBDIRS for p in parts):
+            continue
+        if "sections" in parts:
+            continue
+        for fn in files:
+            if not fn.endswith((".md", ".html")):
+                continue
+            rel = os.path.relpath(os.path.join(root, fn), DOCS).replace("\\", "/")
+            if rel in placed:
+                continue
+            try:
+                text = open(os.path.join(root, fn), encoding="utf-8", errors="ignore").read()
+            except Exception:
+                continue
+            if _has_frontmatter(text):
+                fm = _fm_block(text)
+                has_title = bool(_re.search(r"(?m)^title:\s*\S", fm))
+                excluded = bool(_re.search(r"(?m)^nav_exclude:\s*true", fm))
+                if has_title and not excluded:
+                    leaks.append(rel)
+            else:
+                # No frontmatter: invisible in nav. Only nag for top-of-tree
+                # architecture docs + bare top-level docs (where a real design
+                # doc would want a home); ignore deep scratch.
+                depth = rel.count("/")
+                if rel.startswith("architecture/") and depth == 1:
+                    hidden_no_fm.append(rel)
+                elif depth == 0:
+                    hidden_no_fm.append(rel)
+    return sorted(leaks), sorted(hidden_no_fm)
+
+
+def sweep_unplaced():
+    """Stamp nav_exclude on every titled-but-unplaced page (preserving title).
+    Returns the list of paths hidden this pass."""
+    leaks, _ = scan_unplaced()
+    for rel in leaks:
+        abs_path = os.path.join(DOCS, rel)
+        text = open(abs_path, encoding="utf-8", errors="ignore").read()
+        title = title_of(abs_path)
+        fm = {"title": title, "nav_exclude": True}
+        body = strip_existing_frontmatter(text)
+        open(abs_path, "w", encoding="utf-8").write(
+            render_frontmatter(fm) + "\n" + body.lstrip("\n"))
+    return leaks
+
+
+def check():
+    """Report-only drift check for the nightly routine. Exit non-zero if any
+    titled-but-unplaced page would leak into the sidebar."""
+    leaks, hidden = scan_unplaced()
+    if leaks:
+        print("NAV DRIFT: {} titled page(s) not placed -- would render RAW in the sidebar:".format(len(leaks)))
+        for r in leaks:
+            print("   LEAK  " + r)
+        print("Fix: add each to ASSIGN/TOP_LEVEL in docs/apply_nav_frontmatter.py, or it will be auto-hidden on the next run.")
+    if hidden:
+        print("FYI: {} architecture/top-level doc(s) have no frontmatter (hidden from nav until filed into a theme):".format(len(hidden)))
+        for r in hidden:
+            print("   hidden  " + r)
+    if not leaks and not hidden:
+        print("Nav is tidy: every titled page is explicitly placed; no orphan design docs.")
+    return 1 if leaks else 0
 
 
 # ---------------------------------------------------------------------------
@@ -401,8 +520,26 @@ def run():
                     if stamp(rel, {"nav_exclude": True}):
                         count += 1
 
+    # 6. Tidiness guard: hide any titled-but-unplaced page so a newly-added
+    #    plan/design doc never leaks raw into the sidebar. Reports what it hid
+    #    and what design docs are still un-filed (no frontmatter).
+    hidden = sweep_unplaced()
+    if hidden:
+        print("\nAuto-hidden {} unplaced titled page(s) (add to ASSIGN to surface):".format(len(hidden)))
+        for r in hidden:
+            print("   nav_exclude  " + r)
+        count += len(hidden)
+    _, no_fm = scan_unplaced()
+    if no_fm:
+        print("\nFYI -- {} architecture/top-level doc(s) without frontmatter (hidden until filed into a theme):".format(len(no_fm)))
+        for r in no_fm:
+            print("   unfiled  " + r)
+
     print("\nDone. {} files stamped.".format(count))
 
 
 if __name__ == "__main__":
+    import sys
+    if "--check" in sys.argv:
+        sys.exit(check())
     run()

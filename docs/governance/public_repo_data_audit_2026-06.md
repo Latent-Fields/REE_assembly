@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Public-Repository Data Audit -- 2026-06
 
 **Date run:** 2026-06-19T16:14Z

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Sentience / Welfare Risk Register (STUB)
 
 **Created:** 2026-06-19

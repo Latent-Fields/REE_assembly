@@ -1,8 +1,8 @@
 ---
 title: Biology-Grounding Framework
-parent: Foundations & Rationale
+parent: "Foundations & Rationale"
 grandparent: Architecture
-nav_order: 99
+nav_order: 1
 ---
 
 # Biology-Grounding Framework

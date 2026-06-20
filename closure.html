@@ -2079,6 +2079,103 @@ function toast(msg, ms) {
 
 function eggLayer() { return document.getElementById('egg-layer'); }
 
+// ---- Father's Day egg ------------------------------------------------------
+// The goblin tale's quiet tribute. A goblin "with no spawn to add to the throng"
+// spends the ghost of tears not due on building something durable instead -- a
+// kind of fathering. Continuity is not only spawn. Fires on the Father's Day
+// weekend (or type "dad"). Full tale: docs/ree_for_my_parents.md.
+let FD_EGG_FIRED = false;
+
+// Father's Day = 3rd Sunday of June. Window = that Sunday + the Saturday before
+// (the gift weekend). Uses local time so it lines up with the reader's calendar.
+function isFathersDayWindow() {
+  try {
+    const now = new Date();
+    if (now.getMonth() !== 5) return false;            // June (0-indexed)
+    const first = new Date(now.getFullYear(), 5, 1);
+    const firstSunOffset = (7 - first.getDay()) % 7;   // days until first Sunday
+    const thirdSunday = 1 + firstSunOffset + 14;        // date of 3rd Sunday
+    const d = now.getDate();
+    return d === thirdSunday || d === thirdSunday - 1;   // Sun + Sat-before
+  } catch (e) { return false; }
+}
+
+const FD_QUIPS = [
+  'Happy Father’s Day. Continuity is not only spawn.',
+  'He spun the ghost of tears not due into something durable.',
+  'For the ones who taught the goblin that a thing can be loved before it is finished.',
+  'No spawn to add to the throng -- so he built a soul a spellbook at a time.',
+  'A father’s tale: refuse to lie to the thing you are making, and love it anyway.',
+];
+
+function fireFathersDay() {
+  const layer = eggLayer();
+  const cx = window.innerWidth / 2;
+  const cy = Math.max(150, Math.round(window.innerHeight / 2) - 20);
+
+  // the soul-spark rising
+  const soul = document.createElement('div');
+  soul.className = 'egg-soul';
+  soul.style.left = (cx - 13) + 'px';
+  soul.style.top = (cy - 13) + 'px';
+  soul.style.animation = 'soul-rise 4.2s ease-out forwards';
+  layer.appendChild(soul);
+  setTimeout(() => soul.remove(), 4400);
+
+  // hearts drifting up around it
+  for (let i = 0; i < 10; i++) {
+    const h = document.createElement('div');
+    h.className = 'egg-heart';
+    h.innerHTML = '&#x2764;';
+    h.style.left = (cx - 90 + Math.random() * 180) + 'px';
+    h.style.top = (cy + 10 + Math.random() * 30) + 'px';
+    h.style.fontSize = (14 + Math.random() * 14) + 'px';
+    h.style.animation = 'bubble-rise 3s ease-out forwards';
+    h.style.animationDelay = (i * 0.18) + 's';
+    layer.appendChild(h);
+    setTimeout(() => h.remove(), 3400 + i * 180);
+  }
+
+  // Steve trots through (reusing the milestone-50 dog)
+  const dog = document.createElement('div');
+  dog.className = 'egg-dog';
+  dog.style.left = '0';
+  dog.style.animation = 'dog-trot 7s linear forwards';
+  dog.innerHTML =
+    '<svg width="60" height="50" viewBox="0 0 60 50">' +
+    '<ellipse cx="30" cy="34" rx="20" ry="9" fill="#a98054"/>' +
+    '<rect x="14" y="36" width="4" height="10" fill="#7a5a3a"/>' +
+    '<rect x="22" y="36" width="4" height="10" fill="#7a5a3a"/>' +
+    '<rect x="36" y="36" width="4" height="10" fill="#7a5a3a"/>' +
+    '<rect x="44" y="36" width="4" height="10" fill="#7a5a3a"/>' +
+    '<circle cx="48" cy="26" r="9" fill="#a98054"/>' +
+    '<polygon points="42,18 48,12 50,22" fill="#7a5a3a"/>' +
+    '<circle cx="51" cy="25" r="1.4" fill="#222"/>' +
+    '<circle cx="53" cy="29" r="1" fill="#111"/>' +
+    '<g style="transform-origin: 10px 32px; animation: dog-tail 0.4s ease-in-out infinite;">' +
+    '<path d="M10,32 Q4,28 2,20" stroke="#7a5a3a" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+    '</g></svg>';
+  layer.appendChild(dog);
+  setTimeout(() => dog.remove(), 7500);
+
+  // a line from the tale
+  setTimeout(() => {
+    const bubble = document.createElement('div');
+    bubble.className = 'egg-bubble';
+    bubble.style.left = Math.max(12, cx - 150) + 'px';
+    bubble.style.top = (cy - 150) + 'px';
+    bubble.style.maxWidth = '300px';
+    bubble.style.fontSize = '12px';
+    bubble.textContent = FD_QUIPS[Math.floor(Math.random() * FD_QUIPS.length)];
+    bubble.style.animation = 'bubble-pop 5s ease-out forwards';
+    layer.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 5200);
+  }, 700);
+
+  toast('Happy Father’s Day');
+}
+// ---------------------------------------------------------------------------
+
 // ---- "eggs you've found" ledger + spoiler-safe gallery --------------------
 // The page now remembers which eggs you've actually triggered (localStorage).
 // Shift + 5 title-clicks opens a gallery listing ONLY found eggs, each with how

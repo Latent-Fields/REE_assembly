@@ -1,3 +1,10 @@
+---
+title: Rule Distinguishability Maintenance (CRF locus)
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 12
+---
+
 # Rule Distinguishability Maintenance (CRF locus)
 
 **Status:** architecture stub for candidate claims MECH-437 / MECH-438 (candidate / substrate_conditional / implementation_phase v4 / version_relevance v4_v5). Registered 2026-06-17 from a REE_convergence intake. **V4-leaning; off the V3 critical path — blocks no V3 closure node.** Decide-whether-to-build is a later governance step.

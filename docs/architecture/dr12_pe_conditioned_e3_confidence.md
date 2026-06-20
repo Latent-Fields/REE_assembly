@@ -1,3 +1,10 @@
+---
+title: "DR-12: E2 forward prediction-error modulates E3 trajectory-scoring confidence"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 4
+---
+
 # DR-12: E2 forward prediction-error modulates E3 trajectory-scoring confidence
 
 **Claim ID:** (DR-12 audit item; v4_spec.md V4-2) -- owner node `self_model_v4:SELF-4`
