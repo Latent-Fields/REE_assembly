@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_normalization_attention_reynolds2009",
+  "timestamp_utc": "2026-06-20T09:05:54Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "The normalization model of attention",
+    "authors": [
+      "Reynolds, John H.",
+      "Heeger, David J."
+    ],
+    "year": 2009,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2009.01.002",
+    "pmid": "19186161",
+    "volume": "61",
+    "issue": "2",
+    "pages": "168-185"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.56,
+  "confidence_rationale": "This entry grounds the SECOND half of the autopsy diagnosis: not just that F must be renormalized, but WHERE a modulatory channel has to act to gain leverage over a normalized competition. Reynolds & Heeger show a single divisive-normalization circuit reproduces the full range of attentional effects (response-gain vs contrast-gain) depending on the size of the attention field relative to the stimulus, because attention enters by scaling the stimulus drive (numerator) BEFORE the pooled divisive normalization. The REE mapping: MECH-439's modulatory / within-class / rule-bias channels are floor-locked because they act as additive terms ON TOP of a raw dominant F; a control signal only converts to behaviour when it modulates the normalization itself (numerator gain or pool weighting), exactly as attention does here. It is MIXED because (a) it is an attention/sensory model -- transfer to a value selector leans on the canonical-computation generality claim; (b) the model is order-preserving, so attention biases the competition by changing GAIN, not by removing the dominant channel from the output -- reinforcing that the faithful REE lever is gain-on-the-normalization, not the asymmetric 'F out of the argmin'; (c) the response-gain-vs-contrast-gain reconciliation is a feature for REE (one mechanism, regime-dependent) but also a warning that the SAME modulatory input produces opposite effects depending on field/stimulus scale, so REE's modulatory leverage is regime-contingent, not guaranteed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Attention biases a normalized competition by scaling gain at the numerator/denominator, NOT by deleting the dominant channel -- the model is order-preserving. This reinforces that a modulatory channel cannot convert to committed diversity by being added on top of a raw dominant F; it must enter the normalization (numerator gain or normalization-pool weighting). REE's additive modulatory channels, which sit on top of an un-normalized F, are in the architecturally wrong place -- the 445h/485h/654g floor-lock signature.",
+    "The same attentional input produces response-gain OR contrast-gain depending on the size of the attention field relative to the stimulus. Transferred to REE, the same modulatory channel can have large or near-zero leverage on the committed action depending on the score-distribution regime (how concentrated F is, how many near-ties exist). Modulatory leverage is therefore regime-contingent, not a fixed property -- a tuning surface MECH-448's build must map, not assume.",
+    "This is a sensory-attention model; its application to a value/action selector rests on the canonical-computation generality claim (Carandini & Heeger), not on direct value-domain data. The Louie et al value entry carries the same-domain weight; this entry carries the WHERE-modulation-must-act structural argument, and should not be over-read as direct evidence about value-based commitment."
+  ],
+  "tags": [
+    "mech_439",
+    "mech_448",
+    "divisive_normalization",
+    "attention",
+    "response_gain",
+    "contrast_gain",
+    "normalization_pool",
+    "modulatory_leverage",
+    "rank_preserving",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "A single divisive-normalization model of attention reproduces the otherwise-conflicting empirical signatures of attentional modulation -- response-gain changes, contrast-gain changes, and intermediate forms -- as a function of the size of the attention field relative to the stimulus and the spread of the suppressive (normalization) pool. Attention enters the computation by multiplying the stimulus drive (an attention field point-by-point scaling the excitatory drive) before that drive is divisively normalized by a pooled suppressive drive. One normalization mechanism, regime-dependent outputs.",
+    "ree_translation": "MECH-439 says modulatory / within-class / rule-bias channels have authority at the E3 accumulator but cannot convert to committed-action diversity while F dominates. Reynolds & Heeger supplies the structural reason and the fix-location: in the brain, a control signal (attention) gains leverage over a competition precisely BY entering the normalization -- scaling the drive before the pooled divisive step -- not by being added on top of the winning channel's raw response. The REE read is that the floor-locked modulatory channels are wired in the architecturally wrong place: they sit on top of an un-normalized, F-dominated score. For them to convert, the modulation must act ON the normalization of F (numerator gain or normalization-pool weighting), which is the mechanistic content of the autopsy's Reading-2 beyond the bare 'renormalize F' statement.",
+    "mapping_caveat": "LOAD-BEARING. (1) The model is order-preserving: attention reweights the competition by GAIN, it does not strip the dominant channel from the output. So this entry, like the other two, grounds the rank-preserving gain-on-the-normalization lever, NOT REE's stronger asymmetric 'F removed from the argmin'. (2) The single-mechanism reconciliation is double-edged: the SAME attentional input yields response-gain or contrast-gain depending on attention-field-vs-stimulus size -- so transferred to REE, the same modulatory channel's leverage on the committed action is REGIME-CONTINGENT (depends on how concentrated F is and how many near-ties exist), not a fixed quantity. (3) It is a sensory-attention model; the value/action-selection transfer leans on the canonical-computation generality claim rather than direct value data -- the Louie entry carries the same-domain weight, this entry carries the where-modulation-acts structural argument.",
+    "source_context": "Highly-cited Neuron theory/modelling paper deriving the normalization model of attention and fitting it to the conflicting attentional-modulation literature (V1/V4/MT psychophysics and physiology, macaque and human). Sensory attention domain; transfer to REE's value selector is canonical-computation-mediated, higher transfer risk than the value-domain Louie entry but lower-level mechanistic detail on WHERE a control signal must enter."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: the canonical normalization model of attention, widely validated against the attentional-modulation literature. Mapping fidelity moderate (0.55): it gives the strongest mechanistic statement of WHERE a modulatory signal must enter (the normalization, via numerator gain / pool weighting) to gain leverage -- directly explaining the MECH-439 floor-lock of additive modulatory channels -- but it does so for sensory attention, not value commitment. Transfer risk moderate-high (0.45): the value/action transfer is canonical-computation-mediated, and the regime-contingency of the modulation (response- vs contrast-gain) means the leverage is not guaranteed. Held MIXED: it supports the where-to-modulate and rank-preserving framing while warning that modulatory leverage is regime-dependent and that the order-preserving model does not license the asymmetric argmin-removal lever."
+  }
+}

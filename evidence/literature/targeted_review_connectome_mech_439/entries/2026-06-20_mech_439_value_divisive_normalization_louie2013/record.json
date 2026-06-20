@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_value_divisive_normalization_louie2013",
+  "timestamp_utc": "2026-06-20T09:05:54Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "Normalization is a general neural mechanism for context-dependent decision making",
+    "authors": [
+      "Louie, Kenway",
+      "Khaw, Mel W.",
+      "Glimcher, Paul W."
+    ],
+    "year": 2013,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1217854110",
+    "pmid": "23530203",
+    "volume": "110",
+    "issue": "15",
+    "pages": "6139-6144"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the strongest single bridge in the pull because it moves divisive normalization out of the sensory domain and INTO value-based choice -- exactly REE's E3 selection problem. It shows (in monkey LIP physiology and human choice) that an option's value is coded RELATIVE to the summed value of the competing set (relative value coding = divisive normalization), and that this produces 'classically irrational' context effects: distractor options and the number/value of alternatives measurably shift choice between target options. That directly grounds the autopsy's Reading-2 -- the principled way to stop one value channel monopolising the commit is to divide it by the field, and the lever operates on VALUE signals, not just sensory contrast (a short transfer). It is MIXED rather than supports because the diversity it produces is precisely the range-compression-under-noise mechanism: normalization compresses value differences so a STOCHASTIC choice stage yields more variable commits; it is pooled-symmetric and (deterministically) order-preserving, so it grounds a softmax-style whole-vector F-renormalization-with-stochastic-commit, NOT the asymmetric 'F out of the argmin'. The context effects are also a double-edged warning: pooled normalization can DEGRADE choice accuracy (a high-value distractor lowers the target's normalized value), so the same lever that lifts diversity can corrupt the commit if mis-scoped -- a cost MECH-448's build must bound.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The committed-diversity lift from divisive normalization is mediated by range-compression under a STOCHASTIC choice stage, not by the dominant option losing rank. In monkey/human data the normalized values stay order-consistent for fixed context; behaviour becomes more variable because the compressed value differences interact with choice noise. If REE's E3 commits deterministically (hard argmax, no temperature), the Louie mechanism does not transfer -- the lever needs a downstream stochastic commit to convert compression into committed-action diversity.",
+    "Divisive normalization in value coding is pooled-symmetric: the target's value is divided by the SUMMED value of ALL options. Adding a higher-value distractor REDUCES the target's normalized value and measurably shifts/degrades choice ('classically irrational' context dependence). So a faithful F-renormalization that pools the whole field can lower the effective value of the very candidate REE wants to commit -- the lever can corrupt as well as diversify, and the normalization-pool composition (which scores enter the denominator) decides which.",
+    "The paper grounds relative/contextual VALUE coding, not an action-selection circuit that demotes one specific score out of the argmin. REE's stronger 'F as eligibility envelope only' operation is not what is demonstrated here; this entry supports the weaker rank-preserving whole-vector renormalization, and the asymmetric/argmin-removing version still needs its quality-diversity justification."
+  ],
+  "tags": [
+    "mech_439",
+    "mech_448",
+    "divisive_normalization",
+    "relative_value_coding",
+    "context_dependent_choice",
+    "value_based_decision",
+    "LIP",
+    "distractor_effect",
+    "rank_preserving",
+    "computational_model"
+  ],
+  "mapping": {
+    "source_claim_statement": "In sensory systems divisive normalization is a canonical computation; recent electrophysiology shows an analogous algorithm for the value signals that guide decision making, but the effect on CHOICE was unknown. Louie, Khaw & Glimcher show that under relative value coding each option's value is rescaled by its proportional contribution within the decision context (a divisive normalization over the option set), and that choice models using this normalization generate significant, classically irrational choice phenomena driven by the value or number of alternative options. They demonstrate context-dependent choice consistent with normalization in both primates and humans in multi-option tasks: distractor options significantly alter choices between target options.",
+    "ree_translation": "MECH-439 diagnoses an F-monopoly on E3 committed-selection variance. Louie et al is the value-domain evidence that the brain's standard fix is divisive normalization applied to VALUE: an option's selection signal is the option's value divided by the summed value of the field. That is the autopsy's Reading-2 lever (renormalize the primary score against the competing field) demonstrated on choice signals, not just sensory contrast -- so importing it into REE's E3 value selector is a short, same-domain transfer rather than a cross-modality leap. It also supplies the MECHANISM by which a rank-preserving renormalization actually lifts committed diversity: normalization compresses the value gaps, and a stochastic choice stage then commits to non-top options more often -- the concrete bridge from 'compress F's lead' to 'committed-action diversity rises'.",
+    "mapping_caveat": "LOAD-BEARING (per biology-before-formal-definitions). Two divergences. (1) The diversity is produced by range-compression interacting with a STOCHASTIC choice stage, and the deterministic value ordering is preserved for fixed context -- so this evidence backs a softmax-style F-renormalization-with-stochastic-commit, and is INERT for a hard deterministic argmax. REE's E3 must have (or gain) a temperature/stochastic commit for the lever to convert. (2) The normalization is pooled-symmetric (divide by the summed value of ALL options), not a targeted demotion of one score. The same pooling that diversifies also produces the 'classically irrational' COST: a high-value distractor lowers the target's normalized value and can degrade the commit. So a faithful whole-field F-renormalization can both lift diversity AND corrupt the intended commit, depending on normalization-pool composition; MECH-448's build must bound that cost. REE's stronger 'F out of the argmin' lever is rank-altering and is NOT what this paper demonstrates -- it grounds the weaker, faithful version only.",
+    "source_context": "Combined computational-model + electrophysiology (monkey LIP) + human behavioural study in PNAS. Value-based multi-option choice; relative value coding fit to neural and choice data; the context/distractor manipulations are the load-bearing behavioural result. Transfer question is value-selection-in-primate/human to REE's E3 value selector -- the closest domain match available, lower transfer risk than the sensory normalization papers."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high: PNAS, Glimcher group, combining LIP physiology with monkey and human choice behaviour; the canonical value-normalization reference. Mapping fidelity is the highest in the pull (0.70): the paper is about VALUE-based choice under a dominant-vs-field normalization, which is structurally REE's E3 selection problem, and it supplies the explicit compression-under-noise mechanism linking renormalization to committed diversity. Transfer risk is the lowest in the pull (0.32) because it is a same-domain (value-selection) result rather than a sensory-to-value extrapolation. Held to MIXED, not supports, by the two divergences: the lift is stochastic-commit-conditional and pooled-symmetric (so it can degrade the commit), and it grounds only the weaker rank-preserving version of Reading-2."
+  }
+}

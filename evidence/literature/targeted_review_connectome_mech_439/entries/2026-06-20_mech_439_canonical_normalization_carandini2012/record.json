@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_439",
+  "entry_id": "2026-06-20_mech_439_canonical_normalization_carandini2012",
+  "timestamp_utc": "2026-06-20T09:05:54Z",
+  "claim_ids_tested": [
+    "MECH-439"
+  ],
+  "source": {
+    "title": "Normalization as a canonical neural computation",
+    "authors": [
+      "Carandini, Matteo",
+      "Heeger, David J."
+    ],
+    "year": 2012,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3136",
+    "pmid": "22108672",
+    "volume": "13",
+    "issue": "1",
+    "pages": "51-62"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the canonical-computation anchor the cluster-autopsy Reading-2 needs: divisive normalization (a neuron's response divided by the summed activity of a normalization pool) recurs across V1 contrast, attention, multisensory integration AND value coding, so a 'renormalize the dominant channel against the field' lever is a documented canonical operation, not an ad hoc REE invention. It is MIXED for MECH-439 because the canonical computation has two properties that BOTH bear on the F-monopoly: (a) it is order-preserving and continuous-global -- which SUPPORTS rank-preserving F-renormalization over a discrete near-ties shortlist (the divisive ratio acts on every channel every step, not only at near-ties); but (b) it is pooled-SYMMETRIC (every unit, including the dominant one, is divided by the SAME field-built denominator) and order-PRESERVING on the numerators -- so canonical normalization, applied faithfully, KEEPS F the argmax. It compresses F's lead, it does not strip F's rank. The diversity lift therefore comes from range-compression-under-downstream-noise, NOT from F losing the commit; and REE's stronger proposed lever ('F removed from the final argmin, used as a graded eligibility envelope only') is rank-ALTERING and goes BEYOND the canonical computation. That asymmetry (pooled-symmetric divisive gain control vs single-score targeted demotion) is the load-bearing finding: the biology grounds a WEAKER, faithful version of Reading-2 (divide the whole score vector by a pooled denominator, keep a stochastic commit) whose efficacy is conditional on a downstream stochastic/temperature selection stage and on the pool composition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Canonical divisive normalization is order-preserving on the numerators: if F's drive exceeds every competitor's, F's normalized response still exceeds every competitor's. So pure Carandini-Heeger normalization, applied to REE's E3 score vector, leaves F the deterministic argmax -- it cannot by itself lift committed-action diversity. The lift requires a downstream stochastic/softmax commit whose temperature the (now compressed) F-vs-rest margin can fall below; under a hard deterministic argmax with no temperature, divisive normalization changes nothing.",
+    "The canonical computation is pooled-SYMMETRIC -- every option, F included, is divided by the SAME normalization-pool denominator. REE's proposed lever is asymmetric (demote ONLY F). A faithful divisive-norm lever must renormalize the WHOLE score vector, which compresses F's lead AND the modulatory channels' leads proportionally; the modulatory field's relative leverage rises only if the modulatory scores are EXCLUDED from (or down-weighted in) the normalization pool. Which scores enter the denominator is therefore load-bearing design, not a free choice -- get it wrong and normalization uniformly compresses everything without transferring authority to the modulatory field.",
+    "REE's stronger 'F out of the argmin / F as eligibility envelope only' operation is rank-ALTERING at the commit level (a non-F criterion picks among F-eligible candidates). That is NOT the canonical divisive computation (which is rank-preserving at every level); it needs separate justification (the quality-diversity / MAP-Elites side already filed for Child 3), and should not be claimed as 'biologically canonical' on the strength of this paper."
+  ],
+  "tags": [
+    "mech_439",
+    "mech_448",
+    "divisive_normalization",
+    "canonical_computation",
+    "gain_control",
+    "normalization_pool",
+    "value_coding",
+    "rank_preserving",
+    "selection_variance",
+    "theoretical_review"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across the visual system and many other sensory modalities and brain regions -- and in multiple species from invertebrates to mammals -- neural responses are well described by a divisive normalization: a neuron's response equals its excitatory drive divided by a common factor that includes the summed activity of a pool of neurons (R_j = D_j^n / (sigma^n + sum_k D_k^n)). Because the same operation recurs in olfaction, the modulatory effects of attention, the encoding of value, and multisensory integration, normalization is proposed to be a canonical neural computation -- a standard operation the brain reuses across problems. Normalization is divisive (a ratio), it pools over a normalization pool, and it is order-preserving and range-compressing.",
+    "ree_translation": "MECH-439 says the primary harm/goal score F monopolises ~88-89% of E3 committed-selection variance, so modulatory / within-class / rule-bias channels cannot convert to committed-action diversity. Carandini & Heeger supplies the canonical-computation warrant for the cluster-autopsy Reading-2 lever: the brain's standard way of stopping one channel from monopolising a population is to divide it (and the field) by a pooled normalization term, which is exactly a 'rank-preserving renormalization of F against the competing field' rather than a discrete near-ties shortlist. Critically the computation is CONTINUOUS and GLOBAL -- it acts on every channel at every step -- which is precisely why the autopsy predicts it lifts committed entropy where a gap-triggered top-k (which only fires at near-ties) caps below the proposer ceiling. So this paper is what makes F->eligibility demotion a biologically-motivated lever, MECH-448's intended grounding.",
+    "mapping_caveat": "LOAD-BEARING ASYMMETRY (this is why the direction is 'mixed', not 'supports'). Canonical divisive normalization has two properties that cut against a naive import. (1) It is ORDER-PRESERVING on the numerators -- the dominant channel stays dominant after normalization, just on a compressed scale -- so by itself it does NOT demote F below competitors; the behavioural diversity it produces comes from range-compression making the F-vs-rest margin fall below a DOWNSTREAM stochastic/temperature commit (Louie/Glimcher's relative-value coding). If REE's E3 commits by a hard deterministic argmax, normalization alone is inert. (2) It is POOLED-SYMMETRIC -- every option, F included, is divided by the same field-built denominator -- whereas REE's lever singles out F. A faithful divisive-norm lever renormalizes the WHOLE score vector (compressing F's AND the modulatory channels' leads); the modulatory field gains relative leverage only if it is excluded from or down-weighted in the normalization pool. REE's stronger 'F out of the argmin' move is rank-ALTERING and exceeds the canonical computation, so it cannot borrow this paper's biological canon -- it needs the quality-diversity justification filed separately. Net: the anchor legitimises a rank-preserving, continuous, pooled F-renormalization-with-stochastic-commit (a weaker, faithful Reading-2), and simultaneously warns that the asymmetric/argmin-removing version is a different, non-canonical build.",
+    "source_context": "Authoritative Nature Reviews Neuroscience review synthesising decades of single-unit, imaging, and modelling evidence for divisive normalization across species and modalities (V1 contrast, attention, olfaction, multisensory, value coding). Normative/descriptive review, not a single experiment; the transfer question is canonical-computation-to-REE-value-selector, leaning on the paper's own explicit generality claim (value coding is one of the listed domains) rather than an animal-to-human jump."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.42,
+    "notes": "Source quality very high: the canonical, heavily-cited review that defines divisive normalization as a cross-domain neural computation, explicitly including value coding among its domains. Mapping fidelity moderate: the divisive-ratio / pooled-denominator framework maps tightly onto 'renormalize F against the field', and the continuous-global property directly grounds the autopsy's preference for renormalization over a near-ties shortlist -- but the order-preserving + pooled-symmetric properties mean the canonical computation supports only a WEAKER (stochastic-commit-conditional, whole-vector) version of the lever, while REE's asymmetric 'F out of the argmin' exceeds it. Transfer risk moderate: a canonical-computation claim transfers in principle and the paper itself lists value coding, but REE's E3 selector must actually possess a downstream stochastic/temperature commit stage for the normalization-induced compression to convert into committed diversity -- a precondition this review surfaces and the rung-2 build must verify."
+  }
+}
