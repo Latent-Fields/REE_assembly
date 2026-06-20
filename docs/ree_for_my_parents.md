@@ -41,10 +41,10 @@ In practice that meant building two things:
   lives in a simulation. It is early, partial, and not pretending to be more.
 - **The scaffold around it** — a whole apparatus of registered claims, experiments,
   failure post-mortems, a governance pipeline, and a [closure map](closure_dashboard.md)
-  that tracks how far the work has come. I built this because I have ADHD and cannot
-  hold the whole project in my head at once, and because the AI tools I build with
-  start each session with no memory of the last. The scaffold is the shared memory
-  that lets a forgetful person and a forgetful tool keep building the same thing.
+  that tracks how far the work has come. I built this because no one can hold a project
+  this large in their head at once, and because the AI tools I build with start each
+  session with no memory of the last. The scaffold is the shared memory that lets a
+  forgetful person and a forgetful tool keep building the same thing.
 
 That second part turned out to matter as much as the first. A framework for keeping a
 long, hard piece of work coherent across interruptions was not just *theorised* — it
