@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-20.2 -->
+<!-- CLOSURE_VERSION: 2026-06-20.3 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -307,7 +307,7 @@
 
   /* B: compact minimap overview, fixed bottom-right; click to jump. */
   #minimap {
-    position: fixed; right: 14px; bottom: 14px; z-index: 60;
+    position: fixed; right: 14px; bottom: 44px; z-index: 60;
     display: none;
     background: rgba(13,17,23,0.92);
     border: 1px solid var(--border); border-radius: 6px;
@@ -323,6 +323,25 @@
     fill: rgba(88,166,255,0.16); stroke: var(--accent);
     stroke-width: 1; pointer-events: none;
   }
+
+  /* Persistent interaction readout: a fixed bottom bar that narrates what the
+     current click/filter state is doing and how to read it. Clicks pass through
+     (pointer-events:none) so it never blocks the graph. Right padding clears the
+     minimap; the minimap + egg-toast are nudged up to sit above this bar. */
+  #readout {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    background: rgba(13,17,23,0.96);
+    border-top: 1px solid var(--border);
+    color: var(--text); font-size: 11.5px; line-height: 1.45;
+    padding: 7px 232px 7px 18px;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
+  #readout b { color: var(--text); font-weight: 700; }
+  #readout i { color: var(--accent); font-style: normal; }
+  #readout .ro-dim { color: var(--muted); }
+  #readout .ro-eye { color: var(--accent); font-style: normal; }
+  #readout .ro-sep { color: var(--border); margin: 0 6px; }
 
   .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; pointer-events: stroke; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
@@ -431,7 +450,7 @@
     overflow: hidden;
   }
   #egg-toast {
-    position: fixed; bottom: 22px; left: 50%;
+    position: fixed; bottom: 52px; left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: var(--bg-3); border: 1px solid var(--st-done);
     color: var(--text); padding: 10px 18px; border-radius: 22px;
@@ -632,6 +651,7 @@
 <div id="minimap"><div class="mm-cap">map &middot; click to jump</div></div>
 
 <div id="tip"></div>
+<div id="readout"></div>
 <div id="egg-layer"></div>
 <div id="egg-toast"></div>
 
@@ -947,6 +967,7 @@ function applyStatusFilter() {
     else if (STATUS_FILTER === 'live_exq') show = n && n.exq_live;
     g.style.display = show ? '' : 'none';
   }
+  updateReadout();
 }
 
 // Governance/welfare epistemic facet. Like the ready-to-work filter this only
@@ -971,6 +992,7 @@ function applyFacetFilter() {
   if (!svg) return;
   if (FACET_FILTER === 'none') svg.removeAttribute('data-facet');
   else svg.setAttribute('data-facet', FACET_FILTER);
+  updateReadout();
 }
 
 function applyHighlightFromUrl() {
@@ -1122,6 +1144,73 @@ function bfsReachable(startId) {
   return visited;
 }
 
+// ---- interaction readout ---------------------------------------------------
+// A persistent bottom bar narrating what the current click/filter state is
+// doing and how to read it. Composed from the live interaction globals so a
+// single call after any state change keeps it accurate. The key thing it makes
+// explicit: clicking a node does NOT open anything -- it spotlights that node's
+// dependency subgraph and dims the rest.
+function genLabel() {
+  return isV3View() ? 'V3 closure map'
+    : GEN_VIEW === 'deferred' ? 'deferred parking lot (excluded from every %)'
+    : GEN_VIEW === 'governance' ? 'governance perimeter (excluded from V3 %)'
+    : GEN_VIEW === 'process' ? 'process / meta lane (excluded from V3 %)'
+    : GEN_VIEW.toUpperCase() + ' roadmap (excluded from V3 %)';
+}
+
+function updateReadout() {
+  const el = document.getElementById('readout');
+  if (!el) return;
+  const parts = [];
+
+  if (SELECTED_NODE_ID && NODES_BY_ID[SELECTED_NODE_ID]) {
+    const n = NODES_BY_ID[SELECTED_NODE_ID];
+    const count = bfsReachable(SELECTED_NODE_ID).size;
+    parts.push('<span class="ro-eye">&#9737;</span> <b>Spotlight:</b> ' +
+      escapeHtml(n.id) + ' [' + escapeHtml(n.status) + '] &mdash; dimming everything except its '
+      + '<b>dependency graph</b> (' + count + ' connected node' + (count === 1 ? '' : 's') +
+      ': what it depends on + what depends on it, traced through solid + cross-plan links). '
+      + '<span class="ro-dim">Clicking filtered the view, it did not open a page. Click it again or empty space to clear.</span>');
+  }
+  if (STATUS_FILTER && STATUS_FILTER !== 'all') {
+    const lbl = STATUS_FILTER === 'live_exq' ? 'live-EXQ (running now, fresh heartbeat)'
+      : STATUS_FILTER === 'in_progress' ? 'in-progress' : STATUS_FILTER;
+    parts.push('<b>Filter:</b> hiding all but <b>' + escapeHtml(lbl) + '</b> nodes. '
+      + '<span class="ro-dim">Click "all" to restore.</span>');
+  }
+  if (FACET_FILTER && FACET_FILTER !== 'none') {
+    const lbl = FACET_FILTER === 'welfare' ? 'welfare-review' : FACET_FILTER;
+    parts.push('<b>Facet:</b> highlighting <b>' + escapeHtml(lbl) +
+      '</b> nodes, dimming the rest. <span class="ro-dim">Click "none" to clear.</span>');
+  }
+  if (READY_FILTER_ACTIVE) {
+    parts.push('<b>Ready-to-work:</b> spotlighting ' + READY_NODE_IDS.size +
+      ' node' + (READY_NODE_IDS.size === 1 ? '' : 's') + ' that are open + unblocked + load-bearing/high/medium. '
+      + '<span class="ro-dim">Click the button again to clear.</span>');
+  }
+
+  if (!parts.length) {
+    el.innerHTML = '<span class="ro-eye">&#9737;</span> <b>' + escapeHtml(genLabel()) + '.</b> '
+      + '<b>Click a node</b> to spotlight its dependency graph (everything it blocks or is blocked by) and dim the rest &mdash; this <i>filters</i> the view, it does not open a page. '
+      + '<b>Click empty space</b> to clear. <b>Hover</b> a node for full detail, an edge for what the link means. Scroll to pan; use the map (lower-right) to jump.';
+    return;
+  }
+  el.innerHTML = parts.join('<span class="ro-sep">|</span>');
+}
+
+// Live hover preview: tell the user what a click on THIS node would do, without
+// disturbing the floating detail tooltip. Restored to the state readout on leave.
+function readoutHover(n) {
+  const el = document.getElementById('readout');
+  if (!el || !n) return;
+  const count = bfsReachable(n.id).size;
+  let s = '<span class="ro-eye">&#9737;</span> <b>' + escapeHtml(n.id) + '</b> [' + escapeHtml(n.status) + ']';
+  if (n.owner_exq) s += ' &middot; owner ' + escapeHtml(n.owner_exq) + (n.exq_live ? ' <i>[LIVE]</i>' : '');
+  s += ' &mdash; <b>click</b> to spotlight its dependency graph (' + count + ' connected node' + (count === 1 ? '' : 's') + '); the rest dims. '
+    + '<span class="ro-dim">Full detail in the hover card.</span>';
+  el.innerHTML = s;
+}
+
 function applySelectionStyling() {
   const svg = document.getElementById('graph');
   if (!svg) return;
@@ -1129,6 +1218,7 @@ function applySelectionStyling() {
     svg.removeAttribute('data-selected');
     for (const el of svg.querySelectorAll('.in-graph')) el.classList.remove('in-graph');
     for (const el of svg.querySelectorAll('.selected')) el.classList.remove('selected');
+    updateReadout();
     return;
   }
   const reachable = bfsReachable(SELECTED_NODE_ID);
@@ -1143,6 +1233,7 @@ function applySelectionStyling() {
     const t = e.getAttribute('data-to');
     e.classList.toggle('in-graph', reachable.has(f) && reachable.has(t));
   }
+  updateReadout();
 }
 
 function applyReadyFilterStyling() {
@@ -1151,6 +1242,7 @@ function applyReadyFilterStyling() {
   if (!READY_FILTER_ACTIVE) {
     svg.removeAttribute('data-ready-filter');
     for (const el of svg.querySelectorAll('.is-ready')) el.classList.remove('is-ready');
+    updateReadout();
     return;
   }
   svg.setAttribute('data-ready-filter', '1');
@@ -1158,6 +1250,7 @@ function applyReadyFilterStyling() {
     const nid = g.getAttribute('data-node-id');
     g.classList.toggle('is-ready', READY_NODE_IDS.has(nid));
   }
+  updateReadout();
 }
 
 function wireReadyToggle() {
@@ -1460,9 +1553,10 @@ function renderGraph() {
       if (t && t.__desc) showTextTip(ev, t.__desc);
       else showTip(ev, n);
       highlightCrossEdges(n.id, true);
+      readoutHover(n);
     });
     g.addEventListener('mousemove', (ev) => moveTip(ev));
-    g.addEventListener('mouseleave', () => { hideTip(); highlightCrossEdges(n.id, false); });
+    g.addEventListener('mouseleave', () => { hideTip(); highlightCrossEdges(n.id, false); updateReadout(); });
     // #3 click toggles selection; click the same node again clears
     g.addEventListener('click', (ev) => {
       ev.stopPropagation();
