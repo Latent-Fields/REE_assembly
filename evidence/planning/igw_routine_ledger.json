@@ -1046,6 +1046,29 @@
       "assigned_at": "2026-06-19T22:13:59Z",
       "staged_at": "2026-06-19T22:13:59Z",
       "status": "staged"
+    },
+    {
+      "igw_id": "IGW-20260620-187",
+      "stable_hash": "73973b62401a",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "INV-050"
+      ],
+      "owner_exq": null,
+      "title": "Proposal EXP-0201 (INV-050)",
+      "worktree": ".claude/worktrees/igw-187-proposal-exp-0201-inv-050",
+      "branch": "claude/igw-187-proposal-exp-0201-inv-050",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260620-187",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-187-proposal-exp-0201-inv-050 && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-187-proposal-exp-0201-inv-050-20260620T041658Z",
+      "requires_human_reason": "skill /queue-experiment is a design judgement call; staged for human review before queuing (STAGE_FOR_REVIEW_SKILLS)",
+      "assigned_at": "2026-06-20T04:16:43Z",
+      "staged_at": "2026-06-20T04:16:43Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
