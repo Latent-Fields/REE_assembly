@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-20T21:44:17Z",
+  "last_tick_utc": "2026-06-20T22:14:24Z",
   "state": "running",
   "current_exq": "V3-EXQ-689c",
   "current_exq_started_utc": "2026-06-20T21:40:41.034705+00:00",
@@ -9,18 +9,32 @@
   "current_claim_id": "MECH-439",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_PROPOSER_CTRL",
-    "runs_done": 0,
+    "run_label": "Seed 43 / ARM_PROPOSER_CTRL",
+    "runs_done": 1,
     "runs_total": 18,
-    "episodes_done": 10,
+    "episodes_done": 50,
     "episodes_total": 80,
-    "overall_pct": 0.7
+    "overall_pct": 9.0
   },
-  "seconds_elapsed": 215,
-  "seconds_remaining": 49497,
+  "seconds_elapsed": 2023,
+  "seconds_remaining": 15933,
   "recent_lines": [
     "Seed 42 Condition ARM_PROPOSER_CTRL",
-    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 10/80"
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 30/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 40/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 50/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P0 ep 60/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P1 ep 70/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=42 phase=P1 ep 80/80",
+    "verdict: PASS",
+    "Seed 43 Condition ARM_PROPOSER_CTRL",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 10/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 20/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 30/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 40/80",
+    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 50/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
