@@ -66,7 +66,7 @@ closure_plan:
       readiness_gate:
         - "V3-OWNED by behavioral_diversity_isolation:GAP-I (falsifier front, generation:v3) AND behavioral_diversity_isolation:GAP-J (the ARC-107 BG-selector-constitution BUILD front, generation:v3, lead MECH-448 / follow-on MECH-449). This node MIRRORS that grounding-level status and does NOT duplicate or own it -- no owner_exq, generation:v4"
         - "Neural analog: basal-ganglia disinhibitory competition (direct/indirect Go-NoGo + hyperdirect/STN conflict-graded hold + pallidal permission gate), NOT argmax-over-value. Divergence: deterministic argmin over a near-monopolised scalar F (88-89% committed-selection variance, V3-EXQ-571)"
-        - "L2 -> L3 transition: 689a SETTLED no-lift (conflict-grade near-tie family exhausted; A1B1 0/3) => the import as a near-tie parametric tweak is NOT validated -> escalate to the rank-preserving F->eligibility demotion build (MECH-448) carried by GAP-J. L3 promotion now gated on GAP-J's MECH-448 falsifier (committed-class entropy strict-above the conflict-grade controls >=2/3). 689c (Factor-B-alone, in flight) conditions build scope (GAP-J resume_condition; design note s0)"
+        - "L2 -> L3 transition: 689a SETTLED no-lift (conflict-grade near-tie family exhausted; A1B1 0/3) => the import as a near-tie parametric tweak is NOT validated -> escalate to the rank-preserving F->eligibility demotion build (MECH-448) carried by GAP-J. L3 promotion now gated on GAP-J's MECH-448 falsifier, which is queued + in flight as V3-EXQ-689d (ree-v3 main 8d87d4a; coordinator DB pending ree-cloud-3; script experiments/v3_exq_689d_mech448_f_eligibility_demotion_falsifier.py): a 689d PASS (committed-class entropy strict-above the conflict-grade controls >=2/3, acceptance arc_107_selector_constitution_design_2026-06-20.md s4) advances the selector grounding to L3. 689d PROMOTES NOTHING (MECH-448 stays candidate). 689c (Factor-B-alone, also in flight) does NOT gate build scope -- stripped of decision authority by the MECH-442 Section-7 fidelity steer (no-authority confirmatory data only; GAP-J governance_2026_06_20c)"
       last_updated: 2026-06-20
       completion_note: >
         The selector is the worked example of the framework and the only
@@ -77,6 +77,11 @@ closure_plan:
         demotion lead, MECH-449 Go/No-Go follow-on). This node exists only so
         the grounding programme is visible as a whole. Do not edit GAP-I or
         GAP-J from here -- the live F-dominance campaign owns them.
+        CROSS-LINK 2026-06-20: the MECH-448 falsifier that gates this node's
+        L2->L3 transition is now queued as V3-EXQ-689d (mirrors GAP-J owner_exq;
+        this node keeps owner_exq null by the v4-mirror design). No status change
+        (stays in_progress; 689d PROMOTES NOTHING). Reconcile session
+        reconcile-arc107-689d-closure-nodes-20260620T1934Z.
     - id: "biology_grounding_convergence_v4:BG-3"
       title: "Commitment / de-commit latch grounding L1 -> L3"
       phase: 3
