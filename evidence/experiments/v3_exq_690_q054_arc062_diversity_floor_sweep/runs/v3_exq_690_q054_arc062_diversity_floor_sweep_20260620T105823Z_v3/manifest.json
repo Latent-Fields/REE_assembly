@@ -1,0 +1,91 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_690_q054_arc062_diversity_floor_sweep",
+  "run_id": "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-20T10:58:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-062": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "R1_realised_first_action_entropy_varies_across_arms",
+        "kind": "readiness",
+        "description": "Measured committed first-action entropy RANGE across the 4 noise-floor arms exceeds the floor -- the sweep actually moved realised entropy (else the floor sweep is vacuous). SAME statistic (first_action_entropy) the floor verdict locates.",
+        "control": "noise_floor_min_temperature graded 0.30/1.00/1.75/2.75",
+        "measured": 0.0,
+        "threshold": 0.2,
+        "met": false
+      },
+      {
+        "name": "R2_topk_shortlist_conversion_nonvacuous",
+        "kind": "readiness",
+        "description": "569i top-k shortlist engaged: shortlist active, mode==top_k, mean shortlist size ~= k on a majority of arms. Without the conversion engaged, realised entropy cannot reach committed behaviour and discriminator accuracy cannot be read as a function of entropy.",
+        "control": "use_modulatory_shortlist_then_modulate + mode=top_k + k=3",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "R3_discriminator_nondegenerate",
+        "kind": "readiness",
+        "description": "ARC-062 gating_weight carries cross-tick RANGE (not pinned) AND both reef-half and forage-half contexts were sampled, on a majority of arms. A pinned discriminator gives a degenerate accuracy readout. RANGE statistic.",
+        "control": "gated_policy gating_weight cross-tick range + context tick counts",
+        "measured": 0.0,
+        "threshold": 3.0,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "diversity_floor_bracketed_or_sub_bracketed",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "R1_entropy_varies": false,
+      "R2_conversion_engaged": true,
+      "R3_discriminator_nondegenerate": false,
+      "floor_bracketed": false
+    }
+  }
+}
