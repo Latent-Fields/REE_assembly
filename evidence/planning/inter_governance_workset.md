@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-20T11:42:41Z`
+Generated: `2026-06-20T12:14:17Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -10,7 +10,7 @@ UI: http://localhost:8000/workset
 ## Summary
 
 - Items: **197** (ready 21, in_flight 1, blocked 154)
-- Pending review: **2**
+- Pending review: **1**
 - Queue pending (unclaimed): **0**
 
 - Live EXQs: V3-EXQ-514u, V3-EXQ-689a, V3-EXQ-693
@@ -19,19 +19,19 @@ UI: http://localhost:8000/workset
 
 ## Work packages
 
-### IGW-20260620-001 -- Complete governance review (2 pending)
+### IGW-20260620-001 -- Complete governance review (1 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 2 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260620-001
-Title: Complete governance review (2 pending)
+Title: Complete governance review (1 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 2 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 1 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.

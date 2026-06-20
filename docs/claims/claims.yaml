@@ -29367,6 +29367,34 @@
     top-k ceiling-lifted / GAP-B / 689a / 625e). The 654 CRF instrumentation
     lineage has cleanly terminated; the residual is the F-dominance ceiling, not a
     654-specific gap.
+
+    V3-EXQ-690 (Q-054 ARC-062 minimum trajectory-class diversity floor sweep) self-routed
+    substrate_not_ready_requeue (R1 realised-committed-first-action-entropy RANGE across the
+    4 noise-floor-min_temperature arms = 0.0 < 0.2 floor; R3 discriminator non-degenerate
+    0/4 arms). Autopsy 2026-06-20 (failure_autopsy_V3-EXQ-690_2026-06-20, confirmed): the
+    self-route is trustworthy and NON-WEAKENING. The 4 arms (min_temp 0.30/1.00/1.75/2.75,
+    alpha held 0.0) produced BYTE-IDENTICAL per-seed metrics (seed 42 = 0.285896 nats /
+    0.823767 acc in every arm) -- a 2.75x effective-temperature change moved nothing. Root
+    cause (code-confirmed): the committed first action is an argmin over the F-dominated
+    scores (MECH-090), which is temperature-invariant; the MECH-313 noise-floor temperature
+    only spreads the uncommitted multinomial, so it is architecturally incapable of moving
+    committed first-action entropy. This is (a) the live MECH-439 F-dominance conversion
+    ceiling reasserting -- the diversity-floor-sweep instance of the f-dominance convergent
+    fingerprint (cf. failure_autopsy_f-dominance-conversion-cluster_2026-06-20; F = 88-89%
+    E3 committed-selection variance, V3-EXQ-571) -- expressed as BETWEEN-ARM lever-inertness,
+    NOT a within-seed monostrategy (committed entropy is non-zero 0.28-0.73 nats, seed 42
+    commits 5 distinct action classes); and (b) a test-design lever-target mismatch. It does
+    NOT mask an ARC-062-specific cause: the ARC-062 discriminator scores above chance where
+    context is sampled (0.74 mean; 0.82/0.90 on the 2 reef-exposed seeds); the R3 degeneracy
+    is environmental (seed 44 = 0 reef ticks). ARC-062 stays candidate / substrate_ceiling /
+    v3_pending / pending_retest_after_substrate, UNCHANGED; 690 non_contributory (manifest
+    non_degenerate=false -> scoring-excluded). 4th confirmed inert lever after the CRF /
+    OFC / dACC channels. Re-running 690 on the current noise-floor lever reproduces R1=0.0;
+    requeue 690a is gated on V3-EXQ-689a (the conflict-graded shortlist keystone, BUILT, in
+    flight on DLAPTOP-4.local), NOT on the current selector, and must (i) sweep a
+    committed-argmax-REACHING lever (569i top-k k / 689a conflict-graded shortlist width) for
+    the Q-054 floor question instead of the MECH-313 selection-softmax temperature, and
+    (ii) control per-seed reef/forage exposure so R3 is not lost to environmental sampling.
   implementation_note: >
     2026-05-21 IGW-024 substrate-ready reconcile: Phase 1 (GAP-A) IMPLEMENTED
     2026-05-09 -- ree_core/policy/gated_policy.py (two heads + 3-stream

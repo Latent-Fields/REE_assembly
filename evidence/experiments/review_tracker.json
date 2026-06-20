@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-20T11:40:43Z",
+  "last_review_utc": "2026-06-20T12:08:11Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -708,7 +708,9 @@
     "v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3",
     "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest",
     "v3_exq_691_q055_sleep_consolidation_diversity_persistence",
-    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
+    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3",
+    "v3_exq_690_q054_arc062_diversity_floor_sweep",
+    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
@@ -3104,7 +3106,8 @@
     "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3",
     "v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3",
     "v3_exq_514t_sd049_phase2_mech436_drive_coupling_retest_20260620T031416Z_v3",
-    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3"
+    "v3_exq_691_q055_sleep_consolidation_diversity_persistence_20260620T103320Z_v3",
+    "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3955,6 +3958,21 @@
         "MECH-120"
       ],
       "subject": "Governance 2026-06-20T11:40Z. 2 pending: 1 PASS REVIEWED + 1 FAIL FLAGGED for /failure-autopsy. REVIEWED: V3-EXQ-691 (q055_sleep_consolidation_diversity_persistence) PASS/supports SD-017+MECH-120, non_degenerate=true -- sleep-phase consolidation PRESERVES committed-action-class diversity (arm-A sleep-ON 2/3 seeds preserve, t2>=50% t0, readiness met). NUANCE flagged: arm-A t2 0.569 marginally BELOW sleep-OFF control 0.645 (preserve-not-collapse, NOT sleep-beats-control); evidence_quality_note added to both claims; SD-017 stays stable, MECH-120 stays candidate (exp_conf 0.575<0.62 + v3_pending). FLAGGED for /failure-autopsy (NOT reviewed, stays pending, no evidence stamp): V3-EXQ-690 (q054_arc062_diversity_floor_sweep) FAIL self-route substrate_not_ready_requeue, non_degenerate=false -- R1 realised first-action entropy RANGE=0.0 across all 4 noise-floor arms (monostrategy collapse = live MECH-439 F-dominance conversion-ceiling signature), R3 discriminator degenerate; pre-registered non-weakening branch fired, NOT an ARC-062 falsification; ARC-062 stays candidate/substrate_ceiling/v3_pending/pending_retest. Prom/dem: 4 pending_user MECH-443/444/445/446 all confirmed hold_pending_v3_substrate (no status change). Hygiene: MECH-443/444 added to check_backward_traceability TRACEABILITY_EXEMPT (incidental 'preplay/playback' keyword, not developmental play; G2 exit 0)."
+    },
+    {
+      "utc": "2026-06-20T12:08:11Z",
+      "session": "governance-cycle-20260620T1208Z",
+      "reviewed_run_ids": [
+        "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_690_q054_arc062_diversity_floor_sweep",
+        "v3_exq_690_q054_arc062_diversity_floor_sweep_20260620T105823Z_v3"
+      ],
+      "claim_ids_touched": [
+        "ARC-062"
+      ],
+      "subject": "Governance 2026-06-20T12:08Z. CONSUMED confirmed failure_autopsy_V3-EXQ-690_2026-06-20 (ARC-062 diversity-floor sweep). non_contributory/substrate_ceiling/pending_retest, NON-WEAKENING. Self-route trustworthy: 4 noise-floor-min_temperature arms (0.30->2.75) produced BYTE-IDENTICAL per-seed metrics -- a selection-softmax temperature floor (MECH-313) cannot move the deterministic committed argmin over F-dominated scores (MECH-090); lever-target mismatch + live MECH-439 F-dominance ceiling expressed as BETWEEN-ARM lever-inertness (committed entropy non-zero per seed but invariant). 4th confirmed inert lever after CRF/OFC/dACC. ARC-062 discriminator intact (0.74 mean, above chance where context sampled); R3 degeneracy ENVIRONMENTAL (seed 44 = 0 reef ticks). ARC-062 UNCHANGED (candidate/substrate_ceiling/v3_pending/pending_retest) + autopsy EQN added. substrate_queue f_dominance_conversion_ceiling AMENDED (690 failure_record, noise-floor temperature inert lever). Route implement-substrate; 690a gated on 689a, must sweep a committed-argmax-REACHING lever (569i top-k k / 689a conflict-graded width) NOT the temperature, and control reef/forage exposure. MARKED REVIEWED."
     }
   ],
   "review_log": [
