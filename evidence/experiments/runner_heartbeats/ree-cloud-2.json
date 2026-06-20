@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-20T03:19:12Z",
+  "last_tick_utc": "2026-06-20T03:49:20Z",
   "state": "running",
   "current_exq": "V3-EXQ-690",
   "current_exq_started_utc": "2026-06-19T23:36:44.012492+00:00",
@@ -9,18 +9,16 @@
   "current_claim_id": "ARC-062",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / noise_floor_min_temp_1p00_spcem_baseline_",
-    "runs_done": 3,
+    "run_label": "Seed 43 / noise_floor_min_temp_1p00_spcem_baseline_",
+    "runs_done": 4,
     "runs_total": 12,
-    "episodes_done": 190,
+    "episodes_done": 70,
     "episodes_total": 210,
-    "overall_pct": 32.5
+    "overall_pct": 36.1
   },
-  "seconds_elapsed": 13349,
-  "seconds_remaining": 27900,
+  "seconds_elapsed": 15156,
+  "seconds_remaining": 26423,
   "recent_lines": [
-    "Arm ARM_T_LOW (noise_floor_min_temp_0p30_below_spcem_entropy) (P0=60 P1=90 P2=60 steps=200 dry_run=False)",
-    "Seed 42 Condition noise_floor_min_temp_0p30_below_spcem_entropy",
     "[train] arm=ARM_T_LOW seed=42 phase=P0 ep 10/210",
     "[train] arm=ARM_T_LOW seed=42 phase=P0 ep 20/210",
     "[train] arm=ARM_T_LOW seed=42 phase=P0 ep 30/210",
@@ -109,7 +107,18 @@
     "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 160/210",
     "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 170/210",
     "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 180/210",
-    "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 190/210"
+    "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 190/210",
+    "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 200/210",
+    "[train] arm=ARM_T_SPCEM seed=42 phase=P2 ep 210/210",
+    "verdict: PASS",
+    "Seed 43 Condition noise_floor_min_temp_1p00_spcem_baseline_~0p497nats",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 10/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 20/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 30/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 40/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 50/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P0 ep 60/210",
+    "[train] arm=ARM_T_SPCEM seed=43 phase=P1 ep 70/210"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
