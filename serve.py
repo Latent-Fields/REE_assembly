@@ -1640,6 +1640,7 @@ CLOSURE_KNOWN_PLANS = [
     "drives_motivation_v4_plan.md",
     "perceptual_adaptors_v4_plan.md",
     "plasticity_neuromodulation_v4_plan.md",
+    "biology_grounding_convergence_v4_plan.md",
     # V5 (social-mind) tier
     "multi_agent_ecology_v5_plan.md",
     "mirror_modelling_other_self_v5_plan.md",

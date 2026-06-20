@@ -148,6 +148,8 @@ The grounding mandate has its own failure modes; the guardrails (S4.3) exist to 
 
 ## 9. Convergence roadmap (resume primitive)
 
+**Tracked as:** [biology_grounding_convergence_v4_plan.md](../../evidence/planning/biology_grounding_convergence_v4_plan.md) — a `generation: v4` forward-roadmap in the closure pipeline (nodes BG-1..BG-7, no `owner_exq`, excluded from the V3 closure %). Each node's `readiness_gate` is the V3-era prerequisite that defers it; the selector node (BG-2) mirrors the V3-owned `behavioral_diversity_isolation:GAP-I` rather than duplicating it. The table below is the human-readable mirror of that plan.
+
 The backlog is the `non_anatomy_prefixes` set from [brain_region_map.yaml](brain_region_map.yaml) — components with per-claim docs but no systematic function-grounding row. Work each from its current level toward L3, one component per session, lit-pull-gated.
 
 | # | Component cluster | Current level | Next action | Status |

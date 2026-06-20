@@ -5,7 +5,7 @@ nav_order: 11
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-06-20T09:08:35Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-06-20T10:41:48Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
@@ -35,7 +35,7 @@ Status tally: `blocked`&nbsp;7 · `blocked_pending_substrate`&nbsp;3 · `deferre
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (a): Consumer-Input-Threshold Recalibration</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-05</td></tr>
 </tbody></table>
 
-_Plus 28 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
+_Plus 29 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
 
 Full node-by-node detail (remaining work, blockers, owners) is in the generated `evidence/planning/closure_status.md` snapshot.
 
