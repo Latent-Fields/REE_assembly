@@ -4906,7 +4906,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "implement-substrate-mech-448-20260620T1842Z",
+      "last_seen_session": "implement-substrate-commit-duration-latch-20260620T1906Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -4922,6 +4922,24 @@
           "falsifier_next": "689a-successor on the demotion lever (arc_107 design note s4 acceptance): committed-action-class entropy reaches the proposer ceiling on >=2/3 seeds AND order preserved on the numerators AND no harmful class disinhibited; NON-DEGENERACY f_eligibility_excluded_count>0 on a DIVERGENT pool. Run on the GAP-A-ready foraging substrate (SD-056 e2.world_forward + ARC-065 GAP-A candidate_summary_source=e2_world_forward). NOT queued here -- sequenced /queue-experiment.",
           "design_doc": "REE_assembly/docs/architecture/mech_448_f_eligibility_demotion.md",
           "ree_v3_status_doc": "ree-v3/CLAUDE.md (MECH-448 / ARC-107 entry, 2026-06-20)"
+        },
+        {
+          "session": "implement-substrate-commit-duration-latch-20260620T1906Z",
+          "utc": "2026-06-20T19:30Z",
+          "rung": 6,
+          "face": "commit/release-duration (root C de-commit) -- PARALLEL to the selection-face rungs 1-5 (MECH-448), NOT an escalation",
+          "lever": "graded natural-commit-occupancy release (commit-entry-decisiveness / natural-commit-latch-occupancy)",
+          "status": "BUILT (no-op default, bit-identical OFF). PROMOTES NOTHING; claims.yaml NOT modified; SD-034/MECH-090/MECH-342/MECH-445/MECH-446 stay candidate. NOT blocked on GAP-I/689c (the duration face is its own lever per the 460h governance note).",
+          "what": "ree_core/policy/natural_commit_urgency.py (NaturalCommitUrgencyRelease) -- pure-arithmetic regulator, sibling to MECH-342 commit_maintenance_release.py, REUSES BetaGate.committed_run_length (NO parallel latch module, ARC-106 G2). Reduces the F-driven natural-commit latch occupancy (~2400-2600 steps on strong seeds, 460h) so weak-natural-commit is the norm across seeds, dissolving the 460h MECH-445/446 disjoint-certifier problem. TWO D1-faithful release modes under one master (the 460i-successor falsifier discriminates which lifts): (1) URGENCY (Thura/Cisek) graded urgency rising with committed_run_length, rate = 1 + gap_entry_sensitivity*gap_norm_at_entry so an F-decisive (monopolising) commit accrues urgency FASTER and is shortened most -- folds in the 'gap-scaled commit-entry threshold' candidate; gap_entry_sensitivity=0 = flat fixed-rate control; (2) ACTION-EXTENT (Jin) release when the executed action sequence completes (idx>=horizon) -- the 'natural-commit run-length cap' candidate rendered as a behavioural cap, NOT a tuned constant.",
+          "d1_grounding": "BG-3 SYNTHESIS divergence D1 (targeted_review_commit_release_duration_latch): biology times the hold with a GRADED BG/pallidal urgency (Thura/Cisek 2022) and/or makes maintenance co-extensive with the action (Jin 2014), NOT a fixed refractory clock. The gap-scaled urgency rate is the load-bearing piece distinguishing this from 'another fixed refractory'.",
+          "config": "REEConfig + from_dims, all no-op default: use_natural_commit_urgency_release (False) + natural_commit_release_urgency_mode (True) + natural_commit_release_action_extent_mode (True) + natural_commit_urgency_rate (0.01) + natural_commit_urgency_release_bound (1.0) + natural_commit_urgency_cap (1.5) + natural_commit_gap_entry_sensitivity (1.0, load-bearing; 0=flat control) + natural_commit_urgency_onset_ticks (0).",
+          "wiring": "agent.py: instantiate when master on; ARM at the bistable elevate site on a fresh NATURAL commit (result.committed) via note_commit_entry(gap_norm) -- a purely closure-coupled elevation is NOT armed; TICK at the MECH-342 release region (committed_run_length + action_sequence_complete) -> release on fire (mirrors the MECH-342 block); reset() per episode. NOT touched: e3_selector.py (clean separation from MECH-448), beta_gate.py (reuses committed_run_length), claims.yaml.",
+          "diagnostics": "ncur_last_occupancy_at_release / ncur_n_urgency_releases + ncur_n_action_extent_releases + ncur_n_releases_total / urgency + last_decisiveness_scale / gap_norm_at_entry / ncur_n_simulation_skips.",
+          "safety": "the lever only RELEASES the latch (returns to fresh deliberation); no path to elevate or force an action; on fire urgency resets + disarms. MECH-094: tick(simulation_mode=True) no-op (replay must not abort a committed motor program).",
+          "validation": "10/10 new contracts (tests/contracts/test_natural_commit_urgency.py: OFF bit-identical / gap-scaled rate LOAD-BEARING / action-extent / unarmed no-op / MECH-094 / config validation / agent release + bounded occupancy / ON-inert==OFF / arm-site / release-only safety) + 7/7 preflight + 1169 full contracts pass (the 2 test_runner_fail_branch failures are the documented pre-existing local-git-env runner-conflict flakes, CONFIRMED failing identically on a clean stash). Activation smoke = the C7/C8 agent contracts (occupancy bounded ON vs held OFF; ON-inert bit-identical).",
+          "falsifier_next": "460i-successor de-commit retest (MECH-445/446) on this lever -- the SEQUENCED NEXT step; NOT queued here. Run on a regime where weak-natural-commit is the norm so MECH-445 commit-intent and MECH-446 occupancy-drop co-occur on the same seeds.",
+          "design_doc": "REE_assembly/docs/architecture/natural_commit_occupancy_release.md",
+          "ree_v3_status_doc": "ree-v3/CLAUDE.md (commit/release-DURATION lever entry, 2026-06-20)"
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",

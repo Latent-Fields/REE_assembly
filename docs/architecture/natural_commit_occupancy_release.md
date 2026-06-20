@@ -1,0 +1,169 @@
+# Commit/release-DURATION lever: graded natural-commit-occupancy release
+
+**Status:** IMPLEMENTED 2026-06-20 (substrate; PROMOTES NOTHING)
+**Subject:** control_plane.natural_commit_occupancy_release
+**Substrate-queue rung:** `f_dominance_conversion_ceiling` -> rung 6 (commit/release-DURATION face)
+**Cluster claims (candidate):** SD-034 (closure operator / done-token release), MECH-090 (commitment-gated routing latch), MECH-342 (commit-maintenance-release on degraded readiness), MECH-445 (closure->beta coupling), MECH-446 (de-commit-authority magnitude)
+**Grounding:** ARC-106 brain-like construction; BG-3 biology grounding (`evidence/literature/targeted_review_commit_release_duration_latch/SYNTHESIS.md`, divergence **D1**)
+
+## Role
+
+This is the **commit/release-DURATION** lever of the F-dominance front -- **PARALLEL to**, not an escalation of, the selection-face levers (MECH-439 conflict-graded width / commit-temperature; MECH-448 rank-preserving F->eligibility demotion). Those act at E3 **selection**; this acts on how long a committed action is **held**.
+
+It is **NOT blocked on GAP-I / V3-EXQ-689c** (a dead-end selection-face parametric retest). Per the 460h governance note (`behavioral_diversity_isolation:GAP-I` `governance_2026_06_20`), the commit/release-duration face is its own lever, separate from the selection-face levers (k / commit-T).
+
+## Problem (V3-EXQ-460h)
+
+On strong (F-decisive) seeds the bistable beta latch elevates once and then **holds for ~2400-2600 steps**, because nothing releases it: a decisive F-gap means "good options," so MECH-342 maintenance-release (which fires on *degraded* readiness) is silent, and no closure fires so SD-034 is silent. That monolithic natural-commit occupancy **swamps** the SD-034 closure de-commit, leaving the de-commit certifiers disjoint across seeds:
+
+| seed | OFF committed_steps | closure commit_intent |
+|------|---------------------|-----------------------|
+| 42 (strong) | 2414 | 0 |
+| 43 (strong) | 2609 | 0 |
+| 44 (weak)   | 0    | 375 |
+
+MECH-445 (commit-intent) and MECH-446 (de-commit occupancy drop) never co-occur on the same seed -- the **460h disjoint-certifier problem**. The de-commit is measurable only where the natural commit is *weak*.
+
+This lever makes the F-driven natural commit **less monolithic** so weak-natural-commit becomes the norm across seeds, dissolving the 460h problem (MECH-445 commit-intent fires broadly AND MECH-446 de-commit becomes occupancy-attributable on the same seeds).
+
+## Biological constraint -- BG-3 SYNTHESIS divergence D1 (load-bearing)
+
+Biology does **not** set commitment DURATION with a separate fixed refractory clock. It times the hold with a **graded BG/pallidal urgency** signal that rises over the held epoch (Thura, Cabana, Feghaly & Cisek 2022, *PLoS Biol* [10.1371/journal.pbio.3001861]) and/or makes maintenance **co-extensive with the executing action** (Jin, Tecuapetla & Costa 2014, *Nat Neurosci* [10.1038/nn.3632]). REE's existing committed-run-scaled beta-gate refractory is the "tuned, not bio-sourced" divergence D1 names.
+
+**Therefore the lever is a GRADED release, never another fixed refractory constant.**
+
+## Solution
+
+A pure-arithmetic regulator `ree_core/policy/natural_commit_urgency.py`
+(`NaturalCommitUrgencyRelease` + `NaturalCommitUrgencyReleaseConfig`), sibling to
+`commit_maintenance_release.py` (MECH-342). It **reuses** `BetaGate.committed_run_length`
+(the MECH-090 commit-gate machinery) rather than maintaining its own latch
+(ARC-106 guardrail G2: reuse-before-duplicate -- **no parallel latch module**).
+
+Two D1-faithful release modes, both togglable under one master flag (so the
+sequenced 460i-successor falsifier can discriminate which lifts):
+
+### (1) URGENCY mode (Thura/Cisek)
+
+Each maintenance tick the latch is held by a *natural* commit:
+
+```
+decisiveness_scale = 1 + gap_entry_sensitivity * gap_norm_at_entry
+urgency += urgency_rate * decisiveness_scale
+fire when urgency >= release_bound
+```
+
+`gap_norm_at_entry` in [0, 1] is the normalised top-F decisiveness captured at
+commit entry (1 = a decisive F-gap = the kind of commit that monopolises the
+latch). The **gap-scaling is the load-bearing piece**: an F-decisive natural
+commit accrues release-urgency *faster*, so the strongest-F holds -- exactly the
+ones that swamp the de-commit -- are shortened most. This attacks the
+F-dominance directly in the duration domain and **folds in the "gap-scaled
+commit-entry threshold" impl_hint candidate** (commit-entry decisiveness sets
+the release rate).
+
+`gap_entry_sensitivity = 0` reduces the urgency to a flat fixed-rate timeout --
+the contrasted **"another fixed refractory" control** the D1 falsifier compares
+the gap-scaled lever against.
+
+### (2) ACTION-EXTENT mode (Jin)
+
+Release the natural commit when the committed trajectory's executed action
+sequence **completes** (the agent has stepped through all of
+`trajectory.actions` rather than repeating the last action indefinitely).
+Renders the "maintenance co-extensive with the executing action" biology + the
+"natural-commit run-length cap" impl_hint candidate as a **behaviourally-grounded
+cap** (the trajectory horizon), NOT a tuned constant. Fires regardless of
+urgency when the sequence is complete.
+
+## Divergence ledger (ARC-106)
+
+| REE mechanism | Biological reference | Divergence | Load-bearing? | Falsifier |
+|---|---|---|---|---|
+| Graded urgency-scaled release of the natural-commit latch, rate scaled by entry decisiveness | Graded BG/pallidal urgency timing the hold (Thura 2022); maintenance co-extensive with the action (Jin 2014) | Replaces the "tuned, not bio-sourced" committed-run-scaled refractory (D1) with a graded urgency / behaviour-extent release | **YES (resolves D1)** | The graded lever changes committed-epoch length and lifts the de-commit DV where the fixed refractory does not (the 460i-successor). `gap_entry_sensitivity=0` is the flat-refractory control; if the gap-scaled rate does not beat it, the grading is decorative. |
+
+## Distinct from siblings (not a duplicate)
+
+- **MECH-342** maintenance-release fires on *degraded* readiness (poor options) and is therefore **silent on the healthy-but-prolonged decisive commit** that actually monopolises the latch -- exactly why strong seeds hold ~2400 steps. This fires on a healthy, prolonged natural commit (the duration-urgency face MECH-342 does not cover).
+- **SD-034 Leg-B committed-run-scaled refractory (MECH-446)** holds the latch *down post-closure* (how long to keep it released). This shortens the natural commit's occupancy *up* (how long it stays elevated). It does not install a refractory; it releases.
+- **MECH-091** urgency-interrupt fires on z_harm threat. This is a *duration* urgency with no harm-stream input.
+- **ARC-028/MECH-105** completion releases on a *high* completion signal (good plan). This releases on held-duration urgency or executed-sequence completion regardless of plan quality.
+
+## Psychiatric failure-mode column (ARC-106 required)
+
+| Break | Disorder analog |
+|-------|-----------------|
+| Urgency too weak / sensitivity 0 / bound too high (under-release) | rigidity / perseveration / catatonic over-maintenance (the current F-monopoly: holds ~2400 steps) |
+| Urgency too strong / bound too low (over-release) | distractibility / disorganisation; commitment cannot be sustained against noise |
+
+*Honesty guardrail (ARC-106): these state what each break resembles, not that the lever is the disorder mechanism.*
+
+## Config (REEConfig + from_dims, all no-op default -> bit-identical OFF)
+
+| Param | Default | Purpose |
+|-------|---------|---------|
+| `use_natural_commit_urgency_release` | False | master switch |
+| `natural_commit_release_urgency_mode` | True | enable the Thura/Cisek urgency mode (consulted only when master on) |
+| `natural_commit_release_action_extent_mode` | True | enable the Jin action-extent mode (consulted only when master on) |
+| `natural_commit_urgency_rate` | 0.01 | per-tick base urgency increment |
+| `natural_commit_urgency_release_bound` | 1.0 | urgency-mode release threshold |
+| `natural_commit_urgency_cap` | 1.5 | hard clamp on urgency (>= bound) |
+| `natural_commit_gap_entry_sensitivity` | 1.0 | **load-bearing** gap-scaling; 0.0 = flat control |
+| `natural_commit_urgency_onset_ticks` | 0 | grace ticks before urgency accrues |
+
+## Data flow
+
+```
+commit entry (bistable elevate site, agent.py): result.committed (natural)
+  -> note_commit_entry(gap_norm)  [arm + reset urgency; gap_norm from result.scores]
+each subsequent committed tick (the MECH-342 release region):
+  -> tick(committed_run_length=beta_gate.committed_run_length,
+          action_sequence_complete=_committed_step_idx >= horizon)
+  -> fire -> beta_gate.release(); _committed_step_idx=0;
+             _committed_anchor_keys=None; e3._committed_trajectory=None
+agent.reset() -> regulator.reset()  (per-episode)
+```
+
+A purely closure-coupled elevation (`result.committed` False) does **not** arm
+the lever -- its occupancy is governed by the SD-034 closure machinery.
+
+## Diagnostics (`get_state()`)
+
+`ncur_last_occupancy_at_release` (latch-occupancy length at the last release),
+`ncur_n_urgency_releases` / `ncur_n_action_extent_releases` / `ncur_n_releases_total`
+(release-event counts), `urgency` / `last_decisiveness_scale` (graded-release
+magnitude), `gap_norm_at_entry`, `natural_commit_armed`, `ncur_n_simulation_skips`.
+
+## MECH-094
+
+`tick(simulation_mode=True)` is a no-op (a replay / DMN tick must not abort a
+committed motor program). Matches the SD-035 / MECH-279 / MECH-313 / MECH-320 /
+MECH-342 pattern.
+
+## Backward compatibility
+
+`use_natural_commit_urgency_release=False` by default -> `agent.natural_commit_urgency`
+is None; the arm site and release block are skipped -> bit-identical. No
+`e3_selector.py` change (clean separation from the selection-face MECH-448), no
+`beta_gate.py` change (reuses the existing `committed_run_length`), no
+`claims.yaml` change (PROMOTES NOTHING).
+
+## Phased training
+
+N/A (pure-arithmetic regulator; no learned parameters; no gradient flow).
+
+## What this enables
+
+The sequenced **460i-successor falsifier** (the de-commit retest on this lever,
+MECH-445/446) becomes runnable on a regime where weak-natural-commit is the norm
+across seeds, so MECH-445 commit-intent and MECH-446 de-commit occupancy drop can
+co-occur on the same seeds. **The falsifier is the sequenced next step; it is NOT
+queued by this build.**
+
+## Validation
+
+Substrate-readiness contract suite `tests/contracts/test_natural_commit_urgency.py`
+(OFF bit-identical / gap-scaled rate load-bearing / action-extent / unarmed
+no-op / MECH-094 / config validation / agent release wiring + bounded occupancy /
+ON-inert == OFF / arm-site / release-only safety). The 460i-successor behavioural
+falsifier is sequenced next.
