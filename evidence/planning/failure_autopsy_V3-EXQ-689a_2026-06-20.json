@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-20T18:02:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier_20260620T175346Z_v3",
+      "queue_id": "V3-EXQ-689a",
+      "claim_ids": ["MECH-439"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "MECH-439 CORE intact (ceiling persists under the conflict-grade both-levers form = consistent with F-dominance, non_contributory NOT weakens). MECH-447 lever-sufficiency WEAKENED + needs split (both-levers form refuted, commit-T leg alone converts -> not monolithic). MECH-448 'only F->eligibility demotion lifts' COUNTER-evidenced (a near-tie commit-T lever lifted without any demotion). ARC-107/MECH-449/Q-078 ELEVATED (the destructive A x B interaction is a constitutional/integration signal).",
+        "biological_reference": "clear/present. BG hyperdirect-STN conflict-graded hold (Factor A graded shortlist width = STN threshold-raise) + pallidal disinhibition gain (Factor B gap-scaled commit-T). The destructive A x B interaction has a biological reading: raising the STN hold threshold suppresses the very near-ties the pallidal commit-gain would diversify -- the two levers are NOT independent. lit-pull targeted_review_connectome_mech_439 EXISTS (Frank Hold-your-horses, Cavanagh/Frank STN, Bogacz MSPRT, Carandini/Heeger + Louie/Glimcher divisive normalisation).",
+        "prerequisites": "present. Readiness ALL met: route_range 0.624 (>0.01), e2 cand_world_pairwise_dist 0.187 (>0.03), conflict-grade levers engaged 3/3 seeds. SD-056 / ARC-065 GAP-A trained, modulatory-bias-selection-authority + top-k shortlist built. NOT substrate_not_ready.",
+        "implementation": "complete for the gated levers (Factor A graded shortlist width + Factor B gap-scaled commit-T both built + engaged non-vacuously, e3_selector.py MECH-439 Factor A/B). The rank-preserving F->eligibility demotion lever (MECH-448) and the Go/No-Go eligibility governance (MECH-449) are NOT built -- the constitutional legs the user elected to build.",
+        "environment": "adequate. 603n foraging substrate; the F-gap is near-tie-pinned BY the F-dominance under test (not an env defect). 689a's gap-blind ARM contrast replaced 689's uncomputable gap-spread regression.",
+        "measurement": "adequate but MIS-GATED. 689a fixed 689's gap-spread measurement gap (the gap-blind arm contrast is sound + non_degenerate). BUT the pre-registered load-bearing gate fires on ARM_A1B1 (both levers) only -- which is the destructively-cancelling cell -- so it masked that Factor B alone converts. The dissociation is in the manifest (two_by_two_dissociation) but flagged informational/non-gating.",
+        "integration": "coupled-but-unstable -- THE LOAD-BEARING NEW FINDING. Factor A (graded shortlist width) and Factor B (gap-scaled commit-T) interact DESTRUCTIVELY: A1B1 (both) = 0.387 collapses to the A0B0 baseline 0.371, far below A0B1 (commit-T alone) = 0.850. Combining the two conflict-grade levers cancels the lift the commit-T lever provides alone.",
+        "scale": "adequate. 3 seeds, full scaffolded_sd054_onboarding curriculum, P0/P1."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia action-selection bottleneck: hyperdirect cortico-STN conflict-graded hold (Factor A width) + pallidal output disinhibition gain (Factor B commit-T)",
+        "dependencies": ["STN conflict-threshold (Frank 2006 / Cavanagh & Frank 2011)", "GPi/SNr disinhibitory permission-to-commit", "divisive normalisation of competing value (Carandini & Heeger 2012; Louie/Khaw/Glimcher 2013)"],
+        "is_formal_import": false,
+        "divergence": "The conflict-grade near-tie lever family treats STN-hold (width) and commit-gain (commit-T) as independently-composable. 689a shows they are NOT: STN-hold suppresses the near-ties commit-gain would diversify (destructive A x B). The biologically-faithful constitutional lever is rank-preserving F->eligibility demotion (divisive normalisation removes F from the final argmin / graded eligibility envelope) + Go/No-Go eligibility governance -- a single permission-to-commit constitution, not two stacked near-tie patches.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-689a (MECH-439 conflict-grade GAP-BLIND falsifier; supersedes V3-EXQ-689) FAIL / non_contributory; readiness ALL met + non_degenerate. The pre-registered conflict-grade BOTH-levers form (ARM_A1B1: gap-scaled shortlist-width Factor A + gap-scaled commit-T Factor B) does NOT convert -- committed-action-class entropy 0.387 (= A0B0 baseline 0.371), 0/3 seeds strict-above the collapsed-proposer controls AND 0/3 above the gap-blind controls (ARM_FIXED_KMAX 0.546 / ARM_FIXED_HOT_T 0.591). The committed-action-diversity conversion ceiling PERSISTS under the near-tie conflict-grade lever family -- consistent with MECH-439 F-dominance, NOT a weakens. LOAD-BEARING 2x2 dissociation (manifest two_by_two_dissociation): Factor B (gap-scaled commit-T) ALONE converts -- ARM_A0B1 = 0.850, 2/3 seeds strict-above BOTH control sets; Factor A (graded shortlist width) alone is inert (ARM_A1B0 = 0.440); and combining them is DESTRUCTIVE (A1B1 collapses to baseline). User-adjudicated 2026-06-20: the conflict-grade NEAR-TIE parametric lever family is EXHAUSTED as a committed-conversion fix; ELEVATE to the basal-ganglia-constitution build (ARC-107) -- lead lever MECH-448 rank-preserving F->eligibility demotion (divisive-normalisation grounded), broader follow-on MECH-449 Go/No-Go eligibility governance. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": "f_dominance_conversion_ceiling",
+        "title": "F-dominance committed-selection variance monopoly (MECH-439) -- conflict-grade near-tie family exhausted; build the BG-constitution eligibility-demotion lever",
+        "implementation_hint": "V3-EXQ-689a (readiness met, non_degenerate) shows the conflict-grade NEAR-TIE lever family is insufficient for committed conversion: ARM_A1B1 (both levers gap-scaled) no-lift (0/3 above collapsed AND gap-blind controls); destructive A x B interaction (A1B1 0.387 collapses below A0B1 0.850); Factor B (gap-scaled commit-T) alone converts only marginally (2/3) and Factor A (graded shortlist width) is inert. User decision 2026-06-20 ELEVATE the BG-constitution build (ARC-107): LEAD lever = MECH-448 rank-preserving F->eligibility demotion -- remove F from the final committed argmin, use it ONLY as a graded eligibility envelope (rank-preserving renormalisation against the competing field; divisive-normalisation grounded, targeted_review_connectome_mech_439), so a modulatory/diversity channel arbitrates within the F-eligible set WITHOUT disinhibiting harmful classes; BROADER follow-on = MECH-449 Go/No-Go eligibility governance. Biological reading of the destructive A x B (itself a constitutional signal): STN hold threshold-raise suppresses the very near-ties pallidal commit-gain would diversify -- the two near-tie levers are not independent, so the faithful translation is a single permission-to-commit constitution, not two stacked patches. Build in e3_selector.py behind a no-op-default flag; falsifier = committed-action-class entropy strict-above both control sets on >=2/3 seeds with order preserved on the numerators (F still ranks within-eligible) and no global disinhibition of harmful classes.",
+        "unblocks_claims": ["MECH-439", "MECH-448", "MECH-449", "ARC-107", "Q-078", "MECH-447", "MECH-309", "ARC-062", "ARC-063", "MECH-263", "MECH-260", "Q-045", "MECH-313", "MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["rank-preserving F->eligibility demotion lever build (e3_selector.py; not yet built)", "MECH-449 Go/No-Go eligibility governance (substrate_conditional)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier_20260620T175346Z_v3",
+          "experiment_type": "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier",
+          "metric": "ARM_A1B1 (both conflict-grade levers, gap-scaled) committed-action-class entropy 0.387 = A0B0 baseline 0.371; 0/3 seeds strict-above collapsed-proposer controls AND 0/3 above gap-blind controls (FIXED_KMAX 0.546 / FIXED_HOT_T 0.591). Readiness met (route 0.624, e2 0.187, levers engaged 3/3), non_degenerate. Dissociation: A0B1 commit-T-alone 0.850 (2/3 above both control sets); A1B0 width-alone 0.440 inert; destructive A x B.",
+          "target": "a constitutional lever (rank-preserving F->eligibility demotion / Go-NoGo eligibility governance) lifts committed-action-class entropy strict-above BOTH control sets on >=2/3 seeds WITHOUT disinhibiting harmful classes (order preserved on the numerators)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "The conflict-grade near-tie lever family (graded shortlist width + gap-scaled commit-T) is NOT monolithic: Factor B (commit-T) alone converts 2/3, Factor A (width) is inert, and the two interact DESTRUCTIVELY (A1B1 collapses to baseline). The pre-registered both-levers gate landed on the cancelling cell.",
+        "A single conflict-grade lever (gap-scaled commit-T) DOES convert committed diversity above both control sets (2/3) -- so the conversion ceiling is not absolute; committed diversity is reachable, just not by the both-levers form. This is positive-adjacent evidence for convertibility, not a falsification of MECH-439's F-dominance.",
+        "MECH-448's 'ONLY rank-preserving F->eligibility demotion lifts' is mildly counter-evidenced (a non-demotion commit-T lever lifted 2/3) -- but demotion is now the LEAD constitutional build lever (user choice), so MECH-448's claim text needs the A0B1 caveat + re-graining.",
+        "The destructive A x B interaction is a constitutional/integration signal (ARC-107 / Q-078): combining two BG-like levers cancels because STN-hold suppresses the near-ties commit-gain would diversify -- the faithful translation is one permission-to-commit constitution, not stacked near-tie patches.",
+        "GRANULARITY-DEBT RECURRENCE: this is the Nth autopsy circling MECH-439/f-dominance (689, 569g, 569h, 654g, 485h, 460h, cluster doc + claim_synthesis_MECH-439 already commissioned). The conflict-grade 'lever' is really >=2 dissociable levers -> /claim-synthesis re-grain of MECH-447 (commit-T leg vs width leg vs interaction) is warranted alongside the build."
+      ],
+      "routing": "implement-substrate",
+      "secondary_routing": "claim-synthesis",
+      "secondary_routing_note": "Granularity-debt recurrence hook: re-grain MECH-447 (lever-sufficiency) into the commit-T leg (converts 2/3), the shortlist-width leg (inert), and the destructive interaction; fold the A0B1-lifts-without-demotion finding into MECH-448. Proposal-first; parallel to the implement-substrate build, not blocking it."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "689a is the keystone FALSIFIER for the f-dominance conversion-ceiling cluster (654g CRF / 485h OFC / 625e SD-037 / 445h dACC / 569g/h modulatory) -- all channels reach E3 authority but do not convert at the F-dominated committed argmax. 689a tested the proposed conflict-grade fix and found the both-levers form insufficient + destructively interacting, with a single lever (commit-T) marginally converting.",
+    "is_independent_bugs": false,
+    "structural_property": "One structural property: F monopolises committed-selection variance (88-89%, V3-EXQ-571); near-tie conflict-grade patches cannot convert it (and stack destructively). The conversion requires a constitutional change to the eligibility/permission-to-commit rules (F->eligibility demotion / Go-NoGo governance), not louder upstream channels or more near-tie tuning.",
+    "readings": ["constitutional_selector_build_elevated", "parametric_conflict_grade_family_exhausted"]
+  }
+}
