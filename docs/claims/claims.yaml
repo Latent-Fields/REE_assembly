@@ -43726,6 +43726,21 @@
     - MECH-312   # the rule-arbitration layer whose weight-updates are prioritized
     - ARC-062    # rule-apprehension selector whose minted-rule write-path this gates
   location: docs/architecture/prioritized_replay_write_gating.md#mech-443
+  what_would_answer: >
+    SUPPORTS if arming a per-transition update-utility (surprise / value-prediction-error / coverage)
+    priority weight on the admitted replay writes lifts rule-arbitration retention/selectivity -- measured
+    AT rule_state (upstream of the F-dominated E3 commit, in the GAP-K write-gating locus, NOT at committed
+    action) -- STRICTLY above a matched-TOTAL-write-mass uniform-admit control (MECH-319 admit_writes=True with
+    equal write mass) on >=2/3 seeds. FALSIFIES if priority-weighting is inert versus the matched-mass uniform
+    admit, OR if any lift is explained solely by greater total write mass (the matched-mass guard isolates this
+    degenerate confound), OR if priority is operationalized as reward magnitude / committed-policy value rather
+    than value-of-the-update (Carey et al. 2019: hippocampal replay biases AWAY from the currently-preferred
+    outcome, so a reward-keyed priority is biologically falsified). Pre-gate: the readout must be non-degenerate
+    -- if admitted replay barely moves rule_state on the current substrate so the metric is pinned across seeds,
+    the falsifier is vacuous and MECH-443 re-routes to a replay-write-magnitude substrate enrichment (NOT to
+    MECH-439). Any COMMITTED/behavioural variant of this test is MECH-439-conversion-ceiling-gated (V3-EXQ-654g:
+    the rule_state channel cannot move the argmax today and the 569i top-k bypass does not reach it) and is
+    sequenced behind the 689a F-rebalance.
   notes: >
     Registered 2026-06-19 from Convergence Demand Pipeline row CDQ-005 (MuZero/EfficientZero reanalyze
     intake, REE_convergence/sources/muzero/; promotion packet CPKT-MUZERO-REANALYZE-20260619). Targets
@@ -43782,6 +43797,21 @@
     - MECH-443   # priority sibling: MECH-443 grades WHICH writes, MECH-444 grades the FRESHNESS of each write target -- they compose
     - MECH-094   # the hypothesis-tag write-gate principle; staleness-refresh is a second guard on the same write channel
   location: docs/architecture/prioritized_replay_write_gating.md#mech-444
+  what_would_answer: >
+    SUPPORTS if recomputing each admitted replay-write target against the CURRENT model before it updates the
+    rule layer (and down-weighting / skipping low-drift writes) ATTENUATES rule-arbitration drift / overcommitment
+    relative to writing the stored ghost-derived (stale) target -- on the MECH-319 admit_writes=True drift-inducing
+    substrate (the V3-EXQ-628 block-vs-admit divergence), on >=2/3 seeds -- i.e. the 628 divergence shrinks under
+    refreshed-target admit versus stale-target admit. FALSIFIES if the refresh does not attenuate drift versus
+    stale-target writing (the staleness gate is inert), OR if it earns nothing independent of MECH-443's priority
+    weighting (the pair is non-separable). LOAD-BEARING CAVEAT (biology_before_formal_definitions): the
+    staleness-refresh is supported by ANALOGY only -- Mattar & Daw 2018 gain term + Olafsdottir 2015 generative
+    preplay -- with NO recording of a literal recompute-then-write cellular operation; so a null here falsifies the
+    REE engineering import, NOT the underlying replay biology, and a divergence between MuZero/EfficientZero
+    reanalyze (explicit value-target recomputation in a learned model) and hippocampal replay (gain-weighted,
+    generative, no measured target-recompute step) is treated as a real design risk, not a caveat. Not testable
+    until MECH-443 is built and keeps AND a target-recompute primitive is scoped (the EMA write path writes targets
+    verbatim today).
   notes: >
     Registered 2026-06-19 from Convergence Demand Pipeline row CDQ-005 (MuZero/EfficientZero reanalyze
     intake; promotion packet CPKT-MUZERO-REANALYZE-20260619). The more speculative leg, registered
