@@ -18,22 +18,36 @@ entry `f_dominance_conversion_ceiling`.
 
 ---
 
-## 0. Live dependency: V3-EXQ-689c (do not pretend it isn't running)
+## 0. V3-EXQ-689c does NOT gate this build (corrected 2026-06-20)
 
-A concurrent session has **V3-EXQ-689c** in flight: Factor-B-alone (gap-scaled
-commit-T) isolation retest -- the converter 689a's 2x2 pointed at. Its outcome
-conditions HOW MUCH of this constitution we build:
+**Earlier drafts of this note gated the build on V3-EXQ-689c. That was wrong and
+is retracted.** Per origin/master commit `feb5184824` (MECH-442 packet Section 7,
+user decision 2026-06-20, ARC-106 anti-shortcut steer): **689c is stripped of
+decision authority.** It is pure no-authority confirmatory data.
 
-| 689c outcome | reading | consequence for ARC-107 build |
-|---|---|---|
-| Factor-B-alone PASS, gap-CONCENTRATED | parametric win on one factor (s5.1) | refine/keep Factor B; ARC-107 stays as the V4 grounding roadmap; **do NOT broaden** the selector now. MECH-447 partially rescued. |
-| Factor-B-alone PASS, gap-BLIND / uniform | non-specific hotting (s5.2) | Factor B is not validated as conflict-grading; **escalate to MECH-448 demotion**. |
-| Factor-B-alone FAIL / no-lift | near-tie family fully exhausted (s5.3) | **MECH-448 + MECH-449 are the path.** Constitution build is the clear next step. |
+The ARC-107 BG-constitution build (LEAD MECH-448 rank-preserving F->eligibility
+demotion; follow-on MECH-449) **proceeds regardless of what 689c shows.** Three
+independent reasons, none of which 689c can change:
 
-**Therefore:** the *grounding* (lit-pull) and *design* (this note) are
-unconditional -- ARC-107 is already registered and needs its ARC-106 grounding
-regardless. The *claim re-grain* and the *demotion-lever build/experiment* must
-incorporate 689c when it lands. Sequencing is encoded in the chips below.
+1. **689c is inside the family already adjudicated as exhausted.** Factor-B-alone
+   (gap-scaled commit-T) is a *near-tie parametric* lever. The user adjudicated
+   the whole near-tie parametric family closed after 689a (readiness-met/no-lift,
+   A1B1 destructive cancel). 689c cannot reopen a path closed by decision.
+2. **689c carries no new information.** Factor-B's conversion was already observed
+   in 689a's own 2x2 (ARM_A0B1 = 0.850, 2/3). 689c only re-isolates a number we
+   have; it cannot return new architectural signal.
+3. **A Factor-B "PASS" is anti-evidence, not support.** Factor-B raises committed
+   entropy by hotting the commit argmax -- stochasticity, not lawful access. That
+   is exactly the noise-as-diversity failure mode this note's own acceptance
+   criteria reject (s8 #8; risk s9.3). So even a Factor-B PASS does NOT rescue the
+   parametric reading or shelve the constitution; it just logs a parametric fact
+   in the divergence ledger.
+
+**Therefore:** grounding, design, the claim re-grain, AND the MECH-448 build are
+all unconditional on 689c. The real (short) gate for the re-grain + substrate-queue
+amend was the governance-689a cycle releasing `claims.yaml` / `substrate_queue.json`
+-- which has since LANDED (`7419453d1d`). If 689c ever lands, it only annotates the
+divergence ledger.
 
 ---
 
@@ -154,16 +168,19 @@ mapping -- what breaks if this component breaks).
   catatonia analog; Go over-pressure -> tics / compulsions; mis-routed context
   arbitration -> context-inappropriate action (a model handle for several
   disorders -- to be made precise in the lit-pull).
-- **Gate:** build ONLY if 689c + MECH-448 show the near-tie + demotion levers
-  are insufficient (note s5.3 branch A). Captured now; build is a later step.
+- **Gate:** build ONLY if MECH-448 (the demotion lever) proves insufficient
+  alone (note s5.3 branch A). Captured now; build is a later step. NOT gated on
+  689c (see section 0).
 
 ### 3.3 MECH-447 -- conflict-graded near-tie sufficiency (PARAMETRIC; likely demote)
 
-- 689a verdict: Factor A inert, A1B1 cancels. Standing reading: the parametric
-  near-tie family is exhausted. 689c (Factor-B-alone) is the last hedge. If
-  689c also fails to convert robustly, MECH-447 is WEAKENED toward refuted and
-  the constitutional reading (MECH-448) is supported. The /claim-synthesis
-  re-grain (chip) makes this disposition formal.
+- 689a verdict: Factor A inert; Factor B converts only via commit-temperature
+  hotting (noise-as-diversity); A1B1 destructively cancels. Disposition (settled
+  on 689a alone, NOT pending 689c -- see section 0): MECH-447 is WEAKENED toward
+  refuted and is the loser of the 447<->448 rival pair; the A/B dissociation is
+  the split. The constitutional reading (MECH-448) is supported. The
+  /claim-synthesis re-grain finalises this disposition now (it does not wait on
+  689c).
 
 ---
 
@@ -188,8 +205,8 @@ into committed action**, not entropy.
 
 ## 5. Risk register (from note s9)
 
-- **Overbuild** -- gate the broad build behind 689c + MECH-448; build the lead
-  lever no-op-default first.
+- **Overbuild** -- gate the BROADER MECH-449 build behind MECH-448's outcome;
+  build the lead MECH-448 lever no-op-default first. (Not gated on 689c.)
 - **Cargo-cult biology** -- each analogue needs function + divergence ledger +
   falsifier before it counts as load-bearing (ARC-106 ablation test).
 - **Noise-as-diversity** -- criterion 8 above is the guard.
@@ -210,13 +227,14 @@ into committed action**, not entropy.
    `targeted_review_connectome_mech_439/ARC107_GROUNDING_SYNTHESIS.md` + 5 new
    entries (Kravitz/Mink/Chevalier-Deniau/Hikosaka/Maia-Frank). All five
    components at L2 with divergence ledger + psychiatric column drafted.
-2. **Claim re-grain (gated on 689c):** /claim-synthesis over MECH-447/448/449 --
-   decide genuinely-independent children vs design alternatives; set MECH-447
-   disposition from 689a+689c; elevate MECH-448 to active build; hold MECH-449
-   substrate_conditional. Reconcile decision_state + closure node (derive-only
-   gotcha).
-3. **MECH-448 build (gated on 689c outcome):** /implement-substrate -- amend
-   `f_dominance_conversion_ceiling`: add the rank-preserving F->eligibility
+2. **Claim re-grain (UNCONDITIONAL; gate was governance-689a, now LANDED):**
+   /claim-synthesis over MECH-447/448/449 -- decide genuinely-independent children
+   vs design alternatives; set MECH-447 disposition from 689a alone (weakened,
+   447<->448 rival pair, A/B split); elevate MECH-448 to active build; hold
+   MECH-449 substrate_conditional. Reconcile decision_state + closure node
+   (derive-only gotcha). NOT gated on 689c.
+3. **MECH-448 build (UNCONDITIONAL on 689c; in flight):** /implement-substrate --
+   amend `f_dominance_conversion_ceiling`: add the rank-preserving F->eligibility
    demotion lever to e3_selector.py, no-op-default, contracts + activation smoke.
 4. **MECH-448 falsifier (sequenced AFTER build 3):** /queue-experiment --
    689a-successor on the demotion lever, acceptance criteria s8. NOT chipped yet
