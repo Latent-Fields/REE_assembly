@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- IGW_VERSION: 2026-06-21.1 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>REE IGW Routine Ledger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+           margin: 0; padding: 16px; background: #f6f7f9; color: #222; }
+    h1 { font-size: 18px; margin: 0 0 4px; }
+    .sub { color: #666; font-size: 12px; margin-bottom: 12px; }
+    .sub a { color: #2563eb; text-decoration: none; }
+    .sub a:hover { text-decoration: underline; }
+    .summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pill { background: #fff; border: 1px solid #ddd; border-radius: 12px;
+            padding: 3px 10px; font-size: 12px; color: #444; }
+    .pill b { color: #111; }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+                margin-bottom: 12px; font-size: 12px; }
+    .controls select, .controls button { font-size: 12px; padding: 4px 8px;
+            border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; }
+    .controls button:hover { background: #eef; }
+    table { width: 100%; border-collapse: collapse; background: #fff;
+            border: 1px solid #ddd; border-radius: 6px; overflow: hidden; font-size: 12px; }
+    th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid #eee;
+             vertical-align: top; }
+    th { background: #f0f1f4; color: #555; font-weight: 600; position: sticky; top: 0; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafbff; }
+    .state { display: inline-block; padding: 2px 7px; border-radius: 3px;
+             font-size: 10px; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
+    .state.spawned, .state.completed_resumable { background: #e8f5e9; color: #2e7d32; }
+    .state.staged { background: #fff8e1; color: #b67d00; }
+    .state.completed { background: #e8eaf6; color: #283593; }
+    .state.unknown { background: #eee; color: #666; }
+    .oc { font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .oc.USEFUL_LANDED { color: #2e7d32; }
+    .oc.NO_OP { color: #777; }
+    .oc.DUPLICATE { color: #b67d00; }
+    .oc.ERROR { color: #b71c1c; }
+    .claims { font-family: ui-monospace, Menlo, monospace; color: #555; }
+    .title { color: #222; }
+    .skill { font-family: ui-monospace, Menlo, monospace; color: #6b3fa0; white-space: nowrap; }
+    .when { color: #888; white-space: nowrap; }
+    .copy { font-size: 11px; padding: 3px 8px; border: 1px solid #ccc; background: #f6f7f9;
+            border-radius: 3px; cursor: pointer; white-space: nowrap; }
+    .copy:hover { background: #e8eaf6; }
+    .copy.launch { border-color: #b67d00; color: #b67d00; }
+    .footer { margin-top: 18px; font-size: 11px; color: #888; }
+    code { background: #eef; padding: 1px 4px; border-radius: 2px;
+           font-size: 11px; word-break: break-all; }
+    .empty { padding: 24px; text-align: center; color: #888; }
+    .toast { position: fixed; bottom: 16px; right: 16px; padding: 8px 12px;
+             background: #333; color: #fff; border-radius: 4px; font-size: 12px;
+             opacity: 0; transition: opacity 0.2s; pointer-events: none; max-width: 420px; }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <h1>IGW Routine Ledger</h1>
+  <div class="sub">
+    Auto-spawned inter-governance sessions (<code>scripts/igw_routine_tick.py</code>).
+    Each runs in its own git worktree &mdash; resume from the worktree dir with the copied command.
+    &nbsp;|&nbsp; <a href="/workset">Workset</a> &nbsp;<a href="/explorer.html">Explorer</a> &nbsp;<a href="/machines">Machines</a>
+  </div>
+
+  <div id="summary" class="summary"></div>
+
+  <div class="controls">
+    <label>Status:
+      <select id="statusFilter"><option value="">all</option></select>
+    </label>
+    <label>Skill:
+      <select id="skillFilter"><option value="">all</option></select>
+    </label>
+    <button id="refreshBtn">Refresh</button>
+    <label style="color:#888"><input type="checkbox" id="autoRefresh" /> auto (60s)</label>
+    <span id="meta" style="color:#aaa"></span>
+  </div>
+
+  <div id="tableWrap"></div>
+
+  <div class="footer">
+    Read-only view of <code>evidence/planning/igw_routine_ledger.json</code>.
+    Status: <b>staged</b> = waiting for you to launch interactively (human-required skill);
+    <b>completed_resumable</b> = headless run finished, resumable;
+    outcome <b>USEFUL_LANDED</b> = work landed in ree-v3.
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    var REFRESH_MS = 60000;
+    var autoTimer = null;
+    var ALL = [];
+
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function toast(msg, isErr) {
+      var t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = "toast show" + (isErr ? " error" : "");
+      setTimeout(function () { t.className = "toast"; }, 2200);
+    }
+    function fmtTime(s) {
+      if (!s) return "";
+      // 2026-06-18T10:09:57Z -> 06-18 10:09
+      var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s);
+      return m ? (m[2] + "-" + m[3] + " " + m[4] + ":" + m[5]) : s;
+    }
+    function copy(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { toast("Copied resume command"); },
+          function () { fallbackCopy(text); }
+        );
+      } else { fallbackCopy(text); }
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("Copied resume command"); }
+      catch (e) { toast("Copy failed -- select manually", true); }
+      document.body.removeChild(ta);
+    }
+
+    function renderSummary(d) {
+      var s = d.summary || {};
+      var parts = [];
+      parts.push('<span class="pill">total <b>' + (d.count || 0) + "</b></span>");
+      var bs = s.by_status || {};
+      Object.keys(bs).sort().forEach(function (k) {
+        parts.push('<span class="pill">' + esc(k) + " <b>" + bs[k] + "</b></span>");
+      });
+      var bo = s.by_outcome || {};
+      Object.keys(bo).sort().forEach(function (k) {
+        parts.push('<span class="pill">' + esc(k) + " <b>" + bo[k] + "</b></span>");
+      });
+      document.getElementById("summary").innerHTML = parts.join("");
+    }
+
+    function fillFilter(id, values, current) {
+      var sel = document.getElementById(id);
+      var keep = current || sel.value;
+      sel.innerHTML = '<option value="">all</option>';
+      values.forEach(function (v) {
+        var o = document.createElement("option");
+        o.value = v; o.textContent = v;
+        if (v === keep) o.selected = true;
+        sel.appendChild(o);
+      });
+    }
+
+    function render() {
+      var stf = document.getElementById("statusFilter").value;
+      var skf = document.getElementById("skillFilter").value;
+      var rows = ALL.filter(function (e) {
+        return (!stf || (e.status || "") === stf) && (!skf || (e.skill || "") === skf);
+      });
+      if (!rows.length) {
+        document.getElementById("tableWrap").innerHTML =
+          '<div class="empty">No ledger entries match.</div>';
+        return;
+      }
+      var html = '<table><thead><tr>' +
+        '<th>IGW id</th><th>Status</th><th>Skill</th><th>Claims</th>' +
+        '<th>Title</th><th>When</th><th>Outcome</th><th>Resume</th>' +
+        '</tr></thead><tbody>';
+      rows.forEach(function (e) {
+        var st = e.status || "unknown";
+        var when = e.reaped_at || e.assigned_at || e.staged_at || "";
+        var oc = e.outcome || "";
+        var claims = (e.claim_ids || []).join(", ");
+        var staged = st === "staged";
+        var cmd = staged ? (e.launch_command || e.resume_command || "")
+                         : (e.resume_command || "");
+        var btn = cmd
+          ? '<button class="copy' + (staged ? " launch" : "") + '" data-cmd="' +
+            esc(cmd) + '">' + (staged ? "Copy launch" : "Copy resume") + "</button>"
+          : '<span style="color:#bbb">--</span>';
+        html += "<tr>" +
+          "<td>" + esc(e.igw_id || "") + "</td>" +
+          '<td><span class="state ' + esc(st) + '">' + esc(st) + "</span></td>" +
+          '<td class="skill">' + esc(e.skill || "") + "</td>" +
+          '<td class="claims">' + esc(claims) + "</td>" +
+          '<td class="title">' + esc(e.title || "") +
+            (e.requires_human_reason
+              ? '<br><span style="color:#b67d00;font-size:10px">' +
+                esc(e.requires_human_reason) + "</span>" : "") +
+            (e.outcome_evidence
+              ? '<br><span style="color:#999;font-size:10px">' +
+                esc(e.outcome_evidence) + "</span>" : "") +
+          "</td>" +
+          '<td class="when">' + esc(fmtTime(when)) + "</td>" +
+          '<td class="oc ' + esc(oc) + '">' + esc(oc) + "</td>" +
+          "<td>" + btn + "</td>" +
+          "</tr>";
+      });
+      html += "</tbody></table>";
+      document.getElementById("tableWrap").innerHTML = html;
+      Array.prototype.forEach.call(
+        document.querySelectorAll(".copy"),
+        function (b) { b.addEventListener("click", function () { copy(b.getAttribute("data-cmd")); }); }
+      );
+    }
+
+    function load() {
+      document.getElementById("meta").textContent = "loading...";
+      fetch("/api/igw/ledger")
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          ALL = d.entries || [];
+          renderSummary(d);
+          var statuses = {}, skills = {};
+          ALL.forEach(function (e) {
+            if (e.status) statuses[e.status] = 1;
+            if (e.skill) skills[e.skill] = 1;
+          });
+          fillFilter("statusFilter", Object.keys(statuses).sort());
+          fillFilter("skillFilter", Object.keys(skills).sort());
+          render();
+          document.getElementById("meta").textContent =
+            "updated " + new Date().toLocaleTimeString();
+          if (d.empty_note && !ALL.length) {
+            document.getElementById("tableWrap").innerHTML =
+              '<div class="empty">' + esc(d.empty_note) + "</div>";
+          }
+        })
+        .catch(function (e) {
+          document.getElementById("meta").textContent = "error";
+          toast("Failed to load ledger: " + e, true);
+        });
+    }
+
+    document.getElementById("refreshBtn").addEventListener("click", load);
+    document.getElementById("statusFilter").addEventListener("change", render);
+    document.getElementById("skillFilter").addEventListener("change", render);
+    document.getElementById("autoRefresh").addEventListener("change", function (e) {
+      if (e.target.checked) { autoTimer = setInterval(load, REFRESH_MS); }
+      else if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    });
+    load();
+  </script>
+</body>
+</html>

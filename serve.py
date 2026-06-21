@@ -68,6 +68,7 @@ COMMANDS_DIR = SERVE_DIR / "evidence" / "experiments" / "runner_commands"     # 
 RUNNER_LOG = SERVE_DIR / "runner.log"
 PLANNING_DIR = SERVE_DIR / "evidence" / "planning"
 WORKSET_JSON_FILE = PLANNING_DIR / "inter_governance_workset.v1.json"
+IGW_LEDGER_FILE = PLANNING_DIR / "igw_routine_ledger.json"
 
 # Command kinds the runner accepts (mirrors ree-v3/runner_remote_control.VALID_COMMAND_KINDS)
 VALID_REMOTE_COMMAND_KINDS = (
@@ -2630,6 +2631,69 @@ def read_workset() -> dict:
     return empty
 
 
+def read_igw_ledger() -> dict:
+    """Load the IGW auto-spawn routine ledger for the explorer panel.
+
+    The ledger (evidence/planning/igw_routine_ledger.json) is written by
+    scripts/igw_routine_tick.py -- one entry per spawned/staged IGW item.
+    This reader is READ-ONLY (the tick is the sole writer); it returns the
+    entries newest-first plus a status/outcome summary. Never raises.
+    """
+    empty = {
+        "schema": "igw_routine_ledger/view",
+        "count": 0,
+        "summary": {"by_status": {}, "by_outcome": {}, "staged_waiting": 0},
+        "entries": [],
+        "references": {"workset_page": "/workset", "explorer": "/explorer.html"},
+        "empty_note": (
+            "No IGW routine ledger yet. The hourly routine "
+            "(scripts/igw_routine_tick.py) writes it on first spawn/stage."
+        ),
+    }
+    if not IGW_LEDGER_FILE.exists():
+        return empty
+    try:
+        data = json.loads(IGW_LEDGER_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        empty["empty_note"] = "IGW ledger file unreadable."
+        return empty
+    if isinstance(data, dict):
+        entries = data.get("entries") or data.get("ledger") or []
+    elif isinstance(data, list):
+        entries = data
+    else:
+        entries = []
+    if not isinstance(entries, list):
+        entries = []
+
+    def _sort_key(e):
+        return e.get("reaped_at") or e.get("assigned_at") or e.get("staged_at") or ""
+
+    entries = sorted(entries, key=_sort_key, reverse=True)
+    by_status: dict = {}
+    by_outcome: dict = {}
+    staged_waiting = 0
+    for e in entries:
+        st = e.get("status") or "unknown"
+        by_status[st] = by_status.get(st, 0) + 1
+        if st == "staged":
+            staged_waiting += 1
+        oc = e.get("outcome")
+        if oc:
+            by_outcome[oc] = by_outcome.get(oc, 0) + 1
+    return {
+        "schema": "igw_routine_ledger/view",
+        "count": len(entries),
+        "summary": {
+            "by_status": by_status,
+            "by_outcome": by_outcome,
+            "staged_waiting": staged_waiting,
+        },
+        "entries": entries,
+        "references": {"workset_page": "/workset", "explorer": "/explorer.html"},
+    }
+
+
 def _machine_safe_filename(machine: str) -> str:
     keep = "-_."
     return "".join(c if (c.isalnum() or c in keep) else "_" for c in machine)
@@ -4195,6 +4259,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if path == "/api/closure":
             body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)
+            return
+        if path == "/api/igw/ledger":
+            body = json.dumps(read_igw_ledger(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
+        if path in ("/igw", "/igw.html"):
+            igw_page = SERVE_DIR / "igw.html"
+            if igw_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(igw_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         if path in ("/workset", "/workset.html"):
             workset_page = SERVE_DIR / "workset.html"
