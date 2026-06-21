@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T16:48:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3",
+      "queue_id": "V3-EXQ-485i",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "negative_control",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "confirmed_correct",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- SD-033b/MECH-263 were never tested through a demotion-capable selector; the OFC mechanism is fine, the MECH-448 demotion lever silently did not engage on this candidate bank. NOT a weakens.",
+        "biological_reference": "clear -- BG hyperdirect conflict-grade selection / divisive normalisation of value (Frank 2006; Carandini & Heeger 2012). The envelope-floor mis-engagement is substrate-tuning, not a biology divergence.",
+        "prerequisites": "missing -- the divergent-pool non-vacuity precondition that MECH-448's own falsifier (V3-EXQ-689d) established (a PEAKED F distribution over the candidate bank, via SD-056-trained e2.world_forward + candidate_summary_source=e2_world_forward) was NOT armed in the 485i OFC-isolated SD-054 harness.",
+        "implementation": "complete but mis-calibrated -- the absolute share floor f_eligibility_envelope_floor=0.30 is calibrated to 689d's peaked divergent pool, not the 485i behavioural bank's spread merit-share distribution.",
+        "environment": "wrong pressures for this lever -- the OFC-isolated SD-054 reef/forage CEM bank yields a SPREAD (non-divergent) F pool over the 8 candidates.",
+        "measurement": "adequate -- the MECH-448 non-degeneracy gate (excluded_count>0) correctly caught the no-op and self-routed; this is the gate working exactly as designed.",
+        "integration": "the MECH-448 demotion selector x OFC behavioural harness interaction surfaced a bank-dependence in envelope engagement.",
+        "scale": "adequate -- P1 budget fine; the no-op is structural, not under-training."
+      },
+      "facts": {
+        "readiness_gate_1_bias_range": {"measured": 0.36791160702705383, "threshold": 0.05, "met": true},
+        "readiness_gate_2_head_weight_delta": {"measured": 5.391256809234619, "threshold": 0.001, "met": true},
+        "readiness_gate_3_mech448_excluded_count": {"measured": 0.0, "threshold": 0.0, "met": false},
+        "arm2_f_eligibility_envelope_size_all_seeds": 8,
+        "arm2_f_eligibility_excluded_count_all_seeds": 0,
+        "arm2_raw_score_range_high_per_seed": [4.64166259765625, 393689.4375, 4.571605682373047],
+        "config_under_test": {"use_f_eligibility_demotion": true, "f_eligibility_envelope_floor": 0.30, "f_eligibility_dn_sigma": 0.0},
+        "config_matches_689d_validated": true,
+        "mechanism": "excluded_count==0 arises via the _f_eligibility_envelope (e3_selector.py:745) `eligible_idx.numel()==0 -> fallback ALL` branch: with elig[i]=merit[i]/(sigma+sum(merit)), merit[i]=max(F)-F[i], the spread/non-divergent behavioural-bank F gives no candidate a merit-share >= the 0.30 absolute floor, so the floor admits nobody and the envelope falls back to all 8 candidates. Both observed F regimes produce it: graded F (seeds 0/2, raw-range ~4.6 -> best share ~0.25) and a single catastrophic outlier (seed 1, raw-range 393689 -> 7 candidates near-tied at ~1/7=0.14 share each)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia hyperdirect conflict-grade selection / divisive normalisation of value",
+        "dependencies": ["a divergent (peaked) competing field so the eligibility envelope can discriminate"],
+        "is_formal_import": false,
+        "divergence": "MECH-448 rank-preserving F->eligibility demotion EXCEEDS canonical order-preserving DN (it removes F from the commit argmin); load-bearing divergence tracked in the MECH-448/ARC-107 ledger. Not implicated by this failure (the lever did not engage at all here).",
+        "lit_status": "present (targeted_review_connectome_mech_439)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-485i (SD-033b/MECH-263 trained-OFC-head behavioural retest on the MECH-448 demotion-enabled E3 selector; supersedes V3-EXQ-485h) self-routed substrate_not_ready_requeue (non_contributory; non_degenerate:false / scoring_excluded -- NO governance weight). Trained-head readiness PASSED (OFC bias cross-candidate range 0.368>=0.05; head weight-delta 5.39) but the MECH-448 non-degeneracy gate FAILED: f_eligibility_excluded_count==0 on all 3 seeds (envelope_size=8). The 689d-validated ARM_ON demotion config (floor=0.30, dn_sigma=0.0) admitted EVERY candidate because the OFC-isolated SD-054 behavioural bank has a SPREAD (non-divergent) F distribution -- no candidate's merit-share cleared the absolute 0.30 floor -> all-admit fallback -> the F->eligibility demotion was a STRUCTURAL no-op (ARM_2 == ARM_1) -> the behavioural DVs never ran through a genuinely-demoted selector. NEW signature: harness/state-dependent envelope engagement (distinct from 485h's F-dominance conversion-ceiling). NOT a SD-033b/MECH-263 weakens. The only 'support' in the 485 series remains the representation-level 485b/485c PASS (a different level). pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "implementation_hint": "485i confirmed the MECH-448 demotion lever (the NEW ARC-107 selector-constitution lead, validated 689d / promoted provisional 2026-06-21) requires the divergent-pool non-vacuity precondition to engage -- it silently fell back to all-admit (excluded_count==0) on the OFC-isolated SD-054 behavioural bank's spread F. RETUNE for the 485j re-queue: (1) arm the same divergent-pool construction 689d used -- SD-056-trained e2.world_forward + candidate_summary_source=e2_world_forward -- so the candidate bank's F pool is PEAKED enough that the floor=0.30 envelope excludes; and/or (2) measure the behavioural-bank max per-candidate merit-share first and calibrate f_eligibility_envelope_floor below it (KEEP an absolute share floor -- a fraction-of-max degenerates to the margin shortlist; KEEP dn_sigma=0.0 -- raising sigma tightens further toward all-admit). KEEP precond-3 (excluded_count>0 on >=2/3 seeds) as a HARD readiness gate that must pass BEFORE the C1/C2 DVs run, so a non-engaging envelope self-routes substrate_not_ready_requeue rather than producing a misattributed shift. This is a behavioural-harness calibration on the SUPERSEDING constitutional lever, NOT a MECH-439 F-variance rebalance.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3",
+          "experiment_type": "v3_exq_485i_sd033b_demotion_enabled_behavioural",
+          "metric": "ARM_2 readiness gates 1+2 PASS (OFC bias range 0.368>=0.05; head delta 5.39) but MECH-448 non-degeneracy gate FAIL -- f_eligibility_excluded_count==0 / envelope_size=8 on all 3 seeds: the demotion envelope admitted ALL candidates (spread/non-divergent behavioural-bank F; no merit-share >= 0.30 floor -> all-admit fallback) -> demotion no-op -> behavioural DVs never ran through a demoted selector",
+          "target": "f_eligibility_excluded_count>0 on >=2/3 seeds (demotion envelope genuinely excludes on a divergent pool) AND C1 devaluation shift + C2 discrimination separation on >=2/3 seeds on the demotion-enabled selector (V3-EXQ-485j)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "The MECH-448 F->eligibility demotion is bank-dependent: with an absolute merit-share floor (0.30) it engages only on a PEAKED (divergent) candidate pool; a SPREAD/non-divergent pool sends the envelope to its all-admit fallback (excluded_count==0), making the lever a structural no-op.",
+        "The 689d-validated config is NOT portable to a different candidate-bank construction without re-establishing the divergent-pool non-vacuity precondition -- the precondition is a property of the candidate source (e2_world_forward divergent summaries), not of the demotion flags.",
+        "The MECH-448 non-degeneracy gate (excluded_count>0) is doing exactly its job: it caught the no-op and self-routed rather than emitting a false SD-033b/MECH-263 weakens. The autopsy confirms, it does not overturn.",
+        "Recurrence audit: 485i is the ~5th autopsy in the SD-033b/MECH-263 series (485e, 485g, 485h, the 695-696 cluster, now 485i). No /claim-synthesis -- the recurrence does NOT mark SD-033b granularity debt; every diagnosis pins the blocker to the shared SELECTOR LOCUS, and that locus has ALREADY been decomposed by the superseding ARC-107 BG-selector constitution (MECH-448 demotion lead + MECH-449 Go/No-Go follow-on), which supersedes the MECH-439 F-variance-rebalance / MECH-447 conflict-grade pathway (recorded EXHAUSTED by 689a). A synthesis would re-derive an existing decomposition."
+      ],
+      "claim_synthesis_recommendation": "none",
+      "claim_synthesis_rationale": "The conversion-ceiling family is already decomposed by the ARC-107 selector-constitution (MECH-448 rank-preserving demotion, validated 689d; MECH-449 Go/No-Go). 485i is a non-vacuity-precondition / behavioural-harness calibration gap in that superseding direction, not granularity debt in SD-033b/MECH-263 nor an unmet need for a new finer mechanism. Recurrence recorded for the audit trail only (mirrors the 485h decision, strengthened by the supersession).",
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "supersedes": "V3-EXQ-485h",
+  "next_experiment": "V3-EXQ-485j (NEW letter, supersedes V3-EXQ-485i) after the envelope-engagement retune"
+}
