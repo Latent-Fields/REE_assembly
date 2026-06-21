@@ -334,6 +334,32 @@ Rules:
 - The indexer (`build_experiment_indexes.py`) rebuilds `claim_evidence.v1.json`
   which is the ground truth for what evidence exists per claim.
 
+## Closure-plan node status: `assembling` (anti-forcing keystone, 2026-06-21)
+
+Closure-plan nodes (`evidence/planning/*_plan.md` frontmatter) may carry
+`status: assembling` (alias `open_by_design`): **required for v3 but actively /
+intentionally under construction — substrate being built, not a stalled gap.**
+It exists so the machinery has a penalty-free, low-maintenance way to say "this
+is being assembled, leave it alone" instead of biasing every node toward closure.
+
+Semantics (enforced in `serve.py:CLOSURE_STATUS_WEIGHTS` +
+`scripts/generate_closure_snapshot.py` + `scripts/check_closure_drift.py`):
+
+- **Excluded from the closure % (weight `None`)** — never punishes the
+  green-board for correct, unhurried assembly. Surfaced on a separate
+  **assembly-frontier** axis, NOT folded into `deferred` or `remaining`.
+- **Restful in drift** — never flagged drifted/stale, needs no recurring
+  re-stamp. Listed in the drift report's "Assembly frontier" section for
+  visibility only.
+- **Opt-in resume trigger** — `revisit_after: YYYY-MM-DD`; once past, the node
+  is flagged `revisit_due` for review. No date == rests indefinitely.
+
+Companion fields: `awaiting:` (the substrate being built) and `assembly_status:`
+(`queued`/`in_progress`/`built`). Full diagnosis, the 3 remaining moves
+(assembly-chip path, re-derive brake, portfolio view), and rollout guidance
+(first migration candidate: `commitment_closure:GAP-8`) are in
+`evidence/planning/assembly_vs_closure_plan.md`.
+
 ## V3-Pending Gate
 
 Claims with `v3_pending: true` or `implementation_phase: v3` in claims.yaml get

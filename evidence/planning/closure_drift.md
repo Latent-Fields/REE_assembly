@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-21T19:32:33Z
+Generated: 2026-06-21T20:41:26Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -27,6 +27,12 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | in_progress | V3-EXQ-625e | case_3_self_tag |
 
 ## Stale since last update -- review (0)
+
+_None._
+
+## Assembly frontier -- resting, not drift (0)
+
+Nodes with status `assembling` / `open_by_design`: required for v3 but under construction. They are a stable resting state -- NOT counted as drift or stale, and they need no recurring re-stamp to stay quiet. Listed here for visibility only. A node flagged **revisit_due** has passed its optional `revisit_after` date and should be reviewed (resume / re-state / extend the date).
 
 _None._
 

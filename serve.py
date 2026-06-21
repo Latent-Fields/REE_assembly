@@ -1678,6 +1678,15 @@ CLOSURE_STATUS_WEIGHTS = {
     "tracked": 0.2,
     "pending_governance_stamp": 0.4,
     "open": 0.0,
+    # `assembling` / `open_by_design`: the node is REQUIRED for v3 and actively
+    # (or intentionally) under construction -- substrate being built, not a
+    # stalled gap. Weight None == excluded from the closure-% denominator so it
+    # never PUNISHES the green-board for correct, unhurried assembly. Unlike
+    # `deferred` (which is "not part of v3 closure"), an assembling node is part
+    # of closure but is surfaced on a SEPARATE "assembly frontier" axis rather
+    # than dragging the % toward red. See evidence/planning/assembly_vs_closure_plan.md.
+    "assembling": None,
+    "open_by_design": None,
     "deferred": None,   # excluded from progress denominator
     "deferred V4": None,
     "deferred_v4": None,

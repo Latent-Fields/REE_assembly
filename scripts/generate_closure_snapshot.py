@@ -65,6 +65,11 @@ except Exception:  # pragma: no cover - keep the snapshot self-contained
         "tracked": 0.2,
         "pending_governance_stamp": 0.4,
         "open": 0.0,
+        # Required-but-under-construction; excluded from the % (does not punish
+        # correct assembly), surfaced on a separate assembly-frontier axis.
+        # MUST stay byte-identical to serve.py CLOSURE_STATUS_WEIGHTS.
+        "assembling": None,
+        "open_by_design": None,
         "deferred": None,
         "deferred V4": None,
         "deferred_v4": None,
@@ -73,6 +78,13 @@ except Exception:  # pragma: no cover - keep the snapshot self-contained
 
 # Deferred == not required for v3 closure (excluded from the progress denominator).
 DEFERRED_STATUSES = {"deferred", "deferred_v4"}
+# Assembling == required for v3 but actively / intentionally under construction.
+# Excluded from the closure % (so unhurried assembly is never scored as failure)
+# AND held out of `remaining` (it is not a stalled gap) -- reported on its own
+# "assembly frontier" axis instead. The anti-forcing keystone: the green-board
+# gets a place to say "this is being built, leave it alone" without punishing
+# the % or nagging it as drift. See evidence/planning/assembly_vs_closure_plan.md.
+ASSEMBLING_STATUSES = {"assembling", "open_by_design"}
 # "Remaining" is computed exhaustively as: not done and not deferred. That way a
 # new/unforeseen status string (the snapshot has been bitten by
 # blocked_pending_substrate before) always lands in a visible bucket instead of
@@ -146,7 +158,7 @@ def _bar(pct: float) -> str:
 
 
 def write_docs_dashboard(plans, overall, tally, n_remaining, n_deferred,
-                         n_done, roadmap_plans, now_iso) -> None:
+                         n_done, roadmap_plans, now_iso, n_assembling=0) -> None:
     """Emit a visual closure dashboard into docs/ for the Pages site."""
     o_total = n_remaining + n_done  # non-deferred V3 nodes
     D: list[str] = []
@@ -175,7 +187,10 @@ def write_docs_dashboard(plans, overall, tally, n_remaining, n_deferred,
     D.append("")
     D.append(
         f"{int(o_total)} non-deferred nodes across {len(plans)} plan(s) · "
-        f"**{n_done} done · {n_remaining} remaining · {n_deferred} deferred**."
+        f"**{n_done} done · {n_remaining} remaining · {n_deferred} deferred**"
+        + (f" · **{n_assembling} on the assembly frontier** (under construction, "
+           "off the % axis)" if n_assembling else "")
+        + "."
     )
     D.append("")
     tally_str = " · ".join(f"`{k}`&nbsp;{v}" for k, v in sorted(tally.items()))
@@ -289,8 +304,14 @@ def main() -> int:
 
     done = [n for n in all_nodes if n["_status"] == "done"]
     deferred = [n for n in all_nodes if n["_status"] in DEFERRED_STATUSES]
+    assembling = [n for n in all_nodes if n["_status"] in ASSEMBLING_STATUSES]
+    # `remaining` is the genuine close-this-out backlog: not done, not deferred,
+    # AND not assembling. An assembling node is on the frontier, not the backlog,
+    # so it does not inflate "what is left to close v3".
     remaining = [n for n in all_nodes
-                 if n["_status"] != "done" and n["_status"] not in DEFERRED_STATUSES]
+                 if n["_status"] != "done"
+                 and n["_status"] not in DEFERRED_STATUSES
+                 and n["_status"] not in ASSEMBLING_STATUSES]
 
     # Order remaining by phase then severity so the "do next" items float up.
     sev_rank = {"load-bearing": 0, "load_bearing": 0, "high": 1, "medium": 2, "low": 3}
@@ -334,6 +355,11 @@ def main() -> int:
         f"non-deferred nodes in {len(plans)} plan(s) with closure frontmatter."
     )
     L.append(f"- Remaining (open/in-progress/blocked/partial): **{len(remaining)}** nodes.")
+    L.append(
+        f"- Assembly frontier (required, under construction -- a SEPARATE axis, "
+        f"not counted in the % above and not a stalled backlog): "
+        f"**{len(assembling)}** nodes."
+    )
     L.append(f"- Deferred (not required for v3 closure): {len(deferred)} nodes.")
     L.append(f"- Done: {len(done)} nodes.")
     tally_str = "  ".join(f"{k}={v}" for k, v in sorted(tally.items()))
@@ -372,6 +398,38 @@ def main() -> int:
                     sev=_cell(n.get("severity") or "medium"),
                     exq=_cell(n.get("owner_exq"))[:48],
                     blk=_cell(_blocker(n))[:90],
+                    lu=_cell(n.get("last_updated")),
+                )
+            )
+    L.append("")
+
+    L.append(f"## Assembly frontier -- required, under construction ({len(assembling)})")
+    L.append("")
+    L.append(
+        "Nodes whose honest state is \"the substrate for this is being assembled\" "
+        "-- NOT a stalled gap and NOT deferred. They are held out of the closure % "
+        "(so correct, unhurried construction is never scored as failure) and out of "
+        "the Remaining backlog, and surfaced here on their own axis. `awaiting` names "
+        "the substrate under construction; `assembly_status` is its build state "
+        "(queued / in_progress / built); a node is restful until its optional "
+        "`revisit_after` date passes (see the drift report's Assembly-frontier section)."
+    )
+    L.append("")
+    if not assembling:
+        L.append("_None -- no node currently declares itself on the assembly frontier._")
+    else:
+        L.append("| plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |")
+        L.append("|------|------|-------|--------|----------|-----------------|---------------|--------------|")
+        for n in sorted(assembling, key=lambda x: (x["_plan_file"], str(x.get("id")))):
+            L.append(
+                "| {pl} | `{nid}` | {title} | {st} | {aw} | {asx} | {rv} | {lu} |".format(
+                    pl=n["_plan_file"],
+                    nid=_cell(n.get("id")),
+                    title=_cell(n.get("title"))[:70],
+                    st=n["_status"],
+                    aw=_cell(n.get("awaiting") or _blocker(n))[:60],
+                    asx=_cell(n.get("assembly_status")),
+                    rv=_cell(n.get("revisit_after")),
                     lu=_cell(n.get("last_updated")),
                 )
             )
@@ -476,12 +534,13 @@ def main() -> int:
     SNAPSHOT.write_text("\n".join(L) + "\n", encoding="utf-8")
 
     write_docs_dashboard(plans, overall, tally, len(remaining), len(deferred),
-                         len(done), roadmap_plans, now_iso)
+                         len(done), roadmap_plans, now_iso, len(assembling))
 
     print(f"Closure snapshot written: {SNAPSHOT.relative_to(REPO_ROOT)}")
     print(f"Closure dashboard written: {DOCS_DASHBOARD.relative_to(REPO_ROOT)}")
     print(
         f"  plans_mapped={len(plans)}  remaining={len(remaining)}  "
+        f"assembling={len(assembling)}  "
         f"deferred={len(deferred)}  done={len(done)}  "
         f"plans_without_frontmatter={len(no_frontmatter)}  "
         f"overall_progress={overall * 100:.1f}%  "

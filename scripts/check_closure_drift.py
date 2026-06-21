@@ -114,6 +114,17 @@ NON_TERMINAL_STATUSES = {
     "pending_governance_stamp",
 }
 
+# Assembling / open-by-design nodes are a STABLE RESTING STATE, not drift. They
+# are deliberately NOT in NON_TERMINAL_STATUSES, so the drifted / stale-since
+# passes skip them entirely -- a node whose substrate is under construction is
+# never nagged, and never needs a recurring Case-3 re-stamp to stay quiet (the
+# asymmetry that made "keep assembling" the highest-maintenance choice). They are
+# still surfaced, auditably, in their own report section, and a node can opt into
+# a resume trigger via `revisit_after: YYYY-MM-DD` -- once that date passes the
+# node is flagged `revisit_due` for review (the only thing that disturbs its
+# rest). See evidence/planning/assembly_vs_closure_plan.md.
+ASSEMBLING_STATUSES = {"assembling", "open_by_design"}
+
 EXQ_RE = re.compile(r"V3-EXQ-(\d+[a-z]?)", re.IGNORECASE)
 
 
@@ -471,13 +482,37 @@ def claims_reclassified_since(node: dict, autopsies: list[dict]):
     return "; ".join(shown)
 
 
+def assembly_frontier_record(node: dict, today) -> dict | None:
+    """If `node` is an assembling / open-by-design frontier node, return an audit
+    record; else None. `revisit_due` is True only when an optional `revisit_after`
+    date is set and has passed `today` -- the one signal that disturbs its rest.
+
+    Pure + `today`-parameterised so it is unit-testable without a system clock."""
+    status = (node.get("status") or "").strip().lower().replace(" ", "_")
+    if status not in ASSEMBLING_STATUSES:
+        return None
+    revisit = _to_date(node.get("revisit_after"))
+    revisit_due = revisit is not None and today is not None and revisit <= today
+    return {
+        "node_id": node.get("id"),
+        "node_status": node.get("status"),
+        "awaiting": node.get("awaiting"),
+        "assembly_status": node.get("assembly_status"),
+        "revisit_after": node.get("revisit_after"),
+        "revisit_due": revisit_due,
+        "last_updated": node.get("last_updated"),
+    }
+
+
 def main() -> int:
+    today = datetime.now(timezone.utc).date()
     queue_ids = load_queue_ids()
     terminal_fam = collect_terminal_lineage()
     confirmed_autopsies = collect_confirmed_autopsies()
     findings: list[dict] = []
     suppressed: list[dict] = []
     stale_since: list[dict] = []
+    assembly_frontier: list[dict] = []
     missing_plan_last_updated: list[str] = []
     missing_files: list[str] = []
 
@@ -504,6 +539,14 @@ def main() -> int:
             if not isinstance(node, dict):
                 continue
             status = (node.get("status") or "").strip().lower().replace(" ", "_")
+            # Assembling nodes are restful: collect for the audit section, then
+            # skip the drifted / stale-since passes entirely (they are not in
+            # NON_TERMINAL_STATUSES, so the gate below already skips them -- this
+            # collection just makes them visible without nagging).
+            af = assembly_frontier_record(node, today)
+            if af is not None:
+                af["plan"] = plan_name
+                assembly_frontier.append(af)
             if status not in NON_TERMINAL_STATUSES:
                 continue
 
@@ -687,6 +730,42 @@ def main() -> int:
             )
         lines.append("")
 
+    revisit_due = [a for a in assembly_frontier if a.get("revisit_due")]
+    lines.append(
+        f"## Assembly frontier -- resting, not drift ({len(assembly_frontier)}"
+        + (f"; {len(revisit_due)} due for revisit" if revisit_due else "")
+        + ")"
+    )
+    lines.append("")
+    lines.append(
+        "Nodes with status `assembling` / `open_by_design`: required for v3 but "
+        "under construction. They are a stable resting state -- NOT counted as "
+        "drift or stale, and they need no recurring re-stamp to stay quiet. Listed "
+        "here for visibility only. A node flagged **revisit_due** has passed its "
+        "optional `revisit_after` date and should be reviewed (resume / re-state / "
+        "extend the date)."
+    )
+    lines.append("")
+    if not assembly_frontier:
+        lines.append("_None._")
+        lines.append("")
+    else:
+        lines.append("| plan | node | status | awaiting | assembly_status | revisit_after | revisit_due |")
+        lines.append("|------|------|--------|----------|-----------------|---------------|-------------|")
+        for a in assembly_frontier:
+            lines.append(
+                "| {plan} | `{node}` | {status} | {aw} | {asx} | {rv} | {due} |".format(
+                    plan=a["plan"],
+                    node=a["node_id"] or "?",
+                    status=a["node_status"] or "?",
+                    aw=str(a.get("awaiting") or "")[:60] or "_unset_",
+                    asx=a.get("assembly_status") or "_unset_",
+                    rv=a.get("revisit_after") or "_none_",
+                    due="**yes**" if a.get("revisit_due") else "no",
+                )
+            )
+        lines.append("")
+
     lines.append(f"## Plans missing `closure_plan.last_updated` ({len(missing_plan_last_updated)})")
     lines.append("")
     if not missing_plan_last_updated:
@@ -715,7 +794,21 @@ def main() -> int:
             "drifted": len(findings),
             "stale_since": len(stale_review),
             "suppressed": len(suppressed),
+            "assembling": len(assembly_frontier),
+            "assembling_revisit_due": len(revisit_due),
         },
+        "assembly_frontier": [
+            {
+                "node_id": a["node_id"],
+                "plan": a["plan"],
+                "node_status": a["node_status"],
+                "awaiting": a.get("awaiting"),
+                "assembly_status": a.get("assembly_status"),
+                "revisit_after": a.get("revisit_after"),
+                "revisit_due": a.get("revisit_due"),
+            }
+            for a in assembly_frontier
+        ],
         "drifted": [
             {
                 "node_id": f["node_id"],
@@ -747,6 +840,7 @@ def main() -> int:
         f"  drifted_nodes={len(findings)}  "
         f"suppressed={len(suppressed)}  "
         f"stale_since_review={len(stale_review)}  "
+        f"assembling={len(assembly_frontier)} (revisit_due={len(revisit_due)})  "
         f"plans_missing_last_updated={len(missing_plan_last_updated)}  "
         f"plans_missing_on_disk={len(missing_files)}"
     )
@@ -858,6 +952,36 @@ def _self_test() -> int:
     check(
         "known-owner-stem + only cross-family successor -> no flag",
         lineage_advanced("V3-EXQ-603k", fam_mixed) is None,
+    )
+
+    # --- assembly_frontier_record fixtures -----------------------------------
+    today = datetime(2026, 6, 21).date()  # fixed date literal (deterministic, not a clock read)
+    check(
+        "in_progress node is NOT an assembly-frontier record",
+        assembly_frontier_record({"id": "X", "status": "in_progress"}, today) is None,
+    )
+    rec_no_rv = assembly_frontier_record(
+        {"id": "GAP-8", "status": "assembling", "awaiting": "MECH-449"}, today)
+    check(
+        "assembling node -> record, restful (revisit_due False with no revisit_after)",
+        rec_no_rv is not None and rec_no_rv["revisit_due"] is False
+        and rec_no_rv["awaiting"] == "MECH-449",
+    )
+    check(
+        "open_by_design alias -> record",
+        assembly_frontier_record({"id": "Y", "status": "open_by_design"}, today) is not None,
+    )
+    rec_past = assembly_frontier_record(
+        {"id": "Z", "status": "assembling", "revisit_after": "2026-06-01"}, today)
+    check(
+        "past revisit_after -> revisit_due True",
+        rec_past is not None and rec_past["revisit_due"] is True,
+    )
+    rec_future = assembly_frontier_record(
+        {"id": "W", "status": "assembling", "revisit_after": "2026-12-31"}, today)
+    check(
+        "future revisit_after -> revisit_due False (still resting)",
+        rec_future is not None and rec_future["revisit_due"] is False,
     )
 
     print()

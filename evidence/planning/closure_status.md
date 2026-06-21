@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-21T19:32:46Z
+Generated: 2026-06-21T20:41:25Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -10,6 +10,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 - Weighted progress: **79.0%** across 72 non-deferred nodes in 10 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **20** nodes.
+- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **0** nodes.
 - Deferred (not required for v3 closure): 12 nodes.
 - Done: 52 nodes.
 - Status tally: blocked=7  blocked_pending_substrate=3  deferred=12  done=52  in_progress=7  partial=2  upstream_blocked=1
@@ -55,6 +56,12 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-19 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governanc | 2026-06-19 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
+
+## Assembly frontier -- required, under construction (0)
+
+Nodes whose honest state is "the substrate for this is being assembled" -- NOT a stalled gap and NOT deferred. They are held out of the closure % (so correct, unhurried construction is never scored as failure) and out of the Remaining backlog, and surfaced here on their own axis. `awaiting` names the substrate under construction; `assembly_status` is its build state (queued / in_progress / built); a node is restful until its optional `revisit_after` date passes (see the drift report's Assembly-frontier section).
+
+_None -- no node currently declares itself on the assembly frontier._
 
 ## Deferred -- not required for v3 closure (12)
 
@@ -140,6 +147,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
+- **META**: 25.0% across 4 non-deferred nodes in 1 plan(s).
 - **PROCESS**: 100.0% across 13 non-deferred nodes in 2 plan(s).
 - **V4**: 28.0% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
@@ -356,4 +364,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-7` | Switchable episodic perspective tag (MECH-366): participant/observer v | blocked | medium | SD-005 (z_self/z_world split) -- nearest existing substrate, but represents self-vs-world  | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-8` | Consolidation write-paths the store must respect (MECH-252 / MECH-253  | deferred | medium | MECH-252 (SWS consolidates goal-value PE into stored goal-representation CONTENT, not atte | 2026-06-10 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-7` | Ethics / commitment policy grounding (or honest 'no clean analog') | blocked | low | Function-ground each ethics/commitment-policy component OR record 'no clean neural analog' | 2026-06-20 |
+| meta | assembly_vs_closure_plan.md | `MOVE-1` | Keystone: first-class `assembling` / `open_by_design` node state | done | load-bearing |  | 2026-06-21 |
+| meta | assembly_vs_closure_plan.md | `MOVE-3` | Hard brake on the re-derive loop (failure-autopsy granularity hook gat | open | load-bearing |  |  |
+| meta | assembly_vs_closure_plan.md | `MOVE-2` | Assembly-chip path mirroring the closure-chip path (session-land) | open | high |  |  |
+| meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | open | medium |  |  |
 
