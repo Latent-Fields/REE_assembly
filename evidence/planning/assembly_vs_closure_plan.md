@@ -41,13 +41,33 @@ closure_plan:
         .agents/) byte-identically. PROMOTES NOTHING.
     - id: MOVE-3
       title: "Hard brake on the re-derive loop (failure-autopsy granularity hook gates the queue)"
-      status: open
+      status: done
       severity: load-bearing
+      last_updated: 2026-06-21
       note: >
-        On the 2nd substrate_ceiling autopsy for the same claim family, BLOCK
-        re-queuing tests of that claim and force the work into the build queue.
-        The granularity-debt recurrence hook already DETECTS the loop; make it
-        GATE. Direct fix for 7-12x lettered re-runs circling one ceiling.
+        Landed 2026-06-21. The granularity-debt recurrence hook now GATES, not
+        just detects. PRODUCER half (/failure-autopsy): on the Nth
+        (RE_DERIVE_BRAKE_THRESHOLD, default 2) substrate_ceiling/non_contributory
+        autopsy for the same claim, recommended routing is forced to
+        /implement-substrate on the named upstream substrate and a same-claim
+        test re-queue is explicitly REFUSED; the firing is recorded on the
+        autopsy target via a new re_derive_brake{} field (fired/threshold/
+        prior_substrate_ceiling_autopsies/refused_requeue/route_to/
+        upstream_substrate). CONSUMER half (/queue-experiment Step 2.5b): refuses
+        to queue a new same-granularity test of a claim with >=2
+        substrate_ceiling autopsies on record (scans
+        failure_autopsy_*.json targets[].claim_ids) UNLESS the named upstream
+        substrate now shows IMPLEMENTED/VALIDATED in ree-v3/CLAUDE.md; mirrors the
+        blocked_substrate stop-gate and points the user at /implement-substrate.
+        Redesigns of a DIFFERENT mechanism (new EXQ number / different claim_ids)
+        and commitment-free reads are exempt. Both skill copies (.claude/ +
+        .agents/) edited byte-identically. Dry walk-through vs the SD-033b/MECH-263
+        485-series: brake fires (count=9 each), names upstream substrate
+        f_dominance_conversion_ceiling / MECH-449 constitution, correctly HOLDS
+        (MECH-448/ARC-107 built but MECH-449 still under construction) -> route to
+        build, not another 485-letter. Matches the documented first-migration
+        candidate commitment_closure:GAP-8. PROMOTES NOTHING. Direct fix for the
+        7-12x lettered re-runs circling one ceiling.
     - id: MOVE-4
       title: "Assembly/maturity portfolio view (the missing broad-overview altitude)"
       status: open
@@ -63,7 +83,8 @@ closure_plan:
 
 # Assembly vs closure: making the machinery assemble, not just finish
 
-**Status:** MOVE-1 (keystone) + MOVE-2 (assembly-chip path) landed 2026-06-21.
+**Status:** MOVE-1 (keystone) + MOVE-2 (assembly-chip path) + MOVE-3 (re-derive
+brake) landed 2026-06-21. MOVE-4 open.
 MOVES 3-4 open.
 **Origin:** user observation 2026-06-21 — "the machinery gets stuck in myopic
 attempts to force closure before substrate is ready. We are meant to be
@@ -184,14 +205,39 @@ Fixed by splitting Phase 3 rule 3 into two:
 The report-line example was reconciled to match. Edited both skill copies
 (`.claude/skills/session-land/SKILL.md` + `.agents/` mirror) byte-identically.
 
-### MOVE-3 — hard brake on the re-derive loop. OPEN.
+### MOVE-3 — hard brake on the re-derive loop. DONE 2026-06-21.
 
-`/failure-autopsy` already has a granularity-debt recurrence hook that *detects*
-the Nth circling of a claim but does not *gate the queue*. Make it gate: on the
-2nd `substrate_ceiling` for the same claim family, block re-queuing tests of that
-claim and route the work into the build queue (MOVE-2). Stops the 7-12x
-lettered-iteration burn before it starts. Edit: `.claude/skills/failure-autopsy/`
-+ a check in `/queue-experiment` substrate-readiness Step 2.5.
+`/failure-autopsy` already had a granularity-debt recurrence hook that *detected*
+the Nth circling of a claim but did not *gate the queue*. It now gates, in two
+halves that enforce each other:
+
+- **Producer (`/failure-autopsy` Step 7).** On the Nth (`RE_DERIVE_BRAKE_THRESHOLD`,
+  default 2) `substrate_ceiling` / `non_contributory` autopsy for the same claim
+  (counted over `failure_autopsy_*.json` `targets[].claim_ids`), the brake fires:
+  recommended routing is forced to `/implement-substrate` on the named upstream
+  substrate, a same-claim test re-queue is **explicitly refused**, and the firing
+  is stamped on the autopsy target via a new `re_derive_brake{}` field
+  (`fired` / `threshold` / `prior_substrate_ceiling_autopsies` / `refused_requeue`
+  / `route_to` / `upstream_substrate`). A redesign of a *different* mechanism or a
+  commitment-free read is exempt.
+- **Consumer (`/queue-experiment` Step 2.5b).** Refuses to queue a new
+  same-granularity test of a claim that already has >=2 `substrate_ceiling`
+  autopsies on record **unless** the named upstream substrate now shows
+  `IMPLEMENTED` / `VALIDATED` in `ree-v3/CLAUDE.md` (brake released — the re-test
+  is finally meaningful). Otherwise it mirrors the existing `blocked_substrate`
+  stop-gate and points the user at `/implement-substrate`. This catches the case
+  the producer half misses: a re-queue attempted without running an autopsy, or
+  from a different session.
+
+Stops the 7-12x lettered-iteration burn before it starts. Both skill copies
+(`.claude/` + `.agents/`) edited byte-identically. **Validated** by a dry
+walk-through against the SD-033b/MECH-263 485-series: brake fires (9 prior
+substrate_ceiling autopsies on each claim), names upstream substrate
+`f_dominance_conversion_ceiling` / the MECH-449 Go/No-Go constitution, and
+correctly **HOLDS** (MECH-448/ARC-107 implemented but MECH-449 still under
+construction) — routing the work to the build queue instead of a 13th 485-letter.
+That is exactly the documented first-migration candidate (`commitment_closure:GAP-8`
+awaiting MECH-449).
 
 ### MOVE-4 — assembly/maturity portfolio view (the missing altitude). OPEN.
 
@@ -221,7 +267,12 @@ substrate on the substrate_queue.
 
 ## Open follow-ons
 
-- MOVE-3, MOVE-4 (above). MOVE-2 done 2026-06-21.
+- MOVE-4 (above). MOVE-2 + MOVE-3 done 2026-06-21.
+- Harden MOVE-3 from a skill-doc gate to a code gate: a `validate_queue.py` /
+  indexer check that flags a queued same-granularity re-test of a claim with >=2
+  `substrate_ceiling` autopsies whose upstream substrate is not yet built (the
+  doc-level brake relies on the skill being followed; a validator backstop would
+  catch a hand-edited queue append).
 - Claims-layer consolidation of the 6 substrate-blocked conventions into one
   canonical `assembling`-equivalent with a machine-readable `awaiting:` edge
   (prerequisite for MOVE-4's full portfolio view).
