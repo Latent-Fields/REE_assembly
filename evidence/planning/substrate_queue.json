@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "654h-autopsy-20260621T1827Z",
-  "last_updated_utc": "2026-06-21T18:27:19Z",
+  "last_updated_utc": "2026-06-21T18:47:23Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4955,7 +4955,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "654h-autopsy-20260621T1827Z",
+      "last_seen_session": "implement-substrate-mech448-channel-adaptive-envelope-20260621T1841Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -5027,6 +5027,11 @@
           "session": "governance-cycle-20260621T1630Z",
           "utc": "2026-06-21T16:40:10Z",
           "note": "V3-EXQ-485i (SD-033b/MECH-263 behavioural retest on the MECH-448 demotion-enabled E3 selector; supersedes 485h) RAN and self-routed substrate_not_ready_requeue: trained-head preconds PASSED (OFC bias cross-candidate range 0.368>=0.05 floor; head weight-delta 5.39) but the MECH-448 non-degeneracy gate FAILED -- f_eligibility_excluded_count==0, i.e. the 689d-validated ARM_ON demotion envelope (floor=0.30, dn_sigma=0.0) admitted ALL candidates in the 485i behavioural candidate bank, so the demotion lever silently did not engage and the behavioural DVs never ran. non_degenerate:false (scoring_excluded; non_contributory on both claims, NO governance weight). NEW signature: harness/state-dependent envelope engagement, distinct from the 485h F-dominance-ceiling signature. The detailed failure_record_entry + recommended_substrate_queue_entry (envelope re-tune so it excludes candidates in the behavioural bank, then re-queue 485j) are owned by a DEFERRED /failure-autopsy chip (user-chosen this cycle); this is a routine record-of-run only."
+        },
+        {
+          "session": "implement-substrate-mech448-channel-adaptive-envelope-20260621T1841Z",
+          "utc": "2026-06-21T18:47:23Z",
+          "note": "MECH-448/ARC-107 CHANNEL-ADAPTIVE eligibility floor amend LANDED (ree-v3 main, no-op default, bit-identical OFF). Root: the fixed absolute share floor (f_eligibility_envelope_floor=0.30) was tuned to the GAP-A foraging bank (689d); each downstream channel has a different F-merit distribution so the same floor mis-fires -- 654h (arc_062) admitted ALL candidates (excluded_count==0 no-op); 485i->485j (OFC) needed a bespoke per-seed floor recalibration to engage. FIX: new use_f_eligibility_adaptive_floor (E3Config + from_dims, default False) computes floor = f_eligibility_adaptive_mean_factor * mean(elig-share) -- mean-relative, scale-invariant (auto-calibrates per channel, ONE global knob), conflict-graded (preserved), excluded_count>0 guaranteed on any non-uniform field, rank-preserving (eligible set still an F-rank prefix). Collapses the ~5 per-channel hand-floor dances (654h/485i/485j + pending 625/445/687) into one knob. 16/16 MECH-448 contracts (8 new adaptive) + 8/8 preflight + 48/48 E3-cluster PASS. PROMOTES NOTHING (MECH-448 stays candidate; claims.yaml untouched). Readiness validation V3-EXQ-689e queued via /queue-experiment (excluded_count>0 productive on >=2 real channels without hand-tuning; bit-identical OFF negative control; substrate_not_ready_requeue if it still no-ops). ready STAYS false until 689e scores."
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead) + failure_autopsy_V3-EXQ-654h_2026-06-21 (arc_062 rule-apprehension instance of the 485i no-op; gate cleared by 485j off-GAP-A generalisation)",

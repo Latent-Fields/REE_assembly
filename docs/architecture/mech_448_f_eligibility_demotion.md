@@ -179,3 +179,60 @@ ARC-107 (architecture), MECH-447 (conflict-graded near-tie sufficiency; weakened
 exhausted), MECH-449 (Go/No-Go constitution; follow-on, double-gated), MECH-439
 (F-dominance root), Q-078 (constitutional-vs-parametric umbrella), ARC-106
 (grounding framework). Substrate-queue rung: `f_dominance_conversion_ceiling`.
+
+## Channel-adaptive (mean-relative) envelope amend (2026-06-21)
+
+The absolute share floor `f_eligibility_envelope_floor` (default 0.30) was tuned to
+PASS on the GAP-A foraging bank (V3-EXQ-689d). Each downstream channel has a
+**different F-merit distribution**, so the same fixed floor mis-fires:
+
+- **V3-EXQ-654h** (arc_062 rule-apprehension): every per-candidate share fell
+  below 0.30 -> the floor admitted ALL candidates -> `f_eligibility_excluded_count==0`,
+  an all-admit no-op (the lever never engaged; "485i twin").
+- **V3-EXQ-485i -> 485j** (OFC): needed a bespoke per-seed envelope-floor
+  recalibration to engage. 485j then confirmed OFC discrimination **converts** under
+  demotion -- the lever generalises off GAP-A; the residual was a separate
+  devaluation test-design gap (re-queued as 485k), NOT the envelope.
+
+So the *direction* is confirmed (MECH-448 generalises), but every downstream channel
+otherwise needs its own manual floor sweep.
+
+**Fix.** A new no-op-default flag `use_f_eligibility_adaptive_floor` (E3Config +
+`from_dims`, default False -> bit-identical) replaces the fixed absolute floor with a
+**mean-relative** one inside `_f_eligibility_envelope`:
+
+```
+floor = f_eligibility_adaptive_mean_factor * elig.mean()    # adaptive
+vs.    f_eligibility_envelope_floor (0.30)                  # legacy fixed
+```
+
+A candidate is eligible iff its share of the competing merit exceeds
+`f_eligibility_adaptive_mean_factor` (default 1.0) times the field's **own mean
+share**, rather than an absolute constant. Properties:
+
+- **Scale-invariant** -- auto-calibrates to each channel's F-merit distribution; the
+  654h all-admit no-op cannot recur and the 485i/485j bespoke recalibration is no
+  longer needed. Collapses ~5 per-channel hand-floor dances (654h/485i/485j + the
+  pending 625/445/687 successors) into **one global knob**.
+- **Conflict-grade preserved** -- a decisive F-winner pulls the mean up so the others
+  fall below (narrow envelope); a near-tie sits near the mean (wide). A fixed
+  quantile would throw this away; mean-relative keeps it.
+- **Excludes by construction** -- for `mean_factor >= 1.0` on any NON-uniform field at
+  least one candidate is below the mean share, so `excluded_count > 0`.
+- **Rank-preserving** -- still a threshold on `elig` (monotone in merit), so the
+  eligible set stays an F-rank prefix.
+
+The exact-tie / flat-F early returns, the empty-eligible all-admit fallback, the
+modulatory-channel requirement, and all five diagnostics
+(`f_eligibility_excluded_count` / `_winner_neq_f_argmin` / `_envelope_size` /
+`_rank_preserving` / `_demotion_active`) are unchanged. Default OFF reads the fixed
+floor and `use_f_eligibility_demotion` itself stays OFF for existing runs (double
+guard). 16/16 MECH-448 contracts (8 new adaptive) + 8/8 preflight + 48/48 E3-cluster
+PASS. PROMOTES NOTHING -- MECH-448 stays candidate; claims.yaml untouched.
+
+**Validation:** V3-EXQ-689e channel-adaptive envelope readiness diagnostic
+(claim_ids=[]) -- `excluded_count > 0` lands in a productive range on >= 2 real channel
+substrates (the arc_062 bank that no-opped in 654h + the OFC/foraging bank) with the
+SAME global adaptive config (no per-channel hand-tuning); bit-identical OFF as the
+negative control; `substrate_not_ready_requeue` if the adaptive floor still no-ops on
+any channel.
