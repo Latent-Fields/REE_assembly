@@ -1,0 +1,98 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T11:46:35Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "mode": "staging (headless scheduled failure-autopsy-sweep)",
+  "targets": [
+    {
+      "run_id": "v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3",
+      "queue_id": "V3-EXQ-693a",
+      "claim_ids": ["SD-049", "SD-015"],
+      "supersedes": "V3-EXQ-693",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Non-vacuity readiness gate (R1 consumption + R2 identity-probe-fireable + R3 WL-channel-fireable), ALL keyed on the PRIMARY arm ARM_2. Not a discrimination criterion -- the discrimination criteria (C_GR margin, C_WL fraction) were gated out before they could be reached. Self-routed substrate_not_ready_requeue / non_vacuity_unmet.",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue (non_vacuity_unmet, R1=R2=R3=False)",
+      "self_route_is_correct_disposition": true,
+      "self_route_label_cause_is_mislabelled": true,
+      "facts": {
+        "primary_arm": "ARM_2 (3type_with_novelty)",
+        "control_arm": "ARM_0 (OFF_single_resource)",
+        "arm2_n_contributing": 0,
+        "arm2_contribute_frac": 0.0,
+        "arm2_seed_breakdown": "seed42 guard_pass=true but behav_contact_rate 0.0188 < CONSUMPTION_FLOOR 0.02 -> contributes=false; seed43 guard_pass=false (hazard_stage_survival_pass=false) contact 0.0099; seed44 guard_pass=false contact 0.0131",
+        "wl_harness_port_worked_on_contributing_arms": true,
+        "arm1_n_scored_wl_steps_total": 15,
+        "arm3_n_scored_wl_steps_total": 20,
+        "arm1_identity_probe": 0.779,
+        "arm3_identity_probe": 0.519,
+        "per_axis_drive_anova_f_max_observed": 1761.6,
+        "c_gr_discrimination_margin_where_wl_fired": "ARM_1 0.0019, ARM_3 -0.003 (near-zero -- the pre-registered c_gr_watch_item)"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the run yields no WL-dissociation information about SD-049 because the primary arm never produced a contributing run; SD-015 identity recovery DID fire non-vacuously on the contributing arms (ARM_1/ARM_3). Neither claim is tested under conditions where it could express itself on the primary arm.",
+        "biological_reference": "clear (incentive salience as object-bound, drive-modulated wanting dissociable from consummatory liking; Berridge; specific PIT). Not implicated -- the failure is a foraging-competence/measurement gate, not a missing dependency of the wanting!=liking mechanism.",
+        "prerequisites": "missing -- ARM_2 (3-type + novelty) foraging competence: contact rates (0.0099-0.0188) below the CONSUMPTION_FLOOR 0.02 and 2/3 seeds failing the hazard-stage survival / p2 z_goal guard. Same goal_pipeline:GAP-2 nav/foraging-competence ceiling the scaffolded_sd054_onboarding Stage-H amends keep targeting.",
+        "implementation": "complete -- the 514t WL-scoring harness port is sound: it scored object-bound wanting!=liking steps wherever a run contributed (ARM_1 15, ARM_3 20). The 693 stale-514l-harness instrumentation gap is FIXED. The self-route degeneracy_reason text ('WL channel not fireable -> the 693 stale-harness signature') MISLABELS the cause.",
+        "environment": "too sparse for the primary arm -- 3-type+novelty arm forages LESS than ARM_0/ARM_1/ARM_3; novelty_decay benefit attenuation plus 4-hazard guarded P2 starves contact on the measured arm.",
+        "measurement": "adequate -- the non-vacuity gate correctly refused to score a vacuous run (R1/R2/R3 keyed on the primary arm). The blind spot is reporting: the degeneracy_reason should attribute the unmet gate to ARM_2 contribution-collapse, not the (now-fixed) WL harness.",
+        "integration": "partially coupled -- the WL-scoring leg works; the contribution gate (guard_pass AND contact > floor) on the 3-type arm is the bottleneck.",
+        "scale": "likely insufficient on the primary arm -- foraging-competence/survival training budget on the 3-type substrate (deferred to scaffolded_sd054_onboarding Stage-H)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "object-bound incentive salience / specific Pavlovian-instrumental transfer (Berridge; Corbit/Balleine)",
+        "dependencies": ["SD-049 per-type tags + per-axis drive", "SD-015 z_resource encoder", "SD-057 incentive token bank", "scaffolded_sd054_onboarding foraging competence (goal_pipeline:GAP-2)"],
+        "is_formal_import": false,
+        "divergence": "none -- direct biological reading, structurally validated by the 514 lineage; failure is foraging-competence, not mechanism.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-693a (2026-06-21, failure-autopsy staging draft): non_contributory CONFIRMED for SD-049 + SD-015. The 514t WL-scoring harness port WORKED (n_scored_wl_steps_total 15/20 on contributing arms ARM_1/ARM_3; identity probe 0.78/0.52; per-axis drive ANOVA F up to 1761), so the 693 stale-harness instrumentation gap is FIXED. The run self-routed substrate_not_ready_requeue because the PRIMARY arm ARM_2 (3type+novelty) produced 0 contributing runs -- contact rates 0.0099-0.0188 below CONSUMPTION_FLOOR 0.02 and 2/3 seeds failing the hazard-stage survival / p2 z_goal guard. This is the goal_pipeline:GAP-2 nav/foraging-competence ceiling, NOT a WL-harness recurrence and NOT a falsification. Where WL fired, the C_GR discrimination margin was near-zero (ARM_1 0.0019, ARM_3 -0.003) = the pre-registered c_gr_watch_item (the likely real SD-049 Phase-2 conversion question once a contributing primary arm is available). SD-015 identity recovery fired non-vacuously on the contributing arms -> narrow_supports note (NOT a supports entry; the composite run FAILed). Re-test in 693b once ARM_2 foraging competence clears.",
+      "manifest_degeneracy_reason_correction": "The manifest degeneracy_reason ('WL channel not fireable -> the V3-EXQ-693 stale-harness signature') is misleading: the WL channel IS fireable now (it scored on ARM_1/ARM_3). Governance should record that the unmet non-vacuity gate is attributable to ARM_2 contribution-collapse (foraging competence), not the WL harness.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "scaffolded_sd054_onboarding",
+        "title": "ARM_2 (3type+novelty) foraging competence for the SD-049 Phase-2 WL-dissociation primary arm",
+        "implementation_hint": "The SD-049 Phase-2 WL-dissociation measurement now works (WL harness port fires) but its PRIMARY arm (3-type + novelty) cannot reach the CONSUMPTION_FLOOR contact rate on >=2/3 seeds and 2/3 seeds fail hazard-stage survival -- the goal_pipeline:GAP-2 nav/foraging-competence ceiling on the multi-resource substrate. Govern this 693a failure record onto the existing scaffolded_sd054_onboarding nav-competence track (Stage-H / consumption-floor calibration), OR onto the SD-049-PHASE-2 substrate_queue entry if governance prefers to keep the multi-resource foraging shortfall scoped there.",
+        "unblocks_claims": ["SD-049", "SD-015"],
+        "depends_on_unresolved": ["goal_pipeline:GAP-2 foraging contact on the 3-type SD-049 substrate"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3",
+          "experiment_type": "v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation",
+          "metric": "ARM_2 (3type+novelty) behav_contact_rate 0.0099-0.0188 (< CONSUMPTION_FLOOR 0.02) + hazard_stage_survival_pass false on 2/3 seeds -> 0 contributing runs -> non_vacuity R1/R2/R3 unmet (keyed on the primary arm)",
+          "target": "ARM_2 behav_contact_rate > 0.02 AND hazard-stage survival on >= 2/3 seeds so the primary arm yields contributing runs and the WL-dissociation criteria can be scored"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "SD-015 z_resource identity-recovery probe fired non-vacuously on the contributing arms (ARM_1 0.779 / ARM_3 0.519; pooled identity samples 2021 / 4629) -> a narrow evidence_quality_note, NOT a supports entry (the composite run FAILed and the primary arm was vacuous).",
+      "learning_extracted": [
+        "The 514t WL-scoring harness port (693 -> 693a) succeeded: object-bound wanting!=liking scored wherever a run contributed (ARM_1 15, ARM_3 20 steps). The 693 stale-harness instrumentation gap is closed.",
+        "The blocker MOVED one link downstream: from WL-harness instrumentation (693) to PRIMARY-arm foraging competence (693a, ARM_2 3type+novelty below the contact floor + survival fail). The self-route is correct; its degeneracy_reason cause-attribution is wrong (V3-EXQ-642 lesson).",
+        "Where WL fired, the C_GR discrimination margin is near-zero (0.0019 / -0.003) -- the pre-registered c_gr_watch_item is now PARTIALLY observable and is the likely real SD-049 Phase-2 conversion question once a contributing primary arm exists.",
+        "Non-vacuity gates keyed solely on the primary arm can be tripped by a primary-arm competence shortfall while the measurement instrument itself is sound -- consider reporting per-arm WL-fireability so a future autopsy distinguishes 'harness broken' from 'primary arm starved'."
+      ],
+      "routing": "implement-substrate",
+      "routing_detail": "PRIMARY: implement-substrate amend onto scaffolded_sd054_onboarding (or SD-049-PHASE-2) for ARM_2 foraging competence; THEN /queue-experiment 693b (NEW letter; same scientific question on the competence-fixed substrate). SECONDARY: /claim-synthesis recurrence flag (see granularity_debt below).",
+      "granularity_debt_flag": {
+        "triggered": true,
+        "bears_on": "SD-049 Phase-2 WL-dissociation lineage",
+        "prior_autopsies": ["514l", "514m", "514p", "514q", "514r", "514s", "514t", "693"],
+        "this_autopsy": "693a",
+        "note": "9th autopsy circling the SD-049 / wanting!=liking dissociation. Most share the same failure shape (substrate/instrumentation not ready), which reads as iterative substrate-calibration debt rather than a coarse-claim-needs-splitting signal. Surface a /claim-synthesis review at the Step-8 human gate to decide whether the SD-049 Phase-2 measurement has accumulated enough distinct failure signatures to warrant decomposition, OR is simply a long substrate-readiness chain. Do NOT auto-route to /claim-synthesis -- this autopsy's own routing is implement-substrate + re-queue."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "SD-049 and SD-015 are both candidate / substrate_ceiling / pending_retest_after_substrate (SD-049 also v3_pending); promote/demote is suppressed for substrate_ceiling. The 693a manifest already self-reports non_degenerate:false with a degeneracy_reason, so the indexer marks it scoring_excluded:degenerate and it does not weight confidence or conflict. No governance risk from this run; this autopsy is a diagnosis + substrate hand-off only.",
+  "governance_actions_owed": [
+    "Confirm the routing at the next interactive /governance walk or interactive session (staging draft; never auto-applies).",
+    "Optionally write the SD-015 narrow_supports evidence_quality_note + the corrected degeneracy_reason attribution (the recommended_evidence_quality_note above) -- governance applies, this skill does not.",
+    "Materialise the recommended_substrate_queue_entry (amend) onto the chosen substrate_queue entry.",
+    "Mark V3-EXQ-693a discussed in review_tracker.json (add the manifest stem v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3) once reviewed -- left untouched here (failure-autopsy never edits review_tracker)."
+  ]
+}
