@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-06-21T07:36:41Z",
+  "generated_at": "2026-06-21T08:08:05Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -3292,6 +3292,29 @@
         "priority": 28,
         "claim_ids": [
           "MECH-260"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260621T080805Z-10e3bf78-claude_local",
+      "stable_hash": "10e3bf7821a3",
+      "igw_id_at_assign": "IGW-20260604-032",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-06-21T08:08:05Z",
+      "released_at": "2026-06-21T08:08:05Z",
+      "released_by": "reaper_backfill",
+      "released_reason": "stale_completed: ledger entry IGW-20260604-032 reached status=completed via the 2026-06-04 respawn-loop incident (a value reap_ledger never writes); the single-shot release in reap_ledger never fired so this claude_local assignment leaked, inflating /igw assigned_active to 12 (panel counts the 12 ledger rows sharing this hash). One-off backfill; reap_ledger now self-heals via _reconcile_orphan_assignments.",
+      "released_event_for": "asn-20260604T051437Z-10e3bf78-claude_local",
+      "note": "session_uuid=ac06a8e5-198e-474a-b549-2f4df6dfd49c branch=claude/igw-032-retest-after-substrate-inv-074",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: INV-074",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "INV-074"
         ]
       }
     }
