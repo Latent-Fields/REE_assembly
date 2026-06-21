@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-21T06:41:49Z",
+  "last_tick_utc": "2026-06-21T07:01:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-693a",
   "current_exq_started_utc": "2026-06-20T16:49:15.018881+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-049",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_3_5type_overshoot",
-    "runs_done": 9,
+    "run_label": "Seed 43 / ARM_3_5type_overshoot",
+    "runs_done": 10,
     "runs_total": 12,
     "episodes_done": 0,
     "episodes_total": 250,
-    "overall_pct": 75.0
+    "overall_pct": 83.3
   },
-  "seconds_elapsed": 49955,
-  "seconds_remaining": 16586,
+  "seconds_elapsed": 51161,
+  "seconds_remaining": 7907,
   "recent_lines": [
     "[v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation] starting (dry_run=False)",
     "Seed 42 Condition ARM_0_OFF_single_resource",
@@ -66,7 +66,12 @@
     "[eval] arm=ARM_2 seed=44 contributes=False id_acc=0.685 (n=2217) margin=-0.001 wl_frac=0.600 (scored=5) anova_f=1364.582 contact=0.0131 pc_sep=1.00",
     "verdict: FAIL arm=ARM_2 seed=44 contributes=False guard_pass=False",
     "Seed 42 Condition ARM_3_5type_overshoot",
-    "[ARM_3/5type_overshoot] seed 42 sd049=True n_types=5"
+    "[ARM_3/5type_overshoot] seed 42 sd049=True n_types=5",
+    "[train] p2_guard arm=ARM_3 seed=42 ep 235/250 contact_rate=0.1669 events=64 z_goal_at_contact=0.4432",
+    "[eval] arm=ARM_3 seed=42 contributes=False id_acc=0.486 (n=1827) margin=0.013 wl_frac=0.667 (scored=6) anova_f=1286.087 contact=0.0175 pc_sep=1.00",
+    "verdict: FAIL arm=ARM_3 seed=42 contributes=False guard_pass=True",
+    "Seed 43 Condition ARM_3_5type_overshoot",
+    "[ARM_3/5type_overshoot] seed 43 sd049=True n_types=5"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
