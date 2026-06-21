@@ -1,0 +1,113 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier",
+  "run_id": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-21T06:34:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-448": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "demotion_converts_committed_diversity",
+    "preconditions": [
+      {
+        "name": "on_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_ON IN-ARM RAW cross-candidate RANGE of the modulatory bias routed into the E3 selection authority (modulatory_channel_route_range, read LIVE at the select tick) clears the floor. SAME range statistic the route-range substrate gates on. Below floor => routing not wired / e2 under-trained / _modulatory_accum absent => substrate_not_ready_requeue.",
+        "control": "ARM_ON: candidate_summary_source=e2_world_forward, route-range routing + shortlist-then-modulate + f_eligibility demotion ON",
+        "measured": 0.50635,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "on_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_ON e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- SD-056 trained the action-conditional divergence the eligible set needs. RANGE statistic. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_ON: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.154026,
+        "threshold": 0.03,
+        "met": true
+      },
+      {
+        "name": "on_f_eligibility_envelope_excludes_on_divergent_pool",
+        "kind": "readiness",
+        "description": "ARM_ON f_eligibility demotion is active on >= DEMOTION_ACTIVE_FRAC_FLOOR of P1 ticks AND the envelope ACTUALLY EXCLUDES (mean f_eligibility_excluded_count > floor) on the divergent e2_world_forward pool -- the MECH-448 NON-DEGENERACY signal. An all-admit envelope (excluded_count==0, a flat-F pool) is vacuous => substrate_not_ready_requeue. Count statistic (seeds meeting both).",
+        "control": "ARM_ON: use_f_eligibility_demotion=True over the divergent pool; f_eligibility_excluded_count read live",
+        "measured": 0.152443,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_READINESS_e2_divergent_envelope_excludes",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_RANK_PRESERVING_eligible_set_is_F_rank_prefix",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_PRIMARY_on_selected_entropy_strict_above_both_collapsed_controls",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_SAFETY_on_harm_not_above_off",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_READINESS": true,
+      "C_RANK_PRESERVING": true,
+      "C_PRIMARY": true,
+      "C_SAFETY": true
+    },
+    "routing": {
+      "demotion_converts_committed_diversity": "PASS -> MECH-448 toward supports; ARC-107 gains its first validated lever; F->eligibility demotion moves committed behaviour, rank-preserving, no harmful disinhibition",
+      "substrate_not_ready_requeue": "routing/SD-056 under-trained OR the pool is not divergent (all-admit envelope, excluded_count==0); re-queue; do NOT weaken MECH-448",
+      "rank_alteration_not_prefix_diagnose": "the eligible set is NOT an F-rank prefix (the envelope altered the F-rank) -> implementation/design fault -> /diagnose-errors; NOT a weakens",
+      "conversion_ceiling_persists_despite_demotion": "OFF-RAMP -> the MECH-449 Go/No-Go eligibility constitution (double-gated on this falsifier showing the demotion lever alone is insufficient) / the V4 directions; NOT a falsification of MECH-448",
+      "demotion_disinhibits_harmful_classes": "WEAKENED -- the committed-entropy lift came from globally flattening F / admitting harmful classes (C_SAFETY fail), the design-note weaken condition"
+    }
+  }
+}
