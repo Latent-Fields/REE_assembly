@@ -39064,12 +39064,30 @@
   subject: drive.wanting_drive_state_modulation
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   implementation_phase: v3
   v3_pending: true
   split_from: MECH-229
   registered_utc: "2026-06-16"
-  pending_retest_after_substrate: true
+  pending_retest_after_substrate: false
+  evidence_quality_note: >
+    Substrate ceiling LIFTED 2026-06-21 (governance). The SD-049-PHASE-2 bounded-kappa /
+    standing-differential-depletion env amend (kappa_scale 12.0 + per_axis_restoration_fraction
+    0.15) landed and V3-EXQ-514u (supersedes 514t; PASS, supports, non_degenerate) cleared the
+    drive-coupling effect margin on the enriched substrate via the CONTINUOUS-AMPLITUDE
+    (intensity) reading: mean_cont_amplitude_shift 0.164 > 0.05 floor on all scored seeds
+    (k_sd 1.0, n=76); enriched per-axis drive spread 0.222 > 0.1; OFF/bank-disabled floor and
+    argmax-relevance readiness all met. This shows the claim's "intensity" disjunct
+    (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive)). The DISCRETE
+    target-FLIP disjunct (C_WL_DRIVE_coupled_dissociation_flip) remains SECONDARY and still
+    fails on the natural enriched substrate (mean wl_drive_delta -0.133), but the overshoot
+    positive control flips most_wanted (0.81) -> the flip shortfall is a magnitude artifact,
+    NOT a falsification (the what_would_answer overshoot disambiguator resolves toward
+    "drive CAN carve"). epistemic_category flipped substrate_ceiling -> standard and
+    pending_retest_after_substrate cleared. NOT promoted: status stays candidate and
+    v3_pending: true holds promotion (hold_pending_v3_substrate). The remaining open work is
+    the target-FLIP disjunct on the V3 enriched env (514u amplitude reading is sufficient to
+    lift the ceiling, not to promote).
   depends_on:
     - MECH-229   # parent umbrella: the wanting!=liking object-bound dissociation this modulation specializes
     - SD-049     # multi-resource per-axis drive substrate -- the drive-state signal source
@@ -43764,6 +43782,13 @@
     committed-conversion fix; ELEVATE to the basal-ganglia-constitution build (ARC-107) -- lead lever MECH-448
     rank-preserving F->eligibility demotion (divisive-normalisation grounded), broader follow-on MECH-449
     Go/No-Go eligibility governance. pending_retest_after_substrate.
+    CORROBORATION 2026-06-21: V3-EXQ-689c (Factor-B-alone gap-scaled commit-T isolation retest;
+    no decision authority per the MECH-442 packet) FAIL / non_contributory, readiness ALL met +
+    non_degenerate (route_range 0.216, e2-spread 0.063, Factor-B lever engaged 3x), self-route
+    conversion_ceiling_persists_despite_conflict_grade. The 689a informational A0B1-converts
+    dissociation does NOT hold up under isolation -- the single-lever Factor-B path is not a
+    robust committed-conversion fix either, corroborating the exhausted-parametric-family decision
+    and the constitutional MECH-448 build. non_contributory: does NOT weaken MECH-439.
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of

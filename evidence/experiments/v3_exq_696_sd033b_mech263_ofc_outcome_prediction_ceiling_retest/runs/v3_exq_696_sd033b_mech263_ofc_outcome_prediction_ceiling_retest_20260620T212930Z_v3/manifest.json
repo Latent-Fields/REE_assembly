@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest",
+  "run_id": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260620T212930Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-20T21:29:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor",
+        "measured": 0.0012362822890281677,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "measured": 0.1483205407857895,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": false
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_off_and_control_silent",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "disambiguation": {
+      "reading": "not_applicable",
+      "note": "Disambiguation is RECORDED, not auto-stamped. Below the 0.05 bias-range floor -> substrate_not_ready_requeue (non_contributory), NEVER a weakens. Readiness-met + C1-fail is an honest result; route /failure-autopsy with bias_range_devalued + the live-E3 F-test to adjudicate T (threat-invariant bias) vs F (F-dominance conversion ceiling, MECH-439 / f_dominance_conversion_ceiling) before stamping a SD-033b/MECH-263 weakens.",
+      "max_trained_bias_range_high": 0.0012362822890281677,
+      "max_trained_bias_range_devalued": 0.0011080950498580933,
+      "max_collapse_ratio": 0.8963123225919207,
+      "min_collapse_ratio": 0.8963123225919207,
+      "n_threat_invariant_seeds": 1,
+      "n_range_collapsed_seeds": 0,
+      "n_f_dominance_seeds": 0,
+      "n_live_ready_seeds": 1
+    }
+  }
+}

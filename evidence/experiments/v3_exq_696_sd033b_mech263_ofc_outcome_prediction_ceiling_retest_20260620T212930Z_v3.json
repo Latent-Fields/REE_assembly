@@ -1,0 +1,240 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260620T212930Z_v3",
+  "experiment_type": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest",
+  "queue_id": "V3-EXQ-696",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260620T212930Z",
+  "executing_hostname": "DLAPTOP-4.local",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "result": "FAIL",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "dry_run": true,
+  "elapsed_sec": 29.926943063735962,
+  "acceptance": {
+    "C1_devaluation_behavioural_shift": false,
+    "C2_discrimination_behavioural_separation": false,
+    "C3_off_and_control_silent": false,
+    "n_c1_seeds": 0,
+    "n_c2_seeds": 0,
+    "n_c3_seeds": 1,
+    "pass": false
+  },
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor",
+        "measured": 0.0012362822890281677,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "measured": 0.1483205407857895,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": false
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_off_and_control_silent",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "disambiguation": {
+      "reading": "not_applicable",
+      "note": "Disambiguation is RECORDED, not auto-stamped. Below the 0.05 bias-range floor -> substrate_not_ready_requeue (non_contributory), NEVER a weakens. Readiness-met + C1-fail is an honest result; route /failure-autopsy with bias_range_devalued + the live-E3 F-test to adjudicate T (threat-invariant bias) vs F (F-dominance conversion ceiling, MECH-439 / f_dominance_conversion_ceiling) before stamping a SD-033b/MECH-263 weakens.",
+      "max_trained_bias_range_high": 0.0012362822890281677,
+      "max_trained_bias_range_devalued": 0.0011080950498580933,
+      "max_collapse_ratio": 0.8963123225919207,
+      "min_collapse_ratio": 0.8963123225919207,
+      "n_threat_invariant_seeds": 1,
+      "n_range_collapsed_seeds": 0,
+      "n_f_dominance_seeds": 0,
+      "n_live_ready_seeds": 1
+    }
+  },
+  "non_degenerate": false,
+  "degeneracy_reason": "trained_bias_range_high_threat: zero spread (constant=0.00123628, spread=0<=eps=1e-09); trained_devaluation_selection_shift: zero spread (constant=0.000116389, spread=0<=eps=1e-09)",
+  "degenerate_metrics": {
+    "trained_bias_range_high_threat": "zero spread (constant=0.00123628, spread=0<=eps=1e-09)",
+    "trained_devaluation_selection_shift": "zero spread (constant=0.000116389, spread=0<=eps=1e-09)"
+  },
+  "readiness_met": false,
+  "ready_seeds": 0,
+  "n_seeds": 1,
+  "max_trained_head_delta": 0.1483205407857895,
+  "max_trained_bias_range": 0.0012362822890281677,
+  "max_trained_bias_range_devalued": 0.0011080950498580933,
+  "max_trained_bank_zworld_spread": 0.020833445712924004,
+  "max_trained_between_context_tv": 0.00017742440104484558,
+  "disambiguation_summary": {
+    "max_collapse_ratio": 0.8963123225919207,
+    "min_collapse_ratio": 0.8963123225919207,
+    "n_threat_invariant_seeds": 1,
+    "n_range_collapsed_seeds": 0,
+    "n_f_dominance_seeds": 0,
+    "n_live_ready_seeds": 1
+  },
+  "arm_results": [
+    {
+      "arm": "ARM_0_OFF",
+      "ofc_mode": "off",
+      "seed": 0,
+      "train_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "n_spread_loss_terms": 0,
+      "n_antirange_loss_terms": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bias_range_devalued": 0.0,
+      "devaluation_range_collapse_ratio": 0.0,
+      "bias_range_context_a": 0.0,
+      "bias_range_context_b": 0.0,
+      "bank_zworld_spread": 0.013182575814425945,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "live_e3_status": "non_trained_arm_skipped",
+      "live_e3_label": "n/a",
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cd22dc0337d5085f82451475186252ef14a3a1ae49940dfe3e5932febbe4ee46",
+        "substrate_hash": "f842a9630eb6d4049b34400bc30f5cdff4ea59061a222a77a82242fc063c4988",
+        "substrate_n_files": 104,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1d0badd940a65283f0b27f3f225336c79611845f3f25d033ffd6650213293547"
+      }
+    },
+    {
+      "arm": "ARM_1_ON",
+      "ofc_mode": "trained",
+      "seed": 0,
+      "train_head": true,
+      "head_weight_delta_norm": 0.1483205407857895,
+      "n_grad_nonzero_updates": 4,
+      "n_spread_loss_terms": 48,
+      "n_antirange_loss_terms": 48,
+      "p1_mean_abs_ofc_bias": 0.019635487548433816,
+      "devaluation_selection_shift": 0.00011638924479484558,
+      "bias_range_high_threat": 0.0012362822890281677,
+      "bias_range_devalued": 0.0011080950498580933,
+      "devaluation_range_collapse_ratio": 0.8963123225919207,
+      "bias_range_context_a": 0.0008014999330043793,
+      "bias_range_context_b": 0.0005803480744361877,
+      "bank_zworld_spread": 0.020833445712924004,
+      "between_context_selection_tv": 0.00017742440104484558,
+      "within_context_selection_jitter": 3.725290298461914e-09,
+      "discrimination_separation_ratio": 177.42440104484558,
+      "eval_context_built": true,
+      "live_e3_status": "ok",
+      "live_e3_label": "live_e3_devaluation_shift_present",
+      "live_e3_authority_active_high": true,
+      "live_e3_authority_range_high": 0.0012362822890281677,
+      "live_e3_committed_shift_devaluation": 0.12929312884807587,
+      "live_e3_committed_shift_vs_f_only": 0.5770041346549988,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f10bdb5d5007438406bc60fba70b10471c088e7b1568e7bb9d69574d1463cfc8",
+        "substrate_hash": "f842a9630eb6d4049b34400bc30f5cdff4ea59061a222a77a82242fc063c4988",
+        "substrate_n_files": 104,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1d0badd940a65283f0b27f3f225336c79611845f3f25d033ffd6650213293547"
+      }
+    },
+    {
+      "arm": "ARM_2_MATCHED_NOISE",
+      "ofc_mode": "frozen",
+      "seed": 0,
+      "train_head": false,
+      "head_weight_delta_norm": 0.0,
+      "n_grad_nonzero_updates": 0,
+      "n_spread_loss_terms": 0,
+      "n_antirange_loss_terms": 0,
+      "p1_mean_abs_ofc_bias": 0.0,
+      "devaluation_selection_shift": 0.0,
+      "bias_range_high_threat": 0.0,
+      "bias_range_devalued": 0.0,
+      "devaluation_range_collapse_ratio": 0.0,
+      "bias_range_context_a": 0.0,
+      "bias_range_context_b": 0.0,
+      "bank_zworld_spread": 0.020833445712924004,
+      "between_context_selection_tv": 0.0,
+      "within_context_selection_jitter": 0.0,
+      "discrimination_separation_ratio": 0.0,
+      "eval_context_built": true,
+      "live_e3_status": "non_trained_arm_skipped",
+      "live_e3_label": "n/a",
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "827b3d63298c2c95b22e09d80e096b39b02adfb869a825ba60720a34f3d190b5",
+        "substrate_hash": "f842a9630eb6d4049b34400bc30f5cdff4ea59061a222a77a82242fc063c4988",
+        "substrate_n_files": 104,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 0,
+        "config_slice_declared": false,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1d0badd940a65283f0b27f3f225336c79611845f3f25d033ffd6650213293547"
+      }
+    }
+  ],
+  "substrate_under_test": "SD-033b/MECH-263 OFC-analog outcome-prediction channel: train_state_bias_head + ofc_harm_dim>0 + ofc_bias_scale=0.5 + SD-056 e2_action_contrastive P0 + paired threat-conditioned driver (spread@high + anti-range@devalued); ARM_0 OFF + ARM_2 frozen-zeroed matched-noise control",
+  "unblocks": "SD-033b + MECH-263 substrate_ceiling -> supports; closes the 485-lineage / commitment_closure:GAP-8",
+  "predecessor": "V3-EXQ-485h (the disambiguating-redesign behavioural validation in the 485 lineage)",
+  "predecessors": [
+    "V3-EXQ-485b/485c (representation-level diagnostics)",
+    "V3-EXQ-485d (trained-OFC-head substrate readiness)",
+    "V3-EXQ-485e/485f/485g (trained-OFC-head behavioural; non_contributory / substrate_ceiling)",
+    "V3-EXQ-485h (disambiguating redesign; superseded 485g)"
+  ],
+  "conversion_ceiling_entanglement": "Per substrate_queue f_dominance_conversion_ceiling, the OFC channel was channel 1 and F-dominance channel 2 of an active conversion ceiling mid-build (MECH-448 lever; falsifier V3-EXQ-689d queued). 696 self-routes substrate_not_ready_requeue (non_contributory, NEVER a weakens) if the OFC lifting channel is degenerate (trained-head bias cross-candidate RANGE below the 0.05 floor, the SAME statistic the load-bearing DVs route on). A readiness-met C1-fail records the devalued-state range + live-E3 F-test so governance can adjudicate (T) threat-invariant bias vs (F) the F-dominance conversion ceiling (MECH-439) before stamping a weakens.",
+  "notes": "Evidence-grade substrate-landing RETEST of the SD-033b + MECH-263 substrate_ceiling claims: does the trained OFC-analog specific-outcome-prediction channel lift the previously-ceiling'd behavioural devaluation (MECH-263 signature a) + task-role discrimination (signature b) metric STRICTLY above the OFF arm AND the frozen-head matched-noise control? 3-arm ARM_0_OFF / ARM_1_ON / ARM_2_MATCHED_NOISE x 3 seeds. Same-statistic P0 non-vacuity gate (p0_readiness_gate): below the 0.05 trained-head bias-range floor (RANGE not magnitude) -> substrate_not_ready_requeue (non_contributory), NEVER a SD-033b/MECH-263 weakens. check_degeneracy self-report flags a pinned/vacuous criterion scoring_excluded=degenerate. The live-E3 modulatory-bias-selection-authority F-test is diagnostic-only and NEVER gates the verdict -- if the OFC bias reaches the accumulator but does not move committed selection, 696 joins the MECH-439 / f_dominance conversion-ceiling cluster. OFC is the sole bias channel in all arms; frozen-zeroed head is the GAP-1-analogue silence control."
+}
