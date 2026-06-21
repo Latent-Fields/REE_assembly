@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-21T09:42:46Z",
+  "last_tick_utc": "2026-06-21T10:12:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-460j",
   "current_exq_started_utc": "2026-06-21T07:00:03.459104+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
     "runs_done": 5,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 295,
-    "overall_pct": 170.1
+    "overall_pct": 185.9
   },
-  "seconds_elapsed": 9763,
+  "seconds_elapsed": 11571,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier] starting (dry_run=False)",
@@ -35,7 +35,9 @@
     "verdict: FAIL seed=42 guard_pass=True sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=False rule_bias_trained=True co_occurs=False (contact_rate=0.1981 z_goal_at_contact=0.5160)",
     "Seed 43 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
     "[train] stage0_nursery seed=43 ep 20/295 z_goal_peak=0.4133 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.952 gate=pass"
+    "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.952 gate=pass",
+    "[train] p0_guided seed=43 ep 130/295 mean_len=198.2 rv=0.25262",
+    "[train] hazard_avoidance seed=43 ep 170/295 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
