@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_245a_mech120_shy_wiring_validation
 
-Generated: `2026-06-21T13:16:25.102501Z`
+Generated: `2026-06-21T16:31:14.593851Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

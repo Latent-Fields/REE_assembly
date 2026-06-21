@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "autopsy-apply-460h-20260620T0843Z",
-  "last_updated_utc": "2026-06-21T13:25:00Z",
+  "last_updated_utc": "2026-06-21T16:40:10Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4916,7 +4916,8 @@
           "experiment_type": "v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier",
           "metric": "rung-6: sustained_hold 0/3 (route_reason=off_baseline_not_sustained); the natural_commit_latch_hold lever yields to the SD-034 closure de-commit which fragments the OFF baseline -> no sustained occupancy -> lever_shortened_occupancy 0/3, co_occurrence 0/3",
           "target": "OFF baseline sustains a natural-commit occupancy on >=2/3 seeds so the rung-6 release demonstrably shortens it AND MECH-445 coupling-intent + MECH-446 occupancy-drop co-occur; next substrate step = narrow the latch-hold yield clause to genuine closures only"
-        }
+        },
+        "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3"
       ],
       "metric_trajectory": {
         "primary_metric": "F_share_of_E3_committed_selection_variance / committed_action_class_entropy_lift_over_gapblind_controls",
@@ -4941,7 +4942,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-cycle-20260621T1215Z",
+      "last_seen_session": "governance-cycle-20260621T1630Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -5008,6 +5009,11 @@
           "what": "Reconciled the entry header after the 06:39Z governance cycle validated+promoted MECH-448 (that cycle added the rung-2 VALIDATED implementation_log entry above but left the header stale). (1) status string advanced from 'conflict_grade_near_tie_parametric_family_exhausted__build_...MECH448_lead_MECH449_followon' to 'mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__selection_face_conversion_ceiling_LIFTED...'. (2) depends_on_unresolved[0] ('rank-preserving F->eligibility demotion lever build (MECH-448 lead; e3_selector.py, not yet built) ...') is RESOLVED (built ree-v3 4c9b3c9 + validated V3-EXQ-689d + promoted provisional) -> moved to depends_on_resolved; that stale 'not yet built' free-text was the source of the /workset ARC-063 (and other downstream) retest blocked_by line via generate_inter_governance_workset._retest_blockers (no leading claim-ID token -> surfaced as a 'free-text (via f_dominance_conversion_ceiling)' blocker). (3) fallback_ladder rung-2 status advanced to BUILT+VALIDATED+PROMOTED. (4) added ready_blocked_by explaining why ready stays false.",
           "ready_decision": "ready STAYS false. The lead lever is built+validated+promoted, but the only remaining unresolved prerequisite is MECH-449 (substrate_conditional, not buildable now) and the downstream behavioural retests (654h/485i/445h/625e) + the rung-6 de-commit/release-DURATION validation (460j) are queued/pending experiment runs, not immediately-buildable substrate items. The entry therefore stays a legitimate non-resolved blocker for its still-pending downstream retests (_substrate_resolved short-circuits on ready=false AND on the non-empty depends_on_unresolved). Flipping ready=true would have tripped the workset 'ready=true but N unresolved prerequisites -- internally inconsistent' guard.",
           "claims_yaml": "NOT modified -- MECH-448's promotion was applied by the 06:39Z governance cycle; this reconcile changes no claim status."
+        },
+        {
+          "session": "governance-cycle-20260621T1630Z",
+          "utc": "2026-06-21T16:40:10Z",
+          "note": "V3-EXQ-485i (SD-033b/MECH-263 behavioural retest on the MECH-448 demotion-enabled E3 selector; supersedes 485h) RAN and self-routed substrate_not_ready_requeue: trained-head preconds PASSED (OFC bias cross-candidate range 0.368>=0.05 floor; head weight-delta 5.39) but the MECH-448 non-degeneracy gate FAILED -- f_eligibility_excluded_count==0, i.e. the 689d-validated ARM_ON demotion envelope (floor=0.30, dn_sigma=0.0) admitted ALL candidates in the 485i behavioural candidate bank, so the demotion lever silently did not engage and the behavioural DVs never ran. non_degenerate:false (scoring_excluded; non_contributory on both claims, NO governance weight). NEW signature: harness/state-dependent envelope engagement, distinct from the 485h F-dominance-ceiling signature. The detailed failure_record_entry + recommended_substrate_queue_entry (envelope re-tune so it excludes candidates in the behavioural bank, then re-queue 485j) are owned by a DEFERRED /failure-autopsy chip (user-chosen this cycle); this is a routine record-of-run only."
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",

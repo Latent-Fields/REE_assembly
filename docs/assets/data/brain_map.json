@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-21T12:18:51Z",
+  "generated_at": "2026-06-21T16:33:05Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -158,7 +158,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.703
+          "overall_confidence": 0.702
         },
         {
           "id": "ARC-039",
@@ -230,7 +230,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.722
+          "overall_confidence": 0.721
         },
         {
           "id": "MECH-033",
@@ -242,7 +242,7 @@
           "pass_runs": 7,
           "fail_runs": 1,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.816
+          "overall_confidence": 0.815
         }
       ],
       "implementation": "full",
@@ -558,11 +558,11 @@
           "subject": "pfc.ofc_state_space_specific_outcome",
           "status": "candidate",
           "v3_pending": true,
-          "genuine_exp_count": 1,
+          "genuine_exp_count": 0,
           "pass_runs": 0,
-          "fail_runs": 1,
+          "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.756
+          "overall_confidence": 0.899
         },
         {
           "id": "MECH-264",
@@ -627,9 +627,9 @@
       ],
       "implementation": "full",
       "evidence": {
-        "genuine_exp_count": 6,
+        "genuine_exp_count": 4,
         "pass_runs": 3,
-        "fail_runs": 3,
+        "fail_runs": 1,
         "quadrant_counts": {
           "unknown": 11,
           "confirmed_established": 2,
@@ -648,18 +648,7 @@
         "MECH-326"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-485i",
-          "title": "SD-033b/MECH-263 trained-OFC-head behavioural conversion on MECH-448 F->eligibility demotion-enabled E3 selector (485h-successor; commitment_closure:GAP-8)",
-          "status": "claimed",
-          "claim_ids": [
-            "SD-033b",
-            "SD-033b",
-            "MECH-263"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -710,7 +699,7 @@
           "pass_runs": 0,
           "fail_runs": 11,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.878
+          "overall_confidence": 0.877
         },
         {
           "id": "MECH-259",
@@ -722,7 +711,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.7
+          "overall_confidence": 0.699
         },
         {
           "id": "MECH-260",
@@ -936,7 +925,7 @@
           "pass_runs": 2,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.625
+          "overall_confidence": 0.624
         },
         {
           "id": "MECH-335",
@@ -1313,7 +1302,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.737
+          "overall_confidence": 0.736
         },
         {
           "id": "MECH-121",
@@ -1325,7 +1314,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.921
+          "overall_confidence": 0.92
         }
       ],
       "implementation": "full",
@@ -1826,7 +1815,7 @@
           "pass_runs": 8,
           "fail_runs": 9,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.745
+          "overall_confidence": 0.744
         },
         {
           "id": "ARC-052",
@@ -1886,7 +1875,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.69
+          "overall_confidence": 0.689
         },
         {
           "id": "MECH-282",
@@ -2523,7 +2512,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.515
+          "overall_confidence": 0.514
         },
         {
           "id": "MECH-269b",
@@ -2732,7 +2721,7 @@
           "pass_runs": 10,
           "fail_runs": 28,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.756
+          "overall_confidence": 0.755
         },
         {
           "id": "MECH-136",
@@ -3121,11 +3110,11 @@
           "subject": "residue.geometry",
           "status": "active",
           "v3_pending": false,
-          "genuine_exp_count": 0,
-          "pass_runs": 0,
+          "genuine_exp_count": 1,
+          "pass_runs": 1,
           "fail_runs": 0,
-          "evidence_quadrant": "",
-          "overall_confidence": null
+          "evidence_quadrant": "novel_discovery",
+          "overall_confidence": 0.775
         },
         {
           "id": "MECH-034",
@@ -3185,7 +3174,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.524
+          "overall_confidence": 0.523
         },
         {
           "id": "MECH-072",
@@ -3197,7 +3186,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.743
+          "overall_confidence": 0.742
         },
         {
           "id": "MECH-076",
@@ -3233,7 +3222,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.741
+          "overall_confidence": 0.74
         },
         {
           "id": "MECH-412",
@@ -3250,13 +3239,14 @@
       ],
       "implementation": "full",
       "evidence": {
-        "genuine_exp_count": 44,
-        "pass_runs": 15,
+        "genuine_exp_count": 45,
+        "pass_runs": 16,
         "fail_runs": 29,
         "quadrant_counts": {
           "plausible_unproven": 5,
           "confirmed_established": 3,
-          "unknown": 5
+          "unknown": 4,
+          "novel_discovery": 1
         }
       },
       "v3_pending_count": 2,
@@ -3265,16 +3255,7 @@
         "MECH-412"
       ],
       "leading_edge": true,
-      "queued_exqs": [
-        {
-          "queue_id": "V3-EXQ-697",
-          "title": "ARC-013 residue-separability falsifier (residue vs salience+uncertainty)",
-          "status": "claimed",
-          "claim_ids": [
-            "ARC-013"
-          ]
-        }
-      ],
+      "queued_exqs": [],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -3632,7 +3613,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.528
+          "overall_confidence": 0.527
         },
         {
           "id": "ARC-042",

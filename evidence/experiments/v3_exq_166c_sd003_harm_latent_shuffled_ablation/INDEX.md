@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_166c_sd003_harm_latent_shuffled_ablation
 
-Generated: `2026-06-21T13:16:25.102501Z`
+Generated: `2026-06-21T16:31:14.593851Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-21T13:20:00Z`  
-Last review: `2026-06-21T13:19:58Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-21T16:38:23Z`  
+Last review: `2026-06-21T16:38:17Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3` | 2026-06-21T12:42 | MECH-263, SD-033b | — |
 
 ---
 
