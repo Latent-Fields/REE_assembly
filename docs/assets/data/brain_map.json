@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-21T16:33:05Z",
+  "generated_at": "2026-06-21T19:21:42Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -110,7 +110,7 @@
           "pass_runs": 4,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.709
+          "overall_confidence": 0.708
         },
         {
           "id": "ARC-018",
@@ -558,11 +558,11 @@
           "subject": "pfc.ofc_state_space_specific_outcome",
           "status": "candidate",
           "v3_pending": true,
-          "genuine_exp_count": 0,
+          "genuine_exp_count": 1,
           "pass_runs": 0,
-          "fail_runs": 0,
+          "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.899
+          "overall_confidence": 0.756
         },
         {
           "id": "MECH-264",
@@ -627,9 +627,9 @@
       ],
       "implementation": "full",
       "evidence": {
-        "genuine_exp_count": 4,
+        "genuine_exp_count": 6,
         "pass_runs": 3,
-        "fail_runs": 1,
+        "fail_runs": 3,
         "quadrant_counts": {
           "unknown": 11,
           "confirmed_established": 2,
@@ -648,7 +648,18 @@
         "MECH-326"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-485k",
+          "title": "SD-033b/MECH-263 CORRECTED devaluation behavioural arm on the MECH-448 demotion-enabled E3 selector (supersedes 485j; re-ranking devalued-state OFC driver replaces the anti-range-flat collapse + C1 readiness precondition re-targeted to the devalued-state bias range)",
+          "status": "claimed",
+          "claim_ids": [
+            "SD-033b",
+            "SD-033b",
+            "MECH-263"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -2915,7 +2926,7 @@
           "pass_runs": 8,
           "fail_runs": 15,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.732
+          "overall_confidence": 0.731
         },
         {
           "id": "ARC-028",
@@ -3114,7 +3125,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "novel_discovery",
-          "overall_confidence": 0.775
+          "overall_confidence": 0.774
         },
         {
           "id": "MECH-034",
@@ -3499,8 +3510,8 @@
       "leading_edge": true,
       "queued_exqs": [
         {
-          "queue_id": "V3-EXQ-654h",
-          "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654g-successor; demotion lever matched constant; sweep use_candidate_rule_field)",
+          "queue_id": "V3-EXQ-654i",
+          "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654h-successor; 485j-style envelope-floor calibration so the demotion lever excludes on the arc_062 bank; sweep use_candidate_rule_field)",
           "status": "claimed",
           "claim_ids": [
             "MECH-309",

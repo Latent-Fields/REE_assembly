@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_609_e3_score_per_candidate_spread_decomp
 
-Generated: `2026-06-21T16:31:14.593851Z`
+Generated: `2026-06-21T19:26:42.996867Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

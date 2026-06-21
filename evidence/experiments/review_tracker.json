@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-21T16:38:17Z",
+  "last_review_utc": "2026-06-21T19:26:04Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -731,7 +731,10 @@
     "v3_exq_698_mech175_anticholinergic_dual_pathway_20260621T115716Z_v3",
     "v3_onboard_smoke_Daniel_PC",
     "v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4",
-    "v3_exq_697_arc013_residue_separability_falsifier"
+    "v3_exq_697_arc013_residue_separability_falsifier",
+    "v3_exq_485i_sd033b_demotion_enabled_behavioural",
+    "v3_exq_485j_sd033b_demotion_envelope_calibrated_behavioural",
+    "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3141,7 +3144,10 @@
     "v3_onboard_smoke_ree_cloud_1_20260409T081904Z_v3",
     "v3_scale_benchmark_20260323T145635Z_v3",
     "v4_exq_001_dr12_pe_conditioned_confidence_falsifier_20260617T105251Z_v4",
-    "v3_exq_697_arc013_residue_separability_falsifier_20260621T133052Z_v3"
+    "v3_exq_697_arc013_residue_separability_falsifier_20260621T133052Z_v3",
+    "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3",
+    "v3_exq_485j_sd033b_demotion_envelope_calibrated_behavioural_20260621T180033Z_v3",
+    "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4678,6 +4684,21 @@
         "ARC-013"
       ],
       "subject": "Governance 2026-06-21T16:38:17Z. 2 pending since 13:19Z: 1 PASS + 1 FAIL. PASS V3-EXQ-697 (ARC-013 residue-separability falsifier): non_degenerate, supports -- salience+uncertainty reconstruct the residue at only mean_recon_R2=0.026 (separability_ratio 1.0, 5/5 seeds non-vacuous) -> residue genuinely separable. ARC-013 is architectural_commitment/substrate_coherence -> promote/demote suppressed; corroborating only, no status change. MARKED REVIEWED. FAIL V3-EXQ-485i (SD-033b/MECH-263; supersedes 485h): self-routed substrate_not_ready_requeue, non_degenerate:false (scoring_excluded, non_contributory both claims) -- trained-head preconds PASSED (bias range 0.368>=0.05, weight-delta 5.39) but MECH-448 non-degeneracy gate FAILED (f_eligibility_excluded_count==0): the 689d-validated ARM_ON demotion envelope (floor=0.30,dn_sigma=0.0) admitted ALL candidates in the behavioural harness so the test never ran. NEW signature (harness/state-dependent envelope engagement), distinct from the 485h F-dominance-ceiling signature; ~10th self-route in the SD-033b/conversion-ceiling lineage. User: chip a separate /failure-autopsy session; LEFT PENDING this cycle (no evidence_direction beyond its self-reported non_contributory). Prom/dem agenda: 0 actionable pending_user. claims.yaml: no edit."
+    },
+    {
+      "review_utc": "2026-06-21T19:26:04Z",
+      "reviewed_run_ids": [
+        "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3",
+        "v3_exq_485j_sd033b_demotion_envelope_calibrated_behavioural_20260621T180033Z_v3",
+        "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3"
+      ],
+      "claim_ids_touched": [
+        "SD-033b",
+        "MECH-263",
+        "ARC-062",
+        "MECH-309"
+      ],
+      "subject": "Governance 2026-06-21T19:26Z. 3 pending FAIL, ALL already confirmed-autopsied today (autopsy pre-flight: needs-autopsy set empty -> one-pass cycle). All 3 are MECH-448 F->eligibility demotion retests on the OFC/arc_062 banks; all -> non_contributory. (1) V3-EXQ-485j (SD-033b/MECH-263; supersedes 485i): manifest self-stamped weakens/conversion_ceiling_persists_despite_demotion OVERTURNED -> non_contributory (flat evidence_direction + per_claim {SD-033b,MECH-263}=non_contributory) per confirmed failure_autopsy_V3-EXQ-485j_2026-06-21. SPLIT: C2 task-role discrimination CONVERTED (between-context TV 1.0 on 2/3 seeds; ARM_1 demotion-off F-dominance control 0.0 all seeds) = first cross-substrate corroboration the BG demotion lever generalises off GAP-A to the OFC channel (MECH-448 untagged on this manifest -> no debit/credit); only C1 devaluation below the non-vacuity floor (devalued-state bias range ~0.02 < 0.05; C1 precondition mis-targeted the high-threat range = the 642 same-statistic miss) -> substrate_not_ready, not a weakens. envelope fired correctly (excluded_count=5, winner!=F-argmin). Index rebuilt -> SD-033b/MECH-263 genuine_exp weakens 1->0. THIS CLEARED the SD-033b hold_candidate_resolve_conflict pending_user agenda item. superseded_by V3-EXQ-485k. (2) V3-EXQ-485i (SD-033b/MECH-263; supersedes 485h): already non_contributory + non_degenerate:false (scoring_excluded); confirmed autopsy evidence_quality_note added; superseded_by 485j. all-admit envelope no-op (excluded_count==0) on the spread OFC bank. (3) V3-EXQ-654h (MECH-309/ARC-062; supersedes 654g): already non_contributory (per_claim); confirmed autopsy note added; superseded_by 654i. identical all-admit no-op on the spread arc_062 F bank. Prom/dem after: 0 actionable pending_user (SD-033b conflict cleared). claims.yaml: NO edit (all 4 claims already candidate/substrate_ceiling/pending_retest_after_substrate). substrate_queue f_dominance amends (485i/654h) already applied by prior sessions. All 3 MARKED REVIEWED."
     }
   ]
 }
