@@ -1,62 +1,48 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-21T11:43:21Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-460j",
-  "current_exq_started_utc": "2026-06-21T07:00:03.459104+00:00",
-  "current_title": "rung-6 natural-commit-occupancy-release de-commit falsifier + natural-commit LATCH-HOLD amend (460i-successor; gate-3 sustained-hold redesign)",
-  "current_claim_id": "MECH-446",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "runs_done": 10,
-    "runs_total": 3,
-    "episodes_done": 170,
-    "episodes_total": 295,
-    "overall_pct": 352.5
-  },
-  "seconds_elapsed": 16998,
-  "seconds_remaining": 0,
-  "recent_lines": [
-    "[v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "[train] stage0_nursery seed=42 ep 20/295 z_goal_peak=0.4706 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/295 retention=0.987 gate=pass",
-    "[train] p0_guided seed=42 ep 130/295 mean_len=200.0 rv=0.01812",
-    "[train] hazard_avoidance seed=42 ep 170/295 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=42 ep 220/295 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.1000 rule_bias_steps=50 rule_bias_trained=True",
-    "[train] p2_guard seed=42 ep 235/295 contact_rate=0.1981 contact_events=80 z_goal_at_contact=0.5160",
-    "Seed 42 Condition ARM_LEVER_OFF",
-    "Seed 42 Condition ARM_GAP_SCALED",
-    "Seed 42 Condition ARM_FLAT_RATE",
-    "Seed 42 Condition ARM_ACTION_EXTENT",
-    "[train] arm_eval seed=42 ep 295/295 gap_scaled: intent=0 releases=0 occ=35.67 (off_occ=33.00) pre_occ=0.000 post_occ=0.000 win=0 decisiveness=0.000 | off_hold=1.02 (run=1 reassert=0) sustained=False lever_shortened=False co_occur=False | flat_co=False action_co=False",
-    "verdict: FAIL seed=42 guard_pass=True sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=False rule_bias_trained=True co_occurs=False (contact_rate=0.1981 z_goal_at_contact=0.5160)",
-    "Seed 43 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "[train] stage0_nursery seed=43 ep 20/295 z_goal_peak=0.4133 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.952 gate=pass",
-    "[train] p0_guided seed=43 ep 130/295 mean_len=198.2 rv=0.25262",
-    "[train] hazard_avoidance seed=43 ep 170/295 median_last=200.0 survival_gate=pass",
-    "[train] p1_foraging seed=43 ep 220/295 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.0850 rule_bias_steps=50 rule_bias_trained=True",
-    "[train] p2_guard seed=43 ep 235/295 contact_rate=0.3135 contact_events=176 z_goal_at_contact=0.4520",
-    "Seed 43 Condition ARM_LEVER_OFF",
-    "Seed 43 Condition ARM_GAP_SCALED",
-    "Seed 43 Condition ARM_FLAT_RATE",
-    "Seed 43 Condition ARM_ACTION_EXTENT",
-    "[train] arm_eval seed=43 ep 295/295 gap_scaled: intent=0 releases=0 occ=30.33 (off_occ=33.07) pre_occ=0.333 post_occ=0.200 win=2 decisiveness=0.000 | off_hold=1.03 (run=1 reassert=0) sustained=False lever_shortened=False co_occur=False | flat_co=False action_co=False",
-    "verdict: FAIL seed=43 guard_pass=True sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=True rule_bias_trained=True co_occurs=False (contact_rate=0.3135 z_goal_at_contact=0.4520)",
-    "Seed 44 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "[train] stage0_nursery seed=44 ep 20/295 z_goal_peak=0.4246 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/295 retention=0.924 gate=pass",
-    "[train] p0_guided seed=44 ep 130/295 mean_len=200.0 rv=0.00002",
-    "[train] hazard_avoidance seed=44 ep 170/295 median_last=37.5 survival_gate=FAIL"
+  "last_tick_utc": "2026-06-21T12:13:24Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-485i",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-680a",
+      "result": "PASS",
+      "completed_at": "2026-06-14T19:16:57.362073+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-684a",
+      "result": "PASS",
+      "completed_at": "2026-06-15T21:56:42.743959+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-569i",
+      "result": "PASS",
+      "completed_at": "2026-06-16T22:40:09.575102+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-460j",
+      "result": "FAIL",
+      "completed_at": "2026-06-21T11:55:11.644443+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-698",
+      "result": "FAIL",
+      "completed_at": "2026-06-21T11:57:16.708945+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1388,
-  "runner_version": "r3383 c95f8ed 2026-06-21 (running r3381 408cc0b)",
+  "runner_version": "r3399 d4c7f2d 2026-06-21 (running r3381 408cc0b)",
   "gpu": {
     "available": false
   },
