@@ -1172,6 +1172,64 @@ def _make_brief(item: dict) -> str:
     return "\n".join(lines)
 
 
+def reconcile_spawned_task_assignments(
+    items: list[dict], *, now_iso: str | None = None
+) -> list[str]:
+    """Auto-release spawned_task assignments whose item is no longer `ready`.
+
+    End-of-skill spawn_task chips are mirrored into igw_assignments.json under
+    agent kind "spawned_task" (scripts/igw_chip_assign.py). That mirror is only
+    released manually today (dismiss_task -> igw_chip_assign.py release). When the
+    chipped work actually LANDS -- the claim gains experimental evidence, a
+    proposal is marked executed, a substrate entry resolves, or a queued retest
+    auto-absorbs the item -- the underlying workset item drops out of the `ready`
+    set, but the spawned_task assignment lingers as active. A stale active mirror
+    (a) keeps the IGW auto-spawn routine skipping the item forever (its
+    eligibility gate skips items with any active assignment) and (b) shows a stale
+    "assigned" chip on /workset + /igw.
+
+    This reconcile closes that gap: for every ACTIVE spawned_task assignment,
+    release it (released_by=reconcile, reason=work_landed_or_item_gone) unless its
+    stable_hash still matches a `ready` item in the freshly-built workset.
+
+    Idempotent: igw_assignments_lib.release() is a no-op (returns None) when no
+    active assignment exists for the (stable_hash, spawned_task, agent_label) key,
+    so re-running over the same workset releases nothing new. ASCII-only.
+
+    `items` must already carry a "stable_hash" field (build_workset sets it before
+    calling this). Returns the list of stable_hashes released this pass.
+    """
+    try:
+        import igw_assignments_lib as ial
+    except ImportError:
+        return []
+    ready_hashes = {
+        it.get("stable_hash")
+        for it in items
+        if it.get("status") == "ready" and it.get("stable_hash")
+    }
+    released: list[str] = []
+    # Snapshot once; release() re-reads the ledger per call, so iterating this
+    # captured list stays correct as the file mutates underneath us.
+    for ent in ial.active_entries():
+        if ent.get("agent") != "spawned_task":
+            continue
+        sh = ent.get("stable_hash")
+        if not sh or sh in ready_hashes:
+            continue
+        result = ial.release(
+            sh,
+            agent="spawned_task",
+            agent_label=ent.get("agent_label"),
+            released_by="reconcile",
+            reason="work_landed_or_item_gone",
+            now_iso=now_iso,
+        )
+        if result is not None:
+            released.append(sh)
+    return released
+
+
 def build_workset() -> dict:
     generated = _utc_now()
     items: list[dict] = []
@@ -1506,9 +1564,8 @@ def build_workset() -> dict:
     plan_reg = _load_plan_registry()
     lenses_meta, indexes = _enrich_workset_items(items, plan_reg)
 
-    # Merge active agent assignments (sole source: evidence/planning/igw_assignments.json)
-    # onto each item. Keyed on stable_hash so it survives daily IGW ID rotation.
-    # See REE_assembly/scripts/igw_assignments_lib.py for the writer contract.
+    # Compute the identity hash for every item up front -- both the spawned_task
+    # auto-release reconcile and the assignment merge key on it.
     try:
         from igw_assignments_lib import (
             assignments_by_hash,
@@ -1518,13 +1575,25 @@ def build_workset() -> dict:
         # Allow running before lib lands without crashing the generator.
         assignments_by_hash = None
         stable_hash_item = None
+    if stable_hash_item:
+        for it in items:
+            it["stable_hash"] = stable_hash_item(it)
+
+    # Auto-release any spawned_task assignment whose underlying item has dropped
+    # out of the `ready` set (work landed / no longer eligible). Must run BEFORE
+    # the merge so a just-released mirror is not re-attached as "assigned".
+    auto_released: list[str] = []
+    if stable_hash_item:
+        auto_released = reconcile_spawned_task_assignments(items, now_iso=generated)
+
+    # Merge active agent assignments (sole source: evidence/planning/igw_assignments.json)
+    # onto each item. Keyed on stable_hash so it survives daily IGW ID rotation.
+    # See REE_assembly/scripts/igw_assignments_lib.py for the writer contract.
     assigned_count = 0
     if assignments_by_hash and stable_hash_item:
         by_hash = assignments_by_hash()
         for it in items:
-            sh = stable_hash_item(it)
-            asgn = by_hash.get(sh) or []
-            it["stable_hash"] = sh
+            asgn = by_hash.get(it["stable_hash"]) or []
             it["assignments"] = asgn
             if asgn:
                 assigned_count += 1
@@ -1535,6 +1604,7 @@ def build_workset() -> dict:
         "in_flight": sum(1 for x in items if x.get("status") == "in_flight"),
         "blocked": sum(1 for x in items if x.get("status") == "blocked"),
         "assigned": assigned_count,
+        "spawned_task_auto_released": len(auto_released),
         "pending_review_count": pr,
         "queue_pending": len(pending_q),
         "live_exqs": sorted(live.keys()),
