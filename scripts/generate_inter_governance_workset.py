@@ -1144,6 +1144,8 @@ def _make_brief(item: dict) -> str:
         lines.append(f"Owner EXQ: {item['owner_exq']}")
     if item.get("claim_ids"):
         lines.append(f"Claims: {', '.join(item['claim_ids'])}")
+    if item.get("owner_backlog_id"):
+        lines.append(f"Proposal backlog id (stable): {item['owner_backlog_id']}")
     if item.get("blocked_by"):
         lines.append(f"Blocked by: {'; '.join(item['blocked_by'])}")
     lines.append(f"Why now: {item.get('why_now', '')}")
@@ -1153,6 +1155,10 @@ def _make_brief(item: dict) -> str:
         lines.append("- Run /governance from REE_assembly; walk pending_review with user.")
     elif item["skill"] == "/queue-experiment":
         lines.append("- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.")
+        lines.append("- Design the experiment for the Claims id above (the stable target). To read the"
+                     " backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the"
+                     " auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every"
+                     " governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.")
     elif item["skill"] == "/implement-substrate":
         lines.append("- Use /implement-substrate for the SD/MECH named in title.")
     elif item["skill"] == "/lit-pull":
@@ -1542,19 +1548,34 @@ def build_workset() -> dict:
             )
 
     for prop in _proposed_experiments(claims_meta, exp_evidence)[:5]:
-        pid = prop.get("proposal_id") or "?"
+        pid = prop.get("proposal_id") or ""
+        bid = prop.get("backlog_id") or ""
         cid = prop.get("claim_id") or ""
+        # IMPORTANT: do NOT bake the auto-generated EXP-#### proposal_id into the
+        # title or any other frozen artifact. Auto proposal_ids (EXP-#### above
+        # the ~EXP-0176 manual ceiling) are positional/ephemeral -- the indexer
+        # (build_experiment_indexes.py:_alloc_proposal_idx) re-mints them every
+        # governance cycle. The IGW ledger freezes the item title when a
+        # /queue-experiment item is STAGED, and that item waits 1-3 days for a
+        # human launch; in that window governance renumbers the EXP ids, so a
+        # frozen "Proposal EXP-0199 (ARC-050)" would resolve to a DIFFERENT
+        # claim's proposal at launch (the 2026-06-21 IGW EXP<->claim mismatch).
+        # The claim_id is the stable key; title is claim-keyed. The current
+        # proposal_id is kept in owner_proposal_id (regenerated each tick, never
+        # the frozen source of truth) and the launch path re-resolves it fresh.
         add(
             lane="experiment",
             skill="/queue-experiment",
             status="ready",
             priority=40,
             severity="medium",
-            title=f"Proposal {pid} ({cid})",
+            title=f"Proposal for {cid}" if cid else "Proposal (unclaimed)",
             why_now="; ".join(prop.get("why_now") or [])[:200] or "experiment_proposals status=proposed",
             gap_ids=[],
             claim_ids=[cid] if cid else [],
             owner_exq=None,
+            owner_backlog_id=bid,
+            owner_proposal_id=pid,
             blocked_by=[],
             unblocks=[cid] if cid else [],
         )
