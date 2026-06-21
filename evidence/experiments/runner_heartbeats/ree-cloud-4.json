@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-21T09:12:33Z",
+  "last_tick_utc": "2026-06-21T09:42:45Z",
   "state": "running",
   "current_exq": "V3-EXQ-697",
   "current_exq_started_utc": "2026-06-21T06:21:59.392353+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "ARC-013",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / residue_separability",
-    "runs_done": 1,
+    "run_label": "Seed 44 / residue_separability",
+    "runs_done": 2,
     "runs_total": 5,
-    "episodes_done": 80,
+    "episodes_done": 60,
     "episodes_total": 85,
-    "overall_pct": 38.8
+    "overall_pct": 54.1
   },
-  "seconds_elapsed": 10234,
-  "seconds_remaining": 26425,
+  "seconds_elapsed": 12046,
+  "seconds_remaining": 19819,
   "recent_lines": [
     "V3-EXQ-697: ARC-013 residue-separability falsifier",
     "dry_run=False",
@@ -40,7 +40,16 @@
     "[train] residue_separability seed=43 ep 50/85 phase=P0",
     "[train] residue_separability seed=43 ep 60/85 phase=P0",
     "[train] residue_separability seed=43 ep 70/85 phase=P1_eval",
-    "[train] residue_separability seed=43 ep 80/85 phase=P1_eval"
+    "[train] residue_separability seed=43 ep 80/85 phase=P1_eval",
+    "[train] residue_separability seed=43 ep 85/85 phase=P1_eval",
+    "verdict: PASS",
+    "Seed 44 Condition residue_separability",
+    "[train] residue_separability seed=44 ep 10/85 phase=P0",
+    "[train] residue_separability seed=44 ep 20/85 phase=P0",
+    "[train] residue_separability seed=44 ep 30/85 phase=P0",
+    "[train] residue_separability seed=44 ep 40/85 phase=P0",
+    "[train] residue_separability seed=44 ep 50/85 phase=P0",
+    "[train] residue_separability seed=44 ep 60/85 phase=P0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
