@@ -1143,6 +1143,29 @@
       "staged_at": "2026-06-20T22:34:34Z",
       "status": "launched_manual",
       "launched_at": "2026-06-21T17:22:26Z"
+    },
+    {
+      "igw_id": "IGW-20260621-189",
+      "stable_hash": "15823ef3091c",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "ARC-050"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for ARC-050",
+      "worktree": ".claude/worktrees/igw-189-proposal-for-arc-050",
+      "branch": "claude/igw-189-proposal-for-arc-050",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260621-189 --yolo",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-189-proposal-for-arc-050 && claude --dangerously-skip-permissions \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-189-proposal-for-arc-050-20260621T234334Z",
+      "requires_human_reason": "skill /queue-experiment is a design judgement call; staged for human review before queuing (STAGE_FOR_REVIEW_SKILLS)",
+      "assigned_at": "2026-06-21T23:43:21Z",
+      "staged_at": "2026-06-21T23:43:21Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
