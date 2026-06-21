@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-06-21T06:16:27Z",
+  "last_tick_utc": "2026-06-21T06:26:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-689d",
   "current_exq_started_utc": "2026-06-20T21:43:54.192579+00:00",
@@ -12,18 +12,13 @@
     "run_label": "Seed 44 / ARM_ON",
     "runs_done": 11,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 80,
-    "overall_pct": 91.7
+    "overall_pct": 96.9
   },
-  "seconds_elapsed": 30751,
-  "seconds_remaining": 2879,
+  "seconds_elapsed": 31360,
+  "seconds_remaining": 1080,
   "recent_lines": [
-    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 10/80",
-    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 20/80",
-    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 30/80",
-    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 40/80",
-    "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 50/80",
     "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P0 ep 60/80",
     "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P1 ep 70/80",
     "[train] arm=ARM_PROPOSER_CTRL seed=43 phase=P1 ep 80/80",
@@ -118,7 +113,12 @@
     "[train] arm=ARM_ON seed=43 phase=P1 ep 70/80",
     "[train] arm=ARM_ON seed=43 phase=P1 ep 80/80",
     "verdict: PASS",
-    "Seed 44 Condition ARM_ON"
+    "Seed 44 Condition ARM_ON",
+    "[train] arm=ARM_ON seed=44 phase=P0 ep 10/80",
+    "[train] arm=ARM_ON seed=44 phase=P0 ep 20/80",
+    "[train] arm=ARM_ON seed=44 phase=P0 ep 30/80",
+    "[train] arm=ARM_ON seed=44 phase=P0 ep 40/80",
+    "[train] arm=ARM_ON seed=44 phase=P0 ep 50/80"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
