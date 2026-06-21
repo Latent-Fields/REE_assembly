@@ -265,7 +265,26 @@ into committed action**, not entropy.
 5. **MECH-449 build (positively triggered by step 4b, NOT contingent on 448
    failing):** /implement-substrate -- generalise MECH-260 into bounded Go/No-Go
    pressure over the eligibility envelope. Roadmap leg of ARC-107; build proceeds
-   on a 689f PASS.
+   on a 689f PASS. **DONE 2026-06-21:** the bounded Go/No-Go pressure set is built
+   as `E3TrajectorySelector._go_nogo_eligibility_gate` (no parallel module; the
+   perseveration axis reuses MECH-260's dACC suppression, ARC-106 G2) acting on the
+   MECH-448 eligible set before within-eligible arbitration -- No-Go suppresses on
+   an axis ORTHOGONAL to F-rank; bounded Go re-admits a demoted channel; no-op
+   default + bit-identical OFF; 6/6 contracts + regression green. PROMOTES NOTHING
+   (MECH-449 stays candidate/substrate_conditional). Design doc
+   `docs/architecture/mech_449_go_nogo_constitution.md`.
+5b. **MECH-449 ablation falsifier (NEW, 2026-06-21; gates promotion):**
+   /queue-experiment -- **V3-EXQ-689g**, a selection-face / single-decision
+   conversion falsifier: on a divergent candidate pool the built Go/No-Go gate must
+   CONVERT >=1 previously-gated channel beyond what MECH-448 alone achieves
+   (suppress an F-eligible-but-undesirable candidate so a previously-gated channel
+   commits), with safety (No-Go suppresses the harmful class even under overwhelming
+   modulatory pull) and specificity. A built-but-no-conversion result is
+   `non_contributory` / over-specification, **NOT** an ARC-107 falsification;
+   self-routes `substrate_not_ready_requeue` on non-vacuity. Deliberately
+   selection-face (single-decision), NOT a sustained foraging behavioural DV, to
+   avoid re-deriving the F-dominance conversion ceiling on the still-incomplete BG
+   circuit (s6b ledger). A PASS flips component 1 to load-bearing-validated (L3).
 
 ---
 
@@ -283,7 +302,7 @@ component-3 win cannot masquerade as a complete circuit.
 
 | # | Component | Owner | Build status (2026-06-21) |
 |---|---|---|---|
-| 1 | Direct/indirect **Go/No-Go opponency** (striatal channel competition; active SUPPRESSION of unsafe/stale/perseverative/low-viability channels) | MECH-449 | **NOT BUILT** -- substrate_conditional. Positive build trigger = V3-EXQ-689f (No-Go-necessity falsifier). This is the core of BG and the most load-bearing gap. |
+| 1 | Direct/indirect **Go/No-Go opponency** (striatal channel competition; active SUPPRESSION of unsafe/stale/perseverative/low-viability channels) | MECH-449 | **BUILT 2026-06-21 (pending falsifier)** -- substrate_conditional. Built via /implement-substrate once both build-gate faces cleared (selection-face V3-EXQ-689f PASS + behavioural-face the 485e->485k autopsy lineage). Bounded Go/No-Go pressure set on `E3TrajectorySelector._go_nogo_eligibility_gate` over the MECH-448 eligible set; No-Go suppresses on an axis ORTHOGONAL to F-rank (which rank-preserving demotion cannot); generalises MECH-260 (ARC-106 G2, no parallel module); no-op default; PROMOTES NOTHING. Ablation falsifier **V3-EXQ-689g queued** (must convert >=1 previously-gated channel beyond MECH-448; over-specification if not). Component is BUILT-not-yet-load-bearing-validated: L3 awaits 689g. |
 | 2 | **STN/hyperdirect conflict-graded hold** (threshold raise / candidate-set widening under conflict) | MECH-447 | **EXHAUSTED** -- 689a: Factor A inert, A1B1 destructive. Parametric family closed by decision. Either drop to decorative or an ablation must rescue it; cannot be silently assumed present. |
 | 3 | **Pallidal permission-to-commit gate** (F decides eligibility, not the winner; F removed from the within-eligible argmin) | MECH-448 | **BUILT + VALIDATED + provisional** (689d PASS). Channel-adaptive floor in flight (689e). This is the ONLY fully-landed component. |
 | 4 | **Value divisive-normalisation** (rank-altering at commit; CDQ-003 load-bearing divergence) | folded into MECH-448 | **PARTIAL** -- realised only as the demotion envelope's denominator. Counts only as part of component 3, not as independent coverage. |
@@ -331,7 +350,11 @@ If **N>=3 consecutive in-flight selector experiments all iterate component 3
 component-1 build and no 689f-class No-Go diagnostic queued, that is the
 partial-instantiation signature recurring -- flag it in `/governance` and route
 to step 4b/5. (As of 2026-06-21 the live queue is 689e + 654i, *both* component-3
-iterations -- the signal is already at N=2.)
+iterations -- the signal reached N=2 and was DISCHARGED 2026-06-21 by building
+component 1: MECH-449 Go/No-Go opponency landed via /implement-substrate with its
+ablation falsifier V3-EXQ-689g queued (step 5/5b above). The partial-instantiation
+counter resets; the next watch is for a *component-1-or-5* iteration drought, not a
+component-3 one.)
 
 ---
 

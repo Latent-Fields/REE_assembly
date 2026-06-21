@@ -44453,6 +44453,29 @@
     not duplicated: MECH-260 (No-Go), modulatory-bias-selection-authority substrate (top-k eligibility set),
     SD-034 / MECH-090 / MECH-342 (commitment latch). Cargo-cult guard (ARC-106): each Go/No-Go analogue
     needs a function + divergence ledger + ablation falsifier before it counts as load-bearing.
+  implementation_note: >
+    BUILT 2026-06-21 via /implement-substrate (build gate cleared on both faces: selection-face
+    V3-EXQ-689f No-Go-necessity falsifier + behavioural-face the 485e->485k six-autopsy lineage).
+    The bounded Go/No-Go pressure set is housed as methods on E3TrajectorySelector
+    (_go_nogo_eligibility_gate; ree-v3/ree_core/predictors/e3_selector.py) acting on the MECH-448
+    eligible set BEFORE the within-eligible _modulatory_accum arbitration -- NO parallel module
+    (ARC-106 G2). No-Go drops a candidate from the eligible set on an axis ORTHOGONAL to F-rank
+    (safety/staleness/perseveration/low-viability) -- the property rank-preserving MECH-448 demotion
+    structurally lacks; bounded Go re-admits a lawfully-eligible F-demoted candidate; fail-open guard
+    (gng_protect_min_eligible, safety never overridden) protects the catatonia/avolition pole. The
+    PERSEVERATION axis REUSES MECH-260 (the dACC anti-recency suppression vector is routed in as the
+    perseveration signal -- generalising it from a drowned score-bias into an eligibility-access gate;
+    no duplicate recency buffer). Config E3Config.use_go_nogo_constitution (default False -> the gate
+    block is skipped -> bit-identical OFF) + 7 bounded floors/knobs; from_dims passthrough; per-candidate
+    signals via select(go_nogo_signals=...) + REEAgent.set_injected_go_nogo_signals() falsifier seam.
+    6/6 contracts (test_mech_449_go_nogo_constitution.py: bit-identical OFF / No-Go suppresses / SAFETY
+    under overwhelming pull / bounded Go promotes / composes with the MECH-448 envelope / fail-open) +
+    8/8 preflight + 148 E3-cluster contracts PASS; full-agent bit-identical OFF verified. MECH-094:
+    waking committed-selection path only; no replay write surface. PROMOTES NOTHING -- status stays
+    candidate / substrate_conditional; promotion is gated on the V3-EXQ-689g ablation falsifier (must
+    convert >=1 previously-gated downstream channel beyond MECH-448; built-but-no-conversion is
+    non_contributory, NOT an ARC-107 falsification). Design doc
+    docs/architecture/mech_449_go_nogo_constitution.md; ree-v3/CLAUDE.md MECH-449 entry.
 
 # ============================================================================
 # ETHICS PERIMETER -- governance_rule claims (SENT-* / GOV-*)
