@@ -4765,16 +4765,17 @@
     {
       "sd_id": "f_dominance_conversion_ceiling",
       "title": "F-dominance committed-selection variance monopoly (MECH-439): rebalance/bound the primary harm/goal score F so per-candidate diversity converts to committed-action diversity. The shared root behind behavioral_diversity_isolation:GAP-A's general conversion ceiling, arc_062:GAP-B, sd_037 axis-b, dACC c2, and OFC behavioural conversion. [2026-06-20: now ALSO owns the SD-034 closure de-commit (root C) as the COMMIT/RELEASE-DURATION FACE -- reclassified from open/orthogonal by failure_autopsy_V3-EXQ-460h; the selection-face levers do not shorten natural-commit latch occupancy, so a commit-entry-decisiveness lever is added below.]",
-      "status": "conflict_grade_near_tie_parametric_family_exhausted__build_rank_preserving_F_to_eligibility_demotion_MECH448_lead_MECH449_followon",
+      "status": "mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__downstream_behavioural_retests_654h_485i_445h_625e_queued_pending__decommit_release_duration_face_rung6_OPEN_460j_queued__MECH449_gonogo_governance_followon_substrate_conditional",
       "ready": false,
+      "ready_blocked_by": "Lead lever MECH-448 is BUILT (ree-v3 main 4c9b3c9) + VALIDATED (V3-EXQ-689d PASS all 4 criteria) + PROMOTED candidate->provisional (governance-cycle-20260621T0639Z); the selection-face conversion ceiling is LIFTED on the GAP-A foraging substrate. The entry is NOT yet fully resolved: the remaining unresolved prerequisite is MECH-449 Go/No-Go eligibility governance (substrate_conditional -- a planned upstream follow-on, not buildable now), and the downstream behavioural retests (654h/485i/445h/625e) plus the rung-6 de-commit/release-DURATION validation (460j) are queued/pending, not buildable substrate items. ready stays false until those resolve; flipping ready=true would trip the workset 'ready=true but unresolved prerequisites' inconsistency guard.",
       "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
       "depends_on_resolved": [
         "behavioral_diversity_isolation:GAP-A (SD-056/ARC-065 e2_world_forward divergent pool -- Root A mitigated, the non-vacuity precondition for any F-bounding lever)",
         "crf-availability-maintenance (Root D CRF gate-lockout CLOSED 654f -- isolates B as the residual)",
-        "modulatory-bias-selection-authority (the channel whose range reaches the accumulator but cannot move the F-dominated argmin)"
+        "modulatory-bias-selection-authority (the channel whose range reaches the accumulator but cannot move the F-dominated argmin)",
+        "rank-preserving F->eligibility demotion lever build (MECH-448 lead) -- BUILT 2026-06-20 (ree-v3 main 4c9b3c9; lever in ree-v3/ree_core/predictors/e3_selector.py, no-op default) + VALIDATED 2026-06-21 (V3-EXQ-689d PASS all 4 load-bearing criteria: committed-class entropy 0.938 strict-above controls on 2/3, rank-preserving 3/3, C_SAFETY met) + PROMOTED candidate->provisional (governance-cycle-20260621T0639Z, exp_conf 0.775). Was depends_on_unresolved[0]; resolved here 2026-06-21."
       ],
       "depends_on_unresolved": [
-        "rank-preserving F->eligibility demotion lever build (MECH-448 lead; e3_selector.py, not yet built) -- ELEVATED to LEAD by user decision 2026-06-20 after V3-EXQ-689a exhausted the conflict-grade near-tie parametric family",
         "MECH-449 Go/No-Go eligibility governance (substrate_conditional, broader follow-on)"
       ],
       "unblocks_claims": [
@@ -4809,7 +4810,7 @@
           "rung": 2,
           "lever": "rank_preserving_F_to_eligibility_demotion",
           "tractability": "V3 (mid; arithmetic restructure of the select site)",
-          "status": "ELEVATED to LEAD build (user decision 2026-06-20) -- rung 1 conflict-grade near-tie family exhausted by 689a; routed to /implement-substrate (ARC-107 BG-selector constitution).",
+          "status": "BUILT + VALIDATED + PROMOTED-provisional (2026-06-20/21). LEAD build landed ree-v3 main 4c9b3c9 (no-op default, bit-identical OFF); falsifier V3-EXQ-689d RAN PASS all 4 load-bearing criteria; MECH-448 PROMOTED candidate->provisional by governance-cycle-20260621T0639Z (exp_conf 0.775). Selection-face conversion ceiling LIFTED on the GAP-A foraging substrate; the graded DN envelope ~doubles committed diversity over the rung-1 569i hard top-k (0.938 vs 0.371). MECH-449 (broader Go/No-Go governance) NOT triggered -- demotion alone converted.",
           "note": "F removed from the final argmin entirely, used only as a graded eligibility envelope. Stronger structural variant of rung 1."
         },
         {
@@ -4975,6 +4976,14 @@
           "face": "selection -- rank-preserving F->eligibility demotion (MECH-448, ARC-107)",
           "lever": "use_f_eligibility_demotion (e3_selector.py graded divisive-normalisation envelope; ree-v3 main 4c9b3c9)",
           "status": "VALIDATED. V3-EXQ-689d RAN PASS 2026-06-21 -- all 4 load-bearing criteria met (C_READINESS excluded_count 0.152>0; C_RANK_PRESERVING F-rank prefix 1.0 on 3/3; C_PRIMARY committed entropy 0.938 strict-above both collapsed controls on 2/3 + reaches proposer ceiling 0.82; C_SAFETY ON harm 0.049<=OFF 0.055). Graded DN envelope ~doubles committed diversity over ARM_OFF hard top-k 569i (0.938 vs 0.371). MECH-448 PROMOTED candidate->provisional (exp_conf 0.775, confirmed_established) -- first experimental confirmation of the ARC-107 BG-selector constitution. Closure node behavioral_diversity_isolation:GAP-J -> done; parent GAP-I ceiling operationally lifted, downstream retests UNBLOCKED (re-queue each with use_f_eligibility_demotion ON). MECH-449 (Go/No-Go follow-on) NOT triggered: demotion alone converted. The selection-face conversion ceiling is LIFTED on the GAP-A foraging substrate; the de-commit/release-DURATION face (MECH-445/446, rung 6) remains open (460j queued)."
+        },
+        {
+          "session": "substrate-queue-fdom-mech448-reconcile-20260621T0759Z",
+          "utc": "2026-06-21T08:02Z",
+          "kind": "bookkeeping reconcile (PROMOTES NOTHING -- no claims.yaml change)",
+          "what": "Reconciled the entry header after the 06:39Z governance cycle validated+promoted MECH-448 (that cycle added the rung-2 VALIDATED implementation_log entry above but left the header stale). (1) status string advanced from 'conflict_grade_near_tie_parametric_family_exhausted__build_...MECH448_lead_MECH449_followon' to 'mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__selection_face_conversion_ceiling_LIFTED...'. (2) depends_on_unresolved[0] ('rank-preserving F->eligibility demotion lever build (MECH-448 lead; e3_selector.py, not yet built) ...') is RESOLVED (built ree-v3 4c9b3c9 + validated V3-EXQ-689d + promoted provisional) -> moved to depends_on_resolved; that stale 'not yet built' free-text was the source of the /workset ARC-063 (and other downstream) retest blocked_by line via generate_inter_governance_workset._retest_blockers (no leading claim-ID token -> surfaced as a 'free-text (via f_dominance_conversion_ceiling)' blocker). (3) fallback_ladder rung-2 status advanced to BUILT+VALIDATED+PROMOTED. (4) added ready_blocked_by explaining why ready stays false.",
+          "ready_decision": "ready STAYS false. The lead lever is built+validated+promoted, but the only remaining unresolved prerequisite is MECH-449 (substrate_conditional, not buildable now) and the downstream behavioural retests (654h/485i/445h/625e) + the rung-6 de-commit/release-DURATION validation (460j) are queued/pending experiment runs, not immediately-buildable substrate items. The entry therefore stays a legitimate non-resolved blocker for its still-pending downstream retests (_substrate_resolved short-circuits on ready=false AND on the non-empty depends_on_unresolved). Flipping ready=true would have tripped the workset 'ready=true but N unresolved prerequisites -- internally inconsistent' guard.",
+          "claims_yaml": "NOT modified -- MECH-448's promotion was applied by the 06:39Z governance cycle; this reconcile changes no claim status."
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",
