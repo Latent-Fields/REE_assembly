@@ -1,0 +1,100 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689f_nogo_necessity_falsifier",
+  "run_id": "v3_exq_689f_nogo_necessity_falsifier_20260621T200543Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-21T20:05:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449",
+    "ARC-107"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-449": "non_contributory",
+    "ARC-107": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "demotion_insufficient_nogo_necessary",
+    "preconditions": [
+      {
+        "name": "field_divergent_ARM_DEMOTION_ADAPTIVE",
+        "description": "the canonical (channel-adaptive) MECH-448 envelope actually narrows the candidate set (excluded_count>0) on >=2/3 seeds -- a non-divergent (all-admit) field is the 654h no-op, not the demotion-insufficient regime",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "control": "the synthetic F field has spread (F_SPREAD>0)",
+        "met": true
+      },
+      {
+        "name": "regime_present_ARM_DEMOTION_ADAPTIVE",
+        "description": "the demotion eligible set admits an F-eligible undesirable candidate (undesirable_admit_rate) on >=2/3 seeds -- the adversarial high-F-undesirable regime actually arises",
+        "measured": 0.865833,
+        "threshold": 0.3,
+        "control": "undesirability is assigned INDEPENDENTLY of F (p_undesirable>0)",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "PRIMARY_demotion_insufficient_and_nogo_closes",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "PRECONDITION_field_divergent_both_arms",
+        "passed": true
+      },
+      {
+        "name": "PRECONDITION_regime_present_both_arms",
+        "passed": true
+      },
+      {
+        "name": "GUARDRAIL_rank_preserving_all_demotion_trials",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "PRIMARY_admit_rate_has_spread": true,
+      "PRECONDITION_field_divergent": true,
+      "GUARDRAIL_rank_preserving": true
+    },
+    "routing": {
+      "demotion_insufficient_nogo_necessary": "PASS -> positive trigger for the MECH-449 Go/No-Go build (the demotion-insufficient regime is real and only an active No-Go closes it); proceed to the MECH-449 /implement-substrate session",
+      "substrate_not_ready_requeue": "the envelope is all-admit (non-divergent field; the 654h no-op) -> re-tune the synthetic F field; do NOT weaken anything",
+      "demotion_insufficient_regime_absent": "undesirables ~never F-eligible -> the adversarial high-F-undesirable regime did not arise; re-tune the undesirability mask; NOT a verdict on MECH-449",
+      "rank_alteration_not_prefix_diagnose": "the live envelope is NOT an F-rank prefix on a demotion-active trial -> implementation/design fault -> /diagnose-errors; NOT a verdict",
+      "nogo_reference_does_not_close_diagnose": "the No-Go reference still admits an undesirable (cannot happen by construction) -> instrumentation fault -> /diagnose-errors"
+    }
+  }
+}
