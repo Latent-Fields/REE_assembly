@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_060",
+  "entry_id": "2026-06-21_q_060_encoding_retrieval_dissociable_interact_prince2007",
+  "timestamp_utc": "2026-06-21T09:04:23Z",
+  "claim_ids_tested": [
+    "Q-060"
+  ],
+  "source": {
+    "title": "Distinguishing the neural correlates of episodic memory encoding and semantic memory retrieval.",
+    "authors": [
+      "Steven E Prince",
+      "Takashi Tsukiura",
+      "Roberto Cabeza"
+    ],
+    "year": 2007,
+    "venue": "Psychological Science",
+    "doi": "10.1111/j.1467-9280.2007.01864.x"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Shows episodic and semantic memory processes are dissociable yet INTERACT within shared prefrontal/temporal regions -- the mid-LIPFC serves both, and anterior episodic regions only engage when semantic retrieval is also high. Supports the 'shared substrate with partially-distinct components' reading (ARC-085) over fully parallel machineries. Discounted because it concerns the episodic-encoding/semantic-retrieval interaction rather than the autobiographical/semantic distinction directly.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anterior left inferior PFC was involved in episodic encoding only when semantic retrieval was also high -- the two memory operations are not separable in practice, undercutting a model in which an autobiographical type and a semantic type operate as independent stores."
+  ],
+  "tags": [
+    "q-060",
+    "episodic_semantic_interaction",
+    "shared_substrate",
+    "prefrontal_cortex"
+  ],
+  "mapping": {
+    "source_claim_statement": "Episodic encoding and semantic retrieval have dissociable neural correlates but interact in specific left temporal and prefrontal regions, with shared mid-ventrolateral PFC involvement and interdependence between the two operations.",
+    "ree_translation": "Supports treating semantic and autobiographical/episodic content as components of ONE memory substrate with shared machinery (ARC-085's single-substrate thesis) rather than independent first-class types, reinforcing the parsimony argument behind the Q-060 tag-not-type decision.",
+    "mapping_caveat": "This paper tests episodic-encoding vs semantic-retrieval, not autobiographical-vs-semantic content per se; the interaction it documents is suggestive of substrate-sharing but is one step removed from the specific autobiographical taxonomy question Q-060 asks.",
+    "source_context": "Human factorial fMRI, n=18 adults, separating encoding-success from retrieval-success effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Well-cited Cabeza-lab design; the low mapping fidelity reflects that the autobiographical dimension is inferred, not measured."
+  }
+}

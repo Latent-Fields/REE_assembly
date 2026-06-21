@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_061",
+  "entry_id": "2026-06-21_q_061_dmn_coherence_ect_response_mulders2016",
+  "timestamp_utc": "2026-06-21T09:04:23Z",
+  "claim_ids_tested": [
+    "Q-061"
+  ],
+  "source": {
+    "title": "Default mode network coherence in treatment-resistant major depressive disorder during electroconvulsive therapy.",
+    "authors": [
+      "Peter C R Mulders",
+      "Philip F P van Eijndhoven",
+      "Joris Pluijmen",
+      "Aart H Schene",
+      "Indira Tendolkar",
+      "Christian F Beckmann"
+    ],
+    "year": 2016,
+    "venue": "Journal of Affective Disorders",
+    "doi": "10.1016/j.jad.2016.06.059"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "In treatment-resistant MDD, decreased DMN network coherence (precuneus, angular gyrus) NORMALISED in ECT responders but PERSISTED in non-responders. Direct evidence that the depressive network regime is reconfigurable when a sufficiently strong repair intervention succeeds, and stays locked when it fails -- i.e. reversibility is conditional on repair success rather than absolute. Confidence held to moderate by the small sample (8 responders, 8 non-responders).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DMN coherence did not normalise in ECT non-responders, demonstrating that even the strongest available somatic repair route fails to reconfigure the regime in a subset of (already treatment-resistant) patients."
+  ],
+  "tags": [
+    "q-061",
+    "depression",
+    "default_mode_network",
+    "ECT",
+    "treatment_resistance",
+    "conditional_reversibility"
+  ],
+  "mapping": {
+    "source_claim_statement": "In treatment-resistant MDD, DMN network coherence is reduced relative to controls and normalises after ECT in clinical responders but not in non-responders.",
+    "ree_translation": "Supports conditional reversibility of MECH-367's regime: when REE's repair machinery (here the biological analogue is ECT-driven reconfiguration) succeeds, the network regime returns toward baseline; when it fails, the regime persists. Argues against a hard chronicity-lock for the responder subgroup while showing genuine resistance in non-responders.",
+    "mapping_caveat": "ECT is a brute-force perturbation with no clean REE analogue among the listed repair routes (offline integration, decommitment, social re-access, goal re-coupling); responder/non-responder status is defined by symptoms, not by illness duration, so this does not isolate the RA-001 duration variable. Very small N.",
+    "source_context": "Human resting-state fMRI; 16 treatment-resistant MDD (8 responders / 8 non-responders) pre/post ECT vs 16 matched controls; novel within-network coherence metric."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Good design and a directly relevant responder/non-responder contrast, but n=8 per cell caps source quality and the authors themselves flag the result as tentative."
+  }
+}

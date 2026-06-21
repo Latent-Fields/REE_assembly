@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_061",
+  "entry_id": "2026-06-21_q_061_anterior_dmn_treatment_resistant_li2012",
+  "timestamp_utc": "2026-06-21T09:04:23Z",
+  "claim_ids_tested": [
+    "Q-061"
+  ],
+  "source": {
+    "title": "A treatment-resistant default mode subnetwork in major depression.",
+    "authors": [
+      "Baojuan Li",
+      "Li Liu",
+      "Karl J Friston",
+      "Hui Shen",
+      "Lubin Wang",
+      "Ling-Li Zeng",
+      "Dewen Hu"
+    ],
+    "year": 2012,
+    "venue": "Biological Psychiatry",
+    "doi": "10.1016/j.biopsych.2012.11.007"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "The single most on-target paper for Q-061: after 12 weeks of antidepressant treatment the POSTERIOR DMN subnetwork hyperconnectivity normalised, but the ANTERIOR DMN subnetwork abnormality PERSISTED in recovered patients, flagged as a residual biomarker and relapse-potential marker. This is direct evidence that the depressive network regime is partially -- but locus-specifically -- reversible: some sub-regimes reconfigure, one resists. Maps cleanly onto Q-061's framing that repair machinery reconfigures part of the regime while a residual locus persists.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Anterior DMN hyperconnectivity persisted in clinically-recovered patients -- a 'reversible software state' reading of depression is falsified for at least one subnetwork even after symptomatic recovery.",
+    "Persistence of the anterior abnormality in asymptomatic patients indicates a reconfiguration that does not require full normalisation, complicating any single reversibility threshold."
+  ],
+  "tags": [
+    "q-061",
+    "depression",
+    "default_mode_network",
+    "treatment_resistance",
+    "reversibility",
+    "relapse"
+  ],
+  "mapping": {
+    "source_claim_statement": "Both anterior and posterior DMN subnetworks are hyperconnected in untreated MDD; after antidepressant treatment the posterior subnetwork normalises while the anterior subnetwork abnormality persists in recovered patients, serving as a candidate biomarker of asymptomatic depression and relapse risk.",
+    "ree_translation": "Supports a PARTIAL-reversibility model of MECH-367's depressive network regime: REE's repair machinery (offline integration / MECH-124 replay rebalancing, decommitment, social re-access) would be expected to reconfigure some sub-regimes (cf. posterior normalisation) while a residual locked locus (cf. persistent anterior subnetwork) resists and underpins relapse -- consistent with neither full reversibility nor full chronicity-lock.",
+    "mapping_caveat": "This is a 12-week treatment study in patients of mixed (not specifically >24-month chronic) illness duration, so it speaks to partial reversibility but does NOT directly test the RA-001 duration-threshold hypothesis (do early-effective routes fail late?). Human DMN connectivity is only a coarse analogue of REE's MECH-367 regime vector.",
+    "source_context": "Human resting-state fMRI; 24 MDD patients, 29 controls; 18 patients re-scanned after 12 weeks of antidepressants; ICA-based DMN subnetwork decomposition (Friston co-author)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Biol Psychiatry, longitudinal within-subject design; modest sample. Mapping fidelity is the highest of the Q-061 set because the anterior/posterior dissociation directly instantiates 'some repair routes work, one regime resists.'"
+  }
+}

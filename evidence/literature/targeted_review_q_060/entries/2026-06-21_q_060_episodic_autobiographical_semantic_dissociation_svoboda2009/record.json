@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_060",
+  "entry_id": "2026-06-21_q_060_episodic_autobiographical_semantic_dissociation_svoboda2009",
+  "timestamp_utc": "2026-06-21T09:04:23Z",
+  "claim_ids_tested": [
+    "Q-060"
+  ],
+  "source": {
+    "title": "The effects of rehearsal on the functional neuroanatomy of episodic autobiographical and semantic remembering: a functional magnetic resonance imaging study.",
+    "authors": [
+      "Eva Svoboda",
+      "Brian Levine"
+    ],
+    "year": 2009,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3452-08.2009"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Demonstrates a robust and durable functional dissociation between episodic-autobiographical and semantic remembering (distinct regional patterns surviving 8 rehearsals; hippocampus specific to autobiographical). This cuts both ways for Q-060: the dissociation is real (could be read as supporting a distinct type), but it is localised WITHIN the episodic/MTL machinery -- the hippocampal vividness/recollection signal -- consistent with autobiographical being richly-tagged episodic content rather than a parallel semantic-like store.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Both autobiographical and semantic retrieval co-engaged parahippocampal cortex; only the hippocampus was autobiographical-specific. A clean first-class autobiographical TYPE separate from episodic would predict a dedicated store, not a graded hippocampal-vividness modulation of the shared episodic system."
+  ],
+  "tags": [
+    "q-060",
+    "autobiographical_memory",
+    "episodic_semantic_dissociation",
+    "multiple_trace_theory",
+    "hippocampus"
+  ],
+  "mapping": {
+    "source_claim_statement": "Episodic-autobiographical and semantic memory produce distinctly different regional activation patterns that persist even after eight repetitions; the hippocampus is specifically engaged by vivid episodic-autobiographical recollection whereas parahippocampal cortex serves both, supporting multiple-trace theory.",
+    "ree_translation": "Supports REE's ARC-085 'one substrate, not two parallel machineries' thesis: autobiographical recollection is the high-vividness, hippocampus-engaging mode of the episodic store (ARC-007), distinguished by retained contextual/self tags rather than residing in a separate semantic-type store. Consistent with MECH-121 (episodic content that resists semanticisation = autobiographical).",
+    "mapping_caveat": "The persistence of the dissociation across rehearsal could equally be cited by a 'distinct type' proponent. The paper shows WHERE the dissociation lives (within MTL), not whether the autobiographical layer is best modelled as a tag or a type; it is evidence about substrate sharing, not about taxonomy directly.",
+    "source_context": "Human fMRI, prospectively-collected naturalistic autobiographical vs semantic audio stimuli, rehearsal manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High-quality J Neurosci fMRI with ecologically-valid stimuli; mapping fidelity discounted because the same finding is compatible with both poles of Q-060, so it constrains rather than decides."
+  }
+}
