@@ -70,22 +70,42 @@ closure_plan:
         7-12x lettered re-runs circling one ceiling.
     - id: MOVE-4
       title: "Assembly/maturity portfolio view (the missing broad-overview altitude)"
-      status: open
+      status: done
       severity: medium
+      last_updated: 2026-06-21
       note: >
-        A dashboard (or closure.html mode) showing the whole assembly by
-        maturity + assembly-state: mature / mid-construction / awaiting
-        construction / genuinely blocked. Headline = TWO numbers (closure % AND
-        assembly-frontier health), not one burndown %. Depends on MOVE-1's
-        queryable state + consolidating the 6 scattered substrate-blocked
-        conventions (claims-layer follow-on).
+        Closure-plan-node version landed 2026-06-21. The broad-overview altitude
+        now exists: serve.py /api/closure carries an `assembly` block
+        (`_closure_assembly_view`) bucketing the V3 nodes by maturity /
+        assembly-state -- mature(done) / mid_construction(assembling,in_progress)
+        / awaiting_construction(assembling,queued|unset) /
+        genuinely_blocked(blocked|upstream_blocked|blocked_pending_substrate) /
+        remaining(open|partial|in_progress|tracked); deferred-family parked out.
+        It also computes assembly-frontier health live from the MOVE-1 node
+        fields (awaiting/assembly_status/revisit_after now passed through
+        read_closure's node_record), with `revisit_due` evaluated against today.
+        closure.html (CLOSURE_VERSION 2026-06-21.1) renders an "Assembly
+        maturity" strip below the closure bar: a TWO-number headline (closure %
+        AND frontier count + revisit-due, never one burndown), a segmented
+        maturity bar, a per-bucket legend, and click-to-highlight frontier
+        chips. Verified end-to-end (synthetic-node bucketing + live render on
+        :8011: 79.0% closure unchanged, frontier 0/empty honestly -- no live
+        node tagged assembling yet; populated-path render confirmed via
+        injection). REMAINING FOLLOW-ON (larger, claims-layer, still open):
+        consolidate the 6 scattered substrate-blocked conventions
+        (substrate_conditional / substrate_ceiling / v3_pending /
+        implementation_phase>=v4 / two pending_* booleans) into one canonical,
+        machine-readable field with an `awaiting:` pointer -- see Open
+        follow-ons.
 ---
 
 # Assembly vs closure: making the machinery assemble, not just finish
 
 **Status:** MOVE-1 (keystone) + MOVE-2 (assembly-chip path) + MOVE-3 (re-derive
-brake) landed 2026-06-21. MOVE-4 open.
-MOVES 3-4 open.
+brake) + MOVE-4 (assembly/maturity portfolio view) all landed 2026-06-21. The
+four-move mechanism is complete; the only open item is the larger claims-layer
+consolidation of the 6 scattered substrate-blocked conventions (see Open
+follow-ons).
 **Origin:** user observation 2026-06-21 — "the machinery gets stuck in myopic
 attempts to force closure before substrate is ready. We are meant to be
 assembling, not tying off loose ends." Diagnosis below grounded in a 3-sweep
@@ -267,14 +287,17 @@ substrate on the substrate_queue.
 
 ## Open follow-ons
 
-- MOVE-4 (above). MOVE-2 + MOVE-3 done 2026-06-21.
+- MOVE-2 + MOVE-3 + MOVE-4 done 2026-06-21 (all four moves landed).
 - Harden MOVE-3 from a skill-doc gate to a code gate: a `validate_queue.py` /
   indexer check that flags a queued same-granularity re-test of a claim with >=2
   `substrate_ceiling` autopsies whose upstream substrate is not yet built (the
   doc-level brake relies on the skill being followed; a validator backstop would
   catch a hand-edited queue append).
 - Claims-layer consolidation of the 6 substrate-blocked conventions into one
-  canonical `assembling`-equivalent with a machine-readable `awaiting:` edge
-  (prerequisite for MOVE-4's full portfolio view).
+  canonical `assembling`-equivalent with a machine-readable `awaiting:` edge.
+  MOVE-4's portfolio view landed over the closure-plan-node layer (which MOVE-1
+  made queryable); this consolidation is the deferred claims-layer half that
+  would let the same maturity buckets be drawn over the whole claims registry,
+  not just the closure-plan nodes.
 - Decide whether meta-generation plans should ever be drift-scanned (currently
   not; they have no owner_exq experiments).

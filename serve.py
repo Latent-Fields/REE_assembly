@@ -2213,6 +2213,111 @@ def _closure_dual_progress(nodes: list[dict]) -> dict:
     }
 
 
+# Statuses that read as "actively / intentionally under construction" -- the
+# MOVE-1 keystone assembly states. Kept in sync with ASSEMBLING_STATUSES in
+# scripts/check_closure_drift.py and the None entries in CLOSURE_STATUS_WEIGHTS.
+_ASSEMBLING_STATUSES = {"assembling", "open_by_design"}
+# Statuses serve.py / closure.html already colour as blocked.
+_BLOCKED_STATUSES = {"blocked", "upstream_blocked", "blocked_pending_substrate"}
+
+
+def _assembly_node_summary(n: dict, revisit_due: bool = False) -> dict:
+    """Compact node record for the maturity portfolio buckets / frontier list."""
+    return {
+        "id": n.get("id"),
+        "title": n.get("title") or n.get("id"),
+        "plan_id": n.get("plan_id"),
+        "status": n.get("status"),
+        "severity": n.get("severity"),
+        "owner_exq": n.get("owner_exq"),
+        "awaiting": n.get("awaiting"),
+        "assembly_status": n.get("assembly_status"),
+        "revisit_after": n.get("revisit_after"),
+        "revisit_due": revisit_due,
+    }
+
+
+def _closure_assembly_view(nodes: list[dict]) -> dict:
+    """Bucket V3 nodes by maturity / assembly-state for the portfolio altitude.
+
+    The companion to the closure %: where the % answers "how much of v3 is
+    adjudicated done", this answers "what is the assembly made of right now" --
+    mature vs actively-building vs awaiting-construction vs genuinely-blocked vs
+    still-to-do. Deferred-family nodes (weight None, NOT assembling) are parked
+    out of v3 and excluded entirely. The assembly frontier (status `assembling`
+    / `open_by_design`, MOVE-1) is surfaced both as its own buckets and as a
+    flat `frontier` list carrying each node's `revisit_due` resume flag.
+
+    Headline = TWO numbers, not one burndown: the closure % (adjudication
+    health, computed elsewhere) AND assembly-frontier health (how many nodes are
+    on the frontier and how many are overdue for a revisit).
+    """
+    today = datetime.datetime.now(datetime.UTC).date()
+
+    def _revisit_due(node: dict) -> bool:
+        raw = node.get("revisit_after")
+        if not raw:
+            return False
+        try:
+            d = datetime.date.fromisoformat(str(raw).strip())
+        except Exception:
+            return False
+        return d <= today
+
+    buckets: dict[str, list[dict]] = {
+        "mature": [],
+        "mid_construction": [],
+        "awaiting_construction": [],
+        "genuinely_blocked": [],
+        "remaining": [],
+    }
+    frontier: list[dict] = []
+
+    for n in nodes:
+        if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) != CLOSURE_DEFAULT_GENERATION:
+            continue
+        status = n.get("status") or "open"
+        if status in _ASSEMBLING_STATUSES:
+            due = _revisit_due(n)
+            summ = _assembly_node_summary(n, due)
+            frontier.append(summ)
+            astate = str(n.get("assembly_status") or "").strip().lower()
+            if astate == "in_progress":
+                buckets["mid_construction"].append(summ)
+            else:
+                # queued / built / unset -> awaiting active construction
+                buckets["awaiting_construction"].append(summ)
+            continue
+        if status == "done":
+            buckets["mature"].append(_assembly_node_summary(n))
+            continue
+        if status in _BLOCKED_STATUSES:
+            buckets["genuinely_blocked"].append(_assembly_node_summary(n))
+            continue
+        # Deferred-family (weight None, not assembling) is parked out of v3 --
+        # not part of the assembly portfolio at all.
+        if CLOSURE_STATUS_WEIGHTS.get(status, 0.0) is None:
+            continue
+        buckets["remaining"].append(_assembly_node_summary(n))
+
+    revisit_due_count = sum(1 for f in frontier if f.get("revisit_due"))
+    counts = {k: len(v) for k, v in buckets.items()}
+    counts["frontier"] = len(frontier)
+    counts["revisit_due"] = revisit_due_count
+    return {
+        "buckets": buckets,
+        "counts": counts,
+        "frontier": frontier,
+        # The second headline number (the first is overall_progress / closure %).
+        "frontier_health": {
+            "frontier_count": len(frontier),
+            "revisit_due_count": revisit_due_count,
+            "in_progress": counts["mid_construction"],
+            "awaiting": counts["awaiting_construction"],
+        },
+    }
+
+
 def _enrich_closure_v2(data: dict) -> dict:
     """Add closure/v2 orientation, live EXQ, cusp rail, per-node flags."""
     nodes = data.get("nodes") or []
@@ -2403,6 +2508,13 @@ def _enrich_closure_v2(data: dict) -> dict:
         [n for n in nodes
          if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) == CLOSURE_DEFAULT_GENERATION]
     )
+    # Assembly/maturity portfolio view (MOVE-4): the broad-overview altitude
+    # parallel to the closure %. Computed over V3 nodes only (same scope as the
+    # dual-progress bar) so V4/V5 roadmap nodes do not skew the buckets.
+    data["assembly"] = _closure_assembly_view(
+        [n for n in nodes
+         if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) == CLOSURE_DEFAULT_GENERATION]
+    )
     data["exq_live"] = {
         "running": running_rows,
         "queue_claimed": queue_claimed,
@@ -2501,6 +2613,13 @@ def read_closure() -> dict:
                     n.get("ethical_metadata")
                     if isinstance(n.get("ethical_metadata"), dict) else None
                 ),
+                # Assembly-frontier fields (MOVE-1 keystone). Passed through so
+                # the maturity portfolio view (MOVE-4) can bucket a `status:
+                # assembling` node by its build state and surface its resume
+                # trigger. Absent on the vast majority of (non-assembling) nodes.
+                "awaiting": n.get("awaiting"),
+                "assembly_status": n.get("assembly_status"),
+                "revisit_after": n.get("revisit_after"),
             }
             # If a node id appears in multiple plans, keep first and record alias.
             if nid in nodes_by_id:

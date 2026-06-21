@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-20.5 -->
+<!-- CLOSURE_VERSION: 2026-06-21.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -136,6 +136,61 @@
   .progress-dual .meter-block .meter .fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
   .progress-dual .impl .fill { background: var(--st-progress); }
   .progress-dual .evidence .fill { background: var(--st-partial); }
+
+  /* Assembly/maturity portfolio (MOVE-4): the broad-overview altitude.
+     A second headline (frontier health) beside the closure %, plus a
+     segmented maturity bar over the V3 nodes. */
+  .assembly-strip {
+    padding: 11px 18px 13px;
+    background: var(--bg-0);
+    border-bottom: 1px solid var(--border);
+  }
+  .assembly-strip .asm-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 14px; flex-wrap: wrap; margin-bottom: 8px;
+  }
+  .assembly-strip .asm-title { font-weight: 600; font-size: 13px; }
+  .assembly-strip .asm-nums { display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; }
+  .assembly-strip .asm-num { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .assembly-strip .asm-num b { color: var(--text); font-size: 14px; }
+  .assembly-strip .asm-num.frontier b { color: var(--st-progress); }
+  .assembly-strip .asm-num.due b { color: var(--st-partial); }
+  .assembly-strip .asm-bar {
+    display: flex; height: 16px; border: 1px solid var(--border);
+    border-radius: 5px; overflow: hidden; background: var(--bg-2);
+  }
+  .assembly-strip .asm-seg {
+    height: 100%; transition: width 0.8s ease; min-width: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: #0d1117; overflow: hidden;
+    cursor: help;
+  }
+  .assembly-strip .asm-seg.mature { background: var(--st-done); }
+  .assembly-strip .asm-seg.mid_construction { background: var(--st-progress); }
+  .assembly-strip .asm-seg.awaiting_construction { background: var(--st-tracked); }
+  .assembly-strip .asm-seg.remaining { background: var(--st-open); }
+  .assembly-strip .asm-seg.genuinely_blocked { background: var(--st-blocked); }
+  .assembly-strip .asm-legend {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-top: 7px;
+    font-size: 10px; color: var(--muted);
+  }
+  .assembly-strip .asm-legend .al { display: flex; align-items: center; gap: 4px; }
+  .assembly-strip .asm-legend .al .sw { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  .assembly-strip .asm-frontier {
+    margin-top: 9px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .assembly-strip .asm-frontier .fl-label {
+    font-size: 10px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.04em; margin-right: 2px;
+  }
+  .assembly-strip .fl-chip {
+    font-size: 10px; padding: 3px 8px; border-radius: 10px;
+    border: 1px solid var(--st-progress); background: var(--bg-2);
+    color: var(--text); cursor: pointer;
+  }
+  .assembly-strip .fl-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .assembly-strip .fl-chip.due { border-color: var(--st-partial); color: var(--st-partial); }
+  .assembly-strip .asm-frontier-empty { font-size: 10px; color: var(--muted); font-style: italic; }
 
   .cusp-rail {
     padding: 8px 18px 10px;
@@ -660,6 +715,20 @@
   </div>
 </section>
 
+<section class="assembly-strip" id="assembly-strip" hidden>
+  <div class="asm-head">
+    <span class="asm-title" title="The broad-overview altitude (MOVE-4): the whole v3 assembly bucketed by maturity / assembly-state, not a burndown. Companion to the closure % above.">Assembly maturity</span>
+    <span class="asm-nums">
+      <span class="asm-num closure" title="Closure % = adjudication health (how much of v3 is marked done / weighted-done). The burndown number.">closure <b id="asm-closure-pct">0%</b></span>
+      <span class="asm-num frontier" title="Assembly frontier = nodes intentionally `status: assembling` / `open_by_design` -- being built, not stalled. The second headline number, never folded into the closure %.">frontier <b id="asm-frontier-count">0</b></span>
+      <span class="asm-num due" title="Frontier nodes past their optional `revisit_after` date -- due for a review (resume / re-state / close). 0 == everything on the frontier is resting by design.">revisit-due <b id="asm-revisit-due">0</b></span>
+    </span>
+  </div>
+  <div class="asm-bar" id="asm-bar"></div>
+  <div class="asm-legend" id="asm-legend"></div>
+  <div class="asm-frontier" id="asm-frontier" hidden></div>
+</section>
+
 <div class="plans-row" id="plans-row"></div>
 
 <div class="filter-bar" id="filter-bar">
@@ -850,6 +919,9 @@ function applyGenView() {
     node_total: g.node_total || 0,
     cusp_items: isV3 ? f.cusp_items : [],
     progress: isV3 ? f.progress : null,
+    // Assembly/maturity portfolio (MOVE-4) is computed over V3 nodes only;
+    // blank it outside V3 so the V4/V5 roadmap views never show a v3 frontier.
+    assembly: isV3 ? f.assembly : null,
   });
 }
 
@@ -884,6 +956,7 @@ function renderAll() {
   renderLegendCounts();
   renderOrientation();
   renderDualProgress();
+  renderAssembly();
   renderCuspRail();
   renderOverall();
   renderPlans();
@@ -971,6 +1044,107 @@ function renderDualProgress() {
     document.getElementById('impl-fill').style.width = implPct + '%';
     document.getElementById('ev-fill').style.width = evPct + '%';
   }, 80);
+}
+
+// Assembly/maturity portfolio strip (MOVE-4). Two-number headline (closure %
+// AND assembly-frontier health) + a segmented maturity bar over the V3 nodes.
+// Blank outside the V3 view (CLOSURE.assembly is null there).
+const MATURITY_BUCKETS = [
+  { key: 'mature', label: 'mature', cls: 'mature',
+    tip: 'Adjudicated done -- the closed, settled part of the assembly.' },
+  { key: 'mid_construction', label: 'building', cls: 'mid_construction',
+    tip: 'status: assembling / open_by_design with assembly_status in_progress -- actively under construction right now.' },
+  { key: 'awaiting_construction', label: 'awaiting', cls: 'awaiting_construction',
+    tip: 'status: assembling / open_by_design, queued or not-yet-started -- on the frontier but construction has not begun. Excluded from the closure % (never punished for unhurried assembly).' },
+  { key: 'remaining', label: 'remaining', cls: 'remaining',
+    tip: 'Open / partial / in-progress / tracked -- still to close, not yet on the assembly frontier and not blocked.' },
+  { key: 'genuinely_blocked', label: 'blocked', cls: 'genuinely_blocked',
+    tip: 'blocked / upstream_blocked / blocked_pending_substrate -- stalled on a named blocker, distinct from intentionally-assembling.' },
+];
+function renderAssembly() {
+  const strip = document.getElementById('assembly-strip');
+  const a = CLOSURE.assembly;
+  if (!a) { strip.hidden = true; return; }
+  strip.hidden = false;
+  const counts = a.counts || {};
+  const fh = a.frontier_health || {};
+
+  // Headline: two numbers -- closure % (adjudication health) AND frontier health.
+  document.getElementById('asm-closure-pct').textContent =
+    Math.round((CLOSURE.overall_progress || 0) * 100) + '%';
+  document.getElementById('asm-frontier-count').textContent =
+    String(fh.frontier_count || 0);
+  document.getElementById('asm-revisit-due').textContent =
+    String(fh.revisit_due_count || 0);
+
+  // Segmented maturity bar.
+  const total = MATURITY_BUCKETS.reduce((s, b) => s + (counts[b.key] || 0), 0);
+  const bar = document.getElementById('asm-bar');
+  bar.innerHTML = '';
+  if (total === 0) {
+    bar.innerHTML = '<div class="asm-seg remaining" style="width:100%" title="No V3 nodes in scope."></div>';
+  } else {
+    for (const b of MATURITY_BUCKETS) {
+      const c = counts[b.key] || 0;
+      if (c === 0) continue;
+      const pct = (c / total) * 100;
+      const seg = document.createElement('div');
+      seg.className = 'asm-seg ' + b.cls;
+      seg.style.width = pct.toFixed(2) + '%';
+      seg.title = b.label + ': ' + c + ' node(s) (' + Math.round(pct) + '%). ' + b.tip;
+      if (pct >= 6) seg.textContent = String(c);
+      bar.appendChild(seg);
+    }
+  }
+
+  // Legend with live counts.
+  const legend = document.getElementById('asm-legend');
+  legend.innerHTML = '';
+  const swColor = {
+    mature: 'var(--st-done)', mid_construction: 'var(--st-progress)',
+    awaiting_construction: 'var(--st-tracked)', remaining: 'var(--st-open)',
+    genuinely_blocked: 'var(--st-blocked)',
+  };
+  for (const b of MATURITY_BUCKETS) {
+    const el = document.createElement('span');
+    el.className = 'al';
+    el.title = b.tip;
+    el.innerHTML = '<span class="sw" style="background:' + swColor[b.key] + '"></span>' +
+      escapeHtml(b.label) + ' ' + (counts[b.key] || 0);
+    legend.appendChild(el);
+  }
+
+  // Frontier chips -- the assembling nodes, click to highlight on the graph.
+  // revisit_due nodes are amber and read first (sorted due-first).
+  const fr = document.getElementById('asm-frontier');
+  const frontier = (a.frontier || []).slice().sort(
+    (x, y) => (y.revisit_due ? 1 : 0) - (x.revisit_due ? 1 : 0));
+  fr.innerHTML = '';
+  if (!frontier.length) {
+    fr.hidden = false;
+    fr.innerHTML = '<span class="fl-label">frontier</span>' +
+      '<span class="asm-frontier-empty">empty -- no node is currently tagged assembling / open_by_design (the keystone is wired but no live node uses it yet).</span>';
+    return;
+  }
+  fr.hidden = false;
+  let html = '<span class="fl-label">frontier</span>';
+  for (const f of frontier) {
+    const due = f.revisit_due ? ' due' : '';
+    const aw = f.awaiting ? ' → ' + escapeHtml(String(f.awaiting)) : '';
+    const ast = f.assembly_status ? ' [' + escapeHtml(String(f.assembly_status)) + ']' : '';
+    const rv = f.revisit_after ? (' revisit ' + escapeHtml(String(f.revisit_after))
+      + (f.revisit_due ? ' (DUE)' : '')) : '';
+    const tip = (f.title ? String(f.title) : f.id) + aw + ast + rv;
+    html += '<span class="fl-chip' + due + '" data-node="' + escapeHtml(String(f.id)) +
+      '" title="' + escapeHtml(tip) + '">' + escapeHtml(String(f.id)) + ast + '</span>';
+  }
+  fr.innerHTML = html;
+  fr.querySelectorAll('.fl-chip[data-node]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const nid = chip.getAttribute('data-node');
+      if (nid) highlightNode(nid);
+    });
+  });
 }
 
 function renderCuspRail() {
