@@ -328,7 +328,7 @@ still un-named, still loved.
 <!-- CAMPAIGN_STATE:START -->
 ### The campaign so far
 
-*The under-mountain map is **78%** lit. Of the gates that matter for this stretch, **51** stand open and **21** are still shut.*
+*The under-mountain map is **79%** lit. Of the gates that matter for this stretch, **52** stand open and **20** are still shut.*
 
 *Gates the goblin has closed for good: Goal Pipeline, SD-033 Governance, SD-037 Axis (a): Consumer-Input-Threshold Recalibration.*
 

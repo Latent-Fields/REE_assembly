@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_074c_mech112_117_wanting_liking
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

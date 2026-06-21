@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_130_mech096_dual_stream_routing_pair
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_591e_isef005_phase01_gate_criterion
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

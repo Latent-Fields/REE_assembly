@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_537b_sd029_decoupled_curricula
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

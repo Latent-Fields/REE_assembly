@@ -1,1 +1,400 @@
-{"experiment_type": "v3_exq_698_mech175_anticholinergic_dual_pathway", "claim_ids_tested": ["MECH-175"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "outcome": "FAIL", "evidence_direction": "weakens", "evidence_class": "experimental", "summary": "V3-EXQ-698 tested MECH-175's dual-pathway hypothesis for anticholinergic dementia risk. Four arms: normal (full sleep + normal encoding), REM-suppressed only (nocturnal pathway), waking-impaired only (diurnal cholinergic deficit analog via 0.3x encoder lr), and dual pathway (both REM suppression + waking impairment). Results: C1=False (normal > dual in slot differentiation), C2=False (normal > dual in harm discrimination), C3=False (dual < min(single pathways) for slot diff, additivity), C4=False (dual < min(single pathways) for harm disc, additivity). Manipulation checks C5=True. Outcome: FAIL.", "run_id": "v3_exq_698_mech175_anticholinergic_dual_pathway_20260621T115716Z_v3", "seeds": [42, 43, 44], "n_cycles": 5, "n_prototypes_per_context": 30, "arm_configs": {"ARM_A_NORMAL": {"sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, "ARM_B_REM_SUPPRESSED": {"sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, "ARM_C_WAKING_IMPAIRED": {"sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, "ARM_D_DUAL_PATHWAY": {"sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}}, "arm_aggregates": {"ARM_A_NORMAL": {"slot_differentiation_mean": 0.4471521774927775, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 30.0, "encoder_update_magnitude_mean": 1.0, "results": [{"arm_name": "ARM_A_NORMAL", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_A_NORMAL", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_A_NORMAL", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}]}, "ARM_B_REM_SUPPRESSED": {"slot_differentiation_mean": 0.4471521774927775, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 0.0, "encoder_update_magnitude_mean": 1.0, "results": [{"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}]}, "ARM_C_WAKING_IMPAIRED": {"slot_differentiation_mean": 0.5842993259429932, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 30.0, "encoder_update_magnitude_mean": 0.3000000000000004, "results": [{"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 42, "slot_differentiation": 0.9976595640182495, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 43, "slot_differentiation": 0.13601988554000854, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 44, "slot_differentiation": 0.6192185282707214, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}]}, "ARM_D_DUAL_PATHWAY": {"slot_differentiation_mean": 0.5842993259429932, "harm_discrimination_mean": 0.021762548883755988, "cumulative_sws_writes_mean": 40.0, "cumulative_rem_rollouts_mean": 0.0, "encoder_update_magnitude_mean": 0.3000000000000004, "results": [{"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 42, "slot_differentiation": 0.9976595640182495, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 43, "slot_differentiation": 0.13601988554000854, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 44, "slot_differentiation": 0.6192185282707214, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}]}}, "all_seed_results": [{"arm_name": "ARM_A_NORMAL", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 42, "slot_differentiation": 0.8679620027542114, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 42, "slot_differentiation": 0.9976595640182495, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 42, "slot_differentiation": 0.9976595640182495, "harm_discrimination": 0.04692939817905428, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_A_NORMAL", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 43, "slot_differentiation": 0.055531442165374756, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 43, "slot_differentiation": 0.13601988554000854, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 43, "slot_differentiation": 0.13601988554000854, "harm_discrimination": -0.04797073602676394, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_A_NORMAL", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_B_REM_SUPPRESSED", "seed": 44, "slot_differentiation": 0.41796308755874634, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 1.0, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 1.0}, {"arm_name": "ARM_C_WAKING_IMPAIRED", "seed": 44, "slot_differentiation": 0.6192185282707214, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 30.0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": true, "encoder_lr_scale": 0.3}, {"arm_name": "ARM_D_DUAL_PATHWAY", "seed": 44, "slot_differentiation": 0.6192185282707214, "harm_discrimination": 0.06632898449897762, "cumulative_sws_writes": 40.0, "cumulative_rem_rollouts": 0, "encoder_update_magnitude": 0.3000000000000004, "sws_enabled": true, "rem_enabled": false, "encoder_lr_scale": 0.3}], "criteria": {"C1_slot_diff_normal_vs_dual": {"passed": false, "pass_count": 0, "required": 2}, "C2_harm_disc_normal_vs_dual": {"passed": false, "pass_count": 0, "required": 2}, "C3_additivity_slot_diff": {"passed": false, "pass_count": 0, "required": 2}, "C4_additivity_harm_disc": {"passed": false, "pass_count": 0, "required": 2}, "C5_manipulation_checks": {"passed": true, "pass_count": 3, "required": 2}}, "queue_id": "V3-EXQ-698", "machine": "ree-cloud-2"}
+{
+  "experiment_type": "v3_exq_698_mech175_anticholinergic_dual_pathway",
+  "claim_ids_tested": [
+    "MECH-175"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_class": "experimental",
+  "summary": "V3-EXQ-698 tested MECH-175's dual-pathway hypothesis for anticholinergic dementia risk. Four arms: normal (full sleep + normal encoding), REM-suppressed only (nocturnal pathway), waking-impaired only (diurnal cholinergic deficit analog via 0.3x encoder lr), and dual pathway (both REM suppression + waking impairment). Results: C1=False (normal > dual in slot differentiation), C2=False (normal > dual in harm discrimination), C3=False (dual < min(single pathways) for slot diff, additivity), C4=False (dual < min(single pathways) for harm disc, additivity). Manipulation checks C5=True. Outcome: FAIL.",
+  "run_id": "v3_exq_698_mech175_anticholinergic_dual_pathway_20260621T115716Z_v3",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_cycles": 5,
+  "n_prototypes_per_context": 30,
+  "arm_configs": {
+    "ARM_A_NORMAL": {
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 1.0
+    },
+    "ARM_B_REM_SUPPRESSED": {
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 1.0
+    },
+    "ARM_C_WAKING_IMPAIRED": {
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 0.3
+    },
+    "ARM_D_DUAL_PATHWAY": {
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 0.3
+    }
+  },
+  "arm_aggregates": {
+    "ARM_A_NORMAL": {
+      "slot_differentiation_mean": 0.4471521774927775,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 30.0,
+      "encoder_update_magnitude_mean": 1.0,
+      "results": [
+        {
+          "arm_name": "ARM_A_NORMAL",
+          "seed": 42,
+          "slot_differentiation": 0.8679620027542114,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 1.0
+        },
+        {
+          "arm_name": "ARM_A_NORMAL",
+          "seed": 43,
+          "slot_differentiation": 0.055531442165374756,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 1.0
+        },
+        {
+          "arm_name": "ARM_A_NORMAL",
+          "seed": 44,
+          "slot_differentiation": 0.41796308755874634,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 1.0
+        }
+      ]
+    },
+    "ARM_B_REM_SUPPRESSED": {
+      "slot_differentiation_mean": 0.4471521774927775,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 0.0,
+      "encoder_update_magnitude_mean": 1.0,
+      "results": [
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 42,
+          "slot_differentiation": 0.8679620027542114,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 1.0
+        },
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 43,
+          "slot_differentiation": 0.055531442165374756,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 1.0
+        },
+        {
+          "arm_name": "ARM_B_REM_SUPPRESSED",
+          "seed": 44,
+          "slot_differentiation": 0.41796308755874634,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 1.0,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 1.0
+        }
+      ]
+    },
+    "ARM_C_WAKING_IMPAIRED": {
+      "slot_differentiation_mean": 0.5842993259429932,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 30.0,
+      "encoder_update_magnitude_mean": 0.3000000000000004,
+      "results": [
+        {
+          "arm_name": "ARM_C_WAKING_IMPAIRED",
+          "seed": 42,
+          "slot_differentiation": 0.9976595640182495,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 0.3
+        },
+        {
+          "arm_name": "ARM_C_WAKING_IMPAIRED",
+          "seed": 43,
+          "slot_differentiation": 0.13601988554000854,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 0.3
+        },
+        {
+          "arm_name": "ARM_C_WAKING_IMPAIRED",
+          "seed": 44,
+          "slot_differentiation": 0.6192185282707214,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 30.0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": true,
+          "encoder_lr_scale": 0.3
+        }
+      ]
+    },
+    "ARM_D_DUAL_PATHWAY": {
+      "slot_differentiation_mean": 0.5842993259429932,
+      "harm_discrimination_mean": 0.021762548883755988,
+      "cumulative_sws_writes_mean": 40.0,
+      "cumulative_rem_rollouts_mean": 0.0,
+      "encoder_update_magnitude_mean": 0.3000000000000004,
+      "results": [
+        {
+          "arm_name": "ARM_D_DUAL_PATHWAY",
+          "seed": 42,
+          "slot_differentiation": 0.9976595640182495,
+          "harm_discrimination": 0.04692939817905428,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 0.3
+        },
+        {
+          "arm_name": "ARM_D_DUAL_PATHWAY",
+          "seed": 43,
+          "slot_differentiation": 0.13601988554000854,
+          "harm_discrimination": -0.04797073602676394,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 0.3
+        },
+        {
+          "arm_name": "ARM_D_DUAL_PATHWAY",
+          "seed": 44,
+          "slot_differentiation": 0.6192185282707214,
+          "harm_discrimination": 0.06632898449897762,
+          "cumulative_sws_writes": 40.0,
+          "cumulative_rem_rollouts": 0,
+          "encoder_update_magnitude": 0.3000000000000004,
+          "sws_enabled": true,
+          "rem_enabled": false,
+          "encoder_lr_scale": 0.3
+        }
+      ]
+    }
+  },
+  "all_seed_results": [
+    {
+      "arm_name": "ARM_A_NORMAL",
+      "seed": 42,
+      "slot_differentiation": 0.8679620027542114,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 42,
+      "slot_differentiation": 0.8679620027542114,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_C_WAKING_IMPAIRED",
+      "seed": 42,
+      "slot_differentiation": 0.9976595640182495,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 0.3
+    },
+    {
+      "arm_name": "ARM_D_DUAL_PATHWAY",
+      "seed": 42,
+      "slot_differentiation": 0.9976595640182495,
+      "harm_discrimination": 0.04692939817905428,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 0.3
+    },
+    {
+      "arm_name": "ARM_A_NORMAL",
+      "seed": 43,
+      "slot_differentiation": 0.055531442165374756,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 43,
+      "slot_differentiation": 0.055531442165374756,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_C_WAKING_IMPAIRED",
+      "seed": 43,
+      "slot_differentiation": 0.13601988554000854,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 0.3
+    },
+    {
+      "arm_name": "ARM_D_DUAL_PATHWAY",
+      "seed": 43,
+      "slot_differentiation": 0.13601988554000854,
+      "harm_discrimination": -0.04797073602676394,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 0.3
+    },
+    {
+      "arm_name": "ARM_A_NORMAL",
+      "seed": 44,
+      "slot_differentiation": 0.41796308755874634,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_B_REM_SUPPRESSED",
+      "seed": 44,
+      "slot_differentiation": 0.41796308755874634,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 1.0,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 1.0
+    },
+    {
+      "arm_name": "ARM_C_WAKING_IMPAIRED",
+      "seed": 44,
+      "slot_differentiation": 0.6192185282707214,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 30.0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": true,
+      "encoder_lr_scale": 0.3
+    },
+    {
+      "arm_name": "ARM_D_DUAL_PATHWAY",
+      "seed": 44,
+      "slot_differentiation": 0.6192185282707214,
+      "harm_discrimination": 0.06632898449897762,
+      "cumulative_sws_writes": 40.0,
+      "cumulative_rem_rollouts": 0,
+      "encoder_update_magnitude": 0.3000000000000004,
+      "sws_enabled": true,
+      "rem_enabled": false,
+      "encoder_lr_scale": 0.3
+    }
+  ],
+  "criteria": {
+    "C1_slot_diff_normal_vs_dual": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C2_harm_disc_normal_vs_dual": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C3_additivity_slot_diff": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C4_additivity_harm_disc": {
+      "passed": false,
+      "pass_count": 0,
+      "required": 2
+    },
+    "C5_manipulation_checks": {
+      "passed": true,
+      "pass_count": 3,
+      "required": 2
+    }
+  },
+  "queue_id": "V3-EXQ-698",
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "2026-06-21 (governance, failure_autopsy_V3-EXQ-698 confirmed): weakens -> non_contributory. Outcome DVs at the noise floor in the healthy ARM_A (harm_discrimination_mean 0.022 with cross-seed sign flips; slot_differentiation 0.056-0.87) -> the additive dual-pathway degradation could not be detected regardless of the claim (C5 manipulation checks passing only confirms the arms applied). MECH-175 is also a clinical pharmacology/epidemiology claim (decisive test = cohort mediation analysis), out-of-domain for CausalGridWorld. The FAIL does not weaken MECH-175."
+}

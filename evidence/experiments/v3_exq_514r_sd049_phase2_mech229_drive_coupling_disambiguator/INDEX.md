@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_514r_sd049_phase2_mech229_drive_coupling_disambiguator
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

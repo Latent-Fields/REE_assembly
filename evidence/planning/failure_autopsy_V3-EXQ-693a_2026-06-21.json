@@ -2,13 +2,16 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-06-21T11:46:35Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "mode": "staging (headless scheduled failure-autopsy-sweep)",
   "targets": [
     {
       "run_id": "v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3",
       "queue_id": "V3-EXQ-693a",
-      "claim_ids": ["SD-049", "SD-015"],
+      "claim_ids": [
+        "SD-049",
+        "SD-015"
+      ],
       "supersedes": "V3-EXQ-693",
       "failed_criterion": "precondition",
       "failed_criterion_detail": "Non-vacuity readiness gate (R1 consumption + R2 identity-probe-fireable + R3 WL-channel-fireable), ALL keyed on the PRIMARY arm ARM_2. Not a discrimination criterion -- the discrimination criteria (C_GR margin, C_WL fraction) were gated out before they could be reached. Self-routed substrate_not_ready_requeue / non_vacuity_unmet.",
@@ -43,7 +46,12 @@
       },
       "biological_reference": {
         "closest_mechanism": "object-bound incentive salience / specific Pavlovian-instrumental transfer (Berridge; Corbit/Balleine)",
-        "dependencies": ["SD-049 per-type tags + per-axis drive", "SD-015 z_resource encoder", "SD-057 incentive token bank", "scaffolded_sd054_onboarding foraging competence (goal_pipeline:GAP-2)"],
+        "dependencies": [
+          "SD-049 per-type tags + per-axis drive",
+          "SD-015 z_resource encoder",
+          "SD-057 incentive token bank",
+          "scaffolded_sd054_onboarding foraging competence (goal_pipeline:GAP-2)"
+        ],
         "is_formal_import": false,
         "divergence": "none -- direct biological reading, structurally validated by the 514 lineage; failure is foraging-competence, not mechanism.",
         "lit_status": "present"
@@ -57,8 +65,13 @@
         "target_sd_id": "scaffolded_sd054_onboarding",
         "title": "ARM_2 (3type+novelty) foraging competence for the SD-049 Phase-2 WL-dissociation primary arm",
         "implementation_hint": "The SD-049 Phase-2 WL-dissociation measurement now works (WL harness port fires) but its PRIMARY arm (3-type + novelty) cannot reach the CONSUMPTION_FLOOR contact rate on >=2/3 seeds and 2/3 seeds fail hazard-stage survival -- the goal_pipeline:GAP-2 nav/foraging-competence ceiling on the multi-resource substrate. Govern this 693a failure record onto the existing scaffolded_sd054_onboarding nav-competence track (Stage-H / consumption-floor calibration), OR onto the SD-049-PHASE-2 substrate_queue entry if governance prefers to keep the multi-resource foraging shortfall scoped there.",
-        "unblocks_claims": ["SD-049", "SD-015"],
-        "depends_on_unresolved": ["goal_pipeline:GAP-2 foraging contact on the 3-type SD-049 substrate"],
+        "unblocks_claims": [
+          "SD-049",
+          "SD-015"
+        ],
+        "depends_on_unresolved": [
+          "goal_pipeline:GAP-2 foraging contact on the 3-type SD-049 substrate"
+        ],
         "priority_suggested": 2,
         "failure_record_entry": {
           "run_id": "v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3",
@@ -81,7 +94,16 @@
       "granularity_debt_flag": {
         "triggered": true,
         "bears_on": "SD-049 Phase-2 WL-dissociation lineage",
-        "prior_autopsies": ["514l", "514m", "514p", "514q", "514r", "514s", "514t", "693"],
+        "prior_autopsies": [
+          "514l",
+          "514m",
+          "514p",
+          "514q",
+          "514r",
+          "514s",
+          "514t",
+          "693"
+        ],
         "this_autopsy": "693a",
         "note": "9th autopsy circling the SD-049 / wanting!=liking dissociation. Most share the same failure shape (substrate/instrumentation not ready), which reads as iterative substrate-calibration debt rather than a coarse-claim-needs-splitting signal. Surface a /claim-synthesis review at the Step-8 human gate to decide whether the SD-049 Phase-2 measurement has accumulated enough distinct failure signatures to warrant decomposition, OR is simply a long substrate-readiness chain. Do NOT auto-route to /claim-synthesis -- this autopsy's own routing is implement-substrate + re-queue."
       }
@@ -94,5 +116,6 @@
     "Optionally write the SD-015 narrow_supports evidence_quality_note + the corrected degeneracy_reason attribution (the recommended_evidence_quality_note above) -- governance applies, this skill does not.",
     "Materialise the recommended_substrate_queue_entry (amend) onto the chosen substrate_queue entry.",
     "Mark V3-EXQ-693a discussed in review_tracker.json (add the manifest stem v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3) once reviewed -- left untouched here (failure-autopsy never edits review_tracker)."
-  ]
+  ],
+  "confirmed_by": "user (interactive /governance walk 2026-06-21T12:15Z -- 'all failures need failure autopsy ... agreed inline')"
 }

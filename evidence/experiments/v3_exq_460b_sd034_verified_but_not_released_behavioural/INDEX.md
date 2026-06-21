@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_460b_sd034_verified_but_not_released_behavioural
 
-Generated: `2026-06-21T06:49:07.872210Z`
+Generated: `2026-06-21T13:16:25.102501Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

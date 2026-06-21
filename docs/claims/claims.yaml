@@ -12612,6 +12612,23 @@
   subject: pharmacology.anticholinergic_dual_pathway_dementia_risk
   polarity: asserts
   status: candidate
+  epistemic_category: out_of_domain
+  evidence_quality_note: >
+    2026-06-21 (governance, failure_autopsy_V3-EXQ-698 confirmed): reclassified
+    epistemic_category -> out_of_domain. MECH-175 is a clinical pharmacology /
+    epidemiology claim whose decisive test is mediation analysis on an
+    anticholinergic-burden cohort (ACB -> REM-suppression-years -> dementia
+    conversion; per this claim's own notes), outside REE's substrate at any
+    level. V3-EXQ-698 (the 4-arm grid-world dual-pathway proxy) is NOT a fair
+    test: it applied its manipulations correctly (C5 manipulation checks PASS --
+    REM rollouts 30->0, encoder magnitude 1.0->0.3) but the outcome DVs sit at
+    the noise floor in the healthy ARM_A (harm_discrimination_mean 0.022 with
+    cross-seed sign flips; slot_differentiation 0.056-0.87), so the predicted
+    additive degradation (C1-C4) could not be detected regardless of the claim.
+    The 698 self-stamped weakens was overturned to non_contributory on the
+    manifest; out_of_domain suppresses promote/demote + narrow_open_question and
+    routes the claim to research_anchor / clinical-cohort handling rather than
+    further grid-world experiments.
   depends_on:
     - MECH-173
     - INV-048

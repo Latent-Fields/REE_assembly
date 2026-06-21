@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T12:45:21Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /governance walk 2026-06-21T12:15Z -- 'all failures need failure autopsy ... agreed inline')",
+  "targets": [
+    {
+      "run_id": "v3_exq_698_mech175_anticholinergic_dual_pathway_20260621T115716Z_v3",
+      "queue_id": "V3-EXQ-698",
+      "claim_ids": ["MECH-175"],
+      "supersedes": null,
+      "failed_criterion": "discrimination",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "self-stamped evidence_direction=weakens (4-arm additivity test: C1-C4 fail, C5 manipulation checks pass)",
+      "self_route_is_correct_disposition": false,
+      "self_route_overturned_to": "non_contributory",
+      "facts": {
+        "claim": "MECH-175 is a CLINICAL pharmacology/epidemiology mechanism_hypothesis: anticholinergic burden raises dementia risk via two additive pathways (1) nocturnal REM suppression degrading MECH-123 precision recalibration, (2) diurnal cholinergic-deficit mimicry degrading attention/encoding. Its own notes state it is 'testable via mediation analysis' on clinical cohort data (ACB scale -> dementia conversion).",
+        "design": "4-arm grid-world proxy: ARM_A normal / ARM_B REM-suppressed (rem_enabled=false) / ARM_C waking-impaired (encoder_lr_scale=0.3, 'cholinergic deficit' analog) / ARM_D dual. DVs: slot_differentiation, harm_discrimination.",
+        "C5_manipulation_checks": "PASS 3/2 -- the manipulations took effect (rem_rollouts 30->0, encoder_update_magnitude 1.0->0.3).",
+        "C1_C4": "ALL FAIL (0/2 each): C1 slot-diff normal-vs-dual, C2 harm-disc normal-vs-dual, C3/C4 additivity (dual < min(single pathways)).",
+        "measurement_floor": "The outcome DVs are at the noise floor EVEN IN THE HEALTHY ARM_A: harm_discrimination_mean 0.022 with per-seed sign flips (seed42 +0.047, seed43 -0.048, seed44 ~+0.06); slot_differentiation_mean 0.447 with extreme seed variance (0.87 / 0.056 / 0.4). The experiment is differencing a baseline that is itself indistinguishable from noise."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened-wrongly -- a grid-world memory-consolidation proxy cannot fairly test a clinical dementia-RISK / additivity claim. The self-stamped weakens mis-attributes a domain + power gap to the claim.",
+        "biological_reference": "partial -- pathway 1 (REM suppression -> consolidation, MECH-123) has a loose REE analog (the REM-suppressed arm); pathway 2 (diurnal cholinergic deficit) is rendered only as a 0.3x encoder-lr knob, and the dementia-RISK outcome + additivity prediction are clinical/epidemiological, out-of-domain for CausalGridWorld.",
+        "prerequisites": "the decisive test is clinical mediation analysis (anticholinergic burden -> REM-suppression-years -> dementia conversion), not a grid-world ablation.",
+        "implementation": "manipulation checks pass (the arms are real), but the outcome readout (slot_diff / harm_disc) is under-instrumented for this claim.",
+        "environment": "wrong pressures -- a grid world has no dementia-risk endpoint and no years-scale cumulative consolidation deficit.",
+        "measurement": "MISLEADING -- harm_discrimination is at the noise floor (~0.02, sign-flipping) even in the healthy arm, so no additive degradation could be detected regardless of the claim's truth. This alone makes the FAIL non-contributory.",
+        "integration": "n/a",
+        "scale": "likely insufficient (3 seeds, near-floor DVs)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cholinergic basal-forebrain modulation of REM (PGO/nucleus basalis) + attentional encoding (Bartus 1982 cholinergic hypothesis); the claim is epidemiological (ACB -> dementia)",
+        "is_formal_import": false,
+        "divergence": "the claim's test domain is clinical, not the REE substrate; the grid-world rendering is at best a partial pathway-1 analog with a noise-floor readout.",
+        "lit_status": "present (the claim is lit-grounded in clinical pharmacology; the grid-world proxy is the weak link, not the biology)."
+      },
+      "recommended_epistemic_category": "out_of_domain",
+      "recommended_epistemic_category_note": "RECOMMENDED reclassification (user decision at apply): MECH-175 is an empirical claim whose decisive test domain is a clinical cohort / mediation analysis (per its own notes), outside REE's substrate at any level. epistemic_category: out_of_domain suppresses promote/demote + narrow_open_question and routes it to research_anchor / literature_synthesis handling rather than further grid-world experiments. If the user prefers to keep it testable-in-principle, the minimum action is the non_contributory overturn below (do NOT let the grid-world weakens weight it).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "OVERTURN the self-stamped weakens -> non_contributory. Two independent reasons: (1) MEASUREMENT FLOOR -- the outcome DVs (harm_discrimination ~0.022 with cross-seed sign flips; slot_differentiation 0.056-0.87 variance) are at the noise floor in the HEALTHY ARM_A, so no additive dual-pathway degradation could be detected regardless of the claim's truth; the manipulation checks (C5) passing only confirms the arms were applied, not that the readout can discriminate. (2) DOMAIN MISMATCH -- MECH-175 is a clinical dementia-risk / additivity claim whose decisive test is mediation analysis on a clinical cohort; a CausalGridWorld memory-consolidation proxy is not a fair test of it. A weakens here would falsify the wrong layer.",
+      "recommended_evidence_quality_note": "V3-EXQ-698 (2026-06-21, failure-autopsy): reclassified weakens -> non_contributory for MECH-175. The 4-arm grid-world dual-pathway test applied its manipulations correctly (C5 PASS: REM rollouts 30->0, encoder magnitude 1.0->0.3) but the outcome DVs are at the noise floor even in the healthy arm (harm_discrimination_mean 0.022 with per-seed sign flips; slot_differentiation 0.056-0.87 cross-seed variance), so the predicted additive degradation (C1-C4) could not be detected regardless of the claim. Moreover MECH-175 is a clinical pharmacology/epidemiology claim whose decisive test is mediation analysis on an anticholinergic-burden cohort (per its own notes) -- out-of-domain for CausalGridWorld. The FAIL does not weaken the claim. Recommend reclassifying MECH-175 epistemic_category: out_of_domain (research_anchor handling); no REE experiment should weight it.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "claim_ids_accuracy_note": "pending_review.md showed '(no claim tags)' for 698 because the indexer reads the flat `claim_ids` key while this manifest carries `claim_ids_tested: [MECH-175]`. The tag IS present and accurate; the display gap is cosmetic. No claim_ids correction needed.",
+      "learning_extracted": [
+        "A FAIL with passing manipulation checks is NOT automatically a fair weakens -- check whether the OUTCOME DV has signal in the healthy/control arm. Here harm_discrimination is at the noise floor in ARM_A, so the additivity test is under-powered by construction.",
+        "MECH-175 is the clearest out_of_domain case in the registry surfaced this cycle: a clinical epidemiology claim whose decisive test is a cohort mediation analysis, not a grid-world ablation. Grid-world results should not weight it.",
+        "Self-stamped `weakens` on a clinical/out-of-domain claim is a recurring trap -- the experiment can run cleanly and still test the wrong layer."
+      ],
+      "routing": "governance-reclassify (out_of_domain) -- no substrate, no re-queue; optionally route MECH-175 to research_anchor / clinical-cohort handling"
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "MECH-175 is candidate, standard (no epistemic_category set -> inferred standard for mechanism_hypothesis), NOT v3_pending. It is the ONLY pending FAIL this cycle whose self-stamped weakens would actually weight a claim under standard gating -- which is exactly why the overturn matters. Recommended action: non_contributory (mandatory) + out_of_domain reclassification (recommended)."
+}

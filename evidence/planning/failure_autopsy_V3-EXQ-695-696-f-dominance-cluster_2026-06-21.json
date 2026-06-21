@@ -1,0 +1,130 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T12:45:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /governance walk 2026-06-21T12:15Z -- 'all failures need failure autopsy ... agreed inline')",
+  "targets": [
+    {
+      "run_id": "v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest_20260621T103903Z_v3",
+      "queue_id": "V3-EXQ-695",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "supersedes": "V3-EXQ-654g",
+      "failed_criterion": "discrimination",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "shared_f_dominance_conversion_ceiling_route_implement_substrate_mech448 (non_contributory, non_degenerate:true)",
+      "self_route_is_correct_disposition": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the modulatory-bias / rule-apprehension diversity channel reaches the E3 accumulator but cannot move the F-dominated committed argmin; the claim is not tested under conditions where it can express itself until F is demoted at commit.",
+        "biological_reference": "clear -- BG hyperdirect conflict-grade / divisive normalisation; the response (rank-preserving F->eligibility demotion) is the lit-grounded fix.",
+        "prerequisites": "missing at test time -- F monopolises ~88-89%% of committed-selection variance (V3-EXQ-571); the diversity channel is subdominant to the primary harm/goal score.",
+        "implementation": "complete on the channel side; the gap is the selector constitution (F as eligibility-not-decider), now built as MECH-448.",
+        "environment": "adequate.",
+        "measurement": "adequate (non_degenerate:true -- a genuine conversion ceiling, not a vacuous criterion).",
+        "integration": "the diversity channel composes into the accumulator but drowns at the F-dominated argmin.",
+        "scale": "adequate."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia hyperdirect conflict-grade selection / divisive normalisation of value (Frank 2006; Carandini & Heeger 2012)",
+        "is_formal_import": false,
+        "divergence": "rank-preserving F->eligibility demotion at commit EXCEEDS canonical order-preserving DN -- load-bearing, tracked in the MECH-448/ARC-107 divergence ledger.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-695 (2026-06-21, failure-autopsy): non_contributory CONFIRMED for MECH-309 + ARC-062. The ARC-062/MECH-309 monomodal-collapse retest on the now-implemented modulatory-bias / rule-apprehension channel (supersedes V3-EXQ-654g) hit the F-dominance conversion ceiling: the diversity channel reaches the E3 accumulator but cannot move the F-dominated committed argmin (V3-EXQ-571: F ~88-89%% of selection variance). This is the documented f_dominance_conversion_ceiling substrate gap, NOT a falsification. The substrate response is built: MECH-448 (rank-preserving F->eligibility demotion, 2026-06-20) + MECH-439 conflict-grade; the demotion-enabled GAP-B successor V3-EXQ-654h is already queued and owns the retest. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "ARC-062/MECH-309 modulatory-bias monomodal-collapse (selection-face conversion ceiling)",
+        "implementation_hint": "Lead lever MECH-448 (rank-preserving F->eligibility demotion) is built; the demotion-enabled GAP-B falsifier V3-EXQ-654h is queued. Append this failure record; no new build.",
+        "unblocks_claims": ["MECH-309", "ARC-062"],
+        "depends_on_unresolved": ["V3-EXQ-654h run (MECH-448 demotion-enabled GAP-B retest)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest_20260621T103903Z_v3",
+          "experiment_type": "v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest",
+          "metric": "monomodal collapse persists on the modulatory-bias channel (committed-action diversity does not strict-beat the matched-noise / proposer controls); F-dominance conversion ceiling, non_degenerate:true",
+          "target": "committed-action class diversity strict-above matched-noise AND proposer on >=2/3 seeds on the MECH-448 demotion-enabled selector (V3-EXQ-654h)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "695 is the selection-face (rule-apprehension / modulatory-bias) member of the F-dominance conversion ceiling; clean non_degenerate self-route. The demotion lever (MECH-448) is the response and 654h is the queued retest -- no new diagnosis needed."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260621T114153Z_v3",
+      "queue_id": "V3-EXQ-696",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "supersedes": null,
+      "failed_criterion": "discrimination",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "sd033b_mech263_outcome_prediction_ceiling_persists (SELF-STAMPED evidence_direction=weakens)",
+      "self_route_is_correct_disposition": false,
+      "self_route_overturned_to": "non_contributory",
+      "facts": {
+        "C1_devaluation_behavioural_shift": "False (1/3 seeds)",
+        "C2_discrimination_behavioural_separation": "False (0/3 seeds)",
+        "C3_off_and_control_silent": "True (3/3 seeds)",
+        "fingerprint": "C3 negative-control passes (controls silent) + C1/C2 discrimination criteria fail = the canonical substrate-ceiling fingerprint, NOT a clean falsification"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the trained-OFC-head devaluation/discrimination signal cannot reach committed behaviour through the F-dominated argmin; same conversion ceiling as 485h. The self-stamped weakens mis-attributes a substrate ceiling to the claim.",
+        "biological_reference": "clear -- OFC outcome-value devaluation (MECH-263). The mechanism is not implicated; the bottleneck is the downstream E3 selector (F-dominance).",
+        "prerequisites": "missing at test time -- F monopolises committed selection; the OFC bias is subdominant. The MECH-448 demotion lever is the response.",
+        "implementation": "complete on the OFC-head side (485d substrate-readiness PASSed); the gap is the selector constitution.",
+        "environment": "adequate.",
+        "measurement": "non_degenerate:true, but the C3-clean/C1-C2-fail shape is the substrate-ceiling tell, not a fair weakens.",
+        "integration": "OFC bias composes but drowns at the F-dominated argmin.",
+        "scale": "adequate."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-value representation / devaluation sensitivity (Padoa-Schioppa; Rich & Shapiro)",
+        "is_formal_import": false,
+        "divergence": "none -- mechanism sound; the failure is the F-dominated selector, addressed by MECH-448.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "OVERTURN the self-stamped weakens -> non_contributory. The C3-controls-clean / C1+C2-discrimination-fail shape is the substrate-ceiling fingerprint of the F-dominance conversion ceiling (the trained-OFC-head devaluation/discrimination signal cannot reach committed behaviour through the F-dominated argmin), the SAME signature as V3-EXQ-485h. A weakens here would inflate SD-033b's conflict ratio against a substrate limitation, not a claim failure (illusory-conflict-resolution rule). The MECH-448 demotion-enabled SD-033b/MECH-263 behavioural successor V3-EXQ-485i is already queued and owns the fair retest.",
+      "recommended_evidence_quality_note": "V3-EXQ-696 (2026-06-21, failure-autopsy): reclassified weakens -> non_contributory for SD-033b + MECH-263. Trained-OFC-head devaluation (C1) + discrimination (C2) behavioural arms FAIL while the OFF/control arm is silent (C3 PASS) = the F-dominance conversion-ceiling fingerprint (V3-EXQ-571), same as 485h. The OFC bias reaches the E3 accumulator but cannot move the F-dominated committed argmin; this bounds the claim's testability on the current selector, it does not weaken the OFC mechanism. pending_retest_after_substrate via V3-EXQ-485i (the MECH-448 demotion-enabled trained-OFC-head behavioural successor, already queued).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "SD-033b/MECH-263 OFC outcome-value behavioural arm (conversion ceiling)",
+        "implementation_hint": "Lead lever MECH-448 built; V3-EXQ-485i (demotion-enabled trained-OFC-head behavioural falsifier) queued. Append this failure record; no new build.",
+        "unblocks_claims": ["SD-033b", "MECH-263"],
+        "depends_on_unresolved": ["V3-EXQ-485i run"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260621T114153Z_v3",
+          "experiment_type": "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest",
+          "metric": "C1 devaluation 1/3, C2 discrimination 0/3 (C3 controls silent 3/3) -- trained-OFC-head signal does not reach committed behaviour through the F-dominated argmin",
+          "target": "C1 + C2 behavioural shift/separation on >=2/3 seeds on the MECH-448 demotion-enabled selector (V3-EXQ-485i)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "governance_coupling": "Reclassifying 696 weakens -> non_contributory removes it from SD-033b's conflict ratio and clears the SD-033b `hold_candidate_resolve_conflict` pending_user agenda item (the conflict was substrate-induced, not genuine).",
+      "learning_extracted": [
+        "A self-stamped `weakens` on a substrate_ceiling claim must be adjudicated: the C3-clean/C1-C2-fail shape is the conversion-ceiling fingerprint, not a falsification. Overturned to non_contributory.",
+        "696 is the OFC behavioural member of the same F-dominance ceiling as 695 (rule-apprehension) -- one structural property, two structurally-different claims."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "F-dominance conversion ceiling: a diversity / outcome-value bias channel reaches the E3 accumulator but cannot move the F-dominated committed argmin (F ~88-89%% of selection variance, V3-EXQ-571). Negative controls clean; discrimination criteria fail.",
+    "is_independent_bugs": false,
+    "structural_property": "The E3 selector treats the primary harm/goal score F as the decider rather than as eligibility; every secondary channel (rule-apprehension/modulatory-bias for 695, OFC outcome-value for 696) is subdominant and drowns at commit.",
+    "readings": ["substrate_enrichment (the live response: MECH-448 rank-preserving F->eligibility demotion, built 2026-06-20; falsifiers V3-EXQ-654h + V3-EXQ-485i queued)"],
+    "members": ["V3-EXQ-695 (MECH-309/ARC-062)", "V3-EXQ-696 (SD-033b/MECH-263)"],
+    "note": "Both are NON-degenerate genuine conversion-ceiling hits, distinct from the vacuous-criterion family. The load-bearing convergence: two structurally-different claims fail at the SAME selector locus -> the fix is constitutional (MECH-448), not per-claim."
+  },
+  "evidence_protection_note": "MECH-309/ARC-062 are candidate/v3_pending (promotion held); SD-033b/MECH-263 are candidate/substrate_ceiling (promote/demote suppressed). 695 is already non_contributory; 696's reclassification weakens->non_contributory protects SD-033b's conflict ratio. No claim status changes from this cluster."
+}

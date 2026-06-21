@@ -6212,7 +6212,7 @@
       "depends_on_count": 2,
       "evidence_bearing": true,
       "evidence_quadrant": "plausible_unproven",
-      "experiment_planned": true,
+      "experiment_planned": false,
       "first_seen_commit": "32ec1ba9dfc8",
       "first_seen_date": "2026-03-15",
       "first_seen_subject": "feat(heartbeat): register control plane heartbeat architecture (ARC-023, MECH-089\u2013093, SD-006)",
@@ -17329,7 +17329,7 @@
       "first_seen_date": "2026-04-19",
       "first_seen_subject": "Register SD-033 PFC subdivision cluster; update MECH-261 write targets",
       "first_seen_week": "2026-04-13",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "id": "MECH-263",
       "incoming_dependency_count": 1,
       "lifecycle": "governance_evidence_bearing",
@@ -17736,7 +17736,7 @@
       "first_seen_date": "2026-04-19",
       "first_seen_subject": "Register SD-033 PFC subdivision cluster; update MECH-261 write targets",
       "first_seen_week": "2026-04-13",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "id": "SD-033b",
       "incoming_dependency_count": 3,
       "lifecycle": "governance_evidence_bearing",
@@ -20231,7 +20231,7 @@
       "depends_on_count": 3,
       "evidence_bearing": true,
       "evidence_quadrant": "plausible_unproven",
-      "experiment_planned": true,
+      "experiment_planned": false,
       "first_seen_commit": "d3d716b984be",
       "first_seen_date": "2026-05-03",
       "first_seen_subject": "sd048: register implementation + queue V3-EXQ-511 partial-PASS manifest",
@@ -25406,7 +25406,7 @@
       "type": "open_question"
     },
     {
-      "attention_rank": 2,
+      "attention_rank": 4,
       "class": "horizon_v4",
       "component_id": "C631",
       "dependency_components": [
@@ -25419,8 +25419,8 @@
         "MECH-121"
       ],
       "depends_on_count": 2,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "plausible_unproven",
       "experiment_planned": true,
       "first_seen_commit": "4b0a6ac2db75",
       "first_seen_date": "2026-06-09",
@@ -25429,7 +25429,7 @@
       "genuine_exp_count": 0,
       "id": "Q-060",
       "incoming_dependency_count": 0,
-      "lifecycle": "experiment_planned",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "v4",
       "status": "candidate",
       "substrate_active": false,
@@ -25439,7 +25439,7 @@
       "type": "open_question"
     },
     {
-      "attention_rank": 2,
+      "attention_rank": 4,
       "class": "open_question",
       "component_id": "C632",
       "dependency_components": [
@@ -25455,8 +25455,8 @@
         "RA-001"
       ],
       "depends_on_count": 4,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "plausible_unproven",
       "experiment_planned": true,
       "first_seen_commit": "8e1285759ea0",
       "first_seen_date": "2026-06-09",
@@ -25465,7 +25465,7 @@
       "genuine_exp_count": 0,
       "id": "Q-061",
       "incoming_dependency_count": 0,
-      "lifecycle": "experiment_planned",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "unset",
       "status": "candidate",
       "substrate_active": false,
@@ -30190,7 +30190,7 @@
       "incoming_dependency_count": 1,
       "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
-      "status": "candidate",
+      "status": "provisional",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": true,
@@ -39356,9 +39356,9 @@
       },
       "cyclic": true,
       "dominant_class": "active_v3_closure",
-      "evidenced_claims": 9,
+      "evidenced_claims": 11,
       "first_week": "2026-03-23",
-      "genuine_exp_count": 14,
+      "genuine_exp_count": 16,
       "latest_week": "2026-04-13",
       "phase_counts": {
         "unset": 2,
@@ -57716,7 +57716,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate": 1
+        "provisional": 1
       },
       "type_counts": {
         "mechanism_hypothesis": 1
@@ -61783,7 +61783,7 @@
       }
     }
   ],
-  "generated_at_utc": "2026-06-21T06:40:50Z",
+  "generated_at_utc": "2026-06-21T12:18:14Z",
   "recent": {
     "churn_health": {
       "avg_outdeps": 3.641,
@@ -63246,7 +63246,7 @@
             "phase": "v3",
             "recent_dependency_count": 1,
             "recurrence": "single_week",
-            "status": "candidate",
+            "status": "provisional",
             "substrate_active": true,
             "substrate_target": false,
             "substrate_unblocked": true,
@@ -63372,7 +63372,7 @@
         "incoming_dependency_count": 1,
         "lifecycle": "governance_evidence_bearing",
         "phase": "v3",
-        "status": "candidate",
+        "status": "provisional",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": true,
@@ -64652,7 +64652,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -67134,12 +67134,12 @@
         "type": "open_question"
       },
       {
-        "attention_rank": 2,
+        "attention_rank": 4,
         "claim_id": "Q-061",
         "class": "open_question",
         "component_id": "C632",
         "depends_on_count": 4,
-        "evidence_bearing": false,
+        "evidence_bearing": true,
         "experiment_planned": true,
         "first_seen_date": "2026-06-09",
         "first_seen_week": "2026-06-08",
@@ -67238,7 +67238,7 @@
           }
         ],
         "incoming_dependency_count": 0,
-        "lifecycle": "experiment_planned",
+        "lifecycle": "governance_evidence_bearing",
         "phase": "unset",
         "status": "candidate",
         "substrate_active": false,
@@ -67248,12 +67248,12 @@
         "type": "open_question"
       },
       {
-        "attention_rank": 2,
+        "attention_rank": 4,
         "claim_id": "Q-060",
         "class": "horizon_v4",
         "component_id": "C631",
         "depends_on_count": 2,
-        "evidence_bearing": false,
+        "evidence_bearing": true,
         "experiment_planned": true,
         "first_seen_date": "2026-06-09",
         "first_seen_week": "2026-06-08",
@@ -67306,7 +67306,7 @@
           }
         ],
         "incoming_dependency_count": 0,
-        "lifecycle": "experiment_planned",
+        "lifecycle": "governance_evidence_bearing",
         "phase": "v4",
         "status": "candidate",
         "substrate_active": false,
@@ -80376,7 +80376,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -81721,7 +81721,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -81949,7 +81949,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -82063,7 +82063,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -82931,7 +82931,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -88241,7 +88241,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 12,
             "lifecycle": "governance_evidence_bearing",
@@ -91683,7 +91683,7 @@
         "component_id": "C692",
         "depends_on_count": 3,
         "evidence_bearing": true,
-        "experiment_planned": true,
+        "experiment_planned": false,
         "first_seen_date": "2026-05-03",
         "first_seen_week": "2026-04-27",
         "hub_targets": [
@@ -92788,7 +92788,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 1,
             "incoming_dependency_count": 12,
             "lifecycle": "governance_evidence_bearing",
@@ -93268,7 +93268,7 @@
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
-            "genuine_exp_count": 0,
+            "genuine_exp_count": 1,
             "incoming_dependency_count": 3,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
@@ -93639,8 +93639,8 @@
       "lifecycle_counts": {
         "captured_only": 24,
         "dependency_referenced": 37,
-        "experiment_planned": 12,
-        "governance_evidence_bearing": 123,
+        "experiment_planned": 10,
+        "governance_evidence_bearing": 125,
         "substrate_implementation_active": 105
       },
       "new_claims": 301,
@@ -97178,7 +97178,7 @@
             "class": "open_question",
             "component_id": "C632",
             "first_seen_week": "2026-06-08",
-            "lifecycle": "experiment_planned",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "unset",
             "status": "candidate",
             "title": "Is a maladaptive depressive network-regime (MECH-367) REVERSIBLE -- reconfigurable by REE's existing repair machinery (offline integration / MECH-124 replay rebalancing, decommitment from ruminative loops, re-access to social affordances, goal-stream re-coupling) -- or does chronicity lock the regime past a threshold (RA-001) such that the repair routes that work early fail or reverse-sign late?"
@@ -97188,7 +97188,7 @@
             "class": "open_question",
             "component_id": "C632",
             "first_seen_week": "2026-06-08",
-            "lifecycle": "experiment_planned",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "unset",
             "status": "candidate",
             "title": "Is a maladaptive depressive network-regime (MECH-367) REVERSIBLE -- reconfigurable by REE's existing repair machinery (offline integration / MECH-124 replay rebalancing, decommitment from ruminative loops, re-access to social affordances, goal-stream re-coupling) -- or does chronicity lock the regime past a threshold (RA-001) such that the repair routes that work early fail or reverse-sign late?"
@@ -97198,7 +97198,7 @@
             "class": "horizon_v4",
             "component_id": "C631",
             "first_seen_week": "2026-06-08",
-            "lifecycle": "experiment_planned",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v4",
             "status": "candidate",
             "title": "Should REE represent autobiographical event memory as a DISTINCT first-class type, separate from semantic (abstract facts/relations) and task/procedural (policies/action schemas) memory -- or is the existing episodic->semantic consolidation pathway (MECH-121) sufficient? The case material motivates the distinction (TL separates emotion-tagged 'life memory' from neutral encyclopedic 'black memory'), but REE has no memory-type taxonomy claim."
@@ -98221,9 +98221,9 @@
         },
         "cyclic": true,
         "dominant_class": "active_v3_closure",
-        "evidenced_claims": 9,
+        "evidenced_claims": 11,
         "first_week": "2026-03-23",
-        "genuine_exp_count": 14,
+        "genuine_exp_count": 16,
         "latest_week": "2026-04-13",
         "phase_counts": {
           "unset": 2,
@@ -103188,7 +103188,7 @@
     "claims_path": "docs/claims/claims.yaml",
     "component_edges": 2134,
     "dependency_edges": 3076,
-    "git_head": "46028c77fa"
+    "git_head": "f66a1df54e"
   },
   "summary": {
     "claims_total": 859,
@@ -103224,8 +103224,8 @@
     "lifecycle_counts": {
       "captured_only": 96,
       "dependency_referenced": 156,
-      "experiment_planned": 13,
-      "governance_evidence_bearing": 433,
+      "experiment_planned": 11,
+      "governance_evidence_bearing": 435,
       "substrate_implementation_active": 161
     },
     "phase_counts": {
@@ -106262,8 +106262,8 @@
       "lifecycle_counts": {
         "captured_only": 4,
         "dependency_referenced": 11,
-        "experiment_planned": 11,
-        "governance_evidence_bearing": 48,
+        "experiment_planned": 9,
+        "governance_evidence_bearing": 50,
         "substrate_implementation_active": 60
       },
       "new_claims": 134,
@@ -106459,7 +106459,8 @@
         "v4": 2
       },
       "status_counts": {
-        "candidate": 40,
+        "candidate": 39,
+        "provisional": 1,
         "resolved": 1,
         "superseded": 1
       },

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-21T06:41:24Z",
+  "generated_at": "2026-06-21T12:18:51Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -122,7 +122,7 @@
           "pass_runs": 4,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.729
+          "overall_confidence": 0.728
         },
         {
           "id": "ARC-031",
@@ -550,7 +550,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.816
+          "overall_confidence": 0.815
         },
         {
           "id": "MECH-263",
@@ -558,11 +558,11 @@
           "subject": "pfc.ofc_state_space_specific_outcome",
           "status": "candidate",
           "v3_pending": true,
-          "genuine_exp_count": 0,
+          "genuine_exp_count": 1,
           "pass_runs": 0,
-          "fail_runs": 0,
+          "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.899
+          "overall_confidence": 0.756
         },
         {
           "id": "MECH-264",
@@ -627,9 +627,9 @@
       ],
       "implementation": "full",
       "evidence": {
-        "genuine_exp_count": 4,
+        "genuine_exp_count": 6,
         "pass_runs": 3,
-        "fail_runs": 1,
+        "fail_runs": 3,
         "quadrant_counts": {
           "unknown": 11,
           "confirmed_established": 2,
@@ -650,9 +650,9 @@
       "leading_edge": true,
       "queued_exqs": [
         {
-          "queue_id": "V3-EXQ-696",
-          "title": "SD-033b/MECH-263 OFC-analog outcome-prediction substrate-ceiling retest (3-arm trained vs OFF vs matched-noise; route-range P0 gate)",
-          "status": "pending",
+          "queue_id": "V3-EXQ-485i",
+          "title": "SD-033b/MECH-263 trained-OFC-head behavioural conversion on MECH-448 F->eligibility demotion-enabled E3 selector (485h-successor; commitment_closure:GAP-8)",
+          "status": "claimed",
           "claim_ids": [
             "SD-033b",
             "SD-033b",
@@ -746,7 +746,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.809
+          "overall_confidence": 0.808
         },
         {
           "id": "MECH-266",
@@ -1073,7 +1073,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.721
+          "overall_confidence": 0.72
         },
         {
           "id": "MECH-094",
@@ -1569,7 +1569,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.74
+          "overall_confidence": 0.739
         },
         {
           "id": "MECH-088",
@@ -1605,7 +1605,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.788
+          "overall_confidence": 0.787
         },
         {
           "id": "MECH-188",
@@ -1617,7 +1617,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.637
+          "overall_confidence": 0.636
         },
         {
           "id": "MECH-281",
@@ -1705,7 +1705,7 @@
           "pass_runs": 0,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.565
+          "overall_confidence": 0.564
         },
         {
           "id": "Q-003",
@@ -1741,7 +1741,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.795
+          "overall_confidence": 0.794
         }
       ],
       "implementation": "full",
@@ -1814,7 +1814,7 @@
           "pass_runs": 2,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.806
+          "overall_confidence": 0.805
         },
         {
           "id": "ARC-033",
@@ -1922,7 +1922,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.751
+          "overall_confidence": 0.75
         },
         {
           "id": "Q-036",
@@ -1946,7 +1946,7 @@
           "pass_runs": 4,
           "fail_runs": 15,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.801
+          "overall_confidence": 0.8
         }
       ],
       "implementation": "full",
@@ -2308,7 +2308,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.518
+          "overall_confidence": 0.517
         }
       ],
       "implementation": "claim_only",
@@ -2451,7 +2451,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.591
+          "overall_confidence": 0.59
         },
         {
           "id": "MECH-128",
@@ -2463,7 +2463,7 @@
           "pass_runs": 0,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.529
+          "overall_confidence": 0.528
         },
         {
           "id": "MECH-150",
@@ -2511,7 +2511,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.603
+          "overall_confidence": 0.602
         },
         {
           "id": "MECH-156",
@@ -2547,7 +2547,7 @@
           "pass_runs": 1,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.638
+          "overall_confidence": 0.636
         }
       ],
       "implementation": "full",
@@ -3406,7 +3406,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.826
+          "overall_confidence": 0.825
         },
         {
           "id": "MECH-312",
@@ -3518,8 +3518,8 @@
       "leading_edge": true,
       "queued_exqs": [
         {
-          "queue_id": "V3-EXQ-695",
-          "title": "ARC-062/MECH-309 modulatory-bias monomodal-collapse retest on the implemented modulatory/rule channel (569i top-k; route-range P0 gate); supersedes 654g",
+          "queue_id": "V3-EXQ-654h",
+          "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654g-successor; demotion lever matched constant; sweep use_candidate_rule_field)",
           "status": "claimed",
           "claim_ids": [
             "MECH-309",
@@ -3608,7 +3608,7 @@
           "pass_runs": 1,
           "fail_runs": 6,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.677
+          "overall_confidence": 0.676
         },
         {
           "id": "ARC-032",
@@ -3620,7 +3620,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.586
+          "overall_confidence": 0.585
         },
         {
           "id": "ARC-041",
