@@ -1,0 +1,105 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689e_mech448_channel_adaptive_envelope_readiness",
+  "run_id": "v3_exq_689e_mech448_channel_adaptive_envelope_readiness_20260621T224206Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-21T22:42:06Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "adaptive_floor_engages_across_channels",
+    "preconditions": [
+      {
+        "name": "pool_divergent_CHANNEL_A_arc062_rule_apprehension",
+        "description": "ADAPTIVE-arm e2_world_forward candidate-pool spread (mean pairwise distance, a RANGE-kind statistic matching the envelope's dependence on a non-uniform F field) clears the floor on >=2/3 seeds",
+        "measured": 0.092262,
+        "threshold": 0.03,
+        "control": "ADAPTIVE arm divergent candidate pool (the non-vacuity precondition)",
+        "met": true
+      },
+      {
+        "name": "demotion_engaged_CHANNEL_A_arc062_rule_apprehension",
+        "description": "ADAPTIVE-arm demotion block fires on the measurement ticks",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "control": "ADAPTIVE arm with a live modulatory channel",
+        "met": true
+      },
+      {
+        "name": "pool_divergent_CHANNEL_B_ofc_outcome_value",
+        "description": "ADAPTIVE-arm e2_world_forward candidate-pool spread (mean pairwise distance, a RANGE-kind statistic matching the envelope's dependence on a non-uniform F field) clears the floor on >=2/3 seeds",
+        "measured": 0.056089,
+        "threshold": 0.03,
+        "control": "ADAPTIVE arm divergent candidate pool (the non-vacuity precondition)",
+        "met": true
+      },
+      {
+        "name": "demotion_engaged_CHANNEL_B_ofc_outcome_value",
+        "description": "ADAPTIVE-arm demotion block fires on the measurement ticks",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "control": "ADAPTIVE arm with a live modulatory channel",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "PRIMARY_adaptive_excludes_productively_both_channels",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "READINESS_pools_divergent_both_channels",
+        "passed": true
+      },
+      {
+        "name": "GUARDRAIL_rank_preserving_all_demotion_ticks",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "PRIMARY_excluded_count_has_spread": true,
+      "READINESS_pool_divergent": true,
+      "GUARDRAIL_rank_preserving": true
+    },
+    "routing": {
+      "adaptive_floor_engages_across_channels": "PASS -> the channel-adaptive (mean-relative) floor is ready; the per-channel hand-floor sweeps (654h/485i/485j + pending 625/445/687) retire; downstream demotion retests use the adaptive floor",
+      "substrate_not_ready_requeue": "a channel pool is not divergent OR demotion never fires; re-queue at a longer P0 warmup; do NOT weaken anything",
+      "adaptive_floor_still_no_ops_requeue": "READINESS met but the ADAPTIVE floor still admits all (excluded_count==0) on a channel -> mean-relative insufficient -> mean_factor sweep / a different adaptive mode; NOT a falsification",
+      "rank_alteration_not_prefix_diagnose": "the eligible set is NOT an F-rank prefix on a demotion-active tick -> implementation/design fault -> /diagnose-errors; NOT a verdict"
+    }
+  }
+}
