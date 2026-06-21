@@ -79,6 +79,45 @@ def load_tracker() -> tuple[set, set, str]:
     return reviewed, discussed, last_review
 
 
+def _is_dry_run(d: dict) -> bool:
+    """True if a manifest's top-level dry_run flag is set (any truthy form).
+
+    A --dry-run smoke writes a real flat/pack manifest to evidence/experiments/
+    (e.g. V3-EXQ-696: 1 seed, 4 toy episodes, elapsed 29.9s) but is NOT evidence
+    -- it must never surface in pending_review. Mirrors the truthy check in
+    flat_only_silent_drop_guard (str-cast tolerates bool/int/str forms).
+    """
+    return str(d.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
+
+
+def load_dry_run_run_ids() -> set:
+    """Run_ids of manifests on disk flagged dry_run -- excluded from every pending bucket.
+
+    claim_evidence entries do not carry the dry_run flag (the indexer drops it),
+    so the PASS/FAIL sections -- which read the index, not the manifests -- need
+    the run_id set built directly from disk. Scans both the flat top-level
+    manifests and the canonical runs/<run_id>/manifest.json packs so a dry_run
+    leak via either path is caught (treated like superseded/degenerate).
+    """
+    if not EVIDENCE_DIR.is_dir():
+        return set()
+    ids: set[str] = set()
+    candidates = list(EVIDENCE_DIR.glob("*.json"))
+    candidates += list(EVIDENCE_DIR.glob("*/runs/*/manifest.json"))
+    for f in candidates:
+        if f.name in _NON_MANIFEST_FILES:
+            continue
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if isinstance(d, dict) and _is_dry_run(d):
+            rid = d.get("run_id")
+            if rid:
+                ids.add(rid)
+    return ids
+
+
 def _manifest_pass_fail(d: dict) -> str | None:
     """Resolve PASS/FAIL from V3 manifests (result, verdict, outcome, or metrics)."""
     result = d.get("result") or d.get("verdict") or d.get("outcome")
@@ -116,8 +155,14 @@ def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
     by_run[run_id]["failure_signatures"].extend(e.get("failure_signatures", []))
 
 
-def load_pending_entries(reviewed: set) -> list[dict]:
-    """Load PASS/FAIL from claim_evidence entries + unlinked_runs not yet reviewed."""
+def load_pending_entries(reviewed: set, dry_run_ids: set) -> list[dict]:
+    """Load PASS/FAIL from claim_evidence entries + unlinked_runs not yet reviewed.
+
+    dry_run_ids (built from on-disk manifests by load_dry_run_run_ids) are excluded
+    here too: claim_evidence carries a PASS/FAIL status for a dry-run manifest even
+    when the indexer marked it scoring_excluded, so without this guard a --dry-run
+    smoke surfaces in the FAIL/PASS section (incident V3-EXQ-696).
+    """
     if not CLAIM_EVIDENCE.exists():
         print("[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first",
               file=sys.stderr)
@@ -130,6 +175,8 @@ def load_pending_entries(reviewed: set) -> list[dict]:
             continue
         if e.get("run_id") in reviewed:
             continue
+        if e.get("run_id") in dry_run_ids:
+            continue
         if e.get("status") not in ("PASS", "FAIL"):
             continue
         _accumulate_pending_run(by_run, e, e.get("claim_id", "?"))
@@ -137,6 +184,8 @@ def load_pending_entries(reviewed: set) -> list[dict]:
         if e.get("source_type") != "experimental":
             continue
         if e.get("run_id") in reviewed:
+            continue
+        if e.get("run_id") in dry_run_ids:
             continue
         if e.get("status") not in ("PASS", "FAIL"):
             continue
@@ -336,6 +385,8 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
             continue
         if not isinstance(d, dict):
             continue
+        if _is_dry_run(d):
+            continue
         run_id = d.get("run_id")
         if not run_id:
             continue
@@ -399,6 +450,8 @@ def load_error_manifests(reviewed: set, discussed: set,
         except Exception:
             continue
         if not isinstance(d, dict):
+            continue
+        if _is_dry_run(d):
             continue
         run_id = d.get("run_id")
         if not run_id:
@@ -859,8 +912,12 @@ def append_substrate_change_section() -> None:
 def main():
     reviewed, discussed, last_review_utc = load_tracker()
     indexed_run_ids = load_indexed_run_ids()
+    # Run_ids of --dry-run smoke manifests on disk -- excluded from every pending
+    # bucket (treated like superseded/degenerate). claim_evidence drops the flag,
+    # so the index-derived FAIL/PASS section needs the disk-built set too.
+    dry_run_ids = load_dry_run_run_ids()
     flat_only_silent_drop_guard(indexed_run_ids)
-    runs = load_pending_entries(reviewed)
+    runs = load_pending_entries(reviewed, dry_run_ids)
     pending_run_ids = {r["run_id"] for r in runs}
     runner_undiscussed = load_runner_status_undiscussed(reviewed, discussed, indexed_run_ids)
     unclaimed = [
