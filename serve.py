@@ -2666,13 +2666,31 @@ def read_igw_ledger() -> dict:
     if not isinstance(entries, list):
         entries = []
 
+    # Join the cross-agent assignment ledger (igw_assignments.json) by
+    # stable_hash so the panel shows the SAME "assigned" label the workset
+    # uses (agent chip: claude_local / cursor / codex / other). This is the
+    # one shared source of truth for "who holds this IGW"; the routine ledger
+    # only carries process state. Keyed by stable_hash; read-only.
+    by_hash: dict = {}
+    try:
+        sys.path.insert(0, str(SERVE_DIR / "scripts"))
+        import igw_assignments_lib as _ial  # noqa: WPS433
+        by_hash = _ial.assignments_by_hash()
+    except Exception:
+        by_hash = {}
+    for e in entries:
+        if isinstance(e, dict):
+            e["active_assignments"] = by_hash.get(e.get("stable_hash") or "", [])
+
     def _sort_key(e):
         return e.get("reaped_at") or e.get("assigned_at") or e.get("staged_at") or ""
 
     entries = sorted(entries, key=_sort_key, reverse=True)
     by_status: dict = {}
     by_outcome: dict = {}
+    by_assigned_agent: dict = {}
     staged_waiting = 0
+    assigned_active = 0
     for e in entries:
         st = e.get("status") or "unknown"
         by_status[st] = by_status.get(st, 0) + 1
@@ -2681,12 +2699,20 @@ def read_igw_ledger() -> dict:
         oc = e.get("outcome")
         if oc:
             by_outcome[oc] = by_outcome.get(oc, 0) + 1
+        asn = e.get("active_assignments") or []
+        if asn:
+            assigned_active += 1
+            for a in asn:
+                ag = a.get("agent") or "unknown"
+                by_assigned_agent[ag] = by_assigned_agent.get(ag, 0) + 1
     return {
         "schema": "igw_routine_ledger/view",
         "count": len(entries),
         "summary": {
             "by_status": by_status,
             "by_outcome": by_outcome,
+            "by_assigned_agent": by_assigned_agent,
+            "assigned_active": assigned_active,
             "staged_waiting": staged_waiting,
         },
         "entries": entries,
