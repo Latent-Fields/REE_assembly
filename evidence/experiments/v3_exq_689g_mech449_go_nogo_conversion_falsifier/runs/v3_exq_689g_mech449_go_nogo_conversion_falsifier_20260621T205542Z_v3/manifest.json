@@ -1,0 +1,107 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689g_mech449_go_nogo_conversion_falsifier",
+  "run_id": "v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-21T20:55:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-449",
+    "ARC-107"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-449": "supports",
+    "ARC-107": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "go_nogo_converts_gated_channel",
+    "preconditions": [
+      {
+        "name": "pool_divergent_raw_f_range",
+        "description": "median raw-F RANGE across banks clears the divergent-pool floor (the same range statistic the conversion DV depends on)",
+        "measured": 0.54077,
+        "threshold": 0.05,
+        "control": "constructed distinct per-candidate world_states",
+        "met": true
+      },
+      {
+        "name": "pool_divergent_modulatory_range",
+        "description": "median modulatory-channel RANGE clears the floor",
+        "measured": 1000.0,
+        "threshold": 0.5,
+        "control": "score_bias pull toward U vs 0 others",
+        "met": true
+      },
+      {
+        "name": "gate_engaged_demotion_admits_u",
+        "description": "ARM_DEMOTION admits+selects the F-eligible undesirable on a majority of banks (the demotion-insufficient gap is present)",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "control": "U is modulatory-favoured + F-eligible",
+        "met": true
+      },
+      {
+        "name": "gate_engaged_constitution_excludes",
+        "description": "ARM_CONSTITUTION No-Go actually suppresses (excluded_count > 0): the Go/No-Go variables vary across arms",
+        "measured": 4.0,
+        "threshold": 0,
+        "control": "safety+staleness No-Go injected",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "conversion": true,
+      "safety": true,
+      "specificity": true
+    },
+    "criteria": [
+      {
+        "name": "conversion_rate_floor",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "safety_no_disinhibition",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "specificity_no_spurious_conversion",
+        "load_bearing": false,
+        "passed": true
+      }
+    ]
+  }
+}
