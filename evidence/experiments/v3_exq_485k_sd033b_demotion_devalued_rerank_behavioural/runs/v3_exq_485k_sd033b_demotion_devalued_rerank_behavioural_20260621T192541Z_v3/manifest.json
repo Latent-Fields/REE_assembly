@@ -1,0 +1,108 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural",
+  "run_id": "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-21T19:25:41.565081Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-033b": "non_contributory",
+    "MECH-263": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor_HIGH_THREAT",
+        "description": "ARM_2 trained-head OFC bias cross-candidate RANGE (max-min over the real candidate bank) at the HIGH-THREAT positive-control state clears BIAS_RANGE_FLOOR (0.05). The C2 discrimination positive control -- the head can produce cross-candidate range at all. RANGE not magnitude. Below floor -> substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 0.422823965549469,
+        "threshold": 0.05,
+        "control": "ARM_2 trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_trained_head_bias_cross_candidate_range_supra_dv_floor_DEVALUED_STATE",
+        "description": "485k FIX 2: ARM_2 trained-head OFC bias cross-candidate RANGE at the DEVALUED state clears BIAS_RANGE_FLOOR (0.05) -- the SAME statistic the load-bearing C1 devaluation_selection_shift routes on. 485j gated only the HIGH-THREAT range while C1 routed on the devalued range, so a below-floor devalued arm masqueraded as a fair weakens (the V3-EXQ-642 same-statistic miss). The 485k re-ranking devalued driver must produce a DIFFERENTIATED (non-flat) devalued bias for the demotion selector to re-rank. Below floor -> substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 0.10712875425815582,
+        "threshold": 0.05,
+        "control": "ARM_2 trained-arm bias over a real candidate bank at the DEVALUED state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_weight_delta_supra_floor",
+        "description": "ARM_2 state_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the head genuinely trained under the paired threat-conditioned driver.",
+        "measured": 5.635079383850098,
+        "threshold": 0.001,
+        "control": "trainable-arm head trained on frozen-encoder state_code in P1",
+        "met": true
+      },
+      {
+        "name": "mech448_f_eligibility_excluded_count_supra_zero",
+        "description": "MECH-448 NON-DEGENERACY: on ARM_2 the F->eligibility envelope actually EXCLUDED at least one candidate (f_eligibility_excluded_count > 0) AND the demotion path was active -- F was genuinely demoted on a divergent F pool, not an all-admit no-op. excluded_count == 0 (non-divergent F) -> substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 5.0,
+        "threshold": 0.0,
+        "control": "ARM_2 demotion-on E3.select diagnostics on the trained-agent eval bank",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_silence_control",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "485k corrects the 485j C1-only FAIL. FIX 1: the devalued-state OFC head driver now RE-RANKS (inverted high-threat outcome-coupling) instead of training flat (anti-range), so devaluation produces a differentiated devalued bias and ACTIVELY MOVES the committed selection. FIX 2: readiness now gates the DEVALUED-state bias range (the SAME statistic C1 routes on), so a below-floor devalued range self-routes substrate_not_ready_requeue, NEVER a false weakens. PRIMARY DVs measured on the COMMITTED selection through the MECH-448 demotion-enabled E3 selector (SelectionResult.selected_index), forced to the deterministic argmin-within-eligible path. Conversion is attributable to the demotion lever via the 3-arm dissociation: ARM_2 (trained head + demotion) must convert where ARM_1 (trained head, demotion off = F-dominance ceiling) and ARM_0 (frozen head + demotion = silence) do not. The demotion envelope (excluded_count, dn_sigma) is KEPT verbatim from 485j -- it fired correctly there (excluded_count=5); the C1 residual was the flat devalued head, NOT the envelope. Below the high-threat OR devalued bias-range floor OR with excluded_count == 0 -> substrate_not_ready_requeue (non_contributory), NEVER a false SD-033b/MECH-263 weakens. Readiness-met + DVs-fail is an honest result (conversion_ceiling_persists_despite_demotion -> /failure-autopsy / MECH-449 follow-on before stamping). Secondary readout: the high-vs-devalued OFC bias-VECTOR change (devaluation_bias_l2_shift / _cosine) records the valuation re-ranking even if the committed-argmax TV shift is thin."
+  }
+}
