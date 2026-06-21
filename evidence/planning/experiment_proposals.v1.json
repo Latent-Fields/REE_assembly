@@ -6443,7 +6443,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_192",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6452,7 +6452,19 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-06-21T17:23:03Z",
+      "gated_by_session": "igw-auto-igw-194-proposal-exp-0203-inv-065-20260620T163023Z",
+      "gating_reason": "Deferred 2026-06-21 (IGW-20260620-194, user decision). IGW labels this INV-065 (proxy_goal_necessity) but the proposal as-written targets MECH-192. BOTH interpretations are substrate-blocked. (a) MECH-192 (social signal-legibility/empathy) needs a multi-agent ecology absent from ree-v3 (single-agent substrate; V5-era). (b) The INV-065 behavioural test (beyond-horizon distal-resource acquisition under a proxy-goal ablation) is confounded by the INCOMPLETE action-commitment / basal-ganglia layer: the F-dominance conversion ceiling is under active construction (ARC-107 BG-selector constitution; MECH-448 only just provisional; MECH-449 substrate_conditional; natural-commit latch + commit/release-duration levers landed but falsifiers 460j/485i/654h still pending), and INV-065's other emergence route MECH-217 (trajectory-consolidated wanting) is unimplemented. A behavioural FAIL would re-derive the known conversion ceiling, not weaken INV-065. NOTE: the CEM wanting-landscape mechanism itself is live + validated (hippocampal.wanting_weight via REEConfig.enable_goal_stream, V3-EXQ-559), so a commitment-free planning-gradient diagnostic remains a viable narrower option.",
+      "release_condition": "Re-propose once the action-commitment/BG conversion path lands (ARC-107/MECH-448 promoted stable + MECH-449 resolved + natural-commit falsifiers 460j/485i/654h passed) AND MECH-217 trajectory-consolidated wanting is implemented; OR scope a commitment-free planning-gradient DIAGNOSTIC (does oracle proxy-wanting create a beyond-horizon CEM score-gradient toward the resource at controlled probe positions) that needs no sustained committed execution.",
+      "blocked_by": [
+        "action_commitment_bg:ARC-107",
+        "MECH-448",
+        "MECH-449",
+        "MECH-217",
+        "multi_agent_ecology:MECH-192_path"
+      ],
+      "blocked_note": "Action-commitment/basal-ganglia layer incomplete (F-dominance conversion ceiling under active build) + MECH-217 unimplemented; MECH-192 path needs absent multi-agent substrate. See gating_reason."
     },
     {
       "acceptance_checks": [
