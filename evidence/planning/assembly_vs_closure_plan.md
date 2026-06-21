@@ -25,15 +25,20 @@ closure_plan:
         self-test + functional smoke green.
     - id: MOVE-2
       title: "Assembly-chip path mirroring the closure-chip path (session-land)"
-      status: open
+      status: done
       severity: high
       awaiting: null
+      last_updated: 2026-06-21
       note: >
-        Carve the session-land 'blocked-on-upstream -> don't chip' exception:
-        a critical-path substrate that is NOT in any build queue and that
-        nobody is building SHOULD be chipped as a BUILD task. Distinguish
-        'blocked on a pending run' (skip) from 'blocked because construction
-        never started' (surface).
+        Landed 2026-06-21. session-land Phase 3 rule 3 split into rule 3 (still
+        skip work blocked on a pending run -- correctly in-flight) + new rule 3a
+        (chip an UNBUILT critical-path substrate as a BUILD task routed to
+        /implement-substrate when all four hold: on critical path, not built, in
+        no build queue, nobody constructing it -- verified against the queue /
+        substrate_queue / TASK_CLAIMS / plan-of-record status tables). Chip must
+        name the substrate id + critical-path + no-active-builder. Report-line
+        example reconciled to match. Edited BOTH skill copies (.claude/ +
+        .agents/) byte-identically. PROMOTES NOTHING.
     - id: MOVE-3
       title: "Hard brake on the re-derive loop (failure-autopsy granularity hook gates the queue)"
       status: open
@@ -58,7 +63,8 @@ closure_plan:
 
 # Assembly vs closure: making the machinery assemble, not just finish
 
-**Status:** MOVE-1 (keystone) landed 2026-06-21. MOVES 2-4 open.
+**Status:** MOVE-1 (keystone) + MOVE-2 (assembly-chip path) landed 2026-06-21.
+MOVES 3-4 open.
 **Origin:** user observation 2026-06-21 — "the machinery gets stuck in myopic
 attempts to force closure before substrate is ready. We are meant to be
 assembling, not tying off loose ends." Diagnosis below grounded in a 3-sweep
@@ -153,14 +159,30 @@ including 5 new fixtures; functional smoke (a temp plan with one `open` + one
 `assembling` node) confirmed the open node dragged the % and joined `remaining`
 while the assembling node sat in the frontier bucket and moved neither.
 
-### MOVE-2 — assembly-chip path mirroring the closure-chip path. OPEN.
+### MOVE-2 — assembly-chip path mirroring the closure-chip path. DONE 2026-06-21.
 
-Closure work pulls itself forward (chips); assembly does not. Carve the
-session-land "blocked-on-upstream -> don't chip" rule so a substrate that is on
-the critical path and *not yet in any build queue* gets chipped as a **build
-task**. Distinguish "blocked on a pending run" (correctly skip) from "blocked
-because construction never started" (must surface). Edit:
-`.claude/skills/session-land/SKILL.md` Phase 3 rule 3 (+ `.agents/` mirror).
+Closure work pulls itself forward (chips); assembly did not. The session-land
+Phase 3 chip rule dropped "anything blocked on upstream" by reflex, and new
+substrate work is almost always blocked on upstream substrate — so the build
+work that relieves the ceiling fell on the floor every session.
+
+Fixed by splitting Phase 3 rule 3 into two:
+
+- **rule 3** — still skip vague observations, trivial inline fixes, and work
+  **blocked on a pending run** (an experiment is queued/running, correctly
+  in-flight; let it finish).
+- **rule 3a** — do **not** drop forward-assembly work. An **unbuilt** substrate
+  is chipped as a **build task** (route to `/implement-substrate`) when all four
+  hold: (a) on the critical path, (b) not built, (c) in no build queue, (d)
+  nobody constructing it. Verify (b)-(d) against `ree-v3/experiment_queue.json`,
+  `evidence/planning/substrate_queue.json`, `TASK_CLAIMS.json`, and
+  plan-of-record `*_plan.md` status tables (the same not-already-in-flight
+  discipline as rule 2). The chip names the substrate (claim/SD/MECH id) and
+  states it is on the critical path with no active builder. Queued / in-progress
+  / already-claimed substrate stays skipped (in-flight, not dropped).
+
+The report-line example was reconciled to match. Edited both skill copies
+(`.claude/skills/session-land/SKILL.md` + `.agents/` mirror) byte-identically.
 
 ### MOVE-3 — hard brake on the re-derive loop. OPEN.
 
@@ -199,7 +221,7 @@ substrate on the substrate_queue.
 
 ## Open follow-ons
 
-- MOVE-2, MOVE-3, MOVE-4 (above).
+- MOVE-3, MOVE-4 (above). MOVE-2 done 2026-06-21.
 - Claims-layer consolidation of the 6 substrate-blocked conventions into one
   canonical `assembling`-equivalent with a machine-readable `awaiting:` edge
   (prerequisite for MOVE-4's full portfolio view).
