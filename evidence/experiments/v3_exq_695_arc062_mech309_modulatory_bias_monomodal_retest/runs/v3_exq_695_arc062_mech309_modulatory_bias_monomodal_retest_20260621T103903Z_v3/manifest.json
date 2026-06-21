@@ -1,0 +1,118 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest",
+  "run_id": "v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest_20260621T103903Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-21T10:39:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-309",
+    "ARC-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "shared_f_dominance_conversion_ceiling_route_implement_substrate_mech448",
+    "preconditions": [
+      {
+        "name": "R1_committed_class_axis_exercisable_both_arms",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "R2_gapa_consumed_summary_divergence_both_arms",
+        "measured": 0.092314,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "R2b_gapa_consumed_summary_bounded",
+        "measured": 0.371751,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "R3_arm_on_rule_field_differentiated_and_matured",
+        "measured": 0.95422,
+        "threshold": 0.3,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "R4_propagation_non_vacuity_arm_on_bias_differs_from_arm_off",
+        "measured": 0.04088266,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "R5_modulatory_route_range_non_vacuity_same_statistic",
+        "measured": 0.64985262,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_committed_class_entropy_lift_over_both_controls",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "R1_class_axis_exercisable": true,
+      "R2_gapa_divergence": true,
+      "R3_arm_on_differentiated_matured": true,
+      "R4_propagation_non_vacuity": true,
+      "R5_modulatory_route_range_non_vacuity": true,
+      "R4_within_arm_on_rule_state_counterfactual_nonzero": true,
+      "C2_paired_lift": false,
+      "non_degenerate": true
+    }
+  }
+}
