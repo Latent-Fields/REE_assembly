@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-21T06:53:52Z
+Generated: 2026-06-21T07:32:07Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -37,7 +37,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under | in_progress | 1 | load-bearing | V3-EXQ-625e | RESUME the Phase 1b gate via a redesigned successor (V3-EXQ-625d, JOINT-COMPOSITE-ON) once | 2026-06-19 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-19 |
-| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654g RAN FAIL/non_contributory 2026-06-19 | V3-EXQ-654g RAN + ADJUDICATED 2026-06-19 (FAIL/non_contributory; C1 fully met, C2 +0.011 n | 2026-06-20 |
+| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654h QUEUED 2026-06-21 (pending on ree-cl | V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).  | 2026-06-21 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress | 2 | load-bearing | V3-EXQ-689d -- the MECH-448 (ARC-107) rank-prese | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-06-21 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460i (QUEUED + INGESTED 2026-06-20, ree-v | Advances/closes on the V3-EXQ-460i RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-06-20 20:32:47+00:00 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
