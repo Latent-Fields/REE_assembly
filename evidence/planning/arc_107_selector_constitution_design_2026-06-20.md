@@ -168,9 +168,22 @@ mapping -- what breaks if this component breaks).
   catatonia analog; Go over-pressure -> tics / compulsions; mis-routed context
   arbitration -> context-inappropriate action (a model handle for several
   disorders -- to be made precise in the lit-pull).
-- **Gate:** build ONLY if MECH-448 (the demotion lever) proves insufficient
-  alone (note s5.3 branch A). Captured now; build is a later step. NOT gated on
-  689c (see section 0).
+- **Gate (INVERTED 2026-06-21, anti-partial-instantiation):** MECH-449 is a
+  roadmap leg of ARC-107, NOT a contingency that fires only if MECH-448 fails.
+  The earlier "build only if the demotion lever proves insufficient" gate is
+  retracted: it makes a *passing* MECH-448 silently foreclose the rest of the
+  constitution -- structurally the same trap as the F-dominance route (a local
+  win declared circuit-complete). The discriminating question is "what does
+  bounded Go/No-Go SUPPRESSION add that rank-preserving demotion structurally
+  cannot" -- and rank-preserving demotion is order-preserving, so it can never
+  *exclude* an unsafe/stale/perseverative candidate that is F-eligible; only an
+  active No-Go can. **Positive build trigger:** V3-EXQ-689f, the No-Go-necessity
+  falsifier (§6 step 4b) -- a selection-face diagnostic that demonstrates the
+  demotion-insufficient regime. A PASS motivates the MECH-449 build directly;
+  the build no longer waits on downstream behavioural retests stumbling into the
+  gap. (`epistemic_category: substrate_conditional` is unchanged -- it suppresses
+  promote/demote until the constitution is built + tested; only the *build
+  decision* is inverted.) NOT gated on 689c (see section 0).
 
 ### 3.3 MECH-447 -- conflict-graded near-tie sufficiency (PARAMETRIC; likely demote)
 
@@ -237,10 +250,88 @@ into committed action**, not entropy.
    amend `f_dominance_conversion_ceiling`: add the rank-preserving F->eligibility
    demotion lever to e3_selector.py, no-op-default, contracts + activation smoke.
 4. **MECH-448 falsifier (sequenced AFTER build 3):** /queue-experiment --
-   689a-successor on the demotion lever, acceptance criteria s8. NOT chipped yet
-   (blocked on build 3).
-5. **MECH-449 build (sequenced AFTER MECH-448 outcome):** only if demotion alone
-   insufficient. NOT chipped yet (double-gated).
+   689a-successor on the demotion lever, acceptance criteria s8. **DONE:**
+   V3-EXQ-689d PASS all 4 criteria (2026-06-21); MECH-448 promoted provisional.
+4b. **MECH-449 No-Go-necessity falsifier (NEW, 2026-06-21; positive trigger for
+   step 5):** /queue-experiment -- V3-EXQ-689f, a selection-face / commitment-free
+   diagnostic showing the demotion-insufficient regime: present a candidate set
+   containing unsafe / stale / perseverative / low-viability options that are
+   F-eligible, and show the rank-preserving MECH-448 envelope ADMITS them
+   (order-preserving -> cannot exclude an eligible-but-undesirable candidate),
+   whereas a bounded No-Go would suppress them. A PASS is the positive evidence
+   that motivates step 5 -- replacing the old "wait until 448 fails downstream"
+   gate. Runnable on the CURRENT substrate (MECH-448 built; MECH-449 not) because
+   it measures a *gap* in the built envelope, not MECH-449 itself.
+5. **MECH-449 build (positively triggered by step 4b, NOT contingent on 448
+   failing):** /implement-substrate -- generalise MECH-260 into bounded Go/No-Go
+   pressure over the eligibility envelope. Roadmap leg of ARC-107; build proceeds
+   on a 689f PASS.
+
+---
+
+## 6b. Completeness ledger (anti-partial-instantiation closure criterion)
+
+**Why this section exists.** The F-dominance route failed because a partial
+mechanism (selection-readout near-tie levers) returned a local win and was
+treated as the answer until it was exhausted. MECH-448 just returned a strong
+local win (V3-EXQ-689d: committed-class entropy 0.938 vs 0.371, ~2x). That is
+*exactly* the moment the same trap springs. This ledger makes "is the
+constitution actually instantiated?" a checklist rather than a vibe, so a
+component-3 win cannot masquerade as a complete circuit.
+
+### V3 constitution components (the ARC-107 scope)
+
+| # | Component | Owner | Build status (2026-06-21) |
+|---|---|---|---|
+| 1 | Direct/indirect **Go/No-Go opponency** (striatal channel competition; active SUPPRESSION of unsafe/stale/perseverative/low-viability channels) | MECH-449 | **NOT BUILT** -- substrate_conditional. Positive build trigger = V3-EXQ-689f (No-Go-necessity falsifier). This is the core of BG and the most load-bearing gap. |
+| 2 | **STN/hyperdirect conflict-graded hold** (threshold raise / candidate-set widening under conflict) | MECH-447 | **EXHAUSTED** -- 689a: Factor A inert, A1B1 destructive. Parametric family closed by decision. Either drop to decorative or an ablation must rescue it; cannot be silently assumed present. |
+| 3 | **Pallidal permission-to-commit gate** (F decides eligibility, not the winner; F removed from the within-eligible argmin) | MECH-448 | **BUILT + VALIDATED + provisional** (689d PASS). Channel-adaptive floor in flight (689e). This is the ONLY fully-landed component. |
+| 4 | **Value divisive-normalisation** (rank-altering at commit; CDQ-003 load-bearing divergence) | folded into MECH-448 | **PARTIAL** -- realised only as the demotion envelope's denominator. Counts only as part of component 3, not as independent coverage. |
+| 5 | **Post-commit latch / de-commit** (commitment stability; the root-C commit-entry-decisiveness face) | SD-034 / MECH-090 / MECH-342 / MECH-445 / MECH-446 | **OPEN** -- 460j is the 8th iteration, design-rethink flagged (latch-hold yields to SD-034 de-commit). Eligibility/hold machinery is unsafe without a stable latch (s5 risk). |
+| 5b | **Psychiatric-failure-mode column** (ARC-106 mandate; documentation, not a mechanism) | grounding synthesis | **DRAFTED** at L2 for all components. Not a runtime component. |
+
+### V4+ axes -- explicitly OUT of V3 ARC-107 scope (must be a STATED bet, not a silent cut)
+
+The full biological basal ganglia also includes the following. Deferring them to
+v4 may be the right call, but per ARC-106 (zero *silent* divergence) the deferral
+must be a named, falsifiable bet, not an unspoken scope cut:
+
+| Axis | Home | Bet to register |
+|---|---|---|
+| **Vigor / opportunity-cost** (tonic DA sets action amplitude/latency) | `biology_grounding_convergence_v4_plan` BG-4 | "V3 committed-action behaviour does not require a vigor/opportunity-cost axis." |
+| **Action chunking / sequencing** (dorsolateral striatal habit loops; sustained multi-step commitment) | v4 | "V3 commitment is single-decision; multi-step action-commitment chunking is v4." (Note: this is the exact layer the don't-queue-commitment-dependent-behaviour gate already protects.) |
+| **Dopaminergic RPE learning signal** (TD learning rule on eligibility) | v4 | "V3 eligibility is hand-shaped, not learned by RPE; the learning signal is v4." |
+| **Thalamocortical recurrence / beta-gating** | BG-3 latch face (partial) | "V3 closes the loop with the SD-034 latch family, not explicit thalamocortical oscillation." |
+| **Multi-loop cortico-striatal arbitration** (separate motor / cognitive / motivational loops) | v4 | "V3 collapses all loops into one shared commitment interface (s4 contextual-loops divergence)." |
+
+### Closure criterion (the forcing function)
+
+**ARC-107 may NOT be promoted past `candidate`, and the constitution may NOT be
+called instantiated, on MECH-448 alone.** Minimum bar for "constitution
+complete (V3 scope)":
+
+1. Component **1 (Go/No-Go opponency)** built and shown load-bearing by its own
+   ablation falsifier (ARC-106 test) -- not just present.
+2. Component **2** either functional or its removal explicitly justified in the
+   divergence ledger (decorative-by-decision, not by neglect).
+3. Component **3** landed (done) + component **5 (post-commit latch)** coupled so
+   commitment is stable.
+4. Each component passes the ARC-106 load-bearing-vs-decorative ablation test.
+5. Each deferred v4 axis above is registered as a stated bet.
+
+ARC-107's own claim definition already enforces most of this (it names Go/No-Go +
+hold + pallidal gate + latch), so the structural guardrail exists; this ledger is
+the operational tracker that someone must DRIVE rather than letting ARC-107 sit
+`candidate` while behaviour rides on component 3.
+
+### Operational drift signal (the early-warning the F-dominance route lacked)
+
+If **N>=3 consecutive in-flight selector experiments all iterate component 3
+(MECH-448 envelope-floor calibration / lettered demotion retests)** with no
+component-1 build and no 689f-class No-Go diagnostic queued, that is the
+partial-instantiation signature recurring -- flag it in `/governance` and route
+to step 4b/5. (As of 2026-06-21 the live queue is 689e + 654i, *both* component-3
+iterations -- the signal is already at N=2.)
 
 ---
 
