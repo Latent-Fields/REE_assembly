@@ -59,8 +59,13 @@ from typing import Optional
 ROOT = Path(__file__).resolve().parent.parent  # REE_assembly/
 ASSIGNMENTS = ROOT / "evidence" / "planning" / "igw_assignments.json"
 
-VALID_AGENTS = {"claude_local", "cursor", "codex", "other"}
-VALID_SOURCES = {"igw_routine_tick", "manual_ui", "cli", "import"}
+# "spawned_task" = a Claude Code spawn_task chip (end-of-skill follow-on work).
+# Not a live session like claude_local -- it marks that the item has been
+# spun off as a one-click background chip, so the workset/igw surfaces show it
+# as accounted-for and the IGW routine's skip-check won't auto-spawn a
+# duplicate. Written by scripts/igw_chip_assign.py (source="session_land_chip").
+VALID_AGENTS = {"claude_local", "cursor", "codex", "other", "spawned_task"}
+VALID_SOURCES = {"igw_routine_tick", "manual_ui", "cli", "import", "session_land_chip"}
 
 # Conservative label sanitiser: ASCII, no control chars, max 80.
 _LABEL_RE = re.compile(r"[^\x20-\x7e]")
