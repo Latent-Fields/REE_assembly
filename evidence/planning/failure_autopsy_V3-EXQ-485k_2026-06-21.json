@@ -1,0 +1,74 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T19:40:23Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3",
+      "queue_id": "V3-EXQ-485k",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (sig-b discrimination, via 485j) / blocked (sig-a devaluation): demotion-alone converts the passive re-ranking signature but not the active No-Go withdrawal signature.",
+        "biological_reference": "clear, load-bearing: OFC outcome-devaluation is an active No-Go withdrawal of the previously-preferred action (Rudebeck & Murray 2014; Mink 1996 focal-go + surround-no-go; Maia & Frank 2011). The MECH-448 demotion envelope provides eligibility ACCESS only, no oppositely-signed No-Go suppression -> a devalued OFC valuation must out-magnitude F within the eligible set.",
+        "prerequisites": "missing: the MECH-449 Go/No-Go eligibility constitution (candidate / substrate_conditional / NOT built) that the devaluation-withdrawal needs. Trained OFC head + MECH-448 demotion envelope are present and engaging (excl 4-5, winner!=F on 2/3).",
+        "implementation": "partial: FIX-1's inverted re-ranking devalued driver (DEVALUED_RERANK_GAIN=4.0, weight 0.5) overshoots the +/-0.5 ofc_bias_scale clamp -> uniform saturation -> readable devalued range = exactly 0.0 on 2/3 seeds despite the bias vector inverting (l2 1.88/1.52, cosine -0.71/-0.57). The single shared OFC head couples devaluation-training to discrimination.",
+        "environment": "adequate: OFC-isolated SD-054 bipartite reef/forage candidate bank.",
+        "measurement": "misleading, load-bearing: (a) interpretation.preconditions report aggregate max-over-seeds (max_test_bias_range_devalued=0.107 from seed 0; max_test_bias_range=0.423 from seed 1) and read met=True, masking the per-seed 2-of-3 readiness gate that only seed 0 passed (ready_seeds=1) -- the meta-version of the V3-EXQ-642 same-statistic miss; (b) the committed-argmax-TV C1 DV is blind to clamp-saturated re-ranking (the l2/cosine secondary readout catches it but is not a gate).",
+        "integration": "coupled but unstable: one OFC head must do both re-ranking devaluation AND task-role discrimination; FIX-1 destabilised the C2 discrimination that converted in 485j (between_context_tv 1.0/0.0/1.0 -> 0/0/0).",
+        "scale": "clamp-bound: the +/-0.5 bias clamp is the binding ceiling on the readable cross-candidate range."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-devaluation feeding the basal-ganglia direct/indirect (Go/No-Go) pathways to actively withdraw the devalued action",
+        "dependencies": [
+          "BG indirect / No-Go pathway suppression of the previously-Go action (MECH-449, not built)",
+          "trained OFC valuation head (present)",
+          "rank-preserving F->eligibility demotion envelope (MECH-448, present and firing)"
+        ],
+        "is_formal_import": false,
+        "divergence": "REE's MECH-448 implements eligibility ACCESS only (removes F dominance over the final argmin) with no oppositely-signed No-Go pressure; biology pairs OFC re-valuation with an active No-Go withdrawal (the MECH-449 Go/No-Go constitution generalising MECH-260). Demotion-alone therefore converts discrimination (passive re-rank) but not devaluation (active withdrawal).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-485k (2026-06-21, ree-cloud-2): supersedes 485j; FAIL/non_contributory/non_degenerate:false (no governance weight), self-route substrate_not_ready_requeue CONFIRMED + reclassified by failure_autopsy_V3-EXQ-485k_2026-06-21. Both DVs vacuous: readiness 1/3 (the aggregate interpretation.preconditions met=True panel reports max-over-seeds and masks a per-seed 2-of-3 collapse -- only seed 0 cleared the devalued floor). FIX-1's re-ranking devalued driver works (bias vector inverts, cosine -0.71/-0.57 on 2/3) but overshoots the +/-0.5 OFC bias clamp -> uniform saturation -> readable devalued range = exactly 0.0 on 2/3 seeds; and it REGRESSED the 485j C2 discrimination conversion (1.0/0.0/1.0 -> 0/0/0) by swamping the shared OFC head. Diagnosis: demotion-alone (MECH-448 eligibility access) cannot express the active No-Go withdrawal that behavioural outcome-devaluation requires; the discrimination signature (sig-b) is demotion-tractable (converted 485j) but the devaluation signature (sig-a) is blocked on the MECH-449 Go/No-Go constitution (NOT built; substrate_conditional). The 485e->k lineage clears the ARC-107 demotion-alone-insufficient build gate (arc_107_selector_constitution_design section 3.2 line 171/243). MECH-448 NOT weakened (envelope fired, excl 4-5, winner!=F on 2/3). MECH-263 sig-a / SD-033b devaluation: non_contributory / substrate_conditional / pending_retest_after_substrate (blocked on MECH-449). Corrected OFC devaluation arm (V3-EXQ-485l: in-band re-rank gain + C2 protection + bias-vector scored DV + use_f_eligibility_adaptive_floor) GATED behind the MECH-449 build + 689e. PROMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": "f_dominance_conversion_ceiling",
+        "title": "MECH-449 Go/No-Go constitution build gate CLEARED by the 485e->k demotion-alone-insufficient lineage",
+        "implementation_hint": "Emit the 485k failure record and flag the MECH-449 Go/No-Go eligibility-constitution build gate as CLEARED: six autopsies (485e/g/h/i/j/k) demonstrate demotion-alone (MECH-448 eligibility access) converts the OFC discrimination signature (sig-b, 485j) but NOT the active-withdrawal devaluation signature (sig-a) -- the precise trigger the ARC-107 design note (section 3.2 line 171/243) gates the MECH-449 build on. Convert depends_on_unresolved[1] (MECH-449 Go/No-Go, substrate_conditional, double-gated/not-chipped) to gate-cleared/ready-to-chip. Separately adopt use_f_eligibility_adaptive_floor on the OFC channel (pending V3-EXQ-689e) as the standing fix for the per-channel envelope-floor circle (485i/485j bespoke _calibrate_envelope_floor; 654h all-admit no-op). The corrected V3-EXQ-485l is the gated downstream behavioural validation, queued post-MECH-449.",
+        "unblocks_claims": ["MECH-263", "SD-033b"],
+        "depends_on_unresolved": [
+          "MECH-449 Go/No-Go eligibility constitution (candidate / substrate_conditional; build gate now cleared, ready to chip)",
+          "use_f_eligibility_adaptive_floor OFC-channel adoption (pending V3-EXQ-689e PASS)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3",
+          "experiment_type": "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural",
+          "metric": "C1 devaluation readiness 1/3 (devalued bias range = exactly 0.0 on 2/3 seeds via +/-0.5 clamp saturation; aggregate-max precondition panel masked the per-seed collapse) AND C2 discrimination regressed 2/3 -> 0/3 vs 485j (driver coupling)",
+          "target": "a built MECH-449 Go/No-Go constitution must convert the OFC devaluation (active-withdrawal) committed-selection shift on >=2/3 seeds where MECH-448 demotion-alone (six-autopsy lineage) does not"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Demotion-alone converts the discrimination signature (sig-b, passive re-rank of which eligible candidate wins; 485j) but NOT the devaluation signature (sig-a, active No-Go withdrawal of the previously-preferred action). The MECH-448 eligibility envelope provides access, not suppression.",
+        "The 485e->k six-autopsy lineage of demotion-alone non-conversion of the OFC withdrawal signature clears the ARC-107 'demotion alone insufficient' gate that triggers the MECH-449 Go/No-Go constitution build.",
+        "interpretation.preconditions that report aggregate max-over-seeds can read met=True while the per-seed 2-of-3 readiness gate fails (only the binding seed shown). Report the per-seed pass-count, not the max -- the meta-version of the V3-EXQ-642 same-statistic miss.",
+        "An overstrong inverted re-ranking devalued driver overshoots the +/-0.5 OFC bias clamp into uniform saturation (readable range exactly 0.0) even as the bias vector genuinely inverts -- the committed-argmax-TV DV is blind to it; the l2_shift/cosine vector readout is the robust signal.",
+        "FIX-1's devalued driver regressed the 485j C2 discrimination conversion: a strong devalued term co-opts the single shared OFC head and destabilises the high-threat spread that drives discrimination -- the two fixes are not independent.",
+        "The per-channel envelope-floor circle (485i/485j bespoke _calibrate_envelope_floor; 654h all-admit no-op; pending 625/445/687) is the dance the just-landed use_f_eligibility_adaptive_floor (mean-relative, scale-invariant) collapses into one knob; 689e already validates it on the OFC channel."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Six-autopsy SD-033b/MECH-263 OFC behavioural-conversion lineage (485e/g/h/i/j/k): a convergent sequence of test-instrumentation and substrate-engagement fixes converging on a single structural finding.",
+    "is_independent_bugs": false,
+    "structural_property": "The MECH-448 demotion envelope (eligibility ACCESS) converts the passive discrimination signature (sig-b, 485j) but cannot express the active No-Go WITHDRAWAL that the devaluation signature (sig-a) requires -- demotion-alone is necessary but not sufficient. This is the ARC-107 constitution's 'demotion alone insufficient' build gate for MECH-449, now cleared.",
+    "readings": ["substrate_incomplete_needs_MECH449_go_nogo", "per_channel_envelope_floor_circle_fixed_by_adaptive_floor"]
+  }
+}
