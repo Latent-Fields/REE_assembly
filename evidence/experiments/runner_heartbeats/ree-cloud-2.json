@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-21T10:43:06Z",
+  "last_tick_utc": "2026-06-21T11:13:13Z",
   "state": "running",
   "current_exq": "V3-EXQ-460j",
   "current_exq_started_utc": "2026-06-21T07:00:03.459104+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
     "runs_done": 10,
     "runs_total": 3,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 295,
-    "overall_pct": 333.3
+    "overall_pct": 336.7
   },
-  "seconds_elapsed": 13383,
+  "seconds_elapsed": 15190,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier] starting (dry_run=False)",
@@ -46,7 +46,9 @@
     "Seed 43 Condition ARM_ACTION_EXTENT",
     "[train] arm_eval seed=43 ep 295/295 gap_scaled: intent=0 releases=0 occ=30.33 (off_occ=33.07) pre_occ=0.333 post_occ=0.200 win=2 decisiveness=0.000 | off_hold=1.03 (run=1 reassert=0) sustained=False lever_shortened=False co_occur=False | flat_co=False action_co=False",
     "verdict: FAIL seed=43 guard_pass=True sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=True rule_bias_trained=True co_occurs=False (contact_rate=0.3135 z_goal_at_contact=0.4520)",
-    "Seed 44 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE"
+    "Seed 44 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
+    "[train] stage0_nursery seed=44 ep 20/295 z_goal_peak=0.4246 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/295 retention=0.924 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
