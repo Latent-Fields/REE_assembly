@@ -1,0 +1,61 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T18:09:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485j_sd033b_demotion_envelope_calibrated_behavioural_20260621T180033Z_v3",
+      "queue_id": "V3-EXQ-485j",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1 devaluation_selection_shift=0 on all seeds; failure is a non-vacuity floor breach on the DEVALUED-state OFC bias range (0.020 < 0.05 DEVAL_SHIFT_MARGIN), not a fair-test falsification. C2 discrimination and C3 silence both PASSED.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened on C2 (MECH-448 generalisation + MECH-263 sig-b discrimination corroborated via 3-arm dissociation); unclear on C1 (MECH-263 sig-a devaluation not fairly tested)",
+        "biological_reference": "OFC devaluation is a RE-RANKING (shift away from devalued outcome); the driver renders it as a range COLLAPSE (flat-at-devalued via DEVALUED_ANTIRANGE_WEIGHT=0.5), so a flat valuation removes OFC influence but cannot move a committed argmin",
+        "prerequisites": "present -- demotion envelope, trained head, threat-conditioning all engaged (excluded_count=5, winner_neq_f_argmin=True, calibration_succeeded=True)",
+        "implementation": "partial -- devalued-state head trains flat (anti-range) not re-ranking; C1 readiness precondition gates the high-threat state not the devalued state",
+        "environment": "adequate (OFC-isolated SD-054 bipartite reef/forage bank)",
+        "measurement": "under-instrumented (load-bearing) -- C1 readiness precondition keys the high-threat bias range (0.377), not the devalued-state range (0.020) the C1 DV routes on; V3-EXQ-642 same-statistic miss",
+        "integration": "coupled -- demotion + OFC arbitration compose; C2 confirms the path works end-to-end",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-devaluation (Rudebeck & Murray 2014; Dickinson & Balleine), task-role discrimination (Stalnaker/Cooch/Schoenbaum 2015)",
+        "dependencies": ["state-conditioned OFC valuation head", "MECH-448 F->eligibility demotion (commit-argmax access)", "threat-conditioned state_code driver"],
+        "is_formal_import": false,
+        "divergence": "devaluation rendered as range-collapse rather than re-ranking (translation gap, not a formal-definition import)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-448_generalisation": "supports (NOT weakened -- C2 conversion dissociated against the F-dominance control is positive corroboration that the demotion lever generalises off GAP-A to the OFC channel; MECH-448 is not tagged on this manifest)",
+        "SD-033b_MECH-263_sig_b_discrimination": "supports (narrow; C2 converted, ARM_1 control fails; single-pathway, pending_retest)",
+        "SD-033b_MECH-263_sig_a_devaluation": "non_contributory (substrate_not_ready_requeue -- devalued-state range below the same-statistic non-vacuity floor; downgrade the manifest blanket 'weakens')"
+      },
+      "manifest_self_route": "weakens / conversion_ceiling_persists_despite_demotion -- DOWNGRADED by this autopsy",
+      "recommended_evidence_quality_note": "V3-EXQ-485j (2026-06-21, ree-cloud-2): split result, manifest self-route weakens/conversion_ceiling_persists_despite_demotion DOWNGRADED by failure_autopsy_V3-EXQ-485j_2026-06-21. C2 task-role discrimination CONVERTED on the MECH-448 demotion-enabled E3 selector (between-context TV 1.0 on 2/3 seeds; ARM_1 demotion-off F-dominance control = 0.0 all seeds; ARM_0 silent) -- first cross-substrate corroboration that the BG F->eligibility demotion lever generalises off GAP-A foraging to the OFC channel; MECH-448 NOT weakened. C1 devaluation did NOT convert because the OFC trained head's bias range collapses to ~0.02 (< the 0.05 non-vacuity floor) at the devalued state (anti-range driver trains flat-at-devalued, not re-ranking); the demotion envelope fired correctly (excluded_count=5, winner!=F-argmin) so this is orthogonal to f_eligibility_envelope_floor/dn_sigma. The C1 readiness precondition gated the high-threat range (0.377), not the devalued-state range (0.020) the DV routes on, so the devaluation arm is below the same-statistic non-vacuity floor -> substrate_not_ready_requeue, NOT a weakens. Sig-b (discrimination): narrow-supports. Sig-a (devaluation): non_contributory, pending_retest_after_substrate; corrected re-queue = V3-EXQ-485k (re-ranking devalued-state head driver + C1 precondition retargeted to the devalued-state range).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The SD-033b GAP-8 trainable OFC head + MECH-448 demotion substrate are already implemented and engaged (excluded_count=5). The residual is a test-design / devalued-state head-DRIVER calibration that lives in the experiment harness (the paired threat-conditioned driver + the C1 readiness precondition), NOT a missing/immature ree_core substrate. Routing is queue-experiment (V3-EXQ-485k), not implement-substrate."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "The supporting evidence (C2 discrimination conversion) is a SEPARATE pathway from the failing C1 devaluation, and is a genuine 3-arm-dissociated PASS (not illusory substrate-limited conflict resolution). The discrimination support is real; the devaluation non-conversion is independently substrate/test-limited.",
+      "governance_reconciliation": {
+        "behavioral_diversity_isolation:GAP-I": "reconcile to PARTIAL conversion -- discrimination signature converted (demotion lever's OFC generalisation demonstrated); devaluation signature pending V3-EXQ-485k. Surface to user whether GAP-I 'first downstream conversion' bar is met by the discrimination conversion or requires the full SD-033b behavioural PASS.",
+        "commitment_closure:GAP-8": "unchanged -- SD-033b candidate->provisional promotion still needs the full behavioural PASS (devaluation half pending 485k)."
+      },
+      "learning_extracted": [
+        "MECH-448 F->eligibility demotion generalises off GAP-A foraging to the OFC channel -- first cross-substrate corroboration, via a clean 3-arm dissociation on the task-role-discrimination signature (ARM_2 TV 1.0 2/3 vs ARM_1 F-dominance control 0.0 all seeds).",
+        "OFC devaluation does not register a behavioural shift when the devalued-state head trains FLAT (anti-range) rather than RE-RANKING: a flat valuation removes OFC influence but cannot move a committed argmin through a (correctly-firing) demotion selector.",
+        "A readiness precondition that gates a different state than the load-bearing DV routes on (high-threat range vs devalued-state range) lets a below-floor devalued arm masquerade as a fair weakens (V3-EXQ-642 same-statistic pattern). The C1 non-vacuity gate must key the devalued-state range."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": "V3-EXQ-485k: (i) devalued-state OFC head driver that produces a RE-RANKING differentiated bias at the devalued state (or a C1 DV reading the high-vs-devalued bias-VECTOR change rather than a committed-argmax shift through a flat bias); (ii) re-target the C1 readiness precondition to the devalued-state bias range so a below-floor devalued range self-routes substrate_not_ready_requeue, never a false weakens. NOT envelope-floor recalibration; NOT MECH-448 escalation.",
+      "recurrence_note": "5th autopsy on the SD-033b/MECH-263 OFC behavioural line (485e/f instrumentation -> 485g first non-vacuous -> 485h threat-conditioning -> 485i envelope all-admit -> 485j). Convergent test-instrumentation/substrate-engagement lineage, NOT divergent claim-pressure; MECH-263 already decomposed into sig-a/sig-b. /claim-synthesis hook noted and discharged (residual is narrow devaluation-signature test design)."
+    }
+  ],
+  "cluster_pattern": null
+}
