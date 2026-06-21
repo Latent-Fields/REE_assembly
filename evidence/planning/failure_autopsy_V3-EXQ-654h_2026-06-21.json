@@ -1,0 +1,82 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-21T18:27:19Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3",
+      "queue_id": "V3-EXQ-654h",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "negative_control",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "confirmed_correct",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-309/ARC-062 were never tested through a genuinely-demoting selector; the rule-apprehension propagation path is fine (rule-field differentiated+matured 0.872, propagation non-vacuity 0.019), the MECH-448 demotion lever silently did not engage on the arc_062 candidate bank. NOT a weakens.",
+        "biological_reference": "clear -- BG hyperdirect conflict-grade selection / divisive normalisation of value (Frank 2006; Carandini & Heeger 2012). The envelope-floor mis-engagement is substrate-tuning, not a biology divergence. 485j (committed same session) gave the first cross-substrate proof that this lever, once firing, carries a non-F (discrimination) channel into committed behaviour off the GAP-A foraging substrate.",
+        "prerequisites": "missing -- the divergent-pool non-vacuity precondition MECH-448's own falsifier (V3-EXQ-689d) established (a PEAKED F distribution over the candidate bank) was NOT armed on the arc_062 rule-apprehension SP-CEM bank; its F pool is SPREAD/non-divergent.",
+        "implementation": "complete but mis-calibrated -- the absolute share floor f_eligibility_envelope_floor=0.30 (calibrated to 689d's peaked divergent pool) admits every candidate on the arc_062 bank's spread merit-share distribution.",
+        "environment": "wrong pressures for this lever -- the arc_062 rule-apprehension multi-class candidate bank yields a SPREAD (non-divergent) F pool; no candidate's merit-share clears the absolute 0.30 floor.",
+        "measurement": "adequate -- the MECH-448 non-degeneracy gate (C1e_mech448_demotion_live_and_excluding, excluded_count>0) correctly caught the no-op and self-routed substrate_not_ready_requeue; the gate working exactly as designed.",
+        "integration": "the MECH-448 demotion selector x arc_062 rule-apprehension harness interaction surfaced the same bank-dependence in envelope engagement that 485i surfaced on the OFC bank.",
+        "scale": "adequate -- P1/P2 budget fine; the no-op is structural (bank merit-share distribution), not under-training."
+      },
+      "facts": {
+        "failed_gate": "C1e_mech448_demotion_live_and_excluding",
+        "excluded_count_measured": 0.0,
+        "excluded_count_threshold": 0.0,
+        "passing_readiness_gates": {
+          "committed_class_axis_exercisable_both_arms": {"measured": 1.0, "threshold": 0.3, "met": true},
+          "gapa_consumed_summary_divergence_both_arms": {"measured": 0.022601, "threshold": 0.05, "met": true},
+          "gapa_consumed_summary_bounded": {"measured": 0.121628, "threshold": 1000000.0, "met": true},
+          "arm_on_rule_field_differentiated_and_matured": {"measured": 0.871716, "threshold": 0.3, "met": true},
+          "propagation_non_vacuity_arm_on_bias_differs_from_arm_off": {"measured": 0.01948283, "threshold": 0.001, "met": true}
+        },
+        "load_bearing_criterion": "C2_committed_class_entropy_lift (passed:false -- never fairly tested because the demotion lever was a no-op)",
+        "config_under_test": {"use_f_eligibility_demotion": true, "use_candidate_rule_field": "swept (ARM_ON/ARM_OFF)", "f_eligibility_envelope_floor": 0.30, "f_eligibility_dn_sigma": 0.0},
+        "mechanism": "excluded_count==0 arises via the _f_eligibility_envelope all-admit fallback (e3_selector.py): with elig[i]=merit[i]/(sigma+sum(merit)), merit[i]=max(F)-F[i], the SPREAD/non-divergent arc_062-bank F gives no candidate a merit-share >= the 0.30 absolute floor, so the floor admits nobody and the envelope falls back to all candidates -> ARM_ON == ARM_OFF -> the rule channel never arbitrated a genuinely-F-demoted committed selection."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia hyperdirect conflict-grade selection / divisive normalisation of value",
+        "dependencies": ["a divergent (peaked) competing field so the eligibility envelope can discriminate"],
+        "is_formal_import": false,
+        "divergence": "MECH-448 rank-preserving F->eligibility demotion EXCEEDS canonical order-preserving DN (removes F from the commit argmin); load-bearing divergence tracked in the MECH-448/ARC-107 ledger. Not implicated by this failure (the lever did not engage at all here).",
+        "lit_status": "present (targeted_review_connectome_mech_439)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654h (MECH-309/ARC-062 arc_062:GAP-B rule-apprehension behavioural falsifier on the MECH-448 demotion-enabled E3 selector; supersedes V3-EXQ-654g) self-routed substrate_not_ready_requeue (non_contributory; NO governance weight). All readiness/non-vacuity gates PASSED (committed class axis exercisable 1.0; GAP-A consumed-summary divergence 0.0226; ARM_ON rule-field differentiated+matured 0.872; propagation non-vacuity 0.0195) EXCEPT the MECH-448 non-degeneracy gate: C1e_mech448_demotion_live_and_excluding FAILED -- f_eligibility_excluded_count==0 on the arc_062 rule-apprehension candidate bank. The 689d-validated demotion config (floor=0.30, dn_sigma=0.0) admitted EVERY candidate because the arc_062 bank has a SPREAD (non-divergent) F distribution -- no candidate's merit-share cleared the absolute 0.30 floor -> all-admit fallback -> the F->eligibility demotion was a STRUCTURAL no-op (ARM_ON == ARM_OFF) -> the load-bearing C2 committed-class-entropy-lift DV never ran through a genuinely-demoted selector. IDENTICAL no-op-envelope signature to V3-EXQ-485i (same MECH-448 lever, different candidate bank). NOT a MECH-309/ARC-062 weakens. Re-queued as V3-EXQ-654i with the 485j-style per-(arm,seed) envelope-floor calibration so the lever genuinely excludes a non-empty tail on the arc_062 bank. Gate to re-queue confirmed CLEARED by failure_autopsy_V3-EXQ-485j: MECH-448 demotion GENERALISES off the GAP-A foraging substrate for the discrimination/committed-diversity signature family that 654 tests (C2 converted, 3-arm dissociation); only the orthogonal OFC C1 devaluation signature did not, which 485j pinned to a devalued-head/test-design gap, not the lever/envelope/MECH-448. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "implementation_hint": "654h is the arc_062 rule-apprehension instance of the same MECH-448 demotion no-op 485i surfaced on the OFC bank: the absolute share floor (0.30) sends the envelope to all-admit (excluded_count==0) on a SPREAD/non-divergent candidate-bank F. FIX for the 654i re-queue (mirror 485j's calibration, NOT a MECH-439 F-variance rebalance): measure the arc_062-bank max per-candidate merit-share first and calibrate f_eligibility_envelope_floor per (arm, seed) BELOW it so the MECH-448 envelope keeps F-best top-k in [2,4] and genuinely EXCLUDES a non-empty tail (KEEP an ABSOLUTE share floor -- a fraction-of-max degenerates to the margin shortlist; KEEP dn_sigma=0.0). KEEP C1e (excluded_count>0 on >=2/3 seeds) as a HARD readiness gate that must pass BEFORE the C2 committed-class-entropy-lift DV runs, so a non-engaging envelope self-routes substrate_not_ready_requeue rather than misattributing a flat lift. Apply the demotion (use_f_eligibility_demotion=True; f_demotion overrides 569i top_k) as a MATCHED-STACK CONSTANT on BOTH arms; keep use_candidate_rule_field as the swept variable. 485j confirmed the lever, once firing, carries a non-F discrimination channel into committed behaviour off GAP-A -- so a fired-but-non-converting 654i outcome should score a genuine MECH-309/ARC-062 weakens, NOT another no-op requeue.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3",
+          "experiment_type": "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "All 5 readiness/non-vacuity gates PASS (class axis 1.0; GAP-A divergence 0.0226; rule-field matured 0.872; propagation non-vacuity 0.0195) but MECH-448 non-degeneracy gate (C1e_mech448_demotion_live_and_excluding) FAIL -- f_eligibility_excluded_count==0 on the arc_062 rule-apprehension bank: the demotion envelope admitted ALL candidates (spread F, no merit-share >= 0.30 floor -> all-admit fallback) -> demotion no-op (ARM_ON==ARM_OFF) -> C2 committed-class-entropy-lift never ran through a demoted selector. Same no-op-envelope shape as 485i, different bank.",
+          "target": "f_eligibility_excluded_count>0 on >=2/3 seeds (envelope genuinely excludes on the arc_062 bank via 485j-style per-(arm,seed) floor calibration) AND C2 committed-class-entropy-lift on >=2/3 seeds through the demotion-enabled selector (V3-EXQ-654i)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "654h is the arc_062 rule-apprehension instance of the SAME MECH-448 demotion no-op 485i surfaced on the OFC bank: with an absolute merit-share floor (0.30) the lever engages only on a PEAKED (divergent) candidate pool; the SPREAD/non-divergent arc_062 bank sends the envelope to its all-admit fallback (excluded_count==0), making the lever a structural no-op. The 689d-validated config is not portable to a new candidate-bank construction without re-establishing the divergent-pool non-vacuity precondition (a property of the candidate source, not of the demotion flags).",
+        "The MECH-448 non-degeneracy gate (C1e, excluded_count>0) is doing exactly its job: it caught the no-op and self-routed substrate_not_ready_requeue rather than emitting a false MECH-309/ARC-062 weakens. The autopsy confirms, it does not overturn.",
+        "Gate-to-re-queue cleared: failure_autopsy_V3-EXQ-485j (committed same session) concluded MECH-448 demotion GENERALISES off the GAP-A foraging substrate for the discrimination/committed-separation signature family -- the first cross-substrate corroboration, via a clean 3-arm dissociation (ARM_2 between-context committed TV 1.0 on 2/3 vs ARM_1 F-dominance control 0.0 all seeds). 654's load-bearing DV (committed-class-entropy lift) is in that SAME discrimination/diversity family (does the rule field arbitrate committed action after F-demotion), NOT the devaluation/value family. The only 485j signature that did NOT convert (C1 devaluation) was pinned to a devalued-head/test-design gap (flat anti-range vs re-ranking), explicitly NOT the lever, envelope, or MECH-448 -- so it does not bear on 654i.",
+        "Recurrence audit: 654h is the 7th autopsy in the MECH-309/ARC-062 arc_062:GAP-B series (654, 654b, 654c, 654d, 654f, 654g, now 654h) spanning negative_control / readiness / discrimination failed-criteria -- all routed implement-substrate/queue-experiment, all epistemic_category substrate_ceiling. No /claim-synthesis: every diagnosis pins the blocker to the shared SELECTOR LOCUS (F-dominance conversion ceiling), and that locus is ALREADY decomposed by the superseding ARC-107 BG-selector constitution (MECH-448 demotion lead, validated 689d + generalised 485j; MECH-449 Go/No-Go follow-on). A synthesis would re-derive an existing decomposition. Recurrence recorded for the audit trail only (mirrors the 485i/485h decision)."
+      ],
+      "claim_synthesis_recommendation": "none",
+      "claim_synthesis_rationale": "The conversion-ceiling family is already decomposed by the ARC-107 selector-constitution (MECH-448 rank-preserving demotion, validated 689d, generalised off GAP-A by 485j; MECH-449 Go/No-Go). 654h is a non-vacuity-precondition / behavioural-harness calibration gap in that superseding direction (envelope all-admit on a spread bank), not granularity debt in MECH-309/ARC-062 nor an unmet need for a new finer mechanism. Recurrence recorded for the audit trail only.",
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "supersedes": "V3-EXQ-654g",
+  "gate_adjudication": {
+    "gate": "Re-queue 654i ONLY if failure_autopsy_V3-EXQ-485j does NOT conclude the BG demotion lever fails to generalise off the GAP-A foraging substrate.",
+    "verdict": "CLEARED -- proceed with 654i",
+    "basis": "failure_autopsy_V3-EXQ-485j (HEAD 32c2518c1d) concluded MECH-448 demotion GENERALISES off GAP-A for the discrimination/committed-diversity family (C2 converted via 3-arm dissociation); the non-converting C1 devaluation signature was pinned to a devalued-head/test-design gap, explicitly NOT the lever/envelope/MECH-448. 654's load-bearing DV is in the C2 (discrimination/diversity) family, not the devaluation family. The hold trigger (a clean 'does not generalise off GAP-A') is therefore not met.",
+    "safeguard": "654i keeps C1e (excluded_count>0) as a HARD pre-DV readiness gate AND scores a fired-but-non-converting outcome as a genuine MECH-309/ARC-062 weakens (not another no-op requeue), so it cannot silently re-derive the no-op."
+  },
+  "next_experiment": "V3-EXQ-654i (NEW letter, supersedes V3-EXQ-654h) with the 485j-style per-(arm,seed) envelope-floor calibration on the arc_062 bank"
+}
