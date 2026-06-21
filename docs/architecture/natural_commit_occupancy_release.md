@@ -174,3 +174,85 @@ Substrate-readiness contract suite `tests/contracts/test_natural_commit_urgency.
 no-op / MECH-094 / config validation / agent release wiring + bounded occupancy /
 ON-inert == OFF / arm-site / release-only safety). The 460i-successor behavioural
 falsifier is sequenced next.
+
+---
+
+## AMEND: natural-commit LATCH-HOLD (establish the sustained-hold OFF baseline) (2026-06-21)
+
+**Status:** IMPLEMENTED 2026-06-21 (substrate; PROMOTES NOTHING). Routed by the
+confirmed `failure_autopsy_V3-EXQ-460i_2026-06-21` (user-adjudicated; Option B
+"make the OFF baseline actually sustain"). Pairs with the V3-EXQ-460j gate-3
+sustained-hold redesign (the experiment side).
+
+### Why
+V3-EXQ-460i self-routed `substrate_not_ready_requeue` at readiness gate 3
+(`lever_did_not_shorten_occupancy`): the rung-6 release was correctly **armed**
+(`lever_present=true`; `_clone_arm` set the modes + gap-sensitivity) and its
+arm-site `note_commit_entry` was reached on NATURAL `result.committed` commits, but
+it fired **zero** releases because **the 460h sustained ~2400-step monolithic
+natural-commit hold did not reproduce**. The active SD-034 de-commit control-plane
+(closure->beta coupling re-toggle, the Leg-B committed-run-scaled refractory, etc.)
+fragmented the beta latch to ~1-tick blips **even with the release OFF**
+(`ARM_LEVER_OFF` total_beta_elevated ~= beta_release_events, 415/405 seed 43), so
+there was **no sustained occupancy to shorten** and the urgency accumulator
+(reset per fresh entry, ~0.01-0.02/tick) could not reach `release_bound` over ~1
+tick. The release lever is sound; the **regime** was missing.
+
+### The fix (no-op default; bit-identical OFF)
+A **latch-HOLD** SEPARATE from (and independent of) the release lever -- so it arms
+in the `ARM_LEVER_OFF` baseline too. A fresh NATURAL commit (`result.committed`)
+**arms** the hold; while armed AND the committed trajectory persists, the beta
+latch is **RE-ASSERTED each tick** (kept elevated against the de-commit churn) so
+the natural-commit occupancy **sustains by construction** -- the sustained
+reference the rung-6 release shortens and the gate-3 sustained-hold proxy certifies.
+
+The hold **YIELDS to (disarms on) the three PRINCIPLED releases** so it never papers
+over them:
+- **SD-034 closure de-commit** -- `beta_gate.refractory_remaining > 0` (the latch is
+  being held DOWN by the closure); the hold does not fight it, preserving the
+  MECH-446 within-arm occupancy-drop DV.
+- **MECH-091 genuine-threat urgency interrupt** -- safety; **never** overridden.
+- **the rung-6 NaturalCommitUrgencyRelease's own duration release** -- this IS the
+  lever shortening the held natural commit (the whole point); the hold disarms so
+  the occupancy stays shortened.
+It also disarms when the committed trajectory ends or the optional
+`natural_commit_latch_hold_max_ticks` safety cap is reached.
+
+Arm/release/coupling semantics are otherwise unchanged: with the hold keeping beta
+elevated, `note_commit_entry` fires once (the bistable elevate block is skipped
+while already elevated), so the rung-6 urgency accumulates monotonically over the
+held duration and fires -- exactly the behaviour 460i lacked.
+
+### Config (REEConfig + from_dims, no-op default)
+- `use_natural_commit_latch_hold` (bool, default `False`) -- master, INDEPENDENT of
+  `use_natural_commit_urgency_release`. `ARM_LEVER_OFF` baseline = hold ON + release
+  OFF -> sustained reference; `ARM_GAP_SCALED` = hold ON + graded urgency ON ->
+  sustained then shortened.
+- `natural_commit_latch_hold_max_ticks` (int, default `0` = unbounded) -- safety cap
+  on re-assert ticks per natural-commit run.
+
+### Data flow
+`select_action` arm-site (the bistable natural-commit elevate, `result.committed`):
+`_ncl_hold_active = True`. End-of-tick re-assertion (after all release sites, before
+the between-tick branch; runs every tick): if armed AND committed trajectory persists
+AND `refractory_remaining == 0` AND no MECH-091 / rung-6 release fired this tick AND
+under the max-ticks cap -> `beta_gate.elevate()` (keep elevated); else disarm.
+
+### Backward compatibility
+`use_natural_commit_latch_hold=False` by default -> `_ncl_hold_active` stays False,
+no arm, no re-assert; the per-tick principled-release flags are no-op bool writes.
+Bit-identical OFF. Contracts: `tests/contracts/test_natural_commit_latch_hold.py`
+(C1 defaults + master-off no-op / C2 arm-site / C3 re-assert-against-churn
+load-bearing [hold ON sustains where hold OFF drops] / C4 yield to closure
+refractory / C5 yield when the commit ends / C6 max-ticks cap / C7 bit-identical
+OFF).
+
+### Validation
+The **V3-EXQ-460j** successor (NEW letter; supersedes V3-EXQ-460i) arms the hold in
+ALL arms and redesigns gate 3 to a **sustained-hold proxy** (longest consecutive
+beta-elevated run + mean per-commit hold length `total_beta_elevated/max(1,
+beta_release_events)`) above a floor on `>=2/3` OFF-arm guard seeds, AND requires
+`ncur_n_releases_total>0` with a `>= LEVER_OCC_DROP_FRAC` occupancy drop vs OFF on
+`ARM_GAP_SCALED`, BEFORE the CO_OCCURRENCE DV is scored. MECH-446/445 stay
+candidate / v3_pending / pending_retest_after_substrate until it scores a
+contributory result.
