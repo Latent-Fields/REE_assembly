@@ -1,6 +1,6 @@
 # Option E shadow recommendations (lit/exp decoupled regime)
 
-Generated: `2026-06-21T05:17:38.942095Z`
+Generated: `2026-06-21T06:40:19.053815Z`
 
 **Phase 1 shadow report.** Production governance still uses `overall_confidence` (legacy blend). This report shows what governance would surface under the decoupled regime where `overall = exp_conf` and literature is a parallel signal. **No claim status is changed by this report.** See `REE_assembly/CLAUDE.md` Lit/Exp Decoupling Shadow for the transition plan.
 
@@ -18,7 +18,7 @@ Generated: `2026-06-21T05:17:38.942095Z`
 
 |  | high exp (>= 0.62) | low exp |
 |---|---|---|
-| **high lit (>= 0.55)** | confirmed_established: **68** | plausible_unproven: **377** |
+| **high lit (>= 0.55)** | confirmed_established: **69** | plausible_unproven: **376** |
 | **low lit**             | novel_discovery: **0**         | speculative: **5** |
 
 Total scored claims: 450
@@ -27,7 +27,7 @@ Total scored claims: 450
 
 Claims that cross the `>= 0.62` line under one regime but not the other AND have standard gating. These are the priority items for Phase 2 reckoning -- queue an experiment, adjust status, or flag a new evidence class.
 
-Total: **251** discrepant claims (standard-gating only).
+Total: **250** discrepant claims (standard-gating only).
 
 | claim | type | status | legacy_overall | decoupled_overall | lit_conf | n_exp | n_lit | quadrant |
 |---|---|---|---:|---:|---:|---:|---:|---|
@@ -207,7 +207,6 @@ Total: **251** discrepant claims (standard-gating only).
 | `MECH-444` | mechanism_hypothesis | candidate | 0.790 | 0.000 | 0.790 | 0 | 3 | plausible_unproven |
 | `MECH-445` | mechanism_hypothesis | candidate | 0.662 | 0.000 | 0.662 | 0 | 2 | plausible_unproven |
 | `MECH-446` | mechanism_hypothesis | candidate | 0.763 | 0.000 | 0.763 | 0 | 3 | plausible_unproven |
-| `MECH-448` | mechanism_hypothesis | candidate | 0.857 | 0.000 | 0.857 | 0 | 5 | plausible_unproven |
 | `MECH-449` | mechanism_hypothesis | candidate | 0.803 | 0.000 | 0.803 | 0 | 3 | plausible_unproven |
 | `MECH-900` | - | - | 0.686 | 0.000 | 0.686 | 0 | 1 | plausible_unproven |
 | `MECH-CBBL-PROPOSED` | - | - | 0.891 | 0.000 | 0.891 | 0 | 7 | plausible_unproven |
@@ -337,7 +336,7 @@ Total: **44**.
 | claim | status | exp_conf | n_exp |
 |---|---|---:|---:|
 | `MECH-118` | candidate | 0.137 | 1 |
-| `MECH-150` | candidate | 0.144 | 1 |
+| `MECH-150` | candidate | 0.143 | 1 |
 | `MECH-165` | candidate | 0.155 | 1 |
 | `SD-018` | implemented | 0.157 | 1 |
 | `MECH-188` | candidate | 0.159 | 1 |
@@ -347,7 +346,7 @@ Total: **44**.
 | `MECH-116` | candidate | 0.185 | 2 |
 | `MECH-091` | candidate | 0.189 | 1 |
 | `SD-032c` | - | 0.189 | 1 |
-| `MECH-186` | candidate | 0.209 | 2 |
+| `MECH-186` | candidate | 0.208 | 2 |
 | `MECH-155` | candidate | 0.211 | 2 |
 | `SD-047` | provisional | 0.220 | 1 |
 | `MECH-128` | candidate | 0.244 | 3 |
@@ -371,7 +370,7 @@ Total: **44**.
 
 ### `lit_only_above_cap` (no exp, lit_conf >= 0.5)
 
-Total: **209**.
+Total: **208**.
 
 Claims with literature support and no experiment yet. These are candidates for the next round of experiment design.
 
@@ -427,7 +426,7 @@ Claims with literature support and no experiment yet. These are candidates for t
 | `MECH-168` | candidate | 0.863 | 4 |
 | `MECH-280` | candidate | 0.863 | 5 |
 | `MECH-281` | candidate | 0.863 | 4 |
-| ... | ... | ... | ... (159 more) |
+| ... | ... | ... | ... (158 more) |
 
 ---
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_468c_sd034_mech268_commitment_vs_contradiction_behavioural
 
-Generated: `2026-06-21T05:27:09.276476Z`
+Generated: `2026-06-21T06:49:07.872210Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

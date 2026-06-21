@@ -1612,13 +1612,13 @@
       "timestamp_utc": "2026-06-20T18:57:41.815630Z"
     },
     "MECH-448": {
-      "actor": "governance-cycle-20260620T2049Z",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-cycle-20260621T0639Z",
+      "decision_needed": "Promotion review: V3 evidence arrived (V3-EXQ-689d PASS)",
       "decision_status": "applied",
-      "rationale": "governance 2026-06-20T21:04:53Z: ARC-107 BG-selector-constitution cluster newly registered; lit-only, zero conflict, no V3 evidence yet (689c running cloud-3, 689d falsifier queued, MECH-448 lever + commit-duration lever built 2026-06-20). Hold acknowledged; stays candidate, no status change.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-06-20T21:04:54.070958Z"
+      "rationale": "governance 2026-06-21: V3-EXQ-689d PASS (rank-preserving F->eligibility demotion falsifier, ARC-107 lead lever) -- all 4 load-bearing criteria pass; exp_conf 0.775, quadrant confirmed_established, 0 conflict. implementation_phase:v3 hold auto-released on first V3 run. First experimental confirmation of the ARC-107 BG-selector constitution. User-approved promotion.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote candidate->provisional, lift V3-pending gate",
+      "timestamp_utc": "2026-06-21T06:48:58.174814Z"
     },
     "MECH-449": {
       "actor": "governance-cycle-20260620T2049Z",
@@ -2134,7 +2134,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-21T05:27:09.276476Z",
+  "generated_at_utc": "2026-06-21T06:49:07.872210Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-06-21T05:27:09.276476Z`
+Generated: `2026-06-21T06:49:07.872210Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -128,7 +128,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-444` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-445` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-446` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-448` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-449` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `Q-022` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-024` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
@@ -1066,7 +1065,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.209, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.208, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2250,24 +2249,6 @@ Use this as the human-in-the-loop review queue.
   - If this decision is wrong, what downstream architecture risk is largest?
 - Decision status: `applied`
 - Last logged decision: `applied` by `governance-cycle-20260620T2049Z` at `2026-06-20T21:04:54.016707Z`
-- Last selected option: Wait for V3 substrate implementation (correct path)
-- Last rationale: governance 2026-06-20T21:04:53Z: ARC-107 BG-selector-constitution cluster newly registered; lit-only, zero conflict, no V3 evidence yet (689c running cloud-3, 689d falsifier queued, MECH-448 lever + commit-duration lever built 2026-06-20). Hold acknowledged; stays candidate, no status change.
-
-### MECH-448
-- Current status: `candidate`
-- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim has implementation_phase=v3 but no V3 experimental runs yet. No promotion or demotion should be applied until V3 experiments complete.; directions supports=5, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Recommendation: `hold_pending_v3_substrate`
-- Options (pros/cons):
-  - Wait for V3 substrate implementation (correct path).
-  - Mark as legacy/deferred if claim is being superseded.
-  - Demote to candidate to acknowledge insufficient evidence.
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `applied`
-- Last logged decision: `applied` by `governance-cycle-20260620T2049Z` at `2026-06-20T21:04:54.070958Z`
 - Last selected option: Wait for V3 substrate implementation (correct path)
 - Last rationale: governance 2026-06-20T21:04:53Z: ARC-107 BG-selector-constitution cluster newly registered; lit-only, zero conflict, no V3 evidence yet (689c running cloud-3, 689d falsifier queued, MECH-448 lever + commit-duration lever built 2026-06-20). Hold acknowledged; stays candidate, no status change.
 

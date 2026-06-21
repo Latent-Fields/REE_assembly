@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-21T05:18:39Z",
+  "generated_at": "2026-06-21T06:41:24Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -1593,7 +1593,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.537
+          "overall_confidence": 0.536
         },
         {
           "id": "MECH-187",
@@ -3265,7 +3265,16 @@
         "MECH-412"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-697",
+          "title": "ARC-013 residue-separability falsifier (residue vs salience+uncertainty)",
+          "status": "claimed",
+          "claim_ids": [
+            "ARC-013"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -3623,7 +3632,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.529
+          "overall_confidence": 0.528
         },
         {
           "id": "ARC-042",

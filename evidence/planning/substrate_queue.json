@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "autopsy-apply-460h-20260620T0843Z",
-  "last_updated_utc": "2026-06-21T05:27:20Z",
+  "last_updated_utc": "2026-06-21T06:39:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4916,7 +4916,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "implement-substrate-commit-duration-latch-20260620T1906Z",
+      "last_seen_session": "governance-cycle-20260621T0639Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -4967,6 +4967,14 @@
           "validation_experiment": "V3-EXQ-460j (supersedes V3-EXQ-460i; queued via /queue-experiment) -- arms the hold in ALL arms + gate-3 redesigned to a SUSTAINED-HOLD proxy (longest consecutive beta-elevated run + mean per-commit hold length total_beta_elevated/max(1,beta_release_events)) above floor on >=2/3 OFF-arm guard seeds AND ncur_n_releases_total>0 + >= LEVER_OCC_DROP_FRAC occupancy drop vs OFF on ARM_GAP_SCALED, BEFORE the CO_OCCURRENCE DV. Do NOT re-author 460d/e/f/g/h/i.",
           "design_doc": "REE_assembly/docs/architecture/natural_commit_occupancy_release.md (natural-commit LATCH-HOLD amend section)",
           "ree_v3_status_doc": "ree-v3/CLAUDE.md (natural-commit LATCH-HOLD amend entry, 2026-06-21)"
+        },
+        {
+          "session": "governance-cycle-20260621T0639Z",
+          "utc": "2026-06-21T06:39Z",
+          "rung": "2 (constitutional lead lever)",
+          "face": "selection -- rank-preserving F->eligibility demotion (MECH-448, ARC-107)",
+          "lever": "use_f_eligibility_demotion (e3_selector.py graded divisive-normalisation envelope; ree-v3 main 4c9b3c9)",
+          "status": "VALIDATED. V3-EXQ-689d RAN PASS 2026-06-21 -- all 4 load-bearing criteria met (C_READINESS excluded_count 0.152>0; C_RANK_PRESERVING F-rank prefix 1.0 on 3/3; C_PRIMARY committed entropy 0.938 strict-above both collapsed controls on 2/3 + reaches proposer ceiling 0.82; C_SAFETY ON harm 0.049<=OFF 0.055). Graded DN envelope ~doubles committed diversity over ARM_OFF hard top-k 569i (0.938 vs 0.371). MECH-448 PROMOTED candidate->provisional (exp_conf 0.775, confirmed_established) -- first experimental confirmation of the ARC-107 BG-selector constitution. Closure node behavioral_diversity_isolation:GAP-J -> done; parent GAP-I ceiling operationally lifted, downstream retests UNBLOCKED (re-queue each with use_f_eligibility_demotion ON). MECH-449 (Go/No-Go follow-on) NOT triggered: demotion alone converted. The selection-face conversion ceiling is LIFTED on the GAP-A foraging substrate; the de-commit/release-DURATION face (MECH-445/446, rung 6) remains open (460j queued)."
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead)",

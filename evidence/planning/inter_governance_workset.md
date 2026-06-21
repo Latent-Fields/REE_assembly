@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-06-21T05:17:40Z`
+Generated: `2026-06-21T06:40:20Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -10,28 +10,28 @@ UI: http://localhost:8000/workset
 ## Summary
 
 - Items: **193** (ready 20, in_flight 2, blocked 149)
-- Pending review: **3**
-- Queue pending (unclaimed): **1**
+- Pending review: **2**
+- Queue pending (unclaimed): **2**
 
-- Live EXQs: V3-EXQ-689d, V3-EXQ-693a, V3-EXQ-695
+- Live EXQs: V3-EXQ-689d, V3-EXQ-693a, V3-EXQ-695, V3-EXQ-697
 
-- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-695, MECH-263 -> V3-EXQ-696, MECH-309 -> V3-EXQ-695, SD-015 -> V3-EXQ-693a, SD-033b -> V3-EXQ-696, SD-049 -> V3-EXQ-693a
+- Auto-absorbed retests (queued, suppressed from workset): ARC-062 -> V3-EXQ-695, MECH-263 -> V3-EXQ-696, MECH-309 -> V3-EXQ-695, MECH-445 -> V3-EXQ-460j, MECH-446 -> V3-EXQ-460j, SD-015 -> V3-EXQ-693a, SD-033b -> V3-EXQ-696, SD-049 -> V3-EXQ-693a
 
 ## Work packages
 
-### IGW-20260621-001 -- Complete governance review (3 pending)
+### IGW-20260621-001 -- Complete governance review (2 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1
-- **Why now:** pending_review.md lists 3 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 2 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260621-001
-Title: Complete governance review (3 pending)
+Title: Complete governance review (2 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 3 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 2 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -1003,7 +1003,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-166 -- Queue depth low (1 pending)
+### IGW-20260621-166 -- Queue depth low (2 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1012,7 +1012,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-166
-Title: Queue depth low (1 pending)
+Title: Queue depth low (2 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2311,7 +2311,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-189 -- Proposal EXP-0155 (MECH-191)
+### IGW-20260621-189 -- Proposal EXP-0154 (MECH-191)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2320,7 +2320,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-189
-Title: Proposal EXP-0155 (MECH-191)
+Title: Proposal EXP-0154 (MECH-191)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-191
@@ -2333,7 +2333,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-190 -- Proposal EXP-0189 (ARC-050)
+### IGW-20260621-190 -- Proposal EXP-0188 (ARC-050)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2342,7 +2342,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-190
-Title: Proposal EXP-0189 (ARC-050)
+Title: Proposal EXP-0188 (ARC-050)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: ARC-050
@@ -2355,7 +2355,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-191 -- Proposal EXP-0191 (INV-050)
+### IGW-20260621-191 -- Proposal EXP-0190 (INV-050)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2364,7 +2364,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-191
-Title: Proposal EXP-0191 (INV-050)
+Title: Proposal EXP-0190 (INV-050)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: INV-050
@@ -2377,7 +2377,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-192 -- Proposal EXP-0193 (INV-065)
+### IGW-20260621-192 -- Proposal EXP-0192 (INV-065)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2386,7 +2386,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-192
-Title: Proposal EXP-0193 (INV-065)
+Title: Proposal EXP-0192 (INV-065)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: INV-065
@@ -2399,7 +2399,7 @@ Instructions:
 
 </details>
 
-### IGW-20260621-193 -- Proposal EXP-0195 (MECH-085)
+### IGW-20260621-193 -- Proposal EXP-0194 (MECH-085)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40
 - **Why now:** insufficient_experimental_replication; lit_only_above_cap; low_exp_conf; missing_experimental_evidence; synthetic_signals_only
@@ -2408,7 +2408,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260621-193
-Title: Proposal EXP-0195 (MECH-085)
+Title: Proposal EXP-0194 (MECH-085)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-085

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-21T05:09:04Z",
+  "last_review_utc": "2026-06-21T06:39:14Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -716,7 +716,11 @@
     "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier",
     "V3-EXQ-689a",
     "v3_exq_514u_sd049_phase2_mech436_drive_coupling_continuous_amplitude",
-    "v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation"
+    "v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation",
+    "v3_exq_689d_mech448_f_eligibility_demotion_falsifier",
+    "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+    "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier",
+    "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_468f_sd034_mech268_decommit_hold_behavioural_20260619T224456Z_v3",
@@ -3118,7 +3122,9 @@
     "v3_exq_689a_mech439_conflict_grade_gapblind_falsifier_20260620T175346Z_v3",
     "v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260620T212930Z_v3",
     "v3_exq_514u_sd049_phase2_mech436_drive_coupling_continuous_amplitude_20260620T223024Z_v3",
-    "v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation_20260621T022028Z_v3"
+    "v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation_20260621T022028Z_v3",
+    "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+    "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -3604,6 +3610,26 @@
         "v3_exq_463b_mech268_dacc_conflict_saturation_behavioural_20260604T030903Z_v3"
       ],
       "subject": "/governance cycle 2026-06-04 (morning). 10 pending walked (4 PASS, 6 FAIL). 6 FAIL = GAP-4 OCD behavioural *b cohort (460b/461b/464b/466b/467b/468b), ONE substrate-not-engaged cluster: behavioural successors of passing hand-poke diagnostics that stay silent in the live committed_mode_curriculum loop on CausalGridWorldV2 -- agent commits (beta latch engages) but never tolerance-completes a waypoint, so n_closures=0 / beta_release=0 / n_switches=0 / n_windows=0 / contradictions=0 in EVERY arm including the forced-RV positive-control arms. 460b/461b/464b/466b carried confirmed failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04 (user-approved apply verbatim); 467b/468b ran after the artifact, identical signature, user-approved 'same cluster apply inline' -> autopsy artifact + substrate_queue extended to name them. All 6: evidence_direction non_contributory + epistemic_category substrate_ceiling + pending_retest_after_substrate on flat+nested manifests; same goal-achievement/foraging-competence ceiling as 603e/626a/634/634b cluster (scaffolded_sd054_onboarding). Promotion/demotion: 2 pending_user demotions MECH-266 (provisional, conflict 0.571, weakens=2) + SD-034 (provisional, conflict 0.889, weakens=4) -- user-approved HOLD; both were artifacts of the not-yet-applied reclassification (ALL weakens were this cohort). After reclassification weakens->0 and both dropped out of the decision queue; claims.yaml dated notes + pending_retest_after_substrate added to SD-034 + MECH-266 (kept provisional). substrate_queue scaffolded_sd054_onboarding amended: +6 failure_records (18 total), +8 unblocks_claims (SD-034/MECH-090/094/261/266/268/SD-032a/033a); ready STAYS false (V3-EXQ-634c validation pending). 4 PASS: 463b (MECH-268, evidence, supports) -- the one behavioural successor that engaged (dACC saturation measured directly, sat_factor~0.29, not closure-gated); genuine support, MECH-268 stays provisional (exp_conf 0.775); divergent per-claim signal vs its sibling 468b (non_contributory) correctly handled. 485b (SD-033b/MECH-263, diagnostic, supports 3/3 devaluation) + 485c (SD-033b/MECH-263, diagnostic, supports, separation_ratio~297) -- GAP-8 PARTIAL, both stay candidate (full promotion needs deferred trained-head arm). 626b (claim_ids=[], diagnostic, PASS) -- goal-pipeline forced-seed positive control (goal_pipeline:GAP-7 L1); weights no claim score; validates the 626-class z_goal harness fix. No promotions triggered. claims.json rebuilt (662); index rebuilt (1212 runs)."
+    },
+    {
+      "utc": "2026-06-21T06:39:14Z",
+      "session": "governance-cycle-20260621T0639Z",
+      "reviewed_run_ids": [
+        "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+        "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_689d_mech448_f_eligibility_demotion_falsifier",
+        "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+        "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier",
+        "v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3"
+      ],
+      "claim_ids_touched": [
+        "MECH-448",
+        "MECH-445",
+        "MECH-446"
+      ],
+      "subject": "Governance 2026-06-21T06:39Z. 2 pending: 1 PASS + 1 FAIL, both adjudicated and MARKED REVIEWED. PASS V3-EXQ-689d (MECH-448, ARC-107 rank-preserving F->eligibility demotion falsifier = the constitutional LEAD lever, 689a-successor): all 4 load-bearing criteria pass (C_READINESS envelope excludes excluded_count 0.152>0; C_RANK_PRESERVING F-rank prefix 1.0 on 3/3; C_PRIMARY committed entropy 0.938 strict-above both collapsed controls + reaches proposer ceiling 0.82; C_SAFETY ON harm 0.049<=OFF 0.055). exp_conf 0.775, quadrant confirmed_established, 0 conflict. The implementation_phase:v3 hold auto-released on the first V3 run. APPLIED user-approved promotion MECH-448 candidate->provisional (first experimental confirmation of the ARC-107 BG-selector constitution); evidence_quality_note added; decision_log promote_to_provisional/applied recorded; decision_state reconciled. Caveat: ARM_MATCHED_NOISE non-lifting (informational) -- ARM_ON clears the proposer ceiling directly so the PASS stands. FAIL V3-EXQ-460i (MECH-445/446) consumed confirmed failure_autopsy_V3-EXQ-460i_2026-06-21: self-routed substrate_not_ready_requeue at readiness gate 3 (lever correctly armed but only ~1-tick fragmented natural commits -- the 460h sustained-hold regime did not reproduce); CO_OCCURRENCE DV never ran (non_degenerate=false). APPLIED non_contributory + autopsy evidence_quality_note + superseded-by-460j note on the manifest; substrate_queue f_dominance_conversion_ceiling already carries the 460i failure_record; V3-EXQ-460j (supersedes 460i, gate-3 sustained-hold-proxy redesign) queued ree-cloud-3. MECH-445/446 UNCHANGED candidate/v3_pending/pending_retest_after_substrate (no fair test reached, never weighs against them). Prom/dem queue otherwise all applied holds, no other status change."
     }
   ],
   "review_batches": [
