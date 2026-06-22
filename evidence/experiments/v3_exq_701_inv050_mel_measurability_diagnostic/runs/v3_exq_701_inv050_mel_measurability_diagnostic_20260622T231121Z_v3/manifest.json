@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_701_inv050_mel_measurability_diagnostic",
+  "run_id": "v3_exq_701_inv050_mel_measurability_diagnostic_20260622T231121Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-22T23:11:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "pe_response_range_to_novelty_shock",
+        "description": "frozen-model PE rises under a max-novelty shock vs stable (relative spread -- same statistic C1 routes on)",
+        "measured": -0.005193234455877382,
+        "threshold": 0.25,
+        "direction": "lower",
+        "control": "pe_shock vs pe_stable on the converged frozen model",
+        "kind": "readiness",
+        "met": false
+      },
+      {
+        "name": "world_model_converged_p0",
+        "description": "P0 world-forward PE dropped (model learned the base env)",
+        "measured": -2.600268668152662,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "P0 first-vs-last episode mean PE",
+        "kind": "readiness",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    }
+  }
+}
