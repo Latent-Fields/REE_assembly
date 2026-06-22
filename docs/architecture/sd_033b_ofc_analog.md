@@ -154,6 +154,36 @@ readout (`ofc_harm_dim>0`), since the OFC state_code reads only z_world + z_harm
 (no appetitive/drive input). Validation: V3-EXQ-485d substrate-readiness
 diagnostic (frozen vs trainable). See `ree-v3/CLAUDE.md` "SD-033b GAP-8".
 
+**GAP-8 devaluation-head DECOUPLE (2026-06-22, failure_autopsy V3-EXQ-485l).**
+The trained `state_bias_head` above is a SINGLE head under the `+/-ofc_bias_scale`
+clamp. The 485e->485l behavioural lineage established that this single clamped head
+has NO feasible gain band for the devaluation arm: the devalued re-ranking must
+produce a differentiated cross-candidate range above the 0.05 readout floor while
+the SAME head + clamp also carries the C2 high-threat discrimination range. 485k
+gain 4.0 SATURATED the clamp (devalued range 0.0); 485l gain 1.5 UNDERSHOT it
+(0.031 < 0.05). The bias VECTOR inverts cleanly (cosine -0.716, C1b PASS) -- the
+direction is right -- but the clamp compresses the MAGNITUDE below floor, starving
+the MECH-449 Go/No-Go viability trigger (engaged 1/3 < 2/3 gate). A plain 485m
+gain-tweak is REFUSED (re-derive brake; no feasible gain band on the shared head).
+The fix DECOUPLES the devaluation re-ranking into a SECOND output head:
+`OFCConfig.use_devaluation_head` (default `False`) builds `devaluation_bias_head`
+(same `Linear(state_dim+world_dim -> hidden -> 1)` shape, sharing the
+`[state_code, candidate_summary]` input) clamped to `+/-devaluation_bias_scale`
+(default 2.0, INDEPENDENT of `ofc_bias_scale`). `OFCAnalog.compute_devaluation_bias()`
+reads it; `devaluation_bias_head_parameters()` exposes its params;
+`train_devaluation_head` mirrors the `state_bias_head` last-Linear zeroing. The C2
+head keeps its `+/-ofc_bias_scale` clamp untouched (magnitude no longer traded), and
+the devaluation head's larger independent clamp lets the in-band re-ranking gain
+produce a supra-floor differentiated devalued range without saturating; the No-Go
+viability re-derives from `compute_devaluation_bias`. Flat `REEConfig`
+`use_ofc_devaluation_head` / `ofc_devaluation_bias_scale` / `ofc_train_devaluation_head`
+wire through `from_dims` and the `agent.py` OFC build site (`getattr` fallback ->
+bit-identical when absent). Default `False` keeps a no-op bit-identical landing
+(every existing experiment reads only `compute_bias`). The substrate PROMOTES
+NOTHING; the 485-lineage behavioural retest (NEW letter, supersedes 485l) is gated
+behind this build. See `ree-v3/CLAUDE.md` "SD-033b GAP-8 DECOUPLE" and
+`evidence/planning/failure_autopsy_V3-EXQ-485l_2026-06-22.md`.
+
 ### D2. Outcome-pool weight defaults active (0.5) but harm_dim defaults zero
 
 **Chosen:** outcome_pool_weight defaults to 0.5 (architectural shape preserved)

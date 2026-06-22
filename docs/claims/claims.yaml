@@ -21208,6 +21208,23 @@
     OFC function separately so E2 predictions have a biologically
     proper substrate address, distinct from the subjective-valuation
     function covered by SD-033c / ARC-035 / MECH-151 / MECH-152.
+  implementation_note: >
+    2026-06-22 GAP-8 devaluation-head DECOUPLE landed (ree-v3 ree_core/pfc/ofc_analog.py).
+    Routed by failure_autopsy_V3-EXQ-485l (re-derive brake FIRED -> implement-substrate;
+    485m gain-tweak REFUSED). The single shared state_bias_head under the +/-ofc_bias_scale
+    clamp has no feasible gain band (485k gain 4.0 saturated devalued range 0.0; 485l gain 1.5
+    undershot 0.031 < 0.05 floor) because it must also carry the C2 high-threat range. Fix:
+    a SECOND output head devaluation_bias_head (OFCConfig.use_devaluation_head, default False)
+    sharing the state_code+candidate input but clamped to +/-devaluation_bias_scale (default 2.0,
+    INDEPENDENT of ofc_bias_scale), read via compute_devaluation_bias(); the C2 head's clamp is
+    untouched (magnitude untraded), the devaluation head's larger independent clamp lets the
+    in-band re-ranking gain produce a supra-floor differentiated devalued range without
+    saturating, and the MECH-449 No-Go viability re-derives from the decoupled head. No-op
+    default (bit-identical OFF); 6 contracts (tests/contracts/test_sd_033b_gap8_devaluation_head.py)
+    + preflight PASS. PROMOTES NOTHING (status stays candidate / substrate_conditional /
+    pending_retest_after_substrate). The 485-lineage behavioural retest (NEW letter, supersedes
+    485l; claim_ids=[SD-033b, MECH-263]) is GATED behind this build, queued separately via
+    /queue-experiment. See ree-v3/CLAUDE.md "SD-033b GAP-8 DECOUPLE".
   evidence_quality_note: >
     2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory; claim
     UNWEAKENED): V3-EXQ-485l (2026-06-22, ree-cloud-1) supersedes 485k; FAIL/non_contributory/
@@ -22265,6 +22282,17 @@
     Treating these as co-present framings of the same substrate rather
     than as alternatives matches REE's model-based architecture: E2
     queries a structured task model for specific-outcome predictions.
+  implementation_note: >
+    2026-06-22 SD-033b GAP-8 devaluation-head DECOUPLE landed (ree-v3
+    ree_core/pfc/ofc_analog.py devaluation_bias_head; failure_autopsy_V3-EXQ-485l). The
+    decouple supplies the supra-floor differentiated DEVALUED re-ranking range the
+    MECH-263 devaluation-sensitivity behavioural arm needs to feed the MECH-449 No-Go --
+    485k saturated / 485l undershot the shared +/-ofc_bias_scale clamp; the separate head
+    with its own +/-devaluation_bias_scale clamp clears the floor without trading the C2
+    discrimination range. PROMOTES NOTHING (MECH-263 stays candidate / substrate_conditional
+    / pending_retest_after_substrate; the sig-a devaluation half is non_contributory pending
+    the gated 485-lineage retest, sig-b discrimination half remains positively shown at the
+    representation level). See ree-v3/CLAUDE.md "SD-033b GAP-8 DECOUPLE".
   evidence_quality_note: >
     2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory; claim
     UNWEAKENED): V3-EXQ-485l (2026-06-22, ree-cloud-1) supersedes 485k; FAIL/non_contributory/
