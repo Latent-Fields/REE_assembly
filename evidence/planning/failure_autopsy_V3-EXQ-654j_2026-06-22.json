@@ -1,0 +1,77 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-22T14:12:44Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_654j_arc062_gapb_rule_apprehension_nogo_behavioural_falsifier_20260622T135939Z_v3",
+      "queue_id": "V3-EXQ-654j",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- pre-registered FAIL(C1 holds, C2 fails) non-weakens branch; claims unweakened",
+        "biological_reference": "clear -- BG selector constitution (ARC-107, L2-grounded); Go/No-Go opponency faithful (Kravitz 2010, Mink 1996). Failure resembles intact action-selection that does not reach varied committed programs -- a commit/latch-face bottleneck, not an eligibility-governance deficit",
+        "prerequisites": "missing -- commit-entry-decisiveness / post-commit latch (root C of f_dominance_conversion_ceiling) is the unbuilt dependency the selection->commit conversion needs",
+        "implementation": "complete (eligibility legs) -- MECH-448 demotion + MECH-449 Go/No-Go both built, live, suppressing (C1e 17.76 excluded, C1f 1.55 suppressing)",
+        "environment": "adequate -- C1a/C1b confirm committed-class axis exercisable + non-degenerate both arms",
+        "measurement": "adequate -- C2 committed-class entropy is the correct DV; non-degenerate (seed42 lift +0.19)",
+        "integration": "gap at selection->commit -- live eligibility-governance legs do not propagate to committed-class behaviour",
+        "scale": "adequate -- matured rule pool (frac-active 0.975), full-scale P0/P1/P2"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia direct/indirect-pathway Go/No-Go opponency over a pallidal permission gate (ARC-107 selector constitution)",
+        "dependencies": ["commit-entry-decisiveness / post-commit latch (f_dominance_conversion_ceiling root C)", "MECH-260 dACC indirect-pathway suppression (generalised by MECH-449)"],
+        "is_formal_import": false,
+        "divergence": "ARC-107 folds Go/No-Go into algorithmic eligibility pressures over an abstract candidate set (no separate D1/D2 populations, no vigour axis); divergence is L2-anchored + lit-grounded -- not the failure cause here",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654j (FAIL, non_contributory, failure_autopsy_V3-EXQ-654j_2026-06-22): pre-registered FAIL(C1 holds, C2 fails) clean substrate-ceiling. All seven C1 readiness/non-vacuity gates met & non-degenerate -- incl. C1f confirming the MECH-449 active No-Go live & suppressing (1.55) on both arms -- but the load-bearing C2 committed-class entropy lift FAILED (1/3 seeds; +0.19/+0.0001/-0.02). The two main ARC-107 eligibility-governance legs (MECH-448 demotion @654i, MECH-449 Go/No-Go @654j) both PASS at the selection face yet NEITHER converts to committed-class behavioural diversity: conversion ceiling is structural and downstream of selection. Claims UNWEAKENED (substrate_ceiling / pending_retest_after_substrate). Re-derive brake fired (18th MECH-309 / 19th ARC-062); further eligibility-governance letters refused. User-approved next route (2026-06-22): the literal next ARC-107 ledger component -- Factor B near-tie commit-temperature -- as a different-mechanism falsifier (brake different-mechanism exemption).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "User-approved routing is queue-experiment on the next ARC-107 ledger component (Factor B near-tie commit-temperature), NOT a substrate build. No substrate_queue write from this autopsy."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_count_mech_309": 17,
+        "prior_count_arc_062": 18,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-543f_2026-05-17",
+          "failure_autopsy_V3-EXQ-543h_2026-05-18",
+          "failure_autopsy_543i_2026-05-19",
+          "failure_autopsy_V3-EXQ-543i_2026-05-19",
+          "failure_autopsy_V3-EXQ-543k_2026-05-21",
+          "failure_autopsy_V3-EXQ-543l_2026-05-27",
+          "failure_autopsy_V3-EXQ-654_2026-06-09",
+          "failure_autopsy_569f-661-654a_2026-06-10",
+          "failure_autopsy_V3-EXQ-654b_2026-06-11",
+          "failure_autopsy_V3-EXQ-654c_2026-06-15",
+          "failure_autopsy_V3-EXQ-654d_2026-06-16",
+          "failure_autopsy_V3-EXQ-654f_2026-06-18",
+          "failure_autopsy_V3-EXQ-654g_2026-06-19",
+          "failure_autopsy_V3-EXQ-690_2026-06-20",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20",
+          "failure_autopsy_V3-EXQ-654h_2026-06-21",
+          "failure_autopsy_V3-EXQ-695-696-f-dominance-cluster_2026-06-21",
+          "failure_autopsy_V3-EXQ-654i_2026-06-22"
+        ],
+        "refused_requeue": false,
+        "refused_requeue_detail": "User exercised the different-mechanism exemption at the interactive gate (2026-06-22): the next test is the literal next ARC-107 ledger component -- Factor B near-tie commit-temperature -- a structurally different lever from the two now-exhausted eligibility-governance legs (demotion, Go/No-Go), matching the manifest's pre-registered 'route to next ARC-107 ledger component'. The brake CONTINUES to refuse any further eligibility-governance letter (another demotion/Go/No-Go variant) against the same C2 ceiling.",
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The two main ARC-107 eligibility-governance legs -- MECH-448 rank-preserving demotion (654i) and MECH-449 active Go/No-Go (654j) -- both PASS at the selection face but NEITHER converts a differentiated rule-apprehension bias into committed-class behavioural diversity (C2). Independent cross-leg corroboration that the conversion ceiling is structural and downstream of selection.",
+        "C1f confirms the MECH-449 active No-Go was genuinely live and suppressing (1.55 > 0) on both arms -- not an inert-No-Go artifact. The active No-Go leg alone is insufficient for behavioural conversion.",
+        "The eligibility-governance face of ARC-107 is now exhausted for GAP-B conversion. Remaining ARC-107 components: Factor A (inert per 689a), Factor B (parametric near-tie commit-temperature), post-commit latch (owned by root C). Further eligibility-leg letters are braked; Factor B is the user-approved next lever."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
