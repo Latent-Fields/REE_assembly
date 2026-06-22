@@ -1,48 +1,54 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-22T05:48:23Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-485k",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-694",
-      "result": "PASS",
-      "completed_at": "2026-06-19T22:47:14.679887+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-693",
-      "result": "FAIL",
-      "completed_at": "2026-06-20T14:34:30.826797+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-693a",
-      "result": "FAIL",
-      "completed_at": "2026-06-21T09:30:32.496843+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-654h",
-      "result": "FAIL",
-      "completed_at": "2026-06-21T17:57:05.481064+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-654i",
-      "result": "FAIL",
-      "completed_at": "2026-06-22T01:47:06.935091+00:00"
-    }
+  "last_tick_utc": "2026-06-22T06:04:03Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-485l",
+  "current_exq_started_utc": "2026-06-22T06:00:28.189274+00:00",
+  "current_title": "SD-033b corrected OFC outcome-devaluation behavioural retest (MECH-449 active No-Go engaged; supersedes 485k)",
+  "current_claim_id": "SD-033b",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_1_trained_demotion_off",
+    "runs_done": 1,
+    "runs_total": 9,
+    "episodes_done": 30,
+    "episodes_total": 150,
+    "overall_pct": 13.3
+  },
+  "seconds_elapsed": 215,
+  "seconds_remaining": 1252,
+  "recent_lines": [
+    "Preflight PASS: OFC analog + harm_dim + trainable/frozen head + bias_head_parameters + ofc_bias_scale=0.5 + SD-056 contrastive + readiness floor 0.05 == DV floor + MECH-448 demotion + adaptive envelope floor + MECH-449 Go/No-Go constitution (matched constant; injection seam present)",
+    "Seed 0 Condition ARM_0_frozen_demotion_on train_head=False demotion=True",
+    "[train] ARM_0_frozen_demotion_on ep 1/150  phase=P0  reward=-1.060",
+    "[train] ARM_0_frozen_demotion_on ep 10/150  phase=P0  reward=-1.016",
+    "[train] ARM_0_frozen_demotion_on ep 20/150  phase=P0  reward=-1.050",
+    "[train] ARM_0_frozen_demotion_on ep 30/150  phase=P0  reward=-1.282",
+    "[train] ARM_0_frozen_demotion_on ep 40/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 50/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 60/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 70/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 80/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 90/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 100/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 110/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 120/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 130/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 140/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "[train] ARM_0_frozen_demotion_on ep 150/150  phase=P1  bias_abs=0.00000  grad_updates=0",
+    "verdict: PASS  head_delta=0.000000  bias_range_hi=0.000000  bias_range_dev=0.000000  deval_shift=0.0000  deval_bias_l2=0.0000  deval_bias_cos=0.0000  between_tv=0.0000  excluded=4  nogo_applied=0",
+    "Seed 0 Condition ARM_1_trained_demotion_off train_head=True demotion=False",
+    "[train] ARM_1_trained_demotion_off ep 1/150  phase=P0  reward=-1.056",
+    "[train] ARM_1_trained_demotion_off ep 10/150  phase=P0  reward=-1.115",
+    "[train] ARM_1_trained_demotion_off ep 20/150  phase=P0  reward=-1.112",
+    "[train] ARM_1_trained_demotion_off ep 30/150  phase=P0  reward=-1.057"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3429 70bb3a6 2026-06-22 (running r3260 daed671)",
+  "runner_version": "r3431 7e0b050 2026-06-22 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
