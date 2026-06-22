@@ -45433,6 +45433,23 @@
     bit-identical OFF + waking-only (MECH-094). Design doc docs/architecture/arc_108_job2_control_plane.md; the
     sec-7.2 control-plane L0/L1/L2 falsifier is queued SEPARATELY. PROMOTES NOTHING (substrate build, no
     flag/confidence/status change).
+    IMPLEMENTATION NOTE (sec-7 C3 ablation flag BUILT 2026-06-22, /implement-substrate; substrate, PROMOTES
+    NOTHING): the runtime knob the V3-EXQ-700 selection 2x2 DEFERRED for C3 (signed-vs-unsigned RPE; divergence
+    B5). E3Config.learned_channel_rpe_mode (Literal["signed","unsigned"], default "signed", surfaced through
+    REEConfig.from_dims onto config.e3) -- when "unsigned", e3_selector.post_action_update substitutes the UNSIGNED
+    ARC-016 prediction-error magnitude (self._running_variance, always >= 0) for the signed delta_t in BOTH the
+    JOB-1 w_chan AND the MECH-450 W_lat three-factor updates, removing the directional potentiate-vs-depress credit.
+    "signed" (default) is BYTE-IDENTICAL to the prior substrate (learn_signal == delta_t); the signed delta_t is
+    kept intact for the JOB-2 habenula de-commit + the V-hat_t baseline EMA (only the SELECTION teaching signal is
+    ablated). C7 contract (mirror of the C5 signed potentiate-vs-depress test): under "unsigned" a good and a bad
+    outcome move w_chan in the SAME direction -- opposite-sign credit is structurally impossible. 10/10 ARC-108
+    contracts + 108 e3-cluster + 8/8 preflight + from_dims wiring smoke PASS. The C3 ablation ARM (A1-config +
+    learned_channel_rpe_mode="unsigned") is added to a V3-EXQ-700 sibling/successor in a SEPARATE /queue-experiment
+    session, pre-registered that unsigned must FAIL to convert while signed (A1) converts; if unsigned converts just
+    as well the signed-RPE claim is refuted and the mechanism collapses to a precision re-weighting (route back to
+    ARC-016, mint no learning claim). Design-of-record evidence/planning/dopamine_into_gating_design_2026-06-22.md
+    sec 5.2 C3; ree-v3/CLAUDE.md "ARC-108 sec-7 C3" entry. PROMOTES NOTHING (no-op-default flag, no flag/confidence/
+    status change).
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
