@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-22T20:28:51Z",
+  "last_tick_utc": "2026-06-22T20:58:58Z",
   "state": "running",
   "current_exq": "V3-EXQ-460l",
   "current_exq_started_utc": "2026-06-22T18:04:39.044755+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "ARC-108",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_JOB2_CONTROL_PLANE_RAMP_HABENULA_L0_L1_L2",
-    "runs_done": 4,
+    "run_label": "Seed 43 / L0_FLAT_LATCH",
+    "runs_done": 5,
     "runs_total": 3,
-    "episodes_done": 130,
+    "episodes_done": 0,
     "episodes_total": 280,
-    "overall_pct": 148.8
+    "overall_pct": 166.7
   },
-  "seconds_elapsed": 8652,
+  "seconds_elapsed": 10459,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460l_job2_control_plane_ramp_habenula_falsifier] starting (dry_run=False)",
@@ -35,7 +35,11 @@
     "Seed 43 Condition CURRICULUM_BUILT_JOB2_CONTROL_PLANE_RAMP_HABENULA_L0_L1_L2",
     "[train] stage0_nursery seed=43 ep 20/280 z_goal_peak=0.4129 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/280 retention=0.905 gate=pass",
-    "[train] p0_guided seed=43 ep 130/280 mean_len=198.2 rv=0.01103"
+    "[train] p0_guided seed=43 ep 130/280 mean_len=198.2 rv=0.01103",
+    "[train] hazard_avoidance seed=43 ep 170/280 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/280 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.1000 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=43 ep 235/280 contact_rate=0.2809 contact_events=82 z_goal_at_contact=0.4102",
+    "Seed 43 Condition L0_FLAT_LATCH"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
