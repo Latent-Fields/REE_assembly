@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_329_arc033_e2_harm_s_counterfactual
 
-Generated: `2026-06-22T07:02:56.474464Z`
+Generated: `2026-06-22T16:17:59.290528Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

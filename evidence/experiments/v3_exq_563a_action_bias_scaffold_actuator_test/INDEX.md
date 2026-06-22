@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_563a_action_bias_scaffold_actuator_test
 
-Generated: `2026-06-22T07:02:56.474464Z`
+Generated: `2026-06-22T16:17:59.290528Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

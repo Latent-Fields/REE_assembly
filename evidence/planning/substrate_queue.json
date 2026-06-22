@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "prong-map-backpointer-20260622T144731Z",
-  "last_updated_utc": "2026-06-22T14:47:31Z",
+  "last_updated_utc": "2026-06-22T15:55:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4876,6 +4876,13 @@
       ],
       "failure_record": [
         {
+          "run_id": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3",
+          "experiment_type": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural",
+          "metric": "On the BUILT decoupled devaluation_bias_head (ree-v3 758956f) the 485l clamp-starvation is FIXED -- C1 devaluation behavioural shift 3/3, MECH-449 No-Go engages 2/3, devalued bias range supra-floor 3/3 (deval_head_delta 6.23, bias_range_devalued 1.037) -- but C1b vector-inversion 1/3 (shift-without-inversion) and C2 committed-class separation 1/3 still FAIL. The valuation face does not convert in ISOLATION; magnitude artifact ruled out.",
+          "target": "the co-armed full-stack arm (conversion_ceiling_campaign:FULLSTACK, use_ofc_devaluation_head ON together with the demotion + Go/No-Go legs) must lift committed-class behavioural separation (C2) on >= 2/3 seeds; an isolated 485n valuation-face re-queue is REFUSED (re-derive brake, 11th).",
+          "addressed_by": "P3-ofc prong FACE-VALIDATED 2026-06-22 (C1 3/3 robust behavioural shift on the decoupled head face-validates the OFC valuation face for inclusion in the FULLSTACK arm); failure_autopsy_V3-EXQ-485m_2026-06-22 CONFIRMED -> non_contributory, claims SD-033b/MECH-263 UNWEAKENED. 3rd convergent fails-C2-alone datum (654i demotion, 654j Go/No-Go, 485m OFC) -- conversion is emergent from the assembled stack. Routes to the FULLSTACK co-armed arm via conversion_ceiling_prong_map.md."
+        },
+        {
           "run_id": "v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier_20260621T115511Z_v3",
           "experiment_type": "v3_exq_460j_natural_commit_occupancy_release_decommit_falsifier",
           "metric": "rung-6 latch-hold never armed: ARM_LEVER_OFF 3/3 ncl_hold_reassert_total=0, max_consecutive_beta_run=1, mean_per_commit_hold ~1.0; n_closures 5-7 vs beta_release_events 171-483 (per-tick churn is the closure-coupling toggle, not the SD-034 de-commit); sd034_n_closure_commit_intent=0; off_baseline_sustained_natural_commit_hold 0/3 -> substrate_not_ready_requeue.",
@@ -5013,7 +5020,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-cycle-20260622T065401Z",
+      "last_seen_session": "governance-cycle-20260622T1542Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
