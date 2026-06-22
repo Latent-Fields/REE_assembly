@@ -24,7 +24,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "demotion x Go/No-Go composition falsifier (to queue via /queue-experiment)"
       assembly_status: queued
-      owner_exq: "null -- to queue"
+      owner_exq: "V3-EXQ-699 (queued 2026-06-22; awaiting run)"
     - id: "conversion_ceiling_campaign:P2-rootC"
       title: "Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-commit are dissociable"
       phase: "The live V3 critical path post-689c, and the most likely true bottleneck (commit-duration, not selection). Rung-6 de-commit lever PARKED 2026-06-22 (460h/i/j; the F-driven natural-commit latch ~2400-2600 steps swamps the SD-034 closure de-commit, and natural-commit/closure-de-commit are non-dissociable so the lever is untestable). Awaits the named upstream substrate: a closure-exclusive de-commit eval mode (beta elevates only via _closure_commit_active during the eval) so occupancy forms independently of the closure plane. Build chip spawned 2026-06-22T08:11Z; NOT yet built/queued."
