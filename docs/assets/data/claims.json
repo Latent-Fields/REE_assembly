@@ -915,6 +915,24 @@
     "type": "architectural_commitment",
     "what_would_answer": "SUBSTRATE-CONDITIONAL / NOT YET BUILT. A future experiment SUPPORTS this if two opponent populations with asymmetric DA gain (i) preserve a representational distinction the additive scalar cannot -- approach-avoidance conflict (high-Go+high-No-Go) is dissociable from indifference (low-Go+low-No-Go) in committed behaviour -- and (ii) a targeted D1-vs-D2 gain lesion reproduces a recognisable disorder analog (e.g. D2 hypofunction -> akinesia/perseveration) that a single-scalar lesion cannot, on >=2/3 seeds. WEAKENED if the split yields no behavioural or failure-mode distinction beyond the additive MECH-449 scalar (decorative, dropped per the ARC-106 load-bearing-vs-decorative ablation test). NON-DEGENERACY: the two populations must carry live, DISSOCIABLE cross-arm variance (not a re-parameterised single axis), else substrate_not_ready_requeue.\n"
   },
+  "ARC-110": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.parallel_segregated_loops",
+    "title": "Parallel segregated cortico-BG-thalamic loops (motor / cognitive-set / motivational): committed-action selection should run through SEPARATE striatal loop channels -- a motor loop, an associative/cognitive-set loop, and a limbic/motivational loop -- each owning its own eligibility-and-gate, arbitrated AFTER within-loop competition, rather than collapsing all channels into ONE shared E3 selection arena where the dACC/lPFC/OFC analogs feed in only as additive biases. HYPOTHESIS (assembly-map A.2 / s.D): the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse -- F monopolises 88-89% of committed-selection variance because every channel competes in one F-dominated arena; with segregated loops F could dominate only the motor loop and could not drown the limbic 'is this worth committing to' computation, which is a different loop with a different value. Translation target is FUNCTIONAL (the Alexander/DeLong/Strick parallel-loop organisation as a divergence-ledgered, falsifier-validated analogue), NOT anatomical mimicry.",
+    "type": "architectural_commitment",
+    "what_would_answer": "SUBSTRATE-CONDITIONAL / NOT YET BUILT; registered as an EXPLICIT TESTABLE FORK on the live ARC-108 build, operationalised as V3-EXQ-700 (the ARC-108 sec-7 learned-gating 2x2 on the collapsed GAP-A arena). The s.D (assembly-map) falsifier: with learned dopamine gating (ARC-108) + the recurrent settling step (MECH-450) now BUILT, measure F's share of committed-selection variance on the EXISTING single collapsed arena (MECH-439 / the V3-EXQ-571 ~88-89% baseline). REFUTED for the V3 tract (segregated loops NOT required) if learned gating + settling on the collapsed arena drives F-dominance below the conversion-ceiling threshold AND >=1 non-motor channel converts to committed action -- the collapse was NOT the cause, the missing LEARNING was. SUPPORTED / PULLED FORWARD if F-dominance PERSISTS after ARC-108 + MECH-450 (V3-EXQ-700 shows preconditions-met-no-lift): the single arena is implicated, and segregating the loops (F bounded to the motor loop, the limbic loop arbitrated separately) is the next attack, with a per-loop ablation required to show loop-localised conversion the collapsed arena cannot produce. NON-DEGENERACY: the per-loop channels must carry live cross-loop variance (a 'segregated' loop pinned to the motor loop's winner is a vacuous split).\n"
+  },
+  "ARC-111": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.context_conditioned_weights_proper",
+    "title": "Context-conditioned weights PROPER -- learned connection weights as a function of context, distinct from context-conditioned GAIN: REE today has the GAIN form of context-conditioning (ARC-044's unifier -- a context-specific multiplicative scalar: MECH-152 terrain_weight scaling E3 harm/goal scoring, ARC-016 precision, MECH-261 mode-conditioned write-CHANNEL gating) which modulates a FIXED transfer function. It does NOT have the WEIGHT form: a substrate where the learned connection weights THEMSELVES are a function of context (a different effective weight set selected/generated per context -- the transfer function changes, not a gain on it). The valuation/gating parameters are static nn.Modules; context enters only through the INPUT (z_world) and through output GAIN, never through the weights. HYPOTHESIS: genuinely context-dependent BEHAVIOUR (not just context-scaled magnitude) requires context to reach the weights -- the learned per-channel selection weight w_chan conditioned on z_world that ARC-108 introduces is the first instance of this WEIGHT form at the gating layer.",
+    "type": "architectural_commitment",
+    "what_would_answer": "SUBSTRATE-CONDITIONAL. SUPPORTED if a context variable (z_world / loop / mode) changes the EFFECTIVE connection weights -- not merely a multiplicative gain on fixed weights -- such that two contexts produce behaviour reproducible by NO single fixed weight set under context-varying gain (the discriminator vs ARC-044: a gain model can rescale a fixed policy but cannot REORDER it; a weight model can). Concretely on the ARC-108 instance: the learned w_chan must take DIFFERENT learned values in different z_world contexts and produce a context-dependent REORDERING of committed channels, not just a rescaling, on >=2/3 seeds. WEAKENED if every observed context effect is reproducible by context-conditioned gain on a fixed weight set (then the GAIN form ARC-044 suffices and this claim is over-specification). NON-DEGENERACY: per-context weights must carry live cross-context variance (a w_chan identical across contexts is the gain model in disguise).\n"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -2682,9 +2700,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-062": {
-    "assembly_state": "mature",
+    "assembly_state": "remaining",
     "epistemic_stance": "shown",
-    "status": "stable",
+    "status": "candidate",
     "subject": "commitment.tri_loop_gate_coordination",
     "title": "E3 uses coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility layer.",
     "type": "mechanism_hypothesis"

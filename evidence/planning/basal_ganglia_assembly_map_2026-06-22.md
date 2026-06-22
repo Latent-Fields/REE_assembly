@@ -110,7 +110,7 @@ SD-034 + MECH-342 + the rung-6 occupancy lever). The gaps are concentrated in
 | **D1/D2 population split (opposite DA sensitivity)** | **MISSING** | Go/No-Go is a scoring *sign*, not two populations with asymmetric dopamine gain. Blocks the Parkinson/dyskinesia/Huntington/ICD disease axis (ARC-106 EARNS failure). |
 | **FSI feedforward inhibition / winner-sharpening** | **MISSING** | `argmin` substitutes a hard global max for fast lateral inhibition. |
 | **Cholinergic TAN pause (plasticity-window gating)** | **MISSING** | The TAN-pause-coincident-with-DA-burst defines the learning window; absent even before DA is added. |
-| **Parallel segregated loops (motor/assoc/limbic)** | **MISSING (collapsed)** | One E3 selector; the dACC/OFC/lPFC analogs feed in as biases, not as separate loops. See Deviation D2 of §B and the loop-segregation question of §D. |
+| **Parallel segregated loops (motor/assoc/limbic)** | **MISSING (collapsed)** | One E3 selector; the dACC/OFC/lPFC analogs feed in as biases, not as separate loops. See Deviation D2 of §B and the loop-segregation question of §D. **Owned by ARC-110** (registered 2026-06-22; falsifier = V3-EXQ-700). |
 
 ### A.3 Efferents (data drains) — where the output goes
 
@@ -434,6 +434,17 @@ into one shared commitment interface"); this note flags it as a *candidate
 contributor to the live problem*, which would pull it forward if the
 settling-step + learned-gating repairs do not fully resolve MECH-439.
 
+**Now owned by ARC-110** (registered 2026-06-22), no longer a buried §6b bullet. The
+sequencing question is made an explicit testable fork: ARC-110 is wired into
+`ARC-108.depends_on` (Haber's striato-nigro-striatal dopamine spiral integrates the
+loops — the spiral needs loops to couple, so the two are co-requisite, not
+independent), and its falsifier is operationalised as **V3-EXQ-700** (the ARC-108 §7
+learned-gating 2×2 on the collapsed arena). If 700 resolves F-dominance (MECH-439)
+*without* segregation, ARC-110 is refuted for the V3 tract; if F-dominance persists
+(preconditions-met-no-lift), segregation is pulled forward. Companion: the
+context-conditioned-**weights**-proper generalisation of the A.4 learned `w_chan` is
+owned by **ARC-111** (distinct from the context-conditioned-*gain* unifier ARC-044).
+
 ---
 
 ## E. Next steps (governance)
@@ -476,7 +487,12 @@ settling-step + learned-gating repairs do not fully resolve MECH-439.
    discriminator); recommends pulling the V3-minimal slice forward (ARC-108 currently
    `v4` — flagged for ratification). PROMOTES NOTHING.
 4. **Hold** the loop-segregation (§D) and the cognitive-loop gating drain as V4
-   bets unless (1)-(3) leave MECH-439 unresolved.
+   bets unless (1)-(3) leave MECH-439 unresolved. **DONE 2026-06-22:** loop
+   segregation now owned by **ARC-110** (wired into `ARC-108.depends_on`; falsifier
+   = V3-EXQ-700), and context-conditioned-weights-proper by **ARC-111** (the
+   weight-form sibling of the ARC-044 gain unifier). MECH-062 ("coordinated tri-loop
+   gating") status-corrected stable->candidate to match the collapsed reality. The
+   loop-segregation BUILD itself stays held pending V3-EXQ-700's verdict.
 
 ---
 

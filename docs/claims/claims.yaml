@@ -2503,7 +2503,19 @@
   claim_type: mechanism_hypothesis
   subject: commitment.tri_loop_gate_coordination
   polarity: asserts
-  status: stable
+  status: candidate
+  status_note: >
+    Status corrected stable->candidate 2026-06-22. The BG assembly map
+    (evidence/planning/basal_ganglia_assembly_map_2026-06-22.md A.2 + s.D) confirms
+    the three loops are COLLAPSED into one E3 selector: the motor / cognitive-set /
+    motivational analogs (dACC / lPFC / OFC) feed in as additive BIAS channels, NOT as
+    separate striatal loops each owning an eligibility-and-gate. "Coordinated tri-loop
+    gating as the pre-commit eligibility layer" therefore over-states what is built.
+    The prior `stable` mark was design-doc-strength (docs/architecture/e3.md), never an
+    implemented-and-validated separate-loop architecture. The missing SELECTION-STRUCTURE
+    segregation is now owned by ARC-110 (registered same pass); the assembly-map s.D
+    artefact-of-collapse hypothesis is ARC-110's falsifier (operationalised as V3-EXQ-700).
+    PROMOTES NOTHING (status correction to match the substrate, not an evidence-driven demotion).
   depends_on:
     - ARC-003
     - ARC-005
@@ -45350,6 +45362,7 @@
     - ARC-016    # the existing unsigned prediction-ERROR-VARIANCE precision signal -- DISTINCT from (not a substitute for) the signed RPE this claim requires (divergence B5: a category substitution that would silently block three-factor learning)
     - MECH-203   # the existing 5-HT neuromodulator built BEFORE its DA opponent (divergence B8); this substrate supplies the missing principal
     - MECH-448   # the rank-preserving F->eligibility demotion this would re-derive as LEARNED relative re-weighting (assembly-map C2: "behead the monarch" -> "learn the monarch's weight down")
+    - ARC-110    # COUPLED / SEQUENCING FORK: Haber's dopamine spiral integrates the segregated loops, so this substrate's completeness depends on there being segregated loops to couple; ARC-110's falsifier (does ARC-108+MECH-450 resolve MECH-439 on the COLLAPSED arena? -- V3-EXQ-700) is the explicit test of whether loop segregation is required or this build suffices
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT (the substrate is planned, not present). A future experiment SUPPORTS
     this on the note-s8 bar: a signed RPE teaching term applied to the E3 gating weights (i) re-weights at least
@@ -45539,3 +45552,109 @@
     round_delta 6.16 (live cross-round movement); OFF==ON-at-init bit-identical; env-loop settling engaged 60/60 ON,
     0 OFF. PROMOTES NOTHING -- MECH-450 stays candidate / substrate_conditional / v3. The sec-7 selection 2x2
     falsifier (learned-w_chan x learned-W_lat) is now fully runnable -- a separate /queue-experiment chip.
+- id: ARC-110
+  title: "Parallel segregated cortico-BG-thalamic loops (motor / cognitive-set / motivational): committed-action selection should run through SEPARATE striatal loop channels -- a motor loop, an associative/cognitive-set loop, and a limbic/motivational loop -- each owning its own eligibility-and-gate, arbitrated AFTER within-loop competition, rather than collapsing all channels into ONE shared E3 selection arena where the dACC/lPFC/OFC analogs feed in only as additive biases. HYPOTHESIS (assembly-map A.2 / s.D): the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse -- F monopolises 88-89% of committed-selection variance because every channel competes in one F-dominated arena; with segregated loops F could dominate only the motor loop and could not drown the limbic 'is this worth committing to' computation, which is a different loop with a different value. Translation target is FUNCTIONAL (the Alexander/DeLong/Strick parallel-loop organisation as a divergence-ledgered, falsifier-validated analogue), NOT anatomical mimicry."
+  claim_type: architectural_commitment
+  subject: selection.parallel_segregated_loops
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4   # full segregated-loop build is a V4 bet; PULLED FORWARD only if ARC-108+MECH-450 leave MECH-439 unresolved on the collapsed arena (the what_would_answer falsifier makes that an explicit testable fork, not a buried v4 bullet)
+  version_relevance: v4
+  registered_utc: "2026-06-22"
+  psychiatric_failure_mode: >
+    The segregated cortico-striatal loops are the substrate of the loop-specific CSTC
+    (cortico-striato-thalamo-cortical) disorder axis: an OCD-like pathology localised to
+    the associative/limbic loop (intrusive over-valuation without motor capture), a
+    motor-loop-specific Parkinsonian akinesia, and the dissociation between motivational
+    drive (limbic loop) and motor execution (motor loop) seen in avolition vs
+    bradykinesia. A single collapsed arena has no per-loop degree of freedom to lesion,
+    so loop-localised psychopathology cannot be modelled (ARC-106 EARNS failure) -- the
+    same EARNS argument ARC-109's D1/D2 split makes for the dopamine-gain axis.
+  depends_on:
+    - ARC-107    # the BG-constitution umbrella; segregated loops are the loop-STRUCTURE the single-selector constitution currently collapses
+    - ARC-106    # brain-like construction: Alexander/DeLong/Strick parallel-loop organisation grounded at FUNCTION; EARNS the loop-specific CSTC disease axis
+    - MECH-439   # the F-dominance conversion ceiling this claim hypothesises is partly an ARTEFACT of the single-arena collapse (the s.D hypothesis)
+    - MECH-062   # the existing 'coordinated tri-loop gating' claim, status-corrected 2026-06-22: tri-loop is ASSERTED but COLLAPSED in v3; ARC-110 owns the missing SELECTION-STRUCTURE segregation
+    - ARC-021    # 'three BG-like cortico-striatal loops require distinct LEARNING channels' -- the plasticity half of segregation
+    - MECH-069   # the three loops operate on INCOMMENSURABLE error signals (sensory / motor-sensory / harm+goal) -- the in-principle justification for not merging them
+    - Q-016      # open question: what arbitration policy resolves tri-loop conflicts without coupling collapse (MECH-140/141 are its candidate legs)
+    - ARC-108    # COUPLED: Haber's ascending striato-nigro-striatal DOPAMINE SPIRAL is the medium that integrates the segregated loops (limbic->associative->motor); ARC-108 supplies the spiral, ARC-110 the loops it couples -- co-requisite, not independent
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT; registered as an EXPLICIT TESTABLE FORK on the live ARC-108 build,
+    operationalised as V3-EXQ-700 (the ARC-108 sec-7 learned-gating 2x2 on the collapsed GAP-A arena). The s.D
+    (assembly-map) falsifier: with learned dopamine gating (ARC-108) + the recurrent settling step (MECH-450) now
+    BUILT, measure F's share of committed-selection variance on the EXISTING single collapsed arena (MECH-439 /
+    the V3-EXQ-571 ~88-89% baseline). REFUTED for the V3 tract (segregated loops NOT required) if learned gating +
+    settling on the collapsed arena drives F-dominance below the conversion-ceiling threshold AND >=1 non-motor
+    channel converts to committed action -- the collapse was NOT the cause, the missing LEARNING was. SUPPORTED /
+    PULLED FORWARD if F-dominance PERSISTS after ARC-108 + MECH-450 (V3-EXQ-700 shows preconditions-met-no-lift):
+    the single arena is implicated, and segregating the loops (F bounded to the motor loop, the limbic loop
+    arbitrated separately) is the next attack, with a per-loop ablation required to show loop-localised conversion
+    the collapsed arena cannot produce. NON-DEGENERACY: the per-loop channels must carry live cross-loop variance
+    (a 'segregated' loop pinned to the motor loop's winner is a vacuous split).
+  location: evidence/planning/basal_ganglia_assembly_map_2026-06-22.md
+  notes: >
+    Registered 2026-06-22 as the FOURTH BG missing-piece claim (assembly-map A.2 'Parallel segregated loops
+    (motor/assoc/limbic) -- MISSING (collapsed)' + s.D 'Open question -- loop segregation'), alongside ARC-108 /
+    ARC-109 / MECH-450. Until now loop segregation was a buried v4 bullet (ARC-107 s6b 'V3 collapses all loops into
+    one shared commitment interface') with NO owning claim; this makes the sequencing question an explicit, testable
+    fork wired onto the live ARC-108 build. Its falsifier is ALREADY operationalised as V3-EXQ-700 (queued
+    2026-06-22) -- 700's result decides pull-forward; do NOT chip a duplicate experiment. Distinct from ARC-021
+    (distinct LEARNING channels -- the plasticity half) and from MECH-062 (asserted-but-collapsed tri-loop gating,
+    status-corrected this pass): ARC-110 owns the SELECTION-STRUCTURE segregation and the s.D artefact-of-collapse
+    hypothesis. COUPLED to ARC-108 via Haber's dopamine spiral -- the loops are integrated BY dopamine, so building
+    the spiral on a collapsed arena under-specifies the very structure that makes F-dominance avoidable; hence wired
+    into ARC-108.depends_on as a co-requisite, not a downstream nice-to-have. Stays candidate / substrate_conditional
+    / v4 (promote/demote suppressed; right response is to let V3-EXQ-700 decide pull-forward, NOT more experiments
+    on the collapsed arena). ARC-106 cargo-cult guard: segregated loops need a function + divergence-ledger row +
+    per-loop ablation falsifier before they count as load-bearing. PROMOTES NOTHING.
+- id: ARC-111
+  title: "Context-conditioned weights PROPER -- learned connection weights as a function of context, distinct from context-conditioned GAIN: REE today has the GAIN form of context-conditioning (ARC-044's unifier -- a context-specific multiplicative scalar: MECH-152 terrain_weight scaling E3 harm/goal scoring, ARC-016 precision, MECH-261 mode-conditioned write-CHANNEL gating) which modulates a FIXED transfer function. It does NOT have the WEIGHT form: a substrate where the learned connection weights THEMSELVES are a function of context (a different effective weight set selected/generated per context -- the transfer function changes, not a gain on it). The valuation/gating parameters are static nn.Modules; context enters only through the INPUT (z_world) and through output GAIN, never through the weights. HYPOTHESIS: genuinely context-dependent BEHAVIOUR (not just context-scaled magnitude) requires context to reach the weights -- the learned per-channel selection weight w_chan conditioned on z_world that ARC-108 introduces is the first instance of this WEIGHT form at the gating layer."
+  claim_type: architectural_commitment
+  subject: architecture.context_conditioned_weights_proper
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3   # the first WEIGHT-form instance (ARC-108 w_chan conditioned on z_world) is in v3 scope; the general context->weights capability beyond the gating layer is v4
+  version_relevance: v3
+  registered_utc: "2026-06-22"
+  psychiatric_failure_mode: >
+    A system that can only context-SCALE a fixed transfer function (gain) but cannot
+    context-SELECT among learned weight sets is locked into one behavioural repertoire
+    whose magnitude varies -- it cannot show genuine context-dependent set-shifting. The
+    failure to bring context to the weights is the substrate of cognitive-inflexibility /
+    perseveration phenotypes (dorsolateral-prefrontal / associative-loop dysfunction:
+    failure to reconfigure the policy when the rule changes, as in set-shifting deficits)
+    -- distinct from the GAIN-axis failures (aberrant salience, precision dysregulation)
+    ARC-044 / ARC-016 already carry. EARNS the set-shifting axis only once context reaches
+    the weights.
+  depends_on:
+    - ARC-108    # the WEIGHT half: the first concrete instance -- learned per-channel selection weight w_chan as a function of z_world context, trained by signed RPE
+    - ARC-044    # the GAIN half (explicitly NOT this): context-dependent neuromodulatory GAIN, a multiplicative scalar on a fixed transfer function; ARC-111 is the weight-form sibling, kept distinct so the gain-vs-weight line stays visible (same category-substitution risk as divergence B5)
+    - MECH-152   # the BUILT worked example of the GAIN form (terrain_weight multiplicatively scales E3 scoring) -- the thing ARC-111 must NOT be conflated with
+    - MECH-261   # mode-conditioned write-CHANNEL gating (context routes WHICH substrate writes) -- the closest existing context-routing, still gating not weight-generation
+    - ARC-106    # brain-like construction: context-to-weights is the cortico-striatal three-factor-learned weighting grounded at FUNCTION; EARNS the set-shifting / cognitive-flexibility axis
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL. SUPPORTED if a context variable (z_world / loop / mode) changes the EFFECTIVE connection
+    weights -- not merely a multiplicative gain on fixed weights -- such that two contexts produce behaviour
+    reproducible by NO single fixed weight set under context-varying gain (the discriminator vs ARC-044: a gain
+    model can rescale a fixed policy but cannot REORDER it; a weight model can). Concretely on the ARC-108 instance:
+    the learned w_chan must take DIFFERENT learned values in different z_world contexts and produce a
+    context-dependent REORDERING of committed channels, not just a rescaling, on >=2/3 seeds. WEAKENED if every
+    observed context effect is reproducible by context-conditioned gain on a fixed weight set (then the GAIN form
+    ARC-044 suffices and this claim is over-specification). NON-DEGENERACY: per-context weights must carry live
+    cross-context variance (a w_chan identical across contexts is the gain model in disguise).
+  location: evidence/planning/basal_ganglia_assembly_map_2026-06-22.md
+  notes: >
+    Registered 2026-06-22 from the session thread distinguishing context-conditioned GAIN (built + unified under
+    ARC-044) from context-conditioned WEIGHTS PROPER (learned connection weights as a function of context). User
+    flagged 'we may also need context conditioned weights, but we have much of the machinery for this' -- the
+    machinery is the GAIN form (ARC-044 / MECH-152 / ARC-016 / MECH-261); the frontier is the WEIGHT form, whose
+    first instance falls out of the ARC-108 dopamine build (learned w_chan conditioned on z_world) at NO new
+    substrate cost. Registered as a DISTINCT claim rather than folded into ARC-044 precisely to keep the
+    gain-vs-weight distinction visible -- folding it under the gain unifier would silently downgrade the requirement
+    from learned weights to gain, the same category-substitution shape as divergence B5 (RPE-as-unsigned-variance).
+    Wired to ARC-108 (weight half) + ARC-044 (gain half, explicitly sibling-not-parent). Stays candidate /
+    substrate_conditional / v3 (first instance is the ARC-108 w_chan; promote/demote suppressed -- right response is
+    the ARC-108 BUILD + the discriminator-vs-gain falsifier, NOT promotion). PROMOTES NOTHING.
