@@ -8,6 +8,26 @@
 - **Claims tested:** MECH-309, ARC-062
 - **Outcome:** FAIL · manifest self-route `evidence_direction: non_contributory`, label `conversion_ceiling_persists_despite_active_nogo_route_next_arc107_ledger_component`
 
+> **RECONCILED 2026-06-22T14:30Z (session reconcile-factorb-refuted-689c-routing).** The routing
+> below (§5–§7) names **Factor B near-tie commit-temperature** as the user-approved next ARC-107
+> ledger component. That route is **SUPERSEDED** — Factor B was already **refuted at the selection
+> face** the day before, by the dedicated Factor-B-alone gap-scaled commit-T isolation
+> **V3-EXQ-689c** (manifest
+> `v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation_20260621T022028Z_v3.json`, landed
+> 2026-06-21, reviewed): **FAIL / non_contributory / `conversion_ceiling_persists_despite_conflict_grade`**,
+> readiness ALL met (route-range 0.2158, e2 pairwise 0.0633, t_eff varies 3/3), **C_PRIMARY 1/3**
+> (a0b1 selected-entropy 0.6646 vs collapsed ~0.6503; need 2/3) and **C_GAPBLIND_B 0/3** (the flat-hot
+> control ARM_FIXED_HOT_T 0.6684 was *higher* than gap-scaled a0b1 0.6646 → the lift is not
+> gap-scaling). The 654j interactive-gate decision did not fold in 689c. A `/queue-experiment`
+> session on 2026-06-22 correctly **declined to queue the planned 654k Factor-B GAP-B falsifier**
+> because its selection-face gate (689c) was unmet. **Corrected next route:** the conflict-grade
+> near-tie parametric family is fully exhausted (Factor A inert per 689a + Factor B refuted per
+> 689c); the live routes for the conversion ceiling are the **root-C commit/release-DURATION face
+> (rung 6 of `f_dominance_conversion_ceiling`, PARKED 2026-06-22 awaiting the closure-exclusive
+> de-commit eval substrate)** or the **V4 rungs 3–5** — **NOT** another GAP-B eligibility/commit-T
+> behavioural letter. This reconcile PROMOTES NOTHING; MECH-309/ARC-062 remain
+> substrate_ceiling / `pending_retest_after_substrate`, UNWEAKENED.
+
 ## 1. Facts (self-route adjudicated, not merely trusted)
 
 654j ports the GAP-B committed-class behavioural falsifier onto the **MECH-449 active Go/No-Go
@@ -52,9 +72,13 @@ is **structural and downstream of selection** — selection-level eligibility go
 live, but the differentiated rule-apprehension bias does not propagate to committed-class diversity.
 
 Per the ARC-107 component table, the remaining components are: Factor A conflict-graded width
-(**inert** per 689a), Factor B near-tie commit-temperature (**parametric, not constitutional**; 689a
-showed it converts 2/3 alone, A1B1 cancels; 689c isolates it), and the post-commit latch (assigned to
-**root C of `f_dominance_conversion_ceiling`**, commit-entry-decisiveness).
+(**inert** per 689a), Factor B near-tie commit-temperature (**REFUTED at the selection face** — see
+the RECONCILED banner above: 689a's 2/3-alone read was overturned by the dedicated isolation
+**V3-EXQ-689c**, C_PRIMARY 1/3 / C_GAPBLIND_B 0/3, so it is *not* a live next lever), and the
+post-commit latch (assigned to **root C of `f_dominance_conversion_ceiling`**,
+commit-entry-decisiveness — rung 6, currently PARKED awaiting the closure-exclusive de-commit
+substrate). With Factor A inert and Factor B refuted, the conflict-grade near-tie parametric family is
+fully exhausted at the selection face.
 
 ## 3. Claim-layer map
 
@@ -85,13 +109,17 @@ showed it converts 2/3 alone, A1B1 cancels; 689c isolates it), and the post-comm
 **Fired: true.** This is the **18th** prior substrate_ceiling/non_contributory autopsy tagging
 MECH-309 (**19th** for ARC-062). Threshold is 2.
 
-**User decision at the interactive gate (2026-06-22):** route to the **literal next ARC-107 ledger
-component** — queue Factor B near-tie commit-temperature as the next ARM_ON behavioural falsifier.
-This exercises the brake's **different-mechanism exemption**: Factor B is a structurally different
-ARC-107 lever from the two now-exhausted eligibility-governance legs (demotion, Go/No-Go), and it
-matches the manifest's own pre-registered "route to next ARC-107 ledger component." The brake
-therefore **does not refuse this re-queue** — but it **continues to refuse** any further
-*eligibility-governance* letter (another demotion/Go/No-Go variant against the same C2 ceiling).
+**User decision at the interactive gate (2026-06-22) — SUPERSEDED 2026-06-22, see the RECONCILED
+banner at top:** route to the **literal next ARC-107 ledger component** — queue Factor B near-tie
+commit-temperature as the next ARM_ON behavioural falsifier. This exercised the brake's
+**different-mechanism exemption**: Factor B is a structurally different ARC-107 lever from the two
+now-exhausted eligibility-governance legs (demotion, Go/No-Go), and it matched the manifest's own
+pre-registered "route to next ARC-107 ledger component." **[CORRECTION:]** the brake now **DOES refuse
+this re-queue** — Factor B was already refuted at the selection face by V3-EXQ-689c (FAIL; C_PRIMARY
+1/3, C_GAPBLIND_B 0/3), so the section-7 selection-face gate is unmet and the 654k Factor-B letter was
+declined 2026-06-22. The brake continues to refuse any further *eligibility-governance* letter as
+well; the conflict-grade near-tie parametric family (Factor A + Factor B) is exhausted at the
+selection face.
 
 ## 6. Learning extracted
 
@@ -103,10 +131,34 @@ therefore **does not refuse this re-queue** — but it **continues to refuse** a
   so this is not an inert-No-Go artifact. The active No-Go leg alone is insufficient for behavioural
   conversion.
 - The eligibility-governance face of ARC-107 is now exhausted for GAP-B conversion. The remaining
-  ARC-107 components are Factor A (inert), Factor B (parametric near-tie commit-temperature), and the
-  post-commit latch (owned by root C). Continued eligibility-leg letters are braked.
+  ARC-107 components are Factor A (inert per 689a), Factor B (near-tie commit-temperature — **REFUTED
+  at the selection face by V3-EXQ-689c**, see the RECONCILED banner; not a live next lever), and the
+  post-commit latch (owned by root C, rung-6 PARKED). Continued eligibility-leg letters are braked,
+  and the conflict-grade near-tie parametric family is exhausted — the corrected next route is root-C
+  rung-6 (PARKED) or V4, NOT another GAP-B eligibility/commit-T letter.
 
 ## 7. Routing
+
+**[SUPERSEDED 2026-06-22 — see the RECONCILED banner at the top.]** The original routing below sent
+the next test to a Factor-B near-tie commit-temperature falsifier. That route is dead: it explicitly
+required gating the Factor-B falsifier "behind its selection-face validation (689a/689c Factor-B
+isolation)", and **689c failed that gate** (FAIL/non_contributory; C_PRIMARY 1/3, C_GAPBLIND_B 0/3,
+flat-hot control higher than gap-scaled). The selection-face precondition is therefore UNMET, so no
+Factor-B GAP-B behavioural letter (654k or otherwise) is warranted — the `/queue-experiment` session
+on 2026-06-22 correctly declined to queue it.
+
+**Corrected routing:** no `/queue-experiment` dispatch on the conflict-grade near-tie parametric
+family (Factor A inert + Factor B refuted = exhausted at the selection face). The conversion ceiling's
+live routes are **(a) the root-C commit/release-DURATION face** — rung 6 of
+`f_dominance_conversion_ceiling`, currently **PARKED** (2026-06-22, design-rethink V3-EXQ-460j)
+awaiting a **closure-exclusive de-commit eval substrate** (an `/implement-substrate` BUILD chip owns
+this; not a `/queue-experiment` item) — **or (b) the V4 rungs 3–5** (divisive-normalisation pooled
+denominator / output-null preparatory subspace / cross-tick quality-diversity archive). MECH-309 /
+ARC-062 stay `substrate_ceiling` / `pending_retest_after_substrate`, UNWEAKENED. PROMOTES NOTHING.
+
+---
+
+### Original routing (preserved for the record — DO NOT ACT ON; superseded above)
 
 **`queue-experiment`** (must go through the `/queue-experiment` skill) — next ARC-107 ledger
 component: **Factor B near-tie commit-temperature** as the swept ARM_ON, same GAP-B committed-class
@@ -128,6 +180,10 @@ DV/claim argues for a 654-lineage letter).
 > both PASS at the selection face yet NEITHER converts to committed-class behavioural diversity:
 > conversion ceiling is structural and downstream of selection. Claims UNWEAKENED
 > (substrate_ceiling / pending_retest_after_substrate). Re-derive brake fired (18th MECH-309 / 19th
-> ARC-062); further eligibility-governance letters refused. User-approved next route (2026-06-22):
-> the literal next ARC-107 ledger component — Factor B near-tie commit-temperature — as a
-> different-mechanism falsifier (brake different-mechanism exemption).
+> ARC-062); further eligibility-governance letters refused. RECONCILED 2026-06-22: the
+> originally-recorded next route (Factor B near-tie commit-temperature) is SUPERSEDED — Factor B was
+> refuted at the selection face by V3-EXQ-689c (FAIL/non_contributory; C_PRIMARY 1/3, C_GAPBLIND_B 0/3,
+> flat-hot control 0.6684 > a0b1 0.6646), so the conflict-grade near-tie parametric family (Factor A
+> inert + Factor B refuted) is exhausted at the selection face. Corrected next route: root-C
+> commit/release-DURATION face (rung 6, PARKED) or V4 rungs 3–5, NOT another GAP-B eligibility/commit-T
+> letter.
