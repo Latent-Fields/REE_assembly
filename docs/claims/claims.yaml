@@ -45218,6 +45218,9 @@
     - Q-078      # the open question (constitutional vs parametric) whose CONSTITUTIONAL branch this commits to
     - MECH-260   # No-Go (indirect-pathway suppression) already in dACC
     - SD-034     # post-commit closure / de-commit latch family (with MECH-090 / MECH-342 / MECH-445 / MECH-446)
+    - ARC-108    # MISSING PIECE (assembly-map A.4/E.2): unified dopamine substrate -- the LEARNING afferent that turns this arithmetic constitution into learned cortico-striatal weights; the constitution's completeness depends on it
+    - ARC-109    # MISSING PIECE (assembly-map A.2/E.2): D1/D2 population split w/ asymmetric DA gain -- de-collapses the MECH-449 Go/No-Go additive scalar into two opponent populations (EARNS the disease axis)
+    - MECH-450   # MISSING PIECE (assembly-map B1+B3/E.2): minimal recurrent settling step -- replaces the one-shot pallidal-readout argmin with a bounded settling competition (the named-but-unbuilt "thalamocortical recurrence" target)
   what_would_answer: >
     Instantiation is GATED on V3-EXQ-689a (see Q-078). The CONSTITUTIONAL branch is favoured if 689a gives
     uniform lift (conflict grading not load-bearing) or readiness-met-no-lift (near-tie levers insufficient)
@@ -45245,3 +45248,174 @@
     MECH-439 conflict-graded Factor-A/B levers, SD-034 / MECH-090 / MECH-342 latch. Cross-plan home:
     biology_grounding_convergence_v4_plan BG-2 (selector) + BG-3 (commit latch);
     behavioral_diversity_isolation:GAP-I.
+
+# ============================================================================
+# BASAL-GANGLIA MISSING-PIECE CLAIMS (assembly-map intake-reap, 2026-06-22)
+# Registered from basal_ganglia_assembly_map_2026-06-22.md SS A.5 / E.2 -- the
+# three missing-piece architectural claims the assembly map flagged as its next
+# governance action (intake-reap, NOT future-registration prose). All three are
+# candidate / substrate_conditional (promote/demote suppressed; the right
+# response is to BUILD/WAIT for the substrate, not run more experiments on the
+# current one). Each carries the ARC-106-mandated psychiatric_failure_mode line
+# (the EARNS column). Wired into ARC-107 (the BG-constitution umbrella) both
+# ways: ARC-107.depends_on lists them (its completeness depends on these missing
+# pieces, SS 6b ledger) and each lists ARC-107 (child->umbrella, matching
+# MECH-447/448/449). The learned-gating ALTERNATIVE to f_dominance_conversion_
+# ceiling's arithmetic levers (MECH-447/448/449) -- NOT duplicates of them.
+# ============================================================================
+- id: ARC-108
+  title: "Unified dopamine substrate -- signed dopaminergic-RPE teaching signal feeding LEARNED gating weights on the E3 selector: the cortico-striatal weights that decide which channel wins committed-selection authority should themselves be LEARNED via three-factor plasticity (Hebbian co-activation x signed dopaminergic RPE) with the D1-LTP / D2-LTD asymmetry, consolidating the currently-scattered RPE / vigor / incentive functions into one substrate and supplying the GPi->lateral-habenula negative-RPE drain. The ARC-107 arbitration layer (MECH-447/448/449 + the authority rescale) is today pure arithmetic with NO learned parameters; F monopolises 88-89% of committed-selection variance (MECH-439) precisely because no learned striatal weighting can re-weight channels through experience. The single highest-leverage missing BG piece and the proposed next attack on MECH-439."
+  claim_type: architectural_commitment
+  subject: selection.unified_dopamine_substrate_learned_gating
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4
+  registered_utc: "2026-06-22"
+  psychiatric_failure_mode: >
+    On breakage / dysregulation of the signed-RPE teaching signal: the dopaminergic
+    learning axis is the substrate of reward-prediction-error psychopathology --
+    tonic/phasic DA imbalance (addiction; the positive symptoms of schizophrenia via
+    aberrant-salience RPE), anhedonia / blunted RPE in depression, and the
+    impulse-control / dyskinesia spectrum when the D1-LTP / D2-LTD asymmetry is
+    deranged (the full Go/No-Go disease axis is EARNED jointly with ARC-109). A
+    purely-arithmetic gating layer (the current state) cannot model any of these --
+    it has no learning signal to derange. Earning this axis is exactly the ARC-106
+    EARNS criterion.
+  depends_on:
+    - ARC-107    # the BG-constitution umbrella; this is the MISSING LEARNING afferent (assembly-map A.4) that turns its arithmetic envelope (MECH-448/449) into learned cortico-striatal weights
+    - ARC-106    # brain-like construction constraint: the learning rule is grounded at FUNCTION (three-factor Hebbian x signed RPE) and EARNS the dopaminergic psychiatric axis
+    - MECH-439   # the F-dominance conversion ceiling RESTATED: F monopolises selection because the gating layer learns nothing; learned re-weighting is the proposed attack
+    - ARC-016    # the existing unsigned prediction-ERROR-VARIANCE precision signal -- DISTINCT from (not a substitute for) the signed RPE this claim requires (divergence B5: a category substitution that would silently block three-factor learning)
+    - MECH-203   # the existing 5-HT neuromodulator built BEFORE its DA opponent (divergence B8); this substrate supplies the missing principal
+    - MECH-448   # the rank-preserving F->eligibility demotion this would re-derive as LEARNED relative re-weighting (assembly-map C2: "behead the monarch" -> "learn the monarch's weight down")
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT (the substrate is planned, not present). A future experiment SUPPORTS
+    this on the note-s8 bar: a signed RPE teaching term applied to the E3 gating weights (i) re-weights at least
+    one previously-F-dominated modulatory channel into committed-action authority THROUGH EXPERIENCE (a learned
+    shift the fixed-arithmetic envelope cannot produce), (ii) preserves safety (No-Go-suppressed classes are not
+    learned back in), and (iii) the teaching signal is genuinely SIGNED (Go-up is dissociable from No-Go-up --
+    not the unsigned variance of ARC-016), on >=2/3 seeds. WEAKENED if learned gating does not lift committed
+    diversity beyond the arithmetic MECH-448/449 envelope (the learning rule is then over-specification), or if
+    the only lift comes from added stochasticity (noise-as-diversity guard). NON-DEGENERACY: the RPE term must
+    carry live cross-arm/cross-tick variance and actually change a gating weight, else substrate_not_ready_requeue.
+  location: evidence/planning/basal_ganglia_assembly_map_2026-06-22.md
+  notes: >
+    Registered 2026-06-22 as the intake-reap (assembly-map step E.2) of the SINGLE BIGGEST missing BG piece
+    (assembly-map A.4 / A.5 item 1): the ARC-107 arbitration layer is pure arithmetic with no learned parameters,
+    so F-dominance (MECH-439) is the predicted failure of a system that selects but cannot LEARN to select.
+    Consolidates the scattered RPE/vigor/incentive functions (MECH-314 curiosity, MECH-320 vigor, MECH-295 liking
+    are afferents, not a unified DA substrate) and supplies the missing GPi->lateral-habenula negative-RPE drain
+    (assembly-map A.3). Resolves divergence B5 (RPE-as-unsigned-variance) and B8 (5-HT-before-DA), and is the
+    long-term resolution of B2 (the MECH-448 F-deletion lever should become unnecessary once F's weight is LEARNED
+    down in contexts where the modulator matters -- assembly-map C2). SCOPE BET (flagged to + confirmed by user
+    2026-06-22): currently a STATED V4 bet in arc_107_selector_constitution_design_2026-06-20.md s6b ("V3
+    eligibility is hand-shaped, not learned by RPE; the learning signal is v4"); the assembly map (A.5, C1/C2)
+    RECOMMENDS pulling it forward as the next MECH-439 attack, and the dopamine-into-gating design note
+    (assembly-map step E.3, in flight) will decide learned-gating-vs-arithmetic-envelope. KEPT at
+    implementation_phase:v4 per the current stated bet (registration != build, mirroring ARC-107's own
+    "captured now, built only if" posture); the E.3 design note may pull it to v3. COUPLED to MECH-450 (the
+    recurrent-settling-step repair -- the lateral-inhibition weights are themselves learned in biology) and to
+    ARC-109 (the D1/D2 split is the population substrate the D1-LTP/D2-LTD asymmetry acts on). This is the
+    LEARNED-GATING alternative to the f_dominance_conversion_ceiling arithmetic levers, NOT a duplicate. ARC-106
+    cargo-cult guard: the learning rule needs a function + divergence-ledger row + ablation falsifier before it
+    counts as load-bearing. PROMOTES NOTHING (new candidate).
+- id: ARC-109
+  title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
+  claim_type: architectural_commitment
+  subject: selection.d1_d2_population_split_asymmetric_da_gain
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4
+  registered_utc: "2026-06-22"
+  psychiatric_failure_mode: >
+    This split is the substrate WHOSE BREAKAGE IS the D1/D2 disease axis, so it must
+    exist before the axis can be modelled (ARC-106 EARNS): D2-pathway hypofunction /
+    dopamine depletion -> Parkinsonian akinesia; D1 overdrive / dopaminergic excess
+    -> dyskinesia and impulse-control disorders; striatal degeneration with D2 loss
+    -> Huntingtonian chorea; and the approach-avoidance / OCD-CSTC axis that the
+    additive collapse (divergence B4) pre-sums away (high-Go+high-No-Go conflict is
+    today indistinguishable from low-Go+low-No-Go indifference). A single additive
+    scalar has no D1-vs-D2 degree of freedom to lesion, so none of these can be
+    modelled -- the EARNS failure.
+  depends_on:
+    - ARC-107    # the BG-constitution umbrella; this splits its Go/No-Go scoring-SIGN (MECH-449) into two opponent populations
+    - ARC-106    # EARNS criterion: the population split is what makes the Parkinson/dyskinesia/Huntington/ICD axis modellable
+    - ARC-108    # the unified dopamine substrate supplies the signed RPE; the asymmetric D1-LTP / D2-LTD gain is the population substrate that RPE acts on (coupled build)
+    - MECH-449   # the Go/No-Go eligibility constitution this de-collapses from one additive cost into two opponent pathways (divergence B4)
+    - MECH-260   # the No-Go / indirect-pathway suppression that would route through the D2 population
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT. A future experiment SUPPORTS this if two opponent populations with
+    asymmetric DA gain (i) preserve a representational distinction the additive scalar cannot -- approach-avoidance
+    conflict (high-Go+high-No-Go) is dissociable from indifference (low-Go+low-No-Go) in committed behaviour --
+    and (ii) a targeted D1-vs-D2 gain lesion reproduces a recognisable disorder analog (e.g. D2 hypofunction ->
+    akinesia/perseveration) that a single-scalar lesion cannot, on >=2/3 seeds. WEAKENED if the split yields no
+    behavioural or failure-mode distinction beyond the additive MECH-449 scalar (decorative, dropped per the
+    ARC-106 load-bearing-vs-decorative ablation test). NON-DEGENERACY: the two populations must carry live,
+    DISSOCIABLE cross-arm variance (not a re-parameterised single axis), else substrate_not_ready_requeue.
+  location: evidence/planning/basal_ganglia_assembly_map_2026-06-22.md
+  notes: >
+    Registered 2026-06-22 as the intake-reap (assembly-map step E.2) of assembly-map A.2 / A.5 item 2 and the
+    repair target for divergence B4 (Go/No-Go additive collapse, previously SILENT). REE's Go/No-Go is today a
+    scoring SIGN over one additive cost (score = f + lambda*m + rho*Phi - beta*b), not two populations with
+    opposite dopamine sensitivity; the additive collapse makes approach-avoidance conflict indistinguishable from
+    indifference (a representational loss). COUPLED to ARC-108 (the signed RPE is what produces the D1-LTP /
+    D2-LTD asymmetry -- this is the population substrate the learning rule acts on; build them together) and is
+    the structural prerequisite the ARC-106 EARNS criterion needs for the dopaminergic psychiatric axis. V4 per
+    the assembly-map sequencing (after the dopamine substrate, A.5 item 2). ARC-106 cargo-cult guard: the split
+    needs a function + divergence-ledger row (B4) + an ablation falsifier (a D1-vs-D2 lesion the additive scalar
+    cannot reproduce) before it counts as load-bearing. PROMOTES NOTHING (new candidate).
+- id: MECH-450
+  title: "Minimal recurrent settling step over the eligible set: replace the one-shot feed-forward argmin/softmax committed-selection readout with a few rounds of mutual-inhibition (surround-inhibition) updates on the within-eligible _modulatory_accum field BEFORE commit, so the committed action emerges from a bounded recurrent SETTLING competition rather than a single global comparison. A hard argmin over an F-dominated score always returns the F-winner (the conversion ceiling); a settling competition with lateral inhibition can FLIP the selected attractor when a modulatory channel is strong enough, and turns the additive _modulatory_accum BLEND into a competitive winner-take-most. The V3-bounded version of the BG's recurrent settling dynamics; the full learned thalamo-cortico-basal loop is the V4 bet."
+  claim_type: mechanism_hypothesis
+  subject: selection.minimal_recurrent_settling_step
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-06-22"
+  psychiatric_failure_mode: >
+    On breakage of the settling dynamics: too few / too-weak inhibition rounds ->
+    failure to converge to a single winner = the indecision / blend-output failure
+    (an avolition / abulia analog, and the channel co-activation that surround
+    inhibition exists to prevent); runaway / excessive recurrent gain -> a locked
+    attractor that cannot be flipped by new evidence = a perseveration /
+    catatonic-fixity / obsessional-loop analog. The one-shot argmin has no settling
+    dynamics to derange, so it cannot model either pole -- it can only ever return
+    the static F-winner.
+  depends_on:
+    - ARC-107    # the BG-constitution umbrella; this replaces its one-shot pallidal readout with a bounded recurrent settling competition (its named-but-unbuilt "thalamocortical recurrence" target)
+    - MECH-439   # the F-dominance conversion ceiling: a hard argmin STRUCTURALLY returns the F-winner; a settling competition can flip the attractor (assembly-map C1)
+    - MECH-448   # the within-eligible _modulatory_accum arbitration whose ADDITIVE BLEND (divergence B3-blend) this converts into a competitive winner-take-most
+    - ARC-108    # COUPLED: the lateral-inhibition weights are themselves learned in biology; the full loop needs the dopamine substrate (the minimal V3 step uses fixed inhibition)
+    - MECH-449   # the Go/No-Go eligible set the settling step operates over
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT (the minimal settling step is V3-tractable but unbuilt). A future
+    experiment SUPPORTS this if a bounded settling step (a few mutual-inhibition rounds over the eligible set)
+    lifts committed-action-class entropy above the one-shot argmin readout AND a sufficiently strong modulatory
+    channel FLIPS the committed attractor away from the F-winner (a capability the argmin structurally lacks),
+    with no harmful-class disinhibition and not via added stochasticity (noise-as-diversity guard), on >=2/3
+    seeds. WEAKENED if the settling step does not lift diversity beyond the MECH-448/449 pre-filters (the
+    recurrence is then unnecessary in V3) or only converges to the same argmin winner. NON-DEGENERACY: the
+    settling iteration must actually MOVE the _modulatory_accum field across rounds (live cross-round variance;
+    not a no-op pass), else substrate_not_ready_requeue.
+  location: evidence/planning/basal_ganglia_assembly_map_2026-06-22.md
+  notes: >
+    Registered 2026-06-22 as the intake-reap (assembly-map step E.2) of the MERGED repair target for divergence
+    B1 (one-shot argmin vs recurrent settling competition -- genuine repair target, assembly-map C1) and the
+    B3-blend half of divergence B3 (the additive _modulatory_accum blend vs surround inhibition -- same root,
+    assembly-map C3). The same minimal-settling-step experiment fixes BOTH: a few rounds of mutual inhibition over
+    the eligible set turn the additive blend into a competitive winner-take-most and give the readout the
+    attractor-flip property the argmin lacks. Evidence it is the right repair (assembly-map C1): the failure
+    history is "structural bounding works (569i top-k), parametric tuning does not (514t gain, 569h candidate
+    pool)" -- the signature of a system that needs a different SELECTION RULE, not a better scoring weight.
+    COUPLED to ARC-108 (the dopamine-into-gating repair -- the lateral-inhibition weights are learned in biology;
+    sequence after or alongside it). The B3 POLARITY half (default-inhibit-then-disinhibit vs default-pick) is NOT
+    this claim -- it is a defensible V3 simplification registered as a stated bet (V3 has one effector, so the two
+    are behaviourally equivalent; assembly-map C3). FULL learned thalamo-cortico-basal settling loop = V4 bet.
+    ARC-106 cargo-cult guard: the settling step needs an ablation falsifier (entropy/attractor-flip unchanged when
+    ablated => decorative) before it counts as load-bearing. PROMOTES NOTHING (new candidate).
