@@ -1,0 +1,86 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-22T06:47:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3",
+      "queue_id": "V3-EXQ-485l",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (unweakened): the devaluation half was never tested under conditions where it could express itself -- the devalued OFC bias range is clamp-starved below the same-statistic non-vacuity floor (0.031 < 0.05), so the behavioural battery short-circuited under substrate_not_ready_requeue.",
+        "biological_reference": "clear, load-bearing: OFC outcome-devaluation = active No-Go withdrawal (Rudebeck & Murray 2014; Mink 1996; Maia & Frank 2011). MECH-449 implements this and is wired in correctly; the failure is an input-starved (known-dependency-present) signature, not a falsification.",
+        "prerequisites": "present but non-engaging: MECH-449 built + validated (689g PASS 3/3, promoted candidate->provisional); MECH-448 envelope fired (excluded 3/3); OFC head trained (3/3). MECH-449 No-Go engaged only 1/3 because its viability input is derived from the clamp-starved devalued range.",
+        "implementation": "partial: a single shared OFC head couples the C2 high-threat discrimination range and the devalued re-ranking range under one +/-0.5 ofc_bias_scale clamp.",
+        "environment": "adequate: OFC-isolated SD-054 bipartite reef/forage candidate bank.",
+        "measurement": "adequate (fixed): per-seed pass counts replace the 485k aggregate-max mask; the C1b bias-vector readout (l2 1.83, cosine -0.716) correctly catches the re-ranking direction the committed-argmax DV is blind to.",
+        "integration": "coupled but unstable: one OFC head must carry both devaluation re-ranking AND task-role discrimination; the gain that lifts the devalued range either saturates the clamp (485k 4.0) or undershoots the floor (485l 1.5).",
+        "scale": "clamp-bound, the binding ceiling: the +/-0.5 clamp on the shared head admits no feasible gain band -- a differentiated-but-unsaturated devalued range above 0.05 that also preserves C2 is not reachable by gain alone."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-devaluation feeding the basal-ganglia indirect / No-Go pathway to actively withdraw the devalued (previously-preferred) action from the eligible set",
+        "dependencies": [
+          "trained OFC valuation head producing a supra-floor differentiated devalued bias (PRESENT in direction, clamp-starved in magnitude)",
+          "MECH-449 Go/No-Go eligibility constitution (BUILT/validated 689g; correct but input-starved here)",
+          "MECH-448 rank-preserving F->eligibility demotion envelope (present, fired 3/3)",
+          "an OFC bias clamp / head capacity that lets the devalued re-ranking magnitude reach the No-Go viability trigger (MISSING -- the new substrate gap)"
+        ],
+        "is_formal_import": false,
+        "divergence": "No formal-import divergence: the mechanism is biologically faithful. The gap is a REE scale/integration artifact -- the +/-0.5 shared-head clamp compresses the (correctly-directed) devalued valuation below the No-Go trigger.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-485l (2026-06-22, ree-cloud-2): supersedes 485k; FAIL/non_contributory/non_degenerate:false (no governance weight), self-route substrate_not_ready_requeue CONFIRMED + re-localised by failure_autopsy_V3-EXQ-485l_2026-06-22. MECH-449 (Go/No-Go constitution) is BUILT + validated (689g PASS 3/3, promoted candidate->provisional) so the 485k 'build MECH-449' route is DISCHARGED, but 485l shows the residual is structural scale: the single shared OFC head under the +/-0.5 ofc_bias_scale clamp cannot carry a devalued re-ranking magnitude above the 0.05 readout floor AND the No-Go viability trigger while preserving C2. 485k gain 4.0 saturated (devalued range 0.0); 485l gain 1.5 undershot (0.031 < 0.05). The bias VECTOR inverts (l2 1.83, cosine -0.716, C1b PASS 2/3) -- correct direction -- but the clamp compresses the magnitude, starving the viability No-Go (engaged 1/3, < 2/3 gate). MECH-449 correct-but-non-engaging here = positive evidence the constitution needs a supra-floor valuation input, NOT a weakens. SD-033b / MECH-263 devaluation half: non_contributory / substrate_conditional / pending_retest_after_substrate, blocked on a NEW substrate -- OFC devaluation-head clamp rescale / head decoupling (amend f_dominance_conversion_ceiling). RE-DERIVE BRAKE FIRED (10th non_contributory autopsy on SD-033b/MECH-263): a plain 485m gain-tweak is REFUSED -- no feasible gain band on the shared +/-0.5 clamped head. MECH-448/MECH-449 NOT weakened (both engaged correctly within their scope). PROMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": "f_dominance_conversion_ceiling",
+        "title": "OFC devaluation-head clamp rescale / head decoupling -- MECH-449 input-starved by the +/-0.5 shared-head clamp",
+        "implementation_hint": "MECH-449 is built + validated (689g 3/3) but cannot engage in the OFC devaluation channel because its per-candidate viability input is derived from a devalued bias range the +/-0.5 ofc_bias_scale clamp compresses below floor (485k gain 4.0 saturates -> 0.0; 485l gain 1.5 undershoots -> 0.031 < 0.05). No feasible gain band on the shared head. Build options for /implement-substrate: (a) DECOUPLE the devaluation head from the discrimination head so the devalued re-ranking magnitude is not traded against C2; and/or (b) RESCALE the OFC bias clamp at the devalued state (or make ofc_bias_scale state-conditional) so a supra-floor differentiated devalued range fits without saturating; with (c) the GNG viability mapping re-derived from the rescaled range. The 485-line behavioural retest (devaluation half) is gated behind this build.",
+        "unblocks_claims": ["MECH-263", "SD-033b"],
+        "depends_on_unresolved": [
+          "OFC devaluation-head clamp rescale / head decoupling (new -- this entry)",
+          "MECH-449 Go/No-Go eligibility constitution (BUILT/validated 689g; correct, awaiting a supra-floor valuation input)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3",
+          "experiment_type": "v3_exq_485l_sd033b_devaluation_nogo_behavioural",
+          "metric": "devalued-state OFC bias range 0.031 (< 0.05 readout floor) on 0/3 seeds AND MECH-449 No-Go withdrawal engaged 1/3 seeds (< 2/3 gate); bias vector inverts correctly (l2 1.83, cosine -0.716, C1b 2/3) so the miss is magnitude/scale, not direction",
+          "target": "a decoupled / rescaled OFC devaluation head must produce a supra-floor (> 0.05) differentiated devalued bias range that crosses the GNG viability trigger and converts the committed-selection devaluation shift on >= 2/3 seeds, WITHOUT saturating the clamp or regressing the C2 high-threat discrimination range"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-485e_2026-06-11",
+          "failure_autopsy_V3-EXQ-485g_2026-06-19",
+          "failure_autopsy_V3-EXQ-485h_2026-06-19",
+          "failure_autopsy_V3-EXQ-485i_2026-06-21",
+          "failure_autopsy_V3-EXQ-485j_2026-06-21",
+          "failure_autopsy_V3-EXQ-485k_2026-06-21",
+          "failure_autopsy_V3-EXQ-695-696-f-dominance-cluster_2026-06-21",
+          "failure_autopsy_batch9_2026-06-12",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling (OFC devaluation-head clamp rescale / head decoupling)"
+      },
+      "learning_extracted": [
+        "MECH-449 demotion->withdrawal is correct but input-gated: it can only withdraw a candidate whose devalued viability crosses the No-Go floor, which requires a supra-floor devalued bias range the +/-0.5 shared-head clamp does not deliver.",
+        "485k saturation (gain 4.0 -> range 0.0) and 485l undershoot (gain 1.5 -> range 0.031) bracket an empty-or-near-empty feasible band: on a single shared OFC head under +/-0.5, a differentiated-but-unsaturated devalued range that also preserves C2 is not reachable by gain alone.",
+        "The correct re-ranking direction (vector inversion, cosine -0.716, C1b 2/3) with sub-floor magnitude is a clean scale/integration diagnosis, not a claim pressure -- SD-033b/MECH-263 remain unweakened.",
+        "The 485k 'build MECH-449' substrate route is DISCHARGED (689g PASS); the new substrate gap is one level down (OFC-head clamp/decoupling that feeds MECH-449 a supra-floor signal)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
