@@ -423,3 +423,4 @@ One line per hourly tick. ASCII only.
 2026-06-22T22:18:29Z complete IGW-20260620-187 launched_manual->completed outcome=USEFUL_LANDED: INV-050: PARKED EXP-0190/INV-050 until sleep substrate (MECH-123 REM + API stabi
 2026-06-22T22:18:48Z complete IGW-20260620-186 launched_manual->completed outcome=USEFUL_LANDED: MECH-191: queued V3-EXQ-686 cross-arch signal-legibility test (ree-v3 b2e8546).
 2026-06-22T22:19:20Z complete IGW-20260620-194 launched_manual->completed outcome=USEFUL_LANDED: INV-065: EVB-0105/EXP-0191 blocked_substrate landed (REE_assembly 625cf1c45d/558
+2026-06-22T22:21:31Z complete IGW-20260620-193 launched_manual->completed outcome=NO_OP: MECH-085: session did no MECH-085 proposal work; only deleted the scratch IGW_ST
