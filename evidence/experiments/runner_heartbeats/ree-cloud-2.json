@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-22T17:42:55Z",
+  "last_tick_utc": "2026-06-22T17:52:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-460k",
   "current_exq_started_utc": "2026-06-22T15:31:08.566544+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "MECH-446",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "runs_done": 5,
+    "run_label": "Seed 44 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
+    "runs_done": 10,
     "runs_total": 3,
-    "episodes_done": 170,
+    "episodes_done": 0,
     "episodes_total": 295,
-    "overall_pct": 185.9
+    "overall_pct": 333.3
   },
-  "seconds_elapsed": 7906,
+  "seconds_elapsed": 8507,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier] starting (dry_run=False)",
@@ -37,7 +37,16 @@
     "[train] stage0_nursery seed=43 ep 20/295 z_goal_peak=0.4115 formed=True",
     "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.924 gate=pass",
     "[train] p0_guided seed=43 ep 130/295 mean_len=196.3 rv=0.00004",
-    "[train] hazard_avoidance seed=43 ep 170/295 median_last=200.0 survival_gate=pass"
+    "[train] hazard_avoidance seed=43 ep 170/295 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/295 median_last=102.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.1000 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=43 ep 235/295 contact_rate=0.3428 contact_events=143 z_goal_at_contact=0.4559",
+    "Seed 43 Condition ARM_LEVER_OFF",
+    "Seed 43 Condition ARM_GAP_SCALED",
+    "Seed 43 Condition ARM_FLAT_RATE",
+    "Seed 43 Condition ARM_ACTION_EXTENT",
+    "[train] arm_eval seed=43 ep 295/295 gap_scaled: intent=0 releases=0 occ=7.53 (off_occ=10.87) pre_occ=0.333 post_occ=0.000 win=1 decisiveness=0.000 | off_hold=1.00 (run=1 reassert=0 closure_armed=0) eval_armed=False sustained=False lever_shortened=False co_occur=False | flat_co=False action_co=False",
+    "verdict: FAIL seed=43 guard_pass=True eval_armed=False sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=False rule_bias_trained=True co_occurs=False (contact_rate=0.3428 z_goal_at_contact=0.4559)",
+    "Seed 44 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
