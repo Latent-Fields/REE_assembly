@@ -27,21 +27,21 @@ closure_plan:
       owner_exq: "V3-EXQ-699 (queued 2026-06-22; awaiting run)"
     - id: "conversion_ceiling_campaign:P2-rootC"
       title: "Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-commit are dissociable"
-      phase: "The live V3 critical path post-689c, and the most likely true bottleneck (commit-duration, not selection). Rung-6 de-commit lever PARKED 2026-06-22 (460h/i/j; the F-driven natural-commit latch ~2400-2600 steps swamps the SD-034 closure de-commit, and natural-commit/closure-de-commit are non-dissociable so the lever is untestable). Awaits the named upstream substrate: a closure-exclusive de-commit eval mode (beta elevates only via _closure_commit_active during the eval) so occupancy forms independently of the closure plane. Build chip spawned 2026-06-22T08:11Z; NOT yet built/queued."
+      phase: "The live V3 critical path post-689c, and the most likely true bottleneck (commit-duration, not selection). Rung-6 de-commit lever PARKED 2026-06-22 (460h/i/j; the F-driven natural-commit latch ~2400-2600 steps swamps the SD-034 closure de-commit, and natural-commit/closure-de-commit were non-dissociable so the lever was untestable). The named upstream substrate is now BUILT: the closure-exclusive de-commit eval mode (beta elevates only via _closure_commit_active during the eval, so occupancy forms independently of the closure plane) landed ree-v3 main e52158d 2026-06-22 (substrate_queue rung-6 PARKED -> BUILT). The validation successor V3-EXQ-460k was queued + ingested 2026-06-22 (ree-v3 main 979a943; supersedes 460j) and awaits run."
       status: assembling
       severity: load-bearing
-      awaiting: "closure-exclusive de-commit eval substrate (commitment-closure-control-plane)"
+      awaiting: "V3-EXQ-460k run result (on the BUILT closure-exclusive de-commit eval substrate)"
       assembly_status: queued
       revisit_after: 2026-07-15
-      owner_exq: "null -- substrate build owed (chip 2026-06-22T08:11Z)"
+      owner_exq: "V3-EXQ-460k (queued 2026-06-22; awaiting run on the BUILT closure-exclusive de-commit eval substrate)"
     - id: "conversion_ceiling_campaign:P3-ofc"
       title: "Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feeding F"
-      phase: "Build in flight: V3-EXQ-485m running on ree-cloud-4 (the decoupled devaluation_bias_head behavioural retest; GAP-8 decouple built ree-v3 758956f). Folds into the full-stack arm on a face-validating result. PROMOTES NOTHING until it scores."
+      phase: "FACE-VALIDATED -> composition-ready for the full-stack arm. V3-EXQ-485m RAN terminal FAIL/non_contributory 2026-06-22T14:33Z (run_id v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural; applied via the CONFIRMED failure_autopsy_V3-EXQ-485m_2026-06-22, governance master f8a55e4525). On the BUILT decoupled devaluation_bias_head (ree-v3 758956f) the 485l clamp-starvation is FIXED -- C1 devaluation shift 3/3, MECH-449 No-Go 2/3, devalued bias range supra-floor 3/3 (the OFC valuation mechanism is EXERCISED, not falsified) -- but the behavioural C1b vector-inversion (1/3) and C2 committed-class separation (1/3) still fail standalone. That is exactly the conversion-ceiling signature the full-stack arm exists to break: the OFC face is validated for inclusion in FULLSTACK with use_ofc_devaluation_head ON. PROMOTES NOTHING."
       status: assembling
       severity: medium
-      awaiting: "V3-EXQ-485m result"
-      assembly_status: in_progress
-      owner_exq: "V3-EXQ-485m (running, ree-cloud-4)"
+      awaiting: "composition into the full-stack arm (with P-comp + P2-rootC composition-ready)"
+      assembly_status: built
+      owner_exq: "V3-EXQ-485m (RAN terminal FAIL/non_contributory 2026-06-22; OFC face FACE-VALIDATED -> composition-ready for FULLSTACK with use_ofc_devaluation_head ON)"
     - id: "conversion_ceiling_campaign:FULLSTACK"
       title: "The real test: co-armed full-stack arm (demotion + Go/No-Go + floor + root-C + OFC ON), sweep use_candidate_rule_field, DV committed-class entropy"
       phase: "Assembled once P-comp + P2 + P3 are composition-ready (each lever no-op-default + own-face-validated + interaction-characterized). Factor B EXCLUDED (refuted 689c). Per-prong baseline discipline: composite carries its own dedicated all-stack-ON / swept-var-OFF control (no shared frozen baseline). PASS -> assembled substrate converts -> supports MECH-309/ARC-062, closes behavioral_diversity_isolation:GAP-I. FAIL -> leave-one-out ablation to localize the blocking face."
