@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-22T06:54:33Z
+Generated: 2026-06-22T14:36:10Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,17 +8,18 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **79.0%** across 72 non-deferred nodes in 10 plan(s) with closure frontmatter.
+- Weighted progress: **79.0%** across 72 non-deferred nodes in 11 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **20** nodes.
-- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **0** nodes.
+- Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **5** nodes.
 - Deferred (not required for v3 closure): 12 nodes.
 - Done: 52 nodes.
-- Status tally: blocked=7  blocked_pending_substrate=3  deferred=12  done=52  in_progress=7  partial=2  upstream_blocked=1
+- Status tally: assembling=5  blocked=7  blocked_pending_substrate=3  deferred=12  done=52  in_progress=7  partial=2  upstream_blocked=1
 
 ## Plans
 
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
+| `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 5 | 0% | assembling:5 | 2026-06-22 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 18% | blocked:3 in_progress:1 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 12 | 61% | blocked:1 blocked_pending_substrate:1 deferred:3 done:4 in_progress:2 partial:1 | 2026-06-14 |
@@ -57,11 +58,17 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress | P1 | medium | V3-EXQ-603k (Stage-H harm-pathway training; queu | AWAITING V3-EXQ-603q RUN+REVIEW 2026-06-16 (the AUTHORITATIVE current state; see governanc | 2026-06-19 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked | 2-3 | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 
-## Assembly frontier -- required, under construction (0)
+## Assembly frontier -- required, under construction (5)
 
 Nodes whose honest state is "the substrate for this is being assembled" -- NOT a stalled gap and NOT deferred. They are held out of the closure % (so correct, unhurried construction is never scored as failure) and out of the Remaining backlog, and surfaced here on their own axis. `awaiting` names the substrate under construction; `assembly_status` is its build state (queued / in_progress / built); a node is restful until its optional `revisit_after` date passes (see the drift report's Assembly-frontier section).
 
-_None -- no node currently declares itself on the assembly frontier._
+| plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
+|------|------|-------|--------|----------|-----------------|---------------|--------------|
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | P-comp + P2 + P3 composition-readiness | in_progress |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | P-comp + P2 + P3 composition-ready | queued |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | demotion x Go/No-Go composition falsifier (to queue via /que | queued |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | closure-exclusive de-commit eval substrate (commitment-closu | queued | 2026-07-15 |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | V3-EXQ-485m result | in_progress |  |  |
 
 ## Deferred -- not required for v3 closure (12)
 
