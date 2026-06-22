@@ -1,0 +1,162 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier",
+  "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-22T22:17:56Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-090",
+    "MECH-342",
+    "MECH-445",
+    "MECH-446",
+    "ARC-108"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-090": "non_contributory",
+    "MECH-342": "non_contributory",
+    "MECH-445": "non_contributory",
+    "MECH-446": "non_contributory",
+    "ARC-108": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "rule_bias_head_trained",
+        "description": "Leg C readiness (anti-460d-bug gate): P1 rule_bias_pathway_enabled AND mean per-candidate |bias| > floor on >= 2/3 seeds (closures need a magnitude-bearing rule_state to form). Below floor -> substrate_not_ready_requeue, NEVER a weakens.",
+        "control": "P1OnboardingResult.rule_bias_diag mean |bias|.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "closure_exclusive_eval_armed_hold",
+        "description": "The closure-exclusive de-commit eval mode (closure_exclusive_decommit_eval, BUILT ree-v3 e52158d) ACTUALLY armed the closure-coupled natural-commit latch-hold on L0 -- ncl_hold_closure_armed_total > 0 AND ncl_hold_reassert_total > 0 on >= 2/3 guard seeds (the 'dissociable eval mode arms' non-vacuity). Below this -> substrate_not_ready_requeue (the dissociable occupancy did not form), NEVER a false weakening.",
+        "control": "L0 ncl_hold_closure_armed_total + ncl_hold_reassert_total under closure_exclusive_decommit_eval.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "l0_monolithic_hold_baseline",
+        "description": "L0 (flat latch, rho + habenula OFF) reproduces the flat-hold monopoly -- mean per-commit hold length total_beta_elevated/max(1,beta_release_events) >= SUSTAINED_HOLD_MEAN_FLOOR -- on >= 2/3 guard seeds, the reference the rho ramp self-limits AGAINST (the 460h B6 signature). If L0 does not monopolise there is nothing to self-limit -> substrate_not_ready_requeue.",
+        "control": "L0 mean_per_commit_hold (+ max_consecutive_beta_run reported).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "rho_proximity_variance",
+        "description": "JOB-2 ramp non-vacuity: on L1 the rho_t ramp reached a non-trivial proximity peak (rho_peak_max > RHO_PEAK_FLOOR) AND self-limited at least once (rho_n_releases_total > 0) on >= 2/3 guard seeds. If rho_t carries no proximity variance the ramp cannot peak-then-decline -> substrate_not_ready_requeue (NEVER a false weakens).",
+        "control": "L1 rho_maintenance_ramp.get_state() rho_peak_max + rho_n_releases_total.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false
+      },
+      {
+        "name": "delta_t_negative_variance",
+        "description": "JOB-2 habenula non-vacuity: on L2 the signed RPE delta_t = R_t - V-hat_t carried worse-than-expected variance to abort on -- n_neg_delta_ticks >= MIN_NEG_DELTA_TICKS on >= 2/3 guard seeds. If delta_t never goes negative the habenula has nothing to fire on -> substrate_not_ready_requeue (NEVER a false weakens).",
+        "control": "L2 e3_habenula_delta_t distribution (n_neg_delta_ticks + delta_t_min + delta_t_std).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "D1_ramp_self_limits_where_flat_latch_monopolises",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "D2_release_content_driven_not_reparameterised_timer",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "D3_habenula_decommit_dissociable",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "D1_ramp_self_limits_where_flat_latch_monopolises": false,
+      "D2_release_content_driven_not_reparameterised_timer": false,
+      "D3_habenula_decommit_dissociable": false
+    },
+    "discriminators": {
+      "D1": {
+        "definition": "Per guard seed: L1 max_consecutive_beta_run < L0 by >= D1_OCC_BOUND_FRAC (bounded occupancy, no single hold monopolising) AND committed_class_entropy(L1) > committed_class_entropy(L0) + D1_ENTROPY_MARGIN (committed-action-class diversity rises). PASS on >= 2/3.",
+        "d1_occ_bound_frac": 0.15,
+        "d1_entropy_margin": 0.05,
+        "fraction": 0.0,
+        "met": false
+      },
+      "D2": {
+        "definition": "Per guard seed: L1 rho_n_releases_total > 0 AND per-episode release-tick dispersion std(rho_last_ticks_at_release) > RELEASE_TICK_STD_FLOOR (content-driven variable timing; a fixed shorter-duration timer releases at a CONSTANT tick = std ~ 0). The ramp releases ONLY at the proximity-decline crossing by construction. PASS on >= 2/3. THE CORE discriminator: 'releases sooner' is NOT the claim.",
+        "release_tick_std_floor": 0.5,
+        "fraction": 0.0,
+        "met": false
+      },
+      "D3": {
+        "definition": "Per guard seed: L2 n_habenula_aborts >= MIN_HABENULA_ABORTS AND the negative-delta_t precondition held -> the aborts fired on outcome valence (content), dissociable from the latch refractory phase (clock). PASS on >= 2/3.",
+        "min_habenula_aborts": 1,
+        "fraction": 0.0,
+        "met": false
+      }
+    },
+    "driver_pair_under_test": {
+      "rho_maintenance_ramp": "ree_core/policy/rho_maintenance_ramp.py RhoMaintenanceRamp (use_rho_maintenance_ramp; L1/L2). REPLACES the flat-hold maintenance driver with a proximity-scaled peaks-then-declines self-limit (the B6 fix).",
+      "habenula_decommit": "ree_core/governance/closure_operator.py ClosureOperator.habenula_tick (use_habenula_decommit; L2). ADDS a content-driven negative-delta_t abort to the SD-034 closure operator (the dissociable de-commit; reuses the JOB-1 signed-RPE delta_t).",
+      "rho_hold_floor": 0.05,
+      "rho_release_margin": 0.5,
+      "rho_onset_grace_ticks": 3,
+      "habenula_decommit_delta_threshold": 0.0,
+      "note": "closure_exclusive_decommit_eval + use_closure_commit_beta_coupling + use_natural_commit_latch_hold ON in EVERY arm; the rung-6 NaturalCommitUrgencyRelease is OFF in EVERY arm (the rho ramp is the maintenance driver under test, NOT the hand-tuned duration lever)."
+    },
+    "route_to_selection_note": "A preconditions-met no-lift (the ramp varies + the habenula has negative variance + the eval armed, but the hold still monopolises / committed-action diversity does not lift on D1) is the genuine 'maintenance is not the binding constraint' outcome -> route to JOB-1 / selection (maintenance_not_binding_route_to_selection, non_contributory), NEVER a false weakening of the rho-ramp + habenula design.",
+    "mech261_note": "MECH-261 (mode-conditioning) NOT tagged -- the Leg-A env-completion hook bypasses mode-conditioning (n_automatic_fires reported as a diagnostic). MECH-260 (No-Go) NOT re-tagged (nogo_installed reported only)."
+  }
+}
