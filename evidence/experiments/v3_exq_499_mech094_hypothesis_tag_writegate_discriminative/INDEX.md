@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_499_mech094_hypothesis_tag_writegate_discriminative
 
-Generated: `2026-06-22T16:17:59.290528Z`
+Generated: `2026-06-22T21:09:30.156058Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

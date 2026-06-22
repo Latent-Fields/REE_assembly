@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier
+
+Generated: `2026-06-22T21:09:30.156058Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3` | `2026-06-22T19:17:36Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3/summary.md) / [`manifest`](runs/v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3/manifest.json) / [`metrics`](runs/v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3/metrics.json) |

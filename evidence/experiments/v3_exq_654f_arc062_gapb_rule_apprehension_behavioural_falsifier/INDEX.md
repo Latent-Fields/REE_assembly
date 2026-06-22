@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier
 
-Generated: `2026-06-22T16:17:59.290528Z`
+Generated: `2026-06-22T21:09:30.156058Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

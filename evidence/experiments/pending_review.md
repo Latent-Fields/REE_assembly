@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-06-22T16:19:08Z`  
+Generated: `2026-06-22T21:09:44Z`  
 Last review: `2026-06-22T16:18:18Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3` | 2026-06-22T19:17 | MECH-445, MECH-446 | — |
 
 ---
 

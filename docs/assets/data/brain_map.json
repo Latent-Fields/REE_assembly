@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-22T16:06:17Z",
+  "generated_at": "2026-06-22T21:14:10Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -558,11 +558,11 @@
           "subject": "pfc.ofc_state_space_specific_outcome",
           "status": "candidate",
           "v3_pending": true,
-          "genuine_exp_count": 1,
+          "genuine_exp_count": 0,
           "pass_runs": 0,
-          "fail_runs": 1,
+          "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.755
+          "overall_confidence": 0.898
         },
         {
           "id": "MECH-264",
@@ -627,9 +627,9 @@
       ],
       "implementation": "full",
       "evidence": {
-        "genuine_exp_count": 6,
+        "genuine_exp_count": 4,
         "pass_runs": 3,
-        "fail_runs": 3,
+        "fail_runs": 1,
         "quadrant_counts": {
           "unknown": 11,
           "confirmed_established": 2,
@@ -711,7 +711,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.699
+          "overall_confidence": 0.698
         },
         {
           "id": "MECH-260",
@@ -735,7 +735,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.807
+          "overall_confidence": 0.806
         },
         {
           "id": "MECH-266",
@@ -759,7 +759,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.813
+          "overall_confidence": 0.812
         },
         {
           "id": "SD-032",
@@ -819,7 +819,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.852
+          "overall_confidence": 0.851
         },
         {
           "id": "SD-032e",
@@ -901,7 +901,7 @@
           "pass_runs": 1,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.774
+          "overall_confidence": 0.773
         },
         {
           "id": "ARC-023",
@@ -913,7 +913,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.821
+          "overall_confidence": 0.82
         },
         {
           "id": "MECH-075",
@@ -1558,7 +1558,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.738
+          "overall_confidence": 0.737
         },
         {
           "id": "MECH-088",
@@ -1935,7 +1935,7 @@
           "pass_runs": 4,
           "fail_runs": 15,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.8
+          "overall_confidence": 0.799
         }
       ],
       "implementation": "full",
@@ -2297,7 +2297,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.516
+          "overall_confidence": 0.515
         }
       ],
       "implementation": "claim_only",
@@ -2452,7 +2452,7 @@
           "pass_runs": 0,
           "fail_runs": 3,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.527
+          "overall_confidence": 0.526
         },
         {
           "id": "MECH-150",
@@ -3114,7 +3114,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.766
+          "overall_confidence": 0.765
         },
         {
           "id": "MECH-034",
@@ -3338,7 +3338,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.861
+          "overall_confidence": 0.86
         },
         {
           "id": "ARC-069",
@@ -3517,7 +3517,7 @@
         "docs/architecture/hippocampal_systems.md"
       ],
       "notes": "Theta-frontal-hippocampal coupling and similar cross-region claims.",
-      "claim_count": 22,
+      "claim_count": 23,
       "claim_ids": [
         "INV-014",
         "IMPL-015",
@@ -3540,7 +3540,8 @@
         "MECH-228",
         "Q-039",
         "ARC-072",
-        "ARC-106"
+        "ARC-106",
+        "ARC-111"
       ],
       "claims_sample": [
         {
@@ -3577,7 +3578,7 @@
           "pass_runs": 1,
           "fail_runs": 6,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.675
+          "overall_confidence": 0.674
         },
         {
           "id": "ARC-032",
@@ -3613,7 +3614,7 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.551
+          "overall_confidence": 0.55
         },
         {
           "id": "ARC-043",
@@ -3695,7 +3696,7 @@
         "fail_runs": 11,
         "quadrant_counts": {
           "plausible_unproven": 11,
-          "unknown": 10,
+          "unknown": 11,
           "confirmed_established": 1
         }
       },
@@ -3704,7 +3705,17 @@
         "ARC-054"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-701",
+          "title": "INV-050 MEL-measurability diagnostic: does graded waking novelty produce a measurable, monotonic accumulated prediction-error (Model Error Load) signal?",
+          "status": "pending",
+          "claim_ids": [
+            "INV-050",
+            "INV-050"
+          ]
+        }
+      ],
       "conflict_refs": [
         "rollout_entropy_floor_vs_residue_persistence"
       ],
