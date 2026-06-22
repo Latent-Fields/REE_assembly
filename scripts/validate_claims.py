@@ -266,14 +266,19 @@ def main():
                 f"epistemic_category={cat or 'n/a'}) has no `what_would_answer` "
                 "-- state the observation that would answer/falsify it"))
 
-    # Assembly-state companion fields (MOVE-4 claims-layer follow-on, warn-only).
+    # Assembly-state companion fields (MOVE-4 claims-layer follow-on).
     # assembly_state consolidates the 6 substrate-blocked conventions into one
     # canonical field (derived in build_claims_json.resolve_assembly_state /
     # serve.py._resolve_claim_assembly_state); an explicit value overrides the
-    # derivation, so an INVALID explicit value silently falls back -- warn on it.
-    # assembly_status must be queued|in_progress|built; revisit_after must be an
-    # ISO date. awaiting is a free-form upstream pointer (no enum). Warn-only by
-    # design; the field is additive and backwards-compatible for one cycle.
+    # derivation, so an INVALID explicit value silently falls back to the
+    # derivation. ELEVATED to ERROR 2026-06-22 (one-cycle backwards-compat
+    # posture done -- governance cycle c2aeb4823f 2026-06-22T05:19Z ran with the
+    # field present and exercised it at 0 assembly WARNs): a typo'd explicit
+    # assembly_state / assembly_status now blocks governance.sh --strict instead
+    # of silently masking the bad value behind the derivation. revisit_after
+    # (date format) stays WARN -- a bad date is ignored by the revisit-due check,
+    # not silently substituted. awaiting is a free-form upstream pointer (no enum,
+    # no check).
     _ASSEMBLY_STATES = {
         "mature", "enriching", "awaiting_substrate", "gated_v3",
         "deferred_future", "remaining", "parked", "blocked",
@@ -284,17 +289,18 @@ def main():
         a_state = str(c.get("assembly_state", "") or "").strip().lower()
         if a_state and a_state not in _ASSEMBLY_STATES:
             all_issues.append((
-                "WARN",
+                "ERROR",
                 f"{cid}: assembly_state='{c.get('assembly_state')}' invalid; must "
-                f"be one of {sorted(_ASSEMBLY_STATES)} (resolver will fall back to "
-                "the derivation)"))
+                f"be one of {sorted(_ASSEMBLY_STATES)} (an invalid explicit value "
+                "would silently fall back to the derivation -- fix the typo)"))
         a_status = str(c.get("assembly_status", "") or "").strip().lower()
         if a_status and a_status not in _ASSEMBLY_STATUS_VALUES:
             all_issues.append((
-                "WARN",
+                "ERROR",
                 f"{cid}: assembly_status='{c.get('assembly_status')}' invalid; must "
-                f"be one of {sorted(_ASSEMBLY_STATUS_VALUES)} (auto-join from "
-                "substrate_queue will be used instead)"))
+                f"be one of {sorted(_ASSEMBLY_STATUS_VALUES)} (an invalid explicit "
+                "value would silently fall back to the substrate_queue auto-join -- "
+                "fix the typo)"))
         rv = str(c.get("revisit_after", "") or "").strip()
         if rv:
             try:

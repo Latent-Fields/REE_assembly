@@ -391,7 +391,17 @@ fields). Three OPTIONAL explicit companion fields mirror MOVE-1 and override the
 derivation: `awaiting:` (upstream `sd_id`/claim id — auto-joined from
 `substrate_queue.json:unblocks_claims` when absent), `assembly_status:`
 (`queued`/`in_progress`/`built` — auto-joined), `revisit_after:` (ISO date).
-`scripts/validate_claims.py` warn-only-validates the enums + date.
+`scripts/validate_claims.py` validates the companion fields. The
+`assembly_state` + `assembly_status` enums are **ERROR-level** (elevated from
+warn-only 2026-06-22, after the one-cycle backwards-compat window: governance
+cycle `c2aeb4823f` 2026-06-22T05:19Z ran with the field present and exercised it
+at zero assembly WARNs) — a typo'd explicit value blocks `governance.sh`
+(`validate_claims --strict`) instead of silently masking the bad value behind the
+derivation. `revisit_after` (date format) stays **warn-only** (a bad date is
+ignored by the revisit-due check, not substituted) and `awaiting:` is a free-form
+upstream pointer with no enum check. This mirrors the `epistemic_category`
+elevation posture ("Elevate to ERROR once the field stabilises across the
+registry").
 
 **Portfolio view.** `serve.py:_claims_assembly_view` draws the same maturity
 buckets MOVE-4 draws over closure nodes over the WHOLE registry, exposed on
