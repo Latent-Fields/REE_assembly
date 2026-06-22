@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_628_mech319_simulation_mode_rule_gate_replay_falsifier_evidence
 
-Generated: `2026-06-22T05:31:54.314143Z`
+Generated: `2026-06-22T07:02:56.474464Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

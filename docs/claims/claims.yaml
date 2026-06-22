@@ -21154,7 +21154,7 @@
   implementation_phase: v3
   v3_pending: false
   pending_retest_after_substrate: true
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
@@ -21209,6 +21209,25 @@
     proper substrate address, distinct from the subjective-valuation
     function covered by SD-033c / ARC-035 / MECH-151 / MECH-152.
   evidence_quality_note: >
+    2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory; claim
+    UNWEAKENED): V3-EXQ-485l (2026-06-22, ree-cloud-1) supersedes 485k; FAIL/non_contributory/
+    non_degenerate:false (no governance weight), self-route substrate_not_ready_requeue CONFIRMED +
+    re-localised by failure_autopsy_V3-EXQ-485l_2026-06-22. MECH-449 (Go/No-Go constitution) is BUILT
+    + validated (689g PASS 3/3, promoted candidate->provisional) so the 485k 'build MECH-449' route is
+    DISCHARGED, but 485l shows the residual is STRUCTURAL SCALE: the single shared OFC head under the
+    +/-0.5 ofc_bias_scale clamp cannot carry a devalued re-ranking magnitude above the 0.05 readout
+    floor AND the No-Go viability trigger while preserving C2. 485k gain 4.0 saturated (devalued range
+    0.0); 485l gain 1.5 undershot (0.031 < 0.05). The bias VECTOR inverts (l2 1.83, cosine -0.716, C1b
+    PASS 2/3) -- correct direction -- but the clamp compresses the magnitude, starving the viability
+    No-Go (engaged 1/3, < 2/3 gate). MECH-449 correct-but-non-engaging here = positive evidence the
+    constitution needs a supra-floor valuation input, NOT a weakens. SD-033b / MECH-263 devaluation
+    half: non_contributory / substrate_conditional / pending_retest_after_substrate, blocked on a NEW
+    substrate -- OFC devaluation-head clamp rescale / head decoupling (amend
+    f_dominance_conversion_ceiling). RE-DERIVE BRAKE FIRED (10th non_contributory autopsy on
+    SD-033b/MECH-263): a plain 485m gain-tweak is REFUSED -- no feasible gain band on the shared
+    +/-0.5 clamped head; route to /implement-substrate. MECH-448/MECH-449 NOT weakened (both engaged
+    correctly within their scope). PROMOTES NOTHING.
+
     2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485k CONFIRMED -> non_contributory; claim
     UNWEAKENED): V3-EXQ-485k (supersedes 485j) FAILed non_contributory / non_degenerate:false on the
     MECH-448 demotion-enabled selector -- both DVs vacuous (readiness 1/3 via aggregate-max masking a
@@ -22199,7 +22218,7 @@
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_substrate: true
-  epistemic_category: substrate_ceiling
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: 2026-04-19
   depends_on:
@@ -22247,6 +22266,23 @@
     than as alternatives matches REE's model-based architecture: E2
     queries a structured task model for specific-outcome predictions.
   evidence_quality_note: >
+    2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory; claim
+    UNWEAKENED): V3-EXQ-485l (2026-06-22, ree-cloud-1) supersedes 485k; FAIL/non_contributory/
+    non_degenerate:false (no governance weight), self-route substrate_not_ready_requeue CONFIRMED +
+    re-localised by failure_autopsy_V3-EXQ-485l_2026-06-22. MECH-449 (Go/No-Go constitution) is BUILT
+    + validated (689g PASS 3/3, promoted candidate->provisional) so the 485k 'build MECH-449' route is
+    DISCHARGED; 485l shows the residual is STRUCTURAL SCALE -- the single shared OFC head under the
+    +/-0.5 ofc_bias_scale clamp cannot carry a devalued re-ranking magnitude above the 0.05 readout
+    floor AND the No-Go viability trigger while preserving C2 (485k gain 4.0 saturated -> range 0.0;
+    485l gain 1.5 undershot -> 0.031 < 0.05). The bias VECTOR inverts (l2 1.83, cosine -0.716, C1b
+    PASS 2/3) -- correct direction, clamp-starved magnitude -> No-Go engaged 1/3 (< 2/3 gate).
+    MECH-449 correct-but-non-engaging = positive evidence it needs a supra-floor valuation input, NOT
+    a weakens. MECH-263 / SD-033b devaluation half: non_contributory / substrate_conditional /
+    pending_retest_after_substrate, blocked on a NEW substrate -- OFC devaluation-head clamp rescale /
+    head decoupling (amend f_dominance_conversion_ceiling). RE-DERIVE BRAKE FIRED (10th
+    non_contributory autopsy on SD-033b/MECH-263): a plain 485m gain-tweak is REFUSED; route to
+    /implement-substrate. MECH-448/MECH-449 NOT weakened. PROMOTES NOTHING.
+
     2026-06-22 (governance-apply, failure_autopsy_V3-EXQ-485k CONFIRMED -> non_contributory; claim
     UNWEAKENED): V3-EXQ-485k (supersedes 485j; SD-033b/MECH-263 devalued-rerank behavioural on the
     MECH-448 demotion-enabled selector) FAILed non_contributory / non_degenerate:false. Both DVs

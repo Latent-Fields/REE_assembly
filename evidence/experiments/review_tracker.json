@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-22T05:19:39Z",
+  "last_review_utc": "2026-06-22T07:02:29Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -739,7 +739,9 @@
     "v3_exq_689f_nogo_necessity_falsifier",
     "v3_exq_689e_mech448_channel_adaptive_envelope_readiness",
     "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural",
-    "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier"
+    "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier",
+    "V3-EXQ-485l",
+    "v3_exq_485l_sd033b_devaluation_nogo_behavioural"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3157,7 +3159,8 @@
     "v3_exq_689f_nogo_necessity_falsifier_20260621T200543Z_v3",
     "v3_exq_689e_mech448_channel_adaptive_envelope_readiness_20260621T224206Z_v3",
     "v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3",
-    "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3"
+    "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3",
+    "v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4728,6 +4731,17 @@
         "ARC-062"
       ],
       "subject": "Governance 2026-06-22T05:19Z. 5 pending: 3 PASS + 2 FAIL; autopsy pre-flight clean (both FAILs autopsied). PROMOTION: MECH-449 candidate->provisional on V3-EXQ-689g (named validation gate) PASS/supports -- 3/3 seeds convert a previously-gated channel, 0 safety violations, specificity_pass; active No-Go converts what rank-preserving demotion (MECH-448) structurally cannot. epistemic_category substrate_conditional->standard + assembly_status->built (mirrors MECH-448 689d). decision_log appended + index rebuilt. ARC-107 HELD candidate (single supporting run; ledger components 2/4/5 open). V3-EXQ-689f (No-Go-necessity falsifier, diagnostic/non_contributory): build-trigger, demotion-insufficient regime confirmed (undesirable_admit 0.866 demotion-only vs 0.0 No-Go); no weighting. V3-EXQ-689e (no claim tags): channel-adaptive envelope readiness diagnostic, adaptive floor engages across arc_062+OFC banks; discussed only. FAIL V3-EXQ-485k (SD-033b/MECH-263; supersedes 485j): confirmed failure_autopsy_V3-EXQ-485k -> non_contributory/non_degenerate:false; demotion-alone cannot express active No-Go withdrawal devaluation requires; clears ARC-107 build gate; pending_retest behind MECH-449 (485l). FAIL V3-EXQ-654i (MECH-309/ARC-062; supersedes 654h): DRAFT autopsy CONFIRMED by user -> non_contributory/substrate_ceiling; pre-registered FAIL(C1 holds,C2 fails) clean substrate-ceiling, conversion ceiling persists despite demotion; RE-DERIVE BRAKE FIRED (17 prior); route MECH-449. Both FAIL claims UNWEAKENED. substrate_queue f_dominance_conversion_ceiling amended (485k+654i records). All 5 MARKED REVIEWED."
+    },
+    {
+      "batch_utc": "2026-06-22T07:02:29Z",
+      "run_ids": [
+        "v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3"
+      ],
+      "claim_ids_touched": [
+        "SD-033b",
+        "MECH-263"
+      ],
+      "subject": "Governance 2026-06-22T07:02:29Z. 1 pending: V3-EXQ-485l FAIL (SD-033b/MECH-263; supersedes 485k). Autopsy pre-flight clean (485l already confirmed-autopsied, HEAD fd7b919384). Promotion/demotion agenda: 0 actionable (all 151 Decision Queue rows applied). APPLIED: failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory / non_degenerate:false (no governance weight); claims UNWEAKENED. MECH-449 built+validated (689g PASS, candidate->provisional) so the 485k 'build MECH-449' route DISCHARGED; residual is structural scale -- the shared OFC head's +/-0.5 ofc_bias_scale clamp starves the devalued re-ranking magnitude below floor (485k gain 4.0 saturated 0.0; 485l gain 1.5 undershot 0.031<0.05); bias vector inverts correctly (cosine -0.716, C1b 2/3) so direction is right. epistemic_category substrate_ceiling->substrate_conditional on SD-033b+MECH-263 (autopsy recommendation; a specific planned build now owed); evidence_quality_note updated; pending_retest_after_substrate kept; status candidate (PROMOTES NOTHING). RE-DERIVE BRAKE FIRED (10th non_contributory autopsy on SD-033b/MECH-263): plain 485m gain-tweak refused; route /implement-substrate OFC devaluation-head clamp rescale/decoupling. substrate_queue f_dominance_conversion_ceiling amended (485l failure record). MECH-448/MECH-449 NOT weakened. 485l MARKED REVIEWED."
     }
   ]
 }
