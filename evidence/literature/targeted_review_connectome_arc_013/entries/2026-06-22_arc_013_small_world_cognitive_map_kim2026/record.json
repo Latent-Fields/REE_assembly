@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_013",
+  "entry_id": "2026-06-22_arc_013_small_world_cognitive_map_kim2026",
+  "timestamp_utc": "2026-06-22T09:32:49Z",
+  "claim_ids_tested": ["ARC-013"],
+  "source": {
+    "title": "The hippocampus as a small-world cognitive map",
+    "authors": ["Jason Z. Kim", "James P. Sethna", "Itai Cohen", "Weinan Sun"],
+    "year": 2026,
+    "venue": "bioRxiv (preprint)",
+    "doi": "10.64898/2026.02.07.704615",
+    "url": "https://doi.org/10.64898/2026.02.07.704615"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Directly addresses the geometric-structure half of ARC-013: a geometry-aware autoencoder over longitudinal CA1 calcium imaging shows the hippocampal population code is organised as a curved, structured manifold (helical rotation-plus-drift dynamics) optimised for local fidelity plus global searchability, with long-range shortcuts engaged offline. This is strong, mechanism-level support that hippocampal paths form a navigable map with persistent latent-space geometry. Down-weighted because it is a preprint (not peer reviewed), single task/species (mouse memory-guided navigation), and the REE-specific term 'residue as persistent curvature' is the authors' 'helical dynamics' only by analogy, not by their construct.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The paper models map geometry as helical drift relative to past experience and sparse multi-field shortcuts; it does not isolate a separate, persistent 'residue' field distinct from salience or uncertainty, so it cannot adjudicate the ARC-013 separability question (residue irreducible to salience+uncertainty) that V3-EXQ-697 targets.", "Evidence is from offline calcium imaging in one navigation task; whether the same curvature persists as a stable cross-task substrate (REE's residue) versus a task-specific code is untested here."],
+  "tags": ["arc-013", "cognitive_map", "neural_manifold", "hippocampus", "representational_geometry"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal CA1 population activity forms a structured low-dimensional map whose geometry (helical rotation-plus-drift plus sparse long-range shortcuts) simultaneously preserves local spatial/temporal fidelity and supports efficient global search; offline synchronous events jump along these shortcuts.",
+    "ree_translation": "Supports ARC-013's assertion that hippocampal paths form a cognitive map and that the map's informational content lives in the curvature/geometry of a latent representational space (REE: residue as persistent latent-space curvature; INV-004/INV-006 path structure; ARC-004 map substrate).",
+    "mapping_caveat": "The paper's 'helical dynamics' is a geometric description of online drift in the code, not a demonstration of a persistent residue field that is separable from salience and uncertainty. ARC-013's stronger, REE-distinctive claim (residue as an irreducible primitive) is neither tested nor supported here; only the weaker 'map has latent geometry' claim is.",
+    "source_context": "Longitudinal two-photon calcium imaging, thousands of mouse CA1 neurons, memory-guided navigation task; geometry-aware autoencoder analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Preprint (no peer review) caps source_quality despite a sophisticated method and large neuron count. Mapping_fidelity high for the 'map has persistent latent geometry' reading. Transfer_risk moderate: mouse navigation -> REE residue substrate, and 'curvature' is shared vocabulary but not a shared construct."
+  }
+}

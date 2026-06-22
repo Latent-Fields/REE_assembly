@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_062",
+  "entry_id": "2026-06-22_q_062_astrocyte_gated_plasticity_state_dong2026",
+  "timestamp_utc": "2026-06-22T09:32:49Z",
+  "claim_ids_tested": ["Q-062"],
+  "source": {
+    "title": "Astrocyte-gated multi-timescale plasticity for online continual learning in deep spiking neural networks",
+    "authors": ["Zhengshan Dong", "Wude He"],
+    "year": 2026,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2025.1768235",
+    "url": "https://doi.org/10.3389/fnins.2025.1768235"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Provides the counterweight to the Masse/Zenke entries: a slow astrocytic gating variable that integrates activity and dynamically MODULATES whether plasticity is admitted -- suppressing updates in stable regimes and enabling them during distribution shifts -- improves class-incremental continual learning without replay. This is a held, regime-tracking gating STATE (entry/exit governed by the slow variable), which leans toward Q-062 sub-question (2)'s 'held intermediate write-eligible state' adding value beyond instantaneous channel gating + a static importance prior. Tilts toward MECH-368 earning a keep, counterbalancing the other two entries; marked mixed because it is a gating signal layered on eligibility traces, not a literal event-level admission gate, and it is a recent single-group SNN benchmark study.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The astrocytic variable gates plasticity by regime (stable vs shifting), which is a held, time-integrated state rather than a per-event tag re-read; this is evidence that a held write-eligibility state can ADD value over static consolidation -- against the 'existing combination already suffices' null.", "It does not factor its gain against REE's specific stack (mode gating + provenance + consolidation-priority), so it shows a held gating state helps in a generic SNN, not that REE specifically needs MECH-368 on top of MECH-261/094/285."],
+  "tags": ["q-062", "astrocyte_gating", "plasticity_gating", "continual_learning", "write_eligibility", "mech-368", "spiking_neural_network"],
+  "mapping": {
+    "source_claim_statement": "A slow astrocyte-mediated gating variable that integrates neuronal activity over time dynamically modulates synaptic plasticity -- suppressing weight updates in stable regimes and enabling them during distribution shifts -- and, combined with eligibility traces and a broadcast teaching signal, mitigates catastrophic forgetting in class-incremental continual learning without replay buffers.",
+    "ree_translation": "Speaks to Q-062 sub-question (2): is 'write-eligible' a held intermediate STATE with its own entry/exit, or just a salience tag re-read? The astrocytic slow variable is exactly a held, regime-tracking gating state that determines write admission, and it improves continual learning -- evidence that such a state can add value beyond static consolidation-priority, i.e. that MECH-368 might earn a keep rather than being redundant with MECH-261+094+285.",
+    "mapping_caveat": "This is a generic deep-SNN learning rule, not REE's online world-model/policy path, and the astrocytic gate is a continuous plasticity-gain modulator layered on eligibility traces rather than a discrete event-level write-eligible state; it shows a held gating state helps in general, not that REE's existing combination is specifically insufficient.",
+    "source_context": "Deep spiking neural networks; neuromorphic benchmarks (N-Caltech101, DVS128 Gesture, Spiking Heidelberg Digits) and class-incremental Split CIFAR-100; online learning, no replay."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Source_quality mid (peer-reviewed Frontiers, but recent single-group SNN benchmark study). Mapping_fidelity moderate: a held regime-gating plasticity state is a good analogue of the MECH-368 'held write-eligible state' question but is a gain modulator, not a discrete admission gate. Transfer_risk substantial: neuromorphic SNN benchmarks -> REE online write path. Included specifically to keep the Q-062 evidence balanced -- it is the entry that leans toward MECH-368 utility."
+  }
+}

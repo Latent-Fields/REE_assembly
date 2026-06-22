@@ -524,21 +524,23 @@
       }
     },
     "ARC-013": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.773, lit_conf=0.763",
       "direction_counts": {
         "mixed": 0,
-        "supports": 1,
+        "supports": 4,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 4,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:computational_model": 2,
+        "lit:fmri_connectivity": 1
       },
       "evidence_level_counts": {
         "C": 1
       },
-      "evidence_quadrant": "novel_discovery",
+      "evidence_quadrant": "confirmed_established",
       "experimental_confidence": 0.773,
       "experimental_confidence_decoupled": 0.773,
       "fail_runs": 0,
@@ -549,11 +551,11 @@
         "unknown": 0,
         "weakens": 0
       },
-      "latest_run_id": "v3_exq_697_arc013_residue_separability_falsifier_20260621T133052Z_v3",
-      "latest_timestamp_utc": "2026-06-21T13:30:52Z",
-      "literature_confidence": 0.0,
-      "literature_confidence_parallel": 0.0,
-      "overall_confidence": 0.773,
+      "latest_run_id": "2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023",
+      "latest_timestamp_utc": "2026-06-22T09:32:49Z",
+      "literature_confidence": 0.763,
+      "literature_confidence_parallel": 0.763,
+      "overall_confidence": 0.766,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -571,12 +573,63 @@
           "source_type": "experimental",
           "status": "PASS",
           "timestamp_utc": "2026-06-21T13:30:52Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-013",
+          "confidence": 0.72,
+          "confidence_rationale": "Strong, peer-reviewed (Neuron) human fMRI evidence that entorhinal cortex carries a reusable map of task STRUCTURE: entorhinal co-activation geometry is preserved across different problems only when the underlying relational structure is preserved, generalising beyond physical space to abstract RL problems. This corroborates the 'cognitive map = persistent structural/relational geometry that transfers' reading of ARC-013. Down-weighted because the readout is representational-similarity geometry in BOLD (coarse, indirect relative to REE's latent residue field) and the paper speaks to structure-generalisation, not to a residue primitive separable from salience/uncertainty.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_013",
+          "failure_signatures": [
+            "The preserved-structure signal is an entorhinal/vmPFC co-activation geometry measured with RSA on fMRI; it shows that a structural map exists and transfers, but does not decompose that map into residue versus salience versus uncertainty, so it cannot speak to ARC-013's separability claim.",
+            "Evidence is a cross-problem invariance of representational geometry, not a demonstration that the geometry is the persistent curvature that REE calls residue; the persistence is across tasks within a session, not a long-horizon stable substrate."
+          ],
+          "run_id": "2026-06-22_arc_013_entorhinal_structure_abstraction_baram2020",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-013",
+          "confidence": 0.66,
+          "confidence_rationale": "Directly addresses the geometric-structure half of ARC-013: a geometry-aware autoencoder over longitudinal CA1 calcium imaging shows the hippocampal population code is organised as a curved, structured manifold (helical rotation-plus-drift dynamics) optimised for local fidelity plus global searchability, with long-range shortcuts engaged offline. This is strong, mechanism-level support that hippocampal paths form a navigable map with persistent latent-space geometry. Down-weighted because it is a preprint (not peer reviewed), single task/species (mouse memory-guided navigation), and the REE-specific term 'residue as persistent curvature' is the authors' 'helical dynamics' only by analogy, not by their construct.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_013",
+          "failure_signatures": [
+            "The paper models map geometry as helical drift relative to past experience and sparse multi-field shortcuts; it does not isolate a separate, persistent 'residue' field distinct from salience or uncertainty, so it cannot adjudicate the ARC-013 separability question (residue irreducible to salience+uncertainty) that V3-EXQ-697 targets.",
+            "Evidence is from offline calcium imaging in one navigation task; whether the same curvature persists as a stable cross-task substrate (REE's residue) versus a task-specific code is untested here."
+          ],
+          "run_id": "2026-06-22_arc_013_small_world_cognitive_map_kim2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "ARC-013",
+          "confidence": 0.5,
+          "confidence_rationale": "A computational existence-proof that the successor-representation principle attributed to place/grid cells builds a navigable latent map of an arbitrary (semantic) space, with multi-scale curvature: fine-grained maps spread items evenly while coarse-grained maps cluster them by class, and missing/novel inputs are recovered by interpolation on the map. Supports ARC-013's 'paths/structure form a latent cognitive map whose geometry carries the content' at the modelling level, but it is a toy model on 32 hand-built feature vectors, not neural data, so source_quality and transfer are modest.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_arc_013",
+          "failure_signatures": [
+            "The map is built from 32 hand-encoded animal feature vectors with a successor-representation learner; it demonstrates that SR yields a multi-scale latent geometry, but does not show this geometry is the brain's residue substrate nor that it is separable from salience/uncertainty.",
+            "Accuracy near 30% on next-neighbour prediction (close to the stated theoretical ceiling given multiple valid successors) shows the map is approximate; the strong 95% figure is for interpolation of held-out/incomplete inputs, a different operation from residue persistence."
+          ],
+          "run_id": "2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 4,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 3
       }
     },
     "ARC-014": {
@@ -905,7 +958,7 @@
       }
     },
     "ARC-018": {
-      "confidence_rationale": "exp=6 entry(s), lit=26 entry(s), exp_conf=0.603, lit_conf=0.852",
+      "confidence_rationale": "exp=6 entry(s), lit=26 entry(s), exp_conf=0.602, lit_conf=0.852",
       "direction_counts": {
         "mixed": 1,
         "supports": 27,
@@ -931,8 +984,8 @@
         "C": 6
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.603,
-      "experimental_confidence_decoupled": 0.603,
+      "experimental_confidence": 0.602,
+      "experimental_confidence_decoupled": 0.602,
       "fail_runs": 2,
       "genuine_exp_count": 6,
       "genuine_exp_direction_counts": {
@@ -945,7 +998,7 @@
       "latest_timestamp_utc": "2026-04-26T03:42:00Z",
       "literature_confidence": 0.852,
       "literature_confidence_parallel": 0.852,
-      "overall_confidence": 0.728,
+      "overall_confidence": 0.727,
       "pass_runs": 4,
       "recent_entries": [
         {
@@ -1424,7 +1477,7 @@
       }
     },
     "ARC-024": {
-      "confidence_rationale": "exp=28 entry(s), lit=3 entry(s), exp_conf=0.55, lit_conf=0.803",
+      "confidence_rationale": "exp=28 entry(s), lit=3 entry(s), exp_conf=0.549, lit_conf=0.803",
       "direction_counts": {
         "mixed": 10,
         "supports": 12,
@@ -1441,8 +1494,8 @@
         "C": 28
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.55,
-      "experimental_confidence_decoupled": 0.55,
+      "experimental_confidence": 0.549,
+      "experimental_confidence_decoupled": 0.549,
       "fail_runs": 21,
       "genuine_exp_count": 28,
       "genuine_exp_direction_counts": {
@@ -1794,7 +1847,7 @@
       }
     },
     "ARC-027": {
-      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.769, lit_conf=0.841",
+      "confidence_rationale": "exp=4 entry(s), lit=3 entry(s), exp_conf=0.768, lit_conf=0.841",
       "direction_counts": {
         "mixed": 2,
         "supports": 5,
@@ -1811,8 +1864,8 @@
         "C": 4
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.769,
-      "experimental_confidence_decoupled": 0.769,
+      "experimental_confidence": 0.768,
+      "experimental_confidence_decoupled": 0.768,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -1825,7 +1878,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
       "literature_confidence": 0.841,
       "literature_confidence_parallel": 0.841,
-      "overall_confidence": 0.805,
+      "overall_confidence": 0.804,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -2039,7 +2092,7 @@
       }
     },
     "ARC-029": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.557, lit_conf=0.808",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.556, lit_conf=0.808",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -2059,8 +2112,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.557,
-      "experimental_confidence_decoupled": 0.557,
+      "experimental_confidence": 0.556,
+      "experimental_confidence_decoupled": 0.556,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -2073,7 +2126,7 @@
       "latest_timestamp_utc": "2026-06-02T17:25:31Z",
       "literature_confidence": 0.808,
       "literature_confidence_parallel": 0.808,
-      "overall_confidence": 0.708,
+      "overall_confidence": 0.707,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -3406,7 +3459,7 @@
       }
     },
     "ARC-046": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.757",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.756",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -3432,9 +3485,9 @@
       },
       "latest_run_id": "2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018",
       "latest_timestamp_utc": "2026-06-09T09:05:28Z",
-      "literature_confidence": 0.757,
-      "literature_confidence_parallel": 0.757,
-      "overall_confidence": 0.757,
+      "literature_confidence": 0.756,
+      "literature_confidence_parallel": 0.756,
+      "overall_confidence": 0.756,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -4143,7 +4196,7 @@
       }
     },
     "ARC-062": {
-      "confidence_rationale": "exp=2 entry(s), lit=22 entry(s), exp_conf=0.315, lit_conf=0.859",
+      "confidence_rationale": "exp=2 entry(s), lit=22 entry(s), exp_conf=0.314, lit_conf=0.858",
       "direction_counts": {
         "mixed": 4,
         "supports": 17,
@@ -4164,8 +4217,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.315,
-      "experimental_confidence_decoupled": 0.315,
+      "experimental_confidence": 0.314,
+      "experimental_confidence_decoupled": 0.314,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -4176,9 +4229,9 @@
       },
       "latest_run_id": "2026-05-28_e2_action_divergence_fpc_counterfactual_miyamoto2023",
       "latest_timestamp_utc": "2026-05-28T17:17:26Z",
-      "literature_confidence": 0.859,
-      "literature_confidence_parallel": 0.859,
-      "overall_confidence": 0.641,
+      "literature_confidence": 0.858,
+      "literature_confidence_parallel": 0.858,
+      "overall_confidence": 0.64,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -6223,7 +6276,7 @@
       }
     },
     "ARC-091": {
-      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.864",
+      "confidence_rationale": "exp=0 entry(s), lit=6 entry(s), exp_conf=0, lit_conf=0.863",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -6250,9 +6303,9 @@
       },
       "latest_run_id": "2026-06-13_q_070_possible_futures_cycling_kay2020",
       "latest_timestamp_utc": "2026-06-13T18:07:17Z",
-      "literature_confidence": 0.864,
-      "literature_confidence_parallel": 0.864,
-      "overall_confidence": 0.864,
+      "literature_confidence": 0.863,
+      "literature_confidence_parallel": 0.863,
+      "overall_confidence": 0.863,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -8940,7 +8993,7 @@
       }
     },
     "INV-052": {
-      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.711, lit_conf=0.849",
+      "confidence_rationale": "exp=3 entry(s), lit=4 entry(s), exp_conf=0.71, lit_conf=0.849",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -8957,8 +9010,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.711,
-      "experimental_confidence_decoupled": 0.711,
+      "experimental_confidence": 0.71,
+      "experimental_confidence_decoupled": 0.71,
       "fail_runs": 0,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -8971,7 +9024,7 @@
       "latest_timestamp_utc": "2026-04-09T15:00:00Z",
       "literature_confidence": 0.849,
       "literature_confidence_parallel": 0.849,
-      "overall_confidence": 0.78,
+      "overall_confidence": 0.779,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -12953,7 +13006,7 @@
       }
     },
     "MECH-058": {
-      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.842",
+      "confidence_rationale": "exp=0 entry(s), lit=9 entry(s), exp_conf=0, lit_conf=0.841",
       "direction_counts": {
         "mixed": 2,
         "supports": 7,
@@ -12982,9 +13035,9 @@
       },
       "latest_run_id": "2026-02-15_mech058_connectome_byol_asymmetry_analysis_2022",
       "latest_timestamp_utc": "2026-02-15T21:31:00Z",
-      "literature_confidence": 0.842,
-      "literature_confidence_parallel": 0.842,
-      "overall_confidence": 0.842,
+      "literature_confidence": 0.841,
+      "literature_confidence_parallel": 0.841,
+      "overall_confidence": 0.841,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -13889,7 +13942,7 @@
       }
     },
     "MECH-071": {
-      "confidence_rationale": "exp=38 entry(s), lit=4 entry(s), exp_conf=0.644, lit_conf=0.866",
+      "confidence_rationale": "exp=38 entry(s), lit=4 entry(s), exp_conf=0.644, lit_conf=0.865",
       "direction_counts": {
         "mixed": 10,
         "supports": 21,
@@ -13918,9 +13971,9 @@
       },
       "latest_run_id": "20260320T200725Z_v3_exq_058_arc027_harm_stream_calibration_v3",
       "latest_timestamp_utc": "2026-04-18T12:40:10.597275Z",
-      "literature_confidence": 0.866,
-      "literature_confidence_parallel": 0.866,
-      "overall_confidence": 0.755,
+      "literature_confidence": 0.865,
+      "literature_confidence_parallel": 0.865,
+      "overall_confidence": 0.754,
       "pass_runs": 10,
       "recent_entries": [
         {
@@ -15132,7 +15185,7 @@
       }
     },
     "MECH-087": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.754, lit_conf=0.722",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.753, lit_conf=0.722",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -15148,8 +15201,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.754,
-      "experimental_confidence_decoupled": 0.754,
+      "experimental_confidence": 0.753,
+      "experimental_confidence_decoupled": 0.753,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -16279,7 +16332,7 @@
       }
     },
     "MECH-097": {
-      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.348, lit_conf=0.684",
+      "confidence_rationale": "exp=1 entry(s), lit=1 entry(s), exp_conf=0.348, lit_conf=0.683",
       "direction_counts": {
         "mixed": 1,
         "supports": 1,
@@ -16307,8 +16360,8 @@
       },
       "latest_run_id": "v3_exq_137_mech097_pps_commit_locus_pair_20260424T022149Z_v3",
       "latest_timestamp_utc": "2026-04-24T02:21:49Z",
-      "literature_confidence": 0.684,
-      "literature_confidence_parallel": 0.684,
+      "literature_confidence": 0.683,
+      "literature_confidence_parallel": 0.683,
       "overall_confidence": 0.516,
       "pass_runs": 0,
       "recent_entries": [
@@ -16350,7 +16403,7 @@
       }
     },
     "MECH-098": {
-      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.524, lit_conf=0.899",
+      "confidence_rationale": "exp=19 entry(s), lit=9 entry(s), exp_conf=0.524, lit_conf=0.898",
       "direction_counts": {
         "mixed": 7,
         "supports": 12,
@@ -16384,9 +16437,9 @@
       },
       "latest_run_id": "v3_exq_529_mech098_reafference_selectivity_20260506T091032Z_v3",
       "latest_timestamp_utc": "2026-05-06T09:10:32.734835Z",
-      "literature_confidence": 0.899,
-      "literature_confidence_parallel": 0.899,
-      "overall_confidence": 0.712,
+      "literature_confidence": 0.898,
+      "literature_confidence_parallel": 0.898,
+      "overall_confidence": 0.711,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -17191,7 +17244,7 @@
       }
     },
     "MECH-106": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.639, lit_conf=0.855",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.638, lit_conf=0.855",
       "direction_counts": {
         "mixed": 1,
         "supports": 6,
@@ -17209,8 +17262,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.639,
-      "experimental_confidence_decoupled": 0.639,
+      "experimental_confidence": 0.638,
+      "experimental_confidence_decoupled": 0.638,
       "fail_runs": 1,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -17223,7 +17276,7 @@
       "latest_timestamp_utc": "2026-04-05T12:00:00Z",
       "literature_confidence": 0.855,
       "literature_confidence_parallel": 0.855,
-      "overall_confidence": 0.769,
+      "overall_confidence": 0.768,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -17951,7 +18004,7 @@
       }
     },
     "MECH-118": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.135, lit_conf=0.798",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.134, lit_conf=0.798",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -17969,8 +18022,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.135,
-      "experimental_confidence_decoupled": 0.135,
+      "experimental_confidence": 0.134,
+      "experimental_confidence_decoupled": 0.134,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -18676,7 +18729,7 @@
       }
     },
     "MECH-124": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.612, lit_conf=0.87",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.611, lit_conf=0.87",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -18693,8 +18746,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.612,
-      "experimental_confidence_decoupled": 0.612,
+      "experimental_confidence": 0.611,
+      "experimental_confidence_decoupled": 0.611,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -19738,7 +19791,7 @@
       }
     },
     "MECH-155": {
-      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.209, lit_conf=0.863",
+      "confidence_rationale": "exp=2 entry(s), lit=5 entry(s), exp_conf=0.208, lit_conf=0.863",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -19757,8 +19810,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.209,
-      "experimental_confidence_decoupled": 0.209,
+      "experimental_confidence": 0.208,
+      "experimental_confidence_decoupled": 0.208,
       "fail_runs": 0,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -22140,7 +22193,7 @@
       }
     },
     "MECH-187": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.605, lit_conf=0.848",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.604, lit_conf=0.848",
       "direction_counts": {
         "mixed": 3,
         "supports": 5,
@@ -22158,8 +22211,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.605,
-      "experimental_confidence_decoupled": 0.605,
+      "experimental_confidence": 0.604,
+      "experimental_confidence_decoupled": 0.604,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -26495,7 +26548,7 @@
       }
     },
     "MECH-268": {
-      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.735, lit_conf=0.839",
+      "confidence_rationale": "exp=1 entry(s), lit=8 entry(s), exp_conf=0.734, lit_conf=0.839",
       "direction_counts": {
         "mixed": 4,
         "supports": 5,
@@ -26515,8 +26568,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.735,
-      "experimental_confidence_decoupled": 0.735,
+      "experimental_confidence": 0.734,
+      "experimental_confidence_decoupled": 0.734,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -27091,7 +27144,7 @@
       }
     },
     "MECH-272": {
-      "confidence_rationale": "exp=1 entry(s), lit=14 entry(s), exp_conf=0.692, lit_conf=0.869",
+      "confidence_rationale": "exp=1 entry(s), lit=14 entry(s), exp_conf=0.691, lit_conf=0.869",
       "direction_counts": {
         "mixed": 0,
         "supports": 15,
@@ -27111,8 +27164,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.692,
-      "experimental_confidence_decoupled": 0.692,
+      "experimental_confidence": 0.691,
+      "experimental_confidence_decoupled": 0.691,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -28968,7 +29021,7 @@
       }
     },
     "MECH-295": {
-      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.327, lit_conf=0.868",
+      "confidence_rationale": "exp=2 entry(s), lit=6 entry(s), exp_conf=0.326, lit_conf=0.868",
       "direction_counts": {
         "mixed": 1,
         "supports": 5,
@@ -28987,8 +29040,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.327,
-      "experimental_confidence_decoupled": 0.327,
+      "experimental_confidence": 0.326,
+      "experimental_confidence_decoupled": 0.326,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -29001,7 +29054,7 @@
       "latest_timestamp_utc": "2026-05-31T11:24:17Z",
       "literature_confidence": 0.868,
       "literature_confidence_parallel": 0.868,
-      "overall_confidence": 0.652,
+      "overall_confidence": 0.651,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -29461,7 +29514,7 @@
       }
     },
     "MECH-306": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.732, lit_conf=0.888",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.731, lit_conf=0.888",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -29478,8 +29531,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.732,
-      "experimental_confidence_decoupled": 0.732,
+      "experimental_confidence": 0.731,
+      "experimental_confidence_decoupled": 0.731,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -29711,7 +29764,7 @@
       }
     },
     "MECH-309": {
-      "confidence_rationale": "exp=2 entry(s), lit=14 entry(s), exp_conf=0.745, lit_conf=0.878",
+      "confidence_rationale": "exp=2 entry(s), lit=14 entry(s), exp_conf=0.744, lit_conf=0.878",
       "direction_counts": {
         "mixed": 3,
         "supports": 13,
@@ -29732,8 +29785,8 @@
         "C": 2
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.745,
-      "experimental_confidence_decoupled": 0.745,
+      "experimental_confidence": 0.744,
+      "experimental_confidence_decoupled": 0.744,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -29746,7 +29799,7 @@
       "latest_timestamp_utc": "2026-05-26T02:30:59.480709Z",
       "literature_confidence": 0.878,
       "literature_confidence_parallel": 0.878,
-      "overall_confidence": 0.825,
+      "overall_confidence": 0.824,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -32351,7 +32404,7 @@
       }
     },
     "MECH-358": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.764, lit_conf=0.797",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.763, lit_conf=0.797",
       "direction_counts": {
         "mixed": 0,
         "supports": 4,
@@ -32369,8 +32422,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.764,
-      "experimental_confidence_decoupled": 0.764,
+      "experimental_confidence": 0.763,
+      "experimental_confidence_decoupled": 0.763,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -32383,7 +32436,7 @@
       "latest_timestamp_utc": "2026-06-17T04:28:30Z",
       "literature_confidence": 0.797,
       "literature_confidence_parallel": 0.797,
-      "overall_confidence": 0.789,
+      "overall_confidence": 0.788,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -35167,7 +35220,7 @@
       }
     },
     "MECH-448": {
-      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.773, lit_conf=0.857",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.772, lit_conf=0.857",
       "direction_counts": {
         "mixed": 0,
         "supports": 6,
@@ -35185,8 +35238,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.773,
-      "experimental_confidence_decoupled": 0.773,
+      "experimental_confidence": 0.772,
+      "experimental_confidence_decoupled": 0.772,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -35826,7 +35879,7 @@
       }
     },
     "Q-002": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.319, lit_conf=0.808",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.318, lit_conf=0.808",
       "direction_counts": {
         "mixed": 2,
         "supports": 3,
@@ -35844,8 +35897,8 @@
         "C": 4
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.319,
-      "experimental_confidence_decoupled": 0.319,
+      "experimental_confidence": 0.318,
+      "experimental_confidence_decoupled": 0.318,
       "fail_runs": 4,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -35858,7 +35911,7 @@
       "latest_timestamp_utc": "2026-04-18T12:40:10.788339Z",
       "literature_confidence": 0.808,
       "literature_confidence_parallel": 0.808,
-      "overall_confidence": 0.564,
+      "overall_confidence": 0.563,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -35945,7 +35998,7 @@
       }
     },
     "Q-003": {
-      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.187, lit_conf=0.798",
+      "confidence_rationale": "exp=2 entry(s), lit=4 entry(s), exp_conf=0.186, lit_conf=0.798",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -35963,8 +36016,8 @@
         "C": 2
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.187,
-      "experimental_confidence_decoupled": 0.187,
+      "experimental_confidence": 0.186,
+      "experimental_confidence_decoupled": 0.186,
       "fail_runs": 2,
       "genuine_exp_count": 2,
       "genuine_exp_direction_counts": {
@@ -35977,7 +36030,7 @@
       "latest_timestamp_utc": "2026-03-29T15:00:00Z",
       "literature_confidence": 0.798,
       "literature_confidence_parallel": 0.798,
-      "overall_confidence": 0.554,
+      "overall_confidence": 0.553,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -37707,7 +37760,7 @@
       }
     },
     "Q-021": {
-      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.29, lit_conf=0.785",
+      "confidence_rationale": "exp=1 entry(s), lit=3 entry(s), exp_conf=0.289, lit_conf=0.785",
       "direction_counts": {
         "mixed": 1,
         "supports": 3,
@@ -37724,8 +37777,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.29,
-      "experimental_confidence_decoupled": 0.29,
+      "experimental_confidence": 0.289,
+      "experimental_confidence_decoupled": 0.289,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -37816,7 +37869,7 @@
       }
     },
     "Q-022": {
-      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.29, lit_conf=0.742",
+      "confidence_rationale": "exp=1 entry(s), lit=2 entry(s), exp_conf=0.289, lit_conf=0.742",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -37833,8 +37886,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.29,
-      "experimental_confidence_decoupled": 0.29,
+      "experimental_confidence": 0.289,
+      "experimental_confidence_decoupled": 0.289,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -38988,7 +39041,7 @@
       }
     },
     "Q-034": {
-      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.601, lit_conf=0.784",
+      "confidence_rationale": "exp=5 entry(s), lit=6 entry(s), exp_conf=0.6, lit_conf=0.784",
       "direction_counts": {
         "mixed": 0,
         "supports": 8,
@@ -39007,8 +39060,8 @@
         "C": 5
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.601,
-      "experimental_confidence_decoupled": 0.601,
+      "experimental_confidence": 0.6,
+      "experimental_confidence_decoupled": 0.6,
       "fail_runs": 3,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -39021,7 +39074,7 @@
       "latest_timestamp_utc": "2026-05-06T08:28:34Z",
       "literature_confidence": 0.784,
       "literature_confidence_parallel": 0.784,
-      "overall_confidence": 0.693,
+      "overall_confidence": 0.692,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -40878,7 +40931,7 @@
       }
     },
     "Q-059": {
-      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.77",
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.769",
       "direction_counts": {
         "mixed": 0,
         "supports": 3,
@@ -40904,9 +40957,9 @@
       },
       "latest_run_id": "2026-06-20_q_059_laughter_social_regulation_palagi2022",
       "latest_timestamp_utc": "2026-06-20T09:04:30Z",
-      "literature_confidence": 0.77,
-      "literature_confidence_parallel": 0.77,
-      "overall_confidence": 0.77,
+      "literature_confidence": 0.769,
+      "literature_confidence_parallel": 0.769,
+      "overall_confidence": 0.769,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -41134,6 +41187,95 @@
           "source_type": "literature",
           "status": "SOURCE",
           "timestamp_utc": "2026-06-21T09:04:23Z"
+        }
+      ],
+      "runs_total": 3,
+      "source_counts": {
+        "experimental": 0,
+        "literature": 3
+      }
+    },
+    "Q-062": {
+      "confidence_rationale": "exp=0 entry(s), lit=3 entry(s), exp_conf=0, lit_conf=0.762",
+      "direction_counts": {
+        "mixed": 2,
+        "supports": 1,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "entries_total": 3,
+      "evidence_class_counts": {
+        "lit:computational_model": 3
+      },
+      "evidence_level_counts": {},
+      "evidence_quadrant": "plausible_unproven",
+      "experimental_confidence": 0.0,
+      "experimental_confidence_decoupled": 0.0,
+      "fail_runs": 0,
+      "genuine_exp_count": 0,
+      "genuine_exp_direction_counts": {
+        "mixed": 0,
+        "supports": 0,
+        "unknown": 0,
+        "weakens": 0
+      },
+      "latest_run_id": "2026-06-22_q_062_synaptic_intelligence_consolidation_zenke2017",
+      "latest_timestamp_utc": "2026-06-22T09:32:49Z",
+      "literature_confidence": 0.762,
+      "literature_confidence_parallel": 0.762,
+      "overall_confidence": 0.762,
+      "pass_runs": 0,
+      "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-062",
+          "confidence": 0.55,
+          "confidence_rationale": "Provides the counterweight to the Masse/Zenke entries: a slow astrocytic gating variable that integrates activity and dynamically MODULATES whether plasticity is admitted -- suppressing updates in stable regimes and enabling them during distribution shifts -- improves class-incremental continual learning without replay. This is a held, regime-tracking gating STATE (entry/exit governed by the slow variable), which leans toward Q-062 sub-question (2)'s 'held intermediate write-eligible state' adding value beyond instantaneous channel gating + a static importance prior. Tilts toward MECH-368 earning a keep, counterbalancing the other two entries; marked mixed because it is a gating signal layered on eligibility traces, not a literal event-level admission gate, and it is a recent single-group SNN benchmark study.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_062",
+          "failure_signatures": [
+            "The astrocytic variable gates plasticity by regime (stable vs shifting), which is a held, time-integrated state rather than a per-event tag re-read; this is evidence that a held write-eligibility state can ADD value over static consolidation -- against the 'existing combination already suffices' null.",
+            "It does not factor its gain against REE's specific stack (mode gating + provenance + consolidation-priority), so it shows a held gating state helps in a generic SNN, not that REE specifically needs MECH-368 on top of MECH-261/094/285."
+          ],
+          "run_id": "2026-06-22_q_062_astrocyte_gated_plasticity_state_dong2026",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-062",
+          "confidence": 0.7,
+          "confidence_rationale": "Directly probes the structure of Q-062: it dissociates context/channel gating (XdG) from weight stabilization and shows neither alone is sufficient at scale -- XdG ALONE does not support continual learning, and stabilization alone degrades, but the two COMBINED maintain ~95% across many tasks. This is strong evidence that channel/mode gating must be paired with a consolidation-priority mechanism, which both supports the 'combination is needed' reading and, crucially, shows the sufficient complement is parameter-level stabilization (REE: MECH-285 consolidation-priority / MECH-094 provenance), NOT an explicit per-event write-eligible STATE (MECH-368). Hence mixed for the specific MECH-368 falsifier. Peer-reviewed PNAS, well-controlled across architectures and learning paradigms.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_q_062",
+          "failure_signatures": [
+            "Context-dependent gating alone fails to prevent catastrophic forgetting; the paper explicitly states XdG becomes effective only when combined with synaptic stabilization -- so a substrate that gates only the channel (MECH-261 mode gating) without a complementary consolidation/stabilization mechanism would NOT avoid catastrophic interference.",
+            "The sufficient complement demonstrated is weight stabilization (EWC/SI), a parameter-importance consolidation analogue, not a held event-level write-eligible state; the paper provides no evidence that an explicit per-event admission gate (MECH-368) is required once gating + stabilization are present."
+          ],
+          "run_id": "2026-06-22_q_062_context_gating_plus_stabilization_masse2018",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "Q-062",
+          "confidence": 0.62,
+          "confidence_rationale": "Demonstrates that a purely parameter-level, online-accumulated importance signal (each synapse integrates its own contribution to loss reduction over training) suffices to consolidate prior tasks and substantially prevent catastrophic forgetting, matching EWC, without any per-event admission gate or held write-eligible state. This supports the Q-062 side that a consolidation-priority mechanism (REE MECH-285 / MECH-094) -- not an explicit MECH-368 write-eligible state -- can carry the load of preventing undifferentiated global updates. Down-weighted because it is a conference model on MNIST-scale task sequences, and 'substantially prevents' is not 'prevents on REE's online world-model path'.",
+          "evidence_class": "lit:computational_model",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_q_062",
+          "failure_signatures": [
+            "Synaptic intelligence prevents forgetting via a regularisation prior on weight changes, not via gating which weights are eligible to change at a given event; it shows consolidation-priority can work WITHOUT an explicit write-eligible state, but does not test whether such a state would add value on top.",
+            "The importance measure is accumulated continuously and re-read as a penalty -- consistent with Q-062 sub-question (2)'s 'salience tag re-read' option rather than a held intermediate state with its own entry/exit; offered as the cheaper hypothesis, not a refutation of MECH-368."
+          ],
+          "run_id": "2026-06-22_q_062_synaptic_intelligence_consolidation_zenke2017",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-22T09:32:49Z"
         }
       ],
       "runs_total": 3,
@@ -41398,7 +41540,7 @@
       }
     },
     "Q-079": {
-      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.849",
+      "confidence_rationale": "exp=0 entry(s), lit=5 entry(s), exp_conf=0, lit_conf=0.848",
       "direction_counts": {
         "mixed": 1,
         "supports": 0,
@@ -41424,9 +41566,9 @@
       },
       "latest_run_id": "2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011",
       "latest_timestamp_utc": "2026-06-20T17:29:23Z",
-      "literature_confidence": 0.849,
-      "literature_confidence_parallel": 0.849,
-      "overall_confidence": 0.849,
+      "literature_confidence": 0.848,
+      "literature_confidence_parallel": 0.848,
+      "overall_confidence": 0.848,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -42004,7 +42146,7 @@
       }
     },
     "SD-005": {
-      "confidence_rationale": "exp=26 entry(s), lit=3 entry(s), exp_conf=0.6, lit_conf=0.8",
+      "confidence_rationale": "exp=26 entry(s), lit=3 entry(s), exp_conf=0.599, lit_conf=0.8",
       "direction_counts": {
         "mixed": 5,
         "supports": 11,
@@ -42022,8 +42164,8 @@
         "C": 26
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.6,
-      "experimental_confidence_decoupled": 0.6,
+      "experimental_confidence": 0.599,
+      "experimental_confidence_decoupled": 0.599,
       "fail_runs": 19,
       "genuine_exp_count": 26,
       "genuine_exp_direction_counts": {
@@ -42127,7 +42269,7 @@
       }
     },
     "SD-006": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.715, lit_conf=0.769",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.714, lit_conf=0.769",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -42143,8 +42285,8 @@
         "C": 4
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.715,
-      "experimental_confidence_decoupled": 0.715,
+      "experimental_confidence": 0.714,
+      "experimental_confidence_decoupled": 0.714,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -42157,7 +42299,7 @@
       "latest_timestamp_utc": "2026-03-29T14:00:00Z",
       "literature_confidence": 0.769,
       "literature_confidence_parallel": 0.769,
-      "overall_confidence": 0.737,
+      "overall_confidence": 0.736,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -42377,7 +42519,7 @@
       }
     },
     "SD-008": {
-      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.764, lit_conf=0.727",
+      "confidence_rationale": "exp=4 entry(s), lit=2 entry(s), exp_conf=0.763, lit_conf=0.727",
       "direction_counts": {
         "mixed": 2,
         "supports": 4,
@@ -42394,8 +42536,8 @@
         "C": 4
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.764,
-      "experimental_confidence_decoupled": 0.764,
+      "experimental_confidence": 0.763,
+      "experimental_confidence_decoupled": 0.763,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -42573,7 +42715,7 @@
       }
     },
     "SD-010": {
-      "confidence_rationale": "exp=19 entry(s), lit=4 entry(s), exp_conf=0.723, lit_conf=0.877",
+      "confidence_rationale": "exp=19 entry(s), lit=4 entry(s), exp_conf=0.722, lit_conf=0.877",
       "direction_counts": {
         "mixed": 14,
         "supports": 8,
@@ -42590,8 +42732,8 @@
         "C": 19
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.723,
-      "experimental_confidence_decoupled": 0.723,
+      "experimental_confidence": 0.722,
+      "experimental_confidence_decoupled": 0.722,
       "fail_runs": 15,
       "genuine_exp_count": 19,
       "genuine_exp_direction_counts": {
@@ -42968,7 +43110,7 @@
       }
     },
     "SD-013": {
-      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.662, lit_conf=0.855",
+      "confidence_rationale": "exp=4 entry(s), lit=4 entry(s), exp_conf=0.661, lit_conf=0.855",
       "direction_counts": {
         "mixed": 0,
         "supports": 7,
@@ -42985,8 +43127,8 @@
         "C": 4
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.662,
-      "experimental_confidence_decoupled": 0.662,
+      "experimental_confidence": 0.661,
+      "experimental_confidence_decoupled": 0.661,
       "fail_runs": 2,
       "genuine_exp_count": 4,
       "genuine_exp_direction_counts": {
@@ -42999,7 +43141,7 @@
       "latest_timestamp_utc": "2026-04-17T15:25:31Z",
       "literature_confidence": 0.855,
       "literature_confidence_parallel": 0.855,
-      "overall_confidence": 0.759,
+      "overall_confidence": 0.758,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -43817,7 +43959,7 @@
       }
     },
     "SD-020": {
-      "confidence_rationale": "exp=5 entry(s), lit=5 entry(s), exp_conf=0.823, lit_conf=0.897",
+      "confidence_rationale": "exp=5 entry(s), lit=5 entry(s), exp_conf=0.822, lit_conf=0.897",
       "direction_counts": {
         "mixed": 2,
         "supports": 8,
@@ -43835,8 +43977,8 @@
         "C": 5
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.823,
-      "experimental_confidence_decoupled": 0.823,
+      "experimental_confidence": 0.822,
+      "experimental_confidence_decoupled": 0.822,
       "fail_runs": 2,
       "genuine_exp_count": 5,
       "genuine_exp_direction_counts": {
@@ -45251,7 +45393,7 @@
       }
     },
     "SD-033a": {
-      "confidence_rationale": "exp=3 entry(s), lit=19 entry(s), exp_conf=0.836, lit_conf=0.871",
+      "confidence_rationale": "exp=3 entry(s), lit=19 entry(s), exp_conf=0.835, lit_conf=0.871",
       "direction_counts": {
         "mixed": 9,
         "superseded": 1,
@@ -45275,8 +45417,8 @@
         "C": 3
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.836,
-      "experimental_confidence_decoupled": 0.836,
+      "experimental_confidence": 0.835,
+      "experimental_confidence_decoupled": 0.835,
       "fail_runs": 1,
       "genuine_exp_count": 3,
       "genuine_exp_direction_counts": {
@@ -45290,7 +45432,7 @@
       "latest_timestamp_utc": "2026-06-07T13:56:11.544509Z",
       "literature_confidence": 0.871,
       "literature_confidence_parallel": 0.871,
-      "overall_confidence": 0.854,
+      "overall_confidence": 0.853,
       "pass_runs": 2,
       "recent_entries": [
         {
@@ -47240,7 +47382,7 @@
       }
     },
     "SD-059": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.764, lit_conf=0.857",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.763, lit_conf=0.857",
       "direction_counts": {
         "mixed": 0,
         "supports": 5,
@@ -47259,8 +47401,8 @@
         "C": 1
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.764,
-      "experimental_confidence_decoupled": 0.764,
+      "experimental_confidence": 0.763,
+      "experimental_confidence_decoupled": 0.763,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -47273,7 +47415,7 @@
       "latest_timestamp_utc": "2026-06-17T04:28:30Z",
       "literature_confidence": 0.857,
       "literature_confidence_parallel": 0.857,
-      "overall_confidence": 0.834,
+      "overall_confidence": 0.833,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -47436,7 +47578,7 @@
       }
     },
     "onboarding": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.611, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.61, lit_conf=0",
       "direction_counts": {
         "mixed": 0,
         "supports": 1,
@@ -47451,8 +47593,8 @@
         "C": 1
       },
       "evidence_quadrant": "speculative",
-      "experimental_confidence": 0.611,
-      "experimental_confidence_decoupled": 0.611,
+      "experimental_confidence": 0.61,
+      "experimental_confidence_decoupled": 0.61,
       "fail_runs": 0,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -47465,7 +47607,7 @@
       "latest_timestamp_utc": "2026-04-09T08:19:04Z",
       "literature_confidence": 0.0,
       "literature_confidence_parallel": 0.0,
-      "overall_confidence": 0.611,
+      "overall_confidence": 0.61,
       "pass_runs": 1,
       "recent_entries": [
         {
@@ -125955,6 +126097,108 @@
       "timestamp_utc": "2026-06-22T06:35:47.585433Z"
     },
     {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-013",
+      "confidence": 0.72,
+      "confidence_rationale": "Strong, peer-reviewed (Neuron) human fMRI evidence that entorhinal cortex carries a reusable map of task STRUCTURE: entorhinal co-activation geometry is preserved across different problems only when the underlying relational structure is preserved, generalising beyond physical space to abstract RL problems. This corroborates the 'cognitive map = persistent structural/relational geometry that transfers' reading of ARC-013. Down-weighted because the readout is representational-similarity geometry in BOLD (coarse, indirect relative to REE's latent residue field) and the paper speaks to structure-generalisation, not to a residue primitive separable from salience/uncertainty.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_013",
+      "failure_signatures": [
+        "The preserved-structure signal is an entorhinal/vmPFC co-activation geometry measured with RSA on fMRI; it shows that a structural map exists and transfers, but does not decompose that map into residue versus salience versus uncertainty, so it cannot speak to ARC-013's separability claim.",
+        "Evidence is a cross-problem invariance of representational geometry, not a demonstration that the geometry is the persistent curvature that REE calls residue; the persistence is across tasks within a session, not a long-horizon stable substrate."
+      ],
+      "run_id": "2026-06-22_arc_013_entorhinal_structure_abstraction_baram2020",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-013",
+      "confidence": 0.66,
+      "confidence_rationale": "Directly addresses the geometric-structure half of ARC-013: a geometry-aware autoencoder over longitudinal CA1 calcium imaging shows the hippocampal population code is organised as a curved, structured manifold (helical rotation-plus-drift dynamics) optimised for local fidelity plus global searchability, with long-range shortcuts engaged offline. This is strong, mechanism-level support that hippocampal paths form a navigable map with persistent latent-space geometry. Down-weighted because it is a preprint (not peer reviewed), single task/species (mouse memory-guided navigation), and the REE-specific term 'residue as persistent curvature' is the authors' 'helical dynamics' only by analogy, not by their construct.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_013",
+      "failure_signatures": [
+        "The paper models map geometry as helical drift relative to past experience and sparse multi-field shortcuts; it does not isolate a separate, persistent 'residue' field distinct from salience or uncertainty, so it cannot adjudicate the ARC-013 separability question (residue irreducible to salience+uncertainty) that V3-EXQ-697 targets.",
+        "Evidence is from offline calcium imaging in one navigation task; whether the same curvature persists as a stable cross-task substrate (REE's residue) versus a task-specific code is untested here."
+      ],
+      "run_id": "2026-06-22_arc_013_small_world_cognitive_map_kim2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "ARC-013",
+      "confidence": 0.5,
+      "confidence_rationale": "A computational existence-proof that the successor-representation principle attributed to place/grid cells builds a navigable latent map of an arbitrary (semantic) space, with multi-scale curvature: fine-grained maps spread items evenly while coarse-grained maps cluster them by class, and missing/novel inputs are recovered by interpolation on the map. Supports ARC-013's 'paths/structure form a latent cognitive map whose geometry carries the content' at the modelling level, but it is a toy model on 32 hand-built feature vectors, not neural data, so source_quality and transfer are modest.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_arc_013",
+      "failure_signatures": [
+        "The map is built from 32 hand-encoded animal feature vectors with a successor-representation learner; it demonstrates that SR yields a multi-scale latent geometry, but does not show this geometry is the brain's residue substrate nor that it is separable from salience/uncertainty.",
+        "Accuracy near 30% on next-neighbour prediction (close to the stated theoretical ceiling given multiple valid successors) shows the map is approximate; the strong 95% figure is for interpolation of held-out/incomplete inputs, a different operation from residue persistence."
+      ],
+      "run_id": "2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-062",
+      "confidence": 0.55,
+      "confidence_rationale": "Provides the counterweight to the Masse/Zenke entries: a slow astrocytic gating variable that integrates activity and dynamically MODULATES whether plasticity is admitted -- suppressing updates in stable regimes and enabling them during distribution shifts -- improves class-incremental continual learning without replay. This is a held, regime-tracking gating STATE (entry/exit governed by the slow variable), which leans toward Q-062 sub-question (2)'s 'held intermediate write-eligible state' adding value beyond instantaneous channel gating + a static importance prior. Tilts toward MECH-368 earning a keep, counterbalancing the other two entries; marked mixed because it is a gating signal layered on eligibility traces, not a literal event-level admission gate, and it is a recent single-group SNN benchmark study.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_062",
+      "failure_signatures": [
+        "The astrocytic variable gates plasticity by regime (stable vs shifting), which is a held, time-integrated state rather than a per-event tag re-read; this is evidence that a held write-eligibility state can ADD value over static consolidation -- against the 'existing combination already suffices' null.",
+        "It does not factor its gain against REE's specific stack (mode gating + provenance + consolidation-priority), so it shows a held gating state helps in a generic SNN, not that REE specifically needs MECH-368 on top of MECH-261/094/285."
+      ],
+      "run_id": "2026-06-22_q_062_astrocyte_gated_plasticity_state_dong2026",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-062",
+      "confidence": 0.7,
+      "confidence_rationale": "Directly probes the structure of Q-062: it dissociates context/channel gating (XdG) from weight stabilization and shows neither alone is sufficient at scale -- XdG ALONE does not support continual learning, and stabilization alone degrades, but the two COMBINED maintain ~95% across many tasks. This is strong evidence that channel/mode gating must be paired with a consolidation-priority mechanism, which both supports the 'combination is needed' reading and, crucially, shows the sufficient complement is parameter-level stabilization (REE: MECH-285 consolidation-priority / MECH-094 provenance), NOT an explicit per-event write-eligible STATE (MECH-368). Hence mixed for the specific MECH-368 falsifier. Peer-reviewed PNAS, well-controlled across architectures and learning paradigms.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_q_062",
+      "failure_signatures": [
+        "Context-dependent gating alone fails to prevent catastrophic forgetting; the paper explicitly states XdG becomes effective only when combined with synaptic stabilization -- so a substrate that gates only the channel (MECH-261 mode gating) without a complementary consolidation/stabilization mechanism would NOT avoid catastrophic interference.",
+        "The sufficient complement demonstrated is weight stabilization (EWC/SI), a parameter-importance consolidation analogue, not a held event-level write-eligible state; the paper provides no evidence that an explicit per-event admission gate (MECH-368) is required once gating + stabilization are present."
+      ],
+      "run_id": "2026-06-22_q_062_context_gating_plus_stabilization_masse2018",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "Q-062",
+      "confidence": 0.62,
+      "confidence_rationale": "Demonstrates that a purely parameter-level, online-accumulated importance signal (each synapse integrates its own contribution to loss reduction over training) suffices to consolidate prior tasks and substantially prevent catastrophic forgetting, matching EWC, without any per-event admission gate or held write-eligible state. This supports the Q-062 side that a consolidation-priority mechanism (REE MECH-285 / MECH-094) -- not an explicit MECH-368 write-eligible state -- can carry the load of preventing undifferentiated global updates. Down-weighted because it is a conference model on MNIST-scale task sequences, and 'substantially prevents' is not 'prevents on REE's online world-model path'.",
+      "evidence_class": "lit:computational_model",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_q_062",
+      "failure_signatures": [
+        "Synaptic intelligence prevents forgetting via a regularisation prior on weight changes, not via gating which weights are eligible to change at a given event; it shows consolidation-priority can work WITHOUT an explicit write-eligible state, but does not test whether such a state would add value on top.",
+        "The importance measure is accumulated continuously and re-read as a penalty -- consistent with Q-062 sub-question (2)'s 'salience tag re-read' option rather than a held intermediate state with its own entry/exit; offered as the cheaper hypothesis, not a refutation of MECH-368."
+      ],
+      "run_id": "2026-06-22_q_062_synaptic_intelligence_consolidation_zenke2017",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-22T09:32:49Z"
+    },
+    {
       "adjudication": "unverified",
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "SD-011",
@@ -125993,7 +126237,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-22T07:02:56.474464Z",
+  "generated_at_utc": "2026-06-22T09:52:54.174027Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

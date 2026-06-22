@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_013",
+  "entry_id": "2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023",
+  "timestamp_utc": "2026-06-22T09:32:49Z",
+  "claim_ids_tested": ["ARC-013"],
+  "source": {
+    "title": "Neural network based formation of cognitive maps of semantic spaces and the putative emergence of abstract concepts",
+    "authors": ["Paul Stoewer", "Achim Schilling", "Andreas Maier", "Patrick Krauss"],
+    "year": 2023,
+    "venue": "Scientific Reports",
+    "doi": "10.1038/s41598-023-30307-6",
+    "url": "https://doi.org/10.1038/s41598-023-30307-6"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "A computational existence-proof that the successor-representation principle attributed to place/grid cells builds a navigable latent map of an arbitrary (semantic) space, with multi-scale curvature: fine-grained maps spread items evenly while coarse-grained maps cluster them by class, and missing/novel inputs are recovered by interpolation on the map. Supports ARC-013's 'paths/structure form a latent cognitive map whose geometry carries the content' at the modelling level, but it is a toy model on 32 hand-built feature vectors, not neural data, so source_quality and transfer are modest.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["The map is built from 32 hand-encoded animal feature vectors with a successor-representation learner; it demonstrates that SR yields a multi-scale latent geometry, but does not show this geometry is the brain's residue substrate nor that it is separable from salience/uncertainty.", "Accuracy near 30% on next-neighbour prediction (close to the stated theoretical ceiling given multiple valid successors) shows the map is approximate; the strong 95% figure is for interpolation of held-out/incomplete inputs, a different operation from residue persistence."],
+  "tags": ["arc-013", "cognitive_map", "successor_representation", "semantic_space", "abstraction"],
+  "mapping": {
+    "source_claim_statement": "A neural network trained with the multi-scale successor-representation principle (proposed to underlie place and grid cell computations) forms a cognitive map of a non-spatial semantic space; the map's geometry is multi-scale (even spread when fine-grained, class-clustered when coarse-grained) and supports interpolation of novel/incomplete inputs.",
+    "ree_translation": "Supports ARC-013's generalisation of the cognitive map beyond physical space to abstract latent spaces, and the idea that the map's content is its (multi-scale) geometry, consistent with REE treating residue/path structure as a reusable latent-space scaffold (ARC-004; INV-006).",
+    "mapping_caveat": "This is a computational model on a small hand-built dataset, not neural evidence; it shows SR CAN produce a curved multi-scale latent map, not that the hippocampus's residue is that map or that residue is irreducible to salience+uncertainty. Weakest of the three ARC-013 entries on directness.",
+    "source_context": "Feedforward/SR neural network learning a cognitive map over 32 animal species encoded as feature vectors; in-silico only."
+  },
+  "confidence_components": {
+    "source_quality": 0.5,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Peer-reviewed (Sci Rep) but a small in-silico proof-of-concept, so source_quality is mid. Mapping_fidelity moderate for the 'latent map has multi-scale geometry' reading. Transfer_risk substantial: a 32-item toy SR model -> REE residue substrate is a long inferential reach; included as corroborating mechanism, not as primary evidence."
+  }
+}

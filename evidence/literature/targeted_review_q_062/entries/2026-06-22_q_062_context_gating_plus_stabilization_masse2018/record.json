@@ -1,0 +1,34 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_062",
+  "entry_id": "2026-06-22_q_062_context_gating_plus_stabilization_masse2018",
+  "timestamp_utc": "2026-06-22T09:32:49Z",
+  "claim_ids_tested": ["Q-062"],
+  "source": {
+    "title": "Alleviating catastrophic forgetting using context-dependent gating and synaptic stabilization",
+    "authors": ["Nicolas Y. Masse", "Gregory D. Grant", "David J. Freedman"],
+    "year": 2018,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.1803839115",
+    "url": "https://doi.org/10.1073/pnas.1803839115"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly probes the structure of Q-062: it dissociates context/channel gating (XdG) from weight stabilization and shows neither alone is sufficient at scale -- XdG ALONE does not support continual learning, and stabilization alone degrades, but the two COMBINED maintain ~95% across many tasks. This is strong evidence that channel/mode gating must be paired with a consolidation-priority mechanism, which both supports the 'combination is needed' reading and, crucially, shows the sufficient complement is parameter-level stabilization (REE: MECH-285 consolidation-priority / MECH-094 provenance), NOT an explicit per-event write-eligible STATE (MECH-368). Hence mixed for the specific MECH-368 falsifier. Peer-reviewed PNAS, well-controlled across architectures and learning paradigms.",
+  "summary_path": "summary.md",
+  "failure_signatures": ["Context-dependent gating alone fails to prevent catastrophic forgetting; the paper explicitly states XdG becomes effective only when combined with synaptic stabilization -- so a substrate that gates only the channel (MECH-261 mode gating) without a complementary consolidation/stabilization mechanism would NOT avoid catastrophic interference.", "The sufficient complement demonstrated is weight stabilization (EWC/SI), a parameter-importance consolidation analogue, not a held event-level write-eligible state; the paper provides no evidence that an explicit per-event admission gate (MECH-368) is required once gating + stabilization are present."],
+  "tags": ["q-062", "catastrophic_forgetting", "context_dependent_gating", "synaptic_stabilization", "continual_learning", "mech-368", "mech-261", "mech-285"],
+  "mapping": {
+    "source_claim_statement": "Context-dependent gating (sparse, mostly non-overlapping units active per task) is easy and cheap but does NOT by itself support continual learning; combined with synaptic stabilization (EWC or synaptic intelligence) it maintains high accuracy across many sequentially presented tasks, in both feedforward and recurrent nets and under supervised and reinforcement learning.",
+    "ree_translation": "Speaks to Q-062's core: REE's existing combination is mode-conditioned channel gating (MECH-261) + provenance gating (MECH-094) + consolidation-priority (MECH-285). The paper supports that channel gating ALONE (mode gating only) is insufficient to prevent undifferentiated global updates -- a complementary consolidation/stabilization mechanism is required. But because that complement is parameter-stabilization rather than a per-event write-eligible state, it leaves open (and arguably leans against) the necessity of MECH-368 as a separate explicit state.",
+    "mapping_caveat": "ANN task-switching with explicit task identity (context) is not the REE online world-model/policy path with implicit, non-stationary context; the paper's 'context' is a clean known task cue, whereas Q-062 concerns admission gating without an oracle task label. The XdG-alone-fails result transfers as 'mode gating needs a consolidation partner'; it does NOT establish whether the partner must be an event-level held state versus a parameter-importance prior.",
+    "source_context": "Permuted/sequential task suites on feedforward and recurrent ANNs; supervised and RL training; gating vs stabilization vs combined."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "High source_quality (PNAS, clean factorial dissociation across architectures/paradigms). Mapping_fidelity moderate: it nails the gating-alone-insufficient point but addresses parameter stabilization, not an event-level write-eligible state, so it only partially maps to the MECH-368 question. Transfer_risk moderate-high: known-task-cue ANN setting vs REE's implicit-context online path."
+  }
+}
