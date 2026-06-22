@@ -1,113 +1,125 @@
-# Morning Agenda — 2026-06-19
+# Morning Agenda — 2026-06-22
 
-Generated: 2026-06-19T04:22:15Z
+Generated: 2026-06-22T04:23:07Z
 
 ---
 
 ## Queue Status
 - **Total pending: 0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- **ALERT: QUEUE EMPTY** — zero experiments queued. Yesterday's two queued items (V3-EXQ-468e, V3-EXQ-514s) both ran and are now in pending review. No runner will have anything to claim. Queue new experiments before the fleet idles.
-- The conversion-ceiling campaign has several owed successors that should be queued (see Errors/Plans below): 460g (de-commit-authority magnitude lever, /implement-substrate first), 654g (GAP-B on a de-locked CRF/monostrategy substrate), a 687-successor arming the 569i GAP-A conversion stack, 625d (sd_037 axis-b P1b — node says in_progress with owner 625d but it is **not** in the queue).
+- **ALERT: Queue empty — 0 pending experiments.** Every queued item has run; the runner has nothing to pick up. New experiments should be queued today (the ARC-107 / MECH-449 BG-constitution falsifier wave 689e/f/g all ran overnight, and 654i drained as the last queued item).
+- **Owed successor (passed Step 7c cross-check):** `V3-EXQ-569a` — GAP-A R1.b matched-entropy FP-2 falsifier (behavioral_diversity_isolation plan). Not in queue, no manifest, not completed, not superseded. A `governance_2026_06_07_pm` note marked its substrate resume-condition **MET** ("R1.a/R1.b matched-entropy work can now resume — queue V3-EXQ-569a successor"). Caveat: that note is ~2 weeks old and the plan has since run a large 614-series cohort; confirm 569a is still wanted (vs absorbed) before queuing.
+- *(Note: `V3-EXQ-631` appears in stale commitment_closure prose as "queued" but is NOT owed — it was explicitly deferred and replaced by V3-EXQ-629, which ran 2026-06-02. Plan-doc prose at commitment_closure_plan.md:581/597/779 is stale.)*
 
 ---
 
 ## Experiments Awaiting Review (5 indexed / 0 runner-only)
 
-All 5 are FAIL / `non_contributory` and were already triaged in the 2026-06-18 `/governance` cycle (flagged for `/failure-autopsy`; none weight any claim). No new datapoints landed overnight.
+3 PASS, 2 FAIL. All five already discussed in overnight sessions (see TASK_CLAIMS completion notes); listed here for the governance walk.
 
-### V3-EXQ-468e — sd034_mech268_decommit_hold_behavioural — FAIL
-- **Claims tested:** SD-034 (provisional), MECH-268 (provisional), MECH-090 (active)
-- **evidence_direction:** non_contributory · **interp:** `residual_perseveration_open`
-- **Classification:** diagnostic (perseveration side of the beta-engagement amend; paired with 460f)
-- **Disposition:** flagged for `/failure-autopsy` (self-stamped weakens on STABLE MECH-090 neutralized to non_contributory pending autopsy). MECH-090 (active) protected. No governance impact until autopsied.
+### V3-EXQ-689f — nogo_necessity_falsifier — PASS
+- **Claims tested:** ARC-107 (candidate), MECH-449 (candidate / substrate_conditional)
+- **Key result:** demotion_insufficient → No-Go necessary (admit 0.866 / No-Go 0.0 / rank-preserving 1.0). Selection-face, commitment-free property test.
+- **Classification:** diagnostic (positive build trigger for the MECH-449 Go/No-Go constitution)
+- **Governance impact if confirmed:** validates the ARC-107 "demotion-alone insufficient" gate that justified building MECH-449; does not itself promote (MECH-449 stays candidate/substrate_conditional).
 
-### V3-EXQ-688 ×3 — mech044_hippocampal_relational_binding — FAIL
-- **Claims tested:** MECH-044 (provisional)
-- **evidence_direction:** non_contributory · **interp:** `substrate_not_ready_requeue` (all 3 runs)
-- **Adjudication flag:** `precondition_unmet` — self-route premise did not hold; label must NOT drive a governance action until adjudicated.
-- **Classification:** diagnostic. **Disposition:** `/failure-autopsy` (precondition_unmet adjudication gate blocks any action). MECH-044 provisional status unaffected.
+### V3-EXQ-689g — mech449_go_nogo_conversion_falsifier — PASS
+- **Claims tested:** ARC-107 (candidate), MECH-449 (candidate / substrate_conditional)
+- **Key result:** the MECH-449 single-decision conversion ablation falsifier (priority 430).
+- **Classification:** evidence (MECH-449 validation falsifier)
+- **Governance impact if confirmed:** the evidence leg that could let MECH-449 progress off candidate/substrate_conditional — adjudicate in the `/governance` walk.
 
-### V3-EXQ-514s — sd049_phase2_mech436_drive_coupling_retest — FAIL
-- **Claims tested:** MECH-436 (candidate)
-- **evidence_direction:** non_contributory · **interp:** `mech436_enrichment_insufficient_substrate_ceiling`
-- **Classification:** evidence (drive-coupling retest). **Disposition:** `/failure-autopsy` (diagnose-first; substrate-ceiling self-route). MECH-436 stays candidate.
+### V3-EXQ-689e — mech448_channel_adaptive_envelope_readiness — PASS
+- **Claims tested:** none (substrate-readiness validation, claim_ids=[])
+- **Key result:** validates the MECH-448 channel-adaptive (mean-relative) eligibility floor — excluded_count>0 on real channels without hand-tuning; bit-identical OFF control.
+- **Classification:** diagnostic (substrate-readiness; no governance weight)
+- **Governance impact:** none directly; unblocks `use_f_eligibility_adaptive_floor` adoption in downstream retests.
 
----
+### V3-EXQ-485k — sd033b_demotion_devalued_rerank_behavioural — FAIL
+- **Claims tested:** MECH-263 (candidate / substrate_ceiling), SD-033b (candidate / substrate_ceiling)
+- **Key result:** both DVs vacuous; per-seed 2-of-3 readiness collapse masked by an aggregate-max precondition panel; FIX-1 re-rank driver overshot the OFC bias clamp and regressed the 485j C2 conversion.
+- **Classification:** evidence (devaluation arm)
+- **Status:** **already autopsied** — `failure_autopsy_V3-EXQ-485k_2026-06-21` (confirmed). Routed to /implement-substrate MECH-449 (done) + gate the corrected V3-EXQ-485l behind that build. Non_contributory; PROMOTES NOTHING.
+- **Governance impact:** none new — autopsy already routed it; the governance walk only needs to mark it reviewed.
 
-## Errors to Diagnose
-
-10 ERROR rows in `runner_status.json` have no later-letter successor. The queue is empty, so none have a queued fix. **Most are legacy residue** (consistent with the known UNKNOWN/ERROR-residue note); only flag the recent ones for genuine attention.
-
-- 2 onboarding smoke tests (not science — ignore for diagnosis): `V3-ONBOARD-smoke-EWIN-PC`, `V3-ONBOARD-smoke-ree-cloud-1`
-- Recent / possibly live: `V3-EXQ-606a`, `V3-EXQ-538`, `V3-EXQ-495`, `V3-EXQ-517c`
-- Older legacy (verify a manifest/redesign doesn't already exist before requeueing): `V3-EXQ-008`, `V3-EXQ-244a`, `V3-EXQ-449c`, `V3-EXQ-455a`
-
-No NEW errors landed overnight (no runs completed since the 2026-06-18 governance close).
-
----
-
-## Governance Agenda (4 recommendations, decision_status = pending_user)
-
-None are promote/demote actions; three are auto-holds and one is a question-narrowing review.
-
-- **MECH-442** (candidate) — `hold_pending_v3_substrate` — newly registered yesterday (CDQ-003 Quality-Diversity / MAP-Elites candidate). Hold is correct; no action.
-- **Q-054** (open) — `narrow_open_question` — the one genuinely reviewable item (total_entries >= 2, conflict_ratio < 0.35). Candidate for a `/governance` narrowing pass.
-- **Q-055** (open) — `hold_pending_v3_substrate` — no action.
-- **Q-056** (open) — `hold_pending_v3_substrate` — no action.
-
-Promotion/demotion queue is otherwise empty (all other rows `applied`).
+### V3-EXQ-654i — arc062_gapb_rule_apprehension_behavioural_falsifier — FAIL
+- **Claims tested:** ARC-062 (candidate / substrate_ceiling), MECH-309 (candidate / substrate_ceiling)
+- **Key result:** label `conversion_ceiling_persists_despite_demotion_route_mech449` — the 485j-style per-(arm,seed) envelope-floor calibration successor (supersedes 654h); the demotion route did not convert on the spread arc_062 F bank.
+- **Classification:** evidence (GAP-B falsifier)
+- **Status:** **fresh FAIL (ran 2026-06-22T01:47Z) — not yet autopsied.** May need `/failure-autopsy`; its conversion-ceiling-persists signature converges with the 485k → MECH-449 routing.
+- **Governance impact if confirmed:** another non_contributory demotion-route retest; reinforces that the conversion ceiling needs the active Go/No-Go (MECH-449) leg, not rank-preserving demotion alone. PROMOTES NOTHING.
 
 ---
 
-## Active Plans Heartbeat (11 plans with closure frontmatter)
+## Errors to Diagnose (0 fresh)
 
-**V3 closure: 81.2% weighted** across 77 non-deferred nodes · 19 remaining · 58 done · 12 deferred.
-**Drift report is clean: 0 drifted, 0 stale-since-update, 0 missing `last_updated`.** 9 nodes legitimately non-terminal (Case-3 / non_contributory owner).
+`pending_review.md` reports 0 ERROR/runner-only manifests. A scan of `runner_status.json` (87 historical ERRORs) found **3 with no lettered successor and no non-ERROR sibling run** — all >1 month old and almost certainly already-decided drops, not fresh crashes:
 
-| Plan | Progress | In-flight | Blocked | Last updated |
+- **V3-EXQ-495** — ERROR 2026-04-28
+- **V3-EXQ-538** — ERROR 2026-05-08
+- **V3-EXQ-606a** — ERROR 2026-05-21
+
+No action expected unless one is intended to be revived; none are recent.
+
+---
+
+## Governance Agenda (0 actionable)
+
+- All 151 rows in `promotion_demotion_recommendations.md` are `decision_status: applied`. **Zero `pending_user` items.**
+- The 86 "recommendation queue" entries are all holds (`hold_pending_v3_substrate`, `hold_candidate_resolve_conflict`, `held_v4_by_architectural_commitment`) — applied, no decision owed.
+- 68 conflicts tracked by the agenda (steady-state); 0 anti-lock-in reviews; 0 backlog saturation holds.
+- The live governance question is the **MECH-449 / ARC-107 BG-constitution evidence** (689f/g PASS) — adjudicate in the `/governance` walk, not here.
+
+---
+
+## Active Plans Heartbeat
+
+Plans with in-flight or stale status-table rows (others are quiescent):
+
+| Plan | In-flight | Stale rows | Last decision | Note |
 |---|---|---|---|---|
-| sd_037_axis_b_sustained_threat_curriculum | 18% | 1 | 3 | 2026-06-05 |
-| self_attribution | 32% | 0 | 3 | 2026-06-04 |
-| arc_062_rule_apprehension | 61% | 2 | 2 | 2026-06-14 |
-| behavioral_diversity_isolation | 78% | 1 | 0 (1 partial) | 2026-06-17 |
-| commitment_closure | 87% | 2 | 0 | 2026-06-12 |
-| sleep_substrate | 87% | 0 | 1 (upstream) | 2026-05-31 |
-| infant_substrate | 88% | 0 | 2 (pending substrate) | 2026-05-30 |
-| arm_reuse_fingerprint | 100% | — | — | 2026-06-10 |
-| goal_pipeline | 100% | — | — | 2026-06-12 |
-| sd033_governance | 100% | — | — | 2026-05-29 |
-| sd_037_axis_a | 100% | — | — | 2026-06-05 |
+| behavioral_diversity_isolation_plan | 2 | 1 | recent activity | 569a owed (see Queue); R1 matched-entropy thread |
+| commitment_closure_plan | 0 | 9 | 2026-06-03 | all 9 stale rows already ran PASS — prose unreconciled, NOT owed |
+| goal_pipeline_plan | 0 | 3 | 2026-06-15 | 582/582a/618 stale rows — 618 ran PASS, 582 ran FAIL |
 
-No stale rows and no plan-staling flag this cycle. The active frontier work all sits in the suppressed/in-flight set whose successors are owed but **unqueued** (see Queue Status alert): GAP-B 654g, GAP-C 603k, GAP-4 460g, sd_037 axis-b P1b 625d, GAP-H 687.
+**behavioral_diversity_isolation_plan stale/owed row:**
+- GAP-A R1 (matched-entropy, last updated 2026-05-29) — **Owner-EXQ V3-EXQ-569a = OWED** (passed all three Step 7c checks). Substrate resume-condition flagged MET 2026-06-07; confirm still wanted before queuing.
+
+**commitment_closure_plan stale rows (all ran — NOT owed):**
+- V3-EXQ-460..468 (last updated 2026-04-21 / 05-12) all have manifests and completed PASS. The plan table is unreconciled prose; no successors owed.
+
+**goal_pipeline_plan stale rows (ran — NOT owed):**
+- V3-EXQ-618 ran PASS; V3-EXQ-582 / 582a ran (582 FAIL, 582a has a manifest). Plan rows unreconciled.
+
+**Prose-staleness flag (housekeeping, not work owed):** `commitment_closure_plan.md` still lists V3-EXQ-631 as "queued" at lines 581/597/779; the `governance_2026_06_02b` correction supersedes that (631 deferred; 629 is the real run). A plan-doc reconcile pass would clear it. No PLAN STALING alert raised — the stale rows reflect unreconciled prose, not untouched in-flight work.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-18 backlog items list `literature` in `evidence_needed`. No high-priority lit items outstanding — top is medium.
+| # | Claim | Subject | Priority | Existing entries |
+|---|-------|---------|----------|-----------------|
+| 1 | ARC-013 | (untitled backlog item) | medium | 0 |
+| 2 | Q-019 | Three-Gate BG Architecture: literature extraction | medium | 1 |
+| 3 | Q-062 | (untitled backlog item) | low | 0 |
+| 4 | Q-063 | (untitled backlog item) | low | 0 |
+| 5 | Q-064 | (untitled backlog item) | low | 0 |
 
-| # | Claim | Priority | Existing entries | Note |
-|---|-------|----------|------------------|------|
-| 1 | Q-019 | medium | 1 | already has one targeted_review |
-| 2 | Q-057 | low | 0 | paired experiment + lit cycle before status change |
-| 3 | Q-058 | low | 0 | paired experiment + lit cycle before status change |
-| 4 | Q-059 | low | 0 | paired experiment + lit cycle before status change |
-| 5 | Q-060 | low | 0 | paired experiment + lit cycle before status change |
+(15 literature-needed backlog items total; no high-priority literature pulls outstanding.)
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 29459).
+- **RUNNING on port 8000** (PID 53682).
 
 ---
 
 ## Blocked Items
-- No TASK_CLAIMS collision — both pre-existing active claims (IGW-R5 generator gate; MECH-439 F-dominance conflict-grade) are **stale** (~12h old, past the 6h threshold). governance.sh ran normally. If either session is genuinely still in flight, its work is uncommitted-at-risk; otherwise the claims should be closed.
-- On pull, REE_assembly was 3-ahead / 4-behind with a dirty derived-file tree (leftover from a prior governance run). Rebased the 4 remote `phase3-heartbeats` commits in with `--autostash`; the 3 local `igw-ledger: update` commits remain ahead and will land with this digest's push.
-- **One contributor-stats warning** (non-fatal): governance.sh could not read `contributors/.../eoin-golden.json` (empty/malformed). Cosmetic; does not affect the pipeline.
-- **Derived-stance sync** (informational, no action): MECH-124 (provisional) derived `epistemic_stance` flipped `shown`->`believed` this regen — exp_conf 0.567 < 0.62 gate; the committed `claims.json` label was stale. Sub-0.001 time-decay confidence drift across ~875 claim entries is the rest of the regen diff. No demotion recommendation surfaced; status unchanged. The ~870 per-claim `INDEX.md` timestamp-only churn was not committed (regenerates each governance run).
+- No governance collision: all 4 active TASK_CLAIMS entries are `staged: true` IGW auto-claims (awaiting human launch; one non-stale at 4.6h, three stale) — none touch the governance collision set. `governance.sh` ran normally.
+- REE_assembly had 3 local `igw-ledger` commits ahead of origin (rebased cleanly onto origin during the pull) plus 3 dirty IGW workset files (autostash-restored) — pre-existing IGW state, left untouched.
 
 ---
 
-### One-line takeaway
-Quiet overnight — no new runs. **The actionable items: (1) the experiment queue is empty, and (2) five owed conversion-ceiling/closure successors are unqueued.** Pending review is 5 FAILs already routed to `/failure-autopsy`. Closure map is clean at 81.2%.
+### Top actions for today
+1. **Queue is empty** — queue the next experiment wave (the live thread is the MECH-449 Go/No-Go evidence; consider the gated V3-EXQ-485l once MECH-449 is built, and confirm whether the V3-EXQ-569a matched-entropy successor is still wanted).
+2. **/governance walk** — adjudicate the 689f/g PASS evidence for MECH-449/ARC-107 and mark the 5 pending reviews; the 654i fresh FAIL may want a `/failure-autopsy` first (conversion-ceiling-persists signature).
+3. Optional housekeeping: reconcile the stale commitment_closure / goal_pipeline plan-table prose (631→629; 460-468/618 ran).

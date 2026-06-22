@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_598c_sd033a_rule_state_cosine_probe
 
-Generated: `2026-06-21T19:26:42.996867Z`
+Generated: `2026-06-22T04:18:19.683651Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

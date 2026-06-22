@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-21T20:41:25Z
+Generated: 2026-06-22T04:18:27Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -147,7 +147,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
-- **META**: 25.0% across 4 non-deferred nodes in 1 plan(s).
+- **META**: 100.0% across 4 non-deferred nodes in 1 plan(s).
 - **PROCESS**: 100.0% across 13 non-deferred nodes in 2 plan(s).
 - **V4**: 28.0% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
@@ -365,7 +365,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-8` | Consolidation write-paths the store must respect (MECH-252 / MECH-253  | deferred | medium | MECH-252 (SWS consolidates goal-value PE into stored goal-representation CONTENT, not atte | 2026-06-10 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-7` | Ethics / commitment policy grounding (or honest 'no clean analog') | blocked | low | Function-ground each ethics/commitment-policy component OR record 'no clean neural analog' | 2026-06-20 |
 | meta | assembly_vs_closure_plan.md | `MOVE-1` | Keystone: first-class `assembling` / `open_by_design` node state | done | load-bearing |  | 2026-06-21 |
-| meta | assembly_vs_closure_plan.md | `MOVE-3` | Hard brake on the re-derive loop (failure-autopsy granularity hook gat | open | load-bearing |  |  |
-| meta | assembly_vs_closure_plan.md | `MOVE-2` | Assembly-chip path mirroring the closure-chip path (session-land) | open | high |  |  |
-| meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | open | medium |  |  |
+| meta | assembly_vs_closure_plan.md | `MOVE-3` | Hard brake on the re-derive loop (failure-autopsy granularity hook gat | done | load-bearing |  | 2026-06-21 |
+| meta | assembly_vs_closure_plan.md | `MOVE-2` | Assembly-chip path mirroring the closure-chip path (session-land) | done | high |  | 2026-06-21 |
+| meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
 

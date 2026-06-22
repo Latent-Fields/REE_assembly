@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate
 
-Generated: `2026-06-21T19:26:42.996867Z`
+Generated: `2026-06-22T04:18:19.683651Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

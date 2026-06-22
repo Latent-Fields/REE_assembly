@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_485c_sd033b_task_role_discrimination
 
-Generated: `2026-06-21T19:26:42.996867Z`
+Generated: `2026-06-22T04:18:19.683651Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
