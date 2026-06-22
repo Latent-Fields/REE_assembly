@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-22T15:00:44Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-485m",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-693",
-      "result": "FAIL",
-      "completed_at": "2026-06-20T14:34:30.826797+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-693a",
-      "result": "FAIL",
-      "completed_at": "2026-06-21T09:30:32.496843+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-654h",
-      "result": "FAIL",
-      "completed_at": "2026-06-21T17:57:05.481064+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-654i",
-      "result": "FAIL",
-      "completed_at": "2026-06-22T01:47:06.935091+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-485l",
-      "result": "FAIL",
-      "completed_at": "2026-06-22T06:35:48.040000+00:00"
-    }
+  "last_tick_utc": "2026-06-22T15:11:57Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-699",
+  "current_exq_started_utc": "2026-06-22T15:08:47.394718+00:00",
+  "current_title": "P-comp: MECH-448 demotion x MECH-449 Go/No-Go composition at committed-class entropy (2x2 diagnostic)",
+  "current_claim_id": "MECH-448",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / neither_lever_topk_eligible_modulatory_baseline",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 10,
+    "episodes_total": 350,
+    "overall_pct": 0.2
+  },
+  "seconds_elapsed": 190,
+  "seconds_remaining": 36401,
+  "recent_lines": [
+    "Arm ARM_OFF (neither_lever_topk_eligible_modulatory_baseline) demotion_on=False gng_on=False (P0=200 ep e2-train, P1=90 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition neither_lever_topk_eligible_modulatory_baseline",
+    "[train] arm=ARM_OFF seed=42 phase=P0 ep 10/350"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3442 4e61ed5 2026-06-22 (running r3260 daed671)",
+  "runner_version": "r3445 e52158d 2026-06-22 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
