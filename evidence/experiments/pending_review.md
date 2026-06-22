@@ -1,23 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-22T04:18:22Z`  
-Last review: `2026-06-21T19:26:04Z`  
-Pending: **5** item(s) -- 3 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-22T05:32:59Z`  
+Last review: `2026-06-22T05:19:39Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3` | 2026-06-21T19:25 | MECH-263, SD-033b | — |
-| `v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3` | 2026-06-22T01:47 | ARC-062, MECH-309 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_689f_nogo_necessity_falsifier_20260621T200543Z_v3` | 2026-06-21T20:05 | ARC-107, MECH-449 |
-| `v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3` | 2026-06-21T20:55 | ARC-107, MECH-449 |
-| `v3_exq_689e_mech448_channel_adaptive_envelope_readiness_20260621T224206Z_v3` | 2026-06-21T22:42 | (no claim tags) |
+All experiments reviewed. Nothing pending.
 
 ---
 

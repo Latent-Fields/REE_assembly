@@ -2,13 +2,16 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-06-22T04:47:35Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
   "mode": "staging_headless_scheduled",
   "targets": [
     {
       "run_id": "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3",
       "queue_id": "V3-EXQ-654i",
-      "claim_ids": ["MECH-309", "ARC-062"],
+      "claim_ids": [
+        "MECH-309",
+        "ARC-062"
+      ],
       "supersedes": "V3-EXQ-654h",
       "failed_criterion": "discrimination",
       "self_route_label": "conversion_ceiling_persists_despite_demotion_route_mech449",
@@ -25,7 +28,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "basal-ganglia Go/No-Go opponency over an action-eligibility set",
-        "dependencies": ["active No-Go withdrawal (MECH-260 generalised -> MECH-449)", "F-rank eligibility envelope (MECH-448)", "ARC-107 selector constitution"],
+        "dependencies": [
+          "active No-Go withdrawal (MECH-260 generalised -> MECH-449)",
+          "F-rank eligibility envelope (MECH-448)",
+          "ARC-107 selector constitution"
+        ],
         "is_formal_import": false,
         "divergence": "MECH-448 rank-preserving demotion is the indirect-pathway-like gating; it structurally cannot express the active No-Go withdrawal that committed-class carving requires",
         "lit_status": "present"
@@ -38,8 +45,13 @@
         "target_sd_id": "f_dominance_conversion_ceiling",
         "title": "F-dominance committed-selection conversion ceiling (MECH-439); MECH-448 demotion lead lever BUILT/PROMOTED, MECH-449 Go/No-Go opponency leg BUILT 2026-06-21 pending falsifier 689g",
         "implementation_hint": "Existing entry already records the MECH-449 build + 689g queued. Append a 654i failure record documenting that the demotion lever, live and excluding on a non-degenerate arc_062 bank, does not convert the GAP-B rule-apprehension face -- the second cross-substrate corroboration (after 485k devaluation face) that demotion != active No-Go.",
-        "unblocks_claims": ["MECH-309", "ARC-062"],
-        "depends_on_unresolved": ["MECH-449 (built 2026-06-21, validation falsifier V3-EXQ-689g queued, not yet scored)"],
+        "unblocks_claims": [
+          "MECH-309",
+          "ARC-062"
+        ],
+        "depends_on_unresolved": [
+          "MECH-449 (built 2026-06-21, validation falsifier V3-EXQ-689g queued, not yet scored)"
+        ],
         "priority_suggested": 1,
         "failure_record_entry": {
           "run_id": "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3",
@@ -90,8 +102,15 @@
     "shape": "demotion-lever-live-and-excluding + bias-differentiated + propagation-non-vacuous, yet committed-class/behavioural discrimination DV flat",
     "is_independent_bugs": false,
     "structural_property": "MECH-448 rank-preserving demotion lifts the GAP-A foraging selection-face ceiling but does not generalise to behavioural conversion on the GAP-B composite; residual is the F-dominance conversion ceiling (MECH-439); named fix is the MECH-449 active Go/No-Go opponency leg",
-    "members": ["V3-EXQ-485k (MECH-263/SD-033b, devaluation face)", "V3-EXQ-654i (MECH-309/ARC-062, rule-apprehension face)"],
-    "readings": ["substrate_enrichment"],
+    "members": [
+      "V3-EXQ-485k (MECH-263/SD-033b, devaluation face)",
+      "V3-EXQ-654i (MECH-309/ARC-062, rule-apprehension face)"
+    ],
+    "readings": [
+      "substrate_enrichment"
+    ],
     "note": "654i is the cleanest instance -- all non-degeneracy gates true, so it cannot be dismissed as a vacuous test"
-  }
+  },
+  "confirmed_utc": "2026-06-22T05:19:39Z",
+  "confirmed_by": "governance-cycle-20260622T0519Z (user-approved in walk)"
 }

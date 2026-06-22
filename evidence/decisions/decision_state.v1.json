@@ -1621,13 +1621,13 @@
       "timestamp_utc": "2026-06-21T06:48:58.174814Z"
     },
     "MECH-449": {
-      "actor": "governance-cycle-20260620T2049Z",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-cycle-20260622T0519Z (user-approved)",
+      "decision_needed": "Promotion review: candidate -> provisional on V3-EXQ-689g supports",
       "decision_status": "applied",
-      "rationale": "governance 2026-06-20T21:04:53Z: ARC-107 BG-selector-constitution cluster newly registered; lit-only, zero conflict, no V3 evidence yet (689c running cloud-3, 689d falsifier queued, MECH-448 lever + commit-duration lever built 2026-06-20). Hold acknowledged; stays candidate, no status change.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-06-20T21:04:54.143280Z"
+      "rationale": "V3-EXQ-689g (named validation gate) PASSED supports: 3/3 seeds convert a previously-gated channel, 0 safety violations, specificity_pass. Active No-Go converts what rank-preserving demotion (MECH-448) structurally cannot. Mirrors MECH-448 689d promotion; epistemic_category substrate_conditional->standard (substrate built+validated). ARC-107 held candidate (single supporting run, ledger components 2/4/5 open).",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote MECH-449 only (leave ARC-107 candidate)",
+      "timestamp_utc": "2026-06-22T05:31:51.724472Z"
     },
     "Q-006": {
       "actor": "user",
@@ -2134,7 +2134,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-22T04:18:19.683651Z",
+  "generated_at_utc": "2026-06-22T05:31:54.314143Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

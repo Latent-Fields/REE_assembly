@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_660_mech341_within_class_representative_diversity
 
-Generated: `2026-06-22T04:18:19.683651Z`
+Generated: `2026-06-22T05:31:54.314143Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
