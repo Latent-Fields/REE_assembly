@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-06-22T16:21:38Z
+Generated: 2026-06-22T19:05:57Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -38,8 +38,8 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 |------|------|--------|----------|-----------------|---------------|-------------|
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | assembling | P-comp + P2 + P3 composition-readiness | in_progress | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | assembling | demotion x Go/No-Go composition falsifier (to queue via /que | queued | _none_ | no |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | assembling | closure-exclusive de-commit eval substrate (commitment-closu | queued | 2026-07-15 | no |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | assembling | V3-EXQ-485m result | in_progress | _none_ | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | assembling | V3-EXQ-460k run result (on the BUILT closure-exclusive de-co | queued | 2026-07-15 | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | assembling | composition into the full-stack arm (with P-comp + P2-rootC  | built | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | assembling | P-comp + P2 + P3 composition-ready | queued | _none_ | no |
 
 ## Plans missing `closure_plan.last_updated` (0)
