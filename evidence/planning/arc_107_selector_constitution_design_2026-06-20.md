@@ -360,10 +360,15 @@ must be a named, falsifiable bet, not an unspoken scope cut:
 > maintenance driver (deviation B6 / the 460h monolithic-hold fix) and **adds** the habenula
 > negative-`δ_t` abort input (the parked rung-6 fix, tested on the just-built
 > `closure_exclusive_decommit_eval` substrate). It also bears on the **"Vigor /
-> opportunity-cost" V4-axis row** above (tonic `V̂_t` → commit threshold), recommending the
-> tonic/phasic gate refinements stay V4 while the maintenance-ramp + habenula pair pulls
-> forward to V3. Second pre-registered falsifier:
-> ramp-releases-where-flat-latch-monopolises. PROMOTES NOTHING.
+> opportunity-cost" V4-axis row** above (tonic `V̂_t` → commit threshold): the tonic/phasic
+> gate refinements stay V4 while the maintenance-ramp + habenula pair pulls forward to V3.
+> Second pre-registered falsifier: ramp-releases-where-flat-latch-monopolises.
+> **RATIFIED 2026-06-22 — ARC-108 pulled `v4 → v3`** (`implementation_phase`/`version_relevance`;
+> stays candidate/substrate_conditional). The "Dopaminergic RPE learning signal" and the
+> selection-relevant part of the "Vigor / opportunity-cost" V4-axis rows above are therefore
+> now **V3 (minimal slice)**; the D1/D2 population split (ARC-109), the routed habenula efferent,
+> the tonic→threshold / phasic→go gate refinements, and the full thalamo-cortical loop remain V4.
+> PROMOTES NOTHING.
 
 ### Closure criterion (the forcing function)
 

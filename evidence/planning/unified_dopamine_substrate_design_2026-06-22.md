@@ -312,15 +312,18 @@ ramp+habenula design.
 
 ---
 
-## 8. The V4 -> V3 scope decision (flagged for ratification)
+## 8. The V4 -> V3 scope decision (RATIFIED 2026-06-22)
 
-**The scope question, stated plainly.** ARC-107 sec 6b parks "Dopaminergic RPE
-learning signal" and "Vigor / opportunity-cost" as **V4 bets**, and ARC-108 is
+**The scope question, stated plainly.** ARC-107 sec 6b parked "Dopaminergic RPE
+learning signal" and "Vigor / opportunity-cost" as **V4 bets**, and ARC-108 was
 registered at `implementation_phase: v4` per that stated bet. The assembly map
-(A.5 / C1 / C2) and the companion JOB-1 note **recommend pulling the minimal slice
+(A.5 / C1 / C2) and the companion JOB-1 note **recommended pulling the minimal slice
 forward to V3**. This note makes the recommendation explicit and precise about
-*what moves* and *what stays*, and flags it as a decision for the user / governance
-to ratify -- ARC-108 stays `v4` until then.
+*what moves* and *what stays*. **The user RATIFIED the pull-forward on 2026-06-22
+("yes we need to pull it into v3"); ARC-108 is now `implementation_phase: v3` /
+`version_relevance: v3`** (the named V4 sub-cuts below stay v4). It remains
+`status: candidate` / `epistemic_category: substrate_conditional` -- the next step is
+the `/implement-substrate` BUILD of the V3 slice (sec 10), not a promotion.
 
 **Recommended pull-forward (the V3-minimal slice):**
 
@@ -356,18 +359,20 @@ falsifiers that decide whether V4 is needed, not to V4 itself.
 | (3) is DA-ramp + habenula the right fix for rung-6 + B6? | **Yes** -- B6 monopoly is structurally predicted by a *flat* latch (a ramp peaks-then-declines, cannot monopolise); rung-6 non-dissociability is predicted by a de-commit built without a content-driven trigger (habenula negative-RPE supplies it). The dissociable substrate it tests on (`e52158d`) was **just built**; timing converges. Falsify (sec 7.2), do not assume. |
 | (4) coupling to the settling step | **COUPLED** -- selection-settling (`W_lat`, MECH-450) and maintenance-ramp (`rho_t`) are the two faces of "dopamine-driven temporal dynamics replacing stateless arithmetic," off the one substrate; both learned by the same `delta_t`. |
 | (5) falsifiers | **two**: (7.1) selection -- learned gating converts-where-arithmetic-plateaus, growing-with-training, signed-RPE load-bearing (companion note 2x2); (7.2) control-plane -- ramp-releases-where-flat-latch-monopolises on the `e52158d` dissociable substrate, with release **content-driven not re-parameterised-timer** as the core discriminator, habenula de-commit dissociable, preconditions-met no-release routes to JOB 1 not a false weakening. |
-| scope | **Pull the V3-minimal slice forward** (shared primitive + JOB 1 `w_chan` + the JOB 2 ramp+habenula pair); keep ARC-109 D1/D2 split, the routed habenula efferent, the tonic/phasic gate refinements, and the full loop at **V4** as named cuts. **ARC-108 stays `v4` until the user/governance ratifies the pull-forward** -- flagged here for that decision. |
+| scope | **Pull the V3-minimal slice forward** (shared primitive + JOB 1 `w_chan` + the JOB 2 ramp+habenula pair); keep ARC-109 D1/D2 split, the routed habenula efferent, the tonic/phasic gate refinements, and the full loop at **V4** as named cuts. **RATIFIED 2026-06-22 -- ARC-108 is now `implementation_phase: v3` / `version_relevance: v3`** (stays candidate / substrate_conditional; next step is the BUILD, not a promotion). |
 
 ---
 
 ## 10. Next steps (governance)
 
-1. **Ratify the V3 scope pull-forward (sec 8)** -- a user/governance decision.
-   ARC-108 is registered `implementation_phase: v4`; the recommendation is to carve
-   the V3-minimal slice (shared primitive + JOB 1 selection learning + the JOB 2
-   maintenance-ramp + habenula-de-commit pair) and re-scope ARC-108's V3-relevant
-   portion accordingly, keeping the population split / routed efferent / full loop
-   at v4. No claims.yaml change is made by this note.
+1. **Ratify the V3 scope pull-forward (sec 8) -- DONE 2026-06-22.** The user
+   ratified the pull-forward; ARC-108 moved `implementation_phase: v4 -> v3` /
+   `version_relevance: v4 -> v3` in `claims.yaml` (the V3-minimal slice = shared
+   primitive + JOB 1 selection learning + the JOB 2 maintenance-ramp + habenula-de-commit
+   pair; population split / routed efferent / tonic-phasic gate refinements / full loop
+   stay v4). Stays `candidate` / `substrate_conditional` (promote/demote suppressed --
+   the next response is the BUILD, item 2). claims.json rebuilt; no closure node owns
+   ARC-108 and no status change, so no decision_log/closure reconcile.
 2. **Build JOB 1 first** via `/implement-substrate` (companion note sec 8): `w_chan`
    + `delta_t`, no-op-default, then the learned-`W_lat` settling step (MECH-450).
 3. **Build the JOB 2 pair** via `/implement-substrate` after JOB 1's `delta_t` lands:

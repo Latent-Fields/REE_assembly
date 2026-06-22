@@ -45270,8 +45270,8 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
-  implementation_phase: v4
-  version_relevance: v4
+  implementation_phase: v3   # PULLED FORWARD v4->v3 2026-06-22 (user-ratified): the V3-minimal slice is in v3 scope; the routed-efferent / tonic-phasic-gate refinements stay v4 (see notes SCOPE BET)
+  version_relevance: v3
   registered_utc: "2026-06-22"
   psychiatric_failure_mode: >
     On breakage / dysregulation of the signed-RPE teaching signal: the dopaminergic
@@ -45309,18 +45309,30 @@
     are afferents, not a unified DA substrate) and supplies the missing GPi->lateral-habenula negative-RPE drain
     (assembly-map A.3). Resolves divergence B5 (RPE-as-unsigned-variance) and B8 (5-HT-before-DA), and is the
     long-term resolution of B2 (the MECH-448 F-deletion lever should become unnecessary once F's weight is LEARNED
-    down in contexts where the modulator matters -- assembly-map C2). SCOPE BET (flagged to + confirmed by user
-    2026-06-22): currently a STATED V4 bet in arc_107_selector_constitution_design_2026-06-20.md s6b ("V3
-    eligibility is hand-shaped, not learned by RPE; the learning signal is v4"); the assembly map (A.5, C1/C2)
-    RECOMMENDS pulling it forward as the next MECH-439 attack, and the dopamine-into-gating design note
-    (assembly-map step E.3, in flight) will decide learned-gating-vs-arithmetic-envelope. KEPT at
-    implementation_phase:v4 per the current stated bet (registration != build, mirroring ARC-107's own
-    "captured now, built only if" posture); the E.3 design note may pull it to v3. COUPLED to MECH-450 (the
-    recurrent-settling-step repair -- the lateral-inhibition weights are themselves learned in biology) and to
-    ARC-109 (the D1/D2 split is the population substrate the D1-LTP/D2-LTD asymmetry acts on). This is the
-    LEARNED-GATING alternative to the f_dominance_conversion_ceiling arithmetic levers, NOT a duplicate. ARC-106
-    cargo-cult guard: the learning rule needs a function + divergence-ledger row + ablation falsifier before it
-    counts as load-bearing. PROMOTES NOTHING (new candidate).
+    down in contexts where the modulator matters -- assembly-map C2). SCOPE BET -- RATIFIED v4->v3 2026-06-22
+    (user-confirmed "yes we need to pull it into v3"): originally a STATED V4 bet in
+    arc_107_selector_constitution_design_2026-06-20.md s6b ("V3 eligibility is hand-shaped, not learned by RPE;
+    the learning signal is v4"); the assembly map (A.5, C1/C2) RECOMMENDED pulling it forward as the next MECH-439
+    attack, the dopamine-into-gating design note (E.3) decided learned-gating-over-arithmetic-envelope, and the
+    unified-substrate design note (unified_dopamine_substrate_design_2026-06-22.md s8/s10.1) defined the V3-minimal
+    slice; the user then RATIFIED the pull-forward. implementation_phase + version_relevance moved v4->v3. THE V3
+    SLICE (now in scope): the one shared dopamine primitive -- signed phasic RPE delta_t (distinct from ARC-016
+    unsigned variance, B5) + tonic baseline V-hat_t + goal-proximity ramp rho_t -- driving BOTH jobs: JOB 1 learned
+    per-channel selection gating w_chan (the MECH-439 attack), and JOB 2 the control-plane driver's
+    maintenance-ramp (rho_t replaces the flat-hold maintenance DRIVER; deviation B6 fix) + the habenula
+    negative-delta_t de-commit as an INTERNAL scalar abort input to the SD-034 closure operator (the parked rung-6
+    fix; composes with the MECH-090/342/SD-034 latch machinery, does not replace it). WHAT STAYS V4 (named cuts,
+    ARC-106 zero-silent-divergence): the lateral-habenula as a ROUTED EFFERENT drain (vs the v3 internal scalar);
+    the tonic->commit-threshold and phasic->go gate REFINEMENTS (the current arithmetic readiness gates work, so
+    these are lower-leverage); the D1/D2 population split (ARC-109, separate claim, stays v4); the full
+    thalamo-cortical learned loop (MECH-450 is the v3-minimal settling step; the full loop is v4). COUPLED to
+    MECH-450 (the recurrent-settling-step repair -- the lateral-inhibition weights are themselves learned in
+    biology) and to ARC-109 (the D1/D2 split is the population substrate the D1-LTP/D2-LTD asymmetry acts on). This
+    is the LEARNED-GATING alternative to the f_dominance_conversion_ceiling arithmetic levers, NOT a duplicate.
+    ARC-106 cargo-cult guard: the learning rule needs a function + divergence-ledger row + ablation falsifier before
+    it counts as load-bearing. Stays status:candidate / epistemic_category:substrate_conditional (promote/demote
+    suppressed -- the right next response is the /implement-substrate BUILD of the V3 slice, then the s7 falsifiers,
+    NOT promotion). PROMOTES NOTHING (re-scope, not a promotion).
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
