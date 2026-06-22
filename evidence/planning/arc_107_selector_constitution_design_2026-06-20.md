@@ -348,6 +348,22 @@ must be a named, falsifiable bet, not an unspoken scope cut:
 > bet (D1/D2 split, habenula drain, full thalamo-cortical loop, loop segregation all
 > deferred to V4 as named cuts). PROMOTES NOTHING; this re-scopes the v4-axis row
 > from "deferred bet" to "V3 minimal build queued behind a claim-mint."
+>
+> **Unified-substrate note (2026-06-22):**
+> [`unified_dopamine_substrate_design_2026-06-22.md`](unified_dopamine_substrate_design_2026-06-22.md)
+> is the umbrella design-of-record for **ARC-108** that subsumes the decision note above.
+> The A.6 biology check established that the same dopamine substrate has a **second
+> co-equal job** beyond the "Dopaminergic RPE learning signal" row: it is also the missing
+> **driver of the commit/maintain/de-commit control plane** (this note's component-5 latch
+> face). One primitive (`δ_t` / `V̂_t` / `ρ_t`) drives both. The control-plane driver
+> **composes** with the MECH-090/342/SD-034 latch machinery, **replaces** only the flat-hold
+> maintenance driver (deviation B6 / the 460h monolithic-hold fix) and **adds** the habenula
+> negative-`δ_t` abort input (the parked rung-6 fix, tested on the just-built
+> `closure_exclusive_decommit_eval` substrate). It also bears on the **"Vigor /
+> opportunity-cost" V4-axis row** above (tonic `V̂_t` → commit threshold), recommending the
+> tonic/phasic gate refinements stay V4 while the maintenance-ramp + habenula pair pulls
+> forward to V3. Second pre-registered falsifier:
+> ramp-releases-where-flat-latch-monopolises. PROMOTES NOTHING.
 
 ### Closure criterion (the forcing function)
 

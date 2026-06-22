@@ -195,6 +195,21 @@ merely missing an input.
 
 2. **The de-commit struggle (the 460d–j lineage, the parked rung-6) and the global-latch monopoly (deviation B6) are the *same* missing piece seen from two ends.** REE has spent ~10 iterations engineering de-commit with refractory timers and latch-hold yield clauses; biology de-commits via a negative-RPE (habenula) signal and maintains via a proximity-scaled DA ramp. Both the "hold never releases / monopolises" (B6, 460h) and the "de-commit has no authority / non-dissociable" (rung-6 park) symptoms are predicted by *maintenance-and-release driven by a fixed latch instead of a dopaminergic ramp+habenula pair*. **This makes the dopamine substrate a concrete candidate fix for the parked rung-6 — not just the MECH-439 selection problem.**
 
+> **Design note (2026-06-22):** the two-co-equal-jobs framing this section establishes is
+> developed into a build decision in
+> [`unified_dopamine_substrate_design_2026-06-22.md`](unified_dopamine_substrate_design_2026-06-22.md)
+> — the design-of-record for ARC-108. One substrate emits a signed phasic RPE `δ_t` (distinct
+> from ARC-016 unsigned variance, B5), a tonic baseline `V̂_t`, and a goal-proximity ramp `ρ_t`,
+> and drives **both** jobs: JOB 1 learned selection-gating (deferred to the
+> `dopamine_into_gating_design` note) and JOB 2 the control-plane driver
+> (tonic→commit-threshold, phasic→go, ramp→maintenance, habenula-negative-`δ_t`→de-commit).
+> Decisions: control-plane driver **composes** with the MECH-090/342/SD-034 machinery, **replaces**
+> only the flat-hold maintenance driver (the B6 fix) and **adds** the habenula abort input (the
+> rung-6 fix, tested on the just-built `closure_exclusive_decommit_eval` substrate `e52158d`);
+> coupled to MECH-450; two pre-registered falsifiers (selection converts-where-arithmetic-plateaus;
+> control-plane ramp-releases-where-flat-latch-monopolises); recommends pulling the V3-minimal slice
+> forward (ARC-108 currently `v4`). PROMOTES NOTHING.
+
 ### Citations (this biology check)
 
 - [1] [Tonic dopamine: opportunity costs and the control of response vigor](https://consensus.app/papers/details/aded550af38f576db3279838bd2a39b1/?utm_source=claude_code) (Niv et al., 2007, Psychopharmacology, 1116 cites)
@@ -448,6 +463,18 @@ settling-step + learned-gating repairs do not fully resolve MECH-439.
    minimal learned-`W_lat` settling step (B1+B3-blend); pre-registered 2×2
    falsifier with a signed-vs-unsigned ablation; V3-minimal vs V4-full-loop scope
    bet.** PROMOTES NOTHING; claim-mint is the §8 follow-on.
+   The JOB-1 note covered the *selection* job only; the **control-plane half (JOB 2,
+   A.6) is covered by the umbrella unified-substrate note. DONE 2026-06-22:**
+   [`unified_dopamine_substrate_design_2026-06-22.md`](unified_dopamine_substrate_design_2026-06-22.md)
+   — the design-of-record for **ARC-108**: one primitive (`δ_t` / `V̂_t` / `ρ_t`)
+   drives both jobs; the control-plane driver **composes** with the MECH-090/342/SD-034
+   machinery, **replaces** only the flat-hold maintenance driver (B6 fix) and **adds**
+   the habenula negative-`δ_t` abort input (rung-6 fix, on the just-built
+   `closure_exclusive_decommit_eval` substrate `e52158d`); a second pre-registered
+   falsifier (**ramp-releases-where-flat-latch-monopolises**, L0/L1/L2 on the
+   dissociable substrate, release-content-driven-not-re-parameterised-timer the core
+   discriminator); recommends pulling the V3-minimal slice forward (ARC-108 currently
+   `v4` — flagged for ratification). PROMOTES NOTHING.
 4. **Hold** the loop-segregation (§D) and the cognitive-loop gating drain as V4
    bets unless (1)-(3) leave MECH-439 unresolved.
 
