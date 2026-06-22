@@ -20515,6 +20515,14 @@
     baseline.
   location: evidence/literature/targeted_review_cingulate_integration_substrate/synthesis.md
 - id: MECH-260
+  # Assembly-state companion fields (auto-join audit, 2026-06-22). The
+  # substrate_queue f_dominance_conversion_ceiling row's status blob normalizes to
+  # 'built' (the 'ceiling_lifted' substring matches conversion_ceiling_LIFTED), but
+  # only the selection-face/GAP-A ceiling is lifted -- downstream behavioural
+  # retests are queued/pending and the decommit/release-duration face is OPEN, so
+  # the substrate is in_progress, not built. Same row + same correction as MECH-449.
+  awaiting: f_dominance_conversion_ceiling
+  assembly_status: in_progress
   title: "dACC-analog bias suppression against recency / monostrategy: the dACC module writes a counter-bias that resists repeating the last-rewarded trajectory when long-term value information demands exploration. Candidate explanation of the monostrategy failure observed in fishtank_viz and earlier queue-diversity results."
   claim_type: mechanism_hypothesis
   subject: cingulate.dacc_bias_suppression
@@ -23960,6 +23968,12 @@
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: SD-037
+  # Assembly-state companion fields (auto-join audit, 2026-06-22). f_dominance_
+  # conversion_ceiling normalizes to 'built' via the 'ceiling_lifted' substring but
+  # is in_progress (selection-face only; downstream behavioural faces OPEN). SD-037
+  # is unblocked SOLELY by that row, so correct the auto-join. Same correction as MECH-449.
+  awaiting: f_dominance_conversion_ceiling
+  assembly_status: in_progress
   pending_retest_after_substrate: true
   evidence_quality_note: |
     [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
@@ -31464,6 +31478,13 @@
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: Q-045
+  # Assembly-state companion fields (auto-join audit, 2026-06-22). f_dominance_
+  # conversion_ceiling normalizes to 'built' via the 'ceiling_lifted' substring but
+  # is in_progress (selection-face only; downstream behavioural faces OPEN). The
+  # only other unblocking row (scaffolded_sd054_onboarding) is queued, so the
+  # accurate most-advanced state is in_progress. Same correction as MECH-449.
+  awaiting: f_dominance_conversion_ceiling
+  assembly_status: in_progress
   title: "Is MECH-313 (LC-NE tonic noise floor) a separate parameter from MECH-260 (dACC anti-recency penalty), or do they collapse into one anti-monostrategy substrate? Falsifiable with the four-arm ablation: both-OFF / 313-only / 260-only / both-ON, on SD-054 reef substrate with ARC-062 gated-policy enabled."
   claim_type: open_question
   subject: policy.anti_monostrategy.substrate_independence_lc_vs_dacc
@@ -43791,6 +43812,13 @@
     closure node; substrate_conditional on a quantised-context-key substrate not yet
     built. DO NOT build in V3 until routed by experiment.
 - id: MECH-439
+  # Assembly-state companion fields (auto-join audit, 2026-06-22). MECH-439 IS the
+  # F-dominance ceiling; its substrate is the f_dominance_conversion_ceiling work,
+  # which normalizes to 'built' via the 'ceiling_lifted' substring but is genuinely
+  # in_progress (MECH-448 lead lever built; downstream behavioural conversion still
+  # under construction -- MECH-449 built 2026-06-21, V3-EXQ-689g pending). Same correction as MECH-449.
+  awaiting: f_dominance_conversion_ceiling
+  assembly_status: in_progress
   title: "F-dominance bounds committed-action diversity: the primary harm/goal score (F) monopolises ~88-89% of E3 committed-selection variance (V3-EXQ-571: 0.886 baseline, 0.894 with the full diversity stack -- the stack does not dent F's share), so modulatory, within-class, and rule-bias diversity channels cannot convert to committed-action diversity while F dominates -- they act only at near-ties. The committed-action-diversity conversion ceiling is therefore a SELECTION-VARIANCE problem (primary-vs-modulatory share), not (only) a candidate-pool geometry problem; a shortlist-then-modulate lever circumvents F locally but may cap committed entropy below the proposer ceiling unless F's variance share is itself rebalanced."
   claim_type: mechanism_hypothesis
   subject: selection.primary_score_variance_monopoly
