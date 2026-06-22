@@ -45504,8 +45504,24 @@
     are behaviourally equivalent; assembly-map C3). FULL learned thalamo-cortico-basal settling loop = V4 bet.
     ARC-106 cargo-cult guard: the settling step needs an ablation falsifier (entropy/attractor-flip unchanged when
     ablated => decorative) before it counts as load-bearing. PROMOTES NOTHING (new candidate).
-    IMPLEMENTATION NOTE (2026-06-22): NOT yet built. The coupled JOB-1 w_chan + signed-RPE delta_t (ARC-108) landed
-    2026-06-22 (ree-v3 e3_selector.py, use_learned_channel_gating); MECH-450 is factor 2 of that 2x2 -- the learned
-    lateral-inhibition W_lat settling step is OFF (W_lat==0) with the integration point reserved at the
-    _modulatory_accum recompose. Building the learned-W_lat settling step (sharing the same delta_t) is the next
-    /implement-substrate chip. PROMOTES NOTHING.
+    IMPLEMENTATION NOTE (2026-06-22): BUILT via /implement-substrate (ree-v3 e3_selector.py + config.py, no-op-default
+    flag use_learned_settling_step). The SECOND factor of the learned-gating 2x2, coupled to the JOB-1 w_chan step
+    (use_learned_channel_gating) and sharing the SAME signed-RPE delta_t / V-hat_t / D1-D2 asym. A bounded recurrent
+    lateral-inhibition SETTLING step over the F-bounded eligible set runs BEFORE the within-eligible commit: for
+    r in range(R~3): a=softmax(-accum/T); accum += onehot @ (W_lat @ (onehot^T @ a)) over mod_eligible =
+    _modulatory_accum[eligible_idx]; then commit=argmin(settled accum)/sample(softmax(-settled accum/T)). Fixes B1
+    (one-shot argmin->recurrent settling) AND B3-blend (additive blend->competitive winner-take-most) together. W_lat
+    is the LEARNED inhibition matrix over candidate first-action CLASSES (a stable [C,C] object -- per-candidate [K,K]
+    is impossible since K varies; the BG surround-inhibition between competing motor programs the MECH-449 opponency
+    grounds), a register_buffer (local plasticity, never an optimizer/autograd target) init 0 -> settling no-op ->
+    BIT-IDENTICAL OFF and at init. W_lat learned by the SAME three-factor Hebbian-coactivation x signed-RPE x asym rule
+    as w_chan (one shared delta_t in post_action_update). Composes INSIDE the MECH-448/449 eligible set (raw scores/F
+    untouched) -> safety inherited; never re-admits an excluded candidate. Waking-only (no settling/W_lat write on a
+    simulation tick, mirror the JOB-1 gate); agent.reset() clears the within-episode settling trace. VALIDATED: 10/10
+    new contracts (test_mech450_learned_settling_step.py: bit-identical OFF / W_lat moves under non-flat delta_t /
+    waking-only gate / settling MOVES the field across rounds / envelope intact / shared-delta_t) + 9/9 JOB-1 + 8/8
+    preflight + 74 e3-cluster + 1232 full-suite (3 fails = documented pre-existing runner-flake, CONFIRMED on a clean
+    stash, zero e3 overlap). Selector activation: W_lat range 0.0->4.23 over 13 updates (non-flat delta_t); settling
+    round_delta 6.16 (live cross-round movement); OFF==ON-at-init bit-identical; env-loop settling engaged 60/60 ON,
+    0 OFF. PROMOTES NOTHING -- MECH-450 stays candidate / substrate_conditional / v3. The sec-7 selection 2x2
+    falsifier (learned-w_chan x learned-W_lat) is now fully runnable -- a separate /queue-experiment chip.
