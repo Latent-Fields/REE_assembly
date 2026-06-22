@@ -182,6 +182,7 @@ ASSIGN = {
     "arc_063_candidate_rule_field.md": "pfc", "phased_rule_state_training_curriculum.md": "pfc",
     "sd_055_differentiable_cem_selection.md": "pfc",
     "dr12_pe_conditioned_e3_confidence.md": "pfc", "mech_448_f_eligibility_demotion.md": "pfc",
+    "mech_449_go_nogo_constitution.md": "pfc",
     "natural_commit_occupancy_release.md": "pfc", "quality_diversity_committed_archive.md": "pfc",
     "rule_distinguishability_maintenance.md": "pfc",
 

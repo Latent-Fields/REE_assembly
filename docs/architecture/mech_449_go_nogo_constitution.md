@@ -1,3 +1,10 @@
+---
+title: "MECH-449 / ARC-107: Go/No-Go eligibility constitution"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 10
+---
+
 # MECH-449 / ARC-107: Go/No-Go eligibility constitution
 
 **Claim ID:** MECH-449 (subject `selection.go_nogo_eligibility_constitution`)
