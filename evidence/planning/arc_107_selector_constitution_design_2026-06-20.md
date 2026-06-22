@@ -334,6 +334,20 @@ must be a named, falsifiable bet, not an unspoken scope cut:
 > headline: the gating layer learns nothing (pure arithmetic), which restates the
 > F-dominance root — and the recurrent-settling-step + dopamine-into-gating repairs
 > are coupled and are the recommended next attack on MECH-439.
+>
+> **Decision note (2026-06-22):**
+> [`dopamine_into_gating_design_2026-06-22.md`](dopamine_into_gating_design_2026-06-22.md)
+> resolves the "Dopaminergic RPE learning signal" V4-axis row above + the assembly
+> map §A.4 learning gap into a build decision: **add a minimal LEARNED gate (a
+> signed-RPE δ_t driving a learned per-channel selection-weight `w_chan`, distinct
+> from ARC-016 unsigned variance), COMPOSED on the MECH-448/449 eligibility frame
+> (not replacing it; safety inherited), COUPLED to a minimal learned-`W_lat`
+> settling step.** It pre-registers a 2×2 (learned-weight × learned-settling)
+> falsifier on the GAP-A divergent pool with a signed-vs-unsigned-RPE ablation and a
+> grows-with-training discriminator, and states the V3-minimal-vs-V4-full-loop scope
+> bet (D1/D2 split, habenula drain, full thalamo-cortical loop, loop segregation all
+> deferred to V4 as named cuts). PROMOTES NOTHING; this re-scopes the v4-axis row
+> from "deferred bet" to "V3 minimal build queued behind a claim-mint."
 
 ### Closure criterion (the forcing function)
 

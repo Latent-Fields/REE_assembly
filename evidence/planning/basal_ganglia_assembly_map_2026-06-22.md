@@ -383,7 +383,14 @@ settling-step + learned-gating repairs do not fully resolve MECH-439.
    this is the proper home for these — not future-registration prose.)
 3. **Draft the dopamine-into-gating design note** deciding learned-gating vs the
    arithmetic envelope as the next MECH-439 attack (the highest-leverage item;
-   resolves A.4, B2-long-term, B5, B8 together).
+   resolves A.4, B2-long-term, B5, B8 together). **DONE 2026-06-22:**
+   [`dopamine_into_gating_design_2026-06-22.md`](dopamine_into_gating_design_2026-06-22.md)
+   — decision: **build the minimal learned gate (signed-RPE δ_t → learned
+   per-channel selection weight `w_chan`, distinct from ARC-016 unsigned variance
+   B5), COMPOSED on the arithmetic envelope (not replacing it), COUPLED to a
+   minimal learned-`W_lat` settling step (B1+B3-blend); pre-registered 2×2
+   falsifier with a signed-vs-unsigned ablation; V3-minimal vs V4-full-loop scope
+   bet.** PROMOTES NOTHING; claim-mint is the §8 follow-on.
 4. **Hold** the loop-segregation (§D) and the cognitive-loop gating drain as V4
    bets unless (1)-(3) leave MECH-439 unresolved.
 
