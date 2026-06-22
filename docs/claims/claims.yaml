@@ -45333,6 +45333,19 @@
     it counts as load-bearing. Stays status:candidate / epistemic_category:substrate_conditional (promote/demote
     suppressed -- the right next response is the /implement-substrate BUILD of the V3 slice, then the s7 falsifiers,
     NOT promotion). PROMOTES NOTHING (re-scope, not a promotion).
+    IMPLEMENTATION NOTE (JOB-1 step-1 BUILT 2026-06-22, /implement-substrate): the learned per-channel
+    selection-weight vector w_chan + the signed-RPE delta_t teaching signal landed in
+    ree-v3/ree_core/predictors/e3_selector.py behind use_learned_channel_gating (E3Config, no-op default ->
+    bit-identical OFF). w_chan softplus-weights the _modulatory_accum composition (channels score_bias/mech341/
+    route; init softplus==1 -> bit-identical); delta_t = R_t (benefit_eval - harm_eval at the realised state,
+    reusing the trained heads) - V-hat_t (slow EMA), SIGNED and kept SEPARATE from the ARC-016 unsigned variance
+    (divergence B5); three-factor Hebbian x signed-RPE x D1/D2-asym update in post_action_update; waking-only
+    (MECH-094). Composes INSIDE the F-bounded MECH-448/449 eligible set (raw scores/F untouched -> safety inherited).
+    MECH-450 settling step (W_lat) is OFF (factor 2, reserved integration point). 9/9 contracts + 8/8 preflight +
+    168 e3-cluster contracts + agent activation smoke PASS. Stays candidate / substrate_conditional / v3 -- the
+    s7 selection falsifier + the MECH-450 settling step + the JOB-2 control-plane pair are SEPARATE downstream
+    chips. Doc docs/architecture/dopamine_into_gating.md; ree-v3/CLAUDE.md "ARC-108 JOB-1 step-1" entry.
+    PROMOTES NOTHING (substrate build, no flag/confidence/status change).
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
@@ -45431,3 +45444,8 @@
     are behaviourally equivalent; assembly-map C3). FULL learned thalamo-cortico-basal settling loop = V4 bet.
     ARC-106 cargo-cult guard: the settling step needs an ablation falsifier (entropy/attractor-flip unchanged when
     ablated => decorative) before it counts as load-bearing. PROMOTES NOTHING (new candidate).
+    IMPLEMENTATION NOTE (2026-06-22): NOT yet built. The coupled JOB-1 w_chan + signed-RPE delta_t (ARC-108) landed
+    2026-06-22 (ree-v3 e3_selector.py, use_learned_channel_gating); MECH-450 is factor 2 of that 2x2 -- the learned
+    lateral-inhibition W_lat settling step is OFF (W_lat==0) with the integration point reserved at the
+    _modulatory_accum recompose. Building the learned-W_lat settling step (sharing the same delta_t) is the next
+    /implement-substrate chip. PROMOTES NOTHING.
