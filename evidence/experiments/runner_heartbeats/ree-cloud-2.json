@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-22T18:38:14Z",
+  "last_tick_utc": "2026-06-22T19:08:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-460k",
   "current_exq_started_utc": "2026-06-22T15:31:08.566544+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "MECH-446",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
-    "runs_done": 10,
+    "run_label": "Seed 44 / ARM_LEVER_OFF",
+    "runs_done": 11,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 295,
-    "overall_pct": 336.7
+    "overall_pct": 366.7
   },
-  "seconds_elapsed": 11226,
+  "seconds_elapsed": 13033,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier] starting (dry_run=False)",
@@ -48,7 +48,12 @@
     "verdict: FAIL seed=43 guard_pass=True eval_armed=False sustained_hold=False lever_shortened=False coupling_nonvacuous=False closure_trigger=True within_window=False rule_bias_trained=True co_occurs=False (contact_rate=0.3428 z_goal_at_contact=0.4559)",
     "Seed 44 Condition CURRICULUM_BUILT_NATURAL_COMMIT_RELEASE_DECOMMIT_CO_OCCURRENCE",
     "[train] stage0_nursery seed=44 ep 20/295 z_goal_peak=0.4265 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/295 retention=0.879 gate=pass"
+    "[train] stage0b_consolidate seed=44 ep 30/295 retention=0.879 gate=pass",
+    "[train] p0_guided seed=44 ep 130/295 mean_len=200.0 rv=0.00000",
+    "[train] hazard_avoidance seed=44 ep 170/295 median_last=23.0 survival_gate=FAIL",
+    "[train] p1_foraging seed=44 ep 220/295 median_last=200.0 survival_gate=pass rule_bias_enabled=True rule_bias_mean=0.0262 rule_bias_steps=50 rule_bias_trained=True",
+    "[train] p2_guard seed=44 ep 235/295 contact_rate=0.2258 contact_events=91 z_goal_at_contact=0.4125",
+    "Seed 44 Condition ARM_LEVER_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
