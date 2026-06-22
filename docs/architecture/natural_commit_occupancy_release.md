@@ -256,3 +256,71 @@ beta_release_events)`) above a floor on `>=2/3` OFF-arm guard seeds, AND require
 `ARM_GAP_SCALED`, BEFORE the CO_OCCURRENCE DV is scored. MECH-446/445 stay
 candidate / v3_pending / pending_retest_after_substrate until it scores a
 contributory result.
+
+---
+
+## Closure-exclusive de-commit eval mode (rung-6 BUILD, 2026-06-22)
+
+`failure_autopsy_V3-EXQ-460j` (user-adjudicated "Park + amend, name the substrate")
+established that the latch-hold above NEVER armed on the full closure-coupling
+substrate: it arms only on a decisive natural commit (`result.committed`), which
+does not form there (`ncl_hold_reassert_total=0`, `max_consecutive_beta_run=1`,
+`sd034_n_closure_commit_intent=0`). So **natural-commit and the SD-034 closure
+de-commit were NON-DISSOCIABLE** -- there was no sustained natural-commit occupancy
+for the de-commit to act on, and no fair test of MECH-445 (commit-intent) / MECH-446
+(occupancy-drop) was reachable. A plain yield-clause patch (a "460k") was REFUSED as
+targeting the wrong cause (the release/yield logic); the actual cause is the **arm
+source** of the occupancy.
+
+### The lever (`closure_exclusive_decommit_eval`, no-op default)
+When on, the eval makes beta elevation **closure-exclusive** and re-points the
+latch-hold's arm source onto the closure plane:
+
+- **Closure-exclusive elevation** (`agent.py` bistable elevate block): the fragile
+  F-driven `result.committed` path is SUPPRESSED from `_commit_for_beta`, which is
+  driven ONLY by `_closure_commit_active` (the closure->beta coupling). So the beta
+  occupancy is provably closure-formed, not contaminated by a stray natural commit.
+- **Closure-coupled hold-arm**: the natural-commit latch-hold ARMS on
+  `_closure_commit_active` (a closure-plane commitment forming) in addition to
+  `result.committed`, guarded by `beta_gate.refractory_remaining == 0` so it does NOT
+  re-arm while an SD-034 closure de-commit is actively holding beta down (the hold
+  yields to the de-commit, preserving the MECH-446 occupancy-drop DV). A
+  `_ncl_hold_closure_armed_count` readout certifies the eval-mode arm path fired.
+
+The existing re-assertion + yield-on-refractory machinery is UNCHANGED: a closure
+commitment forms -> the hold arms + sustains a beta occupancy -> the SD-034 closure
+FIRES -> `beta_gate.release()` + refractory -> the hold yields -> the occupancy
+drops -> the refractory expires -> the next closure commit re-arms. This dissociates
+**occupancy formation** (closure-coupled latch-hold, reliable on all seeds) from
+**closure de-commit** (the SD-034 refractory), making MECH-445 commit-intent and
+MECH-446 occupancy-drop co-measurable on the same seed -- dissolving the 460h
+disjoint-certifier problem.
+
+### Why this is not the refused 460k
+460k was a yield-clause narrowing (the release side, which the 460j autopsy proved is
+not the blocker). This BUILD changes the ARM SOURCE of the occupancy (the 460j root
+cause: "the latch-hold never armed"). It reuses `BetaGate.committed_run_length` and
+the existing hold/re-assertion/yield -- no parallel latch module (ARC-106 G2).
+
+### Preconditions + backward compatibility
+`closure_exclusive_decommit_eval=True` requires `use_closure_commit_beta_coupling=True`
+AND `use_natural_commit_latch_hold=True` (loud `ValueError` at `REEAgent.__init__`).
+Default False -> `_commit_for_beta` is the legacy `result.committed OR
+_closure_commit_active`, the hold arms only on `result.committed` -> bit-identical.
+Contracts: `tests/contracts/test_closure_exclusive_decommit_eval.py` (C1 config
+defaults / C2 preconditions raise / C3 closure-coupled-commit arms the hold under
+eval [LOAD-BEARING] + legacy does not / C4 natural-commit suppressed under eval / C5
+yield to the closure refractory preserved / C6 bit-identical OFF). preflight 8/8;
+sibling closure/latch/beta-gate contracts 31/31; the V3-EXQ-460j dry-run reproduces
+its eval-OFF baseline signature (`off_occ~4`, `reassert=0`, `sustained_hold=False`);
+activation: eval ON arms+re-asserts (`closure_armed=1`, `reassert=8`) where eval OFF
+stays 0 (the 460j signature).
+
+### Validation
+A 460-lineage successor (NEW letter; supersedes V3-EXQ-460j; queued separately via
+`/queue-experiment` AFTER this build lands) runs in the closure-exclusive de-commit
+eval mode and gates on: (a) the ARM_LEVER_OFF baseline sustains a natural-commit
+occupancy on `>=2/3` seeds, THEN (b) the rung-6 release demonstrably shortens it AND
+MECH-445 commit-intent + MECH-446 occupancy-drop co-occur on the same seeds.
+MECH-445 / MECH-446 stay candidate / standard / v3_pending /
+pending_retest_after_substrate until that successor scores. PROMOTES NOTHING.
