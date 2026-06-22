@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural",
+  "run_id": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-22T14:33:49.851569Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-033b",
+    "MECH-263"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-033b": "weakens",
+    "MECH-263": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "conversion_ceiling_persists_despite_go_nogo",
+    "preconditions": [
+      {
+        "name": "ofc_bias_range_supra_floor_seed_count_HIGH_THREAT",
+        "description": "Number of ARM_2 seeds whose trained-head OFC bias cross-candidate RANGE at the HIGH-THREAT positive control clears BIAS_RANGE_FLOOR (0.05) -- the C2 discrimination positive control. Reported as a PER-SEED PASS COUNT (>= MIN_PASS_SEEDS), NOT aggregate-max (the 485k bug: max-over-seeds read met=True at 1/3). Below MIN_PASS_SEEDS -> substrate_not_ready_requeue.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "ARM_2 trained-arm bias over a real candidate bank at the high-threat state",
+        "met": true
+      },
+      {
+        "name": "ofc_bias_range_supra_floor_seed_count_DEVALUED_STATE",
+        "description": "Number of ARM_2 seeds whose trained-head OFC bias cross-candidate RANGE at the DEVALUED state clears BIAS_RANGE_FLOOR (0.05) -- the SAME statistic the load-bearing C1 / C1b devaluation DVs route on. The in-band re-ranking driver (FIX 2) must produce a DIFFERENTIATED (non-flat, non-saturated) devalued bias. PER-SEED PASS COUNT (>= MIN_PASS_SEEDS), the 485k aggregate-max fix. Below MIN_PASS_SEEDS -> substrate_not_ready_requeue.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "ARM_2 trained-arm bias over a real candidate bank at the DEVALUED state",
+        "met": true
+      },
+      {
+        "name": "ofc_head_trained_seed_count",
+        "description": "485m DECOUPLE: number of ARM_2 seeds where BOTH OFC heads trained -- state_bias_head (C2 discrimination) AND devaluation_bias_head (C1 devaluation, the head the load-bearing devaluation DVs + the No-Go viability route on) -- weight-delta-from-init L2 norm clears HEAD_DELTA_MIN. PER-SEED PASS COUNT (>= MIN_PASS_SEEDS).",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "trainable-arm BOTH heads trained on frozen-encoder state_code in P1",
+        "met": true
+      },
+      {
+        "name": "ofc_devaluation_head_trained_seed_count",
+        "description": "485m DECOUPLE: number of ARM_2 seeds whose SEPARATE devaluation_bias_head weight-delta-from-init L2 norm clears HEAD_DELTA_MIN -- the devaluation re-ranking head (clamp +/-OFC_DEVAL_BIAS_SCALE) genuinely trained under the inverted-advantage re-rank driver. The C1/C1b DVs + the No-Go viability route on THIS head. PER-SEED PASS COUNT (>= MIN_PASS_SEEDS).",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "trainable-arm devaluation_bias_head trained in P1",
+        "met": true
+      },
+      {
+        "name": "mech448_f_eligibility_excluded_seed_count",
+        "description": "MECH-448 NON-DEGENERACY: number of ARM_2 seeds where the channel-adaptive F->eligibility envelope actually EXCLUDED at least one candidate (f_eligibility_excluded_count > 0) AND the demotion path was active -- F genuinely demoted on a divergent F pool, not an all-admit no-op. PER-SEED PASS COUNT (>= MIN_PASS_SEEDS). excluded_count == 0 across seeds -> substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "ARM_2 demotion-on E3.select diagnostics on the trained-agent eval bank",
+        "met": true
+      },
+      {
+        "name": "mech449_go_nogo_withdrawal_engaged_seed_count",
+        "description": "MECH-449 NON-VACUITY: number of ARM_2 seeds where the active No-Go WITHDRAWAL genuinely engaged at the devalued state (go_nogo_n_soft_applied > 0) -- the Go/No-Go constitution is not a config-on no-op; the trained devaluation valuation actually withdrew the previously-preferred candidate. PER-SEED PASS COUNT (>= MIN_PASS_SEEDS). Zero withdrawals across seeds -> substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "control": "ARM_2 devalued-state E3.select go_nogo diagnostics (injected viability No-Go)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C1b": false,
+      "C2": false,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_devaluation_behavioural_shift",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C1b_devaluation_bias_vector_inversion",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_discrimination_behavioural_separation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_silence_control",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "note": "485l corrects the 485k double-vacuous FAIL by ENGAGING the MECH-449 Go/No-Go constitution (built 2026-06-21, 689g PASSED). FIX 1: the trained OFC devalued valuation is mapped to a per-candidate VIABILITY No-Go so the constitution actively WITHDRAWS the previously-preferred (now-devalued) candidate from the eligible set (the active No-Go withdrawal demotion-alone structurally cannot express) -- injected ONLY at the devaluation comparison. FIX 2: in-band re-rank gain (1.5/0.3) keeps the devalued bias differentiated WITHIN the +/-0.5 OFC clamp (485k overshot -> uniform saturation -> range 0). FIX 3: C2 discrimination runs with go_nogo_signals=None (demotion-alone, as it converted in 485j). FIX 4: the high-vs-devalued bias-VECTOR inversion (C1b) is a SCORED load-bearing DV (l2_shift > 0.1 AND cosine < 0.0). FIX 5: use_f_eligibility_adaptive_floor replaces the 485i/485j bespoke per-seed envelope-floor calibration. PRIMARY DVs measured on the COMMITTED selection through the real E3.select() (SelectionResult.selected_index) forced to the deterministic argmin-within-eligible path. Conversion is attributable to the trained-head x demotion x active-No-Go conjunction via the 3-arm dissociation: ARM_2 must convert where ARM_1 (trained head, demotion off = F-dominance ceiling) and ARM_0 (frozen head = flat devalued bias -> flat viability -> no withdrawal -> silence) do not. Readiness preconditions are PER-SEED PASS COUNTS (>= 2/3), NOT aggregate-max (the 485k bug; the meta-version of the V3-EXQ-642/643 same-statistic miss). Below the high-threat OR devalued bias-range floor OR excluded_count == 0 OR go_nogo_n_soft_applied == 0 on >= 2/3 seeds -> substrate_not_ready_requeue (non_contributory), NEVER a false SD-033b/MECH-263 weakens. Readiness-met + DVs-fail is an honest result (conversion_ceiling_persists_despite_go_nogo -> /failure-autopsy before stamping)."
+  }
+}
