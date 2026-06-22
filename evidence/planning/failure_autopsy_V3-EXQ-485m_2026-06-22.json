@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-22T14:44:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3",
+      "queue_id": "V3-EXQ-485m",
+      "supersedes": "V3-EXQ-485l",
+      "claim_ids": ["SD-033b", "MECH-263"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact / UNWEAKENED -- C1 3/3 lets the OFC devaluation representation express a behavioural shift; not falsified",
+        "biological_reference": "clear -- OFC outcome-specific value representation + outcome-devaluation re-ranking (action-outcome/goal-directed control via OFC + dorsomedial striatum); faithful translation, not a formal import",
+        "prerequisites": "partially present -- the assembled BG selection stack (demotion + Go/No-Go + adaptive floor + root-C commit-duration) is the dependency; only partly co-armed in this single-face test",
+        "implementation": "complete for the prong -- decoupled devaluation_bias_head built (ree-v3 758956f); trains, biases, No-Go fires 2/3; 485l shared-clamp gap fixed",
+        "environment": "adequate",
+        "measurement": "adequate -- C1/C1b/C2/C3 well-posed and per-seed gated; seed-1 existence proof confirms non-degeneracy; nuance: C1b reveals shift-without-inversion (cosine +0.72/+0.98 on 2/3 seeds)",
+        "integration": "isolated / partially coupled -- DOMINANT layer; single valuation face does not convert to committed-class diversity; conversion hypothesised emergent from the assembled stack",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC outcome-specific value representation + outcome-devaluation re-ranking of action selection (action-outcome / goal-directed control)",
+        "dependencies": ["assembled basal-ganglia selection stack (striatal Go/No-Go pathways)", "F-eligibility demotion", "commit/release-duration (root C)", "credit/eligibility machinery"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the failure-to-convert-in-isolation matches the biology (outcome devaluation acts through the assembled BG stack, not alone)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-06-22 (failure_autopsy_V3-EXQ-485m CONFIRMED -> non_contributory; claim UNWEAKENED): V3-EXQ-485m (ree-cloud-4) supersedes 485l; FAIL/non_contributory/non_degenerate on the DECOUPLED devaluation_bias_head (ree-v3 758956f). Decouple fixed 485l clamp-starvation: C1 devaluation behavioural shift now 3/3 and No-Go engages 2/3, but C1b vector-inversion 1/3 (cosine +0.72/+0.98 on 2/3 seeds = shift-without-inversion) and C2 committed-class separation 1/3. Ruling out magnitude artifact, the valuation face does not convert in isolation. Claim mechanism EXERCISED not falsified (C1 3/3); status unchanged (substrate_conditional). P3-ofc face-validated (user gate 2026-06-22) -> folds into conversion_ceiling_campaign:FULLSTACK arm. 3rd convergent fails-C2-alone datum (654i demotion, 654j Go/No-Go, 485m OFC) = conversion is emergent from the assembled stack. Re-derive brake FIRED (11th substrate_ceiling reading on SD-033b/MECH-263): a 485n isolated valuation-face re-queue is REFUSED; next test is the co-armed full-stack arm.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "implementation_hint": "Append the V3-EXQ-485m failure record and advance the P3-ofc (OFC valuation decouple) prong to face-validated / composition-ready: C1 3/3 robust behavioural shift on the decoupled devaluation_bias_head (758956f) face-validates the valuation face for inclusion in the full-stack arm; C1b 1/3 + C2 1/3 are the conversion ceiling the co-armed stack is hypothesised to lift. Include use_ofc_devaluation_head ON in the conversion_ceiling_campaign:FULLSTACK arm.",
+        "unblocks_claims": ["SD-033b", "MECH-263", "MECH-309", "ARC-062"],
+        "depends_on_unresolved": [
+          "conversion_ceiling_campaign:FULLSTACK co-armed arm (demotion + Go/No-Go + adaptive-floor + [root-C de-commit, once built] + OFC-decouple ON; sweep use_candidate_rule_field; DV committed-class entropy C2)",
+          "conversion_ceiling_campaign:P-comp (demotion x Go/No-Go composition characterization)",
+          "conversion_ceiling_campaign:P2-rootC (closure-exclusive de-commit eval substrate)"
+        ],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3",
+          "experiment_type": "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural",
+          "metric": "ARM_2 (trained OFC + demotion ON + Go/No-Go ON): C1 devaluation_selection_shift 3/3 PASS, C1b vector-inversion 1/3 FAIL (cosine +0.717/-0.456/+0.983), C2 committed-class separation 1/3 FAIL (sep-ratio 0/1e6/0), C3 silence 3/3 PASS. Decouple removed 485l clamp-starvation (magnitude adequate, No-Go fires 2/3) but the valuation face still does not convert in isolation.",
+          "target": "C1b >= 2/3 AND C2 >= 2/3 (committed-class discrimination separation) -- expected only from the co-armed full-stack arm, not the isolated valuation face"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-485e_2026-06-11",
+          "failure_autopsy_V3-EXQ-485g_2026-06-19",
+          "failure_autopsy_V3-EXQ-485h_2026-06-19",
+          "failure_autopsy_V3-EXQ-485i_2026-06-21",
+          "failure_autopsy_V3-EXQ-485j_2026-06-21",
+          "failure_autopsy_V3-EXQ-485k_2026-06-21",
+          "failure_autopsy_V3-EXQ-485l_2026-06-22",
+          "failure_autopsy_V3-EXQ-695-696-f-dominance-cluster_2026-06-21",
+          "failure_autopsy_batch9_2026-06-12",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling (conversion_ceiling_campaign:FULLSTACK co-armed arm)"
+      },
+      "learning_extracted": [
+        "Decoupling the devaluation head removed clamp-starvation as the C2 blocker: with adequate magnitude and an engaged No-Go, the valuation face still fails C2 alone -- the conversion ceiling is not a valuation-face instrumentation/magnitude artifact.",
+        "C1 3/3 face-validates P3-ofc as a behaviour-mover; the prong robustly shifts committed selection on devaluation, which is what the full-stack arm needs from the valuation face.",
+        "Shift-without-inversion (C1b 1/3, cosine +0.7/+0.98 on 2/3 seeds) is a noted weakness in the OFC valuation representation (possible shortcut on the specific-outcome clause of MECH-263); carried as a full-stack leave-one-out watch item, not a blocker to folding in.",
+        "Third convergent fails-C2-alone datum (654i demotion, 654j Go/No-Go, 485m OFC valuation) confirms conversion is emergent from the assembled basal-ganglia stack, not any single face."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "negative-control (C3) + absolute shift (C1) pass; both discrimination criteria (C1b, C2) fail -- substrate-ceiling fingerprint, recurring across structurally-different faces",
+    "is_independent_bugs": false,
+    "structural_property": "No single basal-ganglia face (selection-demotion 654i, selection-Go/No-Go 654j, valuation-OFC 485m) converts per-candidate diversity to committed-class diversity in isolation; conversion is hypothesised emergent from the co-armed assembled stack (conversion_ceiling_campaign full-stack arm).",
+    "readings": ["substrate_assembly_emergent_conversion", "full_stack_required_before_conversion"]
+  }
+}
