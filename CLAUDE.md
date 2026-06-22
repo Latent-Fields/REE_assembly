@@ -168,12 +168,19 @@ as `_resolve_epistemic_category(claim_type, invariant_type, explicit_category)`.
 The recommendation function `_recommendation_for_claim` reads the resolved
 category and dispatches accordingly.
 
-**Validation.** `scripts/validate_claims.py` warn-only-validates explicit
+**Validation.** `scripts/validate_claims.py` validates explicit
 `epistemic_category` values against the canonical set
 `{standard, substrate_coherence, answer_state, substrate_ceiling,
-substrate_conditional, derivational, out_of_domain}`. Invalid values
-fall back to inference (do not crash the indexer). Elevate to ERROR
-once the field stabilises across the registry.
+substrate_conditional, derivational, out_of_domain, governance_rule}`.
+**ELEVATED to ERROR 2026-06-22** (the stabilise-then-elevate window is done --
+the field has carried explicit values warn-clean since 2026-05-02; gate
+confirmed at 0 invalid WARNs before flipping). A typo'd explicit value now
+blocks `governance.sh` (`validate_claims --strict`) instead of silently masking
+the bad value behind the indexer's `_resolve_epistemic_category()` inference
+fallback. Mirrors the `assembly_state`/`assembly_status` elevation (master
+`df62e84575`) and the invariant-type ERROR posture. (`epistemic_stance` and the
+`ceiling_decision`/`ceiling_routing_note` checks remain warn-only -- they are
+not the subject of the stabilise-then-elevate note.)
 
 **Why this matters.** Without category-aware gating, the production
 recommendation queue collapses 5+ genuinely distinct epistemic situations

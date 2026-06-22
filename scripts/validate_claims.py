@@ -189,11 +189,19 @@ def main():
     for c in invariants:
         all_issues.extend(validate_invariant(c, substrate_status=substrate_status))
 
-    # Phase 3 wave 2: epistemic_category warn-only validation across all claims.
+    # Phase 3 wave 2: epistemic_category enum validation across all claims.
     # When the field is set, it must be one of the valid categories. The
-    # indexer's _resolve_epistemic_category() falls back to inference if
-    # the explicit value is invalid, so this is informational, not a hard
-    # gate -- elevate to ERROR after the field stabilises across the registry.
+    # indexer's _resolve_epistemic_category() SILENTLY falls back to inference
+    # on an invalid explicit value -- exactly what an ERROR gate should stop.
+    # ELEVATED to ERROR 2026-06-22 (stabilise-then-elevate window done -- the
+    # registry has carried explicit epistemic_category values warn-clean since
+    # 2026-05-02, gate confirmed at 0 invalid WARNs 2026-06-22T06:32Z): a typo'd
+    # explicit epistemic_category now blocks governance.sh --strict instead of
+    # masking the bad value behind the inference fallback. Mirrors the
+    # assembly_state/assembly_status (df62e84575) and invariant-type ERROR
+    # posture. epistemic_stance + ceiling_decision/ceiling_routing_note below
+    # stay WARN-only -- they are not the subject of the stabilise-then-elevate
+    # note.
     for c in claims:
         ec = c.get("epistemic_category")
         if ec is None:
@@ -204,10 +212,10 @@ def main():
         if ec_norm not in VALID_EPISTEMIC_CATEGORIES:
             cid = c.get("id", "<unknown>")
             all_issues.append((
-                "WARN",
+                "ERROR",
                 f"{cid}: epistemic_category='{ec}' invalid; must be one of "
-                f"{sorted(VALID_EPISTEMIC_CATEGORIES)} (indexer will fall back "
-                "to inference for invalid values)"
+                f"{sorted(VALID_EPISTEMIC_CATEGORIES)} (an invalid explicit value "
+                "would silently fall back to the indexer's inference -- fix the typo)"
             ))
 
     # Substrate-ceiling park marker (warn-only). `ceiling_decision`, when set,
