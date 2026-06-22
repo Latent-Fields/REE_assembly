@@ -27,6 +27,7 @@ Called at the top of build_claims_json.py and governance.sh.
 See docs/architecture/invariant_types.md for schema semantics.
 """
 import argparse
+import datetime
 import sys
 from pathlib import Path
 
@@ -264,6 +265,45 @@ def main():
                 f"{cid}: asked-bucket claim (claim_type={ct or 'n/a'}, "
                 f"epistemic_category={cat or 'n/a'}) has no `what_would_answer` "
                 "-- state the observation that would answer/falsify it"))
+
+    # Assembly-state companion fields (MOVE-4 claims-layer follow-on, warn-only).
+    # assembly_state consolidates the 6 substrate-blocked conventions into one
+    # canonical field (derived in build_claims_json.resolve_assembly_state /
+    # serve.py._resolve_claim_assembly_state); an explicit value overrides the
+    # derivation, so an INVALID explicit value silently falls back -- warn on it.
+    # assembly_status must be queued|in_progress|built; revisit_after must be an
+    # ISO date. awaiting is a free-form upstream pointer (no enum). Warn-only by
+    # design; the field is additive and backwards-compatible for one cycle.
+    _ASSEMBLY_STATES = {
+        "mature", "enriching", "awaiting_substrate", "gated_v3",
+        "deferred_future", "remaining", "parked", "blocked",
+    }
+    _ASSEMBLY_STATUS_VALUES = {"queued", "in_progress", "built"}
+    for c in claims:
+        cid = c.get("id", "<unknown>")
+        a_state = str(c.get("assembly_state", "") or "").strip().lower()
+        if a_state and a_state not in _ASSEMBLY_STATES:
+            all_issues.append((
+                "WARN",
+                f"{cid}: assembly_state='{c.get('assembly_state')}' invalid; must "
+                f"be one of {sorted(_ASSEMBLY_STATES)} (resolver will fall back to "
+                "the derivation)"))
+        a_status = str(c.get("assembly_status", "") or "").strip().lower()
+        if a_status and a_status not in _ASSEMBLY_STATUS_VALUES:
+            all_issues.append((
+                "WARN",
+                f"{cid}: assembly_status='{c.get('assembly_status')}' invalid; must "
+                f"be one of {sorted(_ASSEMBLY_STATUS_VALUES)} (auto-join from "
+                "substrate_queue will be used instead)"))
+        rv = str(c.get("revisit_after", "") or "").strip()
+        if rv:
+            try:
+                datetime.date.fromisoformat(rv)
+            except ValueError:
+                all_issues.append((
+                    "WARN",
+                    f"{cid}: revisit_after='{rv}' is not an ISO date (YYYY-MM-DD); "
+                    "it will be ignored by the revisit-due check"))
 
     errors = [msg for lvl, msg in all_issues if lvl == "ERROR"]
     warnings = [msg for lvl, msg in all_issues if lvl == "WARN"]

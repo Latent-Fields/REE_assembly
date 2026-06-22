@@ -1956,6 +1956,17 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
     current_eq_note: str | None = None
     current_defer_until: str | None = None
     current_het_note: str | None = None
+    # Assembly-state companion fields (MOVE-4 claims-layer follow-on, 2026-06-22).
+    # ACCEPT-only here: parsed so they are machine-readable in the registry and so
+    # an explicit `assembly_state` override is captured. They do NOT change any
+    # promotion/demotion/hold dispatch -- the canonical derivation +
+    # substrate_queue auto-join live in scripts/build_claims_json.py
+    # (resolve_assembly_state) and serve.py (_resolve_claim_assembly_state),
+    # kept in sync. See assembly_vs_closure_plan.md "Open follow-ons".
+    current_assembly_state: str | None = None
+    current_awaiting: str | None = None
+    current_assembly_status: str | None = None
+    current_revisit_after: str | None = None
     _collecting_eq_note: bool = False  # True while reading a block-scalar evidence_quality_note
 
     if not path.exists():
@@ -1985,6 +1996,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
                     "evidence_quality_note": (current_eq_note or "").strip(),
                     "defer_promotion_until": current_defer_until or "",
                     "heterogeneity_note": (current_het_note or "").strip(),
+                    "assembly_state": current_assembly_state or "",
+                    "awaiting": current_awaiting or "",
+                    "assembly_status": current_assembly_status or "",
+                    "revisit_after": current_revisit_after or "",
                 }
             current_id = line.split(":", 1)[1].strip()
             current_status = None
@@ -1996,6 +2011,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             current_eq_note = None
             current_defer_until = None
             current_het_note = None
+            current_assembly_state = None
+            current_awaiting = None
+            current_assembly_status = None
+            current_revisit_after = None
             _collecting_eq_note = False
             continue
 
@@ -2022,6 +2041,22 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
 
         if current_id and line.startswith("  implementation_phase:"):
             current_impl_phase = _strip_inline_yaml_comment(line.split(":", 1)[1])
+            continue
+
+        if current_id and line.startswith("  assembly_state:"):
+            current_assembly_state = _strip_inline_yaml_comment(line.split(":", 1)[1])
+            continue
+
+        if current_id and line.startswith("  awaiting:"):
+            current_awaiting = _strip_inline_yaml_comment(line.split(":", 1)[1]).strip("\"'")
+            continue
+
+        if current_id and line.startswith("  assembly_status:"):
+            current_assembly_status = _strip_inline_yaml_comment(line.split(":", 1)[1])
+            continue
+
+        if current_id and line.startswith("  revisit_after:"):
+            current_revisit_after = _strip_inline_yaml_comment(line.split(":", 1)[1]).strip("\"'")
             continue
 
         if current_id and line.startswith("  evidence_quality_note:"):
@@ -2053,6 +2088,10 @@ def _load_claim_registry(path: Path) -> dict[str, dict[str, str]]:
             "evidence_quality_note": (current_eq_note or "").strip(),
             "defer_promotion_until": current_defer_until or "",
             "heterogeneity_note": (current_het_note or "").strip(),
+            "assembly_state": current_assembly_state or "",
+            "awaiting": current_awaiting or "",
+            "assembly_status": current_assembly_status or "",
+            "revisit_after": current_revisit_after or "",
         }
     return registry
 

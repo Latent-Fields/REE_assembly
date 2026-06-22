@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-21.1 -->
+<!-- CLOSURE_VERSION: 2026-06-22.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -191,6 +191,15 @@
   .assembly-strip .fl-chip:hover { border-color: var(--accent); color: var(--accent); }
   .assembly-strip .fl-chip.due { border-color: var(--st-partial); color: var(--st-partial); }
   .assembly-strip .asm-frontier-empty { font-size: 10px; color: var(--muted); font-style: italic; }
+  /* nodes <-> claims layer toggle (MOVE-4 claims-layer follow-on). */
+  .assembly-strip .asm-toggle { display: inline-flex; gap: 3px; margin-left: 10px; }
+  .assembly-strip .asm-toggle button {
+    background: var(--bg-2); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 5px;
+    padding: 1px 8px; font-size: 10px; cursor: pointer; font-weight: 600;
+  }
+  .assembly-strip .asm-toggle button:hover { color: var(--text); border-color: var(--accent); }
+  .assembly-strip .asm-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
   .cusp-rail {
     padding: 8px 18px 10px;
@@ -718,10 +727,14 @@
 <section class="assembly-strip" id="assembly-strip" hidden>
   <div class="asm-head">
     <span class="asm-title" title="The broad-overview altitude (MOVE-4): the whole v3 assembly bucketed by maturity / assembly-state, not a burndown. Companion to the closure % above.">Assembly maturity</span>
+    <span class="asm-toggle" id="asm-toggle" title="Draw the maturity buckets over closure-plan NODES (the v3 closure map) or over the whole CLAIMS registry (the 6 substrate-blocked conventions consolidated into one assembly_state).">
+      <button data-asmview="nodes" class="active">nodes</button>
+      <button data-asmview="claims">claims</button>
+    </span>
     <span class="asm-nums">
-      <span class="asm-num closure" title="Closure % = adjudication health (how much of v3 is marked done / weighted-done). The burndown number.">closure <b id="asm-closure-pct">0%</b></span>
-      <span class="asm-num frontier" title="Assembly frontier = nodes intentionally `status: assembling` / `open_by_design` -- being built, not stalled. The second headline number, never folded into the closure %.">frontier <b id="asm-frontier-count">0</b></span>
-      <span class="asm-num due" title="Frontier nodes past their optional `revisit_after` date -- due for a review (resume / re-state / close). 0 == everything on the frontier is resting by design.">revisit-due <b id="asm-revisit-due">0</b></span>
+      <span class="asm-num closure" id="asm-headline" title="Closure % = adjudication health (how much of v3 is marked done / weighted-done). The burndown number."><span id="asm-headline-label">closure</span> <b id="asm-closure-pct">0%</b></span>
+      <span class="asm-num frontier" title="Assembly frontier = items intentionally being built, not stalled. The second headline number, never folded into the closure %. (claims view: count of claims awaiting/enriching/gated upstream substrate.)">frontier <b id="asm-frontier-count">0</b></span>
+      <span class="asm-num due" title="Items past their optional `revisit_after` date -- due for a review (resume / re-state / close). 0 == everything on the frontier is resting by design.">revisit-due <b id="asm-revisit-due">0</b></span>
     </span>
   </div>
   <div class="asm-bar" id="asm-bar"></div>
@@ -829,6 +842,7 @@ let MINIMAP = null;
 let CLOSURE = null;        // generation-filtered VIEW the renderers read
 let CLOSURE_FULL = null;   // full /api/closure payload (all generations)
 let GEN_VIEW = 'v3';       // which generation the page is currently showing
+let ASSEMBLY_VIEW = 'nodes';  // Assembly-maturity strip layer: 'nodes' (closure-plan) | 'claims' (registry)
 let TITLE_CLICKS = 0;
 let SHIFT_CLICKS = 0;   // Shift + 5 title-clicks opens the "eggs you've found" gallery
 
@@ -864,6 +878,7 @@ async function load() {
   wireStatusFilter();
   wireFacetFilter();
   wireGenSwitch();
+  wireAssemblyToggle();
   applyHighlightFromUrl();
   scheduleEasterEggs();
 }
@@ -922,6 +937,9 @@ function applyGenView() {
     // Assembly/maturity portfolio (MOVE-4) is computed over V3 nodes only;
     // blank it outside V3 so the V4/V5 roadmap views never show a v3 frontier.
     assembly: isV3 ? f.assembly : null,
+    // Claims-layer companion (MOVE-4 follow-on): also V3-scoped; blanked
+    // outside V3 so the nodes<->claims toggle hides itself there.
+    claims_assembly: isV3 ? f.claims_assembly : null,
   });
 }
 
@@ -966,6 +984,22 @@ function renderAll() {
 }
 
 function isV3View() { return GEN_VIEW === 'v3'; }
+
+// Assembly-maturity strip layer toggle (MOVE-4 claims-layer follow-on): switch
+// the bar / legend / frontier between closure-plan NODES and the whole CLAIMS
+// registry. Both data blocks are already on CLOSURE; only re-render the strip.
+function wireAssemblyToggle() {
+  const tgl = document.getElementById('asm-toggle');
+  if (!tgl) return;
+  tgl.querySelectorAll('button[data-asmview]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = btn.getAttribute('data-asmview') || 'nodes';
+      if (v === ASSEMBLY_VIEW) return;
+      ASSEMBLY_VIEW = v;
+      renderAssembly();
+    });
+  });
+}
 
 function wireGenSwitch() {
   const bar = document.getElementById('gen-switch');
@@ -1063,15 +1097,38 @@ const MATURITY_BUCKETS = [
 ];
 function renderAssembly() {
   const strip = document.getElementById('assembly-strip');
-  const a = CLOSURE.assembly;
+  // The toggle is only meaningful in the V3 view (both blocks are V3-scoped); if
+  // the selected layer is blank, fall back to whichever exists.
+  const claimsA = CLOSURE.claims_assembly;
+  const nodesA = CLOSURE.assembly;
+  // Hide the claims button outside V3 (claims_assembly is blanked there).
+  const tgl = document.getElementById('asm-toggle');
+  if (tgl) tgl.style.display = claimsA ? '' : 'none';
+  if (!claimsA && ASSEMBLY_VIEW === 'claims') ASSEMBLY_VIEW = 'nodes';
+  const a = (ASSEMBLY_VIEW === 'claims') ? claimsA : nodesA;
   if (!a) { strip.hidden = true; return; }
   strip.hidden = false;
+  if (tgl) tgl.querySelectorAll('button[data-asmview]').forEach(b =>
+    b.classList.toggle('active', b.getAttribute('data-asmview') === ASSEMBLY_VIEW));
   const counts = a.counts || {};
   const fh = a.frontier_health || {};
 
-  // Headline: two numbers -- closure % (adjudication health) AND frontier health.
-  document.getElementById('asm-closure-pct').textContent =
-    Math.round((CLOSURE.overall_progress || 0) * 100) + '%';
+  // Headline: TWO numbers -- adjudication health AND frontier health. In the
+  // nodes view the first number is the closure % (the burndown); in the claims
+  // view it is the size of the registry in scope (claims have no closure %).
+  const headLabel = document.getElementById('asm-headline-label');
+  const headEl = document.getElementById('asm-headline');
+  if (ASSEMBLY_VIEW === 'claims') {
+    if (headLabel) headLabel.textContent = 'registry';
+    if (headEl) headEl.title = 'Claims in the v3 assembly portfolio (excludes deferred-future + parked/inactive). Claims have no closure % -- the second number (frontier) is the assembly-backlog headline.';
+    document.getElementById('asm-closure-pct').textContent =
+      String(a.total_in_scope || 0);
+  } else {
+    if (headLabel) headLabel.textContent = 'closure';
+    if (headEl) headEl.title = 'Closure % = adjudication health (how much of v3 is marked done / weighted-done). The burndown number.';
+    document.getElementById('asm-closure-pct').textContent =
+      Math.round((CLOSURE.overall_progress || 0) * 100) + '%';
+  }
   document.getElementById('asm-frontier-count').textContent =
     String(fh.frontier_count || 0);
   document.getElementById('asm-revisit-due').textContent =
@@ -1122,8 +1179,11 @@ function renderAssembly() {
   fr.innerHTML = '';
   if (!frontier.length) {
     fr.hidden = false;
+    const emptyMsg = (ASSEMBLY_VIEW === 'claims')
+      ? 'empty -- no claim is actively under construction (assembly_status in_progress) or past its revisit_after date right now. The ' + (counts.frontier || 0) + ' awaiting/enriching/gated claims are resting on upstream substrate by design.'
+      : 'empty -- no node is currently tagged assembling / open_by_design (the keystone is wired but no live node uses it yet).';
     fr.innerHTML = '<span class="fl-label">frontier</span>' +
-      '<span class="asm-frontier-empty">empty -- no node is currently tagged assembling / open_by_design (the keystone is wired but no live node uses it yet).</span>';
+      '<span class="asm-frontier-empty">' + emptyMsg + '</span>';
     return;
   }
   fr.hidden = false;

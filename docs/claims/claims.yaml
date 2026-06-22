@@ -44408,6 +44408,14 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
+  # Assembly-state companion fields (MOVE-4 claims-layer follow-on). Worked
+  # example of the explicit-override path: the Go/No-Go component is built but the
+  # ARC-107 BG-constitution umbrella it is conditional on is still under
+  # construction (falsifier V3-EXQ-689g pending). awaiting: corrects the messy
+  # substrate_queue auto-join (which reads f_dominance_conversion_ceiling/queued).
+  awaiting: ARC-107
+  assembly_status: in_progress
+  revisit_after: "2026-07-13"
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-20"

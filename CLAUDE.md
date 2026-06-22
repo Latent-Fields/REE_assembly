@@ -360,6 +360,45 @@ Companion fields: `awaiting:` (the substrate being built) and `assembly_status:`
 (first migration candidate: `commitment_closure:GAP-8`) are in
 `evidence/planning/assembly_vs_closure_plan.md`.
 
+## Claim-level `assembly_state` (claims-layer consolidation, 2026-06-22)
+
+The closure-NODE `assembling` state above has a CLAIMS-layer companion. The 6
+scattered "this claim is waiting on substrate still being assembled" conventions
+in `claims.yaml` (`epistemic_category: substrate_conditional` / `substrate_ceiling`,
+`v3_pending`, `implementation_phase>=v4`, `implementation_phase=v3`, the
+`pending_*` booleans) are consolidated into ONE canonical, machine-readable,
+**derived** field **`assembly_state`** whose values PRESERVE each distinction
+(they are NOT synonyms):
+
+| `assembly_state` | derived from | maturity bucket |
+|---|---|---|
+| `mature` | status active/stable/provisional, not gated | mature |
+| `enriching` | `substrate_ceiling` (V3-tractable, substrate too coarse → enrich) | awaiting_construction |
+| `awaiting_substrate` | `substrate_conditional` (planned upstream unbuilt) | awaiting / mid (by `assembly_status`) |
+| `gated_v3` | `v3_pending` or `implementation_phase=v3` | awaiting_construction |
+| `deferred_future` | `implementation_phase` v4/v5/v6 | excluded (parked out of v3) |
+| `remaining` | open assertion, not assembly-blocked | remaining |
+| `parked` | legacy/superseded/retired/applied | excluded |
+| `blocked` | blocked / upstream_blocked / blocked_pending_substrate | genuinely_blocked |
+
+**Derive-first / additive.** The canonical resolver is
+`scripts/build_claims_json.py:resolve_assembly_state` (emits `assembly_state`
+into `claims.json`), kept in sync with `serve.py:_resolve_claim_assembly_state`.
+It computes from the existing conventions — NO bulk hand-edits, and it changes
+NO governance dispatch (`build_experiment_indexes.py` still gates on
+`epistemic_category`/`v3_pending`; `_load_claim_registry` only ACCEPTS the new
+fields). Three OPTIONAL explicit companion fields mirror MOVE-1 and override the
+derivation: `awaiting:` (upstream `sd_id`/claim id — auto-joined from
+`substrate_queue.json:unblocks_claims` when absent), `assembly_status:`
+(`queued`/`in_progress`/`built` — auto-joined), `revisit_after:` (ISO date).
+`scripts/validate_claims.py` warn-only-validates the enums + date.
+
+**Portfolio view.** `serve.py:_claims_assembly_view` draws the same maturity
+buckets MOVE-4 draws over closure nodes over the WHOLE registry, exposed on
+`/api/closure` as `claims_assembly` and surfaced via the **nodes ↔ claims
+toggle** on `closure.html`'s "Assembly maturity" strip. See
+`evidence/planning/assembly_vs_closure_plan.md` "Open follow-ons".
+
 ## V3-Pending Gate
 
 Claims with `v3_pending: true` or `implementation_phase: v3` in claims.yaml get

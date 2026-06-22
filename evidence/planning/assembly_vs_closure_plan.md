@@ -91,11 +91,14 @@ closure_plan:
         chips. Verified end-to-end (synthetic-node bucketing + live render on
         :8011: 79.0% closure unchanged, frontier 0/empty honestly -- no live
         node tagged assembling yet; populated-path render confirmed via
-        injection). REMAINING FOLLOW-ON (larger, claims-layer, still open):
-        consolidate the 6 scattered substrate-blocked conventions
-        (substrate_conditional / substrate_ceiling / v3_pending /
-        implementation_phase>=v4 / two pending_* booleans) into one canonical,
-        machine-readable field with an `awaiting:` pointer -- see Open
+        injection). CLAIMS-LAYER FOLLOW-ON now also LANDED 2026-06-22: the 6
+        scattered substrate-blocked conventions (substrate_conditional /
+        substrate_ceiling / v3_pending / implementation_phase>=v4 /
+        implementation_phase=v3 / pending_* booleans) are consolidated into one
+        canonical machine-readable `assembly_state` field (+ MOVE-1-mirrored
+        awaiting:/assembly_status:/revisit_after: companions; derive-first, no
+        rec drift), and the same maturity buckets are drawn over the whole
+        claims registry via a nodes<->claims toggle on the strip -- see Open
         follow-ons.
 ---
 
@@ -259,15 +262,21 @@ construction) — routing the work to the build queue instead of a 13th 485-lett
 That is exactly the documented first-migration candidate (`commitment_closure:GAP-8`
 awaiting MECH-449).
 
-### MOVE-4 — assembly/maturity portfolio view (the missing altitude). OPEN.
+### MOVE-4 — assembly/maturity portfolio view (the missing altitude). DONE.
 
-With MOVE-1 making the data queryable, add a dashboard (or `closure.html` mode)
-showing the whole assembly by maturity + assembly-state, headlined by TWO
-numbers — closure % (adjudication health) AND assembly-frontier health —
-instead of one burndown %. Prerequisite for the full version: consolidate the 6
-scattered claims-layer substrate-blocked conventions into one canonical,
-machine-readable field with an `awaiting:` pointer (claims-layer follow-on,
-larger than this doc's scope).
+With MOVE-1 making the data queryable, the portfolio altitude now exists at
+BOTH layers, headlined by TWO numbers — closure % (adjudication health) AND
+assembly-frontier health — instead of one burndown %:
+
+- **Closure-plan-node layer** (landed 2026-06-21): `serve.py:_closure_assembly_view`
+  + the `closure.html` "Assembly maturity" strip bucket the V3 nodes.
+- **Claims-registry layer** (landed 2026-06-22): the once-larger prerequisite —
+  consolidating the 6 scattered substrate-blocked conventions into one canonical
+  machine-readable `assembly_state` field with an `awaiting:` pointer — is done
+  (see Open follow-ons for the full schema). `serve.py:_claims_assembly_view`
+  draws the same maturity buckets over the whole claims registry, surfaced via a
+  nodes ↔ claims toggle on the same strip. Derive-first: no bulk hand-edits, no
+  recommendation drift, the epistemic_category dispatch is preserved.
 
 ## Rollout (MOVE-1 is mechanism; tagging real nodes is separate)
 
@@ -315,11 +324,39 @@ substrate on the substrate_queue.
   note-clearance/claimless/word-boundary test (all branches green). PROMOTES
   NOTHING; tooling backstop. The indexer was deliberately NOT chosen — it is
   derive-only and runs too late to catch a commit-time append.
-- Claims-layer consolidation of the 6 substrate-blocked conventions into one
-  canonical `assembling`-equivalent with a machine-readable `awaiting:` edge.
-  MOVE-4's portfolio view landed over the closure-plan-node layer (which MOVE-1
-  made queryable); this consolidation is the deferred claims-layer half that
-  would let the same maturity buckets be drawn over the whole claims registry,
-  not just the closure-plan nodes.
+- ~~Claims-layer consolidation of the 6 substrate-blocked conventions into one
+  canonical `assembling`-equivalent with a machine-readable `awaiting:` edge.~~
+  **DONE 2026-06-22.** The 6 scattered conventions (`substrate_conditional` /
+  `substrate_ceiling` / `v3_pending` / `implementation_phase>=v4` /
+  `implementation_phase=v3` / the `pending_*` booleans) are consolidated into ONE
+  canonical, machine-readable claim-level field **`assembly_state`** whose values
+  PRESERVE each distinction rather than collapsing them: `mature` / `enriching`
+  (substrate_ceiling — V3-tractable, enrich) / `awaiting_substrate`
+  (substrate_conditional — planned upstream unbuilt) / `gated_v3` (v3_pending or
+  impl_phase=v3) / `deferred_future` (impl_phase v4/v5/v6) / `remaining` /
+  `parked` / `blocked`. **Derive-first** (user decision 2026-06-22): the
+  consolidation is a resolver (`scripts/build_claims_json.py:resolve_assembly_state`,
+  synced into `serve.py:_resolve_claim_assembly_state`) computed from the existing
+  conventions, so ZERO bulk hand-edits were needed and the epistemic_category
+  dispatch in `build_experiment_indexes.py` is UNTOUCHED (purely additive — no
+  recommendation drift, verified: only fp-noise + timestamp moved). Three
+  optional explicit companion fields **mirror MOVE-1 exactly** — `awaiting:`
+  (upstream `sd_id`/claim id, auto-joined from
+  `substrate_queue.json:unblocks_claims` when absent), `assembly_status:`
+  (`queued`/`in_progress`/`built`, auto-joined), `revisit_after:` — overriding
+  the derivation where the messy free-text queue auto-join is wrong (worked
+  example `MECH-449` → `awaiting: ARC-107`, `assembly_status: in_progress`).
+  `build_experiment_indexes._load_claim_registry` ACCEPTS the new fields;
+  `scripts/validate_claims.py` warn-only-validates the enums + ISO date
+  (backwards-compatible one cycle). The same maturity buckets MOVE-4 draws over
+  closure-plan nodes are now drawn over the whole registry:
+  `serve.py:_claims_assembly_view` (sibling of `_closure_assembly_view`) feeds
+  `/api/closure` a `claims_assembly` block, surfaced via a **nodes ↔ claims
+  toggle** on the `closure.html` (CLOSURE_VERSION 2026-06-22.1) "Assembly
+  maturity" strip — 164 mature / 6 building / 398 awaiting / 227 remaining over
+  795 claims in scope (44 deferred + 20 parked excluded, exactly like deferred
+  closure nodes). Verified end-to-end: resolver distribution sums to all 859
+  claims, live render + bidirectional toggle on :8011, no console errors.
+  PROMOTES NOTHING.
 - Decide whether meta-generation plans should ever be drift-scanned (currently
   not; they have no owner_exq experiments).

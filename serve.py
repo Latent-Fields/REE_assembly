@@ -2318,6 +2318,206 @@ def _closure_assembly_view(nodes: list[dict]) -> dict:
     }
 
 
+# ── Claims-layer assembly maturity (MOVE-4 follow-on, 2026-06-22) ────────────
+# Draw the SAME maturity buckets MOVE-4 draws over closure-plan nodes over the
+# whole claims registry, by consolidating the 6 scattered substrate-blocked
+# conventions (epistemic_category substrate_conditional / substrate_ceiling,
+# v3_pending, implementation_phase>=v4, implementation_phase=v3, the pending_*
+# booleans) into ONE canonical `assembly_state`. CANONICAL DERIVATION kept in
+# sync with scripts/build_claims_json.py:resolve_assembly_state (one logic, a
+# synced sibling -- MOVE-1 precedent). This is READ-ONLY portfolio reporting; it
+# changes no governance dispatch.
+_ASSEMBLY_STATES = {
+    "mature", "enriching", "awaiting_substrate", "gated_v3",
+    "deferred_future", "remaining", "parked", "blocked",
+}
+_ASSEMBLY_STATUS_VALUES = {"queued", "in_progress", "built"}
+_CLAIM_INACTIVE_STATUSES = {"legacy", "superseded", "retired", "applied", "deprecated"}
+_CLAIM_MATURE_STATUSES = {"active", "stable", "provisional"}
+_CLAIM_BLOCKED_STATUSES = {"blocked", "upstream_blocked", "blocked_pending_substrate"}
+_CLAIM_FUTURE_PHASES = {"v4", "v5", "v6", "post_v5", "post_v4"}
+
+
+def _norm_claim_assembly_status_token(raw) -> "str | None":
+    """Map a (messy, free-text) substrate_queue status blob to one of
+    {built, in_progress, queued}. Synced with build_claims_json."""
+    s = str(raw or "").strip().lower()
+    if not s:
+        return None
+    head = ""
+    for ch in s:
+        if ch.isalnum() or ch == "_":
+            head += ch
+        else:
+            break
+    if head.startswith(("implemented", "validated", "landed", "done")):
+        return "built"
+    if "ceiling_lifted" in s or head.startswith("ceiling"):
+        return "built"
+    if head.startswith(("phase", "amend", "substrate")) or "pending_validation" in s:
+        return "in_progress"
+    return "queued"
+
+
+def _build_substrate_claim_index() -> dict:
+    """Reverse map {claim_id: {awaiting, assembly_status}} from
+    substrate_queue.json. Most-advanced build state wins. Synced with
+    build_claims_json.build_substrate_claim_index."""
+    order = {"queued": 0, "in_progress": 1, "built": 2}
+    out: dict = {}
+    try:
+        data = json.loads(SUBSTRATE_QUEUE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return out
+    queue = data.get("queue", []) if isinstance(data, dict) else []
+    for it in queue:
+        if not isinstance(it, dict):
+            continue
+        sd_id = it.get("sd_id")
+        astatus = (_norm_claim_assembly_status_token(it.get("implementation_status"))
+                   or _norm_claim_assembly_status_token(it.get("status"))
+                   or ("built" if it.get("ready") is True else "queued"))
+        for cid in (it.get("unblocks_claims") or []):
+            prev = out.get(cid)
+            if prev is None or order[astatus] > order[prev["assembly_status"]]:
+                out[cid] = {"awaiting": sd_id, "assembly_status": astatus}
+    return out
+
+
+def _resolve_claim_assembly_state(claim: dict, substrate_index: dict) -> tuple:
+    """Return (assembly_state, awaiting, assembly_status, is_explicit).
+    CANONICAL -- keep in sync with build_claims_json.resolve_assembly_state."""
+    cid = str(claim.get("id") or "")
+    status = str(claim.get("status", "") or "").strip().lower()
+    epi = str(claim.get("epistemic_category", "") or "").strip().lower()
+    phase = str(claim.get("implementation_phase", "") or "").strip().lower()
+    v3p = bool(claim.get("v3_pending"))
+
+    join = substrate_index.get(cid, {})
+    awaiting = str(claim.get("awaiting", "") or "").strip() or str(join.get("awaiting") or "")
+    explicit_astatus = str(claim.get("assembly_status", "") or "").strip().lower()
+    if explicit_astatus in _ASSEMBLY_STATUS_VALUES:
+        assembly_status = explicit_astatus
+    else:
+        assembly_status = join.get("assembly_status") or ""
+
+    explicit_state = str(claim.get("assembly_state", "") or "").strip().lower()
+    if explicit_state in _ASSEMBLY_STATES:
+        return explicit_state, awaiting, assembly_status, True
+
+    if status in _CLAIM_INACTIVE_STATUSES:
+        state = "parked"
+    elif status in _CLAIM_BLOCKED_STATUSES:
+        state = "blocked"
+    elif epi == "substrate_conditional":
+        state = "awaiting_substrate"
+    elif epi == "substrate_ceiling":
+        state = "enriching"
+    elif v3p:
+        state = "gated_v3"
+    elif phase in _CLAIM_FUTURE_PHASES:
+        state = "deferred_future"
+    elif status in _CLAIM_MATURE_STATUSES:
+        state = "mature"
+    elif phase == "v3":
+        state = "gated_v3"
+    else:
+        state = "remaining"
+    return state, awaiting, assembly_status, False
+
+
+# Claim assembly_state -> the same five maturity buckets _closure_assembly_view
+# uses over nodes. deferred_future + parked are excluded from the portfolio
+# (parked out of v3, exactly like deferred closure nodes).
+_CLAIM_STATE_TO_BUCKET = {
+    "mature": "mature",
+    "blocked": "genuinely_blocked",
+    "remaining": "remaining",
+    # enriching / awaiting_substrate / gated_v3 split by assembly_status below.
+}
+# The waiting-on-assembly states form the claims "assembly frontier".
+_CLAIM_WAITING_STATES = {"enriching", "awaiting_substrate", "gated_v3"}
+
+
+def _claims_assembly_view(claims: list, substrate_index: dict) -> dict:
+    """Bucket the whole claims registry by maturity / assembly-state -- the
+    claims-layer companion to _closure_assembly_view (which buckets closure-plan
+    nodes). Same bucket schema so closure.html's renderAssembly can switch data
+    sources via the nodes<->claims toggle. READ-ONLY portfolio reporting.
+
+    The "frontier" here = claims actively under construction (assembly_status
+    in_progress) plus any with a past revisit_after -- a bounded, meaningful set
+    (not all ~400 waiting claims). frontier_health.frontier_count reports the
+    full assembly backlog (all waiting states) as the second headline number.
+    """
+    today = datetime.datetime.now(datetime.UTC).date()
+
+    def _revisit_due(claim: dict) -> bool:
+        raw = claim.get("revisit_after")
+        if not raw:
+            return False
+        try:
+            return datetime.date.fromisoformat(str(raw).strip()) <= today
+        except Exception:
+            return False
+
+    buckets: dict = {
+        "mature": [], "mid_construction": [], "awaiting_construction": [],
+        "genuinely_blocked": [], "remaining": [],
+    }
+    frontier: list = []
+    waiting_total = 0
+    state_counts: dict = {}
+
+    for c in claims:
+        cid = c.get("id")
+        if not cid:
+            continue
+        state, awaiting, astatus, explicit = _resolve_claim_assembly_state(c, substrate_index)
+        state_counts[state] = state_counts.get(state, 0) + 1
+        if state in ("deferred_future", "parked"):
+            continue  # parked out of the v3 portfolio (like deferred nodes)
+        due = _revisit_due(c)
+        summ = {
+            "id": cid,
+            "title": c.get("title") or cid,
+            "status": c.get("status"),
+            "assembly_state": state,
+            "awaiting": awaiting or None,
+            "assembly_status": astatus or None,
+            "revisit_after": c.get("revisit_after"),
+            "revisit_due": due,
+        }
+        if state in _CLAIM_WAITING_STATES:
+            waiting_total += 1
+            if astatus == "in_progress":
+                buckets["mid_construction"].append(summ)
+            else:
+                buckets["awaiting_construction"].append(summ)
+            if astatus == "in_progress" or due:
+                frontier.append(summ)
+        else:
+            buckets[_CLAIM_STATE_TO_BUCKET[state]].append(summ)
+
+    revisit_due_count = sum(1 for f in frontier if f.get("revisit_due"))
+    counts = {k: len(v) for k, v in buckets.items()}
+    counts["frontier"] = waiting_total
+    counts["revisit_due"] = revisit_due_count
+    return {
+        "buckets": buckets,
+        "counts": counts,
+        "frontier": frontier,
+        "state_counts": state_counts,
+        "total_in_scope": sum(len(v) for v in buckets.values()),
+        "frontier_health": {
+            "frontier_count": waiting_total,
+            "revisit_due_count": revisit_due_count,
+            "in_progress": counts["mid_construction"],
+            "awaiting": counts["awaiting_construction"],
+        },
+    }
+
+
 def _enrich_closure_v2(data: dict) -> dict:
     """Add closure/v2 orientation, live EXQ, cusp rail, per-node flags."""
     nodes = data.get("nodes") or []
@@ -2515,6 +2715,12 @@ def _enrich_closure_v2(data: dict) -> dict:
         [n for n in nodes
          if (n.get("generation") or CLOSURE_DEFAULT_GENERATION) == CLOSURE_DEFAULT_GENERATION]
     )
+    # Claims-layer companion (MOVE-4 follow-on): the SAME maturity buckets over
+    # the whole claims registry, consolidating the 6 substrate-blocked
+    # conventions into one canonical assembly_state. Surfaced via the
+    # nodes<->claims toggle on closure.html's Assembly maturity strip.
+    data["claims_assembly"] = _claims_assembly_view(
+        _tl_load_claims(), _build_substrate_claim_index())
     data["exq_live"] = {
         "running": running_rows,
         "queue_claimed": queue_claimed,
