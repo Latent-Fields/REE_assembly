@@ -288,11 +288,33 @@ substrate on the substrate_queue.
 ## Open follow-ons
 
 - MOVE-2 + MOVE-3 + MOVE-4 done 2026-06-21 (all four moves landed).
-- Harden MOVE-3 from a skill-doc gate to a code gate: a `validate_queue.py` /
+- ~~Harden MOVE-3 from a skill-doc gate to a code gate: a `validate_queue.py` /
   indexer check that flags a queued same-granularity re-test of a claim with >=2
   `substrate_ceiling` autopsies whose upstream substrate is not yet built (the
   doc-level brake relies on the skill being followed; a validator backstop would
-  catch a hand-edited queue append).
+  catch a hand-edited queue append).~~ **DONE 2026-06-22.** Landed in
+  `ree-v3/validate_queue.py` as a **warn-only** backstop (user-confirmed severity;
+  mirrors `validate_claims.py`'s warn-only enum checks). It re-applies the EXACT
+  `/queue-experiment` Step 2.5b + `/failure-autopsy` Step 7 counting logic
+  (`substrate_ceiling` in `recommended_epistemic_category` OR `non_contributory` in
+  `recommended_evidence_direction`, one hit per `failure_autopsy_*.json` per claim)
+  at queue-validate time — which runs at the PreToolUse git-commit hook AND at
+  runner startup, so a hand-edited queue append is caught even when the skill was
+  bypassed. For every claim a queued item tags with >= `RE_DERIVE_BRAKE_THRESHOLD`
+  (default 2) counted autopsies, it resolves the most-recent counted autopsy's named
+  upstream substrate (`recommended_substrate_queue_entry.target_sd_id` /
+  `sd_id_suggested` / `re_derive_brake.upstream_substrate`) and WARNs unless that
+  substrate shows `IMPLEMENTED`/`VALIDATED` on a single `ree-v3/CLAUDE.md` line
+  (same-line, token-boundary match — so a nearby unrelated `IMPLEMENTED` header
+  cannot falsely release it). Warn-only (`_LAST_WARNINGS`), never blocks the commit
+  hook or runner. Exemptions: claimless items, an item whose `note` documents a
+  brake clearance, and (advised in the warning text, not auto-detected) redesigns of
+  a different mechanism / commitment-free reads / diagnostics. Validated against the
+  live queue (correctly fires on `V3-EXQ-654i` MECH-309/ARC-062 → unbuilt
+  `f_dominance_conversion_ceiling`, exit 0) + a synthetic suppression/threshold/
+  note-clearance/claimless/word-boundary test (all branches green). PROMOTES
+  NOTHING; tooling backstop. The indexer was deliberately NOT chosen — it is
+  derive-only and runs too late to catch a commit-time append.
 - Claims-layer consolidation of the 6 substrate-blocked conventions into one
   canonical `assembling`-equivalent with a machine-readable `awaiting:` edge.
   MOVE-4's portfolio view landed over the closure-plan-node layer (which MOVE-1
