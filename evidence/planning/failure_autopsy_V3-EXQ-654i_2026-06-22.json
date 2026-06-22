@@ -1,0 +1,97 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-22T04:47:35Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "mode": "staging_headless_scheduled",
+  "targets": [
+    {
+      "run_id": "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3",
+      "queue_id": "V3-EXQ-654i",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "supersedes": "V3-EXQ-654h",
+      "failed_criterion": "discrimination",
+      "self_route_label": "conversion_ceiling_persists_despite_demotion_route_mech449",
+      "self_route_adjudication": "CONFIRMED -- pre-registered FAIL(C1 holds, C2 fails) branch; all C1 readiness/non-vacuity gates met and non-degenerate, so this is a clean substrate-ceiling result (not vacuous_pass, not precondition_unmet)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- test fair at apprehension/selection layer; FAIL weighs against the conversion substrate, not MECH-309/ARC-062",
+        "biological_reference": "clear -- BG Go/No-Go opponency; demotion-without-active-No-Go is the missing-dependency signature",
+        "prerequisites": "missing -- conversion needs active No-Go (MECH-449), not engaged in this run",
+        "implementation": "partial -- MECH-448 demotion complete & live (excluded 18.4); MECH-449 built 2026-06-21 but not in this run's ARM_ON",
+        "environment": "adequate -- arc_062 spread F bank exercised; demotion non-vacuous",
+        "measurement": "adequate -- C2 committed-class entropy lift is the right DV; non-degeneracy gates confirm measurability",
+        "integration": "partially coupled -- rule field -> bias works; bias -> committed-class conversion does not",
+        "scale": "adequate -- matured pool, 350 ep, propagation non-vacuous"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia Go/No-Go opponency over an action-eligibility set",
+        "dependencies": ["active No-Go withdrawal (MECH-260 generalised -> MECH-449)", "F-rank eligibility envelope (MECH-448)", "ARC-107 selector constitution"],
+        "is_formal_import": false,
+        "divergence": "MECH-448 rank-preserving demotion is the indirect-pathway-like gating; it structurally cannot express the active No-Go withdrawal that committed-class carving requires",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-654i (arc_062 GAP-B rule-apprehension behavioural falsifier, 2026-06-22) FAILed non_contributory on the pre-registered FAIL(C1 holds, C2 fails) branch: all C1 readiness/non-vacuity gates met and non-degenerate (rule field matured 0.913, propagation non-vacuous 0.027, MECH-448 demotion live & excluding 18.4 candidates) yet the load-bearing C2 committed-class entropy lift failed -- the differentiated rule-apprehension bias reaches committed action but does not convert to committed-class diversity even under the live MECH-448 demotion lever. Conversion ceiling persists despite demotion; NOT a MECH-309/ARC-062 falsification (claims unweakened, pending_retest_after_substrate behind MECH-449). Cross-substrate corroboration of V3-EXQ-485k (devaluation face): demotion alone cannot express the active No-Go withdrawal; route to the MECH-449 Go/No-Go opponency leg (built 2026-06-21, falsifier V3-EXQ-689g queued). Re-derive brake FIRED (16-17 prior substrate_ceiling autopsies on these claims): refuse a same-substrate 654j re-queue; next test must engage MECH-449 active No-Go.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "F-dominance committed-selection conversion ceiling (MECH-439); MECH-448 demotion lead lever BUILT/PROMOTED, MECH-449 Go/No-Go opponency leg BUILT 2026-06-21 pending falsifier 689g",
+        "implementation_hint": "Existing entry already records the MECH-449 build + 689g queued. Append a 654i failure record documenting that the demotion lever, live and excluding on a non-degenerate arc_062 bank, does not convert the GAP-B rule-apprehension face -- the second cross-substrate corroboration (after 485k devaluation face) that demotion != active No-Go.",
+        "unblocks_claims": ["MECH-309", "ARC-062"],
+        "depends_on_unresolved": ["MECH-449 (built 2026-06-21, validation falsifier V3-EXQ-689g queued, not yet scored)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3",
+          "experiment_type": "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier",
+          "metric": "C2 committed-class entropy lift FAILED while all C1 non-vacuity gates true (MECH-448 demotion excluded 18.4 candidates, propagation delta 0.027, rule field matured 0.913)",
+          "target": "paired-by-seed committed-class entropy lift of ARM_ON over ARM_OFF, strict-above-by-margin on >=2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-543f_2026-05-17",
+          "failure_autopsy_V3-EXQ-543h_2026-05-18",
+          "failure_autopsy_V3-EXQ-543i_2026-05-19",
+          "failure_autopsy_V3-EXQ-543k_2026-05-21",
+          "failure_autopsy_V3-EXQ-543l_2026-05-27",
+          "failure_autopsy_V3-EXQ-654_2026-06-09",
+          "failure_autopsy_V3-EXQ-654b_2026-06-11",
+          "failure_autopsy_V3-EXQ-654c_2026-06-15",
+          "failure_autopsy_V3-EXQ-654d_2026-06-16",
+          "failure_autopsy_V3-EXQ-654f_2026-06-18",
+          "failure_autopsy_V3-EXQ-654g_2026-06-19",
+          "failure_autopsy_V3-EXQ-654h_2026-06-21",
+          "failure_autopsy_V3-EXQ-690_2026-06-20",
+          "failure_autopsy_569f-661-654a_2026-06-10",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20",
+          "failure_autopsy_V3-EXQ-695-696-f-dominance-cluster_2026-06-21"
+        ],
+        "prior_count_mech_309": 16,
+        "prior_count_arc_062": 17,
+        "refused_requeue": true,
+        "refused_requeue_detail": "Do NOT queue a 654j re-running the MECH-448-only (demotion) stack against MECH-309/ARC-062. The only permitted next test must engage MECH-449 active No-Go as the ARM_ON manipulation (different mechanism), gated behind V3-EXQ-689g confirming MECH-449 at the selection face.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "MECH-449 (Go/No-Go eligibility constitution, ARC-107 opponency leg) -- BUILT 2026-06-21, falsifier V3-EXQ-689g queued"
+      },
+      "learning_extracted": [
+        "MECH-448 rank-preserving demotion, even live and excluding 18.4 candidates on a non-degenerate bank, does not convert a differentiated rule-apprehension bias into committed-action class diversity on the GAP-B composite -- the conversion ceiling is structural (MECH-439 F-dominance), not a calibration artifact of the 654h all-admit no-op.",
+        "Independent cross-substrate corroboration of the 485k devaluation-face finding: demotion != active No-Go; two faces, one fix (MECH-449).",
+        "The 654 lineage re-derive loop is now formally braked: no further demotion-only letter on MECH-309/ARC-062."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "demotion-lever-live-and-excluding + bias-differentiated + propagation-non-vacuous, yet committed-class/behavioural discrimination DV flat",
+    "is_independent_bugs": false,
+    "structural_property": "MECH-448 rank-preserving demotion lifts the GAP-A foraging selection-face ceiling but does not generalise to behavioural conversion on the GAP-B composite; residual is the F-dominance conversion ceiling (MECH-439); named fix is the MECH-449 active Go/No-Go opponency leg",
+    "members": ["V3-EXQ-485k (MECH-263/SD-033b, devaluation face)", "V3-EXQ-654i (MECH-309/ARC-062, rule-apprehension face)"],
+    "readings": ["substrate_enrichment"],
+    "note": "654i is the cleanest instance -- all non-degeneracy gates true, so it cannot be dismissed as a vacuous test"
+  }
+}
