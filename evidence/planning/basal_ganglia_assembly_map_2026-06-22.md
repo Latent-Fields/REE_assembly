@@ -163,6 +163,57 @@ directly on the live MECH-439 root.
 
 ---
 
+## A.6 The dopaminergic control layer (biology check, 2026-06-22)
+
+**Prompted by:** "our control plane is meant to have an input here and we forgot
+to include it … we should check biology … dopaminergic equivalents are prime
+candidates." This section is the literature check that followed.
+
+**Finding (one line):** REE built the commit/maintain/release **machinery** of the
+control plane (beta-gate latch + refractory, SD-034 closure operator, MECH-091
+urgency interrupt, MECH-090 R-c readiness conjunction) but **not its dopaminergic
+driver**. In the brain, dopamine drives *all four phases* of action commitment;
+REE's control plane runs those phases off hand-specified arithmetic readiness
+signals (`running_variance`, score margin, nav-competence, rule-state stability)
+instead. It is a control body without its neuromodulator — and the user's instinct
+is correct: several of the control-plane *bits* are not instantiated at all, not
+merely missing an input.
+
+**The four dopaminergic control-plane functions (lit-grounded) vs. what REE has:**
+
+| Control-plane phase | Dopaminergic signal in biology | Evidence | REE today | Gap |
+|---|---|---|---|---|
+| **Commit threshold / readiness** (how readily / how fast to commit; response latency & vigor) | **Tonic DA = average reward rate = opportunity cost of time** sets response vigor/latency (the value of acting now vs deliberating) | Niv 2007 [1]; refined to effort-value by Zénon 2016 [2] | MECH-320 tonic-vigor is a score-*bias*; ARC-068 opportunity-cost is registered-but-unbuilt (collapsed onto vigor). It does **not** set the commit threshold (the `running_variance` gate). | **MISSING:** tonic-DA → commit-threshold/latency. |
+| **Commit "go" / gate-open signal** (when to update/commit the selected program) | **Phasic DA "locks the gate to working memory"** — gates PFC updating via targeted striatal disinhibition (the PBWM go-signal) | Gruber 2006 [3]; Rac-Lubashevsky 2017 (ebEBR ~ striatal DA tracks gate-open) [4] | The commit gate (beta-gate) opens on `running_variance < threshold` + the R-c conjunction. No DA go-signal gates it. | **MISSING:** phasic-DA go/update gate. |
+| **Commitment maintenance** (sustaining drive across a multi-step program / toward a distant goal) | **DA ramps scaled to goal proximity & value** provide sustained motivational drive; release-ramps = motivation (distinct from spiking = learning) | Howe 2013 [5]; Mohebi 2019 [6] | Maintenance is a **fixed bistable latch + refractory + the rung-6 occupancy lever** — flat, not proximity-scaled. | **MISSING:** DA-ramp-as-maintenance. **Directly implicates deviation B6** (the 460h ~2400-step monolithic hold): biology maintains via a ramp that peaks-then-declines with proximity, so it cannot monopolise; a flat latch can. |
+| **Pre-initiation gate / invigoration** (whether & how vigorously to launch the chosen action) | **DA activity *before* movement gates + invigorates the future action**; DA required for the striatal vigor representation; depletion → bradykinesia / failure-to-act | Alves da Silva 2018 [7]; Panigrahi 2015 [8]; nuance Cai 2024 (fast DA dispensable for movement *per se* but required for vigor/motivation) [9] | Commit-entry (MECH-090 R-c) gates on decisiveness + nav-competence, not a pre-initiation DA gate/vigor term. | **MISSING:** pre-initiation DA gate — and with it the **Parkinsonian bradykinesia/avolition failure mode** (no DA to deplete → ARC-106 EARNS gap). |
+| **De-commit / abort** (withdraw a committed program that is going worse than expected) | **Lateral habenula → RMTg → DA inhibition = negative RPE** drives abort/withhold + inhibitory learning | Matsumoto 2007 [10]; Hong 2011 (RMTg relay) [11]; Sosa 2021 (reward-omission inhibitory learning) [12] | The entire de-commit side (MECH-342, SD-034 closure, the 460d–j lineage, the parked rung-6) is engineered with refractory timers / latch-hold yield clauses — **with no negative-RPE driver at all.** | **MISSING:** habenula/negative-RPE-driven de-commit. The de-commit machinery has been built without its teaching signal. |
+
+### Two implications that change the earlier analysis
+
+1. **The "unified dopamine substrate" (A.4 / A.5 item 1) has *two co-equal jobs*, not one.** Before this check it was framed as the learned-gating teaching signal for *selection* (the MECH-439 attack). The biology shows it is *also* the driver of the *control plane*: commit-threshold (tonic), go-signal (phasic gate), maintenance (ramp), and de-commit (habenula negative RPE). The dopamine substrate is the single missing piece that closes **both** the selection-learning gap **and** the control-plane-driver gap. That raises its priority further — it is upstream of two otherwise-separate problem areas.
+
+2. **The de-commit struggle (the 460d–j lineage, the parked rung-6) and the global-latch monopoly (deviation B6) are the *same* missing piece seen from two ends.** REE has spent ~10 iterations engineering de-commit with refractory timers and latch-hold yield clauses; biology de-commits via a negative-RPE (habenula) signal and maintains via a proximity-scaled DA ramp. Both the "hold never releases / monopolises" (B6, 460h) and the "de-commit has no authority / non-dissociable" (rung-6 park) symptoms are predicted by *maintenance-and-release driven by a fixed latch instead of a dopaminergic ramp+habenula pair*. **This makes the dopamine substrate a concrete candidate fix for the parked rung-6 — not just the MECH-439 selection problem.**
+
+### Citations (this biology check)
+
+- [1] [Tonic dopamine: opportunity costs and the control of response vigor](https://consensus.app/papers/details/aded550af38f576db3279838bd2a39b1/?utm_source=claude_code) (Niv et al., 2007, Psychopharmacology, 1116 cites)
+- [2] [Dopamine Manipulation Affects Response Vigor Independently of Opportunity Cost](https://consensus.app/papers/details/0f105448d7535f31806cdf553e0783f3/?utm_source=claude_code) (Zénon et al., 2016, J Neurosci)
+- [3] [Dopamine modulation in the basal ganglia locks the gate to working memory](https://consensus.app/papers/details/d9a2bc7815ab5506887b840bd7bbf422/?utm_source=claude_code) (Gruber et al., 2006, J Comput Neurosci)
+- [4] [Tracking Real-Time Changes in Working Memory Updating and Gating with the Event-Based Eye-Blink Rate](https://consensus.app/papers/details/25fccacf3c4755fab190388471cbfaac/?utm_source=claude_code) (Rac-Lubashevsky et al., 2017, Sci Rep)
+- [5] [Prolonged Dopamine Signalling in Striatum Signals Proximity and Value of Distant Rewards](https://consensus.app/papers/details/310046782a0c5993a130a17f6c8a9471/?utm_source=claude_code) (Howe et al., 2013, Nature, 521 cites)
+- [6] [Dissociable dopamine dynamics for learning and motivation](https://consensus.app/papers/details/c99ffd7a25a75b068097dc1bb684fdea/?utm_source=claude_code) (Mohebi et al., 2019, Nature, 621 cites)
+- [7] [Dopamine neuron activity before action initiation gates and invigorates future movements](https://consensus.app/papers/details/6c75e9407c4f55c68cd444c926d8ae63/?utm_source=claude_code) (Alves da Silva et al., 2018, Nature, 485 cites)
+- [8] [Dopamine Is Required for the Neural Representation and Control of Movement Vigor](https://consensus.app/papers/details/fe55a65ac3bf51a09171a295d6206c17/?utm_source=claude_code) (Panigrahi et al., 2015, Cell)
+- [9] [Dopamine dynamics are dispensable for movement but promote reward responses](https://consensus.app/papers/details/fac6f77758b45a5c93690367a26267b4/?utm_source=claude_code) (Cai et al., 2024, Nature)
+- [10] [Lateral habenula as a source of negative reward signals in dopamine neurons](https://consensus.app/papers/details/78284a5f25ee56d9afd2696e701f3606/?utm_source=claude_code) (Matsumoto & Hikosaka, 2007, Nature, 1270 cites)
+- [11] [Negative reward signals from lateral habenula to dopamine neurons are mediated by RMTg](https://consensus.app/papers/details/ff08d06b3c875b7186ac15d1b589ecd6/?utm_source=claude_code) (Hong et al., 2011, J Neurosci)
+- [12] [The Role of the Lateral Habenula in Inhibitory Learning from Reward Omission](https://consensus.app/papers/details/7b5cbcc964365fa1b7e90ab1bfc27709/?utm_source=claude_code) (Sosa et al., 2021, eNeuro)
+
+*A formal ARC-106 L2 lit-pull synthesis (`evidence/literature/targeted_review_*`) is the follow-on if these anchors need to ground a registered claim's confidence; the citations above are sufficient to carry the assembly-map finding.*
+
+---
+
 ## B. Divergence ledger (eight rows)
 
 Active design choices that diverge from biology in a way that *may be wrong* —
@@ -381,9 +432,15 @@ settling-step + learned-gating repairs do not fully resolve MECH-439.
    (signed RPE -> learned gating + habenula drain), a **D1/D2 population split**,
    a **minimal recurrent settling step** (B1+B3-blend). (Per the intake-reap rule,
    this is the proper home for these — not future-registration prose.)
-3. **Draft the dopamine-into-gating design note** deciding learned-gating vs the
-   arithmetic envelope as the next MECH-439 attack (the highest-leverage item;
-   resolves A.4, B2-long-term, B5, B8 together). **DONE 2026-06-22:**
+3. **Draft the dopamine *control-layer* design note** (broadened from
+   "dopamine-into-gating" after the A.6 biology check). The unified dopamine
+   substrate has two co-equal jobs: (a) the learned-gating teaching signal for
+   *selection* (the MECH-439 attack); (b) the *control-plane driver* —
+   commit-threshold (tonic/opportunity-cost), go-signal (phasic PBWM gate),
+   maintenance (goal-proximity ramp), and de-commit (habenula negative RPE).
+   Highest-leverage item; resolves A.4, A.6, B2-long-term, B5, B6, B8 — and is a
+   concrete candidate fix for the parked rung-6 de-commit problem (A.6
+   implication 2). **DONE 2026-06-22:**
    [`dopamine_into_gating_design_2026-06-22.md`](dopamine_into_gating_design_2026-06-22.md)
    — decision: **build the minimal learned gate (signed-RPE δ_t → learned
    per-channel selection weight `w_chan`, distinct from ARC-016 unsigned variance
