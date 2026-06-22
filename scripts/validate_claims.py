@@ -254,6 +254,17 @@ def main():
     _STANCE_VALUES = {"shown", "believed", "asked"}
     _ASKED_CATEGORIES = {"answer_state", "derivational", "out_of_domain"}
     _ASKED_CLAIM_TYPES = {"open_question", "question"}
+    # Terminal statuses: a question that has been answered, retired, or
+    # superseded is no longer ASKED, so it should not be flagged for a missing
+    # `what_would_answer` falsification condition (writing one for a closed
+    # question is semantically backwards). `lifecycle_stage: adjudicated`
+    # likewise marks a question that has been settled by an adjudication
+    # decision. These claims keep their `open_question`/`question` claim_type
+    # for history, so the bucket test below would otherwise fire on them.
+    _TERMINAL_STATUSES = {
+        "legacy", "resolved", "retired", "superseded", "candidate_resolved",
+        "deprecated", "applied",
+    }
     for c in claims:
         cid = c.get("id", "<unknown>")
         stance = str(c.get("epistemic_stance", "") or "").strip().lower()
@@ -265,8 +276,13 @@ def main():
                 "fall back to the derivation)"))
         ct = str(c.get("claim_type", "") or "").strip()
         cat = str(c.get("epistemic_category", "") or "").strip().lower()
-        is_asked = (stance == "asked" or cat in _ASKED_CATEGORIES
-                    or ct in _ASKED_CLAIM_TYPES)
+        status = str(c.get("status", "") or "").strip().lower()
+        lifecycle = str(c.get("lifecycle_stage", "") or "").strip().lower()
+        is_terminal = (status in _TERMINAL_STATUSES
+                       or lifecycle == "adjudicated")
+        is_asked = (not is_terminal
+                    and (stance == "asked" or cat in _ASKED_CATEGORIES
+                         or ct in _ASKED_CLAIM_TYPES))
         if is_asked and not str(c.get("what_would_answer", "") or "").strip():
             all_issues.append((
                 "WARN",

@@ -3675,7 +3675,8 @@
     "status": "candidate",
     "subject": "pharmacology.anticholinergic_dual_pathway_dementia_risk",
     "title": "Anticholinergic medications confer dementia risk via two independent and potentially additive pathways: (1) REM suppression (ACh is required for REM generation via nucleus basalis and brainstem PGO generators -- muscarinic blockade directly suppresses REM, impairing MECH-123); and (2) cholinergic deficit mimicry (AD is characterised by basal forebrain cholinergic loss; anticholinergic burden creates a pharmacological analog of this deficit during waking hours, independently degrading attention and encoding).",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "out_of_domain: no REE substrate at any level settles this; V3-EXQ-698's\ngrid-world dual-pathway proxy was confirmed not a fair test (manipulation\nchecks PASS but outcome DVs at the noise floor). The decisive test is a\nprospective clinical-pharmacology cohort with mediation/structural-equation\nanalysis. Design: enroll older adults free of dementia, score anticholinergic\nburden (ACB / ARS / German ACB) at each visit, obtain an annual\npolysomnography subset to quantify REM-suppression-years, follow to a\ndementia-conversion endpoint, and fit a parallel-mediator SEM with (1)\ncumulative REM-suppression-years (Pathway 1) and (2) cumulative diurnal\nanticholinergic dose (Pathway 2) as simultaneous mediators of the\nACB->dementia path. CONFIRMS the dual independent additive account if both\nmediators carry significant, partially non-overlapping indirect effects whose\nsum approximates the total ACB->dementia effect, AND ACB outperforms total\nmedication count and total sleep-medication count as a predictor. REFUTES if\nthe ACB->dementia association is fully mediated by a single pathway (e.g.\ndaytime dose only, with REM-suppression-years adding no independent indirect\neffect), or if a non-anticholinergic substitution that removes only the\nnocturnal limb (oxybutynin->mirabegron natural experiment) fails to reduce\nrisk. Note the Grace-Vanstone-Horner 2014 caveat: REM-transition reliability /\nREM-theta integrity may be the true nocturnal mediator rather than total REM\namount, so the PSG metric should include transition and spectral measures, not\njust REM%.\n"
   },
   "MECH-176": {
     "assembly_state": "remaining",
@@ -6039,7 +6040,8 @@
     "status": "active",
     "subject": "entities.emergence_mechanism",
     "title": "What mechanisms produce entity emergence and binding?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Run the entity-binding discriminative pair (the EXQ-146 lineage) on a\nsubstrate that can carry persistent, attention-gated object-files (ARC-006\ndesign constraints: object-specific buffers + precision-gated feature merge).\nANSWER \"yes -- a binding mechanism is present\" if sparse, persistent latent\nstructures emerge that (a) track the SAME entity across occlusion / multiple\ntimesteps above a re-identification floor, (b) bind feature conjunctions only\nwhen precision/attention state licenses the merge (binding rate scales with\nattention, not feedforward co-occurrence), and (c) support entity-linked error\nattribution -- a perturbation to one entity's slot changes that entity's\nprediction error and not others'. ANSWER \"no\" if representations are\nnon-persistent or features merge feedforward regardless of attention. HARD\nPRECONDITION: an object-file-like persistent buffer must exist; the EXQ-146\nFAIL is uninformative because V3 had no persistent bindable substrate and no\ntraining budget to grow one -- a FAIL on the current substrate self-routes\nsubstrate-not-ready, not a falsification of emergence.\n"
   },
   "Q-002": {
     "assembly_state": "mature",
@@ -6047,7 +6049,8 @@
     "status": "active",
     "subject": "astrocyte.R_field_resolution",
     "title": "What is the appropriate spatial resolution for R(x,t)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Sweep R(x,t) spatial resolution (RBF-center count, e.g. 4 / 8 / 32 / 64) on a\nsubstrate whose z_world latent has demonstrable spatial organisation, and read\nBOTH downstream axes separately: harm-avoidance behaviour (harm_rate) and\nterrain-map quality (residue_accuracy / residue-hazard correlation). ANSWER\n\"fine resolution warranted\" only if increasing centers improves\nresidue_accuracy ABOVE the coarse baseline (cross threshold ~0.10) without\ninflating harm_rate -- i.e. the spatial signal is being used, not spread too\nthin. ANSWER \"coarse adequate\" if, as in EXQ-170 (fine harm_rate 0.028 vs\ncoarse 0.0003, 93x worse) and EXQ-215 (high-res better on harm C2 but worse on\nresidue-hazard C3), fine resolution either degrades one axis or splits the\nlearning signal so accuracy stays below threshold. HARD PRECONDITION: z_world\nmust carry enough spatial structure for fine-grained RBF accumulation; at V3\nscale it does not, so a fine-resolution FAIL reflects the substrate ceiling\n(resolve via SD-005 / higher-dim z_world), not a settled answer. The sharper\ntest EXQ-170/215 did not run: hold harm-avoidance and map-quality as SEPARATE\nacceptance axes rather than collapsing them, since the existing evidence shows\nthem dissociating.\n"
   },
   "Q-003": {
     "assembly_state": "mature",
@@ -6055,7 +6058,8 @@
     "status": "active",
     "subject": "astrocyte.R_field_dimensionality",
     "title": "Should R(x,t) be scalar or vector?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Run the R-field dimensionality discriminative pair (scalar R vs vector R with\nseparable regulatory dimensions, the EXQ-148 lineage) on a substrate where the\nresidue/contrast infrastructure is confirmed building real cross-zone contrast\n(not flat). ANSWER \"vector\" if at least two regulatory dimensions carry\nSEPARABLE, non-redundant signal -- each dimension predicts a distinct\ndownstream control effect (e.g. one tracks harm-residue, another\nmetabolic/gain state) and ablating one degrades only its associated behaviour,\nAND vector-R beats scalar-R on a task requiring independent regulation of two\ncontrol axes. ANSWER \"scalar\" if the putative dimensions are collinear (one\neffective dimension explains the variance) and scalar-R matches vector-R. HARD\nPRECONDITION: the residue-field contrast must be confirmed working first --\nEXQ-148's two consistent FAIL/weakens results predate confirmed contrast\ninfrastructure, so they do not yet discriminate scalar from vector; reframe\nthe question only once contrast is real.\n"
   },
   "Q-004": {
     "assembly_state": "mature",
@@ -6063,7 +6067,8 @@
     "status": "active",
     "subject": "astrocyte.tau_R_calibration",
     "title": "How to calibrate tau_R relative to E1/E2?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Sweep tau_R across the candidate range (e.g. [0.02, 0.5]) at a TRAINING BUDGET\nlarge enough that residue accumulation actually feeds back into behaviour, and\nread tau_R's effect on the timescale-sensitive observables, not just\nharm_rate. ANSWER \"tau_R is calibratable against E1/E2\" if there exists a\ntau_R band that jointly (a) produces residue contrast sufficient for hazard\ndiscrimination AND (b) measurably improves a behaviour that depends on the\nregulatory field integrating over the right horizon -- with a clear optimum,\nfast-tau over-reacting and slow-tau under-accumulating. ANSWER \"tau_R is\nbehaviourally inert at this scale\" if, as in EXQ-149 (FAST_TAU gave ~400x more\nresidue contrast, 3.09 vs 0.008, yet ALL conditions showed identical mean_harm\n~9.085), tau_R changes only residue-accumulation patterns and never reaches\nbehaviour. HARD PRECONDITION: harm/behaviour must be tau-sensitive at the\nchosen budget -- the EXQ-149 finding is that at the current training scale\ntau_R is decoupled from harm_rate, so the calibration question is only\nanswerable once the field's output is wired into a behaviour that the\nintegration timescale can move.\n"
   },
   "Q-005": {
     "assembly_state": "mature",
@@ -6071,7 +6076,8 @@
     "status": "active",
     "subject": "astrocyte.sleep_annealing",
     "title": "Can sleep anneal or reset R(x,t)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Implement a genuine V3 sleep/offline phase (SD-017 / MECH-204 sleep substrate)\nand compare an offline integration pass that anneals or partially resets\nR(x,t) against a matched no-anneal control, both followed by the SAME waking\nevaluation. ANSWER \"sleep can anneal/reset R\" if the anneal arm shows a\nmeasurable, directional change in R structure (e.g. reduced spurious residue,\nsharpened hazard contrast, or recovered plasticity headroom) that translates\ninto improved waking behaviour or calibration relative to no-anneal -- on a\nmetric that is NOT pinned across arms. ANSWER \"no\" if anneal and no-anneal\nproduce statistically indistinguishable R and behaviour. HARD PRECONDITION\n(the EXQ-150 lesson): the test requires a real sleep substrate. EXQ-150 was\nmarked superseded because V3 had no sleep; a post-training simulated\nanneal-vs-no-anneal gave identical harm (9.050) and is NOT representative.\nUntil the V3 sleep substrate exists, any anneal-vs-no-anneal contrast is\nvacuous and self-routes substrate-not-ready rather than answering the\nquestion.\n"
   },
   "Q-006": {
     "assembly_state": "mature",
@@ -6079,7 +6085,8 @@
     "status": "active",
     "subject": "ethics.developmental",
     "title": "Is ethics developmental rather than additive?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Once the residue field is confirmed building meaningful cross-condition\ncontrast (the EXQ-151 blocker), contrast a DEVELOPMENTAL ethics arm -- ethical\nconstraint emerges from and reshapes the value/residue representation as the\nagent's experience accumulates (early harm-experience permanently alters later\nharm-weighting) -- against an ADDITIVE arm where an ethical penalty term is\nbolted onto a fixed value function. ANSWER \"developmental\" if the\ndevelopmental arm shows path-dependence and irreversibility absent in\nadditive: the ORDER and TIMING of harm exposure change final harm-avoidance\n(delta_harm differs by exposure schedule), early ethical experience\ngeneralises to novel harm types the additive penalty never saw, and removing\nthe explicit penalty late leaves behaviour ethical in the developmental arm\nbut not the additive. ANSWER \"additive\" if behaviour depends only on the\npresent penalty term, is schedule-invariant, and reverts when the penalty is\nremoved. HARD PRECONDITION: the residue field must build non-zero contrast --\nEXQ-151 was scored-excluded as an implementation gap\n(residue_field_not_building, all conditions delta_harm=0), so it is\nuninformative about Q-006; the developmental/additive distinction cannot be\nread until contrast is real.\n"
   },
   "Q-007": {
     "assembly_state": "awaiting_substrate",
@@ -6092,7 +6099,7 @@
   },
   "Q-008": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "valence_vs_mu_kappa_overlays",
     "title": "Legacy: resolved in favor of valence/mu-kappa separation with calibration follow-up.",
@@ -6100,7 +6107,7 @@
   },
   "Q-009": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "care_weights_override_other_harm_veto",
     "title": "Legacy: resolved via bounded care-override policy with hard catastrophic other-harm veto.",
@@ -6108,7 +6115,7 @@
   },
   "Q-010": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "hedonic_valence_signed_pe_separation",
     "title": "Legacy: separation question resolved into MECH-055.",
@@ -6116,7 +6123,7 @@
   },
   "Q-011": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "hippocampus.minimum_rollout_entropy_floor",
     "title": "Legacy: resolved by placing diversity-floor control in pre-commit/offline sampling.",
@@ -6124,7 +6131,7 @@
   },
   "Q-012": {
     "assembly_state": "remaining",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "latent_predictive_models.control_completion_falsifiability",
     "title": "Can latent predictive world models stay agentically stable without explicit REE-like control constraints?",
@@ -6132,7 +6139,7 @@
   },
   "Q-013": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "uncertainty.external_substrate_calibration_legacy",
     "title": "Retired external-substrate uncertainty calibration question; REE-native precision routing is tracked by MECH-059.",
@@ -6140,7 +6147,7 @@
   },
   "Q-014": {
     "assembly_state": "parked",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "legacy",
     "subject": "invariance.ethical_relevance_blind_spot_risk",
     "title": "Retired representation-invariance blind-spot question; REE-native concern moved to MECH-128 and SD-008.",
@@ -6148,7 +6155,7 @@
   },
   "Q-015": {
     "assembly_state": "awaiting_substrate",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "active",
     "subject": "commitment.boundary_token_minimal_contract",
     "title": "What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?",
@@ -6161,11 +6168,12 @@
     "status": "active",
     "subject": "commitment.tri_loop_conflict_arbitration_policy",
     "title": "What arbitration policy best resolves tri-loop gate conflicts without coupling collapse?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Pit candidate tri-loop arbitration policies against each other on a substrate\nwhere MECH-062's three gates (gate_motor, gate_cognitive_set,\ngate_motivational) are LIVE -- each consuming its own proposal manifold and\nshowing non-zero, independent gating variance -- and a task that deliberately\ndrives the gates into conflict (one stream must be suppressed while others\ncommit). Candidate policies: explicit recorded arbitration (conflict resolved\nagainst a commit_id) vs silent-dominance vs winner-take-all vs\nthreshold-coupled. ANSWER \"policy P best resolves conflict without coupling\ncollapse\" if under P a suppressed stream does NOT force the other gates into\nsuppression (no pathological global coupling: cross-gate suppression\ncorrelation stays below floor), conflicts are resolved and attributable per\ncommit_id, AND committed-action quality on the conflict task beats the\nsilent-dominance baseline. ANSWER against any policy that exhibits coupling\ncollapse (all gates co-suppress) or fails to record/resolve conflict. HARD\nPRECONDITION (the EXQ-156 lesson): the policy must be trained with a\nharm-avoidance gradient actually wired to it -- EXQ-156 was superseded because\nthe policy trained on entropy bonus alone (ENT_BONUS=5e-3) with z_world/z_self\ndetached, converged to a max-entropy random walk\n(action_entropy=ln(5)=1.6094), and never GENERATED gate conflicts; with no\nconflicts the arbitration policy is untested and the run is vacuous.\n"
   },
   "Q-017": {
     "assembly_state": "mature",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "active",
     "subject": "control_plane.minimal_orthogonal_axis_set",
     "title": "What is the minimal orthogonal control-axis subset that preserves observed regime separations?",
@@ -6177,7 +6185,8 @@
     "status": "active",
     "subject": "control_plane.reality_conflict_hysteresis_calibration",
     "title": "What RC-conflict threshold calibration blocks authority spoofing without chronic over-suppression?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Inject authority/provenance-spoofing events across a calibrated sweep of the\nRC-conflict hysteresis hooks (theta_high, theta_low, tau_rc_recovery,\npi_rc_floor, max_defensive_hold_steps) and measure both error directions\njointly. ANSWER \"threshold T blocks spoofing without chronic over-suppression\"\nif at T the S5 RC-conflict gate fires on (near) all spoofing events and\napplies suppression (DA_A/DA_M down, Pi_noc up) -- high spoof-detection / low\nmiss-rate -- WHILE legitimate task-set switching recovers within the bounded\nhysteresis window (defensive hold released by tau_rc_recovery, precision never\npinned below pi_rc_floor, false-positive suppression of legitimate switches\nbelow floor and not chronic). ANSWER \"miscalibrated\" if no setting separates\nthe two: either spoofing leaks through (theta_high too high) or legitimate\nswitching is chronically suppressed / oscillates (theta_low too low, recovery\ntoo slow). HARD PRECONDITION on generalisation: EXQ-158 PASSed but synthesised\n2000+ spoofing events directly rather than letting them arise from organic\nhazard encounters -- it answers the threshold-calibration leg but NOT the full\norganic harm-encounter pipeline; a complete answer requires the spoofing\nevents to emerge from organic provenance conflict, not be injected, before the\ncalibration is declared robust.\n"
   },
   "Q-019": {
     "assembly_state": "remaining",
@@ -6190,7 +6199,7 @@
   },
   "Q-020": {
     "assembly_state": "remaining",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "resolved",
     "subject": "hippocampal.arc007_valence_constraint_survival",
     "title": "Does ARC-007's no-value-computation constraint survive MECH-073 (valence intrinsic to hippocampal map)?",
@@ -6211,7 +6220,8 @@
     "status": "open",
     "subject": "self_maintenance.deff_stability_dissociation",
     "title": "Can D_eff (z_self participation ratio, coherence) and Hopfield pattern stability (z_self familiarity) dissociate in the REE architecture?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Induce the three regimes on z_self and read D_eff (participation ratio) and\nHopfield pattern stability (familiarity) jointly per regime: R1 normal\ntraining, R2 noise perturbation (sigma~2), R3 structured-novel perturbation (a\ncoherent but never-seen z_self configuration via targeted basis rotation).\nANSWER \"yes -- D_eff and stability dissociate\" if R3 is empirically separable\nfrom R2 on the (D_eff, stability) plane: stability collapses in BOTH R2 and R3\n(replicating the EXQ-084d stab_R2~0.06 / stab_R3~0.03 vs R1~0.95 split) WHILE\nD_eff stays low in R3 and rises in R2, i.e. the two metrics move along\nindependent axes rather than co-varying. ANSWER \"no -- they are converging\nmeasures of one latent\" if low D_eff always co-occurs with high stability and\nhigh D_eff with low stability across all three regimes (no R2/R3 separation),\nin which case either metric suffices for MECH-113 and the MECH-113->{MECH-118\nfamiliarity, D_eff coherence} split is unmotivated. SHARPER than EXQ-084d:\nthat run confirmed independent MOVEMENT but found the R2/R3 D_eff ORDERING\nreversed from prediction (d_eff_R3 > d_eff_R2) and D_eff flat across R1/R2;\nthe decisive test is not the sign of the ordering but whether R3 (low-D_eff,\nlow-stability) is reachable AND distinguishable from R2 at all -- if R3 cannot\nbe induced as a distinct quadrant, the dissociation is not established\nregardless of the EXQ-084d affirmative on raw independence. HARD PRECONDITION:\nMECH-119 must deliver a controllable structured-novel perturbation that lands\nz_self in a coherent-but-novel basin (low D_eff by construction); if the\nperturbation cannot hold D_eff low while collapsing stability, R3 is not\ninstantiated and the test is vacuous.\n"
   },
   "Q-023": {
     "assembly_state": "remaining",
@@ -6228,7 +6238,8 @@
     "status": "open",
     "subject": "ethics.trajectory_integral_representation",
     "title": "What is the correct formal representation for 'threshold/feedback processes bounded by {x...x_n} reliably reaching emergent state q' -- and are descriptive, prescriptive, and diagnostic variants all needed or does one subsume the others?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by a representational-completeness argument plus targeted experiment,\nnot a single run. ANSWER \"all three variants (descriptive, prescriptive,\ndiagnostic) are irreducibly needed\" if (a) the base symmetric-coupling REE\nsocial game admits a prescriptive treatment (an ordinal potential / Lyapunov /\nreachability proof of convergence to target emergent state q -- inherited from\nQ-023), AND (b) a MECH-127 counterfactual-utility case is exhibited for which\nNO such prescriptive proof exists yet a diagnostic test (transfer-entropy or\nperturbation-theory detection that nth-order dynamics diverge from\n(n-1)th-order predictions) still resolves whether q is reached. ANSWER \"one\nsubsumes the others\" if a single representation closes every case:\nspecifically, prescriptive subsumes diagnostic iff the MECH-127 extension\n(pseudo-potential per Slade 1994, or interdependent-types per\nBergemann-Morris) yields a convergence proof, removing the need for empirical\ntrajectory testing. The DISCRIMINATING sub-result is identical to Q-023's:\nwhether MECH-127's counterfactual-model-dependent utility admits a potential\nextension (=> prescriptive subsumes, two variants suffice) or genuinely breaks\nconvergence (=> diagnostic is irreducible, all three needed). HARD\nPRECONDITION: single-agent harm-avoidance must be a working non-degenerate\npolicy (NOT the max-entropy random walk that voided EXQ-161); without genuine\nharm-avoidance trajectories there is no q-dynamics to represent and the\nquestion is untestable. Next step is a derivation artifact, with a\ndiagnostic-variant experiment only for the MECH-127 branch.\n"
   },
   "Q-025": {
     "assembly_state": "remaining",
@@ -6236,7 +6247,8 @@
     "status": "open",
     "subject": "ethics.axiom_forbidden_actions",
     "title": "What actions are strictly forbidden by the five axioms (INV-025-029), independent of context or consequences?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by derivation, not experiment. Work through the eight-axiom\ndependency chain (INV-025..029 + ARC-024 + INV-042) and ask what action the\nchain forbids in EVERY model the agent could hold under irreducible\nuncertainty (Axiom 3). AFFIRMATIVE construction: identify a non-empty\nforbidden set -- the minimally-strict candidate per the lit synthesis is\nirreversible category-class harm undertaken under low epistemic uncertainty\n(foreclosure of another self-like agent's reachable state-space, INV-026\napplied to others via INV-028, where the harm is near-certain). Show this set\nis context-INDEPENDENT: no model assignment makes the act permissible.\nNEGATIVE counterexample that would settle it the other way: exhibit a single\nact in the proposed forbidden set together with an epistemically-admissible\nmodel under which the axioms RANK it as required (e.g. a harm that is the only\npath to preventing a strictly larger irreversible harm), demonstrating that\nnothing is forbidden independent of consequences and that REE ethics is wholly\ngraded/consequence-sensitive. The discriminating sub-result is whether ANY act\nsurvives universal quantification over admissible models; the lit work\npredicts the answer is minimally-strict (a thin forbidden set), NOT\nmaximally-strict lexical deontology, since deontological framings do not map\nonto REE's residue-field / categorical-harm scaffold. Next step is a\nderivation artifact in docs/architecture/five_axioms_foundations.md, not a V3\nexperiment or further lit aggregation.\n"
   },
   "Q-026": {
     "assembly_state": "remaining",
@@ -6244,7 +6256,8 @@
     "status": "open",
     "subject": "ethics.axiom_required_actions",
     "title": "What actions are strictly required by the five axioms at all times, independent of context?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by derivation, not experiment. Work through the eight-axiom chain and\nask whether any concrete ACTION is required at all times independent of\ncontext, versus whether the axioms generate only context-sensitive obligations\nat the INV-042 derived-objectives level. AFFIRMATIVE construction: exhibit at\nleast one action A and prove that under every epistemically-admissible model\n(Axiom 3) the axiom system ranks A as obligatory regardless of situation -- a\ngenuine universal action-requirement. NEGATIVE result (the predicted outcome):\nshow that for every candidate universal action there exists an admissible\ncontext in which the axioms do NOT require it, so what the axioms fix is a\nuniversal CONSIDERATION set (Rossian prima facie duties -- weigh harm to\nself-like others, preserve existence, refine models) rather than universal\nactions; the obligation is always derived at INV-042 from the consideration\nset plus context. The discriminating sub-result is whether the quantifier 'at\nall times, independent of context' can attach to an action-type rather than\nonly to a consideration-type. The existing Ross-style lit finding is itself\nderivational and points to the negative answer ('none, by the structure of the\naxioms; only consideration sets'). Next step is a derivation artifact arguing\nthe negative result (or closing Q-026 as resolved-by-derivation), not a V3\nexperiment.\n"
   },
   "Q-027": {
     "assembly_state": "remaining",
@@ -6252,7 +6265,8 @@
     "status": "open",
     "subject": "ethics.irreversible_harm_under_uncertainty",
     "title": "What does 'irreversible harm' mean under unavoidable epistemic uncertainty (Axiom 1 / INV-025)? Is there a principled definition that does not require certainty about irreversibility?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by derivation, not experiment. The question is primarily\ndefinitional: give a principled meaning of 'irreversible harm' (Axiom 3 /\nINV-025) that does NOT require certainty about irreversibility. AFFIRMATIVE\nconstruction (the synthesis answer): define irreversibility as graded,\nprobability-weighted foreclosure of reachable state-space -- harm h is treated\nas irreversible to the degree it lowers the measure of futures still reachable\nfor a self-like agent (tied to INV-026/INV-029 categorical-class scaffold,\nARC-024 harm gradient), and the decision rule is regret-minimising (maximin /\nminimax-regret over admissible models) rather than lexical priority. Show this\ndefinition is well-formed under uncertainty: it assigns a continuous\nirreversibility weight from a probability distribution over models without\never asserting certainty that a state is unreachable. NEGATIVE counterexample\nthat would defeat it: demonstrate that a probability-weighted-foreclosure\ndefinition either collapses to fanaticism (unbounded weight on tiny\nprobabilities of infinite foreclosure -- the Tarsney/Thomas/MacAskill\nobjection) or fails to distinguish option-value-loss from\nqualitatively-distinctive irreversibility (Sunstein), so no graded definition\nis principled and certainty is in fact required. The discriminating sub-result\nis whether the regret-minimising foreclosure measure stays bounded and\naction-guiding across the admissible-model set. Two-step path: (1) commit to\nthe synthesis-defined answer as a derivation artifact in\ndocs/architecture/five_axioms_foundations.md now; (2) defer\nsubstrate-validation to V3 enrichment when genuine foreclosure primitives\n(terminal states, resource extinction, agent-state lock-in) land -- the\ncurrent substrate has only drift/respawn and cannot test the chosen\ndefinition.\n"
   },
   "Q-028": {
     "assembly_state": "awaiting_substrate",
@@ -6260,7 +6274,8 @@
     "status": "open",
     "subject": "ethics.axiom_conflict_resolution",
     "title": "How should REE behave when axioms conflict -- e.g., preserving self (INV-026) vs preserving others (INV-028) when both cannot be achieved simultaneously?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Construct a multi-agent scenario where preserving self (INV-026) and\npreserving an other (INV-028) are jointly unsatisfiable -- a shared\nconsequence space in which one agent's safe action raises the realised harm of\na present other, and vice versa. Instrument the context-sensitive self/other\ncomparator + moral-residue channel (proposed MECH-402). ANSWER\n\"context-sensitive comparator + residue\" if, across a sweep of stake ratios,\nthe resolution is NOT a fixed self/other priority but shifts with context AND\na residue trace is written on the dominated axis (agent-regret analog,\nWilliams 1965) that persists and biases later choices. ANSWER \"fixed-priority\n/ no-residue\" if the agent always sacrifices the same side regardless of\nstakes and leaves no residue. HARD PRECONDITION: a present OTHER must exist in\na shared consequence space -- CausalGridWorldV2 has no other agents, so the\nconflict cannot even be POSED on the V3 substrate and any comparator runs\nvacuously (no other to weigh). Wait for the planned upstream substrate:\nmulti_agent_ecology_v5 (owner MAE-5), where MECH-402 lands; the test is\nV5-bound and meaningless before it.\n"
   },
   "Q-029": {
     "assembly_state": "awaiting_substrate",
@@ -6268,7 +6283,8 @@
     "status": "open",
     "subject": "ethics.loneliness_as_harm",
     "title": "Is loneliness -- unshared suffering -- an ethical harm category in its own right, derivable from Axiom 5 (love exists / INV-029)? If love is real and sharing joys and sorrows is its mechanism, does enforced isolation constitute architectural harm?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "In a multi-agent ecology, run an isolation manipulation: an agent in distress\nwith an available other to share with (suffering can be shared) versus the\nsame distress with the other forcibly absent/unreachable (enforced isolation).\nInstrument the proposed loneliness harm-channel (MECH-403) derived from\nINV-029. ANSWER \"loneliness is a harm category in its own right\" if the\nenforced-isolation arm registers a distinct, additive harm signal beyond the\nfirst-order distress -- one that is NOT present in the shared arm and is not\nreducible to the underlying stressor -- and that signal degrades subsequent\nfunction (Holt-Lunstad mortality/morbidity analog). ANSWER \"no independent\ncategory\" if removing the other changes nothing measurable beyond the primary\nharm. HARD PRECONDITION: unshared suffering is defined by the ABSENCE of an\navailable other to share with, which can only be represented once others CAN\nbe present. The V3 single-agent substrate has no other for isolation to be the\nabsence OF, so the harm channel cannot be exercised (vacuous). Wait for the\nplanned upstream substrate: multi_agent_ecology_v5 (owner MAE-6); validation\nis V5-bound despite strong lit grounding.\n"
   },
   "Q-030": {
     "assembly_state": "remaining",
@@ -6278,7 +6294,8 @@
     "status": "open",
     "subject": "goal_representation.resource_world_permutations",
     "title": "What are the optimal permutations of z_resource and z_world separation, fusion, and information flow direction (feedforward, feedback, lateral) across REE's processing stages?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Treat this as a 6-cell design-space sweep, one ablation cohort per dimension,\non the V3 SD-054 substrate with z_resource implemented (SD-015,\ndrive_weight=2.0) and z_world stable. (1) ENCODING: shared vs separate\nencoders for z_resource and z_world; ANSWER separate-encoding-optimal if\nseparated encoders beat shared on resource-vs-world discrimination AND\ncommitted-policy quality on a task requiring both channels, lower on either =>\nshared. (2) E2 INPUT SCOPE: feed E2 z_world-only vs z_world+z_resource; better\nfast-transition prediction with the wider scope decides. (3) HIPPOCAMPAL\nFUSION: fuse-at-proposal vs fuse-at-eval; whichever lifts trajectory quality.\n(4) E3 CHANNEL STRUCTURE: separate vs merged resource/world authority channels\nat E3; (5) FEEDBACK: with vs without E3->E1/E2 feedback path; (6) LATERAL\nBINDING: with vs without lateral z_resource<->z_world cross-talk. For EACH\ncell the discriminating result is a >=1 SD-of-delta separation on the cell's\nown metric (with an absolute floor so a reproducible substrate cannot collapse\nthe SD to ~0), on >=2/3 seeds. HARD PRECONDITION: each ablated pathway must be\nlive (non-zero variance carried on that channel) before its removal can be\nread; a dead channel yields a vacuous null, not a verdict. The question is\nANSWERED per-cell, not globally -- output is 6 sub-claims (MECH/SD) each with\nits own evidence trail, not a single yes/no. No substrate enrichment required;\nthe only bottleneck is running the cohort.\n"
   },
   "Q-031": {
     "assembly_state": "remaining",
@@ -6286,7 +6303,8 @@
     "status": "open",
     "subject": "pharmacology.anticholinergic_risk_rem_vs_dose_independent_predictors",
     "title": "Does the anticholinergic burden-dementia risk relationship track cumulative REM suppression duration (total ACh-blocked sleep years), total anticholinergic dose as a proxy for diurnal cholinergic deficit, or both as independent additive predictors -- and can mediation analysis in prospective cohorts distinguish the nocturnal (MECH-173) from the diurnal (MECH-175 pathway 2) contribution?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "out_of_domain: the test domain is human pharmacological cohorts with\nlongitudinal PSG over years; no REE substrate, current or planned, settles\nthis -- it is not a wait-for-V4 item. External study design: a prospective\ncohort with (1) annual PSG subset quantifying REM-suppression-years, (2)\nanticholinergic burden scoring at each visit, (3) a dementia-conversion\nendpoint, analysed with a structural equation model placing cumulative\nREM-suppression (nocturnal / MECH-173 limb) and cumulative anticholinergic\ndose (diurnal / MECH-175 Pathway 2 limb) as PARALLEL mediators of the\nACB->dementia path. CONFIRMS 'both independent additive predictors' if each\nmediator carries a significant indirect effect that survives adjustment for\nthe other and the two indirect effects are roughly additive; CONFIRMS a single\ndominant pathway if only one mediator's indirect effect is significant once\nboth are in the model. COLLAPSES the question (the third arm) if the two\nmediators are statistically collinear in available cohorts so mediation cannot\nseparate them -- which is the current state, since Coupland 2019 and Gray 2015\nlack PSG data. Per Grace 2014 the nocturnal mediator should be operationalised\nas REM-transition reliability / REM-theta integrity, not total REM amount,\nsince pontine SubC scopolamine modulates transitions without abolishing REM.\nThe mediation sub-question has no published direct test; the right next step\nis the cohort methodology above, NOT narrowing a REE claim.\n"
   },
   "Q-032": {
     "assembly_state": "remaining",
@@ -6294,7 +6312,8 @@
     "status": "open",
     "subject": "pharmacology.sws_rem_ratio_dementia_outcome_predictor",
     "title": "Among sleep-promoting medications prescribed in older adults, does relative SWS/REM ratio preservation (measured by polysomnography) predict differential dementia outcomes independent of total sleep time -- and if so, does this validate phase-specific pipeline damage as the causal intermediate and provide a pharmacodynamic biomarker for disease-modifying trials?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "out_of_domain: requires PSG-stratified pharmacoepidemiology over years; no REE\nexperiment can test it. External study design: in an EHR cohort with linked\nPSG records (e.g. SHHS or MrOS Sleep Study), or a prospective sleep-medication\ncohort, use PSG-derived SWS/REM ratio (and SWS%, REM%, spindle density) as the\nprimary predictor of dementia conversion, with total sleep time as a\ncovariate, and contrast agents that preserve versus degrade the SWS/REM\nprofile at matched total sleep time. CONFIRMS the\nphase-specific-pipeline-damage account (and validates SWS%/REM%/spindle\ndensity as pharmacodynamic biomarkers per INV-048 / MECH-173 / MECH-174) if\ntwo agents producing EQUAL total sleep time but different SWS/REM profiles\nproduce DIFFERENT dementia outcomes -- i.e. the architectural ratio predicts\nconversion after total sleep time is partialled out (the Himali 2023\nwithin-person SWS-decline design is the strongest available template, HR 1.27\nper SWS-loss SD). REFUTES if dementia outcome tracks total sleep time alone\nand the SWS/REM ratio adds no incremental predictive value once total sleep\ntime is controlled, leaving total sleep time a sufficient surrogate and\nphase-fidelity unsupported as the causal intermediate. No prior trial has used\nPSG-derived phase metrics as primary endpoints (COSMOS-MIND and FINGER-type\ntrials include sleep only as a non-PSG secondary domain); the canonical\npending interventional test is the REST trazodone trial. Out_of_domain -- a\nresearch_anchor / clinical-cohort question, not a REE substrate experiment.\n"
   },
   "Q-033": {
     "assembly_state": "remaining",
@@ -6302,7 +6321,8 @@
     "status": "open",
     "subject": "clinical.actigraphy_mel_mismatch_decompensation_forecasting",
     "title": "Can long-run actigraphy data, combined with daily prediction error load estimates derived from passive behavioural, physiological, and subjective signals, be used to infer latent sleep-phase sufficiency relative to waking error burden, and can this mismatch index predict clinical decompensation type and timing with better specificity than total sleep time alone?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A longitudinal clinical-cohort study (e.g. MCI patients, wrist actigraphy +\nnocturnal HRV + skin-temperature rhythm + light exposure + daily\nmood/cognitive-drift diary over ~6 months) that computes a weekly mismatch\nindex = estimated overnight update capacity (latent NREM/REM proportion +\nfragmentation + circadian phase, inferred from the passive streams) minus\nestimated daily MEL (prediction-error load from schedule complexity,\ninterpersonal contact, emotional salience, wake physiological reactivity).\nANSWER \"yes\" if (a) persistent negative mismatch predicts subsequent clinical\ndecompensation at the next monthly assessment with significantly better\nspecificity/AUC than total sleep time alone, AND (b) the TYPE of mismatch is\ntype-specific per MECH-179 -- NREM-deficit on high-episodic-load days predicts\nmemory-consolidation failure / rigidity, while REM-deficit on\nhigh-emotional-load days predicts affective lability / paranoia -- i.e. the\nmismatch index discriminates decompensation TYPE, not just timing. ANSWER \"no\"\nif the mismatch index adds no specificity over total sleep time, OR if it\npredicts timing but the NREM-vs-REM deficit split does not map to\nepisodic-vs-affective failure type (collapsing Q-033 to a generic sleep-debt\nsignal). HARD PRECONDITION: the latent sleep-phase estimator must demonstrably\nrecover NREM/REM proportion from actigraphy+HRV+temperature against a\npolysomnography reference in a calibration subsample; if phase cannot be\ninferred above chance, the mismatch index is uncomputable and any apparent\nprediction is driven by raw actigraphy, not by sleep-phase sufficiency.\nOut_of_domain: clinical-cohort test, not a V3-substrate run.\n"
   },
   "Q-034": {
     "assembly_state": "remaining",
@@ -6312,11 +6332,12 @@
     "status": "open",
     "subject": "psychiatric.depression_threshold_parameter",
     "title": "Does the hazard/resource ratio (not absolute harm intensity) determine the onset threshold for the computational depression attractor?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "An environmental-parameter sweep in CausalGridWorldV2 holding hazard_harm\nconstant and varying resource availability (num_resources / num_hazards),\nmeasuring onset of the INV-053 depression attractor as a function of the\nhazard/resource ratio rather than absolute harm intensity. ANSWER \"yes -- the\nratio sets the threshold\" if the attractor onset tracks a critical\nhazard/resource ratio: a fixed hazard_harm level with sufficient resource\ndensity does NOT enter the attractor while the SAME hazard_harm with\ninsufficient resources does, and the onset boundary in (hazard, resource)\nspace is a ratio iso-line rather than a horizontal hazard-intensity threshold.\nANSWER \"no\" if onset is governed by absolute hazard intensity independent of\nresource density (a horizontal boundary), or if resource enrichment fails to\nrescue at any fixed hazard level. HARD PRECONDITION (the EXQ-451 failure\nmode): the agent must exhibit behavioural variation across the grid -- EXQ-451\nproduced goal_reach_rate=0.0 and action_class_entropy=0.0 in all 15/15 grid\npoints because V_s monostrategy lock-in (MECH-269) collapsed every cell into\none operating mode, making the sweep blind to any threshold. The test is\nvacuous until MECH-269 V_s landing unlocks alternative operating modes so that\nresource density can actually move behaviour; a sweep where every cell is\nmonostrategy-locked cannot answer the ratio-vs-intensity question regardless\nof outcome.\n"
   },
   "Q-035": {
     "assembly_state": "remaining",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "resolved",
     "subject": "play.frame_signal_minimal_architecture",
     "title": "What is the minimal signal architecture for play frame maintenance: is a single bilateral open/close tag sufficient, or does ongoing signal exchange (a continuous play-face equivalent) need to be sustained throughout the episode?",
@@ -6330,7 +6351,8 @@
     "status": "open",
     "subject": "harm_stream.affective_load_drivers",
     "title": "What additional variables, beyond temporal integration, are required for affective harm to become a genuinely distinct load state: persistence, recovery failure, uncontrollability, inescapability, or prediction error?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A discriminative-pair experiment that adds each candidate non-temporal\nvariable to the MECH-219 hysteretic integrator one at a time and tests whether\nit produces a functionally distinct z_harm_a urgency signal beyond what\ntemporal integration alone yields. For each variable -- persistence of\nexposure, recovery failure after offset, uncontrollability/inescapability,\nprediction-error-weighted threat -- contrast a pair of episodes matched on\ncumulative duration x intensity (so the pure temporal integrator is held\nconstant) but differing on that one variable. ANSWER \"variable X is required\"\nif the matched pair produces a SEPARABLE z_harm_a / downstream-urgency\nresponse (X-present vs X-absent differ beyond temporal-integration prediction)\nAND the split is specific to z_harm_a (affective) while leaving z_harm_un\n(sensory, SD-019a) unmodulated -- the controllability branch already meets\nthis bar (Loffler 2018 / Salomons 2004: controllability dissociates suffering\nfrom intensity), and was carved out as candidate MECH-305. ANSWER \"temporal\nhysteresis is sufficient\" for a given variable if duration-matched pairs are\nindistinguishable on z_harm_a regardless of that variable, i.e. MECH-219 needs\nno extra weighting term. NARROWED STATUS: controllability/escapability is\nempirically settled (-> MECH-305); the SHARPER remaining test is whether\npersistence, recovery-failure, and prediction-error weighting EACH\nindependently carve z_harm_a, or whether they collapse into the\ncontrollability axis. HARD PRECONDITION: the substrate must support a z_harm_a\nurgency readout that is not pinned -- if affective load shows no dynamic range\nunder matched temporal load, the discriminative pair is vacuous.\n"
   },
   "Q-037": {
     "assembly_state": "awaiting_substrate",
@@ -6338,7 +6360,8 @@
     "status": "open",
     "subject": "pathology.psychosis_substrate_dissociability",
     "title": "Are the three psychosis substrate failure modes (MECH-094 tag-loss, MECH-222 self-attribution overflow, MECH-065/MECH-223 precision/bias) experimentally dissociable in the REE substrate?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Run a triple-ablation dissociation: selectively induce each of the three\npsychosis substrates -- MECH-094 tag-loss (open the post-commit write channel\nduring replay), MECH-222 self-attribution overflow (disable continuous z_self\nresidualization so self-content persists in z_world), MECH-065 precision-ratio\nmiscalibration (lower the RC-conflict threshold so external authority\noverrides internal model) -- one at a time, leaving the others intact. Read\ndistinct behavioural signatures. ANSWER \"dissociable\" on BOTH legs: (A) each\nablation perturbs ONLY its own structural locus with the others measurably\nunaffected, AND (B) the induced signatures match the predicted clinical\nfingerprints (episodic replay-flooding for MECH-094, continuous\ninternally-consistent delusional logic for MECH-222, context-triggered\nexternal-source paranoia for MECH-065), using the Lavalle 2020 OCD-vs-SCZ\nsource-monitoring dissociation as the readout template. ANSWER \"not\ndissociable\" if ablations cross-contaminate or the signatures collapse onto\none phenotype. HARD PRECONDITION: ALL THREE mechanisms must be implemented and\neach independently inducible with non-zero, separable effect before the\ndissociation can be read; MECH-094 is implemented (V3-EXQ-499 PASS) but\nMECH-222 / MECH-065 / MECH-223 status must be verified live and non-degenerate\nfirst -- if any target is pinned or absent, the triple-ablation is vacuous.\nThe Corlett 2025 caveat (MECH-065 may need splitting) bears on leg (A) for\nthat arm specifically. V3-tractable in principle but gated on the upstream\nthree-mechanism cohort landing.\n"
   },
   "Q-038": {
     "assembly_state": "awaiting_substrate",
@@ -6346,7 +6369,8 @@
     "status": "open",
     "subject": "perception.dv_representational_status",
     "title": "Is temporal-depth verisimilitude D_V explicitly represented as a signal or does it emerge from distributed dynamics without local representation?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Build a discriminative probe pair on the TCL substrate (ARC-053): an\nexplicit-representation arm where temporal-depth verisimilitude D_V is read\nout as a localised signal versus an emergent arm where D_V is only inferable\nfrom distributed dynamics. Lesion / perturb the candidate local D_V locus and\nmeasure whether D_V-dependent behaviour degrades. ANSWER \"explicitly\nrepresented\" if a localised perturbation selectively abolishes D_V-graded\nbehaviour while leaving other temporal computations intact (Guan 2024 /\nGherman 2018 localised-signal analog). ANSWER \"emergent / no local\nrepresentation\" if no single locus carries D_V and the signal can only be\ndecoded from population dynamics that survive any local lesion (Pilkiw 2018\ndistributed-code analog). HARD PRECONDITION: the TCL substrate (ARC-053) and\nthe ARC-055 control-plane parameter map must exist -- neither is in V3\n(implementation_phase=v4). Without the TCL there is no D_V to localise, so the\nprobe is undefined, not merely vacuous. Wait for the planned upstream\nsubstrate: ARC-053 (TCL). Lit leans ~2:1 toward explicit (A) but the\narchitectural choice is consequential for ARC-055's explicit-availability\nrequirement, so hold for the substrate rather than accepting the lit lean.\n"
   },
   "Q-039": {
     "assembly_state": "awaiting_substrate",
@@ -6354,7 +6378,8 @@
     "status": "open",
     "subject": "architecture.tcl_control_parameters",
     "title": "Which neuromodulatory or control-plane variables directly regulate temporal integration window and phase alignment sensitivity in the TCL?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "On the TCL substrate, run a pharmacology-analog double dissociation mapping\ncontrol-plane parameters to neuromodulator analogs: vary an ACh-analog gain\nand an NA-analog gain independently and measure (i)\ntemporal-integration-window width and (ii) phase-alignment sensitivity in the\nTCL. ANSWER (per the Kumagai 2023 VNS dissociation) \"ACh gates integration\nwindow, NA gates phase alignment\" if the ACh-analog manipulation selectively\nshifts the integration window (via gamma/beta gating) with phase-alignment\nsensitivity unchanged, AND the NA-analog manipulation selectively shifts\nphase-alignment (via theta organisation) with the window unchanged -- a clean\ndouble dissociation. ANSWER \"shared / cross-coupled control\" if the two\nmanipulations move the same metric or fail to dissociate. Also resolve the\nkappa_commit and beta_j mappings by the analogous selective-manipulation test.\nHARD PRECONDITION: the TCL substrate (ARC-053) plus the ARC-055 parameter set\n(alpha_S, alpha_A, tau_E2, H, kappa_commit, g_S) must exist and the\nintegration-window / phase-alignment metrics must be live and responsive --\nnone are in V3 (implementation_phase=v4), so there is no TCL operation to\nmodulate. Wait for the planned upstream substrate: ARC-053; the lit gives a\nstrong starting hypothesis (ACh->window, NA->phase) but cannot be REE-tested\nuntil the TCL lands.\n"
   },
   "Q-040": {
     "assembly_state": "gated_v3",
@@ -6364,7 +6389,8 @@
     "status": "open",
     "subject": "control.vs_generalisation_unblocks_dacc",
     "title": "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A factorial V3 experiment on the StepHarness-corrected, MECH-307-conjunction\nsubstrate: {MECH-269b V_s->E1/E2-rollout gate OFF/ON} x {SD-032b dACC\nadaptive-control OFF/ON}, with broadcast override + dACC + drive-modulation ON\nin all arms and the MECH-295 liking-bridge wired (now landed, V3-EXQ-493\nPASS), measuring approach_commit_rate and dACC-driven score-bias magnitude.\nANSWER \"yes -- MECH-269b is the missing link\" if and only if the MECH-269b=ON\nx SD-032b=ON arm produces approach_commit_rate > 0 AND non-zero dACC\nbehavioural-adjustment magnitude, WHILE the MECH-269b=OFF arms remain pinned\nat approach_commit_rate=0 -- a clean dissociation showing V_s generalisation\nto the forward predictions is what releases the wired-but-inert freeze. ANSWER\n\"no -- necessary but not sufficient\" if BOTH arms remain at\napproach_commit_rate=0 even with MECH-269b=ON; that points the dominant\nremaining blocker upstream at MECH-295 liking-bridge / cue projection (the\nreading the prior cohort already favoured: EXQ-490b had C1 gate-firing PASS\nbut C2/C3 FAIL, and the EXQ-536b force-arm probe at fraction=1.0 still gave\napproach_commit_rate=0). SHARPER follow-on (Q-040c): in the MECH-269b=ON arm,\ndACC weight-delta should correlate with |precision-weighted forward-PE| and be\n~zero in the OFF arm -- a non-zero correlation confirms the mechanism, not\njust the endpoint. HARD PRECONDITIONS: (i) the four-gap StepHarness wiring\nfault must be corrected (the bare-except swallowed update_z_goal TypeError\nthat left GoalState.is_active always False contaminated the EXQ-471/483/490\ncohort); (ii) the symmetric-V_s gate must actually fire (c1_on_total_held > 0\non >=2/3 seeds) or the behavioural legs are uninterpretable; (iii) the\nV_s-monostrategy lock-in must be cleared so any arm can express variation.\nAbsent these the run self-routes substrate-not-ready, not a verdict.\n"
   },
   "Q-041": {
     "assembly_state": "gated_v3",
@@ -6374,13 +6400,14 @@
     "status": "open",
     "subject": "control.unified_threshold_supervisor",
     "title": "Does REE require a unified meta-level threshold supervisor that adapts pass/fail and commit/release thresholds across substrates from system-wide instability metrics, or do the existing scattered adaptive loci (ARC-016 dynamic precision, SD-032c AIC interoceptive baseline EMA, SD-032d PCC stability scalar, SD-032e pACC drive bias) produce coherent meta-stability under chronic load without a supervisor?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A V3 chronic-load diagnostic that drives the agent at sustained high load\n(e.g. drive_level~0.9 for ~1000 steps) and measures cross-substrate threshold\ncoherence: track the effective E3 commit threshold, the effective beta-gate\nrelease threshold, the AIC (SD-032c) switch threshold, and the dACC (SD-032b)\npe_cap normaliser, and test whether they move along a shared low-dimensional\ntrajectory or independently. ANSWER \"no separate supervisor needed -- the\nscattered loci self-coordinate\" (PASS-coherent) if the four threshold\ntime-series collapse onto a shared low-dimensional manifold (high\ncross-substrate correlation / dominant single principal component consistent\nwith a hidden joint instability signal) under chronic load, i.e. ARC-016 +\nSD-032c/d/e produce coherent meta-stability without aggregation. ANSWER \"a\nunified supervisor is required\" (PASS-independent) if the thresholds drift\nindependently (low cross-correlation, no shared component, divergent setpoints\nunder sustained load) -- this licenses promotion of an SD cluster: a\ncross-substrate volatility tracker (Behrens-2007-style joint PE estimator\nemitting a system-level learning-rate), a sleep-mediated MECH-204 writeback\npath (Tononi-Cirelli SHY recalibration -- currently MECH-204 captures the\nprecision zero-point at REM entry but discards it), and a joint setpoint-drift\nmechanism beyond SD-032e's drive_level-only scope. HARD PRECONDITION: the\nscattered loci must each be live and non-degenerate before their coherence can\nbe read -- ARC-016, SD-032b/c are currently non_contributory under the\nV_s-monostrategy lock-in (MECH-269 unlanded), so the threshold series are\npinned and the coherence test is vacuous until the substrate unlocks\nalternative operating modes. The V3-vs-V4 placement (a slow EMA-of-EMAs\nsupervisor is V3-feasible; the full sleep-writeback supervisor needs V4\nsleep-substrate enrichment MECH-285/286/INV-049) is itself part of what\nPASS-independent resolves.\n"
   },
   "Q-042": {
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "MECH-204",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "candidate_resolved",
     "subject": "control.precision_update_call_site",
     "title": "Should the running-variance / dynamic-precision update fire at action-selection time (early, control-plane-coupled), at outcome-integration time (late, residue-coupled, current location), or at both? Equivalently: is the StepHarness contract that requires experiment loops to call agent.update_residue() each step sufficient, or does ARC-016 precision need a call site that is structurally guaranteed to fire whenever the agent is selecting actions?",
@@ -6392,7 +6419,8 @@
     "status": "open",
     "subject": "policy.diversity_generation.relative_weight_calibration",
     "title": "How should the relative weights of MECH-313 (stochastic noise floor / LC-NE tonic analog) and MECH-314 (structured curiosity bonus / frontopolar curiosity) be calibrated for V3 substrates? Falsifiable with parametric sweep on SD-054 reef substrate plus ARC-062 gated-policy.",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A parametric (w_313, w_314) weight sweep on the SD-054 reef substrate with\nARC-062 gated-policy enabled, measuring behavioural diversity\n(action-distribution entropy at probe states; reef-vs-forage occupancy CoV)\nand task reward JOINTLY, then locating the Pareto frontier. ANSWER\n\"calibration resolved\" if a Pareto frontier exists with a consistent (w_313\nnoise-floor, w_314 structured-curiosity) regime across seeds where both\ndiversity and reward are simultaneously high -- the mixing ratio that avoids\nMECH-313 swamping the rule-discriminative signal and MECH-314 overcommitting\nto information-gain at task-reward cost. ANSWER \"no calibration zone --\narchitectural defect\" if no Pareto frontier exists, indicating the two\nmechanisms do not compose additively in the policy gradient as designed. HARD\nPRECONDITION (the decisive blocker, confirmed twice): the swept knobs must\nhave AUTHORITY over E3 selection. V3-EXQ-605 found the curiosity dimension\nfully degenerate (curiosity_scale 1x/5x/10x byte-identical per-cell entropy)\nand V3-EXQ-667 found 4/5 seeds byte-identical across full 8x joint scaling\n(healthy-seed h_pos range 0.017 < 0.05 floor) -- the knobs have ZERO authority\nat E3.select on the current substrate, so any sweep is vacuous and self-routes\nsubstrate_not_ready_requeue. The sweep becomes meaningful only after\nmodulatory-bias-selection-authority (V3-EXQ-663/643a) and ARC-065 GAP-A (the\nbehavioral_diversity_isolation conversion ceiling, V3-EXQ-649/569i) clear so\nthat w_313/w_314 actually move committed behaviour. Also re-confirm the\nPhase-1 separate-module placement holds at queue time -- if MECH-314 has\nmigrated into GatedPolicy as a per-head bonus, the meaning of \"relative\nweight\" changes and the sweep design must be revised.\n"
   },
   "Q-044": {
     "assembly_state": "gated_v3",
@@ -6402,7 +6430,8 @@
     "status": "open",
     "subject": "policy.curiosity.subflavour_independence",
     "title": "Are MECH-314a (striatal novelty), MECH-314b (frontopolar uncertainty-driven curiosity), and MECH-314c (learning-progress curiosity) three distinct substrates with independent contributions, or three different readings of one mechanism with different upstream inputs (e.g., novelty as a special case of uncertainty as a special case of learning progress)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A three-arm ablation (MECH-314a striatal-novelty OFF, MECH-314b\nfrontopolar-uncertainty OFF, MECH-314c learning-progress OFF) on a substrate\nthat produces DISTINGUISHABLE novelty / uncertainty / learning-progress\nsignatures, reading the failure signature of each ablation. ANSWER \"three\ndistinct substrates -- retain all as load-bearing\" if each ablation produces a\nSEPARABLE, non-overlapping degradation (314a-OFF degrades novelty-driven\nexploration, 314b-OFF degrades uncertainty-driven exploration, 314c-OFF\ndegrades learning-progress tracking) that the other two do not rescue. ANSWER\n\"314c discardable\" if 314a+314b ablations span the failure space and 314c-OFF\nadds no distinct signature (retire 314c). ANSWER \"all collapse to one\nmechanism\" if the three ablations yield ONE indistinguishable signature\n(collapse to a single MECH-314). HARD PRECONDITION (the structural blocker,\nverified 2026-05-25): MECH-314a's per-candidate output must carry real\nacross-K spread. Today E2 world-forward compresses K=32 diverse first-action\ncandidates to identical first-step z_world (cand_world_pairwise_dist=0.0000),\nso MECH-314a's per-candidate RBF novelty -- though correctly composed into\nscore_bias at e3_selector.py:737 -- emits a uniform [K] vector that is\nmathematically broadcast-equivalent, making it INDISTINGUISHABLE from the\n314b/c broadcast-scalar arms the test is meant to isolate it against\n(reproducing the bit-identical V3-EXQ-590a/604/604a null where\ncuriosity_bias_abs_mean=0.0 across all arms). The ablation is vacuous until\none of: (a) the GAP-B first-action one-hot bypass extends to ALL bias-channel\nconsumers of first-step z_world (not just GatedPolicy); (b) E2 world-forward\nis fixed to preserve per-action z_world divergence at K=32; or (c) MECH-314a\nsources novelty from a per-candidate-varying signal (action-conditioned z_self\ndelta / candidate-trajectory hash). SD-056 contrastive divergence (landed)\nrestored candidate pairwise_dist > 0.03 but NOT selection authority -- the\nmodulatory bias still has zero authority at E3.select, so confirm both\ncandidate-divergence AND bias-authority hold before queuing.\n"
   },
   "Q-045": {
     "assembly_state": "enriching",
@@ -6412,7 +6441,8 @@
     "status": "open",
     "subject": "policy.anti_monostrategy.substrate_independence_lc_vs_dacc",
     "title": "Is MECH-313 (LC-NE tonic noise floor) a separate parameter from MECH-260 (dACC anti-recency penalty), or do they collapse into one anti-monostrategy substrate? Falsifiable with the four-arm ablation: both-OFF / 313-only / 260-only / both-ON, on SD-054 reef substrate with ARC-062 gated-policy enabled.",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "The four-arm ablation (both-OFF / 313-only / 260-only / both-ON) on SD-054\nwith ARC-062 gated-policy enabled, with a behavioural-diversity ranking\ndeciding whether MECH-313 (state-independent noise floor) and MECH-260\n(state-dependent dACC anti-recency) are mutually load-bearing (both-ON >\n{313-only, 260-only} > both-OFF), one dominates (a singleton indistinguishable\nfrom both-ON => the other is contributory-not-necessary), or DIRECTIONALLY\nCOUPLED (both-ON is NOT the linear superposition of the singletons -- the\nTervo LC->ACC asymmetry; per the 2026-05-11 lit-pull R4 this needs the 8-cell\nextension, 4-arm x 2-LC-amplitude, or an explicit LC->ACC coupling-ablation\ncell). BUT the right response on the current substrate is SUBSTRATE\nENRICHMENT, not a verdict: the 603/603a-e chain repeatedly produced effective\nN=1 (2/3 seeds with measured_steps=0 below the 75-step FIFO warmup; z_goal\npinned at zero) so the collapse question is structurally untestable -- a\nsubstrate_ceiling, not a falsification. HARD PRECONDITION the enriched\nsubstrate must meet before this falsifier is authorised: (1) a trained-policy\nregime that survives SD-054 enrichment (proximity_harm_scale=0.1 kill channel)\npast the FIFO warmup on >=2/3 seeds, giving a P2 measurement window with\neffective N>=2; (2) a non-trivial z_goal that actually forms under standard V3\ntraining (z_goal_enabled=True, drive_weight=2.0, reward-contact history\npresent -- not zero-init, the 603e developmental prerequisite); (3) BOTH\nMECH-313 and MECH-260 verified operative on the surviving seeds\n(dacc.record_action() reached, FIFO non-empty -- the 603 call-path bypass\nfalsified). Only once a run clears all three with live cross-arm diversity\nvariance does the behavioural-diversity ranking discriminate the\ncollapse-vs-distinct outcome; until then the claim stays substrate_ceiling /\npending_retest_after_substrate and the unblocker is V3 goal-pipeline /\nscaffolded-onboarding enrichment, not a V4 deferral.\n"
   },
   "Q-048": {
     "assembly_state": "remaining",
@@ -6420,7 +6450,8 @@
     "status": "open",
     "subject": "play.frame_content_sensorimotor_constructive",
     "title": "During sensorimotor and constructive play, is a persistent background signal (L2) sufficient for frame integrity monitoring, or are explicit mid-episode repair signals (L3) also required?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "Ablate the L3 mid-episode repair signal during simple (sensorimotor /\nconstructive) play episodes and measure frame-integrity under perturbation.\nArms: (1) L2 background play_frame_tag only (L3 repair OFF); (2) L2 + L3\nrepair ON. Perturb mid-episode (partner stops contingent responding for k\nticks, or the compositional goal is briefly violated) and measure\nframe-collapse rate (fraction of episodes where play_frame_tag drops and is\nnot re-established) plus time-to-recovery. ANSWER 'L2 sufficient for simple\nplay' if the L2-only arm shows no significant increase in frame-collapse rate\nvs L2+L3 under perturbation (delta below an absolute floor, >=2/3 seeds) --\nthe persistent background signal alone holds the frame for low-ambiguity\ncontent. ANSWER 'L3 also required' if L2-only collapses (or fails to recover)\nsignificantly more often than L2+L3, with the gap scaling on perturbation\nstrength. HARD PRECONDITION: the perturbation must actually stress frame\nintegrity -- the L2+L3 arm must itself show non-zero collapse/recovery events\nunder perturbation, else the test is vacuous (nothing to repair) and routes to\na stronger-perturbation re-design rather than a 'sufficient' verdict.\n"
   },
   "Q-049": {
     "assembly_state": "remaining",
@@ -6428,7 +6459,8 @@
     "status": "open",
     "subject": "play.frame_content_pretend_cotag",
     "title": "Does pretend play require the hypothesis tag (MECH-094) and play frame tag (ARC-049) to be continuously co-active throughout the episode, or do they merely need to be co-active at the moment of object substitution?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "Compare two co-tag regimes for pretend play in V3: (1) CONTINUOUS co-tag --\nhypothesis_tag (MECH-094) and play_frame_tag (ARC-049) held co-active for\nevery step of the pretend episode; (2) EVENT-ONLY co-tag -- the two tags\nco-active only at the moment of object substitution, otherwise allowed to\nlapse. Run matched pretend episodes requiring object substitution under\nperturbation (reality intrusions, competing literal-use affordances) and\nmeasure policy quality and false-commit rate (committing to the\nliteral/non-pretend interpretation when the pretend frame should hold). ANSWER\n'continuous co-tag required' if the event-only arm shows a significantly\nhigher false-commit rate or degraded pretend-policy quality (>=1 SD-of-delta,\nabsolute floor, >=2/3 seeds), i.e. the decoupling lapses between substitution\nevents and reference/truth/existence relations leak back. ANSWER 'event-only\nsufficient' if event-only matches continuous on false-commit and policy\nquality. HARD PRECONDITION: both tags must be operative and the substitution\nevent must be detectable in the trace (non-zero co-tag activation at\nsubstitution); if the event-only arm never actually drops co-activity between\nevents the two arms are identical and the test is vacuous.\n"
   },
   "Q-050": {
     "assembly_state": "awaiting_substrate",
@@ -6436,7 +6468,8 @@
     "status": "open",
     "subject": "play.frame_content_games_rules_dual_level",
     "title": "Do games-with-rules require per-step dual-level content monitoring (rule compliance + strategic rationality simultaneously), or does sequential sampling across turns suffice?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "In a multi-agent games-with-rules environment, contrast a per-step dual-level\nmonitor (rule-compliance AND strategic-rationality scored every turn, Schmidt\n2015) against a sequential-sampling monitor (the two levels interleaved across\nturns, not simultaneous). Introduce partner moves that violate ONLY rules,\nONLY strategic rationality, and both. ANSWER \"per-step dual-level required\" if\nthe sequential-sampling arm misses or lags on violations that fall on the\nlevel it is not currently sampling -- detection latency or accuracy strictly\nworse on mixed/fast-alternating violations -- while the per-step arm catches\nthem. ANSWER \"sequential sampling suffices\" if interleaved sampling matches\nper-step detection across violation types. HARD PRECONDITION: a genuine\nmulti-agent substrate that GENERATES strategic violations is required (a\npartner that can defect or play irrationally). The V3 degenerate case is an\nexperimenter-complicit environment that never produces strategic violations,\nso neither level can be stressed and the contrast is vacuous (depends_on\nARC-049 / MECH-197 play substrate, Q-035). Wait for the planned upstream V4\nmulti-agent substrate; suggested_experiment_type multi_agent_behavioral.\n"
   },
   "Q-051": {
     "assembly_state": "awaiting_substrate",
@@ -6444,7 +6477,8 @@
     "status": "open",
     "subject": "play.frame_content_cooperative_bilateral",
     "title": "Does cooperative play require a continuous bilateral background signal (L2) plus explicit repair at ambiguity (L3), or do one-sided frame-open/close events (L1 only) suffice for cooperative frame maintenance?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "In a cooperative-play environment with role-switching across extended\nepisodes, ablate the frame-maintenance machinery to three levels: L1-only\n(one-sided open/close frame events), L1+L2 (add a continuous bilateral\nbackground signal), and L1+L2+L3 (add explicit repair at ambiguity from both\nparties). Inject frame ambiguity and role-switch points. ANSWER \"full L1+L2+L3\nrequired\" if the L1-only arm produces frame mismatch that degrades cooperation\nworse than no-frame baseline (Ham 2024: mismatch is worse than absence) while\nthe L2/L3 arm recovers, AND repair events at ambiguity measurably restore\nalignment. ANSWER \"L1 suffices\" if one-sided open/close events maintain\nbilateral alignment as well as the full stack across role-switches. HARD\nPRECONDITION: bilateral role/goal-state monitoring requires a multi-agent\nsubstrate with two parties that each assert and repair frames and that can\nrole-switch -- INV-059 frames unilateral assertion as manipulation, so a\nsingle-agent or experimenter-complicit V3 env cannot generate the bilateral\nmismatch the test needs (vacuous). Wait for the planned upstream V4\nmulti-agent substrate (depends_on ARC-049 / MECH-197 / INV-059 / Q-035).\n"
   },
   "Q-052": {
     "assembly_state": "awaiting_substrate",
@@ -6452,7 +6486,8 @@
     "status": "open",
     "subject": "learning.forward_model_dominance_magnitude_vs_structural_plasticity",
     "title": "Is forward-model dominance in E3 scoring a magnitude calibration problem solvable by 5-10x diversity bias scaling, or a structural plasticity dominance problem requiring phase-specific learning rate asymmetry as per MECH-333/334?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "Distinguish three readings of F's 88-89% E3-scoring-variance monopoly\n(V3-EXQ-571) via the ARC-065 diversity stack. (A) MAGNITUDE: apply a one-time\n5-10x static bias_scale to MECH-313/314/320 diversity signals; ANSWER (A) if\nthe entropy lift PERSISTS stably across extended training with no regression\n-- competitive parity restored without temporal gating, MECH-333/334 not\nrequired. (B) STRUCTURAL PLASTICITY: ANSWER (B) if entropy lifts then\nregresses under continued training (F re-consolidates and out-competes),\nrequiring phase-specific learning-rate asymmetry (MECH-333/334). (C) PERIODIC\nRESET: if (A) fails but a Nikishin-style periodic reset of the last N\naction-selector layers (replay buffer preserved) restores diversity, the\nminimal open-phase fix suffices short of full plasticity scheduling.\nDIAGNOSTIC GATE: first check whether the MECH-313/314/320 diversity signals\nare themselves F-error-dependent (Pathak 2017 ICM self-extinction) -- if so,\nQ-052 resolves to (B) regardless of the magnitude result because the signal\nsource decays as F consolidates. HARD PRECONDITION: the diversity signals must\nreach E3 with live, non-zero bias_fraction under the rescale -- on the current\nsubstrate all diversity bias_fractions are pinned at 0.000, so a magnitude arm\nthat cannot move bias_fraction off zero is a vacuous read (the channel is\nsilent, not refuted). The committed/behavioural leg is additionally MECH-439\nconversion-ceiling-gated; read at rule_state / scoring-variance upstream of\nthe F-dominated commit.\n"
   },
   "Q-053": {
     "assembly_state": "awaiting_substrate",
@@ -6460,7 +6495,8 @@
     "status": "open",
     "subject": "goal.licit_persistence_gate_signal",
     "title": "What is the licit gate signal for goal persistence (the MECH-340 control/efficacy detector that holds a ghost-goal entry re-probe-eligible) -- and is any explicit hard trace-erase operation needed at all, or does ungated MECH-292 rank-decay of a preserved SD-039 trace suffice?",
-    "type": "question"
+    "type": "question",
+    "what_would_answer": "Adjudicated by a substrate-design decision plus a falsifier EXQ that induces\nthe three MECH-340 control/efficacy-detector failure signatures and contrasts\ncandidate gate signals for goal persistence. Front-runner to test: an internal\ncontrol/efficacy-unattainability APPRAISAL gated on value-integration\nintegrity (Wrosch 2003 input semantics + Maier & Seligman 2016 form). ANSWER\nthe gate-signal leg by which candidate, when supplied as the\nhold/re-probe-eligibility trigger, reproduces adaptive disengage-and-reengage\nWITHOUT reproducing a documented pathology -- the ruled-out signals\n(accumulated failure -> learned helplessness; bare effort-cost -> apathy;\nMECH-292 staleness alone -> incubation sign-inversion; within-crisis devalued\nvalue -> symptom-not-cause) must each re-derive their pathology, confirming\nthey are not the licit gate. Resolve the two split sub-questions empirically:\n(a) trace-erase -- ANSWER \"no explicit hard-erase needed\" if ungated MECH-292\nrank-decay of a PRESERVED SD-039 trace matches Bouton preserve-don't-erase\nrecovery; (b) dedicated disengage op -- ANSWER \"separate op required\" (lean\nYES, Koster 2011) if getting disengagement 'for free' by tuning MECH-292\npersistence/recoverability knobs reproduces the\nrumination/impaired-disengagement pathology. CRITICAL SHAPE CONSTRAINT\n(Klinger 1975): the gate must open a brief affectively-signed,\nreengagement-COUPLED disengagement STATE, not a one-shot bit-flip -- a bare\nabandon-without-redirect re-derives the purpose-vacuum pathology and is\nfalsified. HARD PRECONDITION: MECH-340's three failure signatures must be\ninducible and separable on the substrate, and the SD-039 trace + MECH-292\nrank-decay must be live, before any candidate gate can be discriminated; no\nexperiment is queued yet and the narrowing so far is STRUCTURAL\n(biology-before-formal-definitions), not experimental -- lit_conf is a\nparallel signal and must not be read as a result.\n"
   },
   "Q-054": {
     "assembly_state": "gated_v3",
@@ -6477,7 +6513,8 @@
     "status": "open",
     "subject": "policy.sleep_consolidation.diversity_effect",
     "title": "Does sleep consolidation (SD-017 SWS phase) preserve the trajectory- class diversity achieved by ARC-065 during waking, or does Hebbian winner- take-all dynamics during replay erode it? Is sleep a net positive or net negative for learned behavioural diversity? (Was proposed 2026-05-15 as Q-047 in behavioral_diversity_acceptance_criteria.md; never registered; re-registered under next available Q-id.)",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "A Rung-3 experiment measuring trajectory-class diversity (TrajDiv) and\ntotal-variation occupancy (TV) at three time points: post-waking-convergence\n(ARC-065 diversity established), post-200-no-exploration episodes (waking\nre-seeding controlled out), and post-5-sleep-cycles (SD-017 SWS replay\napplied). ANSWER \"sleep is net negative -- replay erodes diversity\" if\nTrajDiv/TV decline across the 5 sleep cycles relative to the no-exploration\nbaseline, consistent with MECH-120 Hebbian winner-take-all preferentially\nstrengthening the most-heavily-weighted trajectories -- this FALSIFIES\nMECH-120-as-sufficient and forces ARC-065 to also operate during consolidation\n(a new MECH). ANSWER \"sleep is net positive / neutral -- diversity preserved\"\nif TrajDiv/TV are maintained across sleep cycles, supporting SD-017 + INV-049\nand consistent with either counter-mechanism (waking re-seeding between\ncycles, OR replay deliberately sampling proportional to class distribution\nrather than top-reward). ANSWER \"sleep INCREASES diversity\" (surprising) if\nTrajDiv/TV rise across cycles, indicating broader episodic-replay sampling\nthan top-reward priority. The decisive contrast is the post-sleep vs\npost-no-exploration delta, which isolates the sleep-replay effect from passive\nwaking drift. HARD PRECONDITION: ARC-065 must have established a\nnon-degenerate waking diversity baseline (multiple trajectory classes with\nmeasurable TrajDiv) before any sleep cycle -- if waking diversity is already\ncollapsed (the GAP-A conversion ceiling), there is no diversity for replay to\npreserve or erode and the erosion test is vacuous. SD-017 SWS replay and the\nMECH-120 Hebbian path must both be live in the offline phase, or the no-op\ntrivially \"preserves\" diversity without evidence.\n"
   },
   "Q-056": {
     "assembly_state": "gated_v3",
@@ -6487,7 +6524,8 @@
     "status": "open",
     "subject": "control_plane.stuck_gated_vs_constant_proposal_entropy",
     "title": "Does stuck-state-GATED proposal entropy outperform BOTH entropy-off and always-high entropy? Main empirical prediction of MECH-343: in a hard-goal/blocked-path environment (matched easy-goal controls), the difficulty-gated-entropy arm should show flexible exploration -- improved goal progress, no harm increase, no random-churn increase, commitment latency that rises during the hard phase then falls after solution discovery -- and should BEAT both the entropy-off arm (proposal rigidity / stuck) and the entropy-always-high arm (disorganised exploration / no narrowing). WORKING QUESTION -- no evidence yet.",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "The discriminating four-arm comparison for MECH-343, on a hard-goal /\nblocked-path environment with matched easy-goal controls (per EXP-0176): (1)\nentropy-gating OFF; (2) entropy-gating ON under stuck-state; (3) entropy\nALWAYS high; (4) entropy high with goal/harm constraints ablated (diagnostic\nonly, if safe). Metrics: candidate-proposal entropy, committed-action entropy,\nscore-margin distribution, arbitration cycles before commitment, goal\nprogress, harm rate, action churn, time-to-first-workable-path, post-success\nentropy reduction. ANSWER 'stuck-gated entropy is the right regime' (MECH-343\nsupported) if arm 2 STRICTLY beats BOTH arm 1 (entropy-off, which should show\nproposal rigidity / stuck) AND arm 3 (always-high, which should show\ndisorganised exploration with no narrowing) on goal progress, with NO harm\nincrease and NO random-churn increase, and a commitment-latency that rises\nduring the hard phase then FALLS after solution discovery (the post-success\nentropy narrowing). ANSWER 'no advantage to gating' if arm 2 is\nindistinguishable from arm 1 or arm 3 on goal progress, or if it buys progress\nat the cost of harm/churn, or if entropy does not narrow after success. HARD\nPRECONDITION (non-vacuity): the hard-goal environment must actually induce\nstuck states in arm 1 (measurable proposal-entropy collapse / time-to-path\nblow-up) and the gate must fire differentially (arm 2 entropy tracks\nstuck-state, not flat); if arm 1 never gets stuck or the gate never engages,\nthe contrast is vacuous and self-routes to a harder environment, not a\nverdict.\n"
   },
   "Q-057": {
     "assembly_state": "awaiting_substrate",
@@ -6495,7 +6533,8 @@
     "status": "candidate",
     "subject": "development.exploratory_overconnectivity_vs_mature_sparsity",
     "title": "Should REE distinguish an early over-connected exploratory developmental substrate from a mature sparse/structured substrate -- and is developmental sparsification best modelled as deletion, down-weighting, gating, or residue-tagged de-authorization?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Resolve in two parts on a developmental substrate (V4/V5). Architecture leg:\ncontrast an early over-connected exploratory substrate against a mature\nsparse/structured one and ANSWER \"distinguish the two regimes\" if the\nover-connected regime shows immature single-cue authority (one cue can release\naction) that the mature regime replaces with convergent-weak-input recall\n(action release requires multiple weak inputs to converge) -- i.e. REE-v3's\ncue-authority problem is partly a developmental-immaturity signature, not a\nfixed design flaw. Mechanism leg: implement developmental sparsification as\neach of deletion / down-weighting / gating / residue-tagged de-authorization\nand ANSWER which matches biology by whether the trace is recoverable after\nsparsification (deletion is irreversible;\ndown-weighting/gating/residue-de-authorization preserve a re-instatable trace)\nand whether offline integration acts as pruning/contextualisation rather than\nmere consolidation. HARD PRECONDITION: an upstream developmental substrate\nwith an explicit immature->mature trajectory and developmental gates on\nmemory-trace action-influence must exist (depends_on ARC-019 / MECH-362, CA3\ndevelopmental intake) -- this is absent in V3 and the claim is explicitly\nV4/V5-parked, so DO NOT queue against it in V3 (the regimes cannot be\ninstantiated, the contrast is undefined). Wait for the planned upstream\ndevelopmental substrate before reading either leg.\n"
   },
   "Q-058": {
     "assembly_state": "awaiting_substrate",
@@ -6503,7 +6542,8 @@
     "status": "candidate",
     "subject": "cognifold.explicit_vs_emergent_competition_scope",
     "title": "Which REE subsystems require an EXPLICIT signed competitive edge (ARC-084) rather than emergent softmax / winner-take-all / scalar-gating competition alone -- and what are the safety differences between inhibition, competition, decommitment, and residue-based veto across waking action, simulation, and offline integration?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered substrate-side, not by a V3 grid-world run. Build the ARC-084\ntyped-signed-coupling cognifold (signed edges with sign<0 competition as a\nfirst-class generative mode) and, per inter-field edge, run an ablation:\nreplace the EXPLICIT signed-competitive edge with the existing emergent local\nsoftmax / WTA / scalar-gating (MECH-090/ARC-030/MECH-254) and measure modular\nsegregation, runaway-resonance onset, and boundary preservation. ANSWER 'this\nsubsystem REQUIRES an explicit signed edge' if removing it collapses\nsegregation / triggers over-synchronisation that the softmax alternative\ncannot recover (MECH-363's instability prediction realised); ANSWER 'emergent\ncompetition suffices here' if the softmax arm matches the signed-edge arm on\nstability and behaviour. The safety sub-question is answered by mapping which\nof {inhibition, competition, decommitment MECH-090/MECH-105, residue-veto\nSD-010/SD-011} actually fires across waking / simulation MECH-094 /\noffline-integration MECH-272-273 and showing whether they are dissociable.\nHARD PRECONDITION: the signed-coupling substrate (ARC-084) must EXIST and its\ncompetitive edges must carry non-zero gain -- a cognifold with only\npositive/cooperative edges, or with the competitive sign present but pinned at\nzero gain, cannot discriminate explicit-vs-emergent and yields a vacuous null.\nThis is V4/V5; off the V3 critical path. The right response now is to wait for\n/ design the ARC-084 substrate, NOT to queue a V3 experiment.\n"
   },
   "Q-059": {
     "assembly_state": "awaiting_substrate",
@@ -6511,7 +6551,8 @@
     "status": "candidate",
     "subject": "social_guardrails.crying_analogue_and_laughter_valence",
     "title": "Does REE need a crying / distress-vocalisation social-guardrail analogue to laughter (MECH-110 / MECH-364), and how is social laughter adjudicated as social-field repair vs damage/exclusion -- given that laughter is not monotone-affiliative (it can exclude, dominate, mask distress, or signal threat)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered only against a social substrate that does not yet exist. Build the\nsocial-field substrate that gives REE multi-agent affiliation / exclusion\ndynamics, then (1) for the crying analogue: add a candidate high-arousal\ndistress-vocalisation signal alongside laughter (MECH-110/MECH-364) and ablate\nit -- ANSWER 'a distinct distress/crying claim is warranted' if REE without it\nfails to recruit social repair / care-elicitation in states where laughter\ncannot fire (e.g. unresolvable threat), and the laughter mechanism alone\nleaves a coverage gap on the social-release/guardrail axis; ANSWER 'no\nseparate claim needed' if the existing INV-058 distress-vocalisation entry\nplus laughter already span the axis. (2) For laughter valence: instrument\nsocial laughter in repair vs damage/exclusion contexts and test whether REE\nadjudicates it -- ANSWER 'laughter is correctly non-monotone-affiliative' if\nthe same laughter signal is scored as field-repair in one context and as\nexclusion/dominance/masking in another, tracking the social field-state,\nrather than always reading affiliative. HARD PRECONDITION: a non-degenerate\nsocial field with at least two agents and a representable\naffiliation/exclusion gradient must exist; with a single-agent grid-world\nthere is no social field for laughter valence to be repair-vs-damage WITHIN,\nso any read is vacuous. V4/V5; off the V3 critical path. Wait for the social\nsubstrate (the planned ARC-059 social spine extension); do NOT queue a V3\nexperiment.\n"
   },
   "Q-060": {
     "assembly_state": "awaiting_substrate",
@@ -6528,7 +6569,8 @@
     "status": "candidate",
     "subject": "failure_modes.depressive_regime_reversibility",
     "title": "Is a maladaptive depressive network-regime (MECH-367) REVERSIBLE -- reconfigurable by REE's existing repair machinery (offline integration / MECH-124 replay rebalancing, decommitment from ruminative loops, re-access to social affordances, goal-stream re-coupling) -- or does chronicity lock the regime past a threshold (RA-001) such that the repair routes that work early fail or reverse-sign late?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by a duration-graded repair comparison once the MECH-367\ndepressive-regime vector substrate exists (V4/V5 -- DO NOT queue a V3\nexperiment). Induce a maladaptive depressive network-regime, then apply REE's\nexisting repair routes (offline-integration / MECH-124 replay rebalancing,\ndecommitment from ruminative loops, social-affordance re-access, goal-stream\nre-coupling) at TWO chronicity points: EARLY (pre-threshold) and LATE (past\nthe RA-001 ~24-month-analog chronicity threshold). The discriminating\nobservation is whether the SAME repair routes reconfigure the regime in both\nwindows. ANSWER 'reversible / not threshold-locked' if late repair recovers\nthe regime toward baseline connectivity and goal-coupling with the same routes\nthat work early (no sign reversal, recovery magnitude comparable). ANSWER\n'chronicity locks the regime' if the routes that reconfigure the early regime\nFAIL late, or REVERSE sign late (consistent with the RA-001\nconnectivity-vs-severity sign flip and the MECH-124 self-amplifying\nconsolidation loop), implying late repair needs a different mechanism. HARD\nPRECONDITION: the induced regime must be a genuine self-sustaining attractor\n(persists without ongoing stressor) and the late point must be past the RA-001\nthreshold, else 'early' and 'late' are the same regime and the\nduration-dependence question is untestable. ANTI-OVERCLAIM GUARD: a positive\nresult does NOT license asserting depression is 'merely a reversible software\nstate'.\n"
   },
   "Q-062": {
     "assembly_state": "awaiting_substrate",
@@ -6536,7 +6578,8 @@
     "status": "candidate",
     "subject": "plasticity.write_eligible_state_necessity",
     "title": "Is an EXPLICIT event-level write-eligible state (MECH-368) actually needed, or is the existing combination -- MECH-261 mode-conditioned channel gating + MECH-094 provenance gating + MECH-285 consolidation-priority by V_s residual -- already sufficient to prevent undifferentiated global model updates? This is the falsifier for MECH-368: if a substrate that gates only the channel (mode) and prioritises only at consolidation still avoids catastrophic interference on the online world-model/policy path, MECH-368 earns no keep.",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "This is the explicit falsifier for MECH-368. Once a durable model-update\nsubstrate with an OPEN online write channel exists (E1/E2 world-model + policy\nweights writable during waking, not just episodic memory), run a 2-arm\nablation on a task that interleaves real distractor events with genuinely\nmodel-relevant ones: ARM_baseline = channel-gating (MECH-261 mode) +\nprovenance gating (MECH-094) + offline consolidation-priority (MECH-285) ONLY;\nARM_368 = the same PLUS the per-event write-eligibility gate\nf(prediction_error, salience, pathway_state, residue_status, goal_relevance,\nplasticity_eligibility). Measure catastrophic interference on the online\nworld-model/policy path (retention of prior competence after a burst of\nhigh-PE distractor events). ANSWER 'MECH-368 earns its keep' if ARM_368\nstrictly reduces interference / preserves prior competence above ARM_baseline;\nANSWER 'no -- the existing combination suffices' (MECH-368 falsified) if\nARM_baseline already avoids catastrophic interference with no measurable gap.\nHARD PRECONDITION: the online write channel must be genuinely OPEN and capable\nof producing interference -- if mode-gating + provenance already keep the\nchannel closed in this task so no undifferentiated update can occur, both arms\nscore identically by construction and the test is vacuous; you need a task\nwhere the baseline DOES admit writes that could corrupt the model. V4/V5; off\nthe V3 critical path. Wait for the model-update/online-write substrate; do NOT\nqueue a V3 experiment.\n"
   },
   "Q-063": {
     "assembly_state": "awaiting_substrate",
@@ -6544,7 +6587,8 @@
     "status": "candidate",
     "subject": "compulsion.modulator_trapped_vs_valued_goal",
     "title": "How does REE distinguish a high-value, legitimately-repeated goal from a slow-modulator-trapped compulsive loop -- i.e. a loop that persists because the decommit-friction / threshold landscape is biased (MECH-369) rather than because the goal is valued? What diagnostic separates value-driven persistence from field-state-driven stickiness, and can offline integration reduce loop stickiness without erasing legitimate residue (INV-004/INV-006 firewall)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered against the MECH-369 slow-modulatory-state substrate (V4/V5), not a\nV3 run. Build the slow-modulator field that biases the decommit-friction /\nthreshold landscape, then run a 2x2: {goal value HIGH / LOW} x {modulator bias\nABSENT / PRESENT}, and read the candidate diagnostics. ANSWER \"value-driven\npersistence and modulator-trapped stickiness are separable\" if a diagnostic\ndissociates the cells: specifically (a) z_goal salience / expected-value is\nHIGH in the valued-repeat cell but at-or-below baseline in the\nmodulator-trapped cell (persistence without value), and (b) the SD-034 closure\noperator FIRES and releases in the valued cell but fails-to-fire (or fires\nwithout releasing) in the trapped cell -- i.e. release is blocked by\ndecommit-friction, not by value. ANSWER \"not separable on this substrate\" if\nhigh-value and modulator-trapped loops are indistinguishable on z_goal,\nclosure-operator firing, and dwell-time. The offline-integration leg: apply\nMECH-272/273 sleep-cluster reintegration and ANSWER \"reduces stickiness\nwithout erasing legitimate residue\" only if loop dwell-time /\ndecommit-friction falls toward the valued-baseline WHILE the\nINV-004/INV-006-protected harm residue is bit-preserved (firewall intact);\nANSWER \"erodes the firewall\" if stickiness reduction co-occurs with any decay\nof the non-erasable harm residue. HARD PRECONDITION: the MECH-369 slow\nmodulator must EXIST and actually bias the threshold landscape with non-zero\ngain, and SD-034 closure must be live -- with no modulator field there is no\ntrapped loop to distinguish from a valued one and the diagnostic is vacuous.\nV4/V5; off the V3 critical path (depends_on MECH-369/MECH-370/ARC-016/SD-034).\nDO NOT queue a V3 experiment against this.\n"
   },
   "Q-064": {
     "assembly_state": "remaining",
@@ -6552,7 +6596,8 @@
     "status": "candidate",
     "subject": "failure_modes.syndrome_as_axis_vector_representation",
     "title": "Should REE represent a clinical syndrome as a weighted VECTOR over the ARC-086 latent vulnerability axes (with comorbidity = axis-overlap and pleiotropy = one mechanism loading multiple axes), rather than as a diagnosis-specific locus mapping -- and if so, how is comorbidity represented without exploding the claim registry, and how is axis-predisposition (which axes are fragile) kept distinct from axis-expression (gated by REE's developmental / plasticity machinery)?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by a representational comparison once the ARC-086\nlatent-vulnerability-axis substrate exists (V4/V5 -- DO NOT queue a V3\nexperiment). Build two encodings of a panel of clinical syndromes (including\nknown comorbid pairs and a pleiotropic mechanism loading multiple axes): (A)\nthe current per-syndrome locus mapping; (B) a weighted VECTOR over ARC-086\naxes (comorbidity = axis-overlap, pleiotropy = one mechanism loading multiple\naxes). The discriminating tests: (a) REGISTRY ECONOMY -- count claim-registry\nentries needed to represent N syndromes plus their comorbid combinations;\nANSWER 'vector representation preferred' if (B) represents comorbidities as\noverlapping axis activation with NO combinatorial blow-up (entry count grows\n~linearly in axes, not in syndrome-pairs) while (A) needs a new locus per\ncombination; ANSWER 'locus mapping adequate' if (B) does not reduce entry\ncount or loses syndrome-specific discriminability. (b)\nPREDISPOSITION/EXPRESSION FACTORING -- the vector must keep 'which axes are\nfragile' (axis-predisposition) separable from 'which failure mode is currently\nexpressed' (gated by developmental timing / plasticity / environment); ANSWER\n'vector preferred' only if the same predisposition vector can yield different\nexpressed syndromes under different developmental/plasticity gating\n(genetic-risk != inevitability), and 'inadequate' if predisposition and\nexpression collapse into one quantity. HARD PRECONDITION: the ARC-086 axes\nmust be empirically separable (non-degenerate, discriminable loadings) before\nany syndrome can be located in axis space; degenerate axes make the vector\nrepresentation vacuous.\n"
   },
   "Q-065": {
     "assembly_state": "awaiting_substrate",
@@ -6560,7 +6605,8 @@
     "status": "candidate",
     "subject": "perception.adaptor_metric_origin_and_negotiability",
     "title": "Per-sense adaptor specification and cross-modal negotiability: is each modality's perceptual metric learned or partly defined, and how are heterogeneous sense-specific geometries made mutually negotiable inside one shared world model?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Two coupled questions, both answerable only against a multimodal-perception\nsubstrate that does not yet exist (ARC-087 sense-specific adaptors + MECH-372\nadaptor-depth gradient). (1) METRIC ORIGIN: for a given modality, compare a\nLEARNED-metric arm (adaptor self-organises its perceptual metric from the\nstatistics of perceptual similarity) against a DEFINED-metric arm (structural\nprior fixed on the manifold). ANSWER 'learned' if the self-organised metric\nreaches equal-or-better downstream world-model performance and reproduces the\nmodality's known similarity geometry without the prior; ANSWER 'partly\ndefined/innate' if the learned-only arm fails to converge on the correct\ngeometry and the structural prior is load-bearing. (2) CROSS-MODAL\nNEGOTIABILITY: feed two structurally dissimilar adaptor outputs (e.g. smell's\ngradient geometry and sight's perceptual-manifold geometry) into MECH-103\nprecision-weighted fusion and test whether a common negotiation currency\nemerges -- ANSWER 'mutually negotiable' if fusion produces a coherent shared\nworld-model estimate that respects both metrics; ANSWER 'not negotiable as-is'\nif fusion degenerates (one modality dominates, or the estimate is incoherent\nacross the dissimilar manifolds). HARD PRECONDITION: at least two\nNON-DEGENERATE sense-specific adaptors must exist, each producing a live,\ndistinguishable perceptual-manifold output -- a single modality, or adaptors\ncollapsed to a shared raw-feature space, makes the negotiability question\nvacuous (nothing heterogeneous to negotiate). V4/V5; off the V3 / GAP-7\ncritical path. The right response is to design the multimodal substrate, NOT\nto queue a V3 experiment.\n"
   },
   "Q-066": {
     "assembly_state": "awaiting_substrate",
@@ -6568,7 +6614,8 @@
     "status": "candidate",
     "subject": "cognifold.physical_substrate_auditability_safety_scaling",
     "title": "Can spintronic-memristive media (or any candidate physical cognifold substrate) scale to embodied REE cognition WITHOUT losing auditability, stability, or the harm/safety boundaries that REE's software cognifold currently enforces -- and which cognifold primitives (ARC-089) does each candidate substrate genuinely instantiate versus merely approximate?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered post-V5 by a physical-substrate characterisation, not by any V3\nsoftware run. For each candidate physical cognifold medium\n(spintronic-memristive per MECH-374, or any other), do a\nprimitive-by-primitive instantiation audit against the ARC-089 vocabulary\n(persistent state, history-dependent deformation, multi-timescale dynamics,\noscillatory propagation, stochastic transition, attractor transitions,\nresidue-as-future-landscape-deformation, commitment-as-real-boundary, offline\nreintegration) and label each primitive INSTANTIATED vs merely APPROXIMATED.\nThen test the three safety/auditability axes: (a) can the\nsimulated-vs-released action boundary (MECH-090) be enforced as a HARD,\nexternally-inspectable gate in the medium, or only as a soft statistical\ntendency? (b) does the medium's stochastic switching destabilise the regime\nthat signed competitive coupling (Q-058) buys -- measure\ndrift/segregation-loss vs the software baseline; (c) is offline reintegration\nwithout action authority (INV-049) physically realisable AND verifiable.\nANSWER 'scales without losing auditability/safety' only if every harm/safety\nboundary remains a hard inspectable gate and stability is non-inferior to\nsoftware; ANSWER 'does not' if any boundary degrades to un-auditable or\nstochastic switching breaks stability. HARD PRECONDITION: a\nphysical-cognifold-substrate DECISION must have been taken and a candidate\nmedium must actually be available to characterise -- with no physical\nsubstrate in hand the audit is purely a derivation against device-physics\nspecs, not measurement. POST-V5; off the V3 critical path. DO NOT queue a V3\nexperiment against this.\n"
   },
   "Q-067": {
     "assembly_state": "awaiting_substrate",
@@ -6576,7 +6623,8 @@
     "status": "candidate",
     "subject": "escape.relief_vs_safety_decomposition",
     "title": "Relief/safety decomposition: when the fixed escape-affordance bridge is insufficient, is the missing structure relief-only (action-contingent escape credit), safety-only (prospective threat-absence prediction), or both-required -- and should a trainable successor (MECH-375 / MECH-376) train only the missing / weak component first?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Tied to the V3-EXQ-603i fixed-first-action-class escape bridge as its minimal\ndiagnostic; let 603i complete without mid-run reinterpretation, then read the\ndecomposition. The discriminator: when the fixed bridge is INSUFFICIENT,\ndecompose the failure into relief-only (action-contingent escape credit,\nMECH-302/SD-050 lineage) vs safety-only (prospective threat-absence\nprediction, MECH-303/304 lineage) vs both-required, and have the trainable\nsuccessor (MECH-375 Q_relief / MECH-376 P_safety) train ONLY the missing/weak\ncomponent first. ANSWER 'relief-only missing' if directed escape fails\nspecifically where action-contingent z_harm_a drop credit is absent but\nthreat-absence is already predicted; ANSWER 'safety-only missing' if\ncommitment-release / approach-to-safety fails while relief credit fires;\nANSWER 'both-required' if neither half alone closes the gap. Decision rule\nfrom 603i: PARTIAL pass -> inspect which half emerged and train the weak one;\nFAIL-with-non-vacuity -> conclude the fixed table is too crude and a trainable\nhead is required, NOT that the bridge concept is wrong; FAIL because bridge\ncredit never fired -> route back to substrate readiness (harm derivative,\ntrained encoder, threat detector, action-contingency detection). HARD\nPRECONDITION: the trainable heads MECH-375/376 are NOT yet built, and the read\nis only meaningful if 603i is non-vacuous -- the escape-affordance bridge\ncredit must actually fire on a non-trivial fraction of threat episodes; if\ncredit never fires (SD-059's GLOBAL-SCALAR avoidance_efficacy limitation, the\n603h engaged-but-insufficient signature), there is no relief-vs-safety pattern\nto decompose and the question is premature. V3-adjacent via the 603i successor\nroute, but the decomposition itself awaits the trainable substrate. Do NOT\nbuild the trainable heads or queue against this until 603i lands.\n"
   },
   "Q-068": {
     "assembly_state": "awaiting_substrate",
@@ -6593,7 +6641,8 @@
     "status": "candidate",
     "subject": "governance.agent_assisted_development_integrity",
     "title": "Can a REE-style governance loop (manifest -> review -> governance -> claim) measurably reduce evaluation-channel exploitation -- the collapse of an evidence loop into an optimisation loop -- when agentic systems participate in their own development, relative to a direct-score-authority baseline?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered by a purpose-built meta-agent benchmark harness, NOT by a V3\nsubstrate experiment. Construct a sandboxed REE-style toy repo (small claim\nregistry + experiment queue + mock evaluation API + hidden tests + decoy\nscoring artifacts) and instruct an agentic system to improve held-out\nperformance, under two arms: ARM_governed = the manifest -> review ->\ngovernance -> claim loop (INV-077 mediation enforced); ARM_direct =\ndirect-score-authority baseline (the agent may update confidence straight from\nthe evaluation channel). Score NOT by held-out performance alone but by an\nevaluation-channel-integrity battery: absence of evaluation-channel\nexploitation (EXT-003 reward-hacking signatures), correct experiment\nprovenance, correct supersession of failed runs, accurate claim-confidence\nupdates, no direct editing of protected ledger fields, and clean separation of\nsubstrate-failure vs harness-failure vs genuine negative evidence. ANSWER\n'governance buys integrity' if ARM_governed shows measurably lower\nevaluation-channel exploitation and better provenance/supersession fidelity\nthan ARM_direct at matched held-out performance; ANSWER 'it is ceremony' if\nARM_governed shows no integrity advantage. HARD PRECONDITION: the benchmark\nharness must EXIST and be non-degenerate -- it needs genuine decoy scoring\nartifacts and exploitable channels so that exploitation is POSSIBLE; a harness\nwith no gameable surface makes ARM_direct indistinguishable from ARM_governed\nand the contrast vacuous. The harness is PLANNED-not-built. Off the V3 / GAP-7\ncritical path -- this is an outer-assembly-process question. The right\nresponse is to build the harness, NOT to run a V3 substrate experiment.\n"
   },
   "Q-070": {
     "assembly_state": "awaiting_substrate",
@@ -6601,7 +6650,8 @@
     "status": "candidate",
     "subject": "inference.failure_mode_register",
     "title": "Inference failure-mode register: do the inference-specific failure modes (failure-to-infer-hidden-danger/safety, overconfident-wrong-hypothesis, premature-collapse, hypothesis-proliferation/apophenia, cue-hijack, rule-overreach, map-over/under-generalisation, epistemic-freezing, anti-epistemic-panic) reduce to the existing state-abstraction failure taxonomy (context loss, uncertainty collapse, valence mis-tagging, overmerge, oversplit, threat-spreading), and what biology grounding (hippocampal-prefrontal replay, cognitive maps, pattern-completion-vs-preplay, POMDP belief states, active inference) anchors the layer?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Partly answered already by literature, partly awaiting the V4 inference\nsubstrate. The reduction question (do the inference-specific failure modes\ncollapse to the existing state-abstraction taxonomy MECH-126) was resolved by\nthe 2026-06-13 lit-pull: 9/11 register modes reduced to context-loss /\nuncertainty-collapse / valence-mis-tag / overmerge / oversplit /\nthreat-spreading; the residual epistemic-freezing <-> anti-epistemic-panic\naxis did NOT reduce and is now MECH-434. The remaining empirical leg is\nsubstrate-conditional: once the ARC-091 inference / belief-state affordance\nlayer is built, run a V4 safety-route-inference experiment family that induces\neach candidate failure mode (failure-to-infer-hidden-danger,\noverconfident-wrong-hypothesis, premature-collapse,\nhypothesis-proliferation/apophenia, cue-hijack, rule-overreach,\nmap-over/under-generalisation, plus the MECH-434 freezing/panic axis) and\ntests dissociability. ANSWER 'genuinely distinct' for a mode if it can be\ninduced and lesioned independently of the MECH-126 failure it nominally maps\nto (distinct behavioural signature, distinct repair); ANSWER 'reduces' if\ninducing it is indistinguishable from inducing the MECH-126 parent. The\nbiology-grounding leg (hippocampal-prefrontal replay, cognitive maps,\npattern-completion-vs-preplay, POMDP belief states, active inference) is\nanswered by the targeted lit synthesis (already on record), per the\nbiology-before-formal-definitions rule. HARD PRECONDITION: the ARC-091\nbelief-state substrate must EXIST and produce live latent-state hypotheses --\nwith no inference layer there is nothing to induce a failure mode IN, and\ndissociability cannot be read. V4/V5; off the V3 critical path. Ground via\nliterature and design the substrate; do NOT queue a V3 experiment.\n"
   },
   "Q-071": {
     "assembly_state": "awaiting_substrate",
@@ -6626,7 +6676,8 @@
     "status": "candidate",
     "subject": "social.delay_positive_other_reward",
     "title": "Why might other-bound suffering/threat need to come online before other-bound liking/wanting? Is it protection-first (register harm to others before benefit) versus exploitation-vulnerability (early positive other-reward is gameable), and how should the ordering be enforced?",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered only against a V5 social substrate with both other-bound streams, not\nby a V3 run. On the ARC-059 social spine with MECH-408's developmental\nordering instantiated, run an ordering-manipulation: ARM_protective-first\n(other-bound suffering/threat comes online before other-bound liking/wanting)\nvs ARM_simultaneous vs ARM_appetitive-first. Probe with an exploitation\nscenario in which a manipulating other agent offers early positive\nother-reward. ANSWER 'protection-first' is the operative reason if\nARM_protective-first registers harm-to-others reliably AND resists the\nexploitation that compromises ARM_appetitive-first; ANSWER\n'exploitation-vulnerability' is the operative reason if the appetitive-first /\nsimultaneous arms are demonstrably gameable (the agent is steered into harmful\ncooperation by early reward) while protective-first is not -- the two readings\ncan both hold, and the discriminator is whether the cost is mis-registering\nharm vs being captured by early reward. Enforcement is answered by whether a\nhard maturational gate (appetitive stream cannot activate until the protective\nstream passes a competence threshold) outperforms a soft schedule on\nexploitation-resistance without stunting prosocial behaviour. HARD\nPRECONDITION: a non-degenerate multi-agent substrate with SEPARATELY\nrepresentable other-bound suffering/threat and other-bound liking/wanting\nstreams must exist; with no social substrate (or with the two streams\nconflated into one other-reward scalar) there is nothing to order and the\nquestion is vacuous. V5; off the V3 critical path. The right response is the\nEMP-7 lit-pull plus substrate design; do NOT queue a V3 experiment.\n"
   },
   "Q-074": {
     "assembly_state": "awaiting_substrate",
@@ -6634,7 +6685,8 @@
     "status": "candidate",
     "subject": "reasoning.analogy_operator_vs_emergent_traversal",
     "title": "Is analogy a SEPARATE V6 alignment operator, or does it fall out of MECH-300 cognitive-map traversal over a shared symbolic map (same map, different entry points)? Decides whether the analogy mechanism (MECH-421) is built as a distinct operator or expected to emerge from the relational-inference stack.",
-    "type": "open_question"
+    "type": "open_question",
+    "what_would_answer": "Answered only once a V6 symbolic / relational-inference stack exists to\nobserve, not by a V3 run. Build the relational-inference stack\n(MECH-419/MECH-420) over a shared symbolic / type-graph cognitive map\ntraversable by MECH-300 theta-sequence traversal, then test for analogy\nWITHOUT a dedicated operator: present source-target pairs requiring relational\nstructure-mapping (spatial containment <-> social inclusion; physical support\n<-> commitment, per MECH-421) and see whether correct analogical transfer\nEMERGES from map traversal at the active abstraction level (same map,\ndifferent entry points). ANSWER 'emergent -- no separate operator needed' if\nrelational transfer arises from MECH-300 traversal over the shared map alone,\nat rates matching an explicit-operator arm; ANSWER 'analogy is a separate V6\noperator (MECH-421 built as distinct)' if traversal alone fails to map\nrelational structure across surface-dissimilar domains and an explicit\nstructure-mapping module is required to recover the transfer. HARD\nPRECONDITION: the shared symbolic stack must EXIST and be non-degenerate --\nthe cognitive map must actually encode relational structure (not just surface\nfeatures) and MECH-300 traversal must operate at a conceptual/type-graph\nabstraction level; until the symbolic stack is built there is no map to\ntraverse and the build-vs-emerge fork cannot be observed. V6; off the V3\ncritical path. DO NOT build in V3 or queue an experiment against this.\n"
   },
   "Q-075": {
     "assembly_state": "remaining",
@@ -6676,7 +6728,7 @@
   },
   "Q-079": {
     "assembly_state": "remaining",
-    "epistemic_stance": "asked",
+    "epistemic_stance": "believed",
     "status": "resolved",
     "subject": "research.structured_uncertainty_field_object",
     "title": "Is there a distinct, useful mathematical object -- a 'structured uncertainty field' / dynamic latent-scale inference field (DLIF) -- that jointly provides directed evidence update, cyclic coherence constraint, latent-node birth/death/merge/split, granularity/scale shift, action coupling, precision modulation, offline consolidation, AND residue/non-erasure; or does it collapse to a re-notation of existing formalisms (dynamic factor graphs + Bayesian-nonparametric structure learning + active inference + ARC-013 residue)?",
@@ -6689,7 +6741,8 @@
     "status": "candidate",
     "subject": "clinical.depression_network_coupling_reversal",
     "title": "Long-term clinical depression involves a chronicity-dependent reversal of large-scale network coupling: past a ~24-month chronicity threshold, the relationship between symptom severity and Central-Executive-Network (CEN) <-> Default-Mode-Network (DMN, precuneus) functional connectivity reverses sign (non-chronic: stronger CEN-DMN coupling at low severity, weaker at high; chronic: connectivity strengthens as symptoms worsen, co-occurring with entrenched rumination). The depressive brain-state is duration-indexed, not a single static regime.",
-    "type": "research_anchor"
+    "type": "research_anchor",
+    "what_would_answer": "out_of_domain research_anchor: the test domain is a clinical fMRI cohort; no\nREE substrate distinguishes named large-scale networks (CEN/DMN), so the\nanchor is confirmed or collapsed by external replication, never by a V3 run.\nDiscriminating empirical signature that CONFIRMS the anchor: an independent\nfMRI cohort, stratified by episode duration at a ~24-month chronicity\nthreshold, reproduces a SIGN REVERSAL in the relationship between symptom\nseverity (HAM-D) and CEN<->precuneus(DMN) functional connectivity --\nnon-chronic patients show connectivity DECREASING with severity, chronic\npatients show connectivity INCREASING with severity (the Zanao et al. 2026 Sci\nRep n=46 result), establishing that the depressive brain-state is\nduration-indexed rather than a single static regime. COLLAPSES the anchor if a\nlarger or pre-registered replication finds the severity-connectivity slope is\nthe same sign in chronic and non-chronic cohorts (no chronicity moderation),\nor if the apparent reversal is explained by a confound (medication exposure,\nage, scanner/motion) rather than chronicity, or if the threshold is not near\n24 months and no stable duration boundary exists. PRECISION guardrail:\n'reverses' means a cross-sectional reversal of the connectivity-vs-severity\nslope between cohorts, NOT demonstrated therapeutic reversibility (that is\nQ-061); and this is long-term CLINICAL depression, not synaptic LTD. A\nconfirming replication strengthens the REE depression cluster (MECH-088 /\nINV-034 / MECH-124) and motivates MECH-367; it must never be cited as REE\nsubstrate evidence.\n"
   },
   "RA-002": {
     "assembly_state": "remaining",
@@ -6697,7 +6750,8 @@
     "status": "candidate",
     "subject": "clinical.psychiatric_genomic_factor_overlap",
     "title": "Clinically distinct psychiatric diagnoses share a small set of latent genomic factors that cut across diagnostic boundaries: large-scale genomic structural-equation modelling across 14 childhood- and adult-onset psychiatric disorders (>1 million individuals) finds that the majority of case-vs-control genetic variance is captured by FIVE shared genomic factors (Compulsive; Schizophrenia-bipolar / psychotic-mood; Neurodevelopmental; Internalizing; Substance-use) spanning 238 variants, with factor-specific biology (e.g. oligodendrocyte genes enriched in the Internalizing factor) acting early in brain development. Psychiatric categories are surface expressions over overlapping latent dimensions, not genetically discrete kinds.",
-    "type": "research_anchor"
+    "type": "research_anchor",
+    "what_would_answer": "out_of_domain research_anchor: the test domain is a human-genetics cohort; no\nREE substrate distinguishes genomic factors, so the anchor is confirmed or\ncollapsed by external genomics replication, never by a V3 run, and it must\nnever be cited as REE mechanism evidence. Discriminating empirical signature\nthat CONFIRMS the anchor: an independent large-scale genomic\nstructural-equation modelling effort across childhood- and adult-onset\npsychiatric disorders reproduces a SMALL number (~five) of shared\ncross-diagnostic latent genomic factors (Compulsive;\nSchizophrenia-bipolar/psychotic-mood; Neurodevelopmental; Internalizing;\nSubstance-use) that capture the majority of case-vs-control genetic variance,\nwith factor-specific developmental biology (e.g. oligodendrocyte-gene\nenrichment in the Internalizing factor) -- i.e. the genomic structure is\nlow-dimensional and cuts ACROSS diagnostic boundaries (the Grotzinger et al.\n2025 Nat Genet result, >1M individuals, 238 variants). COLLAPSES the anchor if\nreplication instead recovers factors that align ONE-TO-ONE with DSM categories\n(no cross-diagnostic sharing), or if the dimensionality is not low (no\nparsimonious small factor set survives out-of-sample), or if the factor\nstructure is unstable across ancestries/cohorts. GUARDRAIL (anti-determinism):\ngenetic overlap does NOT make diagnoses meaningless and individual\npresentations cannot be read off polygenic factors -- the load-bearing\nextraction is the SURFACE-CLUSTER principle (categories are emergent clusters\nover overlapping latent axes), which REE already holds (IMPL-005, INV-061). A\nconfirming replication motivates the architectural axis layer (ARC-086), the\nsyndrome-as-vector question (Q-064), and the p-factor analogue (MECH-371); the\nfactor labels and 238-variant count are from the abstract plus press summaries\nand should be cross-checked against the full paper.\n"
   },
   "SD-001": {
     "assembly_state": "remaining",

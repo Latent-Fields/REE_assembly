@@ -39,6 +39,16 @@ SUBSTRATE_QUEUE = REPO_ROOT / "evidence" / "planning" / "substrate_queue.json"
 SHOWN_EXP_CONF_GATE = 0.62  # candidate->provisional gate (decision_criteria.v1.yaml)
 ASKED_CATEGORIES = {"answer_state", "derivational", "out_of_domain"}
 ASKED_CLAIM_TYPES = {"open_question", "question"}
+# A question that has been answered/retired/superseded -- or settled by an
+# adjudication decision -- is no longer ASKED even though it keeps its
+# open_question/question claim_type for history. Such claims fall through to the
+# exp_conf split (shown if confirmed, else believed) instead of asked, so they
+# are not expected to carry a `what_would_answer` falsification condition.
+# Mirror of the terminal-status guard in scripts/validate_claims.py.
+TERMINAL_STATUSES = {
+    "legacy", "resolved", "retired", "superseded", "candidate_resolved",
+    "deprecated", "applied",
+}
 STANCE_VALUES = {"shown", "believed", "asked"}
 
 
@@ -50,7 +60,11 @@ def resolve_epistemic_stance(claim, exp_conf):
         return explicit, True
     claim_type = str(claim.get("claim_type", "") or "").strip()
     category = str(claim.get("epistemic_category", "") or "").strip().lower()
-    if category in ASKED_CATEGORIES or claim_type in ASKED_CLAIM_TYPES:
+    status = str(claim.get("status", "") or "").strip().lower()
+    lifecycle = str(claim.get("lifecycle_stage", "") or "").strip().lower()
+    is_terminal = status in TERMINAL_STATUSES or lifecycle == "adjudicated"
+    if not is_terminal and (category in ASKED_CATEGORIES
+                            or claim_type in ASKED_CLAIM_TYPES):
         return "asked", False
     if exp_conf >= SHOWN_EXP_CONF_GATE:
         return "shown", False
