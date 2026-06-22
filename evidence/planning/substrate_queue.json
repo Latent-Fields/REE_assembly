@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "654h-autopsy-20260621T1827Z",
-  "last_updated_utc": "2026-06-22T08:11:50Z",
+  "last_seen_session": "prong-map-backpointer-20260622T144731Z",
+  "last_updated_utc": "2026-06-22T14:47:31Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4775,6 +4775,9 @@
       "ready": false,
       "ready_blocked_by": "Lead lever MECH-448 is BUILT (ree-v3 main 4c9b3c9) + VALIDATED (V3-EXQ-689d PASS all 4 criteria) + PROMOTED candidate->provisional (governance-cycle-20260621T0639Z); the selection-face conversion ceiling is LIFTED on the GAP-A foraging substrate. The entry is NOT yet fully resolved: MECH-449 Go/No-Go eligibility governance is now BUILT (2026-06-21 via /implement-substrate; gate cleared on both faces -- selection-face V3-EXQ-689f + behavioural-face the 485e->485k autopsy lineage; no-op default, PROMOTES NOTHING). Its ablation falsifier V3-EXQ-689g is queued (priority 430). The remaining unresolved items are MECH-449's falsifier scoring, and the downstream behavioural retests (654h/485i/445h/625e) plus the rung-6 de-commit/release-DURATION validation (460j) are queued/pending, not buildable substrate items. ready stays false until those resolve; flipping ready=true would trip the workset 'ready=true but unresolved prerequisites' inconsistency guard.",
       "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
+      "prong_map": "evidence/planning/conversion_ceiling_prong_map.md",
+      "campaign_plan": "evidence/planning/conversion_ceiling_campaign_plan.md",
+      "prong_map_note": "Parallel-campaign view over this entry: the prong map (instance #1 of the reusable prong_map_pattern.md) decomposes the conversion ceiling into prongs mapped onto the 6-rung fallback_ladder; campaign plan tracks the 5 assembling frontier nodes. Reverse pointer to the prong-map cross-ref (added 2026-06-22; wiring only, PROMOTES NOTHING).",
       "depends_on_resolved": [
         "behavioral_diversity_isolation:GAP-A (SD-056/ARC-065 e2_world_forward divergent pool -- Root A mitigated, the non-vacuity precondition for any F-bounding lever)",
         "crf-availability-maintenance (Root D CRF gate-lockout CLOSED 654f -- isolates B as the residual)",
