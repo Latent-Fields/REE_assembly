@@ -323,6 +323,18 @@ must be a named, falsifiable bet, not an unspoken scope cut:
 | **Thalamocortical recurrence / beta-gating** | BG-3 latch face (partial) | "V3 closes the loop with the SD-034 latch family, not explicit thalamocortical oscillation." |
 | **Multi-loop cortico-striatal arbitration** (separate motor / cognitive / motivational loops) | v4 | "V3 collapses all loops into one shared commitment interface (s4 contextual-loops divergence)." |
 
+> **Companion map (2026-06-22):**
+> [`basal_ganglia_assembly_map_2026-06-22.md`](basal_ganglia_assembly_map_2026-06-22.md)
+> extends this V4-axes table with the BG *afferent* (thalamostriatal salience,
+> limbic loop channel), *efferent* (lateral-habenula negative-RPE drain,
+> SNr→colliculus fast motor drain, thalamic cognitive-loop gating), and
+> *learning* (dopamine-gated three-factor plasticity on the gating layer)
+> missing-pieces — plus an eight-row divergence audit (four were silent) with a
+> defensible-simplification-vs-repair-target disposition for the top three. Its
+> headline: the gating layer learns nothing (pure arithmetic), which restates the
+> F-dominance root — and the recurrent-settling-step + dopamine-into-gating repairs
+> are coupled and are the recommended next attack on MECH-439.
+
 ### Closure criterion (the forcing function)
 
 **ARC-107 may NOT be promoted past `candidate`, and the constitution may NOT be
