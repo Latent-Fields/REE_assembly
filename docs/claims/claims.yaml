@@ -45406,6 +45406,20 @@
     s7 selection falsifier + the MECH-450 settling step + the JOB-2 control-plane pair are SEPARATE downstream
     chips. Doc docs/architecture/dopamine_into_gating.md; ree-v3/CLAUDE.md "ARC-108 JOB-1 step-1" entry.
     PROMOTES NOTHING (substrate build, no flag/confidence/status change).
+    IMPLEMENTATION NOTE (JOB-2 control-plane DRIVER pair BUILT 2026-06-22, /implement-substrate; ree-v3 c5614ab --
+    substrate, PROMOTES NOTHING): the two JOB-2 control-plane drivers landed, both reusing the JOB-1 signed-RPE
+    delta_t = R_t - V-hat_t (no new teaching signal). (c) the rho_t maintenance RAMP
+    (ree-v3 ree_core/policy/rho_maintenance_ramp.py = goal_proximity x benefit valuation) REPLACES the flat-hold
+    maintenance DRIVER of the natural-commit latch-hold -- it peaks-then-declines so the hold SELF-LIMITS past the
+    proximity peak (deviation B6 / the 460h-monolith structural fix), composing with the MECH-090/342/SD-034 latch
+    machinery (latch untouched -- only the maintenance driver is swapped). (d) the habenula negative-delta_t DE-COMMIT
+    is a new INTERNAL-scalar abort input to the SD-034 ClosureOperator (habenula_tick, reason='habenula') fired from
+    agent.update_residue on delta_t < threshold (worse-than-expected); ADDED ALONGSIDE the refractory-timer release
+    (the operator / refractory / No-Go release path is NOT replaced), content-driven and dissociable from the timer
+    (D3). The lateral-habenula as a ROUTED EFFERENT drain stays V4 (internal scalar only in v3). No-op-default +
+    bit-identical OFF + waking-only (MECH-094). Design doc docs/architecture/arc_108_job2_control_plane.md; the
+    sec-7.2 control-plane L0/L1/L2 falsifier is queued SEPARATELY. PROMOTES NOTHING (substrate build, no
+    flag/confidence/status change).
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
