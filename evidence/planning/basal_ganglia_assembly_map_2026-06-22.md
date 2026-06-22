@@ -27,7 +27,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "unified dopamine substrate (BG-LEARN) + decision on loop segregation"
       assembly_status: queued
-      owner_exq: "null -- not yet a build queue entry"
+      owner_exq: "null -- not yet a build queue entry. The missing dopaminergic-RPE afferent is now owned by claim ARC-108 (unified dopamine substrate, registered 2026-06-22, master 70eabe9f34); the limbic loop-channel / loop-segregation decision is still unclaimed."
     - id: "basal_ganglia_assembly_map:EFFERENTS"
       title: "Missing drains (data sinks): GPi->lateral-habenula negative-RPE drain, SNr->colliculus fast subcortical motor drain, thalamic cognitive-loop (working-memory) gating drain"
       phase: "Assembly frontier. REE has one output path (the committed trajectory) + the de-commit release. Biology's negative-teaching drain (habenula), fast cortex-bypassing motor drain, and cognitive-loop output-gating are all absent. See A-map below."
@@ -35,7 +35,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "BG-LEARN (habenula is the negative-RPE drain) + a stance on cognitive-loop gating"
       assembly_status: queued
-      owner_exq: "null"
+      owner_exq: "null -- not yet a build queue entry. The GPi->lateral-habenula negative-RPE drain is now owned by claim ARC-108 (unified dopamine substrate, registered 2026-06-22, master 70eabe9f34), which supplies the habenula negative-delta_t abort drain; the fast subcortical-motor and cognitive-loop gating drains are still unclaimed."
     - id: "basal_ganglia_assembly_map:LEARN"
       title: "Missing learning: dopamine-gated three-factor plasticity on the gating/arbitration layer (the single biggest gap; the conversion ceiling restated)"
       phase: "Assembly frontier + the highest-leverage item. The ARC-107 selection CONSTITUTION (MECH-448/449/447, the authority rescale) is pure arithmetic with no learned parameters. Valuation heads (harm_eval/benefit_eval) learn; the ARBITRATION does not. Biology learns BOTH via dopaminergic RPE x Hebbian (D1-LTP / D2-LTD). F-dominance (MECH-439) is the predicted failure of a system that selects but cannot learn to select."
@@ -43,7 +43,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "design decision: learned-gating vs the current arithmetic envelope as the next MECH-439 attack"
       assembly_status: queued
-      owner_exq: "null -- candidate design note + claim registration is the next step"
+      owner_exq: "null -- claims registered 2026-06-22 (master 70eabe9f34): ARC-108 (unified dopamine substrate / signed-RPE -> learned E3 gating) + MECH-450 (minimal recurrent settling step), both candidate/substrate_conditional and wired into ARC-107.depends_on; design notes dopamine_into_gating_design_2026-06-22.md + unified_dopamine_substrate_design_2026-06-22.md landed. Build (the minimal learned gate) is the next step."
     - id: "basal_ganglia_assembly_map:DIVERGENCE-LEDGER"
       title: "Eight divergence rows; four were SILENT (ARC-106 zero-silent-divergence violation): Go/No-Go additive collapse, RPE-as-unsigned-variance, count-based recency, 5-HT-before-DA"
       phase: "Each row needs: enter into the ARC-106 living ledger (s5) with the load-bearing-vs-decorative ablation test + the psychiatric-failure-mode column; then a disposition (tracked-divergence | repair-target | defensible-V3-simplification). The top three carry a detailed disposition note below."
@@ -51,7 +51,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "ARC-106 s5 ledger rows + per-row disposition"
       assembly_status: in_progress
-      owner_exq: "null -- documentation/governance, not an experiment"
+      owner_exq: "null -- documentation/governance, not an experiment. The repair targets behind the silent rows now have owning claims (registered 2026-06-22, master 70eabe9f34): ARC-109 (D1/D2 population split) owns B4 (Go/No-Go additive collapse); MECH-450 (minimal recurrent settling step) owns the B1+B3-blend repair. The ledger-entry + per-row disposition work itself stays documentation/governance."
 ---
 
 # Basal-Ganglia Assembly Map + Divergence Ledger
