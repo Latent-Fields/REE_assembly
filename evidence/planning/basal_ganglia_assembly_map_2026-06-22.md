@@ -35,7 +35,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "BG-LEARN (habenula is the negative-RPE drain) + a stance on cognitive-loop gating"
       assembly_status: queued
-      owner_exq: "null -- not yet a build queue entry. The GPi->lateral-habenula negative-RPE drain is now owned by claim ARC-108 (unified dopamine substrate, registered 2026-06-22, master 70eabe9f34), which supplies the habenula negative-delta_t abort drain; the fast subcortical-motor and cognitive-loop gating drains are still unclaimed."
+      owner_exq: "null -- not yet a build queue entry. SCOPE PRECISION (2026-06-22 reconcile): split the habenula. The INTERNAL negative-delta_t de-commit SCALAR (the SD-034 abort INPUT; the rung-6/B6 fix) is owned by ARC-108 and is V3 (user-ratified v4->v3; master 70eabe9f34). The ROUTED GPi->lateral-habenula efferent DRAIN (a real output channel) stays V4 and is unclaimed. The fast subcortical-motor and cognitive-loop gating drains are also still unclaimed. Authoritative V3/V4 split: unified_dopamine_substrate_design_2026-06-22.md s8."
     - id: "basal_ganglia_assembly_map:LEARN"
       title: "Missing learning: dopamine-gated three-factor plasticity on the gating/arbitration layer (the single biggest gap; the conversion ceiling restated)"
       phase: "Assembly frontier + the highest-leverage item. The ARC-107 selection CONSTITUTION (MECH-448/449/447, the authority rescale) is pure arithmetic with no learned parameters. Valuation heads (harm_eval/benefit_eval) learn; the ARBITRATION does not. Biology learns BOTH via dopaminergic RPE x Hebbian (D1-LTP / D2-LTD). F-dominance (MECH-439) is the predicted failure of a system that selects but cannot learn to select."

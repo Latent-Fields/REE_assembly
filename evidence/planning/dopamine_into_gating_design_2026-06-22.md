@@ -35,6 +35,29 @@ This note is a **design decision + pre-registered falsifier**. It PROMOTES
 NOTHING and mints no claims.yaml entry; the working claim ids in the frontmatter
 are placeholders for a follow-on `/thought-digestion` intake.
 
+> **SCOPE RECONCILIATION (2026-06-22, supersedes this note's own V3/V4 split).**
+> This note is the **JOB-1 (selection-learning) tactical design**. The umbrella
+> design-of-record and the authoritative V3/V4 scope are now
+> [`unified_dopamine_substrate_design_2026-06-22.md`](unified_dopamine_substrate_design_2026-06-22.md)
+> §8 (user-RATIFIED; ARC-108 pulled `implementation_phase: v4 -> v3`). Two
+> corrections to **this** note's scope follow from that ratification:
+> 1. **The habenula is now split, and its de-commit half is V3 — not the flat
+>    "V4" this note's §5/§6/§8 state.** The **internal negative-δ_t de-commit
+>    scalar** (the abort *input* to the SD-034 closure operator) is **V3** (it is
+>    the concrete fix for the parked rung-6 / deviation B6 — unified note §6/§8,
+>    and the dissociable substrate it tests on was just built, ree-v3 `e52158d`).
+>    Only the **routed GPi→habenula efferent *drain*** (a real output channel)
+>    stays V4. Read every "habenula → V4" line below (§6 table, §8 step 5) as
+>    "routed efferent drain → V4; internal de-commit scalar → V3."
+> 2. **This note covers JOB 1 only (selection).** The dopaminergic **control-plane
+>    driver** (commit-threshold / go-signal / maintenance-ramp / habenula
+>    de-commit = JOB 2) is designed in the unified note §3, off the *same* signed
+>    δ_t. The two run on one substrate; this note's δ_t *is* that δ_t.
+>
+> Net: the V3 slice is **larger** than this note alone states — it includes the
+> JOB-2 maintenance-ramp + internal-habenula-de-commit pair. No mechanism here is
+> wrong; only the V3/V4 boundary moved.
+
 ---
 
 ## 1. Why this is the right next move (the argument from the failure history)
