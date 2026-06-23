@@ -2,88 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 1415947,
   "runner_started_at": "2026-06-17T10:52:50.833959+00:00",
-  "last_updated": "2026-06-19T22:47:14.680474+00:00",
+  "last_updated": "2026-06-23T05:37:56.238018+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-689a",
-      "backlog_id": "",
-      "claim_id": "MECH-439",
-      "title": "MECH-439 conflict-grade GAP-BLIND control-arm falsifier (gap-concentrated vs uniform lift, via arm contrast); supersedes V3-EXQ-689",
-      "description": "",
-      "estimated_minutes": 256.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-460h",
-      "backlog_id": "",
-      "claim_id": "MECH-446",
-      "title": "SD-034 de-commit retest for MECH-446 (de-commit-authority magnitude) on a REFRACTORY-INDEPENDENT closure-coupling metric; supersedes V3-EXQ-460g",
-      "description": "",
-      "estimated_minutes": 106.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-625e",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-037 axis-b P1b joint-composite RECALIBRATED (trained-harm-pathway threat: 10x-lower + pulsed; 603q-stabilized harm config)",
-      "description": "",
-      "estimated_minutes": 108.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-693",
-      "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 Phase-2 4-arm substrate-gradient behavioural validation (V3-EXQ-514l successor) on the foraging-competent 603n curriculum",
-      "description": "",
-      "estimated_minutes": 400.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-690",
-      "backlog_id": "",
-      "claim_id": "ARC-062",
-      "title": "Q-054 ARC-062 minimum trajectory-class diversity floor sweep (graded first-action-entropy sweep, 569i top-k conversion armed; brackets whether SP-CEM 0.497 nats clears the discriminator floor)",
-      "description": "",
-      "estimated_minutes": 336.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-691",
-      "backlog_id": "",
-      "claim_id": "SD-017",
-      "title": "Q-055 SD-017 sleep consolidation preserve/erode ARC-065 trajectory-class diversity (Rung-3 persistence: sleep-ON vs sleep-OFF vs replay-ablated, committed-class-diversity DV at 3 time points)",
-      "description": "",
-      "estimated_minutes": 312.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-514t",
-      "backlog_id": "",
-      "claim_id": "MECH-436",
-      "title": "SD-049-PHASE-2 MECH-436 drive-coupling retest on the BOUNDED kappa raise (kappa_scale 12.0 + restoration 0.15); supersedes V3-EXQ-514s",
-      "description": "",
-      "estimated_minutes": 212.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3522,6 +3444,90 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness_20260619T224714Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 14.0
+    },
+    {
+      "queue_id": "V3-EXQ-693",
+      "backlog_id": "",
+      "claim_id": "SD-049",
+      "title": "SD-049 Phase-2 4-arm substrate-gradient behavioural validation (V3-EXQ-514l successor) on the foraging-competent 603n curriculum",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation] non_vacuity_met=False (R1=True R2=True R3=False) C_ID=True C_GR=False(lift=0.007) C_WL=False C_ANOVA=True -> outcome=FAIL route=substrate_not_ready_requeue | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-693 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-693.json",
+      "started_at": "2026-06-19T22:47:17.928887+00:00",
+      "completed_at": "2026-06-20T14:34:30.826797+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation/v3_exq_693_sd049_phase2_4arm_substrate_gradient_validation_20260620T143430Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 56832.9
+    },
+    {
+      "queue_id": "V3-EXQ-693a",
+      "backlog_id": "",
+      "claim_id": "SD-049",
+      "title": "SD-049 Phase-2 4-arm substrate-gradient validation: measurement re-issue of V3-EXQ-693 porting the working 514t info-tag WL-scoring harness so the R3 non-vacuity guard fires; supersedes V3-EXQ-693",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation] non_vacuity_met=False (R1=False R2=False R3=False) C_ID=False C_GR=False(lift=0.000) C_WL=False C_ANOVA=False -> outcome=FAIL route=substrate_not_ready_requeue | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-693a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-693a.json",
+      "started_at": "2026-06-20T16:49:15.018881+00:00",
+      "completed_at": "2026-06-21T09:30:32.496843+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation/v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation_20260621T093032Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 60077.5
+    },
+    {
+      "queue_id": "V3-EXQ-654h",
+      "backlog_id": "",
+      "claim_id": "MECH-309",
+      "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654g-successor; demotion lever matched constant; sweep use_candidate_rule_field)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL completed=6/6 C1=False C2=False label=substrate_not_ready_requeue | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-654h -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-654h.json",
+      "started_at": "2026-06-21T09:32:36.334130+00:00",
+      "completed_at": "2026-06-21T17:57:05.481064+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 30269.1
+    },
+    {
+      "queue_id": "V3-EXQ-654i",
+      "backlog_id": "",
+      "claim_id": "MECH-309",
+      "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654h-successor; 485j-style envelope-floor calibration so the demotion lever excludes on the arc_062 bank; sweep use_candidate_rule_field)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL completed=6/6 C1=True C2=False label=conversion_ceiling_persists_despite_demotion_route_mech449 | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-654i -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-654i.json",
+      "started_at": "2026-06-21T18:47:24.440633+00:00",
+      "completed_at": "2026-06-22T01:47:06.935091+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 25182.5
+    },
+    {
+      "queue_id": "V3-EXQ-485l",
+      "backlog_id": "",
+      "claim_id": "SD-033b",
+      "title": "SD-033b corrected OFC outcome-devaluation behavioural retest (MECH-449 active No-Go engaged; supersedes 485k)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS  head_delta=5.903903  bias_range_hi=0.109378  bias_range_dev=0.000000  deval_shift=1.0000  deval_bias_l2=1.4583  deval_bias_cos=-0.3495  between_tv=1.0000  excluded=2  nogo_applied=0 | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-485l -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-485l.json",
+      "started_at": "2026-06-22T06:00:28.189274+00:00",
+      "completed_at": "2026-06-22T06:35:48.040000+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 2119.9
+    },
+    {
+      "queue_id": "V3-EXQ-699",
+      "backlog_id": "",
+      "claim_id": "MECH-448",
+      "title": "P-comp: MECH-448 demotion x MECH-449 Go/No-Go composition at committed-class entropy (2x2 diagnostic)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS completed=12/12 C1=True verdict=levers_compound label=levers_compound | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-699 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-699.json",
+      "started_at": "2026-06-22T15:08:47.394718+00:00",
+      "completed_at": "2026-06-23T05:37:56.236252+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 52148.8
     }
   ]
 }
