@@ -1,13 +1,31 @@
 {
-  "generated_at": "2026-06-23T04:31:39Z",
+  "generated_at": "2026-06-23T04:55:18Z",
   "counts": {
     "drifted": 0,
     "stale_since": 0,
-    "suppressed": 10,
-    "assembling": 5,
+    "suppressed": 8,
+    "assembling": 9,
     "assembling_revisit_due": 0
   },
   "assembly_frontier": [
+    {
+      "node_id": "commitment_closure:GAP-8",
+      "plan": "commitment_closure_plan.md",
+      "node_status": "assembling",
+      "awaiting": "conversion_ceiling_campaign:FULLSTACK (the co-armed full-stack arm) -- the OFC valuation face is FACE-VALIDATED + folded in (use_ofc_devaluation_head ON); isolated 485n re-queue REFUSED (re-derive brake fired 11th)",
+      "assembly_status": "built",
+      "revisit_after": null,
+      "revisit_due": false
+    },
+    {
+      "node_id": "behavioral_diversity_isolation:GAP-K",
+      "plan": "behavioral_diversity_isolation_plan.md",
+      "node_status": "assembling",
+      "awaiting": "ARC-108 unified-dopamine substrate (learned w_chan gating) + MECH-450 settling step (W_lat) -- under active build (2 implement-substrate sessions, ree-v3); falsifiers V3-EXQ-700 (sec-7 learned-gating 2x2) + V3-EXQ-700a (C3 signed-vs-unsigned-RPE ablation) QUEUED, awaiting run",
+      "assembly_status": "in_progress",
+      "revisit_after": null,
+      "revisit_due": false
+    },
     {
       "node_id": "conversion_ceiling_campaign:CAMPAIGN",
       "plan": "conversion_ceiling_campaign_plan.md",
@@ -50,6 +68,24 @@
       "node_status": "assembling",
       "awaiting": "P-comp + P2 + P3 composition-ready",
       "assembly_status": "queued",
+      "revisit_after": null,
+      "revisit_due": false
+    },
+    {
+      "node_id": "conversion_ceiling_campaign:P4-learned-gating",
+      "plan": "conversion_ceiling_campaign_plan.md",
+      "node_status": "assembling",
+      "awaiting": "ARC-108 + MECH-450 substrate build (under active construction, 2 implement-substrate sessions, ree-v3); V3-EXQ-700/700a awaiting run",
+      "assembly_status": "in_progress",
+      "revisit_after": null,
+      "revisit_due": false
+    },
+    {
+      "node_id": "sd_037_axis_b:P1b",
+      "plan": "sd_037_axis_b_sustained_threat_curriculum_plan.md",
+      "node_status": "assembling",
+      "awaiting": "conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed autopsy consolidated this node's blocker into the MECH-439 F-dominance conversion-ceiling cluster (654g/485h/625e/445h); P1b cannot re-gate until the campaign's full-stack arm shows committed-action diversity survives a threat-engaged candidate pool",
+      "assembly_status": "in_progress",
       "revisit_after": null,
       "revisit_due": false
     }

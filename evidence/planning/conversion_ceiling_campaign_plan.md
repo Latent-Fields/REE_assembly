@@ -3,8 +3,8 @@ closure_plan:
   id: conversion_ceiling_campaign
   title: "Conversion-Ceiling Campaign (prong-map / parallel multi-face)"
   registered: 2026-06-22
-  last_updated: 2026-06-22
-  scope_claims: [MECH-439, MECH-309, ARC-062, MECH-445, MECH-446, MECH-448, MECH-449, SD-033b, MECH-263, ARC-107]
+  last_updated: 2026-06-23
+  scope_claims: [MECH-439, MECH-309, ARC-062, MECH-445, MECH-446, MECH-448, MECH-449, SD-033b, MECH-263, ARC-107, ARC-108, MECH-450]
   sibling_plans: [behavioral_diversity_isolation, arc_062_rule_apprehension, commitment_closure, sd033_governance]
   pattern: prong_map_pattern.md
   instance_map: conversion_ceiling_prong_map.md
@@ -50,6 +50,16 @@ closure_plan:
       awaiting: "P-comp + P2 + P3 composition-ready"
       assembly_status: queued
       owner_exq: "null -- composite, gated on child prongs"
+      cross_plan_link: ["behavioral_diversity_isolation:GAP-I"]
+    - id: "conversion_ceiling_campaign:P4-learned-gating"
+      title: "Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic BG arbitration LEARNABLE. The selection face was not 'exhausted lever-by-lever' -- it was never given learned parameters; ARC-108 adds the dopamine-into-gating learning afferent (learned w_chan) + MECH-450 a bounded recurrent settling step replacing the one-shot pallidal argmin."
+      phase: "Registered 2026-06-23 as the 4th live campaign face. The selection-face prongs (P-comp, demotion 654i, Go/No-Go 654j) all act on a FIXED arithmetic arbitration; ARC-108's thesis is that the arbitration layer has NO learned parameters, so MECH-439's F-monopoly was never made adaptable. Falsifiers V3-EXQ-700 (sec-7 learned-gating 2x2: does ARC-108+MECH-450 resolve MECH-439 on the COLLAPSED arena?) + V3-EXQ-700a (C3 signed-vs-unsigned-RPE ablation) QUEUED. MIRROR node: the build front is OWNED by behavioral_diversity_isolation:GAP-K (the GAP-J-successor build node) -- this prong gives the campaign prong-map its 4th face without duplicating ownership, exactly as biology_grounding_convergence_v4:BG-2 mirrors GAP-I/GAP-J. ARC-108 depends_on ARC-110 (segregated-loops sequencing fork; 700 is the explicit test of whether loop segregation is required)."
+      status: assembling
+      severity: load-bearing
+      awaiting: "ARC-108 + MECH-450 substrate build (under active construction, 2 implement-substrate sessions, ree-v3); V3-EXQ-700/700a awaiting run"
+      assembly_status: in_progress
+      owner_exq: "null -- mirror prong; build owned by behavioral_diversity_isolation:GAP-K (V3-EXQ-700 / V3-EXQ-700a)"
+      cross_plan_link: ["behavioral_diversity_isolation:GAP-K"]
 ---
 
 # Conversion-Ceiling Campaign
