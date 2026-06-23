@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-06-23T22:40:57.331823Z`
+Generated: `2026-06-23T22:53:25.207108Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -609,7 +609,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-090
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=16, weakens=9, conflict_ratio=0.72, exp_conf=0.671, lit_conf=0.707, overall_confidence_legacy=0.689
+- Evidence breakdown: supports=16, weakens=9, conflict_ratio=0.72, exp_conf=0.67, lit_conf=0.707, overall_confidence_legacy=0.689
 - Recent entries:
   - `2026-06-19T22:44:56Z` `experimental` `v3_exq_468f_sd034_mech268_decommit_hold_behavioural` direction=`non_contributory` confidence=0
   - `2026-06-20T18:41:17Z` `literature` `targeted_review_commit_release_duration_latch` direction=`supports` confidence=0.62

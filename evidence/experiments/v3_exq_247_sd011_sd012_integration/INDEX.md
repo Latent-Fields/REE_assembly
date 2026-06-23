@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_247_sd011_sd012_integration
 
-Generated: `2026-06-23T22:40:57.331823Z`
+Generated: `2026-06-23T22:53:25.207108Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

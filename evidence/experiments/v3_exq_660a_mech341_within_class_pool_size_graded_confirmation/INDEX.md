@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_660a_mech341_within_class_pool_size_graded_confirmation
 
-Generated: `2026-06-23T22:40:57.331823Z`
+Generated: `2026-06-23T22:53:25.207108Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

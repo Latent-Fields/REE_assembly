@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_605_q043_noise_floor_curiosity_weight_sweep
 
-Generated: `2026-06-23T22:40:57.331823Z`
+Generated: `2026-06-23T22:53:25.207108Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
