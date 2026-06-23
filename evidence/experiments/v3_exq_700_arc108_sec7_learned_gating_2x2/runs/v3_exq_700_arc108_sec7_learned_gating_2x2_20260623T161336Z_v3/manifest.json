@@ -1,0 +1,120 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_700_arc108_sec7_learned_gating_2x2",
+  "run_id": "v3_exq_700_arc108_sec7_learned_gating_2x2_20260623T161336Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-23T16:13:36Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439",
+    "ARC-108",
+    "MECH-450"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-439": "non_contributory",
+    "ARC-108": "non_contributory",
+    "MECH-450": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "candidate_pool_divergent_all_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in ALL arms (GAP-A non-vacuity). Below floor => nothing to convert => substrate_not_ready_requeue.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.027913,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "committed_class_axis_exercisable_all_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in ALL arms (the committed-class DV is exercisable).",
+        "control": "SP-CEM multi-class candidate pool, all arms",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "delta_t_carries_variance_on_learning_arms",
+        "kind": "readiness",
+        "description": "the signed-RPE delta_t (= benefit_eval - harm_eval - V-hat_t) carries cross-tick STD above floor on a majority of seeds on the LCG-armed (A1, A3) and settling-armed (A2, A3) arms -- there is outcome variance to learn from. Flat delta_t => substrate_not_ready_requeue (design 5.3).",
+        "control": "lcg_delta_t_std / wlat_delta_t_std on the armed arms",
+        "measured": 0.0005063,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "learned_weights_moved_from_init_on_armed_arms",
+        "kind": "readiness",
+        "description": "w_chan range > floor on a majority of seeds on the LCG-armed arms (A1, A3; softplus-unity init => range 0) AND W_lat range > floor AND the settling MOVED the field (learned_settling_round_delta > floor) on the settling-armed arms (A2, A3; zero init => range 0). Weights never moving => eligibility never credited => substrate_not_ready_requeue.",
+        "control": "lcg_w_chan_range_max / wlat_range_max + settling_round_delta on the armed arms",
+        "measured": 0.00130093,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verified_lifting",
+        "kind": "readiness",
+        "description": "the ARM_NOISE matched-noise temperature control lifts committed-class entropy strict-above A0 by margin on a majority of seeds -- the 569g/684 lesson: a non-lifting noise control is an UNVERIFIED bar (C1 would be trivially satisfiable). Control not lifting => substrate_not_ready_requeue (re-tune the noise alpha).",
+        "control": "ARM_NOISE committed-class entropy vs A0, paired seeds",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_conversion_learning_arm_above_A0_and_noise",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_learning_load_bearing_grows_with_training_and_weights_moved",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": false,
+      "pool_divergent": true,
+      "noise_verified_lifting": false,
+      "lcg_moved": true,
+      "wlat_moved": true,
+      "delta_t_nonflat": true
+    }
+  }
+}
