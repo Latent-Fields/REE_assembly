@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-23T21:10:16Z",
+  "last_tick_utc": "2026-06-23T21:20:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-700b",
   "current_exq_started_utc": "2026-06-23T17:58:41.961652+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 45 / envelope_only_control_no_learned_gating",
     "runs_done": 3,
     "runs_total": 1,
-    "episodes_done": 110,
+    "episodes_done": 160,
     "episodes_total": 250,
-    "overall_pct": 45.6
+    "overall_pct": 48.0
   },
-  "seconds_elapsed": 11493,
+  "seconds_elapsed": 12099,
   "seconds_remaining": 0,
   "recent_lines": [
     "Arm A0_ENVELOPE_ONLY (envelope_only_control_no_learned_gating) lcg_on=False settle_on=False noise_on=False rpe_mode=signed (P0=100 ep e2-train, P1=50 ep bias-train, P2=100 ep measure, steps_per_episode=200, dry_run=False)",
@@ -112,7 +112,12 @@
     "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P0 ep 80/250",
     "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P0 ep 90/250",
     "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P0 ep 100/250",
-    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 110/250"
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 110/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 120/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 130/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 140/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P1 ep 150/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=45 phase=P2 ep 160/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
