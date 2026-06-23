@@ -1,0 +1,76 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_703_mech276_scientist_attribution_readiness",
+  "run_id": "v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-23T07:52:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "world_forward_r2_trained",
+        "direction": "lower",
+        "description": "held-out world_forward R2 -- the comparator-discrimination quantity (positive control)",
+        "measured": -0.054703892451209844,
+        "threshold": 0.2,
+        "control": "P0-trained E2WorldForward on real action-conditional env transitions",
+        "met": false
+      },
+      {
+        "name": "cf_margin_straddles_feedstock",
+        "direction": "lower",
+        "description": "CF arm has BOTH counterfactual-backed AND correlational-skipped records -- the same mechanism the discrimination routes on",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "control": "cf_margin set within the trained-comparator cf_contrast distribution",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "discrimination_feedstock_differs": true,
+      "discrimination_aggregator_updated": true
+    },
+    "criteria": [
+      {
+        "name": "posterior_discrimination_cf_vs_correlational",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
