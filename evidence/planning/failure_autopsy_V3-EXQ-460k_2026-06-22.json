@@ -1,0 +1,98 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T03:57:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /failure-autopsy gate 2026-06-22/23: 'Confirm: substrate ceiling, brake fires' + 'Tag epistemic_category: substrate_ceiling')",
+  "targets": [
+    {
+      "run_id": "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
+      "queue_id": "V3-EXQ-460k",
+      "claim_ids": ["MECH-445", "MECH-446"],
+      "supersedes": "V3-EXQ-460j",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Readiness/non-vacuity gate self-route. route_reason=closure_exclusive_eval_did_not_arm_hold. The NEW gate-2.5 closure_exclusive_eval_armed_hold measured 0/3 (ncl_hold_closure_armed_total==0 AND ncl_hold_reassert_total==0 on every arm/seed), so off_baseline_sustained_natural_commit_hold=0/3, lever_shortened_occupancy 0/3, coupling_nonvacuity 0/3, within_window 0/3. The de-commit DV never ran. Both load-bearing criteria degenerate (non_degenerate False).",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue (route_reason=closure_exclusive_eval_did_not_arm_hold)",
+      "self_route_is_correct_disposition": true,
+      "facts": {
+        "gates_met": "contact_non_vacuity 3/3, rule_bias_trained 3/3, closure_trigger_available 3/3",
+        "gates_failed": "closure_exclusive_eval_armed_hold 0/3, sustained_hold 0/3, lever_shortened_occupancy 0/3, coupling_nonvacuity 0/3, within_window 0/3, co_occurrence 0/3",
+        "closures_present_but_no_commit_intent": "n_closures 5-8/arm, n_hook_fires 5-8, n_sequence_completions 5-8 (Leg-A env hook fires) BUT sd034_n_closure_commit_intent==0 and ncl_hold_closure_armed_total==0 everywhere; mean_per_commit_hold=1.0 / max_consecutive_beta_run=1 (460i fragmentation persists).",
+        "key": "The same-day closure_exclusive_decommit_eval build (ree-v3 e52158d) moved the latch-hold arm SOURCE from result.committed (460j) to _closure_commit_active, but _closure_commit_active is gated on e3._committed_trajectory, which is set ONLY by the F-driven natural commit (e3_selector.py:1926 `if committed:`). So the 'closure-exclusive' arm is, two hops down, still gated on the same fragile natural commit 460j found never forms -- the intended dissociation is illusory."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-445/446 never tested; the DV is downstream of the gate-2.5 precondition, which was never met. Correctly non_contributory; never a weakens.",
+        "biological_reference": "clear -- BG committed-program maintenance + graded pallidal/urgency de-commit (Thura/Cisek 2022; Jin 2014). Not the failing layer; failure matches a missing-dependency signature, not a falsification.",
+        "prerequisites": "missing -- a closure-coupled committed-trajectory occupancy that forms INDEPENDENTLY of the F-driven natural commit. No code path sets e3._committed_trajectory without `committed` (e3_selector.py:1926).",
+        "implementation": "stub (symbol-of-mechanism, not functional-role) -- eval arms on _closure_commit_active, but that symbol resolves to the same F-driven `committed`. Relocating the arm source 460j->460k did not escape the dependency.",
+        "environment": "adequate -- closures fire 5-8/arm; foraging substrate fine; substrate is trained (3/3 guard seeds pass contact + rule-bias).",
+        "measurement": "adequate -- the gate-2.5 arm certifier correctly detected the non-arm and self-routed (instrument working as designed).",
+        "integration": "isolated -- the closure plane and the natural-commit latch never couple; that is the missing path.",
+        "scale": "not the issue -- 240-ep budget already tried up-lineage."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia committed-motor-program maintenance + graded pallidal/urgency de-commit (Thura & Cisek 2022; Jin 2014)",
+        "dependencies": ["a closure/sequence-completion signal with a pathway to engage the commit latch independently of the F-driven natural commit"],
+        "is_formal_import": false,
+        "divergence": "the levers are tuned renderings of graded-urgency duration timing; the divergence is the missing closure->commit coupling path, not the mechanism class.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_claim_field_changes": {
+        "epistemic_category": "substrate_ceiling",
+        "note": "User-confirmed at the gate. Apply to BOTH MECH-445 and MECH-446. promote/demote + narrow_open_question suppressed; the response is substrate enrichment, not re-testing. v3_pending stays true; pending_retest_after_substrate stays true. Governance applies; this skill only recommends."
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-460k (2026-06-22, failure-autopsy): non_contributory CONFIRMED for MECH-445 + MECH-446 (NOT weakened). 4th substrate-blocked iteration of the de-commit falsifier (460h/i/j/k); RE-DERIVE BRAKE FIRED (threshold 2). The same-day closure_exclusive_decommit_eval build (ree-v3 e52158d) moved the latch-hold arm source to _closure_commit_active, but that is gated on e3._committed_trajectory, set ONLY by the F-driven natural commit (e3_selector.py:1926) -- so the intended natural-commit/closure-de-commit dissociation is illusory and the gate-2.5 closure-exclusive-eval-armed-hold measured 0/3 (ncl_hold_closure_armed_total==0 all arms/seeds). The build's green activation test (closure_armed=1) is a false-positive: the contract harness injects e3._committed_trajectory directly. MECH-445's own predicate (closure-plane committed-trajectory forming while not result.committed) is structurally unreachable on the current substrate, so the commit-intent counter is pinned at 0 by construction. Recommend epistemic_category: substrate_ceiling. Release condition: a substrate path where the SD-034 closure/env-completion plane forms a committed-trajectory-equivalent sustained occupancy INDEPENDENTLY of the F-driven natural commit. pending_retest_after_substrate. Same-claim de-commit-falsifier re-queue REFUSED (brake).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "title": "closure-coupled commitment independent of the F-driven natural commit (de-commit falsifier release condition)",
+        "implementation_hint": "460h->k all self-route substrate_not_ready because the closure-plane commit-intent (and the latch-hold arm) is gated, ultimately, on e3._committed_trajectory, which is set ONLY when the F-driven natural commit fires (e3_selector.py:1926 `if committed:`). The 460k closure_exclusive_decommit_eval build relocated the arm source (result.committed -> _closure_commit_active) but _closure_commit_active still resolves to that same e3._committed_trajectory, so the dissociation is illusory. Next substrate step: add a path where the SD-034 closure / env-completion plane (n_hook_fires already fires 5-8/episode) populates a committed-trajectory-equivalent sustained beta occupancy WITHOUT requiring the natural-commit `committed` threshold -- i.e. a genuine closure-coupled commit that can form on weak-natural-commit seeds. Then MECH-445's refractory-independent commit-intent counter (closure-plane committed-trajectory forming while not result.committed) becomes measurable and the rung-6 release / de-commit-authority DV can run. Also add a contract that drives the eval-mode arm through the REAL commit path (not the _tick injection of e3._committed_trajectory) so a future build cannot show a green activation while the substrate path is absent. Implementation target: ree_core closure->commit-latch coupling (SD-034 ClosureOperator / use_closure_commit_beta_coupling -> e3._committed_trajectory population) + the f_dominance root that keeps the natural commit from forming on weak seeds.",
+        "unblocks_claims": ["MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["closure-coupled commit-latch population independent of the F-driven natural commit (e3._committed_trajectory set by the closure plane, not only by `committed`)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
+          "experiment_type": "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
+          "metric": "closure_exclusive_eval_armed_hold 0/3 (ncl_hold_closure_armed_total==0 + sd034_n_closure_commit_intent==0 all arms/seeds); the closure-exclusive arm source _closure_commit_active is gated on e3._committed_trajectory, set only by the F-driven natural commit -> dissociation illusory -> DV never ran",
+          "target": "On weak-natural-commit guard seeds, the closure plane forms a committed-trajectory-equivalent sustained beta occupancy (sd034_n_closure_commit_intent > 0 / ncl_hold_closure_armed_total > 0) INDEPENDENTLY of result.committed, on >=2/3 seeds, so the de-commit DV (MECH-445 coupling-intent + MECH-446 occupancy-drop) can co-occur"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "granularity_debt_flag": {
+        "triggered": false,
+        "bears_on": "commitment-closure-control-plane de-commit lever (MECH-445/446)",
+        "prior_autopsies": ["460h", "460i", "460j"],
+        "this_autopsy": "460k",
+        "note": "460j flagged granularity_debt on the evolving-shape reading. 460k RESOLVES that ambiguity toward the re-derive brake, not claim-synthesis: the 460h->k shapes are the SAME ceiling (closure-coupled commitment cannot form independently of the F-driven natural commit), each 'fix' only relocating the arm source. The claim is not coarse (no decomposition needed); it is blocked on a substrate capability that does not exist. Routing is implement-substrate, brake-gated."
+      },
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460h_2026-06-20",
+          "failure_autopsy_V3-EXQ-460i_2026-06-21",
+          "failure_autopsy_V3-EXQ-460j_2026-06-21"
+        ],
+        "this_is_count_n": 4,
+        "refused_requeue": true,
+        "refused_requeue_detail": "No same-claim de-commit-falsifier letter (no 460m) on this substrate until the upstream substrate path is built. A redesign of a DIFFERENT mechanism (new EXQ number, different claim_ids) is exempt. V3-EXQ-460l (ARC-108 JOB-2 control-plane rho-ramp+habenula) is a different mechanism and is NOT a successor to this lineage -- brake does not apply to it.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "The closure-exclusive eval mode did NOT achieve the intended dissociation: its arm source _closure_commit_active is gated on e3._committed_trajectory, set only by the F-driven `committed` (e3_selector.py:1926). Relocating the arm source (460j->460k) cannot escape the F-driven commit dependency.",
+        "MECH-445's testable predicate (closure-plane e3._committed_trajectory forming while not result.committed) is structurally unreachable on the current substrate -- the commit-intent counter is pinned at 0 by construction, which is why 460h->k all self-route substrate_not_ready.",
+        "Test-adequacy gap: the contract test reports closure_armed=1 only because _tick directly injects e3._committed_trajectory (test:117), bypassing the real commit path. A future substrate build must add a contract that drives arming through the real commit path, or a green activation can recur while the substrate path is absent.",
+        "The substrate work is sharp: a path where the SD-034 closure / env-completion plane sets a committed-trajectory-equivalent sustained occupancy WITHOUT requiring the F-driven `committed` threshold. Until it exists, no de-commit-falsifier letter can move MECH-445/446."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "MECH-445/446 are candidate/standard->substrate_ceiling(recommended)/v3_pending/pending_retest_after_substrate. 460k is a clean substrate_not_ready_requeue self-route (non_contributory, never a weakens) -- no claim status change. Promotion held by v3_pending regardless. The recommended epistemic_category: substrate_ceiling (user-confirmed) makes the re-derive brake durable in the registry. V3-EXQ-460k still ran on ree-cloud-2; V3-EXQ-460l in the ree-v3 queue supersedes it for queue-bookkeeping but tests a DIFFERENT mechanism (ARC-108 JOB-2)."
+}
