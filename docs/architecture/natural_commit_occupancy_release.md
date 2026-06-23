@@ -324,3 +324,76 @@ occupancy on `>=2/3` seeds, THEN (b) the rung-6 release demonstrably shortens it
 MECH-445 commit-intent + MECH-446 occupancy-drop co-occur on the same seeds.
 MECH-445 / MECH-446 stay candidate / standard / v3_pending /
 pending_retest_after_substrate until that successor scores. PROMOTES NOTHING.
+
+## AMEND: F-independent closure-plane commit-ENTRY primitive (the arm source the eval lacked; closes the 460k/460l ncl_hold_closure_armed_total=0 signature) (2026-06-23)
+
+Routed by `failure_autopsy_V3-EXQ-460k_2026-06-22` + `failure_autopsy_V3-EXQ-460l_2026-06-23`
+via `/implement-substrate` (commitment_closure:GAP-4).
+
+### Why
+The closure-exclusive de-commit eval (above) arms the latch-hold ONLY via
+`_closure_commit_active` (`agent.py:6365`), which gates on `e3._committed_trajectory is not
+None` — whose ONLY non-None writer in `ree_core/` is `e3_selector.py:1926` under
+`if committed:` (`committed = self._running_variance < effective_threshold`, pure variance/F).
+On the 460j substrate the F-driven natural commit never sustains
+(`off_baseline_not_sustained`, 0/3 seeds), so `_committed_trajectory` is rarely non-None →
+the eval rarely elevates → the latch-hold rarely arms = the 460k/460l signature
+`closure_exclusive_eval_did_not_arm_hold` / `ncl_hold_closure_armed_total=0`. The design
+semantics ("a closure-plane commitment forming, F-independent") and the implementation
+(F-commit trajectory presence) **contradict**. The closure plane had only a
+completion/RELEASE event (`ClosureOperator.tick` / `emit_closure` / `habenula_tick`); it had
+NO commit-ENTRY event — a 460k-successor on the old code re-fails identically.
+
+### The fix (Option A, user-confirmed; no-op default; bit-identical OFF)
+A new **F-INDEPENDENT** sticky latch `e3._closure_committed_active` (init `False`):
+
+- **SET** (`REEAgent.select_action`, after `e3.select`, before the bistable
+  `_closure_commit_active`), guarded by `use_closure_commit_entry`: SET when a goal-active,
+  rule-directed commitment forms — `goal_state.is_active()` AND a trajectory was selected
+  toward it (the hippocampal proposer is goal-seeded under an active goal) AND a rule is being
+  followed (`lateral_pfc.rule_state.norm() >= closure_commit_entry_rule_norm_floor`, mirroring
+  the SD-034 `ClosureOperator` rule-stability precursor). Faithful to SD-034: closure governs
+  rule-directed commitments. The latch is **sticky** across ticks (unlike `_committed_trajectory`,
+  torn down every tick by `post_action_update`).
+- **Redefinition** (`agent.py:6365`): `_closure_commit_active = use_closure_commit_beta_coupling
+  AND (_committed_trajectory is not None OR _closure_committed_active)` — the UNION. Legacy
+  F-commit path preserved exactly → bit-identical OFF.
+- **CLEAR**: the four `_committed_trajectory = None` de-commit sites (MECH-342 / rung-6 duration
+  release / MECH-353 / habenula), the SD-034 closure fire (`tick` auto-detector +
+  `notify_env_completion` `emit_closure`, when `_fire` installs the refractory), and
+  `agent.reset()`.
+- **Latch-hold persistence UNION** (the one necessary yield-clause extension): the rung-6
+  re-assertion yields on `_committed_trajectory is None`; since the F-independent latch
+  deliberately installs NO trajectory, the persistence sub-condition becomes union-aware
+  (`_committed_trajectory is not None OR _closure_committed_active`) so the closure-formed
+  occupancy sustains instead of arming-then-yielding. Bit-identical OFF. The other principled
+  yields (closure refractory / MECH-091 / rung-6 lever / max-ticks) are UNCHANGED, so the
+  SD-034 de-commit still tears the hold down (the MECH-446 occupancy-drop DV intact).
+
+### Config + preconditions
+`use_closure_commit_entry` (default `False`) + `closure_commit_entry_rule_norm_floor` (0.01),
+both via REEConfig + `from_dims`. PRECONDITIONS (loud `ValueError` at `__init__`): requires
+`use_closure_commit_beta_coupling=True` AND `use_natural_commit_latch_hold=True`.
+
+### Backward compatibility + tests
+Default `False` → the latch is never set → `_closure_commit_active` reduces to the legacy
+`_committed_trajectory is not None` and the persistence union to the legacy
+`_committed_trajectory is None` → bit-identical for every existing run. preflight 8/8 + the
+closure/latch/beta-gate/decommit cluster (58, incl 6 new) + the full contract suite PASS (the
+3 residual failures — control_vector C4 + 2 runner_fail_branch — are documented pre-existing
+flakes, CONFIRMED failing identically on a clean stash: control_vector C4 is a tree-independent
+nondeterministic flake, 1/6 pass on BOTH the clean tree and with this change). New contracts:
+`ree-v3/tests/contracts/test_closure_commit_entry.py` (C1 defaults + latch init False / C2
+preconditions / C3 C-KEY LOAD-BEARING: entry ON + committed never True → latch arms + the hold
+SUSTAINS beta, while entry OFF == the pre-fix eval arms EXACTLY 0 / C4 default-OFF bit-identical
+action stream / C5 reset clears the latch). MECH-094: the SET is a waking control-state
+transition (no replay/memory write surface). Phased training: N/A.
+
+### Validation
+`V3-EXQ-460m` claim-free substrate-readiness diagnostic (queued via `/queue-experiment`) — on
+the closure-exclusive eval substrate, gates in order (a) the `ARM_LEVER_OFF` baseline SUSTAINS a
+closure-formed occupancy on `>=2/3` seeds with ZERO F-commits (the precondition every prior 460
+run failed); (b) the rung-6 release shortens it; (c) MECH-445 commit-intent + MECH-446
+occupancy-drop co-occur on the same seeds. A 460-lineage successor (NEW letter; supersedes the
+parked 460k/460l line) runs the full de-commit falsifier once (a) clears. Self-routes
+`substrate_not_ready_requeue` if (a) still fails. PROMOTES NOTHING.
