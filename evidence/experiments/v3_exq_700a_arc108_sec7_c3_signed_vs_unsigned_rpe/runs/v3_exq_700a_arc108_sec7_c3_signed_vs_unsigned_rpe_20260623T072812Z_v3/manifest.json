@@ -1,0 +1,139 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe",
+  "run_id": "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-23T07:28:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439",
+    "ARC-108",
+    "MECH-450"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-439": "non_contributory",
+    "ARC-108": "non_contributory",
+    "MECH-450": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "candidate_pool_divergent_all_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in ALL arms (GAP-A non-vacuity). Below floor => nothing to convert => substrate_not_ready_requeue.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.020069,
+        "threshold": 0.05,
+        "met": false
+      },
+      {
+        "name": "committed_class_axis_exercisable_all_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in ALL arms (the committed-class DV is exercisable).",
+        "control": "SP-CEM multi-class candidate pool, all arms",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "signed_delta_t_carries_variance_signed_arm",
+        "kind": "readiness",
+        "description": "the SIGNED-RPE delta_t (= benefit_eval - harm_eval - V-hat_t) carries cross-tick STD above floor on a majority of seeds on the A1_SIGNED arm -- there is signed outcome variance to learn from. Flat delta_t => substrate_not_ready_requeue (design 5.3).",
+        "control": "lcg_delta_t_std on A1_SIGNED",
+        "measured": 0.00050341,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "signed_w_chan_moved_from_init_signed_arm",
+        "kind": "readiness",
+        "description": "w_chan range > floor on a majority of seeds on A1_SIGNED (softplus-unity init => range 0; > floor == reorganised). The signed gate engaged. Never moving => eligibility never credited => substrate_not_ready_requeue.",
+        "control": "lcg_w_chan_range_max on A1_SIGNED",
+        "measured": 0.00134712,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "unsigned_learning_signal_carries_variance_unsigned_arm",
+        "kind": "readiness",
+        "description": "C3-SPECIFIC: under learned_channel_rpe_mode='unsigned' the learn_signal is abs(ARC-016 running_variance), emitted as lcg_delta_t. This asserts the UNSIGNED arm's OWN learning signal carries cross-tick STD above floor on a majority of seeds -- the ablation arm genuinely HAD a signal to learn from. Flat => a no-conversion is VACUOUS (never learned) => substrate_not_ready_requeue, NOT a falsification of signed-RPE.",
+        "control": "lcg_delta_t_std on C3_A1_UNSIGNED (abs running_variance)",
+        "measured": 0.01279423,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "unsigned_w_chan_moved_from_init_unsigned_arm",
+        "kind": "readiness",
+        "description": "C3-SPECIFIC: the UNSIGNED arm's w_chan range > floor on a majority of seeds (under unsigned monotone potentiation the weights SHOULD move). If the ablation arm never moved its weights, a no-conversion is VACUOUS (eligibility never credited) => substrate_not_ready_requeue, NOT a falsification of signed-RPE.",
+        "control": "lcg_w_chan_range_max on C3_A1_UNSIGNED",
+        "measured": 0.66067457,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verified_lifting",
+        "kind": "readiness",
+        "description": "the ARM_NOISE matched-noise temperature control lifts committed-class entropy strict-above A0 by margin on a majority of seeds -- the 569g/684 lesson: a non-lifting noise control is an UNVERIFIED bar (conversion would be trivially satisfiable). Control not lifting => substrate_not_ready_requeue (re-tune the noise alpha).",
+        "control": "ARM_NOISE committed-class entropy vs A0, paired seeds",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C3a_signed_arm_converts_above_A0_and_noise",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3b_unsigned_arm_fails_to_convert",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": false,
+      "pool_divergent": false,
+      "noise_verified_lifting": false,
+      "signed_delta_nonflat": true,
+      "signed_moved": true,
+      "unsigned_signal_nonflat": true,
+      "unsigned_moved": true
+    }
+  }
+}
