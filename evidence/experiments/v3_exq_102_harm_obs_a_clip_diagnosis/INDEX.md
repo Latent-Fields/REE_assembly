@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_102_harm_obs_a_clip_diagnosis
 
-Generated: `2026-06-23T22:53:25.207108Z`
+Generated: `2026-06-23T23:36:00.557344Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

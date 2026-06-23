@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-23T23:02:32Z",
+  "last_review_utc": "2026-06-23T23:28:12Z",
   "discussed_experiment_dirs": [
     "v3_exq_703_mech276_scientist_attribution_readiness",
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
@@ -754,7 +754,8 @@
     "v3_exq_699_pcomp_demotion_x_gonogo_composition",
     "v3_exq_588d_mech189_trained_encoder_absolute_crossing",
     "v3_exq_460m_closure_commit_entry_readiness",
-    "v3_exq_460n_closure_commit_entry_trajectory_readiness"
+    "v3_exq_460n_closure_commit_entry_trajectory_readiness",
+    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence"
   ],
   "reviewed_run_ids": [
     "v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3",
@@ -3187,7 +3188,8 @@
     "v3_exq_588d_mech189_trained_encoder_absolute_crossing_20260623T074217Z_v3",
     "v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3",
     "v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3",
-    "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3"
+    "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3",
+    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4829,6 +4831,13 @@
         "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3"
       ],
       "note": "failure-autopsy V3-EXQ-701a (INV-050 MEL-measurability converged-P0 re-run, supersedes 701; one of the 4 deferred 22:14Z FAIL diagnostics). CONFIRMED failure_autopsy_V3-EXQ-701a_2026-06-23 -> non_contributory, INV-050 diagnostic (NOT a verdict; scoring-excluded). The recon-primary+60ep+per-seed-R2 fix converged 1/3 seeds (conv_frac 0.333<0.667). DECISIVE finding: the convergence GATE (conv_rel_drop from episode-rollout PE) is exploration-confounded (init-PE 8.7x variance, final-PE clustered ~2x) -> low-init 'diverged' seeds are a metric artifact, not a substrate ceiling (V3-EXQ-642 invalid-precondition pattern). Recon-anchor fix WORKED where measurable (seed456 converged cleanly; 701 never did). Route queue-experiment re-queue (V3-EXQ-701b) with a FROZEN held-out probe-state convergence metric (+optional e2_lr/contrastive-aux ablation); substrate_queue action=none. RE-DERIVE BRAKE NOT FIRED (2nd INV-050 non_contributory autopsy but the run is confounded, not a clean ceiling; user-confirmed). Brake-lock condition recorded: if 701b's frozen-probe metric still shows genuine multi-seed divergence -> /implement-substrate SD-056 world-forward stabilisation + fire the brake then. INV-050 UNWEAKENED. PROMOTES NOTHING. MARKED REVIEWED."
+    },
+    {
+      "utc": "2026-06-23T23:28:12Z",
+      "reviewed": [
+        "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3"
+      ],
+      "note": "governance cycle 2026-06-23T23:28Z. V3-EXQ-588e PASS (claim-tagged evidence successor to diagnostic 588d; supersedes 588d). Clean trained-encoder absolute-crossing: C_CROSS 3/3 seeds (on_mean adult z_goal.norm 0.4219 > 0.4 DEV-NEED-006 gate), OFF=0.0, encoder trained 3/3, non_degenerate. supports MECH-189 + DEV-NEED-006 (DEV-NEED-006 is a developmental-need gate, not a claims.yaml id -> only MECH-189 scores: genuine_exp_count 1, exp_conf 0.775, confirmed_established). The trained-encoder z_world-MAGNITUDE root is confirmed (the 0.37 ceiling was an untrained-encoder artifact). MECH-189 KEPT substrate_ceiling + pending_retest + ceiling_decision (all goal_pipeline:GAP-2 context-diversity, which the forced-feed single-anchor harness bypasses; 588e does not lift the GAP-2 diversity ceiling) -> stays candidate/conf 0.0. Closes infant_substrate:GAP-11b (owner->588e). User-approved. MARKED REVIEWED."
     }
   ]
 }

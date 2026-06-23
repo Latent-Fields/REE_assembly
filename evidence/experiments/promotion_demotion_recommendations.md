@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-06-23T22:53:25.207108Z`
+Generated: `2026-06-23T23:36:00.557344Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -77,8 +77,6 @@ Use this as the human-in-the-loop review queue.
 | `MECH-269b` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-270` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-271` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
-| `MECH-272` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
-| `MECH-273` | `candidate` | Promotion review: candidate -> provisional | `promote_to_provisional` | `pending_user` |
 | `MECH-275` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-280` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
 | `MECH-281` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `applied` |
@@ -1064,7 +1062,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-186
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.203, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.202, conflict_ratio=0.8, exp_entries=2, lit_entries=3; directions supports=3, weakens=2, mixed=0, unknown=0, conflict_ratio=0.8
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1368,44 +1366,6 @@ Use this as the human-in-the-loop review queue.
 - Last logged decision: `applied` by `governance-2026-04-25T15:15` at `2026-04-25T15:42:09.107861Z`
 - Last selected option: Apply hold (no status change)
 - Last rationale: governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)
-
-### MECH-272
-- Current status: `candidate`
-- Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.824, conflict_ratio=0, exp_entries=2, lit_entries=14; directions supports=16, weakens=0, mixed=0, unknown=0, conflict_ratio=0
-- Evidence quality note: >
-- Recommendation: `promote_to_provisional`
-- Options (pros/cons):
-  - Promote now (faster convergence, risk premature lock-in)
-  - Hold until one additional confirming run (better robustness, slower progress)
-  - Hold and request targeted literature triangulation (better external grounding, extra delay)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `governance-2026-06-23T22:14` at `2026-06-23T22:40:42.942038Z`
-- Last rationale: 2026-06-23 governance: v3_pending gate cleared on the strength of V3-EXQ-702 (sleep_substrate:GAP-3b, 3/3-seed supports, genuine ARM_OFF zero). Hold lifted; engine now surfaces promote_to_provisional (exp_conf 0.82, 2 exp entries) as pending_user -- promotion DEFERRED by user this cycle (let-it-count). impl_phase stays v3 (v3_run_ct>=1, no re-hold).
-
-### MECH-273
-- Current status: `candidate`
-- Decision needed: Promotion review: candidate -> provisional
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.824, conflict_ratio=0, exp_entries=2, lit_entries=4; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
-- Evidence quality note: >
-- Recommendation: `promote_to_provisional`
-- Options (pros/cons):
-  - Promote now (faster convergence, risk premature lock-in)
-  - Hold until one additional confirming run (better robustness, slower progress)
-  - Hold and request targeted literature triangulation (better external grounding, extra delay)
-- Discussion scope with Codex:
-  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
-  - What single additional experiment or literature extraction would most reduce uncertainty?
-  - If this decision is wrong, what downstream architecture risk is largest?
-- Decision status: `pending_user`
-- Status note: Prior decision exists but recommendation changed; needs fresh review.
-- Last logged decision: `applied` by `governance-2026-06-23T22:14` at `2026-06-23T22:40:42.979337Z`
-- Last rationale: 2026-06-23 governance: v3_pending gate cleared on the strength of V3-EXQ-702 (sleep_substrate:GAP-3b, 3/3-seed supports, genuine ARM_OFF zero). Hold lifted; engine now surfaces promote_to_provisional (exp_conf 0.82, 2 exp entries) as pending_user -- promotion DEFERRED by user this cycle (let-it-count). impl_phase stays v3 (v3_run_ct>=1, no re-hold).
 
 ### MECH-275
 - Current status: `candidate`

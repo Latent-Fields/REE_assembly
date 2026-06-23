@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-23T22:20:08Z",
+  "generated_at": "2026-06-23T23:30:51Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -110,7 +110,7 @@
           "pass_runs": 4,
           "fail_runs": 4,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.706
+          "overall_confidence": 0.705
         },
         {
           "id": "ARC-018",
@@ -256,16 +256,14 @@
           "unknown": 31
         }
       },
-      "v3_pending_count": 18,
+      "v3_pending_count": 16,
       "v3_pending_ids": [
         "MECH-270",
         "MECH-271",
-        "MECH-272",
         "MECH-325",
         "SD-038",
         "MECH-283",
         "MECH-284",
-        "MECH-285",
         "MECH-288",
         "MECH-289",
         "MECH-290",
@@ -1582,7 +1580,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.534
+          "overall_confidence": 0.533
         },
         {
           "id": "MECH-187",
@@ -2915,7 +2913,7 @@
           "pass_runs": 8,
           "fail_runs": 15,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.729
+          "overall_confidence": 0.728
         },
         {
           "id": "ARC-028",
@@ -3458,7 +3456,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.775
+          "overall_confidence": 0.774
         }
       ],
       "implementation": "full",
@@ -3705,7 +3703,17 @@
         "ARC-054"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-701b",
+          "title": "INV-050 MEL-measurability diagnostic, FROZEN held-out probe-state convergence metric (re-run of 701a; exploration-confound fix) + matched recon-only-vs-recon+contrastive P0 ablation",
+          "status": "pending",
+          "claim_ids": [
+            "INV-050",
+            "INV-050"
+          ]
+        }
+      ],
       "conflict_refs": [
         "rollout_entropy_floor_vs_residue_persistence"
       ],
