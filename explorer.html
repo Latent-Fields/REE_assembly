@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.1 -->
+<!-- EXPLORER_VERSION: 2026-06-23.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8687,6 +8687,14 @@ END CONFLICT RESOLUTION`;
     #cornerDock .usage-models div{display:flex;justify-content:space-between;
       gap:8px;}
     #cornerDock .usage-muted{color:#999;font-style:italic;}
+    /* Phone width: keep the dock from overlaying the whole screen. It caps its
+       width, scrolls its bodies, and defaults to collapsed (handled in the dock
+       script below) so only the two ~36px headers show until tapped. */
+    @media (max-width: 700px){
+      #cornerDock{right:8px;bottom:8px;width:min(300px,78vw);gap:6px;}
+      #cornerDock .dock-body{max-height:55vh;overflow:auto;
+        -webkit-overflow-scrolling:touch;}
+    }
   </style>
   <div id="cornerDock">
 
@@ -8752,7 +8760,17 @@ END CONFLICT RESOLUTION`;
       var head = card && card.querySelector(".dock-head");
       if (!card || !head) return;
       var collapsed = false;
-      try { collapsed = localStorage.getItem(key) === "1"; } catch (e) {}
+      try {
+        var stored = localStorage.getItem(key);
+        if (stored === null) {
+          // No saved preference: default collapsed on phone-width screens so the
+          // dock doesn't overlay content; expanded on desktop (unchanged).
+          collapsed = window.matchMedia &&
+                      window.matchMedia("(max-width: 700px)").matches;
+        } else {
+          collapsed = stored === "1";
+        }
+      } catch (e) {}
       card.classList.toggle("collapsed", collapsed);
       head.addEventListener("click", function (ev) {
         // Don't toggle when an interactive control inside the header is hit.
