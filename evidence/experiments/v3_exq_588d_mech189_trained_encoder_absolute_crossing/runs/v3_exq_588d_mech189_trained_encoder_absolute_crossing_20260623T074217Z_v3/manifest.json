@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_588d_mech189_trained_encoder_absolute_crossing",
+  "run_id": "v3_exq_588d_mech189_trained_encoder_absolute_crossing_20260623T074217Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-23T07:42:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "trained_encoder_absolute_crossing_met",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "description": "Fraction of ARM_ON seeds whose P0 SD-018 resource-proximity MSE improved by >= RP_IMPROVE_MIN (the trained-encoder premise; below the 2/3 floor is the V3-EXQ-642 untrained-substrate confound). Per-seed raw improve_frac is in arm_results / metrics (on_min=1.0, rp_improve_min=0.2).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "control": "P0 trains agent.latent_stack via the SD-018 resource-proximity head; a seed counts as trained when (rp_mse_start - rp_mse_end)/rp_mse_start >= RP_IMPROVE_MIN",
+        "met": true
+      },
+      {
+        "name": "arm_on_child_anchors_formed",
+        "description": "ARM_ON child phase wrote >=1 super-ordinal anchor (n_occupied>0).",
+        "measured": 3,
+        "threshold": 1,
+        "met": true
+      },
+      {
+        "name": "arm_on_adult_seeding_fired",
+        "description": "ARM_ON adult phase fired the READ seeding path (n_seeds>0).",
+        "measured": 39,
+        "threshold": 1,
+        "met": true
+      },
+      {
+        "name": "arm_on_adult_zgoal_positive_control",
+        "description": "Readiness: ARM_ON adult seeding produces a non-zero z_goal.norm (SAME statistic the load-bearing absolute crossing routes on).",
+        "measured": 0.443877,
+        "threshold": 0.001,
+        "control": "ARM_ON adult episodes seed z_goal from the childhood anchor with no benefit pulse",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_CROSS": true
+    },
+    "criteria": [
+      {
+        "name": "C_CROSS_arm_on_adult_zgoal_crosses_0p4_absolute",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "evidence_direction": "supports",
+    "routing_note": "DIAGNOSTIC (claim_ids=[], scoring-excluded). trained_encoder_absolute_crossing_met -> the 0.37 ceiling was an untrained-encoder artifact; route the MECH-189/DEV-NEED-006 absolute governance gate to a claim-tagged evidence successor. absolute_crossing_ceiling_persists -> a genuine substrate ceiling survives a trained encoder; route substrate enrichment + fire the MECH-189 re-derive brake at autopsy (NOT a falsification). substrate_not_ready_requeue -> re-queue with a longer/stronger P0."
+  }
+}
