@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T22:51:52Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /failure-autopsy gate 2026-06-23: 'Re-queue 701b w/ frozen-probe metric')",
+  "targets": [
+    {
+      "run_id": "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3",
+      "queue_id": "V3-EXQ-701a",
+      "supersedes": "V3-EXQ-701",
+      "claim_ids": ["INV-050"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Per-seed R2 readiness gate unmet: world_model_converged_p0_seed_fraction=0.333 (threshold 0.667; only seed456 converged, conv_rel_drop +0.80; seed42 -2.29, seed123 -0.47). R1 pe_response_range=-0.55 on the ready seed (PE FALLS under a max-novelty shock, wrong direction). C1 mel_measurable_monotonic FAIL on the single ready seed (mel_none 0.00160 vs mel_high 0.00175, flat). Self-route substrate_not_ready_requeue per the per-seed grid.",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue (R2 1/3 seeds; R1 unmet on the ready seed)",
+      "self_route_is_correct_disposition": true,
+      "facts": {
+        "gates_failed": "R2 conv_frac 0.333 (UNMET, dominant), R1 pe_response_rel -0.55 (UNMET on ready seed 456), C1 mel flat (single ready seed), C2 non_degenerate false (1 ready seed -> zero within-arm spread)",
+        "per_seed_conv_rel_drop": {"42": -2.29, "123": -0.47, "456": 0.80},
+        "per_seed_conv_pe_init": {"42": 0.00074, "123": 0.00144, "456": 0.00640},
+        "per_seed_conv_pe_final": {"42": 0.00243, "123": 0.00211, "456": 0.00128},
+        "key": "The conv_rel_drop convergence gate is computed from EPISODE-ROLLOUT PE on a free-running agent (per_ep_mean), NOT a fixed probe battery. Init PE varies 8.7x while final PE clusters within ~2x -> the low-init 'diverged' seeds (42, 123) are a metric/exploration-drift artifact, not a fine-vs-broken world model. The V3-EXQ-642 invalid-precondition pattern, not a substrate ceiling. The recon-anchor fix WORKED where measurable (seed456 converged cleanly; 701 never did)."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- INV-050 IV precondition never validly reached (DV gated out by R2+R1). Correctly non_contributory, never a weakens.",
+        "biological_reference": "clear -- sleep as model-consolidation pressure (SHY / Tononi-Cirelli). Not the failing layer; failure is upstream of any MEL claim.",
+        "prerequisites": "measurement-confounded -- the convergence GATE (episode-rollout conv_rel_drop) conflates model convergence with exploration/coverage drift; it cannot reliably certify a converged frozen base on a roaming agent.",
+        "implementation": "partial -- the recon-primary P0 fix is correct (seed456 converged cleanly, conv_rel_drop +0.80; 701 had run-level mean -2.60). Gaps: (a) the convergence-gate instrument, (b) 2/3-seed P0 stability.",
+        "environment": "adequate -- CausalGridWorldV2 graded-drift novelty arms + matched-activity NONE control.",
+        "measurement": "under-instrumented for convergence -- the MEL readout (raw per-step e3 prediction_error, frozen-window) is sound; the CONVERGENCE readout (episode-rollout conv_rel_drop) is the broken instrument.",
+        "integration": "n/a -- single-module diagnostic.",
+        "scale": "partial -- recon + 60 ep moved 1/3 seeds; the prescribed fix did not fully stabilize the SD-056 world-forward P0 on the majority of seeds (701b's frozen-probe metric separates genuine instability from the confounded metric)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep pressure scaling with the day's model-update / learning load (synaptic homeostasis, Tononi & Cirelli; two-process model + a third MEL term)",
+        "dependencies": ["a CONVERGED + CONVERGENCE-CERTIFIED waking world-forward model so accumulated prediction error reflects genuine model-error load -- the certification must be on a fixed probe battery, not free-running episode rollout"],
+        "is_formal_import": false,
+        "divergence": "none implicated -- the failure is upstream (the convergence READOUT is confounded), not a divergence of the MEL mechanism from biology.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "n/a (diagnostic; no claim status change)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-701a (2026-06-23, failure-autopsy): INV-050 MEL-measurability converged-P0 re-run (supersedes 701), non_contributory CONFIRMED (NOT a verdict on INV-050; diagnostic, scoring-excluded). The recon-primary + 60ep + per-seed-R2 fix converged only 1/3 seeds (conv_frac 0.333 < 0.667; per-seed conv_rel_drop seed42 -2.29 / seed123 -0.47 / seed456 +0.80). DECISIVE autopsy finding: the convergence GATE (conv_rel_drop from episode-rollout PE) is exploration-confounded -- init PE varies 8.7x (0.00074..0.0064) while final PE clusters within ~2x (0.0013..0.0024), so the low-init 'diverged' seeds are a metric artifact, not a fine vs broken world model. This is the V3-EXQ-642 invalid-precondition pattern, not a substrate ceiling. The recon-anchor fix WORKED where measurable (seed456 converged cleanly; 701 never did). Route: re-queue (V3-EXQ-701b) with a FROZEN held-out probe-state convergence metric (+ optional e2_lr / contrastive-aux ablation); no substrate_queue entry; re-derive brake NOT fired. Brake-lock condition: if 701b's frozen-probe metric still shows genuine multi-seed divergence, that is the clean ceiling -> route to /implement-substrate on the SD-056 world-forward stabilisation substrate + fire the brake then. On the one valid converged seed, novelty did not raise PE (R1 -0.55, C1 flat) -- a first glimpse of a possible MEL ceiling, but n=1 ready seed under a confounded gate is too thin to certify.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No missing mechanism is yet established. The immediate fix is the diagnostic's convergence-certification instrument (test-bed construction = a frozen held-out probe-state convergence metric), a queue-experiment re-queue, NOT a substrate_queue entry. Enrichment is PRE-STAGED but CONDITIONAL: if the 701b frozen-probe metric confirms genuine multi-seed world-forward divergence on the stable env, THAT clean reading routes to /implement-substrate on the SD-056 world-forward / world-model stabilisation substrate and fires the INV-050 re-derive brake at that autopsy."
+      },
+      "recommended_requeue_spec": {
+        "skill": "queue-experiment",
+        "successor_letter": "V3-EXQ-701b",
+        "changes": [
+          "Replace the episode-rollout conv_rel_drop convergence gate with a FROZEN held-out PROBE-STATE convergence metric: certify P0 convergence by measuring per-step e3 prediction_error on a FIXED, pre-sampled battery of probe states (identical every checkpoint, frozen model), removing the exploration/coverage-drift confound that made the init-PE denominator vary 8.7x across seeds.",
+          "Optionally add a clean diagnostic sub-arm: recon-only P0 vs recon+contrastive P0 on the frozen-probe metric (and/or lower e2_lr) to test whether the SD-056 contrastive auxiliary term is the 2/3-seed destabiliser.",
+          "Keep the raw per-step e3 prediction_error + frozen-window MEL instrument unchanged (sound; fixed 677's batch-loss wash-out); keep commitment-free / no-sleep; keep the per-seed R2 gate but compute it on the frozen-probe metric."
+        ],
+        "decisive_outcome": "If the frozen-probe metric R2 passes on >=2/3 seeds and C1 is still flat -> mel_not_modulated_by_novelty: the genuine MEL-measurability ceiling on V3 (route to substrate enrichment + fire the re-derive brake on that clean reading). If R2 still fails on the frozen-probe metric (genuine multi-seed world-forward divergence, not a metric artifact) -> route to /implement-substrate on SD-056 world-forward stabilisation + fire the brake. Either clean outcome resolves INV-050 MEL-measurability; 701a's outcome does not, because its gate was confounded."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-701_2026-06-23"],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "reason_not_fired": "Mechanical count reaches threshold (2nd INV-050 non_contributory autopsy), but 701a is NOT a clean ceiling read: the R2 precondition is unmet AND the convergence GATE that filtered 2/3 seeds is demonstrably confounded (episode-rollout PE; 8.7x init-PE variance; final-PE clustered within ~2x). Firing the brake here would reclassify a metric-confounded run as a MEL ceiling -- the illusory-resolution / V3-EXQ-642 invalid-precondition error. The 701b re-queue repairs the broken readiness instrument (frozen probe battery); it is NOT another letter circling the same ceiling at the same granularity. User-confirmed not-fired 2026-06-23.",
+        "brake_lock_condition_for_701b": "If 701b's FROZEN-probe convergence metric (exploration-drift removed) STILL shows genuine multi-seed divergence on the stable env, the brake LOCKS at the 701b autopsy: refuse a same-claim test re-queue and route to /implement-substrate on the SD-056 world-forward / world-model stabilisation substrate."
+      },
+      "learning_extracted": [
+        "The seed-dependent 'divergence' (seeds 42/123 conv_rel_drop -2.29/-0.47) is substantially an artifact of the convergence GATE: conv_rel_drop is built from episode-rollout PE on a free-running agent, so episode-to-episode exploration/coverage drift inflates the late-episode PE while the init-PE denominator varies 8.7x; final PE clusters within ~2x across seeds (the model ends in the same place; the metric can't see it).",
+        "The recon-anchor fix (the 701 prescription) is genuinely working where measurable: seed456 converged cleanly (conv_rel_drop +0.80), which 701 never achieved (run-level mean -2.60). The fix direction was right; the residual is the convergence-certification instrument + 2/3-seed stability, not the recon objective.",
+        "On the one valid converged seed, R1=-0.55 (novelty LOWERS PE) and C1 flat -- a first glimpse of a possible MEL ceiling -- but n=1 ready seed filtered by a confounded gate is too thin to certify. A frozen-probe-metric 701b that certifies convergence honestly across seeds is the decisive test; only an R2-passing multi-seed flat-MEL result, OR a genuine frozen-metric multi-seed divergence, resolves INV-050 MEL-measurability either way."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "INV-050 is an invariant/architectural claim, substrate-blocked / v3_pending. 701a is a diagnostic (experiment_purpose=diagnostic, scoring-excluded) with a clean substrate_not_ready_requeue self-route (non_contributory, never a weakens) -- no claim status change. The recommended action is a queue-experiment re-queue (V3-EXQ-701b) with a frozen held-out probe-state convergence metric; governance applies the disposition + marks 701a reviewed. INV-050 attracts duplicate IGW spawns -- this autopsy is a diagnostic, NOT a verdict on INV-050."
+}
