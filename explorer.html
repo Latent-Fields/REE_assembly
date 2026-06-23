@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.3 -->
+<!-- EXPLORER_VERSION: 2026-06-23.4 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2103,10 +2103,19 @@
       text-decoration: underline;
     }
 
+    /* Header site-links: text on desktop, icon-only on phones (see @media). */
+    .head-link-ico { display: none; }
+
     @media (max-width: 760px) {
       .process-week {
         grid-template-columns: 1fr;
       }
+      /* Trim header chrome on phones: drop the orientation blurb and the Stats
+         toggle, and reduce the REE Site / Google links to their icons. */
+      .header-info { display: none; }
+      .stats-toggle { display: none; }
+      .head-link-txt { display: none; }
+      .head-link-ico { display: inline-block; font-size: 17px; line-height: 1; }
       /* --- Phone-friendly core review views (List / Governance / Experiments) --- */
       /* Governance: wide data tables scroll inside their own section instead of
          stretching the whole page. The grid item must be allowed to shrink below
@@ -2145,8 +2154,8 @@
           <div class="subtitle" id="refreshStatus" style="margin-top:4px;">Last refreshed: --</div>
         </div>
       </details>
-      <a href="https://latent-fields.github.io/REE_assembly/" target="_blank" rel="noopener" style="margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">REE Site ↗</a>
-      <a href="https://www.google.ie" target="_blank" rel="noopener" style="margin-left:12px;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Google ↗</a>
+      <a href="https://latent-fields.github.io/REE_assembly/" class="head-link" title="REE Site" target="_blank" rel="noopener" style="margin-left:auto;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'"><span class="head-link-ico" aria-hidden="true">🌐</span><span class="head-link-txt">REE Site ↗</span></a>
+      <a href="https://www.google.ie" class="head-link" title="Google" target="_blank" rel="noopener" style="margin-left:12px;font-size:13px;color:var(--muted);text-decoration:none;align-self:center;white-space:nowrap" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'"><span class="head-link-ico" aria-hidden="true">🔍</span><span class="head-link-txt">Google ↗</span></a>
     </div>
     <nav class="view-nav">
       <!-- Primary views (home -> closure) -->
