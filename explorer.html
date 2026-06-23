@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.6 -->
+<!-- EXPLORER_VERSION: 2026-06-23.7 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8856,39 +8856,73 @@ END CONFLICT RESOLUTION`;
              '</span><span class="val">' + val + '</span></div>';
     }
     function tokTotal(t){ return t && t.total != null ? t.total : 0; }
+    function usd(n){ return fmtUsd(n) + '<span style="color:#aaa;' +
+      'font-weight:400;font-size:9px;"> notional</span>'; }
 
     function render(d){
       var parts = [];
+
+      // Plan + scope framing: every number below is read against this. The
+      // scrape only sees local transcripts, so it undercounts the account.
+      var plan = d.plan || "";
+      var scope = d.device_scope || "this device only";
+      if (plan) {
+        parts.push('<div style="font-size:10px;color:#888;margin:-2px 0 6px;">' +
+                   '<span style="font-weight:600;color:#555;">' + plan + '</span>' +
+                   ' &middot; ' + scope + '</div>');
+      }
+
       var b = d.block_5h || {};
       parts.push('<div class="usage-section">');
       parts.push('<div class="usage-row"><span class="lbl">Session block (5h)</span>' +
-                 '<span class="val">' + fmtUsd(b.cost_usd) + '</span></div>');
-      var frac = Math.max(0, Math.min(1, b.elapsed_frac != null ? b.elapsed_frac : 0));
+                 '<span class="val">' + usd(b.cost_usd) + '</span></div>');
+      // Gauge = this block's tokens vs your busiest recent 5h block (self-
+      // calibrating; NOT a fabricated "% of plan limit"). Falls back to the
+      // time-through-window fill when there is no peak yet.
+      var cur = tokTotal(b.tokens);
+      var peak = b.peak_total_tokens || 0;
+      var isPeak = peak > 0 && cur >= peak;
+      var gauge = peak > 0 ? Math.max(0, Math.min(1, cur / peak))
+                           : Math.max(0, Math.min(1, b.elapsed_frac || 0));
       parts.push('<div class="usage-bar"><span style="width:' +
-                 (frac*100).toFixed(1) + '%"></span></div>');
+                 (gauge*100).toFixed(1) + '%"></span></div>');
       if (b.active === false) {
         parts.push('<div class="usage-muted" style="font-size:11px;">no activity in last 5h</div>');
       } else {
+        var caption = peak <= 0
+          ? Math.round((b.elapsed_frac || 0) * 100) + '% through the 5h window'
+          : (isPeak ? 'busiest 5h block in the last 7d'
+                    : Math.round(gauge * 100) + '% of your busiest recent 5h block');
+        parts.push('<div class="usage-muted" style="font-size:10px;margin:1px 0 2px;">' +
+                   caption + '</div>');
         parts.push('<div class="usage-row" style="font-size:11px;">' +
-                   '<span class="lbl">' + fmtTok(tokTotal(b.tokens)) + ' tok &middot; ' +
+                   '<span class="lbl">' + fmtTok(cur) + ' tok &middot; ' +
                    (b.messages || 0) + ' msg</span>' +
                    '<span class="val" style="font-weight:400;color:#555;">resets in ' +
                    fmtDur(b.seconds_to_reset) + '</span></div>');
       }
       parts.push('</div>');
 
-      var w = d.rolling_7d || {};
+      // This week: a real fixed-anchor window (how the Max weekly limit
+      // resets), with a countdown -- not a rolling 7-day sum.
+      var w = d.weekly_window || {};
       parts.push('<div class="usage-section">');
-      parts.push(row("Last 7 days", fmtUsd(w.cost_usd)));
+      parts.push('<div class="usage-row"><span class="lbl">This week</span>' +
+                 '<span class="val">' + usd(w.cost_usd) + '</span></div>');
+      var wfrac = Math.max(0, Math.min(1, w.elapsed_frac || 0));
+      parts.push('<div class="usage-bar"><span style="width:' +
+                 (wfrac*100).toFixed(1) + '%"></span></div>');
       parts.push('<div class="usage-row" style="font-size:11px;">' +
                  '<span class="lbl">' + fmtTok(tokTotal(w.tokens)) + ' tok &middot; ' +
                  (w.messages || 0) + ' msg</span><span class="val" ' +
-                 'style="font-weight:400;color:#999;">rolling</span></div>');
+                 'style="font-weight:400;color:#555;">resets in ' +
+                 fmtDur(w.seconds_to_reset) + '</span></div>');
       parts.push('</div>');
 
       var t = d.today || {};
       parts.push('<div class="usage-section">');
-      parts.push(row("Today", fmtUsd(t.cost_usd)));
+      parts.push('<div class="usage-row"><span class="lbl">Today</span>' +
+                 '<span class="val">' + usd(t.cost_usd) + '</span></div>');
       parts.push('<div class="usage-row" style="font-size:11px;">' +
                  '<span class="lbl">' + fmtTok(tokTotal(t.tokens)) + ' tok &middot; ' +
                  (t.messages || 0) + ' msg</span><span class="val"></span></div>');
@@ -8907,6 +8941,12 @@ END CONFLICT RESOLUTION`;
         });
         parts.push('</div></div>');
       }
+
+      parts.push('<div class="usage-muted" style="font-size:9px;margin-top:8px;' +
+                 'border-top:1px solid #eee;padding-top:5px;line-height:1.3;">' +
+                 'Local transcripts only &mdash; excludes claude.ai &amp; other ' +
+                 'devices. Cost is API-equivalent, not billed on ' +
+                 (d.plan || "Max") + '.</div>');
 
       $("usageContent").className = "";
       $("usageContent").innerHTML = parts.join("");

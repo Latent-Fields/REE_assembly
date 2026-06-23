@@ -3436,6 +3436,22 @@ _CLAUDE_PRICING_DEFAULT = (5.0, 25.0)
 _CLAUDE_BLOCK_SECONDS = 5 * 3600
 _CLAUDE_USAGE_MTIME_CUTOFF_DAYS = 8
 
+# Subscription context. The local transcript scrape only sees THIS device, so
+# any usage reading here is a lower bound on the account total (claude.ai, the
+# desktop app, and Claude Code on other machines are not visible). Anthropic
+# does not publish exact token caps for Max plans (limits are message/hour-based
+# and have shifted over time), and the token totals below are inflated by
+# cache-reads -- so we deliberately do NOT show a fabricated "% of plan limit".
+# Instead the 5h gauge self-calibrates against the user's own busiest recent
+# block, and the weekly section reports a real fixed-anchor window.
+_CLAUDE_PLAN_LABEL = "Max 20x"
+_CLAUDE_DEVICE_SCOPE = "this device only"
+# Weekly-window reset anchor (UTC). Matches how the Max plan weekly limit
+# resets on a fixed 7-day cycle. Set these to the day/hour your own week resets
+# (watch Claude Code's "resets <day>" notice and match it). Default Mon 00:00 UTC.
+_CLAUDE_WEEKLY_RESET_WEEKDAY = 0  # 0=Monday .. 6=Sunday
+_CLAUDE_WEEKLY_RESET_HOUR = 0
+
 
 def _claude_price_for(model):
     """(input, output) per-1M price for a model id.
@@ -3564,6 +3580,18 @@ def compute_claude_usage() -> dict:
 
         entries.sort(key=lambda e: e["ts"])
         block_secs = timedelta(seconds=_CLAUDE_BLOCK_SECONDS)
+        cutoff_7d = now - timedelta(days=7)
+
+        # Fixed weekly window anchor (matches the Max plan weekly reset cycle).
+        def _week_start(dt):
+            days_back = (dt.weekday() - _CLAUDE_WEEKLY_RESET_WEEKDAY) % 7
+            anchor = dt.replace(hour=_CLAUDE_WEEKLY_RESET_HOUR, minute=0,
+                                second=0, microsecond=0) - timedelta(days=days_back)
+            if anchor > dt:
+                anchor -= timedelta(days=7)
+            return anchor
+        week_start = _week_start(now)
+        week_reset = week_start + timedelta(days=7)
 
         # --- 5h block (ccusage-style) ---
         block_5h = {
@@ -3575,6 +3603,8 @@ def compute_claude_usage() -> dict:
             "cost_usd": 0.0,
             "messages": 0,
             "tokens": _claude_zero_tokens(),
+            "peak_total_tokens": 0,
+            "peak_cost_usd": 0.0,
         }
         if entries:
             blocks = []  # list of dicts: {start, entries}
@@ -3609,9 +3639,22 @@ def compute_claude_usage() -> dict:
             block_5h["elapsed_frac"] = round(elapsed_frac, 4)
             for e in last["entries"]:
                 _claude_accumulate(block_5h, e)
+            # Self-calibrating reference: heaviest 5h block in the trailing 7d,
+            # so the panel reads "this block vs your busiest recent block"
+            # without needing Anthropic's (unpublished, shifting) plan caps.
+            peak_total = 0
+            peak_cost = 0.0
+            for blk in blocks:
+                if blk["start"] < cutoff_7d:
+                    continue
+                bt = sum(e["total"] for e in blk["entries"])
+                bc = sum(e["cost"] for e in blk["entries"])
+                peak_total = max(peak_total, bt)
+                peak_cost = max(peak_cost, bc)
+            block_5h["peak_total_tokens"] = peak_total
+            block_5h["peak_cost_usd"] = round(peak_cost, 4)
 
         # --- rolling 7d ---
-        cutoff_7d = now - timedelta(days=7)
         rolling_7d = {
             "cost_usd": 0.0,
             "messages": 0,
@@ -3625,6 +3668,17 @@ def compute_claude_usage() -> dict:
             "messages": 0,
             "tokens": _claude_zero_tokens(),
         }
+        # --- weekly window (fixed anchor; matches the Max plan weekly reset) ---
+        week_span = (now - week_start).total_seconds() / (7 * 86400)
+        weekly_window = {
+            "cost_usd": 0.0,
+            "messages": 0,
+            "tokens": _claude_zero_tokens(),
+            "start": week_start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "reset_at": week_reset.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "seconds_to_reset": max(0, int((week_reset - now).total_seconds())),
+            "elapsed_frac": round(max(0.0, min(1.0, week_span)), 4),
+        }
         by_model = {}
         for e in entries:
             if e["ts"] >= cutoff_7d:
@@ -3637,10 +3691,12 @@ def compute_claude_usage() -> dict:
                 bm["cost_usd"] += e["cost"]
                 bm["total_tokens"] += e["total"]
                 bm["messages"] += 1
+            if e["ts"] >= week_start:
+                _claude_accumulate(weekly_window, e)
             if e["ts"].date() == today_date:
                 _claude_accumulate(today, e)
 
-        for bucket in (block_5h, rolling_7d, today):
+        for bucket in (block_5h, rolling_7d, weekly_window, today):
             bucket["cost_usd"] = round(bucket["cost_usd"], 4)
         by_model_list = sorted(
             by_model.values(), key=lambda r: r["cost_usd"], reverse=True)
@@ -3650,7 +3706,10 @@ def compute_claude_usage() -> dict:
         return {
             "ok": True,
             "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "plan": _CLAUDE_PLAN_LABEL,
+            "device_scope": _CLAUDE_DEVICE_SCOPE,
             "block_5h": block_5h,
+            "weekly_window": weekly_window,
             "rolling_7d": rolling_7d,
             "today": today,
             "by_model": by_model_list,
