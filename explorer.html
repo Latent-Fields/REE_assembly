@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.8 -->
+<!-- EXPLORER_VERSION: 2026-06-23.9 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8740,11 +8740,20 @@ END CONFLICT RESOLUTION`;
   </style>
   <div id="cornerDock">
 
-  <!-- Claude usage panel: token/cost from ~/.claude/projects transcripts
-       (serve.py /api/usage; parser deferred to a follow-up session). Shows
-       a 5h rolling-block reset countdown + rolling-7d + today + by-model.
-       Percentages are vs an estimated cap, not Anthropic's plan limits;
-       "weekly" is a rolling 7-day sum, not the official weekly window. -->
+  <!-- Claude usage panel: LOCAL activity only, from ~/.claude/projects
+       transcripts on this device (serve.py /api/usage). Shows the 5h block,
+       a fixed-anchor weekly window (reset calibrated to the Claude app), today,
+       and a per-model breakdown.
+
+       KNOWN LIMITATION (dead-end as of 2026-06-23): this panel CANNOT show the
+       real plan-limit % (e.g. "weekly 86% used"). Those live session/weekly
+       utilisation figures are returned only in API response headers at request
+       time and are not exposed by any API nor persisted anywhere under
+       ~/.claude (verified). So the authoritative limit % lives ONLY in the
+       Claude app > Settings > Usage screen. This view deliberately does not
+       fabricate a "% of plan" -- it reports local volume + notional cost and
+       points to the app. Revisit if Anthropic ever exposes usage data to a
+       local API / file. -->
   <div id="usageCard" class="dock-card">
     <div class="dock-head" id="usageHead">
       <span class="dock-caret">&#9662;</span>
@@ -8948,10 +8957,14 @@ END CONFLICT RESOLUTION`;
       }
 
       parts.push('<div class="usage-muted" style="font-size:9px;margin-top:8px;' +
-                 'border-top:1px solid #eee;padding-top:5px;line-height:1.3;">' +
-                 'Local transcripts only &mdash; excludes claude.ai &amp; other ' +
-                 'devices. Cost is API-equivalent, not billed on ' +
-                 (d.plan || "Max") + '.</div>');
+                 'border-top:1px solid #eee;padding-top:5px;line-height:1.35;">' +
+                 '<b>Local activity only</b> (this device) &mdash; excludes ' +
+                 'claude.ai &amp; other machines. Cost is API-equivalent, not ' +
+                 'billed on ' + (d.plan || "Max") + '.<br>' +
+                 'Cannot show real plan-limit % &mdash; that data is not exposed ' +
+                 'by any API or stored locally. For the authoritative session / ' +
+                 'weekly % see <b>Claude app &rsaquo; Settings &rsaquo; Usage</b>.' +
+                 '</div>');
 
       $("usageContent").className = "";
       $("usageContent").innerHTML = parts.join("");
