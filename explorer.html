@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-21.1 -->
+<!-- EXPLORER_VERSION: 2026-06-23.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8647,24 +8647,79 @@ END CONFLICT RESOLUTION`;
     init();
   </script>
 
-  <!-- Coordination panel: self-contained, isolated from the main script
-       above. Backs serve.py /api/shadow/status (verdict + machines) +
-       /api/coordinator/phase3/writers (sync_daemon writer health, Phase 3
-       live as of 2026-05-29) + /api/shadow/start. Element ids retain
+  <!-- Corner dock: stacks the Claude-usage panel above the Coordination
+       panel, both bottom-right. Each card is independently collapsible
+       (state persisted in localStorage). Self-contained / isolated from the
+       main script above -- the dock script at the bottom is the only consumer
+       of these element ids. -->
+  <style>
+    #cornerDock{position:fixed;right:14px;bottom:14px;width:320px;
+      display:flex;flex-direction:column;gap:10px;align-items:stretch;
+      z-index:9999;font:12px/1.4 system-ui,sans-serif;}
+    #cornerDock .dock-card{background:#fff;border:1px solid #ccc;
+      border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.15);overflow:hidden;}
+    #cornerDock .dock-head{display:flex;align-items:center;gap:6px;
+      padding:8px 10px;border-bottom:1px solid #eee;cursor:pointer;
+      user-select:none;}
+    #cornerDock .dock-card.collapsed .dock-head{border-bottom:none;}
+    #cornerDock .dock-card.collapsed .dock-body{display:none;}
+    #cornerDock .dock-caret{display:inline-block;width:10px;color:#888;
+      transition:transform .12s ease;font-size:10px;}
+    #cornerDock .dock-card.collapsed .dock-caret{transform:rotate(-90deg);}
+    #cornerDock .dock-head strong{flex:0 0 auto;}
+    #cornerDock .dock-head .dock-head-meta{flex:1 1 auto;text-align:right;
+      color:#888;font-size:10px;font-weight:400;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    #cornerDock .usage-row{display:flex;justify-content:space-between;
+      gap:8px;margin:2px 0;}
+    #cornerDock .usage-row .lbl{color:#555;}
+    #cornerDock .usage-row .val{font-variant-numeric:tabular-nums;
+      font-weight:600;color:#222;text-align:right;}
+    #cornerDock .usage-section{margin-top:8px;border-top:1px solid #eee;
+      padding-top:6px;}
+    #cornerDock .usage-section:first-child{margin-top:0;border-top:none;
+      padding-top:0;}
+    #cornerDock .usage-bar{height:6px;border-radius:3px;background:#eee;
+      overflow:hidden;margin:4px 0 2px;}
+    #cornerDock .usage-bar > span{display:block;height:100%;
+      background:#2e7d32;border-radius:3px;}
+    #cornerDock .usage-models{margin-top:3px;font-size:11px;color:#555;}
+    #cornerDock .usage-models div{display:flex;justify-content:space-between;
+      gap:8px;}
+    #cornerDock .usage-muted{color:#999;font-style:italic;}
+  </style>
+  <div id="cornerDock">
+
+  <!-- Claude usage panel: token/cost from ~/.claude/projects transcripts
+       (serve.py /api/usage; parser deferred to a follow-up session). Shows
+       a 5h rolling-block reset countdown + rolling-7d + today + by-model.
+       Percentages are vs an estimated cap, not Anthropic's plan limits;
+       "weekly" is a rolling 7-day sum, not the official weekly window. -->
+  <div id="usageCard" class="dock-card">
+    <div class="dock-head" id="usageHead">
+      <span class="dock-caret">&#9662;</span>
+      <strong>Claude usage</strong>
+      <span id="usageHeadMeta" class="dock-head-meta"></span>
+    </div>
+    <div class="dock-body" id="usageBody" style="padding:8px 10px;">
+      <div id="usageContent" class="usage-muted">loading...</div>
+    </div>
+  </div>
+
+  <!-- Coordination panel: backs serve.py /api/shadow/status (verdict +
+       machines) + /api/coordinator/phase3/writers (sync_daemon writer health,
+       Phase 3 live as of 2026-05-29) + /api/shadow/start. Element ids retain
        'shadow' prefix as a single rename pass would only churn -- the JS
        above is the only consumer. -->
-  <div id="coordCard" style="position:fixed;right:14px;bottom:14px;
-       width:320px;background:#fff;border:1px solid #ccc;border-radius:8px;
-       box-shadow:0 2px 10px rgba(0,0,0,0.15);font:12px/1.4 system-ui,
-       sans-serif;z-index:9999;">
-    <div style="display:flex;align-items:center;justify-content:space-between;
-         padding:8px 10px;border-bottom:1px solid #eee;">
+  <div id="coordCard" class="dock-card">
+    <div class="dock-head" id="coordHead">
+      <span class="dock-caret">&#9662;</span>
       <strong>Coordination</strong>
       <span id="shadowDot" title="verdict"
-            style="width:11px;height:11px;border-radius:50%;
-            background:#777;display:inline-block;"></span>
+            style="margin-left:auto;width:11px;height:11px;border-radius:50%;
+            background:#777;display:inline-block;flex:0 0 auto;"></span>
     </div>
-    <div style="padding:8px 10px;">
+    <div class="dock-body" id="coordBody" style="padding:8px 10px;">
       <div id="shadowVerdict" style="font-weight:600;">loading...</div>
       <div id="shadowMeta" style="color:#555;margin:3px 0 6px;"></div>
       <div id="shadowMachines" style="color:#555;font-size:11px;
@@ -8685,6 +8740,144 @@ END CONFLICT RESOLUTION`;
            future re-soak is needed; chip-worthy to retire if not. -->
     </div>
   </div>
+
+  </div><!-- /cornerDock -->
+
+  <script>
+  // Corner-dock collapse/expand: each card's collapsed state persists in
+  // localStorage. Clicking a card's header toggles it. Self-contained.
+  (function () {
+    function applyCollapse(cardId, key) {
+      var card = document.getElementById(cardId);
+      var head = card && card.querySelector(".dock-head");
+      if (!card || !head) return;
+      var collapsed = false;
+      try { collapsed = localStorage.getItem(key) === "1"; } catch (e) {}
+      card.classList.toggle("collapsed", collapsed);
+      head.addEventListener("click", function (ev) {
+        // Don't toggle when an interactive control inside the header is hit.
+        if (ev.target.closest("button, a, input, select")) return;
+        var now = card.classList.toggle("collapsed");
+        try { localStorage.setItem(key, now ? "1" : "0"); } catch (e) {}
+      });
+    }
+    applyCollapse("usageCard", "ree_dock_usage_collapsed");
+    applyCollapse("coordCard", "ree_dock_coord_collapsed");
+  })();
+  </script>
+
+  <script>
+  // Claude usage panel: polls /api/usage (served from ~/.claude/projects
+  // transcripts by serve.py). Degrades gracefully if the endpoint is absent
+  // (parser is landed in a follow-up session). Self-contained.
+  (function () {
+    function $(id){ return document.getElementById(id); }
+    function fmtUsd(n){
+      if (n == null || isNaN(n)) return "$0.00";
+      if (n >= 100) return "$" + n.toFixed(0);
+      return "$" + n.toFixed(2);
+    }
+    function fmtTok(n){
+      if (n == null || isNaN(n)) return "0";
+      if (n >= 1e9) return (n/1e9).toFixed(2) + "B";
+      if (n >= 1e6) return (n/1e6).toFixed(2) + "M";
+      if (n >= 1e3) return (n/1e3).toFixed(1) + "k";
+      return String(Math.round(n));
+    }
+    function fmtDur(sec){
+      if (sec == null || isNaN(sec) || sec < 0) return "--";
+      var h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60);
+      if (h > 0) return h + "h " + m + "m";
+      if (m > 0) return m + "m";
+      return Math.max(0, Math.round(sec)) + "s";
+    }
+    function row(lbl, val){
+      return '<div class="usage-row"><span class="lbl">' + lbl +
+             '</span><span class="val">' + val + '</span></div>';
+    }
+    function tokTotal(t){ return t && t.total != null ? t.total : 0; }
+
+    function render(d){
+      var parts = [];
+      var b = d.block_5h || {};
+      parts.push('<div class="usage-section">');
+      parts.push('<div class="usage-row"><span class="lbl">Session block (5h)</span>' +
+                 '<span class="val">' + fmtUsd(b.cost_usd) + '</span></div>');
+      var frac = Math.max(0, Math.min(1, b.elapsed_frac != null ? b.elapsed_frac : 0));
+      parts.push('<div class="usage-bar"><span style="width:' +
+                 (frac*100).toFixed(1) + '%"></span></div>');
+      if (b.active === false) {
+        parts.push('<div class="usage-muted" style="font-size:11px;">no activity in last 5h</div>');
+      } else {
+        parts.push('<div class="usage-row" style="font-size:11px;">' +
+                   '<span class="lbl">' + fmtTok(tokTotal(b.tokens)) + ' tok &middot; ' +
+                   (b.messages || 0) + ' msg</span>' +
+                   '<span class="val" style="font-weight:400;color:#555;">resets in ' +
+                   fmtDur(b.seconds_to_reset) + '</span></div>');
+      }
+      parts.push('</div>');
+
+      var w = d.rolling_7d || {};
+      parts.push('<div class="usage-section">');
+      parts.push(row("Last 7 days", fmtUsd(w.cost_usd)));
+      parts.push('<div class="usage-row" style="font-size:11px;">' +
+                 '<span class="lbl">' + fmtTok(tokTotal(w.tokens)) + ' tok &middot; ' +
+                 (w.messages || 0) + ' msg</span><span class="val" ' +
+                 'style="font-weight:400;color:#999;">rolling</span></div>');
+      parts.push('</div>');
+
+      var t = d.today || {};
+      parts.push('<div class="usage-section">');
+      parts.push(row("Today", fmtUsd(t.cost_usd)));
+      parts.push('<div class="usage-row" style="font-size:11px;">' +
+                 '<span class="lbl">' + fmtTok(tokTotal(t.tokens)) + ' tok &middot; ' +
+                 (t.messages || 0) + ' msg</span><span class="val"></span></div>');
+      parts.push('</div>');
+
+      var models = (d.by_model || []).slice(0, 4);
+      if (models.length) {
+        parts.push('<div class="usage-section"><div class="lbl" ' +
+                   'style="font-size:10px;text-transform:uppercase;' +
+                   'letter-spacing:.04em;color:#999;">By model (7d)</div>');
+        parts.push('<div class="usage-models">');
+        models.forEach(function (m) {
+          var name = (m.model || "?").replace(/^claude-/, "");
+          parts.push('<div><span>' + name + '</span><span>' +
+                     fmtUsd(m.cost_usd) + '</span></div>');
+        });
+        parts.push('</div></div>');
+      }
+
+      $("usageContent").className = "";
+      $("usageContent").innerHTML = parts.join("");
+      var meta = fmtUsd(b.cost_usd) + " &middot; " + fmtDur(b.seconds_to_reset) + " left";
+      $("usageHeadMeta").innerHTML = meta;
+    }
+
+    function poll(){
+      fetch("/api/usage?t=" + Date.now())
+        .then(function (r){
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (d){
+          if (d && d.ok === false) throw new Error(d.error || "unavailable");
+          render(d);
+        })
+        .catch(function (err){
+          $("usageContent").className = "usage-muted";
+          $("usageContent").innerHTML =
+            "Usage endpoint not available yet.<br>" +
+            "<span style=\"font-size:10px;\">(serve.py /api/usage pending &mdash; " +
+            String(err && err.message || err) + ")</span>";
+          $("usageHeadMeta").textContent = "";
+        });
+    }
+    poll();
+    setInterval(poll, 60000);
+  })();
+  </script>
+
   <script>
   (function () {
     var COLORS = {green:"#2e7d32", amber:"#b8860b", red:"#c62828",
