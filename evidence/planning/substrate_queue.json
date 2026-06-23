@@ -5131,6 +5131,20 @@
         {
           "ts": "2026-06-22T15:06:58Z",
           "event": "rung-6 BUILT: closure-exclusive de-commit eval mode (closure_exclusive_decommit_eval) implemented in ree-v3 (agent.py + config.py + contracts). The named dissociable substrate from design_rethink_460j. PARKED -> BUILT. PROMOTES NOTHING; MECH-445/446 unweakened. Validation 460-lineage successor queued separately via /queue-experiment after the build lands."
+        },
+        {
+          "session": "implement-substrate-closure-commit-entry-trajectory-20260623T0455Z + this log-amend session",
+          "utc": "2026-06-23T05:34Z",
+          "rung": 6,
+          "face": "commit/release-duration (root C de-commit) -- F-independent closure-plane commit-ENTRY TRAJECTORY (C-STEP) extension of the bool latch",
+          "lever": "use_closure_commit_entry_trajectory (e3._closure_committed_trajectory; requires use_closure_commit_entry)",
+          "status": "BUILT + LANDED (no-op default, bit-identical OFF). PROMOTES NOTHING; claims.yaml NOT modified; MECH-445/446 stay candidate/v3_pending/pending_retest_after_substrate. NO rung/claim/queue status change -- log-only amendment.",
+          "what": "C-STEP trajectory extension landed on ree-v3 main 96ee30c (on top of session A's commit-ENTRY bool latch 84c1e7c). New no-op-default flag use_closure_commit_entry_trajectory (requires use_closure_commit_entry) installs a PARALLEL sticky e3._closure_committed_trajectory so the between-E3-tick path STEPS a closure-formed committed program instead of repeating _last_action. This closes the C-STEP gap the bool latch (use_closure_commit_entry / 84c1e7c) could not -- a bare bool cannot be stepped, so the bool latch armed+sustained the occupancy (C-KEY) but the between-tick path still repeated _last_action; the trajectory latch gives the closure-formed occupancy an actual stepped program. Bit-identical OFF.",
+          "contracts": "ree-v3/tests/contracts/test_closure_commit_entry_trajectory.py (C-KEY arm / C-STEP load-bearing / C-YIELD / C-OFF bit-identical); 6/6 PASS on the combined HEAD alongside session A's 6/6.",
+          "validation_experiment": "V3-EXQ-460n queued (ree-v3 main 880eb1c) -- claim-free 3-arm bool-vs-trajectory readiness diagnostic (ARM_ENTRY_OFF / ARM_BOOL / ARM_TRAJECTORY). Gate (a) occupancy: BOTH latch arms arm+sustain a closure-formed occupancy on >=2/3 seeds. Gate (b) C-STEP EVIDENCE: ARM_TRAJECTORY closure_program_steps_total>0 while ARM_BOOL==0 -- the evidence that selects WHICH latch the 460-lineage de-commit successor uses (occupancy-only -> bool may suffice; needs a stepped program -> trajectory). SIBLING of V3-EXQ-460m (the bool-latch readiness test queued by the concurrent bool-latch session 0425Z), NOT a supersede.",
+          "next": "BLOCKED on 460m + 460n results: the 460-lineage de-commit successor (NEW letter; supersedes the parked 460k/460l line) runs the full de-commit falsifier (rung-6 release shortens the occupancy + MECH-445 commit-intent + MECH-446 occupancy-drop co-occur) with the latch the C-STEP evidence selects. NOT queued (blocked-on-run).",
+          "design_doc": "REE_assembly/docs/architecture/natural_commit_occupancy_release.md (closure-plane commit-ENTRY TRAJECTORY / C-STEP extension section)",
+          "ree_v3_status_doc": "ree-v3/CLAUDE.md (\"F-independent closure-plane commit-ENTRY TRAJECTORY primitive (C-STEP ...)\" entry)"
         }
       ],
       "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead) + failure_autopsy_V3-EXQ-654h_2026-06-21 (arc_062 rule-apprehension instance of the 485i no-op; gate cleared by 485j off-GAP-A generalisation)",
