@@ -24356,6 +24356,20 @@
     upgrade of MECH-284 leaky integrator). Object/social domains
     deferred to V4. Flag use_mech275_aggregator default False.
     Validation EXP-0169 PASS unblocks the cluster.
+  implementation_note_mech276_feedstock_2026_06_23: >
+    The critical upstream substrate -- the MECH-276 counterfactual-backed
+    attribution waking-phase feedstock named in functional_restatement /
+    governance_2026_06_10 as the precondition without which "aggregating
+    arbitrary correlations would produce noise-fit" -- LANDED 2026-06-23
+    (ree-v3/ree_core/attribution/scientist_attribution_buffer.py; the sleep loop
+    reads it as the aggregator evidence when use_scientist_attribution is on).
+    MECH-275 STAYS candidate / substrate_conditional / v3_pending: the feedstock
+    now exists but the MECH-275 sleep-aggregation promotion run is still owed --
+    it is queued only AFTER the MECH-276 substrate-readiness diagnostic
+    (V3-EXQ-703) PASSes, as a sibling of v3_exq_702_gap3b_sleep_cluster_promotion.py
+    extended with a MECH-275 cross-episode posterior-aggregation discriminative
+    metric over the now-real feedstock. sleep_substrate:GAP-3b re-adds MECH-275 to
+    unblocks_claims once that run scores. PROMOTES NOTHING here.
   location: docs/architecture/sleep_aggregation_cluster.md
 
 - id: MECH-276
@@ -24421,6 +24435,28 @@
     working MECH-276 closure should isolate the confounder via
     intervention contrast; a broken closure should aggregate the
     correlation as if causal.
+  implementation_note: >
+    V3 substrate IMPLEMENTED 2026-06-23 as
+    ree-v3/ree_core/attribution/scientist_attribution_buffer.py
+    (ScientistAttributionBuffer; master flag use_scientist_attribution,
+    default False -> bit-identical OFF). The waking-phase feedstock the
+    MECH-275 BayesianAggregator consumes: on each waking tick the agent
+    composes the existing single-pass comparators (SD-031 E2WorldForward,
+    domain "place"; ARC-033 E2HarmSForward, domain "self") on
+    (z_prev, observed, a_actual) and buffers per (domain, region) the agency
+    residual ||z_observed - E2(z_prev, a_actual)|| tagged counterfactual-backed
+    iff the counterfactual contrast ||E2(z_prev, a_actual) - E2(z_prev, a_cf)||
+    >= cf_margin. The sleep loop (phase_manager.py) reads this buffer as the
+    aggregator evidence INSTEAD of the MECH-284 staleness scalar when on. The
+    only_counterfactual_backed lever is the falsifiable distinction the MECH-275
+    claim turns on (correlational input -> noise-fit; counterfactual-backed ->
+    schema revision). MECH-094-gated (no buffering on replay/simulation).
+    PROMOTES NOTHING: MECH-276 stays candidate / v3_pending; substrate-readiness
+    diagnostic V3-EXQ-703 (counterfactual-backed vs correlational-control arm,
+    discrimination at world_dim>=128 with a trained encoder + SD-056 world_forward
+    in P0). Comparator discrimination depends on a TRAINED forward model (the
+    MECH-353/SD-031 lesson); a trained-substrate failure to discriminate is a
+    substrate-ceiling finding, not a falsification. See ree-v3/CLAUDE.md.
   location: docs/architecture/scientist_agent_developmental_ordering.md
 
 - id: MECH-277
