@@ -1,0 +1,110 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T16:58:45Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_700_arc108_sec7_learned_gating_2x2_20260623T161336Z_v3",
+      "queue_id": "V3-EXQ-700",
+      "claim_ids": ["MECH-439", "ARC-108", "MECH-450"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "confirmed_correct",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the test could not let the claims express themselves (unverified noise bar + degenerate non-divergent seed), so neither C1 conversion nor C2 learning-load-bearing was validly measured; not a falsification.",
+        "biological_reference": "clear -- ARC-108 = faithful three-factor dopaminergic plasticity (cortico-striatal eligibility x signed RPE, D1-LTP/D2-LTD); MECH-450 = faithful BG/pallidal recurrent lateral-inhibition settling (Mink surround inhibition). Lit present (targeted_review_connectome_mech_439). Not formal-definition imports.",
+        "prerequisites": "present -- ARC-108 w_chan + MECH-450 W_lat built (2026-06-20/22) and ENGAGED; GAP-A divergent candidate pool present on non-degenerate seeds.",
+        "implementation": "complete-and-engaged -- w_chan moved (range 0.012-0.013 on divergent seeds), W_lat moved (range 0.03-0.08), signed delta_t carried variance (std 0.0026), settling moved the field (round_delta 0.15-0.58). Confirmed not symbol-only.",
+        "environment": "adequate-but-brittle / latent suspect -- the reef-bipartite foraging arena yields a divergent pool on most seeds but collapses to a non-divergent 2-class monostrategy on degenerate seeds (700 seed 43: pool dist 0.028 < 0.05, entropy 0.68 byte-identical across A0/A1/NOISE, ~9x more ticks). If conversion genuinely does not lift with a VERIFIED bar, the single collapsed arena is the binding constraint -> the grid's escalate-to-V4-full-loop branch (loop segregation), not a falsification.",
+        "measurement": "misleading / under-instrumented (dominant) -- (a) the matched-noise control (alpha=1.0) did NOT verify-lift (700: 1/3 seeds, 700a: 0/3) so the C1 'strict-above-noise' bar is UNVERIFIED (the recurring 569g/684 defect); (b) the all-3-seeds-must-clear >=2/3 design has no per-seed-divergent gating, so one degenerate cell drags every criterion.",
+        "integration": "coupled -- the learning composes inside the F-bounded MECH-448/449 eligible set; engaged end-to-end.",
+        "scale": "adequate -- 3 seeds x 5 arms x P0/P1/P2 100/50/100 ep; the gap is seed-screening + noise tuning, not budget."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia dopaminergic three-factor plasticity (ARC-108 w_chan) + BG/pallidal recurrent winner-take-most settling (MECH-450 W_lat)",
+        "dependencies": ["divergent candidate pool (GAP-A)", "F-bounded eligible set (MECH-448/449)", "outcome-valence RPE (benefit_eval - harm_eval)", "multiple parallel cortico-BG-thalamic loops (loop segregation -- V4, the latent binding constraint)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; faithful function-level translation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "NO CHANGE -- MECH-439 stays substrate_ceiling; ARC-108/MECH-450 stay substrate_conditional. All promote/demote suppressed.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-700 (ARC-108 sec-7 SELECTION 2x2 learned-gating falsifier; claim_ids=[MECH-439,ARC-108,MECH-450]; experiment_purpose=evidence) reviewed non_contributory + substrate_not_ready_requeue (self-route CONFIRMED). The conversion question (C1) + learning-load-bearing (C2) could NOT be validly measured: the matched-noise control (alpha=1.0) did not verify-lift committed-class entropy above A0 on >=2/3 seeds (1/3; the 569g/684 unverified-bar guard fired), and one of three seeds (43) collapsed to a non-divergent 2-class monostrategy that dragged every >=2/3-seed criterion. NOT a falsification of MECH-439/ARC-108/MECH-450. POSITIVE readiness signal: the learning machinery is engaged end-to-end (w_chan + W_lat move, signed delta_t carries variance, settling moves the field) and on the one clean divergent seed (42) the learned settling (MECH-450 W_lat) lifted committed-class entropy +0.25 over A0 and beat the noise control (A2 1.35/A3 1.36 vs NOISE 1.25), while channel re-weighting (ARC-108 w_chan, A1) lifted only +0.07 (below noise). Route to /queue-experiment (700b) test-design fix: verified-lifting noise bar + per-seed-divergent gating (interpret C1/C2/C3 only on seeds where the pool is divergent) + more seeds + narrow toward the settling arm. DECISIVE-OR-ESCALATE: if 700b still shows no conversion with a VERIFIED bar + per-seed-divergent gating, the no-lift branch fires -> escalate to V4 full-loop / loop-segregation, NOT another V3 letter. MECH-439 stays substrate_ceiling; ARC-108/MECH-450 stay substrate_conditional; pending_retest_after_substrate. PROMOTES NOTHING, WEAKENS NOTHING.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "count_including_this": 4,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "exemption_rationale": "MECH-439 count mechanically trips the threshold (3 priors + this = 4th non_contributory), but the brake is EXEMPT per user adjudication 2026-06-23: (1) the substrate was genuinely ENRICHED between the prior autopsies and this run -- ARC-108 learned channel-gating + MECH-450 recurrent settling are NEW builds (2026-06-20/22), the explicit 'substrate genuinely being enriched between letters' exemption; (2) 700 tests a DIFFERENT mechanism (learned w_chan/W_lat) under a NEW EXQ number, the explicit 'redesign of a different mechanism' exemption; (3) the re-queue (700b) is a TEST-DESIGN/MEASUREMENT fix (verified noise bar + per-seed-divergent gating), NOT another lettered iteration circling the same ceiling with the same lever; (4) the learning machinery engaged and produced a single-seed conversion signal -- the question is genuinely measurable with a fixed harness. HARD STOP CONDITION: 700b is decisive -- if it shows no conversion with a VERIFIED noise bar + per-seed-divergent gating, the no-lift-escalate-V4 branch fires and the campaign moves to V4 loop-segregation, NOT another V3 letter (the brake's intent is honoured at that point).",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "ARC-108 (w_chan) + MECH-450 (W_lat) are implemented-and-engaged end-to-end (weights move, delta_t carries variance, settling moves the field) -- positive readiness confirmation, not symbol-only.",
+        "On the one clean divergent seed (700 seed 42) the learned SETTLING (MECH-450 W_lat) is the lever that converts (+0.25 over A0, beats noise), NOT channel re-weighting (ARC-108 w_chan lifts +0.07, below noise) -- focus the retest on settling.",
+        "The matched-noise control alpha=1.0 does not verify-lift on this env (569g/684 unverified-bar defect recurring) -- the C1 bar must be made verified before a conversion FAIL can be trusted.",
+        "The all-3-seeds-must-clear >=2/3 design is brittle to a single degenerate non-divergent cell (seed 43) -- per-seed-divergent gating (interpret only divergent-pool seeds, the 701a per-seed-gate pattern) is required.",
+        "If a measurement-fixed 700b STILL shows no conversion, the single collapsed arena is the binding constraint -> V4 full-loop / loop-segregation, not another V3 letter."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3",
+      "queue_id": "V3-EXQ-700a",
+      "claim_ids": ["MECH-439", "ARC-108", "MECH-450"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "confirmed_correct",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the C3 signed-vs-unsigned-RPE ablation could not be scored: TWO preconditions unmet (pool not divergent on the majority of seeds; noise control 0/3 lifts).",
+        "biological_reference": "clear -- same as 700; the C3 ablation tests whether the SIGNED RPE (vs unsigned ARC-016 variance, divergence B5) is load-bearing for the learning.",
+        "prerequisites": "present-but-starved -- the learned_channel_rpe_mode flag works (unsigned w_chan moved range 0.66 vs signed 0.0013 -- the unsigned always-positive ARC-016 variance drives w_chan hard in one direction), but the divergent-pool precondition collapsed.",
+        "implementation": "complete -- the signed/unsigned flag is built and engaged; C3b (unsigned arm fails to convert) passed=True as predicted, but C3a (signed converts) could not be scored on an unverified bar.",
+        "environment": "brittle -- pool collapsed to non-divergent on the majority of seeds (measured 0.020 < 0.05), worse than 700.",
+        "measurement": "misleading -- noise control 0/3 lifts (n_noise_lifts_over_a0=0); the C3a 'signed converts above noise' bar is wholly unverified.",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "signed dopaminergic RPE three-factor plasticity vs unsigned precision/variance (ARC-016) -- the B5 divergence",
+        "dependencies": ["divergent candidate pool", "verified noise bar"],
+        "is_formal_import": false,
+        "divergence": "the signed-vs-unsigned distinction (B5) is the load-bearing question the ablation targets; the unsigned signal moving w_chan ~500x harder (one-directional) is a suggestive but unscoreable observation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "NO CHANGE (same as 700).",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-700a (ARC-108 sec-7 C3 signed-vs-unsigned-RPE ablation) reviewed non_contributory + substrate_not_ready_requeue (self-route CONFIRMED). TWO preconditions unmet (candidate pool not divergent on the majority of seeds; matched-noise control 0/3 lifts) -- the C3a signed-converts criterion could not be scored on an unverified bar. C3b (unsigned arm fails to convert) passed as predicted, and the unsigned ARC-016-variance signal drove w_chan ~500x harder than the signed RPE (one-directional, range 0.66 vs 0.0013) -- a suggestive but unscoreable B5 observation. Fold the C3 ablation arm into the 700b test-design retest (verified bar + per-seed-divergent gating). NOT a falsification. PROMOTES NOTHING, WEAKENS NOTHING.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "note": "Counted under the 700 target (same cluster, same claims); not double-counted. Same exemption + decisive-or-escalate condition applies."
+      },
+      "learning_extracted": [
+        "The learned_channel_rpe_mode flag is built and engaged; the unsigned (ARC-016-variance) signal moves w_chan ~500x harder than the signed RPE and one-directionally -- consistent with the B5 prediction that unsigned cannot supply directional credit, but UNSCOREABLE here (unverified bar).",
+        "C3 should be folded into the 700b retest arms rather than run as a separate experiment -- it shares the same harness defects."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both runs (700 C1/C2, 700a C3) self-route substrate_not_ready_requeue / non_contributory on the same 3 claims for the SAME structural reason: a brittle test harness on a single foraging arena -- (1) the matched-noise control (alpha=1.0) does not verify-lift (700: 1/3 seeds, 700a: 0/3), leaving the C1/C3 'strict-above-noise' bar unverified (the recurring 569g/684 defect); (2) the candidate pool collapses to a non-divergent 2-class monostrategy on degenerate seeds (700 seed 43; 700a majority), and the all-3-seeds-must-clear >=2/3 design lets one degenerate cell drag every criterion.",
+    "is_independent_bugs": false,
+    "structural_property": "The learning substrate (ARC-108 w_chan + MECH-450 W_lat) is engaged and shows a single-seed settling-conversion signal, but the harness cannot validly score conversion: the noise bar is unverified and there is no per-seed-divergent gating. This is a measurement/test-design ceiling on the harness, NOT a substrate ceiling on the claims and NOT (yet) a confirmed no-lift.",
+    "readings": ["test_design_ceiling"]
+  }
+}
