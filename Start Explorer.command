@@ -10,6 +10,17 @@
 CANONICAL_ASSEMBLY="/Users/dgolden/REE_Working/REE_assembly"
 PORT=8000
 
+# Where serve.py listens. Default 0.0.0.0 = all interfaces (unchanged behaviour).
+# For WireGuard + localhost only (recommended once the iPhone peer is set up --
+# see docs/mobile_access.md), run the launcher with:
+#   REE_BIND="10.8.0.11 127.0.0.1" "/Users/dgolden/REE_Working/REE_assembly/Start Explorer.command"
+# Each space-separated address becomes a --bind flag.
+REE_BIND="${REE_BIND:-}"
+BIND_ARGS=""
+for _addr in $REE_BIND; do
+    BIND_ARGS="$BIND_ARGS --bind $_addr"
+done
+
 cd "$CANONICAL_ASSEMBLY" || {
     echo "ERROR: cannot cd to canonical REE_assembly:"
     echo "  $CANONICAL_ASSEMBLY"
@@ -106,7 +117,7 @@ echo ""
 export REE_MACHINE_NAME=DLAPTOP-4.local
 
 # Start server in background, capture PID
-caffeinate -i python3 serve.py --port $PORT &
+caffeinate -i python3 serve.py --port $PORT $BIND_ARGS &
 SERVER_PID=$!
 
 # Ensure server is killed cleanly when terminal closes or Ctrl+C is pressed

@@ -5270,6 +5270,11 @@ def main():
     parser.add_argument("--python", type=str, default=None,
                         help="Python executable to use for runners "
                              "(default: auto-detect via REE_PYTHON env or known paths)")
+    parser.add_argument("--bind", action="append", default=None, metavar="ADDR",
+                        help="Address to listen on (repeatable). Default: 0.0.0.0 "
+                             "(all interfaces, unchanged). For WireGuard + localhost "
+                             "only, pass --bind 10.8.0.11 --bind 127.0.0.1 "
+                             "(see docs/mobile_access.md).")
     args = parser.parse_args()
 
     if args.python:
@@ -5279,7 +5284,13 @@ def main():
     _detect_existing_runners()
     os.chdir(SERVE_DIR)
 
-    server = http.server.ThreadingHTTPServer(("0.0.0.0", args.port), Handler)
+    # Bind addresses: default 0.0.0.0 (all interfaces, backward-compatible).
+    # Pass --bind one or more times to restrict (e.g. WireGuard IP + localhost).
+    bind_addrs = args.bind if args.bind else ["0.0.0.0"]
+    servers = []
+    for addr in bind_addrs:
+        servers.append(http.server.ThreadingHTTPServer((addr, args.port), Handler))
+    server = servers[0]  # primary (foreground); extras serve in daemon threads
 
     def shutdown(sig, frame):
         print("\n[serve] Shutting down.", flush=True)
@@ -5294,6 +5305,7 @@ def main():
 
     url = f"http://localhost:{args.port}/explorer"
     print(f"[serve] REE Explorer -> {url}", flush=True)
+    print(f"[serve] Listening on:  {', '.join(a + ':' + str(args.port) for a in bind_addrs)}", flush=True)
     print(f"[serve] Serving:       {SERVE_DIR}", flush=True)
     for ver, cfg in RUNNERS.items():
         exists = "✓" if cfg["script"].exists() else "✗"
@@ -5323,6 +5335,11 @@ def main():
     threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
     print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)
 
+    # Extra bind addresses serve in daemon threads; the primary runs in the
+    # foreground so Ctrl+C / SIGTERM still reaches shutdown() above.
+    for srv in servers[1:]:
+        threading.Thread(target=srv.serve_forever, daemon=True,
+                         name=f"serve-{srv.server_address[0]}").start()
     server.serve_forever()
 
 
