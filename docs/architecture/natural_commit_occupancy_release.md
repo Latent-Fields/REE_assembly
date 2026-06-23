@@ -397,3 +397,59 @@ run failed); (b) the rung-6 release shortens it; (c) MECH-445 commit-intent + ME
 occupancy-drop co-occur on the same seeds. A 460-lineage successor (NEW letter; supersedes the
 parked 460k/460l line) runs the full de-commit falsifier once (a) clears. Self-routes
 `substrate_not_ready_requeue` if (a) still fails. PROMOTES NOTHING.
+
+## AMEND: F-independent closure-plane commit-ENTRY TRAJECTORY primitive (C-STEP — the between-tick path now STEPS a closure-formed committed program, not repeats `_last_action`) (2026-06-23)
+
+The bool latch above (`use_closure_commit_entry` / `e3._closure_committed_active`) arms and
+**sustains** the closure-formed beta occupancy (C-KEY — the latch-hold yield/persistence check is
+union-aware), but a bare **bool cannot be STEPPED**. The between-E3-tick path
+(`agent.select_action`) reads `e3._committed_trajectory` to advance a committed PROGRAM; on the
+closure-exclusive eval `_committed_trajectory` stays None, so a closure-armed hold falls through
+to `action = self._last_action` — beta is held but **no closure-formed program executes** (the
+C-STEP gap). A bool fundamentally cannot fill that stepping site; closing C-STEP requires a
+parallel trajectory the de-commit machinery consults.
+
+**The fix (no-op default; bit-identical OFF; rides the bool flag):** a new sub-flag
+`use_closure_commit_entry_trajectory` (default False; PRECONDITION: requires
+`use_closure_commit_entry`). When on, `REEAgent.select_action` — at the SAME Option-A SET
+predicate where the bool is set (`goal_state.is_active()` AND a trajectory selected toward it AND
+`lateral_pfc.rule_state` norm `>= floor`) — ALSO installs the goal/rule-directed
+`result.selected_trajectory` into a PARALLEL sticky latch `e3._closure_committed_trajectory`
+(`_committed_step_idx` reset on a FRESH arm; subsequent E3 ticks refresh the trajectory while the
+counter advances across the held occupancy, mirroring the F-commit stepping). It is NOT torn down
+by `post_action_update` (sticky), and is CLEARED at the SAME sites as the bool (the three agent
+de-commit sites, the SD-034 auto-closure-fire teardown, and `reset()`).
+
+Three UNION sites now read `(_committed_trajectory OR _closure_committed_trajectory)` — all
+bit-identical when the trajectory latch is None (flag off): (1) `_closure_commit_active` arm gate;
+(2) `_ncl_commit_present` latch-hold persistence; (3) the between-tick stepping
+(`_step_traj = _committed_trajectory or _closure_committed_trajectory`), so the closure-armed hold
+ADVANCES the closure-formed committed PROGRAM instead of repeating `_last_action`. The
+`is_committed` telemetry (`get_commitment_state` + `get_state`) is widened so the closure-formed
+commit reads honestly on the eval where `_committed_trajectory` stays None. The residue-write /
+hippocampal-record sites are LEFT UNCHANGED (occupancy + stepping is the design intent, not memory
+recording of closure-formed commits — matching the bool latch's scope).
+
+**Config:** `use_closure_commit_entry_trajectory: bool = False` (+ `from_dims` passthrough +
+precondition). **Backward compatible:** default OFF → the trajectory latch is never installed →
+every union reduces to the bool-latch behaviour → bit-identical to the
+`use_closure_commit_entry`-only path (verified by contract). **MECH-094:** the SET is a waking
+control-state transition (no replay/memory write surface). **Phased training:** N/A.
+
+**Contracts:** `ree-v3/tests/contracts/test_closure_commit_entry_trajectory.py` — C-KEY (the
+F-independent trajectory latch installs + the hold sustains beta with zero F-commits), C-STEP
+(LOAD-BEARING: the between-tick path STEPS the closure trajectory — proven with a trajectory whose
+per-step actions differ, so a step to t=1 yields a class distinct from the repeated `_last_action`
+at t=0), C-YIELD (the hold still yields to the SD-034 de-commit refractory), C-OFF (default-OFF
+bit-identical to the bool latch + reset clears the trajectory latch + the precondition raises).
+
+### Validation
+`V3-EXQ-460n` claim-free substrate-readiness diagnostic (SIBLING of `V3-EXQ-460m`, NOT a supersede;
+queued via `/queue-experiment`) — a self-contained 3-arm bool-vs-trajectory comparison on the
+closure-exclusive eval substrate: `ARM_ENTRY_OFF` (the 460k/460l baseline; must NOT arm) /
+`ARM_BOOL` (`use_closure_commit_entry`) / `ARM_TRAJECTORY` (`+ use_closure_commit_entry_trajectory`).
+Gate (a) occupancy: BOTH latch arms `armed_and_sustained` on `>=2/3` guard seeds. Gate (b) C-STEP
+EVIDENCE (NOT the readiness gate): `ARM_TRAJECTORY` `closure_program_steps_total > 0`
+(between-tick committed-program steps) while `ARM_BOOL == 0`. The evidence informs WHICH latch the
+460-lineage de-commit successor uses (occupancy-only → the cheaper bool may suffice; needs a
+stepped program → the trajectory). PROMOTES NOTHING.
