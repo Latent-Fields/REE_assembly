@@ -3447,10 +3447,13 @@ _CLAUDE_USAGE_MTIME_CUTOFF_DAYS = 8
 _CLAUDE_PLAN_LABEL = "Max 20x"
 _CLAUDE_DEVICE_SCOPE = "this device only"
 # Weekly-window reset anchor (UTC). Matches how the Max plan weekly limit
-# resets on a fixed 7-day cycle. Set these to the day/hour your own week resets
-# (watch Claude Code's "resets <day>" notice and match it). Default Mon 00:00 UTC.
-_CLAUDE_WEEKLY_RESET_WEEKDAY = 0  # 0=Monday .. 6=Sunday
-_CLAUDE_WEEKLY_RESET_HOUR = 0
+# resets on a fixed 7-day cycle. Calibrated 2026-06-23 to the Claude app's
+# Usage screen, which showed the weekly limit "Resets Fri 18:59" in local
+# (Ireland = IST = UTC+1 in summer), i.e. Friday 17:59 UTC. Re-check against
+# the app's Usage screen if the displayed countdown drifts.
+_CLAUDE_WEEKLY_RESET_WEEKDAY = 4  # 0=Monday .. 6=Sunday; 4=Friday
+_CLAUDE_WEEKLY_RESET_HOUR = 17
+_CLAUDE_WEEKLY_RESET_MINUTE = 59
 
 
 def _claude_price_for(model):
@@ -3585,7 +3588,8 @@ def compute_claude_usage() -> dict:
         # Fixed weekly window anchor (matches the Max plan weekly reset cycle).
         def _week_start(dt):
             days_back = (dt.weekday() - _CLAUDE_WEEKLY_RESET_WEEKDAY) % 7
-            anchor = dt.replace(hour=_CLAUDE_WEEKLY_RESET_HOUR, minute=0,
+            anchor = dt.replace(hour=_CLAUDE_WEEKLY_RESET_HOUR,
+                                minute=_CLAUDE_WEEKLY_RESET_MINUTE,
                                 second=0, microsecond=0) - timedelta(days=days_back)
             if anchor > dt:
                 anchor -= timedelta(days=7)

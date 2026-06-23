@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.7 -->
+<!-- EXPLORER_VERSION: 2026-06-23.8 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -8904,19 +8904,24 @@ END CONFLICT RESOLUTION`;
       parts.push('</div>');
 
       // This week: a real fixed-anchor window (how the Max weekly limit
-      // resets), with a countdown -- not a rolling 7-day sum.
+      // resets), with a countdown. NO usage bar here on purpose -- a local
+      // token sum has no plan cap to divide by, and a time-elapsed bar reads
+      // as a usage gauge (it showed "27%" while the app's real weekly limit
+      // was at 86% -- a dangerous false-reassurance). The real % lives in the
+      // Claude app's Usage screen; we just report local volume + the reset.
       var w = d.weekly_window || {};
       parts.push('<div class="usage-section">');
-      parts.push('<div class="usage-row"><span class="lbl">This week</span>' +
+      parts.push('<div class="usage-row"><span class="lbl">This week ' +
+                 '<span style="color:#aaa;font-weight:400;font-size:9px;">' +
+                 '(local)</span></span>' +
                  '<span class="val">' + usd(w.cost_usd) + '</span></div>');
-      var wfrac = Math.max(0, Math.min(1, w.elapsed_frac || 0));
-      parts.push('<div class="usage-bar"><span style="width:' +
-                 (wfrac*100).toFixed(1) + '%"></span></div>');
       parts.push('<div class="usage-row" style="font-size:11px;">' +
                  '<span class="lbl">' + fmtTok(tokTotal(w.tokens)) + ' tok &middot; ' +
                  (w.messages || 0) + ' msg</span><span class="val" ' +
                  'style="font-weight:400;color:#555;">resets in ' +
                  fmtDur(w.seconds_to_reset) + '</span></div>');
+      parts.push('<div class="usage-muted" style="font-size:9px;margin-top:2px;">' +
+                 'Plan limit % &rarr; Claude app &rsaquo; Usage</div>');
       parts.push('</div>');
 
       var t = d.today || {};
