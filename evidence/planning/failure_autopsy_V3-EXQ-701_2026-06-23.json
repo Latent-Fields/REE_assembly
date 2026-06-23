@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T04:16:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /failure-autopsy gate 2026-06-23: 'Confirm: re-queue with converged P0')",
+  "targets": [
+    {
+      "run_id": "v3_exq_701_inv050_mel_measurability_diagnostic_20260622T231121Z_v3",
+      "queue_id": "V3-EXQ-701",
+      "claim_ids": ["INV-050"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Both pre-registered readiness gates unmet. R2 world_model_converged_p0=-2.60 (threshold >=0.10): the SD-056 P0 world-forward model DIVERGED -- relative PE drop strongly negative, PE rose ~260% over CONV_EPISODES=20 on the stable base env. R1 pe_response_range_to_novelty_shock=-0.005 (threshold >=0.25): frozen-model PE does not rise under a max-novelty shock. C1 (load-bearing mel_measurable_monotonic) consequently flat: mel_none=0.019230, mel_high=0.019055 (HIGH below NONE), rel_spread_ok=false. Self-route substrate_not_ready_requeue per the script's own interpretation grid.",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue (R1 + R2 unmet)",
+      "self_route_is_correct_disposition": true,
+      "facts": {
+        "gates_met": "C2_non_degenerate PASS (cross-seed/group spread; not vacuous)",
+        "gates_failed": "R2 world_model_converged_p0 -2.60 (UNMET, dominant), R1 pe_response_range -0.005 (UNMET), C1 mel_measurable_monotonic FAIL (flat across novelty arms)",
+        "mel_per_arm": "NONE 0.019230 / LOW 0.019381 / MED 0.019199 / HIGH 0.019055 -- flat; per-group structure 0.0152/0.0174/0.0253 identical across all 4 arms (groups dominate, novelty contributes nothing)",
+        "key": "The dominant unmet gate is R2: the P0 world-forward model DIVERGED (conv_rel_drop -2.60), so the frozen model is an invalid base and the R1/C1 novelty-flatness is uninterpretable as an INV-050/MEL ceiling -- the V3-EXQ-642 untrained-substrate confound. CONV_EPISODES=20 with a diverging trend -> needs a larger/stabilised P0."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- INV-050 IV precondition never reached (DV gated out by R1+R2). Correctly non_contributory; never a weakens.",
+        "biological_reference": "clear -- sleep as model-consolidation pressure scaling with daily learning load (SHY / Tononi-Cirelli). Not the failing layer; failure is upstream of any MEL claim.",
+        "prerequisites": "missing (diagnostic-internal) -- a CONVERGED P0 world-forward model, the valid frozen base the probe depends on. It diverged (conv -2.60).",
+        "implementation": "partial -- the raw per-step e3 prediction_error read + frozen-window accumulation is the correct instrument (fixes 677's batch-loss wash-out); the gap is the P0 training that feeds it.",
+        "environment": "adequate -- CausalGridWorldV2 graded-drift novelty arms + matched-activity NONE control are well-formed.",
+        "measurement": "under-instrumented for convergence -- the MEL readout is sound, but the P0 budget/regime does not produce a converged base, so the readout has nothing valid to measure.",
+        "integration": "n/a -- single-module diagnostic.",
+        "scale": "likely insufficient P0 budget -- CONV_EPISODES=20 with a diverging trend; needs a larger/stabilised P0."
+      },
+      "biological_reference": {
+        "closest_mechanism": "homeostatic sleep pressure scaling with the day's model-update / learning load (synaptic homeostasis, Tononi & Cirelli; two-process model + a third MEL term)",
+        "dependencies": ["a converged waking world-forward model so accumulated prediction error reflects genuine model-error load, not un-learned base-env error"],
+        "is_formal_import": false,
+        "divergence": "none implicated -- the failure is upstream (diagnostic P0 did not converge), not a divergence of the MEL mechanism from biology.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "n/a (diagnostic; no claim status change)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-701 (2026-06-23, failure-autopsy): INV-050 MEL-measurability diagnostic, non_contributory CONFIRMED (NOT a verdict on INV-050; diagnostic, scoring-excluded). Self-route substrate_not_ready_requeue is correct per the pre-registered grid: BOTH readiness gates unmet -- R2 world_model_converged=-2.60 (the SD-056 P0 world-forward model DIVERGED, PE rose ~260% over 20 ep) and R1 pe_response=-0.005. The R2 divergence is a V3-EXQ-642-style untrained-substrate confound: with an invalid frozen base, the R1/C1 novelty-flatness is uninterpretable as a MEL ceiling. Route: re-queue (new letter) with a converged/stabilised P0, gated so R2 passes before R1/C1 are read; no substrate_queue entry; no re-derive brake. Recurrence note: 677 (MECH-180, sleep-side) + 701 (INV-050, no-sleep IV) both show novelty not moving PE, each under a confound -- the converged-P0 re-run is the decisive MEL-measurability test; a flat MEL there would be the genuine ceiling and route to substrate enrichment / a stronger MEL manipulation.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No missing mechanism. The fix is the diagnostic's P0 convergence (test-bed construction) -- a queue-experiment re-queue, not a substrate_queue entry. If the converged-P0 successor STILL shows a flat MEL (R2 passing), THAT result routes to substrate enrichment (world-model / MEL-manipulation) and a substrate_queue entry should be created then."
+      },
+      "recommended_requeue_spec": {
+        "skill": "queue-experiment",
+        "successor_letter": "V3-EXQ-701a",
+        "changes": [
+          "Raise the P0 convergence budget (CONV_EPISODES well above 20) AND diagnose why the SD-056 world-forward model diverges on the stable env at 20 ep (budget vs instability / learning-rate / regime).",
+          "Hard-gate: interpret R1 (pe_response) and C1 (mel monotonic) ONLY on seeds where R2 (world_model_converged, conv_rel_drop >= 0.10) PASSES -- a per-seed readiness gate, not a run-level one.",
+          "Keep the raw per-step e3 prediction_error + frozen-window MEL instrument (it fixes 677's batch-loss wash-out); keep commitment-free / no-sleep."
+        ],
+        "decisive_outcome": "If R2 passes and C1 is still flat -> mel_not_modulated_by_novelty: the genuine MEL-measurability ceiling on V3 (the script's own grid branch). Route then to substrate enrichment / a stronger MEL manipulation (causal-structure or reward-structure shift, finer PE instrumentation) and fire the re-derive brake on that clean reading."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies_inv050": [],
+        "sibling_lineage_autopsies": ["failure_autopsy_V3-EXQ-677_2026-06-14 (MECH-180)"],
+        "reason_not_fired": "INV-050 has 0 prior substrate_ceiling/non_contributory autopsies under its tag (677 tagged the sibling MECH-180). More decisively, 701 is confounded by P0 non-convergence (R2 diverged), so it has NOT cleanly hit a MEL ceiling -- firing the brake here would reclassify a confounded run as a ceiling (illusory resolution). The converged-P0 re-run is the decisive test; the brake should fire there if R1/C1 stay flat with R2 passing."
+      },
+      "learning_extracted": [
+        "701's dominant blocker is R2 (P0 world-forward model DIVERGED, conv -2.60), not the novelty channel. The R1/C1 flatness is downstream of an invalid frozen base and is uninterpretable as INV-050 evidence -- the V3-EXQ-642 confound.",
+        "The MEL readout instrument is correct (raw per-step e3 prediction_error, frozen-window accumulation -- fixes 677's batch-training-loss wash-out). The gap is the P0 that feeds it: CONV_EPISODES=20 yields divergence, not convergence, on the SD-056 world-forward model.",
+        "The converged-P0 re-run is the decisive MEL-measurability test. 677 + 701 are a recurrence (novelty not moving PE) but each is confounded; only an R2-passing run can cleanly answer whether MEL is manipulable on V3."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "INV-050 is an invariant/architectural claim, substrate-blocked / v3_pending. 701 is a diagnostic (experiment_purpose=diagnostic, scoring-excluded) with a clean substrate_not_ready_requeue self-route (non_contributory, never a weakens) -- no claim status change. The recommended action is a queue-experiment re-queue with a converged P0; governance applies the disposition + marks 701 reviewed."
+}
