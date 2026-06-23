@@ -46864,3 +46864,158 @@
     Wired to ARC-108 (weight half) + ARC-044 (gain half, explicitly sibling-not-parent). Stays candidate /
     substrate_conditional / v3 (first instance is the ARC-108 w_chan; promote/demote suppressed -- right response is
     the ARC-108 BUILD + the discriminator-vs-gain falsifier, NOT promotion). PROMOTES NOTHING.
+- id: MECH-451
+  title: "Intermediate channel-granularity falsifier -- before the full segregated-loop build (ARC-110), expose the compressed E3 score_bias modulatory channel as SEVERAL separately-learnable finer channels (OFC-devaluation / dACC-conflict / lateral-PFC rule-evidence / vigour / liking) to the learned-gating layer (ARC-108 w_chan), so the learner can discover SEPARATELY that different control functions matter in different states. The current single global w_chan learns one weight over a pre-compressed blend; this tests whether the F-dominance conversion ceiling (MECH-439) is REPRESENTATIONAL COMPRESSION (finer channels convert non-motor influence to committed action) rather than a requirement for full per-loop competition (finer channels do NOT convert, and only ARC-110 segregated loops do). The cheap intermediate rung BETWEEN ARC-108's one global weight vector and ARC-110's full segregated loops -- a V3-tractable falsifier that can pre-empt the V4 loop build."
+  claim_type: mechanism_hypothesis
+  subject: selection.intermediate_channel_granularity
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-06-23"
+  psychiatric_failure_mode: >
+    A learner that can only re-weight a PRE-COMPRESSED control blend cannot
+    dissociate the control functions that compression fused -- it cannot learn that
+    OFC devaluation should matter in one state while dACC conflict should dominate in
+    another. This is the substrate of the additive-collapse failure mode (the same
+    representational loss ARC-109's D1/D2 split and ARC-110's loop segregation each
+    attack from their own angle): an aberrant over-weighting cannot be localised to
+    the function that is actually deranged because the functions are not separable in
+    the representation. Exposing finer channels is the minimal representational
+    degree-of-freedom needed before any function-specific gating pathology can be
+    modelled (ARC-106 EARNS, in its weakest V3 form).
+  depends_on:
+    - ARC-108    # the learned-gating layer (w_chan) this exposes finer channels TO -- finer channels are only testable once there is a learner to weight them separately
+    - ARC-110    # the FULL loop decomposition this is the cheap intermediate rung BEFORE; ARC-110's s.D artefact-of-collapse hypothesis is what this falsifier partly pre-empts
+    - MECH-439   # the F-dominance conversion ceiling: this tests whether the ceiling is representational compression of the modulatory blend vs a need for per-loop competition
+    - MECH-450   # the recurrent settling step the finer channels would settle over -- coupled readout
+    - ARC-106    # brain-like construction: finer channel exposure is the FUNCTION-level intermediate between one shared weight and anatomical loops; grounded at function, with the load-bearing-vs-decorative ablation test
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT (the finer-channel exposure is a V3-tractable e3_selector slice, not present
+    today). A future experiment SUPPORTS this if exposing the compressed score_bias blend as >=3 separately-learnable
+    finer channels (each with its own learned w_chan entry, signed-RPE trained) lifts committed-action-class entropy
+    AND converts at least one previously-F-dominated NON-MOTOR control function to committed authority on the EXISTING
+    collapsed arena -- a lift the single-global-w_chan version (V3-EXQ-700) does not produce -- on >=2/3 seeds. This
+    would localise the conversion ceiling to REPRESENTATIONAL COMPRESSION and pre-empt the V4 ARC-110 loop build.
+    WEAKENED / route-to-ARC-110 if finer channels move their weights but produce no committed-conversion lift beyond
+    the single-global w_chan (then compression is NOT the binding constraint and full per-loop competition is implicated;
+    this is positive evidence FOR ARC-110, not against ARC-108). NON-DEGENERACY: the finer channels must carry live,
+    DISSOCIABLE cross-channel learned-weight variance (finer w_chan entries that move identically are the compressed
+    blend re-labelled), and the candidate pool must be divergent (GAP-A guard), else substrate_not_ready_requeue.
+  location: docs/thoughts/2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md
+  notes: >
+    Registered 2026-06-23 from the V3-EXQ-700 failure-interpretation thought intake (the "channel compression" / "finer
+    exposed channels" section). The doc proposes an intermediate architecture between ARC-108's one_global_weight_vector
+    and ARC-110's full loop-specific_weight_vectors: expose finer channels first, as a CHEAP falsifier of whether the
+    conversion ceiling is representational compression before committing to the V4 segregated-loop build. Distinct from
+    ARC-110 (full per-loop competition with separate eligibility-and-gates) and from ARC-111 (context-conditioned
+    weights): this keeps ONE shared arena but de-compresses the modulatory channel feeding the single learner. Its
+    falsifier is a SIBLING of V3-EXQ-700 (same collapsed-arena substrate, finer score_bias decomposition), to be designed
+    via /queue-experiment after V3-EXQ-700 returns -- if 700 already converts, this is moot; if 700 shows
+    preconditions-met-no-lift, this is the first cheap thing to try before ARC-110. Proposal EXP-0391 minted
+    (manual_proposals.v1.json). Stays candidate / substrate_conditional / v3 (promote/demote suppressed; right response is
+    the finer-channel e3_selector slice via /implement-substrate, then the sibling falsifier, NOT promotion). ARC-106
+    cargo-cult guard: the finer channels need an ablation falsifier (collapse-to-blend reproduces the no-lift => the
+    decomposition is load-bearing) before they count. PROMOTES NOTHING (new candidate).
+- id: MECH-452
+  title: "Loop-local eligibility traces under a globally-broadcast dopamine signal: even with a SINGLE shared dopaminergic teaching signal (ARC-108 delta_t), the credit traces that decide WHICH synapses/channels the signal updates must remain LOCAL and loop-specific -- effective update = shared delta_t x separate local eligibility trace x loop-specific active synapses -- rather than the current single globally-broadcast credit that updates every recently-active selector component. A too-broad or temporally-smeared eligibility trace would make learned gating appear ineffective (no committed conversion) even when the underlying dopamine learning rule is exactly correct, because the right teaching signal is delivered to the wrong synapses."
+  claim_type: mechanism_hypothesis
+  subject: selection.loop_local_eligibility_traces
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4
+  registered_utc: "2026-06-23"
+  psychiatric_failure_mode: >
+    The eligibility trace is the substrate of temporal credit assignment, so its
+    derangement is the substrate of mis-attributed reinforcement learning: a too-broad
+    / smeared trace credits actions and channels that were NOT responsible for the
+    outcome -- a learning-level aberrant-salience analog (the wrong selector component
+    is potentiated, distinct from the readout-level aberrant salience ARC-016 carries),
+    and a candidate substrate for the over-general reinforcement seen in addiction and
+    in delusional reinforcement. A too-narrow / over-decayed trace fails to bridge the
+    delay between action and outcome -- a temporal-credit / delay-bridging deficit
+    (an impulsivity / steep-discounting analog). A single global broadcast trace
+    (the current state) has no locality to derange and cannot model either pole.
+  depends_on:
+    - ARC-108    # the shared signed-RPE delta_t this claim keeps GLOBAL while making the eligibility traces LOCAL -- the trace is the missing locality the single broadcast lacks
+    - ARC-110    # the segregated loops the traces localise TO; loop-local traces presuppose loops to be local to (coupled v4 build)
+    - MECH-450   # today the W_lat settling update shares ONE delta_t with w_chan via one global credit; this is the claim that those credits must instead ride separate local traces
+    - MECH-439   # the conversion ceiling restated at the credit-assignment layer: a correct global signal on a too-broad trace still cannot convert
+    - ARC-106    # brain-like construction: loop-local eligibility traces grounded at FUNCTION (three-factor plasticity with local traces), with the load-bearing-vs-decorative ablation test
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT (requires the ARC-110 loops plus per-loop/per-channel trace machinery; neither
+    is present in V3). A future experiment SUPPORTS this if replacing the single global credit broadcast with
+    loop/channel-LOCAL eligibility traces (shared delta_t x local trace x active synapses) lifts committed conversion or
+    correct credit assignment where the global-trace version does not, AND a trace-localisation ablation (collapse the
+    local traces back to one global trace) reproduces the no-lift, on >=2/3 seeds -- showing the locality, not the
+    teaching signal, was the binding constraint. WEAKENED if loop/channel-local traces yield no advantage over the
+    single global broadcast (the trace locality is then decorative -- dropped per the ARC-106 load-bearing-vs-decorative
+    ablation test). NON-DEGENERACY: the per-loop/per-channel traces must carry DISSOCIABLE cross-trace variance (not one
+    shared trace re-labelled per loop), else substrate_not_ready_requeue.
+  location: docs/thoughts/2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md
+  notes: >
+    Registered 2026-06-23 from the V3-EXQ-700 failure-interpretation thought intake (the "Local eligibility traces and
+    credit assignment" section: "shared dopamine signal x separate local eligibility traces x loop-specific active
+    synapses"). Distinct from ARC-063 / the CandidateRule eligibility-trace credit claim (which is RULE-AVAILABILITY
+    credit in the policy rule field, a different mechanism at a different layer): MECH-452 is the BG-SELECTION credit
+    trace that gates which gating synapses ARC-108's signed RPE updates. Coupled to ARC-110 (the loops the traces
+    localise to) and ARC-108/MECH-450 (which today share one global delta_t broadcast). V4-leaning per the assembly-map
+    sequencing -- the loop substrate must exist first. ARC-106 cargo-cult guard: local traces need an ablation falsifier
+    (collapse-to-global reproduces the no-lift) before they count as load-bearing. The doc's lesson: a preconditions-met
+    failure of V3-EXQ-700 with strong w_chan movement but no behavioural conversion is consistent with a correct learning
+    rule delivered on a too-broad trace -- so this claim is one of the "not fully explained by loop decomposition"
+    residues the doc flags. PROMOTES NOTHING (new candidate).
+- id: MECH-453
+  title: "Cholinergic TAN-pause plasticity-window gating of selector credit: dopamine should NOT continuously update every recently-active selector component; a striatal cholinergic tonically-active-neuron (TAN) pause should open a NARROW plasticity window around behaviourally-relevant events, so the three-factor learned-gating updates (ARC-108) are admitted only WITHIN the window. Without a window, continuous credit smears across irrelevant recently-active components and degrades the learned gating the conversion attack depends on. The OPENING-side neuromodulatory complement to REE's existing CLOSURE-side plasticity control (MECH-094 waking-gate; INV-074/MECH-333/MECH-334 consolidation/EWC) -- REE today has machinery to stop/consolidate learning but not a phasic gate to OPEN a precise learning window."
+  claim_type: mechanism_hypothesis
+  subject: selection.tan_plasticity_window_credit_gating
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4
+  registered_utc: "2026-06-23"
+  psychiatric_failure_mode: >
+    The TAN plasticity window is the substrate whose derangement is the
+    indiscriminate-vs-rigid learning axis: a too-WIDE / absent window admits credit to
+    every recently-active component -> over-general, indiscriminate reinforcement and
+    habit over-formation (a compulsivity / habit-rigidity analog; striatal cholinergic
+    interneuron dysfunction is implicated in Tourette/tic and dystonia phenomenology
+    and in the loss of behavioural flexibility), while an over-NARROW / failed-pause
+    window starves learning of the window it needs -> failure to update selection at
+    all (a learning-arrest analog). A continuously-updating learner (the current state)
+    has no window to derange and cannot model either pole. Distinct from the
+    cholinergic AXIS-ORTHOGONALITY maintenance role (MECH-142) -- that is ACh
+    protecting representational geometry; this is ACh gating the TIMING of credit.
+  depends_on:
+    - ARC-108    # the three-factor learned-gating update whose TIMING this windows -- without the learner there is no credit to window
+    - MECH-452   # the loop-local eligibility traces this bounds in TIME -- the trace says WHICH synapses, the window says WHEN credit is admitted (tightly coupled; build together)
+    - MECH-094   # the existing waking-only plasticity gate this REFINES from a coarse wake/sleep switch to a phasic event-locked window
+    - MECH-142   # the existing cholinergic axis-orthogonality-maintenance role -- ACh as a neuromodulator is present; this is a DISTINCT ACh function (credit-timing, not geometry-protection), kept separate to avoid conflation
+    - ARC-106    # brain-like construction: the TAN pause grounded at FUNCTION (an event-locked plasticity window), with the load-bearing-vs-decorative ablation test
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT (no event-locked plasticity-window gate exists on the selector; the learned
+    gating updates continuously when waking). A future experiment SUPPORTS this if gating the ARC-108 three-factor
+    update behind a narrow event-locked (TAN-pause-like) window lifts committed conversion or credit precision over the
+    continuously-updating learner, AND a window-ablation (open the window permanently) reproduces the
+    smeared-credit no-lift, on >=2/3 seeds. WEAKENED if windowing the update yields no advantage over continuous
+    updating (the window is then decorative -- dropped per the ARC-106 load-bearing-vs-decorative ablation test).
+    NON-DEGENERACY: the window must actually GATE updates (a measurable fraction of recently-active components excluded
+    when the window is closed, with live cross-event variance in what is admitted) -- a window that admits everything is
+    the continuous learner re-labelled, route substrate_not_ready_requeue.
+  location: docs/thoughts/2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md
+  notes: >
+    Registered 2026-06-23 from the V3-EXQ-700 failure-interpretation thought intake (the "Plasticity-window gating"
+    section: "a cholinergic TAN-pause-like mechanism is absent ... a narrower plasticity window may be needed to prevent
+    credit smearing"). Connects to the standing plasticity-window-neuromodulators thread (memory note
+    project_plasticity_window_neuromodulators, 2026-06-01: REE has the CLOSURE side -- INV-074/MECH-333/MECH-334 + EWC --
+    but lacks the OPENING side, basal-forebrain/striatal cholinergic gating of learning rates). This claim scopes that
+    thread to the SELECTOR credit layer specifically: TAN gating of the ARC-108 learned-gating update. Coupled to
+    MECH-452 (the trace says which synapses; the window says when) -- build together. Kept DISTINCT from MECH-142
+    (ACh-as-geometry-protection) to avoid conflating two ACh functions. V4-leaning (depends on ARC-108 being mature and
+    on a plasticity-window substrate that does not exist). ARC-106 cargo-cult guard: the window needs an ablation
+    falsifier (open-permanently reproduces the smear) before it counts as load-bearing. One of the doc's "not fully
+    explained by loop decomposition" residues. PROMOTES NOTHING (new candidate).

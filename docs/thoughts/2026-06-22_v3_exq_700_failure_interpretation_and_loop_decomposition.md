@@ -1,6 +1,32 @@
 # Interpreting V3-EXQ-700 failure: loop decomposition, granularity, and residual missing pieces
 
-Status: unprocessed
+Status: processed 2026-06-23 (/thought-digestion)
+
+## Digestion record (2026-06-23)
+
+This doc is a forward-interpretation aid for **V3-EXQ-700** (the ARC-108 JOB-1 learned-gating
+selection 2x2 falsifier, queued 2026-06-22, not yet run). Most of its candidate claims were
+**already reaped into the registry the same day** (the assembly-map intake-reap):
+
+- Separate motor / cognitive / motivational loops -> **ARC-110** (its falsifier *is* V3-EXQ-700).
+- Context-conditioned weights -> **ARC-111**.
+- D1/D2 population split -> **ARC-109**.
+- Recurrent settling step -> **MECH-450**; F-dominance ceiling -> **MECH-439**; unified dopamine
+  substrate -> **ARC-108**.
+- Candidate-generation bottleneck -> already covered by GAP-A / ARC-065 / MECH-313.
+- The inference rule ("a preconditions-met failure shifts uncertainty toward ARC-110/ARC-111, not
+  away from ARC-108") -> already encoded in `ARC-110.what_would_answer` + `ARC-108.depends_on`
+  (the ARC-110 sequencing fork). The **result-interpretation matrix** below remains the durable
+  decision aid for when V3-EXQ-700 returns.
+
+Three genuinely-new residue ideas were **registered this pass** (user-approved):
+
+- **MECH-451** -- intermediate channel-granularity falsifier (expose finer score_bias channels to
+  the learner BEFORE the full ARC-110 loop build). V3-tractable; proposal **EXP-0391** minted.
+- **MECH-452** -- loop-local eligibility traces under a globally-broadcast dopamine signal (V4).
+- **MECH-453** -- cholinergic TAN-pause plasticity-window gating of selector credit (V4).
+
+All three stay `candidate` / `substrate_conditional`; PROMOTES NOTHING.
 
 ## Source thought
 
