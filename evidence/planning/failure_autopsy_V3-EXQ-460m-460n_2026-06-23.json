@@ -1,0 +1,123 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T22:55:41Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3",
+      "queue_id": "V3-EXQ-460m",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Precondition / non-vacuity gate closure_rule_directed_commit_formed measured 0 vs threshold 1 (n_rule_directed_commit_ticks=0 on every arm/seed). The conjunction is goal_state.is_active() AND lateral_pfc.rule_state norm >= closure_commit_entry_rule_norm_floor(0.01). rule_state_norm_peak is 0.394/0.310/7.586 (all >> floor), so the rule half passes; the goal-active half is False at every eval tick because the hand-rolled eval-arm loop (lines 480-544) never calls agent.update_z_goal, so goal_state.is_active() never becomes True. Gate-a armed_and_sustained never ran (criteria_non_degenerate.gate_a_armed_sustained=false).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim-free readiness probe; nothing exercised, no weakens.",
+        "biological_reference": "not the failing layer -- the closure-coupled commit-entry (rule-stability precursor -> committed program; SD-034 ClosureOperator / Rich & Shapiro 2009 sequence-completion) is the design intent; failure is upstream in the eval harness.",
+        "prerequisites": "present in code -- the F-independent SET writer the 460k autopsy said was missing now exists (agent.py:6519-6532, 84c1e7c). The 460k missing-dependency is built.",
+        "implementation": "substrate complete; EXPERIMENT incomplete -- the readiness eval-arm loop is missing the agent.update_z_goal call its own SET precondition (goal_state.is_active()) requires. Symbol of the readiness test without its function (eval loop cloned from 460l, which predated the goal-dependent predicate).",
+        "environment": "adequate -- the trained substrate forages + ecologically seeds z_goal in run_p2 (foraging_contact_guard PASSED, z_goal_norm_at_contact_peak>0.4).",
+        "measurement": "adequate -- the closure_rule_directed_commit_formed non-vacuity gate correctly refused to score the downstream gates and self-routed substrate_not_ready_requeue.",
+        "integration": "isolated -- the closure plane and the latch-hold never couple because the SET precondition never fired.",
+        "scale": "not the issue -- per-tick conjunction, not a budget; 15 eval episodes/arm."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Closure-coupled commit-entry: a goal-active, rule-directed commitment forms (lateral-PFC rule-stability precursor) and installs a sticky committed program; the SD-034 ClosureOperator de-commit then acts on it (Rich & Shapiro 2009 OFC sequence-completion; Collins & Frank 2014 task-set).",
+        "dependencies": ["an active goal (goal_state.is_active())", "a non-trivial lateral_pfc.rule_state (>= floor)", "the F-independent SET writer (84c1e7c/96ee30c) -- present"],
+        "is_formal_import": false,
+        "divergence": "Not a formal-definition import. No biology divergence is implicated; the gap is purely an eval-harness omission (no goal seeding) that starves the SET predicate's goal-active input.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-460m (2026-06-23, failure-autopsy): non_contributory, claim-free readiness diagnostic. DISTINCT root from 460k: the F-independent closure-commit-entry SET writer (agent.py:6519-6532, 84c1e7c) now EXISTS, so the 460k structural-unreachability wedge is resolved in code. The FAIL is a harness gap -- the readiness eval-arm loop (cloned from 460l) never calls agent.update_z_goal, so goal_state.is_active() is False every tick and the SET precondition closure_rule_directed_commit_formed measures 0 despite rule_state_norm_peak 0.31-7.59 >> the 0.01 floor (only the goal-active half is missing). z_goal seeding demonstrably works on the same trained agent (foraging_contact_guard PASSED in run_p2). This is the V3-EXQ-642 precondition-unmet-because-eval-did-not-drive-the-input pattern -> RE-QUEUE with goal seeding in the eval loop, NOT substrate enrichment. PROMOTES NOTHING; re-derive brake NOT fired.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "(no substrate write) -- rung-6 closure-commit-entry primitives are built and correct; the gap is the readiness experiment's eval-arm loop (missing update_z_goal), not the substrate.",
+        "implementation_hint": "No create/amend. The 84c1e7c bool-latch + 96ee30c C-STEP trajectory primitives are landed and correct. The readiness gate for them stays open until the RE-QUEUED 460m/460n successors (eval loop seeding z_goal each step so goal_state.is_active() can be True) score a contributory PASS. Do NOT read this FAIL as a substrate-ceiling signal against the closure-commit-entry primitives.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The 460k structural wedge (no F-independent writer) is RESOLVED: agent.py:6519-6532 (84c1e7c) sets _closure_committed_active without an F-driven committed trajectory. 460m does NOT re-hit that root.",
+        "The new SET predicate added a goal_state.is_active() dependency the 460l eval-arm loop never had; the loop was cloned without adding the update_z_goal seeding the new predicate requires -> goal-active half starved -> n_rule_directed_commit_ticks=0 on every seed.",
+        "rule_state_norm_peak 0.31-7.59 >> the 0.01 floor: only goal activation is missing, and it is missing in the EXPERIMENT (proven by the run_p2 contact guard passing on the same trained agent), not the substrate.",
+        "Fix is a re-queue with the eval-arm loop calling agent.update_z_goal each step (mirror run_p2 consumption-gated seeding, or forced-feed). No substrate enrichment, no f_dominance_conversion_ceiling amend, no re-derive brake."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3",
+      "queue_id": "V3-EXQ-460n",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Same precondition gate closure_rule_directed_commit_formed measured 0 vs threshold 1 on every arm (ARM_ENTRY_OFF/ARM_BOOL/ARM_TRAJECTORY) and seed. n_rule_directed_commit_ticks=0; rule_state_norm_peak 0.286-0.497 (all >> the 0.01 floor); goal_state.is_active() False every tick because the eval-arm loop never calls agent.update_z_goal. Both gate-a (occupancy armed_and_sustained, both latch arms) and gate-b (cstep traj_steps_program) are unscorable (criteria_non_degenerate gate_a_occupancy=false, gate_b_cstep=false; closure_program_steps_total=0 on all arms). SIBLING of 460m (NOT a supersede); identical eval-arm loop, identical starved precondition.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim-free; nothing exercised, no weakens.",
+        "biological_reference": "not the failing layer -- the C-STEP trajectory latch (between-tick stepping of a closure-formed committed program) is the design intent; failure is upstream in the eval harness.",
+        "prerequisites": "present in code -- both the bool latch (84c1e7c) and the C-STEP trajectory latch (96ee30c, e3._closure_committed_trajectory) exist; the SET writer is F-independent.",
+        "implementation": "substrate complete; EXPERIMENT incomplete -- same missing agent.update_z_goal in the eval-arm loop as 460m; gate-a + gate-b both downstream of the starved precondition.",
+        "environment": "adequate -- foraging_contact_guard PASSED 3/3 (z_goal seeds in run_p2).",
+        "measurement": "adequate -- the precondition gate caught the vacuity and self-routed substrate_not_ready_requeue.",
+        "integration": "isolated -- closure plane / latch-hold / C-STEP stepping never couple (SET predicate never fired).",
+        "scale": "not the issue."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Same as 460m, extended to the C-STEP trajectory: the between-E3-tick path advances a closure-formed committed program (e3._closure_committed_trajectory) instead of repeating _last_action -- a stepped motor program (striatal-thalamo-cortical unrolling, MECH-090 stepping analog).",
+        "dependencies": ["an active goal (goal_state.is_active())", "a non-trivial lateral_pfc.rule_state (>= floor)", "the F-independent bool + trajectory SET writers (84c1e7c/96ee30c) -- present"],
+        "is_formal_import": false,
+        "divergence": "No biology divergence implicated; the gap is the eval-harness goal-seeding omission.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-460n (2026-06-23, failure-autopsy): non_contributory, claim-free trajectory-readiness diagnostic; SIBLING of 460m (same eval-arm loop, same starved precondition). The bool (84c1e7c) + C-STEP trajectory (96ee30c) latches both exist; the FAIL is the harness gap -- the eval loop never calls agent.update_z_goal, so goal_state.is_active() is False every tick and closure_rule_directed_commit_formed measures 0 (rule_state_norm_peak 0.29-0.50 >> 0.01 floor; only the goal-active half is missing). Both gate-a occupancy and gate-b C-STEP are downstream of the starved precondition. RE-QUEUE with goal seeding in the eval loop. PROMOTES NOTHING; re-derive brake NOT fired.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "(no substrate write) -- C-STEP trajectory primitive is built and correct; the gap is the readiness experiment's eval-arm loop (missing update_z_goal).",
+        "implementation_hint": "No create/amend. Same as 460m: re-queue with goal seeding in the eval loop; the readiness gate for both bool + trajectory latches stays open until the re-queued successors score a contributory PASS.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "Same root as 460m: the F-independent bool + C-STEP trajectory SET writers exist; the eval-arm loop never seeds z_goal so the goal-active half of the SET precondition is starved.",
+        "Both gate-a (occupancy, both latch arms) and gate-b (C-STEP) are unscorable purely because the precondition gate failed first -- single upstream root, not three independent gate failures.",
+        "Re-queue with update_z_goal in the eval loop scores both gates in the same re-issue (and finally exercises the bool-vs-trajectory comparison gate-b is designed for)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both runs self-route substrate_not_ready_requeue at the SAME precondition gate (closure_rule_directed_commit_formed=0); every downstream discrimination gate (460m gate-a; 460n gate-a + gate-b) is unscorable because the precondition's goal-active input was never driven. rule_state_norm_peak clears the 0.01 floor on every seed -- only goal_state.is_active() is missing.",
+    "is_independent_bugs": false,
+    "structural_property": "One eval-harness omission, shared by both runs (the trajectory run is a sibling of the bool run, not a supersede): the hand-rolled closure-eval arm loop -- cloned from 460l, which predated the goal-dependent SET predicate introduced by 84c1e7c/96ee30c -- never calls agent.update_z_goal, so goal_state.is_active() is False at every eval tick and the F-independent closure-commit-entry SET predicate (which requires a goal-active rule-directed commitment) never fires. This is the V3-EXQ-642 precondition-unmet-because-the-eval-did-not-drive-the-input pattern, NOT the 460k structural-unreachability root (the F-independent writer now exists in code) and NOT a substrate ceiling (z_goal seeding works on the same trained agent, proven by the run_p2 contact guard passing).",
+    "readings": ["eval_harness_gap_requeue_with_goal_seeding"]
+  }
+}
