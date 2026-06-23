@@ -1,0 +1,89 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T04:01:15Z",
+  "scope": "single",
+  "status": "confirmed",
+  "supersedes_autopsy": "failure_autopsy_V3-EXQ-460k_2026-06-22",
+  "targets": [
+    {
+      "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+      "queue_id": "V3-EXQ-460l",
+      "claim_ids": ["MECH-090", "MECH-342", "MECH-445", "MECH-446", "ARC-108"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Readiness/non-vacuity gate 3 (closure_exclusive_eval_armed_hold) failed FIRST: ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on every arm/seed -- the closure-coupled latch-hold never armed under the closure_exclusive_decommit_eval mode in a real eval run. Gates 4 (l0_monolithic: L0 mean_per_commit_hold ~1.1-1.3 vs floor 5.0) and 5 (rho_proximity: rho_peak_max=0, rho_n_releases_total=0) also unmet. The load-bearing D1/D2/D3 discriminators never scored (no armed hold to exercise). Gate 6 (delta_t negative variance) PASSED -- the JOB-1 signed-RPE delta_t machinery the habenula reuses IS live (L2 n_neg_delta_ticks 834-1117, delta_t_min -0.42), but the habenula never fired (n_habenula_aborts=0) for lack of an armed hold.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the test was vacuous; no claim was exercised under conditions where it could express itself. NO claim is weakened.",
+        "biological_reference": "partial -- LHb (lateral habenula) fires on worse-than-expected (negative-RPE) outcomes to suppress dopaminergic drive and abort commitment; the BG commit/maintain machinery sustains a hold the habenula can interrupt. REE's habenula INPUT signal (signed RPE delta_t = R_t - V-hat_t) is correctly live in a real eval, but the upstream BG-commit hold it acts on never arms, so the de-commit reference mechanism could not be exercised.",
+        "prerequisites": "missing -- the closure-coupled commit (_closure_commit_active, structurally gated on e3._committed_trajectory which is set ONLY under the F-driven natural commit per the 460k diagnosis, e3_selector.py:1926) does not activate in a real eval, so the natural-commit latch-hold never arms (ncl_hold_closure_armed_total=0). The closure-exclusive de-commit eval substrate (e52158d) is non-functional outside the contract harness that injects e3._committed_trajectory directly.",
+        "implementation": "partial -- the JOB-2 DRIVER pair (rho_t maintenance ramp + habenula de-commit, c5614ab) is built and its no-op-default/OFF wiring is correct, but it has nothing to drive: the rho ramp needs an armed, sustained hold to self-limit (none forms) and the habenula needs an armed hold to abort (none forms).",
+        "environment": "wrong pressures for this test -- on the 603n foraging substrate the natural-commit latch does NOT produce sustained monolithic holds (max_consecutive_beta_run 5-7, mean per-commit hold ~1.2); the 'flat-hold monopoly' the rho ramp was built to self-limit against does not exist here. The binding constraint is upstream at commit-ENTRY / sustained-occupancy formation, not at maintenance-release.",
+        "measurement": "adequate -- the six readiness/non-vacuity gates correctly caught the vacuity and self-routed substrate_not_ready_requeue (never a false weakens); the instrumentation did its job.",
+        "integration": "isolated -- the closure plane, the natural-commit latch-hold, and the JOB-2 DRIVER pair do not couple in a real eval (the closure-coupled commit never fires), so the control plane cannot be integration-tested.",
+        "scale": "unknown -- not reached; the precondition substrate state never formed."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Lateral habenula (LHb) negative-RPE-driven de-commit / RMTg-gated dopaminergic suppression, acting on a BG-maintained commitment hold (the rho_t proximity-scaled maintenance ramp as a DA-ramp analog that peaks-then-declines).",
+        "dependencies": ["F-independent commit-entry / sustained-occupancy formation (the hold the de-commit acts on)", "closure-coupled commit that arms independently of the F-driven e3._committed_trajectory", "signed-RPE delta_t = R_t - V-hat_t (CONFIRMED live)"],
+        "is_formal_import": false,
+        "divergence": "Not a formal-definition import; the divergence is a translation gap -- the closure-coupled hold-arming is structurally entangled with the F-driven natural commit, so it cannot dissociate natural-commit occupancy from closure-de-commit as the design requires.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-090": "non_contributory",
+        "MECH-342": "non_contributory",
+        "MECH-445": "non_contributory",
+        "MECH-446": "non_contributory",
+        "ARC-108": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-460l (ARC-108 JOB-2 control-plane L0/L1/L2 falsifier, supersedes V3-EXQ-460k) RAN terminal FAIL/non_contributory 2026-06-22T22:17:57Z: clean substrate_not_ready_requeue at readiness gate 3 (closure_exclusive_eval_did_not_arm_hold) -- ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on every arm/seed. Independently confirms the 460k wiring diagnosis: the closure_exclusive_decommit_eval arm source _closure_commit_active is structurally gated on the F-driven e3._committed_trajectory, so the closure-coupled latch-hold does not arm in a real eval; L0 also fails to monopolise (mean per-commit hold ~1.2 vs floor 5.0) and rho never peaks. The biologically-faithful JOB-2 DRIVER pair (rho ramp + habenula) is UNEXERCISABLE on this substrate. NOT a falsification (no claim exercised). The habenula INPUT signal (JOB-1 signed-RPE delta_t) is live (n_neg_delta_ticks 834-1117) -- a narrow positive for the JOB-1 RPE machinery, not for the JOB-2 control plane. pending_retest_after_substrate. PROMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "F-dominance conversion ceiling -- commit/release-duration (root C) face: closure-coupled-hold arming",
+        "implementation_hint": "Decouple closure-coupled hold-arming (_closure_commit_active / the natural-commit latch-hold) from the F-driven e3._committed_trajectory so a closure-coupled commit can arm and sustain a hold INDEPENDENTLY of the F-dominated natural commit. Without this, natural-commit occupancy is not dissociable from closure-de-commit and neither the rung-6 duration lever (460k) nor the JOB-2 rho-ramp/habenula DRIVER pair (460l) has any sustained hold to act on. 460l confirms the un-arming is structural, not a re-run artifact.",
+        "unblocks_claims": ["MECH-445", "MECH-446", "MECH-090", "MECH-342", "ARC-108"],
+        "depends_on_unresolved": ["f_dominance_conversion_ceiling selection-face (MECH-439 F-dominance at commit-entry -- the upstream binding constraint)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+          "experiment_type": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier",
+          "metric": "ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on 3/3 seeds x 3 arms; L0 mean_per_commit_hold ~1.1-1.3; rho_peak_max=0",
+          "target": "closure-exclusive eval must arm the closure-coupled hold (ncl_hold_closure_armed_total>0) AND L0 must sustain a monolithic hold (mean per-commit hold >= 5.0) on >= 2/3 guard seeds in a real eval (no harness injection)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460h_2026-06-20",
+          "failure_autopsy_V3-EXQ-460i_2026-06-21",
+          "failure_autopsy_V3-EXQ-460j_2026-06-21",
+          "failure_autopsy_V3-EXQ-460k_2026-06-22"
+        ],
+        "refused_requeue": true,
+        "refusal_note": "REFUSE a V3-EXQ-460m same-claim re-queue. 460h/i/j/k/l (5 iterations) all conclude non_contributory/substrate_ceiling on MECH-445/446 against the same un-arming/un-sustaining commitment-maintenance substrate. Another lettered de-commit falsifier circling the same ceiling is exactly the loop the brake exists to stop. A redesign testing a DIFFERENT mechanism (new EXQ number, different claim_ids) or a commitment-free read is still allowed; another 460-letter is not.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "460l independently confirms the 460k wiring diagnosis from a clean foraging eval (no contract-harness injection): the closure-exclusive de-commit eval substrate (e52158d) does NOT arm the closure-coupled latch-hold in a real run -- ncl_hold_closure_armed_total=0 everywhere.",
+        "The biologically-faithful JOB-2 DRIVER pair (rho_t maintenance ramp + habenula negative-delta_t de-commit, the B6 structural fix) is UNEXERCISABLE on this substrate: the rho ramp has no sustained monolithic hold to self-limit (L0 mean per-commit hold ~1.2 vs floor 5.0) and the habenula has no armed hold to abort.",
+        "Load-bearing reframe: on the 603n foraging substrate the natural-commit latch does not produce sustained holds at all, so the maintenance-RELEASE face (P2-rootC) is not even the exercisable constraint -- the binding constraint is upstream at commit-ENTRY / sustained-occupancy formation, i.e. the F-dominance selection face (MECH-439). Maintenance cannot be the bottleneck if no maintained hold forms.",
+        "Narrow positive: the JOB-1 signed-RPE delta_t = R_t - V-hat_t (reused by the habenula) is LIVE and produces genuine negative-RPE variance in a real eval (n_neg_delta_ticks 834-1117, delta_t_min -0.42). The habenula's INPUT works; only the hold it would act on is absent.",
+        "The fix is substrate, not another test: make the closure-coupled commit arm a sustained hold independently of the F-driven e3._committed_trajectory (implement-substrate amend f_dominance_conversion_ceiling). Refuse a 460m re-queue (5th lineage iteration)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Six readiness gates self-route substrate_not_ready_requeue; the closure-coupled hold never arms / never sustains, so every discrimination criterion is unscorable -- the substrate-ceiling fingerprint, now across the whole 460h..460l lineage.",
+    "is_independent_bugs": false,
+    "structural_property": "The commitment-maintenance substrate (natural-commit latch-hold + closure-exclusive de-commit eval) does not produce a sustained, F-independent commitment hold on the foraging substrate; the closure-coupled commit that should arm it is structurally entangled with the F-driven natural commit. Neither a duration lever (460k) nor a dopaminergic DRIVER pair (460l) can act on a hold that does not form. The de-commit / commit-duration FACE is downstream of, and gated by, the same F-dominance (MECH-439) that monopolises commit-ENTRY selection.",
+    "readings": ["substrate_enrichment_closure_coupled_hold_arming", "upstream_binding_constraint_is_commit_entry_F_dominance_not_maintenance_release"]
+  }
+}
