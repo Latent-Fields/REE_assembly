@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_627_mech306_sustained_drive_trace_validation
 
-Generated: `2026-06-22T21:09:30.156058Z`
+Generated: `2026-06-23T04:27:49.777904Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

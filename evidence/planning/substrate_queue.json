@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "prong-map-backpointer-20260622T144731Z",
-  "last_updated_utc": "2026-06-22T15:55:00Z",
+  "last_updated_utc": "2026-06-23T04:23:35Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4994,6 +4994,18 @@
           "metric": "devalued-state OFC bias range 0.031 (< 0.05 readout floor) on 0/3 seeds AND MECH-449 No-Go withdrawal engaged 1/3 seeds (< 2/3 gate); bias vector inverts correctly (l2 1.83, cosine -0.716, C1b 2/3) so the miss is magnitude/scale, not direction",
           "target": "a decoupled / rescaled OFC devaluation head must produce a supra-floor (> 0.05) differentiated devalued bias range that crosses the GNG viability trigger and converts the committed-selection devaluation shift on >= 2/3 seeds, WITHOUT saturating the clamp or regressing the C2 high-threat discrimination range",
           "addressed_by": "BUILT 2026-06-22 via /implement-substrate (failure_autopsy_V3-EXQ-485l, re-derive brake FIRED): OFC devaluation-head DECOUPLE -- ree-v3 ree_core/pfc/ofc_analog.py OFCConfig.use_devaluation_head builds a SECOND output head (devaluation_bias_head) sharing the state_code+candidate input but clamped to +/-devaluation_bias_scale (default 2.0, INDEPENDENT of ofc_bias_scale), read via compute_devaluation_bias(). The C2 head's +/-ofc_bias_scale clamp is untouched (magnitude untraded); the decoupled head's larger independent clamp lets the in-band re-ranking gain produce a supra-floor differentiated devalued range without saturating; the MECH-449 No-Go viability re-derives from the decoupled head. No-op default (bit-identical OFF); 6 contracts + preflight PASS. PROMOTES NOTHING. A plain 485m gain-tweak was REFUSED (no feasible gain band on the shared clamped head). The 485-lineage behavioural retest (NEW letter, supersedes 485l; claim_ids=[SD-033b, MECH-263]) is GATED behind this build, queued separately via /queue-experiment. See ree-v3/CLAUDE.md 'SD-033b GAP-8 DECOUPLE'."
+        },
+        {
+          "run_id": "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
+          "experiment_type": "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
+          "metric": "closure_exclusive_eval_armed_hold 0/3 (ncl_hold_closure_armed_total==0 + sd034_n_closure_commit_intent==0 all arms/seeds); the closure-exclusive arm source _closure_commit_active is gated on e3._committed_trajectory, set only by the F-driven natural commit -> dissociation illusory -> DV never ran",
+          "target": "On weak-natural-commit guard seeds, the closure plane forms a committed-trajectory-equivalent sustained beta occupancy (sd034_n_closure_commit_intent > 0 / ncl_hold_closure_armed_total > 0) INDEPENDENTLY of result.committed, on >=2/3 seeds, so the de-commit DV (MECH-445 coupling-intent + MECH-446 occupancy-drop) can co-occur"
+        },
+        {
+          "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+          "experiment_type": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier",
+          "metric": "ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on 3/3 seeds x 3 arms; L0 mean_per_commit_hold ~1.1-1.3; rho_peak_max=0",
+          "target": "closure-exclusive eval must arm the closure-coupled hold (ncl_hold_closure_armed_total>0) AND L0 must sustain a monolithic hold (mean per-commit hold >= 5.0) on >= 2/3 guard seeds in a real eval (no harness injection)"
         }
       ],
       "metric_trajectory": {
@@ -5020,7 +5032,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-cycle-20260622T1542Z",
+      "last_seen_session": "governance-cycle-apply-460k-460l-701-20260623T0421Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",

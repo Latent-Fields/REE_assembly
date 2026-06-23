@@ -13556,6 +13556,19 @@
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
+  evidence_quality_note: |
+    V3-EXQ-701 (INV-050 MEL-measurability diagnostic, no-sleep; confirmed failure_autopsy_V3-EXQ-701_2026-06-23)
+    -> non_contributory, NOT a verdict on INV-050 (diagnostic, scoring-excluded; status UNCHANGED). 701 tested only
+    the IV precondition the 677 (MECH-180) autopsy flagged: does graded waking novelty produce a measurable,
+    monotonic, accumulated e3 prediction_error (MEL) on a frozen model? Self-route substrate_not_ready_requeue is
+    CORRECT per the pre-registered grid -- BOTH readiness gates unmet: R2 world_model_converged=-2.60 (the SD-056
+    P0 world-forward model DIVERGED, PE rose ~260% over 20 ep) and R1 pe_response=-0.005. The R2 divergence is a
+    V3-EXQ-642-style untrained-substrate confound: with an invalid frozen base, the R1/C1 novelty-flatness is
+    UNINTERPRETABLE as a MEL ceiling. Route: re-queue (701a) with a converged/stabilised P0, gated so R2 passes
+    before R1/C1 are read; substrate_queue action=none (test-bed construction, not enrichment); no re-derive brake.
+    RECURRENCE: 677 (sleep-side) + 701 (no-sleep IV) both show novelty not moving PE under different confounds -->
+    the converged-P0 re-run is the DECISIVE MEL-measurability test; a flat MEL there (R2 passing) would be the
+    genuine ceiling and route to substrate enrichment / a stronger MEL manipulation + brake.
   depends_on:
     - INV-049
     - INV-044
@@ -45573,7 +45586,7 @@
   subject: governance.closure_beta_coupling
   polarity: asserts
   status: candidate
-  epistemic_category: standard
+  epistemic_category: substrate_ceiling  # 2026-06-22 V3-EXQ-460k autopsy (user-confirmed): 4th substrate-blocked iteration, re-derive brake fired
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -45593,6 +45606,19 @@
     failure_autopsy_V3-EXQ-460h (user-confirmed): the prior unscoped clause mis-read the 460h seeds 42/43
     commit-intent=0 -- which are strong-natural-commit redundancy -- as inert coupling on 2/3.]
   evidence_quality_note: |
+    V3-EXQ-460k (confirmed failure_autopsy_V3-EXQ-460k_2026-06-22, supersedes 460j) -> non_contributory +
+    pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). epistemic_category -> substrate_ceiling
+    (user-confirmed): 4th substrate-blocked iteration (460h/i/j/k); RE-DERIVE BRAKE FIRED (threshold 2). The
+    closure_exclusive_decommit_eval build (ree-v3 e52158d) moved the latch-hold arm SOURCE to _closure_commit_active,
+    but that is gated on e3._committed_trajectory, set ONLY by the F-driven natural commit (e3_selector.py:1926) -> the
+    natural-commit / closure-de-commit dissociation is ILLUSORY; gate-2.5 closure_exclusive_eval_armed_hold measured 0/3
+    (ncl_hold_closure_armed_total==0 all arms/seeds). The build's green activation test is a false-positive (the contract
+    harness injects e3._committed_trajectory directly). MECH-445's own what_would_answer predicate (closure-plane
+    e3._committed_trajectory forming WHILE NOT result.committed) is structurally unreachable on this substrate -> the
+    commit-intent counter is pinned at 0 by construction. Release condition: a path where the SD-034 closure /
+    env-completion plane forms a committed-trajectory-equivalent sustained occupancy INDEPENDENT of the F-driven commit
+    (substrate_queue f_dominance_conversion_ceiling amend). Same-claim de-commit-falsifier re-queue REFUSED (brake).
+    V3-EXQ-460l (ARC-108 JOB-2, different mechanism, brake-exempt) inherited the same unmet eval-arm precondition.
     V3-EXQ-460h (refractory-independent commit-intent retest; confirmed failure_autopsy_V3-EXQ-460h_2026-06-20,
     supersedes 460g) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending).
     NARROW NON-SCORING POSITIVE (existence proof, 1/3): seed 44 reported sd034_n_closure_commit_intent=375 with
@@ -45634,7 +45660,7 @@
   subject: governance.closure_decommit_magnitude
   polarity: asserts
   status: candidate
-  epistemic_category: standard
+  epistemic_category: substrate_ceiling  # 2026-06-22 V3-EXQ-460k autopsy (user-confirmed): 4th substrate-blocked iteration, re-derive brake fired
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -45648,6 +45674,15 @@
     no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold
     authority) on >= 2/3 seeds.
   evidence_quality_note: |
+    V3-EXQ-460k (confirmed failure_autopsy_V3-EXQ-460k_2026-06-22, supersedes 460j) -> non_contributory +
+    pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). epistemic_category -> substrate_ceiling
+    (user-confirmed): 4th substrate-blocked iteration (460h/i/j/k); RE-DERIVE BRAKE FIRED (threshold 2). The
+    closure_exclusive_decommit_eval build's "closure-exclusive" latch-hold arm source _closure_commit_active is gated on
+    e3._committed_trajectory, set ONLY by the F-driven natural commit (e3_selector.py:1926) -> the dissociation is
+    illusory and the gate-2.5 armed-hold measured 0/3, so the OFF baseline never sustained an occupancy and the
+    within-arm de-commit DV (MECH-446) never ran. NOT a falsification, NOT scorable. Release condition: a closure-coupled
+    sustained occupancy INDEPENDENT of the F-driven commit (substrate_queue f_dominance_conversion_ceiling amend).
+    Same-claim de-commit-falsifier re-queue REFUSED (brake).
     V3-EXQ-460h (confirmed failure_autopsy_V3-EXQ-460h_2026-06-20, supersedes 460g) -> non_contributory +
     pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). NARROW NON-SCORING POSITIVE
     (existence proof, 1/3): seed 42 within-arm around-closure occupancy dropped 0.333 -> 0.0 (C2 PASS) --

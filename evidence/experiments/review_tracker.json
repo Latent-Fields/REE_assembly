@@ -1,7 +1,9 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-23T04:01:15Z",
+  "last_review_utc": "2026-06-23T04:23:35Z",
   "discussed_experiment_dirs": [
+    "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
+    "v3_exq_701_inv050_mel_measurability_diagnostic",
     "v3_exq_654j_arc062_gapb_rule_apprehension_nogo_behavioural_falsifier",
     "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural",
     "V3-EXQ-008",
@@ -747,6 +749,8 @@
     "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3"
   ],
   "reviewed_run_ids": [
+    "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
+    "v3_exq_701_inv050_mel_measurability_diagnostic_20260622T231121Z_v3",
     "2026-02-13T060000Z_dummy-pass",
     "2026-02-13T070000Z_dummy-fail",
     "2026-02-13T224000Z_commit-dual-error-channels_seed11_pre_post_split_streams",
@@ -4748,6 +4752,19 @@
         "MECH-263"
       ],
       "subject": "Governance 2026-06-22T07:02:29Z. 1 pending: V3-EXQ-485l FAIL (SD-033b/MECH-263; supersedes 485k). Autopsy pre-flight clean (485l already confirmed-autopsied, HEAD fd7b919384). Promotion/demotion agenda: 0 actionable (all 151 Decision Queue rows applied). APPLIED: failure_autopsy_V3-EXQ-485l CONFIRMED -> non_contributory / non_degenerate:false (no governance weight); claims UNWEAKENED. MECH-449 built+validated (689g PASS, candidate->provisional) so the 485k 'build MECH-449' route DISCHARGED; residual is structural scale -- the shared OFC head's +/-0.5 ofc_bias_scale clamp starves the devalued re-ranking magnitude below floor (485k gain 4.0 saturated 0.0; 485l gain 1.5 undershot 0.031<0.05); bias vector inverts correctly (cosine -0.716, C1b 2/3) so direction is right. epistemic_category substrate_ceiling->substrate_conditional on SD-033b+MECH-263 (autopsy recommendation; a specific planned build now owed); evidence_quality_note updated; pending_retest_after_substrate kept; status candidate (PROMOTES NOTHING). RE-DERIVE BRAKE FIRED (10th non_contributory autopsy on SD-033b/MECH-263): plain 485m gain-tweak refused; route /implement-substrate OFC devaluation-head clamp rescale/decoupling. substrate_queue f_dominance_conversion_ceiling amended (485l failure record). MECH-448/MECH-449 NOT weakened. 485l MARKED REVIEWED."
+    },
+    {
+      "batch_utc": "2026-06-23T04:23:35Z",
+      "run_ids": [
+        "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
+        "v3_exq_701_inv050_mel_measurability_diagnostic_20260622T231121Z_v3"
+      ],
+      "claim_ids_touched": [
+        "MECH-445",
+        "MECH-446",
+        "INV-050"
+      ],
+      "subject": "Governance 2026-06-23T04:23Z. 2 pending FAIL applied (460l already reviewed by its own session 04:01Z). Autopsy pre-flight clean (both confirmed-autopsied). Promotion/demotion agenda: 0 actionable (437 applied + 40 v4-held; 0 pending_user). APPLIED: (1) V3-EXQ-460k confirmed failure_autopsy_V3-EXQ-460k_2026-06-22 -> non_contributory, MECH-445+MECH-446 UNWEAKENED; epistemic_category standard->substrate_ceiling (user-confirmed); 4th substrate-blocked iteration (460h/i/j/k), RE-DERIVE BRAKE FIRED (threshold 2). Root: the closure_exclusive_decommit_eval build (e52158d) arm source _closure_commit_active is gated on e3._committed_trajectory, set ONLY by the F-driven natural commit (e3_selector.py:1926) -> dissociation illusory, gate-2.5 armed-hold 0/3; green activation test is a contract-mock false-positive; MECH-445 predicate structurally unreachable -> commit-intent pinned 0 by construction. Same-claim de-commit-falsifier re-queue REFUSED. evidence_quality_note added both. substrate_queue f_dominance_conversion_ceiling amended (460k failure record). (2) V3-EXQ-701 confirmed failure_autopsy_V3-EXQ-701_2026-06-23 -> non_contributory, INV-050 diagnostic (NOT a verdict; scoring-excluded); precondition_unmet flag satisfied by the confirmed autopsy. R2 world_model_converged=-2.60 (SD-056 P0 DIVERGED) + R1 pe_response=-0.005 BOTH unmet -> 642-style P0-convergence confound; R1/C1 novelty-flatness uninterpretable. Route queue-experiment re-queue (701a) with a converged P0; substrate_queue action=none; NO brake (INV-050 0 prior autopsies; confounded run). INV-050 evidence_quality_note added (no status change). Recurrence: 677+701 -> converged-P0 re-run is the decisive MEL-measurability test. Both FAIL claims UNWEAKENED. PROMOTES NOTHING. Both MARKED REVIEWED."
     }
   ]
 }
