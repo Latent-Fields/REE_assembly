@@ -46,12 +46,13 @@ closure_plan:
     - id: "sleep_substrate:GAP-3b"
       title: "MECH-285 / MECH-272 / MECH-275 / MECH-273 empirical promotion -- the behavioural discriminative run the GAP-3/4/8 substrates exist to ENABLE (use_sleep_aggregation_cluster ON)"
       phase: 2
-      status: open
+      status: in_progress
       severity: medium
-      owner_exq: "null -- no promotion experiment queued yet"
-      unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
+      owner_exq: V3-EXQ-702
+      unblocks_claims: [MECH-285, MECH-272, MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-06-23
+      governance_2026_06_23_queue: "owner_exq V3-EXQ-702 queued via /queue-experiment 2026-06-23 (session queue-experiment-702-gap3b...05:00Z); status open -> in_progress. The run is a discriminative ARM_OFF-vs-ARM_ON measurement over use_sleep_aggregation_cluster with per-claim load-bearing signatures (MECH-272 SWS routing regime shift = applied anchor weight drops below the waking 1.0 + n_routed>0; MECH-285 staleness-priority replay skew = injected HOT(0.9)/COLD(0.0) snapshot -> HOT drawn >=3x COLD; MECH-273 self-model aggregation = E2_harm_s param L2 delta from the GAP-4 replay-derived buffer), each with a non-degeneracy guard (uniform-snapshot / empty-replay-buffer / zero-SWS-writes scoring-excluded). Commitment-free; no F-dominance dependency. Dry-run smoke PASS (anchor_w 0.6, HOT/COLD 193/7, self-model delta 0.383, 12 real replay tuples; OFF arm zero baseline). **unblocks_claims NARROWED to [MECH-285, MECH-272, MECH-273] (dropped MECH-275): MECH-275 is epistemic_category=substrate_conditional (claims.yaml governance_2026_06_10), gated on the UNBUILT MECH-276 counterfactual-backed-attribution feedstock (zero MECH-276 refs in ree_core/), so a cluster ON/OFF run cannot produce valid promotion evidence for it -- tagging it would be the surface-substrate_conditional-as-ready anti-pattern. MECH-275's promotion is owed to a LATER run once MECH-276 is built (chip spawned 2026-06-23). PROMOTES NOTHING until V3-EXQ-702 scores."
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to surface owed work that was hidden behind three green DONE boxes. GAP-3 (unified use_sleep_aggregation_cluster master flag), GAP-4 (MECH-273 replay-derived gradient), and GAP-8 (MECH-272 routing consumer) are all `done` at the SUBSTRATE-LANDING level, and each lists MECH-285/272/275/273 in unblocks_claims as the claims its substrate makes reachable for PROMOTION -- but all four claims are STILL `candidate` in claims.yaml (verified 2026-06-23) because no behavioural discriminative promotion experiment was ever queued. The substrate's whole purpose (offline-consolidation pathway reachable under one flag) is unrealised at the evidence layer. This node tracks the owed promotion run: a discriminative arm-ON vs arm-OFF behavioural experiment over use_sleep_aggregation_cluster that produces scoreable evidence for the four claims. Author via /queue-experiment (claim_ids=[MECH-285, MECH-272, MECH-275, MECH-273] with per-claim direction). NOT queued here (experiment_queue.json is held by 2 concurrent sessions). NO claims.yaml change. PROMOTES NOTHING until the run scores."
     - id: "sleep_substrate:GAP-4"
       title: "MECH-273 offline gradient uses synthetic batch (replace with replay-derived)"
