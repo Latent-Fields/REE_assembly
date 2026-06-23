@@ -5,7 +5,7 @@ grandparent: Architecture
 nav_order: 11
 ---
 
-<!-- TRANSITION_BOUNDARY_VERSION: 2026-04-05.1 -->
+<!-- TRANSITION_BOUNDARY_VERSION: 2026-06-23.1 -->
 # V3 / V4 Architecture Transition Boundary
 
 ## Overview
@@ -136,6 +136,26 @@ See roadmap.md "Two-tier V3 completion" and MECH-163.
 ## Current Session Priority Note (2026-03-23)
 
 The go mechanism (ARC-030, MECH-112, MECH-116, MECH-117) is the current priority over completing the no-go mechanism. The no-go architecture (SD-010, MECH-095, ARC-016) is near-complete. The approach drive architecture (z_goal, wanting/liking separation, D1/D2 competitive commit) is actively being built. Experiments EXQ-072-076 address this. The MECH-124 consolidation failure mode further motivates prioritising go: without adequate z_goal salience in V3, V4 consolidation will amplify the imbalance.
+
+---
+
+## Operational Tasks to Revisit at V4 Entry
+
+Non-architectural operational toggles to reassess as part of the V3-close / V4-start
+plan reassessment (see the version-boundary review hook in
+`developmental_governance_review.md`):
+
+- **Re-enable the literature-pull automations.** The Mac scheduled lit-pull tasks
+  (`ree-lit-pull-pm`, `ree-friday-am` -- currently disabled; `ree-lit-pull-am` --
+  enabled, daily 07:00 pre-clinic) were throttled back in V3 because the literature
+  backlog is effectively saturated (~355 `targeted_review_*` dirs under
+  `evidence/literature/`; only a handful of low-priority `evidence_needed: literature`
+  items left in `evidence/planning/evidence_backlog.v1.json`). V4 claim registration
+  (multi-agent ecology, four-plane psychiatric taxonomy, object/token representation,
+  inference/DMN, etc.) repopulates that backlog with fresh literature needs -- the
+  point at which daily + batch pulls earn their keep again. All three tasks already
+  carry the bot-authorship guard, so re-enabling is a one-line `enabled: true` per
+  task; reassess cadence at that time.
 
 ---
 
