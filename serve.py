@@ -2135,17 +2135,25 @@ def _closure_claim_ids_by_flag(flag_substr: str) -> set[str]:
         return set()
     out: set[str] = set()
     current_id: str | None = None
+    # A `key: value` flag (e.g. "epistemic_category: substrate_ceiling") is matched
+    # as a substring -- the colon is in the query string. A BARE boolean flag
+    # (e.g. "pending_retest_after_substrate") must match an actual `<flag>: true`
+    # assignment; otherwise prose mentions -- including explicit `=false` / `: false`
+    # -- would over-fire the flag (the RETEST lozenge in particular). The old
+    # `... or flag_substr in line` defeated the `: true` guard, so any mention
+    # counted; this restores the intended boolean semantics.
+    has_value = ":" in flag_substr
     for line in text.splitlines():
         m = re.match(r"^- id:\s*(\S+)", line)
         if m:
             current_id = m.group(1)
             continue
-        if current_id and flag_substr in line:
-            if re.search(
-                rf"{re.escape(flag_substr)}:\s*true",
-                line,
-            ) or flag_substr in line:
-                out.add(current_id)
+        if not (current_id and flag_substr in line):
+            continue
+        if has_value:
+            out.add(current_id)
+        elif re.search(rf"{re.escape(flag_substr)}:\s*true", line):
+            out.add(current_id)
     return out
 
 
@@ -2252,6 +2260,89 @@ def _closure_resume_prompt(
         "REE_Working). If this node needs an experiment, go through the",
         "/queue-experiment skill -- never hand-edit experiment_queue.json or",
         "the experiments/ dir directly. Land via /session-land when done.",
+    ]
+    return "\n".join(lines)
+
+
+def _closure_retest_prompt(
+    claim_id: str,
+    claim_meta: dict | None,
+    substrate_nodes: list[dict],
+) -> str:
+    """Build a paste-ready Claude Code prompt to re-test a claim flagged
+    `pending_retest_after_substrate: true`.
+
+    A claim earns this flag when its verdict was parked pending substrate work.
+    The retest is only genuinely DUE once that substrate work has landed, which
+    on the closure map is the moment the unblocking node turns `done`. The prompt
+    therefore reports each unblocking node's current status and tells the
+    resuming session to confirm the substrate is in place BEFORE re-running --
+    a retest on still-open substrate just re-derives the same parked result.
+    ASCII-only (renders in a terminal once pasted).
+    """
+    title = str((claim_meta or {}).get("title") or "").strip()
+    status = str((claim_meta or {}).get("status") or "").strip()
+    epistemic = str((claim_meta or {}).get("epistemic_category") or "").strip()
+
+    # Substrate readiness: the retest is DUE only when every unblocking node is
+    # done. Partition so the prompt can say "ready now" vs "not landed yet".
+    done_st = ("done", "deferred", "deferred_v4")
+    node_lines: list[str] = []
+    all_done = bool(substrate_nodes)
+    for sn in substrate_nodes:
+        st = str(sn.get("status") or "unknown")
+        if st not in done_st:
+            all_done = False
+        plan = str(sn.get("plan_id") or "").strip()
+        nid = str(sn.get("id") or "?")
+        label = f"{plan}:{nid}" if (plan and ":" not in nid) else nid
+        node_lines.append(f"  - {label} [{st}] ({sn.get('title') or ''})".rstrip())
+
+    head = f"Re-test claim {claim_id}"
+    if title:
+        head += f" -- {title}"
+
+    lines = [
+        head,
+        "",
+        "Repo: /Users/dgolden/REE_Working -- read CLAUDE.md first.",
+        "",
+        f"Claim {claim_id} is flagged pending_retest_after_substrate: true in",
+        "REE_assembly/docs/claims/claims.yaml -- its verdict was parked until the",
+        "enabling substrate landed. It must be re-tested now that the substrate",
+        "work is (or is becoming) available.",
+        "",
+        f"Claim status: {status or 'unknown'}"
+        + (f"  epistemic_category: {epistemic}" if epistemic else ""),
+    ]
+    if node_lines:
+        lines += ["", "Unblocking closure node(s) -- the substrate this retest waits on:"]
+        lines += node_lines
+    lines += [""]
+    if all_done:
+        lines += [
+            "Substrate readiness: the unblocking node(s) above are DONE -- the",
+            "retest is DUE. Proceed.",
+        ]
+    else:
+        lines += [
+            "Substrate readiness: at least one unblocking node above is NOT done.",
+            "The substrate may not be fully landed yet -- VERIFY the enabling",
+            "mechanism is actually wired in ree-v3 ree_core before re-running, or",
+            "the retest will just re-derive the parked result.",
+        ]
+    lines += [
+        "",
+        "Steps:",
+        "1. Read the claim entry + its gate/depends_on in claims.yaml.",
+        "2. Confirm the enabling substrate is implemented in ree-v3/ree_core.",
+        "3. Write a TASK_CLAIMS.json claim (umbrella REE_Working) before editing.",
+        "4. Author the retest via the /queue-experiment skill (never hand-edit",
+        "   experiment_queue.json or the experiments/ dir). Tag claim_ids exactly",
+        f"   to what is tested -- include {claim_id} only if the run gives it",
+        "   interpretable signal.",
+        "5. After it runs, /governance to apply the verdict and clear the",
+        "   pending_retest_after_substrate flag. Land via /session-land.",
     ]
     return "\n".join(lines)
 
@@ -2629,6 +2720,17 @@ def _enrich_closure_v2(data: dict) -> dict:
             live_exq_ids.add(str(qid))
 
     retest_ids = _closure_claim_ids_by_flag("pending_retest_after_substrate")
+    # Claim metadata (title/status/category) + the node(s) that unblock each
+    # retest claim, so the RETEST lozenge -- on a node card or a cusp chip -- can
+    # carry a paste-ready Claude Code retest prompt. node_map is filled in the
+    # badge loop below; retest_meta is read once here.
+    retest_meta = {
+        str(c.get("id")): c
+        for c in _tl_load_claims()
+        if str(c.get("id")) in retest_ids
+    }
+    retest_node_map: dict[str, list[dict]] = {}
+    node_retest_cids: dict[str, list[str]] = {}
     ceil_ids = _closure_claim_ids_by_flag("epistemic_category: substrate_ceiling")
     # Governance epistemic facet: SENT-*/GOV-* ethics-perimeter claims carry
     # epistemic_category: governance_rule; a node that unblocks one is an ethics
@@ -2699,6 +2801,13 @@ def _enrich_closure_v2(data: dict) -> dict:
                 flags.append("pending_retest")
                 if "RETEST" not in badges:
                     badges.append("RETEST")
+                node_retest_cids.setdefault(str(n.get("id")), []).append(cid)
+                retest_node_map.setdefault(cid, []).append({
+                    "id": n.get("id"),
+                    "plan_id": n.get("plan_id"),
+                    "title": n.get("title"),
+                    "status": n.get("status"),
+                })
             if cid in ceil_ids:
                 if "CEIL" not in badges:
                     badges.append("CEIL")
@@ -2753,6 +2862,27 @@ def _enrich_closure_v2(data: dict) -> dict:
         if _closure_is_ready_gap(n, nodes_by_id):
             n["resume_prompt"] = _closure_resume_prompt(
                 n, plan_file_by_id.get(n.get("plan_id")) or "", nodes_by_id)
+
+    # retest_prompt: paste-ready Claude Code prompt to re-test a parked claim.
+    # Built now that retest_node_map is complete (so each prompt can list ALL
+    # nodes unblocking the claim, not just one). Attached to (a) every node
+    # carrying a RETEST badge -- one prompt covering each retest claim it
+    # unblocks -- and (b) every pending_retest cusp chip. Per-claim cache so a
+    # claim unblocked by several nodes builds its prompt once.
+    retest_prompt_by_claim: dict[str, str] = {}
+    for cid in retest_ids:
+        retest_prompt_by_claim[cid] = _closure_retest_prompt(
+            cid, retest_meta.get(cid), retest_node_map.get(cid) or [])
+    for n in nodes:
+        cids = node_retest_cids.get(str(n.get("id")))
+        if cids:
+            n["retest_prompt"] = "\n\n----\n\n".join(
+                retest_prompt_by_claim[c] for c in cids)
+    for it in cusp_items:
+        if it.get("kind") == "pending_retest":
+            cid = it.get("claim_id")
+            if cid in retest_prompt_by_claim:
+                it["retest_prompt"] = retest_prompt_by_claim[cid]
 
     for p in data.get("plans") or []:
         plan_nodes = [n for n in nodes if n.get("plan_id") == p.get("id")]

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-23.1 -->
+<!-- CLOSURE_VERSION: 2026-06-23.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -791,7 +791,7 @@
   <span class="lg" data-status="deferred"><span class="dot" style="background:var(--st-deferred)"></span>deferred (excluded from %)<span class="lg-count" data-count-for="deferred"></span></span>
   <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;">
     <span class="bdg" style="background:#58a6ff" title="EXQ -- this node has an owner experiment in the queue/evidence (hover the badge on a node for detail).">EXQ</span>
-    <span class="bdg" style="background:#a371f7" title="RETEST -- unblocks a claim flagged pending_retest_after_substrate.">RETEST</span>
+    <span class="bdg" style="background:#a371f7" title="RETEST -- unblocks a claim flagged pending_retest_after_substrate. Click the lozenge on a node card (or a cusp chip) to copy a paste-ready retest prompt for Claude Code.">RETEST</span>
     <span class="bdg" style="background:#f85149" title="CEIL -- unblocks a substrate_ceiling claim (needs substrate enrichment, not more experiments).">CEIL</span>
     <span style="color:var(--muted)">hover a node badge for detail</span>
   </span>
@@ -853,7 +853,7 @@ const STATUS_DESC = {
 // a native hover tooltip on the badge (SVG <title>).
 const BADGE_DESC = {
   EXQ: 'EXQ (blue) -- this node HAS an owner experiment; it does NOT mean one is running. Most are already complete (the card status -- done/blocked/etc -- is the real state). A node is actually running only when its border glows green and the node tooltip shows [LIVE]; that live flag is gated on a fresh runner heartbeat, so a crashed/stale runner no longer shows as running.',
-  RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that claim must be re-tested once this substrate work lands.',
+  RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that parked claim must be re-tested once this substrate work LANDS (i.e. once this node is done/green). Before then the retest is pending, not due.',
   CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
   GOV: 'GOV -- unblocks a governance_rule claim (a SENT-*/GOV-* ethics-perimeter gate). The right response is to advance the owning governance artifact, not to run an experiment.',
 };
@@ -1243,18 +1243,32 @@ function renderCuspRail() {
   const items = CLOSURE.cusp_items || [];
   if (!items.length) { el.hidden = true; return; }
   el.hidden = false;
+  const shown = items.slice(0, 24);
   let html = '<span class="cusp-label">cusp</span>';
-  for (const it of items.slice(0, 24)) {
+  for (let i = 0; i < shown.length; i++) {
+    const it = shown[i];
     const kind = it.kind || 'item';
     const label = escapeHtml(it.label || '?');
     const gap = it.gap_id ? ' data-gap="' + escapeHtml(it.gap_id) + '"' : '';
-    html += '<span class="cusp-chip ' + kind + '"' + gap + ' title="' + kind + '">' + label + '</span>';
+    // pending_retest chips with a server-built prompt are click-to-copy.
+    const canCopy = (kind === 'pending_retest' && it.retest_prompt);
+    const ridx = canCopy ? ' data-retest-idx="' + i + '"' : '';
+    const title = canCopy
+      ? escapeHtml('pending_retest -- click to copy a retest prompt for ' + (it.claim_id || ''))
+      : kind;
+    html += '<span class="cusp-chip ' + kind + '"' + gap + ridx + ' title="' + title + '">' + label + '</span>';
   }
   el.innerHTML = html;
   el.querySelectorAll('.cusp-chip[data-gap]').forEach(chip => {
     chip.addEventListener('click', () => {
       const gid = chip.getAttribute('data-gap');
       if (gid) highlightNode(gid);
+    });
+  });
+  el.querySelectorAll('.cusp-chip[data-retest-idx]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const it = shown[parseInt(chip.getAttribute('data-retest-idx'), 10)];
+      if (it && it.retest_prompt) copyPromptText(it.retest_prompt);
     });
   });
 }
@@ -1601,6 +1615,18 @@ function fallbackCopy(text, done) {
   try { document.execCommand('copy'); done(); } catch (e) { /* clipboard blocked */ }
   document.body.removeChild(ta);
 }
+// Copy an arbitrary prompt to the clipboard with a toast (used by the clickable
+// RETEST lozenge on node cards and cusp chips). Unlike copyResumePrompt this is
+// not bound to a button, so it confirms via the shared egg-toast.
+function copyPromptText(text) {
+  if (!text) return;
+  const done = () => toast('Retest prompt copied -- paste into Claude Code');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
 
 function applyReadyFilterStyling() {
   const svg = document.getElementById('graph');
@@ -1900,6 +1926,14 @@ function renderGraph() {
       const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149' : '#58a6ff');
       bg.setAttribute('fill', col);
       bg.__desc = BADGE_DESC[b] || b;
+      // Clickable RETEST lozenge: copies a paste-ready retest prompt. The badge
+      // text is pointer-events:none, so the click lands on this rect; the group
+      // click handler reads __copyPrompt and copies instead of toggling select.
+      if (b === 'RETEST' && n.retest_prompt) {
+        bg.__copyPrompt = n.retest_prompt;
+        bg.style.cursor = 'copy';
+        bg.__desc = BADGE_DESC.RETEST + ' Click to copy a retest prompt for Claude Code.';
+      }
       g.appendChild(bg);
       const bt = el('text');
       bt.setAttribute('class', 'node-badge');
@@ -1923,9 +1957,13 @@ function renderGraph() {
     });
     g.addEventListener('mousemove', (ev) => moveTip(ev));
     g.addEventListener('mouseleave', () => { hideTip(); highlightCrossEdges(n.id, false); updateReadout(); });
-    // #3 click toggles selection; click the same node again clears
+    // #3 click toggles selection; click the same node again clears.
+    // Exception: a click on a copy-bearing badge (the RETEST lozenge) copies its
+    // retest prompt instead of toggling selection.
     g.addEventListener('click', (ev) => {
       ev.stopPropagation();
+      const t = ev.target;
+      if (t && t.__copyPrompt) { copyPromptText(t.__copyPrompt); return; }
       SELECTED_NODE_ID = (SELECTED_NODE_ID === n.id) ? null : n.id;
       applySelectionStyling();
     });
