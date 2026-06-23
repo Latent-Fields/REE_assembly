@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-06-23T08:57:43Z",
+  "last_tick_utc": "2026-06-23T09:27:50Z",
   "state": "running",
   "current_exq": "V3-EXQ-460n",
   "current_exq_started_utc": "2026-06-23T07:24:00.424871+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_CLOSURE_COMMIT_ENTRY_TRAJECTORY_READINESS_OFF_BOOL_TRAJ",
     "runs_done": 4,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 280,
-    "overall_pct": 136.9
+    "overall_pct": 153.6
   },
-  "seconds_elapsed": 5623,
+  "seconds_elapsed": 7430,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_460n_closure_commit_entry_trajectory_readiness] starting (dry_run=False)",
@@ -34,7 +34,9 @@
     "verdict: FAIL seed=42 guard_pass=True rdir_met=False bool_armed=False traj_armed=False off_did_not_arm=True traj_steps=False bool_no_steps=True (contact_rate=0.1192 z_goal_at_contact=0.5146)",
     "Seed 43 Condition CURRICULUM_BUILT_CLOSURE_COMMIT_ENTRY_TRAJECTORY_READINESS_OFF_BOOL_TRAJ",
     "[train] stage0_nursery seed=43 ep 20/280 z_goal_peak=0.4202 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/280 retention=0.932 gate=pass"
+    "[train] stage0b_consolidate seed=43 ep 30/280 retention=0.932 gate=pass",
+    "[train] p0_guided seed=43 ep 130/280 mean_len=198.2 rv=0.00000",
+    "[train] hazard_avoidance seed=43 ep 170/280 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
