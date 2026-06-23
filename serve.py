@@ -3418,6 +3418,247 @@ def _normalize_manifest_fields(m: dict) -> tuple:
     return verdict, timestamp, claim_id
 
 
+# --- Claude Code local usage (ccusage-style) -------------------------------
+# Per-1M-token pricing (input, output). cache-write 5m = 1.25x input,
+# cache-write 1h = 2x input, cache-read = 0.1x input. Source: claude-api skill;
+# verify if stale. Unknown models default to opus-tier (5 / 25).
+_CLAUDE_PRICING = {
+    "claude-opus-4-8": (5.0, 25.0),
+    "claude-opus-4-7": (5.0, 25.0),
+    "claude-opus-4-6": (5.0, 25.0),
+    "claude-opus-4-5": (5.0, 25.0),
+    "claude-sonnet-4-6": (3.0, 15.0),
+    "claude-sonnet-4-5": (3.0, 15.0),
+    "claude-fable-5": (10.0, 50.0),
+    "claude-haiku-4-5": (1.0, 5.0),
+}
+_CLAUDE_PRICING_DEFAULT = (5.0, 25.0)
+_CLAUDE_BLOCK_SECONDS = 5 * 3600
+_CLAUDE_USAGE_MTIME_CUTOFF_DAYS = 8
+
+
+def _claude_price_for(model):
+    """(input, output) per-1M price for a model id.
+
+    Transcripts carry dated ids (e.g. claude-haiku-4-5-20251001) that do not
+    exact-match the undated pricing keys, so fall back to a prefix match before
+    the opus-tier default; otherwise a dated haiku/sonnet is priced as opus.
+    """
+    if model in _CLAUDE_PRICING:
+        return _CLAUDE_PRICING[model]
+    for key, price in _CLAUDE_PRICING.items():
+        if model.startswith(key):
+            return price
+    return _CLAUDE_PRICING_DEFAULT
+
+
+def _claude_parse_ts(raw):
+    """Parse an ISO-8601 timestamp (trailing 'Z') into an aware UTC datetime."""
+    from datetime import datetime, timezone
+    if not raw or not isinstance(raw, str):
+        return None
+    try:
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def _claude_zero_tokens():
+    return {"input": 0, "output": 0, "cache_write": 0, "cache_read": 0, "total": 0}
+
+
+def _claude_accumulate(bucket, entry):
+    """Add one parsed entry's cost/tokens/message into a running bucket dict."""
+    bucket["cost_usd"] += entry["cost"]
+    bucket["messages"] += 1
+    tk = bucket["tokens"]
+    tk["input"] += entry["input"]
+    tk["output"] += entry["output"]
+    tk["cache_write"] += entry["cache_write"]
+    tk["cache_read"] += entry["cache_read"]
+    tk["total"] += entry["total"]
+
+
+def compute_claude_usage() -> dict:
+    """Compute Claude Code token+cost usage from local transcript JSONL.
+
+    ccusage-style: walks ~/.claude/projects/**/*.jsonl, prices each assistant
+    line per-model, and reports the active 5h block, rolling 7d, today, and a
+    per-model breakdown. Percentages elsewhere are vs an estimated cap and
+    'weekly' is a rolling 7-day sum -- accepted by design.
+    """
+    from datetime import datetime, timezone, timedelta
+    import json as _json
+    try:
+        now = datetime.now(timezone.utc)
+        base = Path.home() / ".claude" / "projects"
+        mtime_cutoff = now.timestamp() - _CLAUDE_USAGE_MTIME_CUTOFF_DAYS * 86400
+        seen = set()
+        entries = []
+        if base.exists():
+            for fp in base.glob("**/*.jsonl"):
+                try:
+                    if fp.stat().st_mtime < mtime_cutoff:
+                        continue
+                except OSError:
+                    continue
+                try:
+                    with open(fp, "r", errors="replace") as fh:
+                        for line in fh:
+                            line = line.strip()
+                            if not line:
+                                continue
+                            try:
+                                obj = _json.loads(line)
+                            except Exception:
+                                continue
+                            if obj.get("type") != "assistant":
+                                continue
+                            msg = obj.get("message") or {}
+                            usage = msg.get("usage")
+                            if not isinstance(usage, dict):
+                                continue
+                            model = msg.get("model") or ""
+                            if model == "<synthetic>":
+                                continue
+                            dedup_key = (msg.get("id"), obj.get("requestId"))
+                            if dedup_key in seen:
+                                continue
+                            seen.add(dedup_key)
+                            ts = _claude_parse_ts(obj.get("timestamp"))
+                            if ts is None:
+                                continue
+                            inp = int(usage.get("input_tokens") or 0)
+                            out = int(usage.get("output_tokens") or 0)
+                            cw_total = int(usage.get("cache_creation_input_tokens") or 0)
+                            cr = int(usage.get("cache_read_input_tokens") or 0)
+                            cc = usage.get("cache_creation")
+                            if isinstance(cc, dict):
+                                cw5m = int(cc.get("ephemeral_5m_input_tokens") or 0)
+                                cw1h = int(cc.get("ephemeral_1h_input_tokens") or 0)
+                            else:
+                                cw5m, cw1h = cw_total, 0
+                            in_price, out_price = _claude_price_for(model)
+                            cost = (
+                                inp * in_price
+                                + out * out_price
+                                + cw5m * in_price * 1.25
+                                + cw1h * in_price * 2.0
+                                + cr * in_price * 0.1
+                            ) / 1e6
+                            entries.append({
+                                "ts": ts,
+                                "model": model,
+                                "cost": cost,
+                                "input": inp,
+                                "output": out,
+                                "cache_write": cw_total,
+                                "cache_read": cr,
+                                "total": inp + out + cw_total + cr,
+                            })
+                except OSError:
+                    continue
+
+        entries.sort(key=lambda e: e["ts"])
+        block_secs = timedelta(seconds=_CLAUDE_BLOCK_SECONDS)
+
+        # --- 5h block (ccusage-style) ---
+        block_5h = {
+            "active": False,
+            "start": None,
+            "reset_at": None,
+            "seconds_to_reset": 0,
+            "elapsed_frac": 0.0,
+            "cost_usd": 0.0,
+            "messages": 0,
+            "tokens": _claude_zero_tokens(),
+        }
+        if entries:
+            blocks = []  # list of dicts: {start, entries}
+            block_start = None
+            prev_ts = None
+            cur = None
+            for e in entries:
+                ts = e["ts"]
+                new_block = (
+                    cur is None
+                    or (ts - block_start) >= block_secs
+                    or (ts - prev_ts) >= block_secs
+                )
+                if new_block:
+                    block_start = ts.replace(minute=0, second=0, microsecond=0)
+                    cur = {"start": block_start, "entries": []}
+                    blocks.append(cur)
+                cur["entries"].append(e)
+                prev_ts = ts
+            last = blocks[-1]
+            start = last["start"]
+            last_ts = last["entries"][-1]["ts"]
+            reset_at = start + block_secs
+            active = (now - last_ts) < block_secs
+            elapsed = (now - start).total_seconds() / _CLAUDE_BLOCK_SECONDS
+            elapsed_frac = max(0.0, min(1.0, elapsed))
+            secs_to_reset = max(0, int((reset_at - now).total_seconds()))
+            block_5h["active"] = bool(active)
+            block_5h["start"] = start.strftime("%Y-%m-%dT%H:%M:%SZ")
+            block_5h["reset_at"] = reset_at.strftime("%Y-%m-%dT%H:%M:%SZ")
+            block_5h["seconds_to_reset"] = secs_to_reset
+            block_5h["elapsed_frac"] = round(elapsed_frac, 4)
+            for e in last["entries"]:
+                _claude_accumulate(block_5h, e)
+
+        # --- rolling 7d ---
+        cutoff_7d = now - timedelta(days=7)
+        rolling_7d = {
+            "cost_usd": 0.0,
+            "messages": 0,
+            "start": cutoff_7d.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "tokens": _claude_zero_tokens(),
+        }
+        # --- today (UTC date) ---
+        today_date = now.date()
+        today = {
+            "cost_usd": 0.0,
+            "messages": 0,
+            "tokens": _claude_zero_tokens(),
+        }
+        by_model = {}
+        for e in entries:
+            if e["ts"] >= cutoff_7d:
+                _claude_accumulate(rolling_7d, e)
+                bm = by_model.get(e["model"])
+                if bm is None:
+                    bm = {"model": e["model"], "cost_usd": 0.0,
+                          "total_tokens": 0, "messages": 0}
+                    by_model[e["model"]] = bm
+                bm["cost_usd"] += e["cost"]
+                bm["total_tokens"] += e["total"]
+                bm["messages"] += 1
+            if e["ts"].date() == today_date:
+                _claude_accumulate(today, e)
+
+        for bucket in (block_5h, rolling_7d, today):
+            bucket["cost_usd"] = round(bucket["cost_usd"], 4)
+        by_model_list = sorted(
+            by_model.values(), key=lambda r: r["cost_usd"], reverse=True)
+        for r in by_model_list:
+            r["cost_usd"] = round(r["cost_usd"], 4)
+
+        return {
+            "ok": True,
+            "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "block_5h": block_5h,
+            "rolling_7d": rolling_7d,
+            "today": today,
+            "by_model": by_model_list,
+        }
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+
 def scan_evidence_runs() -> dict:
     """Scan evidence/experiments dirs for actual run counts on disk."""
     result = {}
@@ -4752,6 +4993,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/coordinator/phase3/writers":
             body = json.dumps(run_phase3_writers_summary()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/usage":
+            body = json.dumps(compute_claude_usage()).encode()
             self._json_response(body)
             return
         if path == "/api/machines":
