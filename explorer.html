@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.4 -->
+<!-- EXPLORER_VERSION: 2026-06-23.5 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2130,6 +2130,24 @@
       pre { white-space: pre-wrap; }
       /* Reclaim horizontal padding on the wide-content wrappers. */
       .exp-wrap, .contrib-wrap { padding: 16px 12px; }
+      /* --- Phone-friendly Graph view ----------------------------------------- */
+      /* The dependency graph SVG is far wider than the phone viewport and pans
+         via mouse drag only (no touch handlers), so on desktop the panel clips
+         it with overflow:hidden and it is unreachable on a phone. On phone width
+         let the panel scroll natively (touch pan + page pinch-zoom) instead of
+         clipping; it still cannot push the page wider because the panel box is
+         capped at 100% of its (min-width:0) wrapper. */
+      .graph-panel {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x pan-y;
+        cursor: default;
+        max-height: calc(100vh - 220px);
+      }
+      /* --- Phone-friendly Map view ------------------------------------------- */
+      /* The subsystem map is a card grid (auto-fit minmax 240px); pin it to a
+         single column so cards never force horizontal overflow at ~390px. */
+      .map-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
