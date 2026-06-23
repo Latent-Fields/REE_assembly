@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_603q_sd059_mech358_escape_affordance_bridge_evidence
 
-Generated: `2026-06-23T04:27:49.777904Z`
+Generated: `2026-06-23T09:10:17.727778Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

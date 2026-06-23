@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_618_sd049_phase3_consumer_cascade_validation
 
-Generated: `2026-06-23T04:27:49.777904Z`
+Generated: `2026-06-23T09:10:17.727778Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

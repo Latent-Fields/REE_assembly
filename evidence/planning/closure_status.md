@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-23T04:55:06Z
+Generated: 2026-06-23T08:18:45Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **77.2%** across 74 non-deferred nodes in 11 plan(s) with closure frontmatter.
+- Weighted progress: **78.2%** across 74 non-deferred nodes in 11 plan(s) with closure frontmatter.
 - Remaining (open/in-progress/blocked/partial): **21** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **9** nodes.
 - Deferred (not required for v3 closure): 14 nodes.
 - Done: 53 nodes.
-- Status tally: assembling=9  blocked=7  blocked_pending_substrate=3  deferred=14  done=53  in_progress=5  open=3  partial=2  upstream_blocked=1
+- Status tally: assembling=9  blocked=7  blocked_pending_substrate=3  deferred=14  done=53  in_progress=7  open=1  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -24,9 +24,9 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-06-14 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 76% | assembling:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-06-19 |
-| `sleep_substrate_plan.md` | Sleep Substrate | 9 | 76% | deferred:1 done:6 open:1 upstream_blocked:1 | 2026-05-31 |
+| `sleep_substrate_plan.md` | Sleep Substrate | 9 | 81% | deferred:1 done:6 in_progress:1 upstream_blocked:1 | 2026-05-31 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 82% | assembling:1 deferred:2 done:7 in_progress:1 open:1 | 2026-06-12 |
-| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 84% | blocked_pending_substrate:2 done:14 open:1 | 2026-05-30 |
+| `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 86% | blocked_pending_substrate:2 done:14 in_progress:1 | 2026-05-30 |
 | `goal_pipeline_plan.md` | Goal Pipeline (wanting / liking / drive cascade) | 7 | 100% | done:7 | 2026-06-12 |
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
@@ -45,11 +45,11 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-23 |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked | 2 | high | V3-EXQ-265a | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-06-23 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | open | 2 | medium | null -- *b cohort substrate-unblocked since 2026 | depends_on: commitment_closure:GAP-4, commitment_closure:GAP-3, commitment_closure:GAP-11 | 2026-06-23 |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-3b` | MECH-285 / MECH-272 / MECH-275 / MECH-273 empirical promotion -- the behavioural | open | 2 | medium | null -- no promotion experiment queued yet | depends_on: sleep_substrate:GAP-3 | 2026-06-23 |
+| sleep_substrate_plan.md | `sleep_substrate:GAP-3b` | MECH-285 / MECH-272 / MECH-275 / MECH-273 empirical promotion -- the behavioural | in_progress | 2 | medium | V3-EXQ-702 | depends_on: sleep_substrate:GAP-3 | 2026-06-23 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P3` | Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lif | blocked | 3 | high |  | depends_on: sd_037_axis_b:P2 | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-3` | MECH-257 dual-function 3-arm ablation re-queue | blocked | 3 | medium | TBD | depends_on: self_attribution:GAP-1, self_attribution:GAP-2 | 2026-06-04 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
-| infant_substrate_plan.md | `infant_substrate:GAP-11b` | MECH-189 trained-encoder evidence successor -- the DEV-NEED-006 0.4 ABSOLUTE adu | open | 4 | medium | null -- successor not yet queued | depends_on: infant_substrate:GAP-11 | 2026-06-23 |
+| infant_substrate_plan.md | `infant_substrate:GAP-11b` | MECH-189 trained-encoder evidence successor -- the DEV-NEED-006 0.4 ABSOLUTE adu | in_progress | 4 | medium | V3-EXQ-588d (queued 2026-06-23 as a brake-exempt | depends_on: infant_substrate:GAP-11 | 2026-06-23 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | blocked_pending_substrate | 4 | medium | V3-EXQ-590 | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-23 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-23 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | 660 base PASS/supports established the binary within-class preserver; MECH-341 RATIFIED candidate->provisional (v3_pending CLEARED 2026-06-14, commit 80f4fcf250, user-directed). Only remaining unblocks strand = ARC-062 falsifier, gated on the shared GAP-A selection-authority substrate (569g->682-gated) | load-bearing | V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is t | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-06-22 |
