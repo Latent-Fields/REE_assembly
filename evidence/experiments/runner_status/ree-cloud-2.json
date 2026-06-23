@@ -1,30 +1,63 @@
 {
   "schema_version": "v1",
-  "runner_pid": 669,
-  "runner_started_at": "2026-06-21T20:55:40.445461+00:00",
-  "last_updated": "2026-06-21T20:55:42.607461+00:00",
+  "runner_pid": 666,
+  "runner_started_at": "2026-06-22T20:25:48.705540+00:00",
+  "last_updated": "2026-06-23T07:30:38.469767+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-689e",
+      "queue_id": "V3-EXQ-700",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-448/ARC-107 channel-adaptive eligibility-floor readiness: f_eligibility_excluded_count>0 lands productive on >=2 real channels (arc_062 654h-regime + OFC 485i-regime) with ONE global adaptive config; fixed-floor all-admit no-op as the contrast + bit-identical-OFF negative control. Substrate-readiness diagnostic; PROMOTES NOTHING.",
+      "claim_id": "MECH-439",
+      "title": "ARC-108 sec-7 learned-gating 2x2 falsifier (learned w_chan x learned W_lat settling) on the GAP-A foraging substrate",
       "description": "",
-      "estimated_minutes": 96.0,
+      "estimated_minutes": 500.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-654i",
+      "queue_id": "V3-EXQ-460m",
       "backlog_id": "",
-      "claim_id": "MECH-309",
-      "title": "arc_062 GAP-B committed-class-entropy falsifier on MECH-448 F->eligibility demotion (654h-successor; 485j-style envelope-floor calibration so the demotion lever excludes on the arc_062 bank; sweep use_candidate_rule_field)",
+      "claim_id": "",
+      "title": "Closure-plane commit-ENTRY primitive readiness: does use_closure_commit_entry arm + sustain a closure-formed occupancy with zero F-commits? (2-arm diagnostic)",
       "description": "",
-      "estimated_minutes": 280.0,
+      "estimated_minutes": 106.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-460n",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Closure-plane commit-ENTRY TRAJECTORY readiness + bool-vs-trajectory comparison: does use_closure_commit_entry_trajectory STEP a closure-formed committed program the bool latch cannot? (3-arm diagnostic)",
+      "description": "",
+      "estimated_minutes": 112.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-588d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-189 trained-encoder forced-feed super-ordinal absolute-0.4-crossing readiness diagnostic (GAP-11b; 588c successor)",
+      "description": "",
+      "estimated_minutes": 35.2,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-703",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-276 scientist-agent counterfactual-backed attribution feedstock -- substrate-readiness diagnostic (claim_ids=[]; PROMOTES NOTHING; does NOT promote MECH-275)",
+      "description": "",
+      "estimated_minutes": 360.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2753,6 +2786,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2.2
+    },
+    {
+      "queue_id": "V3-EXQ-700a",
+      "backlog_id": "",
+      "claim_id": "ARC-108",
+      "title": "ARC-108 sec-7 C3 signed-vs-unsigned-RPE ablation falsifier (A1_SIGNED must convert vs C3_A1_UNSIGNED must FAIL) on the GAP-A foraging substrate",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL completed=12/12 preconditions_met=False signed_converts=False unsigned_converts=False signed_rpe_load_bearing=False label=substrate_not_ready_requeue | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-700a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-700a.json",
+      "started_at": "2026-06-22T20:25:48.720194+00:00",
+      "completed_at": "2026-06-23T07:28:13.358517+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 39744.2
+    },
+    {
+      "queue_id": "V3-EXQ-702",
+      "backlog_id": "",
+      "claim_id": "MECH-285",
+      "title": "GAP-3b sleep-cluster promotion: discriminative ARM-ON-vs-OFF use_sleep_aggregation_cluster -> MECH-285/272/273 evidence",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Overall outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-702 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-702.json",
+      "started_at": "2026-06-23T07:30:17.563840+00:00",
+      "completed_at": "2026-06-23T07:30:38.469051+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_702_gap3b_sleep_cluster_promotion/v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 20.9
     }
   ]
 }
