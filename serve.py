@@ -5508,6 +5508,33 @@ h1{{color:#c00}}a{{color:#0070f3}}</style></head>
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
+def ensure_mobile_tmux_session():
+    """Best-effort: make sure a detached tmux session named 'ree' exists so the
+    user can attach Claude Code from the phone (Blink -> ssh/mosh -> tmux attach
+    -t ree) without re-running scripts/claude_mobile.sh by hand after a reboot.
+
+    Idempotent and never fatal: no-op if tmux is not installed or the session
+    already exists. Opt out with REE_MOBILE_SESSION=0. See docs/mobile_access.md.
+    """
+    if os.environ.get("REE_MOBILE_SESSION", "1") == "0":
+        return
+    session = "ree"
+    workdir = str(SERVE_DIR.parent)  # REE_Working (umbrella)
+    try:
+        has = subprocess.run(["tmux", "has-session", "-t", session],
+                             capture_output=True, timeout=5)
+        if has.returncode == 0:
+            return  # already running -- leave it (and any work inside) alone
+        subprocess.run(["tmux", "new-session", "-d", "-s", session, "-c", workdir],
+                       capture_output=True, timeout=5)
+        print(f"[serve] mobile: ensured tmux session '{session}' "
+              f"(attach from phone: tmux attach -t {session})", flush=True)
+    except FileNotFoundError:
+        pass  # tmux not installed -- mobile Claude Code path just unavailable
+    except Exception as e:
+        print(f"[serve] mobile: tmux ensure skipped ({e})", flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description="REE Claims Explorer Server")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT,
@@ -5528,6 +5555,7 @@ def main():
 
     _detect_existing_runners()
     os.chdir(SERVE_DIR)
+    ensure_mobile_tmux_session()  # phone Claude Code session always ready
 
     # Bind addresses: default 0.0.0.0 (all interfaces, backward-compatible).
     # Pass --bind one or more times to restrict (e.g. WireGuard IP + localhost).
@@ -5565,6 +5593,7 @@ def main():
         repos = [SERVE_DIR, SERVE_DIR.parent / "ree-v3"]
         while True:
             time.sleep(300)
+            ensure_mobile_tmux_session()  # recreate the phone session if it died
             for repo in repos:
                 if not (repo / ".git").is_dir():
                     continue

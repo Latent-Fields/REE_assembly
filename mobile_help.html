@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- MOBILE_HELP_VERSION: 2026-06-23.1 -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>REE on your iPhone</title>
+<style>
+  :root{
+    --bg:#f7f5ef; --card:#fff; --ink:#1c1a16; --muted:#6b6358;
+    --border:#e2ddd2; --accent:#2b6f72; --code-bg:#1c2128; --code-ink:#e6edf3;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,system-ui,sans-serif;
+    -webkit-text-size-adjust:100%;padding:18px 16px 48px;}
+  .wrap{max-width:680px;margin:0 auto;}
+  h1{font-size:1.5rem;margin:.2em 0 .1em;}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:.95rem;}
+  h2{font-size:1.05rem;margin:26px 0 8px;display:flex;align-items:center;gap:8px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:14px 16px;margin:0 0 14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  ol{margin:6px 0 0;padding-left:1.25em;}
+  li{margin:.45em 0;}
+  code{background:rgba(0,0,0,.06);border-radius:5px;padding:1px 6px;
+    font:0.92em ui-monospace,SFMono-Regular,Menlo,monospace;
+    overflow-wrap:anywhere;word-break:break-word;}
+  pre{background:var(--code-bg);color:var(--code-ink);border-radius:10px;
+    padding:12px 14px;margin:8px 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    font:0.92rem ui-monospace,SFMono-Regular,Menlo,monospace;}
+  pre code{background:none;padding:0;color:inherit;}
+  a{color:var(--accent);}
+  .url{font-weight:600;}
+  .muted{color:var(--muted);font-size:.9rem;}
+  .pill{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;
+    padding:1px 9px;font-size:.78rem;font-weight:600;vertical-align:middle;}
+  .note{border-left:3px solid var(--accent);padding:8px 12px;background:rgba(43,111,114,.06);
+    border-radius:0 8px 8px 0;margin:10px 0 0;font-size:.92rem;}
+  table.tbl{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:4px;}
+  table.tbl td{padding:6px 4px;border-bottom:1px solid var(--border);vertical-align:top;}
+  table.tbl td:first-child{font-weight:600;white-space:nowrap;padding-right:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>📱 REE on your iPhone</h1>
+  <p class="sub">Both of these ride your WireGuard tunnel. Turn the
+  <strong>REE-net</strong> tunnel on first.</p>
+
+  <h2>🌐 The explorer (Safari)</h2>
+  <div class="card">
+    Open in Safari:
+    <p class="url"><a href="http://10.8.0.11:8000/explorer">http://10.8.0.11:8000/explorer</a></p>
+    <p class="muted" style="margin:.4em 0 0;">That's it — no terminal needed for the explorer.</p>
+  </div>
+
+  <h2>⌨️ Claude Code (Blink)</h2>
+  <div class="card">
+    <ol>
+      <li>WireGuard <strong>REE-net</strong> tunnel <strong>on</strong>.</li>
+      <li>In Blink, connect (Face ID unlocks the key):
+        <pre><code>mosh mac</code></pre>
+        <span class="muted">No host alias set up? Use
+        <code>ssh dgolden@10.8.0.11</code>.</span>
+      </li>
+      <li>Attach the always-on session:
+        <pre><code>tmux attach -t ree</code></pre>
+      </li>
+      <li>Start Claude Code:
+        <pre><code>claude</code></pre>
+      </li>
+    </ol>
+    <div class="note">Detach without killing it: press <strong>Ctrl-b</strong>, then
+      <strong>d</strong>. Lock the phone, come back later, <code>tmux attach -t ree</code>
+      and you're exactly where you left off.</div>
+  </div>
+
+  <h2>🔁 After a Mac reboot</h2>
+  <div class="card">
+    Nothing to remember. The explorer (<code>serve.py</code>) re-creates the
+    <code>ree</code> session automatically whenever it starts, so it's always
+    waiting. Just connect with the steps above.
+    <p class="muted" style="margin:.5em 0 0;">If you ever need it by hand:
+      <code>bash ~/REE_Working/REE_assembly/scripts/claude_mobile.sh</code></p>
+  </div>
+
+  <h2>🛠 If something won't connect</h2>
+  <div class="card">
+    <table class="tbl">
+      <tr><td>Explorer won't load</td><td>WireGuard tunnel off, or it lost its handshake — toggle REE-net off/on.</td></tr>
+      <tr><td><code>ssh</code>/<code>mosh</code> refused</td><td>Remote Login is off on the Mac (System Settings &rarr; General &rarr; Sharing &rarr; Remote Login).</td></tr>
+      <tr><td><code>mosh</code> hangs</td><td>Fall back to <code>ssh dgolden@10.8.0.11</code>.</td></tr>
+      <tr><td>Host key prompt</td><td>First connection only — type <code>yes</code>.</td></tr>
+    </table>
+  </div>
+
+  <p class="muted" style="margin-top:22px;">Full runbook (provisioning, secret model,
+  re-keying a device): <code>REE_assembly/docs/mobile_access.md</code>.</p>
+
+</div>
+</body>
+</html>
