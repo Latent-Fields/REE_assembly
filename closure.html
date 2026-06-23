@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-22.1 -->
+<!-- CLOSURE_VERSION: 2026-06-23.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -407,6 +407,31 @@
   #readout .ro-eye { color: var(--accent); font-style: normal; }
   #readout .ro-sep { color: var(--border); margin: 0 6px; }
 
+  /* Resume-prompt panel: appears bottom-left (above the readout bar) when a
+     READY node is selected. Only ready gaps carry node.resume_prompt server
+     side, so the panel never offers a copy on a blocked / assembling / done
+     node. Clickable (unlike the mouse-following hover tooltip). */
+  #resume-panel {
+    position: fixed; left: 18px; bottom: 42px; z-index: 60;
+    display: none; max-width: 360px;
+    background: rgba(13,17,23,0.98);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 9px 11px; font-size: 11.5px; line-height: 1.4; color: var(--text);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+  }
+  #resume-panel.show { display: block; }
+  #resume-panel .rp-title { font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  #resume-panel .rp-sub { color: var(--muted); margin-bottom: 7px; }
+  #resume-panel .rp-copy {
+    cursor: pointer; border: 1px solid var(--accent);
+    background: rgba(88,166,255,0.12); color: var(--accent);
+    border-radius: 6px; padding: 5px 11px; font-size: 11.5px; font-weight: 600;
+  }
+  #resume-panel .rp-copy:hover { background: rgba(88,166,255,0.22); }
+  #resume-panel .rp-copy.done {
+    border-color: #3fb950; color: #3fb950; background: rgba(63,185,80,0.14);
+  }
+
   .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; pointer-events: stroke; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
@@ -784,6 +809,11 @@
 <div id="minimap"><div class="mm-cap">map &middot; click to jump</div></div>
 
 <div id="tip"></div>
+<div id="resume-panel">
+  <div class="rp-title"></div>
+  <div class="rp-sub">Paste into a new Claude Code session to resume this node.</div>
+  <button class="rp-copy" type="button">Copy resume prompt</button>
+</div>
 <div id="readout"></div>
 <div id="egg-layer"></div>
 <div id="egg-toast"></div>
@@ -1012,6 +1042,7 @@ function wireGenSwitch() {
       bar.querySelectorAll('button[data-gen]').forEach(b =>
         b.classList.toggle('active', b === btn));
       SELECTED_NODE_ID = null;   // clear any cross-generation node selection
+      updateResumePanel();       // hide the resume panel on a generation switch
       applyGenView();
       renderAll();
     });
@@ -1505,6 +1536,7 @@ function applySelectionStyling() {
     for (const el of svg.querySelectorAll('.in-graph')) el.classList.remove('in-graph');
     for (const el of svg.querySelectorAll('.selected')) el.classList.remove('selected');
     updateReadout();
+    updateResumePanel();
     return;
   }
   const reachable = bfsReachable(SELECTED_NODE_ID);
@@ -1520,6 +1552,54 @@ function applySelectionStyling() {
     e.classList.toggle('in-graph', reachable.has(f) && reachable.has(t));
   }
   updateReadout();
+  updateResumePanel();
+}
+
+// Resume-prompt panel: shown only when the selected node is a ready gap (the
+// server emits node.resume_prompt for those nodes ONLY -- see serve.py
+// _closure_resume_prompt, gated on _closure_is_ready_gap). Absence of the field
+// is the signal to keep the panel hidden, so a blocked / assembling / done node
+// never offers a copy that would invite a vacuous-FAIL session.
+let RESUME_COPY_TIMER = null;
+function updateResumePanel() {
+  const panel = document.getElementById('resume-panel');
+  if (!panel) return;
+  const n = SELECTED_NODE_ID ? NODES_BY_ID[SELECTED_NODE_ID] : null;
+  const prompt = (n && n.resume_prompt) ? n.resume_prompt : null;
+  if (!prompt) { panel.classList.remove('show'); return; }
+  panel.querySelector('.rp-title').textContent = 'Resume: ' + n.id;
+  const btn = panel.querySelector('.rp-copy');
+  btn.textContent = 'Copy resume prompt';
+  btn.classList.remove('done');
+  btn.onclick = (ev) => { ev.stopPropagation(); copyResumePrompt(prompt, btn); };
+  panel.classList.add('show');
+}
+function copyResumePrompt(text, btn) {
+  const done = () => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('done');
+    if (RESUME_COPY_TIMER) clearTimeout(RESUME_COPY_TIMER);
+    RESUME_COPY_TIMER = setTimeout(() => {
+      btn.textContent = 'Copy resume prompt';
+      btn.classList.remove('done');
+    }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) { /* clipboard blocked */ }
+  document.body.removeChild(ta);
 }
 
 function applyReadyFilterStyling() {

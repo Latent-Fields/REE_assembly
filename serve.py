@@ -2181,6 +2181,81 @@ def _closure_active_blocker_short(
     return ""
 
 
+def _closure_resume_prompt(
+    node: dict,
+    plan_file: str,
+    nodes_by_id: dict[str, dict],
+) -> str:
+    """Build a paste-ready Claude Code resume prompt for a READY closure node.
+
+    Caller-gated on `_closure_is_ready_gap`: the node is open, actionable
+    severity, and every `depends_on` is satisfied -- so a fresh session can
+    make real progress rather than re-deriving a vacuous FAIL on a still
+    blocked / still assembling node. Built entirely from fields already on the
+    node record; wired to the CLAUDE.md session-startup + skill conventions so
+    the pasted session lands correctly. ASCII-only (renders in a terminal once
+    pasted).
+    """
+    nid = str(node.get("id") or "")
+    plan_id = str(node.get("plan_id") or "")
+    title = str(node.get("title") or nid)
+    severity = str(node.get("severity") or "medium")
+    phase = node.get("phase")
+    resume_condition = str(node.get("resume_condition") or "").strip()
+    blocking_on = str(node.get("blocking_on") or "").strip()
+    unblocks = [str(c) for c in (node.get("unblocks_claims") or [])]
+    owner_exq = str(node.get("owner_exq") or "").strip()
+
+    # depends_on are all satisfied (the ready-gate guarantees it); list them
+    # with status so the resuming session sees the lineage it builds on.
+    deps: list[str] = []
+    for dep in node.get("depends_on") or []:
+        dep_n = nodes_by_id.get(str(dep))
+        st = dep_n.get("status") if dep_n else "unknown"
+        deps.append(f"{dep} [{st}]")
+
+    plan_ref = (
+        f"REE_assembly/evidence/planning/{plan_file}"
+        if plan_file else f"the {plan_id} plan-of-record doc"
+    )
+
+    # Some node ids already embed the plan prefix (e.g. "<plan>:OBJ-2"); only
+    # add it when absent so the label never doubles up.
+    node_label = nid if (":" in nid or not plan_id) else f"{plan_id}:{nid}"
+
+    head = f"Node: {nid}  status: {node.get('status')}  severity: {severity}"
+    if phase:
+        head += f"  phase: {phase}"
+
+    lines = [
+        f"Resume work on closure node {node_label} ({title}).",
+        "",
+        "Repo: /Users/dgolden/REE_Working -- read CLAUDE.md first, then",
+        f"{plan_ref} (this node's plan-of-record; its frontmatter status",
+        "table is the cross-session resume primitive).",
+        "",
+        head,
+    ]
+    if resume_condition:
+        lines.append(f"Resume condition: {resume_condition}")
+    if blocking_on:
+        lines.append(f"Was blocking on: {blocking_on}")
+    if deps:
+        lines.append("Depends on (all satisfied): " + ", ".join(deps))
+    if unblocks:
+        lines.append("Unblocks claims: " + ", ".join(unblocks))
+    if owner_exq:
+        lines.append(f"Owner EXQ: {owner_exq}")
+    lines += [
+        "",
+        "Before editing any file, write a TASK_CLAIMS.json claim (umbrella",
+        "REE_Working). If this node needs an experiment, go through the",
+        "/queue-experiment skill -- never hand-edit experiment_queue.json or",
+        "the experiments/ dir directly. Land via /session-land when done.",
+    ]
+    return "\n".join(lines)
+
+
 def _closure_dual_progress(nodes: list[dict]) -> dict:
     impl_done = impl_total = 0.0
     ev_done = ev_total = 0.0
@@ -2598,6 +2673,11 @@ def _enrich_closure_v2(data: dict) -> dict:
             "claim_id": cid,
         })
 
+    # plan_id -> source filename, for the per-node resume prompt's plan ref.
+    plan_file_by_id = {
+        p.get("id"): p.get("file") for p in (data.get("plans") or [])
+    }
+
     contributory: set[str] = set()
     for n in nodes:
         for m in _EXQ_ID_RE.finditer(str(n.get("owner_exq") or "")):
@@ -2664,6 +2744,15 @@ def _enrich_closure_v2(data: dict) -> dict:
         n["drift"] = drift_map.get(n.get("id"))
         n["active_blocker_short"] = _closure_active_blocker_short(
             n, nodes_by_id)
+
+        # resume_prompt: paste-ready Claude Code bootstrap, emitted ONLY for
+        # ready gaps (open + actionable severity + all depends_on satisfied).
+        # Its absence is the signal closure.html uses to NOT offer a copy
+        # button on blocked / assembling / done nodes -- a resume prompt there
+        # would invite a session that just re-derives a vacuous FAIL.
+        if _closure_is_ready_gap(n, nodes_by_id):
+            n["resume_prompt"] = _closure_resume_prompt(
+                n, plan_file_by_id.get(n.get("plan_id")) or "", nodes_by_id)
 
     for p in data.get("plans") or []:
         plan_nodes = [n for n in nodes if n.get("plan_id") == p.get("id")]
