@@ -2,7 +2,7 @@
 title: Rule Apprehension Layer (architecture anchor)
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 12
+nav_order: 14
 ---
 
 # Rule Apprehension Layer (architecture anchor)

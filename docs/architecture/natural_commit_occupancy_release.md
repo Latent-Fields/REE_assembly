@@ -2,7 +2,7 @@
 title: "Commit/release-DURATION lever: graded natural-commit-occupancy release"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 3
+nav_order: 4
 ---
 
 # Commit/release-DURATION lever: graded natural-commit-occupancy release

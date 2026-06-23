@@ -1,3 +1,10 @@
+---
+title: "ARC-108 JOB-2: the dopaminergic control-plane DRIVER pair"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 2
+---
+
 # ARC-108 JOB-2: the dopaminergic control-plane DRIVER pair
 
 **Claim ID:** ARC-108 (the unified dopamine substrate; JOB-2 = the control-plane driver)

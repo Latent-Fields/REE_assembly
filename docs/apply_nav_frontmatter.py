@@ -185,6 +185,7 @@ ASSIGN = {
     "mech_449_go_nogo_constitution.md": "pfc",
     "natural_commit_occupancy_release.md": "pfc", "quality_diversity_committed_archive.md": "pfc",
     "rule_distinguishability_maintenance.md": "pfc",
+    "dopamine_into_gating.md": "pfc", "arc_108_job2_control_plane.md": "pfc",
 
     # --- Language ---
     "language.md": "language", "arcuate_fasciculus.md": "language",

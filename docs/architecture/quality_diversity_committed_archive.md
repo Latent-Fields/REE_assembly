@@ -2,7 +2,7 @@
 title: Behavioral-Descriptor Committed-Selection Archive (conversion-ceiling locus)
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 2
+nav_order: 3
 ---
 
 # Behavioral-Descriptor Committed-Selection Archive (conversion-ceiling locus)

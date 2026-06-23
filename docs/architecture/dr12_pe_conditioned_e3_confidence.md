@@ -2,7 +2,7 @@
 title: "DR-12: E2 forward prediction-error modulates E3 trajectory-scoring confidence"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 4
+nav_order: 5
 ---
 
 # DR-12: E2 forward prediction-error modulates E3 trajectory-scoring confidence

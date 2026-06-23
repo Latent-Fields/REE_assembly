@@ -2,7 +2,7 @@
 title: "SD-034: Governance Closure Operator"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 18
+nav_order: 20
 ---
 
 # SD-034: Governance Closure Operator

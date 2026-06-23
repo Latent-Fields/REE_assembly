@@ -2,7 +2,7 @@
 title: "SD-033a: Lateral-PFC-analog (mid-lateral rule/goal substrate)"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 15
+nav_order: 17
 ---
 
 # SD-033a: Lateral-PFC-analog (mid-lateral rule/goal substrate)
