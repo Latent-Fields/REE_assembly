@@ -1,0 +1,135 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_699_pcomp_demotion_x_gonogo_composition",
+  "run_id": "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-23T05:37:55Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448",
+    "MECH-449"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-448": "non_contributory",
+    "MECH-449": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "levers_compound",
+    "composition_verdict": "levers_compound",
+    "preconditions": [
+      {
+        "name": "committed_class_axis_exercisable_all_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in ALL FOUR arms. SAME-statistic family as the committed-class entropy DV (class multiplicity bounds class entropy).",
+        "control": "SP-CEM multi-class candidate pool, all arms",
+        "measured": 1.0,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_divergence_all_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in ALL arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.004852,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_bounded",
+        "kind": "readiness",
+        "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all cells",
+        "measured": 0.371948,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "rule_field_differentiated_and_matured_all_arms",
+        "kind": "readiness",
+        "description": "the matched CandidateRuleField (use_candidate_rule_field=True, constant) minted >= CRF_MIN_MINTED distinct rules AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P2 ticks, on a majority of seeds in ALL arms. Below-floor => the differentiated source the levers convert is absent => substrate_not_ready_requeue.",
+        "control": "crf frac-active (matured pool) + crf_n_minted_total, all arms",
+        "measured": 0.804196,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity_bias_reaches_committed_action_all_arms",
+        "kind": "readiness",
+        "description": "mean_lateral_pfc_bias_abs > floor on a majority of seeds in ALL arms (the trained head + matured field produce a non-zero per-candidate bias that reaches committed action). Below-floor => vacuous propagation => substrate_not_ready_requeue. Supported by the within-arm rule_state counterfactual delta (zeroing rule_state changes the bias).",
+        "control": "mean lateral_pfc bias on the matched trained-head stack, all arms",
+        "measured": 0.04061345,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "mech448_demotion_lever_live_and_excluding_demotion_armed_arms",
+        "kind": "readiness",
+        "description": "On the DEMOTION-ARMED arms (ARM_DEM, ARM_BOTH) the f_demotion envelope is ACTIVE on >= DEMOTION_ACTIVE_FRAC_FLOOR of P2 ticks AND actually EXCLUDES (mean f_eligibility_excluded_count > EXCLUDED_COUNT_FLOOR) on a majority of seeds. An all-admit envelope (excluded_count==0; flat-F pool) means demotion did nothing -> the composition cell is vacuous => substrate_not_ready_requeue. Demotion is OFF by design on ARM_OFF/ARM_GNG (inactivity there is correct, NOT vacuous). Mirrors V3-EXQ-689d readiness.",
+        "control": "f_demotion active-frac + excluded_count on the demotion-armed arms",
+        "measured": 14.814623,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "mech449_active_nogo_live_and_suppressing_gng_armed_arms",
+        "kind": "readiness",
+        "description": "On the GO/NO-GO-ARMED arms (ARM_GNG, ARM_BOTH) the Go/No-Go constitution is ACTIVE on >= NOGO_ACTIVE_FRAC_FLOOR of P2 ticks AND actually SUPPRESSES (mean go_nogo_n_safety_nogo + go_nogo_n_soft_applied > NOGO_SUPPRESSED_FLOOR; the perseveration No-Go fed by the MECH-260 recency-share vector with use_dacc=True) on a majority of seeds. An inert No-Go means the opponency leg did nothing -> vacuous => substrate_not_ready_requeue. Go/No-Go is OFF by design on ARM_OFF/ARM_DEM. Mirrors the V3-EXQ-689g non-degeneracy gate.",
+        "control": "Go/No-Go active-frac + suppressed-count on the gng-armed arms",
+        "measured": 0.694637,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_READY_levers_engaged_and_substrate_exercisable",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a_class_axis_exercisable_all_arms": true,
+      "C1b_gapa_divergence_all_arms": true,
+      "C1c_rule_field_differentiated_matured_all_arms": true,
+      "C1d_propagation_non_vacuity_all_arms": true,
+      "C1d_within_arm_rule_state_counterfactual_nonzero": true,
+      "C1e_mech448_demotion_live_demotion_armed_arms": true,
+      "C1f_mech449_active_nogo_live_gng_armed_arms": true,
+      "arms_not_bit_identical": true
+    }
+  }
+}
