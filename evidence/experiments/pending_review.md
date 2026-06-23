@@ -1,20 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-06-23T08:18:32Z`  
-Last review: `2026-06-23T04:23:35Z`  
-Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-23T22:42:13Z`  
+Last review: `2026-06-23T22:42:06Z`  
+Pending: **4** item(s) -- 0 PASS, 4 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 4 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3` | 2026-06-23T07:21 | INV-050 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3` | 2026-06-23T05:37 | MECH-448, MECH-449 |
+| `v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3` | 2026-06-23T07:52 | (no claim tags) | — |
+| `v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3` | 2026-06-23T10:06 | (no claim tags) | — |
+| `v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3` | 2026-06-23T10:48 | (no claim tags) | — |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -22,8 +19,10 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
-| `v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3` | PASS | levers_compound | **precondition_unmet** |
 | `v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ---
 

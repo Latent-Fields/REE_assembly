@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_653_e2_escape_affordance_linker_readiness_microdiagnostic
 
-Generated: `2026-06-23T09:10:17.727778Z`
+Generated: `2026-06-23T22:40:57.331823Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

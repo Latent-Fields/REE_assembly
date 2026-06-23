@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-23T04:23:35Z",
+  "last_review_utc": "2026-06-23T22:42:06Z",
   "discussed_experiment_dirs": [
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
     "v3_exq_701_inv050_mel_measurability_diagnostic",
@@ -746,7 +746,12 @@
     "v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier",
     "V3-EXQ-485l",
     "v3_exq_485l_sd033b_devaluation_nogo_behavioural",
-    "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3"
+    "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+    "v3_exq_702_gap3b_sleep_cluster_promotion",
+    "v3_exq_700_arc108_sec7_learned_gating_2x2",
+    "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe",
+    "v3_exq_699_pcomp_demotion_x_gonogo_composition",
+    "v3_exq_588d_mech189_trained_encoder_absolute_crossing"
   ],
   "reviewed_run_ids": [
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
@@ -3170,7 +3175,12 @@
     "v3_exq_485l_sd033b_devaluation_nogo_behavioural_20260622T063547Z_v3",
     "v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3",
     "v3_exq_654j_arc062_gapb_rule_apprehension_nogo_behavioural_falsifier_20260622T135939Z_v3",
-    "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3"
+    "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
+    "v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3",
+    "v3_exq_700_arc108_sec7_learned_gating_2x2_20260623T161336Z_v3",
+    "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3",
+    "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3",
+    "v3_exq_588d_mech189_trained_encoder_absolute_crossing_20260623T074217Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4056,6 +4066,35 @@
         "ARC-062"
       ],
       "subject": "Governance 2026-06-20T12:08Z. CONSUMED confirmed failure_autopsy_V3-EXQ-690_2026-06-20 (ARC-062 diversity-floor sweep). non_contributory/substrate_ceiling/pending_retest, NON-WEAKENING. Self-route trustworthy: 4 noise-floor-min_temperature arms (0.30->2.75) produced BYTE-IDENTICAL per-seed metrics -- a selection-softmax temperature floor (MECH-313) cannot move the deterministic committed argmin over F-dominated scores (MECH-090); lever-target mismatch + live MECH-439 F-dominance ceiling expressed as BETWEEN-ARM lever-inertness (committed entropy non-zero per seed but invariant). 4th confirmed inert lever after CRF/OFC/dACC. ARC-062 discriminator intact (0.74 mean, above chance where context sampled); R3 degeneracy ENVIRONMENTAL (seed 44 = 0 reef ticks). ARC-062 UNCHANGED (candidate/substrate_ceiling/v3_pending/pending_retest) + autopsy EQN added. substrate_queue f_dominance_conversion_ceiling AMENDED (690 failure_record, noise-floor temperature inert lever). Route implement-substrate; 690a gated on 689a, must sweep a committed-argmax-REACHING lever (569i top-k k / 689a conflict-graded width) NOT the temperature, and control reef/forage exposure. MARKED REVIEWED."
+    },
+    {
+      "utc": "2026-06-23T22:42:06Z",
+      "session": "governance-cycle-20260623T2214Z",
+      "reviewed_run_ids": [
+        "v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3",
+        "v3_exq_700_arc108_sec7_learned_gating_2x2_20260623T161336Z_v3",
+        "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3",
+        "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3",
+        "v3_exq_588d_mech189_trained_encoder_absolute_crossing_20260623T074217Z_v3"
+      ],
+      "discussed_experiment_dirs_added": [
+        "v3_exq_702_gap3b_sleep_cluster_promotion",
+        "v3_exq_700_arc108_sec7_learned_gating_2x2",
+        "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe",
+        "v3_exq_699_pcomp_demotion_x_gonogo_composition",
+        "v3_exq_588d_mech189_trained_encoder_absolute_crossing"
+      ],
+      "claim_ids_touched": [
+        "MECH-272",
+        "MECH-273",
+        "MECH-285",
+        "MECH-439",
+        "ARC-108",
+        "MECH-450",
+        "MECH-448",
+        "MECH-449"
+      ],
+      "subject": "Governance 2026-06-23T22:42:06Z. 9 pending (3 PASS, 6 FAIL, 5 diagnostic self-route flags). Autopsy pre-flight: needs-autopsy EMPTY for apply (700+700a covered by confirmed failure_autopsy_V3-EXQ-700-cluster). Promotion/demotion: 0 actionable at walk start (all 151 Decision Queue rows applied). APPLIED: (1) V3-EXQ-702 (sleep_substrate:GAP-3b) clean discriminative PASS, 3/3 seeds supports MECH-272/273/285 with genuine ARM_OFF zero (non_degenerate). v3_pending GATE CLEARED on all three (user: let-it-count, NOT promote); impl_phase stays v3 (v3_run_ct>=1, no re-hold); decision_log clear_v3_pending_gate/applied x3 + decision_state reconciled (was stale hold_pending_v3_substrate 2026-04-25). Post-clear engine: MECH-272/273 promote_to_provisional/pending_user (exp_conf 0.82, 2 exp entries) DEFERRED; MECH-285 no promote (only 1 genuine exp entry; needs a 2nd). (2) V3-EXQ-700 + 700a FAIL covered by confirmed failure_autopsy_V3-EXQ-700-cluster_2026-06-23 -> non_contributory per-claim (already in manifests); MECH-439 substrate_ceiling+pending_retest / ARC-108+MECH-450 substrate_conditional (kept finer split over autopsy's uniform substrate_ceiling; escalation is V4 full BG-thalamo-cortical loop); 700b queued as the harness-fixed retest. UNWEAKENED. (3) V3-EXQ-699 PASS diagnostic, already non_contributory (weights nothing); adjudication precondition_unmet (gapa_consumed_summary_divergence 0.0048<0.05 floor; author met:true overridden by indexer direction-recompute) correctly bars its levers_compound label from driving MECH-448/449 action. MARKED REVIEWED. (4) V3-EXQ-588d PASS claim-free verified diagnostic (encoder_trained met 1.0). MARKED REVIEWED. DEFERRED (user directive 'even diagnostics which fail need failure autopsies'): V3-EXQ-701a (INV-050), 703 (MECH-276 readiness), 460m+460n (closure-commit readiness cluster) STAY PENDING -> 3 /failure-autopsy chips spawned. PROMOTES NOTHING beyond the 272/273 pending_user surfacing."
     }
   ],
   "review_log": [
@@ -4765,6 +4804,17 @@
         "INV-050"
       ],
       "subject": "Governance 2026-06-23T04:23Z. 2 pending FAIL applied (460l already reviewed by its own session 04:01Z). Autopsy pre-flight clean (both confirmed-autopsied). Promotion/demotion agenda: 0 actionable (437 applied + 40 v4-held; 0 pending_user). APPLIED: (1) V3-EXQ-460k confirmed failure_autopsy_V3-EXQ-460k_2026-06-22 -> non_contributory, MECH-445+MECH-446 UNWEAKENED; epistemic_category standard->substrate_ceiling (user-confirmed); 4th substrate-blocked iteration (460h/i/j/k), RE-DERIVE BRAKE FIRED (threshold 2). Root: the closure_exclusive_decommit_eval build (e52158d) arm source _closure_commit_active is gated on e3._committed_trajectory, set ONLY by the F-driven natural commit (e3_selector.py:1926) -> dissociation illusory, gate-2.5 armed-hold 0/3; green activation test is a contract-mock false-positive; MECH-445 predicate structurally unreachable -> commit-intent pinned 0 by construction. Same-claim de-commit-falsifier re-queue REFUSED. evidence_quality_note added both. substrate_queue f_dominance_conversion_ceiling amended (460k failure record). (2) V3-EXQ-701 confirmed failure_autopsy_V3-EXQ-701_2026-06-23 -> non_contributory, INV-050 diagnostic (NOT a verdict; scoring-excluded); precondition_unmet flag satisfied by the confirmed autopsy. R2 world_model_converged=-2.60 (SD-056 P0 DIVERGED) + R1 pe_response=-0.005 BOTH unmet -> 642-style P0-convergence confound; R1/C1 novelty-flatness uninterpretable. Route queue-experiment re-queue (701a) with a converged P0; substrate_queue action=none; NO brake (INV-050 0 prior autopsies; confounded run). INV-050 evidence_quality_note added (no status change). Recurrence: 677+701 -> converged-P0 re-run is the decisive MEL-measurability test. Both FAIL claims UNWEAKENED. PROMOTES NOTHING. Both MARKED REVIEWED."
+    },
+    {
+      "utc": "2026-06-23T22:42:06Z",
+      "reviewed": [
+        "v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3",
+        "v3_exq_700_arc108_sec7_learned_gating_2x2_20260623T161336Z_v3",
+        "v3_exq_700a_arc108_sec7_c3_signed_vs_unsigned_rpe_20260623T072812Z_v3",
+        "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3",
+        "v3_exq_588d_mech189_trained_encoder_absolute_crossing_20260623T074217Z_v3"
+      ],
+      "note": "governance cycle 2026-06-23T22:14Z; sleep cluster gate cleared; 700-cluster autopsy applied; 4 FAIL diagnostics deferred to /failure-autopsy chips"
     }
   ]
 }

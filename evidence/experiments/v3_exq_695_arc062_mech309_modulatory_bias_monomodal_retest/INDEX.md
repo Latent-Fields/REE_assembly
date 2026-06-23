@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_695_arc062_mech309_modulatory_bias_monomodal_retest
 
-Generated: `2026-06-23T09:10:17.727778Z`
+Generated: `2026-06-23T22:40:57.331823Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

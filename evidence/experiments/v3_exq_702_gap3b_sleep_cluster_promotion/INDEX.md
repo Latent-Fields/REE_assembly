@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_702_gap3b_sleep_cluster_promotion
+
+Generated: `2026-06-23T22:40:57.331823Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3` | `2026-06-23T07:30:37Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3/summary.md) / [`manifest`](runs/v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3/manifest.json) / [`metrics`](runs/v3_exq_702_gap3b_sleep_cluster_promotion_20260623T073037Z_v3/metrics.json) |
