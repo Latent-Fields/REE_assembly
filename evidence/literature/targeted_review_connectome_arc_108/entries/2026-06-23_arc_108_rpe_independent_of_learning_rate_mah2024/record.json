@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_108",
+  "entry_id": "2026-06-23_arc_108_rpe_independent_of_learning_rate_mah2024",
+  "timestamp_utc": "2026-06-23T09:05:31Z",
+  "claim_ids_tested": [
+    "ARC-108"
+  ],
+  "source": {
+    "title": "Dopamine transients encode reward prediction errors independent of learning rates.",
+    "authors": [
+      "Andrew Mah",
+      "Carla E M Golden",
+      "Christine M Constantinople"
+    ],
+    "year": 2024,
+    "venue": "Cell Reports",
+    "doi": "10.1016/j.celrep.2024.114840"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "High-quality causal-grade measurement (fiber-photometry dopamine in NAcc core during a volatile, semi-observable-state task) that confirms the supporting half of ARC-108 -- dopamine release does encode a signed RPE -- while complicating the naive teaching-signal story: dopamine encodes RPE INDEPENDENT of the dynamic learning rate, implying dopamine-independent mechanisms set how fast corticostriatal weights actually update. Mixed because it supports 'dopamine = signed RPE teaching signal' but weakens the assumption that the dopamine signal alone carries the full weight-update (RPE x learning-rate) that ARC-108's three-factor rule would compute as dopamine x eligibility.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If ARC-108 implements the gating update as simply (dopamine RPE) x (fixed gain), it will mis-model the biology: the learning rate here is dynamic, scales with belief change at hidden-state transitions, and is instantiated by mechanisms OTHER than the dopamine transient.",
+    "A three-factor rule whose only adaptive term is dopamine cannot reproduce state-transition-driven learning-rate increases; ARC-108 needs the postsynaptic/eligibility factor (or an explicit belief-state gain) to carry the dynamic learning rate, not the dopamine signal."
+  ],
+  "tags": [
+    "arc-108",
+    "reward_prediction_error",
+    "dopamine",
+    "learning_rate",
+    "nucleus_accumbens",
+    "belief_state"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a volatile task with semi-observable states, rats set dynamic learning rates that rise at state transitions and scale with trial-by-trial belief changes (approximating Bayesian updating), yet nucleus-accumbens-core dopamine release encodes the reward-prediction error INDEPENDENT of the learning rate -- so dopamine reflects RPE, not RPE x learning-rate, and dopamine-independent mechanisms instantiate the dynamic learning rate.",
+    "ree_translation": "Supports ARC-108's premise that dopamine carries a signed RPE teaching signal, but warns that the learning rate (how much that RPE actually moves the gating weight) is set elsewhere. For ARC-108's three-factor rule, this argues the dynamic-gain role must live in the postsynaptic/eligibility factor or an explicit belief-state term, not be folded into the dopamine signal.",
+    "mapping_caveat": "Measured in nucleus accumbens core (a value/limbic striatal region), not the dorsal/associative striatum most relevant to ARC-108's committed-selection gating; rodent fiber-photometry is bulk release, not per-synapse. The dissociation may differ in the dorsal gating circuit.",
+    "source_context": "Rats performing a volatile, semi-observable-state reward task; NAcc-core dopamine via genetically-encoded sensor + fiber photometry; computational (Bayesian/RL) modeling of behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Strong measurement; mapping_fidelity moderate because the nuance (RPE independent of learning rate) bears on ARC-108's rule decomposition rather than refuting the substrate; region (NAcc core vs dorsal gating) raises transfer risk."
+  }
+}

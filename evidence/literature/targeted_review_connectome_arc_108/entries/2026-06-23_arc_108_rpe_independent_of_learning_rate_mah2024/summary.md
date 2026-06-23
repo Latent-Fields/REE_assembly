@@ -1,0 +1,21 @@
+# Dopamine transients encode reward prediction errors independent of learning rates
+
+According to PubMed. Source: Mah, Golden & Constantinople (2024), *Cell Reports* 43(10):114840. [DOI](https://doi.org/10.1016/j.celrep.2024.114840)
+
+## What the paper did
+
+The standard reinforcement-learning story -- the one ARC-108 leans on -- says that dopamine encodes a reward-prediction error (RPE), which is multiplied by a learning rate to update state or action values held in corticostriatal synaptic weights. If that is literally true, then dopamine release should reflect the *product* of the learning rate and the RPE. Mah and colleagues tested this directly. They recorded dopamine release in the nucleus accumbens core of rats performing a volatile task with semi-observable states offering different rewards, using a genetically-encoded dopamine sensor and fiber photometry. Behaviourally, the rats set *dynamic* learning rates: they updated faster following state transitions, and the trial-by-trial learning rate scaled with how much their belief about the hidden state changed -- approximating a normative Bayesian strategy. But the dopamine signal told a more specific story: dopamine transients encoded the RPE *independent* of the learning rate. The implication the authors draw is that dopamine reflects the RPE itself, while *dopamine-independent* mechanisms instantiate the dynamic learning rate.
+
+## Why it speaks to ARC-108 -- and why I logged it as mixed
+
+This is the most important counterweight I found, and it cuts both ways, which is why I direction it as mixed rather than supports. The supporting half is real and worth banking: dopamine release does carry a signed reward-prediction error, which is the teaching signal ARC-108 wants to feed into its learned gating weights. So far, so good. The complicating half is the one I want governance to see clearly. ARC-108's three-factor rule, written naively, would compute a weight update as something like (dopamine RPE) x (eligibility). If you read the dopamine signal as already carrying RPE-times-learning-rate, you would expect the dopamine transient to track how fast learning actually proceeds. This paper says it does not. The learning rate -- the gain on the update -- is set by machinery other than the dopamine transient, and it is dynamic, riding on belief-state change at hidden-state transitions.
+
+For ARC-108 the constructive reading is a design constraint, not a refutation. It tells us that if we want a biologically faithful three-factor rule, the *dynamic gain* should live in the postsynaptic / eligibility factor (or in an explicit belief-state term feeding the gate), not be smuggled into the dopamine RPE channel. That is actually congenial to ARC-108's structure, which already separates the Hebbian co-activation (postsynaptic) factor from the dopaminergic RPE factor -- but it raises the bar: a version of ARC-108 that treats the gate update as dopamine-times-a-fixed-gain would mis-model exactly the phenomenon this paper isolates, and would fail to reproduce state-transition-driven jumps in plasticity.
+
+## The caveat I want on the record
+
+Two boundaries. First, the recording is in nucleus accumbens core -- a value/limbic striatal region -- whereas ARC-108's committed-selection gating is most naturally a dorsal/associative striatal function; the RPE-versus-learning-rate dissociation could be arranged differently in the dorsal gating circuit, and we should not assume it transfers. Second, fiber photometry measures bulk dopamine release, not the per-synapse concentration that a three-factor rule actually reads, so this speaks to what the broadcast signal carries, not to what each synapse's update computes. Both boundaries pull the same way: the paper sharpens a design question for ARC-108 rather than settling its fate.
+
+## Confidence
+
+I put this at 0.68 with a mixed direction. The measurement quality is high (0.85 -- causal-grade dopamine sensing plus principled modeling), but mapping fidelity is moderate (0.60) because the finding bears on how ARC-108 should *decompose* its learning rule rather than on whether the substrate exists, and the region mismatch raises transfer risk (0.40). Logged as the honest counterweight to the Warnberg support: dopamine is the teaching signal, but it is not, by itself, the whole weight update.

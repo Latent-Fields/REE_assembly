@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_108",
+  "entry_id": "2026-06-23_arc_108_three_factor_vector_dopamine_warnberg2023",
+  "timestamp_utc": "2026-06-23T09:05:31Z",
+  "claim_ids_tested": [
+    "ARC-108"
+  ],
+  "source": {
+    "title": "Feasibility of dopamine as a vector-valued feedback signal in the basal ganglia.",
+    "authors": [
+      "Emil Warnberg",
+      "Arvind Kumar"
+    ],
+    "year": 2023,
+    "venue": "Proceedings of the National Academy of Sciences (PNAS)",
+    "doi": "10.1073/pnas.2221994120"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Directly implements the exact substrate ARC-108 proposes -- a local three-factor corticostriatal plasticity rule (presynaptic firing x postsynaptic factor x perceived dopamine concentration) with dopamine carrying a teaching signal -- and proves it increases the capacity to learn multidimensional real-valued outputs, which is precisely the 'learned gating weights on the E3 selector' function ARC-108 wants. High source quality (PNAS, formal proof + simulation). Mapping fidelity strong but not perfect: the paper's headline is a vector-valued (per-neuron) dopamine signal, whereas ARC-108's V3-minimal slice currently assumes a signed scalar RPE; the three-factor rule itself transfers cleanly, the vector-vs-scalar refinement is ARC-108's v4 routed-efferent territory.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE keeps a single homogeneous scalar RPE broadcast to all gating weights, the paper's capacity result predicts a hard ceiling on how many independent channels the learned gating can resolve -- a scalar teaching signal cannot supply independent per-channel gradients.",
+    "The three-factor rule's power depends on a postsynaptic eligibility factor co-defining the update; a purely Hebbian-times-global-RPE rule without a credit-assigning postsynaptic term will misassign credit across simultaneously-active channels."
+  ],
+  "tags": [
+    "arc-108",
+    "three_factor_plasticity",
+    "dopamine",
+    "corticostriatal",
+    "basal_ganglia",
+    "learned_gating"
+  ],
+  "mapping": {
+    "source_claim_statement": "A local three-factor corticostriatal plasticity rule -- presynaptic firing rate x a postsynaptic factor x the unique dopamine concentration perceived by each striatal neuron -- lets dopamine act as a vector-valued error feedback signal (a loss gradient), increasing the capacity to learn a multidimensional series of real-valued outputs, and remains compatible with diffuse volume transmission rather than precise nigrostriatal wiring.",
+    "ree_translation": "ARC-108's core mechanism: replace the pure-arithmetic ARC-107 arbitration layer with cortico-striatal gating weights that are LEARNED by a three-factor rule (Hebbian channel co-activation x signed dopaminergic RPE). The paper supplies the formal feasibility and the capacity argument for exactly this teaching-signal-into-gating-weights substrate.",
+    "mapping_caveat": "The paper's strongest result is for a vector-valued (per-neuron) dopamine signal; ARC-108's V3-minimal slice uses a signed scalar RPE. The three-factor learning rule maps directly, but the 'capacity to learn many independent outputs' result is partly a property of the vector signal, which is ARC-108's v4 routed-efferent refinement, not the v3 slice.",
+    "source_context": "Computational/theoretical model of basal-ganglia learning; in-silico, no animal data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.25,
+    "notes": "For an architectural-commitment claim, mapping_fidelity is weighted heaviest; the rule maps almost one-to-one, hence 0.82 aggregate despite the scalar-vs-vector caveat."
+  }
+}

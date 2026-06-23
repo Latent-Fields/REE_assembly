@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_063",
+  "entry_id": "2026-06-23_q_063_arbitration_deficit_ocd_ruan2024",
+  "timestamp_utc": "2026-06-23T09:05:31Z",
+  "claim_ids_tested": [
+    "Q-063"
+  ],
+  "source": {
+    "title": "Disorders of compulsivity: Deficits in arbitrating learning strategies.",
+    "authors": [
+      "Zhongqiang Ruan",
+      "Shilin Liu",
+      "Yu An Liu",
+      "Qiong Yang",
+      "Ziwen Peng"
+    ],
+    "year": 2024,
+    "venue": "Addiction Biology",
+    "doi": "10.1111/adb.13433"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Empirically dissociates the locus of the compulsivity deficit: across OCD, alcohol-use-disorder and depression patients fitted with model-based/model-free RL, OCD patients specifically showed excess system-SWITCHING (an arbitration/control-mechanism failure) rather than only reduced model-based use. This directly supports Q-063's core conjecture that compulsive stickiness can arise from a biased control/arbitration landscape rather than from genuine value -- the field-state-driven-stickiness limb of the question. Strong because it isolates arbitration as a separable locus; held below 0.8 because 'arbitration switching' is REE's MECH-369 decommit-friction analogue only by mapping, and the offline-integration leg is untouched.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OCD patients showed HIGHER behavioural-control system switching where consistent model-free use was optimal -- a control-layer abnormality decoupled from value; a REE diagnostic that reads only z_goal/value would misclassify such a loop as low-value rather than seeing the arbitration/decommit-friction bias.",
+    "Major depressive disorder patients did NOT show the arbitration deficit -- so the signature is specific to compulsivity disorders, warning that not every persistent loop is modulator-trapped; the diagnostic must discriminate compulsive stickiness from other persistence causes."
+  ],
+  "tags": [
+    "q-063",
+    "arbitration",
+    "compulsivity",
+    "model_based",
+    "model_free",
+    "ocd",
+    "system_switching"
+  ],
+  "mapping": {
+    "source_claim_statement": "OCD and alcohol-use-disorder patients showed less model-based strategy choice where it was optimal, but ONLY OCD patients showed higher behavioural-control system switching where model-free use was optimal; major depression patients differed on neither -- implicating dysfunction of the ARBITRATION mechanism (which system controls behaviour at each moment), not just a single-system deficit, as the basis of compulsivity.",
+    "ree_translation": "Direct support for the field-state-driven-stickiness limb of Q-063: compulsive persistence can be driven by a biased arbitration/control mechanism (the analogue of REE's decommit-friction / threshold landscape, MECH-369) rather than by the value of the goal. The 'system switching' abnormality is a behavioural fingerprint of control-landscape bias decoupled from value.",
+    "mapping_caveat": "The paper's 'arbitration mechanism' is a model-based/model-free meta-controller, not REE's slow-modulator field biasing decommit-friction; the mapping is functional (control-layer bias independent of value) not mechanistic. The study is correlational across patient groups, not a causal manipulation of the arbitration bias.",
+    "source_context": "Human patients: 19 alcohol-use-disorder, 30 OCD, 20 major depression + matched controls, performing a 2-choice 3-stage Markov decision task fitted with model-based/model-free RL."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Clean clinical dissociation with a discriminant control group (depression null); mapping_fidelity moderate because 'arbitration switching' maps to MECH-369 functionally, not mechanistically."
+  }
+}

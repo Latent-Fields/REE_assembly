@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_063",
+  "entry_id": "2026-06-23_q_063_relief_release_symptom_provocation_banca2015",
+  "timestamp_utc": "2026-06-23T09:05:31Z",
+  "claim_ids_tested": [
+    "Q-063"
+  ],
+  "source": {
+    "title": "Imbalance in habitual versus goal directed neural systems during symptom provocation in obsessive-compulsive disorder.",
+    "authors": [
+      "Paula Banca",
+      "Valerie Voon",
+      "Martin D Vestergaard",
+      "Gregor Philipiak",
+      "Ines Almeida",
+      "Fernando Pocinho",
+      "Joao Relvas",
+      "Miguel Castelo-Branco"
+    ],
+    "year": 2015,
+    "venue": "Brain",
+    "doi": "10.1093/brain/awu379"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Symptom-provocation fMRI that separately models the urge-to-avoid, rejection, and RELIEF events of a compulsive cycle, finding goal-directed (caudate-prefrontal) deactivation alongside habitual (putamen/STN) hyperactivation, with putaminal activity preceding the avoidance-and-relief sequence. Supports Q-063 on two fronts: an imbalance toward habitual control during compulsion (the stickiness limb) AND a neural correlate of the release/relief event -- the analogue of Q-063's SD-034 closure-operator 'fires and releases' diagnostic. Held at 0.6 because it is correlational neuroimaging that does not separate value from stickiness directly, and the relief-event mapping to a closure operator is a structural analogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Strong symptom provocation evoked caudate-prefrontal DEACTIVATION with putaminal/STN hyperactivation -- a loop that proceeds while the goal-directed (value) circuit is offline; a value-only readout would see this trapped loop as having no active goal representation, mistaking absent z_goal for low value.",
+    "The relief event followed putaminal hyperactivation then deactivation -- if REE's closure operator never fires (no relief transition) the loop is blocked by decommit-friction, not released by value; absence of a relief/release signature is the tell for a trapped loop."
+  ],
+  "tags": [
+    "q-063",
+    "symptom_provocation",
+    "relief",
+    "closure_operator",
+    "habit",
+    "goal_directed",
+    "putamen",
+    "ocd"
+  ],
+  "mapping": {
+    "source_claim_statement": "During individually-tailored symptom provocation, OCD patients showed a dichotomous deactivation of caudate-prefrontal (goal-directed) circuits with hyperactivation of subthalamic-nucleus/putaminal (habit) regions; putaminal hyperactivation during provocation preceded subsequent deactivation during the avoidance and RELIEF events, with ventromedial-prefrontal/orbitofrontal cortex modulating the compulsivity circuit.",
+    "ree_translation": "Supports Q-063's stickiness limb (compulsion runs with goal-directed/value circuitry deactivated) and, more specifically, supplies a neural analogue of the SD-034 closure-operator 'fires-and-releases' diagnostic: the provocation -> urge -> avoidance -> relief sequence is the biological cousin of REE's commit -> dwell -> release trajectory, and a trapped loop is one where the release/relief transition fails to fire.",
+    "mapping_caveat": "Correlational fMRI during symptom provocation, not a manipulation that separates value from stickiness; 'relief' is the subjective/neural cessation of an aversive urge, which maps to REE's closure-operator release only by structural analogy, not by measuring the same variable. Small sample (15 patients).",
+    "source_context": "Human fMRI: 15 OCD patients + 15 controls, individualised live symptom-provocation paradigm with trial-by-trial avoidance responses and modelled relief events."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Brain journal, novel ecological design, but small sample and correlational; mapping to the closure-operator release event is a structural analogy, lowering mapping_fidelity."
+  }
+}

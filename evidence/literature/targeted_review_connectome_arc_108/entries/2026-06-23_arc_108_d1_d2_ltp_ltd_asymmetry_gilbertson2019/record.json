@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_108",
+  "entry_id": "2026-06-23_arc_108_d1_d2_ltp_ltd_asymmetry_gilbertson2019",
+  "timestamp_utc": "2026-06-23T09:05:31Z",
+  "claim_ids_tested": [
+    "ARC-108"
+  ],
+  "source": {
+    "title": "Maladaptive striatal plasticity and abnormal reward-learning in cervical dystonia.",
+    "authors": [
+      "Tom Gilbertson",
+      "Mark Humphries",
+      "J Douglas Steele"
+    ],
+    "year": 2019,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.14414"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Fits a basal-ganglia model with explicit, separable D1:LTP/LTD and D2:LTP/LTD corticostriatal learning rules to human reversal-learning behaviour and finds that a specific asymmetry (decreased D2:LTP/LTD) best explains a clinical phenotype, with learning rates tracking symptom severity. This is direct empirical support that the D1-LTP/D2-LTD asymmetry ARC-108 names is a real, load-bearing, individually-varying parameter and that its derangement maps to a disorder -- exactly ARC-108's psychiatric_failure_mode requirement. Down-weighted because the phenotype is a movement disorder (dystonia), not the dopaminergic-RPE psychopathologies ARC-108 names (addiction/schizophrenia/anhedonia), so the failure-mode mapping is by analogy of mechanism, not of syndrome.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses D1 and D2 plasticity into a single symmetric learning rule, it forfeits the degree of freedom that here distinguishes patients from controls -- the model could not have separated reward-phase from loss-phase deficits without independent D1 and D2 LTP/LTD terms.",
+    "Excessive D2 corticostriatal depotentiation selectively impaired the post-reversal (relearning) phase; a gating substrate with a deranged D2-LTD branch would show intact initial acquisition but pathological inflexibility -- a concrete failure signature to watch for in the E3 selector."
+  ],
+  "tags": [
+    "arc-108",
+    "d1_d2_asymmetry",
+    "ltp_ltd",
+    "corticostriatal",
+    "reversal_learning",
+    "psychiatric_failure_mode"
+  ],
+  "mapping": {
+    "source_claim_statement": "Fitting a basal-ganglia model with receptor-specific corticostriatal learning rules (D1:LTP/LTD and D2:LTP/LTD, each up or down) to a reward gain / loss-avoidance reversal task, a model with decreased D2:LTP/LTD best explained cervical dystonia patients' selective post-reversal impairment, and individual reward-reversal learning rates correlated with motor symptom severity.",
+    "ree_translation": "Direct support for the D1-LTP / D2-LTD asymmetry that ARC-108 builds into its learned gating rule: the two receptor branches are separable, individually parameterised, and their imbalance is behaviourally consequential and clinically graded -- which is precisely why ARC-108 wants them as distinct learnable terms rather than one symmetric weight update.",
+    "mapping_caveat": "The clinical phenotype is cervical dystonia (a movement disorder), not the dopaminergic-RPE psychopathologies ARC-108 explicitly names. The mechanistic mapping (separable D1/D2 LTP-LTD branches whose asymmetry matters) is strong; the syndrome-level mapping to ARC-108's psychiatric_failure_mode list is by analogy, not direct.",
+    "source_context": "Human patients (40 cervical dystonia, 40 controls) performing a reward/loss-avoidance reversal task, behaviour fitted to a computational basal-ganglia model."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "Human behaviour + model fit is solid empirical grounding; transfer_risk elevated because the syndrome (dystonia) is off-target relative to ARC-108's named failure modes."
+  }
+}
