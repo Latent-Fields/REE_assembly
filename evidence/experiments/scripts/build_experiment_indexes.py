@@ -1745,10 +1745,16 @@ def _write_claim_evidence_matrix(
             )
             continue
 
-        # Warn if multi-claim experiment lacks per-claim direction overrides
+        # Warn if multi-claim experiment lacks per-claim direction overrides.
+        # Exempt run-level "superseded": supersession is run-scoped (the whole run
+        # is excluded below at scoring_excluded="superseded", and there is no
+        # per-claim superseded form), so per-claim direction is moot -- the warning
+        # would be a pure false positive for a corrected re-run that replaced its
+        # predecessor.
         if (len(run.claim_ids_tested) > 1
                 and not run.evidence_direction_per_claim
-                and run.experiment_purpose == "evidence"):
+                and run.experiment_purpose == "evidence"
+                and inferred_direction != "superseded"):
             print(f"  WARNING: {run.run_id} tags {len(run.claim_ids_tested)} claims "
                   f"without evidence_direction_per_claim -- blanket "
                   f"'{inferred_direction}' applied to all: "
