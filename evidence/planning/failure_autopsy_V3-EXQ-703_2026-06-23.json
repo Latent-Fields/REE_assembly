@@ -1,0 +1,81 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-23T22:51:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "confirmed_by": "user (interactive /failure-autopsy gate 2026-06-23: 'queue-experiment re-queue, converged P0 + cf_margin recalibration')",
+  "targets": [
+    {
+      "run_id": "v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3",
+      "queue_id": "V3-EXQ-703",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Both pre-registered readiness preconditions unmet. R1 world_forward_r2_trained = -0.0547 (threshold 0.20); per-seed R2 = -0.688 / -0.057 / +0.581, only seed 123 converges (1/3). R2 cf_margin_straddles_feedstock = 0/3 seeds straddle (threshold >=2/3): in ARM_CF_BACKED every seed has mech276_n_counterfactual_backed=0 and mech276_n_correlational_skipped=239/241/239 because cf_margin=0.30 sits above the mean_cf_contrast distribution (0.200/0.161/0.117), so all records skip even on the converged seed. The load-bearing posterior_discrimination_cf_vs_correlational criterion PASSED (posterior_deltas 0.0112/0.0076/0.0053 >= 1e-3 floor) and criteria_non_degenerate (feedstock_differs + aggregator_updated) both true. Self-route substrate_not_ready_requeue per the script's pre-registered grid.",
+      "ran_to_completion": true,
+      "outcome": "FAIL",
+      "self_route_label": "substrate_not_ready_requeue (R1 world_forward_r2 + R2 cf_margin straddle both unmet)",
+      "self_route_is_correct_disposition": true,
+      "facts": {
+        "gates_met": "load-bearing posterior_discrimination_cf_vs_correlational PASS (deltas 0.0112/0.0076/0.0053); criteria_non_degenerate PASS (feedstock_differs + aggregator_updated); CF arm skipped 239/241/239 correlational records vs CORR arm 0",
+        "gates_failed": "R1 world_forward_r2 -0.0547 (UNMET, dominant); R2 cf_margin straddle 0/3 (UNMET, downstream of R1 + an independent cf_margin mis-calibration)",
+        "per_seed_world_forward_r2": "seed42 -0.688 / seed7 -0.057 / seed123 +0.581 (1/3 converge)",
+        "cf_contrast_vs_margin": "mean_cf_contrast 0.200/0.161/0.117 all < cf_margin 0.30 -> 0 backed, 239/241/239 skipped on every seed incl the converged 123",
+        "key": "The two unmet preconditions are downstream of an UNTRAINED P0 E2WorldForward (the V3-EXQ-642 / 701 untrained-substrate confound) plus a cf_margin set above the achievable cf_contrast band -- NOT a missing MECH-276 feedstock. The passing discrimination + non-degeneracy POSITIVELY rule out the feedstock-absent reading: the only_counterfactual_backed lever measurably gates what reaches the MECH-275 aggregator."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (intact) -- diagnostic, claim_ids=[]; never a weakens. Correctly non_contributory.",
+        "biological_reference": "clear; not the failing layer -- the MECH-276 single-pass comparator (SD-031/MECH-256 family, Frith/Shergill agency comparator) is sound; the failure is upstream (untrained P0 + cf_margin threshold).",
+        "prerequisites": "missing (diagnostic-internal) -- a CONVERGED P0 E2WorldForward, the comparator's valid base. It trained on only 1/3 seeds (R2 -0.688/-0.057/+0.581).",
+        "implementation": "partial -- the MECH-276 buffer + only_counterfactual_backed cf-gate are correct (discrimination + non-degeneracy PASS); the gap is the P0 that feeds the comparator + the cf_margin calibration.",
+        "environment": "adequate -- CausalGridWorldV2 is genuinely action-conditional (the script's stated design reason).",
+        "measurement": "under-instrumented for convergence -- the readiness probe is sound, but the P0 budget/regime does not deliver a converged base on >=2/3 seeds (R1 has nothing valid to read) and cf_margin is fixed at 0.30 above the ~0.12-0.20 contrast band.",
+        "integration": "n/a -- single-module readiness diagnostic.",
+        "scale": "likely insufficient P0 -- N_P0_TRANSITIONS=600, N_P0_TRAIN_STEPS=300; held-out R2 ranges to -0.688; the SD-056 world-forward did not train to a usable R2."
+      },
+      "biological_reference": {
+        "closest_mechanism": "single-pass forward-model agency comparator (SD-031 E2WorldForward / MECH-256; counterfactual contrast ||E2(z_prev,a) - E2(z_prev,a_cf)|| gating which attributions reach the MECH-275 Bayesian aggregator)",
+        "dependencies": ["a converged, action-conditional P0 world-forward so the comparator residual + counterfactual contrast reflect genuine action effects, not un-trained base error"],
+        "is_formal_import": false,
+        "divergence": "none implicated -- the failure is upstream (diagnostic P0 did not converge + cf_margin mis-set), not a divergence of the MECH-276 mechanism from biology.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "n/a (diagnostic; no claim status change)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-703 (2026-06-23, failure-autopsy): MECH-276 scientist-attribution feedstock readiness diagnostic, non_contributory CONFIRMED (diagnostic, claim_ids=[], scoring-excluded; PROMOTES NOTHING; MECH-275 stays substrate_conditional). Self-route substrate_not_ready_requeue is correct per the pre-registered grid: BOTH readiness preconditions unmet -- R1 world_forward_r2 -0.0547 (SD-056 P0 world-forward trained on only 1/3 seeds; per-seed R2 -0.688/-0.057/+0.581) and R2 cf_margin straddle 0/3 (cf_margin 0.30 above the ~0.12-0.20 cf_contrast band, so zero records cross the backed threshold even on the converged seed). Both trace to the same world-forward-not-trained-as-primary confound as V3-EXQ-701 (642 family), NOT a missing MECH-276 feedstock -- the load-bearing posterior-discrimination criterion + criteria_non_degenerate PASS (the only_counterfactual_backed lever measurably gates what reaches the MECH-275 aggregator). Route: re-queue (new letter) with a reconstruction-primary converged P0 + a per-seed R2 gate + cf_margin recalibrated into the trained cf_contrast distribution; no substrate_queue entry; no re-derive brake. If a converged-P0 successor then clears R1+R2 but the discrimination COLLAPSES, THAT is the genuine MECH-275-aggregator-insensitivity ceiling and routes to substrate enrichment.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No missing mechanism. The fix is the diagnostic's P0 convergence (test-bed construction) + a cf_margin recalibration -- a queue-experiment re-queue, not a substrate_queue entry. The MECH-276 feedstock plumbing demonstrably works (discrimination + non-degeneracy PASS). If a converged-P0 + recalibrated-cf_margin successor STILL collapses the discrimination (R1+R2 passing), THAT result routes to substrate enrichment (MECH-275 aggregator sensitivity) and a substrate_queue entry should be created then."
+      },
+      "recommended_requeue_spec": {
+        "skill": "queue-experiment",
+        "successor_letter": "V3-EXQ-703a",
+        "supersedes": "V3-EXQ-703",
+        "changes": [
+          "Make the world-forward RECONSTRUCTION MSE the decisive P0 objective on the readiness harness (the 701a pattern: forward MSE primary; keep the SD-013 interventional action-divergence margin as a smaller auxiliary so action-spread does not dominate and degrade absolute one-step R2). Raise N_P0_TRANSITIONS / N_P0_TRAIN_STEPS (and/or P0 episodes) until held-out world_forward_r2 >= 0.2 on >= 2/3 seeds.",
+          "Add a per-seed R2 readiness gate: interpret R2 (cf_margin straddle) and the load-bearing discrimination ONLY on seeds where R1 (world_forward_r2 >= 0.2) passes; self-route substrate_not_ready_requeue if R1 does not clear >= 2/3.",
+          "Recalibrate cf_margin within the trained-comparator cf_contrast distribution (measured ~0.12-0.20 on this run; aim ~0.15) so the CF arm has BOTH counterfactual-backed AND correlational-skipped records (the straddle).",
+          "Keep the MECH-276 feedstock buffer, the only_counterfactual_backed lever, the MECH-275 aggregator posterior read, claim_ids=[] (diagnostic), commitment-free."
+        ],
+        "decisive_outcome": "R1+R2 met AND discrimination holds -> mech276_feedstock_readiness confirmed -> unblock the SEPARATE MECH-275 sleep-aggregation promotion run + re-add MECH-275 to sleep_substrate:GAP-3b unblocks_claims. R1+R2 met AND discrimination COLLAPSES -> substrate_ceiling (MECH-275 aggregator insensitive to the feedstock difference) -> route to substrate enrichment + fire the re-derive brake on that clean reading."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "sibling_lineage_autopsies": ["failure_autopsy_V3-EXQ-701_2026-06-23 (INV-050; same world-forward-not-trained-as-primary confound)"],
+        "reason_not_fired": "claim_ids=[] (no claim to count prior substrate_ceiling/non_contributory autopsies against). More decisively, 703 is confounded by P0 non-convergence + a cf_margin mis-calibration, so it has NOT cleanly hit a MECH-275/276 ceiling -- it routes to a queue-experiment re-queue, not substrate enrichment. Firing the brake here would reclassify a confounded run as a ceiling (illusory resolution). The converged-P0 + recalibrated-cf_margin re-run is the decisive test; a brake would fire there only if the discrimination collapses with R1+R2 passing."
+      },
+      "learning_extracted": [
+        "703's two unmet preconditions are downstream of an untrained P0 world-forward (R1, 1/3 seeds converge) -- the V3-EXQ-642 / 701 confound -- NOT a missing MECH-276 feedstock. The load-bearing discrimination criterion + non-degeneracy PASS, so the feedstock buffer + the only_counterfactual_backed lever demonstrably work.",
+        "cf_margin (0.30) is independently mis-calibrated above the cf_contrast distribution (~0.117-0.200), so even the converged seed 123 skips every record and yields no straddle. The re-queue must recalibrate cf_margin into the achievable band (~0.15), and the band only becomes meaningful once the P0 world-forward trains.",
+        "The decisive next test is a converged-P0 + recalibrated-cf_margin re-run. R1+R2 met + discrimination holds -> MECH-276 feedstock readiness confirmed (unblock the MECH-275 promotion run). R1+R2 met + discrimination collapses on the trained comparator -> the genuine MECH-275-aggregator-insensitivity ceiling (route to substrate enrichment + fire the re-derive brake) -- not reachable from this confounded run."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "evidence_protection_note": "MECH-275 / MECH-276 are diagnostic-gated and unweakened by this run. 703 is a diagnostic (experiment_purpose=diagnostic, scoring-excluded) with a clean substrate_not_ready_requeue self-route (non_contributory, never a weakens) -- no claim status change. The recommended action is a queue-experiment re-queue with a converged P0 + cf_margin recalibration; governance applies the disposition + marks 703 reviewed. Cross-reference: failure_autopsy_V3-EXQ-701_2026-06-23 (same world-forward-not-trained-as-primary signature; 701->701a fix is the template)."
+}
