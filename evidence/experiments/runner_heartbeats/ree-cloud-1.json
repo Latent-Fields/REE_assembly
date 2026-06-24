@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-24T20:45:40Z",
+  "last_tick_utc": "2026-06-24T20:55:45Z",
   "state": "running",
   "current_exq": "V3-EXQ-700c",
   "current_exq_started_utc": "2026-06-24T20:32:33.936805+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / envelope_only_control_no_learned_gating",
     "runs_done": 0,
     "runs_total": 30,
-    "episodes_done": 80,
+    "episodes_done": 150,
     "episodes_total": 250,
-    "overall_pct": 1.1
+    "overall_pct": 2.0
   },
-  "seconds_elapsed": 786,
-  "seconds_remaining": 88194,
+  "seconds_elapsed": 1392,
+  "seconds_remaining": 86568,
   "recent_lines": [
     "Arm A0_ENVELOPE_ONLY (envelope_only_control_no_learned_gating) lcg_on=False settle_on=False noise_on=False field_noise=False rpe_mode=signed (P0=100 ep e2-train, P1=50 ep bias-train, P2=100 ep measure, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition envelope_only_control_no_learned_gating",
@@ -28,7 +28,14 @@
     "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 50/250",
     "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 60/250",
     "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 70/250",
-    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 80/250"
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 80/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 90/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 100/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P1 ep 110/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P1 ep 120/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P1 ep 130/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P1 ep 140/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P1 ep 150/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
