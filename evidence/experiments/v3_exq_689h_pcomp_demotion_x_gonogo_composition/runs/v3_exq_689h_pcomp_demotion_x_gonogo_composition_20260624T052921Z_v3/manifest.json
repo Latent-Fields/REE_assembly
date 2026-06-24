@@ -1,0 +1,126 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689h_pcomp_demotion_x_gonogo_composition",
+  "run_id": "v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-24T05:29:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448",
+    "MECH-449"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-448": "supports",
+    "MECH-449": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "demotion_x_gonogo_additive",
+    "preconditions": [
+      {
+        "name": "pool_divergent_raw_f_range",
+        "description": "median raw-F RANGE across seeds clears the divergent-menu floor",
+        "measured": 1.55962,
+        "threshold": 0.1,
+        "control": "graded-magnitude world_states -> divergent F",
+        "met": true
+      },
+      {
+        "name": "envelope_size_lower",
+        "description": "median MECH-448 demotion envelope size >= ENVELOPE_MIN (room for Go/No-Go to drop a safety + a stale candidate AND leave >= 2 survivors to arbitrate)",
+        "measured": 5,
+        "threshold": 4.0,
+        "control": "adaptive-floor envelope over the fixed F menu (retry-selected)",
+        "met": true
+      },
+      {
+        "name": "envelope_excludes",
+        "description": "median excluded_count >= 1 (the envelope is not an all-admit no-op; F-poor excluded)",
+        "measured": 3,
+        "threshold": 1.0,
+        "control": "F-poor candidates below the adaptive mean share",
+        "met": true
+      },
+      {
+        "name": "monostrategy_baseline_off_entropy",
+        "description": "ARM_OFF committed-class entropy stays BELOW the monostrategy ceiling (headroom)",
+        "measured": 0.0,
+        "threshold": 0.05,
+        "direction": "upper",
+        "control": "fixed F menu -> F-argmin is a fixed class",
+        "met": true
+      },
+      {
+        "name": "demotion_main_effect_lift",
+        "description": "demotion main-effect entropy lift clears the floor (the lever genuinely converts)",
+        "measured": 1.51406,
+        "threshold": 0.2,
+        "control": "within-eligible argmin over the varying modulatory favorite",
+        "met": true
+      },
+      {
+        "name": "gonogo_suppression_engages",
+        "description": "median Go/No-Go suppression on ARM_BOTH >= 1 candidate (the gate fires)",
+        "measured": 2.0,
+        "threshold": 1.0,
+        "control": "safety+staleness No-Go injected on envelope members",
+        "met": true
+      },
+      {
+        "name": "cross_seed_estimable",
+        "description": ">= 2 valid seeds so the SD-of-delta interaction gate is estimable",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "control": "matched contexts replayed across arms per seed",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "demotion_lift": true,
+      "gonogo_suppression": true,
+      "four_arms_distinguishable": true
+    },
+    "criteria": [
+      {
+        "name": "composition_characterized",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "gng_inert_standalone": true,
+    "interaction_mean_nats": 0.01725,
+    "interaction_pstdev_nats": 0.01495,
+    "interaction_margin_nats": 0.1
+  }
+}
