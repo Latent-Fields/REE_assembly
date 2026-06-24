@@ -475,3 +475,4 @@ One line per hourly tick. ASCII only.
 2026-06-24T05:03:11Z SPAWN IGW-20260624-196 skill=/queue-experiment prio=40 uuid=1c8c977d-aa7e-49a1-b62f-d72bb4850d12 pid=5580 worktree=igw-196-proposal-for-mech-178
 2026-06-24T05:23:29Z auto-defer IGW-20260624-196 hash=468406a8507d for 48h (reaped -> completed_resumable)
 2026-06-24T05:23:29Z GC keep igw-196-proposal-for-mech-178 (ledger IGW-20260624-196 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-06-24T05:38:43Z AUDIT CRITICAL: respawn loop (1 hash(es)); auto-paused routine
