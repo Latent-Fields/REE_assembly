@@ -1,34 +1,48 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-24T06:22:47Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-466d",
-  "current_exq_started_utc": "2026-06-24T05:43:29.545941+00:00",
-  "current_title": "SD-034/MECH-094 satisficing residue-discharge commitment-free retest (Leg-A hook wired; supersedes 466c)",
-  "current_claim_id": "SD-034",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 42 / CURRICULUM_BUILT_SATISFICING_RESIDUE_DISCHARGE_LEG_A",
-    "runs_done": 0,
-    "runs_total": 3,
-    "episodes_done": 30,
-    "episodes_total": 265,
-    "overall_pct": 3.8
-  },
-  "seconds_elapsed": 2358,
-  "seconds_remaining": 29844,
-  "recent_lines": [
-    "[v3_exq_466d_sd034_satisficing_residue_discharge_behavioural] starting (dry_run=False)",
-    "Seed 42 Condition CURRICULUM_BUILT_SATISFICING_RESIDUE_DISCHARGE_LEG_A",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4702 formed=True",
-    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.981 gate=pass"
+  "last_tick_utc": "2026-06-24T11:13:41Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-700b",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-460m",
+      "result": "FAIL",
+      "completed_at": "2026-06-23T10:06:04.265690+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-588e",
+      "result": "PASS",
+      "completed_at": "2026-06-23T23:17:08.308283+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-460o",
+      "result": "PASS",
+      "completed_at": "2026-06-24T04:51:03.418746+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-689h",
+      "result": "PASS",
+      "completed_at": "2026-06-24T05:29:21.502467+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-466d",
+      "result": "FAIL",
+      "completed_at": "2026-06-24T09:47:10.763678+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3519 6af16e8 2026-06-24 (running r3260 daed671)",
+  "runner_version": "r3525 171d5a1 2026-06-24 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
