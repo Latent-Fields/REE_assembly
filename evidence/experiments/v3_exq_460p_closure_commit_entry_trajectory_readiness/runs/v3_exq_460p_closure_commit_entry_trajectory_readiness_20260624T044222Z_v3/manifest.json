@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_460p_closure_commit_entry_trajectory_readiness",
+  "run_id": "v3_exq_460p_closure_commit_entry_trajectory_readiness_20260624T044222Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-06-24T04:42:22Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "trajectory_arms_sustains_and_steps_bool_only_sustains",
+    "preconditions": [
+      {
+        "name": "closure_rule_directed_commit_formed",
+        "description": "ARM_TRAJECTORY forms a goal-active rule-directed commitment the latch can set on (goal_state.is_active() AND lateral_pfc.rule_state norm >= closure_commit_entry_rule_norm_floor on >= 2/3 guard seeds). Below floor -> the SET predicate is starved, not falsified -> substrate_not_ready_requeue (NEVER a *_ceiling / does_not_support label).",
+        "measured": 1630,
+        "threshold": 1,
+        "met": true,
+        "control": "ARM_TRAJECTORY eval loop"
+      },
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds (the trained substrate foraged + seeded ecologically).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "gate_a_occupancy": true,
+      "gate_b_cstep": true
+    },
+    "criteria": [
+      {
+        "name": "gate_a_both_latch_arms_armed_and_sustained_2of3",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "gate_b_cstep_traj_steps_bool_does_not_2of3",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "secondary_contrast": {
+      "off_did_not_arm_fraction": 1.0,
+      "traj_steps_program_fraction": 1.0,
+      "bool_no_steps_fraction": 1.0,
+      "note": "ARM_ENTRY_OFF should reproduce the 460k/460l baseline (armed == 0). The load-bearing PASS is gate (a) occupancy on BOTH latch arms; gate (b) C-STEP is the bool-vs-trajectory EVIDENCE (which latch the de-commit successor uses), not the occupancy-readiness gate."
+    },
+    "bool_vs_trajectory_note": "ARM_BOOL (use_closure_commit_entry) and ARM_TRAJECTORY (+ use_closure_commit_entry_trajectory) both sustain a closure-formed beta occupancy (gate a). The C-STEP readout closure_program_steps_total distinguishes them: > 0 on ARM_TRAJECTORY (the between-tick path advances the closure-formed committed program via e3._closure_committed_trajectory) and == 0 on ARM_BOOL (a bare bool cannot be stepped -> falls through to repeat _last_action). If the de-commit DV (MECH-446 occupancy-drop) needs only occupancy, the cheaper bool latch suffices; if it needs a stepped program, route the successor to the trajectory latch.",
+    "f_independence_note": "n_f_commits per arm/seed expected ~0 (the occupancy is F-INDEPENDENT -- e3._committed_trajectory stays None while the closure-plane commit-ENTRY latch arms the hold).",
+    "primitive_under_test": {
+      "bool_flag": "use_closure_commit_entry (ree-v3 main 84c1e7c)",
+      "trajectory_flag": "use_closure_commit_entry_trajectory (ree-v3 main 96ee30c)",
+      "bool_latch": "e3._closure_committed_active (sticky, F-INDEPENDENT)",
+      "trajectory_latch": "e3._closure_committed_trajectory (sticky, F-INDEPENDENT)",
+      "occupancy_counter": "agent._ncl_hold_closure_armed_count",
+      "cstep_counter": "closure_program_steps_total (between-tick committed-program steps)",
+      "rule_norm_floor": 0.01,
+      "note": "closure_exclusive_decommit_eval + use_closure_commit_beta_coupling + use_natural_commit_latch_hold ON in ALL arms; the variables are the two commit-ENTRY flags. The JOB-2 rho ramp / habenula + the rung-6 NaturalCommitUrgencyRelease are OFF in all arms."
+    }
+  }
+}
