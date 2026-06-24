@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-24T05:49:47Z",
+  "last_review_utc": "2026-06-24T06:39:48Z",
   "discussed_experiment_dirs": [
     "v3_exq_703_mech276_scientist_attribution_readiness",
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
@@ -755,9 +755,15 @@
     "v3_exq_588d_mech189_trained_encoder_absolute_crossing",
     "v3_exq_460m_closure_commit_entry_readiness",
     "v3_exq_460n_closure_commit_entry_trajectory_readiness",
-    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence"
+    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence",
+    "v3_exq_701b_inv050_mel_measurability_frozen_probe",
+    "v3_exq_460o_closure_commit_entry_readiness",
+    "v3_exq_460p_closure_commit_entry_trajectory_readiness"
   ],
   "reviewed_run_ids": [
+    "v3_exq_701b_inv050_mel_measurability_frozen_probe_20260624T043724Z_v3",
+    "v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3",
+    "v3_exq_460p_closure_commit_entry_trajectory_readiness_20260624T044222Z_v3",
     "v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3",
     "v3_exq_703_mech276_scientist_attribution_readiness_20260623T075231Z_v3",
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier_20260622T191736Z_v3",
@@ -4846,6 +4852,15 @@
         "v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3"
       ],
       "note": "P-comp adjudication (conversion_ceiling_prong_map.md within-selection-face composition-characterization gate). V3-EXQ-689h PASS, experiment_purpose=diagnostic (claim_ids=[MECH-448, MECH-449] context-only -> SCORING-EXCLUDED; does NOT weight either claim's confidence -- each already face-validated 689d/689g; P-comp PROMOTES NOTHING). Verdict ADDITIVE: 2x2 demotion x Go/No-Go at C2 (committed-class entropy), all 7 non-vacuity preconditions met 3/3 seeds, non_degenerate. E[off,dem,gng,both]=[0.0, 1.505, 0.0, 1.523]; demotion_main +1.514 nats (sole C2 converter of the F-monopoly into committed-class diversity), gonogo_main +0.009, interaction 0.017 nats < margin 0.10 (SD-of-delta + abs-floor gate; abs-floor load-bearing since k*pstdev=0.022). STRUCTURAL FINDING (recorded): Go/No-Go is standalone-inert (gng_inert_standalone=True; ARM_GNG bit-identical to ARM_OFF) because its gate runs only inside the demotion/shortlist eligible-set block (e3_selector.py:1760) -- it relabels within the demotion envelope but adds no committed-class entropy of its own. So 'additive' = NON-INTERFERING (Go/No-Go does not cancel demotion's gains), not two independent entropy sources. DIAGNOSTIC SELF-ROUTE SOUND: scoring-excluded note present, preconditions verified non-vacuous, verdict gate is SD-of-delta+abs-floor (per the effect-size PASS-gate rule). PRONG MAP RECONCILED: P-comp row -> characterized/ADDITIVE/RESOLVED; Composition-matrix within-selection-face bullet -> ADDITIVE; Critical-path item 1 -> DONE. CONSEQUENCE: both selection-face levers (demotion + Go/No-Go) enter the full-stack arm together with NO leave-one-out for this pair. P2 (root-C de-commit / closure-exclusive de-commit eval substrate) CONFIRMED still the live critical path + now SOLE remaining gate (P-comp DONE, P3 folded); P-comp unblocks NO full-stack assembly on its own. MARKED REVIEWED."
+    },
+    {
+      "utc": "2026-06-24T06:39:48Z",
+      "reviewed": [
+        "v3_exq_701b_inv050_mel_measurability_frozen_probe_20260624T043724Z_v3",
+        "v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3",
+        "v3_exq_460p_closure_commit_entry_trajectory_readiness_20260624T044222Z_v3"
+      ],
+      "note": "governance 2026-06-24T06:39Z. 701b FAIL diagnostic (non_contributory): destabiliser_verdict=sd056_contrastive_is_destabiliser confirmed by ablation (recon-only arm conv_frac=1.0 vs recon+contrastive 0.333). INV-050 UNWEAKENED. INV-050 evidence_quality_note updated (701b ablation finding; 701c route = recon-only P0 warm-up then frozen MEL probe). 460o PASS: use_closure_commit_entry bool latch arms+sustains 2/3 seeds (seed 43 neither arm fires -- seed quirk), OFF baseline clean (0/3). 460p PASS: both BOOL+TRAJ latch arm 2/3, C-STEP distinction clean (TRAJ closure_program_steps_total >0 all seeds, BOOL=0 all seeds). No claims.yaml status changes. MARKED REVIEWED."
     }
   ]
 }
