@@ -200,14 +200,14 @@ closure_plan:
       phase: 3
       status: assembling
       severity: load-bearing
-      awaiting: "ARC-108 unified-dopamine substrate (learned w_chan gating) + MECH-450 settling step (W_lat) -- under active build (2 implement-substrate sessions, ree-v3); falsifiers V3-EXQ-700 (sec-7 learned-gating 2x2) + V3-EXQ-700a (C3 signed-vs-unsigned-RPE ablation) QUEUED, awaiting run"
+      awaiting: "ARC-108 unified-dopamine substrate (learned w_chan gating) + MECH-450 settling step (W_lat); TERMINAL falsifier V3-EXQ-700c (sec-7 learned-gating settling; same-layer frozen magnitude-matched random W_lat null; supersedes the V3-EXQ-700 -> 700a -> 700b lineage) CLAIMED/running, awaiting score. PRE-REGISTERED TERMINAL (manifest pre_registered_terminal=True): any further null -> V4 loop-segregation substrate, NO further V3 letters"
       assembly_status: in_progress
-      owner_exq: "V3-EXQ-700 (ARC-108 sec-7 learned-gating 2x2 falsifier; claim_ids=[MECH-439, ARC-108, MECH-450]; QUEUED, awaiting run) + V3-EXQ-700a (C3 signed-vs-unsigned-RPE ablation)"
+      owner_exq: "V3-EXQ-700c (ARC-108 sec-7 learned-gating settling falsifier; brake-EXEMPT PRE-REGISTERED TERMINAL with a same-layer frozen magnitude-matched random W_lat null; claim_ids=[MECH-439, ARC-108, MECH-450]; CLAIMED/running as of 2026-06-24). Lineage V3-EXQ-700 -> 700a -> 700b -> 700c (each supersedes its predecessor; failure_autopsy_V3-EXQ-700b_2026-06-24 is the routing record). Any further null -> V4 loop-segregation, no further V3 letters."
       unblocks_claims: [MECH-439, ARC-108, MECH-450]
       depends_on: ["behavioral_diversity_isolation:GAP-J"]
       cross_plan_link: ["conversion_ceiling_campaign:CAMPAIGN", "biology_grounding_convergence_v4:BG-2"]
       substrate_queue_entry: f_dominance_conversion_ceiling
-      last_updated: 2026-06-23
+      last_updated: 2026-06-24
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to give the OPENING build front that SUCCEEDS GAP-J a tracked closure node. GAP-J (ARC-107, the arithmetic BG-selector constitution) PROMOTED MECH-448 provisional via 689d, but the arbitration layer has NO learned parameters -- ARC-108 (registered claims.yaml; substrate_conditional, implementation_phase v4 PULLED FORWARD via V3-EXQ-700) is the learning afferent that makes it learnable, and MECH-450 (registered; v4-minimal recurrent settling step) the coupled repair. Both are the registered live attack on MECH-439 (this plan's general root, GAP-I) and were previously visible ONLY in claims.yaml + commitment_closure_plan.md prose + ree-v3/CLAUDE.md, with no closure node. status: assembling (assembly frontier, off the closure %) because the substrate is under active construction by 2 concurrent implement-substrate sessions; it is NOT a stalled gap. ARC-108 depends_on ARC-110 (segregated-loops SEQUENCING FORK -- V3-EXQ-700 is the explicit test of whether loop segregation is required or this build suffices on the collapsed arena). REOPEN/advance on the 700/700a run+review. PROMOTES NOTHING. generation:v3 (no plan override; pulled-forward build is recouped to V3 because it attacks the V3 closure blocker MECH-439)."
 ---
 
