@@ -1,48 +1,40 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-24T19:40:18Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-700b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-460m",
-      "result": "FAIL",
-      "completed_at": "2026-06-23T10:06:04.265690+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-588e",
-      "result": "PASS",
-      "completed_at": "2026-06-23T23:17:08.308283+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-460o",
-      "result": "PASS",
-      "completed_at": "2026-06-24T04:51:03.418746+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-689h",
-      "result": "PASS",
-      "completed_at": "2026-06-24T05:29:21.502467+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-466d",
-      "result": "FAIL",
-      "completed_at": "2026-06-24T09:47:10.763678+00:00"
-    }
+  "last_tick_utc": "2026-06-24T20:45:40Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-700c",
+  "current_exq_started_utc": "2026-06-24T20:32:33.936805+00:00",
+  "current_title": "ARC-108 sec-7 learned-gating settling falsifier -- SAME-LAYER null (frozen magnitude-matched random W_lat at the eligibility/settling field); brake-EXEMPT TERMINAL re-run, supersedes V3-EXQ-700b",
+  "current_claim_id": "MECH-439",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / envelope_only_control_no_learned_gating",
+    "runs_done": 0,
+    "runs_total": 30,
+    "episodes_done": 80,
+    "episodes_total": 250,
+    "overall_pct": 1.1
+  },
+  "seconds_elapsed": 786,
+  "seconds_remaining": 88194,
+  "recent_lines": [
+    "Arm A0_ENVELOPE_ONLY (envelope_only_control_no_learned_gating) lcg_on=False settle_on=False noise_on=False field_noise=False rpe_mode=signed (P0=100 ep e2-train, P1=50 ep bias-train, P2=100 ep measure, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition envelope_only_control_no_learned_gating",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 10/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 20/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 30/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 40/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 50/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 60/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 70/250",
+    "[train] arm=A0_ENVELOPE_ONLY seed=42 phase=P0 ep 80/250"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3526 64e5884 2026-06-24 (running r3260 daed671)",
+  "runner_version": "r3527 80cfeec 2026-06-24 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
