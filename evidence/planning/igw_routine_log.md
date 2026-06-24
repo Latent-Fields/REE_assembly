@@ -477,3 +477,4 @@ One line per hourly tick. ASCII only.
 2026-06-24T05:23:29Z GC keep igw-196-proposal-for-mech-178 (ledger IGW-20260624-196 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-06-24T05:38:43Z AUDIT CRITICAL: respawn loop (1 hash(es)); auto-paused routine
 2026-06-24T05:38:47Z complete IGW-20260624-196 completed_resumable->completed outcome=USEFUL_LANDED: marked EVB-0101 blocked_substrate: no NA control plane, no arousal-gated REM ent
+2026-06-24T23:06:12Z SPAWN IGW-20260624-197 skill=/queue-experiment prio=40 uuid=7776fb79-8d65-4b16-a3d2-af85c7d07586 pid=9637 worktree=igw-197-proposal-for-mech-179
