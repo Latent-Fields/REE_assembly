@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-24T22:08:53Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3",
+      "queue_id": "V3-EXQ-466d",
+      "claim_ids": ["SD-034"],
+      "claim_ids_manifest": ["SD-034", "MECH-094"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_name": "C2_discharge_events",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- discharge leg could not express on an empty residue field; not a fair test of SD-034 leg (c)",
+        "biological_reference": "clear -- closure-triggered domain-scoped residue relaxation (Rich&Shapiro 2009 / Collins&Frank 2014) faithfully translated by discharge_domain; not a formal import",
+        "prerequisites": "missing -- residue-accumulation path (update_residue -> add_residue) never exercised by the scaffold curriculum or the eval; active_mask empty all run",
+        "implementation": "complete -- discharge_domain implemented + wired (closure_operator.residue=residue_field, agent.py:1577); fires every closure but returns 0 on an empty field (field.py:671)",
+        "environment": "adequate -- 603n foraging substrate, contact guard 1.0",
+        "measurement": "under-instrumented -- no residue-field-populated non-vacuity gate; C2 degenerate (pinned by construction)",
+        "integration": "isolated -- discharge leg decoupled from residue-accumulation path in this harness",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "closure-triggered domain-scoped relaxation of just-completed rule-episode residue (sleep-style contextualisation)",
+        "dependencies": ["populated residue field (update_residue -> add_residue active centers)"],
+        "is_formal_import": false,
+        "divergence": "none -- the discharge mechanism is a faithful biological translation; failure is a missing harness precondition, not a divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "non_contributory_run_not_substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "non_degenerate_per_claim": {"SD-034": false},
+      "degeneracy_reason": "C2_discharge_events is pinned at 0 by construction: ResidueField.discharge_domain returns 0 when active_mask is empty (field.py:671), and the residue field is never populated because neither the scaffold curriculum nor _eval_residue_discharge calls agent.update_residue() (the sole add_residue path). The criterion could not fire regardless of closure behaviour -> degenerate (V3-EXQ-642 invalid-precondition pattern).",
+      "recommended_evidence_quality_note": "V3-EXQ-466d (satisficing residue-discharge behavioural) -> SD-034 non_contributory (confirmed failure_autopsy_V3-EXQ-466d_2026-06-24, interactive gate). Closures now FORM (C1 PASS -- 466c Leg-A env-completion hook fixed) but C2_discharge_events=0 on 3/3 seeds because the residue field is EMPTY for the whole run: discharge_domain is implemented + correctly wired (closure_operator.residue=residue_field, agent.py:1577) and fires every closure, but neither the scaffold curriculum nor the eval ever calls agent.update_residue() (the only path to add_residue active centers), so discharge_domain returns 0 from an empty active_mask (field.py:671) regardless of closure behaviour. C2 is degenerate (pinned by test construction) -- the V3-EXQ-642 invalid-precondition pattern, NOT a falsification and NOT a substrate ceiling (the discharge mechanism needs no enrichment). Re-derive brake NOT fired (642 exemption). Routed /queue-experiment V3-EXQ-466e: wire update_residue into scaffold P1/P2 + eval, add a residue-field-populated non-vacuity gate, claim_ids=[SD-034]. pending_retest_after_substrate stays true; no claims.yaml status change.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The residue-discharge substrate (ResidueField.discharge_domain) is built and correctly wired into ClosureOperator._fire; the gap is a missing harness call (agent.update_residue) that never populates the field, not a missing substrate. Routing is a harness-fix re-queue, not a substrate build."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_SD-034-closure-cluster-ext_2026-06-12",
+          "failure_autopsy_SD-034-closure-cluster_2026-06-12",
+          "failure_autopsy_SD-034-closure-control-plane-d_2026-06-13",
+          "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04",
+          "failure_autopsy_V3-EXQ-460e_2026-06-17",
+          "failure_autopsy_V3-EXQ-460f_2026-06-18",
+          "failure_autopsy_V3-EXQ-460g_2026-06-19",
+          "failure_autopsy_V3-EXQ-468e_2026-06-18",
+          "failure_autopsy_V3-EXQ-468f_2026-06-20"
+        ],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "not_fired_rationale": "V3-EXQ-642 exemption (user-confirmed at gate): the FAIL is a harness/invalid-precondition artefact (empty residue field), NOT a substrate ceiling. The discharge substrate is built, wired, and fires; firing the brake would route to /implement-substrate on a substrate needing no enrichment. The correct route is a harness-fix re-queue (populate the field), which the brake exempts. The 9 priors are almost all the MECH-445/446 latch/beta de-commit lineage -- a different leg than residue discharge; 466d is the first proper test of the discharge leg with closures forming."
+      },
+      "learning_extracted": [
+        "negative-control-passes / discrimination-fails is the substrate-ceiling tell ONLY after confirming the discrimination metric could fire; C2_discharge_events is pinned at 0 by an empty residue field (642 invalid-precondition, one leg past the 460c hook gap)",
+        "the closure five-part done-token leg (c) residue-discharge requires a POPULATED residue field; the 466 harness lineage instruments the discharge effect but never exercised update_residue->add_residue",
+        "future closure-leg behavioural arms MUST add a residue-field-populated non-vacuity gate (active_mask count > 0 at closure time) so an empty-field run self-routes substrate_not_ready_requeue instead of a false weakens"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3",
+      "queue_id": "V3-EXQ-466d",
+      "claim_ids": ["MECH-094"],
+      "failed_criterion": "discrimination",
+      "recommended_evidence_direction": "non_contributory",
+      "non_degenerate_per_claim": {"MECH-094": false},
+      "recommended_evidence_quality_note": "V3-EXQ-466d does NOT exercise MECH-094 (simulation/real write distinction): the residue discharge is waking-only and no simulation/replay path is tested. The tag is inherited from the SD-034 closure cluster. MECH-094 non_contributory (not exercised); recommended DROPPED from the scored tags on the 466e retest (re-add only with an explicit simulation-tagged discharge control) to protect its stable status (conf 0.868, 23 supports vs 1 weakens).",
+      "claim_ids_accuracy_note": "inherited tag; 466d would produce interpretable MECH-094 signal only with a simulation-tagged discharge arm, which it does not have",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "routing": "drop-tag"
+    }
+  ],
+  "cluster_pattern": null
+}

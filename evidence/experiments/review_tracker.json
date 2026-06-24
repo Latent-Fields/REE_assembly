@@ -1,7 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-24T21:42:12Z",
+  "last_review_utc": "2026-06-24T22:11:34Z",
   "discussed_experiment_dirs": [
+    "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural",
     "v3_exq_700b_arc108_sec7_learned_gating_settling_c3",
     "v3_exq_703_mech276_scientist_attribution_readiness",
     "v3_exq_460k_natural_commit_occupancy_release_decommit_falsifier",
@@ -759,9 +760,11 @@
     "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence",
     "v3_exq_701b_inv050_mel_measurability_frozen_probe",
     "v3_exq_460o_closure_commit_entry_readiness",
-    "v3_exq_460p_closure_commit_entry_trajectory_readiness"
+    "v3_exq_460p_closure_commit_entry_trajectory_readiness",
+    "v3_exq_590c_mech314_novelty_goldilocks"
   ],
   "reviewed_run_ids": [
+    "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3",
     "v3_exq_700b_arc108_sec7_learned_gating_settling_c3_20260624T192217Z_v3",
     "v3_exq_701b_inv050_mel_measurability_frozen_probe_20260624T043724Z_v3",
     "v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3",
@@ -3198,7 +3201,8 @@
     "v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3",
     "v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3",
     "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3",
-    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3"
+    "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3",
+    "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4863,6 +4867,20 @@
         "v3_exq_460p_closure_commit_entry_trajectory_readiness_20260624T044222Z_v3"
       ],
       "note": "governance 2026-06-24T06:39Z. 701b FAIL diagnostic (non_contributory): destabiliser_verdict=sd056_contrastive_is_destabiliser confirmed by ablation (recon-only arm conv_frac=1.0 vs recon+contrastive 0.333). INV-050 UNWEAKENED. INV-050 evidence_quality_note updated (701b ablation finding; 701c route = recon-only P0 warm-up then frozen MEL probe). 460o PASS: use_closure_commit_entry bool latch arms+sustains 2/3 seeds (seed 43 neither arm fires -- seed quirk), OFF baseline clean (0/3). 460p PASS: both BOOL+TRAJ latch arm 2/3, C-STEP distinction clean (TRAJ closure_program_steps_total >0 all seeds, BOOL=0 all seeds). No claims.yaml status changes. MARKED REVIEWED."
+    },
+    {
+      "utc": "2026-06-24T22:10:29Z",
+      "run_ids": [
+        "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3"
+      ],
+      "context": "/failure-autopsy V3-EXQ-590c confirmed (non_contributory, substrate_ceiling; MECH-314+DEV-NEED-003 UNWEAKENED; re-derive brake FIRED 4th MECH-314 ceiling autopsy -> implement-substrate f_dominance_conversion_ceiling, refuse 590d sweep)."
+    },
+    {
+      "utc": "2026-06-24T22:11:34Z",
+      "run_ids": [
+        "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3"
+      ],
+      "context": "/failure-autopsy V3-EXQ-466d confirmed (non_contributory; SD-034 + MECH-094 UNWEAKENED). Closures FORM (C1 PASS, Leg-A hook fixed) but C2_discharge_events=0/3 because the residue field is EMPTY all run: discharge_domain is built + wired (closure_operator.residue=residue_field, agent.py:1577) and fires every closure, but neither the scaffold curriculum nor the eval calls agent.update_residue() (sole add_residue path), so discharge_domain returns 0 from an empty active_mask (field.py:671) regardless of closure behaviour -> C2 degenerate (V3-EXQ-642 invalid-precondition pattern, NOT a ceiling, NOT a falsification). MECH-094 not exercised (waking-only) -> DROPPED from scored tags. Re-derive brake NOT fired (642 exemption; SD-034's 9 priors are the separate MECH-445/446 latch lineage). Route /queue-experiment 466e: wire update_residue into scaffold P1/P2 + eval + a residue-field-populated non-vacuity gate, claim_ids=[SD-034]. See failure_autopsy_V3-EXQ-466d_2026-06-24.{md,json}. commitment_closure:GAP-4-battery result_note reconciled."
     }
   ]
 }

@@ -1,15 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-24T21:54:25Z`  
-Last review: `2026-06-24T21:42:12Z`  
-Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-24T22:12:00Z`  
+Last review: `2026-06-24T22:11:34Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3` | 2026-06-24T09:47 | MECH-094, SD-034 | — |
-| `v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3` | 2026-06-24T10:55 | DEV-NEED-003, MECH-314 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
