@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-06-24T06:44:31Z
+Generated: 2026-06-24T21:25:08Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -19,7 +19,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
-| `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 6 | 0% | assembling:6 | 2026-06-23 |
+| `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 6 | 0% | assembling:6 | 2026-06-24 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-06-14 |
@@ -63,14 +63,14 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | ARC-108 unified-dopamine substrate (learned w_chan gating) + | in_progress |  | 2026-06-23 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | ARC-108 unified-dopamine substrate (learned w_chan gating) + | in_progress |  | 2026-06-24 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | conversion_ceiling_campaign:FULLSTACK (the co-armed full-sta | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | P-comp + P2 + P3 composition-readiness | in_progress |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | P-comp + P2 + P3 composition-ready | queued |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | demotion x Go/No-Go composition falsifier (to queue via /que | queued |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | /implement-substrate amend f_dominance_conversion_ceiling -- | queued | 2026-07-15 |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | composition into the full-stack arm (with P-comp + P2-rootC  | built |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | ARC-108 + MECH-450 substrate build (under active constructio | in_progress |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | ARC-108 + MECH-450 substrate build; TERMINAL falsifier V3-EX | in_progress |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
 
 ## Deferred -- not required for v3 closure (14)
@@ -287,6 +287,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-7` | Biology grounding completion (perceptual-manifold / colour-geometry /  | done | medium | L1 perceptual-manifold / similarity geometry -- PULLED 2026-06-12 (IGW-20260612-156): Shep | 2026-06-12 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-6` | Biology grounding for relational harm + love-as-care (harm-to-agency,  | closed | medium | Project rule feedback_biology_before_formal_definitions: MECH-129 (harm-to-agency), MECH-1 | 2026-06-12 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
+| v4 | self_model_v4_plan.md | `self_model_v4:SELF-9` | Own-future-option uncertainty: does REE need an explicit self-model of | assembling | low | what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where  | 2026-06-24 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-3` | Provenance-bearing event token + one-way committed-vs-imagined gate (M | blocked | load-bearing | MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation) -- the  | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-3` | Guilt-as-repair routing: self-attributed harm opens repair-search + po | blocked | load-bearing | V3 BEGINNING present: the moral-residue cluster (MECH-056 et al.) already RECORDS residue; | 2026-06-10 |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-4` | Falsifiable dissociation: prediction != reciprocity-reward != residue- | blocked | load-bearing | EMP-3 stream-binding mechanism in place (the thing whose absence/presence the four variant | 2026-06-10 |

@@ -46734,8 +46734,8 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
-  implementation_phase: v4
-  version_relevance: v4
+  implementation_phase: v3   # REAPPOINTED V4->V3 2026-06-24 (user-directed, coupled to the ARC-110 loop-segregation reappointment): the D1/D2 population split is co-requisite to the segregated loops (asymmetric DA gain acts per-loop) and is recouped onto the V3 critical path with ARC-110. Still substrate_conditional / build-deferred; the loops must exist first. PROMOTES NOTHING.
+  version_relevance: v3
   registered_utc: "2026-06-22"
   psychiatric_failure_mode: >
     This split is the substrate WHOSE BREAKAGE IS the D1/D2 disease axis, so it must
@@ -46859,8 +46859,8 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
-  implementation_phase: v4   # full segregated-loop build is a V4 bet; PULLED FORWARD only if ARC-108+MECH-450 leave MECH-439 unresolved on the collapsed arena (the what_would_answer falsifier makes that an explicit testable fork, not a buried v4 bullet)
-  version_relevance: v4
+  implementation_phase: v3   # REAPPOINTED V4->V3 2026-06-24 (user-directed): the segregated-loop build is recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439; GATED on V3-EXQ-704 (MECH-451 finer-channel pre-emption falsifier) -- build proceeds only if 704 fails to convert. Still substrate_conditional (build-deferred); promote/demote stays suppressed.
+  version_relevance: v3
   registered_utc: "2026-06-22"
   # PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b). The
   # V3-EXQ-700 fork resolved toward escalation -> the v4_loop_segregation substrate (this
@@ -46931,6 +46931,17 @@
     SEPARATE /queue-experiment track that prototypes the same-layer null on the single arena). Recorded via
     assembly_status:queued + awaiting:v4_loop_segregation (companion fields). status / epistemic_category /
     implementation_phase UNCHANGED. PROMOTES NOTHING.
+    REAPPOINTED V4->V3 2026-06-24 (user-directed, closure-map reappointment session): implementation_phase /
+    version_relevance flipped v4->v3 for ARC-110 + the coupled cluster (ARC-109 D1/D2, MECH-452 loop-local
+    traces; ARC-111 was already v3). Rationale: the loop-segregation build attacks MECH-439, the standing V3
+    conversion-ceiling closure blocker, so it is recouped onto the V3 critical path rather than parked V4. NOT a
+    promotion -- stays candidate / substrate_conditional (the substrate is still NOT built; the loops must exist
+    before ARC-110 can be tested). GATED: V3-EXQ-704 (MECH-451 finer-channel-granularity falsifier) is kept as
+    the pre-emption gate -- if 704 converts non-motor influence to committed action on the single arena, the
+    ceiling was representational compression and the loop build is PRE-EMPTED (do NOT build); the V3 loop build
+    proceeds only if 704 fails to convert. The substrate_queue v4_loop_segregation entry + the arch design-doc
+    sd_v4_loop_segregation.md retain their filenames/ids for cross-ref stability but are V3-generation gated on
+    704. Build is chipped for a dedicated /implement-substrate session. PROMOTES NOTHING.
 - id: ARC-111
   title: "Context-conditioned weights PROPER -- learned connection weights as a function of context, distinct from context-conditioned GAIN: REE today has the GAIN form of context-conditioning (ARC-044's unifier -- a context-specific multiplicative scalar: MECH-152 terrain_weight scaling E3 harm/goal scoring, ARC-016 precision, MECH-261 mode-conditioned write-CHANNEL gating) which modulates a FIXED transfer function. It does NOT have the WEIGHT form: a substrate where the learned connection weights THEMSELVES are a function of context (a different effective weight set selected/generated per context -- the transfer function changes, not a gain on it). The valuation/gating parameters are static nn.Modules; context enters only through the INPUT (z_world) and through output GAIN, never through the weights. HYPOTHESIS: genuinely context-dependent BEHAVIOUR (not just context-scaled magnitude) requires context to reach the weights -- the learned per-channel selection weight w_chan conditioned on z_world that ARC-108 introduces is the first instance of this WEIGHT form at the gating layer."
   claim_type: architectural_commitment
@@ -46980,6 +46991,9 @@
     Wired to ARC-108 (weight half) + ARC-044 (gain half, explicitly sibling-not-parent). Stays candidate /
     substrate_conditional / v3 (first instance is the ARC-108 w_chan; promote/demote suppressed -- right response is
     the ARC-108 BUILD + the discriminator-vs-gain falsifier, NOT promotion). PROMOTES NOTHING.
+    NOTE 2026-06-24: ARC-111 was ALREADY v3 (its first WEIGHT-form instance is the V3 ARC-108 w_chan) so the
+    user-directed ARC-110-cluster V4->V3 reappointment is a no-op for this claim's phase; recorded here only to
+    confirm it is the v3 member of the named cluster (ARC-110, ARC-109, MECH-452, ARC-111).
 - id: MECH-451
   title: "Intermediate channel-granularity falsifier -- before the full segregated-loop build (ARC-110), expose the compressed E3 score_bias modulatory channel as SEVERAL separately-learnable finer channels (OFC-devaluation / dACC-conflict / lateral-PFC rule-evidence / vigour / liking) to the learned-gating layer (ARC-108 w_chan), so the learner can discover SEPARATELY that different control functions matter in different states. The current single global w_chan learns one weight over a pre-compressed blend; this tests whether the F-dominance conversion ceiling (MECH-439) is REPRESENTATIONAL COMPRESSION (finer channels convert non-motor influence to committed action) rather than a requirement for full per-loop competition (finer channels do NOT convert, and only ARC-110 segregated loops do). The cheap intermediate rung BETWEEN ARC-108's one global weight vector and ARC-110's full segregated loops -- a V3-tractable falsifier that can pre-empt the V4 loop build."
   claim_type: mechanism_hypothesis
@@ -47062,8 +47076,8 @@
   polarity: asserts
   status: candidate
   epistemic_category: substrate_conditional
-  implementation_phase: v4
-  version_relevance: v4
+  implementation_phase: v3   # REAPPOINTED V4->V3 2026-06-24 (user-directed, coupled to the ARC-110 loop-segregation reappointment): loop-local traces are the credit-assignment piece the segregated loops need, so they follow ARC-110 onto the V3 critical path. Still substrate_conditional / build-deferred (presupposes the ARC-110 loops + per-loop trace machinery, neither built). PROMOTES NOTHING.
+  version_relevance: v3
   registered_utc: "2026-06-23"
   psychiatric_failure_mode: >
     The eligibility trace is the substrate of temporal credit assignment, so its

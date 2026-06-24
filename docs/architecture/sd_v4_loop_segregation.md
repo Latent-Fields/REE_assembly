@@ -5,25 +5,30 @@ grandparent: Architecture
 nav_order: 8
 ---
 
-# SD-v4-loop-segregation: Parallel Segregated Cortico-BG-Thalamic Loops (V4)
+# SD-v4-loop-segregation: Parallel Segregated Cortico-BG-Thalamic Loops (V3, reappointed from V4 2026-06-24)
 
 **Substrate / queue id:** `v4_loop_segregation`
 **Owning claim:** ARC-110 (this is ARC-110's build design-of-record, NOT a new claim)
 **Subject:** `selection.parallel_segregated_loops`
-**Status:** PENDING
-**Generation:** V4 (OFF the V3 critical path)
+**Status:** PENDING (build-deferred, GATED on V3-EXQ-704)
+**Generation:** V3 — REAPPOINTED V4->V3 2026-06-24 (user-directed; recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439). Filename / substrate id `v4_loop_segregation` retained for cross-ref stability; the substrate is V3-generation.
+**Gate:** V3-EXQ-704 (MECH-451 finer-channel-granularity pre-emption falsifier). Build proceeds only if 704 fails to convert non-motor influence to committed action on the single arena; a 704 PASS means the ceiling was representational compression and this loop build is PRE-EMPTED.
 **Registered:** 2026-06-24
 **Depends on (built, V3-frozen):** ARC-107, MECH-448, MECH-449, ARC-108, MECH-450
-**Couples:** ARC-109 (D1/D2 split), MECH-451 (intermediate finer-channel falsifier, V3), MECH-452 (loop-local eligibility traces, V4), ARC-111 (context-conditioned weights)
+**Couples:** ARC-109 (D1/D2 split, reappointed V3 2026-06-24), MECH-451 (intermediate finer-channel falsifier, V3 — the GATE), MECH-452 (loop-local eligibility traces, reappointed V3 2026-06-24), ARC-111 (context-conditioned weights, already V3)
 **Unblocks:** MECH-439, ARC-108, MECH-450, ARC-110
 **Escalation source:** `evidence/planning/failure_autopsy_V3-EXQ-700b_2026-06-24.{md,json}` (user-adjudicated 2026-06-24, CONCURRENT with the V3-EXQ-700c null-redesign)
 
-> **Scope discipline.** This document specifies a V4 substrate. It does NOT modify
-> `ree-v3/ree_core/`, does NOT queue a V3 validation experiment, and is sequenced
-> behind V3 closeout per `v4_planning_index.md`. Its validation experiment is a V4
-> experiment (distinct `architecture_epoch`) that cannot be queued until the V4
-> substrate exists. The concurrent V3-EXQ-700c null-redesign (the autopsy's prong B)
-> is a SEPARATE `/queue-experiment` track, not part of this substrate.
+> **Scope discipline (updated 2026-06-24 for the V3 reappointment).** This document now
+> specifies a **V3 substrate**, but the build is **deferred and GATED on V3-EXQ-704**
+> (MECH-451). As of this writing it has NOT modified `ree-v3/ree_core/` and has NOT queued
+> its validation experiment. When the gate clears (704 fails to convert), the build proceeds
+> via `/implement-substrate` behind a no-op-default flag (ARC-106 G2 reuse-the-mechanism,
+> parallel buffers, byte-identical OFF) and its validation is a **V3 experiment**
+> (`architecture_epoch: ree_hybrid_guardrails_v1`, `run_id` ending `_v3`). If 704 PASSes the
+> loop build is **pre-empted** and this doc is retired-as-superseded. The concurrent
+> V3-EXQ-700c null-redesign (the autopsy's prong B) is a SEPARATE `/queue-experiment` track,
+> not part of this substrate.
 
 ---
 
