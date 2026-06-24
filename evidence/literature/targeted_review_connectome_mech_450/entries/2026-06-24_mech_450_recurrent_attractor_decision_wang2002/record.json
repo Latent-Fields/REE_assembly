@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_450",
+  "entry_id": "2026-06-24_mech_450_recurrent_attractor_decision_wang2002",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["MECH-450"],
+  "source": {
+    "title": "Probabilistic decision making by slow reverberation in cortical circuits",
+    "authors": ["Xiao-Jing Wang"],
+    "year": 2002,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(02)01092-9"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical, heavily replicated biophysical model that is the direct theoretical ancestor of the mechanism MECH-450 proposes: recurrent excitation plus feedback inhibition produces attractor settling that amplifies the difference between conflicting inputs and yields a categorical (winner-take-all) choice, rather than a one-shot global comparison. Mapping fidelity is high for the core 'settling competition replaces feedforward readout' assertion; the main transfer caveat is that the model is a two-/few-alternative cortical reverberation network, not the within-eligible _modulatory_accum field over a discrete action set, and it does not itself demonstrate that a strong modulatory channel can FLIP an F-dominated winner.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If recurrent excitation / feedback inhibition is too weak, the network fails to reach a single high-activity attractor and the choice is not amplified to a categorical winner -- the indecision / blend-output pole MECH-450 predicts for too-few/too-weak settling rounds.",
+    "The amplification is driven by slow NMDA-mediated reverberation; with a fixed (unlearned) inhibition kernel and only a few settling rounds, the V3-bounded version may not have enough effective gain to override a large feedforward score gap."
+  ],
+  "tags": ["mech_450", "attractor_dynamics", "recurrent_settling", "winner_take_all", "decision_making", "feedback_inhibition"],
+  "mapping": {
+    "source_claim_statement": "A biophysically realistic cortical network with slow recurrent excitation and feedback inhibition produces attractor dynamics that amplify the difference between conflicting inputs and generate a binary categorical choice, reproducing decision-correlated firing, psychometric functions, and reaction times.",
+    "ree_translation": "MECH-450's core premise -- that a bounded recurrent settling competition (mutual/surround inhibition over the eligible set) can convert an additive _modulatory_accum BLEND into a competitive winner-take-most, rather than the one-shot argmin/softmax readout -- is the discrete-action, V3-bounded instance of exactly this cortical attractor mechanism.",
+    "mapping_caveat": "Wang's network arbitrates between 2 (or few) competing populations driven by external sensory evidence; it does not model an F-dominated score field nor demonstrate that a strong non-dominant channel can flip the selected attractor away from the feedforward maximum. The claim's distinctive prediction (attractor FLIP) is plausible under this dynamics but is not directly tested here.",
+    "source_context": "Computational/biophysical simulation of macaque area-LIP-style perceptual decision making (random-dot motion discrimination); spiking + reduced mean-field analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Foundational, highly cited, repeatedly validated model (source_quality very high). Mapping_fidelity high for the settling-vs-feedforward contrast but discounted because the FLIP claim and the discrete-eligible-set framing are not directly instantiated. Transfer risk moderate: cortical 2-choice reverberation -> discrete within-eligible BG-style competition is a real but well-precedented analogy."
+  }
+}

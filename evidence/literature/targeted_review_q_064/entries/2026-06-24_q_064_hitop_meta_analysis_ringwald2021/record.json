@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_064",
+  "entry_id": "2026-06-24_q_064_hitop_meta_analysis_ringwald2021",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["Q-064"],
+  "source": {
+    "title": "Meta-analysis of structural evidence for the Hierarchical Taxonomy of Psychopathology (HiTOP) model",
+    "authors": ["Whitney R. Ringwald", "Miriam K. Forbes", "Aidan G. C. Wright"],
+    "year": 2021,
+    "venue": "Psychological Medicine",
+    "doi": "10.1017/S0033291721001902"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The strongest available empirical backbone for Q-064's 'vector over latent axes' representation: a meta-analytic factor model over 120,596 participants and 23 diagnoses finds that ~5 transdiagnostic dimensions fit well with a confirmed hierarchical structure, and that diagnoses load on expected dimensions. This is direct quantitative evidence that many syndromes can be located in a low-dimensional axis space (registry economy = dimensions, not syndrome-pairs). Held below 0.85 because the high inter-dimension covariation that motivates a general factor is itself a degeneracy risk for Q-064's hard non-degeneracy precondition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dimensions are themselves correlated and arrange into a hierarchy with a near-apex general factor, so the axes are not orthogonal -- a direct threat to Q-064's HARD PRECONDITION that ARC-086 axes be empirically separable/non-degenerate before a syndrome can be located in axis space.",
+    "Adequate fit was obtained for ~5 dimensions over 23 diagnoses, but the authors note many pathologies are understudied and the structure may not capture syndrome-specific discriminability that a per-locus mapping preserves -- the 'vector loses discriminability' failure branch in Q-064's answer grid."
+  ],
+  "tags": ["q_064", "hitop", "dimensional_psychopathology", "transdiagnostic", "comorbidity", "factor_analysis", "registry_economy"],
+  "mapping": {
+    "source_claim_statement": "A meta-analytic factor analysis pooling 35 studies (120,596 participants, 23 diagnoses) finds that five transdiagnostic dimensions fit the diagnostic covariance well (CFI=0.92, RMSEA=0.07, SRMR=0.03), with most diagnoses loading >|0.30| on expected factors and congruence coefficients confirming a hierarchical structure consistent with HiTOP; the authors recommend using dimensions rather than categorical diagnoses.",
+    "ree_translation": "Q-064 asks whether REE should represent a clinical syndrome as a weighted VECTOR over latent vulnerability axes rather than a diagnosis-specific locus. This meta-analysis is the empirical demonstration that real psychopathology covariance is well captured by a small number of dimensions in a hierarchy -- i.e. that the vector-over-axes encoding (with registry growing ~linearly in axes, not combinatorially in syndrome-pairs) is empirically licensed, which is the registry-economy test (a) in Q-064's answer grid.",
+    "mapping_caveat": "HiTOP dimensions are derived from observed SYMPTOM covariation in humans, not from REE's ARC-086 latent VULNERABILITY axes; the dimensional structure being empirically supported in psychopathology does not guarantee REE's mechanistic axes are themselves separable. Crucially, the confirmed hierarchy (dimensions correlate up toward a general factor) means the axes are NOT orthogonal -- which is precisely the non-degeneracy hazard Q-064 names as a hard precondition.",
+    "source_context": "Quantitative meta-analysis of factor-analytic studies of human psychiatric diagnoses; structural-validity test of a dimensional nosology."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.4,
+    "notes": "Large, well-powered meta-analysis with explicit fit statistics (source_quality high). Mapping_fidelity good for the registry-economy question but discounted because human symptom dimensions != REE vulnerability axes. Transfer risk moderate: the dimensional finding supports the representational choice in principle but the orthogonality precondition is REE-internal and the hierarchy actively warns against assuming it."
+  }
+}

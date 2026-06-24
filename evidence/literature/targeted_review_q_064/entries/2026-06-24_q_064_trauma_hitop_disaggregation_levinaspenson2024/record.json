@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_064",
+  "entry_id": "2026-06-24_q_064_trauma_hitop_disaggregation_levinaspenson2024",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["Q-064"],
+  "source": {
+    "title": "Rethinking trauma-related psychopathology in the Hierarchical Taxonomy of Psychopathology (HiTOP)",
+    "authors": ["Holly F. Levin-Aspenson", "Ashley L. Greene"],
+    "year": 2024,
+    "venue": "Journal of Traumatic Stress",
+    "doi": "10.1002/jts.23014"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Argues for explicitly DISAGGREGATING psychopathology symptoms from their purported causes -- maintaining a taxonomy of causal/etiological events (e.g. trauma type, duration, subjective meaning) separately from the symptom-dimension taxonomy. This is the cleanest literature statement of Q-064's predisposition/expression-factoring requirement (keep 'which axes are fragile / what perturbed them' distinct from 'which failure mode is expressed'). Moderate confidence: it is a focused conceptual argument within one symptom domain (trauma), not a general empirical validation, and it concerns external causes rather than internal vulnerability axes per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Folding cause into the symptom representation (as PTSD does by building the stressor into the diagnosis) produces within-category heterogeneity and excessive comorbidity -- the failure Q-064 avoids by keeping predisposition/perturbation separate from expressed syndrome; collapsing them is the named anti-pattern.",
+    "Different features of the same perturbation (type, duration, subjective meaning) yield different symptom sequelae across spectra, so a single predisposition state can map to many expressions -- supports the separation but warns the predisposition->expression map is high-dimensional and context-gated, not one-to-one."
+  ],
+  "tags": ["q_064", "hitop", "trauma", "predisposition_expression", "cause_symptom_disaggregation", "transdiagnostic"],
+  "mapping": {
+    "source_claim_statement": "HiTOP's symptom-covariation focus leaves a gap for trauma-related psychopathology because predominant definitions (e.g. PTSD) build the purported cause into the symptom category, creating content-coverage problems, within-category heterogeneity, and excessive comorbidity; the authors argue for disaggregating symptoms from causes -- developing a detailed taxonomy of traumatic EVENTS alongside the evolving HiTOP symptom model -- so that different features of a traumatic experience can be linked to different symptom sequelae across spectra.",
+    "ree_translation": "Q-064 requires that axis-PREDISPOSITION (which mechanisms are fragile / what perturbed them) be kept separable from axis-EXPRESSION (which failure mode is realized, gated by developmental/plasticity machinery). This paper makes the same architectural argument in the trauma domain: keep the causal/perturbation taxonomy separate from the symptom-dimension taxonomy, because a given perturbation can express across multiple symptom dimensions. It is a worked precedent for the two-layer factoring Q-064 needs.",
+    "mapping_caveat": "The paper concerns EXTERNAL causes (traumatic events) rather than internal latent VULNERABILITY axes, and is confined to the trauma-related corner of psychopathology; the cause/symptom disaggregation is a strong analogy for Q-064's predisposition/expression split but is not the same distinction, and it is argued, not empirically demonstrated, here.",
+    "source_context": "Conceptual review / position piece on situating trauma-related psychopathology within the HiTOP dimensional framework."
+  },
+  "confidence_components": {
+    "source_quality": 0.74,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "Well-argued position piece in a reputable specialty journal (source_quality moderate -- conceptual, single-domain). Mapping_fidelity moderate: the disaggregate-cause-from-symptom argument is a close analogue of Q-064's predisposition/expression factoring, but addresses external events rather than internal vulnerability axes. Transfer risk moderate-high for the same reason."
+  }
+}

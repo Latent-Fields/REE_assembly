@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_064",
+  "entry_id": "2026-06-24_q_064_rdoc_hitop_interface_michelini2021",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["Q-064"],
+  "source": {
+    "title": "Linking RDoC and HiTOP: A new interface for advancing psychiatric nosology and neuroscience",
+    "authors": ["Giorgia Michelini", "Isabella M. Palumbo", "Colin G. DeYoung", "Robert D. Latzman", "Roman Kotov"],
+    "year": 2021,
+    "venue": "Clinical Psychology Review",
+    "doi": "10.1016/j.cpr.2021.102025"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Directly addresses the part of Q-064 the HiTOP meta-analysis does not: it provides an explicit mapping between RDoC's neuroscience-rooted biobehavioral SYSTEMS (the vulnerability/mechanism side) and HiTOP's symptom-covariation DIMENSIONS (the expression side), which is the literature analogue of Q-064's required separation of axis-PREDISPOSITION (which mechanisms are fragile) from axis-EXPRESSION (which symptom dimension is realized). Supports the two-layer vector design. Held at 0.73 because it is a conceptual review proposing an interface, not an empirical validation that the two layers are dissociable.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The RDoC<->HiTOP mapping is many-to-many and incomplete: a single biobehavioral system maps to several symptom dimensions and vice versa, so a clean one-mechanism-one-axis vulnerability vector is not guaranteed -- the pleiotropy case is the rule, not the exception, which stresses the registry design but is exactly what Q-064 anticipates.",
+    "Neither framework yet supplies validated biobehavioral grounding for every dimension, so REE cannot assume an ARC-086 axis is mechanistically real just because a corresponding symptom dimension exists (echoes the non-degeneracy precondition)."
+  ],
+  "tags": ["q_064", "rdoc", "hitop", "predisposition_expression", "biobehavioral_systems", "transdiagnostic", "nosology"],
+  "mapping": {
+    "source_claim_statement": "RDoC (neuroscience-rooted transdiagnostic biobehavioral systems) and HiTOP (dimensional classification derived from symptom covariation) have complementary strengths; the authors construct a comprehensive mapping between RDoC constructs/subconstructs and HiTOP spectra/subfactors, arguing RDoC can supply the biobehavioral underpinnings of HiTOP's clinical dimensions while HiTOP supplies psychometrically robust targets for RDoC research, envisaging a unified dimensional, biobehaviorally-grounded nosology.",
+    "ree_translation": "Q-064 requires keeping axis-PREDISPOSITION (which vulnerability mechanisms are fragile) separable from axis-EXPRESSION (which failure mode is currently expressed, gated by developmental/plasticity machinery). The RDoC (mechanistic systems) vs HiTOP (expressed symptom dimensions) two-layer interface is the field's working instance of exactly that separation: the same biobehavioral vulnerability profile can, under different conditions, surface as different positions on the symptom spectra.",
+    "mapping_caveat": "This is a proposed interface, not a demonstration that predisposition and expression are empirically dissociable; the mapping between RDoC systems and HiTOP dimensions is many-to-many and acknowledged to be incomplete, so it supports the FORM of Q-064's two-layer vector but does not validate that REE's ARC-086 axes will factor predisposition from expression without collapse.",
+    "source_context": "Narrative review / conceptual synthesis mapping two human dimensional psychiatric frameworks (research and clinical) onto each other."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Authoritative, widely-cited synthesis from HiTOP/RDoC leaders (source_quality good for a review). Mapping_fidelity good for the predisposition/expression-factoring sub-question specifically. Transfer risk moderate: the mechanistic-vs-symptom two-layer logic transfers cleanly to REE's vulnerability-vs-expression design, but the human frameworks' incompleteness means it licenses the design, not its success."
+  }
+}

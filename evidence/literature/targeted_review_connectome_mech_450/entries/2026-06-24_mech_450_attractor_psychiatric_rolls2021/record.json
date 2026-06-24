@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_450",
+  "entry_id": "2026-06-24_mech_450_attractor_psychiatric_rolls2021",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["MECH-450"],
+  "source": {
+    "title": "Attractor cortical neurodynamics, schizophrenia, and depression",
+    "authors": ["Edmund T. Rolls"],
+    "year": 2021,
+    "venue": "Translational Psychiatry",
+    "doi": "10.1038/s41398-021-01333-7"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Directly substantiates MECH-450's psychiatric_failure_mode dimension: in recurrent attractor networks, too-weak excitation/inhibition makes high-activity (winner) states unstable -> failure to hold a selection (avolition/negative-symptom analog), while reduced inhibition makes the network jump to attractor states without adequate input -> spurious commitment, and over-connected/over-stable attractors -> rigid non-reward fixation (depression). These map onto MECH-450's two failure poles (indecision vs locked attractor) with high fidelity. Confidence held below 0.8 because it is a conceptual review and the disorders are cortical (PFC/OFC) attractor analogs, not the BG selection step per se.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reduced firing rates / reduced recurrent excitation (e.g. NMDA hypofunction) destabilize the high-activity winner attractor -> the selection cannot be held = MECH-450's too-weak-settling indecision/abulia pole.",
+    "Reduced inhibition lets the network make a noise-induced jump to a high-firing attractor even without adequate input -> a committed selection that is not warranted by the evidence (spurious winner).",
+    "An over-connected, over-stable attractor (e.g. the OFC non-reward system in depression) cannot be flipped by new input -> the perseveration / locked-attractor pole MECH-450 predicts for runaway recurrent gain."
+  ],
+  "tags": ["mech_450", "attractor_dynamics", "recurrent_inhibition", "psychiatric_failure_mode", "schizophrenia", "depression", "stability"],
+  "mapping": {
+    "source_claim_statement": "Cortical recurrent-collateral attractor networks underlie memory, attention and decision-making; their stability is set by recurrent excitation (NMDA) and inhibition (GABA). Reduced excitation/firing destabilizes high-activity attractor states (negative/cognitive symptoms of schizophrenia); reduced inhibition causes noise-induced jumps into attractor states without external input (positive symptoms); and an over-connected, over-sensitive non-reward attractor network in the lateral orbitofrontal cortex underlies depression.",
+    "ree_translation": "MECH-450 predicts two breakage poles for a recurrent settling competition: too-few/too-weak inhibition rounds -> failure to converge to a single winner (indecision/abulia), and runaway recurrent gain -> a locked attractor that new evidence cannot flip (perseveration/obsessional fixity). Rolls supplies the mechanistic neuroscience for both poles plus a third (reduced inhibition -> unwarranted spontaneous commitment), grounding the claim's psychiatric_failure_mode section in an established attractor-instability framework.",
+    "mapping_caveat": "Rolls's attractor networks are cortical (PFC short-term memory, OFC reward/non-reward), not the basal-ganglia committed-action selection step MECH-450 models; the failure-mode mapping is by shared dynamical class (recurrent attractor stability), not by shared anatomy. Whether the V3 fixed-inhibition settling step actually exhibits these poles is an empirical question the eventual REE ablation must test.",
+    "source_context": "Conceptual/computational review linking attractor-network stability parameters to schizophrenia and depression symptom clusters in humans."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.38,
+    "notes": "Authoritative review by a foundational attractor-dynamics theorist (source_quality good). Mapping_fidelity high for the failure-mode dimension specifically; the claim's psychiatric_failure_mode text reads almost as a restatement of Rolls's stability poles. Transfer risk moderate: cortical attractor -> BG selection step is a shared-dynamics analogy, and the human-disorder mapping is itself a model, not a measurement of the REE substrate."
+  }
+}

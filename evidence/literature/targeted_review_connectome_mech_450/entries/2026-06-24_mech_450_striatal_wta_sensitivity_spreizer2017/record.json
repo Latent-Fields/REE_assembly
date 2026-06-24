@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_450",
+  "entry_id": "2026-06-24_mech_450_striatal_wta_sensitivity_spreizer2017",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["MECH-450"],
+  "source": {
+    "title": "Activity Dynamics and Signal Representation in a Striatal Network Model with Distance-Dependent Connectivity",
+    "authors": ["Sebastian Spreizer", "Martin Angelhuber", "Jyotika Bahuguna", "Ad Aertsen", "Arvind Kumar"],
+    "year": 2017,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0348-16.2017"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "A spiking striatal network model that shows winner-take-all bump dynamics genuinely emerge from recurrent inhibitory connectivity (supports the mechanism's realizability), but with the critical cost that the full-WTA regime has LOW stimulus sensitivity and high variability, while the healthy/normal regime is an intermediate 'transition-activity' state, not full WTA. This is a direct caution against MECH-450's strong-settling pole and supplies a concrete cost function for the indecision<->perseveration trade-off, hence mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Driving the recurrent network into a full winner-take-all regime (strong cortical input / strong effective inhibition) yields LOW stimulus sensitivity and high trial-to-trial variability -- a too-strong settling step would commit confidently to a winner that no longer tracks the input, the locked-attractor / perseveration pole.",
+    "The model identifies the biologically realistic operating point as an intermediate 'transition activity' regime (unstable bumps), implying MECH-450's settling step should aim for a marginally-stable competition, not a deep WTA attractor; a fixed inhibition gain risks landing in either the insensitive-WTA or the never-converging-AI regime."
+  ],
+  "tags": ["mech_450", "striatum", "winner_take_all", "recurrent_inhibition", "stimulus_sensitivity", "attractor_bump"],
+  "mapping": {
+    "source_claim_statement": "A spiking striatal network with non-monotonic distance-dependent recurrent inhibitory connectivity exhibits a repertoire of regimes from asynchronous-irregular (AI) activity through unstable localized bumps (transition activity, TA) to stable winner-take-all (WTA) bumps; strong cortical input drives the network into WTA, which is associated with LOW stimulus sensitivity and high variability, whereas the AI/TA regimes retain high sensitivity and reliability. The authors propose the healthy striatum operates in AI/TA and that dopamine loss pushes it toward WTA.",
+    "ree_translation": "MECH-450 proposes a few rounds of surround inhibition to settle a committed winner; this model confirms recurrent inhibition really does produce WTA bump dynamics, but warns that the deep-WTA end of that continuum trades away input sensitivity -- the committed winner stops tracking the evidence. The desirable operating point for MECH-450's settling step is therefore the marginally-stable transition regime, where a strong modulatory channel can still flip the winner, not a deep attractor that locks.",
+    "mapping_caveat": "This is a striatal spiking model with spatial (distance-dependent) connectivity and explicit dopamine dependence; REE's _modulatory_accum settling step is a small discrete-action competition with a fixed inhibition kernel and no spatial topology or dopamine variable. The continuum (AI -> TA -> WTA) and its sensitivity cost transfer as a qualitative design constraint, not as quantitative parameter guidance.",
+    "source_context": "Computational spiking-network simulation of striatal medium-spiny-neuron dynamics; links regimes to Parkinsonian (dopamine-depleted) vs healthy states."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Solid peer-reviewed computational study (source_quality good). Mapping_fidelity moderate-high: it directly characterizes the cost of pushing recurrent inhibition into WTA, which is MECH-450's strong-settling pole, but via spatial bump dynamics rather than a discrete eligible-set competition. Transfer risk moderate because the AI/TA/WTA continuum and the dopamine framing are striatum-specific."
+  }
+}

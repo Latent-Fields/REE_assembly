@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_450",
+  "entry_id": "2026-06-24_mech_450_corticostriatal_wta_morita2016",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["MECH-450"],
+  "source": {
+    "title": "Corticostriatal circuit mechanisms of value-based action selection: Implementation of reinforcement learning algorithms and beyond",
+    "authors": ["Kenji Morita", "Jenia Jitsev", "Abigail Morrison"],
+    "year": 2016,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2016.05.017"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly on-topic review of the exact circuit MECH-450 models: it endorses lateral inhibition among striatal projection neurons as the classical substrate for winner-take-all 'max' action selection (supports the mechanism), but it also reports that the lateral inhibition is empirically weak, sparse, and asymmetric, so clean WTA may only hold on short timescales and cortical recurrent excitation may instead produce probabilistic soft-max. This double message is exactly the validity boundary for MECH-450's fixed-inhibition V3 step, hence 'mixed'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Striatal lateral inhibition is weak, sparse, and asymmetric -- a fixed surround-inhibition kernel may be too weak to enforce a true winner-take-all over the eligible set, so the few-round V3 settling step could under-converge (blend persists) rather than flipping the F-winner.",
+    "On longer timescales the circuit behaves as a sequence of short WTA fragments rather than a single stable competition, so 'a few settling rounds before commit' may capture a transient rather than a settled winner."
+  ],
+  "tags": ["mech_450", "corticostriatal", "lateral_inhibition", "winner_take_all", "softmax", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Striatal projection neurons are predominantly inhibitory and lateral inhibition among them was classically proposed to realize winner-take-all selection of the maximum-valued action (a 'max' operation); however the lateral inhibition is weak/sparse/asymmetric, so WTA-like competition may hold only on short timescales, while cortical recurrent excitation enables temporal integration and probabilistic soft-max selection.",
+    "ree_translation": "MECH-450 proposes a bounded recurrent surround-inhibition settling step over the within-eligible _modulatory_accum field; this review confirms that such lateral-inhibition WTA is the biologically motivated mechanism for committed action selection, and clarifies that the realistic version is a graded/soft competition (soft-max-like) rather than an idealized hard max -- consistent with MECH-450 converting an additive blend into a 'winner-take-MOST' (not strict winner-take-all).",
+    "mapping_caveat": "The review's central empirical caveat -- that biological lateral inhibition is too weak/sparse/asymmetric for clean WTA -- is a direct risk to MECH-450's fixed-inhibition V3 step: if the inhibition kernel is set too weak, the settling competition will not flip an F-dominated winner; if too strong, it over-commits (the perseveration pole). The 'right' fixed gain is an open tuning question this paper does not resolve.",
+    "source_context": "Narrative review of corticostriatal anatomy, electrophysiology, and computational models of value-based action selection and reinforcement-learning implementation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.3,
+    "notes": "High-quality, directly-on-circuit review (source_quality good for a narrative review). Mapping_fidelity high because it speaks to the precise mechanism and its known weaknesses. Transfer risk low-moderate: the review is itself about the BG/cortex selection circuit MECH-450 abstracts, so domain transfer is short."
+  }
+}

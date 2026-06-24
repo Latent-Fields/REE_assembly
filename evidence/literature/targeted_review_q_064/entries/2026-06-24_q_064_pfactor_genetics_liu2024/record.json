@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_064",
+  "entry_id": "2026-06-24_q_064_pfactor_genetics_liu2024",
+  "timestamp_utc": "2026-06-24T06:06:15Z",
+  "claim_ids_tested": ["Q-064"],
+  "source": {
+    "title": "Exploring the genetic etiology across the continuum of the general psychopathology factor: a Swedish population-based family and twin study",
+    "authors": ["Yangjun Liu", "Paul Lichtenstein", "Roman Kotov", "Henrik Larsson", "Brian M. D'Onofrio", "Erik Pettersson"],
+    "year": 2024,
+    "venue": "Molecular Psychiatry",
+    "doi": "10.1038/s41380-024-02552-2"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Large family (580,891 sibling pairs) and twin (17,170 pairs) study showing that comorbidity across 10 psychiatric diagnoses is captured by a latent general psychopathology (p) factor with a stable, heritable (~0.41-0.45) genetic basis across its whole continuum. Strongly supports Q-064's comorbidity=axis-overlap and pleiotropy=shared-genetic-mechanism premises (a single set of common variants loads the shared factor). But the dominance of a single general factor is double-edged for Q-064: it is the clearest evidence that the latent axes are NOT independent, directly stressing the non-degeneracy precondition -- hence mixed.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Comorbidity is so pervasively captured by ONE general factor that the separable-axis premise is threatened: if most shared variance loads a single p dimension, a multi-axis vulnerability vector risks collapsing toward one dominant axis (the degenerate-axes / vacuous-vector branch of Q-064).",
+    "Heritability of the p factor is moderate (~0.41-0.45) and shared across the continuum, so genetic predisposition does NOT fully determine expressed syndrome -- which supports the predisposition!=expression separation, but also means the vector's predisposition layer is intrinsically noisy/partial."
+  ],
+  "tags": ["q_064", "p_factor", "general_psychopathology", "comorbidity", "pleiotropy", "heritability", "twin_study"],
+  "mapping": {
+    "source_claim_statement": "Psychiatric comorbidity across 10 register-based diagnoses is accounted for by a latent general psychopathology (p) factor; family analysis (580,891 sibling pairs) shows the association between siblings' p factors is linear across the whole range including the extreme, and twin group-heritability (0.42-0.45) matches individual-differences heritability (0.41), indicating the entire continuum of the p factor shares a common, largely common-variant genetic origin.",
+    "ree_translation": "Q-064 proposes representing comorbidity as overlap in a latent vulnerability vector and pleiotropy as one mechanism loading multiple axes. This study is direct human evidence for both: comorbidity loads a shared latent factor (axis-overlap), and that factor has a common-variant genetic basis (one genetic mechanism loading many disorders = pleiotropy). It also speaks to the predisposition layer: the heritable p factor is the genetic-vulnerability quantity, distinct from which specific diagnosis is expressed.",
+    "mapping_caveat": "The p factor is a SINGLE general dimension extracted from human diagnostic registers, not REE's multi-axis ARC-086 vulnerability space; its strength as a single factor is evidence that shared variance is concentrated, which works AGAINST Q-064's requirement that multiple axes be separable. The study supports the comorbidity/pleiotropy mechanics of the vector while raising the dimensionality/degeneracy concern; it does not measure REE's mechanisms.",
+    "source_context": "Swedish population-based family + twin epidemiology using national psychiatric registers; quantitative-genetic decomposition of a latent factor."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "Very large, well-designed quantitative-genetic study (source_quality high). Mapping_fidelity moderate: it directly evidences comorbidity-as-shared-factor and pleiotropy-as-common-variants, but via a single general factor rather than a multi-axis space, so it speaks to two of Q-064's premises while stressing a third. Transfer risk moderate: human register diagnoses -> REE vulnerability axes is a substantial leap."
+  }
+}
