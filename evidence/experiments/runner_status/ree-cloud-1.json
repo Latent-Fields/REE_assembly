@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 1415947,
   "runner_started_at": "2026-06-17T10:52:50.833959+00:00",
-  "last_updated": "2026-06-23T23:17:08.308953+00:00",
+  "last_updated": "2026-06-24T04:51:03.419358+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -14,6 +14,17 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-460p",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Closure-plane commit-ENTRY TRAJECTORY readiness + bool-vs-trajectory comparison (HARNESS-FIX re-issue of 460n; z_goal seeded in eval loop): does use_closure_commit_entry_trajectory STEP a closure-formed committed program the bool latch cannot? (3-arm diagnostic)",
+      "description": "",
+      "estimated_minutes": 112.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3568,6 +3579,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence/v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 661.6
+    },
+    {
+      "queue_id": "V3-EXQ-460o",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Closure-plane commit-ENTRY primitive readiness (HARNESS-FIX re-issue of 460m; z_goal seeded in eval loop): does use_closure_commit_entry arm + sustain a closure-formed occupancy with zero F-commits? (2-arm diagnostic)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_460o_closure_commit_entry_readiness] contact=True (guard 3/3) rule_directed=True (frac=1.000) | gate_a armed_and_sustained=True (frac=0.667) off_did_not_arm_frac=1.000 non_degenerate=True -> outcome=PASS label=closure_commit_entry_arms_and_sustains | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-460o -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-460o.json",
+      "started_at": "2026-06-23T23:19:12.124472+00:00",
+      "completed_at": "2026-06-24T04:51:03.418746+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_460o_closure_commit_entry_readiness/v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 19911.3
     }
   ]
 }
