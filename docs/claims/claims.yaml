@@ -46722,6 +46722,11 @@
     ARC-016, mint no learning claim). Design-of-record evidence/planning/dopamine_into_gating_design_2026-06-22.md
     sec 5.2 C3; ree-v3/CLAUDE.md "ARC-108 sec-7 C3" entry. PROMOTES NOTHING (no-op-default flag, no flag/confidence/
     status change).
+    ROUTED-SUBSTRATE CROSS-REF 2026-06-24 (failure_autopsy_V3-EXQ-700b): the V3-EXQ-700 lineage could not
+    validly test learned-gating conversion on the single arena (the committed-class null is decoupled from the
+    DV; loop-segregated diversity is unreachable). The V4 substrate that supplies a valid same-layer null +
+    segregated loops is registered as v4_loop_segregation (owning claim ARC-110; design_doc
+    docs/architecture/sd_v4_loop_segregation.md). ARC-108's w_chan learned gating is re-tested there. PROMOTES NOTHING.
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
@@ -46841,6 +46846,12 @@
     round_delta 6.16 (live cross-round movement); OFF==ON-at-init bit-identical; env-loop settling engaged 60/60 ON,
     0 OFF. PROMOTES NOTHING -- MECH-450 stays candidate / substrate_conditional / v3. The sec-7 selection 2x2
     falsifier (learned-w_chan x learned-W_lat) is now fully runnable -- a separate /queue-experiment chip.
+    ROUTED-SUBSTRATE CROSS-REF 2026-06-24 (failure_autopsy_V3-EXQ-700b): the learned-W_lat settling SIGNAL
+    strengthened across the 700 lineage (700 seed-42-only -> 700b majority-of-divergent C1 pass) but could not
+    be SCORED -- the single-arena committed-class null perturbs policy temperature (decoupled from the DV), so
+    noise_verified_lifting failed 1/3 -> 0/3 -> 0/3. The V4 substrate with a same-layer (settling-field) null +
+    segregated loops is registered as v4_loop_segregation (owning claim ARC-110; design_doc
+    docs/architecture/sd_v4_loop_segregation.md); MECH-450 settling is re-tested there. PROMOTES NOTHING.
 - id: ARC-110
   title: "Parallel segregated cortico-BG-thalamic loops (motor / cognitive-set / motivational): committed-action selection should run through SEPARATE striatal loop channels -- a motor loop, an associative/cognitive-set loop, and a limbic/motivational loop -- each owning its own eligibility-and-gate, arbitrated AFTER within-loop competition, rather than collapsing all channels into ONE shared E3 selection arena where the dACC/lPFC/OFC analogs feed in only as additive biases. HYPOTHESIS (assembly-map A.2 / s.D): the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse -- F monopolises 88-89% of committed-selection variance because every channel competes in one F-dominated arena; with segregated loops F could dominate only the motor loop and could not drown the limbic 'is this worth committing to' computation, which is a different loop with a different value. Translation target is FUNCTIONAL (the Alexander/DeLong/Strick parallel-loop organisation as a divergence-ledgered, falsifier-validated analogue), NOT anatomical mimicry."
   claim_type: architectural_commitment
@@ -46851,6 +46862,13 @@
   implementation_phase: v4   # full segregated-loop build is a V4 bet; PULLED FORWARD only if ARC-108+MECH-450 leave MECH-439 unresolved on the collapsed arena (the what_would_answer falsifier makes that an explicit testable fork, not a buried v4 bullet)
   version_relevance: v4
   registered_utc: "2026-06-22"
+  # PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b). The
+  # V3-EXQ-700 fork resolved toward escalation -> the v4_loop_segregation substrate (this
+  # claim's build) is now QUEUED. Recorded via the assembly companion fields ONLY; status /
+  # epistemic_category / implementation_phase UNCHANGED (NOT a promotion -- /implement-substrate
+  # registration, PROMOTES NOTHING). See notes addendum + substrate_queue.json sd_id v4_loop_segregation.
+  assembly_status: queued
+  awaiting: v4_loop_segregation
   psychiatric_failure_mode: >
     The segregated cortico-striatal loops are the substrate of the loop-specific CSTC
     (cortico-striato-thalamo-cortical) disorder axis: an OCD-like pathology localised to
@@ -46898,6 +46916,21 @@
     / v4 (promote/demote suppressed; right response is to let V3-EXQ-700 decide pull-forward, NOT more experiments
     on the collapsed arena). ARC-106 cargo-cult guard: segregated loops need a function + divergence-ledger row +
     per-loop ablation falsifier before they count as load-bearing. PROMOTES NOTHING.
+    PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b_2026-06-24): the
+    V3-EXQ-700 fork (700/700a/700b) resolved toward ESCALATION. The single foraging arena structurally
+    cannot host a valid committed-class null (the policy-temperature / NOISE_FLOOR_ALPHA null is decoupled
+    from the committed-class DV by the eligibility constitution -- noise_verified_lifting 1/3 -> 0/3 -> 0/3
+    across the lineage as alpha rose 1.0 -> 2.0) NOR loop-segregated committed diversity, while the MECH-450
+    settling signal STRENGTHENED (700 seed-42-only -> 700b majority-of-divergent C1 pass). Re-derive brake
+    fired (MECH-439 5th / ARC-108 3rd / MECH-450 2nd non_contributory). The v4_loop_segregation substrate
+    (this claim's BUILD) is now registered via /implement-substrate: design_doc
+    docs/architecture/sd_v4_loop_segregation.md + substrate_queue.json sd_id v4_loop_segregation (priority 1,
+    ready=false / V4-sequenced behind V3 closeout, unblocks MECH-439/ARC-108/MECH-450/ARC-110, with the
+    700-lineage metric_trajectory). The cheap V3 rung MECH-451 (finer-channel falsifier) should be exhausted
+    FIRST -- it can pre-empt the loop build. Concurrent with the brake-exempt V3-EXQ-700c null-redesign (a
+    SEPARATE /queue-experiment track that prototypes the same-layer null on the single arena). Recorded via
+    assembly_status:queued + awaiting:v4_loop_segregation (companion fields). status / epistemic_category /
+    implementation_phase UNCHANGED. PROMOTES NOTHING.
 - id: ARC-111
   title: "Context-conditioned weights PROPER -- learned connection weights as a function of context, distinct from context-conditioned GAIN: REE today has the GAIN form of context-conditioning (ARC-044's unifier -- a context-specific multiplicative scalar: MECH-152 terrain_weight scaling E3 harm/goal scoring, ARC-016 precision, MECH-261 mode-conditioned write-CHANNEL gating) which modulates a FIXED transfer function. It does NOT have the WEIGHT form: a substrate where the learned connection weights THEMSELVES are a function of context (a different effective weight set selected/generated per context -- the transfer function changes, not a gain on it). The valuation/gating parameters are static nn.Modules; context enters only through the INPUT (z_world) and through output GAIN, never through the weights. HYPOTHESIS: genuinely context-dependent BEHAVIOUR (not just context-scaled magnitude) requires context to reach the weights -- the learned per-channel selection weight w_chan conditioned on z_world that ARC-108 introduces is the first instance of this WEIGHT form at the gating layer."
   claim_type: architectural_commitment

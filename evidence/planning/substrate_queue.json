@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "prong-map-backpointer-20260622T144731Z",
-  "last_updated_utc": "2026-06-23T04:23:35Z",
+  "last_seen_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
+  "last_updated_utc": "2026-06-24T19:54:55Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5161,6 +5161,63 @@
           "note": "SD-037 axis-b -- 689a-gated F-front downstream; r4=0.0 monostrategy, MECH-439 F-dominance reasserting under the axis-b composite (failure_autopsy_V3-EXQ-625e_2026-06-20). Own in-flight autopsy."
         }
       ]
+    },
+    {
+      "sd_id": "v4_loop_segregation",
+      "title": "V4 full BG-thalamo-cortical loop / loop-segregation substrate (multiple parallel cortico-BG-thalamic loops -- motor / associative-cognitive-set / limbic-motivational -- each owning its own eligibility+Go/No-Go+settling, arbitrated AFTER within-loop competition) + an in-layer (eligibility/settling-field) committed-class null. Owning claim ARC-110. Lets learned-gating conversion (ARC-108 w_chan / MECH-450 W_lat settling) be tested against a VALID same-layer null and across segregated loops, the two conditions the V3 single foraging arena structurally denied (700b autopsy).",
+      "status": "v4_escalation_from_700b_autopsy__loop_segregation_substrate_PENDING__owning_claim_ARC110__sequenced_behind_v3_closeout__concurrent_with_v3_700c_null_redesign__PROMOTES_NOTHING",
+      "ready": false,
+      "ready_blocked_by": "V4-generation substrate (implementation_phase v4): sequenced behind V3 evidence closeout per v4_planning_index.md (V4 substrate implementation starts only after V3 completion + governance authorisation). Built/V3-frozen prerequisites (ARC-107/MECH-448/MECH-449/ARC-108/MECH-450) are present; the unresolved gate is the V4 epoch itself plus the coupled V4 pieces (ARC-109 D1/D2 split, MECH-452 loop-local eligibility traces). The cheap V3 rung MECH-451 (finer-channel falsifier) should be exhausted first -- it can pre-empt this build. ready stays false (a V4 build is not a flip-to-ready V3 item).",
+      "priority": 1,
+      "design_doc": "docs/architecture/sd_v4_loop_segregation.md",
+      "owning_claim": "ARC-110",
+      "added_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
+      "last_seen_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
+      "added_utc": "2026-06-24T19:54:55Z",
+      "implementation_status": "pending",
+      "implementation_hint": "Replace the single collapsed E3 selection arena (ree-v3 e3_selector.py) with N>=3 parallel segregated cortico-BG-thalamic loops (motor / associative-cognitive-set / limbic-motivational), each running within-loop competition (own eligibility mask + MECH-449 Go/No-Go + MECH-450 settling) FIRST and cross-loop arbitration AFTER, so F can dominate only the motor loop and cannot drown the limbic 'is this worth committing to' value. Add a magnitude-matched random-structure null injected at the eligibility/settling-field layer (the layer MECH-450 acts on), gated behind noise_on, so the committed-class null can verify-lift (the 700-lineage policy-temperature null was decoupled from the committed-class DV and structurally inert). Couple via Haber's ascending dopamine spiral (ARC-108) with loop-local eligibility traces (MECH-452); de-collapse Go/No-Go into D1/D2 populations (ARC-109). Each loop carries an ARC-106 divergence-ledger row + per-loop ablation falsifier (decorative loops dropped); non-degeneracy guard = live cross-loop variance (a loop pinned to the motor winner is a vacuous split -> substrate_not_ready_requeue). V4 epoch / distinct architecture_epoch + V4 experiment-script template required before a validation run can be queued.",
+      "depends_on_resolved": [
+        "ARC-107 (BG selector constitution -- BUILT, V3-frozen)",
+        "MECH-448 (rank-preserving F->eligibility demotion -- BUILT+VALIDATED+provisional, V3-frozen)",
+        "MECH-449 (Go/No-Go eligibility opponency -- BUILT, V3-frozen)",
+        "ARC-108 (unified dopamine substrate / learned w_chan -- BUILT, V3-frozen)",
+        "MECH-450 (recurrent settling step / learned W_lat -- BUILT, V3-frozen)"
+      ],
+      "depends_on_unresolved": [
+        "V4 substrate epoch + V4 experiment-script template / architecture_epoch (v4_planning_index.md: V4 implementation starts after V3 closeout)",
+        "ARC-109 (D1/D2 population split -- V4, coupled co-requisite)",
+        "MECH-452 (loop-local eligibility traces -- V4, credit-assignment piece)",
+        "MECH-451 (intermediate finer-channel falsifier -- V3 cheap rung; exhaust first, may pre-empt this build)"
+      ],
+      "unblocks_claims": [
+        "MECH-439",
+        "ARC-108",
+        "MECH-450",
+        "ARC-110"
+      ],
+      "validation_experiment": null,
+      "validating_runs": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3_20260624T192217Z_v3",
+          "experiment_type": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3",
+          "metric": "noise_verified_lifting=False (n_noise_lifts_over_a0=0/3 divergent at NOISE_FLOOR_ALPHA=2.0); committed-class null inert (noise entropy 0.9161 vs A0 0.9151); 3rd consecutive null-bar failure in the 700 lineage (700 1/3 @1.0, 700a 0/3 @1.0, 700b 0/3 @2.0). The matched-noise null perturbs policy softmax temperature, decoupled from the committed-class DV by the F-bounded eligibility constitution under test -- alpha is the wrong knob and the null is structurally inert on a single arena.",
+          "target": "A same-layer (eligibility/settling-field) committed-class null that verify-lifts above A0 on a strict majority of divergent seeds (so the settling-vs-null conversion comparison becomes valid), AND loop-segregated committed conversion via a per-loop ablation the collapsed arena cannot produce."
+        }
+      ],
+      "metric_trajectory": {
+        "primary_metric": "committed-action-class entropy conversion above a VALID committed-class null (gated on noise_verified_lifting)",
+        "primary_metric_description": "Whether learned gating (ARC-108 w_chan) + recurrent settling (MECH-450 W_lat) convert per-candidate diversity into committed-action diversity ABOVE a verified non-vacuity null. On V3 the null was structurally inert (policy-temperature, decoupled from the DV), so the conversion comparison was never valid; the V4 substrate supplies a same-layer null + segregated loops so the comparison can be made.",
+        "direction": "higher_is_better",
+        "current_blocker": "V3 single foraging arena: (1) the committed-class null perturbs policy softmax temperature, decoupled from the committed-class DV by the eligibility constitution -> noise_verified_lifting=False at any alpha; (2) no per-loop degree of freedom for loop-segregated committed diversity. Both are substrate/measurement limits, not a substrate ceiling on the claims.",
+        "observations": [
+          "V3-EXQ-700 (NOISE_FLOOR_ALPHA=1.0): noise lifts 1/3 divergent; settling lift seed-42 only (+0.25 over A0, beat noise). 1 clean seed.",
+          "V3-EXQ-700a (alpha=1.0): noise lifts 0/3; settling unscoreable (pool collapsed on majority).",
+          "V3-EXQ-700b (alpha=2.0): noise lifts 0/3 (worse than 700); settling a2 +0.037 / a3 +0.051 / c3_unsigned +0.123 over A0, majority of divergent seeds C1-pass -- but ABOVE an unverified null, so non-scoring. Re-derive brake FIRED (MECH-439 5th / ARC-108 3rd / MECH-450 2nd non_contributory).",
+          "PATTERN: the null bar gets WORSE with alpha while the settling signal STRENGTHENS across the lineage -- a strengthening signal blocked by one broken (and structurally un-fixable on a single arena) instrument."
+        ],
+        "prediction": "On the V4 loop-segregation substrate with an in-layer (eligibility/settling-field) null: noise_verified_lifting should become True on a strict majority of divergent seeds (the null now perturbs the layer settling acts on), making the settling-vs-null comparison valid. Given the strengthening V3 settling signal, the expectation is that learned gating + settling converts committed-action diversity (>=1 non-motor loop converts) where the F-bounded single arena plateaued -- OR, if MECH-451's cheap finer-channel rung already converts on the single arena, this build is pre-empted (conversion ceiling = representational compression, not loop-collapse)."
+      }
     }
   ],
   "schema_version": "substrate_queue/v2"
