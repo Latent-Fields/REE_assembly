@@ -1,0 +1,105 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-24T19:33:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "lineage_context": "terminal run of the V3-EXQ-700 lineage; cluster autopsy = failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+  "targets": [
+    {
+      "run_id": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3_20260624T192217Z_v3",
+      "queue_id": "V3-EXQ-700b",
+      "claim_ids": ["MECH-439", "ARC-108", "MECH-450"],
+      "failed_criterion": "precondition_unmet",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "CONFIRMED that the test was invalid, but the self-route's prescribed cause/cure (re-tune NOISE_FLOOR_ALPHA) is WRONG. The unmet precondition (noise_verified_lifting, 0/3 at alpha=2.0) is structural, not a tuning gap: the matched-noise null perturbs policy softmax temperature, which is decoupled from the committed-class-entropy DV by the F-bounded eligibility constitution under test. Alpha is the wrong knob; a naive alpha-bump requeue is refused.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- conversion could not express; C1/C2 nominal passes sit above an unverified null and are not trustworthy",
+        "biological_reference": "clear -- faithful three-factor DA plasticity (ARC-108) + recurrent settling (MECH-450); lit present",
+        "prerequisites": "present -- ARC-108/MECH-450 built+engaged; w_chan + W_lat move; delta_t variance; settling moves the field",
+        "implementation": "complete-and-engaged -- not symbol-only; learning produces a strengthening lift",
+        "environment": "binding constraint -- single foraging arena cannot support a valid committed-class null or loop-segregated committed diversity",
+        "measurement": "ROOT -- matched-noise null is mis-layered (policy temperature vs committed-class DV); decoupled by the commitment gate; structurally inert (0/3 at alpha=2.0); alpha is the wrong knob",
+        "integration": "coupled -- learning composes inside the F-bounded eligible set",
+        "scale": "adequate -- 6 seeds x 5 arms x phased; gap is null DESIGN not budget"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia three-factor dopaminergic plasticity (ARC-108) + pallidal recurrent winner-take-most settling / Mink surround inhibition (MECH-450), over multiple parallel cortico-BG-thalamic loops (loop segregation)",
+        "dependencies": ["cortico-striatal eligibility", "signed RPE", "loop segregation (multiple parallel cortico-BG-thalamic loops)"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism level; the V3 substrate provides a single arena, so loop-segregated committed diversity (and a same-layer null for it) is unreachable",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-700b (terminal test-design-fixed re-run of the ARC-108 sec-7 learned-gating settling falsifier; supersedes V3-EXQ-700, folds 700a C3) FAIL / non_contributory (MECH-439, ARC-108, MECH-450). Self-route substrate_not_ready_requeue: the sole unmet precondition is noise_verified_lifting (0/3 at NOISE_FLOOR_ALPHA=2.0; 700 was 1/3 at 1.0). Autopsy 2026-06-24: the matched-noise null perturbs policy softmax temperature (MECH-313 noise floor), which is DECOUPLED from the committed-class-entropy DV by the F-bounded eligibility constitution under test -- alpha is the wrong knob and the null is structurally inert on a single arena. The learned-settling (MECH-450 W_lat) conversion signal is real and strengthening across the lineage (700 seed-42-only -> 700b majority-of-divergent-seeds), blocked from scoring solely by the broken null. Re-derive brake FIRES (MECH-439 5th / ARC-108 3rd / MECH-450 2nd non_contributory): naive alpha-bump requeue REFUSED. User-adjudicated routing 2026-06-24: CONCURRENT -- (A) escalate to V4 loop-segregation substrate (implement-substrate; substrate_queue create), and (B) one brake-exempt terminal V3 700c that REDESIGNS the null to a same-layer (eligibility/settling-field) perturbation, with arm-reuse via substrate fingerprint for the 4 unchanged arms. No promotion/demotion; pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "SD-v4-loop-segregation",
+        "title": "V4 full BG-thalamo-cortical loop / loop-segregation substrate (multiple parallel cortico-BG-thalamic loops + same-layer committed-class null)",
+        "implementation_hint": "V3's single foraging arena cannot exercise loop-segregated committed-action diversity, nor support a valid committed-class null (the policy-temperature null is decoupled from the committed-class DV by the eligibility constitution). Build the V4 multi-loop substrate so learned-gating conversion (ARC-108 w_chan / MECH-450 W_lat) can be tested against an in-layer null and across segregated loops.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "MECH-450"],
+        "depends_on_unresolved": ["ARC-107", "MECH-448", "MECH-449", "ARC-108 + MECH-450 (built; V3-frozen)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3_20260624T192217Z_v3",
+          "experiment_type": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3",
+          "metric": "noise_verified_lifting=False (n_noise_lifts_over_a0=0/3 divergent at NOISE_FLOOR_ALPHA=2.0); committed-class null inert (noise entropy 0.9161 vs A0 0.9151); 3rd consecutive null-bar failure in the 700 lineage",
+          "target": "a same-layer committed-class null that verify-lifts above A0 on a strict-majority of divergent seeds (so the settling-vs-null conversion comparison becomes valid)"
+        }
+      },
+      "concurrent_v3_redesign": {
+        "routing": "queue-experiment",
+        "queue_id_suggested": "V3-EXQ-700c",
+        "brake_exempt": true,
+        "exemption_rationale": "Runs CONCURRENTLY with the V4 escalation, so the brake's anti-delay intent is honoured (V4 proceeds regardless; 700c can only ADD a validated result). It is a genuine null REDESIGN (different mechanism -- same-layer eligibility/settling-field perturbation), not another lettered iteration of the same lever. PRE-REGISTERED TERMINAL: any further null failure auto-escalates to V4 with no more V3 letters.",
+        "redesign_spec": "Replace the policy-softmax-temperature null (MECH-313 noise floor / NOISE_FLOOR_ALPHA) with a magnitude-matched random-structure null injected at the eligibility/settling-field layer (the layer MECH-450 settling acts on), gated cleanly behind noise_on so non-noise arms stay byte-identical to 700b.",
+        "arm_reuse": {
+          "applicable": true,
+          "fit": "strong -- only 1 of 5 arms (ARM_NOISE) changes; A0_ENVELOPE_ONLY + A2_SETTLING_SIGNED + A3_BOTH_SIGNED + C3_SETTLING_UNSIGNED are unchanged on a frozen ARC-108/MECH-450 OFF-path",
+          "conditions": [
+            "new null hook gated behind noise_on so the other arms' execution path is byte-identical to 700b (no shared-code drift)",
+            "mint unchanged arms (>=A0; ideally the settling pack) as ree-v3/experiments/_lib/baselines/exq700_arc108_settling_baseline.py keyed on substrate fingerprint",
+            "include_driver_script_in_hash=False (mandatory)",
+            "identical env (reef-bipartite size 12 hazard 0.7), seeds, P0/P1/P2 budget",
+            "confirm no ree_core change to OFF-path/settling path since 700b",
+            "cloud linux-x86_64-py3.10 class (700b ran ree-cloud-4)"
+          ],
+          "owner_skill": "queue-experiment ('Saving a baseline for reuse' block)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-689_2026-06-19 (MECH-439)",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20 (MECH-439)",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20 (MECH-439)",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (MECH-439/ARC-108/MECH-450)",
+          "failure_autopsy_V3-EXQ-460l_2026-06-23 (ARC-108)"
+        ],
+        "count_including_this": {"MECH-439": 5, "ARC-108": 3, "MECH-450": 2},
+        "refused_requeue": true,
+        "refused_requeue_detail": "REFUSES the manifest's naive same-lever requeue (re-tune NOISE_FLOOR_ALPHA) -- proven futile by the policy-temperature/committed-class decoupling across 3 runs.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-v4-loop-segregation",
+        "concurrent_exemption": "The prior 700b exemption's renewal conditions are NOT met (no fresh substrate, same mechanism), so the brake fires. The user-adjudicated concurrent V3 700c null-redesign is brake-EXEMPT only because it runs in parallel with the V4 escalation (cannot delay it) and is a genuine null-redesign pre-registered terminal -- see concurrent_v3_redesign."
+      },
+      "learning_extracted": [
+        "The matched-noise null is mis-layered: policy softmax temperature is decoupled from committed-class entropy by the F-bounded eligibility constitution -> the null is structurally inert on a single arena; alpha is the wrong knob (700 1/3 @1.0, 700a 0/3 @1.0, 700b 0/3 @2.0).",
+        "The learned-settling (MECH-450 W_lat) conversion signal is real and STRENGTHENING across the lineage (700 seed-42-only -> 700b majority-of-divergent-seeds C1 pass), blocked from scoring solely by the broken null.",
+        "A valid committed-class null must perturb at the same layer the settling acts on (eligibility/settling field), not policy temperature.",
+        "The single foraging arena is the binding constraint for loop-segregated committed diversity -> V4 loop-segregation escalation."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Across V3-EXQ-700 / 700a / 700b the matched-noise null never verify-lifts because it perturbs policy softmax temperature, which is decoupled from the committed-class-entropy DV by the commitment gate under test; meanwhile the learned-settling conversion signal strengthens (700 seed-42-only -> 700b majority-of-divergent-seeds).",
+    "is_independent_bugs": false,
+    "structural_property": "single-arena substrate cannot support a valid committed-class null (in-layer) nor loop-segregated committed diversity -- a substrate/measurement limit, not a substrate ceiling on the claims and not a confirmed no-lift",
+    "readings": ["v4_loop_segregation_escalation", "v3_terminal_null_redesign"]
+  }
+}
