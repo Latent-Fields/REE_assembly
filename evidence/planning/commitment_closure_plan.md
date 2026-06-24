@@ -83,13 +83,13 @@ closure_plan:
     - id: "commitment_closure:GAP-4-battery"
       title: "OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) for SD-034/MECH-266/267/268 + MECH-342 ecological -- split out of GAP-4"
       phase: 2
-      status: open
+      status: in_progress
       severity: medium
-      owner_exq: "null -- *b cohort substrate-unblocked since 2026-06-02 (curriculum GAP-11 + env primitives GAP-3 DONE) but UNQUEUED"
+      owner_exq: V3-EXQ-466d
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-342]
       depends_on: ["commitment_closure:GAP-4", "commitment_closure:GAP-3", "commitment_closure:GAP-11"]
       cross_plan_link: ["sd033_governance:CHK-SD034"]
-      last_updated: 2026-06-23
+      last_updated: 2026-06-24
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to surface the OCD-battery-completeness half of GAP-4, whose work has diverged from the de-commit-conversion lineage GAP-4 now tracks. The *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) is substrate-UNBLOCKED (curriculum + env primitives both DONE since 2026-06-02) but was never queued; the sd033_governance CHK-SD034/MECH266/267/268 nodes are `done` only at substrate-readiness, so SD-034/MECH-266/267/268 remain candidate awaiting these behavioural arms. CAUTION (per the standing don't-queue-commitment-dependent-behavioural rule): any arm whose DV needs sustained action-commitment would re-derive the F-dominance conversion ceiling while the BG layer is incomplete -- gate against that; the commitment-FREE arms (e.g. 466b residue-discharge / satisficing reads) are the safer first queue. Author via /queue-experiment. NOT queued here (experiment_queue.json held by concurrent sessions). NO claims.yaml change."
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
