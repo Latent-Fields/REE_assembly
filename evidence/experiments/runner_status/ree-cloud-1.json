@@ -2,10 +2,22 @@
   "schema_version": "v1",
   "runner_pid": 1415947,
   "runner_started_at": "2026-06-17T10:52:50.833959+00:00",
-  "last_updated": "2026-06-23T05:37:56.238018+00:00",
+  "last_updated": "2026-06-23T23:17:08.308953+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-700b",
+      "backlog_id": "",
+      "claim_id": "MECH-439",
+      "title": "ARC-108 sec-7 learned-gating settling C3 (test-design-fixed re-run of 700/700a)",
+      "description": "",
+      "estimated_minutes": 17.3,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3528,6 +3540,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 52148.8
+    },
+    {
+      "queue_id": "V3-EXQ-460m",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Closure-plane commit-ENTRY primitive readiness: does use_closure_commit_entry arm + sustain a closure-formed occupancy with zero F-commits? (2-arm diagnostic)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[v3_exq_460m_closure_commit_entry_readiness] contact=True (guard 2/3) rule_directed=False (frac=0.000) | gate_a armed_and_sustained=False (frac=0.000) off_did_not_arm_frac=1.000 non_degenerate=False -> outcome=FAIL label=substrate_not_ready_requeue | Done. Outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-460m -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-460m.json",
+      "started_at": "2026-06-23T05:40:00.911112+00:00",
+      "completed_at": "2026-06-23T10:06:04.265690+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_460m_closure_commit_entry_readiness/v3_exq_460m_closure_commit_entry_readiness_20260623T100603Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 15963.4
+    },
+    {
+      "queue_id": "V3-EXQ-588e",
+      "backlog_id": "",
+      "claim_id": "MECH-189",
+      "title": "MECH-189/DEV-NEED-006 trained-encoder adult z_goal 0.4 absolute-crossing EVIDENCE (claim-tagged successor to diagnostic 588d; closes infant_substrate:GAP-11b)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-588e -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-588e.json",
+      "started_at": "2026-06-23T23:06:06.688771+00:00",
+      "completed_at": "2026-06-23T23:17:08.308283+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence/v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 661.6
     }
   ]
 }
