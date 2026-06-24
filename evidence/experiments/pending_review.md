@@ -1,10 +1,18 @@
 # Pending Experiment Review
 
-Generated: `2026-06-24T04:18:33Z`  
-Last review: `2026-06-23T23:28:12Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-24T05:50:31Z`  
+Last review: `2026-06-24T05:49:47Z`  
+Pending: **3** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 3 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## Unclaimed manifests (PASS/FAIL with no claim tags)
+
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| FAIL | `v3_exq_701b_inv050_mel_measurability_frozen_probe_20260624T043724Z_v3` | v3_exq_701b_inv050_mel_measurability_frozen_probe | V3-EXQ-701b | non_contributory |
+| PASS | `v3_exq_460p_closure_commit_entry_trajectory_readiness_20260624T044222Z_v3` | v3_exq_460p_closure_commit_entry_trajectory_readiness | V3-EXQ-460p | ? |
+| PASS | `v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3` | v3_exq_460o_closure_commit_entry_readiness | V3-EXQ-460o | ? |
 
 ---
 
