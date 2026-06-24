@@ -46990,6 +46990,27 @@
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-23"
+  implementation_note: >
+    SUBSTRATE BUILT 2026-06-24 via /implement-substrate (PROMOTES NOTHING; stays candidate /
+    substrate_conditional / v3 until EXP-0391 scores). The single ARC-108 "score_bias"
+    learned-gating channel is exploded into separately-learnable finer channels behind the
+    no-op-default flag REEConfig.use_finer_channel_gating (config.e3): finer registry
+    (ofc/dacc/lpfc/vigour/liking/gated_policy/residual + preserved mech341/route) over a
+    PARALLEL w_chan_finer register-buffer in ree-v3/ree_core/predictors/e3_selector.py, trained
+    by the SAME ARC-108 signed-RPE three-factor rule (the ARC-108 w_chan path is byte-identical).
+    agent.select_action captures the un-summed per-head biases into a score_bias_channels dict
+    (OFC<-SD-033b, dACC<-SD-032b, lateral-PFC<-SD-033a, vigour<-MECH-320, liking<-MECH-295,
+    gated_policy<-ARC-062); "residual" = score_bias - sum(named) keeps the decomposition
+    EXHAUSTIVE so softplus-unity init is bit-identical even when ON. Validation = EXP-0391
+    (A0_ENVELOPE_ONLY / A1_GLOBAL_WCHAN / A2_FINER_CHANNELS / ARM_NOISE; settling OFF; PRIMARY DV
+    committed-action-class entropy). A2 lift beyond A1 => representational compression, pre-empts
+    the V4 ARC-110 build; A2 weights-move-but-no-lift => positive evidence FOR ARC-110. ARC-106
+    cargo-cult guard: A1 IS the collapse-to-blend ablation + the non-degeneracy readiness gate
+    (dissociable cross-channel w_chan_finer variance + GAP-A divergent pool). Phased training N/A
+    (local non-backprop rule, reuses trained valuation heads). MECH-094 waking-only. Design doc
+    docs/architecture/mech_451_finer_channel_granularity.md; ree-v3/CLAUDE.md SD-Implemented entry;
+    contracts tests/contracts/test_mech451_finer_channel_gating.py (12). Routed by
+    failure_autopsy_V3-EXQ-700b_2026-06-24.
   psychiatric_failure_mode: >
     A learner that can only re-weight a PRE-COMPRESSED control blend cannot
     dissociate the control functions that compression fused -- it cannot learn that
