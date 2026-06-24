@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_454",
+  "entry_id": "2026-06-24_mech_454_quasi_option_value_arrow_fisher1974",
+  "timestamp_utc": "2026-06-24T21:14:18Z",
+  "claim_ids_tested": ["MECH-454"],
+  "source": {
+    "title": "Environmental Preservation, Uncertainty, and Irreversibility",
+    "authors": ["Arrow, Kenneth J.", "Fisher, Anthony C."],
+    "year": 1974,
+    "venue": "The Quarterly Journal of Economics, 88(2), 312-319",
+    "doi": "10.2307/1883074",
+    "url": "https://academic.oup.com/qje/article-abstract/88/2/312/1861520"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "This is the precise anchor for MECH-454's UNCERTAINTY-GATING half -- the piece empowerment and relative-reachability lack. Arrow & Fisher prove that when an action is irreversible AND the future is uncertain AND that uncertainty can be resolved by waiting, there is a positive 'quasi-option value' to preserving options, and -- decisively for MECH-454 -- this premium VANISHES when there is no uncertainty (under certainty, the irreversibility imposes no extra preservation premium). That is exactly MECH-454's gate: preserve reachable options MORE when the foreclosing forecast is uncertain, and NOT AT ALL when it is confident. Confidence is mapping-fidelity-weighted; held below the cost-anchor because this is an economics formalism about value-of-information over time, a domain transfer into an ethics-engine action-selector, and it supplies the GATE but not the reachable-option representation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Quasi-option value is positive only when the uncertainty is RESOLVABLE by waiting (information actually arrives). If the agent's forecast uncertainty is irreducible -- no learning is possible before commitment -- the quasi-option-value justification for option-preservation collapses; MECH-454's gate must therefore be conditioned on resolvable forecast uncertainty, not uncertainty per se, or it will over-defer.",
+    "The result is an expected-value optimization under a known probability model; it does not by itself tell you how to estimate the forecast uncertainty an E3 selector would gate on. Mis-estimated uncertainty (over- or under-confident PE) would mis-set the gate -- the 'collapsing an unknown future distribution into a confident point' failure MECH-454 was surfaced by."
+  ],
+  "tags": ["mech_454", "quasi_option_value", "irreversibility", "uncertainty", "option_value", "value_of_information", "real_options", "uncertainty_gating"],
+  "mapping": {
+    "source_claim_statement": "When a development action is irreversible and its future consequences are uncertain, and when that uncertainty can be reduced by waiting (acquiring information), there is a positive 'quasi-option value' to preserving the undeveloped option -- an extra premium on flexibility, over and above expected costs and benefits, that arises specifically from the interaction of irreversibility with uncertainty. Under certainty this premium is zero; the irreversibility alone imposes no additional preservation value.",
+    "ree_translation": "Arrow & Fisher supply the exact half MECH-454's other anchors lack: the GATE. MECH-454 says the reachable-option-foreclosure cost should be scaled by forecast uncertainty -- weighing option-preservation MORE when the forecast justifying foreclosure is uncertain, and NOT AT ALL when it is confident -- as a generalization of DR-12's PE-conditioned E3 confidence. Quasi-option value is the formal statement of precisely that conditional: irreversibility carries a preservation premium ONLY in proportion to (resolvable) uncertainty, and zero under certainty. Pairing this with the reachable-option-preservation cost (Krakovna; empowerment) yields MECH-454's full shape: an uncertainty-gated reachable-option cost. Neither half alone is MECH-454; their conjunction is the novel synthesis.",
+    "mapping_caveat": "Domain transfer is large: this is welfare economics over a single irreversible develop/preserve decision with a known probability model and an exogenous arrival of information, not a per-step action-selector scoring latent reachable futures. Two specific risks. (1) Quasi-option value requires uncertainty that is RESOLVABLE BY WAITING; MECH-454's gate keys on forecast uncertainty (PE), which is not always reducible by deferral -- a faithful port must gate on resolvable uncertainty or it will pathologically defer (the over-preservation pole). (2) The economics result assumes a correct probability model; it does not address how an E3 selector estimates its own forecast confidence, which is where the original failure (over-confident point-collapse of an unknown distribution) lives. Supplies the GATE component only, not the reachable-option representation; complementary to the Krakovna/empowerment entries, not a substitute. Cross-references DR-12 (the REE primitive being generalized).",
+    "source_context": "Theoretical economics, Quarterly Journal of Economics 1974. A two-period analytic model of irreversible environmental development under uncertainty. Foundational and durable: 'quasi-option value' is a standard construct in environmental and resource economics; Arrow & Fisher themselves note it generalizes beyond environmental settings to any decision linking uncertainty, information, and irreversibility."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high: a foundational, durable QJE result by Arrow (Nobel laureate) and Fisher, still standard 50 years on. Mapping fidelity moderate-to-good for the GATE specifically -- the certainty-zeroing property is an unusually exact match to MECH-454's 'not at all when confident' clause -- but it supplies only the gate, and the resolvable-uncertainty caveat and the economics-to-selector transfer keep transfer_risk elevated."
+  }
+}

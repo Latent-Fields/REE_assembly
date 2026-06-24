@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_454",
+  "entry_id": "2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019",
+  "timestamp_utc": "2026-06-24T21:14:18Z",
+  "claim_ids_tested": ["MECH-454"],
+  "source": {
+    "title": "Penalizing side effects using stepwise relative reachability",
+    "authors": ["Krakovna, Victoria", "Orseau, Laurent", "Kumar, Ramana", "Martic, Miljan", "Legg, Shane"],
+    "year": 2019,
+    "venue": "arXiv:1806.01186 (v2, 2019); presented at the IJCAI 2019 AI Safety Workshop",
+    "doi": "10.48550/arXiv.1806.01186",
+    "url": "https://arxiv.org/abs/1806.01186"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the strongest single anchor for MECH-454's foreclosure-as-COST framing: it operationalizes a PENALTY for reducing the set of reachable states relative to a baseline, added to the agent's objective -- structurally the same move MECH-454 proposes for E3 (a residual cost term for foreclosing reachable-option space). It maps better than empowerment onto the cost framing AND onto INV-026's reachable-state-space language, and the paper explicitly engineers the penalty to avoid pathological over-preservation (the same failure pole MECH-454 names). It still lacks MECH-454's uncertainty-gating: the reachability penalty is not scaled by the agent's forecast confidence. Confidence is the highest in this pull because the cost-term mapping_fidelity is high; it is held below 0.8 by the missing gate and by the AI-safety-gridworld to ethics-engine transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The reachability penalty is applied unconditionally against a fixed (inaction) baseline; it is not modulated by how uncertain the agent's forecast is. So it cannot implement MECH-454's confident-vs-uncertain distinction -- it would penalize a confidently-justified irreversible action and an unjustified one identically, the 'deranged gating' (cost present but not uncertainty-scaled) failure mode.",
+    "The paper documents that naive reachability/side-effect penalties create a perverse incentive to PREVENT any irreversible change, including other agents' actions; this is the over-preservation pole, and MECH-454 must avoid re-importing it. The authors' stepwise-relative-reachability fix mitigates but does not remove the tension, and the SELF-scoped REE version would need its own guard.",
+    "Reachability is computed over an explicit, enumerable state space with a defined baseline; an E3 self-foreclosure cost over high-dimensional latent reachable futures has no such clean baseline, so the operationalization does not transfer turnkey."
+  ],
+  "tags": ["mech_454", "reachability", "side_effects", "irreversibility", "option_preservation", "ai_safety", "cost_term"],
+  "mapping": {
+    "source_claim_statement": "Side-effect penalties for safe RL can be decomposed into a baseline state and a deviation measure. The authors propose a deviation measure based on RELATIVE REACHABILITY -- how much an action reduces the set of states reachable from the current state compared to a (stepwise inaction) baseline -- and add this as a penalty to the agent's objective. This penalizes irreversible reductions of the reachable-state space while, by construction, avoiding incentives to prevent all irreversible change or to interfere with other agents.",
+    "ree_translation": "This is the direct architectural template for the COST half of MECH-454. MECH-454 proposes E3 should carry a residual cost for foreclosing the SELF's reachable-option space; relative reachability is precisely a penalty for reducing reachable states, ADDED to the objective alongside the task reward -- exactly E3's harm+benefit+goal+residue+cost structure. It also maps cleanly onto INV-026's foreclosure-of-reachable-state-space language (INV-026 scopes that foreclosure as a harm to OTHERS; MECH-454 is the SELF-directed, non-harm analog -- and this paper's explicit worry about NOT penalizing other agents' state-reductions actually sharpens the self-vs-other boundary INV-026/MECH-454 partition). The one piece it does not supply is the uncertainty-gate (DR-12 generalization): the penalty fires by the same rule regardless of forecast confidence.",
+    "mapping_caveat": "Three boundaries. (1) NO uncertainty-gating: the reachability penalty is unconditional w.r.t. forecast confidence, so it implements the un-gated version MECH-454 explicitly improves on. (2) Over-preservation is a live hazard the paper itself documents -- naive reachability penalties incentivize preventing ALL irreversible change; the stepwise-relative-reachability design mitigates this for the side-effects-on-the-world case, but a SELF-scoped E3 port would need an analogous guard against pathological option-hoarding. (3) Operationalization mismatch: relative reachability assumes an enumerable state space and a defined inaction baseline; E3's foreclosure cost lives over high-dimensional latent reachable futures with no clean baseline, so the construct transfers as a DESIGN PATTERN, not as a drop-in formula. Distinct from MECH-314 (novelty exploration bonus) and ARC-068 (time opportunity-cost). Self-vs-other partition links to INV-026.",
+    "source_context": "AI-safety computational study. Method demonstrated on DeepMind AI-safety gridworlds engineered to expose bad side-effect incentives; tabular, fully enumerable state spaces. No biological or human data. v1 2018 (NeurIPS AI-safety workshop lineage), v2 2019 (IJCAI AI Safety workshop)."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: DeepMind safety group, well-cited, with released code. Mapping fidelity the highest in this pull (0.70) because the cost-term-added-to-objective structure and the reachable-state-space framing both match MECH-454 and INV-026 directly. Held below 0.8 by the absent uncertainty-gate and the gridworld-to-ethics-engine operationalization gap; transfer_risk moderate."
+  }
+}

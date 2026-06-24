@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_454",
+  "entry_id": "2026-06-24_mech_454_real_options_value_of_waiting_dixit_pindyck1994",
+  "timestamp_utc": "2026-06-24T21:14:18Z",
+  "claim_ids_tested": ["MECH-454"],
+  "source": {
+    "title": "Investment under Uncertainty",
+    "authors": ["Dixit, Avinash K.", "Pindyck, Robert S."],
+    "year": 1994,
+    "venue": "Princeton University Press",
+    "doi": "10.1515/9781400830176",
+    "url": "https://press.princeton.edu/books/hardcover/9780691034102/investment-under-uncertainty"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The canonical real-options text: it shows that the value of waiting before an irreversible commitment RISES with both irreversibility AND uncertainty, and that exercising an irreversible option 'kills' the option value of waiting -- an opportunity cost that must be charged against the commitment. This reinforces, with the most-cited treatment of the principle, MECH-454's uncertainty-gating: the cost of foreclosing reachable options should scale with forecast uncertainty. It anchors the SAME (gating) half as Arrow & Fisher 1974, so it is weighted to add robustness, not an independent component. Held below the Arrow-Fisher entry to avoid double-counting the gate; the reachable-option REPRESENTATION half is still absent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Real-options waiting-value is positive only when deferral is feasible and informative; if the agent cannot defer or no information will arrive, the option-value-of-waiting argument does not license preserving options, and an E3 cost built naively on it would over-defer (the chronic-indecision pole).",
+    "The framework optimizes expected value under an assumed stochastic process (e.g. geometric Brownian motion) with a known volatility; it presumes the uncertainty is correctly quantified. An E3 gate that mis-estimates forecast uncertainty would mis-price the foreclosure cost, the same point-collapse failure that surfaced MECH-454."
+  ],
+  "tags": ["mech_454", "real_options", "value_of_waiting", "irreversibility", "uncertainty", "option_value", "opportunity_cost", "uncertainty_gating"],
+  "mapping": {
+    "source_claim_statement": "When an investment is irreversible and future returns are uncertain, the opportunity to invest is itself an option whose value rises with uncertainty. Making the irreversible expenditure 'exercises' (kills) that option, forgoing the chance to wait for better information; this lost option value is a real opportunity cost that must be added to the direct cost of the investment. Hence the optimal rule defers irreversible commitment more, the greater the irreversibility and the greater the uncertainty.",
+    "ree_translation": "Dixit & Pindyck give the most-developed statement of MECH-454's gating logic in a decision-theoretic (rather than purely environmental) setting: the cost of an irreversible commitment includes the value of the options it destroys, and that cost grows with uncertainty. MECH-454 proposes E3 charge a foreclosure cost for killing the SELF's reachable options, scaled by forecast uncertainty (the DR-12 generalization). 'Exercising kills the option, and the lost option value is an opportunity cost' is, almost verbatim, the foreclosure-cost MECH-454 wants E3 to represent; 'the cost rises with uncertainty' is the gate. This entry's job is to show the gating principle is robust and general -- it holds in capital-investment decision theory, not only Arrow & Fisher's environmental case.",
+    "mapping_caveat": "Same gate-half / robustness role as the Arrow & Fisher entry -- deliberately NOT an independent component, weighted to avoid double-counting the uncertainty-gate. Transfer caveats: (1) the value of waiting presupposes deferral is feasible and informative; where the agent cannot wait or learn, the principle does not license option-preservation, and a naive E3 port would over-defer; (2) the formalism assumes a known stochastic process / quantified volatility, sidestepping the harder problem -- how an E3 selector ESTIMATES its forecast uncertainty -- which is exactly where MECH-454's surfacing failure (over-confident point-collapse) lives; (3) economics-of-the-firm to ethics-engine action-selector is a large domain jump. Supplies the GATE, not the reachable-option representation. Distinct from ARC-068 (time opportunity-cost) -- note the surface overlap (this paper literally frames it as opportunity cost) is over the TIMING of a single commitment, whereas MECH-454's cost is over reachable-option SPACE; cross-references DR-12 and the Niv opportunity-cost line (ARC-066/MECH-320).",
+    "source_context": "Foundational graduate text in economics (Princeton UP, 1994). Analytic and numerical real-options models of firm investment timing under uncertainty, typically with continuous-time stochastic processes. No biological, neural, or agent-architecture content; the transfer to REE is by structural analogy of the decision principle."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Source quality very high: the standard reference for real-options / value-of-waiting, durable for 30 years. Mapping fidelity moderate and intentionally aligned with the Arrow-Fisher entry (same gate component) -- set below it to avoid two sources inflating the gate into apparent independent strength. Transfer_risk 0.50: firm-investment decision theory is a sizeable jump to an ethics-engine selector, and the deferral-feasibility and uncertainty-estimation assumptions do not transfer cleanly."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_454",
+  "entry_id": "2026-06-24_mech_454_empowerment_introduction_salge2014",
+  "timestamp_utc": "2026-06-24T21:14:18Z",
+  "claim_ids_tested": ["MECH-454"],
+  "source": {
+    "title": "Empowerment -- An Introduction",
+    "authors": ["Salge, Christoph", "Glackin, Cornelius", "Polani, Daniel"],
+    "year": 2014,
+    "venue": "Guided Self-Organization: Inception (M. Prokopenko, ed.), Emergence, Complexity and Computation vol. 9, Springer, pp. 67-114",
+    "doi": "10.1007/978-3-642-53734-9_4",
+    "url": "https://arxiv.org/abs/1310.1863"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "A comprehensive review consolidating the empowerment formalism (channel capacity between actions and future sensor states) and surveying its behavioral consequences across sensorimotor configurations. It strengthens the same COMPONENT the Klyubin 2005 entry anchors -- reachable-option preservation as a principled, task-independent objective -- and adds breadth (showing the same formalism yields option-preserving behavior across many embodiments, and noting empowerment's proposed use as a safety/keeping-options-open heuristic). It does NOT introduce uncertainty-gating, and it remains a maximization objective rather than a conditional cost. Confidence is mapping-fidelity-weighted and set slightly below the Klyubin origin entry to avoid double-counting two empowerment sources that anchor the same half of the claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review surveys empowerment as an always-on maximization objective and a 'keep options open' safety heuristic, but nowhere conditions option-preservation on forecast uncertainty -- so it cannot discriminate MECH-454's confident-forecast case (where foreclosure should be cheap) from the uncertain-forecast case (where it should be costly). The uncertainty-gate that distinguishes MECH-454 from generic option-preservation is not present.",
+    "Empowerment-as-safety-heuristic (keeping the world controllable) is framed around the agent's broad influence over its environment, which can over-generalize into resisting any irreversible change -- the same pathological over-preservation pole MECH-454 warns about when the cost is un-gated."
+  ],
+  "tags": ["mech_454", "empowerment", "reachable_options", "option_value", "intrinsic_motivation", "review", "safety_heuristic"],
+  "mapping": {
+    "source_claim_statement": "Empowerment is the channel capacity between an agent's actions and its later sensor states -- a task-independent, agent-centric utility quantifying how much an agent can influence and perceive its own future. The review shows the same formalism produces option-preserving, controllability-seeking behavior across diverse sensorimotor configurations, and discusses empowerment as a candidate intrinsic motivation and as a 'keep your options open' heuristic with safety-relevant interpretations.",
+    "ree_translation": "This review reinforces that 'preserving the agent's own reachable-option space' is a formally tractable, well-studied objective -- the very quantity MECH-454 proposes to add to E3 as a self-directed, non-harm foreclosure cost (the SELF analog of INV-026's foreclosure-of-OTHERS). It supplies the magnitude/representation half of MECH-454 with more breadth than a single demonstration: the same option-preservation signal recurs across embodiments, which is reassuring for treating it as a substrate-general E3 term. It still does NOT supply the uncertainty-gating half (the DR-12 generalization), which is what makes MECH-454's synthesis novel.",
+    "mapping_caveat": "Same core transfer gap as the Klyubin 2005 entry: empowerment is an unconditional maximization objective, not an uncertainty-gated cost inside a multi-term ethics-engine selector. The review's framing of empowerment as a safety / 'keep options open' heuristic is suggestive but is explicitly about broad environmental controllability, which can collapse into resisting all irreversible change (the over-preservation failure pole) precisely because it is un-gated. This entry deliberately anchors the SAME half of MECH-454 as the Klyubin origin paper, so it is weighted to avoid double-counting; it adds breadth/robustness, not an independent component. Distinct from MECH-314 (novelty bonus) and ARC-068 (time opportunity-cost); cross-references the Niv opportunity-cost line (ARC-066/MECH-320) without pulling it.",
+    "source_context": "Book-chapter review / tutorial in a Springer volume on guided self-organization. Synthesizes prior empowerment work across discrete and continuous sensorimotor agents and simulated robots. No biological, clinical, or human-behavioral data; conceptual and computational throughout."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high for a consolidating review by the construct's own authors. Mapping fidelity moderate and identical in kind to the Klyubin entry -- it anchors the option-preservation component, not the uncertainty-gate. Confidence set marginally below the origin paper specifically to avoid two empowerment sources inflating the same half of the claim."
+  }
+}

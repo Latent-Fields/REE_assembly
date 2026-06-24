@@ -1,0 +1,17 @@
+# Quasi-option value: the uncertainty-gate (Arrow & Fisher 1974)
+
+## What the paper did
+
+Arrow and Fisher asked when it is worth preserving an option you could instead irreversibly destroy -- their running case being undeveloped wilderness. Their answer, in a clean two-period model, introduced what they called *quasi-option value*: when an action is irreversible, the future is uncertain, and that uncertainty can be reduced by waiting, then there is a positive premium on keeping the option open -- a value of flexibility *over and above* the expected costs and benefits, arising specifically from the interaction of irreversibility with uncertainty. The result that matters most here is the boundary condition: under *certainty*, this premium is zero. Irreversibility on its own buys no extra preservation value; it is only irreversibility *times* resolvable uncertainty that does.
+
+## Why it is the anchor MECH-454 actually needed
+
+The other four papers in this pull supply the *reachable-option-preservation* half of MECH-454 -- empowerment and relative reachability both give you a way to score and penalize foreclosing your futures. What none of them supply is the *gate*, and the gate is what makes MECH-454 novel rather than a re-skin. MECH-454 insists the foreclosure cost be *scaled by forecast uncertainty*: weigh option-preservation more when the forecast justifying the irreversible action is uncertain, and not at all when it is confident -- a generalization of DR-12's prediction-error-conditioned E3 confidence from object-rollouts to a foreclosure cost. Quasi-option value is the formal statement of exactly that conditional. The premium on flexibility is proportional to (resolvable) uncertainty and vanishes under certainty. The "not at all when confident" clause of MECH-454 has an unusually exact match in Arrow & Fisher's certainty-zeroing property. Pair this gate with the reachable-option cost from Krakovna or empowerment and you have MECH-454's full shape -- but only as a conjunction the literature does not itself make.
+
+## The honest limit of the mapping
+
+Two caveats keep this from being a turnkey transfer. First, quasi-option value requires uncertainty that is *resolvable by waiting* -- information has to actually arrive if you defer. MECH-454's gate keys on forecast uncertainty (prediction error), which is not always reducible by deferral; a naive port that gates on uncertainty *per se* would pathologically defer (the over-preservation pole), so a faithful E3 version must gate on *resolvable* uncertainty. Second, the economics result assumes a correct probability model and says nothing about how an agent *estimates its own* forecast confidence -- which is exactly where the failure that surfaced MECH-454 lives (collapsing an unknown future distribution into a confident point and acting irreversibly on it). Arrow & Fisher tell you what to do *given* calibrated uncertainty; they do not tell you how to calibrate it.
+
+## Confidence reasoning
+
+I set confidence at 0.66, with very high source_quality (0.85 -- a foundational, fifty-year-durable QJE result by Arrow and Fisher) and moderate-to-good mapping_fidelity for the gate specifically. The certainty-zeroing property is an unusually precise match to MECH-454's design, which is why this entry, despite a large domain transfer from welfare economics to a per-step ethics-engine selector, earns real weight. As throughout this pull: the components are well-supported; what is REE-novel is binding the uncertainty-gate to a reachable-option cost inside E3.

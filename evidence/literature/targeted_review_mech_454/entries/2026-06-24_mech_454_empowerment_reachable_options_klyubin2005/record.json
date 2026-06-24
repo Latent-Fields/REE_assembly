@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_454",
+  "entry_id": "2026-06-24_mech_454_empowerment_reachable_options_klyubin2005",
+  "timestamp_utc": "2026-06-24T21:14:18Z",
+  "claim_ids_tested": ["MECH-454"],
+  "source": {
+    "title": "All Else Being Equal Be Empowered",
+    "authors": ["Klyubin, Alexander S.", "Polani, Daniel", "Nehaniv, Chrystopher L."],
+    "year": 2005,
+    "venue": "Advances in Artificial Life (ECAL 2005), Lecture Notes in Computer Science 3630, Springer",
+    "doi": "10.1007/11553090_75",
+    "url": "https://link.springer.com/chapter/10.1007/11553090_75"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the foundational paper introducing empowerment -- the channel capacity between an agent's actions and its later sensory states -- as a task-independent intrinsic objective. It is the closest direct formal anchor for the OPTION-PRESERVATION half of MECH-454: an empowerment-maximizing agent prefers states from which more distinct future sensor states are reachable, i.e. it avoids cheaply foreclosing its own reachable-option space. It supports the COMPONENT (reachable-option preservation as a quantifiable objective an agent can score) but maps only weakly onto MECH-454's full claim, because empowerment is a continuous maximization objective over future controllability, NOT a discrete COST term inside an ethics-engine action-selector, and -- critically -- it carries no uncertainty-gating: empowerment does not become more or less weighted as a function of how confident the agent's forecast is. Confidence is set by mapping_fidelity (architectural claim): the reachability-preservation idea transfers cleanly, the cost-term framing and the uncertainty-gating do not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Empowerment is maximized everywhere, unconditionally; it provides no mechanism by which option-preservation should be weighted MORE under an uncertain forecast and not at all under a confident one. MECH-454's defining uncertainty-gating is absent, so an agent built on empowerment alone would over-preserve options even when a confident forecast justifies irreversible commitment (the 'pathological option-preservation / chronic indecision' failure pole).",
+    "Empowerment is a standalone drive, not a residual cost integrated alongside harm/benefit/goal terms in a single trajectory score; an empowerment maximizer can trade away task reward for raw controllability, which is the opposite failure (refusing necessary irreversible action) from the one MECH-454 is surfaced by (premature irreversible commitment)."
+  ],
+  "tags": ["mech_454", "empowerment", "reachable_options", "option_value", "intrinsic_motivation", "controllability", "information_theory"],
+  "mapping": {
+    "source_claim_statement": "Empowerment is defined as the channel capacity (maximal mutual information) between an agent's sequence of actions and its subsequent sensor states. It is a universal, goal-independent, agent-centric measure of the control an agent has over its perceivable future. The authors propose that, all else being equal, an agent should move toward states of higher empowerment -- i.e. states from which a larger, more distinguishable set of future sensory outcomes is reachable under its own actions.",
+    "ree_translation": "Empowerment formalizes exactly the quantity MECH-454 says REE's E3 lacks outside the harm domain: a scalar over how much of the agent's OWN reachable-future-option space an action preserves. MECH-454 proposes E3 should carry an option-value / reversibility term that penalizes foreclosing the SELF's reachable futures -- the non-harm, self-directed analog of INV-026's harm-scoped foreclosure-of-OTHERS. Empowerment is the closest existing operationalization of 'reachable-option preservation' and could supply the magnitude of the foreclosure cost (low post-action empowerment == high foreclosure). It does NOT supply MECH-454's second, defining half: the cost must be GATED BY forecast uncertainty (a generalization of DR-12's PE-conditioned E3 confidence), scaling up when the forecast justifying foreclosure is uncertain and vanishing when it is confident. Empowerment has no such gate.",
+    "mapping_caveat": "Empowerment is a maximization DRIVE over future controllability, whereas MECH-454 is a CONDITIONAL COST inside a multi-term ethics-engine action-selector that fires with z_harm below threshold. Three transfer gaps: (1) drive-vs-cost framing -- an unconditional empowerment maximizer over-preserves options and refuses necessary irreversible action, the opposite failure from the one MECH-454 was surfaced by; (2) NO uncertainty-gating -- empowerment is weighted identically regardless of forecast confidence, which is precisely the 'deranged gating' failure mode MECH-454 names; (3) empowerment scores controllability of the agent's OWN sensor stream, which overlaps but is not identical to the foreclosure-of-reachable-state-space framing INV-026/MECH-454 inherit. Distinct from MECH-314 (curiosity/novelty exploration BONUS -- a reward for visiting prediction-error-rich states, not a cost for foreclosing options) and from ARC-068 (opportunity cost of TIME, not of option-SPACE). Links to the Niv opportunity-cost line (ARC-066/MECH-320) as a conceptual cousin -- NOT pulled here.",
+    "source_context": "Computational / information-theoretic proposal in artificial life. Demonstrated on small discrete sensorimotor agents and gridworld-scale toy environments. No biological data; no clinical or human-behavioral mapping. The 2005 ECAL paper and the companion CEC 2005 paper ('Empowerment: a universal agent-centric measure of control') jointly introduce the construct."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: this is the canonical, heavily-cited origin of empowerment, a durable construct across 20 years of intrinsic-motivation work. Mapping fidelity moderate: reachable-option preservation transfers cleanly as the magnitude of MECH-454's cost, but the drive-vs-cost framing and (decisively) the absence of uncertainty-gating mean the source covers only the option-preservation COMPONENT, not the full claim. Transfer risk elevated: toy sensorimotor agents to a hybrid-guardrails ethics-engine action-selector, and the maximization framing can invert the target behavior."
+  }
+}
