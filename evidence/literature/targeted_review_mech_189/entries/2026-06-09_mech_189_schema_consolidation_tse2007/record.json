@@ -3,10 +3,22 @@
   "literature_type": "targeted_review_mech_189",
   "entry_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
   "timestamp_utc": "2026-06-09T22:20:57Z",
-  "claim_ids_tested": ["MECH-189"],
+  "claim_ids_tested": [
+    "MECH-189",
+    "DEV-NEED-006"
+  ],
   "source": {
     "title": "Schemas and Memory Consolidation",
-    "authors": ["Dorothy Tse", "Rosamund F. Langston", "Masaki Kakeyama", "Ingrid Bethus", "Patrick A. Spooner", "Emma R. Wood", "Menno P. Witter", "Richard G. M. Morris"],
+    "authors": [
+      "Dorothy Tse",
+      "Rosamund F. Langston",
+      "Masaki Kakeyama",
+      "Ingrid Bethus",
+      "Patrick A. Spooner",
+      "Emma R. Wood",
+      "Menno P. Witter",
+      "Richard G. M. Morris"
+    ],
     "year": 2007,
     "venue": "Science",
     "doi": "10.1126/science.1135935",
@@ -15,13 +27,25 @@
   "evidence_class": "behavioral_animal",
   "evidence_direction": "supports",
   "confidence": 0.62,
-  "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval.",
+  "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "Rapid schema-assisted consolidation requires a PRE-EXISTING schema; the first associations into a novel schema consolidate slowly and remain hippocampus-dependent. MECH-189's bootstrap (empty store -> complexity=1.0 -> first contacts write) is the moment BEFORE any schema exists -- so the earliest super-ordinal anchors should be the slowest and least stable, not the most. The substrate writes them at full strength immediately, which over-states early-anchor stability relative to this evidence.",
     "Schemas accelerate integration at the cost of memory specificity over time (the consolidated trace generalises and loses item detail). If super-ordinal anchors generalise the same way, their cue-index keys drift toward the schema centroid, and READ retrieval in a novel context may pull z_goal toward an over-general anchor rather than a context-appropriate one."
   ],
-  "tags": ["mech_189", "schema", "systems_consolidation", "hippocampus", "mPFC", "vmPFC", "paired_associate", "cue_indexed", "value_memory", "rapid_consolidation"],
+  "tags": [
+    "mech_189",
+    "schema",
+    "systems_consolidation",
+    "hippocampus",
+    "mPFC",
+    "vmPFC",
+    "paired_associate",
+    "cue_indexed",
+    "value_memory",
+    "rapid_consolidation",
+    "dev-need-006"
+  ],
   "mapping": {
     "source_claim_statement": "When new information fits a pre-established associative schema, systems consolidation is dramatically accelerated: in rats with a well-learned flavour-place schema, new flavour-place paired associates learned in a single trial became hippocampus-independent within 48 h (vs the usual weeks). The medial prefrontal cortex is required for schema-based assimilation, and schema-consistent learning up-regulates immediate-early genes in mPFC.",
     "ree_translation": "MECH-189 needs a biological mechanism by which a salient, cue-associated contact is rapidly written into a persistent, cortically-held store keyed by context. Tse et al. supply it: a cue-indexed associative schema, hippocampally encoded and mPFC-consolidated, into which new cue-value associations are rapidly and durably integrated. This is the consolidation step that converts Rovee-Collier's labile infant trace into a stable super-ordinal anchor; the mPFC/vmPFC schema is the biological seat of the cross-episode-persistent goal hierarchy the substrate models as SuperOrdinalGoalMemory (the design doc names hippocampal-vmPFC goal-anchor formation explicitly).",

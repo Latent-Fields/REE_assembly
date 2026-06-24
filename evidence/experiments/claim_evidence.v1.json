@@ -5804,7 +5804,7 @@
       }
     },
     "ARC-081": {
-      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.715",
+      "confidence_rationale": "exp=0 entry(s), lit=2 entry(s), exp_conf=0, lit_conf=0.714",
       "direction_counts": {
         "mixed": 0,
         "supports": 2,
@@ -5830,9 +5830,9 @@
       },
       "latest_run_id": "2026-06-13_arc_081_rubber_hand_body_ownership_botvinick1998",
       "latest_timestamp_utc": "2026-06-13T18:10:23Z",
-      "literature_confidence": 0.715,
-      "literature_confidence_parallel": 0.715,
-      "overall_confidence": 0.715,
+      "literature_confidence": 0.714,
+      "literature_confidence_parallel": 0.714,
+      "overall_confidence": 0.714,
       "pass_runs": 0,
       "recent_entries": [
         {
@@ -7216,21 +7216,25 @@
       }
     },
     "DEV-NEED-006": {
-      "confidence_rationale": "exp=1 entry(s), lit=0 entry(s), exp_conf=0.773, lit_conf=0",
+      "confidence_rationale": "exp=1 entry(s), lit=5 entry(s), exp_conf=0.773, lit_conf=0.836",
       "direction_counts": {
-        "mixed": 0,
-        "supports": 1,
+        "mixed": 1,
+        "supports": 5,
         "unknown": 0,
         "weakens": 0
       },
-      "entries_total": 1,
+      "entries_total": 6,
       "evidence_class_counts": {
-        "exp:simulation": 1
+        "exp:simulation": 1,
+        "lit:behavioral_animal": 2,
+        "lit:connectome_mechanistic_review": 1,
+        "lit:fmri_connectivity": 1,
+        "lit:theoretical_review": 1
       },
       "evidence_level_counts": {
         "C": 1
       },
-      "evidence_quadrant": "novel_discovery",
+      "evidence_quadrant": "confirmed_established",
       "experimental_confidence": 0.773,
       "experimental_confidence_decoupled": 0.773,
       "fail_runs": 0,
@@ -7243,11 +7247,79 @@
       },
       "latest_run_id": "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3",
       "latest_timestamp_utc": "2026-06-23T23:17:07Z",
-      "literature_confidence": 0.0,
-      "literature_confidence_parallel": 0.0,
-      "overall_confidence": 0.773,
+      "literature_confidence": 0.836,
+      "literature_confidence_parallel": 0.836,
+      "overall_confidence": 0.82,
       "pass_runs": 1,
       "recent_entries": [
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "DEV-NEED-006",
+          "confidence": 0.72,
+          "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+          "evidence_class": "lit:connectome_mechanistic_review",
+          "evidence_direction": "mixed",
+          "experiment_type": "targeted_review_connectome_mech_189",
+          "failure_signatures": [
+            "If the write gate measures novelty only against the goal-anchor set (super_ordinal_complexity_mode='novelty'), it computes mismatch against the wrong reference: the biological comparator detects information 'not already stored in long-term memory', i.e. mismatch against the whole stored model.",
+            "Treating salience (gate a) and complexity/novelty (gate b) as independent multiplicands departs from the biology, where the same VTA dopaminergic signal integrates novelty, salience, and goal information into a single gate."
+          ],
+          "run_id": "2026-06-09_mech_189_hippocampal_vta_novelty_gate_lismangrace2005",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:30Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "DEV-NEED-006",
+          "confidence": 0.74,
+          "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+          "evidence_class": "lit:fmri_connectivity",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_connectome_mech_189",
+          "failure_signatures": [
+            "If the write gate is driven by a stimulus-novelty term divorced from value, it will miss value-modulated encoding: in humans, the strongest individual-difference predictor of motivated memory was SN/VTA-hippocampus tract density, a value pathway, not a generic novelty pathway.",
+            "Modelling gate (a) salience and gate (b) complexity as independent factors is at odds with the shared dopaminergic value/PE channel implicated here, where motivational value itself modulates the hippocampal encoding signal."
+          ],
+          "run_id": "2026-06-09_mech_189_motivated_memory_vta_hippocampus_elliott2022",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:30Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "DEV-NEED-006",
+          "confidence": 0.72,
+          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+          "evidence_class": "lit:theoretical_review",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+            "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
+          ],
+          "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        },
+        {
+          "architecture_epoch": "ree_hybrid_guardrails_v1",
+          "claim_id": "DEV-NEED-006",
+          "confidence": 0.62,
+          "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+          "evidence_class": "lit:behavioral_animal",
+          "evidence_direction": "supports",
+          "experiment_type": "targeted_review_mech_189",
+          "failure_signatures": [
+            "Rapid schema-assisted consolidation requires a PRE-EXISTING schema; the first associations into a novel schema consolidate slowly and remain hippocampus-dependent. MECH-189's bootstrap (empty store -> complexity=1.0 -> first contacts write) is the moment BEFORE any schema exists -- so the earliest super-ordinal anchors should be the slowest and least stable, not the most. The substrate writes them at full strength immediately, which over-states early-anchor stability relative to this evidence.",
+            "Schemas accelerate integration at the cost of memory specificity over time (the consolidated trace generalises and loses item detail). If super-ordinal anchors generalise the same way, their cue-index keys drift toward the schema centroid, and READ retrieval in a novel context may pull z_goal toward an over-general anchor rather than a context-appropriate one."
+          ],
+          "run_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
+          "source_type": "literature",
+          "status": "SOURCE",
+          "timestamp_utc": "2026-06-09T22:20:57Z"
+        },
         {
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "DEV-NEED-006",
@@ -7265,10 +7337,10 @@
           "timestamp_utc": "2026-06-23T23:17:07Z"
         }
       ],
-      "runs_total": 1,
+      "runs_total": 6,
       "source_counts": {
         "experimental": 1,
-        "literature": 0
+        "literature": 5
       }
     },
     "DEV-NEED-009": {
@@ -11182,7 +11254,7 @@
       }
     },
     "MECH-025": {
-      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.296, lit_conf=0.877",
+      "confidence_rationale": "exp=1 entry(s), lit=7 entry(s), exp_conf=0.295, lit_conf=0.877",
       "direction_counts": {
         "mixed": 2,
         "supports": 6,
@@ -11203,8 +11275,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.296,
-      "experimental_confidence_decoupled": 0.296,
+      "experimental_confidence": 0.295,
+      "experimental_confidence_decoupled": 0.295,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -17059,7 +17131,7 @@
       }
     },
     "MECH-102": {
-      "confidence_rationale": "exp=24 entry(s), lit=9 entry(s), exp_conf=0.416, lit_conf=0.835",
+      "confidence_rationale": "exp=24 entry(s), lit=9 entry(s), exp_conf=0.415, lit_conf=0.835",
       "direction_counts": {
         "mixed": 12,
         "supports": 10,
@@ -17078,8 +17150,8 @@
         "C": 24
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.416,
-      "experimental_confidence_decoupled": 0.416,
+      "experimental_confidence": 0.415,
+      "experimental_confidence_decoupled": 0.415,
       "fail_runs": 21,
       "genuine_exp_count": 24,
       "genuine_exp_direction_counts": {
@@ -17092,7 +17164,7 @@
       "latest_timestamp_utc": "2026-04-26T03:40:00Z",
       "literature_confidence": 0.835,
       "literature_confidence_parallel": 0.835,
-      "overall_confidence": 0.626,
+      "overall_confidence": 0.625,
       "pass_runs": 3,
       "recent_entries": [
         {
@@ -17647,7 +17719,7 @@
       }
     },
     "MECH-112": {
-      "confidence_rationale": "exp=15 entry(s), lit=6 entry(s), exp_conf=0.718, lit_conf=0.879",
+      "confidence_rationale": "exp=15 entry(s), lit=6 entry(s), exp_conf=0.717, lit_conf=0.879",
       "direction_counts": {
         "mixed": 5,
         "supports": 13,
@@ -17665,8 +17737,8 @@
         "C": 15
       },
       "evidence_quadrant": "confirmed_established",
-      "experimental_confidence": 0.718,
-      "experimental_confidence_decoupled": 0.718,
+      "experimental_confidence": 0.717,
+      "experimental_confidence_decoupled": 0.717,
       "fail_runs": 9,
       "genuine_exp_count": 15,
       "genuine_exp_direction_counts": {
@@ -17679,7 +17751,7 @@
       "latest_timestamp_utc": "2026-05-06T08:29:15Z",
       "literature_confidence": 0.879,
       "literature_confidence_parallel": 0.879,
-      "overall_confidence": 0.799,
+      "overall_confidence": 0.798,
       "pass_runs": 6,
       "recent_entries": [
         {
@@ -22644,7 +22716,7 @@
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-189",
           "confidence": 0.72,
-          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_mech_189",
@@ -22678,7 +22750,7 @@
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-189",
           "confidence": 0.62,
-          "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval.",
+          "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
           "evidence_class": "lit:behavioral_animal",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_mech_189",
@@ -31432,7 +31504,7 @@
           "architecture_epoch": "ree_hybrid_guardrails_v1",
           "claim_id": "MECH-329",
           "confidence": 0.72,
-          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+          "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
           "evidence_class": "lit:theoretical_review",
           "evidence_direction": "supports",
           "experiment_type": "targeted_review_mech_189",
@@ -36142,7 +36214,7 @@
       }
     },
     "Q-001": {
-      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.131, lit_conf=0.786",
+      "confidence_rationale": "exp=1 entry(s), lit=4 entry(s), exp_conf=0.13, lit_conf=0.786",
       "direction_counts": {
         "mixed": 1,
         "supports": 2,
@@ -36160,8 +36232,8 @@
         "C": 1
       },
       "evidence_quadrant": "plausible_unproven",
-      "experimental_confidence": 0.131,
-      "experimental_confidence_decoupled": 0.131,
+      "experimental_confidence": 0.13,
+      "experimental_confidence_decoupled": 0.13,
       "fail_runs": 1,
       "genuine_exp_count": 1,
       "genuine_exp_direction_counts": {
@@ -118329,9 +118401,60 @@
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "DEV-NEED-006",
+      "confidence": 0.6,
+      "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "Persistence of a weak memory required a dopaminergic novelty/salience event around encoding (behavioral tagging and capture); a write gate lacking any such modulatory-event term would let load-bearing-but-weak contacts decay -- the INV-075 self-extinguishing-signal failure mode.",
+        "VTA inhibition abolished both the novelty-induced persistence and the hippocampal dopamine increase, confirming the write gate is dopaminergically mediated and not a passive similarity computation."
+      ],
+      "run_id": "2026-06-09_mech_189_behavioral_tagging_novelty_persistence_lima2023",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "DEV-NEED-006",
+      "confidence": 0.72,
+      "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+      "evidence_class": "lit:connectome_mechanistic_review",
+      "evidence_direction": "mixed",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "If the write gate measures novelty only against the goal-anchor set (super_ordinal_complexity_mode='novelty'), it computes mismatch against the wrong reference: the biological comparator detects information 'not already stored in long-term memory', i.e. mismatch against the whole stored model.",
+        "Treating salience (gate a) and complexity/novelty (gate b) as independent multiplicands departs from the biology, where the same VTA dopaminergic signal integrates novelty, salience, and goal information into a single gate."
+      ],
+      "run_id": "2026-06-09_mech_189_hippocampal_vta_novelty_gate_lismangrace2005",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "DEV-NEED-006",
+      "confidence": 0.74,
+      "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+      "evidence_class": "lit:fmri_connectivity",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_connectome_mech_189",
+      "failure_signatures": [
+        "If the write gate is driven by a stimulus-novelty term divorced from value, it will miss value-modulated encoding: in humans, the strongest individual-difference predictor of motivated memory was SN/VTA-hippocampus tract density, a value pathway, not a generic novelty pathway.",
+        "Modelling gate (a) salience and gate (b) complexity as independent factors is at odds with the shared dopaminergic value/PE channel implicated here, where motivational value itself modulates the hippocampal encoding signal."
+      ],
+      "run_id": "2026-06-09_mech_189_motivated_memory_vta_hippocampus_elliott2022",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-189",
       "confidence": 0.6,
-      "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication.",
+      "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:behavioral_animal",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_connectome_mech_189",
@@ -118348,7 +118471,7 @@
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-189",
       "confidence": 0.72,
-      "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels.",
+      "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:connectome_mechanistic_review",
       "evidence_direction": "mixed",
       "experiment_type": "targeted_review_connectome_mech_189",
@@ -118365,7 +118488,7 @@
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-189",
       "confidence": 0.74,
-      "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel.",
+      "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:fmri_connectivity",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_connectome_mech_189",
@@ -118411,6 +118534,40 @@
       "source_type": "literature",
       "status": "SOURCE",
       "timestamp_utc": "2026-06-09T22:20:30Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "DEV-NEED-006",
+      "confidence": 0.72,
+      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+      "evidence_class": "lit:theoretical_review",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
+        "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
+      ],
+      "run_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
+    },
+    {
+      "architecture_epoch": "ree_hybrid_guardrails_v1",
+      "claim_id": "DEV-NEED-006",
+      "confidence": 0.62,
+      "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
+      "evidence_class": "lit:behavioral_animal",
+      "evidence_direction": "supports",
+      "experiment_type": "targeted_review_mech_189",
+      "failure_signatures": [
+        "Rapid schema-assisted consolidation requires a PRE-EXISTING schema; the first associations into a novel schema consolidate slowly and remain hippocampus-dependent. MECH-189's bootstrap (empty store -> complexity=1.0 -> first contacts write) is the moment BEFORE any schema exists -- so the earliest super-ordinal anchors should be the slowest and least stable, not the most. The substrate writes them at full strength immediately, which over-states early-anchor stability relative to this evidence.",
+        "Schemas accelerate integration at the cost of memory specificity over time (the consolidated trace generalises and loses item detail). If super-ordinal anchors generalise the same way, their cue-index keys drift toward the schema centroid, and READ retrieval in a novel context may pull z_goal toward an over-general anchor rather than a context-appropriate one."
+      ],
+      "run_id": "2026-06-09_mech_189_schema_consolidation_tse2007",
+      "source_type": "literature",
+      "status": "SOURCE",
+      "timestamp_utc": "2026-06-09T22:20:57Z"
     },
     {
       "architecture_epoch": "ree_hybrid_guardrails_v1",
@@ -118467,7 +118624,7 @@
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-189",
       "confidence": 0.72,
-      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:theoretical_review",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_mech_189",
@@ -118501,7 +118658,7 @@
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-189",
       "confidence": 0.62,
-      "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval.",
+      "confidence_rationale": "Tse et al. is the canonical demonstration that a pre-existing associative schema lets new cue-value associations consolidate from hippocampus to neocortex (mPFC) in days rather than weeks -- a single-trial paired-associate can become hippocampus-independent within 48 h once a schema exists. This is the mechanistic core MECH-189 needs for its persistence/cue-indexing half: a cue-indexed associative store into which salient value-laden contacts are rapidly written and stabilised, with the mPFC carrying the consolidated schema. It directly addresses the durability gap exposed by the Rovee-Collier entry -- schema-assisted consolidation is HOW a labile early trace becomes a stable anchor. Confidence 0.62: high source quality (Science, elegant within-animal design, mPFC role confirmed by a sibling 2011 study) but the schema content is spatial flavour-place association in adult rats, not developmental goal-value anchors, and a known cost (schema scaffolding trades item-level memory specificity over time) is a live caveat for cue-indexed retrieval. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:behavioral_animal",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_mech_189",
@@ -118518,7 +118675,7 @@
       "architecture_epoch": "ree_hybrid_guardrails_v1",
       "claim_id": "MECH-329",
       "confidence": 0.72,
-      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+      "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
       "evidence_class": "lit:theoretical_review",
       "evidence_direction": "supports",
       "experiment_type": "targeted_review_mech_189",
@@ -127762,7 +127919,7 @@
       "timestamp_utc": "20260408T231939Z"
     }
   ],
-  "generated_at_utc": "2026-06-24T21:20:38.566778Z",
+  "generated_at_utc": "2026-06-24T21:36:28.062354Z",
   "schema_version": "claim_evidence_matrix/v1",
   "source_root": "evidence",
   "unlinked_runs": [

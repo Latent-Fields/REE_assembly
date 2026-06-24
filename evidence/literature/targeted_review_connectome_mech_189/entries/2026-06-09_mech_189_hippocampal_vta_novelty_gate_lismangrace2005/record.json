@@ -3,10 +3,16 @@
   "literature_type": "targeted_review_connectome_mech_189",
   "entry_id": "2026-06-09_mech_189_hippocampal_vta_novelty_gate_lismangrace2005",
   "timestamp_utc": "2026-06-09T22:20:30Z",
-  "claim_ids_tested": ["MECH-189"],
+  "claim_ids_tested": [
+    "MECH-189",
+    "DEV-NEED-006"
+  ],
   "source": {
     "title": "The hippocampal-VTA loop: controlling the entry of information into long-term memory.",
-    "authors": ["John E. Lisman", "Anthony A. Grace"],
+    "authors": [
+      "John E. Lisman",
+      "Anthony A. Grace"
+    ],
     "year": 2005,
     "venue": "Neuron",
     "doi": "10.1016/j.neuron.2005.05.002",
@@ -15,13 +21,22 @@
   "evidence_class": "connectome_mechanistic_review",
   "evidence_direction": "mixed",
   "confidence": 0.72,
-  "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels.",
+  "confidence_rationale": "Canonical, heavily-cited mechanistic review that directly establishes a novelty-gated write into long-term memory -- the exact function of the MECH-189 WRITE gate. Strongly supports the existence of gate (b) as a real biological control point. Counts as 'mixed' rather than 'supports' for the operationalisation question because the biology it describes diverges from the self-contained novelty-vs-anchors proxy in two ways: (i) the novelty signal is a hippocampal comparator mismatch against the FULL long-term store, not against a small goal-anchor subset; (ii) VTA firing (and hence the dopaminergic plasticity gate) is an explicit CONJUNCTION of novelty WITH salience and goal information, so complexity and salience are not orthogonal channels. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "If the write gate measures novelty only against the goal-anchor set (super_ordinal_complexity_mode='novelty'), it computes mismatch against the wrong reference: the biological comparator detects information 'not already stored in long-term memory', i.e. mismatch against the whole stored model.",
     "Treating salience (gate a) and complexity/novelty (gate b) as independent multiplicands departs from the biology, where the same VTA dopaminergic signal integrates novelty, salience, and goal information into a single gate."
   ],
-  "tags": ["mech-189", "dev-need-024", "novelty", "hippocampal-vta-loop", "dopamine", "ltp", "memory-write-gate"],
+  "tags": [
+    "mech-189",
+    "dev-need-024",
+    "novelty",
+    "hippocampal-vta-loop",
+    "dopamine",
+    "ltp",
+    "memory-write-gate",
+    "dev-need-006"
+  ],
   "mapping": {
     "source_claim_statement": "The hippocampus detects newly arrived information not already in long-term memory; the resulting novelty signal travels via subiculum -> accumbens -> ventral pallidum -> VTA, where it combines with salience and goal information to drive dopaminergic firing; dopamine released back into hippocampus enhances LTP and learning, thereby regulating entry of information into long-term memory.",
     "ree_translation": "This is the biological template for the MECH-189 WRITE gate: a high-salience benefit contact is written to persistent ContextMemory only when a novelty/complexity signal licenses it. The hippocampal-VTA loop validates that a novelty-gated, dopamine-mediated write into durable memory is real, and that the gate is a conjunction of novelty + salience + goal -- matching MECH-189's 'high salience AND high contextual complexity' conjunction.",

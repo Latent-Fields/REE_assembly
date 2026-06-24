@@ -3,10 +3,20 @@
   "literature_type": "targeted_review_connectome_mech_189",
   "entry_id": "2026-06-09_mech_189_behavioral_tagging_novelty_persistence_lima2023",
   "timestamp_utc": "2026-06-09T22:20:30Z",
-  "claim_ids_tested": ["MECH-189"],
+  "claim_ids_tested": [
+    "MECH-189",
+    "DEV-NEED-006"
+  ],
   "source": {
     "title": "Novelty facilitates the persistence of aversive memory extinction by dopamine regulation in the hippocampus and ventral tegmental area.",
-    "authors": ["Karine Ramires Lima", "Niege Alves", "Luiza Freitas Lopes", "Steffanie Severo Picua", "Liane da Silva de Vargas", "Pamela Billig Mello-Carpes"],
+    "authors": [
+      "Karine Ramires Lima",
+      "Niege Alves",
+      "Luiza Freitas Lopes",
+      "Steffanie Severo Picua",
+      "Liane da Silva de Vargas",
+      "Pamela Billig Mello-Carpes"
+    ],
     "year": 2023,
     "venue": "Progress in Neuro-Psychopharmacology & Biological Psychiatry",
     "doi": "10.1016/j.pnpbp.2023.110832",
@@ -15,13 +25,23 @@
   "evidence_class": "behavioral_animal",
   "evidence_direction": "supports",
   "confidence": 0.6,
-  "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication.",
+  "confidence_rationale": "Causal rodent behavioral-tagging study: exposure to a NOVEL context around encoding converts an otherwise-decaying weak memory into a persistent one, and this is causally dopamine/VTA-dependent (VTA NMDA stimulation mimics novelty; VTA muscimol inhibition abolishes both the persistence and the hippocampal dopamine rise). Provides the CELLULAR/causal substrate for a novelty-gated write and confirms the dopaminergic conjunction at synaptic level. Held to 0.6 for the operationalisation verdict: it demonstrates that NOVELTY (an external contextual event) gates persistence, but does not arbitrate novelty-vs-PE nor address the goal/value-anchor specificity -- it is mechanistic grounding, not adjudication. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "Persistence of a weak memory required a dopaminergic novelty/salience event around encoding (behavioral tagging and capture); a write gate lacking any such modulatory-event term would let load-bearing-but-weak contacts decay -- the INV-075 self-extinguishing-signal failure mode.",
     "VTA inhibition abolished both the novelty-induced persistence and the hippocampal dopamine increase, confirming the write gate is dopaminergically mediated and not a passive similarity computation."
   ],
-  "tags": ["mech-189", "dev-need-024", "behavioral-tagging", "synaptic-tagging-capture", "novelty", "dopamine", "vta", "memory-persistence"],
+  "tags": [
+    "mech-189",
+    "dev-need-024",
+    "behavioral-tagging",
+    "synaptic-tagging-capture",
+    "novelty",
+    "dopamine",
+    "vta",
+    "memory-persistence",
+    "dev-need-006"
+  ],
   "mapping": {
     "source_claim_statement": "In rats, exploring a novel context for 5 min around a weak extinction-learning episode produced persistent extinction over 21 days and raised hippocampal dopamine. Intra-CA1 dopamine infusion or VTA glutamatergic (NMDA) stimulation reproduced the effect; VTA GABAergic (muscimol) inhibition blocked the persistence and lowered hippocampal dopamine -- demonstrating behavioral tagging and capture gated by the dopaminergic novelty signal.",
     "ree_translation": "This is the cellular-level justification for MECH-189 even HAVING a separate complexity/novelty gate: a high-salience contact that is not accompanied by a novelty/surprise event may fail to persist (decay), whereas one that co-occurs with novelty is captured into durable storage. It confirms gate (b) is a real, dopamine-mediated modulator of write persistence, and that the salience and novelty terms converge on the same dopaminergic machinery (consistent with Lisman-Grace).",

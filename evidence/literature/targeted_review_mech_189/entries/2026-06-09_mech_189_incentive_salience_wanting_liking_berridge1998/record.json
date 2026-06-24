@@ -3,10 +3,17 @@
   "literature_type": "targeted_review_mech_189",
   "entry_id": "2026-06-09_mech_189_incentive_salience_wanting_liking_berridge1998",
   "timestamp_utc": "2026-06-09T22:20:57Z",
-  "claim_ids_tested": ["MECH-189", "MECH-329"],
+  "claim_ids_tested": [
+    "MECH-189",
+    "MECH-329",
+    "DEV-NEED-006"
+  ],
   "source": {
     "title": "What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?",
-    "authors": ["Kent C. Berridge", "Terry E. Robinson"],
+    "authors": [
+      "Kent C. Berridge",
+      "Terry E. Robinson"
+    ],
     "year": 1998,
     "venue": "Brain Research Reviews",
     "doi": "10.1016/S0165-0173(98)00019-8",
@@ -15,13 +22,23 @@
   "evidence_class": "theoretical_review",
   "evidence_direction": "supports",
   "confidence": 0.72,
-  "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content.",
+  "confidence_rationale": "This is the canonical statement of the incentive-salience theory and one of the two anchors already cited in MECH-189/MECH-329. The 6-OHDA dopamine-depletion experiments dissociate 'wanting' (mesolimbic-dopamine-mediated incentive salience attributed to reward cues) from 'liking' (opioid/hedonic-mediated affective reactions) from learning. The dissociation is the empirical foundation for MECH-189's WRITE gate (a): a salience signal -- not a calibrated hedonic value -- is what marks a benefit contact for super-ordinal storage. It is a strong source-quality paper (rat 6-OHDA lesion + taste-reactivity behavioural assay, foundational and heavily replicated) but the mapping is partial: the paper is adult rat, not developmental, and says nothing directly about persistent cue-indexed goal-anchor formation. Confidence is held at 0.72 -- weighted up for source quality and direct relevance to the salience-gating primitive, down for the absence of any developmental or memory-write content. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "If the write trigger keyed on a calibrated hedonic ('liking') value rather than on a dopaminergic salience signal, then super-ordinal anchors could not form before hedonic evaluation is mature -- but Berridge & Robinson show wanting is dissociable from and does not require liking, which is precisely what licenses MECH-329's claim that the first wave of anchors is approach-driven rather than preference-calibrated.",
     "The paper offers no evidence that an incentive-salience event is ever consolidated into a persistent, context-addressed store. If salience attribution were purely transient and online (re-computed each encounter with no durable trace), MECH-189's cross-episode write/read architecture would have no biological analogue in this dataset."
   ],
-  "tags": ["mech_189", "mech_329", "incentive_salience", "wanting_liking", "mesolimbic_dopamine", "reward", "salience_gate", "development"],
+  "tags": [
+    "mech_189",
+    "mech_329",
+    "incentive_salience",
+    "wanting_liking",
+    "mesolimbic_dopamine",
+    "reward",
+    "salience_gate",
+    "development",
+    "dev-need-006"
+  ],
   "mapping": {
     "source_claim_statement": "Mesolimbic dopamine mediates 'wanting' (incentive salience -- the motivational magnet quality attributed to reward-related stimuli) but is not necessary for 'liking' (the hedonic impact of reward, mediated by smaller opioid/GABA hotspot systems) nor for new reward learning. The three psychological components -- liking, wanting, and learning -- are dissociable and have separable neural substrates.",
     "ree_translation": "MECH-189 WRITE gate (a) 'high salience' is operationalised as benefit_exposure * (1 + drive_weight * effective_drive). Berridge & Robinson ground this primitive: the quantity that should gate a super-ordinal write is an incentive-salience signal (a drive-modulated 'wanting' magnitude), not a hedonic/liking valuation. The salience-not-liking framing is also the biological core of MECH-329: the wanting system can attribute salience to a benefit cue -- and thereby seed a goal anchor -- before any calibrated liking exists.",
@@ -29,7 +46,7 @@
     "source_context": "Rat 6-hydroxydopamine mesolimbic lesions + neuroleptic manipulations assayed with the taste-reactivity behavioural paradigm; review synthesising the authors' incentive-sensitization programme. Species: rat. Modality: pharmacological lesion + behaviour."
   },
   "confidence_components": {
-    "source_quality": 0.90,
+    "source_quality": 0.9,
     "mapping_fidelity": 0.55,
     "transfer_risk": 0.45,
     "notes": "Source quality very high (foundational, heavily replicated dissociation). Mapping fidelity moderate -- it grounds the salience-gating primitive cleanly but not the persistence/cue-indexing architecture. Transfer risk moderate-high: rat-to-REE and adult-to-developmental jumps are both live, and the salience->durable-write step is an extrapolation the paper does not make."

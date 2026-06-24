@@ -3,10 +3,19 @@
   "literature_type": "targeted_review_connectome_mech_189",
   "entry_id": "2026-06-09_mech_189_motivated_memory_vta_hippocampus_elliott2022",
   "timestamp_utc": "2026-06-09T22:20:30Z",
-  "claim_ids_tested": ["MECH-189"],
+  "claim_ids_tested": [
+    "MECH-189",
+    "DEV-NEED-006"
+  ],
   "source": {
     "title": "Midbrain-Hippocampus Structural Connectivity Selectively Predicts Motivated Memory Encoding.",
-    "authors": ["Blake L. Elliott", "Kimberlee D'Ardenne", "Vishnu P. Murty", "Gene A. Brewer", "Samuel M. McClure"],
+    "authors": [
+      "Blake L. Elliott",
+      "Kimberlee D'Ardenne",
+      "Vishnu P. Murty",
+      "Gene A. Brewer",
+      "Samuel M. McClure"
+    ],
     "year": 2022,
     "venue": "Journal of Neuroscience",
     "doi": "10.1523/JNEUROSCI.0945-22.2022",
@@ -15,13 +24,22 @@
   "evidence_class": "fmri_connectivity",
   "evidence_direction": "supports",
   "confidence": 0.74,
-  "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel.",
+  "confidence_rationale": "Human diffusion-MRI/tractography study tying SN/VTA-hippocampus pathway density to VALUE-MODULATED (motivated) memory encoding -- the closest entry to MECH-189's actual target (a value/goal memory write), as opposed to generic episodic novelty. Two findings carry the verdict: (1) both reward AND punishment enhanced source memory equally (absolute salience, valence-symmetric), and (2) the paper explicitly frames the competing accounts -- SN/VTA-NAc reward-prediction-error vs SN/VTA-hippocampus signals -- as the open question, which is precisely DEV-NEED-024's adjudication axis. Supports an external value-PE-driven gate and confirms salience and complexity ride a shared dopaminergic channel. | 2026-06-24 tag-join: DEV-NEED-006 (the developmental WRITE-gate sub-need of MECH-189 -- high-salience benefit contact written to a durable super-ordinal goal anchor) added to claim_ids_tested. This paper evidences that WRITE gate as faithfully as it does MECH-189; the addition joins existing prior art to the DEV-NEED-006 experiment tag (v3_exq_588e) and clears a false novel_discovery quadrant flag that arose only because the experiment was tagged to the gate id while the literature was tagged to the parent claim.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "If the write gate is driven by a stimulus-novelty term divorced from value, it will miss value-modulated encoding: in humans, the strongest individual-difference predictor of motivated memory was SN/VTA-hippocampus tract density, a value pathway, not a generic novelty pathway.",
     "Modelling gate (a) salience and gate (b) complexity as independent factors is at odds with the shared dopaminergic value/PE channel implicated here, where motivational value itself modulates the hippocampal encoding signal."
   ],
-  "tags": ["mech-189", "dev-need-024", "motivated-memory", "reward-prediction-error", "vta-hippocampus", "value-encoding", "dti"],
+  "tags": [
+    "mech-189",
+    "dev-need-024",
+    "motivated-memory",
+    "reward-prediction-error",
+    "vta-hippocampus",
+    "value-encoding",
+    "dti",
+    "dev-need-006"
+  ],
   "mapping": {
     "source_claim_statement": "In humans, diffusion-weighted MRI tractography showed that SN/VTA-hippocampus (but not SN/VTA-striatum) pathway density was positively correlated with reward- and punishment-modulated source memory. Both reward and punishment enhanced source memory over neutral; the authors frame the mechanism as a competition between SN/VTA-NAc reward-prediction-error signals and SN/VTA-hippocampus signals underlying motivated memory encoding.",
     "ree_translation": "MECH-189 writes a VALUE/goal anchor, not a neutral episodic trace, so the relevant biological gate is the motivated-memory / value-modulated encoding pathway -- which is dopaminergic and value-PE-linked. This supports super_ordinal_complexity_mode='external' driven by a value/prediction-error signal, and supports the salience gate being valence-symmetric (absolute benefit/harm magnitude, not signed valence).",
