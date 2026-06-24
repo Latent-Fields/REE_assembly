@@ -1,105 +1,92 @@
-# Morning Agenda — 2026-06-23
+# Morning Agenda — 2026-06-24
 
-Generated: 2026-06-23T08:25:42Z
-(Deferred manual re-run: the 05:07 scheduled fire aborted on the active-session guard; this run executed once the overnight work-burst cleared. Window guard waived per the user's "run once clear" instruction.)
+Generated: 2026-06-24T04:23:51Z
 
 ---
 
 ## Queue Status
-- **Total pending: 0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- **3 claimed / in-flight:**
-  - `V3-EXQ-700` — ree-cloud-3, claimed 2026-06-22T17:30Z (ARC-108 sec-7 selection 2x2 learned-gating; est ~700 min — long-running, ~15h elapsed, watch for stall)
-  - `V3-EXQ-460m` — ree-cloud-1, claimed 2026-06-23T05:40Z (commitment_closure:GAP-4 commit-ENTRY primitive readiness diagnostic, claim-free)
-  - `V3-EXQ-460n` — ree-cloud-4, claimed 2026-06-23T07:24Z (commitment_closure:GAP-4 commit-ENTRY trajectory readiness, claim-free)
-- **[ALERT: Queue low — 0 pending experiments.]** All three workers are busy on claimed items, but nothing is staged behind them. Queue new work soon (candidates in Active Plans + Lit sections below).
+- Total pending: **0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
+- **ALERT: Queue low — 0 pending experiments.** All 4 live items are claimed and running on the cloud fleet; nothing is waiting. New experiments should be queued soon (or the next decisive results will leave the fleet idle).
+- Live (claimed) runs:
+  - **V3-EXQ-700b** — ree-cloud-4 — ARC-108/MECH-450 learned-gating settling C3 (conversion-ceiling decisive-or-escalate-to-V4)
+  - **V3-EXQ-701b** — ree-cloud-3 — INV-050 MEL-measurability frozen-probe diagnostic (supersedes 701a)
+  - **V3-EXQ-460o** — ree-cloud-1 — rung-6 closure-commit-ENTRY readiness diagnostic (harness-fix re-issue of 460m)
+  - **V3-EXQ-460p** — ree-cloud-2 — rung-6 bool-vs-trajectory readiness diagnostic (harness-fix re-issue of 460n)
+- No owed/unqueued successors. (Step 7c cross-check cleared the two naive hits: **483c** ran 2026-05-21 — packed manifest present; **475a** is a Tier-1-cohort member of `goal_pipeline:GAP-4`, which was **re-scoped + closed by a user-approved 2026-06-09 governance decision** — its stale `in-progress` status-table row is unreconciled prose, not an owed experiment.)
 
 ---
 
-## Experiments Awaiting Review (2 indexed in pending_review.md / +3 fresh coordinator-DB completions not yet propagated)
+## Experiments Awaiting Review (0 indexed / 0 runner-only)
 
-Both indexed items carry a self-routed `interpretation.label` flagged **precondition_unmet** by the indexer — the label must NOT drive any governance action until adjudicated via `/failure-autopsy`.
+`pending_review.md` (generated 2026-06-24T04:18:33Z): **0 pending** — 0 PASS, 0 FAIL, 0 runner-only, 0 unclaimed manifests, 0 ERROR manifests, 0 diagnostic self-routes. All experiments reviewed; nothing pending.
 
-### V3-EXQ-699 — pcomp_demotion_x_gonogo_composition — PASS (flagged)
-- **Claims tested:** MECH-448 (provisional, exp_conf 0.77, implementation_phase v3), MECH-449 (provisional, exp_conf 0.772) — both `standard` epistemic_category
-- **Self-route label:** `levers_compound` → **flagged precondition_unmet**
-- **Key metrics:** overall_direction `non_contributory`; per-claim `non_contributory` for both. The non-vacuity precond `gapa_consumed_summary_divergence_all_arms` measured **0.004852 vs 0.05 floor** — consumed-summary spread is below the divergence floor, so the "levers compound" PASS likely rests on a degenerate pool (the adjudication trigger).
-- **Classification:** evidence (composition test of two already-provisional BG levers)
-- **Governance impact if confirmed:** would be supporting evidence that the MECH-448 demotion lever + MECH-449 active-NoGo compose. But `non_contributory` + precondition_unmet means it currently moves nothing — **needs `/failure-autopsy` to decide vacuous-vs-real before it can support either claim.**
-
-### V3-EXQ-701a — inv050_mel_measurability_converged_p0 — FAIL (flagged)
-- **Claims tested:** INV-050 (candidate, invariant, exp_conf 0.0)
-- **Self-route label:** `substrate_not_ready_requeue` → **flagged precondition_unmet** (correct self-diagnosis)
-- **Key metrics:** `world_model_converged_p0_seed_fraction` = **0.333 vs 0.667 floor** (P0 world-model converged in only 1/3 seeds); `pe_response_range_to_novelty_shock` = **−0.552 vs 0.25 floor** (PE response to novelty negative, not positive).
-- **Supersedes:** V3-EXQ-701 (the converged-P0 re-issue — see queue commit d8a7b6b). Per memory, 701 had a diverged P0; 701a re-ran with a converged-P0 budget but still did not achieve convergence on a majority of seeds.
-- **Classification:** diagnostic (MEL-measurability precondition probe)
-- **Governance impact if confirmed:** none directly — this is a substrate-readiness diagnostic. A confirmed `substrate_not_ready_requeue` means re-queue with a P0 regime that converges before R1/C1 are read; it is **not** an INV-050 ceiling and carries **no re-derive brake**. INV-050 is substrate-blocked (see memory `project_inv050_mel_substrate_blocked`). Adjudicate via `/failure-autopsy` to confirm the requeue route.
-
-### Fresh coordinator-DB completions (ran this morning, manifests still propagating — NOT yet in pending_review.md)
-The phase3 result-writer had not yet committed these manifests to `evidence/experiments/` at digest time. Confirmed via the coordinator DB (authoritative):
-- **V3-EXQ-702** — sleep_substrate:GAP-3b ARM-on-vs-off `use_sleep_aggregation_cluster` (MECH-285/272/273) — **PASS** (result 07:30Z). New scoreable sleep-aggregation evidence; will need review next cycle.
-- **V3-EXQ-588d** — infant_substrate:GAP-11b MECH-189 trained-encoder forced-feed super-ordinal readiness diagnostic — **PASS** (result 07:42Z).
-- **V3-EXQ-700a** — ARC-108 sec-7 C3 signed-vs-unsigned-RPE ablation falsifier (MECH-439/ARC-108/MECH-450) — **FAIL** (result 07:28Z). Will land in pending_review for adjudication once the manifest propagates; check the C3-specific non-vacuity gate (unsigned-arm own learning signal must be non-flat) before reading the FAIL as a refutation.
+The four live runs above are still executing — their results will appear here once manifests land.
 
 ---
 
-## Errors to Diagnose (0)
+## Errors to Diagnose (0 actionable)
 
-No new undiagnosed errors. `runner_status.json` carries 87 historical ERROR records, but `generate_pending_review.py` reports **0 runner-only / 0 ERROR manifests pending** — all historical ERRORs already have queued or completed successors.
+No actionable ERRORs. `pending_review.md` reports 0 ERROR manifests / 0 runner-only entries.
 
----
-
-## Governance Agenda (0 actionable)
-
-`promotion_demotion_recommendations.md` (regenerated this run, 2026-06-23T08:18Z) holds **205 rows, all `decision_status: applied`** — 0 genuinely `pending_user`. (The 4 `pending_user` string matches are rationale text for items already routed off `pending_user` → `applied`.) Breakdown of the suppressed/applied queue: 196 `hold_pending_v3_substrate`, 48 `hold_candidate_resolve_conflict`, 40 `held_v4_by_architectural_commitment`, 16 `narrow_open_question`, 2 `demote_to_candidate`.
-
-The only governance-relevant work this morning is the **2 flagged pending reviews + 3 fresh completions above** (all gated behind `/failure-autopsy` adjudication / manifest propagation).
+A naive cross-check of `runner_status.json` (87 historical ERROR records) surfaced 5 successor-less IDs, but all are stale or non-scientific and none need `/diagnose-errors`:
+- `V3-ONBOARD-smoke-EWIN-PC`, `V3-ONBOARD-smoke-ree-cloud-1` — infra onboarding smoke tests, not experiments.
+- `V3-EXQ-008`, `V3-EXQ-495`, `V3-EXQ-538` — old abandoned numbers far behind the current 460/588/700 work; already passed over by the review process (not in pending_review).
 
 ---
 
-## Active Plans Heartbeat
+## Governance Agenda (0 actionable recommendations)
 
-V3-active plans (status `assembling` / `blocked` in frontmatter, or with open status-table rows). Most "stale" rows below are **closed-but-unrestamped** (prose says PASS / "queue consumed") rather than owed work — none passed the owed-successor cross-check (Step 7c).
+`promotion_demotion_recommendations.md` (generated 2026-06-24T04:18:30Z): **148 decision rows, all `decision_status: applied`. Zero `pending_user`.** No promotion/demotion decisions await the user this morning. The holds in the queue are the standing `hold_pending_v3_substrate` / `hold_candidate_resolve_conflict` / `held_v4_by_architectural_commitment` set, all already applied.
 
-| Plan | In-flight | Blocked | Stale rows | Note |
-|---|---|---|---|---|
-| conversion_ceiling_campaign | — (assembling) | — | 0 | Frontmatter `assembling`; FULLSTACK gated on P-comp (699) + P2-rootC (460-series). |
-| commitment_closure | 3 | 0 | 12 | GAP-4 **actively worked today** (460m/460n claimed); most stale rows are reconcile-debt (closed PASS rows). |
-| sleep_substrate | 0 | 1 | 1 | GAP-3b **just produced V3-EXQ-702 PASS** (07:30Z) — new evidence to review. GAP-2 upstream-blocked since 05-09. |
-| goal_pipeline | 1 | 2 | 3 | GAP-7 blocked_pending_substrate (L9 behavioural retest gated on GAP-2); GAP-2 514g blocked. Largely settled prose. |
-| sd_037_axis_b | — (assembling) | — | 0 | Frontmatter `assembling`. |
-| infant_substrate | 0 | 0 | 14 | All stale rows are PASS-closed (reconcile-debt only); GAP-11b just produced V3-EXQ-588d PASS. |
-| self_attribution | 0 | 3 | 3 | GAP-1/2/3 blocked since 05-08/05-30. |
-| behavioral_diversity_isolation | 0 | 0 | 1 | Closure node done; reconcile-debt. |
+---
 
-**Owed successors: NONE.** All Step-7b owner-EXQs that looked open passed the existence cross-check as already-run or queued. Specifically, the three EXQs the cheap evidence-dir glob flagged as "missing" (702, 588d, 700a) were confirmed **completed in the coordinator DB** (702 PASS, 588d PASS, 700a FAIL) — their manifests are mid-propagation, not owed. (This is the exact 2026-06-19 false-positive class; the DB check resolved it.)
+## Active Plans Heartbeat (9 active plans)
 
-**Ran — may need /failure-autopsy:**
-- V3-EXQ-700a (conversion_ceiling_campaign / ARC-108 sec-7 C3) — ran 07:28Z, **FAIL** — pending manifest propagation, then adjudicate the C3 non-vacuity gate before reading as refutation.
+| Plan | Phases in-flight | Blocked | Paused | Stale rows | Last decision |
+|---|---|---|---|---|---|
+| arc_062_rule_apprehension_plan | 5 | 3 | 0 | 5 | 2026-06-23 (revisit_after 2026-07-02) |
+| commitment_closure_plan | 3 | 0 | 0 | 3 | 2026-06-23 |
+| convergence_demand_pipeline_plan | 0 | 0 | 0 | 0 | 2026-06-20 |
+| goal_pipeline_plan | 1 | 3 | 0 | 2 | 2026-06-15 |
+| infant_substrate_plan | 0 | 1 | 0 | 0 | 2026-06-23 |
+| sd033_governance_plan | 0 | 0 | 0 | 0 | 2026-05-29 |
+| self_attribution_plan | 0 | 4 | 0 | 4 | 2026-06-23 |
+| sleep_substrate_plan | 0 | 1 | 0 | 1 | 2026-06-23 |
+| assembly_vs_closure_plan | — | — | — | — | 2026-06-21 (MOVE-1/2/3 narrative; no status table parsed) |
 
-**Reconcile-debt note (not staling):** commitment_closure (12) and infant_substrate (14) carry many stale status-table rows whose prose already says PASS/closed/"queue consumed". These are restamp/reconcile debt, not in-flight work — worth a cleanup pass but not blocking.
+**Stale rows (last-updated > 7 days ago, status not done/deferred):**
+
+- **goal_pipeline_plan GAP-4** (in-progress, last updated 2026-05-29) — **unreconciled: closed by a 2026-06-09 user-approved governance decision** (necessity falsified, modulatory reading substrate-supported, "re-scope + close is the correct call"). The status-table row still reads `in-progress`. Owner-EXQ `475a` (Tier-1 cohort) never ran but is not owed — its parent gap is closed. Recommend reconciling this row to `done` in a `/governance` pass.
+- **arc_062_rule_apprehension_plan** GAP-B (2026-05-21), GAP-D (2026-05-20), GAP-G (2026-05-09), GAP-J (2026-05-17), GAP-K (2026-05-10) — in-progress/open, all blocked-on-substrate (the rule-apprehension conversion ceiling, downstream of selection / MECH-439). ARC-062 is in DEFER/park pending in-flight V3-EXQ-700b. Owner-EXQs all ran (521/522/543-series/546/567/598/628 verified completed).
+- **commitment_closure_plan** GAP-1 (2026-05-17), GAP-4 (2026-06-03), GAP-8 (2026-05-17) — in-progress; GAP-4 (460b ran, 629 ran) is the live closure-commit line now exercised by the in-flight 460o/460p re-issues.
+- **goal_pipeline_plan GAP-2** (blocked, 2026-05-08) — owners 514/514g both ran; blocked on upstream substrate.
+- **self_attribution_plan** SD-029 (2026-04-21), GAP-1 (2026-05-11), GAP-2 (2026-05-08), GAP-3 (2026-05-08) — all blocked-on-substrate (long-standing); owners 567/452 ran.
+- **sleep_substrate_plan GAP-2** (blocked, 2026-05-30) — blocked on upstream substrate.
+
+No **PLAN STALING** flag fired: every active plan carrying in-flight rows had decision-log activity within the last 9 days (most on 2026-06-23). The stale rows above are blocked-on-upstream or unreconciled-after-close, not abandoned work.
+
+No **owed-successor** narrative — every stale-row Owner-EXQ either ran, completed, or (475a) belongs to a closed-by-re-scope gap. (Step 7c gate enforced; mirrors the 2026-06-19 false-positive fix.)
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-| # | Claim | Priority | Existing entries | Next action |
-|---|-------|----------|------------------|-------------|
-| 1 | ARC-108 | medium | 0 | Run paired experiment + literature cycle before status change |
-| 2 | Q-019 | medium | 0 | (BG = optimal action selection / six key papers) |
-| 3 | Q-063 | low | 0 | Run paired experiment + literature cycle before status change |
-| 4 | Q-064 | low | 0 | Run paired experiment + literature cycle before status change |
-| 5 | Q-066 | low | 0 | Run paired experiment + literature cycle before status change |
+| # | Claim | Subject | Priority | Existing entries |
+|---|-------|---------|----------|-----------------|
+| 1 | MECH-450 | Learned-gating / dopamine-into-gating (targeted extraction + claim linkage) | medium | 0 |
+| 2 | Q-019 | Three-Gate BG architecture: extract 6 key papers (sensorium/threat/goal loops) | medium | 1 |
+| 3 | Q-064 | Paired experiment + literature cycle before status change | low | 0 |
+| 4 | Q-066 | Paired experiment + literature cycle before status change | low | 0 |
+| 5 | Q-067 | Paired experiment + literature cycle before status change | low | 0 |
 
-(14 backlog items list `literature`; no high-priority items.)
+13 backlog items list `literature` as evidence_needed. MECH-450 (medium) is also a live experimental claim — V3-EXQ-700b is testing it now, so a lit pull would complement the in-flight evidence.
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 76575).
+- **RUNNING** on port 8000 (PID 54036).
 
 ---
 
 ## Blocked Items
-- **governance.sh ran normally** (derive-only, exit 0) — the lone remaining active claim at run time was an auto-spawned IGW routine tick (`igw-auto-igw-197`, MECH-178 queue-experiment), which claims `experiment_queue.json` + the IGW ledger but **none** of the governance collision set (claims.yaml / review_tracker.json / pending_review.md / recommendations.md). The active-session guard's purpose ("abort if the user is present") did not apply — this is automation, not the user — so the deferred run proceeded per the user's explicit "run once clear" instruction.
-- **REE_assembly local checkout diverged** (ahead 1 / behind 5 of origin/master) with large uncommitted edits to `evidence/planning/inter_governance_workset.{md,v1.json}` (~1400 lines) owned by the inter-governance process — **not touched**. The git pull was skipped (dirty tree + divergence); governance.sh and this agenda were produced against current local state. The agenda commit is pathspec-limited to avoid sweeping the IGW workset edits.
-- **V3-EXQ-700** has been claimed by ree-cloud-3 since 2026-06-22T17:30Z (~15h). Estimated runtime ~700 min (~11.7h). Verify it is still progressing (not a stalled claim) — though per the heartbeat-stale guidance, a long local/cloud run with lagging telemetry is not in itself evidence of a stall.
+- None. No TASK_CLAIMS governance collision — there were zero active sessions when the digest ran, so `governance.sh` ran normally (derive-only). Both repos were already up to date on pull.
