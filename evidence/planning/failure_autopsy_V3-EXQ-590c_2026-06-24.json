@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-24T22:05:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3",
+      "queue_id": "V3-EXQ-590c",
+      "claim_ids": ["MECH-314", "DEV-NEED-003"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact - the test could not let MECH-314 express itself; the per-candidate novelty bias reaches the 569i top-k shortlist but is overwhelmed at the F-dominated committed argmin before it can shift committed action",
+        "biological_reference": "clear - frontopolar/striatal exploratory bias gated downstream by a dominant value signal; the faithful break is the BG rank-preserving F->eligibility demotion (MECH-448/ARC-107), already built+provisional",
+        "prerequisites": "present-but-insufficient - 569i top-k + ARC-065 GAP-A divergent pool both healthy (cand_world_pairwise_dist 0.121 > 0.02); the missing prerequisite is the F-dominance break, NOT the conversion path",
+        "implementation": "complete - the channel emits real per-candidate range at moderate weight (W005 0.0032 / W025 0.0160 > 1e-4 floor); not a wiring null",
+        "environment": "adequate - harm-free foraging env; GAP-A pool divergent",
+        "measurement": "under-instrumented (confounded precondition) - curiosity_bias_range_supra_floor is read at highest_weight_arm = ARM_W100, the clamp-saturation arm guaranteed to read ~0 by the inverted-U design; should read a non-saturation arm or max-across-arms",
+        "integration": "coupled-but-overwhelmed - bias reaches the top-k shortlist but the within-top-3 argmin tracks F",
+        "scale": "adequate - the inverted-U is real (W100 collapse to 0.434); not a budget issue"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar/striatal novelty-driven exploration bias on candidate evaluation",
+        "dependencies": ["BG/pallidal selection arbitration not monopolised by the primary value channel (F)"],
+        "is_formal_import": false,
+        "divergence": "none - reference mechanism intact; failure matches an exploratory bias gated downstream by a dominant value signal (F-dominance)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-590c (non_contributory, scoring-excluded): MECH-314 per-candidate novelty Goldilocks under the 569i top-k path. The self-routed substrate_not_ready reason is confounded -- the curiosity_bias_range precondition reads the clamp-saturation arm (W100=0 by design) while W005/W025 carry real per-candidate range (0.0032/0.0160). But the channel, where alive, still does not convert: committed_class_entropy is bit-identical W005-vs-W025 (5x bias difference, zero argmin change; lift 0.019<0.05 margin, 1/3 seeds) -- the F-dominance conversion ceiling (MECH-439), downstream of the now-exercised 569i top-k conversion path. Recommended epistemic_category=substrate_ceiling. MECH-314 + DEV-NEED-003 UNWEAKENED. Re-derive brake FIRED (4th MECH-314 ceiling autopsy): refuse a same-design 590d weight sweep; the owed work is a MECH-314 curiosity-conversion re-test with the F-eligibility demotion (MECH-448/ARC-107) ON, in the f_dominance_conversion_ceiling downstream-retest family.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": "f_dominance_conversion_ceiling",
+        "title": "F-dominance committed-selection variance monopoly (MECH-439): per-candidate diversity does not convert to committed action at the F-dominated argmin",
+        "implementation_hint": "The MECH-448/ARC-107 rank-preserving F->eligibility demotion lever is built+provisional; the MECH-314 per-candidate novelty channel reaches the 569i top-k shortlist but cannot move the committed argmin under bare F-dominance (590c). Add the 590c failure record; the owed retest is a MECH-314 curiosity-conversion run with use_f_eligibility_demotion ON (and/or the MECH-439 689-lineage conflict-grade levers), joining the existing downstream-behavioural-retest family (654h/485i/445h/625e). Do NOT re-queue a same-design 590d curiosity-weight sweep against the bare F-dominated argmin.",
+        "unblocks_claims": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c"],
+        "depends_on_unresolved": ["MECH-448", "ARC-107", "f_dominance_conversion_ceiling selection-face demotion-ON conversion validated on a modulatory channel"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3",
+          "experiment_type": "v3_exq_590c_mech314_novelty_goldilocks",
+          "metric": "committed_class_entropy bit-identical W005-vs-W025 (0.745859 each; 5x bias-magnitude difference, zero argmin change); Goldilocks lift over control 0.019 on 1/3 seeds; channel range alive (W005 0.0032 / W025 0.0160) yet drowned at the F-dominated top-k argmin",
+          "target": "a MECH-314 curiosity-conversion retest with F-eligibility demotion ON must lift committed_class_entropy over the demotion-ON F-only control by >= margin on >= 2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-572-573_2026-05-17",
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "The self-route REASON was confounded but the CONCLUSION (non_contributory) is correct for a stronger reason: a readiness precondition that reads the clamp-saturation arm (ARM_W100, ~0 by inverted-U design) mislabels a live channel as flat; W005/W025 carry real per-candidate range (0.0032/0.0160).",
+        "Where unconfounded, the per-candidate curiosity bias reaches the 569i top-k shortlist and STILL does not convert (committed_class_entropy bit-identical W005-vs-W025) -- the conversion path the queue entry banked on was exercised and the bottleneck moved one link downstream to the same F-dominance ceiling (MECH-439).",
+        "Re-derive brake fired on the 4th MECH-314 substrate_ceiling/non_contributory autopsy: a same-granularity curiosity-weight sweep against the bare F-dominated argmin is refused; the demotion-ON conversion re-test (different substrate config) is the brake-exempt next step.",
+        "Readiness-gate design lesson (recurrence of 648a/649): a modulatory-bias non-vacuity gate must read cross-candidate RANGE at a non-saturation arm or max-across-arms, never the highest-weight clamp-saturation arm."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
