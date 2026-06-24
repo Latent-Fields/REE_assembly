@@ -25,7 +25,7 @@ The selection face is now **exhausted lever-by-lever**: Factor A inert (689a), *
 | **P-dem — MECH-448 demotion** | selection | `use_f_eligibility_demotion` | **face-validated** (689d PASS) | 689d PASS (0.938 vs 0.371) | needs P-dem x P-gng interaction characterized |
 | **P-gng — MECH-449 Go/No-Go** | selection | `use_go_nogo_constitution` | **face-validated** (689g PASS 3/3) | 689g PASS | needs P-dem x P-gng interaction characterized |
 | **P-floor — adaptive floor** | selection | `use_f_eligibility_adaptive_floor` | face-validated (689e PASS) | 689e PASS | matched-stack constant (carried with demotion) |
-| **P-comp — demotion x Go/No-Go composition** | selection | (both flags ON) | **design** (own experiment — decision 2026-06-22) | *to build*: do they compound or cancel at C2? | IS the within-face composition characterization gate |
+| **P-comp — demotion x Go/No-Go composition** | selection | (both flags ON) | **queued** (V3-EXQ-689h, 2026-06-24) | 2x2 demotion x Go/No-Go at C2 (committed-class entropy); SD-of-delta + abs-floor interaction gate -> compound/cancel/additive (diagnostic, promotes nothing) | IS the within-face composition characterization gate |
 | **P2 — Root C de-commit** (MECH-445/446) | commit-duration | (de-commit lever; not yet a stable flag) | **design / PARKED** | *to build then validate*: pre/post-closure occupancy DV | blocked on the closure-exclusive de-commit eval substrate build |
 | **P3 — OFC valuation decouple** (SD-033b/MECH-263) | valuation | `use_ofc_devaluation_head` | **face-validated** (485m FAIL/non_contributory, 2026-06-22) — folds into full-stack | 485m: own-face C1 devaluation shift **PASS 3/3** (decouple removed clamp-starvation); fails C2-in-isolation (C1b 1/3, C2 1/3) like demotion/Go/No-Go | **folds into full-stack** (OFC-decouple ON); watch C1b shift-without-inversion (cosine +0.72/+0.98 on 2/3) in leave-one-out |
 | P4 — candidate-differentiated affect | valuation | (per-candidate modulatory variance) | design (643 autopsy seed) | not yet specified | not on critical path |
@@ -46,7 +46,7 @@ The selection face is now **exhausted lever-by-lever**: Factor A inert (689a), *
 
 ## Critical path (post-689c)
 
-1. **P-comp** (demotion x Go/No-Go composition at C2) — runnable **now** (uses only built+face-validated levers); the main live selection-face question.
+1. **P-comp** (demotion x Go/No-Go composition at C2) — **QUEUED** (V3-EXQ-689h, 2026-06-24); the main live selection-face question. 2x2 demotion x Go/No-Go over a fixed action menu with per-context varying modulatory preference (models the conversion ceiling: F monopolises = monostrategy baseline); SD-of-delta + abs-floor interaction gate -> compound/cancel/additive. Awaiting runner.
 2. **P3** (OFC) — **DONE**: 485m FAIL/non_contributory (face-validated, C1 3/3; fails C2-in-isolation), **folded into the full-stack arm with OFC-decouple ON** (`failure_autopsy_V3-EXQ-485m_2026-06-22`, user gate; re-derive brake FIRED, 11th — an isolated 485n re-queue is REFUSED). No further isolated valuation-face test.
 3. **P2 (root C)** — the **live V3 critical path**: build the closure-exclusive de-commit eval substrate (dissociates natural-commit from closure-de-commit) -> face-validate -> include. This is the long pole and, post-689c, the most likely true bottleneck (commit-duration, not selection).
 4. **Full-stack arm** assembled once P-comp + P3 + P2 are composition-ready.
