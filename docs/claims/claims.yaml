@@ -47156,3 +47156,75 @@
     on a plasticity-window substrate that does not exist). ARC-106 cargo-cult guard: the window needs an ablation
     falsifier (open-permanently reproduces the smear) before it counts as load-bearing. One of the doc's "not fully
     explained by loop decomposition" residues. PROMOTES NOTHING (new candidate).
+
+- id: MECH-454
+  title: "Foreclosing the SELF's own future reachable-option space carries a decision cost in E3 trajectory scoring, GATED BY FORECAST UNCERTAINTY -- the non-harm, self-directed analog of INV-026 (which scopes foreclosure-of-reachable-state-space as a harm to OTHERS). E3 today scores harm + benefit + goal + residue + the modulatory stack; nothing represents the option-value / reversibility of an action for the agent's OWN reachable futures. REE's irreversibility-awareness is HARM-scoped (residue cannot be erased; No-Go gates; INV-026 foreclosure-of-others); there is no INFORMATION/RESOURCE-scoped analog (don't cheaply foreclose your own options). The claim: an uncertainty-gated reachable-option-preservation cost should change committed action -- preferring the reversible/option-preserving branch MORE when the forecast that justifies foreclosure is UNCERTAIN, and not at all when it is confident (a generalization of DR-12's PE-conditioned E3 confidence from object-rollouts to a foreclosure cost)."
+  claim_type: mechanism_hypothesis
+  subject: ethics_engine_3.self_option_value_reversibility_cost
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3
+  registered_utc: "2026-06-24"
+  psychiatric_failure_mode: >
+    The uncertainty-gated option-value cost is the substrate whose derangement is the
+    foreclosure-vs-indecision axis. ABSENT / too-weak -> premature irreversible commitment,
+    impulsive foreclosure of one's own reachable futures on a low-confidence forecast (an
+    impulsivity / failure-to-defer pole). Too-STRONG / un-gated -> pathological option-
+    preservation: refusing any irreversible-but-necessary action, "keeping every door open",
+    chronic indecision and non-commitment (an obsessive-indecisiveness / pathological-doubt
+    pole, adjacent to OCD incompleteness/over-caution and to avolitional non-commitment).
+    DERANGED GATING (cost present but NOT scaled by forecast uncertainty) -> context-insensitive
+    commitment: the agent forecloses or preserves the SAME regardless of how uncertain its
+    forecast is -- the specific failure this claim was surfaced by (collapsing an unknown future
+    distribution into a confident point and acting irreversibly on it). Distinct from MECH-279
+    freeze (threat-driven motor arrest) -- this is a valuation cost on foreclosure, fires with
+    z_harm BELOW threshold.
+  depends_on:
+    - DR-12      # generalizes DR-12's PE-conditioned E3 confidence from object-rollout trust to a forecast-uncertainty-scaled foreclosure cost
+    - MECH-439   # F-dominance commitment-collapse IS option-foreclosure at the commitment gate (diverse pool annihilated to the F-winner); shared diversity/commitment machinery
+    - INV-026    # the harm-scoped foreclosure-of-reachable-state-space (to OTHERS) that this mirrors as a NON-harm, SELF-directed decision cost
+    - MECH-292   # ghost-goal bank -- the existing preserve-a-recoverable-trace reflex (don't erase an inactive goal) generalized from the goal domain to a general option-preservation criterion
+    - SD-039     # dual-trace anchor preservation (Bouton) -- inactive traces kept recoverable; the substrate-level expression of "don't foreclose"
+    - ARC-106    # brain-like construction: grounded at FUNCTION (option-value / reachable-set preservation) with the load-bearing-vs-decorative ablation test
+  what_would_answer: >
+    SUBSTRATE-CONDITIONAL / NOT YET BUILT. Blocked on two substrates that do not exist: (1) a
+    reachable-option-DISSOCIATING env extension on CausalGridWorld -- a cheap-REVERSIBLE branch
+    vs a costly-IRREVERSIBLE branch (a one-way door / a region-collapsing consumable) so that an
+    action measurably changes the agent's reachable-future-option count; (2) the E3 option-value
+    cost term itself (a penalty on the post-action drop in reachable distinct future states/goals,
+    scaled by forecast PE). A future ablation SUPPORTS this if, with the term ON vs OFF under
+    MANIPULATED outcome uncertainty, the ON arm prefers the option-preserving action MORE than OFF
+    specifically when forecast uncertainty is HIGH and converges to OFF when it is LOW (uncertainty-
+    GATED), on a strict majority of seeds. WEAKENED if ON==OFF (the term never moves committed
+    action -> decorative, dropped per the ARC-106 ablation test) OR ON avoids the irreversible branch
+    REGARDLESS of uncertainty (un-gated risk-aversion, not the claimed mechanism). NON-DEGENERACY
+    (else substrate_not_ready_requeue, NOT a verdict): the two branches must measurably differ in
+    reachable-future-option count (post-action reachable distinct states/goals spread > floor) AND
+    forecast uncertainty (E2 forward-PE or E3 running_variance) must VARY across the manipulated
+    conditions (range > floor) -- if reachable-option count is identical across branches or PE is
+    pinned, the term has nothing to act on and the test is vacuous.
+  location: >
+    Interactive thought-digestion 2026-06-24 (no docs/thoughts file; origin = a meta-discussion of a
+    temporal-reasoning failure: collapsing an unknown future distribution into a confident point and
+    prematurely foreclosing a cheap reusable option). See
+    memory/feedback_mint_arms_as_you_go_terminality_unknowable.md and the self_model_v4 plan
+    own-future-option node for the V4 meta-level leg.
+  notes: >
+    Registered 2026-06-24 via /thought-digestion (user-directed disposition "register, substrate-blocked").
+    The genuinely-new ground, confirmed against the registry: REE's foreclosure/irreversibility concept exists
+    ONLY as (a) an ETHICAL harm -- foreclosing ANOTHER self-like agent's reachable state-space (INV-026 via
+    INV-028) -- and (b) commit-boundary WRITE irreversibility (MECH-094-adjacent). The SELF-directed, NON-harm,
+    decision-economic criterion (foreclosing one's OWN reachable options has a cost in E3) is absent.
+    COUNTERFACTUAL IS NECESSARY-BUT-NOT-SUFFICIENT: REE's counterfactuals (SD-031/ARC-033/MECH-256/DR-12) are
+    do(my-action)->consequence rollouts; this needs the do(world-reveals-branch-B)->was-my-commitment-robust
+    form plus a robustness-across-branches criterion. F-DOMINANCE CROSS-LINK (MECH-439): collapsing a diverse
+    candidate distribution to a confident commitment IS option-foreclosure at the commitment gate -- the
+    diversity-preservation work and this cost are two faces of one thing. LIT ANCHORS (lit-pull queued
+    2026-06-24): real-options / value-of-information; empowerment / future-option-maximization (Klyubin & Salge)
+    as an intrinsic objective; exploration under NON-STATIONARITY (you cannot know if the regime is terminal);
+    cross-ref Niv opportunity-cost (ARC-066/MECH-320). DISTINCT FROM: MECH-314 (curiosity = an EXPLORATION/
+    novelty bonus, not a foreclosure COST), ARC-068 (opportunity cost of TIME, not of option-SPACE), MECH-320
+    (tonic vigor). The V4 meta-level leg (reasoning about uncertainty over REE's OWN future option-space) was
+    folded into the self_model_v4 plan (user decision), NOT a standalone claim. PROMOTES NOTHING (new candidate).
