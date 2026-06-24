@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 1415947,
   "runner_started_at": "2026-06-17T10:52:50.833959+00:00",
-  "last_updated": "2026-06-24T04:51:03.419358+00:00",
+  "last_updated": "2026-06-24T05:29:21.503718+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -14,17 +14,6 @@
       "description": "",
       "estimated_minutes": 17.3,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-460p",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Closure-plane commit-ENTRY TRAJECTORY readiness + bool-vs-trajectory comparison (HARNESS-FIX re-issue of 460n; z_goal seeded in eval loop): does use_closure_commit_entry_trajectory STEP a closure-formed committed program the bool latch cannot? (3-arm diagnostic)",
-      "description": "",
-      "estimated_minutes": 112.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3593,6 +3582,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_460o_closure_commit_entry_readiness/v3_exq_460o_closure_commit_entry_readiness_20260624T045103Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 19911.3
+    },
+    {
+      "queue_id": "V3-EXQ-689h",
+      "backlog_id": "",
+      "claim_id": "MECH-448",
+      "title": "P-comp: MECH-448 demotion x MECH-449 Go/No-Go composition at committed-class entropy (C2)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | [689h] outcome=PASS label=demotion_x_gonogo_additive interaction_mean=0.0173 margin=0.1000 E[off,dem,gng,both]=[0.0,1.50543,0.0,1.52268] -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3.json | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-689h -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-689h.json",
+      "started_at": "2026-06-24T05:29:18.482025+00:00",
+      "completed_at": "2026-06-24T05:29:21.502467+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3.0
     }
   ]
 }
