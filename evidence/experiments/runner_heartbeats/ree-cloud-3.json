@@ -1,48 +1,31 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-06-25T03:39:07Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-700c",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-705",
-      "result": "FAIL",
-      "completed_at": "2026-06-25T03:37:02.983961+00:00"
-    }
+  "last_tick_utc": "2026-06-25T05:22:46Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-705b",
+  "current_exq_started_utc": "2026-06-25T05:20:34.470234+00:00",
+  "current_title": "MECH-314 curiosity-conversion under MECH-448/ARC-107 F->eligibility demotion ON -- CHANNEL-ADAPTIVE envelope floor (use_f_eligibility_adaptive_floor) fix; supersedes V3-EXQ-705 (705 all-admit / substrate_not_ready_requeue); BRAKE-LOCK trigger",
+  "current_claim_id": "MECH-314",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_CURIOSITY",
+    "runs_done": 0,
+    "runs_total": 9,
+    "episodes_done": 0,
+    "episodes_total": 90,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 131,
+  "seconds_remaining": 16800,
+  "recent_lines": [
+    "Seed 42 Condition ARM_CURIOSITY"
   ],
-  "runner_pid": 746,
-  "runner_version": "r3545 201953e 2026-06-25 (running r3538 ea7bdb0)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 745,
+  "runner_version": "r3547 a7a03ad 2026-06-25 (running r3545 201953e)",
   "gpu": {
     "available": false
   },
