@@ -52,8 +52,9 @@ closure_plan:
       owner_exq: TBD
       unblocks_claims: [MECH-257, MECH-094]
       depends_on: ["self_attribution:GAP-1", "self_attribution:GAP-2"]
-      last_updated: 2026-06-04
+      last_updated: 2026-06-25
       governance_2026_06_04: "Stale-since-review acknowledgement only (no status change). Flagged because the 2026-06-04 *b-cohort autopsy (failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04) reclassified MECH-094 (466b non_contributory/substrate_ceiling), which is in this node's unblocks set. That is a goal-achievement substrate-ceiling result on the closure/residue-discharge path; MECH-094 itself remains stable. It does not change GAP-3, which stays BLOCKED on its upstream prerequisites (self_attribution:GAP-1/GAP-2). last_updated bumped to acknowledge."
+      governance_2026_06_25: "Stale-since-review acknowledgement only (no status change; session governance-cycle-20260625T0420Z). Re-flagged for the SAME reason as governance_2026_06_04: a closure/residue-discharge autopsy (now failure_autopsy_V3-EXQ-466d_2026-06-24, applied by governance-cycle-20260624T2249Z) reclassified MECH-094 -> non_contributory and DROP-TAGGED it from the scored set precisely to PROTECT its stable status (conf 0.868). MECH-094 itself is unweakened. It does not change GAP-3, which stays BLOCKED on its upstream prerequisites (self_attribution:GAP-1/GAP-2) -- those are unmet, so the MECH-257 dual-function 3-arm ablation re-queue cannot proceed regardless of the MECH-094 reclassification. last_updated bumped to acknowledge."
     - id: "self_attribution:GAP-4"
       title: "Nociceptive-comparator lit-pull (PAG/RVM/ACC)"
       phase: 4
