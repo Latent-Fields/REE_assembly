@@ -483,3 +483,4 @@ One line per hourly tick. ASCII only.
 2026-06-25T00:07:52Z GC removed worktree igw-197-proposal-for-mech-179 post-reap (ledger IGW-20260624-197 -> completed_resumable; removed; branch deleted)
 2026-06-25T00:07:36Z skip IGW-20260625-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-06-25T01:07:54Z skip IGW-20260625-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-06-25T02:08:13Z skip IGW-20260625-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
