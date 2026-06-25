@@ -9,7 +9,7 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260624T094710Z",
   "outcome": "FAIL",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "SD-034": "non_contributory"
   },
@@ -280,5 +280,6 @@
   },
   "degeneracy_reason": "C2_discharge_events pinned at 0 by test construction: ResidueField.discharge_domain fires every closure but neither the scaffold curriculum nor the 466d eval ever calls agent.update_residue() (sole add_residue path), so discharge_domain reads an empty active_mask regardless of closure behaviour. C2 is degenerate (V3-EXQ-642 invalid-precondition pattern), not a falsification. Manifest criteria_non_degenerate C2=true is wrong.",
   "pending_retest_after_substrate": true,
-  "evidence_direction_note": "Corrected from auto-default weakens per confirmed user-gated failure_autopsy_V3-EXQ-466d_2026-06-24.{md,json}. SD-034 -> non_contributory + degenerate (harness gap, not substrate ceiling; discharge mechanism needs no enrichment); pending_retest via V3-EXQ-466e (wires update_residue into scaffold P1/P2 + eval, adds residue-field-populated non-vacuity gate). MECH-094 DROP-TAGGED (waking-only, not exercised by this run). Re-derive brake NOT fired (642 exemption; SD-034 priors are the separate MECH-445/446 latch lineage)."
+  "evidence_direction_note": "Superseded by V3-EXQ-466e (run v3_exq_466d -> v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3, PASS/supports, 2026-06-25). 466d's C2_discharge_events was a degenerate empty-residue-field artifact (update_residue() never called; criteria_non_degenerate C2=true was wrong) per failure_autopsy_V3-EXQ-466d_2026-06-24; 466e wires update_residue into scaffold P1/P2 + eval and adds a residue-field-populated non-vacuity gate, so the residue-discharge leg now scores genuinely. Whole 466d run scoring-excluded as superseded. Applied by governance-cycle-20260625T0420Z (user-approved 'Apply supports + supersede 466d').",
+  "supersedes_note": "Superseded by V3-EXQ-466e (run v3_exq_466d -> v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3, PASS/supports, 2026-06-25). 466d's C2_discharge_events was a degenerate empty-residue-field artifact (update_residue() never called; criteria_non_degenerate C2=true was wrong) per failure_autopsy_V3-EXQ-466d_2026-06-24; 466e wires update_residue into scaffold P1/P2 + eval and adds a residue-field-populated non-vacuity gate, so the residue-discharge leg now scores genuinely. Whole 466d run scoring-excluded as superseded. Applied by governance-cycle-20260625T0420Z (user-approved 'Apply supports + supersede 466d')."
 }

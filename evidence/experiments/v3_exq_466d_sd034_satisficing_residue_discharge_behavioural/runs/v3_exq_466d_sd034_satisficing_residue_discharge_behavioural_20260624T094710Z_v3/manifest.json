@@ -24,7 +24,7 @@
     "MECH-094"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "SD-034": "weakens",
     "MECH-094": "weakens"
@@ -100,5 +100,7 @@
       "c1_min_closures": 1,
       "c2_min_discharge_events": 1
     }
-  }
+  },
+  "evidence_direction_note": "Superseded by V3-EXQ-466e (run v3_exq_466d -> v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3, PASS/supports, 2026-06-25). 466d's C2_discharge_events was a degenerate empty-residue-field artifact (update_residue() never called; criteria_non_degenerate C2=true was wrong) per failure_autopsy_V3-EXQ-466d_2026-06-24; 466e wires update_residue into scaffold P1/P2 + eval and adds a residue-field-populated non-vacuity gate, so the residue-discharge leg now scores genuinely. Whole 466d run scoring-excluded as superseded. Applied by governance-cycle-20260625T0420Z (user-approved 'Apply supports + supersede 466d').",
+  "supersedes_note": "Superseded by V3-EXQ-466e (run v3_exq_466d -> v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3, PASS/supports, 2026-06-25). 466d's C2_discharge_events was a degenerate empty-residue-field artifact (update_residue() never called; criteria_non_degenerate C2=true was wrong) per failure_autopsy_V3-EXQ-466d_2026-06-24; 466e wires update_residue into scaffold P1/P2 + eval and adds a residue-field-populated non-vacuity gate, so the residue-discharge leg now scores genuinely. Whole 466d run scoring-excluded as superseded. Applied by governance-cycle-20260625T0420Z (user-approved 'Apply supports + supersede 466d')."
 }

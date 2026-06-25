@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-24T22:11:34Z",
+  "last_review_utc": "2026-06-25T04:36:23Z",
   "discussed_experiment_dirs": [
     "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural",
     "v3_exq_700b_arc108_sec7_learned_gating_settling_c3",
@@ -761,7 +761,8 @@
     "v3_exq_701b_inv050_mel_measurability_frozen_probe",
     "v3_exq_460o_closure_commit_entry_readiness",
     "v3_exq_460p_closure_commit_entry_trajectory_readiness",
-    "v3_exq_590c_mech314_novelty_goldilocks"
+    "v3_exq_590c_mech314_novelty_goldilocks",
+    "v3_exq_466e_sd034_satisficing_residue_discharge_behavioural"
   ],
   "reviewed_run_ids": [
     "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3",
@@ -3202,7 +3203,8 @@
     "v3_exq_460n_closure_commit_entry_trajectory_readiness_20260623T104846Z_v3",
     "v3_exq_701a_inv050_mel_measurability_converged_p0_20260623T072156Z_v3",
     "v3_exq_588e_mech189_trained_encoder_absolute_crossing_evidence_20260623T231707Z_v3",
-    "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3"
+    "v3_exq_590c_mech314_novelty_goldilocks_20260624T105537Z_v3",
+    "v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4881,6 +4883,13 @@
         "v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3"
       ],
       "context": "/failure-autopsy V3-EXQ-466d confirmed (non_contributory; SD-034 + MECH-094 UNWEAKENED). Closures FORM (C1 PASS, Leg-A hook fixed) but C2_discharge_events=0/3 because the residue field is EMPTY all run: discharge_domain is built + wired (closure_operator.residue=residue_field, agent.py:1577) and fires every closure, but neither the scaffold curriculum nor the eval calls agent.update_residue() (sole add_residue path), so discharge_domain returns 0 from an empty active_mask (field.py:671) regardless of closure behaviour -> C2 degenerate (V3-EXQ-642 invalid-precondition pattern, NOT a ceiling, NOT a falsification). MECH-094 not exercised (waking-only) -> DROPPED from scored tags. Re-derive brake NOT fired (642 exemption; SD-034's 9 priors are the separate MECH-445/446 latch lineage). Route /queue-experiment 466e: wire update_residue into scaffold P1/P2 + eval + a residue-field-populated non-vacuity gate, claim_ids=[SD-034]. See failure_autopsy_V3-EXQ-466d_2026-06-24.{md,json}. commitment_closure:GAP-4-battery result_note reconciled."
+    },
+    {
+      "utc": "2026-06-25T04:36:23Z",
+      "run_ids": [
+        "v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3"
+      ],
+      "context": "governance-cycle-20260625T0420Z: V3-EXQ-466e (SD-034 satisficing residue-discharge behavioural; supersedes V3-EXQ-466d) PASS/supports. sd034_satisficing_discharge_confirmed -- C1_n_closures/C2_discharge_events/C3_off_no_closure_no_discharge all PASS + non_degenerate; the residue-field-populated non-vacuity gate (ON residue_active_peak>=1 on >=2/3 seeds) is MET, fixing the 466d empty-active_mask artifact the failure_autopsy_V3-EXQ-466d_2026-06-24 diagnosed. SD-034 records a clean supports for the residue-discharge leg; STAYS provisional + pending_retest_after_substrate=True (de-commit-authority lineage GAP-4/460h..460l still owes its retest). 466d manifest set evidence_direction:superseded (whole run scoring-excluded). GAP-4-battery node owner 466e recorded PASS, stays in_progress (commitment-dependent arms deferred). User-approved 'Apply supports + supersede 466d'. NOTE: V3-EXQ-705 (MECH-314) left PENDING this cycle -- flagged for /failure-autopsy (substrate_not_ready_requeue, legC demotion all-admit 1/3 seeds), per the 'fails need autopsies before we decide' directive."
     }
   ]
 }
