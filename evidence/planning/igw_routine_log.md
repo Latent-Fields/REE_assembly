@@ -478,3 +478,7 @@ One line per hourly tick. ASCII only.
 2026-06-24T05:38:43Z AUDIT CRITICAL: respawn loop (1 hash(es)); auto-paused routine
 2026-06-24T05:38:47Z complete IGW-20260624-196 completed_resumable->completed outcome=USEFUL_LANDED: marked EVB-0101 blocked_substrate: no NA control plane, no arousal-gated REM ent
 2026-06-24T23:06:12Z SPAWN IGW-20260624-197 skill=/queue-experiment prio=40 uuid=7776fb79-8d65-4b16-a3d2-af85c7d07586 pid=9637 worktree=igw-197-proposal-for-mech-179
+2026-06-25T00:07:51Z auto-defer IGW-20260624-197 hash=e4c9016acccc for 48h (reaped -> completed_resumable)
+2026-06-25T00:07:51Z reaped TASK_CLAIMS igw-auto-igw-197-proposal-for-mech-179-20260624T230627Z (ledger IGW-20260624-197 -> completed_resumable)
+2026-06-25T00:07:52Z GC removed worktree igw-197-proposal-for-mech-179 post-reap (ledger IGW-20260624-197 -> completed_resumable; removed; branch deleted)
+2026-06-25T00:07:36Z skip IGW-20260625-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
