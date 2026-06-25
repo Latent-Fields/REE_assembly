@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-06-25T04:36:30Z`  
-Last review: `2026-06-25T04:36:23Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-06-25T04:54:52Z`  
+Last review: `2026-06-25T04:54:12Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_705_mech314_curiosity_conversion_demotion_20260625T033702Z_v3` | 2026-06-25T03:37 | MECH-314 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 

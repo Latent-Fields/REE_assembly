@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-25T04:41:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_705_mech314_curiosity_conversion_demotion_20260625T033702Z_v3",
+      "queue_id": "V3-EXQ-705",
+      "claim_ids": ["MECH-314"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact - the test could not let MECH-314 express itself; the demotion all-admitted on 2/3 seeds so F was never removed from the committed argmin and curiosity arbitrated over a near-whole eligible set",
+        "biological_reference": "clear - BG/pallidal eligibility gating under divisive normalisation (Mink 1996; Carandini & Heeger 2012); the all-admit on near-tie-F seeds maps to a gate-threshold mis-set for the input distribution, not a wrong mechanism",
+        "prerequisites": "present but mis-configured - MECH-448 demotion built; the channel-adaptive mean-relative floor amend (use_f_eligibility_adaptive_floor) built and validated 2026-06-21 (V3-EXQ-689e) but not enabled in 705",
+        "implementation": "complete - demotion + channel-adaptive floor both implemented in e3_selector.py",
+        "environment": "adequate - GAP-A reef-bipartite divergent pool (legA cand_world_pairwise_dist 0.210 > 0.02)",
+        "measurement": "adequate - the readiness legs correctly detected the all-admit and self-routed substrate_not_ready_requeue (the correctly-caught invalid-precondition case)",
+        "integration": "partially coupled - demotion + curiosity composition wired but the eligible-set construction all-admitted",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia / pallidal eligibility gating under divisive normalisation (focal-go + surround-no-go); F-merit-share envelope",
+        "dependencies": ["MECH-448 rank-preserving F->eligibility demotion", "ARC-107 selector constitution", "modulatory-bias-selection-authority (within-eligible argmin)", "ARC-065 GAP-A divergent candidate pool", "SD-056 trained e2.world_forward"],
+        "is_formal_import": false,
+        "divergence": "REE demotion removes F from the COMMIT argmin (rank-altering at commit) which exceeds canonical order-preserving DN; not implicated in this failure (the lever fired rank-preserving, it just did not narrow)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-705 non_contributory (substrate_not_ready_requeue): the MECH-448 F->eligibility demotion all-admitted on 2/3 seeds (fixed envelope_floor=0.30 mis-calibrated for the near-tie F-merit of the harm-free foraging pool; seeds 43/44 excluded_count==0.0, envelope_size==32.0), so MECH-314 curiosity was not fairly tested under a narrowing demotion. The below-control ARM_CURIOSITY committed entropy (0.7236 < 0.896) is a degeneracy of the all-admit (novelty argmin over a near-whole pool = monostrategy), NOT a MECH-314 weakening. Re-queue V3-EXQ-705b with use_f_eligibility_adaptive_floor (V3-EXQ-689e-validated, excludes 14.8-15.7/32 reliably) + a legC excluded_count>0 readiness gate. Re-derive brake held (V3-EXQ-642 invalid-precondition family, not a clean ceiling).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The substrate to fix the all-admit (channel-adaptive mean-relative envelope floor, use_f_eligibility_adaptive_floor) is already built AND validated (V3-EXQ-689e PASS 2026-06-21, adaptive_excluded_count_mean 14.8-15.7/32). No substrate work owed; the only owed work is the V3-EXQ-705b re-queue with the flag enabled."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-572-573_2026-05-17",
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07",
+          "failure_autopsy_V3-EXQ-590c_2026-06-24"
+        ],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "hold_rationale": "705 is a confounded / un-exercised-substrate reading (V3-EXQ-642 invalid-precondition family): the MECH-448 demotion the 590c autopsy routed 705 to was not actually exercised on 2/3 seeds (fixed-floor all-admit). The brake fires only on a CLEAN substrate_ceiling reading at the same granularity against the same EXERCISED substrate; firing on a confounded run would be illusory-resolution (precedent: failure_autopsy_V3-EXQ-701a, brake held on a confounded run). 590c correctly routed 705 brake-EXEMPT; this autopsy keeps it exempt because the redesign's enabling substrate did not engage.",
+        "brake_lock_condition": "If V3-EXQ-705b clears legC (channel-adaptive demotion genuinely excludes, excluded_count>0 on >=2/3 seeds, MECH-314 fairly tested under a narrowing demotion) AND committed_class_entropy STILL shows no lift over the demotion-ON F-only control + matched-noise control -> THAT is the genuine conversion_ceiling_persists_despite_demotion off-ramp -> fire the re-derive brake (6th) + route the curiosity-conversion question to MECH-449 Go/No-Go (double-gated) / V4. Until then the brake is held."
+      },
+      "learning_extracted": [
+        "The fixed f_eligibility_envelope_floor=0.30 mis-fires (all-admit) on flat-F / near-tie channels such as the harm-free foraging pool, where 689d's more F-concentrated bank did not. The channel-adaptive mean-relative floor (use_f_eligibility_adaptive_floor, 689e-validated) is the per-channel fix and should be the default for any MECH-448-demotion re-test on a flat-F substrate.",
+        "A self-routed substrate_not_ready_requeue on legC all-admit is a correctly-caught invalid precondition, not a substrate ceiling: the demotion lever fired (active_frac 1.0) but the envelope did not narrow.",
+        "The below-control ARM_CURIOSITY committed entropy (0.7236 < 0.896) is a degeneracy of the all-admit (novelty argmin over a near-whole pool = monostrategy), NOT evidence against MECH-314.",
+        "Decisive contrast: 689d PASSED with the fixed floor excluding only ~0.15/32 (low average exclusion is not the failure); 705's failure is per-seed COMPLETE all-admit (excluded_count exactly 0.0, envelope exactly 32.0) on 2/3 seeds. 689e shows the adaptive floor excludes 14.8-15.7/32 reliably -> the all-admit is a config artifact, not a real property of the demotion."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
