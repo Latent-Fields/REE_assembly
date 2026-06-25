@@ -1,214 +1,86 @@
-# Mobile access: REE explorer + Claude Code from the iPhone over WireGuard
+# Mobile access: public overview
 
-Reach two things from the phone, over the WireGuard network you already run:
+This repository supports mobile access to the REE explorer and to a persistent
+Claude Code terminal session through a private WireGuard network plus SSH/tmux.
 
-1. **The REE claims explorer** — `http://10.8.0.11:8000/explorer` in Safari.
-2. **This Claude Code instance** — SSH into the Mac and attach a persistent
-   `tmux` session.
+This file is intentionally sanitized for GitHub. It does not contain real
+endpoints, WireGuard addresses, public keys, SSH users, device labels, or host
+names. Keep those values in the local-only runbook:
 
-Both ride the existing `10.8.0.0/24` WireGuard net. Nothing is exposed to the
-public internet.
-
----
-
-## The secret-isolation model (read this first)
-
-**Every private key is generated on the device that keeps it, and only public
-keys ever cross.** That is how WireGuard and SSH are designed to work, and it
-means the server side can be provisioned without anyone (including an assistant)
-ever seeing a secret.
-
-| Secret | Generated on | Lives only on | What the hub/Mac sees |
-|--------|--------------|---------------|-----------------------|
-| iPhone WireGuard private key | iPhone WireGuard app | iPhone | its **public** key |
-| iPhone SSH private key | iPhone SSH app | iPhone | its **public** key |
-| Hub WireGuard private key | hub (pre-existing) | hub | — (untouched) |
-| Mac SSH keys | Mac (pre-existing) | Mac | — (untouched) |
-
-Give each key a memorable **label** in its app (tunnel `REE-net`, SSH key
-`REE-mac`) so you refer to them by name. The only things you ever read back out
-to anyone are **public** keys and IP/host assignments.
-
----
-
-## Network facts (verified 2026-06-23)
-
-| Thing | Value |
-|-------|-------|
-| WireGuard subnet | `10.8.0.0/24` |
-| Hub (`ree-cloud-1`) WG IP | `10.8.0.1` |
-| Hub public endpoint | `91.98.130.117:51820` |
-| Hub WireGuard **public** key | `qp3fuadZ8ZmyPp9RQK7Aayy3adMC6bMBpR79H54K/Ak=` |
-| Mac (`DLAPTOP-4`) WG IP | `10.8.0.11` |
-| Cloud workers | `10.8.0.12`, `.13`, `.14` |
-| **Free IP for the iPhone** | **`10.8.0.20`** |
-| Explorer | `serve.py` on `:8000` (binds `0.0.0.0`, no auth — WireGuard is the boundary) |
-
-> **Why a hub change is needed.** The WG net is a pure *star*: every peer talks
-> only to the hub, and the hub currently has IPv4 forwarding **off**
-> (`net.ipv4.ip_forward=0`). So an iPhone peer cannot reach the Mac until the hub
-> is told to forward between them. `scripts/wg_enable_forwarding.sh` turns this on
-> **scoped to just the iPhone↔Mac pair** (not the whole subnet), so the hub's
-> role as a router stays minimal.
-
----
-
-## Part 1 — Put the iPhone on the WireGuard network (explorer access)
-
-### 1a. On the iPhone (you keep the secret)
-
-WireGuard app → **Add a tunnel → Create from scratch**. The app generates the
-keypair on-device. Fill in:
-
-- **Name:** `REE-net`
-- **Interface → Addresses:** `10.8.0.20/32`
-- (leave Private key as generated; leave DNS empty)
-- **Add peer:**
-  - **Public key:** `qp3fuadZ8ZmyPp9RQK7Aayy3adMC6bMBpR79H54K/Ak=`
-  - **Endpoint:** `91.98.130.117:51820`
-  - **Allowed IPs:** `10.8.0.0/24`
-  - **Persistent keepalive:** `25`
-
-Save. At the top of the tunnel screen the app shows the **Public key** for this
-tunnel — that is the only thing you read back to provision the hub.
-
-### 1b. On the hub (public-key-only)
-
-Add the peer using its public key (`<IPHONE_PUBKEY>` is what you read off the
-app), then enable the scoped forwarding. Pipe the repo scripts over SSH so the
-hub's git checkout is never touched:
-
-```bash
-# from the Mac, in REE_assembly/
-ssh ree@91.98.130.117 'sudo bash -s' < scripts/wg_add_peer.sh -- iphone '<IPHONE_PUBKEY>' 10.8.0.20
-ssh ree@91.98.130.117 'sudo bash -s' < scripts/wg_enable_forwarding.sh -- 10.8.0.20 10.8.0.11
+```text
+docs/mobile_access.local.md
 ```
 
-Both scripts are idempotent and print the resulting state. `wg_add_peer.sh`
-refuses a duplicate key/IP; `wg_enable_forwarding.sh` only opens the single
-peer pair.
+That file is ignored by git. Do not commit it.
 
-### 1c. On the Mac (one check, needs sudo)
+## Model
 
-The Mac must route replies back to the iPhone. Confirm its peer (the hub) covers
-the whole subnet:
+- The explorer is reachable only after the phone joins the private WireGuard
+  network.
+- Claude Code access is through SSH to the workstation, then attaching to a
+  persistent `tmux` session.
+- WireGuard and SSH private keys must be generated and kept on the device that
+  owns them.
+- Only public keys should be copied between devices.
+- The explorer has no application-layer authentication, so the WireGuard tunnel
+  and local bind settings are the boundary.
 
-```bash
-sudo wg show wg0 allowed-ips
+## Public Setup Shape
+
+Use the private local runbook to fill in these placeholders:
+
+```text
+<WG_SUBNET>
+<HUB_PUBLIC_ENDPOINT>
+<HUB_WG_PUBLIC_KEY>
+<HUB_WG_IP>
+<MAC_WG_IP>
+<PHONE_WG_IP>
+<LOCAL_SSH_USER>
+<SSH_HOST_ALIAS>
+<EXPLORER_URL>
 ```
 
-The hub-peer line should include `10.8.0.0/24` (not just `10.8.0.1/32`). If it is
-narrower, widen it in `/etc/wireguard/wg0.conf` (`AllowedIPs = 10.8.0.0/24` on the
-hub `[Peer]`) and `sudo wg-quick down wg0 && sudo wg-quick up wg0`.
+The provisioning sequence is:
 
-### 1d. Test
+1. Generate the phone WireGuard keypair on the phone.
+2. Add the phone as a WireGuard peer on the hub using only the phone public key.
+3. Enable scoped forwarding between the phone peer and the workstation peer.
+4. Confirm the workstation routes replies through the WireGuard network.
+5. Open the explorer URL from the phone.
+6. Generate a phone SSH key on the phone and install only its public key on the
+   workstation.
+7. SSH or mosh into the workstation and attach the persistent `tmux` session.
 
-Turn the `REE-net` tunnel **on** in the iPhone WireGuard app, then in Safari:
+## Helper Scripts
 
-- `http://10.8.0.11:8000/explorer` — the explorer should render.
-- Tap into a live tab (e.g. **Machines**) to confirm the `/api/*` calls return data.
-
-From the Mac, `sudo wg show wg0` should list the iPhone peer with a recent
-handshake.
-
-> The explorer is a dense desktop dashboard; it works on mobile Safari but is
-> cramped. Pinch-zoom is expected. A responsive layout is out of scope here.
-
----
-
-## Part 2 — Claude Code from the iPhone (SSH + tmux)
-
-### 2a. Pick a terminal app
-
-- **Blink Shell (recommended).** Supports **mosh**, which — combined with `tmux`
-  — survives the phone sleeping or switching networks (the #1 mobile-SSH
-  annoyance). Generates SSH keys on-device.
-- **Termius (friendly free option).** On-device key generation, saved host
-  aliases, simple UI. Plain SSH (no mosh) is fine over a stable WireGuard tunnel.
-
-### 2b. On the Mac (one-time setup)
+The helper scripts are safe to keep public because they require the caller to
+provide concrete values at runtime:
 
 ```bash
-brew install tmux        # required by claude_mobile.sh
-brew install mosh        # only if you use Blink + mosh
-sudo systemsetup -setremotelogin on    # enable Remote Login (SSH); or System
-                                        # Settings > General > Sharing > Remote Login
+ssh <HUB_SSH_TARGET> 'sudo bash -s' < scripts/wg_add_peer.sh -- <PEER_NAME> '<PHONE_WG_PUBLIC_KEY>' <PHONE_WG_IP>
+ssh <HUB_SSH_TARGET> 'sudo bash -s' < scripts/wg_enable_forwarding.sh -- <PHONE_WG_IP> <MAC_WG_IP>
+bash scripts/claude_mobile.sh
 ```
 
-Recommend key-only SSH (no passwords) once your key is installed.
+## Hardening
 
-### 2c. On the iPhone (you keep the secret)
-
-In the terminal app: generate an SSH key named `REE-mac`, and add a host:
-
-- **Alias:** `mac`  **Host:** `10.8.0.11`  **User:** `dgolden`  **Key:** `REE-mac`
-
-Read the **public** key back out (e.g. Blink: `config` → keys → copy public key;
-Termius: key → export public key).
-
-### 2d. On the Mac (public-key-only)
-
-Append the iPhone's SSH **public** key to authorized_keys:
+Once mobile access is working, bind `serve.py` only to localhost plus the
+workstation's WireGuard address:
 
 ```bash
-mkdir -p ~/.ssh && chmod 700 ~/.ssh
-printf '%s\n' '<IPHONE_SSH_PUBLIC_KEY>' >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
+python3 serve.py --bind <MAC_WG_IP> --bind 127.0.0.1
 ```
 
-### 2e. Use it
+With no `--bind`, `serve.py` keeps its existing all-interface behavior.
 
-With the `REE-net` tunnel on, from the iPhone terminal:
+## What Must Stay Out Of Git
 
-```bash
-mosh mac        # or:  ssh mac
-bash /Users/dgolden/REE_Working/REE_assembly/scripts/claude_mobile.sh
-# you are now attached to the persistent tmux session "ree"; run:
-claude
-```
+Do not commit:
 
-`claude_mobile.sh` keeps a detached `tmux` session named `ree` alive in
-`REE_Working`. Lock the phone, lose signal, come back later, re-run the same
-command (or `tmux attach -t ree`) and you are back in the **same** Claude Code
-session. Detach without killing it with **Ctrl-b** then **d**.
-
----
-
-## Part 3 — Optional hardening (recommended)
-
-`serve.py` binds `0.0.0.0` (all interfaces) by default — which also exposes the
-explorer on your home Wi-Fi LAN. Once the iPhone peer works, restrict it to
-**WireGuard + localhost** with the new `--bind` flag:
-
-```bash
-# via the launcher (space-separated -> one --bind each):
-REE_BIND="10.8.0.11 127.0.0.1" "/Users/dgolden/REE_Working/REE_assembly/Start Explorer.command"
-
-# or directly:
-python3 serve.py --bind 10.8.0.11 --bind 127.0.0.1
-```
-
-With no `--bind`, behaviour is unchanged (`0.0.0.0`). Restart `serve.py` after
-changing this.
-
----
-
-## Troubleshooting
-
-| Symptom | Likely cause / fix |
-|---------|--------------------|
-| iPhone tunnel shows no handshake | Wrong hub public key or endpoint; check `91.98.130.117:51820` and the key above. `PersistentKeepalive 25` helps through NAT. |
-| Tunnel up, but explorer won't load | Hub forwarding not enabled — re-run `wg_enable_forwarding.sh 10.8.0.20 10.8.0.11`; confirm `ssh ree@91.98.130.117 sudo sysctl -n net.ipv4.ip_forward` is `1`. |
-| Explorer loads but API tabs are empty | Mac peer `AllowedIPs` too narrow (Part 1c) — reply traffic to `10.8.0.20` isn't entering the Mac's tunnel. Widen to `10.8.0.0/24`. |
-| `ssh mac` refused | Remote Login off (`sudo systemsetup -setremotelogin on`) or `~/.ssh/authorized_keys` perms wrong (dir `700`, file `600`). |
-| `claude_mobile.sh: tmux not installed` | `brew install tmux` on the Mac. |
-| mosh won't connect | `brew install mosh` on the Mac; mosh's UDP runs inside the WG tunnel, so no extra firewall holes are needed. Fall back to `ssh mac`. |
-
-## Reverting
-
-- Remove the iPhone from the net: delete its `[Peer]` block in the hub's
-  `/etc/wireguard/wg0.conf` and `sudo wg set wg0 peer '<IPHONE_PUBKEY>' remove`.
-  With no peer at `10.8.0.20`, the scoped forwarding rules are inert.
-- Disable forwarding entirely: `sudo sysctl -w net.ipv4.ip_forward=0` and remove
-  `/etc/sysctl.d/99-ree-wg-forward.conf` + the two `FORWARD` rules.
-- Revert the explorer to all-interfaces: just start `serve.py` with no `--bind`.
+- real hub endpoint or cloud host addresses
+- real WireGuard public keys when they identify this deployment
+- real internal WireGuard address assignments
+- real SSH usernames or mobile host aliases
+- phone provisioning screenshots
+- any private key, token, password, or bearer credential

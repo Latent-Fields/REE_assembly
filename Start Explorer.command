@@ -13,7 +13,7 @@ PORT=8000
 # Where serve.py listens. Default 0.0.0.0 = all interfaces (unchanged behaviour).
 # For WireGuard + localhost only (recommended once the iPhone peer is set up --
 # see docs/mobile_access.md), run the launcher with:
-#   REE_BIND="10.8.0.11 127.0.0.1" "/Users/dgolden/REE_Working/REE_assembly/Start Explorer.command"
+#   REE_BIND="<MAC_WG_IP> 127.0.0.1" "/Users/dgolden/REE_Working/REE_assembly/Start Explorer.command"
 # Each space-separated address becomes a --bind flag.
 REE_BIND="${REE_BIND:-}"
 BIND_ARGS=""

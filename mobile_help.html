@@ -1,10 +1,10 @@
 <!doctype html>
-<!-- MOBILE_HELP_VERSION: 2026-06-23.1 -->
+<!-- MOBILE_HELP_VERSION: 2026-06-25.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>REE on your iPhone</title>
+<title>REE mobile access</title>
 <style>
   :root{
     --bg:#f7f5ef; --card:#fff; --ink:#1c1a16; --muted:#6b6358;
@@ -30,10 +30,7 @@
     font:0.92rem ui-monospace,SFMono-Regular,Menlo,monospace;}
   pre code{background:none;padding:0;color:inherit;}
   a{color:var(--accent);}
-  .url{font-weight:600;}
   .muted{color:var(--muted);font-size:.9rem;}
-  .pill{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;
-    padding:1px 9px;font-size:.78rem;font-weight:600;vertical-align:middle;}
   .note{border-left:3px solid var(--accent);padding:8px 12px;background:rgba(43,111,114,.06);
     border-radius:0 8px 8px 0;margin:10px 0 0;font-size:.92rem;}
   table.tbl{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:4px;}
@@ -44,59 +41,53 @@
 <body>
 <div class="wrap">
 
-  <h1>📱 REE on your iPhone</h1>
-  <p class="sub">Both of these ride your WireGuard tunnel. Turn the
-  <strong>REE-net</strong> tunnel on first.</p>
+  <h1>REE mobile access</h1>
+  <p class="sub">This public helper is intentionally sanitized. Use the ignored
+  local runbook for the real tunnel name, explorer URL, host alias, and user.</p>
 
-  <h2>🌐 The explorer (Safari)</h2>
+  <h2>The explorer</h2>
   <div class="card">
-    Open in Safari:
-    <p class="url"><a href="http://10.8.0.11:8000/explorer">http://10.8.0.11:8000/explorer</a></p>
-    <p class="muted" style="margin:.4em 0 0;">That's it — no terminal needed for the explorer.</p>
+    Open the private explorer URL from <code>docs/mobile_access.local.md</code>
+    after the phone WireGuard tunnel is on.
+    <pre><code>&lt;EXPLORER_URL&gt;</code></pre>
   </div>
 
-  <h2>⌨️ Claude Code (Blink)</h2>
+  <h2>Claude Code</h2>
   <div class="card">
     <ol>
-      <li>WireGuard <strong>REE-net</strong> tunnel <strong>on</strong>.</li>
-      <li>In Blink, connect (Face ID unlocks the key):
-        <pre><code>mosh mac</code></pre>
-        <span class="muted">No host alias set up? Use
-        <code>ssh dgolden@10.8.0.11</code>.</span>
+      <li>Turn on the private WireGuard tunnel named in the local runbook.</li>
+      <li>Connect with the SSH or mosh alias from the local runbook:
+        <pre><code>mosh &lt;SSH_HOST_ALIAS&gt;</code></pre>
       </li>
-      <li>Attach the always-on session:
+      <li>Attach the persistent session:
         <pre><code>tmux attach -t ree</code></pre>
       </li>
       <li>Start Claude Code:
         <pre><code>claude</code></pre>
       </li>
     </ol>
-    <div class="note">Detach without killing it: press <strong>Ctrl-b</strong>, then
-      <strong>d</strong>. Lock the phone, come back later, <code>tmux attach -t ree</code>
-      and you're exactly where you left off.</div>
+    <div class="note">Detach without killing it: press <strong>Ctrl-b</strong>,
+      then <strong>d</strong>. Reconnect later and attach the same tmux session.</div>
   </div>
 
-  <h2>🔁 After a Mac reboot</h2>
+  <h2>After a workstation reboot</h2>
   <div class="card">
-    Nothing to remember. The explorer (<code>serve.py</code>) re-creates the
-    <code>ree</code> session automatically whenever it starts, so it's always
-    waiting. Just connect with the steps above.
-    <p class="muted" style="margin:.5em 0 0;">If you ever need it by hand:
-      <code>bash ~/REE_Working/REE_assembly/scripts/claude_mobile.sh</code></p>
+    The helper script can recreate the detached <code>ree</code> tmux session:
+    <pre><code>bash scripts/claude_mobile.sh</code></pre>
   </div>
 
-  <h2>🛠 If something won't connect</h2>
+  <h2>If something will not connect</h2>
   <div class="card">
     <table class="tbl">
-      <tr><td>Explorer won't load</td><td>WireGuard tunnel off, or it lost its handshake — toggle REE-net off/on.</td></tr>
-      <tr><td><code>ssh</code>/<code>mosh</code> refused</td><td>Remote Login is off on the Mac (System Settings &rarr; General &rarr; Sharing &rarr; Remote Login).</td></tr>
-      <tr><td><code>mosh</code> hangs</td><td>Fall back to <code>ssh dgolden@10.8.0.11</code>.</td></tr>
-      <tr><td>Host key prompt</td><td>First connection only — type <code>yes</code>.</td></tr>
+      <tr><td>Explorer will not load</td><td>Confirm the tunnel is on, then check the private URL in the local runbook.</td></tr>
+      <tr><td><code>ssh</code>/<code>mosh</code> refused</td><td>Confirm workstation SSH is enabled and the phone public key is installed.</td></tr>
+      <tr><td><code>mosh</code> hangs</td><td>Fall back to plain SSH using the local runbook alias or address.</td></tr>
+      <tr><td>Host key prompt</td><td>Expected on first connection after provisioning.</td></tr>
     </table>
   </div>
 
-  <p class="muted" style="margin-top:22px;">Full runbook (provisioning, secret model,
-  re-keying a device): <code>REE_assembly/docs/mobile_access.md</code>.</p>
+  <p class="muted" style="margin-top:22px;">Private provisioning details live in
+  <code>docs/mobile_access.local.md</code>, which is gitignored.</p>
 
 </div>
 </body>

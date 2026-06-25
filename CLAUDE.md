@@ -2,7 +2,7 @@
 
 **Orientation:** [docs/START_HERE_HOW_REE_DEVELOPS.md](docs/START_HERE_HOW_REE_DEVELOPS.md) -- claim/experiment/evidence/governance loop, key files, Explorer-first path. Agents at umbrella root: [NEW_AGENT_START_HERE.md](../NEW_AGENT_START_HERE.md).
 
-**Mobile / remote access:** [docs/mobile_access.md](docs/mobile_access.md) -- reach the explorer (`http://10.8.0.11:8000/explorer`) and Claude Code (SSH + `tmux`) from the iPhone over WireGuard. Public-key-only provisioning; helpers in `scripts/wg_add_peer.sh`, `scripts/wg_enable_forwarding.sh`, `scripts/claude_mobile.sh`. `serve.py --bind` restricts the explorer to WireGuard + localhost.
+**Mobile / remote access:** [docs/mobile_access.md](docs/mobile_access.md) is the sanitized public overview. Concrete endpoints, WireGuard addresses, public keys, SSH user/host aliases, and phone setup notes belong only in the gitignored local runbook `docs/mobile_access.local.md`. Helpers: `scripts/wg_add_peer.sh`, `scripts/wg_enable_forwarding.sh`, `scripts/claude_mobile.sh`. `serve.py --bind` can restrict the explorer to WireGuard + localhost.
 
 ## Git Workflow
 

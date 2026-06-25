@@ -64,7 +64,7 @@ NON_MANIFEST_TOKENS = (
 # ---------------------------------------------------------------------------
 SENSITIVE_PATTERNS = [
     ("ipv4", re.compile(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")),
-    ("wireguard", re.compile(r"\b10\.8\.0\.\d+\b")),
+    ("private_10_net", re.compile(r"\b10\.\d{1,3}\.\d{1,3}\.\d{1,3}\b")),
     ("hub_port", re.compile(r":8787\b")),
     ("cloud_host", re.compile(r"\bree-(?:cloud|worker)-\d+\b", re.I)),
     ("named_host", re.compile(r"\b(?:DLAPTOP|Daniel-PC|EWIN-PC|ree-cloud-1)\b", re.I)),

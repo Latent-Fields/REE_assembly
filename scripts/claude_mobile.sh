@@ -7,8 +7,8 @@
 # and re-attach to the SAME Claude Code session later.
 #
 # Typical use from the iPhone (after SSH is set up -- see docs/mobile_access.md):
-#   ssh mac            # mac -> 10.8.0.11, user dgolden (host alias in your SSH app)
-#   bash /Users/dgolden/REE_Working/REE_assembly/scripts/claude_mobile.sh
+#   ssh <SSH_HOST_ALIAS>
+#   bash /path/to/REE_Working/REE_assembly/scripts/claude_mobile.sh
 #   # ... you are now attached to tmux session "ree"; run `claude` inside it.
 #
 # Run with no TTY (e.g. over `ssh mac bash .../claude_mobile.sh` non-interactively)
@@ -16,7 +16,8 @@
 set -euo pipefail
 
 SESSION="ree"
-WORKDIR="/Users/dgolden/REE_Working"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+WORKDIR="$(cd "$SCRIPT_DIR/../.." && pwd -P)"
 
 if ! command -v tmux >/dev/null 2>&1; then
     echo "ERROR: tmux is not installed. Install it with:  brew install tmux" >&2

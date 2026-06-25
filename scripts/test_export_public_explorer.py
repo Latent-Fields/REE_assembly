@@ -24,11 +24,11 @@ OUT_DIR = exp.OUT_DIR
 
 # --- positive controls: the scrub MUST catch these -------------------------
 LEAK_SAMPLES = [
-    "ssh ree@91.98.130.117",
-    "hub at 10.8.0.1:8787",
+    "ssh user@203.0.113.10",
+    "hub at 192.0.2.1:8787",
     "worker ree-cloud-4 idle",
-    "runs on DLAPTOP-4.local",
-    "/Users/dgolden/REE_Working/secret.txt",
+    "runs on WORKSTATION.local",
+    "/Users/example/REE_Working/secret.txt",
     "/home/ree/coordinator-spool/pending/",
     "api_key = sk-ABCDEF0123456789ABCDEF",
     "see /etc/systemd/system/ree-runner.service",

@@ -119,7 +119,7 @@ This artifact is the handoff. A `/diagnose-errors` session should investigate, i
 |---|---|
 | `REE_assembly/evidence/experiments/runner_status/ree-cloud-2.json` | 490h runner-side FAIL sentinel; output_file path; elapsed time |
 | `REE_assembly/evidence/experiments/runner_status/DLAPTOP-4.local.json` | 592b runner-side FAIL sentinel; output_file path; elapsed time |
-| coordinator DB on `ree@91.98.130.117` (`/home/ree/REE_Working/ree-v3/coordinator/coordinator.db`) | `results` table contains no row for either queue_id; recent landings PASS-only; spool empty |
+| coordinator DB on the phase3 hub SSH target | `results` table contains no row for either queue_id; recent landings PASS-only; spool empty |
 | `git -C REE_assembly log --all --since=2026-05-25 --oneline \| grep phase3:` | No `phase3:` result-commit for 490h or 592b; the writer would have committed if a `results` row existed |
 | `ree-v3/experiments/v3_exq_490h_mech295_cascade_gap4_tier1.py` | five-row interpretation grid that the autopsy cannot consume without per-condition metrics |
 | `ree-v3/experiments/v3_exq_592b_mech090_commit_readiness_gate_validation.py` | 2-arm joint-PASS gate validation; ARM_0 / ARM_1 acceptance disposition cannot be determined without the manifest |

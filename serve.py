@@ -43,6 +43,7 @@ import http.server
 import json
 import os
 import re
+import shlex
 import signal
 import socket
 import subprocess
@@ -178,12 +179,12 @@ _phase3_writers_cache: dict | None = None
 _phase3_writers_cache_at: float = 0.0
 _phase3_writers_lock = threading.Lock()
 _PHASE3_WRITERS_TTL = 60.0
-_PHASE3_HUB_DEFAULT_HOST = "91.98.130.117"
+_PHASE3_HUB_DEFAULT_HOST = ""
 # WireGuard-tunnel address of the coordinator HTTP plane on the hub.
 # /writer-health is the durable replacement for the SSH+journal probe; we
 # try this first and fall back to SSH if the call fails (deploy windows,
 # auth issues, endpoint not yet rolled out to the hub).
-_PHASE3_COORDINATOR_WG_URL = "http://10.8.0.1:8787"
+_PHASE3_COORDINATOR_WG_URL = ""
 # sync_daemon's tick interval. Used to colour writer rows by tick-age:
 # the SYNC_INTERVAL bump from 60s -> 300s landed on the hub 2026-05-31.
 # Mirroring the default here lets the explorer judge "is the writer
@@ -353,8 +354,11 @@ def _fetch_phase3_writer_health_http(cfg: dict) -> dict | None:
     tok = cfg.get("COORDINATOR_LOCAL_TOKEN")
     if not tok:
         return None
-    url = (cfg.get("COORDINATOR_URL")
-           or _PHASE3_COORDINATOR_WG_URL).rstrip("/") + "/writer-health"
+    base_url = (cfg.get("COORDINATOR_URL")
+                or _PHASE3_COORDINATOR_WG_URL).strip()
+    if not base_url:
+        return None
+    url = base_url.rstrip("/") + "/writer-health"
     import urllib.error
     import urllib.request
     try:
@@ -467,11 +471,25 @@ def run_phase3_writers_summary() -> dict:
             _phase3_writers_cache_at = now
             return http_result
 
-        # Hub SSH target: SHADOW_SSH_HOST_ree-cloud-1 wins, then explicit
-        # PHASE3_HUB_SSH_HOST, then the documented WireGuard-tunnel public IP.
+        # Hub SSH target: local configuration only. Do not hard-code deployment
+        # hostnames or public IPs in the public repo.
         hub_host = (cfg.get("SHADOW_SSH_HOST_ree-cloud-1")
                     or cfg.get("PHASE3_HUB_SSH_HOST")
                     or _PHASE3_HUB_DEFAULT_HOST)
+        if not hub_host:
+            result = {
+                "hub_reachable": False,
+                "hub_host": None,
+                "writers": None,
+                "spool_pending": None,
+                "journal_tail": [],
+                "error": "PHASE3 hub SSH host is not configured locally.",
+                "probe": "ssh",
+                "cached_at": _utc_now_iso_z(),
+            }
+            _phase3_writers_cache = result
+            _phase3_writers_cache_at = now
+            return result
         ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
         sentinel_g = "===PHASE3_GIT==="
         sentinel_q = "===PHASE3_QUEUE==="
@@ -4186,7 +4204,7 @@ def _shadow_operator_guide(verdict: str, st: dict | None = None) -> dict:
             "assess": "n/a",
             "retire": "Do not change git claiming or heartbeats.",
             "next": [
-                "On Mac: curl -s http://10.8.0.1:8787/health (expect ok:true).",
+                "On Mac: curl -s <COORDINATOR_URL>/health (expect ok:true).",
                 "If it times out, the Mac WireGuard tunnel is down -- bounce it: "
                 "sudo wg-quick down wg0 && sudo wg-quick up wg0.",
                 "On ree-cloud-1: systemctl status ree-coordinator wg-quick@wg0.",
@@ -4490,6 +4508,7 @@ def start_coordinator() -> dict:
                            "(COORDINATOR_URL / COORDINATOR_LOCAL_TOKEN). "
                            "See coordinator.env.example."}
     ssh_user = cfg.get("COORDINATOR_SSH_USER", "ree")
+    coord_health_url = url.rstrip("/") + "/health"
 
     hub_flip = (
         "sudo sed -i 's/^COORDINATOR_MODE=.*/COORDINATOR_MODE=coordinator/' "
@@ -4497,7 +4516,7 @@ def start_coordinator() -> dict:
         "sudo sed -i 's/^SYNC_MODE=.*/SYNC_MODE=coordinator/' "
         "/etc/ree-coordinator.env && "
         "sudo systemctl restart ree-coordinator ree-sync-daemon && "
-        "sleep 2 && curl -sf http://10.8.0.1:8787/health"
+        "sleep 2 && curl -sf " + shlex.quote(coord_health_url)
     )
     worker_flip = (
         "sudo sed -i 's/COORDINATION_MODE=shadow/COORDINATION_MODE=coordinator/' "
@@ -5608,7 +5627,7 @@ def main():
     parser.add_argument("--bind", action="append", default=None, metavar="ADDR",
                         help="Address to listen on (repeatable). Default: 0.0.0.0 "
                              "(all interfaces, unchanged). For WireGuard + localhost "
-                             "only, pass --bind 10.8.0.11 --bind 127.0.0.1 "
+                             "only, pass --bind <MAC_WG_IP> --bind 127.0.0.1 "
                              "(see docs/mobile_access.md).")
     args = parser.parse_args()
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# wg_add_peer.sh -- add a WireGuard peer to the REE hub (ree-cloud-1 / 10.8.0.1).
+# wg_add_peer.sh -- add a WireGuard peer to a hub.
 #
 # PUBLIC-KEY-ONLY. This script never generates, reads, or transmits a private
 # key. The peer's keypair is generated on the peer device (e.g. the WireGuard
@@ -7,12 +7,12 @@
 # untouched.
 #
 # Run ON the hub, or pipe it in over SSH from the Mac:
-#   ssh ree@91.98.130.117 'sudo bash -s' < scripts/wg_add_peer.sh -- <name> <pubkey> <ip>
+#   ssh <HUB_SSH_TARGET> 'sudo bash -s' < scripts/wg_add_peer.sh -- <name> <pubkey> <ip>
 #
 # Args:
 #   <name>    short label written as a comment above the [Peer] block (e.g. iphone)
 #   <pubkey>  the peer's WireGuard PUBLIC key (44-char base64, ends with '=')
-#   <ip>      the peer's address inside the WG net, no mask (e.g. 10.8.0.20)
+#   <ip>      the peer's address inside the WG net, no mask
 #
 # Idempotent: refuses to add a pubkey or IP that is already present, and prints
 # the current allowed-ips table so you can confirm.
@@ -30,7 +30,7 @@ IP="${3:-}"
 
 if [ -z "$NAME" ] || [ -z "$PUBKEY" ] || [ -z "$IP" ]; then
     echo "usage: wg_add_peer.sh <name> <pubkey> <ip>" >&2
-    echo "  e.g. wg_add_peer.sh iphone 'AbC...=' 10.8.0.20" >&2
+    echo "  e.g. wg_add_peer.sh phone 'AbC...=' <PHONE_WG_IP>" >&2
     exit 2
 fi
 
@@ -40,9 +40,9 @@ if ! printf '%s' "$PUBKEY" | grep -Eq '^[A-Za-z0-9+/]{43}=$'; then
     exit 2
 fi
 
-# Validate the IP shape.
-if ! printf '%s' "$IP" | grep -Eq '^10\.8\.0\.[0-9]{1,3}$'; then
-    echo "ERROR: '$IP' is not a 10.8.0.x address." >&2
+# Validate the IP shape without embedding deployment-specific subnet details.
+if ! printf '%s' "$IP" | grep -Eq '^([0-9]{1,3}\.){3}[0-9]{1,3}$'; then
+    echo "ERROR: '$IP' is not an IPv4 address." >&2
     exit 2
 fi
 
@@ -81,5 +81,5 @@ EOF
 
 echo "[wg_add_peer] done. Current peers/allowed-ips:"
 $SUDO wg show "$IFACE" allowed-ips
-echo "[wg_add_peer] NOTE: to let this peer reach another peer (e.g. the Mac at"
-echo "             10.8.0.11), run scripts/wg_enable_forwarding.sh on the hub."
+echo "[wg_add_peer] NOTE: to let this peer reach another peer, run"
+echo "             scripts/wg_enable_forwarding.sh on the hub."

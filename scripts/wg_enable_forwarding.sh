@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 # wg_enable_forwarding.sh -- let two WireGuard peers reach each other THROUGH
-# the hub (ree-cloud-1).
+# a hub.
 #
-# WHY THIS IS NEEDED: the REE WG net is a pure star -- every peer talks only to
-# the hub (10.8.0.1), and the hub has IPv4 forwarding OFF (net.ipv4.ip_forward=0
-# as of 2026-06-23). So an iPhone peer cannot reach the Mac's explorer at
-# 10.8.0.11 until the hub is told to forward between them.
+# WHY THIS IS NEEDED: in a star-shaped WireGuard net, peers may talk only to
+# the hub. A mobile peer cannot reach a workstation peer until the hub forwards
+# between those two peer addresses.
 #
 # This enables forwarding SCOPED to the single peer pair you name (not the whole
 # subnet), so the hub's blast radius stays minimal -- it becomes a router only
 # for <ipA> <-> <ipB>, both directions, on the wg0 interface.
 #
 # Run ON the hub, or pipe over SSH:
-#   ssh ree@91.98.130.117 'sudo bash -s' < scripts/wg_enable_forwarding.sh -- 10.8.0.20 10.8.0.11
+#   ssh <HUB_SSH_TARGET> 'sudo bash -s' < scripts/wg_enable_forwarding.sh -- <PHONE_WG_IP> <MAC_WG_IP>
 #
 # Reverse it later with:  sudo iptables -D FORWARD ... (rules printed below), or
-# just delete the iPhone peer -- with no peer at 10.8.0.20 the rules are inert.
+# just delete the mobile peer -- with no peer at that address the rules are inert.
 #
 # Idempotent: -C checks before -A, sysctl drop-in is overwritten in place.
 set -euo pipefail
@@ -23,16 +22,16 @@ set -euo pipefail
 IFACE="wg0"
 
 [ "${1:-}" = "--" ] && shift
-IPA="${1:-}"   # e.g. 10.8.0.20 (iPhone)
-IPB="${2:-}"   # e.g. 10.8.0.11 (Mac)
+IPA="${1:-}"   # mobile peer IP
+IPB="${2:-}"   # workstation peer IP
 
 if [ -z "$IPA" ] || [ -z "$IPB" ]; then
-    echo "usage: wg_enable_forwarding.sh <ipA> <ipB>   (e.g. 10.8.0.20 10.8.0.11)" >&2
+    echo "usage: wg_enable_forwarding.sh <ipA> <ipB>" >&2
     exit 2
 fi
 for ip in "$IPA" "$IPB"; do
-    if ! printf '%s' "$ip" | grep -Eq '^10\.8\.0\.[0-9]{1,3}$'; then
-        echo "ERROR: '$ip' is not a 10.8.0.x address." >&2
+    if ! printf '%s' "$ip" | grep -Eq '^([0-9]{1,3}\.){3}[0-9]{1,3}$'; then
+        echo "ERROR: '$ip' is not an IPv4 address." >&2
         exit 2
     fi
 done
