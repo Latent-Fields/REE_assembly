@@ -1,0 +1,58 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-25T18:53:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_704_mech451_finer_channel_granularity_falsifier_20260625T174413Z_v3",
+      "queue_id": "V3-EXQ-704",
+      "claim_ids": ["MECH-451"],
+      "failed_criterion": "precondition_unmet",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claim not tested under expressible conditions (broken null)",
+        "biological_reference": "clear -- segregated cortico-BG channels (Alexander/DeLong/Strick) are an existence proof for the class; fair re-test warranted",
+        "prerequisites": "present -- ARC-108 learner present; finer-channel substrate built 2026-06-24",
+        "implementation": "complete -- substrate built + 12 contracts",
+        "environment": "adequate -- GAP-A reef-bipartite foraging; 3/3 divergent seeds",
+        "measurement": "mis-calibrated -- ARM_NOISE same-layer null 176.9x the A2 learned w_chan_finer range; strict-above-noise bar meaningless",
+        "integration": "n/a -- single-substrate slice",
+        "scale": "weak signal -- A2 dissociation only ~15x floor (range 0.00148)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "parallel segregated cortico-basal-ganglia channels; OFC/dACC/lateral-PFC/vigour/liking distinct control functions",
+        "dependencies": ["ARC-108 learned-gating layer", "ARC-110 full loop segregation (the rung this pre-empts)", "MECH-439 conversion ceiling"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- run is a control-calibration artifact, not a biology test",
+        "lit_status": "present (segregated-loop anatomy is established)"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-704 (EXP-0391 MECH-451 validation falsifier) self-routed substrate_not_ready_requeue / non_contributory: the ARM_NOISE same-layer null was 176.9x the A2 learned w_chan_finer range (precondition fcg_noise_magnitude_matched [0.25,4.0] FAILED), so the C1 strict-above-noise bar was meaningless and MECH-451 could not be tested in either direction. V3-EXQ-642 invalid-precondition family (control-calibration artifact), NOT a ceiling and NOT a falsification. MECH-451 unweakened. Re-derive brake not fired (1st MECH-451 autopsy). Route: V3-EXQ-704b re-tuning FCG_NOISE_SCALE relative to the realised learned range; watch the (weak, ~15x-floor) finer-channel dissociation for near-vacuity.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "First failure-autopsy on MECH-451; brake count = 0 prior. This is a control-calibration artifact (precondition_unmet), not a substrate_ceiling reading, so it would not contribute to a future brake count even if re-tagged."
+      },
+      "learning_extracted": [
+        "Magnitude-matched null scales set to a presumed learned range are fragile when the realised learned structure comes in much smaller; match against the measured per-(arm,seed) learned range instead.",
+        "A2 finer-channel dissociation is weak (range 0.00148, ~15x floor); even with a re-tuned null the finer channels risk being the compressed blend re-labelled -- 704b must verify substantive dissociable variance, not just floor-clearing."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": "V3-EXQ-704b LETTER iteration: re-tune FCG_NOISE_SCALE to land ARM_NOISE w_chan_finer range within [0.25,4.0]x the realised A2 learned range; config-only, substrate already built; strengthen dissociability readiness gate against near-vacuity."
+    }
+  ],
+  "cluster_pattern": {
+    "considered_with": "V3-EXQ-705b",
+    "is_cluster": false,
+    "reason": "Opposite failure shapes -- 704 is an invalid-precondition control-calibration artifact (test could not run fairly); 705b is a fair test revealing a real conversion ceiling. Different claims (MECH-451 vs MECH-314), different routing. Shared only campaign context (MECH-439 conversion ceiling, GAP-A substrate, committed-class-entropy DV)."
+  }
+}

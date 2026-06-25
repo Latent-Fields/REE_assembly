@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-25T18:53:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_705b_mech314_curiosity_conversion_demotion_adaptive_floor_20260625T100722Z_v3",
+      "queue_id": "V3-EXQ-705b",
+      "supersedes": "V3-EXQ-705",
+      "claim_ids": ["MECH-314"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-314 not falsified; ceiling is upstream/architectural",
+        "biological_reference": "clear -- curiosity (frontopolar) drives exploration; conversion to committed-action diversity is gated downstream by BG Go/No-Go (MECH-449), not demotion alone",
+        "prerequisites": "missing in this test -- MECH-449 Go/No-Go was OFF; only MECH-448 demotion active",
+        "implementation": "complete for what was armed -- demotion + adaptive floor + curiosity channel correct",
+        "environment": "adequate -- GAP-A divergent pool 3/3",
+        "measurement": "adequate -- fair, non-degenerate; 705 all-admit and 590c saturation-arm confounds fixed",
+        "integration": "single-gate -- only the demotion eligibility gate active; the second (Go/No-Go) gate not composed",
+        "scale": "adequate -- demotion genuinely excludes (excluded_count 14.45)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar / rostrolateral-PFC uncertainty-driven curiosity (ARC-065 diversity-generation pathway); conversion gated by BG Go/No-Go constitution",
+        "dependencies": ["MECH-448 F->eligibility demotion (built)", "MECH-449 Go/No-Go eligibility constitution (built+validated)", "MECH-439 conversion ceiling", "ARC-107 BG-constitution umbrella"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the failure matches a missing downstream Go/No-Go dependency, the documented 485k->MECH-449 shape",
+        "lit_status": "present (curiosity + BG selector anatomy established)"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-705b (MECH-314 curiosity-conversion under MECH-448 demotion + 689e adaptive floor) is the first FAIR test of the curiosity channel under a genuinely-excluding demotion (excluded_count 14.45 vs 705's all-admit 0.0; 590c saturation-arm confound also fixed). With GAP-A pool divergent and the demotion genuinely narrowing, committed-action-class entropy still did not lift over demotion-ON F-only + matched-noise -> conversion_ceiling_persists_despite_demotion. non_contributory; MECH-314 UNWEAKENED (the ceiling is upstream -- a single rank-preserving eligibility gate; not a falsification of curiosity). epistemic_category substrate_ceiling; pending_retest_after_substrate. Re-derive brake FIRED (6th MECH-314 ceiling autopsy, pre-registered brake-lock trigger): refuses a 705c demotion-only same-substrate letter. Forward path = brake-EXEMPT /queue-experiment double-gated re-test (demotion + the BUILT MECH-449 Go/No-Go constitution, which was OFF in 705b); substrate action=none (MECH-449 built+validated 689g); V4 ARC-110 loop-segregation only if the double-gated test also fails.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "MECH-449 Go/No-Go eligibility constitution is ALREADY BUILT+validated+provisional (V3-EXQ-689g PASS 3/3, conversion_rate 1.0; use_go_nogo_constitution in e3_selector.py). The pre-registered 'route to MECH-449' is a config-level composition (queue-experiment), NOT a substrate build. V4 ARC-110 loop-segregation already has its own substrate_queue entry (v4_loop_segregation) and is the escalation only if the double-gated re-test fails."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-572-573_2026-05-17",
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07",
+          "failure_autopsy_V3-EXQ-590c_2026-06-24",
+          "failure_autopsy_V3-EXQ-705_2026-06-25"
+        ],
+        "brake_count": 6,
+        "refused_requeue": true,
+        "refused_requeue_detail": "Refuses a 705c demotion-only same-substrate letter (another curiosity iteration under the same single-gate demotion substrate).",
+        "route_to": "queue-experiment",
+        "route_exempt_reason": "MECH-449 Go/No-Go is BUILT+validated but was OFF in 705b. A double-gated re-test (demotion + Go/No-Go BOTH ON) is a DIFFERENT substrate condition than the demotion-only lineage, so it is brake-EXEMPT (the brake refuses same-substrate letters, not a new-substrate test). Precedent: 485k->MECH-449 and the 705/590c brake-release-when-upstream-built logic.",
+        "upstream_substrate": "MECH-449 (already built; no implement-substrate needed)",
+        "terminal_escalation": "V4 ARC-110 loop-segregation (existing v4_loop_segregation substrate_queue entry) ONLY if the double-gated re-test also fails to convert"
+      },
+      "learning_extracted": [
+        "On a fair demotion test (adaptive floor excludes 14.45, GAP-A pool divergent, non-saturation curiosity range supra-floor) the MECH-314 curiosity channel reaches the eligible shortlist but does not convert to committed-action-class diversity -- rank-preserving demotion within the F-eligible set is insufficient alone.",
+        "This is the same shape as the OFC devaluation case (485k): demotion-alone converts a passive discrimination signature but cannot express the active No-Go the conversion requires -> the built MECH-449 Go/No-Go is the natural next gate.",
+        "The pre-registered 'route to MECH-449' must be read as a config-level composition (double-gating) not a build, because MECH-449 landed 2026-06-21 after the lineage's earlier autopsies."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": "Brake-EXEMPT /queue-experiment: MECH-314 curiosity-conversion DOUBLE-GATED (use_f_eligibility_demotion=True AND use_go_nogo_constitution=True, curiosity sole modulatory channel). substrate action=none. V4 ARC-110 only if this also fails. Refuse any 705c demotion-only letter."
+    }
+  ],
+  "cluster_pattern": {
+    "considered_with": "V3-EXQ-704",
+    "is_cluster": false,
+    "reason": "Opposite failure shapes -- 705b is a fair test revealing a real conversion ceiling; 704 is an invalid-precondition control-calibration artifact. Different claims (MECH-314 vs MECH-451), different routing. Shared only campaign context (MECH-439 conversion ceiling, GAP-A substrate, committed-class-entropy DV)."
+  }
+}
