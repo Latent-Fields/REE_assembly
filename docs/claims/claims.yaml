@@ -31794,6 +31794,7 @@
   subject: policy.structured_curiosity_bonus_parent
   polarity: asserts
   status: candidate_substrate_landed
+  epistemic_category: substrate_ceiling # /governance 2026-06-25: failure_autopsy_V3-EXQ-705b (1st FAIR demotion test, conversion ceiling persists; 6th MECH-314 ceiling autopsy, re-derive brake FIRED). Ceiling is upstream/architectural, NOT a falsification; mapped to the brake-EXEMPT double-gated (demotion+MECH-449 Go/No-Go) re-test (substrate already built) -> V4 ARC-110 loop-segregation only if that also fails.
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -31838,7 +31839,7 @@
     surface distinct failure signatures: 314a-OFF reduces novelty-driven
     return-to-explore; 314b-OFF reduces uncertainty-resolution rollouts;
     314c-OFF reduces learning-curve curvature.
-  pending_retest_after_substrate: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
+  pending_retest_after_substrate: true # /governance 2026-06-25: RE-ASSERTED after failure_autopsy_V3-EXQ-705b (conversion ceiling persists under a FAIR demotion test); owed retest = the brake-EXEMPT double-gated (demotion + MECH-449 Go/No-Go, both ON) re-test. (Was lifted 2026-06-08 after 604c PASS on the selection-face; 705b is the downstream committed-conversion face.)
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
       - Daw et al. 2006 (Nature) -- frontopolar uncertainty-driven
@@ -31894,7 +31895,9 @@
 
     [2026-06-03 substrate landing] modulatory-bias-selection-authority IMPLEMENTED (ree-v3 e3_selector.select gap-relative rescale of the combined modulatory contribution to modulatory_authority_gain*raw_score_range + e3_score_diversity.stratified_select across-class unit-range normalization; config use_modulatory_selection_authority default OFF/bit-identical). Gives this claim's score-bias lever genuine BOUNDED authority at E3 committed selection (the 604a/624a/614d cluster showed the lever fired but never changed the committed argmin). 604a curiosity_bias_abs_mean=0.0 was the failure; NOTE necessary-but-not-sufficient -- curiosity bias was genuinely zero (314a no active residue centers + 314b/c broadcast-by-design), so the retest must guard curiosity_bias_abs_mean>0 before testing authority. Claim STAYS candidate/v3_pending -- substrate-readiness validation EXQ pending (claim_ids=[]); a per-claim EVIDENCE retest on the authority-ON substrate is the governance-weighting signal. Design doc docs/architecture/modulatory_bias_selection_authority.md; substrate_queue modulatory-bias-selection-authority status implemented_pending_validation.
 
-    [2026-06-07 governance: V3-EXQ-604b NON-CONTRIBUTORY for MECH-314/314a/314b/314c/Q-044, NOT a weakening] (failure_autopsy_gapA-cluster-604b-648a-649). 604b ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). With a class-uniform candidate pool the structured-curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate RANGE, so C1 cannot move the E3 argmin even with selection authority ON (643a). 3rd confirmed instance of the candidate-pool-collapse confound (604a/624a/614d-e). The 604b manifest is set evidence_direction=non_contributory (self-emitted weakens overridden). The GAP-A fix is now VALIDATED READY (649) -- re-queue the MECH-314-family test as V3-EXQ-604c on the now-ready substrate, with a readiness gate on cross-candidate RANGE (not bias magnitude), before any direction is weighed. pending_retest_after_substrate already true.
+    [2026-06-07 governance: V3-EXQ-604b NON-CONTRIBUTORY for MECH-314/314a/314b/314c/Q-044, NOT a weakening] (failure_autopsy_gapA-cluster-604b-648a-649). 604b ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). With a class-uniform candidate pool the structured-curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate RANGE, so C1 cannot move the E3 argmin even with selection authority ON (643a). 3rd confirmed instance of the candidate-pool-collapse confound (604a/624a/614d-e). The 604b manifest is set evidence_direction=non_contributory (self-emitted weakens overridden).     The GAP-A fix is now VALIDATED READY (649) -- re-queue the MECH-314-family test as V3-EXQ-604c on the now-ready substrate, with a readiness gate on cross-candidate RANGE (not bias magnitude), before any direction is weighed. pending_retest_after_substrate already true.
+
+    [2026-06-25 governance: failure_autopsy_V3-EXQ-705b CONFIRMED non_contributory; MECH-314 UNWEAKENED] V3-EXQ-705b (curiosity-conversion under MECH-448 demotion + 689e channel-adaptive floor; supersedes V3-EXQ-705) was the FIRST FAIR test of the curiosity channel under a genuinely-excluding demotion (excluded_count 14.45 vs 705's all-admit 0.0; 590c saturation-arm confound also fixed) with the GAP-A pool divergent (cand_world_pairwise_dist 0.107 > 0.02). Committed-action-class entropy STILL did not lift over demotion-ON F-only + matched-noise -> conversion_ceiling_persists_despite_demotion. epistemic_category set substrate_ceiling; the ceiling is UPSTREAM/architectural (a single rank-preserving eligibility gate), NOT a falsification of curiosity. Re-derive brake FIRED (6th MECH-314 ceiling autopsy; priors EXQ-572-573, 604a-624a-630, gapA-604b-648a-649, 590c, 705) -> REFUSES a 705c demotion-only same-substrate letter. recommended_substrate_queue_entry action=none: MECH-449 Go/No-Go eligibility constitution is ALREADY built+validated+provisional (V3-EXQ-689g PASS 3/3, conversion_rate 1.0) but was OFF in 705b. Forward path = brake-EXEMPT /queue-experiment DOUBLE-GATED re-test (use_f_eligibility_demotion=True AND use_go_nogo_constitution=True), a different substrate condition than the demotion-only lineage (485k->MECH-449 shape). V4 ARC-110 loop-segregation (existing v4_loop_segregation substrate_queue entry) ONLY if the double-gated re-test also fails. pending_retest_after_substrate re-asserted.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the
@@ -47069,6 +47072,16 @@
     the finer-channel e3_selector slice via /implement-substrate, then the sibling falsifier, NOT promotion). ARC-106
     cargo-cult guard: the finer channels need an ablation falsifier (collapse-to-blend reproduces the no-lift => the
     decomposition is load-bearing) before they count. PROMOTES NOTHING (new candidate).
+  evidence_quality_note: >
+    V3-EXQ-704 (EXP-0391 MECH-451 validation falsifier, 2026-06-25) self-routed
+    substrate_not_ready_requeue / non_contributory: the ARM_NOISE same-layer null was 176.9x the
+    A2 learned w_chan_finer range (precondition fcg_noise_magnitude_matched [0.25,4.0] FAILED), so
+    the C1 strict-above-noise bar was meaningless and MECH-451 could not be tested in either
+    direction. V3-EXQ-642 invalid-precondition family (control-calibration artifact), NOT a ceiling
+    and NOT a falsification. MECH-451 UNWEAKENED. Re-derive brake not fired (1st MECH-451 autopsy;
+    a precondition_unmet artifact does not contribute to a brake count). Route: V3-EXQ-704b
+    re-tuning FCG_NOISE_SCALE relative to the realised learned range; watch the (weak, ~15x-floor)
+    finer-channel dissociation for near-vacuity. Confirmed failure_autopsy_V3-EXQ-704_2026-06-25.
 - id: MECH-452
   title: "Loop-local eligibility traces under a globally-broadcast dopamine signal: even with a SINGLE shared dopaminergic teaching signal (ARC-108 delta_t), the credit traces that decide WHICH synapses/channels the signal updates must remain LOCAL and loop-specific -- effective update = shared delta_t x separate local eligibility trace x loop-specific active synapses -- rather than the current single globally-broadcast credit that updates every recently-active selector component. A too-broad or temporally-smeared eligibility trace would make learned gating appear ineffective (no committed conversion) even when the underlying dopamine learning rule is exactly correct, because the right teaching signal is delivered to the wrong synapses."
   claim_type: mechanism_hypothesis

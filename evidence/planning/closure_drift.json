@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-24T21:25:09Z",
+  "generated_at": "2026-06-25T19:20:06Z",
   "counts": {
-    "drifted": 1,
-    "stale_since": 1,
-    "suppressed": 9,
+    "drifted": 0,
+    "stale_since": 0,
+    "suppressed": 10,
     "assembling": 9,
     "assembling_revisit_due": 0
   },
@@ -90,26 +90,6 @@
       "revisit_due": false
     }
   ],
-  "drifted": [
-    {
-      "node_id": "commitment_closure:GAP-4-battery",
-      "plan": "commitment_closure_plan.md",
-      "node_status": "in_progress",
-      "owner_exq": "V3-EXQ-466d",
-      "manifest": "evidence/experiments/v3_exq_466d_sd034_satisficing_residue_discharge_behavioural_20260624T094710Z_v3.json",
-      "autopsy": null
-    }
-  ],
-  "stale_since": [
-    {
-      "node_id": "behavioral_diversity_isolation:GAP-I",
-      "plan": "behavioral_diversity_isolation_plan.md",
-      "node_status": "in-progress",
-      "owner_exq": "V3-EXQ-689g -- the MECH-449 Go/No-Go conversion falsifier -- RAN PASS/supports 2026-06-21T20:55Z (run_id v3_exq_689g_mech449_go_nogo_conversion_falsifier_20260621T205542Z_v3): conversion_rate_per_seed [1.0, 1.0, 1.0] (3/3 seeds convert a previously-gated channel), 0 safety violations, specificity_pass; the active No-Go converts a channel rank-preserving demotion (MECH-448) structurally cannot. On it, governance 2026-06-22 PROMOTED MECH-449 candidate->provisional (decision_log appended). LINEAGE ADVANCED: the rung-2 demotion lever (689d) PASSED and PROMOTED MECH-448->provisional 2026-06-21; V3-EXQ-689e (channel-adaptive envelope readiness, claim-free diagnostic) RAN PASS 2026-06-21T22:42Z (adaptive floor engages across the arc_062 + OFC banks); V3-EXQ-689f (No-Go-necessity falsifier, diagnostic/non_contributory) established the demotion-insufficient regime (undesirable_admit 0.866 demotion-only vs 0.0 No-Go) -- the build trigger for MECH-449. The conversion-ceiling lift is now SELECTION-FACE established for both demotion (MECH-448) and active No-Go (MECH-449); residual = downstream BEHAVIOURAL conversion (654i/485k still substrate_ceiling/pending_retest behind MECH-449 -- the active No-Go must be exercised on the behavioural harness; re-derive brake fired). [HISTORY] V3-EXQ-689d -- the MECH-448 (ARC-107) rank-preserving F->eligibility demotion FALSIFIER (queued 2026-06-20, landed ree-v3 main 8d87d4a; script experiments/v3_exq_689d_mech448_f_eligibility_demotion_falsifier.py) tested the rung-2 constitutional build lever (use_f_eligibility_demotion in e3_selector.py) carried by the child build node behavioral_diversity_isolation:GAP-J; a PASS lifts MECH-439's substrate_ceiling and unblocks the held downstream retests. PREDECESSOR (SETTLED, history): V3-EXQ-689a SETTLED 2026-06-20 FAIL/non_contributory (readiness met, non_degenerate) -- the pre-registered A1B1 (gap-scaled BOTH levers) gate did NOT fire (committed-class entropy 0.387 = baseline, 0/3 strict-above the collapsed AND the gap-blind controls) -> the conflict-grade near-tie parametric family is EXHAUSTED (substrate_queue f_dominance_conversion_ceiling status). Load-bearing 2x2 dissociation: Factor B alone (A0B1 gap-scaled commit-T) converted 0.850 on 2/3 seeds, Factor A width inert (0.440), destructive A x B. MECH-439 -> substrate_ceiling / pending_retest_after_substrate (governance 7419453d1d). The falsifier front escalated to the rung-2 CONSTITUTIONAL BUILD (rank-preserving F->eligibility demotion, MECH-448 lead / MECH-449 follow-on) carried by GAP-J, and 689d is that build's falsifier. This node stays in-progress as the root-tracking parent; GAP-J owns the forward build work.",
-      "node_last_updated": "2026-06-23",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-700b_2026-06-24.json (2026-06-24) reclassified MECH-439"
-      ]
-    }
-  ]
+  "drifted": [],
+  "stale_since": []
 }
