@@ -1,0 +1,139 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_704_mech451_finer_channel_granularity_falsifier",
+  "run_id": "v3_exq_704_mech451_finer_channel_granularity_falsifier_20260625T174413Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-25T17:44:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-451"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-451": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "the number of seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0 + A1 + A2 + ARM_NOISE) is >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating: a degenerate cell self-excludes. Too few divergent seeds => substrate_not_ready_requeue (pool too collapsed to test conversion).",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 3.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "finer_channels_dissociable",
+        "kind": "readiness",
+        "description": "MECH-451 NON-DEGENERACY gate (1): the A2 finer w_chan_finer entries MOVED from the softplus-unity init AND carry cross-channel RANGE above floor on a strict-majority of seeds -- finer entries that move IDENTICALLY (range ~0) are the compressed blend re-labelled, NOT a genuine decomposition. Below floor => substrate_not_ready_requeue.",
+        "control": "A2 fcg_w_chan_finer_range_max vs floor (softplus-unity init => range 0)",
+        "measured": 0.00148016,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "delta_t_carries_variance_on_armed_arms",
+        "kind": "readiness",
+        "description": "the signed-RPE delta_t (= benefit_eval - harm_eval - V-hat_t) carries cross-tick STD above floor on a majority of seeds on the A2 finer arm AND the A1 global-w_chan arm -- there is outcome variance to learn from. Flat => substrate_not_ready_requeue.",
+        "control": "fcg_delta_t_std (A2) + lcg_delta_t_std (A1) on the armed arms",
+        "measured": 0.00050341,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "learned_weights_moved_from_init_on_armed_arms",
+        "kind": "readiness",
+        "description": "A2 finer w_chan_finer range > floor (softplus-unity init => range 0) AND A1 global w_chan range > floor (the load-bearing collapse-to-blend ablation must itself be a real learner). Weights never moving => eligibility never credited => substrate_not_ready_requeue.",
+        "control": "A2 fcg_w_chan_finer_range_max + A1 lcg_w_chan_range_max",
+        "measured": 0.00134712,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verified_lifting",
+        "kind": "readiness",
+        "description": "the SAME-LAYER finer-gating null (ARM_NOISE: frozen magnitude-matched random w_chan_finer with eta=0) lifts committed-class entropy strict-above A0 by margin on a strict-majority of DIVERGENT seeds. A null that does NOT verify-lift makes the strict-above bar meaningless (the 569g/700b lesson). Control not verify-lifting => substrate_not_ready_requeue (re-tune FCG_NOISE_SCALE, the correct layer).",
+        "control": "ARM_NOISE committed-class entropy vs A0, divergent seeds, paired",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "fcg_noise_magnitude_matched",
+        "kind": "readiness",
+        "description": "ARM_NOISE's median frozen-random w_chan_finer range is within [FCG_NOISE_MAGNITUDE_MATCH_LO, FCG_NOISE_MAGNITUDE_MATCH_HI] x the median A2 LEARNED w_chan_finer range -- so the random null is magnitude-matched to the structure A2 learns at the SAME layer. measured = the ratio. An unmatched magnitude => substrate_not_ready_requeue (the legitimate ONE-time re-tune is FCG_NOISE_SCALE).",
+        "control": "median ARM_NOISE fcg_w_chan_finer_range_max vs median A2 learned range",
+        "measured": 176.930726,
+        "threshold": [
+          0.25,
+          4.0
+        ],
+        "met": false
+      },
+      {
+        "name": "candidate_pool_divergent_focus_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in the focus arms (GAP-A non-vacuity). This is the per-seed divergence the gating reads.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.034279,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_A2_finer_strict_above_A0_and_A1_and_noise",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_A2_lift_grows_over_training",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": false,
+      "enough_divergent_seeds": true,
+      "finer_channels_dissociable": true,
+      "noise_verified_lifting": true,
+      "fcg_noise_magnitude_matched": false,
+      "fcg_moved": true,
+      "lcg_moved": true,
+      "delta_t_nonflat": true
+    }
+  }
+}
