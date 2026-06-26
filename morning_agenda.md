@@ -1,92 +1,89 @@
-# Morning Agenda — 2026-06-24
+# Morning Agenda — 2026-06-26
 
-Generated: 2026-06-24T04:23:51Z
+Generated: 2026-06-26T04:23:10Z
 
 ---
 
 ## Queue Status
 - Total pending: **0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- **ALERT: Queue low — 0 pending experiments.** All 4 live items are claimed and running on the cloud fleet; nothing is waiting. New experiments should be queued soon (or the next decisive results will leave the fleet idle).
-- Live (claimed) runs:
-  - **V3-EXQ-700b** — ree-cloud-4 — ARC-108/MECH-450 learned-gating settling C3 (conversion-ceiling decisive-or-escalate-to-V4)
-  - **V3-EXQ-701b** — ree-cloud-3 — INV-050 MEL-measurability frozen-probe diagnostic (supersedes 701a)
-  - **V3-EXQ-460o** — ree-cloud-1 — rung-6 closure-commit-ENTRY readiness diagnostic (harness-fix re-issue of 460m)
-  - **V3-EXQ-460p** — ree-cloud-2 — rung-6 bool-vs-trajectory readiness diagnostic (harness-fix re-issue of 460n)
-- No owed/unqueued successors. (Step 7c cross-check cleared the two naive hits: **483c** ran 2026-05-21 — packed manifest present; **475a** is a Tier-1-cohort member of `goal_pipeline:GAP-4`, which was **re-scoped + closed by a user-approved 2026-06-09 governance decision** — its stale `in-progress` status-table row is unreconciled prose, not an owed experiment.)
+- 1 item **claimed / running**: `V3-EXQ-704b` (machine any, pri 290 — MECH-451 finer-channel-granularity re-test, FCG_NOISE_SCALE re-tune of 704)
+- **ALERT: Queue is empty.** 0 pending experiments and only one in-flight run. New experiments should be queued today (the two pending FAILs below have pre-registered escalations that may yield runnable next-steps once adjudicated in `/governance`).
+- **No owed successors.** Step 7c existence cross-check run on every plan Owner-EXQ that looked unqueued (699, 460l, 485m, 700c) — **all four have manifests in `evidence/experiments/` (all ran)**, so none are owed. See Active Plans Heartbeat for the one stale-prose reconcile note.
 
 ---
 
-## Experiments Awaiting Review (0 indexed / 0 runner-only)
+## Experiments Awaiting Review (2 indexed / 0 runner-only)
 
-`pending_review.md` (generated 2026-06-24T04:18:33Z): **0 pending** — 0 PASS, 0 FAIL, 0 runner-only, 0 unclaimed manifests, 0 ERROR manifests, 0 diagnostic self-routes. All experiments reviewed; nothing pending.
+Both are pre-registered TERMINAL substrate-ceiling outcomes (ran to completion, self-routed, no claim weakened). Each needs `/failure-autopsy` adjudication in `/governance` to confirm the routing and apply the manifest/closure-node reconcile — **no decision is made here.**
 
-The four live runs above are still executing — their results will appear here once manifests land.
+### V3-EXQ-700c — arc108_sec7_learned_gating_settling_samelayer_null — FAIL
+- **Claims tested:** MECH-439 (candidate, substrate_ceiling, v3), ARC-108 (candidate, substrate_conditional, v3), MECH-450 (candidate, substrate_conditional, v3) — all `non_contributory`, none weakened.
+- **Self-route:** `substrate_not_ready_requeue`. Two readiness preconditions failed: `matched_noise_control_verified_lifting=False` and `field_noise_magnitude_matched=False` (the ARM_NOISE same-layer null did not match magnitude / verify lifting — same family as 700b's repeated `noise_verified_lifting=False`).
+- **Classification:** diagnostic (terminal learned-gating conversion falsifier with same-layer null).
+- **Routing:** `re_derive_brake.exempt=true`, `pre_registered_terminal=true`. Escalation already registered → **V3 loop-segregation substrate (ARC-110)**; brake refuses any alpha-bump same-lever re-queue. No further 700-lineage same-arena letters.
+- **Supersedes:** V3-EXQ-700b (the 700 → 700a → 700b lineage).
+- **Governance impact if confirmed:** none to claim status (non_contributory). Confirms ARC-108/MECH-450/MECH-439 selection-face is not resolvable on the existing collapsed arena → routes to the loop-segregation build (owned by `behavioral_diversity_isolation:GAP-K`).
 
----
-
-## Errors to Diagnose (0 actionable)
-
-No actionable ERRORs. `pending_review.md` reports 0 ERROR manifests / 0 runner-only entries.
-
-A naive cross-check of `runner_status.json` (87 historical ERROR records) surfaced 5 successor-less IDs, but all are stale or non-scientific and none need `/diagnose-errors`:
-- `V3-ONBOARD-smoke-EWIN-PC`, `V3-ONBOARD-smoke-ree-cloud-1` — infra onboarding smoke tests, not experiments.
-- `V3-EXQ-008`, `V3-EXQ-495`, `V3-EXQ-538` — old abandoned numbers far behind the current 460/588/700 work; already passed over by the review process (not in pending_review).
-
----
-
-## Governance Agenda (0 actionable recommendations)
-
-`promotion_demotion_recommendations.md` (generated 2026-06-24T04:18:30Z): **148 decision rows, all `decision_status: applied`. Zero `pending_user`.** No promotion/demotion decisions await the user this morning. The holds in the queue are the standing `hold_pending_v3_substrate` / `hold_candidate_resolve_conflict` / `held_v4_by_architectural_commitment` set, all already applied.
+### V3-EXQ-706 — mech314_curiosity_conversion_double_gated — FAIL
+- **Claims tested:** MECH-314 (candidate_substrate_landed, substrate_ceiling, pending_retest_after_substrate, v3) — `non_contributory`, not weakened.
+- **Self-route:** `conversion_ceiling_persists_despite_double_gating`. **All 5 readiness preconditions PASSED** (GAP-A divergence, curiosity bias supra-floor, F-eligibility demotion non-degeneracy, z_world bounded, **Go/No-Go gate non-degeneracy** — the new leg E), and `non_degenerate=True`. This is the FIRST fully-armed double-gated test (MECH-448 demotion + MECH-449 Go/No-Go both ON) and the committed-class entropy lift STILL did not clear the F-only / matched-noise control.
+- **Classification:** evidence (clean conversion-ceiling result — readiness met, no lift).
+- **Routing:** the pre-registered TERMINAL off-ramp → **V4 ARC-110 loop-segregation (no more V3 letters)**. This is the brake-LOCK trigger the 705b autopsy named.
+- **Supersedes:** V3-EXQ-705b.
+- **Governance impact if confirmed:** none to claim status (MECH-314 stays candidate_substrate_landed / substrate_ceiling / pending_retest_after_substrate). Strengthens the case that the conversion ceiling survives both built eligibility gates → loop-segregation is the substrate response, not another V3 selection-face lever.
 
 ---
 
-## Active Plans Heartbeat (9 active plans)
+## Errors to Diagnose (0)
 
-| Plan | Phases in-flight | Blocked | Paused | Stale rows | Last decision |
-|---|---|---|---|---|---|
-| arc_062_rule_apprehension_plan | 5 | 3 | 0 | 5 | 2026-06-23 (revisit_after 2026-07-02) |
-| commitment_closure_plan | 3 | 0 | 0 | 3 | 2026-06-23 |
-| convergence_demand_pipeline_plan | 0 | 0 | 0 | 0 | 2026-06-20 |
-| goal_pipeline_plan | 1 | 3 | 0 | 2 | 2026-06-15 |
-| infant_substrate_plan | 0 | 1 | 0 | 0 | 2026-06-23 |
-| sd033_governance_plan | 0 | 0 | 0 | 0 | 2026-05-29 |
-| self_attribution_plan | 0 | 4 | 0 | 4 | 2026-06-23 |
-| sleep_substrate_plan | 0 | 1 | 0 | 1 | 2026-06-23 |
-| assembly_vs_closure_plan | — | — | — | — | 2026-06-21 (MOVE-1/2/3 narrative; no status table parsed) |
+No new undiagnosed errors. `runner_status.json` carries 87 historical ERROR entries, but the most recent is **2026-05-31** (V3-EXQ-621, ~26 days old) and all have long-since-diagnosed successors. `pending_review.md` confirms **0 ERROR / runner-only manifests** pending.
 
-**Stale rows (last-updated > 7 days ago, status not done/deferred):**
+---
 
-- **goal_pipeline_plan GAP-4** (in-progress, last updated 2026-05-29) — **unreconciled: closed by a 2026-06-09 user-approved governance decision** (necessity falsified, modulatory reading substrate-supported, "re-scope + close is the correct call"). The status-table row still reads `in-progress`. Owner-EXQ `475a` (Tier-1 cohort) never ran but is not owed — its parent gap is closed. Recommend reconciling this row to `done` in a `/governance` pass.
-- **arc_062_rule_apprehension_plan** GAP-B (2026-05-21), GAP-D (2026-05-20), GAP-G (2026-05-09), GAP-J (2026-05-17), GAP-K (2026-05-10) — in-progress/open, all blocked-on-substrate (the rule-apprehension conversion ceiling, downstream of selection / MECH-439). ARC-062 is in DEFER/park pending in-flight V3-EXQ-700b. Owner-EXQs all ran (521/522/543-series/546/567/598/628 verified completed).
-- **commitment_closure_plan** GAP-1 (2026-05-17), GAP-4 (2026-06-03), GAP-8 (2026-05-17) — in-progress; GAP-4 (460b ran, 629 ran) is the live closure-commit line now exercised by the in-flight 460o/460p re-issues.
-- **goal_pipeline_plan GAP-2** (blocked, 2026-05-08) — owners 514/514g both ran; blocked on upstream substrate.
-- **self_attribution_plan** SD-029 (2026-04-21), GAP-1 (2026-05-11), GAP-2 (2026-05-08), GAP-3 (2026-05-08) — all blocked-on-substrate (long-standing); owners 567/452 ran.
-- **sleep_substrate_plan GAP-2** (blocked, 2026-05-30) — blocked on upstream substrate.
+## Governance Agenda (0 recommendations)
 
-No **PLAN STALING** flag fired: every active plan carrying in-flight rows had decision-log activity within the last 9 days (most on 2026-06-23). The stale rows above are blocked-on-upstream or unreconciled-after-close, not abandoned work.
+No `pending_user` recommendations — all 149 decision-queue rows in `promotion_demotion_recommendations.md` are `applied`. Pipeline is clean.
 
-No **owed-successor** narrative — every stale-row Owner-EXQ either ran, completed, or (475a) belongs to a closed-by-re-scope gap. (Step 7c gate enforced; mirrors the 2026-06-19 false-positive fix.)
+---
+
+## Active Plans Heartbeat (2 in-flight, assembling)
+
+No plan carries a literal `Status: active`. The two genuinely in-flight plans both sit on the **assembly frontier** (`status: assembling` — required for v3, intentionally under construction, weight `None`, off the closure %). The remaining `*_plan.md` files are `done` (~22) or `blocked` (~13, mostly V4/V5/V6, resting on upstream substrate).
+
+| Plan | Nodes in-flight (assembling) | Blocked | Stale rows | Last updated |
+|---|---|---|---|---|
+| conversion_ceiling_campaign | 6 (CAMPAIGN / P-comp / P2-rootC / P3-ofc / FULLSTACK / P4-learned-gating) | 0 | 1 (prose) | 2026-06-24 |
+| sd_037_axis_b_sustained_threat_curriculum | 1 (P1b) | 3 (downstream P2/P3/P4) | 3 (blocked, resting) | 2026-06-23 (P1b node) |
+
+**conversion_ceiling_campaign — stale-prose reconcile (NOT owed):**
+- `:P-comp` node prose still reads *"V3-EXQ-699 (queued 2026-06-22; awaiting run)"*, but **V3-EXQ-699 RAN and PASSed** (`levers_compound`, MECH-448/449, 2026-06-23) and is already in `reviewed_run_ids`. The node is just unreconciled — **699 is NOT owed**. `/governance` should refresh the P-comp prose (demotion×Go/No-Go composition was characterized: levers compound).
+- `:P4-learned-gating` owner V3-EXQ-700c just ran (terminal FAIL, above) — node prose says "CLAIMED/running, awaiting score"; reconciles when 700c is adjudicated.
+
+**sd_037_axis_b — no owed items:** P1b owner V3-EXQ-625e ran terminal FAIL/non_contributory 2026-06-20, reviewed + autopsied; node consolidated into the MECH-439 conversion-ceiling cluster (resolves via `conversion_ceiling_campaign:FULLSTACK`). The 3 blocked downstream nodes (P2/P3/owner V3-EXQ-483f) last touched 2026-06-05 — stale-by-clock but legitimately resting on the blocked upstream.
+
+No PLAN STALING flag: both in-flight plans were touched within the last 2–3 days.
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-| # | Claim | Subject | Priority | Existing entries |
-|---|-------|---------|----------|-----------------|
-| 1 | MECH-450 | Learned-gating / dopamine-into-gating (targeted extraction + claim linkage) | medium | 0 |
-| 2 | Q-019 | Three-Gate BG architecture: extract 6 key papers (sensorium/threat/goal loops) | medium | 1 |
-| 3 | Q-064 | Paired experiment + literature cycle before status change | low | 0 |
-| 4 | Q-066 | Paired experiment + literature cycle before status change | low | 0 |
-| 5 | Q-067 | Paired experiment + literature cycle before status change | low | 0 |
+13 backlog items list `literature` in `evidence_needed`. Top by priority:
 
-13 backlog items list `literature` as evidence_needed. MECH-450 (medium) is also a live experimental claim — V3-EXQ-700b is testing it now, so a lit pull would complement the in-flight evidence.
+| # | Claim | Priority | Note | Existing entries |
+|---|-------|----------|------|-----------------|
+| 1 | MECH-451 | medium | Run paired experiment + literature cycle before status change | 0 |
+| 2 | Q-019 | medium | Three-Gate BG Architecture: literature extraction | 1 |
+| 3 | Q-066 | low | Paired experiment + literature cycle | 0 |
+| 4 | Q-067 | low | Paired experiment + literature cycle | 0 |
+| 5 | Q-068 | low | Paired experiment + literature cycle | 0 |
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 54036).
+- **RUNNING** on port 8000 (PID 5181).
 
 ---
 
 ## Blocked Items
-- None. No TASK_CLAIMS governance collision — there were zero active sessions when the digest ran, so `governance.sh` ran normally (derive-only). Both repos were already up to date on pull.
+- None. No TASK_CLAIMS collision (the two `active` claims at digest time — queue-experiment 706 and 704b — were both ~7.5 h old, past the 6 h staleness threshold, so treated as cleared; `governance.sh` ran normally).
+- REE_assembly was `ahead 3 / behind 2` at pull (3 local `igw-ledger` commits, 2 incoming phase3 writer commits); reconciled by rebase onto origin/master, derived churn restored.
