@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-26T04:46:05Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_706_mech314_curiosity_conversion_double_gated_20260626T015604Z_v3",
+      "queue_id": "V3-EXQ-706",
+      "claim_ids": ["MECH-314"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-314 not falsified; well-sampled seeds flat is suggestive of a ceiling but not validly established (degenerate null + seed imbalance)",
+        "biological_reference": "clear -- frontopolar/RLPFC uncertainty curiosity drives exploration; conversion gated downstream by segregated BG loops + MECH-449 Go/No-Go",
+        "prerequisites": "present + composed -- BOTH eligibility gates genuinely active (demotion excluded 22.69; Go/No-Go suppressed 7.05)",
+        "implementation": "complete (for what was armed) -- demotion + adaptive floor + Go/No-Go + curiosity channel correct",
+        "environment": "adequate -- GAP-A divergent pool 3/3",
+        "measurement": "ROOT -- (a) matched-noise control degenerate (ARM_NOISE==ARM_FONLY, temperature-decoupled, the 700-lineage MECH-313 null shape); (b) severe per-seed P1-budget imbalance (~545 vs ~5400 ticks) so the one passing seed is the noisiest",
+        "integration": "double-gated -- both selection-face eligibility gates composed, but validity gaps block a clean read",
+        "scale": "imbalanced -- total budget adequate but per-seed termination rates wildly unequal"
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar / rostrolateral-PFC uncertainty-driven curiosity (ARC-065 behavioural-diversity generation); conversion gated by segregated BG loops + MECH-449 Go/No-Go eligibility constitution",
+        "dependencies": ["MECH-449 Go/No-Go (built, ON in 706)", "segregated cortico-BG-thalamic loops (ARC-110, V4)", "a same-layer/non-temperature committed-class null"],
+        "is_formal_import": false,
+        "divergence": "single foraging arena cannot furnish a valid committed-class null (temperature is decoupled from committed-class entropy by the eligibility constitution) nor loop-segregated committed diversity",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-706 (MECH-314 curiosity-conversion DOUBLE-GATED: MECH-448 demotion + the BUILT MECH-449 Go/No-Go both ON, curiosity sole modulatory channel; supersedes V3-EXQ-705b) FAIL / non_contributory. All 5 readiness legs met (GAP-A pool divergent 0.077; demotion excluded 22.69; Go/No-Go genuinely suppressed 7.05) and the load-bearing committed-class-entropy lift over the double-gated F-only control failed (1/3 seeds at margin 0.05; CUR 1.013 ~ FONLY 0.970 ~ NOISE 0.970). Autopsy 2026-06-26 (manifest's pre-registered TERMINAL label CORRECTED to re-test): two validity gaps -- (1) the matched-noise control is degenerate (ARM_NOISE temperature 2.5 byte-identical to ARM_FONLY on all seeds; committed-class entropy is temperature-decoupled by the eligibility constitution, the 700-lineage MECH-313 null shape), and (2) severe per-seed P1-budget imbalance (~545 vs ~5400 ticks) means the one seed clearing the margin (44, +0.121) is the noisiest while the two well-sampled seeds (42/43) are flat/negative. non_contributory; MECH-314 UNWEAKENED. Re-derive brake NOT fired (not-yet-fair test, not a clean ceiling); brake-LOCK recorded (next valid seed-balanced non-temperature-nulled no-lift fires it -> V4 ARC-110, no more V3 letters). Routing: /queue-experiment 706b with equal per-seed budget + a valid non-temperature (same-layer) noise control (brake-exempt validity fix); recommended_substrate_queue_entry amend = additive trajectory record + add MECH-314 to unblocks_claims on the gated v4_loop_segregation entry (does not un-gate). No promotion/demotion; pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Additive trajectory record + unblocks_claims add (NOT an un-gate): record V3-EXQ-706 on the gated v4_loop_segregation failure_records and add MECH-314 to unblocks_claims",
+        "implementation_hint": "Append a failure_record / metric_trajectory data point AND add MECH-314 to unblocks_claims (currently [MECH-439, ARC-108, MECH-450, ARC-110]) -- the curiosity-conversion lineage now also escalates to loop-segregation. Do NOT change ready (stays false) or status (stays gated on the validity-fixed 706b). Immediate routing is the 706b re-test.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "MECH-450", "ARC-110", "MECH-314"],
+        "depends_on_unresolved": ["V4 substrate epoch", "ARC-109 (D1/D2 split)", "MECH-452 (loop-local eligibility traces)", "MECH-451 (V3-EXQ-704/704b finer-channel pre-emption gate)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_706_mech314_curiosity_conversion_double_gated_20260626T015604Z_v3",
+          "experiment_type": "v3_exq_706_mech314_curiosity_conversion_double_gated",
+          "metric": "committed-class entropy: ARM_CURIOSITY 1.013 ~ ARM_FONLY 0.970 ~ ARM_NOISE 0.970; lift-over-F-only 1/3 seeds (margin 0.05); BOTH eligibility gates genuinely active (demotion 22.69, Go/No-Go 7.05); matched-noise control degenerate (ARM_NOISE==ARM_FONLY); seed budget imbalanced 545 vs 5400 ticks",
+          "target": "a seed-balanced double-gated test with a valid non-temperature null where curiosity lifts committed-class entropy over the double-gated F-only control on >=2/3 seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_EXQ-572-573_2026-05-17", "failure_autopsy_604a-624a-630_2026-06-03", "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07", "failure_autopsy_V3-EXQ-590c_2026-06-24", "failure_autopsy_V3-EXQ-705_2026-06-25", "failure_autopsy_V3-EXQ-705b_2026-06-25"],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "v4_loop_segregation",
+        "brake_lock_note": "NOT fired: not-yet-fair test (degenerate temperature noise control + severe per-seed budget imbalance), not a clean ceiling (same logic that exempted V3-EXQ-705 vs 705b). 705b was the pre-registered 6th brake-lock trigger; 706 would mechanically be the 7th but it is invalid-precondition. Brake-LOCK: the next MECH-314 result with a VALID non-temperature null AND balanced per-seed budget that still shows no curiosity conversion FIRES the brake -> V4 ARC-110, no more V3 letters. 706b is the one validity-fixed letter the lock permits."
+      },
+      "learning_extracted": [
+        "A temperature/flat-hot noise control is degenerate for a committed-class-entropy DV (byte-identical to the F-only arm) because the eligibility constitution decouples temperature from committed-class diversity -- the same MECH-313 lesson the 700 lineage learned. A valid curiosity-conversion null must be a same-layer / non-temperature perturbation.",
+        "Episodes terminate at very different rates per seed on this substrate (545 vs 5400 P1 ticks); a fixed episode budget yields a wildly imbalanced per-seed tick budget so the noisiest seed can dominate the margin verdict -- the re-test must equalise per-seed budget (tick-cap)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "convergent-endpoint (not same-failure-shape cluster): V3-EXQ-706 (curiosity-conversion) + V3-EXQ-700c (settling-conversion) both eventually escalate to V4 ARC-110 loop-segregation from structurally different mechanisms; each first gets one validity-fixed V3 letter (706b / 700d)",
+    "is_independent_bugs": false,
+    "structural_property": "On the V3 single foraging arena neither conversion test could furnish a VALID committed-class null (706 temperature byte-identical-inert ARM_NOISE==ARM_FONLY; 700b temperature decoupled-inert; 700c same-layer magnitude-mismatched 41x). The committed-class-entropy DV is decoupled from temperature/scale-mismatched perturbations by the F-bounded eligibility constitution; a valid null must be same-layer + magnitude-matched, and even that is hard to calibrate on one arena. Independently strengthens the 700b single-arena binding-constraint argument across BOTH conversion routes.",
+    "readings": ["validity_fix_then_terminal", "single_arena_null_limit"]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-26T04:46:05Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_700c_arc108_sec7_learned_gating_settling_samelayer_null_20260625T220313Z_v3",
+      "queue_id": "V3-EXQ-700c",
+      "claim_ids": ["MECH-439", "ARC-108", "MECH-450"],
+      "failed_criterion": "precondition_unmet",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- conversion DV gated behind an invalid (magnitude-mismatched) null; C1 not trustworthy; PROMOTES/WEAKENS NOTHING",
+        "biological_reference": "clear -- faithful BG three-factor DA plasticity (ARC-108) + recurrent settling (MECH-450); lit present (targeted_review_connectome_mech_439)",
+        "prerequisites": "present -- ARC-108/MECH-450 built+engaged; w_chan + W_lat move; delta_t variance; settling moves the field",
+        "implementation": "complete-and-engaged -- learning machinery runs; settling arms lift A0 in the means",
+        "environment": "binding constraint (single arena) -- structurally hard to furnish a valid committed-class null",
+        "measurement": "ROOT (dominant) -- same-layer null injected at the right LAYER but wrong SCALE (FIELD_NOISE_WLAT_SCALE=0.5 -> range 2.16 = 41.42x learned 0.052); calibration artifact, V3-EXQ-642 invalid-precondition family, same shape as V3-EXQ-704 (176.9x)",
+        "integration": "coupled -- learning composes inside the F-bounded eligible set",
+        "scale": "adequate -- 6 seeds x 5 arms x phased; gap is null SCALE, not budget"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia three-factor dopaminergic plasticity (ARC-108) + pallidal recurrent winner-take-most settling (MECH-450)",
+        "dependencies": ["multiple parallel cortico-BG-thalamic loops (loop segregation)", "a same-layer magnitude-matched committed-class null"],
+        "is_formal_import": false,
+        "divergence": "single foraging arena cannot furnish loop-segregated committed diversity OR a valid committed-class null; the repeated null breakage is the concrete face of that single-arena limit",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-700c (same-layer-null redesign of the ARC-108/MECH-450 learned-gating settling falsifier; supersedes V3-EXQ-700b) FAIL / non_contributory (MECH-439, ARC-108, MECH-450). Self-route substrate_not_ready_requeue: the same-layer frozen-random W_lat null came in at 41.42x the realised learned settling range (median noise 2.16 vs learned 0.052; field_noise_magnitude_matched band [0.25,4.0] FAILED) and drove committed-class entropy BELOW A0 (0.859 vs 0.909; noise_verified_lifting 0/3) -- the matched-noise floor never verified, so C1 strict-above-noise is meaningless. Autopsy 2026-06-26: calibration artifact (same-layer null is the correct layer per the 700b autopsy, but FIELD_NOISE_WLAT_SCALE=0.5 overshot), V3-EXQ-642 invalid-precondition family, same shape as V3-EXQ-704's 176.9x mismatch. The learned-settling signal weakened from 700b (a2 +0.037/a3 +0.051/c3u +0.123, majority) to 700c (a2 +0.015/a3 +0.042/c3u +0.061; a2 1/3, a3 0/3, c3u 1/3) but still lifts A0 in the means -- whether that drop is real is what a validly-nulled 700d settles. Re-derive brake NOT fired (invalid-precondition, not a clean ceiling); brake-LOCK recorded (next VALID-null no-lift fires it -> V4 ARC-110, no more V3 letters). Routing: /queue-experiment 700d re-tuning the same-layer null scale to the realised learned range (brake-exempt validity fix); recommended_substrate_queue_entry amend = additive trajectory record on the gated v4_loop_segregation entry (does not un-gate). No promotion/demotion; pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Additive trajectory record (NOT an un-gate): record V3-EXQ-700c on the gated v4_loop_segregation failure_records to preserve the convergent-endpoint signal",
+        "implementation_hint": "Append a failure_record / metric_trajectory data point only. Do NOT change ready (stays false) or status (stays gated on the validity-fixed 700d / 704b). The immediate routing is the 700d re-test, not the loop-seg build.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "MECH-450", "ARC-110"],
+        "depends_on_unresolved": ["V4 substrate epoch", "ARC-109 (D1/D2 split)", "MECH-452 (loop-local eligibility traces)", "MECH-451 (V3-EXQ-704/704b finer-channel pre-emption gate)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_700c_arc108_sec7_learned_gating_settling_samelayer_null_20260625T220313Z_v3",
+          "experiment_type": "v3_exq_700c_arc108_sec7_learned_gating_settling_samelayer_null",
+          "metric": "committed-class entropy: settling arms a2 +0.015 / a3 +0.042 / c3u +0.061 over A0 (means) but C1 per-seed 1/3, 0/3, 1/3; same-layer null magnitude-mismatched 41.42x (noise entropy 0.859 BELOW A0 0.909)",
+          "target": "a magnitude-matched (band [0.25,4.0]) same-layer null that verify-lifts, with learned settling strict-above it on >=2/3 divergent seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-700-cluster_2026-06-23", "failure_autopsy_V3-EXQ-700b_2026-06-24"],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "v4_loop_segregation",
+        "brake_lock_note": "NOT fired: invalid-precondition (magnitude-mismatched null), not a clean ceiling (same logic that exempted V3-EXQ-705 vs 705b). Brake-LOCK: the next 700-lineage result with a VALID magnitude-matched same-layer null that still shows no learned-settling lift FIRES the brake -> V4 ARC-110, no more V3 letters. 700d is the one validity-fixed letter the lock permits."
+      },
+      "learning_extracted": [
+        "A same-layer (eligibility/settling-field) null is the correct LAYER (coupled to the committed-class DV, unlike 700b's temperature null) but its magnitude must be matched to the realised learned W_lat range at run time, not a fixed scale; FIELD_NOISE_WLAT_SCALE=0.5 overshot by 41x.",
+        "The unsigned C3 settling arm's W_lat blows up (per-arm ranges 1.9-4.8) via abs-RPE accumulation without sign cancellation; median_settling_wlat_range 0.052 (dominated by the 12 small A2/A3 cells) is the correct match target, not the C3 tail.",
+        "The learned-settling signal weakened from 700b to 700c; whether real per-seed or a divergent-seed-subset artifact is unresolved -- a validly-nulled 700d settles it."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "convergent-endpoint (not same-failure-shape cluster): V3-EXQ-700c (settling-conversion) + V3-EXQ-706 (curiosity-conversion) both eventually escalate to V4 ARC-110 loop-segregation from structurally different mechanisms; each first gets one validity-fixed V3 letter (700d / 706b)",
+    "is_independent_bugs": false,
+    "structural_property": "On the V3 single foraging arena neither conversion test could furnish a VALID committed-class null (700b temperature decoupled-inert; 700c same-layer magnitude-mismatched 41x; 706 temperature byte-identical-inert ARM_NOISE==ARM_FONLY). The committed-class-entropy DV is decoupled from temperature/scale-mismatched perturbations by the F-bounded eligibility constitution; a valid null must be same-layer + magnitude-matched, and even that is hard to calibrate on one arena. Independently strengthens the 700b single-arena binding-constraint argument across BOTH conversion routes.",
+    "readings": ["validity_fix_then_terminal", "single_arena_null_limit"]
+  }
+}
