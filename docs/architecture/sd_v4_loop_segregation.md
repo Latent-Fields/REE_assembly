@@ -1,8 +1,6 @@
 ---
-title: "SD-v4-loop-segregation: Parallel Segregated Cortico-BG-Thalamic Loops (V4)"
-parent: "Roadmap & Planning (V4+)"
-grandparent: Architecture
-nav_order: 8
+title: "SD-v4-loop-segregation: Parallel Segregated Cortico-BG-Thalamic Loops (V3, reappointed from V4 2026-06-24)"
+nav_exclude: true
 ---
 
 # SD-v4-loop-segregation: Parallel Segregated Cortico-BG-Thalamic Loops (V3, reappointed from V4 2026-06-24)
