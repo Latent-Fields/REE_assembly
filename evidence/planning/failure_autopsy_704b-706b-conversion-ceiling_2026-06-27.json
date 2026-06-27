@@ -1,0 +1,138 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-27T10:04:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_704b_mech451_finer_channel_granularity_falsifier_20260626T180938Z_v3",
+      "queue_id": "V3-EXQ-704b",
+      "claim_ids": ["MECH-451"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-451 (finer-channel representational compression) was NOT tested in either direction. The decisive A2-vs-A1 conversion comparison was never reached because the readiness leg matched_noise_control_verified_lifting failed FIRST. MECH-451 UNWEAKENED.",
+        "biological_reference": "OFC-devaluation / dACC-conflict / lateral-PFC rule-evidence / vigour / liking finer control channels feeding a learned-gating layer (ARC-108 w_chan). Faithful functional translation; the finer channels DID dissociate (substantive range 0.0087 > 0.005 floor) and learn (weights moved 0.00135 > 1e-4). The mechanism builds and trains; the test's CONTROL is what cannot be constructed in V3.",
+        "prerequisites": "ARC-110 segregated loops MISSING. depends_on ARC-108 (present), ARC-110 (NOT built -- the upstream that would furnish a valid same-layer null + per-loop competition).",
+        "implementation": "complete -- finer channels implemented, dissociable, learn from init. Not a stub.",
+        "environment": "TOO SPARSE / single-arena -- the V3 single shared E3 foraging arena cannot furnish a same-layer null that verify-lifts committed-class entropy (the F-bounded eligibility constitution decouples committed-class entropy from any same-layer perturbation). Same structural denial the 700b autopsy named.",
+        "measurement": "committed-class-entropy DV is decoupled from same-layer perturbation in the single arena -- a correctly magnitude-matched null (ratio 1.0) is inert on the DV (0/2 divergent seeds verify-lift; threshold 2).",
+        "integration": "isolated -- the channel learns but its influence cannot reach committed-action-class selection in the single F-dominated arena.",
+        "scale": "adequate -- not a capacity/warmup issue; 6 seeds, phased P0/P1/P2, divergent pool met (4 seeds)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "OFC/dACC/lPFC finer control channels into a BG-like learned gate (Alexander/DeLong/Strick channel organisation)",
+        "dependencies": ["ARC-110 parallel segregated loops", "a within-layer (eligibility/settling-field) committed-class null"],
+        "is_formal_import": false,
+        "divergence": "The single-arena collapse is the divergence from biology: real cortico-BG-thalamic channels compete within segregated loops before cross-loop arbitration; the V3 single E3 arena collapses all channels into one F-dominated competition, which both prevents conversion AND prevents a valid same-layer null. The finer channels themselves are biologically faithful.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-704b (MECH-451 finer-channel-granularity falsifier, validity re-tune superseding V3-EXQ-704, 2026-06-26) self-routed substrate_not_ready_requeue / non_contributory (non_degenerate=False, scoring-excluded). The 704 precondition fix WORKED: fcg_noise_magnitude_matched=1.0 (in band [0.25,4.0]; was 176.9x in 704) and the substantive-dissociation guard cleared (finer-channel learned range 0.0087 > 0.005); the finer channels dissociated and moved from init (delta_t variance 0.0005, weights moved 0.00135). But the readiness leg matched_noise_control_verified_lifting FAILED (0/2 divergent seeds; threshold 2): a CORRECTLY magnitude-matched same-layer null does not lift committed-class entropy above A0. This elevates the 704 diagnosis from precondition_unmet (a re-tunable scale artifact) to substrate_ceiling (the precondition cannot be met IN PRINCIPLE in V3): the V3 single shared E3 foraging arena structurally decouples committed-class entropy from any same-layer perturbation (the same wall the 700b/700c learned-gating-settling autopsies hit), so no valid same-layer null can be constructed to make the C1 discrimination bar meaningful. MECH-451 UNWEAKENED and UNTESTED in either direction. Re-derive brake FIRED (2nd MECH-451 non_contributory autopsy; threshold 2): REFUSES a further V3 letter re-running the finer-channel-vs-same-layer-null comparison; route to /implement-substrate on v4_loop_segregation (ARC-110), which furnishes both a valid same-layer null and per-loop competition. pending_retest_after_substrate=true.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Add MECH-451 to v4_loop_segregation unblocks_claims + record 704b failure (single-arena cannot furnish a valid same-layer null for the finer-channel conversion test)",
+        "implementation_hint": "ARC-110 segregated loops + an in-layer (eligibility/settling-field) committed-class null are required to test whether finer channels CONVERT to committed-action-class diversity; the single arena structurally denies the valid null (704b: matched-null inert on the DV, 0/2 verify-lift).",
+        "unblocks_claims": ["MECH-451"],
+        "depends_on_unresolved": ["ARC-110"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_704b_mech451_finer_channel_granularity_falsifier_20260626T180938Z_v3",
+          "experiment_type": "v3_exq_704b_mech451_finer_channel_granularity_falsifier",
+          "metric": "fcg null magnitude-matched (ratio 1.0, was 176.9x in 704) AND finer channels dissociated (0.0087) + learned (0.00135), yet matched_noise_control_verified_lifting=0/2 divergent seeds (threshold>=2): a correctly-sized same-layer null is inert on committed-class entropy",
+          "target": "a valid same-layer null must verify-lift committed-class entropy on >=2 divergent seeds (achievable only with ARC-110 segregated loops + in-layer null), so the A2-strict-above-null C1 bar becomes meaningful"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-704_2026-06-25"],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "The 704 magnitude-match fix is validated (ratio 1.0) -- but fixing the null's SCALE only revealed the deeper wall: a correctly-sized same-layer null is INERT on committed-class entropy in the single arena.",
+        "MECH-451's finer channels are buildable, dissociable, and learn -- the representation works; what cannot be demonstrated in V3 is whether it CONVERTS to committed-action-class diversity, because the conversion test's control cannot be validly constructed in the single arena.",
+        "This converts the 704 reading (test-design / precondition artifact) into a substrate ceiling: the precondition is unmeetable in principle in V3."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_706b_mech314_curiosity_conversion_double_gated_validity_20260626T073417Z_v3",
+      "queue_id": "V3-EXQ-706b",
+      "claim_ids": ["MECH-314"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-314 (structured curiosity bonus) was tested FAIRLY and VALIDLY (non_degenerate=true; all 6 readiness legs met) and did not convert: ARM_CURIOSITY committed-class entropy 0.967 did NOT lift over the double-gated F-only control 1.029 (it sat below it) nor over the valid magnitude-matched null 1.019. The ceiling is ARCHITECTURAL (single-arena), not a MECH-314 weakness. UNWEAKENED.",
+        "biological_reference": "Rostrolateral-PFC uncertainty-driven exploration bonus (Daw 2006) + striatal novelty (Wittmann 2008); faithful translation. The curiosity channel produced a supra-floor bias range (0.00197) and reached committed selection through both composed eligibility gates -- it is not inert; it simply does not move committed-action-class diversity in the single arena.",
+        "prerequisites": "Both selection-face eligibility gates PRESENT and firing (MECH-448 demotion excluded 23.4; MECH-449 Go/No-Go suppressed 7.9). The MISSING prerequisite is ARC-110 segregated loops -- the binding constraint is now localised AFTER the eligibility-construction face.",
+        "implementation": "complete -- double-gated constitution, adaptive floor, active staleness No-Go, valid same-layer non-temperature null all working; the 706 degenerate-null + budget-imbalance defects are FIXED (null range 0.00197 = curiosity range, non-degenerate vs FONLY; per-seed committed-tick budget balanced).",
+        "environment": "TOO SPARSE / single-arena -- one shared F-dominated E3 selection arena. Curiosity cannot carve committed-action-class diversity because every channel competes in one F-dominated competition (ARC-110 hypothesis).",
+        "measurement": "ADEQUATE this time -- the 706 measurement-validity gaps are closed; committed-class entropy is now a valid, seed-balanced DV with a valid null. The no-lift is real, not a measurement artifact.",
+        "integration": "coupled but constrained -- curiosity reaches committed selection (the gates fire) but its influence is drowned in the single F-dominated arena.",
+        "scale": "adequate -- per-seed committed-tick budget balanced (FIX 1); not a sampling artifact (the 706 imbalance is closed)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar exploration bonus (Daw 2006) + striatal novelty (Wittmann 2008) feeding committed-action selection via segregated cortico-BG-thalamic loops",
+        "dependencies": ["ARC-110 parallel segregated loops (limbic/motivational loop distinct from motor loop)"],
+        "is_formal_import": false,
+        "divergence": "Single-arena collapse: in biology the 'is this worth exploring/committing to' computation runs in a limbic/motivational loop distinct from the motor loop; the V3 single E3 arena collapses them so F (motor-value) drowns the curiosity signal. The curiosity mechanism itself is faithful.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-706b (MECH-314 curiosity-conversion DOUBLE-GATED validity re-test, superseding V3-EXQ-706, 2026-06-26) is the FIRST FULLY-VALID double-gated test (non_degenerate=true; all 6 readiness legs met: GAP-A pool 0.072, curiosity bias range 0.00197, demotion excluded 23.4, Go/No-Go suppressed 7.9, z_world bounded, per-seed committed-tick budget balanced). It closes BOTH 706 measurement-validity defects: the degenerate flat-hot temperature null is replaced by a VALID same-layer non-temperature null magnitude-matched by construction (range 0.00197 = curiosity range; ratio 1.0; non-degenerate -- ARM_NOISE 1.019 distinct from ARM_FONLY 1.029), and the per-seed P1 budget is equalised via a committed-tick budget. With both composed selection-face eligibility gates active and a valid null, the MECH-314 curiosity channel STILL did not convert: ARM_CURIOSITY committed-class entropy 0.967 sat BELOW the double-gated F-only control 1.029 and the valid null 1.019 (no lift on any seed). interpretation: conversion_ceiling_persists_despite_double_gating_valid_null (the pre-registered TERMINAL). This is non_contributory for MECH-314 -- the conversion ceiling is ARCHITECTURAL (the single F-dominated E3 arena), NOT a MECH-314 weakness; MECH-314 UNWEAKENED, epistemic_category stays substrate_ceiling, pending_retest_after_substrate stays true. It is POSITIVE evidence that the binding constraint sits AFTER the eligibility-construction face (both gates fire and curiosity still cannot convert) -> the single-arena collapse (ARC-110) is the binding constraint. Re-derive brake FIRED + BRAKE-LOCK (8th MECH-314 substrate_ceiling/non_contributory autopsy; the 706 autopsy pre-recorded the lock naming 706b as the one validity-fixed letter the lock permitted): REFUSES any further V3 letter on the MECH-314 conversion lineage; route to /implement-substrate on v4_loop_segregation (ARC-110). NO more V3 letters on this lineage.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Add MECH-314 to v4_loop_segregation unblocks_claims + record 706b failure (valid double-gated terminal: curiosity does not convert at the eligibility face -> binding constraint is the single-arena collapse, ARC-110)",
+        "implementation_hint": "Both selection-face eligibility gates (MECH-448 demotion + MECH-449 Go/No-Go) compose and fire, and a VALID same-layer null is in place, yet curiosity does not convert -> the ceiling is the single F-dominated E3 arena; ARC-110 segregated loops (a limbic/motivational loop distinct from the motor loop) are required for the curiosity 'worth committing to' signal to carve committed-action-class diversity.",
+        "unblocks_claims": ["MECH-314"],
+        "depends_on_unresolved": ["ARC-110"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_706b_mech314_curiosity_conversion_double_gated_validity_20260626T073417Z_v3",
+          "experiment_type": "v3_exq_706b_mech314_curiosity_conversion_double_gated_validity",
+          "metric": "FULLY-VALID double-gated test (non_degenerate=true, all 6 legs met, valid magnitude-matched non-temperature null): ARM_CURIOSITY committed-class entropy 0.967 did NOT lift over double-gated F-only 1.029 or valid null 1.019 (no lift on any seed)",
+          "target": "curiosity committed-class entropy must lift over the double-gated F-only control + valid null by margin on >=2/3 seeds; achievable only when the limbic/motivational loop is segregated from the F-dominated motor loop (ARC-110)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-572-573_2026-05-17",
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07",
+          "failure_autopsy_V3-EXQ-590c_2026-06-24",
+          "failure_autopsy_V3-EXQ-705_2026-06-25",
+          "failure_autopsy_V3-EXQ-705b_2026-06-25",
+          "failure_autopsy_V3-EXQ-706_2026-06-26"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "The FIRST fully-valid double-gated MECH-314 conversion test (both 706 measurement-validity defects fixed) confirms the conversion ceiling persists -- it is not a measurement artifact.",
+        "Both selection-face eligibility gates (demotion + Go/No-Go) fire and curiosity still does not convert -> the binding constraint is localised AFTER eligibility construction, at the single-arena selection collapse (ARC-110).",
+        "This is the brake-LOCK terminal the 706 autopsy pre-registered: the MECH-314 conversion lineage is now closed to further V3 letters and routed to the V4/V3-reappointed ARC-110 loop-segregation build."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two structurally-different conversion mechanisms (MECH-451 finer-channel representational compression; MECH-314 structured curiosity bonus), each retested with its measurement-validity defects fixed, both hit the IDENTICAL wall in the V3 single shared E3 foraging arena: committed-action-class diversity cannot be carved AND a valid same-layer committed-class null cannot be constructed (the F-bounded eligibility constitution decouples committed-class entropy from same-layer perturbation). 704b: a correctly magnitude-matched null is inert on the DV (0/2 verify-lift). 706b: with both eligibility gates composed and a valid null, curiosity does not lift committed-class entropy.",
+    "is_independent_bugs": false,
+    "structural_property": "The V3 single F-dominated E3 selection arena cannot carry committed-action-class conversion from non-motor channels, nor furnish a valid same-layer null to test it. Both are structural consequences of the single-arena collapse and both require ARC-110 parallel segregated cortico-BG-thalamic loops (+ an in-layer null) to lift. This convergence across two independent mechanisms strengthens ARC-110 as the binding constraint on the F-dominance conversion ceiling (MECH-439), reinforcing the 700b/700c learned-gating-settling reading from a third and fourth independent angle.",
+    "readings": ["substrate_enrichment"]
+  }
+}
