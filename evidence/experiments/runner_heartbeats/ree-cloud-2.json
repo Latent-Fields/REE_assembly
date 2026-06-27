@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-06-27T11:13:01Z",
+  "last_tick_utc": "2026-06-27T11:28:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-707",
   "current_exq_started_utc": "2026-06-27T11:10:40.775752+00:00",
@@ -12,16 +12,25 @@
     "run_label": "Seed 42 / single_arena_baseline_finer_gating_settling_no_loop_segregation",
     "runs_done": 0,
     "runs_total": 24,
-    "episodes_done": 10,
+    "episodes_done": 100,
     "episodes_total": 250,
-    "overall_pct": 0.2
+    "overall_pct": 1.7
   },
-  "seconds_elapsed": 140,
-  "seconds_remaining": 71841,
+  "seconds_elapsed": 1047,
+  "seconds_remaining": 70066,
   "recent_lines": [
     "Arm A0_SINGLE_ARENA (single_arena_baseline_finer_gating_settling_no_loop_segregation) loop_seg=False loop_noise=False drop_limbic=False finer_on=True (P0=100 ep e2-train, P1=50 ep bias-train, P2=100 ep measure, steps_per_episode=200, dry_run=False)",
     "Seed 42 Condition single_arena_baseline_finer_gating_settling_no_loop_segregation",
-    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 10/250"
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 10/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 20/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 30/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 40/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 50/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 60/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 70/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 80/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 90/250",
+    "[train] arm=A0_SINGLE_ARENA seed=42 phase=P0 ep 100/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
