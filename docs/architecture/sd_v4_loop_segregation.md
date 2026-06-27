@@ -8,7 +8,7 @@ nav_exclude: true
 **Substrate / queue id:** `v4_loop_segregation`
 **Owning claim:** ARC-110 (this is ARC-110's build design-of-record, NOT a new claim)
 **Subject:** `selection.parallel_segregated_loops`
-**Status:** PENDING (build-deferred, GATED on V3-EXQ-704)
+**Status:** IMPLEMENTED 2026-06-27 (gate cleared by V3-EXQ-704b FAIL-to-convert; built full-scope via /implement-substrate; PROMOTES NOTHING -- validation experiment pending)
 **Generation:** V3 — REAPPOINTED V4->V3 2026-06-24 (user-directed; recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439). Filename / substrate id `v4_loop_segregation` retained for cross-ref stability; the substrate is V3-generation.
 **Gate:** V3-EXQ-704 (MECH-451 finer-channel-granularity pre-emption falsifier). Build proceeds only if 704 fails to convert non-motor influence to committed action on the single arena; a 704 PASS means the ceiling was representational compression and this loop build is PRE-EMPTED.
 **Registered:** 2026-06-24
@@ -27,6 +27,44 @@ nav_exclude: true
 > loop build is **pre-empted** and this doc is retired-as-superseded. The concurrent
 > V3-EXQ-700c null-redesign (the autopsy's prong B) is a SEPARATE `/queue-experiment` track,
 > not part of this substrate.
+
+---
+
+## IMPLEMENTED 2026-06-27 (full scope)
+
+**Gate cleared.** V3-EXQ-704b (MECH-451 finer-channel falsifier) ran the finer channels
+correctly (magnitude-match ratio 1.0; channels dissociated 0.0087 + learned 0.00135) and they
+did NOT convert (`matched_noise_control_verified_lifting 0/2`). Per the pre-registered fork
+this is the **positive-evidence-FOR-ARC-110** outcome (representational compression is NOT the
+binding constraint), so the gate OPENS rather than pre-empts. Corroborated by V3-EXQ-706b (first
+fully-valid double-gated MECH-314 test, curiosity 0.967 < F-only 1.029 < valid null 1.019).
+Cluster autopsy: `evidence/planning/failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.{md,json}`.
+
+**Built (user chose full scope 2026-06-27):** all four pieces, all behind no-op-default flags,
+byte-identical OFF (ARC-106 G2 reuse-the-mechanism, parallel buffers).
+
+| Piece | Flag (E3Config) | Where |
+|---|---|---|
+| **S1** N>=3 segregated loops (motor / associative / limbic), within-loop competition first, Haber ascending-spiral cross-loop arbitration after, per-loop zscore normalisation (strips F's magnitude advantage) | `use_loop_segregation` | `e3_selector._segregated_loop_arbitrate` (replaces the single-arena within-eligible argmin) |
+| **S2** in-layer same-layer committed-class null (magnitude-matched random structure injected at the non-motor loop accumulators -- the layer the loops settle on) | `loop_segregation_noise_on` / `loop_segregation_noise_alpha` | `e3_selector._loop_inlayer_null` |
+| **ARC-109** D1/D2 opponent populations with asymmetric DA gain (per loop; dissociates approach-avoidance conflict from indifference) | `use_d1_d2_population_split` / `d1_da_gain` / `d2_da_gain` | `e3_selector._d1_d2_split` |
+| **MECH-452** loop-local eligibility traces (credit only the loop whose within-loop winner matched the commit) | `use_loop_local_eligibility_traces` | `e3_selector` eligibility-recording site |
+
+**Safety unchanged.** All loop arbitration runs STRICTLY within the F + MECH-449 Go/No-Go
+eligible set, so a non-motor loop can FLIP the within-eligible winner but can NEVER re-admit a
+suppressed candidate -- the orthogonal-to-F safety guarantee is inherited from the envelope.
+
+**Non-degeneracy guard (live).** Diagnostics `loop_committed_neq_motor_winner` +
+`loop_cross_loop_winner_disagreement` + per-loop `loop_*_pref_range` record whether a non-motor
+loop actually flipped the commit / loops disagreed. A "segregated" loop pinned to the motor
+winner is a vacuous split -> the validation self-routes `substrate_not_ready_requeue`.
+
+**Phased training: N/A** -- reuses the already-trained valuation heads (no new encoder); all
+learned objects (w_chan / W_lat / D1/D2 gains / loop traces) ride the existing ARC-108 LOCAL
+three-factor update (not autograd). **MECH-094:** all learning writes inherit the existing
+`simulation_mode=False` waking gate; the in-layer null is selection-only (writes nothing to
+memory). **Promotes nothing** -- candidate/substrate_conditional claims unchanged pending the
+validation run.
 
 ---
 
