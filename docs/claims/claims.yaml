@@ -31898,6 +31898,7 @@
     [2026-06-07 governance: V3-EXQ-604b NON-CONTRIBUTORY for MECH-314/314a/314b/314c/Q-044, NOT a weakening] (failure_autopsy_gapA-cluster-604b-648a-649). 604b ran 11:01Z BEFORE the ARC-065 GAP-A action-conditional candidate-diversity fix was validated (V3-EXQ-649 PASS 13:14Z). With a class-uniform candidate pool the structured-curiosity bias had magnitude (last_bias_max_abs=0.0177) but ~zero cross-candidate RANGE, so C1 cannot move the E3 argmin even with selection authority ON (643a). 3rd confirmed instance of the candidate-pool-collapse confound (604a/624a/614d-e). The 604b manifest is set evidence_direction=non_contributory (self-emitted weakens overridden).     The GAP-A fix is now VALIDATED READY (649) -- re-queue the MECH-314-family test as V3-EXQ-604c on the now-ready substrate, with a readiness gate on cross-candidate RANGE (not bias magnitude), before any direction is weighed. pending_retest_after_substrate already true.
 
     [2026-06-25 governance: failure_autopsy_V3-EXQ-705b CONFIRMED non_contributory; MECH-314 UNWEAKENED] V3-EXQ-705b (curiosity-conversion under MECH-448 demotion + 689e channel-adaptive floor; supersedes V3-EXQ-705) was the FIRST FAIR test of the curiosity channel under a genuinely-excluding demotion (excluded_count 14.45 vs 705's all-admit 0.0; 590c saturation-arm confound also fixed) with the GAP-A pool divergent (cand_world_pairwise_dist 0.107 > 0.02). Committed-action-class entropy STILL did not lift over demotion-ON F-only + matched-noise -> conversion_ceiling_persists_despite_demotion. epistemic_category set substrate_ceiling; the ceiling is UPSTREAM/architectural (a single rank-preserving eligibility gate), NOT a falsification of curiosity. Re-derive brake FIRED (6th MECH-314 ceiling autopsy; priors EXQ-572-573, 604a-624a-630, gapA-604b-648a-649, 590c, 705) -> REFUSES a 705c demotion-only same-substrate letter. recommended_substrate_queue_entry action=none: MECH-449 Go/No-Go eligibility constitution is ALREADY built+validated+provisional (V3-EXQ-689g PASS 3/3, conversion_rate 1.0) but was OFF in 705b. Forward path = brake-EXEMPT /queue-experiment DOUBLE-GATED re-test (use_f_eligibility_demotion=True AND use_go_nogo_constitution=True), a different substrate condition than the demotion-only lineage (485k->MECH-449 shape). V4 ARC-110 loop-segregation (existing v4_loop_segregation substrate_queue entry) ONLY if the double-gated re-test also fails. pending_retest_after_substrate re-asserted.
+    [2026-06-27 governance: failure_autopsy_704b-706b-conversion-ceiling CONFIRMED non_contributory; MECH-314 UNWEAKENED; brake-LOCK terminal] V3-EXQ-706b (the brake-EXEMPT DOUBLE-GATED re-test the 705b autopsy named, superseding V3-EXQ-706) is the FIRST FULLY-VALID double-gated curiosity-conversion test (non_degenerate=True; all 6 readiness legs met: GAP-A pool 0.072, curiosity bias range 0.00197, MECH-448 demotion excluded 23.4, MECH-449 Go/No-Go suppressed 7.9, z_world bounded, per-seed committed-tick budget balanced). It closed BOTH 706 measurement-validity defects (degenerate flat-hot temperature null replaced by a VALID same-layer non-temperature null magnitude-matched by construction, range 0.00197=curiosity range, ratio 1.0, non-degenerate vs ARM_FONLY; per-seed P1 budget equalised). With both composed selection-face eligibility gates active AND a valid null, the curiosity channel STILL did not convert: ARM_CURIOSITY committed-class entropy 0.967 sat BELOW the double-gated F-only control 1.029 and the valid null 1.019 (no lift on any seed) -> conversion_ceiling_persists_despite_double_gating_valid_null (the pre-registered TERMINAL). The ceiling is ARCHITECTURAL (the single F-dominated E3 arena), POSITIVE evidence that the binding constraint sits AFTER the eligibility-construction face -> the single-arena collapse (ARC-110). Re-derive brake FIRED + BRAKE-LOCK (8th MECH-314 substrate_ceiling/non_contributory autopsy; priors EXQ-572-573, 604a-624a-630, gapA-604b-648a-649, 590c, 705, 705b, 706): REFUSES any further V3 letter on the MECH-314 conversion lineage. Route /implement-substrate on v4_loop_segregation (ARC-110); substrate_queue amended (MECH-314 added to unblocks_claims + 706b failure record). epistemic_category stays substrate_ceiling; pending_retest_after_substrate stays true. Convergent with V3-EXQ-704b (MECH-451) onto the identical single-arena wall.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the
@@ -47003,7 +47004,8 @@
   subject: selection.intermediate_channel_granularity
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_conditional
+  epistemic_category: substrate_ceiling   # ELEVATED 2026-06-27 from substrate_conditional: V3-EXQ-704b proved the conversion test's same-layer null cannot be VALIDLY constructed in the single arena (matched-null inert on the DV), not merely mis-tuned (the 704 reading). Re-derive brake fired -> v4_loop_segregation (ARC-110). See failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.
+  pending_retest_after_substrate: true   # SET 2026-06-27 (704b autopsy): retest the finer-channel conversion once ARC-110 segregated loops + an in-layer null exist.
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-23"
@@ -47073,15 +47075,27 @@
     cargo-cult guard: the finer channels need an ablation falsifier (collapse-to-blend reproduces the no-lift => the
     decomposition is load-bearing) before they count. PROMOTES NOTHING (new candidate).
   evidence_quality_note: >
-    V3-EXQ-704 (EXP-0391 MECH-451 validation falsifier, 2026-06-25) self-routed
-    substrate_not_ready_requeue / non_contributory: the ARM_NOISE same-layer null was 176.9x the
-    A2 learned w_chan_finer range (precondition fcg_noise_magnitude_matched [0.25,4.0] FAILED), so
-    the C1 strict-above-noise bar was meaningless and MECH-451 could not be tested in either
-    direction. V3-EXQ-642 invalid-precondition family (control-calibration artifact), NOT a ceiling
-    and NOT a falsification. MECH-451 UNWEAKENED. Re-derive brake not fired (1st MECH-451 autopsy;
-    a precondition_unmet artifact does not contribute to a brake count). Route: V3-EXQ-704b
-    re-tuning FCG_NOISE_SCALE relative to the realised learned range; watch the (weak, ~15x-floor)
-    finer-channel dissociation for near-vacuity. Confirmed failure_autopsy_V3-EXQ-704_2026-06-25.
+    V3-EXQ-704b (MECH-451 finer-channel-granularity falsifier, validity re-tune superseding
+    V3-EXQ-704, 2026-06-26) self-routed substrate_not_ready_requeue / non_contributory
+    (non_degenerate=False, scoring-excluded). The 704 precondition fix WORKED:
+    fcg_noise_magnitude_matched=1.0 (in band [0.25,4.0]; was 176.9x in 704) and the
+    substantive-dissociation guard cleared (finer-channel learned range 0.0087 > 0.005); the finer
+    channels dissociated and moved from init (delta_t variance 0.0005, weights moved 0.00135). But
+    the readiness leg matched_noise_control_verified_lifting FAILED (0/2 divergent seeds;
+    threshold 2): a CORRECTLY magnitude-matched same-layer null does not lift committed-class
+    entropy above A0. This ELEVATES the 704 diagnosis from precondition_unmet (a re-tunable scale
+    artifact) to substrate_ceiling (the precondition cannot be met IN PRINCIPLE in V3): the V3
+    single shared E3 foraging arena structurally decouples committed-class entropy from any
+    same-layer perturbation (the same wall the 700b/700c learned-gating-settling autopsies hit),
+    so no valid same-layer null can be constructed to make the C1 discrimination bar meaningful.
+    MECH-451 UNWEAKENED and UNTESTED in either direction. Re-derive brake FIRED (2nd MECH-451
+    non_contributory autopsy; threshold 2): REFUSES a further V3 letter re-running the
+    finer-channel-vs-same-layer-null comparison; route to /implement-substrate on
+    v4_loop_segregation (ARC-110), which furnishes both a valid same-layer null and per-loop
+    competition. pending_retest_after_substrate=true. Convergent with V3-EXQ-706b (MECH-314) onto
+    the single-arena-collapse reading. Confirmed
+    failure_autopsy_704b-706b-conversion-ceiling_2026-06-27 (prior:
+    failure_autopsy_V3-EXQ-704_2026-06-25).
 - id: MECH-452
   title: "Loop-local eligibility traces under a globally-broadcast dopamine signal: even with a SINGLE shared dopaminergic teaching signal (ARC-108 delta_t), the credit traces that decide WHICH synapses/channels the signal updates must remain LOCAL and loop-specific -- effective update = shared delta_t x separate local eligibility trace x loop-specific active synapses -- rather than the current single globally-broadcast credit that updates every recently-active selector component. A too-broad or temporally-smeared eligibility trace would make learned gating appear ineffective (no committed conversion) even when the underlying dopamine learning rule is exactly correct, because the right teaching signal is delivered to the wrong synapses."
   claim_type: mechanism_hypothesis

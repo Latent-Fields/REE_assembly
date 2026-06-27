@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
-  "last_updated_utc": "2026-06-24T19:54:55Z",
+  "last_updated_utc": "2026-06-27T10:04:21Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5172,7 +5172,7 @@
       "design_doc": "docs/architecture/sd_v4_loop_segregation.md",
       "owning_claim": "ARC-110",
       "added_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
-      "last_seen_session": "implement-substrate-v4-loop-segregation-20260624T1954Z",
+      "last_seen_session": "governance-cycle-20260627T0650Z",
       "added_utc": "2026-06-24T19:54:55Z",
       "implementation_status": "pending",
       "implementation_hint": "Replace the single collapsed E3 selection arena (ree-v3 e3_selector.py) with N>=3 parallel segregated cortico-BG-thalamic loops (motor / associative-cognitive-set / limbic-motivational), each running within-loop competition (own eligibility mask + MECH-449 Go/No-Go + MECH-450 settling) FIRST and cross-loop arbitration AFTER, so F can dominate only the motor loop and cannot drown the limbic 'is this worth committing to' value. Add a magnitude-matched random-structure null injected at the eligibility/settling-field layer (the layer MECH-450 acts on), gated behind noise_on, so the committed-class null can verify-lift (the 700-lineage policy-temperature null was decoupled from the committed-class DV and structurally inert). Couple via Haber's ascending dopamine spiral (ARC-108) with loop-local eligibility traces (MECH-452); de-collapse Go/No-Go into D1/D2 populations (ARC-109). Each loop carries an ARC-106 divergence-ledger row + per-loop ablation falsifier (decorative loops dropped); non-degeneracy guard = live cross-loop variance (a loop pinned to the motor winner is a vacuous split -> substrate_not_ready_requeue). V4 epoch / distinct architecture_epoch + V4 experiment-script template required before a validation run can be queued.",
@@ -5193,7 +5193,9 @@
         "MECH-439",
         "ARC-108",
         "MECH-450",
-        "ARC-110"
+        "ARC-110",
+        "MECH-451",
+        "MECH-314"
       ],
       "validation_experiment": null,
       "validating_runs": [],
@@ -5203,6 +5205,18 @@
           "experiment_type": "v3_exq_700b_arc108_sec7_learned_gating_settling_c3",
           "metric": "noise_verified_lifting=False (n_noise_lifts_over_a0=0/3 divergent at NOISE_FLOOR_ALPHA=2.0); committed-class null inert (noise entropy 0.9161 vs A0 0.9151); 3rd consecutive null-bar failure in the 700 lineage (700 1/3 @1.0, 700a 0/3 @1.0, 700b 0/3 @2.0). The matched-noise null perturbs policy softmax temperature, decoupled from the committed-class DV by the F-bounded eligibility constitution under test -- alpha is the wrong knob and the null is structurally inert on a single arena.",
           "target": "A same-layer (eligibility/settling-field) committed-class null that verify-lifts above A0 on a strict majority of divergent seeds (so the settling-vs-null conversion comparison becomes valid), AND loop-segregated committed conversion via a per-loop ablation the collapsed arena cannot produce."
+        },
+        {
+          "run_id": "v3_exq_704b_mech451_finer_channel_granularity_falsifier_20260626T180938Z_v3",
+          "experiment_type": "v3_exq_704b_mech451_finer_channel_granularity_falsifier",
+          "metric": "fcg null magnitude-matched (ratio 1.0, was 176.9x in 704) AND finer channels dissociated (0.0087) + learned (0.00135), yet matched_noise_control_verified_lifting=0/2 divergent seeds (thr>=2): a correctly-sized same-layer null is inert on committed-class entropy in the single arena",
+          "target": "a valid same-layer null must verify-lift committed-class entropy on >=2 divergent seeds (achievable only with ARC-110 segregated loops + in-layer null)"
+        },
+        {
+          "run_id": "v3_exq_706b_mech314_curiosity_conversion_double_gated_validity_20260626T073417Z_v3",
+          "experiment_type": "v3_exq_706b_mech314_curiosity_conversion_double_gated_validity",
+          "metric": "FULLY-VALID double-gated test (non_degenerate=True, all 6 legs met, valid magnitude-matched non-temperature null): ARM_CURIOSITY committed-class entropy 0.967 did NOT lift over double-gated F-only 1.029 or valid null 1.019 (no lift on any seed)",
+          "target": "curiosity committed-class entropy must lift over the double-gated F-only control + valid null on >=2/3 seeds; achievable only when the limbic/motivational loop is segregated from the F-dominated motor loop (ARC-110)"
         }
       ],
       "metric_trajectory": {
