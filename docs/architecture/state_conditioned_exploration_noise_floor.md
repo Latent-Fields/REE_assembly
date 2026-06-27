@@ -8,9 +8,31 @@ nav_order: 17
 # State-conditioned exploration (MECH-440 / MECH-441)
 
 Status: candidate / substrate_ceiling / v3_pending. Registered 2026-06-18 from Convergence
-Demand Pipeline row **CDQ-002** (NoisyNet primary + RND/Plan2Explore secondary intakes). Arch-doc
-stub for the two candidate claims; decide-whether-to-build is a later governance step. Off the V3
+Demand Pipeline row **CDQ-002** (NoisyNet primary + RND/Plan2Explore secondary intakes). Off the V3
 critical path -- these block no V3 closure node.
+
+**SUBSTRATE IMPLEMENTED 2026-06-27** (BUILD APPROVED, decision-of-record
+`evidence/decisions/cpkt_tonic_exploration_noise_build_decision_2026-06-27.md`; user verdict BUILD
+BOTH). Both no-op default / bit-identical OFF, built on top of the same-day landed ARC-110 multi-arena
+substrate. **PROMOTES NOTHING** -- MECH-440 / MECH-441 stay `candidate / substrate_ceiling /
+v3_pending` until the falsifiers return contributory.
+- MECH-440: `ree-v3/ree_core/policy/noisy_selection_head.py` (NoisySelectionHead). Injected in
+  `e3_selector.select()` into `_modulatory_accum` (+ the ARC-110 segregated `final`) before the
+  committed argmin. Config E3Config.`use_noisy_selection_head` (default False),
+  `noisy_selection_sigma_init` (default 0.0 -> exactly-zero output -> bit-identical even ON).
+  Falsifier QUEUED on the 569i top-k + MECH-448 demotion stack (loop-seg OFF vs ON arms).
+- MECH-441: `ree-v3/ree_core/policy/model_disagreement.py` (ModelDisagreementEnsemble, K-head). Built
+  at the agent level; per-candidate cross-head variance -> propagating curiosity bonus via the
+  version-layering-guarded `model_disagreement_per_candidate` kwarg. Config E3Config.
+  `use_model_disagreement_curiosity` + LatentStackConfig.`n_disagreement_heads` (default 0 -> not
+  built). Falsifier **HELD** (blocked_substrate) gated on ARC-110 validation V3-EXQ-707 -- 706b proved
+  the curiosity channel works; the single-arena collapse, not the channel, is the binding constraint
+  (failure_autopsy_704b-706b-conversion-ceiling_2026-06-27), so a run before ARC-110 is validated would
+  re-derive the arena ceiling.
+- ARC-106 divergences logged: (1) per-parameter sigma is one level below biology's systems-level
+  tonic/phasic LC-NE mode gate; (2) sigma self-anneals via REE's LOCAL confidence EMA, not NoisyNet's
+  RL gradient (REE does not backprop through E3 selection).
+- Implementation record: `ree-v3/CLAUDE.md` "MECH-440 / MECH-441: state-conditioned exploration".
 
 ## The gap
 
