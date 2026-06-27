@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_066",
+  "entry_id": "2026-06-27_q_066_cim_reliability_qin2026",
+  "timestamp_utc": "2026-06-27T06:08:08Z",
+  "claim_ids_tested": [
+    "Q-066"
+  ],
+  "source": {
+    "title": "When Small Variations Become Big Failures: Reliability Challenges in Compute-in-Memory Neural Accelerators",
+    "authors": [
+      "Yifan Qin",
+      "Jiahao Zheng",
+      "Zheyu Yan",
+      "Wujie Wen",
+      "Xiaobo Sharon Hu",
+      "Yiyu Shi"
+    ],
+    "year": 2026,
+    "venue": "arXiv preprint",
+    "doi": "10.48550/arXiv.2603.03491",
+    "url": "https://arxiv.org/abs/2603.03491"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.4,
+  "confidence_rationale": "Closest paper to REE's actual concern (deterministic safety boundary in an analog substrate). Concludes minor device variation amplifies through analog MAC into catastrophic accuracy collapse in safety-critical inference, and that hard correctness guarantees cannot presently be assumed -- only enhanced statistical mitigation (SWIM selective verification, right-censored-Gaussian-noise training). arXiv preprint (not yet peer-reviewed), so source_quality discounted.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Error accumulation across analog MAC operations turns sub-threshold device variation into catastrophic, workload-level failure in safety-critical inference.",
+    "Write-verify is described as insufficient for DETERMINISTIC safety guarantees -- the substrate supports soft statistical reliability, not the hard externally-auditable boundary the claim requires."
+  ],
+  "tags": [
+    "q-066",
+    "compute-in-memory",
+    "reliability",
+    "safety-critical",
+    "auditability",
+    "hard-gate"
+  ],
+  "mapping": {
+    "source_claim_statement": "In compute-in-memory neural accelerators, small device variations cause disproportionately large accuracy degradation in safety-critical tasks; existing write-verify protocols require enhancement to provide deterministic safety guarantees, and the authors propose selective verification (SWIM) plus noise-robust training rather than a hard guarantee.",
+    "ree_translation": "Speaks directly to Q-066's AUDITABILITY / hard-safety-gate axis: current analog/in-memory hardware cannot furnish deterministic safety guarantees, so an externally-inspectable hard gate is an open problem, not a solved capability, in this substrate class.",
+    "mapping_caveat": "Safety-critical inference accuracy collapse in a CIM DNN accelerator is structurally analogous to but NOT REE's simulated-vs-released action gate; the paper shows the CLASS of guarantee REE needs is currently unmet, not that REE's specific gate fails (no REE substrate exists to test).",
+    "source_context": "Reliability/co-design analysis of compute-in-memory neural accelerators for safety-critical inference."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.35,
+    "transfer_risk": 0.85,
+    "notes": "arXiv preprint, March 2026; highest mapping_fidelity of the Q-066 set because its framing (analog substrate vs hard safety guarantee) maps unusually well, but still no REE substrate."
+  }
+}

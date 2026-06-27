@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_451",
+  "entry_id": "2026-06-27_mech_451_tonic_dopamine_vigour_niv2007",
+  "timestamp_utc": "2026-06-27T06:08:08Z",
+  "claim_ids_tested": [
+    "MECH-451"
+  ],
+  "source": {
+    "title": "Tonic dopamine: opportunity costs and the control of response vigor",
+    "authors": [
+      "Yael Niv",
+      "Nathaniel D. Daw",
+      "Daphna Joel",
+      "Peter Dayan"
+    ],
+    "year": 2007,
+    "venue": "Psychopharmacology",
+    "doi": "10.1007/s00213-006-0502-4",
+    "url": "https://doi.org/10.1007/s00213-006-0502-4"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Canonical normative RL theory establishing vigour as a separable control quantity (tonic DA / opportunity cost) distinct from phasic action-selection -- conceptually close to REE's substrate. But it is a model, not a measurement of separable learnable channels, and is silent on the improves-conversion question; it also argues one scalar suffices for vigour.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model collapses vigour into a single global scalar (average reward rate), so it actually supports COMPRESSION at the vigour level -- one scalar is normatively optimal, in mild tension with MECH-451 expecting vigour to need fine sub-channels.",
+    "Vigour-as-opportunity-cost is a global quantity, not state-specific, so it does not by itself support different control functions mattering in different states."
+  ],
+  "tags": [
+    "mech-451",
+    "dopamine",
+    "vigour",
+    "opportunity-cost",
+    "reinforcement-learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "The long-run average reward rate sets optimal response vigour as an opportunity cost and is plausibly reported by TONIC dopamine, computationally separate from the PHASIC dopamine signal driving discrete action selection.",
+    "ree_translation": "Grounds the 'vigour/dopaminergic' finer channel of MECH-451 as a separable control dimension with a different computational role (sets response rate) than the motor-value channel that selects among actions.",
+    "mapping_caveat": "Normative model, not a behaving-brain measurement of segregated learnable channels; supports that vigour is a distinct controllable quantity but NOT that adding a separate vigour channel to a gating layer improves committed-action conversion.",
+    "source_context": "Average-reward reinforcement-learning theory of response latency/vigour."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Low transfer risk conceptually (it is itself an RL formalism close to REE) but the improves-conversion claim is out of scope."
+  }
+}

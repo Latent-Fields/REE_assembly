@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_451",
+  "entry_id": "2026-06-27_mech_451_ofc_identity_devaluation_howard2017",
+  "timestamp_utc": "2026-06-27T06:08:08Z",
+  "claim_ids_tested": [
+    "MECH-451"
+  ],
+  "source": {
+    "title": "Identity-Specific Reward Representations in Orbitofrontal Cortex Are Modulated by Selective Devaluation",
+    "authors": [
+      "James D. Howard",
+      "Thorsten Kahnt"
+    ],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.3473-16.2017",
+    "url": "https://doi.org/10.1523/JNEUROSCI.3473-16.2017"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Best available match to 'separately-learnable': human MVPA shows OFC carries outcome-identity-specific, independently-updatable representations dissociable from general scalar value (vmPFC). But it is correlational fMRI and the finer channel still routes through a vmPFC value bottleneck to influence choice.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The OFC identity channel had to route through vmPFC general-value coding to influence choice (connectivity-predicted choice change), mildly supporting a funnel into a common value bottleneck -- the conversion-ceiling architecture MECH-451 worries about.",
+    "Correlational fMRI: connectivity PREDICTS choice change, it does not show that exposing a finer channel CAUSES better conversion of control influence into committed action."
+  ],
+  "tags": [
+    "mech-451",
+    "orbitofrontal",
+    "devaluation",
+    "outcome-identity",
+    "goal-directed",
+    "mvpa"
+  ],
+  "mapping": {
+    "source_claim_statement": "After selective sensory-specific satiety, OFC reward-IDENTITY patterns were selectively altered only for the devalued outcome (retained for the non-sated one), and OFC<->vmPFC connectivity predicted individual choice change -- i.e. OFC holds outcome-specific, separately-updatable representations distinct from a general value scalar.",
+    "ree_translation": "Closest biological cousin to MECH-451's 'OFC-devaluation' finer channel: a representation finer than a compressed scalar, independently updatable by state, dissociable from general value coding.",
+    "mapping_caveat": "'Separately-updatable representation' is a close cousin of 'separately-learnable channel' but not identical; correlational fMRI cannot show a GATING LEARNER benefits, and the channel funnels through a shared value node.",
+    "source_context": "Human fMRI with MVPA during selective devaluation of one of two value-matched food odours."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Strongest mapping_fidelity in the set for the separately-learnable angle, but still correlational and bottleneck-funnelled."
+  }
+}
