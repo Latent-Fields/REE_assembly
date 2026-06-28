@@ -46903,7 +46903,45 @@
   # status / epistemic_category / implementation_phase UNCHANGED (NOT a promotion --
   # /implement-substrate registration, PROMOTES NOTHING). See implementation_note + substrate_queue.json sd_id v4_loop_segregation.
   assembly_status: in_progress
-  awaiting: v4_loop_segregation_validation_V3_EXQ_707
+  awaiting: arc110_per_named_channel_range_preserving_routing_into_loops_then_707_successor
+  validation_note: >
+    V3-EXQ-707 (first ARC-110 validation, 2026-06-28) returned non_contributory /
+    substrate_not_ready_requeue (PROMOTES NOTHING; in_layer null verify-lift met on only
+    1/2 divergent seeds). A code autopsy of WHY ARM_DROP_LIMBIC was BYTE-IDENTICAL to
+    A1_LOOPS on all 6 seeds found the segregated loops NEVER RECEIVED the named cortical
+    channels they are supposed to partition -- so neither C1 (loop conversion) nor C2
+    (limbic load-bearing) actually exercised the intended motor/associative/limbic
+    decomposition. Three stacked defects:
+    (1) DEFECT FIXED 2026-06-28 -- ree-v3/ree_core/agent.py built its finer per-head
+    channel dict gated on the TOP-LEVEL config.use_finer_channel_gating (never set in
+    ree_core -> always False) while the e3.select() consumer reads
+    config.e3.use_finer_channel_gating; net: the MECH-451 named decomposition
+    (ofc/dacc/lpfc/vigour/liking/gated_policy) was ALWAYS None reaching the selector, so
+    only the lumped residual/mech341/route reached the loops -- all mapped to the default
+    (associative) loop, leaving the limbic loop EMPTY in every arm (its nonzero pref_range
+    was a settling-on-zeros artefact). The DROP-LIMBIC ablation (which only remaps
+    ofc/liking/vigour) was therefore a no-op. Fixed to read config.e3.* (regression test
+    ree-v3/tests/test_arc110_loop_segregation.py).
+    (2) The 707 driver did not enable the limbic-loop input modules (use_ofc_analog /
+    use_mech295_liking_bridge / use_tonic_vigor), so OFC/liking/vigour produced no bias at all.
+    (3) DEEPER SUBSTRATE BLOCKER (the C2 release blocker) -- even with Defect 1 fixed AND the
+    modules enabled, the named cortical bias heads emit per-candidate-FLAT output: OFC head
+    INPUT carries real per-candidate range (mean 0.028) but OUTPUT range is EXACTLY 0.0
+    (dacc/lpfc/vigour likewise 0.0; only gated_policy ~7e-4). Under per-loop zscore a flat
+    channel is inert, so the limbic loop carries no per-candidate competition and ablating it
+    is a no-op REGARDLESS of module enablement (verified: modules-on DROP still == A1
+    byte-identical). This is the MECH-191 phasic-externalisation gap: the only channels that
+    carry per-candidate range and actually drive the A1>A0 loop dynamics are the lumped
+    residual/mech341/route (the GAP-A project_channel_range-routed path), all in the
+    associative loop. CONSEQUENCE: 707's apparent C1 dynamics did NOT exercise the cortical
+    loop decomposition; the validation must be RE-RUN after the release condition below.
+    C2 is documented ABLATION-INERT / SUBSTRATE-BLOCKED (NOT a silent fail; load_bearing
+    stays false so it never gated the ARC-110 verdict).
+    RELEASE CONDITION (C2 testable): feed per-NAMED-channel range-preserving routed
+    representations (the project_channel_range / GAP-A path that already keeps `route`
+    phasic) into the segregated loops so the limbic channels carry per-candidate signal --
+    a substrate build, not a config flip. Then re-run a 707 successor with the limbic
+    modules enabled and assert per-tick committed index differs DROP-on vs DROP-off.
   psychiatric_failure_mode: >
     The segregated cortico-striatal loops are the substrate of the loop-specific CSTC
     (cortico-striato-thalamo-cortical) disorder axis: an OCD-like pathology localised to
@@ -47061,6 +47099,29 @@
     docs/architecture/mech_451_finer_channel_granularity.md; ree-v3/CLAUDE.md SD-Implemented entry;
     contracts tests/contracts/test_mech451_finer_channel_gating.py (12). Routed by
     failure_autopsy_V3-EXQ-700b_2026-06-24.
+  defect_note: >
+    SUBSTRATE DEFECT FOUND + FIXED 2026-06-28 (ARC-110 V3-EXQ-707 autopsy) -- the
+    EXP-0391 / V3-EXQ-704 / V3-EXQ-704b validations of this claim were CONFOUNDED and did
+    NOT exercise the hypothesis. ree-v3/ree_core/agent.py built the per-head finer-channel
+    dict (score_bias_channels) gated on the TOP-LEVEL config.use_finer_channel_gating,
+    which is never set anywhere in ree_core (always False), while the e3.select() consumer
+    reads config.e3.use_finer_channel_gating. Net: score_bias_channels was ALWAYS None
+    reaching the selector, so the named control channels (ofc/dacc/lpfc/vigour/liking/
+    gated_policy) were NEVER separated -- they were all fused into the single `residual`
+    term. The A2_FINER_CHANNELS arm therefore tested only a residual/mech341/route
+    3-way split, NOT the OFC/dACC/lPFC/vigour/liking decomposition this claim asserts.
+    The 704/704b FAIL-to-convert is consequently NOT evidence about named-channel
+    granularity, and the "finer-channel leg" of failure_autopsy_704b-706b-conversion-ceiling
+    (the routing to ARC-110) rests on an untested mechanism for THIS claim (the curiosity
+    leg, 706/706b, is UNAFFECTED -- curiosity rides the residual lump, which always reached
+    the selector). Fixed at agent.py to read config.e3.use_finer_channel_gating; verified
+    the named channels now reach the selector as separable _lcg_terms; regression guard
+    ree-v3/tests/test_arc110_loop_segregation.py (TestFinerChannelsReachSelector). MECH-451
+    is effectively UNTESTED: pending_retest_after_substrate stays true; the retest must (a)
+    run post-fix and (b) assert >=1 named channel reaches the selector with non-zero
+    per-candidate range BEFORE scoring conversion (note: the named bias heads currently emit
+    per-candidate-FLAT output -- see ARC-110 validation_note Defect 3 / MECH-191 -- so a
+    genuine MECH-451 retest is itself gated on the channels carrying per-candidate range).
   psychiatric_failure_mode: >
     A learner that can only re-weight a PRE-COMPRESSED control blend cannot
     dissociate the control functions that compression fused -- it cannot learn that

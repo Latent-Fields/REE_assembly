@@ -8,7 +8,7 @@ nav_exclude: true
 **Substrate / queue id:** `v4_loop_segregation`
 **Owning claim:** ARC-110 (this is ARC-110's build design-of-record, NOT a new claim)
 **Subject:** `selection.parallel_segregated_loops`
-**Status:** IMPLEMENTED 2026-06-27 (gate cleared by V3-EXQ-704b FAIL-to-convert; built full-scope via /implement-substrate; PROMOTES NOTHING -- validation experiment pending)
+**Status:** IMPLEMENTED 2026-06-27; VALIDATION V3-EXQ-707 non_contributory (2026-06-28) -- a finer-channel plumbing DEFECT (now fixed) meant the segregated loops never received the named cortical channels; C2 substrate-blocked. See "VALIDATION + DEFECT 2026-06-28" below. PROMOTES NOTHING.
 **Generation:** V3 — REAPPOINTED V4->V3 2026-06-24 (user-directed; recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439). Filename / substrate id `v4_loop_segregation` retained for cross-ref stability; the substrate is V3-generation.
 **Gate:** V3-EXQ-704 (MECH-451 finer-channel-granularity pre-emption falsifier). Build proceeds only if 704 fails to convert non-motor influence to committed action on the single arena; a 704 PASS means the ceiling was representational compression and this loop build is PRE-EMPTED.
 **Registered:** 2026-06-24
@@ -39,6 +39,56 @@ this is the **positive-evidence-FOR-ARC-110** outcome (representational compress
 binding constraint), so the gate OPENS rather than pre-empts. Corroborated by V3-EXQ-706b (first
 fully-valid double-gated MECH-314 test, curiosity 0.967 < F-only 1.029 < valid null 1.019).
 Cluster autopsy: `evidence/planning/failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.{md,json}`.
+
+> **CORRECTION 2026-06-28 (V3-EXQ-707 autopsy):** the claim above that 704b "ran the finer
+> channels correctly" is WRONG. A plumbing defect (see below) meant the NAMED cortical
+> channels (ofc/dacc/lpfc/vigour/liking) never reached the selector -- the "channels
+> dissociated 0.0087" figure was over the lumped residual/mech341/route 3-way split, NOT the
+> named decomposition. 704b's finer-channel leg therefore did not exercise MECH-451's
+> hypothesis, and the gate it "cleared" rests (for the MECH-451 leg) on an untested mechanism.
+> The curiosity leg (706/706b, MECH-314) is UNAFFECTED -- curiosity rides `residual`, which
+> always reached the selector. The escalation to a loop build is not retracted (the curiosity
+> leg stands), but the MECH-451 pre-emption test must be RE-RUN post-fix.
+
+## VALIDATION + DEFECT 2026-06-28 (V3-EXQ-707)
+
+V3-EXQ-707 (first ARC-110 validation) returned **non_contributory / substrate_not_ready_requeue**
+(PROMOTES NOTHING). `ARM_DROP_LIMBIC` was **byte-identical to `A1_LOOPS` on all 6 seeds**, making
+the C2 (limbic loop load-bearing) criterion untestable. Code autopsy found three stacked defects:
+
+1. **DEFECT (FIXED 2026-06-28).** `ree-v3/ree_core/agent.py` built its per-head finer-channel
+   dict (`score_bias_channels`) gated on the TOP-LEVEL `self.config.use_finer_channel_gating`,
+   which is **never set anywhere in `ree_core`** (always False), while the `e3.select()` consumer
+   and the selector both read `config.e3.use_finer_channel_gating`. Net: `score_bias_channels`
+   was **always None** reaching the selector -> the MECH-451 named decomposition
+   (ofc/dacc/lpfc/vigour/liking/gated_policy) never reached the loop arbitration; only the lumped
+   `residual`/`mech341`/`route` did, all mapped to the **default (associative)** loop. The limbic
+   loop was **empty in every arm** (its nonzero `pref_range` was a settling-on-zeros artefact), so
+   the DROP-LIMBIC ablation (which only remaps ofc/liking/vigour) was a no-op. **Fixed** to read
+   `config.e3.use_finer_channel_gating`. Regression guard:
+   `ree-v3/tests/test_arc110_loop_segregation.py`.
+2. The 707 driver did not enable the limbic-loop input modules
+   (`use_ofc_analog` / `use_mech295_liking_bridge` / `use_tonic_vigor`).
+3. **DEEPER BLOCKER (the C2 release gate).** Even with Defect 1 fixed AND the modules enabled, the
+   named cortical bias heads emit **per-candidate-FLAT output**: the OFC head's INPUT carries real
+   per-candidate range (mean 0.028) but its OUTPUT range is **exactly 0.0** (dacc/lpfc/vigour
+   likewise; only gated_policy ~7e-4). Under per-loop zscore a flat channel is inert, so the limbic
+   loop carries no per-candidate competition and ablating it is a no-op **regardless of module
+   enablement** (verified: modules-on `DROP` still == `A1` byte-identical). This is the MECH-191
+   phasic-externalisation gap -- the only channels carrying per-candidate range (and thus driving
+   the apparent A1>A0 loop dynamics) are the lumped residual/mech341/route (the GAP-A
+   `project_channel_range`-routed path), all in the associative loop.
+
+**Consequence.** 707's apparent C1 (loop conversion) dynamics did NOT exercise the cortical
+motor/associative/limbic decomposition; the whole validation must be re-run after the release
+condition. **C2 is documented ABLATION-INERT / SUBSTRATE-BLOCKED** (not a silent fail;
+`load_bearing` stays false so it never gated the ARC-110 verdict).
+
+**RELEASE CONDITION (C2 testable).** Feed per-NAMED-channel range-preserving routed
+representations (the `project_channel_range` / GAP-A path that already keeps `route` phasic) into
+the segregated loops so the limbic channels carry per-candidate signal -- a substrate build, not a
+config flip. Then re-run a 707 successor with the limbic modules enabled and assert the per-tick
+committed index differs DROP-on vs DROP-off.
 
 **Built (user chose full scope 2026-06-27):** all four pieces, all behind no-op-default flags,
 byte-identical OFF (ARC-106 G2 reuse-the-mechanism, parallel buffers).
