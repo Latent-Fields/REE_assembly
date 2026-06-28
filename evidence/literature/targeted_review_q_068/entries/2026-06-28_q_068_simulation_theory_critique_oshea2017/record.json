@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_068",
+  "entry_id": "2026-06-28_q_068_simulation_theory_critique_oshea2017",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-068"],
+  "source": {
+    "title": "Does Motor Simulation Theory Explain the Cognitive Mechanisms Underlying Motor Imagery? A Critical Review.",
+    "authors": ["Helen O'Shea", "Aidan Moran"],
+    "year": 2017,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2017.00072"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "A critical review arguing that the psychological mechanisms underlying motor imagery are poorly understood and that simulation theory's terminology needs sharper conceptual and empirical delineation. For Q-068 this is double-edged: the call to precisely delineate action-related cognitive states supports the case for an EXPLICIT, well-specified graded vocabulary (vague write-profiles risk the same under-specification the authors criticise), while the conclusion that the simulated-vs-executed relationship is not cleanly resolved cautions against over-committing to any particular fixed taxonomy. Confidence is the lowest of the three Q-068 entries because it is a conceptual critique that adjudicates nothing empirically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Leaving action-status distinctions implicit and under-defined (the 'write-profiles will sort it out' option) reproduces exactly the conceptual vagueness the authors fault simulation theory for; an unspecified status scheme inherits that failure mode.",
+    "Equally, committing hard to a particular five-way taxonomy as settled fact would overstate a relationship the review says is still poorly understood -- the evidence does not license treating any fixed vocabulary as established."
+  ],
+  "tags": ["q-068", "motor_imagery", "simulation_theory", "conceptual_critique", "terminology", "action_status", "functional_equivalence", "mech-094"],
+  "mapping": {
+    "source_claim_statement": "Critically reviewing the evidence cited for motor-simulation theory, the authors conclude that the psychological mechanisms underlying motor imagery are poorly understood, that relevant terminology (simulation, emulation, functional equivalence) requires clearer conceptual and empirical delineation, and that the functional-equivalence between imagery and execution is less settled than often assumed.",
+    "ree_translation": "Q-068 weighs an explicit first-class action-status vocabulary against relying on MECH-094 write-profiles plus the MECH-061 commit token. This critique cuts both ways: the demand to delineate action-related cognitive states precisely supports making the vocabulary explicit and well-defined (an implicit, profile-derived scheme risks the same vagueness the authors criticise), while the verdict that the simulated-vs-executed relationship is not cleanly resolved warns against hard-coding any single fixed taxonomy as settled -- i.e. keep the vocabulary explicit but revisable, consistent with Q-068's substrate-conditional, V4 status.",
+    "mapping_caveat": "Purely conceptual; it neither tests the action-status gradient nor REE's substrate, and addresses imagery vs execution rather than the full simulated/rehearsed/intended/committed/acted vocabulary or self_reference_frame. It informs the meta-question (should the distinctions be explicit and well-specified?) more than the object-level partition.",
+    "source_context": "Cognitive-level critical review of motor simulation theory and motor-imagery research."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Useful as the skeptical counterweight on whether the action-status distinctions are settled enough to formalise; conceptual rather than empirical, so it shapes how to frame Q-068's vocabulary rather than resolving it."
+  }
+}

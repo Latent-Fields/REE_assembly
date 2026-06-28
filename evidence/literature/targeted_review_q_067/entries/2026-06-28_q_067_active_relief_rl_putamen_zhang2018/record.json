@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_067",
+  "entry_id": "2026-06-28_q_067_active_relief_rl_putamen_zhang2018",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-067"],
+  "source": {
+    "title": "The control of tonic pain by active relief learning.",
+    "authors": ["Suyi Zhang", "Hiroaki Mano", "Michael Lee", "Wako Yoshida", "Mitsuo Kawato", "Trevor W. Robbins", "Ben Seymour"],
+    "year": 2018,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.31949"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "A human computational-neuroimaging study that models active relief-seeking explicitly as a reinforcement-learning process with reward-prediction-error signals in dorsal putamen and an associability (uncertainty) signal in pregenual ACC that gates the relief learning rate. This is a near one-to-one structural match for REE's MECH-375 Q_relief term (action-contingent escape credit learned by RL prediction error). Confidence held below 0.8 because the task is tonic-pain relief in humans, not a committed navigational escape, and because it models the relief component in isolation -- it does not contrast relief against a safety/threat-absence predictor, so it speaks to one arm of Q-067's decomposition rather than to the relief-vs-safety discriminator.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Relief-seeking that is modelled without an RL error term would fail to reproduce the dorsal-putamen prediction-error signature this study reports; a fixed (non-trainable) escape bridge therefore cannot capture the associability-modulated relief dynamics.",
+    "The study isolates the relief/active-escape arm and does not include a safety predictor, so it cannot show whether relief alone suffices when a fixed bridge is insufficient."
+  ],
+  "tags": ["q-067", "relief_learning", "reinforcement_learning", "prediction_error", "dorsal_putamen", "pregenual_acc", "associability", "mech-375", "escape"],
+  "mapping": {
+    "source_claim_statement": "In two human escape-learning experiments (static and dynamic), active relief-seeking from tonic pain is implemented as a reinforcement-learning process: relief prediction errors are observed in dorsal putamen, and an associability/uncertainty signal in pregenual anterior cingulate cortex both sets the relief learning rate and parametrically modulates the ongoing level of tonic pain.",
+    "ree_translation": "This is the biological template for REE's MECH-375 Q_relief successor -- action-contingent escape credit acquired by reinforcement learning. The putamen prediction-error signal corresponds to the trainable relief-credit term REE would add on top of the fixed escape bridge, and the pgACC associability signal corresponds to an uncertainty-gated learning-rate on that term. The finding that relief learning is an active, error-driven, uncertainty-modulated RL process (not a static affordance) supports building Q_relief as a trainable head rather than relying on the fixed first-action-class bridge.",
+    "mapping_caveat": "The paper models the relief arm only; it includes no safety/threat-absence predictor and so cannot adjudicate relief-only vs safety-only vs both-required -- it strengthens the case that the relief component is genuinely a learnable RL term but does not show it is the missing piece. Domain is tonic-pain offset in humans, not committed spatial escape.",
+    "source_context": "Healthy adult humans; static and dynamic escape-learning tasks under tonic thermal/pressure pain; fMRI + computational RL modelling."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.38,
+    "notes": "Strong venue and converging behavioural/physiological/imaging evidence with an explicit RL model; mapping is high for the Q_relief arm specifically but does not reach the relief-vs-safety contrast. Human tonic-pain domain transfers only moderately to a committed-escape agent."
+  }
+}

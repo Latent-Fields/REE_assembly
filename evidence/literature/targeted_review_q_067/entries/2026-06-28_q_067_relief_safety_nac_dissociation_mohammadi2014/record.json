@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_067",
+  "entry_id": "2026-06-28_q_067_relief_safety_nac_dissociation_mohammadi2014",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-067"],
+  "source": {
+    "title": "Relief learning is distinguished from safety learning by the requirement of the nucleus accumbens.",
+    "authors": ["Milad Mohammadi", "Jorge R. Bergado-Acosta", "Markus Fendt"],
+    "year": 2014,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2014.06.053"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct causal double-dissociation at the substrate level: muscimol inactivation of the nucleus accumbens abolished relief learning but left safety learning intact. This is the strongest available empirical warrant that relief (cessation-contingent) and safety (explicitly-unpaired threat-absence) are neuronally distinct learning processes, which is exactly the premise Q-067 needs before a relief-only / safety-only / both-required decomposition is meaningful. Confidence held below 0.8 by the rodent->REE transfer (startle-potentiation readout, not committed escape action) and by the fact that the paper establishes separability, not which component is the limiting one when a fixed escape bridge is insufficient.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a single shared substrate carried both relief and safety, NAC inactivation would have impaired both; instead only relief was abolished, so a substrate that conflates the two (a single escape-credit channel doubling as threat-absence predictor) would be mis-specified.",
+    "The dissociation is shown for acquisition under a startle-potentiation readout; it does not by itself demonstrate that the relief component is the missing piece when a directed-escape bridge fails."
+  ],
+  "tags": ["q-067", "relief_learning", "safety_learning", "nucleus_accumbens", "dissociation", "escape", "mech-375", "mech-376"],
+  "mapping": {
+    "source_claim_statement": "Temporary muscimol inactivation of the nucleus accumbens during conditioning abolished relief learning (association of a cue with the cessation/offset of an aversive event) while leaving safety learning (cue explicitly unpaired with the aversive event) intact, showing the two are neuronally distinct forms of learning.",
+    "ree_translation": "Q-067 asks whether the structure missing from REE's fixed escape-affordance bridge is relief-only (action/cessation-contingent escape credit, MECH-302/SD-050 -> trainable MECH-375 Q_relief) versus safety-only (prospective threat-absence prediction, MECH-303/304 -> trainable MECH-376 P_safety) versus both. This paper supplies the biological precondition for that question: relief and safety are carried by separable circuits, so building two trainable successors (Q_relief, P_safety) and training the weak one first is substrate-faithful rather than a redundant split of one mechanism.",
+    "mapping_caveat": "The paper demonstrates separability of the two learning types but not a rank ordering of which is rate-limiting; it cannot directly answer the relief-only vs safety-only vs both-required discriminator. The readout is conditioned startle modulation in rats, not a committed instrumental escape action, so the action-contingency that defines REE's relief component is only indirectly engaged.",
+    "source_context": "Sprague-Dawley rats; intra-accumbens muscimol; fear-potentiated / relief-modulated acoustic startle paradigm."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "Clean causal manipulation with an appropriate control (safety learning preserved), but rodent startle readout and acquisition-only scope raise moderate transfer risk to REE's committed-escape setting."
+  }
+}

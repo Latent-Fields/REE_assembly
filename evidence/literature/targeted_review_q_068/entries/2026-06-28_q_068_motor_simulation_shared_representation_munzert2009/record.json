@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_068",
+  "entry_id": "2026-06-28_q_068_motor_simulation_shared_representation_munzert2009",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-068"],
+  "source": {
+    "title": "Cognitive motor processes: the role of motor imagery in the study of motor representations.",
+    "authors": ["Jorn Munzert", "Britta Lorey", "Karen Zentgraf"],
+    "year": 2009,
+    "venue": "Brain Research Reviews",
+    "doi": "10.1016/j.brainresrev.2008.12.024"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "A review of motor-imagery evidence for Jeannerod's mental-simulation theory: imagined, observed and executed actions share core motor representations (including primary motor cortex activation during imagery) and differ chiefly in whether execution is gated. This is genuinely mixed evidence for Q-068 -- the shared-representation finding argues that simulated/intended/acted are NOT separate machinery (favouring the MECH-094 write-profile view, where one representation written under different profiles suffices), while the systematic behavioural/temporal differences between imagery and execution argue the statuses are nonetheless distinguishable. Confidence moderate: a synthesis review, and its imagery-vs-execution axis covers only part of the five-way vocabulary.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If simulated and executed actions required wholly separate representations, the consistent overlap (including M1 activation and matched mental/actual movement durations) reported here would not occur -- so a design that hard-separates every action-status into independent machinery would over-fragment what is biologically one core representation differentiated by gating.",
+    "Conversely, the measurable mental-vs-actual timing and performance differences mean a model that treats simulation and execution as identical (no status distinction at all) would also be wrong; the review does not specify how many discrete statuses are warranted."
+  ],
+  "tags": ["q-068", "motor_imagery", "simulation_theory", "shared_representation", "functional_equivalence", "action_status", "mech-094", "mech-061"],
+  "mapping": {
+    "source_claim_statement": "Behavioural, fMRI and TMS evidence supports mental-simulation theory: motor imagery, action observation and motor execution share the same motor representations -- motor areas including primary motor cortex are active during imagery, and mental performance durations closely match actual durations -- with the principal difference being that overt execution is gated/inhibited during imagery.",
+    "ree_translation": "Bearing on Q-068's core tension: if simulated, intended and executed actions are one shared representation differentiated mainly by an execution gate, then REE's MECH-094 simulation/commit write-profiles plus the MECH-061 commit-boundary token (which is essentially an execution-gate marker on a shared representation) may already carry the distinction without a separate first-class status vocabulary. The shared-representation evidence thus partly weakens the case for an explicit graded vocabulary, while the reliably measurable imagery-vs-execution differences keep the distinction real -- supporting that the statuses exist but can be read off gating rather than stored as independent annotations.",
+    "mapping_caveat": "The review's axis is imagery vs observation vs execution; it does not separately treat rehearsed vs intended vs committed, nor self_reference_frame, so it informs the simulated/acted endpoints of Q-068 but not the middle distinctions. 'Shared representation' is a claim about overlap, not identity -- it does not prove write-profiles are sufficient, only that a single-core-plus-gating account is biologically plausible.",
+    "source_context": "Human cognitive-neuroscience review; motor imagery behavioural studies, fMRI and TMS."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.42,
+    "notes": "Solid synthesis review directly on the simulated-vs-executed question, but only the endpoints of Q-068's gradient; the mixed direction is intrinsic to the evidence, not a weakness of the source."
+  }
+}

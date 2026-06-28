@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_068",
+  "entry_id": "2026-06-28_q_068_bereitschaftspotential_stages_shibasaki2006",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-068"],
+  "source": {
+    "title": "What is the Bereitschaftspotential?",
+    "authors": ["Hiroshi Shibasaki", "Mark Hallett"],
+    "year": 2006,
+    "venue": "Clinical Neurophysiology",
+    "doi": "10.1016/j.clinph.2006.04.025"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "An authoritative review of the readiness-potential literature establishing that the path from intention to executed movement is carried by neurally distinct, separately-modulable stages (early BP in pre-SMA/SMA ~2s before onset, reflecting subconscious readiness; late BP in M1/lateral premotor ~400ms before onset, modulated specifically by movement complexity). This supports Q-068's premise that graded action-statuses (rehearsed/intended/committed/acted) correspond to real, separable structural distinctions rather than arbitrary labels. Confidence is moderate because the BP axis maps onto the prepare->commit->execute tail of REE's gradient, not the simulated/rehearsed/intended distinctions at the covert end, and because human EEG of voluntary movement transfers only loosely to an agent's action-status annotation scheme.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model that treats 'about to act' as a single undifferentiated state cannot reproduce the early-BP / late-BP dissociation (different generators, different modulation by complexity); collapsing prepare and commit into one status loses a distinction the substrate actually makes.",
+    "The BP literature characterises the preparation-to-execution tail but is largely silent on the simulated-vs-rehearsed-vs-intended distinctions at the covert end of Q-068's gradient, and on self-reference-frame switching entirely."
+  ],
+  "tags": ["q-068", "bereitschaftspotential", "readiness_potential", "motor_preparation", "action_status", "graded_action", "commitment", "mech-061", "mech-094"],
+  "mapping": {
+    "source_claim_statement": "The Bereitschaftspotential preceding self-initiated movement decomposes into an early component (beginning ~2s before onset in pre-SMA and SMA, site-non-specific, reflecting slowly increasing cortical excitability / subconscious readiness) and a late component (~400ms before onset in contralateral M1 and lateral premotor cortex, with precise somatotopy, selectively enhanced by movement complexity), i.e. preparation-to-execution is carried by temporally and anatomically distinct, differentially modulated stages.",
+    "ree_translation": "Q-068 asks whether REE needs an explicit graded action-status vocabulary (simulated != rehearsed != intended != committed != acted) as a first-class annotation, or whether MECH-094 write-profiles plus the MECH-061 commit-boundary token already suffice. The BP evidence supports the premise that the later statuses (intended -> committed -> acted) are not a single state but neurally distinct stages, which argues that a graded annotation captures real structure -- the commit boundary (MECH-061) sits on a genuine transition (early->late BP / readiness->execution) rather than marking an arbitrary cut.",
+    "mapping_caveat": "The BP indexes the preparation/commitment/execution tail of the gradient and says little about the covert end (simulated vs rehearsed vs intended) or about self_reference_frame switching; it shows the *later* statuses are separable but does not establish that REE must annotate the *full* five-way vocabulary as first-class rather than deriving the finer distinctions from write-profiles.",
+    "source_context": "Human scalp EEG and epicortical recordings of self-initiated voluntary movement; movement-related cortical potentials."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality canonical review, but it covers only the prepare/commit/execute tail of Q-068's gradient; mapping fidelity is limited by silence on the covert-status distinctions and self-reference frames that are the harder part of the claim."
+  }
+}

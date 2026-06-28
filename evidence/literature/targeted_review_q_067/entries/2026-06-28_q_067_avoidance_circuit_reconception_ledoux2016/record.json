@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_067",
+  "entry_id": "2026-06-28_q_067_avoidance_circuit_reconception_ledoux2016",
+  "timestamp_utc": "2026-06-28T06:04:45Z",
+  "claim_ids_tested": ["Q-067"],
+  "source": {
+    "title": "The birth, death and resurrection of avoidance: a reconceptualization of a troubled paradigm.",
+    "authors": ["Joseph E. LeDoux", "Justin Moscarello", "Robert Sears", "Vincent Campese"],
+    "year": 2016,
+    "venue": "Molecular Psychiatry",
+    "doi": "10.1038/mp.2016.166"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "A high-profile theoretical review whose central thesis directly licenses Q-067's decomposition strategy: the reinforcing event in instrumental avoidance should be reconceived as specific cellular/circuit events rather than as a vague global 'fear reduction', and defensive reactions, instrumental actions and habits are carried by distinct circuits. This is conceptual rather than experimental support, so confidence is moderate; it justifies the *form* of the relief/safety split (decompose the lumped reinforcer into mechanism-specific components) without supplying a direct experimental contrast.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Treating the escape-bridge reinforcer as a single undifferentiated 'fear reduction' quantity is the exact move the review argues against; an REE design that lumps relief and safety into one credit term inherits the conceptual incoherence the authors document.",
+    "As a review it offers no quantitative contrast and cannot itself adjudicate which decomposed component is rate-limiting."
+  ],
+  "tags": ["q-067", "avoidance", "two_factor_theory", "fear_reduction", "circuit_specificity", "relief", "safety", "decomposition"],
+  "mapping": {
+    "source_claim_statement": "Classic two-factor theory's account of avoidance -- that instrumental responses are reinforced by 'fear reduction' -- should be replaced: the reinforcing event is better understood as specific cellular and molecular events in defined circuits, and defensive reactions (freezing), instrumental actions (avoidance) and habits are controlled by distinct, dissociable circuits operating non-consciously.",
+    "ree_translation": "Q-067 is, in REE terms, an instance of exactly the reconceptualisation this review urges: do not treat the escape-bridge's reinforcing signal as one lumped 'fear/harm reduction' quantity, but decompose it into mechanism-specific components -- action-contingent relief credit (MECH-375 Q_relief) and prospective threat-absence safety prediction (MECH-376 P_safety) -- and attribute each to its own trainable channel. The review's claim that the instrumental reinforcer is circuit-specific (and distinct from Pavlovian defensive reactions) supports building these as separate successors rather than tuning a single escape value.",
+    "mapping_caveat": "This is a conceptual/theoretical review, not an experiment; it argues for mechanism-specific decomposition in general but does not test the relief-vs-safety split specifically, nor identify which component limits REE's escape bridge. Its 'distinct circuits' taxonomy (reactions/actions/habits) is adjacent to, not identical with, REE's relief/safety axis.",
+    "source_context": "Conceptual review spanning rodent and human avoidance literature; reframes two-factor theory in circuit/cellular terms."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Authoritative and directly on-point for the decomposition rationale, but conceptual rather than empirical; the review's primary axis (reactions/actions/habits) overlaps only partially with REE's relief/safety axis, lowering mapping fidelity and raising transfer risk."
+  }
+}

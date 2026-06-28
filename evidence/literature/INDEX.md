@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-06-27T06:12:06.190532Z`
+Generated: `2026-06-28T06:09:28.772052Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -304,6 +304,8 @@ Generated: `2026-06-27T06:12:06.190532Z`
 | `targeted_review_q_063` | [`2026-06-23_q_063_relief_release_symptom_provocation_banca2015`](targeted_review_q_063/entries/2026-06-23_q_063_relief_release_symptom_provocation_banca2015/record.json) | 3 | [`summary`](targeted_review_q_063/entries/2026-06-23_q_063_relief_release_symptom_provocation_banca2015/summary.md) |
 | `targeted_review_q_064` | [`2026-06-24_q_064_trauma_hitop_disaggregation_levinaspenson2024`](targeted_review_q_064/entries/2026-06-24_q_064_trauma_hitop_disaggregation_levinaspenson2024/record.json) | 4 | [`summary`](targeted_review_q_064/entries/2026-06-24_q_064_trauma_hitop_disaggregation_levinaspenson2024/summary.md) |
 | `targeted_review_q_066` | [`2026-06-27_q_066_rram_reliability_zhao2020`](targeted_review_q_066/entries/2026-06-27_q_066_rram_reliability_zhao2020/record.json) | 4 | [`summary`](targeted_review_q_066/entries/2026-06-27_q_066_rram_reliability_zhao2020/summary.md) |
+| `targeted_review_q_067` | [`2026-06-28_q_067_relief_safety_nac_dissociation_mohammadi2014`](targeted_review_q_067/entries/2026-06-28_q_067_relief_safety_nac_dissociation_mohammadi2014/record.json) | 3 | [`summary`](targeted_review_q_067/entries/2026-06-28_q_067_relief_safety_nac_dissociation_mohammadi2014/summary.md) |
+| `targeted_review_q_068` | [`2026-06-28_q_068_simulation_theory_critique_oshea2017`](targeted_review_q_068/entries/2026-06-28_q_068_simulation_theory_critique_oshea2017/record.json) | 3 | [`summary`](targeted_review_q_068/entries/2026-06-28_q_068_simulation_theory_critique_oshea2017/summary.md) |
 | `targeted_review_q_079` | [`2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/record.json) | 5 | [`summary`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
