@@ -1,0 +1,116 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_707_arc110_loop_segregation_validation",
+  "run_id": "v3_exq_707_arc110_loop_segregation_validation_20260628T071517Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-28T07:15:17Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-110"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "ARC-110": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "number of seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0 + A1 + ARM_NOISE) >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating; too few => substrate_not_ready_requeue (pool too collapsed to test conversion).",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "loops_carry_live_cross_loop_variance",
+        "kind": "readiness",
+        "description": "ARC-110 NON-DEGENERACY guard (what_would_answer): on A1_LOOPS a non-motor loop must FLIP the within-eligible winner (loop_committed_neq_motor_winner) or the loops must DISAGREE (loop_cross_loop_winner_disagreement) on a non-trivial fraction of P2 ticks, AND a non-motor loop must carry per-loop preference RANGE > 0 -- on a majority of seeds. A loop pinned to the motor winner is a vacuous split => substrate_not_ready_requeue. measured = min across A1 seeds of the flip fraction.",
+        "control": "A1_LOOPS loop_frac_committed_neq_motor / loop_frac_disagree + per-loop pref range",
+        "measured": 0.370135,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "in_layer_null_verified_lifting",
+        "kind": "readiness",
+        "description": "the S2 IN-LAYER same-layer null (ARM_NOISE: magnitude-matched random structure at the non-motor loop accumulators) lifts committed-class entropy strict-above A0 by margin on a strict-majority of DIVERGENT seeds. This is the SAME-LAYER null the single arena could NOT construct (704b/706b binding constraint). A null that does NOT verify-lift makes the strict-above bar meaningless (569g/700b lesson); on the loop substrate a non-lifting null means the null-validity problem PERSISTS => substrate_not_ready_requeue (NOT a weakens). measured = n seeds the null lifts.",
+        "control": "ARM_NOISE committed-class entropy vs A0, divergent seeds, paired",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "met": false
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable_delta_nonflat",
+        "kind": "readiness",
+        "description": "on A1_LOOPS the finer w_chan_finer entries MOVED + carry cross-channel range above floor AND the signed-RPE delta_t carries cross-tick variance, on a majority of seeds -- learning is engaged (else the loops are reading an un-trained gate). Below floor => substrate_not_ready_requeue.",
+        "control": "A1 fcg_w_chan_finer_range_max + fcg_delta_t_std",
+        "measured": 0.0009914,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "candidate_pool_divergent",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds (GAP-A non-vacuity).",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.026277,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_A1_loops_strict_above_A0_and_in_layer_null",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_limbic_loop_load_bearing_A1_above_drop_limbic",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": false,
+      "enough_divergent_seeds": true,
+      "loops_carry_live_cross_loop_variance": true,
+      "in_layer_null_verified_lifting": false,
+      "learning_engaged": true,
+      "crf_matured": true
+    }
+  }
+}
