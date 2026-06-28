@@ -8,7 +8,7 @@ nav_exclude: true
 **Substrate / queue id:** `v4_loop_segregation`
 **Owning claim:** ARC-110 (this is ARC-110's build design-of-record, NOT a new claim)
 **Subject:** `selection.parallel_segregated_loops`
-**Status:** IMPLEMENTED 2026-06-27; VALIDATION V3-EXQ-707 non_contributory (2026-06-28) -- a finer-channel plumbing DEFECT (now fixed) meant the segregated loops never received the named cortical channels; C2 substrate-blocked. See "VALIDATION + DEFECT 2026-06-28" below. PROMOTES NOTHING.
+**Status:** IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving routing) LANDED 2026-06-28** -- the limbic loop now carries per-candidate range so C2 (limbic load-bearing) is testable. Validation re-queued as V3-EXQ-707b (supersedes 707/707a). See "VALIDATION + DEFECT 2026-06-28" and "C2 RELEASE LANDED 2026-06-28" below. PROMOTES NOTHING.
 **Generation:** V3 — REAPPOINTED V4->V3 2026-06-24 (user-directed; recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439). Filename / substrate id `v4_loop_segregation` retained for cross-ref stability; the substrate is V3-generation.
 **Gate:** V3-EXQ-704 (MECH-451 finer-channel-granularity pre-emption falsifier). Build proceeds only if 704 fails to convert non-motor influence to committed action on the single arena; a 704 PASS means the ceiling was representational compression and this loop build is PRE-EMPTED.
 **Registered:** 2026-06-24
@@ -89,6 +89,37 @@ representations (the `project_channel_range` / GAP-A path that already keeps `ro
 the segregated loops so the limbic channels carry per-candidate signal -- a substrate build, not a
 config flip. Then re-run a 707 successor with the limbic modules enabled and assert the per-tick
 committed index differs DROP-on vs DROP-off.
+
+## C2 RELEASE LANDED 2026-06-28 (per-named-channel routing)
+
+The release condition above is **BUILT** (via `/implement-substrate`, behind a no-op-default
+flag, byte-identical OFF). New `E3Config` flag **`use_named_channel_routing`**: when on (with
+loop segregation + finer-channel gating), each named channel's loop-arbitration term is sourced
+from its per-candidate REPRESENTATION routed through the parameter-free, range-preserving
+`project_channel_range` projection (the SAME GAP-A path that keeps the lumped `route` channel
+phasic) INSTEAD of its flattened bias-head scalar.
+
+| Piece | Flag (E3Config) | Where |
+|---|---|---|
+| Per-named-channel range-preserving routing into the segregated loops | `use_named_channel_routing` | `agent.select_action` captures each named channel's per-candidate representation (ofc/lpfc -> world-summaries [K,D]; liking -> goal-proximity [K]; vigour -> first-action one-hots [K,A]; dacc -> payoff/effort [K,2]; gated_policy -> summaries [K,D]) -> `project_channel_range` -> `score_bias_channel_routed` kwarg -> `e3_selector.select` builds a `loop_term_override` -> `_segregated_loop_arbitrate` substitutes the routed term for the flat scalar in the **loop accumulation only** |
+
+**Surgical scope.** The override changes ONLY the segregated-loop arbitration's view of the named
+channels. The `_lcg_terms` eligibility traces, the authority/shortlist `_modulatory_accum`
+recompose, and the F/score commit path are **all unchanged** -- so OFF is bit-identical and ON
+leaves the safety envelope (MECH-448/449) and the learned-gating machinery untouched. New
+diagnostics `loop_named_channel_routed_ranges` / `loop_limbic_routed_max_range` expose the
+per-named-channel routed per-candidate range for the C2 non-degeneracy gate. **Selection-only**
+(writes nothing to memory; MECH-094 not engaged). Regression guard:
+`ree-v3/tests/test_arc110_loop_segregation.py` (`TestNamedChannelRoutingC2Release` proves
+limbic-loop range > 0 + `DROP_LIMBIC != A1` once the routed terms carry range;
+`TestRoutedRepsReachSelectorThroughAgent` guards the agent.py capture+route plumbing).
+
+**Validation:** V3-EXQ-707b (`v3_exq_707b_arc110_loop_segregation_c2_release`, supersedes 707a)
+enables `use_named_channel_routing` + the limbic input modules on the loop arms and adds a
+per-NAMED-channel non-degeneracy precondition (`named_channel_routing_live`: a limbic channel's
+routed per-candidate range must clear a substantive floor on a strict-majority of divergent seeds)
+evaluated BEFORE C2 is scored -- so the vacuous DROP==A1 self-routes
+`substrate_not_ready_requeue`, never a false weakens. PROMOTES NOTHING.
 
 **Built (user chose full scope 2026-06-27):** all four pieces, all behind no-op-default flags,
 byte-identical OFF (ARC-106 G2 reuse-the-mechanism, parallel buffers).

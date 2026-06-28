@@ -46903,7 +46903,7 @@
   # status / epistemic_category / implementation_phase UNCHANGED (NOT a promotion --
   # /implement-substrate registration, PROMOTES NOTHING). See implementation_note + substrate_queue.json sd_id v4_loop_segregation.
   assembly_status: in_progress
-  awaiting: arc110_per_named_channel_range_preserving_routing_into_loops_then_707_successor
+  awaiting: v3_exq_707b_c2_release_validation_run_result
   validation_note: >
     V3-EXQ-707 (first ARC-110 validation, 2026-06-28) returned non_contributory /
     substrate_not_ready_requeue (PROMOTES NOTHING; in_layer null verify-lift met on only
@@ -46942,6 +46942,23 @@
     phasic) into the segregated loops so the limbic channels carry per-candidate signal --
     a substrate build, not a config flip. Then re-run a 707 successor with the limbic
     modules enabled and assert per-tick committed index differs DROP-on vs DROP-off.
+    C2 RELEASE LANDED 2026-06-28 (per-named-channel routing): the release condition is BUILT
+    via /implement-substrate behind a no-op-default E3Config flag use_named_channel_routing
+    (byte-identical OFF). When on (with loop segregation + finer gating) each named channel's
+    loop-arbitration term is sourced from its per-candidate REPRESENTATION (ofc/lpfc ->
+    world-summaries; liking -> goal-proximity; vigour -> first-action one-hots; dacc ->
+    payoff/effort; gated_policy -> summaries) routed through the parameter-free, range-preserving
+    project_channel_range (the SAME GAP-A path that keeps `route` phasic) INSTEAD of its flat
+    bias-head scalar -- substituted into the segregated-loop accumulation ONLY (the _lcg_terms
+    eligibility traces / authority recompose / F-score commit path are UNCHANGED). So the limbic
+    loop (ofc/liking/vigour) now carries REAL per-candidate range and ARM_DROP_LIMBIC can differ
+    from A1 -- C2 is testable. Regression guard ree-v3/tests/test_arc110_loop_segregation.py
+    (TestNamedChannelRoutingC2Release proves limbic range > 0 + DROP != A1 once routed terms
+    carry range; TestRoutedRepsReachSelectorThroughAgent guards the capture+route plumbing).
+    Validation re-queued as V3-EXQ-707b (v3_exq_707b_arc110_loop_segregation_c2_release,
+    supersedes 707a) with a per-NAMED-channel non-degeneracy precondition
+    (named_channel_routing_live) evaluated BEFORE C2 is scored so the vacuous DROP==A1
+    self-routes substrate_not_ready_requeue, never a false weakens. PROMOTES NOTHING.
   psychiatric_failure_mode: >
     The segregated cortico-striatal loops are the substrate of the loop-specific CSTC
     (cortico-striato-thalamo-cortical) disorder axis: an OCD-like pathology localised to
@@ -47122,6 +47139,15 @@
     per-candidate range BEFORE scoring conversion (note: the named bias heads currently emit
     per-candidate-FLAT output -- see ARC-110 validation_note Defect 3 / MECH-191 -- so a
     genuine MECH-451 retest is itself gated on the channels carrying per-candidate range).
+    C2 RELEASE 2026-06-28 (scope note): the ARC-110 per-named-channel routing release
+    (use_named_channel_routing) routes the named channels' per-candidate REPRESENTATIONS
+    (range-preserving, via project_channel_range) into the SEGREGATED-LOOP arbitration only --
+    it does NOT change the single-arena _lcg_terms / w_chan_finer learning path that THIS
+    claim's EXP-0391 (single shared arena) retest scores, where the named heads still emit flat
+    output. So the release unblocks the ARC-110 loop face (C2), NOT the MECH-451 single-arena
+    finer-channel-LEARNING retest; MECH-451 stays pending_retest_after_substrate. A genuine
+    single-arena MECH-451 retest still needs either trained non-flat named heads or an analogous
+    routing into the single-arena modulatory accumulator (not built here).
   psychiatric_failure_mode: >
     A learner that can only re-weight a PRE-COMPRESSED control blend cannot
     dissociate the control functions that compression fused -- it cannot learn that
