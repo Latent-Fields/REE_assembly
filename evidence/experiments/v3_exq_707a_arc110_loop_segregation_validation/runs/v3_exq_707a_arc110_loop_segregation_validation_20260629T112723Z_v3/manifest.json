@@ -1,0 +1,117 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_707a_arc110_loop_segregation_validation",
+  "run_id": "v3_exq_707a_arc110_loop_segregation_validation_20260629T112723Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-29T11:27:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-110"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-110": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "valid_null_loops_vary_but_no_conversion_ceiling_intrinsic_weakens_arc110",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "number of seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0 + A1 + ARM_NOISE) >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating; too few => substrate_not_ready_requeue (pool too collapsed to test conversion).",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "loops_carry_live_cross_loop_variance",
+        "kind": "readiness",
+        "description": "ARC-110 NON-DEGENERACY guard (what_would_answer): on A1_LOOPS a non-motor loop must FLIP the within-eligible winner (loop_committed_neq_motor_winner) or the loops must DISAGREE (loop_cross_loop_winner_disagreement) on a non-trivial fraction of P2 ticks, AND a non-motor loop must carry per-loop preference RANGE > 0 -- on a majority of seeds. A loop pinned to the motor winner is a vacuous split => substrate_not_ready_requeue. measured = min across A1 seeds of the flip fraction.",
+        "control": "A1_LOOPS loop_frac_committed_neq_motor / loop_frac_disagree + per-loop pref range",
+        "measured": 0.205258,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "in_layer_null_live",
+        "kind": "readiness",
+        "description": "707a FIX (supersedes in_layer_null_verified_lifting): the S2 IN-LAYER same-layer null (ARM_NOISE: magnitude-matched random structure at the non-motor loop accumulators) is a LIVE perturbation -- it actively perturbs the committed selection (loop_noise_active_ticks > 0 AND loop_frac_committed_neq_motor or loop_frac_disagree > the cross-loop-variance floor) on a strict-majority of DIVERGENT seeds. This is the SAME-LAYER null the single arena could NOT construct (704b/706b binding constraint); a null that does NOT reach the committed-class readout makes C1's strict-above-null bar meaningless => substrate_not_ready_requeue (NOT a weakens). The RETIRED 707 proxy required the null to LIFT entropy strict-above A0 -- the 700-lineage TEMPERATURE-null liveness test, INVALID for a structured-accumulator null: random magnitude-matched loop content lands at baseline, not above it (structured beats random; random ~ A0), so it spuriously requeued a valid result and made the WEAKENS branch unreachable. The path-artifact hypothesis is ruled out by C1 (A1 strict-above the live null), NOT by null-lift. measured = n divergent seeds the null is LIVE on (n_noise_lifts recorded separately for continuity, no longer gates).",
+        "control": "ARM_NOISE loop_frac_committed_neq_motor / loop_frac_disagree + loop_noise_active_ticks, divergent seeds",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable_delta_nonflat",
+        "kind": "readiness",
+        "description": "on A1_LOOPS the finer w_chan_finer entries MOVED + carry cross-channel range above floor AND the signed-RPE delta_t carries cross-tick variance, on a majority of seeds -- learning is engaged (else the loops are reading an un-trained gate). Below floor => substrate_not_ready_requeue.",
+        "control": "A1 fcg_w_chan_finer_range_max + fcg_delta_t_std",
+        "measured": 0.00119567,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "candidate_pool_divergent",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds (GAP-A non-vacuity).",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.036899,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_A1_loops_strict_above_A0_and_in_layer_null",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_limbic_loop_load_bearing_A1_above_drop_limbic",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": true,
+      "enough_divergent_seeds": true,
+      "loops_carry_live_cross_loop_variance": true,
+      "in_layer_null_live": true,
+      "learning_engaged": true,
+      "crf_matured": true,
+      "c2_drop_differs_from_a1": false
+    }
+  }
+}
