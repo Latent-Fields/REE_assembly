@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_110",
+  "entry_id": "2026-06-29_arc_110_parallel_loops_alexander1986",
+  "timestamp_utc": "2026-06-29T06:07:38Z",
+  "claim_ids_tested": ["ARC-110"],
+  "source": {
+    "title": "Parallel organization of functionally segregated circuits linking basal ganglia and cortex.",
+    "authors": ["G E Alexander", "M R DeLong", "P L Strick"],
+    "year": 1986,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.ne.09.030186.002041",
+    "url": "https://doi.org/10.1146/annurev.ne.09.030186.002041"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical, heavily replicated primate anatomical/physiological synthesis that is the explicit translation target named in the ARC-110 title. Source quality is very high (foundational review, thousands of confirmations). The mapping to ARC-110 is direct at the architectural level (separate motor / associative / limbic channels each with their own cortico-striatal-pallidal-thalamic re-entrant loop). Confidence is held below 0.9 only because the paper grounds the *organisational claim* (the loops exist and are segregated) and does not itself test the *functional consequence* ARC-110 asserts -- that running selection through separate channels relieves the single-arena F-dominance ceiling. That second step is REE's hypothesis, not Alexander et al.'s finding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Alexander et al. describe the loops as anatomically segregated at the macro scale but explicitly leave open the degree of functional integration vs. isolation -- a strict no-cross-talk reading is stronger than the paper licenses.",
+    "The framework is descriptive anatomy/physiology in primate; it does not demonstrate that segregation per se changes which channel wins a committed selection, so it cannot by itself confirm the MECH-439 artefact hypothesis."
+  ],
+  "tags": ["arc-110", "basal_ganglia", "parallel_loops", "cortico_striatal", "action_selection", "segregated_circuits"],
+  "mapping": {
+    "source_claim_statement": "Five (and more generally multiple) cortico-basal ganglia-thalamocortical circuits -- including a motor, an oculomotor, dorsolateral-prefrontal (associative), and limbic/anterior-cingulate circuit -- are organised as parallel, anatomically and functionally segregated re-entrant loops, each passing through its own territory of striatum, pallidum/nigra, and thalamus before returning to its originating cortical field.",
+    "ree_translation": "ARC-110's committed-action selector should be decomposed into N>=3 parallel loop channels (motor=F, associative=dACC+lPFC, limbic=OFC+liking) each owning its own eligibility-and-gate and arbitrated only AFTER within-loop competition, rather than collapsing every channel into one shared E3 selection arena where dACC/lPFC/OFC enter as additive biases. Alexander/DeLong/Strick is the named functional analogue for that decomposition.",
+    "mapping_caveat": "The paper establishes that the loops are anatomically separable, not that selecting through separate loops removes the F-dominance conversion ceiling (MECH-439). REE maps the *architecture*; the *F-cannot-drown-limbic* benefit is an REE hypothesis that this paper motivates but does not test. ARC-110 itself flags the translation as FUNCTIONAL, not anatomical mimicry, so over-reading anatomical segregation as proof of the selection benefit would be a transfer error.",
+    "source_context": "Review/synthesis of primate (macaque) tract-tracing and single-unit electrophysiology; macro-circuit anatomy and topography, not a behaving-agent selection experiment."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality near-ceiling (canonical review). Mapping fidelity high for the architectural decomposition but not for the functional selection-benefit claim. Transfer risk moderate: primate macro-anatomy -> a learned RL selection head is a structural analogy, and ARC-110 deliberately scopes it as functional rather than homological, which contains the risk."
+  }
+}

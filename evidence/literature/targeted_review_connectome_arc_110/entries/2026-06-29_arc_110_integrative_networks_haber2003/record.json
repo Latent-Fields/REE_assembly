@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_110",
+  "entry_id": "2026-06-29_arc_110_integrative_networks_haber2003",
+  "timestamp_utc": "2026-06-29T06:07:38Z",
+  "claim_ids_tested": ["ARC-110"],
+  "source": {
+    "title": "The primate basal ganglia: parallel and integrative networks.",
+    "authors": ["Suzanne N Haber"],
+    "year": 2003,
+    "venue": "Journal of Chemical Neuroanatomy",
+    "doi": "10.1016/j.jchemneu.2003.10.003",
+    "url": "https://doi.org/10.1016/j.jchemneu.2003.10.003"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality primate anatomical synthesis from a leading basal-ganglia neuroanatomist. It supports ARC-110's loop-channel decomposition (it accepts the parallel limbic/cognitive/motor circuits as the starting point) while explicitly qualifying the strict-segregation reading: the striato-nigro-striatal and thalamo-cortico-thalamic networks carry DIRECTIONAL information across circuits, channelling limbic -> cognitive -> motor. This is exactly the mapping caveat ARC-110 needs, so it is high-value even though its net direction is 'mixed' rather than pure support. Confidence 0.78: source quality strong, mapping fidelity good for the cross-talk caveat, but the directionality is an anatomical inference about information flow rather than a measured selection effect.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Pure-segregation implementations (fully independent per-loop arenas with zero cross-channel routing) are NOT what the primate substrate does: Haber documents non-reciprocal feedforward connections that move information limbic -> cognitive -> motor, so an ARC-110 build that hard-partitions the loops would diverge from biology.",
+    "If the integrative spiral is the mechanism by which motivation reaches motor output, then segregation alone may not relieve F-dominance unless the post-within-loop arbitration preserves a directional limbic->motor influence -- i.e., the benefit could depend on the integration stage, not just the separation."
+  ],
+  "tags": ["arc-110", "basal_ganglia", "striatonigrostriatal_spiral", "integration", "limbic_cognitive_motor", "action_selection"],
+  "mapping": {
+    "source_claim_statement": "Primate cortico-basal ganglia circuits are organised as parallel limbic, cognitive (associative), and motor pathways, BUT two anatomical networks -- the striato-nigro-striatal network and the thalamo-cortico-thalamic network -- contain non-reciprocal feedforward links that move information ACROSS functional circuits in a directional cascade (limbic -> cognitive -> motor), so action decision-making is influenced by motivational and cognitive inputs rather than running in isolated channels.",
+    "ree_translation": "ARC-110's decomposition into motor/associative/limbic loops is biologically warranted, but the brain does NOT run them as fully isolated arenas: there is a directional integration stage that lets the limbic 'is this worth committing to' computation propagate into the motor channel. For REE this argues that segregated loops should be coupled by a constrained, directional (limbic->cognitive->motor) routing step rather than arbitrated as N independent competitions -- and that the F-dominance relief ARC-110 predicts may depend on getting that integration stage right, not merely on splitting the arena.",
+    "mapping_caveat": "Haber's directional cascade is inferred from primate tract-tracing anatomy (connection topography), not from a causal selection experiment showing that the spiral changes which action is committed. Mapping the anatomical 'information can flow this way' onto REE's 'limbic value reaches the committed action' is a functional interpretation of structure. The cascade direction (limbic->motor) is also the opposite of a naive 'keep F out of the limbic loop' reading, so it constrains rather than simply endorses the segregation design.",
+    "source_context": "Review of primate (macaque) anatomical tract-tracing; circuit topography and directionality of cortico-striatal and striato-nigro-striatal projections. No behaving-agent or lesion-selection data."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (authoritative primate neuroanatomy). Mapping fidelity good specifically for the integration caveat ARC-110 must respect. Transfer risk moderate-to-high: anatomical directionality -> functional selection influence is an interpretive step, and the analogy from primate spiral to an RL selection head is structural."
+  }
+}

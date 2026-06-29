@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-06-29_mech_440_noisynet_fortunato2018",
+  "timestamp_utc": "2026-06-29T06:07:38Z",
+  "claim_ids_tested": ["MECH-440"],
+  "source": {
+    "title": "Noisy Networks for Exploration",
+    "authors": ["Meire Fortunato", "Mohammad Gheshlaghi Azar", "Bilal Piot", "Jacob Menick", "Ian Osband", "Alex Graves", "Vlad Mnih", "Remi Munos", "Demis Hassabis", "Olivier Pietquin", "Charles Blundell", "Shane Legg"],
+    "year": 2018,
+    "venue": "International Conference on Learning Representations (ICLR 2018)",
+    "doi": "10.48550/arXiv.1706.10295",
+    "url": "https://arxiv.org/abs/1706.10295"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "This is the named external analog in the MECH-440 title -- the mapping is near-identity at the algorithmic level rather than an analogy across domains. NoisyNet is exactly the mechanism MECH-440 proposes: learned per-parameter (factorised-Gaussian) weight noise, sigma trained by gradient descent alongside weights, perturbing the policy so it changes which action is selected (replacing epsilon-greedy / entropy reward). It demonstrates the three properties MECH-440 needs: (i) the noise PROPAGATES into action selection (it is the exploration driver, not a discarded pre-commit temperature), (ii) it is implicitly state-conditioned (weight noise x state-dependent activations), and (iii) it SELF-ANNEALS (gradient-trained sigma shrinks where the policy is confident). Confidence held at 0.85, not higher, because the demonstration is on Atari value-based agents, not on REE's E3 committed-selection head -- the claim that it relieves the SPECIFIC F-dominance committed-action-diversity ceiling is an REE prediction that NoisyNet motivates but does not itself test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "NoisyNet's exploration benefit is demonstrated on Atari (DQN/A3C/dueling), discrete value-based control; it does not show the mechanism resolves a committed-action-DIVERSITY ceiling of the kind MECH-439 documents, so a within-REE PASS is not guaranteed by the external result.",
+    "Same-day cluster autopsy (failure_autopsy_704b-706b-conversion-ceiling_2026-06-27) re-rooted the committed-action-class conversion ceiling; if that root is upstream of the selection head, weight noise at the E3 head could change WHICH action is argmax without increasing the diversity of COMMITTED action classes -- the 687 entropy-only-artefact failure mode in a new guise.",
+    "Learned sigma can anneal toward zero everywhere if the task does not reward exploration, collapsing the floor; MECH-440's 'stays up where exploration pays' property is a hope about the gradient, not a guarantee."
+  ],
+  "tags": ["mech-440", "noisynet", "parametric_noise", "exploration", "factorised_gaussian", "self_annealing", "lc_ne_analog", "e3_selector"],
+  "mapping": {
+    "source_claim_statement": "Adding learned parametric noise to a network's weights -- with the per-weight noise scale (sigma) trained by gradient descent alongside the weights, optionally as factorised Gaussian noise to reduce variable count -- produces policy stochasticity that drives efficient exploration, automatically adapting the noise magnitude during training without manual schedules, and outperforms epsilon-greedy / entropy-reward heuristics across a wide range of Atari games (in some cases sub- to super-human).",
+    "ree_translation": "MECH-440 injects exactly this -- learned per-parameter factorised-Gaussian weight noise at the E3 selection head (flag use OFF / sigma_init=0 => bit-identical) -- so the tonic exploration floor (i) propagates into the committed (argmax) action rather than being a discarded pre-commit temperature (the MECH-313 / V3-EXQ-687 failure), (ii) is state-conditioned by construction (weight noise interacts with state-dependent activations), and (iii) self-anneals via a gradient-trained sigma. NoisyNet is the direct algorithmic specification of the mechanism.",
+    "mapping_caveat": "NoisyNet is validated on Atari value-based agents, not on REE's committed-selection head against the F-dominance ceiling. That the mechanism propagates into action selection in general does NOT establish that it increases COMMITTED-ACTION-CLASS diversity in REE specifically -- the same-day 704b-706b autopsy warns the ceiling root may sit upstream of the selection head, in which case head-level weight noise reproduces 687's entropy-only artefact. The external result specifies the mechanism; the REE benefit is the open V3 question (validation experiment pending).",
+    "source_context": "Deep reinforcement learning benchmark study; Atari 2600 (Arcade Learning Environment), DQN / A3C / dueling architectures, discrete action exploration."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.92,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (ICLR 2018, DeepMind, widely reproduced). Mapping fidelity very high -- this is the named analog, near-identity at the algorithm level. Transfer risk is the binding uncertainty: Atari value-based exploration -> relieving REE's specific committed-action-diversity ceiling is not demonstrated, and the 704b-706b autopsy gives a concrete reason it could fail. Aggregate weighted toward mapping_fidelity (the mechanism is specified precisely) but discounted for the untested REE-specific benefit."
+  }
+}

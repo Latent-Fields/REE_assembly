@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-06-29_mech_440_lc_acc_stochastic_tervo2014",
+  "timestamp_utc": "2026-06-29T06:07:38Z",
+  "claim_ids_tested": ["MECH-440"],
+  "source": {
+    "title": "Behavioral variability through stochastic choice and its gating by anterior cingulate cortex.",
+    "authors": ["Dougal G R Tervo", "Mikhail Proskurin", "Maxim Manakov", "Mayank Kabra", "Alison Vollmer", "Kristin Branson", "Alla Y Karpova"],
+    "year": 2014,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2014.08.037",
+    "url": "https://doi.org/10.1016/j.cell.2014.08.037"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.80,
+  "confidence_rationale": "This is the causal, mechanistic grounding for the BIOLOGICAL shape MECH-440 asserts (state-conditioned + self-annealing tonic exploration floor). Tervo et al. show, with circuit perturbations in transgenic rats, that locus-coeruleus (noradrenergic) input into ACC causally gates a switch into a 'stochastic' choice mode in which outcomes are ignored and behaviour becomes variable -- and that this mode is engaged specifically WHEN model-based counter-prediction fails (under uncertainty about environmental rules). That is precisely state-conditioned, pay-off-contingent noise injection: the floor goes UP where exploration pays and stays DOWN where strategy works. Confidence 0.80: strong causal design and direct conceptual mapping, discounted for species (rat) and the gap between a behavioural-mode switch and REE's per-parameter weight-noise implementation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Tervo's stochastic mode operates by SUPPRESSING normal ACC engagement so that action-outcome associations stop guiding choice -- a near-global gating of the strategic system, not a graded per-parameter floor; an REE implementation as fine-grained learned weight noise is a different granularity and may not reproduce the all-or-none mode switch.",
+    "The mechanism is a discrete switch between strategic and stochastic modes triggered by an unbeatable competitor; it is not evidence that a continuous tonic noise floor improves committed-action diversity in cooperative/non-adversarial tasks like REE's.",
+    "Direction of self-annealing matches (noise up under uncertainty) but the biological control is via LC->ACC gating, not via a gradient on a noise-scale parameter; the 'self-annealing by gradient descent' route in MECH-440 is an analog of the FUNCTION, not the biological CONTROLLER."
+  ],
+  "tags": ["mech-440", "locus_coeruleus", "norepinephrine", "anterior_cingulate", "stochastic_choice", "state_conditioned", "exploration", "causal_perturbation"],
+  "mapping": {
+    "source_claim_statement": "In rats facing a competitor they cannot beat by counter-prediction, normal ACC engagement is suppressed and behaviour switches to a 'stochastic' mode in which action outcomes are ignored, producing behavioural variability; transgenic circuit perturbations show this switch is causally controlled by locus-coeruleus (noradrenergic) input into ACC, which prevents erroneous beliefs from guiding decisions under uncertainty about environmental rules.",
+    "ree_translation": "MECH-440 asserts an LC-NE tonic exploration floor that is STATE-CONDITIONED (engaged where it pays) and SELF-ANNEALING (off where strategy works). Tervo et al. supply the causal biology for that shape: noradrenergic tone, gated by the cost/utility of the current strategy, turns up behavioural stochasticity precisely when model-based action selection stops working. This grounds the 'state-conditioned + pays-its-way' character of MECH-440's floor and was cited at adjudication (supports 0.82) as part of the biology-before-formal gate.",
+    "mapping_caveat": "Tervo's effect is a near-global mode SWITCH (suppress ACC -> ignore outcomes) driven by an adversarial, unbeatable competitor; MECH-440 implements a graded, per-parameter learned weight noise in a non-adversarial selection head. The function (more noise where exploration pays) maps well; the granularity (mode switch vs. continuous floor) and the controller (LC->ACC gating vs. gradient-trained sigma) do not map one-to-one. Rat -> REE is a cross-species, cross-substrate functional analogy.",
+    "source_context": "Behaving rats in a competitive (matching-pennies-like) task vs. virtual competitors; optogenetic/chemogenetic circuit perturbation of LC->ACC in transgenic animals; behavioural read-out of strategic vs. stochastic choice modes."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Cell, causal transgenic perturbation, strong behavioural quantification). Mapping fidelity good for the state-conditioned/self-annealing FUNCTION but limited by the mode-switch vs. graded-floor granularity gap. Transfer risk moderate: rat adversarial task -> REE non-adversarial committed selection, and a behavioural mode switch -> a per-parameter weight-noise floor."
+  }
+}

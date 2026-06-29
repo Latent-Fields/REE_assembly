@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-06-29_mech_440_adaptive_gain_astonjones2005",
+  "timestamp_utc": "2026-06-29T06:07:38Z",
+  "claim_ids_tested": ["MECH-440"],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance.",
+    "authors": ["Gary Aston-Jones", "Jonathan D Cohen"],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709",
+    "url": "https://doi.org/10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "The canonical theoretical framework for LC-NE as an exploration-exploitation controller, and the second pillar cited at MECH-440 adjudication (supports 0.78). It establishes the tonic/phasic LC dichotomy: phasic LC promotes exploitation of the current task, tonic LC promotes disengagement and a search for alternative behaviours (exploration), with ACC/OFC monitoring task utility and driving the mode. This grounds the 'tonic exploration floor whose level tracks the utility of the current policy' framing of MECH-440. It is a review/theory, not a causal experiment (Tervo 2014 provides the causal complement), so confidence is moderate and weighted toward conceptual mapping rather than primary evidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adaptive-gain theory describes tonic NE as raising responsivity/gain broadly (a global modulator), which is closer to a temperature/gain knob than to learned PER-PARAMETER state-conditioned weight noise; reading MECH-440's fine-grained sigma into a global gain signal risks over-claiming the biological specificity.",
+    "The theory is largely conceptual/modelling synthesis; the exploration claim is an interpretation of LC firing modes, and a global gain increase could in principle act like the non-propagating post-softmax temperature that V3-EXQ-687 already falsified, rather than the propagating weight noise MECH-440 requires.",
+    "Tonic-mode 'disengagement and search' is about ABANDONING the current task, which maps onto goal-disengagement / task-switching more than onto increasing the DIVERSITY of committed actions within a task -- a possible mis-mapping to the F-dominance ceiling."
+  ],
+  "tags": ["mech-440", "locus_coeruleus", "norepinephrine", "adaptive_gain", "tonic_phasic", "exploration_exploitation", "acc_ofc_utility"],
+  "mapping": {
+    "source_claim_statement": "LC neurons show two modes: phasic LC activation is driven by outcomes of task-related decisions and facilitates exploitation of the current task; tonic LC activity is associated with disengagement from the current task and search for alternative behaviours (exploration). ACC and OFC, which monitor task-related utility, are proposed to drive these LC modes to optimise utility over short and long timescales (adaptive gain).",
+    "ree_translation": "MECH-440's tonic LC-NE exploration FLOOR is the standing, utility-tracking exploration drive that Aston-Jones & Cohen describe as the tonic mode: when the current policy's utility wanes, exploration should rise. This grounds the existence and utility-contingency of a tonic exploration floor and the role of ACC/OFC (the dACC/lPFC/OFC analogs in REE selection) in setting it -- the conceptual backbone for why a state-conditioned floor is the right object.",
+    "mapping_caveat": "Adaptive gain is a GLOBAL responsivity/gain modulation, conceptually closer to a temperature/gain term than to learned per-parameter weight noise. MECH-313's already-falsified post-softmax temperature is itself a 'gain-like' construct, so Aston-Jones & Cohen support the FUNCTIONAL motivation (a utility-tracking tonic exploration drive) without endorsing the specific per-parameter, propagating-into-argmax implementation MECH-440 chose over the temperature route. It is a review/theory, not causal primary data.",
+    "source_context": "Theoretical/integrative review of monkey LC-NE neurophysiology and computational modelling; no new causal perturbation data of its own."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high as a canonical theory review, but it is synthesis rather than primary causal data (Tervo 2014 carries the causal weight). Mapping fidelity moderate: grounds the tonic-floor FUNCTION strongly but the 'global gain' framing is closer to the temperature route MECH-440 explicitly rejected than to per-parameter weight noise. Transfer risk moderate (monkey LC theory -> RL selection head)."
+  }
+}
