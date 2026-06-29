@@ -1,0 +1,138 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-29T05:56:09Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "invoked_under_claim": "governance-cycle-20260629T0533Z",
+  "targets": [
+    {
+      "run_id": "v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune_20260627T221359Z_v3",
+      "queue_id": "V3-EXQ-700d",
+      "claim_ids": ["MECH-439", "ARC-108", "MECH-450"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- non_contributory; substrate precondition (valid committed-class null) structurally unavailable, claim could not express",
+        "biological_reference": "clear -- segregated cortico-BG-thalamic loops + per-loop normalization; single-arena collapse is a missing-dependency signature",
+        "prerequisites": "missing->present -- v4_loop_segregation built 2026-06-27",
+        "implementation": "wrong abstraction level (one shared arena vs N segregated loops); loop-seg now present, byte-identical OFF",
+        "environment": "adequate -- reef-bipartite, GAP-A divergent pool met",
+        "measurement": "adequate -- committed-class entropy DV correct; preconditions self-routed instead of false-weakening",
+        "integration": "single-arena shared-selector is the binding constraint",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "parallel segregated cortico-basal-ganglia-thalamic loops with per-loop normalization (Alexander/DeLong; Haber ascending spiral)",
+        "dependencies": ["per-loop zscore normalization", "within-loop competition then across-loop arbitration"],
+        "is_formal_import": false,
+        "divergence": "single shared E3 arena lets motor/F raw magnitude monopolize selection; biology arbitrates across normalized loops",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-700d (same-layer-null VALIDITY RE-TUNE; supersedes 700c) FAIL/non_contributory. The null-magnitude fix succeeded (field_noise_magnitude_matched 1.0x, correcting 700c's 41.42x) but the correctly-sized magnitude-matched same-layer null STILL failed to verify-lift committed-class entropy (matched_noise_control_verified_lifting 0/2) and remained destructive (same_layer_null_not_destructive false) -- the 3rd consecutive failed construction of a VALID committed-class same-layer null in the V3 single E3 arena (700b decoupled / 700c 41.42x / 700d matched-but-inert). The pre-registered terminal did not fire because the null could not be made valid; this CONFIRMS the single-arena substrate ceiling diagnosed by the 700c + 704b-706b cluster autopsies. Claim UNWEAKENED. RE-DERIVE BRAKE FIRED (7th MECH-439 / 5th ARC-108 / 4th MECH-450 substrate_ceiling/non_contributory autopsy): a same-claim single-arena re-test (700e) is REFUSED; the V3 same-layer-null validity question is EXHAUSTED. Route = the already-built v4_loop_segregation (ARC-110) substrate, validating via V3-EXQ-707b. pending_retest_after_substrate. (MECH-439 also flagged for a /claim-synthesis granularity-debt review if 707b also fails to convert -- 7 autopsies from structurally different angles suggest F-dominance may decompose into finer mechanisms.)",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "unblocks_claims": ["MECH-439", "ARC-108", "MECH-450"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune_20260627T221359Z_v3",
+          "experiment_type": "v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune",
+          "metric": "magnitude-matched same-layer null (field_noise_magnitude_matched 1.0x) STILL verify-lift 0/2 + destructive (entropy below A0); 3rd failed valid-null construction",
+          "target": "a magnitude-matched committed-class same-layer null must verify-lift entropy strict-above A0 on a strict-majority of divergent seeds (requires per-loop-normalized loop segregation)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "claim_synthesis_recommended": {
+        "flagged": true,
+        "claim_id": "MECH-439",
+        "prior_autopsy_count": 7,
+        "rationale": "7 substrate_ceiling/non_contributory autopsies from structurally different angles (689/689a conflict-grade, 700-lineage learned-gating+settling+null, f-dominance-conversion-cluster) = granularity-debt signal; F-dominance may decompose into finer mechanisms",
+        "trigger_condition": "run if V3-EXQ-707b loop-segregation also fails to convert MECH-439 (confirms claim is coarse, not only substrate-bound)",
+        "does_not_change_primary_routing": true
+      },
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "The V3 same-layer-null validity question is EXHAUSTED across 3 constructions (decoupled / 41x / matched-but-inert): the single arena cannot furnish a valid committed-class null at any magnitude.",
+        "The pre-registered 700d terminal could not fire because the precondition (a valid null) is itself unattainable in the single arena -- the ceiling bounds the test, not just the result.",
+        "Substrate response (v4_loop_segregation / ARC-110) already built + validating via 707b; no new design needed."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier_20260628T220908Z_v3",
+      "queue_id": "V3-EXQ-708",
+      "claim_ids": ["MECH-440"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- non_contributory; injection washed at the F-dominated argmax, claim could not express",
+        "biological_reference": "clear -- exploration noise must survive to the committed selection; without per-loop normalization the motor channel's raw magnitude dominates the argmax",
+        "prerequisites": "missing->present -- v4_loop_segregation built 2026-06-27 (the ARM_NOISE_LOOPSEG escalation target)",
+        "implementation": "noise injector complete and verified supra-floor (bias range 0.22); the single-arena selector is the wrong substrate for it to express",
+        "environment": "adequate -- 569i top-k + MECH-448 demotion SOTA stack, GAP-A divergent pool met",
+        "measurement": "adequate -- pre-commit + committed entropy DVs correct; non-vacuity gate self-routed instead of false-weakening",
+        "integration": "single-arena shared-selector dissolves the injection",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "NoisyNet-style propagating exploration noise arbitrated within segregated action loops",
+        "dependencies": ["per-loop normalization so non-motor perturbation is not swamped by F raw magnitude"],
+        "is_formal_import": false,
+        "divergence": "ML NoisyNet import for the noise mechanism, but the failure is substrate (single-arena), not the import",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-708 (MECH-440 NoisyNet propagation falsifier) FAIL/non_contributory / substrate_not_ready_requeue. The selection-head weight noise WAS injected supra-floor (noise_bias_range 0.22) but BOTH the temperature control and the weight noise raised pre-commit class entropy by 0.0 -- the injection washes out at the F-dominated argmax. This is 708's own pre-registered could_be_wrong_if #4 (the single-arena collapse subsumes the injection locus), the same single-arena F-dominance ceiling that bounds the 700-lineage. MECH-440 UNWEAKENED (the falsifier's non-vacuity gate correctly self-routed rather than producing a false weakens). Route = the already-built v4_loop_segregation (ARC-110) substrate (708's pre-registered ARM_NOISE_LOOPSEG escalation), validating via V3-EXQ-707b; a single-arena 708 re-test is not informative. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "unblocks_claims": ["MECH-440"],
+        "failure_record_entry": {
+          "run_id": "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier_20260628T220908Z_v3",
+          "experiment_type": "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier",
+          "metric": "supra-floor weight noise (bias range 0.22) raises pre-commit class entropy by 0.0 (washes at the F-dominated single-arena argmax); ARM_TEMP also 0.0",
+          "target": "a supra-floor exploration injection must raise pre-commit class entropy strict-above A0 and propagate to committed selection (requires per-loop-normalized loop segregation so F raw magnitude does not swamp it)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation",
+        "note": "1st substrate_ceiling/non_contributory autopsy for MECH-440; brake not fired. Next informative test is the ARC-110-gated ARM_NOISE_LOOPSEG arm (707b lineage), not a single-arena 708 letter."
+      },
+      "learning_extracted": [
+        "Supra-floor exploration noise can be injected and still raise pre-commit entropy by 0.0 -- it washes at the F-dominated single-arena argmax (the 687 non-propagation root, restated at the selection layer).",
+        "708 reached its own pre-registered could_be_wrong_if #4 (single-arena subsumes the injection locus); the correct route is the loop-segmented arm, not a deeper single-arena noise build."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "absolute/non-vacuity criteria pass; every discrimination criterion that depends on a non-motor signal expressing through the single shared selector fails",
+    "is_independent_bugs": false,
+    "structural_property": "the V3 single F-dominated E3 arena both (a) cannot furnish a valid committed-class same-layer null and (b) dissolves any pre-commit exploration injection at the argmax, because F's raw-magnitude monopoly (88-89% of E3 selection variance, MECH-439) swamps every non-motor signal at the single shared selector",
+    "readings": ["substrate_enrichment"],
+    "substrate_enrichment_status": "v4_loop_segregation (ARC-110) BUILT 2026-06-27, live-validating via V3-EXQ-707b",
+    "convergence_note": "two structurally-different mechanisms (same-layer-null construction, noise injection) converge on one ceiling, corroborating the 700b/700c + 704b-706b cluster autopsies"
+  }
+}
