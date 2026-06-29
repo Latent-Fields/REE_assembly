@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-29T19:22:13Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_707b_arc110_loop_segregation_c2_release_20260629T144004Z_v3",
+      "queue_id": "V3-EXQ-707b",
+      "claim_ids": ["ARC-110"],
+      "failed_criterion": "discrimination (C1: A1_LOOPS not strict-above A0/null on 0/3 seeds)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened-narrow: the single-arena-artefact prediction is weakened; the architectural assertion is not falsified",
+        "biological_reference": "clear: Alexander/DeLong/Strick parallel loops real + load-bearing, but co-require dopamine-gated arbitration",
+        "prerequisites": "missing: dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) absent; only a static arithmetic combine",
+        "implementation": "partial: loop STRUCTURE built + live (all gates passed); arbitration LEARNING absent",
+        "environment": "adequate: same GAP-A reef-bipartite foraging substrate as the matched 704b arms",
+        "measurement": "adequate-strong: all 6 non-degeneracy gates passed; committed-class entropy is the right DV; decisive either way",
+        "integration": "coupled-but-inert: loops segregate + carry live variance, but fixed arbitration does not convert it",
+        "scale": "adequate: not the binding constraint"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Alexander/DeLong/Strick (1986) parallel segregated cortico-BG-thalamic loops (motor / associative / limbic)",
+        "dependencies": ["dopamine-gated striatal (D1/D2) arbitration plasticity", "learned cross-loop arbitration"],
+        "is_formal_import": false,
+        "divergence": "loop STRUCTURE built (segregation + ARC-109 D1/D2 + MECH-452 traces) but the cross-loop arbitration is static arithmetic (z-score + fixed Haber spiral) with NO dopamine-gated plasticity -> the limbic loop carries range but never wins; F's static dominance persists in the combine. Missing-dependency signature, not a falsification.",
+        "lit_status": "present (targeted_review_connectome_arc_110 landed 2026-06-29)"
+      },
+      "recommended_epistemic_category": "substrate_conditional (preserved); diagnosis = missing-dependency (DA-gated arbitration), narrow not demote",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-707b (2026-06-29, C2-release validation, supersedes 707a/707) -> weakens (NARROW). DECISIVE pre-registered test with a FULLY-LIVE substrate: all 6 non-degeneracy gates passed (named_channel_routing_live 1.414 >> 0.001 -- limbic loop carried real per-candidate range, C2_drop_differs_from_a1 True 3/3; the 707 vacuous DROP==A1 is resolved). Committed-class entropy A1_LOOPS 0.838 ~ A0_SINGLE_ARENA 0.914 (BELOW); C1 0/3 seeds, C2 fail (DROP_LIMBIC 0.933 > A1). Per ARC-110's own pre-registered grid -> the conversion ceiling is INTRINSIC, NOT a single-arena-collapse artefact. WEAKENS the narrow single-arena-artefact hypothesis ONLY; does NOT falsify the architectural assertion (segregated loops are biologically real + load-bearing). NARROWED: loop segregation is necessary-but-not-sufficient; alone (with static arithmetic cross-loop arbitration) it does not lift the F-dominance ceiling. Missing dependency = dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107); segregation built+live but arbitration does not LEARN, so F's static dominance persists in the cross-loop combine. Substrate build itself SUCCEEDED (positive datum). Stays candidate / substrate_conditional / PROMOTES NOTHING. Fires the contingent MECH-439 /claim-synthesis (conversion ceiling confirmed intrinsic).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_note": "re-test A1_LOOPS coupled with dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) once that arbitration-learning substrate is built -- a redesign testing a DIFFERENT mechanism (new EXQ number, different claim_ids). NOT a same-claim re-letter. Not queued now.",
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "governance-narrow",
+        "upstream_substrate": null,
+        "not_fired_rationale": "first autopsy targeting ARC-110; direction is weakens (not substrate_ceiling / non_contributory), so it does not count toward the brake."
+      },
+      "learning_extracted": [
+        "Loop segregation ALONE (static arithmetic arbitration) does NOT lift the F-dominance conversion ceiling -- decisive, fully-live substrate (A1 0.838 ~ A0 0.914)",
+        "The conversion ceiling is INTRINSIC to the F-dominance root (MECH-439), confirmed not a single-arena artefact",
+        "The v4_loop_segregation substrate was successfully built + demonstrably live (all 6 non-degeneracy gates passed) -- positive engineering datum",
+        "Discovered dependency: loop segregation needs coupling with learned/dopamine-gated cross-loop arbitration (MECH-448/449/ARC-107) to convert"
+      ],
+      "routing": "governance-narrow + contingent-claim-synthesis-MECH-439"
+    }
+  ],
+  "cluster_pattern": null,
+  "contingent_triggers_fired": [
+    {
+      "trigger": "MECH-439 /claim-synthesis",
+      "source": "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29 (run /claim-synthesis IF 707b also fails to convert)",
+      "condition_met": true,
+      "action": "spawn follow-on /claim-synthesis chip on MECH-439 at session close (user-confirmed 2026-06-29)"
+    }
+  ]
+}

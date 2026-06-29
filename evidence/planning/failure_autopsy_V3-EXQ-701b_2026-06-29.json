@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-29T19:22:13Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_701b_inv050_mel_measurability_frozen_probe_20260624T043724Z_v3",
+      "queue_id": "V3-EXQ-701b",
+      "claim_ids": ["INV-050"],
+      "failed_criterion": "readiness_precondition_R2_world_model_converged",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear-untested: INV-050 MEL content never reached; R2 readiness gate failed upstream",
+        "biological_reference": "n/a-instrument: mechanism not exercised; SD-056 contrastive auxiliary destabilises the recon-primary world-forward",
+        "prerequisites": "missing-then-fixable: converged P0 base denied by the contrastive aux; recon-only supplies it 3/3",
+        "implementation": "partial-recipe-defect: P0 recipe recon_primary+sd056_aux destabilises; recon-only stable",
+        "environment": "adequate: CausalGridWorldV2 size 12, not the issue",
+        "measurement": "now-adequate: frozen fixed probe battery removed 701a exploration-drift confound; R2 read is genuine",
+        "integration": "n/a single-module readiness probe",
+        "scale": "adequate: recon-only converges PE ~1.4e-4"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SD-056 world-forward / contrastive-representation substrate (recon-primary + contrastive auxiliary)",
+        "dependencies": ["converged P0 world-forward base", "novelty-responsive prediction-error readout"],
+        "is_formal_import": true,
+        "divergence": "the contrastive auxiliary destabilises the reconstruction-primary world-forward (ablation: recon-only 3/3 vs recon+contrastive 1/3); recipe defect, not an intrinsic ceiling",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "precondition_unmet (642-pattern, NOT substrate_ceiling)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-701b (2026-06-24, frozen-probe ablation, supersedes 701a) -> non_contributory. R2 readiness FAILED on the FIXED frozen battery (conv_frac 0.333, 1/3 seeds) -- a GENUINE multi-seed world-forward divergence (exploration-drift confound removed), NOT a metric artifact. Matched ablation: recon-only P0 converges 3/3 (frac 1.0, drops ~0.97-0.98) vs recon+contrastive 1/3 -> destabiliser_verdict = sd056_contrastive_is_destabiliser. Route (autopsy-confirmed 2026-06-29): 701c = recon-only P0 warmup -> frozen MEL probe (the valid converged base). Re-derive brake NOT fired (instrument repair + demonstrably-converging recon-only base, not a ceiling). INV-050 UNWEAKENED (diagnostic, scoring-excluded). Secondary learning: SD-056 contrastive auxiliary is a confirmed P0 world-forward destabiliser.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-701_2026-06-23", "failure_autopsy_V3-EXQ-701a_2026-06-23"],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "not_fired_rationale": "successive instrument repairs (not ceiling re-derivation); demonstrably-converging recon-only base (3/3) means we are not at a ceiling; ablation hands a clean mechanical fix; 701a precedent (user-confirmed). Brake locks only if 701c recon-only base also fails."
+      },
+      "learning_extracted": [
+        "SD-056 contrastive auxiliary destabilises the recon-primary P0 world-forward (ablation-confirmed: recon-only 3/3 vs recon+contrastive 1/3)",
+        "frozen fixed-probe battery is the correct convergence instrument; keep for 701c",
+        "INV-050 MEL-measurability remains genuinely open and untested"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
