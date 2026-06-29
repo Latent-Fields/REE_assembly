@@ -13574,6 +13574,12 @@
     drops ~0.97-0.98). VERDICT: destabiliser_verdict=sd056_contrastive_is_destabiliser confirmed by ablation.
     Route: 701c = recon-only P0 warm-up then frozen MEL probe (ARM_ABLATION is the valid converged base for
     the R1/C1 novelty-flatness test). INV-050 UNWEAKENED (diagnostic, scoring-excluded).
+    CONFIRMED by failure_autopsy_V3-EXQ-701b_2026-06-29 (formal autopsy artifact, /governance 2026-06-29):
+    the recon-only base converges PE ~1.4e-4 (3/3) and the R2 frozen-battery divergence is a GENUINE
+    multi-seed world-forward divergence (exploration-drift confound removed by the frozen probe), not a
+    metric artifact. Re-derive brake NOT fired (successive instrument repairs + a demonstrably-converging
+    recon-only base, not a ceiling; locks only if 701c recon-only base also fails). Secondary learning:
+    SD-056 contrastive auxiliary is a confirmed P0 world-forward destabiliser.
   depends_on:
     - INV-049
     - INV-044
@@ -31839,7 +31845,7 @@
     surface distinct failure signatures: 314a-OFF reduces novelty-driven
     return-to-explore; 314b-OFF reduces uncertainty-resolution rollouts;
     314c-OFF reduces learning-curve curvature.
-  pending_retest_after_substrate: true # /governance 2026-06-25: RE-ASSERTED after failure_autopsy_V3-EXQ-705b (conversion ceiling persists under a FAIR demotion test); owed retest = the brake-EXEMPT double-gated (demotion + MECH-449 Go/No-Go, both ON) re-test. (Was lifted 2026-06-08 after 604c PASS on the selection-face; 705b is the downstream committed-conversion face.)
+  pending_retest_after_substrate: true # /governance 2026-06-29: STAYS TRUE, retest RE-POINTED. The 706b brake-LOCK routed MECH-314's owed retest to the v4_loop_segregation substrate (ARC-110); that substrate LANDED 2026-06-27 and its validation V3-EXQ-707b (weakens-NARROW, failure_autopsy_V3-EXQ-707b_2026-06-29) found the conversion ceiling INTRINSIC -- loop segregation alone does NOT lift it. So MECH-314's ceiling did NOT lift via the loop-seg substrate (the substrate-ceiling audit "ceiling-may-have-lifted" flag is a false-positive driven by other implemented substrates that list MECH-314, e.g. INF-ENV-004/modulatory-bias-authority, not the binding one). Owed retest is now re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (MECH-448/449/ARC-107) -- a different mechanism, unbuilt. PROMOTES NOTHING. [prior: /governance 2026-06-25 RE-ASSERTED after failure_autopsy_V3-EXQ-705b; was lifted 2026-06-08 after 604c PASS on the selection-face.]
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
       - Daw et al. 2006 (Nature) -- frontopolar uncertainty-driven
@@ -46922,6 +46928,25 @@
   implementation_phase: v3   # REAPPOINTED V4->V3 2026-06-24 (user-directed): the segregated-loop build is recouped onto the V3 critical path because it attacks the V3 closure blocker MECH-439; GATED on V3-EXQ-704 (MECH-451 finer-channel pre-emption falsifier) -- build proceeds only if 704 fails to convert. Still substrate_conditional (build-deferred); promote/demote stays suppressed.
   version_relevance: v3
   registered_utc: "2026-06-22"
+  evidence_quality_note: |
+    V3-EXQ-707b (2026-06-29, C2-release validation, supersedes 707a/707; confirmed
+    failure_autopsy_V3-EXQ-707b_2026-06-29; user-approved /governance 2026-06-29) -> weakens (NARROW).
+    DECISIVE pre-registered test with a FULLY-LIVE substrate: all 6 non-degeneracy gates passed
+    (named_channel_routing_live 1.414 >> 0.001 -- the limbic loop carried real per-candidate range,
+    C2_drop_differs_from_a1 True 3/3; the 707 vacuous DROP==A1 is resolved). Committed-class entropy
+    A1_LOOPS 0.838 ~ A0_SINGLE_ARENA 0.914 (BELOW); C1 0/3 seeds, C2 fail (DROP_LIMBIC 0.933 > A1). Per
+    ARC-110's own pre-registered grid -> the conversion ceiling is INTRINSIC, NOT a single-arena-collapse
+    artefact. WEAKENS the narrow single-arena-artefact SUB-hypothesis ONLY; does NOT falsify the
+    architectural assertion (segregated loops are biologically real + load-bearing). NARROWED: loop
+    segregation is necessary-but-not-sufficient; alone (with static arithmetic cross-loop arbitration) it
+    does not lift the F-dominance ceiling. Missing dependency = dopamine-gated cross-loop arbitration
+    plasticity (MECH-448/449/ARC-107); segregation built+live but the cross-loop arbitration does not
+    LEARN, so F's static dominance persists in the combine. The substrate build itself SUCCEEDED (positive
+    engineering datum -- all 6 gates live). Stays candidate / substrate_conditional / PROMOTES NOTHING.
+    Fires the contingent MECH-439 /claim-synthesis (conversion ceiling confirmed intrinsic). 707a flipped
+    weakens->superseded (same DECISIVE test; 707b is the live-substrate scoring head). substrate_queue
+    action=none (no enrichment owed by THIS run; the DA-gated-arbitration retest is a different mechanism).
+  pending_retest_after_substrate: true   # SET 2026-06-29 (707b NARROW autopsy): re-test A1_LOOPS COUPLED with dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) once that arbitration-LEARNING substrate is built -- a redesign testing a DIFFERENT mechanism (new EXQ, different claim_ids), NOT a same-claim re-letter. Not queued now.
   implementation_note: >
     SUBSTRATE BUILT 2026-06-27 via /implement-substrate (full scope; PROMOTES NOTHING --
     stays candidate / substrate_conditional / implementation_phase=v3 until the validation
@@ -46946,7 +46971,7 @@
   # status / epistemic_category / implementation_phase UNCHANGED (NOT a promotion --
   # /implement-substrate registration, PROMOTES NOTHING). See implementation_note + substrate_queue.json sd_id v4_loop_segregation.
   assembly_status: in_progress
-  awaiting: v3_exq_707b_c2_release_validation_run_result
+  awaiting: dopamine_gated_cross_loop_arbitration_plasticity_MECH-448_449_ARC-107   # UPDATED 2026-06-29: V3-EXQ-707b validation LANDED (weakens-NARROW); the loop-segregation substrate is built+live, the now-binding co-requisite is DA-gated cross-loop arbitration LEARNING (static arithmetic arbitration does not convert). Prior awaiting=v3_exq_707b_c2_release_validation_run_result satisfied.
   validation_note: >
     V3-EXQ-707 (first ARC-110 validation, 2026-06-28) returned non_contributory /
     substrate_not_ready_requeue (PROMOTES NOTHING; in_layer null verify-lift met on only

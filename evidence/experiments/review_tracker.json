@@ -1,7 +1,9 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-29T05:56:09Z",
+  "last_review_utc": "2026-06-29T19:33:13Z",
   "discussed_experiment_dirs": [
+    "v3_exq_707a_arc110_loop_segregation_validation",
+    "v3_exq_707b_arc110_loop_segregation_c2_release",
     "v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune",
     "v3_exq_707_arc110_loop_segregation_validation",
     "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier",
@@ -775,6 +777,8 @@
     "v3_exq_704b_mech451_finer_channel_granularity_falsifier"
   ],
   "reviewed_run_ids": [
+    "v3_exq_707a_arc110_loop_segregation_validation_20260629T112723Z_v3",
+    "v3_exq_707b_arc110_loop_segregation_c2_release_20260629T144004Z_v3",
     "v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune_20260627T221359Z_v3",
     "v3_exq_707_arc110_loop_segregation_validation_20260628T071517Z_v3",
     "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier_20260628T220908Z_v3",
@@ -4142,6 +4146,20 @@
     }
   ],
   "review_log": [
+    {
+      "utc": "2026-06-29T19:33:13Z",
+      "session": "governance-cycle-20260629T1933Z",
+      "reviewed_run_ids_added": [
+        "v3_exq_707a_arc110_loop_segregation_validation_20260629T112723Z_v3",
+        "v3_exq_707b_arc110_loop_segregation_c2_release_20260629T144004Z_v3"
+      ],
+      "claim_ids_touched": [
+        "ARC-110",
+        "INV-050",
+        "MECH-440"
+      ],
+      "context": "/governance 2026-06-29 PM: applied the two confirmed failure-autopsy artifacts landed 19:25Z. 707b (ARC-110) -> weakens NARROW (failure_autopsy_V3-EXQ-707b_2026-06-29 confirmed, user-approved): DECISIVE fully-live test (all 6 non-degeneracy gates passed, named_channel_routing_live 1.414); committed-class entropy A1_LOOPS 0.838 ~ A0 0.914 (below) -> conversion ceiling confirmed INTRINSIC to MECH-439, NOT a single-arena artefact. WEAKENS the single-arena-artefact SUB-hypothesis only; segregated loops remain biologically real + load-bearing -> NARROW, NOT demote. ARC-110 stays candidate/substrate_conditional; added evidence_quality_note + pending_retest_after_substrate=true (retest coupled with DA-gated cross-loop arbitration MECH-448/449/ARC-107). 707a flipped weakens->superseded (superseded_by 707b; same DECISIVE test, 707b the live scoring head -- prevents double-count). substrate_queue action=none. Fires contingent MECH-439 /claim-synthesis (chip task_7f1ced30 standing). INV-050: cross-ref added to confirmed failure_autopsy_V3-EXQ-701b_2026-06-29 (SD-056 contrastive auxiliary = confirmed P0 destabiliser; recon-only 3/3; brake NOT fired; INV-050 UNWEAKENED, 701b manifest already non_contributory). MECH-440: standing hold_pending_v3_substrate acknowledged via record_decision.py (applied; no status change; 708 falsifier FAILed onto single-arena wall). PROMOTES NOTHING."
+    },
     {
       "utc": "2026-05-31T12:14:35Z",
       "session": "governance-20260531T121435Z",
