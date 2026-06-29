@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_701c_inv050_mel_measurability_recononly",
+  "run_id": "v3_exq_701c_inv050_mel_measurability_recononly_20260629T223011Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-06-29T22:30:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_not_modulated_by_novelty",
+    "preconditions": [
+      {
+        "name": "world_model_converged_p0_seed_fraction",
+        "description": "fraction of seeds whose RECON-ONLY FROZEN-PROBE world-forward PE dropped >= MIN_REL_CONV_DROP on the FIXED held-out probe battery (per-seed R2 gate; recon-only is the 701b-ablation-validated converged base)",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "kind": "readiness",
+        "control": "per-seed P0 frozen-probe PE relative drop (fixed battery, frozen encoder, recon-only P0)",
+        "met": true
+      },
+      {
+        "name": "pe_response_range_to_novelty_shock",
+        "description": "converged frozen-model PE rises under a max-novelty shock vs stable (relative spread -- same statistic C1 routes on; evaluated on R2-passing seeds)",
+        "measured": 1.154753685451677,
+        "threshold": 0.25,
+        "direction": "lower",
+        "kind": "readiness",
+        "control": "pe_shock vs pe_stable on the converged frozen model (ready seeds)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": true
+    }
+  }
+}
