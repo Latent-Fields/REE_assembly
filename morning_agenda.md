@@ -1,81 +1,101 @@
-# Morning Agenda — 2026-06-26
+# Morning Agenda — 2026-06-29
 
-Generated: 2026-06-26T04:23:10Z
+Generated: 2026-06-29T04:23:52Z
+
+_Read-only digest. No governance decisions made, nothing marked reviewed._
 
 ---
 
 ## Queue Status
-- Total pending: **0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- 1 item **claimed / running**: `V3-EXQ-704b` (machine any, pri 290 — MECH-451 finer-channel-granularity re-test, FCG_NOISE_SCALE re-tune of 704)
-- **ALERT: Queue is empty.** 0 pending experiments and only one in-flight run. New experiments should be queued today (the two pending FAILs below have pre-registered escalations that may yield runnable next-steps once adjudicated in `/governance`).
-- **No owed successors.** Step 7c existence cross-check run on every plan Owner-EXQ that looked unqueued (699, 460l, 485m, 700c) — **all four have manifests in `evidence/experiments/` (all ran)**, so none are owed. See Active Plans Heartbeat for the one stale-prose reconcile note.
+- Total **pending: 0** | claimed/running: 2 (Mac: 0 | PC: 0 | EWIN: 0 | any: 2)
+- **[ALERT: Queue low — 0 pending experiments.]** Both live items are claimed and running; nothing is waiting to be picked up. Queue a next experiment soon (the conversion-ceiling campaign's P-comp falsifier V3-EXQ-699 already RAN 2026-06-23 — see below — so the campaign's next live step needs authoring).
+- Live items (both `machine_affinity: any`, both running):
+  - **V3-EXQ-707b** — ARC-110 C2-RELEASE per-named-channel routing validation (priority 420; claimed ree-cloud-2 2026-06-28T18:15Z). Supersedes 707a.
+  - **V3-EXQ-707a** — ARC-110 loop-seg null-liveness gate fix (priority 400; claimed ree-cloud-1 2026-06-28T14:10Z). Superseded by 707b — may be a redundant run; consider releasing it.
+- **Owed successors:** none. (Step 7c cross-check below dissolved all four mechanical candidates — see "Owed-successor cross-check".)
 
 ---
 
-## Experiments Awaiting Review (2 indexed / 0 runner-only)
+## Experiments Awaiting Review (3 indexed / 0 runner-only)
 
-Both are pre-registered TERMINAL substrate-ceiling outcomes (ran to completion, self-routed, no claim weakened). Each needs `/failure-autopsy` adjudication in `/governance` to confirm the routing and apply the manifest/closure-node reconcile — **no decision is made here.**
+All three are **diagnostic/evidence self-routes** (`substrate_not_ready_requeue`, `evidence_direction: non_contributory`). They scored nothing for/against their claims and are flagged for `/failure-autopsy` adjudication before any label drives governance. None are "owed" — they ran.
 
-### V3-EXQ-700c — arc108_sec7_learned_gating_settling_samelayer_null — FAIL
-- **Claims tested:** MECH-439 (candidate, substrate_ceiling, v3), ARC-108 (candidate, substrate_conditional, v3), MECH-450 (candidate, substrate_conditional, v3) — all `non_contributory`, none weakened.
-- **Self-route:** `substrate_not_ready_requeue`. Two readiness preconditions failed: `matched_noise_control_verified_lifting=False` and `field_noise_magnitude_matched=False` (the ARM_NOISE same-layer null did not match magnitude / verify lifting — same family as 700b's repeated `noise_verified_lifting=False`).
-- **Classification:** diagnostic (terminal learned-gating conversion falsifier with same-layer null).
-- **Routing:** `re_derive_brake.exempt=true`, `pre_registered_terminal=true`. Escalation already registered → **V3 loop-segregation substrate (ARC-110)**; brake refuses any alpha-bump same-lever re-queue. No further 700-lineage same-arena letters.
-- **Supersedes:** V3-EXQ-700b (the 700 → 700a → 700b lineage).
-- **Governance impact if confirmed:** none to claim status (non_contributory). Confirms ARC-108/MECH-450/MECH-439 selection-face is not resolvable on the existing collapsed arena → routes to the loop-segregation build (owned by `behavioral_diversity_isolation:GAP-K`).
+### V3-EXQ-700d — arc108_sec7_learned_gating_settling_samelayer_null_retune — FAIL
+- **Claims tested:** MECH-439, ARC-108, MECH-450 (all `candidate`; MECH-439 assembly_state=`enriching`, ARC-108/MECH-450 `awaiting_substrate`)
+- **Self-route:** `substrate_not_ready_requeue` (non_contributory)
+- **Classification:** evidence (purpose=evidence). **Supersedes:** V3-EXQ-700c
+- **Governance impact:** none until adjudicated — F-dominance learned-gating 2×2; the single-arena substrate denied a valid same-layer null (the cluster autopsy already routed this lineage to the V4 ARC-110 loop-segregation build).
 
-### V3-EXQ-706 — mech314_curiosity_conversion_double_gated — FAIL
-- **Claims tested:** MECH-314 (candidate_substrate_landed, substrate_ceiling, pending_retest_after_substrate, v3) — `non_contributory`, not weakened.
-- **Self-route:** `conversion_ceiling_persists_despite_double_gating`. **All 5 readiness preconditions PASSED** (GAP-A divergence, curiosity bias supra-floor, F-eligibility demotion non-degeneracy, z_world bounded, **Go/No-Go gate non-degeneracy** — the new leg E), and `non_degenerate=True`. This is the FIRST fully-armed double-gated test (MECH-448 demotion + MECH-449 Go/No-Go both ON) and the committed-class entropy lift STILL did not clear the F-only / matched-noise control.
-- **Classification:** evidence (clean conversion-ceiling result — readiness met, no lift).
-- **Routing:** the pre-registered TERMINAL off-ramp → **V4 ARC-110 loop-segregation (no more V3 letters)**. This is the brake-LOCK trigger the 705b autopsy named.
-- **Supersedes:** V3-EXQ-705b.
-- **Governance impact if confirmed:** none to claim status (MECH-314 stays candidate_substrate_landed / substrate_ceiling / pending_retest_after_substrate). Strengthens the case that the conversion ceiling survives both built eligibility gates → loop-segregation is the substrate response, not another V3 selection-face lever.
+### V3-EXQ-707 — arc110_loop_segregation_validation — FAIL
+- **Claims tested:** ARC-110 (`candidate`, awaiting_substrate)
+- **Self-route:** `substrate_not_ready_requeue` — **adjudication flag: `precondition_unmet`**
+- **Classification:** diagnostic
+- **Note:** already superseded — 707a (null-liveness gate fix) then 707b (C2 release) are queued/running. The 707 manifest was annotated by the 2026-06-28 finer-gating defect-fix session (MECH-451 named-decomp dead substrate-wide). Surface for autopsy only to keep the record clean.
+
+### V3-EXQ-708 — mech440_noisy_selection_head_propagation_falsifier — FAIL
+- **Claims tested:** MECH-440 (`candidate`, assembly_state=`enriching`)
+- **Self-route:** `substrate_not_ready_requeue` — **adjudication flag: `precondition_unmet`**
+- **Classification:** diagnostic
+- **Note:** the MECH-440 NoisyNet propagation falsifier needs the ARC-110 single-arena fix first (per the 704b/706b cluster autopsy); a 708 run before ARC-110 validates re-derives the arena ceiling. HELD/blocked-on-707 lineage.
 
 ---
 
 ## Errors to Diagnose (0)
 
-No new undiagnosed errors. `runner_status.json` carries 87 historical ERROR entries, but the most recent is **2026-05-31** (V3-EXQ-621, ~26 days old) and all have long-since-diagnosed successors. `pending_review.md` confirms **0 ERROR / runner-only manifests** pending.
+No undiagnosed ERRORs. `pending_review.md` reports 0 runner-only / 0 ERROR manifests. (runner_status.json carries 87 historical ERRORs, all old with queued or completed lettered successors — none undiagnosed.)
 
 ---
 
-## Governance Agenda (0 recommendations)
+## Governance Agenda (1 recommendation)
 
-No `pending_user` recommendations — all 149 decision-queue rows in `promotion_demotion_recommendations.md` are `applied`. Pipeline is clean.
+- **Q-067** (`candidate`) — Recommendation: **hold_pending_v3_substrate** — decision_status `pending_user`
+  - This is a standing V3-pending **hold acknowledgement**, not an action. The Q-067 relief/safety-escape literature pull landed yesterday (REE_assembly master `dd22e2ca28`, lit_confidence 0.797). No status change is being asked for — just acknowledge the hold at the next `/governance` walk.
+
+All other 100+ decision-queue rows are `applied` (holds / V4-architectural-commitment).
 
 ---
 
-## Active Plans Heartbeat (2 in-flight, assembling)
+## Active Plans Heartbeat
 
-No plan carries a literal `Status: active`. The two genuinely in-flight plans both sit on the **assembly frontier** (`status: assembling` — required for v3, intentionally under construction, weight `None`, off the closure %). The remaining `*_plan.md` files are `done` (~22) or `blocked` (~13, mostly V4/V5/V6, resting on upstream substrate).
+**Format caveat:** live planning has migrated to YAML `closure_plan` node frontmatter (`status: assembling / blocked / open`) + the fresh prong-map campaign plan. The legacy `## Status table` markdown sections below are **largely unreconciled** — their "stale rows" are a plan-format-migration artifact, not genuine drift (every owner-EXQ in them has run or resolved; see cross-check). Do not chase them.
 
-| Plan | Nodes in-flight (assembling) | Blocked | Stale rows | Last updated |
+| Plan (legacy status table) | in-flight | blocked | stale rows | Note |
 |---|---|---|---|---|
-| conversion_ceiling_campaign | 6 (CAMPAIGN / P-comp / P2-rootC / P3-ofc / FULLSTACK / P4-learned-gating) | 0 | 1 (prose) | 2026-06-24 |
-| sd_037_axis_b_sustained_threat_curriculum | 1 (P1b) | 3 (downstream P2/P3/P4) | 3 (blocked, resting) | 2026-06-23 (P1b node) |
+| arc_062_rule_apprehension | 3 | 0 | 3 | GAP-D/J/K rows last touched May–Jun; all owner-EXQs ran |
+| commitment_closure | 3 | 0 | 3 | GAP-1/4/8 rows; superseded by the live YAML campaign |
+| goal_pipeline | 1 | 1 | 2 | GAP-2 blocked, GAP-4 cohort all ran |
+| self_attribution | 0 | 3 | 3 | GAP-1/2/3 blocked-on-upstream |
+| behavioral_diversity_isolation | 0 | 0 | 0 | clean |
+| infant_substrate | 0 | 0 | 0 | clean |
+| sleep_substrate | 0 | 0 | 0 | clean |
 
-**conversion_ceiling_campaign — stale-prose reconcile (NOT owed):**
-- `:P-comp` node prose still reads *"V3-EXQ-699 (queued 2026-06-22; awaiting run)"*, but **V3-EXQ-699 RAN and PASSed** (`levers_compound`, MECH-448/449, 2026-06-23) and is already in `reviewed_run_ids`. The node is just unreconciled — **699 is NOT owed**. `/governance` should refresh the P-comp prose (demotion×Go/No-Go composition was characterized: levers compound).
-- `:P4-learned-gating` owner V3-EXQ-700c just ran (terminal FAIL, above) — node prose says "CLAIMED/running, awaiting score"; reconciles when 700c is adjudicated.
+**Fresh / live (YAML nodes):**
+- `conversion_ceiling_campaign_plan` — registered 2026-06-22, last_updated 2026-06-24; umbrella + P-comp/P2-rootC/P3 prongs all `assembling` (restful by design, off the closure %). **This is the live critical path.** P-comp owner V3-EXQ-699 already RAN 2026-06-23 (manifest present) — the plan prose "queued; awaiting run" is stale and should be reconciled.
+- `self_model_v4_plan` (SELF-4) — `in_progress`, owner V4-EXQ-001 (first V4 substrate; ran).
+- `sd_037_axis_b_sustained_threat_curriculum_plan` — `blocked`, owner V3-EXQ-483f (blocked-on-upstream; not owed).
 
-**sd_037_axis_b — no owed items:** P1b owner V3-EXQ-625e ran terminal FAIL/non_contributory 2026-06-20, reviewed + autopsied; node consolidated into the MECH-439 conversion-ceiling cluster (resolves via `conversion_ceiling_campaign:FULLSTACK`). The 3 blocked downstream nodes (P2/P3/owner V3-EXQ-483f) last touched 2026-06-05 — stale-by-clock but legitimately resting on the blocked upstream.
+### Owed-successor cross-check (Step 7c — MANDATORY gate)
+Mechanical scan of stale/in-flight plan rows surfaced 4 candidates; **all dissolved** on the three-check gate (not-in-queue AND no-manifest AND not-completed):
+- **V3-EXQ-699** — RAN 2026-06-23 (`v3_exq_699_pcomp...` manifest). Not owed; stale campaign prose.
+- **V3-EXQ-483c** — RAN (FAIL, `failure_autopsy_V3-EXQ-483c_2026-05-23`); lineage continued to 483d/483e. Not owed.
+- **V3-EXQ-475a** — queued then removed as completed/failed 2026-05-21. Not owed (resolved >1 mo ago).
+- **V3-EXQ-483f** — blocked sd_037 axis-b node (blocked-on-upstream). Not owed, not chip-worthy.
 
-No PLAN STALING flag: both in-flight plans were touched within the last 2–3 days.
+**Result: zero genuinely owed/unqueued successors.** (Vindicates the 2026-06-19 false-positive guard.)
 
 ---
 
 ## Literature Pull Candidates (Top 5)
 
-13 backlog items list `literature` in `evidence_needed`. Top by priority:
+| # | Claim | Priority | Existing targeted_review dirs |
+|---|-------|----------|------------------------------|
+| 1 | ARC-110 (parallel segregated loops) | medium | 0 |
+| 2 | MECH-440 (state-conditioned NoisyNet exploration) | medium | 0 |
+| 3 | Q-019 (Three-Gate BG Architecture) | medium | 1 |
+| 4 | Q-069 | low | 0 |
+| 5 | Q-073 | low | 0 |
 
-| # | Claim | Priority | Note | Existing entries |
-|---|-------|----------|------|-----------------|
-| 1 | MECH-451 | medium | Run paired experiment + literature cycle before status change | 0 |
-| 2 | Q-019 | medium | Three-Gate BG Architecture: literature extraction | 1 |
-| 3 | Q-066 | low | Paired experiment + literature cycle | 0 |
-| 4 | Q-067 | low | Paired experiment + literature cycle | 0 |
-| 5 | Q-068 | low | Paired experiment + literature cycle | 0 |
+(11 lit-needing items total. ARC-110 + MECH-440 are the freshest — both 2026-06-27 substrate builds with no lit grounding yet; a targeted pull would strengthen the conversion-ceiling V4 escalation.)
 
 ---
 
@@ -85,5 +105,5 @@ No PLAN STALING flag: both in-flight plans were touched within the last 2–3 da
 ---
 
 ## Blocked Items
-- None. No TASK_CLAIMS collision (the two `active` claims at digest time — queue-experiment 706 and 704b — were both ~7.5 h old, past the 6 h staleness threshold, so treated as cleared; `governance.sh` ran normally).
-- REE_assembly was `ahead 3 / behind 2` at pull (3 local `igw-ledger` commits, 2 incoming phase3 writer commits); reconciled by rebase onto origin/master, derived churn restored.
+- No TASK_CLAIMS collision — governance.sh ran clean (all prior claims `done`).
+- `pending_review.md` regenerated 2026-06-29T04:18Z (3 pending). The three FAILs are recent (700d 06-27, 707 06-28, 708 06-28) and the nightly /update-docs flagged them for the next /governance cycle; they remain unreviewed by design (this digest does not review).
