@@ -1557,6 +1557,24 @@
       "selected_option": "Accept all holds",
       "timestamp_utc": "2026-06-18T05:15:01.358022Z"
     },
+    "MECH-440": {
+      "actor": "decide-build-tonic-noise-20260627T1050Z",
+      "decision_needed": "Decide-whether-to-build (CPKT-TONIC-EXPLORATION-NOISE-20260618, decision_due 2026-07-02)",
+      "decision_status": "applied",
+      "rationale": "BUILD APPROVED 2026-06-27 (user; packet hybridize rec.). NoisyNet learned per-parameter weight noise at the E3 selection head; biology-before-formal PASSED (Aston-Jones&Cohen 2005 0.78 + Tervo 2014 0.82 causal). ceiling_decision park marker removed -> /implement-substrate owed. Falsifier must run on 569i top-k + MECH-448 demotion substrate and control for the single-arena/ARC-110 axis. PROMOTES NOTHING (stays candidate/substrate_ceiling/v3_pending).",
+      "recommendation": "defer_pending_arc110",
+      "selected_option": "BUILD (user override of adjudicator defer rec.)",
+      "timestamp_utc": "2026-06-27T10:54:49.591089Z"
+    },
+    "MECH-441": {
+      "actor": "decide-build-tonic-noise-20260627T1050Z",
+      "decision_needed": "Decide-whether-to-build (CPKT-TONIC-EXPLORATION-NOISE-20260618, decision_due 2026-07-02)",
+      "decision_status": "applied",
+      "rationale": "BUILD APPROVED 2026-06-27 (user; packet hybridize rec., both legs). Per-candidate E2 model-disagreement directed curiosity; biology anchor weakest (Daw 2006 0.72, substrate-existence only). KNOWN RISK: 706b proved the curiosity channel works and the single-arena collapse (ARC-110) is the bottleneck, not the channel mechanism -> MECH-441 very likely gated on ARC-110 landing first. ceiling_decision park marker removed -> /implement-substrate owed. PROMOTES NOTHING.",
+      "recommendation": "defer_pending_arc110",
+      "selected_option": "BUILD (user override of adjudicator defer rec.)",
+      "timestamp_utc": "2026-06-27T10:54:49.591342Z"
+    },
     "MECH-442": {
       "actor": "governance-20260619T1832Z",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -1881,6 +1899,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-06-19T18:52:58.215375Z"
     },
+    "Q-067": {
+      "actor": "governance-cycle-20260629T0533Z",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "2026-06-29 governance: standing V3-pending hold acknowledged. Q-067 implementation_phase=v3 with 3 lit supports (2026-06-28 lit pull) but 0 V3 experimental runs; per the V3-pending gate it cannot promote on lit alone. No status change; stays candidate, held until V3 substrate provides experimental evidence.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-06-29T06:02:56.963572Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -2143,7 +2170,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-06-24T22:57:02.291887Z",
+  "generated_at_utc": "2026-06-29T06:03:14.383167Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }
