@@ -1,48 +1,35 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-06-29T20:18:08Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-707b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-466d",
-      "result": "FAIL",
-      "completed_at": "2026-06-24T09:47:10.763678+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-700c",
-      "result": "FAIL",
-      "completed_at": "2026-06-25T22:03:13.446983+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-706b",
-      "result": "FAIL",
-      "completed_at": "2026-06-26T07:34:18.156949+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-700d",
-      "result": "FAIL",
-      "completed_at": "2026-06-27T22:13:59.633106+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-707a",
-      "result": "FAIL",
-      "completed_at": "2026-06-29T11:27:24.042340+00:00"
-    }
+  "last_tick_utc": "2026-06-29T20:34:02Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-701c",
+  "current_exq_started_utc": "2026-06-29T20:30:12.314380+00:00",
+  "current_title": "INV-050 MEL-measurability diagnostic (recon-only P0 base + frozen fixed-probe MEL battery; supersedes 701b). Builds the MEL battery on the RECON-ONLY P0 warmup -- the 701b-ablation-validated converged base (recon-only 3/3 vs recon+contrastive 1/3; SD-056 contrastive auxiliary isolated as the P0 destabiliser) -- and re-runs 701b's frozen fixed-probe instrument. R2 (world_model_converged on the FROZEN battery, >=2/3 seeds) GATES R1/C1. Tests whether accumulated waking prediction-error is a measurable, graded, monotonic quantity under graded env-drift novelty.",
+  "current_claim_id": "INV-050",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_0_NONE",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 21,
+    "episodes_total": 70,
+    "overall_pct": 2.5
+  },
+  "seconds_elapsed": 230,
+  "seconds_remaining": 13522,
+  "recent_lines": [
+    "V3-EXQ-701c v3_exq_701c_inv050_mel_measurability_recononly (supersedes V3-EXQ-701b)",
+    "Seed 42 Condition ARM_0_NONE",
+    "[train] ARM_0_NONE seed=42 ep 1/70",
+    "[train] ARM_0_NONE seed=42 ep 11/70",
+    "[train] ARM_0_NONE seed=42 ep 21/70"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3585 011e512 2026-06-29 (running r3260 daed671)",
+  "runner_version": "r3587 2cb5c88 2026-06-29 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
