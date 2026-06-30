@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_073",
+  "entry_id": "2026-06-30_q_073_social_origins_prosociality_dahl2019",
+  "timestamp_utc": "2026-06-30T06:06:36Z",
+  "claim_ids_tested": ["Q-073"],
+  "source": {
+    "title": "The Social Origins of Human Prosociality",
+    "authors": ["Audun Dahl", "Celia A. Brownell"],
+    "year": 2019,
+    "venue": "Current Directions in Psychological Science",
+    "doi": "10.1177/0963721419830386"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A well-regarded synthesis arguing that other-benefiting helping starts as participatory activity WITHOUT prosocial intent in the first year and becomes autonomous and prosocially-MOTIVATED over the second year. This corroborates the 'appetitive other-bound stream matures comparatively late and gradually' half of Q-073. Confidence moderate because it is a conceptual review (not a single dataset), and because it emphasises social SCAFFOLDING (caregiver-driven) rather than an intrinsic ordering of affective streams.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Early helping is participatory and lacks genuine prosocial intent; if REE treats an early other-bound APPETITIVE signal as already intentional/benefit-directed, that over-attributes structure the developmental data say is not yet present.",
+    "The review attributes the maturation of prosociality largely to BIDIRECTIONAL caregiver scaffolding, not to an autonomous internal ordering of affective streams -- so 'the appetitive stream matures later' may be environmentally driven rather than an intrinsic architectural ordering REE could assume substrate-internally."
+  ],
+  "tags": ["q_073", "prosocial_development", "helping", "other_bound_appetitive", "social_scaffolding"],
+  "mapping": {
+    "source_claim_statement": "Helping behaviour begins in participatory activities without prosocial intent in the first year of life and becomes increasingly autonomous and motivated by genuine prosocial intent over the second year; this development emerges through bidirectional social interactions in which caregivers scaffold and infants play active roles.",
+    "ree_translation": "Supports the 'late and gradual' maturation of REE's other-bound APPETITIVE / liking-wanting stream (the drive to confer benefit on another). Combined with the Davidov entry (distress-concern online by ~3 months) and the Tallot/Sullivan entry (threat system substrate-gated), this triangulates Q-073's ordering: the suffering/concern channel is available earlier and the genuinely benefit-directed appetitive channel consolidates later -- the protection-first shape REE encodes in MECH-408.",
+    "mapping_caveat": "The paper's central thesis is that prosociality is SOCIALLY SCAFFOLDED -- driven by caregiver interaction -- not that there is an intrinsic, substrate-internal ordering of affective streams. So it supports the OBSERVED ordering but offers an alternative (environmental) MECHANISM for it, which weakens any inference that REE should hard-code the ordering as architecture rather than let it emerge from a training curriculum. It also does not test the exploitation-vulnerability hypothesis directly.",
+    "source_context": "Conceptual review / Current Directions synthesis of the developmental-psychology literature on the emergence of helping in the first two years of human life."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.42,
+    "notes": "Source quality good but it is a synthesis/position review rather than primary data, so I cap source_quality below the empirical-paper band. Mapping fidelity moderate -- 'prosocial helping' is a fair proxy for the other-bound appetitive stream. Transfer risk moderate; the scaffolding-vs-architecture distinction is the main reason this only corroborates rather than confirms an intrinsic REE ordering."
+  }
+}

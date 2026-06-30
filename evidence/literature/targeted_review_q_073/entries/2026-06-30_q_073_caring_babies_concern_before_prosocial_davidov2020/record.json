@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_073",
+  "entry_id": "2026-06-30_q_073_caring_babies_concern_before_prosocial_davidov2020",
+  "timestamp_utc": "2026-06-30T06:06:36Z",
+  "claim_ids_tested": ["Q-073"],
+  "source": {
+    "title": "Caring babies: Concern for others in distress during infancy",
+    "authors": ["Maayan Davidov", "Yael Paz", "Ronit Roth-Hanania", "Florina Uzefovsky", "Tal Orlitsky", "David Mankuta", "Carolyn Zahn-Waxler"],
+    "year": 2020,
+    "venue": "Developmental Science",
+    "doi": "10.1111/desc.13016"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Strong longitudinal design (N=165 followed 3->18 months) directly measuring the two streams Q-073 cares about: registration of others' distress vs prosocial action on others' behalf. Finds the distress-registration stream online and consistent by ~3 months and plateauing in year two, while prosocial (appetitive, other-benefiting) action surges later in year two -- a genuine ordering asymmetry. Confidence held below 0.8 because the paper measures empathic concern for distress, not REE's full 'other-bound suffering/threat' stream, and 'prosocial action' is a behavioural composite that is not identical to REE's 'other-bound liking/wanting'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Concern for distressed others did not climb steeply with age -- it appeared early and plateaued in the second year -- so a model that expects other-bound suffering to RAMP UP in parallel with appetitive prosociality is contradicted; the suffering channel saturates early while the appetitive channel is still rising.",
+    "The paper refutes discrete stage theories of empathy; an ordering enforced as a hard developmental gate (suffering stage fully completes, THEN liking stage opens) is not supported -- both streams overlap and develop gradually."
+  ],
+  "tags": ["q_073", "empathy_development", "prosocial_ontogeny", "other_bound_affect", "developmental_ordering"],
+  "mapping": {
+    "source_claim_statement": "Observable concern for others in distress is present and individually consistent from as early as 3 months of age and grows only modestly thereafter, plateauing in the second year; in contrast, prosocial behaviour on behalf of distressed others increases rapidly during the second year, and early individual differences in concern predict later prosocial behaviour.",
+    "ree_translation": "Maps onto Q-073's ordering question: the other-bound SUFFERING-registration stream (concern for others' distress) comes online developmentally earlier and stabilises before the other-bound APPETITIVE / action stream (prosocial helping that confers benefit on others) reaches full strength. This is consistent with REE's 'protection-first' framing (MECH-408 developmental ordering on the ARC-059 social spine) -- register harm-to-others before instantiating benefit-to-others -- and the predictive link (early concern -> later prosociality) is consistent with the suffering stream acting as a developmental scaffold for the appetitive stream rather than the reverse.",
+    "mapping_caveat": "Empathic concern for distress is a proxy for REE's 'other-bound suffering/threat' stream, not an identity: concern is an affective-resonance measure, whereas REE's stream is about valuing harm-to-others in an action-selection sense. Likewise 'prosocial behaviour' bundles helping/comforting/sharing and is not the same construct as REE's 'other-bound liking/wanting' (which is closer to vicarious reward / wanting good things FOR another). The paper says nothing about the EXPLOITATION-VULNERABILITY hypothesis (that early positive other-reward would be gameable) -- it speaks only to which stream matures first, not to WHY the ordering is adaptive.",
+    "source_context": "Longitudinal observational study, N=165 Israeli infants, assessed at 3, 6, 12, and 18 months; coded responses to staged distress of others (experimenter/parent) and prosocial behaviour."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "High source quality (large longitudinal sample, repeated measures, predictive validity, published in a strong developmental journal). Mapping fidelity is the limiting factor: the constructs are adjacent to but not identical with REE's other-bound streams, and human infant ontogeny is being read as a prior on an artificial agent's stream-ordering. Transfer risk moderate-to-elevated because REE is not a developing human and the 'why' of the ordering (protection vs exploitation-resistance) is not addressed by this paper."
+  }
+}

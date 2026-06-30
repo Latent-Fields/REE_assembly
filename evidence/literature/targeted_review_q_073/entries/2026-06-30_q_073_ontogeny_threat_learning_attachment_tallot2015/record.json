@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_073",
+  "entry_id": "2026-06-30_q_073_ontogeny_threat_learning_attachment_tallot2015",
+  "timestamp_utc": "2026-06-30T06:06:36Z",
+  "claim_ids_tested": ["Q-073"],
+  "source": {
+    "title": "Developmental emergence of fear/threat learning: neurobiology, associations and timing",
+    "authors": ["L. Tallot", "V. Doyere", "R. M. Sullivan"],
+    "year": 2015,
+    "venue": "Genes, Brain and Behavior",
+    "doi": "10.1111/gbb.12261"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "A strong mechanistic review of how threat learning comes online as the amygdala (then hippocampus) is incorporated, which speaks to the ontogeny of a threat-valuation system. But it complicates Q-073's simple 'threat-first' framing in two ways: (1) it is about SELF-directed threat learning, not OTHER-bound threat, and (2) early life actively SUPPRESSES threat learning to protect attachment to the caregiver -- the opposite of 'threat comes online first and dominates'. Confidence is moderate-low because the mapping to other-bound streams is indirect and the direction is genuinely two-sided.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In early life there is a 'sensitive period' that BLOCKS threat learning and instead enhances approach/attachment to the mother -- so the developmental default is not threat-dominance but threat-suppression in service of the caregiving bond. A REE ordering that brings other-bound threat online first AND lets it dominate early behaviour is contradicted by the biology of early attachment.",
+    "Threat learning's adult-like form requires the amygdala (cue) and then hippocampus (context) to be incorporated; before that, the threat channel is not simply 'weaker' but qualitatively absent for some content -- staggered substrate maturation, not graded scaling of a single channel."
+  ],
+  "tags": ["q_073", "threat_learning", "amygdala_ontogeny", "attachment", "fear_circuitry_maturation"],
+  "mapping": {
+    "source_claim_statement": "Adult-like threat (Pavlovian fear) learning emerges over postnatal development as the amygdala, prefrontal cortex and hippocampus are progressively incorporated -- amygdala maturation permits cue learning, hippocampal maturation permits context learning -- and early life contains a distinct period in which threat learning is suppressed and approach/attachment to the caregiver is enhanced instead.",
+    "ree_translation": "Bears on Q-073's premise that the threat/suffering valuation system has a definable developmental onset that can be ordered relative to appetitive systems. It supports the idea that a threat-valuation channel has a specific maturational schedule (substrate-gated, not free-floating), which is what REE's MECH-408 ordering would need. But it pushes BACK on a naive 'threat-first, threat-dominant' reading: the earliest developmental regime prioritises the attachment/approach bond and actively gates threat learning down, which is closer to Q-073's exploitation-vulnerability concern flipped on its head -- early life protects the bond rather than maximising threat sensitivity.",
+    "mapping_caveat": "This is SELF-directed threat learning (the pup learning what is dangerous TO ITSELF), not OTHER-bound suffering/threat (registering danger/harm to a conspecific). The transfer from a rodent self-threat ontogeny to REE's other-bound social streams is two steps removed: species transfer AND self->other transfer. The paper offers no direct measurement of other-bound valence at all.",
+    "source_context": "Review of rodent (primarily pup) Pavlovian fear-conditioning ontogeny with human-infant parallels; amygdala/PFC/hippocampus maturation and corticosterone/attachment modulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.40,
+    "transfer_risk": 0.62,
+    "notes": "Source quality high for a mechanistic review (canonical Sullivan-lab developmental fear work). Mapping fidelity low because the construct is self-directed threat, not other-bound; transfer risk high (rodent self-threat -> human/AI other-bound social valuation). Included precisely because it supplies the contrary nuance -- the early-attachment threat-suppression window -- that an honest governance record on Q-073 should carry, not because it cleanly confirms the ordering."
+  }
+}
