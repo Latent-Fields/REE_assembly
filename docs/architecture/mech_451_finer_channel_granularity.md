@@ -1,3 +1,10 @@
+---
+title: "MECH-451: Intermediate finer-channel-granularity selection-gating"
+parent: "Executive & PFC Control"
+grandparent: Architecture
+nav_order: 13
+---
+
 # MECH-451: Intermediate finer-channel-granularity selection-gating
 
 **Claim ID:** MECH-451
