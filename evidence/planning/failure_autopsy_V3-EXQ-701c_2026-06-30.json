@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-06-30T21:16:25Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_701c_inv050_mel_measurability_recononly_20260629T223011Z_v3",
+      "queue_id": "V3-EXQ-701c",
+      "claim_ids": ["INV-050"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; IV precondition effectively MET (MEL measurable + monotone on relative criteria). INV-050 UNWEAKENED, status unchanged.",
+        "biological_reference": "clear/supports -- Wilson&McNaughton 1994, Tononi&Cirelli 2003, Stickgold 2001; behaviour matches prediction (more novelty -> more accumulated PE, monotone). No biological divergence.",
+        "prerequisites": "converged base SUPPLIED (recon-only 3/3, R2 met; 701b fix worked). Missing prereq is DOWNSTREAM: the MEL-consumer (adaptive sleep-cadence / MECH-180); V3-EXQ-677 showed sleep counts scheduler-pinned.",
+        "implementation": "one mis-calibrated constant -- ABS_MEL_FLOOR=1e-4 inherited from 701b's ~2e-3 PE regime; structurally unreachable on the ~2e-5 converged base.",
+        "environment": "adequate -- graded novelty arms produced graded MEL exactly as designed.",
+        "measurement": "relative criteria adequate (clean monotone signal); absolute floor mis-scaled (false-negative). The load-bearing finding.",
+        "integration": "n/a -- single-module frozen probe.",
+        "scale": "adequate -- ~1e-5 per-step PE is the converged world-forward's natural scale, not an inadequacy."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Model Error Load (MEL) adaptive sleep response: novelty-proportional SWA / spindle density / hippocampal replay (MECH-180).",
+        "dependencies": ["converged world-forward (supplied)", "adaptive sleep-cadence scheduler that consumes MEL (absent on V3 -- scheduler-pinned, V3-EXQ-677)"],
+        "is_formal_import": false,
+        "divergence": "none -- mechanism behaved exactly as biology predicts (monotone graded MEL); the FAIL is a pure absolute-magnitude floor artifact.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_calibration_not_substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-701c (2026-06-30, recon-only P0 + frozen MEL probe, supersedes 701b; confirmed failure_autopsy_V3-EXQ-701c_2026-06-30) -> non_contributory, INV-050 UNWEAKENED (diagnostic, scoring-excluded; status unchanged). The 701b SD-056-destabiliser fix WORKED: readiness fully met -- R2 conv_seed_fraction=1.0 (recon-only base converged 3/3 on the frozen battery) + R1 pe_response=1.15 (>>0.25). On this VALID converged + novelty-responsive base MEL is CLEANLY MONOTONE in graded novelty (NONE 2.03e-5 < LOW 2.19e-5 < MED 2.41e-5 < HIGH 2.71e-5), relative spread 0.33 > 0.25 -- the strongest MEL-measurability evidence to date and a clean monotone signal 701b's un-converged base lacked. C1 FAILED on ONE sub-criterion only: abs_spread_ok=false, because ABS_MEL_FLOOR=1e-4 (inherited from 701b's ~2e-3 PE regime) is structurally unreachable on the converged base, where per-step PE lives at ~2e-5 and the 1e-4 spread floor is ~5x the entire signal. ADJUDICATION (user-confirmed 2026-06-30): floor MIS-CALIBRATION, NOT a measurability ceiling and NOT a falsification (biology supports MEL: Wilson&McNaughton 1994 / Tononi&Cirelli 2003 / Stickgold 2001). The IV precondition (MEL measurable + monotonic) is EFFECTIVELY MET on the relative criteria the design trusts (V3-EXQ-643 rule). The frontier has advanced: measurability is demonstrated; the gate is now the ABSENT MEL-CONSUMER substrate (adaptive sleep-cadence / MECH-180; V3-EXQ-677 showed sleep counts scheduler-pinned), whose build was deferred by the user 2026-06-14 and REMAINS deferred. Re-derive brake FIRED (4th non_contributory INV-050 diagnostic; the named 701b lock-point): REFUSE any same-claim measurability re-queue (no 701d); recommended_substrate_queue_entry action=none (deferral honored); the floor mis-calibration is recorded as a learning note for whoever later builds the consumer test-bed. pending_retest_after_substrate: adaptive sleep-cadence / MEL-consumer (MECH-180).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": "SD-MEL-CONSUMER (adaptive sleep-cadence; not created -- deferred)",
+        "title": "Adaptive sleep-cadence scheduler that consumes accumulated MEL (MECH-180)",
+        "implementation_hint": "DEFERRED per user 2026-06-14 (remains deferred 2026-06-30). The consumer that would make the now-measurable MEL signal functional: a sleep scheduler whose cadence / phase-allocation responds to accumulated MEL rather than being scheduler-pinned (V3-EXQ-677 showed zero sleep-count variance). When un-deferred, the consumer test-bed must also scale ABS_MEL_FLOOR to the converged base's ~1e-5 per-step PE (use a relative-only floor or abs floor ~1e-6) -- the inherited 1e-4 is mis-scaled by ~100x.",
+        "unblocks_claims": ["INV-050", "MECH-180"],
+        "depends_on_unresolved": ["SD-017", "MECH-180 adaptive sleep response (unbuilt on V3)"],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_701c_inv050_mel_measurability_recononly_20260629T223011Z_v3",
+          "experiment_type": "v3_exq_701c_inv050_mel_measurability_recononly",
+          "metric": "MEL monotone + rel spread 0.33 on a converged base, but abs HIGH-NONE spread 6.8e-6 < ABS_MEL_FLOOR 1e-4 (floor mis-scaled ~100x for the ~2e-5 converged-base PE)",
+          "target": "a MEL-consumer (adaptive sleep-cadence) that responds to the measurable MEL signal; floor re-scaled to the converged base PE scale"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-701_2026-06-23",
+          "failure_autopsy_V3-EXQ-701a_2026-06-23",
+          "failure_autopsy_V3-EXQ-701b_2026-06-29"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-MEL-CONSUMER (adaptive sleep-cadence / MECH-180) -- DEFERRED, substrate_queue action=none",
+        "note": "Fired as the named 701b lock-point (4th non_contributory INV-050 diagnostic). Refuses any same-claim measurability re-queue (no 701d). Route_to is implement-substrate in principle, but the build is user-deferred (2026-06-14, remains deferred), so no substrate_queue entry is created now. Brake reason here is NOT 'ceiling' -- measurability is effectively demonstrated; continuing to re-test would re-derive nothing."
+      },
+      "learning_extracted": [
+        "701b SD-056-destabiliser fix validated end-to-end: recon-only P0 converges 3/3 on the frozen battery (R2 1.0) + converged-model PE responds to novelty (R1 1.15).",
+        "On the valid converged base, MEL is measurable and cleanly MONOTONE in graded novelty (rel spread 0.33 > 0.25) -- strongest MEL-measurability evidence to date; monotone where 701b's un-converged base was not.",
+        "ABS_MEL_FLOOR=1e-4 is mis-calibrated for a converged frozen world-forward (per-step PE ~1e-5): future consumer test-beds must scale the absolute-spread floor to the converged base PE (relative-only floor, or abs ~1e-6).",
+        "INV-050 frontier moved: measurability demonstrated; functional sufficiency (does MEL drive sleep cadence?) is untestable until the MEL-consumer scheduler is built (deferred)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}

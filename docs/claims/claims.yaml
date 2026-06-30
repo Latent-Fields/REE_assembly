@@ -13580,6 +13580,27 @@
     metric artifact. Re-derive brake NOT fired (successive instrument repairs + a demonstrably-converging
     recon-only base, not a ceiling; locks only if 701c recon-only base also fails). Secondary learning:
     SD-056 contrastive auxiliary is a confirmed P0 world-forward destabiliser.
+    V3-EXQ-701c (2026-06-30, recon-only P0 + frozen MEL probe, supersedes 701b; confirmed
+    failure_autopsy_V3-EXQ-701c_2026-06-30) -> non_contributory, INV-050 UNWEAKENED (diagnostic,
+    scoring-excluded; status UNCHANGED). The 701b SD-056-destabiliser fix WORKED: readiness fully met --
+    R2 conv_seed_fraction=1.0 (recon-only base converged 3/3 on the frozen battery) + R1 pe_response=1.15
+    (>>0.25). On this VALID converged + novelty-responsive base MEL is CLEANLY MONOTONE in graded novelty
+    (NONE 2.03e-5 < LOW 2.19e-5 < MED 2.41e-5 < HIGH 2.71e-5), relative spread 0.33 > 0.25 -- the strongest
+    MEL-measurability evidence to date and a clean monotone signal 701b's un-converged base lacked. C1
+    FAILED on ONE sub-criterion only: abs_spread_ok=false, because ABS_MEL_FLOOR=1e-4 (inherited from
+    701b's ~2e-3 PE regime) is structurally unreachable on the converged base, where per-step PE lives at
+    ~2e-5 and the 1e-4 spread floor is ~5x the entire signal. ADJUDICATION (user-confirmed 2026-06-30):
+    floor MIS-CALIBRATION, NOT a measurability ceiling and NOT a falsification (biology supports MEL:
+    Wilson&McNaughton 1994 / Tononi&Cirelli 2003 / Stickgold 2001). The IV precondition (MEL measurable +
+    monotonic) is EFFECTIVELY MET on the relative criteria the design trusts (V3-EXQ-643 rule). The
+    frontier has advanced: measurability is demonstrated; the gate is now the ABSENT MEL-CONSUMER
+    substrate (adaptive sleep-cadence / MECH-180; V3-EXQ-677 showed sleep counts scheduler-pinned), whose
+    build was deferred by the user 2026-06-14 and REMAINS deferred. Re-derive brake FIRED (4th
+    non_contributory INV-050 diagnostic; the named 701b lock-point): REFUSE any same-claim measurability
+    re-queue (no 701d); substrate_queue action=none (deferral honored); the floor mis-calibration is
+    recorded as a learning note for whoever later builds the consumer test-bed.
+  pending_retest_after_substrate: true
+  pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design"
   depends_on:
     - INV-049
     - INV-044
