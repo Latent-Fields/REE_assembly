@@ -8839,6 +8839,16 @@
   subject: ethics.test_scope_nth_order
   polarity: asserts
   status: candidate
+  implementation_phase: v5
+  governance_2026_07_01: >
+    Added implementation_phase v5 + v3_pending (phase-tag hygiene, PROMOTES NOTHING).
+    ARC-034 is a V5-era multiagent-ethics claim -- its assertion (ethics testing must span
+    nth-order multiagent trajectory distributions) requires the multi-agent ecology substrate,
+    and it depends_on MECH-129 (implementation_phase v5, social tier, V5 roadmap wave) and
+    MECH-127 (counterfactual empathic activation, social). Previously untagged, which made a
+    reverse-dependency trace mis-flag it as a "V3-era claim depending on a V5-held claim"
+    (2026-07-01 PM /governance). Now routes with the V5 held cohort (siblings ARC-096/097/098).
+  v3_pending: true
   depends_on:
     - INV-001
     - INV-015
@@ -44783,7 +44793,8 @@
     - ARC-002    # E2 affordance model -- the second stream; E1<->E2 overlap is the pairwise instance
     - MECH-081   # E2 sufficiency constraint reduces E1 dimensionality target -- a registered pairwise interaction this generalises
     - MECH-033   # E2 kernels seed hippocampal rollouts -- an existing cross-module transfer path
-    - ARC-080    # object-identity primitive -- a cross-cutting feature donor across modules
+  related_claims:
+    - ARC-080    # CONCEPTUAL cross-ref, NOT a build dependency (moved out of depends_on 2026-07-01 PM /governance reverse-dep phase-consistency fix). ARC-080 is a THIN UMBRELLA / COHERENCE MAP (implementation_phase v4, v3_pending) that "introduces NO substrate code and changes NO V3 behaviour" -- it builds nothing, so it cannot be a V3 build prerequisite. MECH-423's falsifiable V3 test (what_would_answer) is E1+E2 super-additivity over the ARC-004 shared latent; the object spine is only the OPTIONAL THIRD ARM. The real blocker is the integration-readiness precondition (non-zero cross-module gradient / inference-loop convergence / MECH-121 offline transfer) + the pending lit-pull -- empirically the 680->680c lineage stalled on numerical co-training instability, never on object-file absence. Keeping ARC-080 in depends_on made a V3 claim spuriously read as V3-blocked-on-V4; it is a conceptual cross-cutting feature-donor, so it lives here.
   possible_overlap_with:
     - MECH-081   # MECH-081 is one PAIRWISE E2->E1 interaction; MECH-423 is the system-level super-additivity claim over many streams
     - MECH-082   # E2 distortion biases E1 sampling -- another pairwise propagation instance
