@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_074",
+  "entry_id": "2026-07-01_q_074_emergent_analogy_llm_webb2023",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-074"],
+  "source": {
+    "title": "Emergent analogical reasoning in large language models",
+    "authors": ["Taylor Webb", "Keith J. Holyoak", "Hongjing Lu"],
+    "year": 2023,
+    "venue": "Nature Human Behaviour",
+    "doi": "10.1038/s41562-023-01659-w",
+    "url": "https://doi.org/10.1038/s41562-023-01659-w"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "GPT-3 solves a broad range of zero-shot analogy problems (matrix reasoning, letter-string, verbal analogies) with no dedicated analogy operator and no analogy-specific training -- direct support for the 'analogy emerges from a general relational substrate' horn. Discounted heavily because (a) whether the LLM's behaviour is genuine relational analogy or surface pattern-completion is actively contested (Hodel & West counterexamples on trivially-perturbed letter-string tasks), and (b) an LLM's substrate is not MECH-300 cognitive-map traversal, so the mapping is 'a general model can do analogy without a special module', not a demonstration about REE's specific traversal mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "GPT-3 has been shown to fail simple variations of the same letter-string analogies that humans solve robustly, suggesting some of the apparent analogy is brittle pattern-matching rather than structure alignment -- if REE's emergence were similarly brittle it would fail the very generalization analogy is supposed to buy.",
+    "Emergence in a trillion-token language model does not establish emergence in a compact symbolic-map substrate; the result may be parasitic on scale and training distribution rather than on relational-map traversal per se."
+  ],
+  "tags": ["q_074", "analogy", "emergence", "large_language_models", "relational_reasoning", "MECH-421"],
+  "mapping": {
+    "source_claim_statement": "Large language models (GPT-3/GPT-4), without any analogy-specific training, acquire an emergent zero-shot capacity to solve a wide range of analogy problems, in several cases matching or exceeding human performance.",
+    "ree_translation": "Q-074's emergence horn says analogy need not be a hand-built operator -- it can fall out of a sufficiently rich general substrate. Webb et al. is the strongest behavioural instance of that pattern in an artificial system: a general next-token predictor exhibits analogical reasoning it was never explicitly given. By analogy to REE, if a general relational-inference stack (MECH-419/MECH-420) is rich enough, MECH-421 might not need to be a separate module.",
+    "mapping_caveat": "The substrate is wrong twice over: an LLM is not MECH-300 cognitive-map traversal, and 'emergence at scale in a language model' may not predict 'emergence from a compact symbolic map'. Whether the LLM behaviour is genuine analogy is itself disputed, so this supports the emergence hypothesis only weakly and provisionally.",
+    "source_context": "Behavioural comparison of GPT-3 (text-davinci-003) against human participants on non-visual matrix reasoning (Raven-style), letter-string analogies, four-term verbal analogies, and story analogies."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.50,
+    "notes": "Venue and human-comparison design are strong (source_quality 0.80), but the contested-genuineness debate and the double substrate mismatch pull mapping_fidelity and transfer_risk toward the middle; net moderate support for the emergence horn."
+  }
+}

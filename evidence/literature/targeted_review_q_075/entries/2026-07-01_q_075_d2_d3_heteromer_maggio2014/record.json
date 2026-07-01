@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_075",
+  "entry_id": "2026-07-01_q_075_d2_d3_heteromer_maggio2014",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-075"],
+  "source": {
+    "title": "Novel dimensions of D3 receptor function: Focus on heterodimerisation, transactivation and allosteric modulation",
+    "authors": ["Roberto Maggio", "Marco Scarselli", "Marta Capannolo", "Mark J. Millan"],
+    "year": 2014,
+    "venue": "European Neuropsychopharmacology",
+    "doi": "10.1016/j.euroneuro.2014.09.016",
+    "url": "https://doi.org/10.1016/j.euroneuro.2014.09.016"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.50,
+  "confidence_rationale": "Directly probes Q-075's named failure mode. Dopamine D2 and D3 receptors form heteromers and can transactivate -- an intervention 'selective' for D3 can recruit signalling normally coupled to D2. This WEAKENS the clean-double-dissociation prediction for the dopamine-selection (goal/salience + commitment-release) axes, while paradoxically confirming D3 has functions distinct enough to be worth separating. Logged mixed: it supports 'D3 is functionally non-redundant' but undercuts 'receptor-selective interventions produce clean, non-crossing double dissociations'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "D2-D3 heteromerization + transactivation means receptor-selective ligands do not produce receptor-selective SIGNALLING; a D3-preferring drug can harness D2-coupled pathways, so a behavioural double-dissociation designed around D2-vs-D3 selectivity can be confounded at the molecular level.",
+    "If the goal/salience-coupling and commitment-release axes are both assigned to dopamine subtypes that physically cross-talk, the two axes may not remain separable under intervention -- the collapse-into-one-dimension outcome Q-075 poses as the null."
+  ],
+  "tags": ["q_075", "dopamine", "D2", "D3", "heteromer", "transactivation", "axis_collapse", "ARC-086", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Dopamine D3 receptors form homomers and D3-D2 heteromers; within these complexes, mechanisms such as transactivation let one protomer recruit signalling normally coupled to the other, and allosteric/bitopic ligands act differently on heteromers than on monomers -- so D3 has distinctive functions but its pharmacology is entangled with D2 at the receptor-complex level.",
+    "ree_translation": "Q-075 predicts the goal/salience-coupling and commitment-release axes map to dopamine-selection subtypes (D2-vs-D3, with an M4-muscarinic contribution), tested by receptor-selective double dissociation. This paper is the counterweight: it shows the molecular basis on which such a dissociation could FAIL -- D2 and D3 heteromerize and transactivate, so 'selective' interventions may not cleanly separate the two dopamine-graded axes.",
+    "mapping_caveat": "OUT-OF-DOMAIN by design (V3 has no dopamine receptor subtypes; receptor rung out_of_domain per receptor_subtype_intervention_layer.md Section 4). The paper is molecular pharmacology, not a behavioural axis study; inferring axis-collapse from heteromer cross-talk is an indirect, cross-level inference. It shows a mechanism by which dissociation could fail, not that REE's specific axes do collapse.",
+    "source_context": "Molecular-pharmacology review of dopamine-receptor homo/heteromerization, PET-ligand and antipsychotic/partial-agonist binding profiles, and allosteric modulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.50,
+    "notes": "Authoritative molecular review (source_quality 0.75). Cross-level inference (molecular heteromerization -> behavioural axis collapse) and out-of-domain transfer hold mapping_fidelity/transfer_risk at 0.50; value is as the honest counter-signal to the clean-dissociation prediction."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_075",
+  "entry_id": "2026-07-01_q_075_dynorphin_kor_stress_bruchas2009",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-075"],
+  "source": {
+    "title": "The dynorphin/kappa opioid system as a modulator of stress-induced and pro-addictive behaviors",
+    "authors": ["Michael R. Bruchas", "Benjamin B. Land", "Charles Chavkin"],
+    "year": 2009,
+    "venue": "Brain Research",
+    "doi": "10.1016/j.brainres.2009.08.062",
+    "url": "https://doi.org/10.1016/j.brainres.2009.08.062"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.50,
+  "confidence_rationale": "Establishes that the dynorphin/kappa-opioid (KOR) system mediates the DYSPHORIC/aversive component of stress -- functionally dissociable from mu-opioid reward -- giving Q-075 a receptor-level handle for the commitment-threshold kappa/mu opioid overlay. Discounted because (a) the paper says nothing about COMMITMENT or commitment-entropy -- that mapping is a large REE-specific interpretive leap, and (b) it emphasises tight CRF-KOR COUPLING, which entangles the putative commitment axis with the stress/harm axis rather than showing it as independent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "KOR/dynorphin is repeatedly shown to be downstream of and co-activated with CRF stress signalling; if the commitment-threshold axis is grounded in a receptor system that is mechanistically fused to the stress/harm system, the axes may co-vary rather than dissociate -- the exact collapse Q-075 warns against.",
+    "The paper's construct is dysphoria/aversion and pro-addictive relapse, not commitment threshold or commitment entropy; the REE translation may be grounding the wrong behavioural variable in KOR."
+  ],
+  "tags": ["q_075", "kappa_opioid", "dynorphin", "KOR", "dysphoria", "commitment_threshold", "ARC-086", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Activation of the dynorphin/kappa-opioid-receptor (KOR) system mediates the aversive, dysphoric component of stress and potentiates drug-seeking and stress-induced reinstatement; it does so in concert with CRF, and its aversive signature is separable from the rewarding (mu-opioid) actions of abused drugs.",
+    "ree_translation": "Q-075 predicts the commitment-threshold axis maps to a kappa/mu opioid commitment-entropy overlay. This paper grounds the kappa side: KOR is a distinct, selectively-targetable receptor system carrying an aversive/dysphoric signal dissociable from mu-opioid reward -- the kind of receptor-level separability the axis-grounding hypothesis needs, and a candidate substrate for a commitment-cost / aversive-threshold signal.",
+    "mapping_caveat": "OUT-OF-DOMAIN by design (V3 has no opioid receptor subtypes; receptor rung is out_of_domain per receptor_subtype_intervention_layer.md Section 4). The translation from 'KOR mediates dysphoria/aversion' to 'kappa/mu governs a commitment-threshold / commitment-entropy overlay' is a substantial interpretive leap the paper does not make. The heavy CRF-KOR coupling documented here actively threatens the dissociation Q-075 wants, because it fuses the commitment candidate to the stress/harm system.",
+    "source_context": "Mechanistic review of rodent behavioural pharmacology and signal transduction (conditioned place aversion, stress-induced reinstatement, CRF-dynorphin cascades)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.50,
+    "notes": "Strong, well-cited mechanistic review (source_quality 0.75). mapping_fidelity is low because the commitment-threshold mapping is unsupported by the paper and the CRF-KOR coupling cuts against clean dissociation; rodent + out-of-domain transfer keeps transfer_risk at 0.50."
+  }
+}

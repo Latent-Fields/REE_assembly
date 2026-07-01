@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_074",
+  "entry_id": "2026-07-01_q_074_tolman_eichenbaum_machine_whittington2020",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-074"],
+  "source": {
+    "title": "The Tolman-Eichenbaum Machine: Unifying Space and Relational Memory through Generalization in the Hippocampal Formation",
+    "authors": ["James C. R. Whittington", "Timothy H. Muller", "Shirley Mark", "Guifen Chen", "Caswell Barry", "Neil Burgess", "Timothy E. J. Behrens"],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.10.024",
+    "url": "https://doi.org/10.1016/j.cell.2020.10.024"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Strongest available mechanistic analog to the 'emergent traversal' horn of Q-074: a single factorized structural code, learned once, generalizes to new environments that share the same relational structure -- the model instantiates 'same map, different entry points' almost verbatim. Discounted because TEM demonstrates STRUCTURAL TRANSFER/generalization, not four-term proportional analogy (A:B::C:D), and it is a hippocampal-entorhinal model rather than the V6 symbolic stack MECH-300 posits.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "TEM generalizes transition structure but does not itself demonstrate explicit relational MAPPING between two separately-encoded domains -- structural transfer within a learned abstraction is weaker evidence than an A:B::C:D analogy solved across domains.",
+    "Factorization is imposed by architectural design (separate structural vs sensory streams); if REE's shared symbolic map does not factorize structure from content as cleanly, the emergence result may not carry over."
+  ],
+  "tags": ["q_074", "analogy", "cognitive_map", "relational_generalization", "factorization", "MECH-300"],
+  "mapping": {
+    "source_claim_statement": "Separating a structural code (the transition rules of a graph) from the sensory code (the objects on each node) is sufficient to build a relational memory system that generalizes structural knowledge to novel environments sharing that structure, and reproduces hippocampal/entorhinal cell types.",
+    "ree_translation": "Q-074 asks whether analogy is a dedicated V6 operator (MECH-421) or falls out of MECH-300 cognitive-map traversal over a shared symbolic map. TEM is a working existence-proof for the second horn: once structure is factorized from content, traversing the SAME structural map with DIFFERENT sensory bindings yields transfer to a structurally-analogous situation -- 'same map, different entry points' -- with no separate analogy module.",
+    "mapping_caveat": "TEM shows structural GENERALIZATION/transfer, which is necessary but not sufficient for full analogical mapping; solving a novel proportional analogy across two domains may still require an explicit alignment step that TEM does not implement. The neural substrate (hippocampal formation) is not REE's symbolic stack, so this is an in-principle plausibility argument, not a direct demonstration that MECH-300 traversal suffices.",
+    "source_context": "Computational model with biological validation; simulated spatial and non-spatial relational-memory tasks, matched against rodent electrophysiology (grid, place, band, object-vector cells)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "For an architectural decide-whether-to-build question, mapping_fidelity is weighted most; TEM's 'factorize then traverse' is the closest formal statement of the emergence horn, hence a moderate-high fidelity despite the structural-transfer-vs-analogy gap."
+  }
+}

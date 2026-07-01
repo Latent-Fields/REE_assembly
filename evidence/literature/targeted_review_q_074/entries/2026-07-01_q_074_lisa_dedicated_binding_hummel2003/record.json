@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_074",
+  "entry_id": "2026-07-01_q_074_lisa_dedicated_binding_hummel2003",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-074"],
+  "source": {
+    "title": "A symbolic-connectionist theory of relational inference and generalization",
+    "authors": ["John E. Hummel", "Keith J. Holyoak"],
+    "year": 2003,
+    "venue": "Psychological Review",
+    "doi": "10.1037/0033-295X.110.2.220",
+    "url": "https://doi.org/10.1037/0033-295X.110.2.220"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.60,
+  "confidence_rationale": "LISA is the canonical argument that analogical mapping requires DEDICATED machinery -- dynamic role-filler binding via temporal synchrony -- rather than emerging from distributed representations alone. That is the strongest principled case for the 'separate operator' horn of Q-074, i.e. for building MECH-421 explicitly. Discounted because it is a 2003 cognitive-architecture theory whose 'binding must be dedicated' premise has been partially challenged by later high-dimensional and attention-based models; and because 'requires dedicated binding' does not strictly rule out that MECH-300 traversal already supplies such binding.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LISA's dynamic binding is inherently capacity-limited (roughly 4-6 role bindings, 2-3 propositions at once) because synchrony can represent bindings at only one hierarchical level at a time -- if analogy needs a dedicated binder, REE inherits that working-memory bottleneck as a hard constraint, not an incidental one.",
+    "If REE expects analogy to emerge from MECH-300 traversal but the LISA thesis is right that structure-sensitive mapping needs explicit variable binding, an emergent stack would produce systematic binding errors (illusory conjunctions, role confusions) on exactly the hard analogies that motivate having the mechanism."
+  ],
+  "tags": ["q_074", "analogy", "structure_mapping", "dynamic_binding", "dedicated_operator", "MECH-421"],
+  "mapping": {
+    "source_claim_statement": "Structure-sensitive relational inference and analogical mapping require dynamic binding of roles to fillers (implemented in LISA via temporal synchrony), giving a system both connectionist flexibility and symbolic structure-sensitivity; this dedicated binding mechanism is what makes analogy work, and it is inherently capacity-limited.",
+    "ree_translation": "Q-074's first horn says analogy (MECH-421) should be built as a distinct operator over the relational stack. LISA is the principled defence of that horn: relational mapping is not free -- it needs an explicit binder to keep 'who plays which role' straight across the two analogues, and distributed representations without such a binder cannot maintain structure. For REE, this argues MECH-421 warrants dedicated variable-binding machinery rather than being left to emerge from MECH-419/MECH-420.",
+    "mapping_caveat": "The theory establishes that analogy needs a binder; it does not establish that MECH-300 cognitive-map traversal cannot itself BE that binder. If traversal over the shared symbolic map already implements role-filler binding, the 'dedicated operator' and 'emergent from traversal' horns partially converge, and LISA weakens the pure-emergence reading without settling the build decision. LISA is also a psychological model of human analogy, a transfer step away from REE's substrate.",
+    "source_context": "Symbolic-connectionist cognitive architecture; simulations of analogical access, mapping, inference, and schema induction, with the binding mechanism as the load-bearing commitment."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Foundational, highly-cited theory (source_quality 0.85). mapping_fidelity is only moderate because 'analogy needs binding' does not cleanly decide 'build a separate module vs. traversal supplies binding'; it weakens pure emergence more than it proves a bolted-on operator."
+  }
+}

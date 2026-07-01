@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_075",
+  "entry_id": "2026-07-01_q_075_serotonin_two_receptors_carhartharris2017",
+  "timestamp_utc": "2026-07-01T06:05:33Z",
+  "claim_ids_tested": ["Q-075"],
+  "source": {
+    "title": "Serotonin and brain function: a tale of two receptors",
+    "authors": ["Robin L. Carhart-Harris", "David J. Nutt"],
+    "year": 2017,
+    "venue": "Journal of Psychopharmacology",
+    "doi": "10.1177/0269881117725915",
+    "url": "https://doi.org/10.1177/0269881117725915"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Provides a well-developed, pharmacologically-anchored case that the two most-studied serotonin receptors are FUNCTIONALLY DISSOCIABLE -- 5-HT1A postsynaptic signalling mediates passive coping / stress moderation, 5-HT2A mediates active coping / plasticity, and they are differentially engaged by SSRIs vs 5-HT2A-agonist psychedelics. This directly grounds Q-075's prediction that the precision/terrain axis maps onto dissociable serotonin subtypes. Discounted because it is a THEORETICAL bipartite synthesis, not a receptor-selective double-dissociation RCT, and Q-075's finer cortical-narrative-vs-hippocampal-terrain assignment is more specific than the paper's coping-style framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is argued as a bipartite theoretical model, not demonstrated by a factorial receptor-selective intervention showing a crossover (5-HT2A drug moves axis A but not B, 5-HT1A drug moves B but not A) -- so it supports dissociability without delivering the double-dissociation design Q-075 specifies.",
+    "Coping style (passive vs active) is not the same construct as a latent vulnerability AXIS (precision/terrain); if REE's axis does not line up with the coping dimension, the receptor grounding transfers to the wrong variable."
+  ],
+  "tags": ["q_075", "serotonin", "5-HT2A", "5-HT1A", "receptor_dissociation", "ARC-086", "out_of_domain"],
+  "mapping": {
+    "source_claim_statement": "Serotonin enhances two distinct adaptive responses to adversity via its two most prevalent brain receptors: postsynaptic 5-HT1A signalling mediates passive coping (stress moderation, the default response), while 5-HT2A signalling mediates active coping (enhanced plasticity / capacity for change); SSRIs preferentially enhance the 5-HT1A pathway and 5-HT2A-agonist psychedelics the 5-HT2A pathway.",
+    "ree_translation": "Q-075 asks whether ARC-086's latent vulnerability axes are grounded in dissociable neuromodulator-receptor systems, predicting the precision/terrain axis maps to serotonin subtypes (5-HT2A-cortical narrative vs 5-HT1A-hippocampal terrain). This paper supplies the receptor-level dissociability that prediction needs: two serotonin receptors with distinct, separately-druggable functional roles, rather than a single serotonergic tone.",
+    "mapping_caveat": "OUT-OF-DOMAIN by design: Q-075's test domain is clinical pharmacology, and V3 has no 5-HT receptor subtypes (receptor_subtype_intervention_layer.md Section 4). This entry raises literature grounding only; it promotes/demotes nothing and licenses no V3 experiment. The paper argues dissociable COPING FUNCTIONS, not the specific cortical-narrative/hippocampal-terrain axis assignment Q-075 proposes, and it is a theoretical synthesis rather than a double-dissociation trial.",
+    "source_context": "Narrative/theoretical review in clinical psychopharmacology, integrating human and animal pharmacology of SSRIs and serotonergic psychedelics."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "Influential, widely-cited synthesis but a theoretical model rather than an interventional double-dissociation (source_quality 0.70). Out-of-domain transfer to REE latent axes and the coping-vs-axis construct gap hold mapping_fidelity/transfer_risk mid-range."
+  }
+}
