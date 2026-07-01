@@ -118,7 +118,7 @@ replay/simulation. No `hypothesis_tag` write surface is added.
 
 ## What this enables / the falsifier
 
-**FALSIFIER (V4-EXQ, queued separately):** ON vs OFF; if the dedicated self-recurrence does
+**FALSIFIER (V4-EXQ-002, queued 2026-07-01):** ON vs OFF; if the dedicated self-recurrence does
 NOT make z_self carry temporal/self-model state beyond the EMA snapshot (state_departure
 ~0, or lesioning the recurrent hidden state leaves the stateful z_self unchanged), DR-13
 buys nothing over the EMA and the recurrence is inert. Pre-registers a non-vacuity gate
