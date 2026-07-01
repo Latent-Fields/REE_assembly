@@ -38921,8 +38921,11 @@
     the self-object cutover). Design doc:
     docs/architecture/dr13_self_recurrence_temporal_depth.md. Plan node:
     evidence/planning/self_model_v4_plan.md self_model_v4:SELF-1. Validation:
-    V4-EXQ-002 (DR-13 self-recurrence substrate-readiness falsifier) queued
-    2026-07-01 (diagnostic; PROMOTES NOTHING).
+    V4-EXQ-002 (DR-13 self-recurrence substrate-readiness falsifier) queued +
+    PASSED 2026-07-01 (diagnostic, claim_ids=[]; PROMOTES NOTHING; scores no
+    claim) -- run ..._20260701T065002Z_v4: recurrence live (state_departure
+    1.15), history-carrying + perturbation-isolated + E1-anchor-blend live 3/3
+    seeds. DR-13 self subject substrate-validated.
   depends_on:
     - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the self specialisation)
     - SD-005     # V3 BEGINNING -- z_self self/world split (proprioceptive/interoceptive body latent)
