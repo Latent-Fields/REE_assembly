@@ -2,7 +2,7 @@
 title: "MECH-341: E3 Score Diversity Preservation"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 9
+nav_order: 11
 ---
 
 # MECH-341: E3 Score Diversity Preservation

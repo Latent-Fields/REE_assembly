@@ -1,8 +1,8 @@
 ---
-title: "DR-13: z_self temporal depth (dedicated self-recurrence + E1-feedback anchor)"
+title: "DR-13: z_self temporal depth -- dedicated self-recurrence anchored by E1 feedback"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 6
+nav_order: 7
 ---
 
 # DR-13: z_self temporal depth -- dedicated self-recurrence anchored by E1 feedback

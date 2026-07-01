@@ -2,7 +2,7 @@
 title: MECH-090 Commit-Entry Predicate (R-c single-gate conjunction)
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 7
+nav_order: 9
 ---
 
 # MECH-090 Commit-Entry Predicate (R-c single-gate conjunction)

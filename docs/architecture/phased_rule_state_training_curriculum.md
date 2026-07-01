@@ -2,7 +2,7 @@
 title: Phased rule_state Training Curriculum -- Design + Risk Analysis
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 14
+nav_order: 16
 ---
 
 # Phased rule_state Training Curriculum -- Design + Risk Analysis

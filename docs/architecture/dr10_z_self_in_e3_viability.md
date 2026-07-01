@@ -2,7 +2,7 @@
 title: "DR-10: z_self enters E3 trajectory viability scoring"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 7
+nav_order: 5
 ---
 
 # DR-10: z_self enters E3 trajectory viability scoring

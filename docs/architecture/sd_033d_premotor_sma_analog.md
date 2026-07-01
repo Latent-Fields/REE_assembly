@@ -2,7 +2,7 @@
 title: "SD-033d: Premotor/SMA-analog (sequence-execution substrate)"
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 20
+nav_order: 22
 ---
 
 # SD-033d: Premotor/SMA-analog (sequence-execution substrate)

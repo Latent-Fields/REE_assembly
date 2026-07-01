@@ -2,7 +2,7 @@
 title: Learned dopamine-gated E3 selection (ARC-108 JOB-1 steps 1 + 2)
 parent: "Executive & PFC Control"
 grandparent: Architecture
-nav_order: 6
+nav_order: 8
 ---
 
 # Learned dopamine-gated E3 selection (ARC-108 JOB-1 steps 1 + 2)
