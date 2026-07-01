@@ -46870,6 +46870,29 @@
     DV; loop-segregated diversity is unreachable). The V4 substrate that supplies a valid same-layer null +
     segregated loops is registered as v4_loop_segregation (owning claim ARC-110; design_doc
     docs/architecture/sd_v4_loop_segregation.md). ARC-108's w_chan learned gating is re-tested there. PROMOTES NOTHING.
+    IMPLEMENTATION NOTE (ARC-108 x ARC-110 LEARNED CROSS-LOOP arbitration BUILT 2026-07-01, /implement-substrate;
+    substrate, PROMOTES NOTHING): the coupling this claim's depends_on ARC-110 names -- learned gating operating AT
+    the CROSS-LOOP arbitration, not only within-arena (w_chan) -- landed behind no-op-default flag
+    config.e3.use_learned_cross_loop_arbitration (+ learned_cross_loop_eta 0.01; requires use_loop_segregation on).
+    The escalation source is V3-EXQ-707b (failure_autopsy_V3-EXQ-707b_2026-06-29): loop segregation built fully-live
+    (all 6 gates passed, limbic range 1.414) yet the limbic loop NEVER won because the cross-loop combine was STATIC
+    ARITHMETIC (fixed spiral gains inherit F's dominance). The fixed combine in e3_selector._segregated_loop_arbitrate
+    is replaced by a LEARNED [3,3] cross-loop matrix W_cross = I + M_cross (register_buffer, loop order
+    motor/associative/limbic, init 0 -> W_cross==I -> BIT-IDENTICAL at init and OFF), updated by the SAME ARC-108
+    signed-RPE three-factor rule as w_chan/W_lat (one shared dopaminergic delta_t + D1-D2 asym -- Haber's single
+    ascending spiral) via an outer-product Hebbian coact trace coact[i,j] = post_i*pre_j (pre_j = -loop_z_j[committed],
+    SIGNED directional credit; post_i = -eff_i[committed]). M_cross[motor,limbic] is the learnable ascending-spiral
+    path by which the limbic value loop learns to drive the motor commit. Waking-only (MECH-094). Safety inherited:
+    arbitration stays strictly within the F+MECH-448/449 eligible set (weights only reorder, never re-admit). Couples
+    with MECH-450 (settling shapes within-loop, cross-loop weights shape across-loop; both ride the same delta_t). Per
+    the 2026-06-29 MECH-439 /claim-synthesis discrimination gate (borderline child MECH-453, recommended DROP -- this
+    is the ARC-108 x ARC-110 intersection, and ARC-108 already depends_on ARC-110), NO new claim is minted; the
+    coupling is annotated here + on ARC-110. Full suite green (1353 passed / 3 pre-existing-unrelated); regression
+    guard ree-v3/tests/contracts/test_learned_cross_loop_arbitration.py (byte-identical-OFF/at-init, non-vacuity,
+    MECH-094 gate, limbic-can-win, safety). Design-of-record docs/architecture/learned_cross_loop_arbitration.md;
+    ree-v3/CLAUDE.md "ARC-108 x ARC-110 coupling" entry. Validation = a SEPARATE new-EXQ falsifier (A1_LOOPS +
+    learned cross-loop arbitration STRICT-ABOVE A1_LOOPS + static arbitration; different claim_ids), queued after this
+    build lands. PROMOTES NOTHING (no-op-default flag; no flag/confidence/status change).
 - id: ARC-109
   title: "D1/D2 striatal population split with asymmetric dopamine gain: the Go (direct/D1) and No-Go (indirect/D2) pathways should be represented as TWO populations with OPPOSITE dopamine sensitivity (DA potentiates D1/Go via LTP, depresses D2/No-Go via LTD), NOT collapsed into one additive scoring scalar. REE today renders Go/No-Go as a scoring SIGN (benefit_eval_head minus harm_eval_head; MECH-449 Go-promote / No-Go-suppress over the eligible set) -- dissociable pathways pre-summed into one cost. The split is REQUIRED to EARN the Parkinson / dyskinesia / Huntington / impulse-control-disorder psychiatric axis per the ARC-106 EARNS criterion."
   claim_type: architectural_commitment
@@ -47063,13 +47086,27 @@
     finer-channel dry-run ran clean through the modified selector). Design-of-record
     docs/architecture/sd_v4_loop_segregation.md; autopsy
     evidence/planning/failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.
+    COUPLING BUILT 2026-07-01 (/implement-substrate; PROMOTES NOTHING): the 707b-NARROW missing dependency
+    -- learned/dopamine-gated CROSS-LOOP arbitration plasticity -- is now built behind no-op-default flag
+    config.e3.use_learned_cross_loop_arbitration. The STATIC arithmetic cross-loop combine (fixed spiral
+    gains, which 707b showed inherit F's dominance so the live limbic loop never won) is replaced by a
+    LEARNED [3,3] cross-loop matrix W_cross = I + M_cross, updated by the SAME ARC-108 signed-RPE three-factor
+    rule (shared delta_t; outer-product Hebbian coact; signed directional per-loop eligibility), coupled with
+    the MECH-450 settling step. M_cross[motor,limbic] is the learnable ascending-spiral path by which the
+    limbic loop learns to drive the motor commit. Byte-identical OFF + at-init (M_cross==0 -> W_cross==I);
+    safety inherited (arbitration stays within the F+MECH-448/449 eligible set). This is the ARC-108 x ARC-110
+    intersection (annotated on both; NO new claim per the 2026-06-29 MECH-439 /claim-synthesis DROP-MECH-453).
+    Design-of-record docs/architecture/learned_cross_loop_arbitration.md; ree-v3/CLAUDE.md "ARC-108 x ARC-110
+    coupling" entry; regression guard ree-v3/tests/contracts/test_learned_cross_loop_arbitration.py. The
+    pending_retest_after_substrate re-test (A1_LOOPS + learned cross-loop arbitration STRICT-ABOVE A1_LOOPS +
+    static arbitration; new EXQ, different claim_ids) is queued SEPARATELY after this build lands. PROMOTES NOTHING.
   # PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b). The
   # V3-EXQ-700 fork resolved toward escalation -> the v4_loop_segregation substrate (this
   # claim's build) is now BUILT (2026-06-27). Recorded via the assembly companion fields ONLY;
   # status / epistemic_category / implementation_phase UNCHANGED (NOT a promotion --
   # /implement-substrate registration, PROMOTES NOTHING). See implementation_note + substrate_queue.json sd_id v4_loop_segregation.
   assembly_status: in_progress
-  awaiting: dopamine_gated_cross_loop_arbitration_plasticity_MECH-448_449_ARC-107   # UPDATED 2026-06-29: V3-EXQ-707b validation LANDED (weakens-NARROW); the loop-segregation substrate is built+live, the now-binding co-requisite is DA-gated cross-loop arbitration LEARNING (static arithmetic arbitration does not convert). Prior awaiting=v3_exq_707b_c2_release_validation_run_result satisfied.
+  awaiting: learned_cross_loop_arbitration_validation_falsifier   # UPDATED 2026-07-01: the DA-gated cross-loop arbitration LEARNING substrate (the 707b-NARROW missing dependency) is now BUILT (use_learned_cross_loop_arbitration; docs/architecture/learned_cross_loop_arbitration.md). Now awaiting the SEPARATE new-EXQ falsifier (A1_LOOPS + learned cross-loop arbitration STRICT-ABOVE A1_LOOPS + static arbitration; different claim_ids), queued via /queue-experiment after the build lands. Prior awaiting=dopamine_gated_cross_loop_arbitration_plasticity_MECH-448_449_ARC-107 satisfied by the build.
   validation_note: >
     V3-EXQ-707 (first ARC-110 validation, 2026-06-28) returned non_contributory /
     substrate_not_ready_requeue (PROMOTES NOTHING; in_layer null verify-lift met on only
