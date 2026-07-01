@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Self-Model Integration (finish self-attribution; self-as-object cutover)"
   registered: 2026-06-10
-  last_updated: 2026-06-17
+  last_updated: 2026-07-01
   scope_claims: [ARC-081, MECH-214, MECH-215, SD-030, INV-064]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -63,18 +63,20 @@ closure_plan:
     - id: "self_model_v4:SELF-3"
       title: "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability"
       phase: 3
-      status: open
+      status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-215, ARC-081]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: ["object_representation_v4:OBJ-3"]
+      blocking_on: "The SELF-1 DR-13 substrate BUILD (a materialised stateful z_self via light self-recurrence regularised by E1 feedback). SELF-1's node is `done` (2026-06-14) as a DESIGN decision ONLY -- no V3 substrate change landed, the single-MLP + EMA stays the V3 self latent -- so the stateful z_self that E3.score_trajectory must read as the subject of viability does not yet exist. A shallow variant (a z_self term over the existing EMA body snapshot) is `partially V3-tractable` per v4_spec, but that scores viability against an instantaneous snapshot, not the capacity/affect/damage STATE DR-10 requires; the DR-10 that unblocks MECH-215 (a STABLE z_self as the subject of viability planning) needs the SELF-1 stateful subject. Same real blocker SELF-5/SELF-7 already encode (`stateful, scorable latent = SELF-1 + SELF-3`) and that SELF-4's 2026-06-16 readiness note names explicitly (`unlike SELF-3/SELF-5, [SELF-4] does not wait on the SELF-1 substrate build`)."
       readiness_gate:
         - "V3 LIMIT: E3.score_trajectory() currently evaluates entirely in z_world space -- there is no z_self term in viability"
         - "DR-10 cutover: score_trajectory must read z_self so capacity/affect/damage state gate which trajectories are viable for THIS agent"
         - "Implementation surface: E3.score_trajectory; depends on SELF-1 stateful z_self existing as the subject of the viability estimate"
-      last_updated: 2026-06-10
-      completion_note: "DR-10 from v4_spec V4-2. Partially V3-tractable per v4_spec but the cohort coheres around the V4 self-model. Unblocks the (1) prerequisite of MECH-215 (a stable z_self as the subject of viability planning) and is the E3-scoring half of the ARC-081 object-file cutover."
+      last_updated: 2026-07-01
+      completion_note: "DR-10 from v4_spec V4-2. Partially V3-tractable per v4_spec but the cohort coheres around the V4 self-model. Unblocks the (1) prerequisite of MECH-215 (a stable z_self as the subject of viability planning) and is the E3-scoring half of the ARC-081 object-file cutover. STATUS RECONCILE 2026-07-01 (IGW-20260701-165, plan lane): flipped status open -> blocked (blocker_class: sibling_node). Verified still-true against source: e3_selector.score_trajectory() F/M/goal scorers operate entirely over z_world (SD-005) -- there is no z_self term in viability (the SELF-4/DR-12 build added a PE-magnitude confidence weight, not a z_self term), so DR-10 is genuinely unbuilt. The node read as actionable-open because its sole depends_on (SELF-1) flipped done 2026-06-14 and drift/workset tooling saw a satisfied dependency (SELF-5/SELF-7 were surfacing `Blocked by: SELF-3 [open]`) -- but SELF-1 `done` is DESIGN-resolved only (the EMA stays the V3 latent; BUILD is the V4 DR-13 cutover, unqueued, no owner_exq). SELF-3 needs that materialised stateful z_self, so the honest status is blocked on the SELF-1 substrate build, matching SELF-5/SELF-7 and SELF-4's 2026-06-16 note. PROMOTES NOTHING; queues nothing; no graduation (a V4 build graduation needs user adjudication per the SELF-4 graduation_decision precedent). No claims.yaml edit; MECH-215/ARC-081 stay candidate/v4."
     - id: "self_model_v4:SELF-4"
       title: "E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability"
       phase: 3
@@ -377,3 +379,30 @@ each DR step, exactly which V3-era prerequisites must land first.
   MECH-215 stays candidate/v4; no claims.yaml edit. v1 PE source is caller-supplied
   (controlled probe); the ecological region-PE auto-source is the documented follow-on.
   Substrate doc: `docs/architecture/dr12_pe_conditioned_e3_confidence.md`.
+- **2026-07-01** -- SELF-3 (DR-10 z_self-in-E3 viability) STATUS RECONCILE
+  (IGW-20260701-165, plan lane). SELF-3 was `status: open` and surfacing in the
+  inter-governance workset as a top-tier actionable item (`Plan gap open on
+  self_model_v4`), with SELF-5/SELF-7 both showing `Blocked by: SELF-3 [open]`.
+  That was drift: SELF-3's sole `depends_on` (SELF-1) flipped `done` on
+  2026-06-14, so tooling read the dependency as satisfied -- but SELF-1 `done`
+  is a **DESIGN** resolution only (HYBRID recurrence + E1 regulariser mechanism
+  chosen; the single-MLP + EMA stays the V3 self latent; the DR-13 substrate
+  BUILD is unqueued, no `owner_exq`). Verified still-true against source that
+  DR-10 is genuinely unbuilt: `e3_selector.score_trajectory()` F/M/goal scorers
+  operate entirely over `z_world` (SD-005); the SELF-4/DR-12 build added a
+  PE-magnitude confidence weight, **not** a `z_self` viability term. SELF-3
+  needs the materialised stateful z_self as the subject of the viability
+  estimate (its readiness-gate bullet 3 + completion_note; MECH-215 wants a
+  *stable* z_self), which is exactly the SELF-1 substrate build that SELF-4's
+  2026-06-16 readiness note names (`unlike SELF-3/SELF-5, [SELF-4] does not wait
+  on the SELF-1 substrate build`). **Flipped SELF-3 `status: open -> blocked`**,
+  added `blocker_class: sibling_node` + a `blocking_on` field, bumped node +
+  frontmatter `last_updated` -> 2026-07-01. Now consistent with SELF-5/SELF-7
+  (same real blocker: `stateful, scorable latent = SELF-1 + SELF-3`); on the
+  next workset regen SELF-5/SELF-7 will read `Blocked by: SELF-3 [blocked]`.
+  A shallow EMA-based z_self term is `partially V3-tractable` per v4_spec but
+  scores against an instantaneous body snapshot, not the capacity/affect/damage
+  STATE DR-10 requires -- noted in `blocking_on`, not acted on. **PROMOTES
+  NOTHING; queues nothing; NO graduation** (a V4 build graduation needs user
+  adjudication per the SELF-4 `graduation_decision_2026_06_16` precedent). No
+  claims.yaml edit; MECH-215 / ARC-081 stay candidate / v4.
