@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T10:16:38Z",
+  "generated_at": "2026-07-01T19:57:47Z",
   "counts": {
     "drifted": 0,
     "stale_since": 0,
@@ -21,7 +21,7 @@
       "node_id": "behavioral_diversity_isolation:GAP-K",
       "plan": "behavioral_diversity_isolation_plan.md",
       "node_status": "assembling",
-      "awaiting": "ARC-108 unified-dopamine substrate (learned w_chan gating) + MECH-450 settling step (W_lat); TERMINAL falsifier V3-EXQ-700c (sec-7 learned-gating settling; same-layer frozen magnitude-matched random W_lat null; supersedes the V3-EXQ-700 -> 700a -> 700b lineage) CLAIMED/running, awaiting score. PRE-REGISTERED TERMINAL (manifest pre_registered_terminal=True): any further null routes to the loop-segregation build (ARC-110, REAPPOINTED V4->V3 2026-06-24), GATED on V3-EXQ-704 (MECH-451 finer-channel pre-emption); NO further V3 *700-lineage same-arena* letters. This node OWNS that V3 loop build (build-deferred behind the 704 gate).",
+      "awaiting": "UPDATED 2026-07-01: the full learned-gating stack is now BUILT -- ARC-108 (learned w_chan gating) + MECH-450 (settling W_lat) + ARC-110 (segregated loops) + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling (config.e3.use_learned_cross_loop_arbitration; docs/architecture/learned_cross_loop_arbitration.md). The 707b-NARROW named the last missing piece (static-arithmetic cross-loop arbitration inherits F's dominance so the live limbic loop never wins); that coupling substrate is now built (2026-07-01). Now awaiting the SEPARATE new-EXQ validation falsifier: A1_LOOPS + learned DA-gated cross-loop arbitration STRICT-ABOVE A1_LOOPS + static-arithmetic arbitration on a strict majority of divergent seeds (different claim_ids; queued via /queue-experiment now that the build lands + tests pass). This node CLOSES on the first downstream channel converting committed-action diversity on the learned selector.",
       "assembly_status": "in_progress",
       "revisit_after": null,
       "revisit_due": false
@@ -75,7 +75,7 @@
       "node_id": "conversion_ceiling_campaign:P4-learned-gating",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "ARC-108 + MECH-450 substrate build; TERMINAL falsifier V3-EXQ-700c (supersedes the V3-EXQ-700 -> 700a -> 700b lineage) CLAIMED/running, awaiting score. PRE-REGISTERED TERMINAL: any further null routes to the loop-segregation build (ARC-110), which was REAPPOINTED V4->V3 2026-06-24 (user-directed) and is now GATED on V3-EXQ-704 (MECH-451 finer-channel pre-emption); no further V3 *700-lineage same-arena* letters. The escalation is no longer a V4 hand-off -- it is a V3 build, build-deferred behind the 704 gate.",
+      "awaiting": "UPDATED 2026-07-01: the learned-gating stack is now BUILT end-to-end -- ARC-108 (learned w_chan) + MECH-450 (settling W_lat) + ARC-110 (segregated loops, 707b-validated live) + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling (built 2026-07-01; config.e3.use_learned_cross_loop_arbitration). 707b confirmed the conversion ceiling INTRINSIC (not a single-arena artefact) and NARROWED the front to 'the cross-loop arbitration must be LEARNED, not static arithmetic'; that coupling is now built. Now awaiting the SEPARATE new-EXQ validation falsifier (A1_LOOPS + learned cross-loop arbitration STRICT-ABOVE A1_LOOPS + static arbitration; different claim_ids), queued via /queue-experiment as V3-EXQ-709 (2026-07-01, ree-v3 main 2a5e8a6, live in the coordinator DB pending a runner claim). Build owned by the mirror node behavioral_diversity_isolation:GAP-K.",
       "assembly_status": "in_progress",
       "revisit_after": null,
       "revisit_due": false
