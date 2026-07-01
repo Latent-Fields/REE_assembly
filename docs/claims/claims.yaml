@@ -41772,13 +41772,14 @@
   registered_utc: "2026-06-09"
   depends_on:
     - ARC-065     # behavioural-diversity generation pathway -- prevent collapse to the smoothest single regime (parent prior art)
-    - MECH-359    # candidate-differentiated affect vector -- affect must carry cross-candidate range to carve behaviour
     - SD-011      # dual nociceptive streams -- "is this harmful?" as a native separable stream
     - SD-050      # suffering-derivative comparator -- relief substrate
     - MECH-302    # relief-completion event -- "did this reduce suffering?" (action-contingent harm reduction)
     - MECH-304    # conditioned safety store -- "is this safe?" / commitment-release gate
     - SD-012      # homeostatic drive -- "am I pursuing something I want?" (wanting)
     - ARC-079     # gated goal persistence; disengagement the ungated default -- "am I overcommitted / is this goal stale / should I release?"
+  related_claims:
+    - MECH-359    # CONCEPTUAL cross-ref, NOT a build dependency (moved out of depends_on 2026-07-01 PM /governance reverse-dep phase-consistency fix). ARC-088's OWN scope note already declares this: "the candidate-differentiated extension MECH-359 is V4, reached via depends_on not a permission gate" -- i.e. the author never intended MECH-359 (mechanism_hypothesis / substrate_conditional / implementation_phase v4, the V4/V5 GENERALISATION to an explicit multi-channel per-candidate affect representation) to GATE ARC-088. ARC-088 is a UNIFYING MAP that is "substantially realised now" on V3 substrate (harm SD-010/SD-011, relief SD-050/MECH-302, safety MECH-303/304, drive SD-012, behavioural-diversity ARC-065 stack); MECH-359 is the aspirational V4 extension "reached via depends_on," not a V3 build prerequisite. Keeping it in depends_on made a v3 architectural_commitment spuriously read as V3-blocked-on-V4. New affect work still "attaches to the relevant owned child (or extends MECH-359)" per the ARC-088 notes. PROMOTES NOTHING.
   location: docs/architecture/emotion_as_anti_collapse_architecture.md
   notes: >
     UNIFYING MAP, not a new substrate. Every constituent evaluator is already a registered REE claim;
@@ -42273,8 +42274,9 @@
   implementation_phase: v3
   version_relevance: v3_v4
   depends_on:
-    - ARC-090
     - MECH-094
+  related_claims:
+    - ARC-090    # CONCEPTUAL cross-ref, NOT a build dependency (moved out of depends_on 2026-07-01 PM /governance reverse-dep phase-consistency fix). ARC-090 is the V4 externalised-DMN UMBRELLA (architecture_hypothesis / substrate_conditional / implementation_phase v4) whose END-STATE needs a staged developmental curriculum + a self-narration control surface absent in V3. MECH-384 is the OPPOSITE direction: it is the "V3-compatible reduced form of an externalised private-speech surface" -- a debug/observability trace that re-exposes state REE already computes, buildable in V3 without any of ARC-090's V4 substrate. Sibling claims confirm the inversion: MECH-380 notes "V3 has no such surface beyond the proposed MECH-384 trace"; MECH-382 calls its target "a richer form of the MECH-384 V3 trace"; Q-068's what_would_answer names "the MECH-384 trace's fields" as the V3-recorded hooks for a future V4 test. So ARC-090 is the conceptual parent/vision that MOTIVATES MECH-384, not a substrate MECH-384 needs BUILT. Keeping it in depends_on made a v3 claim spuriously read as V3-blocked-on-V4. PROMOTES NOTHING.
   location: docs/architecture/externalised_dmn_play_private_speech.md#mech-384
   notes: "The single V3-compatible instantiation in the intake. This is a debug/observability SURFACE, not new substrate machinery: the fields largely re-expose state REE already computes (goal label, sensed gradient, active prediction, uncertainty, candidate action + reason, expected consequence, affective pressure, conflict flag, commitment threshold, stop condition, simulation-vs-commitment, self-reference frame). The claim IS the decision to surface them as a coherent inspectable trace -- REE's early 'private speech' before compression. claim_type: design_decision with epistemic_category: substrate_coherence set EXPLICITLY (a design/observability choice that is part of the substrate, NOT a falsifiable mechanism needing an experiment) so it is suppressed from the IGW proposal lane and from promote/demote gating while conflict alerts still fire. POST-GREEN-BOARD and OFF the V3 critical path: build only if it helps REE-v3 pass existing tests more cleanly (per the intake scope guardrail). simulation_or_commitment and self_reference_frame are the trace's hooks for the Q-068 graded-vocabulary question. Reaped from the 2026-06-08 externalised-DMN intake. 2026-06-14 (DMN-1 reconcile): the developmental_dmn_v4:DMN-1 roadmap node was reconciled-to-done -- this claim is fully scoped/registered as the V3 reduced form (the roadmap node's deliverable). The trace itself stays UNBUILT by design: optional, post-green-board, off the V3 critical path. The buildable-when-useful signal is carried by this claim's own status (candidate / implementation_phase v3), not by an open roadmap node."
 - id: INV-077
@@ -47515,12 +47517,13 @@
     freeze (threat-driven motor arrest) -- this is a valuation cost on foreclosure, fires with
     z_harm BELOW threshold.
   depends_on:
-    - DR-12      # generalizes DR-12's PE-conditioned E3 confidence from object-rollout trust to a forecast-uncertainty-scaled foreclosure cost
     - MECH-439   # F-dominance commitment-collapse IS option-foreclosure at the commitment gate (diverse pool annihilated to the F-winner); shared diversity/commitment machinery
     - INV-026    # the harm-scoped foreclosure-of-reachable-state-space (to OTHERS) that this mirrors as a NON-harm, SELF-directed decision cost
     - MECH-292   # ghost-goal bank -- the existing preserve-a-recoverable-trace reflex (don't erase an inactive goal) generalized from the goal domain to a general option-preservation criterion
     - SD-039     # dual-trace anchor preservation (Bouton) -- inactive traces kept recoverable; the substrate-level expression of "don't foreclose"
     - ARC-106    # brain-like construction: grounded at FUNCTION (option-value / reachable-set preservation) with the load-bearing-vs-decorative ablation test
+  related_claims:
+    - DR-12      # DESIGN-RECORD cross-ref, NOT a claim/build dependency (moved out of depends_on 2026-07-01 PM /governance dangling-dep hygiene fix). DR-12 is a landed design record (E2-forward-PE -> E3 confidence, object-rollout trust), not a claims.yaml claim id, so it dangled in the phase-consistency prerequisite scan. MECH-454's relationship to it is "a generalization of DR-12's PE-conditioned E3 confidence from object-rollout trust to a forecast-uncertainty-scaled foreclosure cost" -- conceptual prior-art it GENERALISES, not a substrate it is blocked on (its real blockers, per what_would_answer, are the reachable-option-dissociating env extension + the E3 option-value cost term, neither of which is DR-12). The mechanism DR-12 embodies is owned by MECH-215, which is itself implementation_phase v4, so promoting DR-12 to a MECH-215 depends_on edge would recreate a v3->v4 ROOT leak; the conceptual link belongs here. PROMOTES NOTHING.
   what_would_answer: >
     SUBSTRATE-CONDITIONAL / NOT YET BUILT. Blocked on two substrates that do not exist: (1) a
     reachable-option-DISSOCIATING env extension on CausalGridWorld -- a cheap-REVERSIBLE branch
