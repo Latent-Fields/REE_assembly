@@ -38900,6 +38900,28 @@
   v3_pending: true
   claim_level: architectural
   registered_utc: 2026-06-04
+  implementation_note: >
+    SELF-1 / DR-13 (z_self temporal depth) SUBSTRATE BUILT 2026-07-01 in ree-v3
+    (user-directed, to unblock self_model_v4:SELF-3 / DR-10 after the 2026-07-01
+    IGW-165 reconcile). Executes the HYBRID mechanism resolved on this claim's
+    `notes` 2026-06-14: a light DEDICATED self-recurrence (SelfRecurrenceCell,
+    a GRUCell over z_self in ree_core/latent/self_recurrence.py) whose output is
+    blended toward the E1 generative prediction of z_self (E1 predicted-next
+    z_self, cached at _e1_tick), blend weight LatentStackConfig
+    .self_recurrence_e1_coupling (the recorded residual sub-question: 0 = pure
+    recurrence / Option A, 1 = pure E1-feedback / Option B, 0.15 light default =
+    HYBRID). Lever lives in LatentStack.encode() and REPLACES the z_self EMA step
+    ONLY (z_world untouched); master switch LatentStackConfig.use_self_recurrence
+    (default False -> module not instantiated + verbatim legacy EMA ->
+    bit-identical OFF). Full suite 1336 passed / 4 pre-existing failures + 11 new
+    contracts (tests/contracts/test_dr13_self_recurrence.py). generation:v4 --
+    off the V3 closure path. PROMOTES NOTHING: ARC-081 stays candidate /
+    architectural_commitment / implementation_phase=v4 / v3_pending=true (DR-13
+    is the substrate half; DR-10/SELF-3 + validation experiments remain before
+    the self-object cutover). Design doc:
+    docs/architecture/dr13_self_recurrence_temporal_depth.md. Plan node:
+    evidence/planning/self_model_v4_plan.md self_model_v4:SELF-1. Validation:
+    a V4-EXQ DR-13 falsifier queued via /queue-experiment (separate step).
   depends_on:
     - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the self specialisation)
     - SD-005     # V3 BEGINNING -- z_self self/world split (proprioceptive/interoceptive body latent)

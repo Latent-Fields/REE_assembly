@@ -41,8 +41,9 @@ closure_plan:
         - "V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exists today as a single-MLP + EMA body-state latent"
         - "DR-13 is the first cutover step: replace the single hidden layer + EMA with recurrence or E1 feedback so z_self carries a temporal self-model, not an instantaneous body snapshot"
         - "Without temporal depth there is no stateful subject for the later DR-10/DR-11/DR-12 self-object integration to attach to"
-      last_updated: 2026-06-14
-      completion_note: "DR-13 from v4_spec V4-2. This is the substrate floor for the whole plan: z_self must be a stateful self-model before it can be a privileged object-file slot (OBJ-3) or the subject of agentive prediction (MECH-215). No V3 substrate change; the EMA stays as the V3 self latent. MECHANISM RESOLVED 2026-06-14 (interactive IGW design-fork session): HYBRID -- z_self gains temporal depth via a light DEDICATED self-recurrence REGULARISED by E1 generative feedback (both motifs committed, not one). The recurrence supplies the stability-isolated, lesionable subject DR-10/11/12 + INV-064 attach to; the E1-feedback regulariser keeps it consistent with the E-stream generative account (SD-030/DR-12 stay E-stream-native). Residual sub-question = the regularisation-coupling strength (light = preserves stability-isolation; strong = collapses toward pure E1-feedback). Decision recorded on ARC-081 notes. DESIGN decision only; PROMOTES NOTHING (ARC-081 stays candidate/v4/substrate_coherence). BUILD is the V4 DR-13 cutover, gated by the self-model integration audit."
+      last_updated: 2026-07-01
+      build_2026_07_01: "SUBSTRATE BUILT 2026-07-01 (user-directed, to unblock SELF-3/DR-10 after the same-day IGW-165 reconcile). /implement-substrate landed the HYBRID DR-13 lever in ree-v3: (1) ree_core/latent/self_recurrence.py NEW SelfRecurrenceCell (GRUCell over z_self -- the light dedicated self-recurrence; explicit/inspectable/lesionable/perturbation-isolated: only z_self flows through it, a +5.0 perturbation of prev.z_self leaks 0.0 into z_world -- contract C5); (2) LatentStack.encode() REPLACES the z_self EMA step ONLY (z_world/beta/theta/delta untouched) with h=SelfRecurrenceCell(z_self_instant, prev.z_self) blended toward the E1 generative prediction of z_self, z_self=(1-c)*h+c*self_e1_anchor, c=LatentStackConfig.self_recurrence_e1_coupling (THE recorded residual tunable: 0=pure recurrence/Option A, 1=pure E1-feedback/Option B, 0.15 light default=HYBRID); (3) anchor = E1 predicted-next z_self cached at agent _e1_tick (side-effect-free) + threaded via sense() -- the volatility_signal precedent, v1 caller/agent-supplied per the SELF-4 scope pattern; (4) LatentState.self_recurrence_diag readout {active, state_departure, e1_coupling, anchor_present}. Master switch use_self_recurrence (default False -> module not instantiated + verbatim legacy EMA -> BIT-IDENTICAL OFF). Full suite 1336 passed / 4 pre-existing failures (confirmed identical on the clean tree via git stash) + 11 new contracts tests/contracts/test_dr13_self_recurrence.py. generation:v4 -- off the V3 closure %. PROMOTES NOTHING (ARC-081 gets an implementation_note only; stays candidate/v4/v3_pending). Design doc docs/architecture/dr13_self_recurrence_temporal_depth.md; ree-v3/CLAUDE.md SD-implemented entry. owner_exq assigned WITH the validation experiment (the DR-13 falsifier via /queue-experiment, separate step). This build CLEARS SELF-3's blocker (SELF-3 flipped blocked->open same day)."
+      completion_note: "DR-13 from v4_spec V4-2. This is the substrate floor for the whole plan: z_self must be a stateful self-model before it can be a privileged object-file slot (OBJ-3) or the subject of agentive prediction (MECH-215). MECHANISM RESOLVED 2026-06-14 (interactive IGW design-fork session): HYBRID -- z_self gains temporal depth via a light DEDICATED self-recurrence REGULARISED by E1 generative feedback (both motifs committed, not one). The recurrence supplies the stability-isolated, lesionable subject DR-10/11/12 + INV-064 attach to; the E1-feedback regulariser keeps it consistent with the E-stream generative account (SD-030/DR-12 stay E-stream-native). Residual sub-question = the regularisation-coupling strength (light = preserves stability-isolation; strong = collapses toward pure E1-feedback). Decision recorded on ARC-081 notes. SUBSTRATE NOW BUILT 2026-07-01 (see build_2026_07_01) -- the design decision of 2026-06-14 is now realised in ree-v3 as a no-op-default lever; PROMOTES NOTHING (ARC-081 stays candidate/v4/substrate_coherence). Validation = the DR-13 falsifier queued via /queue-experiment."
     - id: "self_model_v4:SELF-2"
       title: "Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)"
       phase: 2
@@ -63,20 +64,19 @@ closure_plan:
     - id: "self_model_v4:SELF-3"
       title: "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability"
       phase: 3
-      status: blocked
-      blocker_class: sibling_node
+      status: open
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-215, ARC-081]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: ["object_representation_v4:OBJ-3"]
-      blocking_on: "The SELF-1 DR-13 substrate BUILD (a materialised stateful z_self via light self-recurrence regularised by E1 feedback). SELF-1's node is `done` (2026-06-14) as a DESIGN decision ONLY -- no V3 substrate change landed, the single-MLP + EMA stays the V3 self latent -- so the stateful z_self that E3.score_trajectory must read as the subject of viability does not yet exist. A shallow variant (a z_self term over the existing EMA body snapshot) is `partially V3-tractable` per v4_spec, but that scores viability against an instantaneous snapshot, not the capacity/affect/damage STATE DR-10 requires; the DR-10 that unblocks MECH-215 (a STABLE z_self as the subject of viability planning) needs the SELF-1 stateful subject. Same real blocker SELF-5/SELF-7 already encode (`stateful, scorable latent = SELF-1 + SELF-3`) and that SELF-4's 2026-06-16 readiness note names explicitly (`unlike SELF-3/SELF-5, [SELF-4] does not wait on the SELF-1 substrate build`)."
+      unblocked_2026_07_01: "SELF-1 DR-13 substrate BUILT 2026-07-01 (a materialised stateful z_self via the light self-recurrence + E1-feedback anchor -- see self_model_v4:SELF-1 build_2026_07_01). This CLEARS the blocker that the 2026-07-01 IGW-165 morning reconcile named (SELF-3 was blocked->open here): the stateful z_self that E3.score_trajectory must read as the subject of viability now EXISTS in ree-v3 (behind LatentStackConfig.use_self_recurrence). SELF-3 is now buildable: /implement-substrate the DR-10 z_self viability term on top of the stateful z_self (enable use_self_recurrence + add a z_self read to score_trajectory so capacity/affect/damage STATE gates viability), then /queue-experiment the DR-10 falsifier. owner_exq assigned at queue time. Left `open` (ready to build), NOT auto-graduated -- a V4 build graduation is a user decision per the SELF-4 graduation_decision precedent."
       readiness_gate:
         - "V3 LIMIT: E3.score_trajectory() currently evaluates entirely in z_world space -- there is no z_self term in viability"
         - "DR-10 cutover: score_trajectory must read z_self so capacity/affect/damage state gate which trajectories are viable for THIS agent"
         - "Implementation surface: E3.score_trajectory; depends on SELF-1 stateful z_self existing as the subject of the viability estimate"
       last_updated: 2026-07-01
-      completion_note: "DR-10 from v4_spec V4-2. Partially V3-tractable per v4_spec but the cohort coheres around the V4 self-model. Unblocks the (1) prerequisite of MECH-215 (a stable z_self as the subject of viability planning) and is the E3-scoring half of the ARC-081 object-file cutover. STATUS RECONCILE 2026-07-01 (IGW-20260701-165, plan lane): flipped status open -> blocked (blocker_class: sibling_node). Verified still-true against source: e3_selector.score_trajectory() F/M/goal scorers operate entirely over z_world (SD-005) -- there is no z_self term in viability (the SELF-4/DR-12 build added a PE-magnitude confidence weight, not a z_self term), so DR-10 is genuinely unbuilt. The node read as actionable-open because its sole depends_on (SELF-1) flipped done 2026-06-14 and drift/workset tooling saw a satisfied dependency (SELF-5/SELF-7 were surfacing `Blocked by: SELF-3 [open]`) -- but SELF-1 `done` is DESIGN-resolved only (the EMA stays the V3 latent; BUILD is the V4 DR-13 cutover, unqueued, no owner_exq). SELF-3 needs that materialised stateful z_self, so the honest status is blocked on the SELF-1 substrate build, matching SELF-5/SELF-7 and SELF-4's 2026-06-16 note. PROMOTES NOTHING; queues nothing; no graduation (a V4 build graduation needs user adjudication per the SELF-4 graduation_decision precedent). No claims.yaml edit; MECH-215/ARC-081 stay candidate/v4."
+      completion_note: "DR-10 from v4_spec V4-2. Partially V3-tractable per v4_spec but the cohort coheres around the V4 self-model. Unblocks the (1) prerequisite of MECH-215 (a stable z_self as the subject of viability planning) and is the E3-scoring half of the ARC-081 object-file cutover. STATUS RECONCILE 2026-07-01 (IGW-20260701-165, plan lane): flipped status open -> blocked (blocker_class: sibling_node). Verified still-true against source: e3_selector.score_trajectory() F/M/goal scorers operate entirely over z_world (SD-005) -- there is no z_self term in viability (the SELF-4/DR-12 build added a PE-magnitude confidence weight, not a z_self term), so DR-10 is genuinely unbuilt. The node read as actionable-open because its sole depends_on (SELF-1) flipped done 2026-06-14 and drift/workset tooling saw a satisfied dependency (SELF-5/SELF-7 were surfacing `Blocked by: SELF-3 [open]`) -- but SELF-1 `done` is DESIGN-resolved only (the EMA stays the V3 latent; BUILD is the V4 DR-13 cutover, unqueued, no owner_exq). SELF-3 needs that materialised stateful z_self, so the honest status is blocked on the SELF-1 substrate build, matching SELF-5/SELF-7 and SELF-4's 2026-06-16 note. PROMOTES NOTHING; queues nothing; no graduation (a V4 build graduation needs user adjudication per the SELF-4 graduation_decision precedent). No claims.yaml edit; MECH-215/ARC-081 stay candidate/v4. UNBLOCKED SAME DAY 2026-07-01 (user directed the SELF-1 DR-13 substrate be built): SELF-1 substrate landed in ree-v3, so SELF-3 flipped blocked->open -- the stateful z_self subject now exists (see unblocked_2026_07_01). SELF-3 is now the buildable DR-10 step on top of it."
     - id: "self_model_v4:SELF-4"
       title: "E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability"
       phase: 3
@@ -406,3 +406,32 @@ each DR step, exactly which V3-era prerequisites must land first.
   NOTHING; queues nothing; NO graduation** (a V4 build graduation needs user
   adjudication per the SELF-4 `graduation_decision_2026_06_16` precedent). No
   claims.yaml edit; MECH-215 / ARC-081 stay candidate / v4.
+- **2026-07-01** -- SELF-1 (DR-13 z_self temporal depth) **SUBSTRATE BUILT**
+  (user-directed, same day, to unblock SELF-3 after the morning IGW-165
+  reconcile). `/implement-substrate` landed the HYBRID DR-13 lever in ree-v3:
+  a light DEDICATED self-recurrence (`ree_core/latent/self_recurrence.py`
+  `SelfRecurrenceCell`, a GRUCell over z_self) whose output is blended toward
+  the E1 generative prediction of z_self (E1 predicted-next z_self cached at
+  `_e1_tick`), blend weight `LatentStackConfig.self_recurrence_e1_coupling`
+  (the recorded residual tunable: 0 = pure recurrence / Option A, 1 = pure
+  E1-feedback / Option B, **0.15 light default = HYBRID**). The lever lives in
+  `LatentStack.encode()` and **replaces the z_self EMA step ONLY** (z_world /
+  z_beta / z_theta / z_delta untouched); master switch
+  `use_self_recurrence` (default False -> module not instantiated + verbatim
+  legacy EMA -> **bit-identical OFF**). The self subject is perturbation-isolated
+  (only z_self flows through the cell; a +5.0 perturbation of `prev.z_self`
+  leaks 0.0 into z_world -- contract C5). Full suite **1336 passed / 4
+  pre-existing failures** (confirmed byte-identical on the clean tree via
+  `git stash`) + **11 new contracts**
+  (`tests/contracts/test_dr13_self_recurrence.py`). `generation:v4` -- off the
+  V3 closure %. **PROMOTES NOTHING** (ARC-081 gets an `implementation_note`
+  only; stays candidate / v4 / v3_pending; MECH-215 unchanged). **SELF-1
+  `last_updated` -> 2026-07-01 + `build_2026_07_01` record.** **This build
+  CLEARS SELF-3's blocker**: the stateful z_self it needs as the subject of
+  viability now exists -> **SELF-3 flipped blocked -> open** (buildable DR-10
+  step; left open, not auto-graduated -- graduation is a user call per the
+  SELF-4 precedent). SELF-5 / SELF-7 stay blocked (now on SELF-3 alone).
+  `owner_exq` for both SELF-1 and SELF-3 assigned at queue time. Design doc:
+  `docs/architecture/dr13_self_recurrence_temporal_depth.md`;
+  `ree-v3/CLAUDE.md` SD-implemented entry. Validation = the DR-13 falsifier
+  queued via `/queue-experiment` (separate step).
