@@ -64,12 +64,14 @@ closure_plan:
     - id: "self_model_v4:SELF-3"
       title: "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability"
       phase: 3
-      status: open
+      status: in_progress
       severity: load-bearing
-      owner_exq: null
+      owner_exq: "V4-EXQ-003"
       unblocks_claims: [MECH-215, ARC-081]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: ["object_representation_v4:OBJ-3"]
+      build_2026_07_01: "SUBSTRATE BUILT 2026-07-01 (user-approved graduation via AskUserQuestion, same session as the SELF-1 DR-13 build that unblocked it; caller-supplied v1). /implement-substrate landed the DR-10 lever in ree-v3, mirroring the DR-12/SELF-4 pattern on the SAME e3_selector machinery: e3_selector.py _self_viability_penalty helper + score_trajectory(self_viability=...) monotone penalty block + select(self_viability_per_candidate=[K]) per-candidate threading + 4 diagnostics (self_viability_active/weight/range/penalty_range); E3Config 4 no-op fields (use_self_viability_weighting default False, self_viability_weight 0.0, mode 'linear', scale 1.0) + REEConfig.from_dims passthrough; agent _injected_self_viability + set_injected_self_viability() seam + version-layering-guarded select_action passthrough. A per-candidate self-viability COST (from the DR-13 stateful z_self: capacity/affect/damage) discounts trajectories less viable for the current bodily state; no learned params; master switch default False -> bit-identical OFF. Full suite 1344 passed / 4 pre-existing failures (clean-tree-confirmed) + 8 new contracts tests/contracts/test_dr10_z_self_viability.py (OFF/weight-0/no-signal bit-identical; differential flips selection; uniform argmin-invariant; linear==cost + saturating bounded-monotone + negative clamped). generation:v4, PROMOTES NOTHING (MECH-215/ARC-081 stay candidate/v4). v1 self-viability source = caller/agent-supplied (user-chosen); ecological z_self-derived auto-source (allostatic z_self-deviation x per-candidate demand, or a learned z_self->viability head needing phased training + SELF-2 per-candidate self-transition) is the documented follow-on. Design doc docs/architecture/dr10_z_self_in_e3_viability.md; ree-v3/CLAUDE.md SD-implemented entry. owner_exq=V4-EXQ-003 assigned at queue time. status open->in_progress until the V4-EXQ-003 falsifier is reviewed."
+      resume_condition: "AWAITING V4-EXQ-003 RUN + REVIEW (DR-10 pilot). On PASS (a decisive per-candidate self-viability changes selection vs OFF): the z_self-in-E3 viability wiring is live; the ecological z_self-derived auto-source is the next build, and DR-10 + DR-12 (SELF-4) together are the MECH-215 unblock (governance-scored experiments then remain). On inert-wiring (FALSIFIER fired under met preconditions): /failure-autopsy. On substrate_not_ready_requeue: re-queue at adequate power. Status stays in_progress until that review."
       unblocked_2026_07_01: "SELF-1 DR-13 substrate BUILT 2026-07-01 (a materialised stateful z_self via the light self-recurrence + E1-feedback anchor -- see self_model_v4:SELF-1 build_2026_07_01). This CLEARS the blocker that the 2026-07-01 IGW-165 morning reconcile named (SELF-3 was blocked->open here): the stateful z_self that E3.score_trajectory must read as the subject of viability now EXISTS in ree-v3 (behind LatentStackConfig.use_self_recurrence). SELF-3 is now buildable: /implement-substrate the DR-10 z_self viability term on top of the stateful z_self (enable use_self_recurrence + add a z_self read to score_trajectory so capacity/affect/damage STATE gates viability), then /queue-experiment the DR-10 falsifier. owner_exq assigned at queue time. Left `open` (ready to build), NOT auto-graduated -- a V4 build graduation is a user decision per the SELF-4 graduation_decision precedent."
       readiness_gate:
         - "V3 LIMIT: E3.score_trajectory() currently evaluates entirely in z_world space -- there is no z_self term in viability"
@@ -435,3 +437,31 @@ each DR step, exactly which V3-era prerequisites must land first.
   `docs/architecture/dr13_self_recurrence_temporal_depth.md`;
   `ree-v3/CLAUDE.md` SD-implemented entry. Validation = the DR-13 falsifier
   queued via `/queue-experiment` (separate step).
+- **2026-07-01** -- SELF-3 (DR-10 z_self enters E3 viability scoring) **SUBSTRATE
+  BUILT** (user-approved graduation via AskUserQuestion, same session as the
+  SELF-1 DR-13 build that cleared its blocker; caller-supplied v1). Executed the
+  minute the DR-13 stateful z_self existed. `/implement-substrate` landed the
+  DR-10 lever in ree-v3 **mirroring the DR-12/SELF-4 pattern on the SAME
+  `e3_selector` machinery**: `_self_viability_penalty` helper +
+  `score_trajectory(self_viability=...)` monotone penalty block +
+  `select(self_viability_per_candidate=[K])` per-candidate threading + 4
+  diagnostics; `E3Config` 4 no-op fields (`use_self_viability_weighting` default
+  False) + `REEConfig.from_dims` passthrough; agent `_injected_self_viability` +
+  `set_injected_self_viability()` seam + version-layering-guarded `select_action`
+  passthrough. A per-candidate self-viability COST derived from the DR-13
+  stateful z_self (capacity/affect/damage) discounts trajectories less viable for
+  the current bodily state; **no learned parameters**; master switch default
+  False -> **bit-identical OFF**. Full suite **1344 passed / 4 pre-existing
+  failures** (clean-tree-confirmed) + **8 new contracts**
+  (`tests/contracts/test_dr10_z_self_viability.py`). `generation:v4`, **PROMOTES
+  NOTHING** (MECH-215 + ARC-081 stay candidate/v4; both get implementation_notes
+  only). **SELF-3 `status: open -> in_progress`, `owner_exq -> V4-EXQ-003`**
+  (assigned at queue time), `build_2026_07_01` + `resume_condition` added. v1
+  self-viability source = **caller/agent-supplied** (user-chosen AskUserQuestion);
+  the ecological z_self-derived auto-source (allostatic z_self-deviation x
+  per-candidate demand, or a learned z_self->viability head needing phased
+  training + SELF-2's per-candidate self-transition) is the documented follow-on.
+  DR-10 + DR-12 (SELF-4) are the two halves of the MECH-215 unblock. Design doc
+  `docs/architecture/dr10_z_self_in_e3_viability.md`; `ree-v3/CLAUDE.md`
+  SD-implemented entry. Validation = the DR-10 pilot **V4-EXQ-003** queued via
+  `/queue-experiment`.

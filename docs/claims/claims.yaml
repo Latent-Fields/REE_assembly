@@ -15856,6 +15856,22 @@
     All three gaps are correctly scoped for V3's simple 4-action grid world but
     become critical when the agent has complex body dynamics or the environment
     requires capacity-aware planning.
+  implementation_note: >
+    SUBSTRATE PROGRESS 2026-07-01 (generation:v4, no-op-default levers; PROMOTES
+    NOTHING -- MECH-215 stays candidate/v4). All three V3-audit gaps this claim
+    named now have landed substrate: DR-12 (E2-forward-PE -> E3 confidence;
+    self_model_v4:SELF-4, built 2026-06-17, e3_selector.use_pe_confidence_weighting),
+    DR-13 (z_self temporal depth; SELF-1, built + validated V4-EXQ-002 PASS
+    2026-07-01, latent_stack.use_self_recurrence), and DR-10 (z_self enters E3
+    viability scoring; SELF-3, built 2026-07-01,
+    e3_selector.use_self_viability_weighting -- validation V4-EXQ-003). DR-10 + DR-12
+    are the two halves this claim decomposes into (E1/z_self-schema subject +
+    E2 self-transition confidence); MECH-215 is NOT yet unblocked -- the levers are
+    no-op-default caller-supplied v1 seams, and the ecological auto-sources +
+    outcome-scoring experiments remain. Design docs
+    docs/architecture/dr10_z_self_in_e3_viability.md +
+    dr12_pe_conditioned_e3_confidence.md + dr13_self_recurrence_temporal_depth.md;
+    plan nodes self_model_v4:SELF-1/3/4.
   registered: "2026-04-07"
   depends_on: [INV-064, MECH-214, MECH-212]
 
@@ -38926,6 +38942,16 @@
     claim) -- run ..._20260701T065002Z_v4: recurrence live (state_departure
     1.15), history-carrying + perturbation-isolated + E1-anchor-blend live 3/3
     seeds. DR-13 self subject substrate-validated.
+    DR-10 / SELF-3 (z_self enters E3 viability scoring, the E3-scoring half of
+    this pillar's cutover) SUBSTRATE BUILT 2026-07-01 on the DR-13 stateful z_self
+    (user-approved graduation, caller-supplied v1): no-op-default lever
+    e3_selector.use_self_viability_weighting (a per-candidate self-viability cost
+    from z_self discounts trajectories less viable for the current bodily state;
+    sibling to DR-12, no learned params, bit-identical OFF). Full suite 1344
+    passed / 4 pre-existing + 8 new DR-10 contracts. generation:v4, PROMOTES
+    NOTHING (ARC-081 stays candidate/v4/v3_pending). Design doc
+    docs/architecture/dr10_z_self_in_e3_viability.md; plan node
+    self_model_v4:SELF-3 (flipped open->in_progress); validation V4-EXQ-003.
   depends_on:
     - ARC-080    # umbrella -- object identity as a cross-cutting primitive (this is the self specialisation)
     - SD-005     # V3 BEGINNING -- z_self self/world split (proprioceptive/interoceptive body latent)
