@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Play, Private Speech, Externalised DMN, Developmental Compression Ladder (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-07-01
   scope_claims: [ARC-090, MECH-380, MECH-381, MECH-382, MECH-383, MECH-384, Q-068]
   sibling_plans: [object_representation_v4, goal_pipeline]
   roadmap_note: >
@@ -37,18 +37,21 @@ closure_plan:
     - id: "developmental_dmn_v4:DMN-2"
       title: "Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)"
       phase: 1
-      status: open
+      status: blocked
+      blocker_class: sibling_node
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [Q-068]
       depends_on: ["developmental_dmn_v4:DMN-1"]
       cross_plan_link: []
+      blocking_on: "The decision cannot be made until the ARC-090 externalised-DMN self-narration surface (DMN-3) exists to ACT on the graded distinction -- and DMN-3 is itself blocked on the V3 play cluster (ARC-049/050, MECH-194-199). There is a deliberate design entanglement: the finer vocabulary is the representation DMN-3/DMN-6 presuppose (DMN-3 depends_on DMN-2 in the build graph), yet the choice between the finer vocabulary and the binary MECH-094/MECH-061 boundary can only be adjudicated against a surface that renders the distinction behaviourally load-bearing -- which is V4. So the vocabulary is co-designed with, not decided ahead of, that surface. No depends_on edge is added (it would cycle with DMN-3); the block is carried by blocker_class + this field."
       readiness_gate:
         - "V3 already enforces the coarse boundary: MECH-094 simulation/commit write-profiles + MECH-061 commit-boundary error reclassification"
         - "Q-068 epistemic_category set EXPLICITLY substrate_conditional (overrides open_question->answer_state) so narrow_open_question does NOT fire -- DO NOT queue a V3 experiment against it"
         - "DECISION the fork forces: is the finer {simulated, rehearsed, intended, committed, acted} vocabulary + self_reference_frame {first_person, system_state, third_person_model} worth making first-class, or is MECH-094 + MECH-061 sufficient?"
-      last_updated: 2026-06-10
-      completion_note: "This is the foundational representational decision for the cluster: the graded vocabulary is the substrate that MECH-382 (distancing operator) and MECH-380 (private-speech control) both presuppose. Answering it is V4 -- it awaits the ARC-090 self-narration surface that can actually act on the distinction, surfaced in reduced form by DMN-1's MECH-384 trace."
+        - "RELEASE: unblocks when DMN-3 (ARC-090 narration surface) lands -- i.e. when the V3 play cluster substrate is built and a narration surface that drives arbitration (a control-capable descendant of the MECH-384 trace) exists. Q-068 already carries the discriminating what_would_answer (added 2026-06-14)."
+      last_updated: 2026-07-01
+      completion_note: "This is the foundational representational decision for the cluster: the graded vocabulary is the substrate that MECH-382 (distancing operator) and MECH-380 (private-speech control) both presuppose. Answering it is V4 -- it awaits the ARC-090 self-narration surface that can actually act on the distinction, surfaced in reduced form by DMN-1's MECH-384 trace. RECONCILED open->blocked 2026-07-01 (IGW-20260701-046, plan-reconcile lane): DMN-2 was the last non-done non-blocked node in this V4 roadmap, so its status:open mislabelled it a 'ready' actionable plan gap in the inter-governance workset when in fact it is blocked exactly like its siblings DMN-3/DMN-4/DMN-5/DMN-6/DMN-7 -- on the unbuilt ARC-090 narration surface (DMN-3), which is itself blocked on the V3 play cluster. blocker_class: sibling_node + blocking_on set to mirror DMN-4 (the closest sibling, which is likewise blocked on 'a self-narration control surface that can actually DRIVE arbitration'). NOT reconciled-to-done (unlike DMN-1, whose roadmap deliverable was the SCOPING/registration of the V3 reduced form -- complete): DMN-2's deliverable IS the architectural decision, which genuinely cannot be made against absent V4 substrate, so forcing a verdict would be vacuous (assembly-vs-closure: mark honestly, do not force closure before substrate is assembled). NOT tagged assembling/open_by_design either: nothing that would unblock it is under active construction (the play cluster is substrate_blocked with no queued build), so the resting-frontier 'under construction' semantics would overstate progress; plain blocked is the honest state. PROMOTES NOTHING (Q-068 stays candidate / substrate_conditional / v4, exp_conf 0); no claims.yaml edit; nothing queued."
     - id: "developmental_dmn_v4:DMN-3"
       title: "PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds"
       phase: 2
@@ -286,6 +289,34 @@ the IGW proposal lane today: a V3 probe against any pillar would be vacuous.
   control signals, per Jones & Fernyhough's AVH model) is subsumed by MECH-094 (tag loss)
   + MECH-430 (provenance vector) + INV-061 (frame confusion) and is surfaced as a NOTE,
   not a new MECH.
+
+- **2026-07-01** -- DMN-2 RECONCILED `open -> blocked` (IGW-20260701-046, plan-reconcile
+  lane). DMN-2 was the last non-done, non-blocked node in this V4 roadmap, so its
+  `status: open` mislabelled it a **ready** actionable plan gap in the inter-governance
+  workset -- when its actual state is identical to every other pillar here
+  (DMN-3/DMN-4/DMN-5/DMN-6/DMN-7 all `blocked`): the Q-068 vocabulary decision cannot be
+  adjudicated until the **ARC-090 externalised-DMN narration surface (DMN-3)** exists to
+  render the finer `{simulated, rehearsed, intended, committed, acted}` /
+  `self_reference_frame` distinction behaviourally load-bearing, and DMN-3 is itself
+  blocked on the substrate_blocked V3 play cluster. Set `blocker_class: sibling_node` +
+  `blocking_on` mirroring **DMN-4** (the closest sibling, likewise blocked on "a
+  self-narration control surface that can actually DRIVE arbitration"), and added a
+  `RELEASE:` readiness-gate line (unblocks when DMN-3 lands). **No `depends_on` edge added**
+  -- DMN-3 already `depends_on` DMN-2 in the build graph, so an edge would cycle; the block
+  is carried by `blocker_class` + `blocking_on` prose that records the deliberate
+  design entanglement (the vocabulary is co-designed *with*, not decided *ahead of*, the
+  surface). **NOT reconciled-to-done** (unlike DMN-1, whose roadmap deliverable was the
+  scoping/registration of the V3 reduced form -- complete): DMN-2's deliverable *is* the
+  architectural decision, which genuinely cannot be made against absent V4 substrate, so
+  forcing a verdict would be vacuous (assembly-vs-closure: mark honestly, do not force
+  closure before substrate is assembled). **NOT tagged `assembling`/`open_by_design`**
+  either: nothing that would unblock it is under active construction (the play cluster is
+  substrate_blocked with no queued build), so the resting-frontier "under construction"
+  semantics would overstate progress -- plain `blocked` is the honest state. Q-068 already
+  carries the discriminating `what_would_answer` (added 2026-06-14) so no claim annotation
+  was owed. **PROMOTES NOTHING** (Q-068 stays candidate / substrate_conditional / v4,
+  exp_conf 0); no claims.yaml edit; nothing queued. Frontmatter `last_updated` bumped to
+  2026-07-01.
 
 - **2026-06-14** -- DMN-1 RECONCILED-TO-DONE (`status: open -> done`; interactive). DMN-1 is the
   only V3-flavoured node in this V4 roadmap, and its deliverable *as a roadmap node* is the
