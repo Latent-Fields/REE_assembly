@@ -2690,34 +2690,41 @@ def _recommendation_for_claim(
         if str(e.get("claim_id", "")) == claim_id
         and _is_v3_run_id(str(e.get("run_id", "")))
     ) if matrix is not None else 0
-    # V4-architectural sub-case: a claim that is BOTH v3_pending AND explicitly
-    # implementation_phase=v4 is not "waiting for V3 substrate" -- it is
-    # deliberately deferred to V4 by an architectural commitment (e.g. a thin
-    # umbrella / coherence-map like ARC-080). Routing it to hold_pending_v3_substrate
-    # mislabels it and parks it in the V3-substrate decision queue forever (the
-    # 2026-04-27 misclassification flagged in WORKSPACE_STATE; insights 2026-06-06).
-    # Give it its own recommendation that is structurally "applied" (no V3-substrate
-    # decision is pending) so it leaves the pending_user queue and the morning digest.
-    if _v3_pending and _impl_phase == "v4":
+    # V4/V5-architectural sub-case: a claim that is BOTH v3_pending AND explicitly
+    # implementation_phase=v4 (or v5) is not "waiting for V3 substrate" -- it is
+    # deliberately deferred to a later generation by an architectural commitment
+    # (e.g. a thin umbrella / coherence-map like ARC-080, or a V5 social-substrate
+    # open-question like Q-073). Routing it to hold_pending_v3_substrate mislabels
+    # it and parks it in the V3-substrate decision queue forever (the 2026-04-27
+    # misclassification flagged in WORKSPACE_STATE; insights 2026-06-06; extended
+    # to v5 2026-07-01 after Q-073 surfaced as pending_user). Give it its own
+    # recommendation that is structurally "applied" (no V3-substrate decision is
+    # pending) so it leaves the pending_user queue and the morning digest. The
+    # recommendation KEY stays held_v4_by_architectural_commitment (the shared
+    # "architectural-commitment" bucket recognised by the IGW workset suppress set
+    # and morning digest) regardless of the exact later generation; only the prose
+    # is generation-aware.
+    if _v3_pending and _impl_phase in ("v4", "v5"):
+        _gen = _impl_phase.upper()
         return {
             "claim_id": claim_id,
             "current_status": current_status,
-            "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
+            "decision_needed": f"Held by {_gen} architectural commitment (no V3-substrate decision required)",
             "recommendation": "held_v4_by_architectural_commitment",
             "rationale": (
-                "Claim is v3_pending AND implementation_phase=v4: it is deferred to "
-                "V4 by an architectural commitment, not awaiting V3 substrate. "
-                "Promotion/demotion stays suppressed; no V3-substrate decision is "
-                "pending. Revisit when V4 substrate work is scheduled."
+                f"Claim is v3_pending AND implementation_phase={_impl_phase}: it is "
+                f"deferred to {_gen} by an architectural commitment, not awaiting V3 "
+                "substrate. Promotion/demotion stays suppressed; no V3-substrate "
+                f"decision is pending. Revisit when {_gen} substrate work is scheduled."
             ),
             "options": [
-                "Keep held under the V4 architectural commitment (correct path).",
+                f"Keep held under the {_gen} architectural commitment (correct path).",
                 "Re-scope to implementation_phase=v3 if the claim becomes V3-tractable.",
                 "Mark legacy/superseded if the commitment is withdrawn.",
             ],
             "discussion_prompts": [
-                "Is this claim genuinely V4-scoped, or has a V3 substrate since made it tractable?",
-                "Which V4 substrate milestone unblocks this claim?",
+                f"Is this claim genuinely {_gen}-scoped, or has a V3 substrate since made it tractable?",
+                f"Which {_gen} substrate milestone unblocks this claim?",
             ],
             "decision_status": "applied",
         }

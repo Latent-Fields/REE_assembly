@@ -140,6 +140,31 @@ def audit(claims: list[dict], queue: list[dict]) -> dict:
         self_handled = _truthy(c.get("pending_retest_after_substrate")) and bool(own_entries)
 
         retest_owed = _truthy(c.get("pending_retest_after_substrate"))
+        # Binding-substrate refinement (durable MECH-314 false-positive fix,
+        # 2026-07-01). A ceiling whose owed retest was re-pointed to a SPECIFIC
+        # (often unbuilt) substrate must not re-surface as `ceiling_may_have_lifted`
+        # merely because SOME other, non-binding implemented substrate happens to
+        # list it in unblocks_claims (MECH-314's retest is gated on the unbuilt
+        # DA-gated arbitration-learning substrate MECH-448/449/ARC-107, yet
+        # INF-ENV-004 / modulatory-bias-authority also list it and are implemented).
+        # When the claim names `ceiling_retest_binding_substrate` (a list of the
+        # claim ids the binding substrate must DELIVER), the ceiling only counts as
+        # may-have-lifted once an IMPLEMENTED queue entry actually delivers that
+        # binding mechanism (its unblocks_claims intersects the binding set).
+        # Absent the field, behaviour is unchanged (any implemented owner + retest).
+        _binding = c.get("ceiling_retest_binding_substrate")
+        if isinstance(_binding, str):
+            _binding = [_binding]
+        binding_set = {str(x).strip() for x in (_binding or []) if str(x).strip()}
+        binding_impl_entries = [
+            e for e in queue
+            if str(e.get("status", "")).strip().lower() == "implemented"
+            and binding_set & set(e.get("unblocks_claims") or [])
+        ] if binding_set else []
+        if binding_set:
+            lifted_ready = retest_owed and bool(binding_impl_entries)
+        else:
+            lifted_ready = retest_owed and implemented_owner is not None
         rec = {"id": cid, "status": c.get("status")}
         # PRECEDENCE: an explicit operator park decision wins over substrate
         # status. A `ceiling_decision: deferred` claim is intentionally parked
@@ -160,8 +185,11 @@ def audit(claims: list[dict], queue: list[dict]) -> dict:
         if parked:
             rec["ceiling_routing_note"] = (c.get("ceiling_routing_note") or "").strip()[:160]
             buckets["parked"].append(rec)
-        elif mapped and implemented_owner is not None and retest_owed:
-            rec["unblocked_by"] = implemented_owner.get("sd_id")
+        elif mapped and lifted_ready:
+            rec["unblocked_by"] = (
+                [e.get("sd_id") for e in binding_impl_entries] if binding_set
+                else implemented_owner.get("sd_id")
+            )
             buckets["ceiling_may_have_lifted"].append(rec)
         elif mapped:
             rec["unblocked_by"] = [e.get("sd_id") for e in owners]

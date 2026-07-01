@@ -31867,6 +31867,18 @@
     return-to-explore; 314b-OFF reduces uncertainty-resolution rollouts;
     314c-OFF reduces learning-curve curvature.
   pending_retest_after_substrate: true # /governance 2026-06-29: STAYS TRUE, retest RE-POINTED. The 706b brake-LOCK routed MECH-314's owed retest to the v4_loop_segregation substrate (ARC-110); that substrate LANDED 2026-06-27 and its validation V3-EXQ-707b (weakens-NARROW, failure_autopsy_V3-EXQ-707b_2026-06-29) found the conversion ceiling INTRINSIC -- loop segregation alone does NOT lift it. So MECH-314's ceiling did NOT lift via the loop-seg substrate (the substrate-ceiling audit "ceiling-may-have-lifted" flag is a false-positive driven by other implemented substrates that list MECH-314, e.g. INF-ENV-004/modulatory-bias-authority, not the binding one). Owed retest is now re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (MECH-448/449/ARC-107) -- a different mechanism, unbuilt. PROMOTES NOTHING. [prior: /governance 2026-06-25 RE-ASSERTED after failure_autopsy_V3-EXQ-705b; was lifted 2026-06-08 after 604c PASS on the selection-face.]
+  # /governance 2026-07-01: names the BINDING substrate for the owed retest so the
+  # substrate-ceiling audit stops re-flagging MECH-314 as ceiling-may-have-lifted
+  # every cycle (recurring false-positive, user-adjudicated 2026-06-29). The ceiling
+  # lifts ONLY when an IMPLEMENTED substrate_queue entry actually delivers the
+  # DA-gated cross-loop arbitration-LEARNING mechanism (i.e. an implemented entry
+  # whose unblocks_claims lists any of these ids); non-binding implemented substrates
+  # (INF-ENV-004, modulatory-bias-selection-authority) that merely also list MECH-314
+  # no longer trip the flag. When that substrate lands, the audit will re-surface it.
+  ceiling_retest_binding_substrate:
+    - MECH-448
+    - MECH-449
+    - ARC-107
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
       - Daw et al. 2006 (Nature) -- frontopolar uncertainty-driven
