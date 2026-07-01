@@ -3,7 +3,7 @@ closure_plan:
   id: behavioral_diversity_isolation
   title: "Behavioural Diversity Isolation"
   registered: 2026-05-25
-  last_updated: 2026-06-19
+  last_updated: 2026-07-01
   scope_claims: [ARC-065, ARC-062, ARC-064, MECH-260, MECH-269, MECH-269b, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, MECH-341, MECH-439, SD-003, SD-017, SD-029, SD-054, Q-043, Q-044, Q-045, Q-054, Q-055, INV-074, INV-076]
   sibling_plans: [arc_062_rule_apprehension, commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution, conversion_ceiling_campaign]
   nodes:
@@ -206,7 +206,7 @@ closure_plan:
       severity: load-bearing
       awaiting: "UPDATED 2026-07-01: the full learned-gating stack is now BUILT -- ARC-108 (learned w_chan gating) + MECH-450 (settling W_lat) + ARC-110 (segregated loops) + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling (config.e3.use_learned_cross_loop_arbitration; docs/architecture/learned_cross_loop_arbitration.md). The 707b-NARROW named the last missing piece (static-arithmetic cross-loop arbitration inherits F's dominance so the live limbic loop never wins); that coupling substrate is now built (2026-07-01). Now awaiting the SEPARATE new-EXQ validation falsifier: A1_LOOPS + learned DA-gated cross-loop arbitration STRICT-ABOVE A1_LOOPS + static-arithmetic arbitration on a strict majority of divergent seeds (different claim_ids; queued via /queue-experiment now that the build lands + tests pass). This node CLOSES on the first downstream channel converting committed-action diversity on the learned selector."
       assembly_status: in_progress
-      owner_exq: "TBD -- the learned-cross-loop-arbitration validation falsifier (A1_LOOPS + learned cross-loop arbitration vs A1_LOOPS + static arbitration; claim_ids differ from the 700-lineage), queued via /queue-experiment as a SEPARATE step after the 2026-07-01 coupling build lands. Prior owner V3-EXQ-700c superseded: the 700-lineage single-arena learned-gating attack + the ARC-110 707b segregation validation both landed (707b weakens-NARROW, conversion ceiling INTRINSIC, not a single-arena artefact); the build front advanced to the DA-gated cross-loop arbitration coupling, now built."
+      owner_exq: "V3-EXQ-709 -- the learned-cross-loop-arbitration validation falsifier (A1_LOOPS_STATIC = the 707b static-arithmetic control vs A1_LOOPS_LEARNED = use_learned_cross_loop_arbitration ON; claim_ids [MECH-439, ARC-108, ARC-110], differ from the 700-lineage), queued via /queue-experiment 2026-07-01 as the SEPARATE new-EXQ step the 707b autopsy (item 3) routed. RESUME 2026-07-01: V3-EXQ-709 QUEUED + LANDED (ree-v3 main 2a5e8a6, experiments/v3_exq_709_learned_cross_loop_arbitration_validation.py) + LIVE in the coordinator DB (POST /queue/add applied, /queue/active present) -- pending a runner claim; tests the coupling substrate landed 2026-07-01 (ree-v3 832afd1). Prior owner V3-EXQ-700c superseded: the 700-lineage single-arena learned-gating attack + the ARC-110 707b segregation validation both landed (707b weakens-NARROW, conversion ceiling INTRINSIC, not a single-arena artefact); the build front advanced to the DA-gated cross-loop arbitration coupling, now built."
       unblocks_claims: [MECH-439, ARC-108, MECH-450]
       depends_on: ["behavioral_diversity_isolation:GAP-J"]
       cross_plan_link: ["conversion_ceiling_campaign:CAMPAIGN", "biology_grounding_convergence_v4:BG-2"]
