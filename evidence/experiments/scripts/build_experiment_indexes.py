@@ -2697,14 +2697,18 @@ def _recommendation_for_claim(
     # open-question like Q-073). Routing it to hold_pending_v3_substrate mislabels
     # it and parks it in the V3-substrate decision queue forever (the 2026-04-27
     # misclassification flagged in WORKSPACE_STATE; insights 2026-06-06; extended
-    # to v5 2026-07-01 after Q-073 surfaced as pending_user). Give it its own
-    # recommendation that is structurally "applied" (no V3-substrate decision is
-    # pending) so it leaves the pending_user queue and the morning digest. The
-    # recommendation KEY stays held_v4_by_architectural_commitment (the shared
-    # "architectural-commitment" bucket recognised by the IGW workset suppress set
-    # and morning digest) regardless of the exact later generation; only the prose
-    # is generation-aware.
-    if _v3_pending and _impl_phase in ("v4", "v5"):
+    # to v5 2026-07-01 after Q-073 surfaced as pending_user; GENERALIZED to any
+    # later generation (v>=4) 2026-07-01 PM after Q-074 (v6) surfaced as the next
+    # pending_user in the same shape -- a governance trace confirmed the held set
+    # buries no V3-needed claim, so matching any v>=4 is safe and stops this
+    # re-recurring at v6/v7/v8). Give it its own recommendation that is
+    # structurally "applied" (no V3-substrate decision is pending) so it leaves the
+    # pending_user queue and the morning digest. The recommendation KEY stays
+    # held_v4_by_architectural_commitment (the shared "architectural-commitment"
+    # bucket recognised by the IGW workset suppress set and morning digest)
+    # regardless of the exact later generation; only the prose is generation-aware.
+    _later_gen = re.fullmatch(r"v(\d+)", _impl_phase)
+    if _v3_pending and _later_gen and int(_later_gen.group(1)) >= 4:
         _gen = _impl_phase.upper()
         return {
             "claim_id": claim_id,

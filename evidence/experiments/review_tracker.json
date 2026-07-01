@@ -1,7 +1,9 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-06-30T23:53:32Z",
+  "last_review_utc": "2026-07-01T17:00:04Z",
   "discussed_experiment_dirs": [
+    "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
+    "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4",
     "v3_exq_701c_inv050_mel_measurability_recononly",
     "v3_exq_707a_arc110_loop_segregation_validation",
     "v3_exq_707b_arc110_loop_segregation_c2_release",
@@ -4930,6 +4932,14 @@
         "v3_exq_466e_sd034_satisficing_residue_discharge_behavioural_20260625T030205Z_v3"
       ],
       "context": "governance-cycle-20260625T0420Z: V3-EXQ-466e (SD-034 satisficing residue-discharge behavioural; supersedes V3-EXQ-466d) PASS/supports. sd034_satisficing_discharge_confirmed -- C1_n_closures/C2_discharge_events/C3_off_no_closure_no_discharge all PASS + non_degenerate; the residue-field-populated non-vacuity gate (ON residue_active_peak>=1 on >=2/3 seeds) is MET, fixing the 466d empty-active_mask artifact the failure_autopsy_V3-EXQ-466d_2026-06-24 diagnosed. SD-034 records a clean supports for the residue-discharge leg; STAYS provisional + pending_retest_after_substrate=True (de-commit-authority lineage GAP-4/460h..460l still owes its retest). 466d manifest set evidence_direction:superseded (whole run scoring-excluded). GAP-4-battery node owner 466e recorded PASS, stays in_progress (commitment-dependent arms deferred). User-approved 'Apply supports + supersede 466d'. NOTE: V3-EXQ-705 (MECH-314) left PENDING this cycle -- flagged for /failure-autopsy (substrate_not_ready_requeue, legC demotion all-admit 1/3 seeds), per the 'fails need autopsies before we decide' directive."
+    },
+    {
+      "utc": "2026-07-01T17:00:04Z",
+      "run_ids": [
+        "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
+        "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4"
+      ],
+      "context": "governance-cycle-20260701T1700Z: two V4 substrate-validation falsifiers walked, both PASS, both claim_ids=[] (score NO claim; PROMOTES NOTHING; generation:v4, epoch ree_self_model_v1). V4-EXQ-002 (DR-13/SELF-1 self-recurrence) label dr13_self_recurrence_delivers_stateful_subject: precondition self_recurrence_live_state_departure MET (min_state_departure 1.15 > 0.001), non-degenerate C1_carries_history/C2_perturbation_isolated/C3_anchor_blend_live all True on 3/3 seeds; secondary untrained-GRU-vs-EMA history-retention (0.168<0.219) NOT a gate (trained superiority is a DR-10 consumer question). V4-EXQ-003 (DR-10/SELF-3 z_self-in-E3 viability wiring) label dr10_z_self_viability_changes_selection: both preconditions MET (differential self-viability range 1.23 > 0.1; applied penalty exceeds primary best-vs-second gap = decisive), non-degenerate C1_differential_flips/C2_uniform_inert True + all_decisive on 3/3 seeds. User-classified both as verified diagnostic/substrate-readiness falsifiers (no adjudication flag) and approved marking reviewed. Marked via discussed_experiment_dirs (unclaimed no-tag manifests). No claims.yaml change. Governance-tooling fix this cycle: generalized build_experiment_indexes.py architectural-commitment routing from ('v4','v5') to any implementation_phase v>=4 after Q-074 (v6) surfaced as pending_user in the same shape -- user-directed trace confirmed the 82-claim held set buries NO V3-needed claim (only 2 phase-hygiene red flags: ARC-080[v4]<-MECH-423[v3] conceptual link, ARC-034[untagged]<-MECH-129[v5] missing-tag; both deferred to chips). Q-074 now routes held_v4_by_architectural_commitment/applied; pending_user 0."
     }
   ]
 }
