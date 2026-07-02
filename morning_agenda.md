@@ -1,6 +1,6 @@
-# Morning Agenda — 2026-07-01
+# Morning Agenda — 2026-07-02
 
-Generated: 2026-07-01T04:22:23Z
+Generated: 2026-07-02T04:23:23Z
 
 _Read-only digest. No governance decisions made, nothing marked reviewed._
 
@@ -8,102 +8,99 @@ _Read-only digest. No governance decisions made, nothing marked reviewed._
 
 ## Queue Status
 - Total pending: **0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0)
-- **ALERT: Queue empty — 0 pending experiments.** The fleet has no work to claim. The
-  live V3 attack (MECH-439 conversion ceiling) is in an *assembling* phase across the
-  conversion-ceiling campaign; the next runs are composition falsifiers still being
-  authored (see Active Plans Heartbeat). Queue the P-comp demotion×Go/No-Go composition
-  falsifier and/or the ARC-108/MECH-450 learned-gating terminal falsifier (P4) when ready.
-- No owed/unqueued successors: the closure-drift cross-check is clean (0 drifted, 0 stale).
-  The assembly-frontier nodes with `assembly_status: queued` are composition steps awaiting
-  authoring, not owed-and-unqueued EXQs.
+- **ALERT: Queue low — 0 pending experiments.** One item is in-flight: `V3-EXQ-709`
+  (status `claimed`, priority 100) — the ARC-108 x ARC-110 learned/DA-gated cross-loop
+  arbitration validation falsifier (arms A1_LOOPS_STATIC vs A1_LOOPS_LEARNED;
+  claim_ids [MECH-439, ARC-108, ARC-110]). It is the live primary attack on the F-dominance
+  conversion ceiling (MECH-439). No manifest yet — surfaces for review when it completes.
+- Next queued runs are the conversion-ceiling campaign composition falsifiers, still in the
+  `assembling` phase (P-comp demotion x Go/No-Go composition falsifier to be authored via
+  /queue-experiment; P4-learned-gating stack now BUILT — 709 is its first falsifier). No new
+  experiments should be forced; the campaign is deliberately mid-assembly.
+- **Owed successors: none.** Every plan Owner-EXQ either has a landed manifest (466e, 706b,
+  689g) or is live in the queue (709). The prose "687-successor / GAP-B successor / GAP-C-build"
+  items are blocked-on-upstream or /implement-substrate build work, not owed-and-runnable EXQs
+  (Step 7c gate applied).
 
 ---
 
 ## Experiments Awaiting Review (0 indexed / 0 runner-only)
 
-All experiments reviewed. `pending_review.md` regenerated at 2026-07-01T04:18:26Z reads
-**0** pending (0 PASS, 0 FAIL, 0 runner-only, 0 unclaimed, 0 ERROR, 0 diagnostic self-route).
+Clean board — `pending_review.md` reads **0/0/0/0** (0 PASS, 0 FAIL, 0 runner-only, 0 unclaimed,
+0 ERROR manifests, 0 diagnostic self-routes). Nothing to review.
 
-Nothing to research this morning.
+Generated `2026-07-02T04:19:38Z`; last review `2026-07-01T17:00:04Z`.
 
 ---
 
 ## Errors to Diagnose (0)
 
-No undiagnosed errors. `pending_review.md` shows 0 ERROR manifests. (`runner_status.json`
-is stale — last written 2026-06-09 under Phase 3, which commits telemetry on state-change
-only; its 87 historical ERROR rows are all superseded/re-lettered and carry no queued or
-pending fix. The fresh `pending_review` is the authoritative signal.)
+No undiagnosed errors. `runner_status.json` is stale (mtime 2026-06-09T06:00Z, Phase-3 lag) so
+its 87 historical ERROR rows are not current; `pending_review.md` is authoritative and shows
+0 ERROR/runner-only manifests. Nothing owed to /diagnose-errors.
 
 ---
 
 ## Governance Agenda (0 recommendations)
 
-**0 `pending_user`** — all 152 rows in the decision queue are `applied`. Yesterday's
-2026-07-01 governance cycle (07dfbce753) closed the last open item: it generalized the V5
-architectural-commitment routing branch (v4→v4|v5) and reclassified 7 v5-scoped `v3_pending`
-claims (Q-073 + ARC-096/097, INV-081/082, MECH-129, MECH-411) to
-`held_v4_by_architectural_commitment/applied`. Nothing awaits a human governance decision.
+No `pending_user` decisions. The decision queue holds 153 rows, **all `applied`** — nothing
+awaiting a human governance call. (The 4 literal `pending_user` string hits in
+`promotion_demotion_recommendations.md` are historical rationale prose, not live decision rows.)
+
+Promotes nothing today.
 
 ---
 
-## Active Plans Heartbeat
+## Active Plans Heartbeat (41 plan docs; per-node health via closure_drift)
 
-Parsed via the derived `closure_drift.md` (2026-07-01T04:18:32Z) — plan docs now use a
-per-node `closure_plan:` YAML structure, not a top-level `Status:` / `## Status table`.
+Closure-drift report (`2026-07-02T04:19:44Z`) — **clean**:
 
-| Signal | Count |
+| Metric | Count |
 |---|---|
-| Drifted nodes (owner terminal, status non-terminal) | 0 |
-| Stale since last update — review | 0 |
-| Suppressed (legitimately non-terminal, audit-only) | 10 |
-| **Assembly frontier (resting `assembling`, not drift)** | 9 |
-| Plans missing `closure_plan.last_updated` | 0 |
+| Drifted nodes | 0 |
+| Stale since last update | 0 |
+| Suppressed (legitimately non-terminal) | 10 |
+| Assembly frontier (resting, `assembling`) | 9 (0 revisit_due) |
+| Plans missing `last_updated` | 0 |
 
-**No PLAN STALING flags. No stale rows. No `revisit_due` nodes.** The board is in a clean
-assembling state.
+The 9 assembly-frontier nodes are resting by design (off the closure % axis) — the
+conversion-ceiling campaign mid-assembly:
 
-**Assembly frontier (9 nodes — resting by design, no action owed):**
-- `conversion_ceiling_campaign:CAMPAIGN` (umbrella) — awaiting P-comp + P2 + P3 composition-readiness (in_progress)
-- `conversion_ceiling_campaign:P-comp` — demotion × Go/No-Go composition falsifier (queued/to-author)
-- `conversion_ceiling_campaign:P2-rootC` — f_dominance_conversion_ceiling amend (queued; `revisit_after: 2026-07-15`)
-- `conversion_ceiling_campaign:P3-ofc` — OFC valuation face (built; awaiting full-stack composition)
-- `conversion_ceiling_campaign:FULLSTACK` — the co-armed full-stack arm (queued; awaiting all three prongs composition-ready)
-- `conversion_ceiling_campaign:P4-learned-gating` — ARC-108 + MECH-450 terminal falsifier (in_progress)
-- `commitment_closure:GAP-8` — awaiting `conversion_ceiling_campaign:FULLSTACK` (built)
-- `behavioral_diversity_isolation:GAP-K` — awaiting ARC-108 unified-dopamine substrate (in_progress)
-- `sd_037_axis_b:P1b` — awaiting `conversion_ceiling_campaign:FULLSTACK` (in_progress)
+- `conversion_ceiling_campaign:CAMPAIGN` / `:P-comp` (queued) / `:P2-rootC` (queued, revisit_after 2026-07-15) / `:P3-ofc` (built) / `:FULLSTACK` (queued) / `:P4-learned-gating` (in_progress, stack BUILT 2026-07-01)
+- `behavioral_diversity_isolation:GAP-K` (in_progress, owner V3-EXQ-709 — the learned-gating falsifier queued 2026-07-01)
+- `commitment_closure:GAP-8` (built, awaiting FULLSTACK co-armed arm)
+- `sd_037_axis_b:P1b` (in_progress, gated on FULLSTACK)
 
-These are the anti-forcing keystone at work — `assembling` nodes are excluded from the
-closure % and rest quietly until their upstream substrate composes. The single dated
-resume trigger (P2-rootC, `revisit_after: 2026-07-15`) is not yet due.
+None past `revisit_after`. The 10 suppressed nodes are Case-3 self-tags / non-contributory
+manifests (arc_062 GAP-B/GAP-H, commitment_closure GAP-4/GAP-4-battery, infant GAP-13,
+self_attribution GAP-1, sleep GAP-2, behavioral GAP-B/GAP-C/GAP-I) — audit-listed, not drift.
+
+No PLAN STALING flags.
 
 ---
 
-## Literature Pull Candidates (7 lit-needed)
+## Literature Pull Candidates (Top 5)
 
 | # | Claim | Priority | Existing entries |
 |---|-------|----------|-----------------|
-| 1 | Q-019 (Three-Gate BG Architecture: literature extraction) | medium | 1 |
-| 2 | Q-074 | low | 0 |
-| 3 | Q-075 | low | 0 |
-| 4 | Q-076 | low | 0 |
-| 5 | Q-077 | low | 0 |
-| 6 | Q-078 | low | 0 |
-| 7 | Q-080 | low | 0 |
+| 1 | Q-019 | medium | 1 |
+| 2 | Q-076 | low | 0 |
+| 3 | Q-077 | low | 0 |
+| 4 | Q-078 | low | 0 |
+| 5 | Q-080 | low | 0 |
 
-Q-019 (medium; 1 existing entry) is the highest-priority candidate. The Q-074–Q-080 cluster
-is low-priority. Note the scheduled `lit-pull-am` routine already sweeps the two
-highest-priority *unaddressed* literature-needed claims each morning.
+(Q-074/075 were pulled by the scheduled lit-pull on 2026-07-01. Backlog literature-needed
+total: 5 items.)
 
 ---
 
 ## Serve.py Status
-- **RUNNING on port 8000** (PID 34674).
+- **RUNNING** on port 8000 (PID 34674).
 
 ---
 
 ## Blocked Items
-- None. No TASK_CLAIMS collision (all claims `done` at digest start); governance.sh ran
-  clean. Plan-doc parsing adapted from the skill's assumed `## Status table` format to the
-  current per-node `closure_plan:` YAML via the derived `closure_drift.md`.
+None. No TASK_CLAIMS collision — all prior claims were `done` at digest start; `governance.sh`
+ran clean (0 collision). REE_assembly pull required a rebase-with-autostash over 3 local
+igw-ledger commits vs 3 origin phase3-heartbeats commits (non-conflicting; a stale ~2.1h-old
+0-byte `.git/index.lock` was cleared first per CLAUDE.md safe-recovery). No anomalies.
