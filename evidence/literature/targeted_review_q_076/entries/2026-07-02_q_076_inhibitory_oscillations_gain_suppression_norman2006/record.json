@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_076",
+  "entry_id": "2026-07-02_q_076_inhibitory_oscillations_gain_suppression_norman2006",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-076"],
+  "source": {
+    "title": "How inhibitory oscillations can train neural networks and punish competitors",
+    "authors": ["Kenneth A. Norman", "Ehren Newman", "Greg Detre", "Sean Polyn"],
+    "year": 2006,
+    "venue": "Neural Computation",
+    "doi": "10.1162/neco.2006.18.7.1577"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical, well-cited computational treatment of exactly the mechanism Q-076 posits: the LEVEL of competitive inhibition (a gain-like control axis) determines whether a memory is strengthened (retrieved) or its competitors are weakened (forgotten). That is the interference-vs-forgetting interaction in a single algorithm. Confidence is held below source quality because the interaction here is realised as PHASES of one inhibitory oscillation at ENCODING/learning time, not as a retrieval-time product of two static scalars (Line A gain x Line B suppression) as Q-076 frames it -- so the mapping is mechanistically strong but structurally analogical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model's strengthen-vs-punish decision is driven by the PHASE of an inhibitory oscillation, so the 'interaction' is temporal (one oscillating parameter) rather than a static product of two independent knobs; if REE implements Line A and Line B as two separate static scalars, the Norman mechanism supports the principle but not the specific 2x2 factorisation.",
+    "The algorithm operates at learning/encoding time (Contrastive Hebbian Learning across oscillation phases), not at retrieval readout; Q-076's predicted regimes are stated over retrieval-time reinstatement, so the read-side dissociation is inferred, not directly demonstrated."
+  ],
+  "tags": ["q-076", "retrieval_induced_forgetting", "competitive_inhibition", "gain_suppression_interaction", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "A single oscillating inhibition signal can both train a network and punish competitors: raising inhibition exposes weak parts of the target memory (which are then strengthened), while lowering inhibition exposes competitors (which are then weakened). The sign of the weight change flips with the phase of the inhibitory oscillation.",
+    "ree_translation": "Q-076 predicts that retrieval competence is set by the INTERACTION of a global reinstatement-gain layer (MECH-425 Line A) and a content-selective competitor-suppression operator (MECH-425 Line B), not by either alone. Norman et al. show, in a working model, that the level of competitive inhibition is precisely the axis that decides strengthen-the-target vs punish-the-competitor -- the mechanistic core of Q-076's interference-vs-forgetting tradeoff.",
+    "mapping_caveat": "The paper implements the strengthen/punish tradeoff as successive phases of ONE oscillating inhibition parameter at encoding, whereas Q-076 factors it into two composable read-time layers (a global gain scalar x a selective suppression operator). The Norman mechanism is the strongest available existence proof that competitive-inhibition level governs the tradeoff, but it does not run the 2x2 (gain high/low) x (suppression on/off) retrieval design Q-076 specifies -- that remains substrate-conditional on REE-v4.",
+    "source_context": "Abstract neural-network simulation (Hopfield-like attractor memory with oscillating global inhibition); learning/generalisation over correlated input patterns."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (peer-reviewed, foundational, widely cited). Mapping fidelity capped at 0.60: right mechanism (inhibition level governs strengthen-vs-punish) but wrong structural factorisation (one oscillation phase vs two static layers) and encoding-time vs retrieval-time. Transfer risk moderate: the mechanism is generic attractor-network dynamics, which REE's latent memory plausibly instantiates, but the abstract-model-to-substrate step is unverified."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_076",
+  "entry_id": "2026-07-02_q_076_pfc_interference_suppression_costanzi2008",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-076"],
+  "source": {
+    "title": "Memory impairment induced by an interfering task is reverted by pre-frontal cortex lesions: a possible role for an inhibitory process in memory suppression in mice",
+    "authors": ["M. Costanzi", "D. Saraulli", "C. Rossi-Arnaud", "M. Aceti", "V. Cestari"],
+    "year": 2008,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2008.08.026"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "A clean lesion dissociation supporting MECH-425 Line B: a prefrontal inhibitory-control process, SEPARABLE from hippocampal storage, is what converts memory competition into forgetting. PFC lesion REVERTS interference-induced forgetting while hippocampal lesion (storage) worsens it -- exactly the content-selective-suppression-vs-storage double dissociation MECH-425's what_would_answer describes for Line B. Confidence held at 0.52 because it grounds only the Line-B factor (not the interaction with gain), the lesion is all-or-none rather than a parametric suppression knob, and it is a mouse two-task interference paradigm rather than retrieval-time scoring of individually-tracked competing traces.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PFC lesion REDUCES forgetting -- so the inhibitory operator is double-edged: normal Line-B suppression manufactures forgetting of the interfering memory. If REE applies Line B too aggressively (or without gating on genuine competition) it will suppress traces that were actually wanted, which is the mirror failure of the high-gain/no-suppression corner Q-076 warns about.",
+    "Lesion is a total ablation, not a graded suppression parameter, so the study cannot show how Line B trades off against Line A gain -- it establishes the operator exists and is separable from storage, but not the interaction term Q-076 turns on."
+  ],
+  "tags": ["q-076", "prefrontal_cortex", "interference", "inhibitory_control", "line_b", "memory_suppression"],
+  "mapping": {
+    "source_claim_statement": "In mice, two hippocampus-dependent tasks mutually interfere; prefrontal-cortex lesions completely revert the impairing (interference) effect, while hippocampal lesions impair both tasks and worsen the interference. This dissociates a PFC-mediated inhibitory-control process that drives interference-induced forgetting from the hippocampal storage substrate.",
+    "ree_translation": "MECH-425 Line B posits a content-selective retrieval-suppression operator, distinct from storage, that manages which competitors are suppressed. Costanzi et al. show that a prefrontal inhibitory process -- separable from (and downstream of) hippocampal storage -- is causally responsible for interference-induced forgetting. This grounds Line B as a real, separable operator, the second factor Q-076 crosses with Line-A gain.",
+    "mapping_caveat": "Grounds ONLY Line B, and only its existence/separability, not a tunable suppression strength crossed with a gain manipulation. Lesion (all-or-none) rather than parametric; behavioural forgetting rather than retrieval-time scoring of individual competing traces; mouse two-task interference rather than REE ContextMemory readout. The direction of the effect (lesion REDUCES forgetting) confirms the operator is suppressive but also flags its double-edged character.",
+    "source_context": "In vivo mouse; place-object recognition task (PORT) and step-through inhibitory-avoidance (IA); hippocampal vs prefrontal excitotoxic lesions."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.48,
+    "notes": "Source quality moderate (peer-reviewed lesion dissociation, clear result, but older, modest N, single lab). Mapping fidelity 0.55: strong for Line-B existence and its separability from storage, weak for the interaction. Transfer risk moderate-high: mouse cross-task interference -> REE read-time competitor suppression over co-encoded latent traces; the mechanism (PFC inhibitory control of hippocampal competition) is at least the right functional shape."
+  }
+}

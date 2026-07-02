@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_077",
+  "entry_id": "2026-07-02_q_077_slot_capacity_cowan2001",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-077"],
+  "source": {
+    "title": "The magical number 4 in short-term memory: a reconsideration of mental storage capacity",
+    "authors": ["Nelson Cowan"],
+    "year": 2001,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/s0140525x01003922"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The canonical statement of the DISCRETE-slot horn of Q-077's fork: a pure capacity limit of about four chunks in the focus of attention, defended across a wide range of paradigms. This directly supports SD-046's current discrete-slot framing (a fixed ~N of simultaneously-active goal slots). Confidence is moderate, not high, because Cowan's limit is a short-term-MEMORY chunk capacity / focus-of-attention limit, not a multi-GOAL maintenance capacity, and Cowan himself stresses the number holds only under boundary conditions that block chunking/rehearsal -- so even the slot account is soft and context-dependent, not a hard structural cap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Cowan's ~4 limit only appears under conditions that specifically BLOCK recoding items into larger chunks; when chunking or rehearsal is available the effective capacity inflates. So a fixed-N slot count in SD-046 could be an artefact of the arena's chunking boundary conditions rather than a true structural limit -- a step-function fit would need to rule out chunking of goals.",
+    "The limit is defined over passive stored chunks in the focus of attention; goals are active workstreams with drive coupling and persistence, so a chunk-capacity number may not transfer to how many goals can be simultaneously MAINTAINED and acted toward."
+  ],
+  "tags": ["q-077", "working_memory_capacity", "focus_of_attention", "slot_model", "cowan", "discrete_slots"],
+  "mapping": {
+    "source_claim_statement": "Across many paradigms, pure short-term storage capacity -- when chunking and rehearsal are controlled -- converges on a small fixed limit of about four chunks, interpreted as the capacity of a central focus of attention.",
+    "ree_translation": "Q-077 asks whether SD-046's multi-slot GoalState is a set of DISCRETE fixed-capacity slots (Cowan ~4 focus-of-attention chunks) or a single FLEXIBLE precision resource. Cowan 2001 is the primary evidence for the discrete-slot horn: a fixed small N with a step-like discontinuity as load exceeds capacity, which is exactly the signature SD-046's current discrete-slot framing predicts.",
+    "mapping_caveat": "Cowan's capacity is a focus-of-attention CHUNK limit for stored items, not a count of simultaneously-active GOALS with drive/age/persistence parameters. The transfer from 'how many chunks can be held' to 'how many goal workstreams can be maintained and acted on' is nontrivial, and Cowan's own boundary conditions (limit only appears when chunking is blocked) mean the slot count is soft, not a hard structural slot.",
+    "source_context": "Human short-term / working memory; a Behavioral and Brain Sciences target article synthesising visual, verbal, and attentional-capacity paradigms."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.48,
+    "notes": "Source quality high (landmark, heavily-cited BBS target article). Mapping fidelity 0.52: strong for the discrete-slot construct but the chunk-capacity-to-goal-slot transfer is loose. Transfer risk moderate-high: STM chunk storage -> multi-goal maintenance, plus Cowan's own caveat that the ~4 limit is boundary-condition-dependent rather than a hard cap."
+  }
+}

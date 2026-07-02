@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_076",
+  "entry_id": "2026-07-02_q_076_histaminergic_retrieval_gain_morishita2026",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-076"],
+  "source": {
+    "title": "Infraslow histaminergic dynamics govern priming states to gate moment-to-moment memory accessibility",
+    "authors": ["Yoshikazu Morishita", "Yuki Takamura", "Kyoka Nishimura", "Yuto Yokoi", "Yuya Ishihama", "Rentaro Idutsu", "Misato Ono", "Reika Matsumoto", "Natsuko Hitora-Imamura", "Masabumi Minami", "Hiroshi Nomura"],
+    "year": 2026,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2026.05.019"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.56,
+  "confidence_rationale": "This is the founding paper for MECH-425 Line A -- the causal, bidirectional demonstration that a global, slowly-fluctuating, arousal-coupled signal (TMN histamine) sets moment-to-moment retrieval readiness. It strongly grounds that Line A is a REAL, content-blind reinstatement-gain knob. But it addresses only ONE of Q-076's two factors: it demonstrates the gain layer and its main effect, not the interaction with a content-selective suppression operator (Line B). Confidence is therefore moderate and partial -- high-quality evidence for a component of Q-076, not for its interaction claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The histaminergic gain demonstrated here is content-BLIND -- it uniformly scales cue-evoked BLA responses and memory expression -- which is exactly Q-076's Line-A main effect (high gain without selective suppression -> the problematic-interference corner). The paper shows the gain exists but not that it is managed by a competitor-selective suppression arm, so on its own it cannot establish the interaction Q-076 predicts.",
+    "Effect is on reward-associative Pavlovian memory read out via a single behavioural expression measure in mice; it does not score competing co-encoded traces individually, so interference vs correct-trace reinstatement cannot be dissociated within this dataset."
+  ],
+  "tags": ["q-076", "histamine", "tuberomammillary_nucleus", "retrieval_gain", "line_a", "memory_accessibility"],
+  "mapping": {
+    "source_claim_statement": "Spontaneous pre-cue activity of TMN histaminergic neurons shows infraslow (0.05-0.1 Hz) dynamics tracking an integrated brain-body state; high-histaminergic states enhance memory expression, and brief optogenetic activation/inhibition before the cue bidirectionally modulates expression by priming BLA circuits for robust cue responses.",
+    "ree_translation": "MECH-425 Line A posits a global, slowly-fluctuating, arousal-coupled reinstatement-gain layer on retrieval. Morishita et al. provide the causal biological instantiation: an infraslow histaminergic state variable that sets, moment to moment, how strongly a fixed cue reinstates its associated memory. Q-076 asks whether this gain, crossed with a content-selective suppression operator, governs the interference-vs-forgetting tradeoff; this paper anchors the gain factor as real and causal.",
+    "mapping_caveat": "Grounds ONLY Line A. The gain here is global and content-blind (it scales the whole cue-evoked response), so it speaks to Q-076's Line-A main-effect prediction (uniform reinstatement change = apparent forgetting when clamped low; unmanaged access when high) but says nothing about the Line-B selective-suppression arm or the interaction term that Q-076 actually turns on. Mouse reward-associative memory in BLA, not human episodic/ContextMemory readout.",
+    "source_context": "In vivo mouse; fibre photometry of TMN histaminergic neurons, closed-loop cue delivery, optogenetic activation/inhibition, BLA population recording; Pavlovian reward-associative memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (Neuron; causal, bidirectional, closed-loop optogenetics with a circuit mechanism). Mapping fidelity 0.52: excellent for Line A alone, but Q-076 is an INTERACTION question and this paper supplies only one factor. Transfer risk moderate: mouse Pavlovian BLA memory -> REE read-time policy over episodic/ContextMemory is a real species/system gap, and the histaminergic gain being content-blind is precisely the corner Q-076 warns must be paired with selective suppression."
+  }
+}

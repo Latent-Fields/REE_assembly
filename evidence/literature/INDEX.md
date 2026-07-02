@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-01T06:13:11.530784Z`
+Generated: `2026-07-02T06:51:30.270766Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -312,6 +312,8 @@ Generated: `2026-07-01T06:13:11.530784Z`
 | `targeted_review_q_073` | [`2026-06-30_q_073_social_origins_prosociality_dahl2019`](targeted_review_q_073/entries/2026-06-30_q_073_social_origins_prosociality_dahl2019/record.json) | 3 | [`summary`](targeted_review_q_073/entries/2026-06-30_q_073_social_origins_prosociality_dahl2019/summary.md) |
 | `targeted_review_q_074` | [`2026-07-01_q_074_tolman_eichenbaum_machine_whittington2020`](targeted_review_q_074/entries/2026-07-01_q_074_tolman_eichenbaum_machine_whittington2020/record.json) | 3 | [`summary`](targeted_review_q_074/entries/2026-07-01_q_074_tolman_eichenbaum_machine_whittington2020/summary.md) |
 | `targeted_review_q_075` | [`2026-07-01_q_075_serotonin_two_receptors_carhartharris2017`](targeted_review_q_075/entries/2026-07-01_q_075_serotonin_two_receptors_carhartharris2017/record.json) | 3 | [`summary`](targeted_review_q_075/entries/2026-07-01_q_075_serotonin_two_receptors_carhartharris2017/summary.md) |
+| `targeted_review_q_076` | [`2026-07-02_q_076_pfc_interference_suppression_costanzi2008`](targeted_review_q_076/entries/2026-07-02_q_076_pfc_interference_suppression_costanzi2008/record.json) | 3 | [`summary`](targeted_review_q_076/entries/2026-07-02_q_076_pfc_interference_suppression_costanzi2008/summary.md) |
+| `targeted_review_q_077` | [`2026-07-02_q_077_slot_capacity_cowan2001`](targeted_review_q_077/entries/2026-07-02_q_077_slot_capacity_cowan2001/record.json) | 3 | [`summary`](targeted_review_q_077/entries/2026-07-02_q_077_slot_capacity_cowan2001/summary.md) |
 | `targeted_review_q_079` | [`2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/record.json) | 5 | [`summary`](targeted_review_q_079/entries/2026-06-20_q_079_sticky_hdp_hmm_bnp_latent_states_fox2011/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |

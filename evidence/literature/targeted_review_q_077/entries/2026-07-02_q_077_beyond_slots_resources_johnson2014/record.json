@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_077",
+  "entry_id": "2026-07-02_q_077_beyond_slots_resources_johnson2014",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-077"],
+  "source": {
+    "title": "Beyond slots and resources: grounding cognitive concepts in neural dynamics",
+    "authors": ["Jeffrey S. Johnson", "Vanessa R. Simmering", "Aaron T. Buss"],
+    "year": 2014,
+    "venue": "Attention, Perception & Psychophysics",
+    "doi": "10.3758/s13414-013-0596-9"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "The adjudicating entry: rather than picking a side, Johnson, Simmering & Buss argue that BOTH slot and resource accounts have real explanatory power but are limited by their focus on representations rather than PROCESSES, and offer a neurally-grounded dynamic field theory (DFT) that reproduces the same capacity-limit behaviour as an emergent property of population dynamics. This is genuinely mixed for Q-077: it validates the fork as real but reframes it, and warns that the step-vs-smooth discriminating signature may be underdetermined. High relevance to Q-077's exact wording; confidence moderate because DFT is a modelling framework whose transfer to REE's goal substrate is a design choice, not an established fact.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DFT can produce EITHER a quasi-step or a smooth-dilution capacity curve depending on lateral-inhibition strength and field parameters, so a behavioural degradation curve alone may NOT cleanly discriminate slot vs resource -- Q-077's what_would_answer (step vs smooth) could be underdetermined, and REE may need to instrument the competition dynamics directly rather than infer from the fidelity-vs-N curve.",
+    "The paper's thesis is that the slot-vs-resource dichotomy is itself the wrong level of description; if REE forces SD-046 into one horn it may inherit a false dichotomy rather than the process-level mechanism (graded competition among goal fields) that actually generates the capacity limit."
+  ],
+  "tags": ["q-077", "dynamic_field_theory", "working_memory", "slot_vs_resource", "neural_dynamics", "adjudication"],
+  "mapping": {
+    "source_claim_statement": "Both the fixed-slot and shared-resource accounts of visual working-memory capacity explain large bodies of data, but their focus on the representations (slots vs resource) rather than the processes underlying VWM limits progress. A neurally-grounded dynamic field theory reproduces change-detection performance, recall, feature integration, and development, treating the capacity limit as an emergent property of population dynamics under lateral inhibition.",
+    "ree_translation": "Q-077 poses SD-046 as slot XOR resource. Johnson et al. argue this is a false dichotomy at the representational level and that the capacity limit is better modelled as emergent from graded competition among neural fields. For REE this suggests a third design option for SD-046: implement neither pure discrete slots nor a single scalar resource, but a set of mutually-inhibiting goal fields whose effective capacity (and its step-vs-smooth character) falls out of the competition dynamics.",
+    "mapping_caveat": "DFT is a modelling framework validated on visual working-memory tasks (change detection, recall, feature binding); applying it to multi-GOAL maintenance in REE is a design proposal, not an established result. It does not by itself tell REE which horn SD-046 sits in -- it argues the question may be malformed and offers a process-level alternative that would have to be built and tested.",
+    "source_context": "Human visual working memory; dynamic field theory simulations compared against change-detection, recall, feature-integration, developmental, and individual-difference data."
+  },
+  "confidence_components": {
+    "source_quality": 0.76,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.45,
+    "notes": "Source quality solid (peer-reviewed, well-established DFT framework, directly on the slot-vs-resource question) though lower-impact than the Science/BBS primary sources. Mapping fidelity 0.60: unusually high because the paper addresses Q-077's exact dichotomy head-on and offers a constructive third option for SD-046. Transfer risk moderate: DFT-to-goal-substrate is a design leap, but the process-level framing is more portable than either representational horn."
+  }
+}

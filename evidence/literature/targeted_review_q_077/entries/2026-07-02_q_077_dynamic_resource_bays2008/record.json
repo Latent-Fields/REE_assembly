@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_077",
+  "entry_id": "2026-07-02_q_077_dynamic_resource_bays2008",
+  "timestamp_utc": "2026-07-02T06:33:03Z",
+  "claim_ids_tested": ["Q-077"],
+  "source": {
+    "title": "Dynamic shifts of limited working memory resources in human vision",
+    "authors": ["Paul M. Bays", "Masud Husain"],
+    "year": 2008,
+    "venue": "Science",
+    "doi": "10.1126/science.1158023"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.57,
+  "confidence_rationale": "The canonical statement of the FLEXIBLE-resource horn of Q-077's fork, and the one the claim's own notes flag as MIXED against SD-046. It supports the resource model (no fixed item limit; a shared resource distributed by a power law; the acted-on/attended item drawing disproportionate precision) -- which directly problematises SD-046's discrete-slot framing, while remaining consistent with SD-046 holding N>=2 goals at graded fidelity. Marked mixed rather than weakens because it undercuts the DISCRETE parameterisation without contradicting the multi-slot design decision itself; confidence moderate because it is visual-WM precision, not goal maintenance, and the result is actively contested (Zhang & Luck 2008, Cowan & Rouder 2009).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The power-law resource model predicts NO hard cutoff, so a discrete-slot SD-046 would produce a step function the resource account says cannot exist; if the arena shows smooth precision dilution instead, SD-046's fixed-N framing is wrong.",
+    "The result is contested: Zhang & Luck (2008) and Cowan & Rouder (2009) argue a slots-plus-averaging / item-limit model fits the same data at least as well, so Bays & Husain cannot unilaterally settle the fork -- the discriminating experiment must be run on REE's own substrate."
+  ],
+  "tags": ["q-077", "working_memory", "resource_model", "precision", "bays_husain", "power_law", "attention_allocation"],
+  "mapping": {
+    "source_claim_statement": "Visual working memory is not fixed by a number of objects but is a limited resource shared dynamically across all items in a scene; the proportion of resource allocated to an item sets the precision with which it is remembered (a power-law relation), and allocation is biased by selective attention and toward saccade targets.",
+    "ree_translation": "Q-077's resource horn: SD-046's multi-slot GoalState could be a single flexible precision budget shared across goals, with each added goal diluting the budget (smooth power-law degradation) and the acted-on/attended goal drawing disproportionate precision. Bays & Husain is the primary evidence for this reading, and its 'attention/saccade-target draws more resource' finding maps onto Q-077's 'acted-on goal draws disproportionate fidelity' sub-prediction.",
+    "mapping_caveat": "This is visual working-memory PRECISION for briefly-remembered items, not maintenance of active goals with drive coupling and persistence. The transfer from per-item visual precision to per-goal behavioural/representational fidelity is a genuine gap. Marked MIXED (per Q-077's notes) because it problematises the DISCRETE-slot framing while remaining consistent with the multi-slot design decision (N>=2 goals at graded fidelity); it is not a clean weakens of SD-046 as a whole.",
+    "source_context": "Human psychophysics; visual working memory report tasks with analogue (continuous) response measures; set-size and saccade-target manipulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high (Science; rigorous analogue-report psychophysics) but tempered by an active, published dispute (Zhang & Luck 2008; Cowan & Rouder 2009 comment + Bays & Husain 2009 reply, both in this literature). Mapping fidelity 0.55: the resource construct and the attention-draws-precision finding map well to Q-077, but visual-item precision != goal maintenance. Transfer risk 0.50 reflects that gap plus the unresolved status of the resource-vs-slot debate in the source field itself."
+  }
+}
