@@ -664,3 +664,4 @@ One line per hourly tick. ASCII only.
 2026-07-02T13:58:54Z auto-defer IGW-20260702-192 hash=e6df0f81098e for 48h (reaped -> completed_resumable)
 2026-07-02T13:58:54Z GC keep igw-192-proposal-for-mech-085 (ledger IGW-20260702-192 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-07-02T13:58:12Z skip IGW-20260702-192: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-02T14:59:07Z skip IGW-20260702-192: no fresh runner heartbeat (experiment-lane item would just sit in queue)
