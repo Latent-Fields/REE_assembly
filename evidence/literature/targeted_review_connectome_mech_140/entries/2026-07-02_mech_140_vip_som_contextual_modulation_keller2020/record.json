@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_140",
+  "entry_id": "2026-07-02_mech_140_vip_som_contextual_modulation_keller2020",
+  "timestamp_utc": "2026-07-02T18:29:39Z",
+  "claim_ids_tested": [
+    "MECH-140"
+  ],
+  "source": {
+    "title": "A Disinhibitory Circuit for Contextual Modulation in Primary Visual Cortex",
+    "authors": [
+      "Andreas J. Keller",
+      "Mario Dipoppa",
+      "Morgane M. Roth",
+      "Matthew S. Caudill",
+      "Alessandro Ingrosso",
+      "Kenneth D. Miller",
+      "Massimo Scanziani"
+    ],
+    "year": 2020,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2020.11.013"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "High-quality peer-reviewed causal circuit dissection (2-photon imaging + optogenetic perturbation + computational modelling in mouse V1; Neuron; Scanziani/Miller labs). It establishes the concrete cellular disinhibitory circuit -- VIP interneurons inhibit SOM interneurons, relieving excitatory neurons from suppression -- that mediates contextual modulation, and shows it is both NECESSARY and SUFFICIENT. Directly grounds the 'disinhibition is a real, graded, load-bearing control primitive' half of MECH-140 in causal biology. Held to 0.58 by the same locus/function caveat as the Aquino 2026 entry (cortical surround-context modulation, not BG tri-loop conflict arbitration) plus a narrower notion of 'context' (center-surround stimulus congruence, not task-rule switching).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The circuit works by MODULATING RECURRENT EXCITATION, not by direct feedforward disinhibition -- a REE implementation that models disinhibition as a purely feedforward subtraction on the input would mispredict the dynamics and the sufficiency result.",
+    "PV interneurons here are context-INDEPENDENT (they track excitatory activity), so the contextual control is carried specifically by the VIP->SOM limb. Collapsing all interneuron types into one inhibitory pool would erase the very selectivity that makes the circuit a context channel."
+  ],
+  "tags": [
+    "mech-140",
+    "disinhibition",
+    "vip_som",
+    "contextual_modulation",
+    "visual_cortex",
+    "graded_inhibition"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mouse primary visual cortex, VIP-expressing interneurons inhibit somatostatin-expressing (SOM) interneurons; when center and surround stimuli differ, VIP neurons are active and inhibit SOM neurons, relieving excitatory neurons from suppression (contextual modulation). Matching stimuli silence VIP, restoring SOM suppression. PV neurons are context-independent. Optogenetic perturbation shows the VIP->SOM circuit is necessary and sufficient, operating primarily by modulating recurrent excitation rather than feedforward disinhibition.",
+    "ree_translation": "MECH-140 wants graded, soft-competitive disinhibition -- losing/suppressed pathways down-weighted but not silenced -- as the arbitration primitive, rather than winner-take-all. This paper supplies the canonical cellular proof that a disinhibitory (inhibition-of-inhibition) circuit is a real, causally necessary-and-sufficient mechanism for context-dependent relief-from-suppression, i.e. graded contextual control implemented through inhibition acting on inhibition.",
+    "mapping_caveat": "The 'context' here is stimulus center-surround congruence in a sensory area, not the tri-loop conflict / task-rule context MECH-140 concerns; and the substrate is cortical VIP/SOM, not the BG indirect pathway MECH-140 names. Supports the disinhibition-as-graded-control principle and its cellular plausibility; does NOT evidence the specific tri-loop arbitration locus.",
+    "source_context": "In-vivo mouse primary visual cortex; 2-photon calcium imaging of identified interneuron classes, optogenetic gain/loss-of-function, and a recurrent-network computational model."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (causal, cell-type-specific, canonical). evidence_class token is an imperfect fit -- the method is 2-photon imaging + optogenetics, closest available token is electrophysiology_single_unit (cellular-resolution recording). Mapping fidelity 0.5 held down by the sensory-context-vs-task-context and cortical-vs-BG gaps; aggregate 0.58 with mapping_fidelity weighted heavily for a mechanism_hypothesis claim."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_140",
+  "entry_id": "2026-07-02_mech_140_disinhibition_topdown_context_aquino2026",
+  "timestamp_utc": "2026-07-02T18:29:39Z",
+  "claim_ids_tested": [
+    "MECH-140"
+  ],
+  "source": {
+    "title": "Disinhibitory signaling enables flexible coding of top-down information in cortical networks",
+    "authors": [
+      "Tomas Gallo Aquino",
+      "Robert Kim",
+      "Nuttida Rungratsameetaweemana"
+    ],
+    "year": 2026,
+    "venue": "PLOS Biology",
+    "doi": "10.1371/journal.pbio.3003831"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Strong, well-designed source (biologically-constrained E/I RNN with a causal in-vivo validation in mouse V1; PLOS Biology; co-first Aquino & Kim, senior Rungratsameetaweemana -- author list per press coverage, not the full byline). It supports MECH-140's COMPUTATIONAL principle almost exactly: a disinhibitory (inhibition-on-inhibition) motif is the load-bearing channel for context-dependent control, it is graded rather than winner-take-all (weakening it degrades task-switching progressively; weakening other connection classes leaves processing intact), and the disinhibitory pathway is specifically the one carrying top-down context. Confidence held to 0.6 by a genuine locus/function mismatch: MECH-140 names a BASAL-GANGLIA indirect-pathway inter-collicular competition for TRI-LOOP CONFLICT ARBITRATION, whereas this paper is CORTICAL disinhibition ROUTING top-down context into sensory processing. The 'disinhibition, graded not WTA' principle transfers; the anatomical locus and the arbitration-vs-routing role do not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE were to implement cross-loop arbitration as hard winner-take-all suppression, this result predicts loss of context-tracking flexibility: the paper shows it is precisely the inhibition-on-inhibition (graded disinhibitory) connections, not blanket suppression, that carry task context, and that ablating them collapses task-switching.",
+    "The disinhibitory channel is shown to be selectively necessary -- weakening non-disinhibitory connection classes left processing intact. A REE arbitration substrate that folds disinhibition into a generic inhibitory pool would not reproduce this selectivity and would mispredict which lesions break flexibility."
+  ],
+  "tags": [
+    "mech-140",
+    "disinhibition",
+    "top_down_context",
+    "cognitive_flexibility",
+    "soft_competitive",
+    "recurrent_network"
+  ],
+  "mapping": {
+    "source_claim_statement": "In biologically-constrained recurrent networks trained to switch between rules, an inhibition-on-inhibition (disinhibitory) motif is the channel that passes top-down contextual instructions from higher modules into early sensory processing; systematically weakening these inhibition-to-inhibition connections collapses the ability to switch tasks, while weakening other connection types leaves processing intact. The same disinhibitory anchor cells are causally required in mouse V1 -- silencing them makes the cortex lose task-context tracking.",
+    "ree_translation": "MECH-140 asserts that gate/loop conflict arbitration in REE should use SOFT-COMPETITIVE DISINHIBITION -- graded inhibition where losing options are down-weighted but not silenced -- rather than winner-take-all suppression, and that disinhibition is a real load-bearing control primitive. This paper is direct computational + causal evidence that a disinhibitory motif (not blanket suppression) is what carries flexible, context-dependent top-down control, and that it degrades gracefully rather than switching hard.",
+    "mapping_caveat": "The paper's disinhibition is CORTICAL (VIP/SST-analog interneuron motif) routing top-down context into sensory areas; MECH-140 specifically claims a BASAL-GANGLIA indirect-pathway inter-collicular competition for TRI-LOOP conflict arbitration. The transferable content is the computational principle (disinhibition as graded, selectively-necessary top-down control), NOT the anatomical locus or the specific tri-loop arbitration function. Treat as principle-level support, not substrate-identical evidence.",
+    "source_context": "Biologically-constrained excitatory/inhibitory recurrent neural networks trained on context-dependent (rule-switching) tasks, with causal validation via optogenetic-style silencing of matched interneurons in living mouse primary visual cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (model + causal in-vivo test, strong venue). Mapping fidelity is the limiting factor -- the principle maps well but the locus (cortical routing vs BG tri-loop arbitration) does not, so mapping_fidelity 0.55 and transfer_risk 0.45 dominate the 0.6 aggregate. For a mechanism_hypothesis claim I weight mapping_fidelity heavily, which keeps this below the arithmetic mean."
+  }
+}

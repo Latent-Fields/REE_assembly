@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_450",
+  "entry_id": "2026-07-02_mech_450_recurrent_disinhibitory_settling_aquino2026",
+  "timestamp_utc": "2026-07-02T18:29:39Z",
+  "claim_ids_tested": [
+    "MECH-450"
+  ],
+  "source": {
+    "title": "Disinhibitory signaling enables flexible coding of top-down information in cortical networks",
+    "authors": [
+      "Tomas Gallo Aquino",
+      "Robert Kim",
+      "Nuttida Rungratsameetaweemana"
+    ],
+    "year": 2026,
+    "venue": "PLOS Biology",
+    "doi": "10.1371/journal.pbio.3003831"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.48,
+  "confidence_rationale": "Weak-to-moderate, principle-level support. MECH-450 proposes replacing the one-shot pallidal-readout argmin with a bounded RECURRENT SETTLING competition shaped by (learned) lateral inhibition. This paper's context-routing is implemented in a RECURRENT E/I network whose disinhibitory dynamics settle to context-appropriate states -- consistent with 'context-dependent selection resolves through recurrent inhibitory dynamics, not a one-shot readout.' But the paper does not isolate or test a settling STEP as such, does not compare against a one-shot readout, and the recurrence is cortical sensory-context, not MECH-450's BG thalamocortical settling. Held to 0.48: the paper is congenial to the premise but does not directly evidence the specific settling-vs-argmin substitution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The functional solution is carried by recurrent inhibitory dynamics; a one-shot feedforward readout would not reproduce the context-dependent re-routing. This is indirect support for MECH-450's claim that a single-pass argmin is the wrong primitive, but the paper does not run the head-to-head settling-vs-one-shot comparison MECH-450 needs.",
+    "Disinhibition modulates RECURRENT excitation (per the Keller 2020 cortical circuit this line builds on); a settling implementation that treats lateral inhibition as a static subtraction rather than a dynamic recurrent term may miss the mechanism, and this paper does not adjudicate the dynamical form."
+  ],
+  "tags": [
+    "mech-450",
+    "recurrent_settling",
+    "lateral_inhibition",
+    "disinhibition",
+    "context_selection",
+    "attractor_dynamics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Flexible top-down context routing is implemented in a recurrent excitatory/inhibitory network whose disinhibitory connectivity lets the network settle into context-appropriate processing states; the recurrent inhibition-on-inhibition dynamics are causally necessary for switching between those states.",
+    "ree_translation": "MECH-450 proposes a minimal recurrent SETTLING step -- a few rounds of mutual (lateral) inhibition over the eligible set before commit -- to replace the current one-shot pallidal-readout argmin, turning additive channel blending into a competitive settle. This paper is consistent evidence that context-dependent selection is naturally carried by recurrent inhibitory dynamics that settle, rather than by a single feedforward readout.",
+    "mapping_caveat": "The paper does not isolate a settling step, does not benchmark settling against a one-shot readout, and its recurrence is CORTICAL context-routing, not the BG thalamocortical settling MECH-450 targets. It is congenial background for 'recurrent settling over one-shot argmin,' not a direct test of that substitution. The direct-mechanism evidence for MECH-450 remains the existing entries in this directory (Wang 2002 recurrent-attractor decisions; Morita 2016 / Spreizer 2017 striatal WTA; Rolls 2021 attractor psychiatric).",
+    "source_context": "Biologically-constrained recurrent E/I neural network trained on context-dependent rule-switching, with causal in-vivo validation in mouse V1."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high, but this is the weakest of the three claim mappings for this paper: MECH-450's specific content (a bounded settling step replacing argmin) is not directly tested. mapping_fidelity 0.4, transfer_risk 0.5, aggregate 0.48. Logged as principle-level corroboration that recurrent inhibitory settling -- not one-shot readout -- is how context selection resolves; complements the existing attractor/WTA entries rather than duplicating them."
+  }
+}

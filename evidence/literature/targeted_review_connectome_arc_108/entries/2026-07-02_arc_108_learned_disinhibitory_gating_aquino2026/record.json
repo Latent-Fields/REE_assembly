@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_108",
+  "entry_id": "2026-07-02_arc_108_learned_disinhibitory_gating_aquino2026",
+  "timestamp_utc": "2026-07-02T18:29:39Z",
+  "claim_ids_tested": [
+    "ARC-108"
+  ],
+  "source": {
+    "title": "Disinhibitory signaling enables flexible coding of top-down information in cortical networks",
+    "authors": [
+      "Tomas Gallo Aquino",
+      "Robert Kim",
+      "Nuttida Rungratsameetaweemana"
+    ],
+    "year": 2026,
+    "venue": "PLOS Biology",
+    "doi": "10.1371/journal.pbio.3003831"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Supports ARC-108's LOAD-BEARING PREMISE -- that the gating weights which decide how top-down context re-routes selection should be LEARNED, and that when they are, a disinhibitory gating structure emerges as the solution and is causally required for flexibility. But the paper is SILENT on ARC-108's specific mechanism: the weights are learned by gradient-based RNN training, NOT by a signed dopaminergic RPE three-factor rule with D1-LTP/D2-LTD asymmetry. So it evidences 'gating must be learned, not hand-specified' (the exact gap ARC-108 identifies in the pure-arithmetic ARC-107 layer) but not 'learned via dopaminergic RPE.' Held to 0.5: strong on the premise, no traction on the teaching-signal identity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The disinhibitory gating solution EMERGED from end-to-end task training; it was not hand-wired. This is a standing prediction against ARC-107's pure-arithmetic arbitration layer: a fixed hand-specified gating rule may be unable to reach the flexible context-routing solution that learning finds, which is ARC-108's core rationale for the F-dominance ceiling.",
+    "The paper does not test whether a biologically-local teaching signal (dopaminergic RPE, three-factor plasticity) can discover the same solution -- so it cannot rule out that gradient training reaches a solution unreachable by ARC-108's proposed local rule. ARC-108's dopaminergic-RPE mechanism remains unevidenced by this source."
+  ],
+  "tags": [
+    "arc-108",
+    "learned_gating",
+    "disinhibition",
+    "top_down_context",
+    "recurrent_network",
+    "conversion_ceiling"
+  ],
+  "mapping": {
+    "source_claim_statement": "When a biologically-constrained recurrent network is TRAINED to switch flexibly between rules, it discovers a solution in which learned inhibition-on-inhibition (disinhibitory) weights carry top-down context into sensory processing; these learned connections are causally necessary for flexible switching (ablating them collapses it, ablating others does not).",
+    "ree_translation": "ARC-108 argues the cortico-striatal gating weights that decide which channel wins committed selection should be LEARNED (not the pure-arithmetic hand-specified regulators of ARC-107), because F monopolises ~88-89% of selection variance precisely because no learned weighting can re-weight channels through experience. This paper supports that premise: learning the disinhibitory gating weights is what produces flexible context-dependent re-routing, and those learned weights are the load-bearing part.",
+    "mapping_caveat": "The paper learns the gating weights by gradient-based RNN training; ARC-108 specifically proposes a signed DOPAMINERGIC-RPE three-factor rule (Hebbian co-activation x RPE, D1-LTP/D2-LTD asymmetry). This entry supports 'gating must be learned' and 'disinhibitory learned gating enables flexibility' -- it does NOT evidence the dopaminergic/RPE mechanism, which is the substance of ARC-108. The complementary dopamine-mechanism evidence lives in the existing arc_108 entries (Warnberg 2023, Gilbertson 2019, Mah 2024).",
+    "source_context": "Biologically-constrained excitatory/inhibitory recurrent neural networks trained (gradient-based) on context-dependent rule-switching, with causal in-vivo validation in mouse V1."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "For an architectural_commitment claim I weight mapping_fidelity heaviest. It supports the 'learned, not arithmetic' premise squarely (that is why this is worth logging on ARC-108) but is silent on the dopaminergic-RPE learning rule that is ARC-108's actual novel content, so mapping_fidelity 0.45 and aggregate 0.5. It complements rather than duplicates the three existing dopamine-mechanism entries."
+  }
+}
