@@ -1406,7 +1406,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-192-proposal-for-q-064 && claude --resume 183667b6-0024-4489-b45e-ebafcf9654cc",
       "task_claim_session_id": "igw-auto-igw-192-proposal-for-q-064-20260702T073753Z",
       "assigned_at": "2026-07-02T07:37:38Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-02T07:44:44Z",
+      "completion_summary": "marked EVB-0310 (Q-064) blocked_substrate: syndrome-as-axis-vector needs ARC-086 axis substrate (V4/V5); what_would_answer says DO NOT queue V3",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -1748,6 +1752,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-02T06:36:47Z",
       "re_eligible_after": "2026-07-04T06:31:28Z"
+    },
+    {
+      "stable_hash": "1c381ca6ae46",
+      "igw_id_at_disposition": "IGW-20260702-192",
+      "owner_exq": null,
+      "claim_ids": [
+        "Q-064"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for Q-064",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-02T07:44:45Z",
+      "re_eligible_after": "2026-07-04T07:44:45Z"
     }
   ]
 }
