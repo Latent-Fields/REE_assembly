@@ -647,3 +647,8 @@ One line per hourly tick. ASCII only.
 2026-07-02T02:23:10Z skip IGW-20260702-188: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-02T03:23:32Z skip IGW-20260702-188: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-02T04:23:52Z skip IGW-20260702-188: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-02T05:24:26Z SPAWN IGW-20260702-188 skill=/queue-experiment prio=28 uuid=c8bb4453-d4b5-45c4-852a-9926057fb8f2 pid=59738 worktree=igw-188-retest-after-substrate-inv-050
+2026-07-02T06:36:47Z auto-defer IGW-20260702-188 hash=73973b62401a for 48h (reaped -> completed_resumable)
+2026-07-02T06:36:49Z reaped TASK_CLAIMS igw-auto-igw-188-retest-after-substrate-inv-050-20260702T052537Z (ledger IGW-20260702-188 -> completed_resumable)
+2026-07-02T06:36:51Z GC keep igw-188-retest-after-substrate-inv-050 (ledger IGW-20260702-188 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-07-02T06:29:27Z skip IGW-20260702-192: no fresh runner heartbeat (experiment-lane item would just sit in queue)

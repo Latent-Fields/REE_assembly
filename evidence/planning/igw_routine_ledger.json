@@ -1383,6 +1383,29 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-188-retest-after-substrate-inv-050 && claude --resume c8bb4453-d4b5-45c4-852a-9926057fb8f2",
       "task_claim_session_id": "igw-auto-igw-188-retest-after-substrate-inv-050-20260702T052537Z",
       "assigned_at": "2026-07-02T05:24:26Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-02T06:31:29Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
+    },
+    {
+      "igw_id": "IGW-20260702-192",
+      "stable_hash": "1c381ca6ae46",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "Q-064"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for Q-064",
+      "worktree": ".claude/worktrees/igw-192-proposal-for-q-064",
+      "branch": "claude/igw-192-proposal-for-q-064",
+      "session_uuid": "183667b6-0024-4489-b45e-ebafcf9654cc",
+      "pid": 84943,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-192-proposal-for-q-064 && claude --resume 183667b6-0024-4489-b45e-ebafcf9654cc",
+      "task_claim_session_id": "igw-auto-igw-192-proposal-for-q-064-20260702T073753Z",
+      "assigned_at": "2026-07-02T07:37:38Z",
       "status": "spawned"
     }
   ],
@@ -1711,6 +1734,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-06-25T00:07:51Z",
       "re_eligible_after": "2026-06-27T00:07:43Z"
+    },
+    {
+      "stable_hash": "73973b62401a",
+      "igw_id_at_disposition": "IGW-20260702-188",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-050"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Retest after substrate: INV-050",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-02T06:36:47Z",
+      "re_eligible_after": "2026-07-04T06:31:28Z"
     }
   ]
 }
