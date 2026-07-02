@@ -5659,7 +5659,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_064",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5668,7 +5668,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-07-02T07:39:47Z",
+      "gated_by_session": "igw-auto-igw-192-proposal-for-q-064-20260702T073753Z",
+      "gating_reason": "Off-substrate by design (V4/V5). Q-064 asks how to REPRESENT a clinical syndrome as a weighted VECTOR over the ARC-086 latent vulnerability axes. Its claims.yaml what_would_answer states verbatim 'Answered by a representational comparison once the ARC-086 latent-vulnerability-axis substrate exists (V4/V5 -- DO NOT queue a V3 experiment)' and repeats 'off the V3 critical path -- DO NOT queue a V3 experiment against this'. The sole substrate it needs is ARC-086 (implementation_phase: v4, epistemic_category: substrate_conditional), whose own notes state the syndrome-as-weighted-vector READ-OUT it implies (Q-064) 'has no substrate in V3'. Q-064's HARD PRECONDITION -- the ARC-086 axes must be empirically separable (non-degenerate, discriminable loadings) before any syndrome can be located in axis space -- cannot be met on V3: there is no registered finite named cross-cutting vulnerability-axis vocabulary as a substrate at all. Queuing a V3 run would be vacuous (no axis space to place syndromes in), not a PASS-or-FAIL verdict. Sibling cluster members RA-002 (out_of_domain genomics), ARC-086 (v4), Q-075 (out_of_domain pharmacology) and MECH-371 (v4) are all likewise off the V3 axis. Same disposition class as the MECH-088 four-plane psychiatric taxonomy substrate-block.",
+      "release_condition": "ARC-086 latent-vulnerability-axis substrate BUILT in a V4/V5 substrate with the axes demonstrated empirically SEPARABLE (non-degenerate, discriminable loadings) -- the Q-064 hard precondition. Only then run the representational comparison: (A) per-syndrome locus mapping vs (B) weighted axis-vector encoding, scored on (a) registry economy (comorbidity as overlapping axis activation with no combinatorial blow-up) and (b) predisposition/expression factoring (same predisposition vector -> different expressed syndromes under different developmental/plasticity gating). Not a V3 EXQ."
     },
     {
       "acceptance_checks": [
