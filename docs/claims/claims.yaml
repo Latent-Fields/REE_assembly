@@ -10198,6 +10198,29 @@
     they can still contribute monitoring signal even when not gating
     execution.
     Registered 2026-03-29 from Q-016 lit pull.
+  implementation_note: >
+    SUBSTRATE BUILT 2026-07-02 via /implement-substrate (coupled with MECH-450). PROMOTES NOTHING --
+    MECH-140 stays candidate until a falsifier converts it. The soft-competitive disinhibition MECH-140
+    asserts (losing options down-weighted GRADED-ly, not silenced, rather than winner-take-all) is
+    realised as a parameter-free recurrent settling step over the F + MECH-448/449 within-eligible
+    field, behind no-op-default flag use_soft_competitive_settling (config.e3) in e3_selector.py
+    _soft_competitive_settle: for R~3 rounds, support=softmax(-field/T) (graded, ALL > 0 -> never
+    silenced); inhib_i = gain * sum_j K_ij * support_j; the winner is disinhibited and losers reduced
+    (not zeroed). K is the parameter-free class-surround kernel (1.0 within a first-action class,
+    cross_class < 1 across classes; surround inhibition between competing motor programs, Mink 1996 /
+    Lee & Sabatini 2021 indirect-pathway competitive disinhibition / Morita 2016 striatal-WTA-vs-soft-max),
+    whose STRUCTURE lets the settling reorder (a crowded-class candidate loses to an isolated one) so the
+    disinhibition is behaviourally load-bearing, not a rank-preserving sharpen. Composes with the learned
+    W_lat within-loop settling and the learned cross-loop arbitration (ARC-108/ARC-110). Safety inherited
+    (transforms only the eligible subset -> no global disinhibition, >= 1 survivor); waking-only (MECH-094);
+    no learned parameters / no autograd. Lit grounding attached 2026-07-02 (Gallo Aquino/Rungratsameetaweemana
+    PLOS Biology 2026 inhibition-on-inhibition = top-down context channel; Keller et al Neuron 2020 VIP->SOM
+    disinhibition; lit_conf 0.695). Design-of-record + ARC-106 grounding ladder / load-bearing-vs-decorative
+    ablation test / divergence ledger (cortical VIP-SST lit vs REE's BG-locus abstraction) / psychiatric
+    failure-mode column: docs/architecture/soft_competitive_disinhibition_settling.md. Validation +
+    PLOS-Biology ablation falsifiers (matched arms, inhibition-on-inhibition edge intact vs ablated; predicted:
+    ablation collapses task-switching while single-task survives) queued separately (new EXQ, claim_ids
+    [MECH-140, MECH-450]).
   evidence: []
 
 - id: MECH-141
@@ -47039,6 +47062,26 @@
     noise_verified_lifting failed 1/3 -> 0/3 -> 0/3. The V4 substrate with a same-layer (settling-field) null +
     segregated loops is registered as v4_loop_segregation (owning claim ARC-110; design_doc
     docs/architecture/sd_v4_loop_segregation.md); MECH-450 settling is re-tested there. PROMOTES NOTHING.
+    IMPLEMENTATION NOTE (2026-07-02): the PARAMETER-FREE half of MECH-450 -- the *minimal* recurrent settling
+    step that bites at INIT (no learning) -- BUILT via /implement-substrate coupled with MECH-140, behind
+    no-op-default flag use_soft_competitive_settling (config.e3) in e3_selector.py _soft_competitive_settle.
+    The 2026-06-22 W_lat build above is the LEARNED settling (no-op at init, only bites after dopaminergic
+    learning); this new step is the always-on GRADED soft-competitive disinhibition (softmax-support lateral
+    inhibition over the within-eligible field, R~3 rounds, parameter-free class-surround kernel) that supplies
+    the at-init attractor-flip the argmin structurally lacks -- MECH-450's "a settling competition can FLIP the
+    selected attractor" property, without waiting for W_lat to learn. Runs on _modulatory_accum[eligible_idx]
+    (single arena) OR the arbitrated cross-loop `final` (ARC-110), composing with W_lat and the learned
+    cross-loop arbitration (M_cross / V3-EXQ-709) at a different level; orthogonal flag, default-OFF (and exact
+    no-op at gain 0.0) -> byte-identical, no 709 collision. Safety inherited (transforms only the eligible
+    subset); waking-only (MECH-094); no autograd. Full ree-v3 suite green + 11 new contracts
+    (test_soft_competitive_settling.py: byte-identical OFF/gain-0 x12 seeds, non-vacuity flips the readout +
+    round_delta>0, graded-not-WTA loser stays nonzero, safety harmful-outlier never selected, sim-gate,
+    segregated compose). Lit grounding attached 2026-07-02 (Gallo Aquino/Rungratsameetaweemana PLOS Biology
+    2026 inhibition-on-inhibition = context channel; Wang 2002/Rolls 2021 recurrent-attractor; lit_conf 0.837).
+    Design-of-record docs/architecture/soft_competitive_disinhibition_settling.md (ARC-106 grounding ladder +
+    load-bearing-vs-decorative ablation test + divergence ledger + psychiatric_failure_mode column). Validation
+    + PLOS-Biology ablation falsifiers queued separately (new EXQ, claim_ids [MECH-140, MECH-450]). PROMOTES
+    NOTHING -- MECH-450 stays candidate / substrate_conditional / v3 until a falsifier converts it.
 - id: ARC-110
   title: "Parallel segregated cortico-BG-thalamic loops (motor / cognitive-set / motivational): committed-action selection should run through SEPARATE striatal loop channels -- a motor loop, an associative/cognitive-set loop, and a limbic/motivational loop -- each owning its own eligibility-and-gate, arbitrated AFTER within-loop competition, rather than collapsing all channels into ONE shared E3 selection arena where the dACC/lPFC/OFC analogs feed in only as additive biases. HYPOTHESIS (assembly-map A.2 / s.D): the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse -- F monopolises 88-89% of committed-selection variance because every channel competes in one F-dominated arena; with segregated loops F could dominate only the motor loop and could not drown the limbic 'is this worth committing to' computation, which is a different loop with a different value. Translation target is FUNCTIONAL (the Alexander/DeLong/Strick parallel-loop organisation as a divergence-ledgered, falsifier-validated analogue), NOT anatomical mimicry."
   claim_type: architectural_commitment
