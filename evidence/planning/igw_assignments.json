@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-07-02T08:39:22Z",
+  "generated_at": "2026-07-02T13:58:54Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -3540,6 +3540,51 @@
         "priority": 40,
         "claim_ids": [
           "Q-064"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260702T124018Z-e6df0f81-claude_local",
+      "stable_hash": "e6df0f81098e",
+      "igw_id_at_assign": "IGW-20260702-192",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-07-02T12:40:18Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=92c6a5f3-c0de-4552-8feb-cd3051744aa7 branch=claude/igw-192-proposal-for-mech-085",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-085",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-085"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260702T135854Z-e6df0f81-claude_local",
+      "stable_hash": "e6df0f81098e",
+      "igw_id_at_assign": "IGW-20260702-192",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-07-02T13:58:54Z",
+      "released_at": "2026-07-02T13:58:54Z",
+      "released_by": "igw_routine_tick",
+      "released_reason": "claude -p exited; session JSONL present",
+      "released_event_for": "asn-20260702T124018Z-e6df0f81-claude_local",
+      "note": "session_uuid=92c6a5f3-c0de-4552-8feb-cd3051744aa7 branch=claude/igw-192-proposal-for-mech-085",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Proposal for MECH-085",
+        "lane": "experiment",
+        "priority": 40,
+        "claim_ids": [
+          "MECH-085"
         ]
       }
     }
