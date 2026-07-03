@@ -12,7 +12,7 @@ nav_order: 15
 **Status:** IMPLEMENTED 2026-06-24 (substrate; candidate / substrate_conditional / v3 — PROMOTES NOTHING until EXP-0391 scores)
 **Registered:** 2026-06-23
 **Depends on (built, V3-frozen):** ARC-108 (learned per-channel `w_chan` + signed-RPE three-factor rule), MECH-450 (recurrent settling step — *not* required by this slice; W_lat OFF), MECH-439 (the F-dominance conversion ceiling under test), ARC-106 (brain-like construction framework)
-**Sequenced BEFORE:** ARC-110 / `v4_loop_segregation` (the expensive V4 full per-loop build — MECH-451 must be exhausted first; a PASS pre-empts it)
+**Sequenced BEFORE:** ARC-110 / `v4_loop_segregation` (the full per-loop build — MECH-451 must be exhausted first; a PASS pre-empts it. Reclassified V4->V3 2026-07-03 [phase follows dependency]; the substrate was built no-op-default in the V3 codebase 2026-06-27. `sd_id` retained verbatim.)
 **Routing source:** `evidence/planning/failure_autopsy_V3-EXQ-700b_2026-06-24.{md,json}` (the V3-EXQ-700 lineage could not validly test learned-gating conversion on the single arena; the V4 escalation + this cheap V3 rung were opened concurrently)
 
 ---
@@ -43,7 +43,7 @@ ARC-110's full segregated loops.
 
 - **A2_FINER lifts committed-action-class entropy strict-above BOTH A0_ENVELOPE_ONLY AND
   A1_GLOBAL_WCHAN (and a verified-lifting noise control), converting >=1 previously-F-dominated
-  non-motor function** ⇒ the conversion ceiling is **REPRESENTATIONAL COMPRESSION**, and the V4
+  non-motor function** ⇒ the conversion ceiling is **REPRESENTATIONAL COMPRESSION**, and the
   ARC-110 loop build is **pre-empted**.
 - **Finer channels move their weights but produce no lift beyond A1_GLOBAL_WCHAN** ⇒ compression
   is NOT the binding constraint; **positive evidence FOR ARC-110** (full per-loop competition
