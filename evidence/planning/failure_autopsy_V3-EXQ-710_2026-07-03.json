@@ -1,0 +1,80 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-03T13:56:58Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_710_disinhibitory_soft_competitive_settling_validation_20260703T112039Z_v3",
+      "queue_id": "V3-EXQ-710",
+      "claim_ids": ["MECH-140", "MECH-450", "MECH-439"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not-fairly-tested -- the disinhibitory soft-competitive settling was deployed over the SINGLE shared selector's within-eligible field (loop segregation OFF on all arms by design), so the between-loop context-reconfiguration function the claim encodes could not express; C1 (A1_INTACT strict-above A0_OFF) failed 1/3 divergent seeds and on 2/3 the settling REDUCED committed-class entropy. No claim fairly falsified.",
+        "biological_reference": "clear -- cortical/cortico-striatal disinhibition (VIP->SOM inhibition-on-inhibition; Keller 2020, Rungratsameetaweemana/Aquino PLOS Biology 2026) is a well-grounded, faithful PRIMITIVE, but it is a top-down channel that reconfigures competition BETWEEN differentiated modules/loops; here it was deployed at the wrong LOCUS (single F-collapsed selector). Symbol of the mechanism present, functional role absent.",
+        "prerequisites": "missing -- the segregated loops carrying differentiated value (ARC-110 / v4_loop_segregation) are absent; use_loop_segregation=False + use_learned_settling_step=False + use_learned_cross_loop_arbitration=False on every arm, so the settling ran over an already-F-collapsed field with no differentiated value to convert toward.",
+        "implementation": "partial (symbol, not role) -- the settling step is BUILT and LIVE (scs_mean_round_delta 5-8, scs_field_moved True on all INTACT/ABLATED seeds), and the A2_ABLATED uniform-kernel control reproduces A0_OFF bit-identically (1.130438==1.130438), proving the machinery is a clean no-op with a rank-preserving kernel. But over an F-collapsed field graded lateral inhibition mathematically SHARPENS the F-winner rather than diversifying.",
+        "environment": "wrong pressures -- single F-dominated E3 arena; F's raw-magnitude monopoly (~88-89% of E3 selection variance, MECH-439) swamps every non-motor signal at the single shared selector (700d-708 cluster structural property), so the settling reshuffles within an F-dominated manifold.",
+        "measurement": "adequate (a win) -- the field-moved + eligible-set-non-degenerate non-vacuity gates plus the A2 rank-preserving control are a genuine internal-validity win: they establish the machinery was live and non-vacuous, which is exactly what forces the substrate (not falsification) reading of the discrimination failure. NOTE the headline all-6-seed mean (INTACT 0.937 > OFF 0.916) is misleading -- the 'lift' is entirely on non-divergent seeds (nothing to convert); the correct per-divergent-seed decision statistic shows INTACT below OFF.",
+        "integration": "isolated -- the settling runs alone (W_lat / learned cross-loop / loop-segregation all OFF) so this is a clean isolation of the parameter-free soft-competitive settling, but that isolation is precisely what denies it the differentiated segregated-loop field it needs.",
+        "scale": "n/a -- not a capacity/warmup/training-budget limit; the mechanism engaged fully."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cortical / cortico-striatal disinhibition -- VIP-expressing interneurons inhibit SOM interneurons (inhibition-on-inhibition), acting as a TOP-DOWN CONTEXT channel that reconfigures competition when contexts differ (VIP fires when center != surround; Keller et al Neuron 2020, necessary+sufficient by optogenetics). In biologically-constrained switching RNNs + causal mouse V1 silencing (Rungratsameetaweemana/Aquino PLOS Biology 2026), weakening the inhibition-to-inhibition motif specifically COLLAPSES task-SWITCHING while other connection types leave processing intact -- i.e. the disinhibitory channel's functional role is BETWEEN-context reconfiguration, and it operates by modulating RECURRENT excitation.",
+        "dependencies": ["a differentiated context / segregated parallel loops to switch/reconfigure BETWEEN (the biology requires center!=surround, i.e. differentiated value structure across the competing units)", "recurrent excitatory structure the disinhibition modulates (not a flat argmin field)", "a competition that is not already monopolized by one dominant score"],
+        "is_formal_import": false,
+        "divergence": "The soft-competitive settling faithfully translates the disinhibition PRIMITIVE (graded, learned-capable, recurrent-settling class-surround lateral inhibition) but deploys it at an IMPOVERISHED LOCUS: the single shared E3 selector's F+MECH-448/449 within-eligible field, which F's raw-magnitude monopoly has already collapsed. The biological disinhibition reconfigures competition ACROSS differentiated loops; over an F-collapsed single field the same graded lateral inhibition sharpens toward the F-winner (observed: -0.169 and -0.153 nat committed-class-entropy REDUCTION on divergent seeds 44/46; only seed 42 lifted +0.071). This is a missing-dependency / wrong-locus signature -- a discovered prerequisite (segregated loops with differentiated value), not a falsification of the disinhibition primitive.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-140": "non_contributory", "MECH-450": "non_contributory", "MECH-439": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-710 (2026-07-03, MECH-140 x MECH-450 DISINHIBITORY SOFT-COMPETITIVE SETTLING validation; claim_ids [MECH-140, MECH-450, MECH-439]; experiment_purpose=evidence) FAIL / non_degenerate=True. The manifest self-routes a DECISIVE weakens (MECH-140 weakens / MECH-450 weakens / MECH-439 supports=ceiling-intrinsic); autopsy 2026-07-03 REJECTS that self-route and re-reads it as the SAME single-arena F-dominance substrate ceiling expressing through a new mechanism. FACTS: all 5 readiness preconditions met (3 divergent seeds; the settling MOVED the field, scs_mean_round_delta 5-8 >> floor; F-eligibility envelope non-degenerate; learning engaged; CRF matured), so the discrimination failure is decisive-at-the-DV but the mechanism's FUNCTIONAL role was not fairly tested. C1 (A1_INTACT committed-class entropy strict-above A0_OFF + 0.05 margin) passed on only 1/3 divergent seeds; on the OTHER 2 divergent seeds the structured settling REDUCED committed-class entropy (seed44 -0.169, seed46 -0.153 nats). The headline all-6-seed mean (INTACT 0.937 > OFF 0.916, +0.021) is MISLEADING -- the apparent lift is entirely on the 3 NON-divergent seeds (collapsed proposer, nothing to convert); over the 3 divergent seeds that matter INTACT (1.047) is BELOW OFF (1.130). A2_ABLATED (uniform rank-preserving kernel) reproduces A0_OFF bit-identically (1.130438==1.130438), proving the settling machinery is a clean no-op with a flat kernel and the STRUCTURED class-surround kernel is the sole active ingredient -- and over an F-collapsed field it SHARPENS the F-winner rather than diversifying. BIOLOGY: cortical/cortico-striatal disinhibition (VIP->SOM inhibition-on-inhibition; Keller 2020, Rungratsameetaweemana/Aquino PLOS Biology 2026) is a faithful PRIMITIVE but is a top-down channel that reconfigures competition BETWEEN differentiated loops/contexts; deployed at the single F-collapsed shared selector (loop segregation OFF), it has the symbol but not the functional role -- a wrong-locus / missing-dependency signature (segregated loops with differentiated value), NOT a falsification. This is the SAME single-arena F-dominance ceiling already diagnosed for the 700-lineage (700/700b/700c/700d-708), 707b and 709 (700d-708 structural property: F's raw-magnitude monopoly ~88-89% of E3 selection variance swamps every non-motor signal at the single shared selector). NEVER a weakens: MECH-140 non_contributory (substrate-limited; strong first lit grounding 0.60, so strong-lit/substrate-blocked NOT under-supported), MECH-450 non_contributory (consistent with its standing note 'does NOT weaken MECH-450 -- the substrate-conditional minimal-settling step'). MECH-439 non_contributory toward the decisive intrinsic-vs-liftable question + NARROW corroboration (narrow_supports_flag=true): a single-arena FAIL cannot establish intrinsic-vs-liftable (that is only answerable on segregated loops), it only corroborates the ALREADY-MAPPED single-arena ceiling (single-pathway) -- NOT fresh support for global intrinsicness (same handling as V3-EXQ-709). ILLUSORY-CONFLICT CHECK: MECH-140 and MECH-450 carry hold_candidate_resolve_conflict (conflict resolution before promotion); because this is non_contributory (NOT weakens) it neither RESOLVES nor DEEPENS that hold -- conflict resolution still awaits the segregated-loop retest. Re-derive brake FIRES (MECH-439: 9th, MECH-450: 5th prior substrate_ceiling/non_contributory autopsy; MECH-140: 1st) -> routed implement-substrate on v4_loop_segregation; a same-claim single-arena test re-queue is REFUSED. Substrate hand-off: AMEND v4_loop_segregation failure_record (the settling step is BUILT but must run over segregated loops carrying differentiated value + a valid same-layer null, not a single F-collapsed within-eligible field). All 3 claims stay candidate / (MECH-140 substrate_ceiling, MECH-450 substrate_conditional, MECH-439 substrate_ceiling) / pending_retest_after_substrate / PROMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "The parameter-free soft-competitive settling step is now BUILT (ree-v3 main 8cc42bc, e3_selector._soft_competitive_settle) and is LIVE in single-arena (scs_mean_round_delta 5-8), but over the single F-collapsed within-eligible field it sharpens the F-winner rather than converting diversity. The segregated-loop substrate must let the settling run over MULTIPLE parallel loops carrying DIFFERENTIATED value (motor / associative / limbic), each with its own eligibility+Go/No-Go+settling, arbitrated AFTER within-loop competition, PLUS a valid in-layer (settling-field) committed-class null -- the two conditions the single arena structurally denies. Also add MECH-140 (soft-competitive disinhibition) to unblocks_claims. Retest via the segregated-loop redesign (new EXQ / different substrate), NOT another single-arena letter of the same claim.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "MECH-450", "ARC-110", "MECH-140", "MECH-451", "MECH-314", "MECH-440", "MECH-441"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_710_disinhibitory_soft_competitive_settling_validation_20260703T112039Z_v3",
+          "experiment_type": "v3_exq_710_disinhibitory_soft_competitive_settling_validation",
+          "metric": "SINGLE-ARENA disinhibitory soft-competitive settling: C1 (A1_INTACT committed-class entropy strict-above A0_OFF + 0.05 margin) passed 1/3 divergent seeds; on divergent seeds 44/46 the STRUCTURED class-surround settling REDUCED committed-class entropy (-0.169, -0.153 nats). Over the 3 divergent seeds INTACT mean 1.047 < OFF 1.130. A2_ABLATED uniform kernel reproduces A0_OFF bit-identically (1.130438). The settling ENGAGED (scs_mean_round_delta 5-8, field_moved True) but over the F-collapsed single-selector field it sharpens F rather than converting diversity.",
+          "target": "a working impl must let the soft-competitive settling run over SEGREGATED loops carrying differentiated value (against a valid same-layer null) and lift committed-class entropy strict-above the one-shot-argmin baseline on a strict-majority (>=2/3) of divergent seeds, WITHOUT reducing diversity on any divergent seed"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29 (MECH-439, MECH-450)",
+          "failure_autopsy_V3-EXQ-689_2026-06-19 (MECH-439)",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20 (MECH-439)",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (MECH-439, MECH-450)",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24 (MECH-439, MECH-450)",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26 (MECH-439, MECH-450)",
+          "failure_autopsy_V3-EXQ-709_2026-07-03 (MECH-439)",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20 (MECH-439)"
+        ],
+        "prior_counts": {"MECH-439": 8, "MECH-450": 4, "MECH-140": 0},
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "The soft-competitive settling primitive is BUILT and LIVE (scs_mean_round_delta 5-8, A2 uniform-kernel control == A0_OFF bit-identically), so this is a clean isolation -- and the isolation itself proves the mechanism cannot express its BETWEEN-loop function on the single F-collapsed selector: graded lateral inhibition over an F-dominated field SHARPENS F (diversity REDUCED -0.15 to -0.17 nats on 2/3 divergent seeds), it does not convert.",
+        "The 'field moved' + 'eligible-set non-degenerate' non-vacuity gates are necessary mechanism-LIVENESS gates but are NOT sufficient to establish the mechanism got a fair FUNCTIONAL test -- exactly analogous to 709's deeper limbic_loop_can_win gate. The deeper unmet precondition here is 'differentiated value across segregated loops for the disinhibition to reconfigure', which single-arena structurally denies. A future single-arena settling successor should NOT be read as decisive however non-vacuous the field movement.",
+        "Headline all-seed means can invert the per-divergent-seed decision statistic: 710's INTACT>OFF on the all-6-seed mean (+0.021) is driven entirely by non-divergent seeds (collapsed proposer, nothing to convert); on divergent seeds INTACT<OFF. Always read the conversion DV on divergent seeds only.",
+        "This is the SAME single-arena F-dominance ceiling as the 700-lineage/707b/709 now expressed through a THIRD distinct mechanism (soft-competitive settling, after exploration-injection/same-layer-null and learned cross-loop arbitration). Convergent failure of three structurally-different conversion mechanisms on one substrate is strong evidence the ceiling is a SUBSTRATE property (single shared F-dominated selector), not a per-mechanism weakness -> v4_loop_segregation is the load-bearing build.",
+        "MECH-140's first autopsy: strong first lit grounding (0.60, Keller2020/Aquino2026) makes this a strong-lit/substrate-blocked datum (novel-discovery-adjacent quadrant), NOT under-supported. One more single-arena letter would trip its re-derive brake."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
