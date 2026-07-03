@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-03T13:30:39Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_709_learned_cross_loop_arbitration_validation_20260702T052508Z_v3",
+      "queue_id": "V3-EXQ-709",
+      "claim_ids": ["MECH-439", "ARC-108", "ARC-110"],
+      "failed_criterion": "readiness",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact / not-tested -- limbic loop could not win on divergent seeds so C1 (learned strict-above static) is vacuous; no claim weakened",
+        "biological_reference": "clear/partial -- BG striato-nigro-striatal ascending spiral (Haber 2000); M_cross[motor,limbic] + ARC-108 three-factor rule is a faithful translation, functionally too weak; lit partial",
+        "prerequisites": "present-but-insufficient -- learned arbitration substrate landed (ree-v3 832afd1); M_cross moves but the coupling magnitude/training depth to let a non-motor loop win is missing",
+        "implementation": "partial -- symbol of the learned M_cross present, functional role (limbic CAN win) unmet at current eta/training/normalization",
+        "environment": "partial / too sparse -- GAP-A divergent seeds few (4/6); on divergent seeds the motor F-dominance is strong; env may not present sustained motivational pressure to drive the spiral",
+        "measurement": "adequate (a win) -- the limbic_loop_can_win non-vacuity sub-gate correctly caught the vacuity a naive C1 read would have mislabelled ceiling-intrinsic",
+        "integration": "partially coupled but too weak -- loops live + arbitration learns, but cross-loop coupling too weak to flip the arbitration winner",
+        "scale": "likely insufficient -- eta=0.01, ~100 P2 episodes; aggregate M_cross range peaked 0.116 but the motor<-limbic column peaked only ~0.03"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia striato-nigro-striatal ascending spiral (Haber 2000): limbic/motivational cortico-BG-thalamic loops influence motor loops via progressively dorsal DA spirals, strengthened by DA-gated plasticity over extended learning",
+        "dependencies": ["sufficiently strong / developmentally matured ascending spiral gain", "a motor loop whose default effective weight is not pinned (habits form and dissolve)", "sustained motivational pressure to drive spiral plasticity"],
+        "is_formal_import": false,
+        "divergence": "the M_cross[motor,limbic] spiral is faithfully translated in symbol but functionally too weak/underdeveloped: eta=0.01 over ~100 P2 episodes lifts the limbic loop to motor effective weight on only 1/4 divergent seeds; matches an under-developed-spiral missing-dependency signature (a discovered prerequisite, not a falsification)",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-709 (2026-07-02, ARC-108 x ARC-110 learned/DA-gated cross-loop arbitration validation; the separate new-EXQ falsifier 707b routing item 3 named; claim_ids [MECH-439, ARC-108, ARC-110]) FAIL / non_contributory / non_degenerate=False / self-route substrate_not_ready_requeue. The learned mechanism ENGAGED -- 6/7 readiness gates met: M_cross MOVED off init (range 0.116, not bit-identical to STATIC), limbic routing live (1.414), loops live, learning engaged. The ONE unmet gate is the deeper mechanism-non-vacuity sub-gate limbic_loop_can_win: on the 4 GAP-A-divergent seeds the limbic loop reached >= motor effective weight on only 1/4 (w_limbic_eff ~1.03-1.15 vs w_motor_eff ~1.03-1.22; plastic motor<-limbic coupling peak ~0.03), so C1 (learned strict-above static) could not be validly evaluated. NEVER a weakens: the ARC-108 x ARC-110 conversion question was NOT measured, so MECH-439 is NOT shown intrinsic and ARC-108/ARC-110 are NOT weakened. NEW substrate datum beyond 707b's static-arithmetic ceiling: even a LEARNED [3,3] cross-loop matrix at eta=0.01 over 100 P2 episodes cannot lift a non-motor loop to motor effective weight on the seeds that matter -- a loop-effective-weight ceiling in the cross-loop arbitration layer. Biology: the BG striato-nigro-striatal ascending spiral (Haber 2000) is faithfully translated in symbol but functionally too weak/underdeveloped; the failure matches an under-developed-spiral missing-dependency signature (a discovered prerequisite, not a falsification). Re-derive brake FIRES (MECH-439 x7, ARC-108 x5 prior substrate_ceiling/non_contributory autopsies) -> routed implement-substrate; a same-claim test re-queue against the current arbitration substrate is REFUSED. Substrate hand-off: AMEND v4_loop_segregation failure_record (strengthen the ascending-spiral coupling so a non-motor loop can win on >=3/4 divergent seeds). Stays candidate / (MECH-439 substrate_ceiling; ARC-108/ARC-110 substrate_conditional) / pending_retest_after_substrate / PROMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Strengthen / mature the learned ascending-spiral cross-loop coupling so a non-motor loop CAN win the arbitration on divergent seeds -- e.g. a larger / annealed learned_cross_loop_eta, longer P2 adaptation, an explicit ascending-spiral gain term on M_cross[motor,limbic], or a structural change to loop-weight normalization that de-pins the motor(F) loop's default effective weight. Retest via a redesign (new mechanism / new EXQ), NOT a same-claim re-queue against the current substrate.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "ARC-110", "MECH-450", "MECH-451", "MECH-314", "MECH-440", "MECH-441"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_709_learned_cross_loop_arbitration_validation_20260702T052508Z_v3",
+          "experiment_type": "v3_exq_709_learned_cross_loop_arbitration_validation",
+          "metric": "LEARNED arm: limbic loop reached >= motor effective weight on only 1/4 GAP-A-divergent seeds (25%); w_limbic_eff peak ~1.03-1.15 vs w_motor_eff ~1.03-1.22; plastic motor<-limbic coupling M_cross[motor,limbic] peak ~0.03. M_cross DID move off init (range 0.116) and limbic routing was live (1.414), so the mechanism engaged but the ascending coupling is too weak to overturn motor(F)-loop effective-weight dominance.",
+          "target": "a working impl must let a non-motor loop reach/exceed motor effective weight on a strict-majority (>=3/4) of GAP-A-divergent seeds so C1 (learned committed-class entropy strict-above static) can be validly evaluated"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29 (MECH-439, ARC-108)",
+          "failure_autopsy_V3-EXQ-689_2026-06-19 (MECH-439)",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20 (MECH-439)",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23 (MECH-439, ARC-108)",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24 (MECH-439, ARC-108)",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26 (MECH-439, ARC-108)",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20 (MECH-439)",
+          "failure_autopsy_V3-EXQ-460l_2026-06-23 (ARC-108)"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "A NEW deeper sub-gate beyond 707b's static-arithmetic diagnosis: even a LEARNED [3,3] cross-loop matrix (eta=0.01, ~100 P2 episodes) lifts the limbic loop to motor effective weight on only 1/4 divergent seeds -- the arbitration DOES learn (M_cross moved 0.116) but the ascending coupling is too weak.",
+        "The ceiling is a loop-EFFECTIVE-WEIGHT property, not a combine-arithmetic property; measured directly by clg_w_limbic_eff vs clg_w_motor_eff and clg_limbic_to_motor_peak.",
+        "Biological dependency sharpened: the ascending-spiral GAIN / maturation is the load-bearing dependency, not merely the existence of a learnable coupling; a working substrate needs a stronger/longer-trained/structurally-boosted ascending path (or de-pinning the motor loop default weight).",
+        "Measurement win: the limbic_loop_can_win non-vacuity gate correctly kept a vacuous no-lift from being mislabelled MECH-439-intrinsic; keep it in any successor.",
+        "Granularity-debt hook already consumed: 707b fired the contingent MECH-439 /claim-synthesis 2026-06-29 (DROP-MECH-453); no new synthesis owed."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
