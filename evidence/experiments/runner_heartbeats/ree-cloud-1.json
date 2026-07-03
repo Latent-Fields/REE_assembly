@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-03T01:08:32Z",
+  "last_tick_utc": "2026-07-03T01:18:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-710",
   "current_exq_started_utc": "2026-07-02T19:43:31.649411+00:00",
@@ -12,19 +12,13 @@
     "run_label": "Seed 42 / soft_competitive_settling_intact_structured_class_surround_kernel_cross025",
     "runs_done": 6,
     "runs_total": 18,
-    "episodes_done": 0,
+    "episodes_done": 60,
     "episodes_total": 250,
-    "overall_pct": 33.3
+    "overall_pct": 34.7
   },
-  "seconds_elapsed": 19501,
-  "seconds_remaining": 37139,
+  "seconds_elapsed": 20107,
+  "seconds_remaining": 36396,
   "recent_lines": [
-    "[train] arm=A0_OFF seed=44 phase=P0 ep 100/250",
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 110/250",
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 120/250",
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 130/250",
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 140/250",
-    "[train] arm=A0_OFF seed=44 phase=P1 ep 150/250",
     "[train] arm=A0_OFF seed=44 phase=P2 ep 160/250",
     "[train] arm=A0_OFF seed=44 phase=P2 ep 170/250",
     "[train] arm=A0_OFF seed=44 phase=P2 ep 180/250",
@@ -118,7 +112,13 @@
     "[train] arm=A0_OFF seed=47 phase=P2 ep 250/250",
     "verdict: PASS",
     "Arm A1_INTACT (soft_competitive_settling_intact_structured_class_surround_kernel_cross025) scs_on=True cross_class=0.25 (P0=100 ep e2-train, P1=50 ep bias-train, P2=100 ep measure, steps_per_episode=200, dry_run=False)",
-    "Seed 42 Condition soft_competitive_settling_intact_structured_class_surround_kernel_cross025"
+    "Seed 42 Condition soft_competitive_settling_intact_structured_class_surround_kernel_cross025",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 10/250",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 20/250",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 30/250",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 40/250",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 50/250",
+    "[train] arm=A1_INTACT seed=42 phase=P0 ep 60/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
