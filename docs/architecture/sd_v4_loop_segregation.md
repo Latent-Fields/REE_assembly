@@ -17,7 +17,28 @@ nav_exclude: true
 **Unblocks:** MECH-439, ARC-108, MECH-450, ARC-110
 **Escalation source:** `evidence/planning/failure_autopsy_V3-EXQ-700b_2026-06-24.{md,json}` (user-adjudicated 2026-06-24, CONCURRENT with the V3-EXQ-700c null-redesign)
 
-> **Scope discipline (updated 2026-06-24 for the V3 reappointment).** This document now
+> **RECLASSIFICATION BANNER -- V4 -> V3 (2026-07-03, user-directed; phase follows dependency).**
+> This substrate is **V3-closure-required**, not merely V3-reappointed-but-gated. Lifting the
+> F-dominance single-arena conversion ceiling (MECH-439) is a V3-closure requirement, and a
+> `substrate_ceiling` is never grounds to defer to V4. Three structurally-independent conversion
+> mechanisms -- the 700-lineage same-layer-null/exploration, **V3-EXQ-709** learned/DA-gated
+> cross-loop arbitration, and **V3-EXQ-710** disinhibitory soft-competitive settling -- have ALL
+> self-routed `non_contributory` / `substrate_not_ready` on the ONE single-arena F-dominated
+> shared selector; both confirmed autopsies (`failure_autopsy_V3-EXQ-709_2026-07-03` +
+> `failure_autopsy_V3-EXQ-710_2026-07-03`) conclude the ceiling is a SUBSTRATE property and route
+> here. The segregated-loop substrate was already **BUILT no-op-default in the ree-v3 V3 codebase
+> 2026-06-27** and runs IN the V3 substrate (see "IMPLEMENTED 2026-06-27" below); ARC-109 +
+> MECH-452 are V3 built co-requisites (both `implementation_phase: v3`), MECH-451 remains the V3
+> cheap pre-emption rung. Applied 2026-07-03: `claims.yaml` MECH-140 `implementation_phase: v3`;
+> `substrate_queue` `v4_loop_segregation` V4-deferral gate removed + title/status reframed. The
+> filename / substrate id `v4_loop_segregation` is **RETAINED verbatim** for cross-ref stability
+> (autopsy `recommended_substrate_queue_entry.target_sd_id`, IGW workset, `failure_record`).
+> PROMOTES NOTHING (phase reclassification only).
+
+> **Scope discipline (updated 2026-06-24 for the V3 reappointment). SUPERSEDED 2026-07-03 --
+> retained as history; the "deferred / NOT modified / NOT queued" framing below is no longer true
+> (the gate CLEARED, the substrate was BUILT 2026-06-27, and validation ran as V3-EXQ-707/709/710
+> -- see the reclassification banner above and "IMPLEMENTED 2026-06-27" below).** This document now
 > specifies a **V3 substrate**, but the build is **deferred and GATED on V3-EXQ-704**
 > (MECH-451). As of this writing it has NOT modified `ree-v3/ree_core/` and has NOT queued
 > its validation experiment. When the gate clears (704 fails to convert), the build proceeds
