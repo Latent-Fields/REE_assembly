@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-07-02T18:56:16Z",
+  "last_updated_utc": "2026-07-03T15:50:37Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -489,6 +489,25 @@
       "design_doc": "docs/architecture/soft_competitive_disinhibition_settling.md",
       "contract_test": "ree-v3/tests/contracts/test_soft_competitive_settling.py",
       "landed_by_session": "substrate-mech140-mech450-disinhib-settling-20260702T1856Z"
+    },
+    {
+      "substrate": "ascending_spiral_gain",
+      "landed_utc": "2026-07-03T15:50:37Z",
+      "description": "ARC-110 x ARC-108 ascending-spiral gain (V3-EXQ-709/710 loop-effective-weight repair): new no-op-default E3Config flags use_ascending_spiral_gain (master, default False) + loop_segregation_ascending_spiral_gain (default 1.0, forward) + loop_segregation_ascending_plasticity_gain (default 1.0, maturation). Scales ONLY the ascending (strict-upper-triangle, row<col in motor/assoc/limbic order) M_cross entries -- in the forward W_cross assembly (_ascending_gain_matrix) and in the M_cross three-factor post_action_update -- so w_eff[limbic]/w_eff[assoc] rise WITHOUT touching w_eff[motor] (Haber 2000 asymmetric ascending spiral). Lets a non-motor (limbic) loop reach/exceed motor effective weight (the 709/710 ceiling). Map stays LINEAR (constant elementwise scaling of M_cross); byte-identical OFF / at gains 1.0 (8 contracts + 709 --dry-run reproduces the 709 FAIL bit-for-bit). Requires use_learned_cross_loop_arbitration on to act.",
+      "mechanism_changing": false,
+      "no_op_default": true,
+      "dependent_claims": [
+        "MECH-439",
+        "ARC-108",
+        "ARC-110",
+        "MECH-450",
+        "MECH-140"
+      ],
+      "staleness_audit": "NOT TRIGGERED: no-op-default param, byte-identical OFF. All prior evidence on the dependent claims ran with the ascending gain OFF (== unchanged pre-landing behavior), so no prior run is mechanistically stale. KEEP all. The new mechanism is exercised only by the V3-EXQ-711 validation falsifier (ascending gain ON) queued alongside this landing.",
+      "candidate_stale": [],
+      "design_doc": "docs/architecture/learned_cross_loop_arbitration.md (Addendum: ascending-spiral gain)",
+      "contract_test": "ree-v3/tests/contracts/test_ascending_spiral_gain.py",
+      "landed_by_session": "substrate-ascending-spiral-gain-20260703T155037Z"
     }
   ]
 }

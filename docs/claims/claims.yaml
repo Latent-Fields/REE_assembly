@@ -10221,6 +10221,14 @@
     PLOS-Biology ablation falsifiers (matched arms, inhibition-on-inhibition edge intact vs ablated; predicted:
     ablation collapses task-switching while single-task survives) queued separately (new EXQ, claim_ids
     [MECH-140, MECH-450]).
+    ADDED TO v4_loop_segregation unblocks_claims (V3-EXQ-710 autopsy): MECH-140's between-loop
+    disinhibition also needs the segregated-loop locus. The ascending-spiral-gain build landed 2026-07-03
+    (/implement-substrate; config.e3.use_ascending_spiral_gain, byte-identical OFF) lets a non-motor
+    (limbic) loop reach motor effective weight -- the loop-effective-weight ceiling the 709/710 autopsies
+    routed to -- so a future segregated-loop settling redesign can express MECH-140's between-loop
+    reconfiguration where the single F-collapsed arena structurally denied it. PROMOTES NOTHING; MECH-140
+    stays candidate / substrate_ceiling / pending_retest_after_substrate. See
+    docs/architecture/learned_cross_loop_arbitration.md "Addendum: ascending-spiral gain".
   epistemic_category: substrate_ceiling
   implementation_phase: v3
   pending_retest_after_substrate: true
@@ -47250,6 +47258,22 @@
     coupling" entry; regression guard ree-v3/tests/contracts/test_learned_cross_loop_arbitration.py. The
     pending_retest_after_substrate re-test (A1_LOOPS + learned cross-loop arbitration STRICT-ABOVE A1_LOOPS +
     static arbitration; new EXQ, different claim_ids) is queued SEPARATELY after this build lands. PROMOTES NOTHING.
+    ASCENDING-SPIRAL GAIN BUILT 2026-07-03 (/implement-substrate; PROMOTES NOTHING): the loop-effective-weight
+    ceiling BOTH the V3-EXQ-709 AND V3-EXQ-710 confirmed autopsies routed to (the limbic loop reached >= motor
+    effective weight on only 1/4 divergent seeds; M_cross[motor,limbic] peak ~0.03) is repaired behind
+    no-op-default flag config.e3.use_ascending_spiral_gain + loop_segregation_ascending_spiral_gain (forward) +
+    loop_segregation_ascending_plasticity_gain (maturation). Both scale ONLY the ASCENDING (strict-upper-triangle,
+    row<col in motor/assoc/limbic order) M_cross entries -- in the forward W_cross (anatomical ascending-projection
+    strength, Haber 2000's asymmetric spiral) and in the three-factor update (ascending maturation rate) -- so
+    w_eff[limbic]/w_eff[assoc] rise WITHOUT touching w_eff[motor] (its column is diagonal + descending), which
+    simultaneously strengthens the ascending coupling AND implicitly de-pins the motor(F) default. Map stays
+    LINEAR -> w_eff-collapsibility (CLA-3) + bit-identical-at-init both hold (gain*0==0 at M_cross==0). Byte-identical
+    OFF / at gains 1.0 (verified: 8 contracts tests/contracts/test_ascending_spiral_gain.py + V3-EXQ-709 --dry-run
+    reproduces the 709 FAIL bit-for-bit). Safety inherited (within the F+MECH-448/449 eligible set). Design-of-record
+    docs/architecture/learned_cross_loop_arbitration.md "Addendum: ascending-spiral gain"; ree-v3/CLAUDE.md
+    "ARC-110 x ARC-108: ascending-spiral gain" entry. Validation falsifier V3-EXQ-711 (new EXQ; STATIC/OFF vs
+    ascending-gain-ON on GAP-A reef-bipartite; non-vacuity self-route substrate_not_ready_requeue) queued after
+    this build lands. PROMOTES NOTHING; stays candidate / substrate_conditional / pending_retest_after_substrate.
   # PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b). The
   # V3-EXQ-700 fork resolved toward escalation -> the v4_loop_segregation substrate (this
   # claim's build) is now BUILT (2026-06-27). Recorded via the assembly companion fields ONLY;

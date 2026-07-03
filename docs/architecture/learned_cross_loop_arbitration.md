@@ -222,6 +222,77 @@ the existing ARC-108 and ARC-110 `implementation_note`s and records the coupling
   cross-loop arbitration" release condition holds.
 - The loop-specific CSTC disorder axis with a *plastic* arbitration knob (the psychiatric mapping above).
 
+---
+
+## Addendum: ascending-spiral gain (V3-EXQ-709/710 loop-effective-weight repair, 2026-07-03)
+
+**Status:** IMPLEMENTED 2026-07-03. PROMOTES NOTHING. No-op-default flag, byte-identical OFF.
+**Config:** `E3Config.use_ascending_spiral_gain` (default `False`) + `loop_segregation_ascending_spiral_gain`
+(default `1.0`, forward) + `loop_segregation_ascending_plasticity_gain` (default `1.0`, maturation). Requires
+`use_learned_cross_loop_arbitration` (hence `use_loop_segregation`) on to act.
+**Regression guard:** `ree-v3/tests/contracts/test_ascending_spiral_gain.py` (8 contracts).
+
+### Problem (the deeper sub-gate 709/710 exposed)
+
+The learned cross-loop matrix above ENGAGES -- V3-EXQ-709 confirmed 6/7 readiness gates met (`M_cross`
+moved off init, range 0.116; limbic routing live 1.414; 4 divergent seeds; learning engaged). But the ONE
+unmet gate is the load-bearing one: `limbic_loop_can_win` -- on the GAP-A-divergent seeds the limbic loop
+reached the motor loop's **effective column weight** `w_eff[j] = sum_i gain_i * W_cross[i,j]` on only **1/4**
+(threshold 2). The plastic ascending path `M_cross[motor,limbic]` peaked at only ~0.03 -- the arbitration
+LEARNS and the limbic channel CARRIES signal, but the ascending coupling is functionally **too weak** to lift
+a non-motor loop above the F-pinned motor loop. Three structurally-different conversion mechanisms (709
+learned arbitration, 710 disinhibitory settling, the 700-lineage same-layer null) now fail on this one
+substrate with the same signature -> the ceiling is a **loop-effective-weight property** (autopsies
+`failure_autopsy_V3-EXQ-709_2026-07-03` and `_710_`).
+
+### Failure record (defines acceptance criteria)
+
+| run | gate | reading |
+|---|---|---|
+| V3-EXQ-709 | `limbic_loop_can_win` 1/4 divergent (thr 2); `M_cross[motor,limbic]` peak ~0.03; C1 learned==static | learned arbitration engages but the ascending coupling is too weak for a non-motor loop to win |
+
+**Acceptance target** (for the SEPARATE new-EXQ validation falsifier): under an appropriate ascending-spiral
+gain, the limbic loop reaches/exceeds the motor loop's effective column weight on a strict-majority (>=3/4) of
+divergent seeds, so C1 (learned strict-above static) becomes validly evaluable -- on the same GAP-A
+reef-bipartite substrate, matched seeds, with the same non-vacuity self-route
+(`substrate_not_ready_requeue` when `limbic_loop_can_win` is still unmet; never a false weakens).
+
+### Solution
+
+Biology (Haber 2000): the striato-nigro-striatal spiral is anatomically **asymmetric** -- ascending
+(limbic -> associative -> motor) influence is the developmentally-strengthened, load-bearing direction. In the
+motor(0)/associative(1)/limbic(2) ordering the forward map `eff_i = sum_j W_cross[i,j] z_j` makes the
+ascending entries exactly the **strict upper triangle** (row `i` < col `j`): `W_cross[0,2]` (limbic->motor),
+`W_cross[0,1]` (assoc->motor), `W_cross[1,2]` (limbic->assoc). Two knobs scale ONLY those entries:
+
+1. **Forward gain** (`_ascending_gain_matrix` in the `W_cross` assembly): `W_cross = I + (G_fwd .* M_cross)`,
+   `G_fwd` upper-tri = `spiral_gain`, else 1.0. This is the **anatomical ascending-projection strength** (an
+   untuned implicit 1.0 in the 709 substrate). It raises `w_eff[limbic]`/`w_eff[assoc]` (their columns'
+   ascending entries) **without touching `w_eff[motor]`** (the motor column is diagonal + descending,
+   never scaled) -- so it simultaneously strengthens the ascending coupling AND implicitly **de-pins** the
+   motor(F) default. The map stays **linear** (a constant elementwise scaling of `M_cross`), preserving the
+   `w_eff`-collapsibility of divergence **CLA-3** and bit-identical-at-init (at init `M_cross==0` ->
+   `gain*0==0` -> `W_cross==I` for any gain).
+2. **Plasticity maturation gain** (in `post_action_update`): the ascending entries of the three-factor
+   `M_cross` update are scaled by `plasticity_gain` -- the ascending **spiral-maturation rate** (ascending
+   credit accrues faster than descending). `eta` stays the base rate; this is the directional multiplier on
+   ascending plasticity only.
+
+`F` still fully owns the MOTOR loop (`motor_pref` unchanged); the gain only stops F from drowning the limbic
+"is this worth committing to" value. **Safety unchanged:** the arbitration stays STRICTLY within the
+F+MECH-448/449 eligible set -- the gain reorders within-eligible candidates and can never re-admit a
+No-Go-suppressed one. The `w_eff`/`limbic_ge_motor` diagnostics are computed from the **same gained**
+`W_cross` (so `limbic_loop_can_win` reads true effective weights), while `clg_limbic_to_motor` stays the RAW
+`M_cross[0,2]` (it measures learning, not effective weight). `eta` and P2 length remain independently
+sweepable complementary levers (already exposed). Default False / gains 1.0 -> bit-identical OFF.
+
+### ARC-106 divergence-ledger row (this addendum)
+
+| id | divergence from biology | justification |
+|---|---|---|
+| ASG-1 | The ascending-spiral strength is a single scalar `spiral_gain` on the upper triangle, not an anatomically-distributed, per-projection maturational gradient. | ARC-106 G1 function-not-homology: the FUNCTION (asymmetric ascending-dominant cross-loop influence that lets a matured limbic loop override a motor default) is preserved; the anatomical gradient is abstracted, as everywhere in REE. |
+| ASG-2 | Forward gain and maturation gain are decoupled knobs; in biology anatomical projection density and plasticity co-vary. | Honest simplification for a cleanly-isolable falsifier -- forward gain keeps `M_cross` trajectories controllable; the two can be co-swept if the biology demands it. |
+
 ## Related Claims
 
 ARC-108 (learned dopamine-gated gating), ARC-110 (segregated loops), MECH-439 (conversion-ceiling umbrella),
