@@ -45447,6 +45447,19 @@
     angles = granularity-debt signal; run a /claim-synthesis decomposition of MECH-439 ("F-dominance" ->
     finer mechanisms) IF 707b also fails to convert (confirming the claim is coarse, not only
     substrate-bound). pending_retest_after_substrate.
+    CORROBORATION 2026-07-03 (confirmed failure_autopsy_V3-EXQ-709_2026-07-03): V3-EXQ-709 (ARC-108 x
+    ARC-110 LEARNED/DA-gated cross-loop arbitration validation -- the separate new-EXQ falsifier 707b
+    routing item 3 named) FAIL / non_contributory / non_degenerate=False / substrate_not_ready_requeue.
+    The learned mechanism ENGAGED (6/7 readiness gates; M_cross MOVED off init range 0.116 so LEARNED !=
+    STATIC, limbic routing live 1.414) but the deeper limbic_loop_can_win sub-gate is UNMET: on the 4
+    GAP-A-divergent seeds the limbic loop reached >= motor effective weight on only 1/4 (M_cross[motor,limbic]
+    coupling peak ~0.03), so C1 (learned strict-above static) could NOT be validly evaluated. NEVER a weakens
+    -- the conversion question was NOT measured, so MECH-439 is NOT shown intrinsic by this run. NEW
+    loop-effective-weight ceiling BEYOND the 707b static-arithmetic diagnosis: even a learned [3,3] cross-loop
+    matrix (eta 0.01, ~100 P2 episodes) cannot lift a non-motor loop to motor effective weight on the seeds
+    that matter. Re-derive brake FIRES again (8th MECH-439 substrate_ceiling/non_contributory reading);
+    same-claim TEST re-queue REFUSED; routed implement-substrate (AMEND v4_loop_segregation failure_record).
+    The contingent MECH-439 /claim-synthesis flagged above was already fired 2026-06-29 (DROP-MECH-453). pending_retest_after_substrate.
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of
@@ -46783,6 +46796,17 @@
     substrate-conditional learned-gating substrate is not yet built). Detail + cluster diagnosis in
     failure_autopsy_700d-708-single-arena-ceiling_2026-06-29 (primary record on MECH-439). Route = the
     already-built v4_loop_segregation (ARC-110), validating via V3-EXQ-707b. pending_retest_after_substrate.
+    UPDATE 2026-07-03 (confirmed failure_autopsy_V3-EXQ-709_2026-07-03): V3-EXQ-709 (ARC-108 x ARC-110
+    LEARNED/DA-gated cross-loop arbitration validation, tagged ARC-108) FAIL / non_contributory /
+    non_degenerate=False / substrate_not_ready_requeue. The learned-gating substrate ENGAGED exactly as this
+    claim's what_would_answer requires -- the signed-RPE M_cross term carried live variance and DID change
+    gating weights (M_cross moved off init range 0.116, so LEARNED is not bit-identical to STATIC; 6/7 readiness
+    gates met). But the deeper limbic_loop_can_win non-vacuity sub-gate is UNMET: the learned coupling lifted
+    the limbic loop to >= motor effective weight on only 1/4 divergent seeds (M_cross[motor,limbic] peak ~0.03),
+    so the "does learned gating lift committed diversity beyond the arithmetic envelope" question could NOT be
+    validly evaluated. Per this claim's own non-degeneracy rule this is substrate_not_ready_requeue, NOT a
+    weakens -- ARC-108 is NOT weakened. Re-derive brake FIRES (6th ARC-108 substrate_ceiling/non_contributory
+    reading); routed implement-substrate (AMEND v4_loop_segregation failure_record). pending_retest_after_substrate.
   psychiatric_failure_mode: >
     On breakage / dysregulation of the signed-RPE teaching signal: the dopaminergic
     learning axis is the substrate of reward-prediction-error psychopathology --
@@ -47110,6 +47134,18 @@
     Fires the contingent MECH-439 /claim-synthesis (conversion ceiling confirmed intrinsic). 707a flipped
     weakens->superseded (same DECISIVE test; 707b is the live-substrate scoring head). substrate_queue
     action=none (no enrichment owed by THIS run; the DA-gated-arbitration retest is a different mechanism).
+    UPDATE 2026-07-03 (confirmed failure_autopsy_V3-EXQ-709_2026-07-03): the anticipated DA-gated-arbitration
+    retest RAN -- V3-EXQ-709 (ARC-108 x ARC-110 LEARNED cross-loop arbitration validation; the different
+    mechanism / new EXQ / different claim_ids this note called for) FAIL / non_contributory /
+    non_degenerate=False / substrate_not_ready_requeue. The learned coupling ENGAGED (M_cross moved off init
+    0.116 so LEARNED != STATIC, limbic routing live 1.414, 6/7 readiness gates) but the deeper
+    limbic_loop_can_win sub-gate is UNMET: the limbic loop reached >= motor effective weight on only 1/4
+    divergent seeds (M_cross[motor,limbic] peak ~0.03), so C1 could NOT be validly evaluated. non_contributory:
+    NEVER a weakens -- ARC-110's existing NARROW 707b weakens is UNCHANGED and its narrowing (loop segregation
+    necessary-but-not-sufficient; the conversion route requires learned cross-loop arbitration) STANDS
+    unretired. NEW datum: even the learned arbitration hits a loop-effective-weight ceiling beyond 707b's
+    static-arithmetic diagnosis. substrate_queue action now AMEND (this run DOES owe a failure_record for the
+    loop-effective-weight sub-gate on v4_loop_segregation, unlike the 707b action=none). pending_retest_after_substrate.
   pending_retest_after_substrate: true   # SET 2026-06-29 (707b NARROW autopsy): re-test A1_LOOPS COUPLED with dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) once that arbitration-LEARNING substrate is built -- a redesign testing a DIFFERENT mechanism (new EXQ, different claim_ids), NOT a same-claim re-letter. Not queued now.
   implementation_note: >
     SUBSTRATE BUILT 2026-06-27 via /implement-substrate (full scope; PROMOTES NOTHING --
