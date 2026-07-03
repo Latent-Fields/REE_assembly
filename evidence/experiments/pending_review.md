@@ -1,14 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-07-03T13:44:43Z`  
-Last review: `2026-07-03T13:34:54Z`  
-Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-03T14:09:23Z`  
+Last review: `2026-07-03T14:08:31Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_710_disinhibitory_soft_competitive_settling_validation_20260703T112039Z_v3` | 2026-07-03T11:20 | MECH-140, MECH-439, MECH-450 | — |
+All experiments reviewed. Nothing pending.
 
 ---
 
