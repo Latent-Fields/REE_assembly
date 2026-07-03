@@ -1,0 +1,127 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_710_disinhibitory_soft_competitive_settling_validation",
+  "run_id": "v3_exq_710_disinhibitory_soft_competitive_settling_validation_20260703T112039Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-03T11:20:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-140",
+    "MECH-450",
+    "MECH-439"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-140": "weakens",
+    "MECH-450": "weakens",
+    "MECH-439": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "soft_competitive_settling_does_not_convert_ceiling_intrinsic_weakens_mech140_mech450",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "number of seeds whose candidate pool is DIVERGENT on ALL THREE arms >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating; too few => substrate_not_ready_requeue.",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 3.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "settling_field_moved_off_no_op",
+        "kind": "readiness",
+        "description": "MECH-140 x MECH-450 MECHANISM non-vacuity (M): on the INTACT arm the soft-competitive settling ACTUALLY MOVED the eligible field -- mean soft_competitive_settling_round_delta over active P2 ticks > ROUND_DELTA_FLOOR -- on a strict-majority of DIVERGENT seeds. At gain 0.0 / when the field never moves round_delta <= 0 -> the settling is a no-op and a 'no lift' is meaningless => substrate_not_ready_requeue (NEVER a weakens). measured = max across INTACT seeds of the mean round_delta; SAME statistic (round_delta = L2 field movement) the mechanism depends on.",
+        "control": "INTACT scs_mean_round_delta (mean soft_competitive_settling_round_delta over active P2 ticks)",
+        "measured": 8.01109723,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "eligible_set_non_degenerate",
+        "kind": "readiness",
+        "description": "MECH-448 (E) non-degeneracy: on the INTACT arm the F-eligibility envelope EXCLUDED >= 1 candidate (f_eligibility_excluded_count > 0) on a fraction of P2 ticks > ELIG_EXCLUDED_FRAC_FLOOR, on a strict-majority of DIVERGENT seeds -- so there was a real within-eligible competition for the settling to act on. An all-admit envelope leaves nothing to settle. measured = max across INTACT seeds of the fraction of ticks the envelope excluded >= 1 candidate.",
+        "control": "INTACT f_elig_frac_excluded_gt0 (fraction of P2 f-eligibility ticks with excluded_count > 0)",
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable_delta_nonflat",
+        "kind": "readiness",
+        "description": "on ALL arms the finer w_chan_finer entries MOVED + carry cross-channel range above floor AND the signed-RPE delta_t carries cross-tick variance, on a majority of seeds -- learning is engaged. Below floor => substrate_not_ready_requeue.",
+        "control": "fcg_w_chan_finer_range_max + fcg_delta_t_std (all arms)",
+        "measured": 0.00113672,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "candidate_pool_divergent",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds (GAP-A non-vacuity).",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.034481,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_intact_strict_above_off",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_intact_strict_above_ablated_structured_edge_load_bearing",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": true,
+      "enough_divergent_seeds": true,
+      "settling_field_moved": true,
+      "eligible_set_non_degenerate": true,
+      "learning_engaged": true,
+      "crf_matured": true
+    },
+    "a2_ablated_rank_preserving_diagnostic": {
+      "a2_unexpectedly_reordered": false,
+      "mean_committed_class_entropy_intact": 0.937274,
+      "mean_committed_class_entropy_ablated": 0.916029,
+      "note": "A2 uniform kernel is rank-preserving -> A2 entropy should be ~<= A1 entropy. a2_unexpectedly_reordered True means the uniform kernel reordered beyond the A2_REORDER_FLAG_SLACK slack (a substrate anomaly to inspect, NOT a claim direction)."
+    },
+    "reorder_rate_limitation_note": "the selector does NOT expose the pre-settle within-eligible argmin as a running diagnostic, so a literal per-tick 'committed winner != one-shot argmin' reorder rate cannot be recorded in-run. Recorded instead: soft_competitive_settling_round_delta (the field-movement non-vacuity signal) and the f_eligibility diagnostics (f_eligibility_excluded_count > 0 = real within-eligible competition; f_eligibility_winner_neq_f_argmin = F demoted at commit). The behavioural reorder is read at the DV level (A1 vs A0) and the structural-edge dissociation (A1 vs A2)."
+  }
+}
