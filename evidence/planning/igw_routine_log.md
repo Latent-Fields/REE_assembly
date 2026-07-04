@@ -682,3 +682,6 @@ One line per hourly tick. ASCII only.
 2026-07-03T20:51:44Z skip IGW-20260703-191: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-03T21:52:04Z skip IGW-20260703-191: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-04T01:41:20Z SPAWN IGW-20260704-191 skill=/queue-experiment prio=40 uuid=c8ae34ce-6bb6-45fe-b262-bebf1c48eda5 pid=3619 worktree=igw-191-proposal-for-mech-179
+2026-07-04T01:47:15Z complete IGW-20260704-191 spawned->completed outcome=USEFUL_LANDED: marked EVB-0102/MECH-179 blocked_substrate: no error-TYPE channel, sleep phase c
+2026-07-04T02:42:48Z reconcile-release hash=e4c9016acccc (IGW-20260704-191 -> completed)
+2026-07-04T02:42:41Z skip IGW-20260704-191: no fresh runner heartbeat (experiment-lane item would just sit in queue)
