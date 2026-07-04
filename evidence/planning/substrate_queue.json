@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "governance-apply-exq710",
-  "last_updated_utc": "2026-07-03T14:43:33Z",
+  "last_seen_session": "governance-cycle-20260704T0251Z",
+  "last_updated_utc": "2026-07-04T03:26:41Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5261,6 +5261,23 @@
       },
       "generation": "v3",
       "gate": "V3-EXQ-704 (MECH-451 finer-channel-granularity pre-emption falsifier). Build proceeds via /implement-substrate ONLY if 704 fails to convert non-motor influence to committed action on the single arena; a 704 PASS pre-empts this loop build (ceiling = representational compression)."
+    },
+    {
+      "sd_id": "SD-063",
+      "title": "E2 conditional predictive-uncertainty head (distribution-free quantile/pinball form) feeding E3 commitment gating. Realizes the MECH-059 confidence channel with a per-prediction spread that tracks realized error, replacing/augmenting the E3 running-variance EMA (per-point error corr ~0.0).",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_063_e2_conditional_uncertainty_head.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": null,
+      "motivating_diagnostic": "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3",
+      "implementation_hint": "Wire a distribution-free quantile/pinball predictive-uncertainty head into E2 world-forward (ree-v3/ree_core/predictors/e2_fast.py / e2_world.py) behind a no-op-default flag, feeding E3 commitment gating a per-input predictive spread. V3-EXQ-712 diagnostic winner: quantile CRPS 0.00486 vs point 0.00514 (4/5 seeds), precision_error_corr 0.379 vs EMA 0.0; Gaussian-family heads (hetero, mixture) did WORSE than point on CRPS. CRITICAL (SD-031): the head must NOT explain away the E2WorldForward agency residual -- it must not absorb the agent-caused component of next-state variance (that residual is what makes E2 an agency detector). Validate that the CRPS / precision-error-corr advantage survives JOINT training (712 trained detached/frozen heads = effectively P1).",
+      "priority": 3,
+      "priority_note": "Opportunity-driven (motivated by a fresh diagnostic PASS + design doc + approved /implement-substrate chip), not failure-driven -> not P1 by the failure-record rubric; 0 registered downstream blockers yet (SD-063 is newly minted). Off the V3 strict green-board critical path but a clean, ready, well-scoped build.",
+      "validation_experiment": null,
+      "added_session": "governance-cycle-20260704T0251Z",
+      "last_seen_session": "governance-cycle-20260704T0251Z"
     }
   ],
   "schema_version": "substrate_queue/v2"

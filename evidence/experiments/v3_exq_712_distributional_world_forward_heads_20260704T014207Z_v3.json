@@ -1,1 +1,717 @@
-{"run_id": "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3", "experiment_type": "v3_exq_712_distributional_world_forward_heads", "queue_id": "V3-EXQ-712", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": [], "experiment_purpose": "diagnostic", "supersedes": null, "outcome": "PASS", "evidence_direction": "non_contributory", "non_degenerate": true, "degeneracy_reason": "", "degenerate_metrics": {}, "timestamp_utc": "20260704T014207Z", "interpretation": {"label": "distributional_head_ranking", "winner_arm": "quantile_pinball", "c1_seed_wins": 4, "n_seeds_scored": 5, "c1_majority_needed": 3, "point_mean_crps": 0.005144903622567654, "best_distributional_mean_crps": 0.004856146033853292, "preconditions": [{"name": "heldout_conditional_spread_present", "measured": 0.10207266749417739, "threshold": 0.05, "direction": "lower", "met": true, "kind": "readiness"}, {"name": "sufficient_test_transitions", "measured": 4760.0, "threshold": 200.0, "direction": "lower", "met": true, "kind": "readiness"}], "criteria": [{"name": "C1_best_dist_crps_beats_point", "load_bearing": true, "passed": true}], "criteria_non_degenerate": {"C1_best_dist_crps_beats_point": true}, "readiness_note": ""}, "arm_summary": {"mse_point": {"crps_mean": 0.005144903622567654, "nll_mean": -4.2088827133178714, "coverage_err_80_mean": 0.013771002292633084, "precision_error_corr_mean": 0.0, "n_seeds": 5}, "hetero_gaussian": {"crps_mean": 0.00707760713994503, "nll_mean": -3.894776725769043, "coverage_err_80_mean": 0.026524410247802742, "precision_error_corr_mean": 0.04012106438892553, "n_seeds": 5}, "quantile_pinball": {"crps_mean": 0.004856146033853292, "nll_mean": NaN, "coverage_err_80_mean": 0.020548844337463422, "precision_error_corr_mean": 0.37856102325734153, "n_seeds": 5}, "mixture_gaussian": {"crps_mean": 0.006822110433131456, "nll_mean": -3.0161572456359864, "coverage_err_80_mean": 0.013253679275512686, "precision_error_corr_mean": 0.03791113572838827, "n_seeds": 5}}, "arm_results": [{"arm_id": "mse_point", "head": "point", "seed": 42, "n_train": 3808, "n_test": 952, "target_std": 0.07326334714889526, "point_rmse": 0.009256665594875813, "nll_mean": -4.198659896850586, "crps_mean": 0.005233796779066324, "coverage_80": 0.7890296578407288, "coverage_err_80": 0.010970342159271285, "precision_error_corr": 0.0, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "3c36cb5d6647d53e0ddf1d0b6bc9793d686e5a78876f357e262221d25f917c59", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "hetero_gaussian", "head": "hetero", "seed": 42, "n_train": 3808, "n_test": 952, "target_std": 0.07326334714889526, "point_rmse": 0.0121278902515769, "nll_mean": -3.9104769229888916, "crps_mean": 0.0069930581375956535, "coverage_80": 0.7963169813156128, "coverage_err_80": 0.0036830186843872514, "precision_error_corr": -0.08512344808261736, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "fbe9fbfe0daaeec31cf9107b0e039f42494131c14bb38f9707962fd74028e792", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "quantile_pinball", "head": "quantile", "seed": 42, "n_train": 3808, "n_test": 952, "target_std": 0.07326334714889526, "point_rmse": 0.008502926677465439, "nll_mean": NaN, "crps_mean": 0.004797753877937794, "coverage_80": 0.7615545988082886, "coverage_err_80": 0.03844540119171147, "precision_error_corr": 0.41540634132958676, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a576ffdde536f9c3349a637113686fee17123db618e9548f2ee06c6f487c2150", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mixture_gaussian", "head": "mixture", "seed": 42, "n_train": 3808, "n_test": 952, "target_std": 0.07326334714889526, "point_rmse": 0.011481539346277714, "nll_mean": -3.058114528656006, "crps_mean": 0.0064561632461845875, "coverage_80": 0.8243500590324402, "coverage_err_80": 0.02435005903244014, "precision_error_corr": -0.05642247781875422, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e5c17fb8e71bbb73523cd47d7ac72ee632f9a93b9de0abf35b76c25e83ea0ceb", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mse_point", "head": "point", "seed": 43, "n_train": 3808, "n_test": 952, "target_std": 0.08550971746444702, "point_rmse": 0.008252979256212711, "nll_mean": -4.310127258300781, "crps_mean": 0.004598609637469053, "coverage_80": 0.8064272403717041, "coverage_err_80": 0.006427240371704057, "precision_error_corr": 0.0, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a493edc510e58aaeca58b9448ca8a0586900f039a551ab5f41cab708a5e298ba", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "hetero_gaussian", "head": "hetero", "seed": 43, "n_train": 3808, "n_test": 952, "target_std": 0.08550971746444702, "point_rmse": 0.010837852023541927, "nll_mean": -4.0106000900268555, "crps_mean": 0.006341433152556419, "coverage_80": 0.8424041271209717, "coverage_err_80": 0.042404127120971635, "precision_error_corr": 0.06784838523046345, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "365c08511b4cde62af27213c299480a023c7f05995b44b97dcb78a8175a6b220", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "quantile_pinball", "head": "quantile", "seed": 43, "n_train": 3808, "n_test": 952, "target_std": 0.08550971746444702, "point_rmse": 0.008028664626181126, "nll_mean": NaN, "crps_mean": 0.004578521475195885, "coverage_80": 0.7909992337226868, "coverage_err_80": 0.009000766277313277, "precision_error_corr": 0.2844367832069259, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "71b0dcdd773a3bd81e3d5ba24e6a247460acd25d345439658785d8a1a17ac55d", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mixture_gaussian", "head": "mixture", "seed": 43, "n_train": 3808, "n_test": 952, "target_std": 0.08550971746444702, "point_rmse": 0.011380717158317566, "nll_mean": -3.07785701751709, "crps_mean": 0.00633993512019515, "coverage_80": 0.825728714466095, "coverage_err_80": 0.025728714466094926, "precision_error_corr": -0.004525868418157918, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a6ad15dc2eb66103ff5a38cca057ad66997a1a7e98e8312bc05e228c58c80c9b", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 43, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mse_point", "head": "point", "seed": 44, "n_train": 3808, "n_test": 952, "target_std": 0.07976581901311874, "point_rmse": 0.009246984496712685, "nll_mean": -4.1953325271606445, "crps_mean": 0.005133932456374168, "coverage_80": 0.7871586084365845, "coverage_err_80": 0.012841391563415572, "precision_error_corr": 0.0, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "d8425d60a709e5ea2dd4be4fab316baa52d659ff3517b779317babdb771ccec5", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "hetero_gaussian", "head": "hetero", "seed": 44, "n_train": 3808, "n_test": 952, "target_std": 0.07976581901311874, "point_rmse": 0.01367147732526064, "nll_mean": -3.8201169967651367, "crps_mean": 0.007674708962440491, "coverage_80": 0.7787880897521973, "coverage_err_80": 0.02121191024780278, "precision_error_corr": -0.06823766987002387, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "74c166be1075793c390575391b0454c8026d8f5929af850e77a0a8d1ac172a3e", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "quantile_pinball", "head": "quantile", "seed": 44, "n_train": 3808, "n_test": 952, "target_std": 0.07976581901311874, "point_rmse": 0.008906513452529907, "nll_mean": NaN, "crps_mean": 0.005013622809201479, "coverage_80": 0.7806591391563416, "coverage_err_80": 0.01934086084365849, "precision_error_corr": 0.4248056653517465, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e100c585ec297e56985ff351c47372c94a53d122ec58a23a6adbd736e05466a8", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mixture_gaussian", "head": "mixture", "seed": 44, "n_train": 3808, "n_test": 952, "target_std": 0.07976581901311874, "point_rmse": 0.012422467581927776, "nll_mean": -2.985718011856079, "crps_mean": 0.0070615652948617935, "coverage_80": 0.8087579011917114, "coverage_err_80": 0.008757901191711381, "precision_error_corr": 0.03797405309872104, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "37b4576547ed4439a01cf77eadf8782d5a5dcc8a289de5473d11b73705ca2540", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 44, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mse_point", "head": "point", "seed": 45, "n_train": 3808, "n_test": 952, "target_std": 0.09436049312353134, "point_rmse": 0.0096316272392869, "nll_mean": -4.1602373123168945, "crps_mean": 0.005464307498186827, "coverage_80": 0.7904083728790283, "coverage_err_80": 0.009591627120971724, "precision_error_corr": 0.0, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "8c08b1f48d34e22210bca1b3a7f214e3a42cc86dc0d9fb12a4dbd3002eb94392", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 45, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "hetero_gaussian", "head": "hetero", "seed": 45, "n_train": 3808, "n_test": 952, "target_std": 0.09436049312353134, "point_rmse": 0.012070664204657078, "nll_mean": -3.930147886276245, "crps_mean": 0.006872879806905985, "coverage_80": 0.8045561909675598, "coverage_err_80": 0.00455619096755977, "precision_error_corr": 0.0011535509649318722, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "ff80be98c19949c9bc6551c96432c8c79c3348193fd37694546d99843991fbeb", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 45, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "quantile_pinball", "head": "quantile", "seed": 45, "n_train": 3808, "n_test": 952, "target_std": 0.09436049312353134, "point_rmse": 0.008826499804854393, "nll_mean": NaN, "crps_mean": 0.005074703600257635, "coverage_80": 0.7834492921829224, "coverage_err_80": 0.01655070781707768, "precision_error_corr": 0.40930936117157574, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e2c2e95398747288cb6171068d86c83b9305ce754890acd0cd482cf9c53d0894", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 45, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mixture_gaussian", "head": "mixture", "seed": 45, "n_train": 3808, "n_test": 952, "target_std": 0.09436049312353134, "point_rmse": 0.012672144919633865, "nll_mean": -2.998953104019165, "crps_mean": 0.007052209693938494, "coverage_80": 0.7972032427787781, "coverage_err_80": 0.0027967572212219682, "precision_error_corr": -0.009097987598416265, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "bcc0ed3c5cf3a7dde89fedb1ae55fca68d605d7e1d12ec4c4a0e778f44974f40", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 45, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mse_point", "head": "point", "seed": 46, "n_train": 3808, "n_test": 952, "target_std": 0.09617355465888977, "point_rmse": 0.009415144100785255, "nll_mean": -4.180056571960449, "crps_mean": 0.005293871741741896, "coverage_80": 0.7709755897521973, "coverage_err_80": 0.02902441024780278, "precision_error_corr": 0.0, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "dbfc5b07c2a341f54dc554ccebb53d29902364530c24e966c3ad51e08771ff53", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 46, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "hetero_gaussian", "head": "hetero", "seed": 46, "n_train": 3808, "n_test": 952, "target_std": 0.09617355465888977, "point_rmse": 0.013287673704326153, "nll_mean": -3.802541732788086, "crps_mean": 0.0075059556402266026, "coverage_80": 0.7392331957817078, "coverage_err_80": 0.06076680421829228, "precision_error_corr": 0.28496450370187354, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "60c97cfb1da82b812404aa05eec493a701e894294a1b7cfa04d6e33f9f3de4ab", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 46, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "quantile_pinball", "head": "quantile", "seed": 46, "n_train": 3808, "n_test": 952, "target_std": 0.09617355465888977, "point_rmse": 0.008482513017952442, "nll_mean": NaN, "crps_mean": 0.00481612840667367, "coverage_80": 0.7805935144424438, "coverage_err_80": 0.019406485557556197, "precision_error_corr": 0.3588469652268727, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "683847b85527d8db6d5362faaa44448783fdd8466095cbc19960545966e7f655", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 46, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}, {"arm_id": "mixture_gaussian", "head": "mixture", "seed": 46, "n_train": 3808, "n_test": 952, "target_std": 0.09617355465888977, "point_rmse": 0.012806608341634274, "nll_mean": -2.960143566131592, "crps_mean": 0.007200678810477257, "coverage_80": 0.795365035533905, "coverage_err_80": 0.004634964466095015, "precision_error_corr": 0.22162795937854873, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "3ab83e1514ed394b139a08054f6a354d70cedadae2eafed4dd90f31897d156c0", "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695", "substrate_n_files": 111, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 46, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_frozen_encoder_and_transition_set_across_head_arms"], "driver_script_in_substrate_hash": true, "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"}}], "config": {"seeds": [42, 43, 44, 45, 46], "collect_episodes": 40, "steps_per_episode": 120, "head_train_epochs": 40, "world_dim": 32, "mixture_k": 3, "quantile_levels": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9], "crps_improve_frac": 0.02, "readiness_norm_residual_floor": 0.05}, "dry_run": false, "machine": "ree-cloud-2"}
+{
+  "run_id": "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3",
+  "experiment_type": "v3_exq_712_distributional_world_forward_heads",
+  "queue_id": "V3-EXQ-712",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "SD-063"
+  ],
+  "experiment_purpose": "diagnostic",
+  "supersedes": null,
+  "outcome": "PASS",
+  "evidence_direction": "non_contributory",
+  "non_degenerate": true,
+  "degeneracy_reason": "",
+  "degenerate_metrics": {},
+  "timestamp_utc": "20260704T014207Z",
+  "interpretation": {
+    "label": "distributional_head_ranking",
+    "winner_arm": "quantile_pinball",
+    "c1_seed_wins": 4,
+    "n_seeds_scored": 5,
+    "c1_majority_needed": 3,
+    "point_mean_crps": 0.005144903622567654,
+    "best_distributional_mean_crps": 0.004856146033853292,
+    "preconditions": [
+      {
+        "name": "heldout_conditional_spread_present",
+        "measured": 0.10207266749417739,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sufficient_test_transitions",
+        "measured": 4760.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_best_dist_crps_beats_point",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_best_dist_crps_beats_point": true
+    },
+    "readiness_note": ""
+  },
+  "arm_summary": {
+    "mse_point": {
+      "crps_mean": 0.005144903622567654,
+      "nll_mean": -4.2088827133178714,
+      "coverage_err_80_mean": 0.013771002292633084,
+      "precision_error_corr_mean": 0.0,
+      "n_seeds": 5
+    },
+    "hetero_gaussian": {
+      "crps_mean": 0.00707760713994503,
+      "nll_mean": -3.894776725769043,
+      "coverage_err_80_mean": 0.026524410247802742,
+      "precision_error_corr_mean": 0.04012106438892553,
+      "n_seeds": 5
+    },
+    "quantile_pinball": {
+      "crps_mean": 0.004856146033853292,
+      "nll_mean": NaN,
+      "coverage_err_80_mean": 0.020548844337463422,
+      "precision_error_corr_mean": 0.37856102325734153,
+      "n_seeds": 5
+    },
+    "mixture_gaussian": {
+      "crps_mean": 0.006822110433131456,
+      "nll_mean": -3.0161572456359864,
+      "coverage_err_80_mean": 0.013253679275512686,
+      "precision_error_corr_mean": 0.03791113572838827,
+      "n_seeds": 5
+    }
+  },
+  "arm_results": [
+    {
+      "arm_id": "mse_point",
+      "head": "point",
+      "seed": 42,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07326334714889526,
+      "point_rmse": 0.009256665594875813,
+      "nll_mean": -4.198659896850586,
+      "crps_mean": 0.005233796779066324,
+      "coverage_80": 0.7890296578407288,
+      "coverage_err_80": 0.010970342159271285,
+      "precision_error_corr": 0.0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3c36cb5d6647d53e0ddf1d0b6bc9793d686e5a78876f357e262221d25f917c59",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "hetero_gaussian",
+      "head": "hetero",
+      "seed": 42,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07326334714889526,
+      "point_rmse": 0.0121278902515769,
+      "nll_mean": -3.9104769229888916,
+      "crps_mean": 0.0069930581375956535,
+      "coverage_80": 0.7963169813156128,
+      "coverage_err_80": 0.0036830186843872514,
+      "precision_error_corr": -0.08512344808261736,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "fbe9fbfe0daaeec31cf9107b0e039f42494131c14bb38f9707962fd74028e792",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "quantile_pinball",
+      "head": "quantile",
+      "seed": 42,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07326334714889526,
+      "point_rmse": 0.008502926677465439,
+      "nll_mean": NaN,
+      "crps_mean": 0.004797753877937794,
+      "coverage_80": 0.7615545988082886,
+      "coverage_err_80": 0.03844540119171147,
+      "precision_error_corr": 0.41540634132958676,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a576ffdde536f9c3349a637113686fee17123db618e9548f2ee06c6f487c2150",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mixture_gaussian",
+      "head": "mixture",
+      "seed": 42,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07326334714889526,
+      "point_rmse": 0.011481539346277714,
+      "nll_mean": -3.058114528656006,
+      "crps_mean": 0.0064561632461845875,
+      "coverage_80": 0.8243500590324402,
+      "coverage_err_80": 0.02435005903244014,
+      "precision_error_corr": -0.05642247781875422,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e5c17fb8e71bbb73523cd47d7ac72ee632f9a93b9de0abf35b76c25e83ea0ceb",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mse_point",
+      "head": "point",
+      "seed": 43,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.08550971746444702,
+      "point_rmse": 0.008252979256212711,
+      "nll_mean": -4.310127258300781,
+      "crps_mean": 0.004598609637469053,
+      "coverage_80": 0.8064272403717041,
+      "coverage_err_80": 0.006427240371704057,
+      "precision_error_corr": 0.0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a493edc510e58aaeca58b9448ca8a0586900f039a551ab5f41cab708a5e298ba",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "hetero_gaussian",
+      "head": "hetero",
+      "seed": 43,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.08550971746444702,
+      "point_rmse": 0.010837852023541927,
+      "nll_mean": -4.0106000900268555,
+      "crps_mean": 0.006341433152556419,
+      "coverage_80": 0.8424041271209717,
+      "coverage_err_80": 0.042404127120971635,
+      "precision_error_corr": 0.06784838523046345,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "365c08511b4cde62af27213c299480a023c7f05995b44b97dcb78a8175a6b220",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "quantile_pinball",
+      "head": "quantile",
+      "seed": 43,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.08550971746444702,
+      "point_rmse": 0.008028664626181126,
+      "nll_mean": NaN,
+      "crps_mean": 0.004578521475195885,
+      "coverage_80": 0.7909992337226868,
+      "coverage_err_80": 0.009000766277313277,
+      "precision_error_corr": 0.2844367832069259,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "71b0dcdd773a3bd81e3d5ba24e6a247460acd25d345439658785d8a1a17ac55d",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mixture_gaussian",
+      "head": "mixture",
+      "seed": 43,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.08550971746444702,
+      "point_rmse": 0.011380717158317566,
+      "nll_mean": -3.07785701751709,
+      "crps_mean": 0.00633993512019515,
+      "coverage_80": 0.825728714466095,
+      "coverage_err_80": 0.025728714466094926,
+      "precision_error_corr": -0.004525868418157918,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a6ad15dc2eb66103ff5a38cca057ad66997a1a7e98e8312bc05e228c58c80c9b",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 43,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mse_point",
+      "head": "point",
+      "seed": 44,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07976581901311874,
+      "point_rmse": 0.009246984496712685,
+      "nll_mean": -4.1953325271606445,
+      "crps_mean": 0.005133932456374168,
+      "coverage_80": 0.7871586084365845,
+      "coverage_err_80": 0.012841391563415572,
+      "precision_error_corr": 0.0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "d8425d60a709e5ea2dd4be4fab316baa52d659ff3517b779317babdb771ccec5",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "hetero_gaussian",
+      "head": "hetero",
+      "seed": 44,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07976581901311874,
+      "point_rmse": 0.01367147732526064,
+      "nll_mean": -3.8201169967651367,
+      "crps_mean": 0.007674708962440491,
+      "coverage_80": 0.7787880897521973,
+      "coverage_err_80": 0.02121191024780278,
+      "precision_error_corr": -0.06823766987002387,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "74c166be1075793c390575391b0454c8026d8f5929af850e77a0a8d1ac172a3e",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "quantile_pinball",
+      "head": "quantile",
+      "seed": 44,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07976581901311874,
+      "point_rmse": 0.008906513452529907,
+      "nll_mean": NaN,
+      "crps_mean": 0.005013622809201479,
+      "coverage_80": 0.7806591391563416,
+      "coverage_err_80": 0.01934086084365849,
+      "precision_error_corr": 0.4248056653517465,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e100c585ec297e56985ff351c47372c94a53d122ec58a23a6adbd736e05466a8",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mixture_gaussian",
+      "head": "mixture",
+      "seed": 44,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.07976581901311874,
+      "point_rmse": 0.012422467581927776,
+      "nll_mean": -2.985718011856079,
+      "crps_mean": 0.0070615652948617935,
+      "coverage_80": 0.8087579011917114,
+      "coverage_err_80": 0.008757901191711381,
+      "precision_error_corr": 0.03797405309872104,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "37b4576547ed4439a01cf77eadf8782d5a5dcc8a289de5473d11b73705ca2540",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 44,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mse_point",
+      "head": "point",
+      "seed": 45,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09436049312353134,
+      "point_rmse": 0.0096316272392869,
+      "nll_mean": -4.1602373123168945,
+      "crps_mean": 0.005464307498186827,
+      "coverage_80": 0.7904083728790283,
+      "coverage_err_80": 0.009591627120971724,
+      "precision_error_corr": 0.0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "8c08b1f48d34e22210bca1b3a7f214e3a42cc86dc0d9fb12a4dbd3002eb94392",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 45,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "hetero_gaussian",
+      "head": "hetero",
+      "seed": 45,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09436049312353134,
+      "point_rmse": 0.012070664204657078,
+      "nll_mean": -3.930147886276245,
+      "crps_mean": 0.006872879806905985,
+      "coverage_80": 0.8045561909675598,
+      "coverage_err_80": 0.00455619096755977,
+      "precision_error_corr": 0.0011535509649318722,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "ff80be98c19949c9bc6551c96432c8c79c3348193fd37694546d99843991fbeb",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 45,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "quantile_pinball",
+      "head": "quantile",
+      "seed": 45,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09436049312353134,
+      "point_rmse": 0.008826499804854393,
+      "nll_mean": NaN,
+      "crps_mean": 0.005074703600257635,
+      "coverage_80": 0.7834492921829224,
+      "coverage_err_80": 0.01655070781707768,
+      "precision_error_corr": 0.40930936117157574,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e2c2e95398747288cb6171068d86c83b9305ce754890acd0cd482cf9c53d0894",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 45,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mixture_gaussian",
+      "head": "mixture",
+      "seed": 45,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09436049312353134,
+      "point_rmse": 0.012672144919633865,
+      "nll_mean": -2.998953104019165,
+      "crps_mean": 0.007052209693938494,
+      "coverage_80": 0.7972032427787781,
+      "coverage_err_80": 0.0027967572212219682,
+      "precision_error_corr": -0.009097987598416265,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "bcc0ed3c5cf3a7dde89fedb1ae55fca68d605d7e1d12ec4c4a0e778f44974f40",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 45,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mse_point",
+      "head": "point",
+      "seed": 46,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09617355465888977,
+      "point_rmse": 0.009415144100785255,
+      "nll_mean": -4.180056571960449,
+      "crps_mean": 0.005293871741741896,
+      "coverage_80": 0.7709755897521973,
+      "coverage_err_80": 0.02902441024780278,
+      "precision_error_corr": 0.0,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "dbfc5b07c2a341f54dc554ccebb53d29902364530c24e966c3ad51e08771ff53",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 46,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "hetero_gaussian",
+      "head": "hetero",
+      "seed": 46,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09617355465888977,
+      "point_rmse": 0.013287673704326153,
+      "nll_mean": -3.802541732788086,
+      "crps_mean": 0.0075059556402266026,
+      "coverage_80": 0.7392331957817078,
+      "coverage_err_80": 0.06076680421829228,
+      "precision_error_corr": 0.28496450370187354,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "60c97cfb1da82b812404aa05eec493a701e894294a1b7cfa04d6e33f9f3de4ab",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 46,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "quantile_pinball",
+      "head": "quantile",
+      "seed": 46,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09617355465888977,
+      "point_rmse": 0.008482513017952442,
+      "nll_mean": NaN,
+      "crps_mean": 0.00481612840667367,
+      "coverage_80": 0.7805935144424438,
+      "coverage_err_80": 0.019406485557556197,
+      "precision_error_corr": 0.3588469652268727,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "683847b85527d8db6d5362faaa44448783fdd8466095cbc19960545966e7f655",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 46,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    },
+    {
+      "arm_id": "mixture_gaussian",
+      "head": "mixture",
+      "seed": 46,
+      "n_train": 3808,
+      "n_test": 952,
+      "target_std": 0.09617355465888977,
+      "point_rmse": 0.012806608341634274,
+      "nll_mean": -2.960143566131592,
+      "crps_mean": 0.007200678810477257,
+      "coverage_80": 0.795365035533905,
+      "coverage_err_80": 0.004634964466095015,
+      "precision_error_corr": 0.22162795937854873,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "3ab83e1514ed394b139a08054f6a354d70cedadae2eafed4dd90f31897d156c0",
+        "substrate_hash": "27ffc52ae0081ee33445aa55a62842b433b209233a0337cd8b999d92cdea0695",
+        "substrate_n_files": 111,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 46,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_frozen_encoder_and_transition_set_across_head_arms"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "cda2be010ded6639aa361e29e1fe8df14d2bd1d2cd07ec05dcbd01dea6ea4e2c"
+      }
+    }
+  ],
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "collect_episodes": 40,
+    "steps_per_episode": 120,
+    "head_train_epochs": 40,
+    "world_dim": 32,
+    "mixture_k": 3,
+    "quantile_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "crps_improve_frac": 0.02,
+    "readiness_norm_residual_floor": 0.05
+  },
+  "dry_run": false,
+  "machine": "ree-cloud-2",
+  "evidence_direction_note": "Diagnostic PASS attached to SD-063 (E2 conditional predictive-uncertainty head) as its motivating diagnostic per /governance 2026-07-04. Stays non_contributory: diagnostic, not hypothesis-testing -- it does NOT weight SD-063 (registers the design insight only)."
+}

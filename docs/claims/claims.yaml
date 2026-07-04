@@ -43184,6 +43184,56 @@
     literally the SAME object is HA3 in pilot_result.md and is NOT asserted here -- hence related_claims,
     not depends_on.
 
+- id: SD-063
+  title: "E2 world-forward carries a conditional predictive-uncertainty head (distribution-free quantile form) feeding E3 commitment gating: the forward model emits a per-prediction predictive spread that tracks realized error, instead of relying only on E3's running-variance EMA (a temporally-smoothed global estimate whose predicted uncertainty has near-zero per-point error correlation)."
+  claim_type: design_decision
+  subject: e2.conditional_predictive_uncertainty_head
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-07-04
+  instantiates: MECH-059
+  depends_on:
+    - MECH-059   # confidence channel (uncertainty-derived precision) distinct from residual error -- SD-063 is a concrete realization
+    - SD-031     # z_world agency-attribution residual -- CAVEAT: a variance head must not absorb/explain away the E2WorldForward agency residual
+  motivating_diagnostic: v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3
+  functional_restatement: >
+    E2's world-forward is currently a point predictor trained on MSE
+    (ree-v3/ree_core/predictors/e2_fast.py, e2_world.py); the only uncertainty
+    signal is E3's running-variance EMA -- a temporally-smoothed GLOBAL spread
+    whose predicted uncertainty does not correlate with realized per-prediction
+    error (precision_error_corr ~ 0.0 by construction). SD-063 asserts E2 should
+    instead (or additionally) carry a CONDITIONAL predictive-uncertainty head
+    that emits a per-input predictive spread, so E3 can gate action commitment
+    on where THIS prediction is uncertain rather than on a running average. The
+    distribution-free quantile/pinball form is preferred: the V3-EXQ-712
+    diagnostic (frozen encoder + transition set, heads swapped) found the
+    quantile head both wins on CRPS (0.00486 vs point 0.00514, 4/5 seeds) AND
+    yields a genuine per-point error signal (precision_error_corr 0.379 vs the
+    EMA's 0.0), while parametric Gaussian heads (hetero-Gaussian, mixture) did
+    WORSE than the point baseline on CRPS -- imposing a Gaussian shape on the
+    next-state predictive distribution hurts. Biological analogue:
+    cortical/cerebellar forward models carrying graded predictive precision that
+    feeds precision-weighted action selection (the MECH-059 confidence channel).
+  evidence_quality_note: >
+    Motivated by the V3-EXQ-712 diagnostic PASS (non_contributory; diagnostic,
+    not hypothesis-testing). The probe held the encoder + transition set FIXED
+    and swapped only the E2 forward head + loss (mse_point / hetero_gaussian /
+    quantile_pinball / mixture_gaussian) over the SAME held-out
+    (z_world_t, a_t) -> z_world_{t+1} transitions (5 seeds, 4760 test
+    transitions); winner quantile_pinball. This registers the DESIGN insight; it
+    does NOT itself validate a wired-in E2 head (the diagnostic trained detached
+    heads, effectively single-phase P1). v3_pending until a real
+    /implement-substrate build wires a conditional-uncertainty head into E2 and a
+    validation experiment shows (a) the CRPS / precision-error-corr advantage
+    survives joint training, and (b) the head does NOT explain away the SD-031
+    E2WorldForward agency residual (the head must not absorb the agent-caused
+    component of next-state variance -- that residual is what makes E2 an agency
+    detector). Caveat carried on the SD-031 dependency.
+  location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
