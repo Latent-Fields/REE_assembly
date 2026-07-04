@@ -1453,7 +1453,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-191-proposal-for-mech-179 && claude --resume c8ae34ce-6bb6-45fe-b262-bebf1c48eda5",
       "task_claim_session_id": "igw-auto-igw-191-proposal-for-mech-179-20260704T014136Z",
       "assigned_at": "2026-07-04T01:41:20Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-04T01:47:12Z",
+      "completion_summary": "marked EVB-0102/MECH-179 blocked_substrate: no error-TYPE channel, sleep phase composition scheduler-pinned (no demand knob), no non-vacuous commitment-free diagnostic",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -1770,7 +1774,7 @@
     },
     {
       "stable_hash": "e4c9016acccc",
-      "igw_id_at_disposition": "IGW-20260624-197",
+      "igw_id_at_disposition": "IGW-20260704-191",
       "owner_exq": null,
       "claim_ids": [
         "MECH-179"
@@ -1779,8 +1783,8 @@
       "title": "Proposal for MECH-179",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-06-25T00:07:51Z",
-      "re_eligible_after": "2026-06-27T00:07:43Z"
+      "noted_at": "2026-07-04T01:47:12Z",
+      "re_eligible_after": "2026-07-06T01:47:12Z"
     },
     {
       "stable_hash": "73973b62401a",
