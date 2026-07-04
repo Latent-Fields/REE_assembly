@@ -1,0 +1,146 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_713_bounded_parity_controller_validation",
+  "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-04T22:36:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-439",
+    "ARC-108",
+    "ARC-110"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "MECH-439": "supports",
+    "ARC-108": "weakens",
+    "ARC-110": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "bounded_parity_win_but_does_not_convert_ceiling_intrinsic_weakens_arc108_arc110",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "number of seeds whose candidate pool is DIVERGENT on BOTH arms >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating; too few => substrate_not_ready_requeue.",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "loops_carry_live_cross_loop_variance",
+        "kind": "readiness",
+        "description": "ARC-110 NON-DEGENERACY guard: on BOTH loop arms a non-motor loop FLIPS the within-eligible winner or the loops DISAGREE on a non-trivial fraction of P2 ticks, AND a non-motor loop carries per-loop preference RANGE > 0, on a majority of seeds. A loop pinned to the motor winner is a vacuous split.",
+        "control": "loop_frac_committed_neq_motor / loop_frac_disagree + per-loop pref range (both arms)",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "named_channel_routing_live",
+        "kind": "readiness",
+        "description": "707b C2-release non-degeneracy: on the LEARNED arm at least one LIMBIC channel (ofc/liking/vigour) reaches the arbitration carrying routed per-candidate RANGE > LIMBIC_ROUTED_RANGE_FLOOR (peak over P2 ticks), on a strict-majority of DIVERGENT seeds. Without live limbic range the arbitration has no limbic signal to learn to route through (the MECH-191 phasic gap). measured = max across LEARNED seeds of the limbic routed range; SAME statistic (per-candidate range) the conversion depends on, not a magnitude proxy.",
+        "control": "LEARNED loop_limbic_routed_range_max (peak limbic routed per-candidate range over P2)",
+        "measured": 1.414214,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "learned_cross_loop_weights_moved_off_init",
+        "kind": "readiness",
+        "description": "ARC-108 x ARC-110 MECHANISM non-vacuity (W): on the LEARNED arm the learned cross-loop matrix M_cross MOVED off its zero init -- loop_cross_loop_m_range (per-tick) AND post_action_update clg_m_cross_range both > M_CROSS_RANGE_FLOOR AND clg_n_updates > 0 -- on a strict-majority of DIVERGENT seeds. At init M_cross==0 -> W_cross==I -> LEARNED is BIT-IDENTICAL to STATIC; if the weights never moved a 'no lift' is meaningless => substrate_not_ready_requeue (NEVER a weakens). measured = max across LEARNED seeds of the peak M_cross range; SAME statistic (M_cross range) the mechanism depends on.",
+        "control": "LEARNED clg_m_range_peak + clg_update_m_cross_range_max + clg_update_n_updates",
+        "measured": 0.16938061,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "limbic_loop_parity_win",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING gate (the 711 autopsy target), NOW SATURATION-GUARDED: on the A_ASCENDING_ON arm the limbic loop's effective column weight w_eff[limbic] (from the PARITY-CONTROLLED W_cross) reaches a FAIR PARITY WIN -- it enters the parity BAND (w_eff[motor] <= w_eff[limbic] <= PARITY_BAND_HI x w_eff[motor]) on >= 1 P2 tick AND does NOT blow up (w_eff/M_cross under the saturation ceiling) -- on a STRICT-MAJORITY (>= LIMBIC_WIN_PASS_FRACTION = 3/4) of DIVERGENT seeds. This is the exact repair of the 711 hole: the raw scalar met a BARE w_eff[limbic] >= w_eff[motor] via a 10-2274x MONOPOLY (saturation), which the band+ceiling now rejects. If the controller cannot deliver a fair parity win on >= 3/4 divergent seeds (lift too weak), the conversion question is not measured => substrate_not_ready_requeue, NEVER a weakens. measured = n divergent seeds with a fair parity win; SAME statistic (effective column weight) the conversion depends on.",
+        "control": "A_ASCENDING_ON clg_limbic_parity_win (band win AND not saturated) over P2",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "met": true
+      },
+      {
+        "name": "no_saturation_blowup",
+        "kind": "readiness",
+        "description": "SATURATION GUARD (the load-bearing 711 repair): the number of DIVERGENT seeds on the A_ASCENDING_ON arm whose arbitration BLEW UP -- w_eff[limbic] peak past SATURATION_W_EFF_CEILING x w_eff[motor] peak, or M_cross range peak past SATURATION_M_CROSS_CEILING -- must be ZERO (upper-bound: measured <= threshold). Any saturated seed means a limbic MONOPOLY (not a fair win) and the conversion was tested under a degenerate arbitration => substrate_not_ready_requeue, NEVER a decisive FAIL/weakens. With a correctly tuned controller this is always 0.",
+        "control": "A_ASCENDING_ON clg_saturated count over divergent seeds (0 expected)",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable_delta_nonflat",
+        "kind": "readiness",
+        "description": "on BOTH arms the finer w_chan_finer entries MOVED + carry cross-channel range above floor AND the signed-RPE delta_t carries cross-tick variance, on a majority of seeds -- learning is engaged. Below floor => substrate_not_ready_requeue.",
+        "control": "fcg_w_chan_finer_range_max + fcg_delta_t_std (both arms)",
+        "measured": 0.00143939,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "candidate_pool_divergent",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds (GAP-A non-vacuity).",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 0.025868,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_learned_strict_above_static",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": true,
+      "enough_divergent_seeds": true,
+      "loops_carry_live_cross_loop_variance": true,
+      "named_channel_routing_live": true,
+      "learned_cross_loop_weights_moved": true,
+      "limbic_loop_parity_win": true,
+      "no_saturation_blowup": true,
+      "learning_engaged": true,
+      "crf_matured": true
+    }
+  }
+}
