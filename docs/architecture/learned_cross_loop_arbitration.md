@@ -293,6 +293,85 @@ sweepable complementary levers (already exposed). Default False / gains 1.0 -> b
 | ASG-1 | The ascending-spiral strength is a single scalar `spiral_gain` on the upper triangle, not an anatomically-distributed, per-projection maturational gradient. | ARC-106 G1 function-not-homology: the FUNCTION (asymmetric ascending-dominant cross-loop influence that lets a matured limbic loop override a motor default) is preserved; the anatomical gradient is abstracted, as everywhere in REE. |
 | ASG-2 | Forward gain and maturation gain are decoupled knobs; in biology anatomical projection density and plasticity co-vary. | Honest simplification for a cleanly-isolable falsifier -- forward gain keeps `M_cross` trajectories controllable; the two can be co-swept if the biology demands it. |
 
+## Sub-addendum: bounded ascending-spiral gain -- target-PARITY controller (V3-EXQ-711 runaway repair, 2026-07-04)
+
+**Status:** IMPLEMENTED 2026-07-04. PROMOTES NOTHING. No-op-default master switch, byte-identical OFF.
+**Config:** `E3Config.use_ascending_parity_controller` (default `False`) + `loop_segregation_parity_forward_gain`
+(default `1.0`, lift) + `loop_segregation_parity_ceiling_ratio` (default `0.0` = disabled, the parity cap) +
+`loop_segregation_parity_plasticity_gain` (default `1.0`, bounded maturation) + `loop_segregation_m_cross_clamp`
+(default `0.0` = disabled, the ascending `|M_cross|` bound). TAKES PRECEDENCE over `use_ascending_spiral_gain`
+when both are on (the raw path retained only for 709/711 reproducibility). Requires
+`use_learned_cross_loop_arbitration` on to act.
+**Regression guard:** `ree-v3/tests/contracts/test_ascending_parity_controller.py` (9 contracts).
+
+### Problem (the runaway the raw scalar produces)
+
+The raw-scalar gain above (ASG) has **no stable parity regime**. V3-EXQ-709 at ascending coupling ~0.03 is
+**sub-threshold** (limbic never wins, 1/4). V3-EXQ-711 at the raw `20x`-forward `x 5x`-plasticity is
+**runaway**: the two *unbounded multiplicative* gains compound through the positive-feedback plastic
+`M_cross` loop, so `M_cross` range peaks at **4897.8** (vs the un-gained ~0.02-0.12) and `w_eff[limbic]`
+reaches **10-2274x** `w_eff[motor]` across the 3 divergent seeds. That is a **new limbic-loop MONOPOLY** that
+merely replaces the F/motor-pinning -- not a fair arbitration; committed-class entropy **fell** below the
+un-gained baseline on 2/3 divergent seeds (confirmed `failure_autopsy_V3-EXQ-711_2026-07-04`, user-approved).
+Biological triage: Haber's striato-nigro-striatal spiral is a **graded, bounded, parity-restoring**
+modulation held in a parity regime by **tonic-DA homeostasis** + **striatal lateral inhibition /
+normalization**; the raw REE scalar has the *symbol* (an upper-triangular gain) without that *homeostatic
+bounding dependency*. The mechanism was **missing a controller** -- a genuine new substrate finding, not
+evidence that MECH-439's ceiling is intrinsic.
+
+### Failure record (defines acceptance criteria)
+
+| run | gate | reading |
+|---|---|---|
+| V3-EXQ-711 | `limbic_loop_can_win` met 3/3 divergent but by SATURATION (`M_cross` range 4897.8; `w_eff[limbic]` 10-2274x motor); C1 entropy fell on 2/3 | the raw scalar has no bounded parity regime -- conversion tested under a DEGENERATE (saturated) arbitration, `non_contributory` |
+
+**Acceptance target** (for the SEPARATE new-EXQ successor falsifier): under the bounded controller the limbic
+loop reaches `w_eff[motor]` **parity within a bounded band** (a parity WIN, not a blow-up) on a strict-majority
+(>=3/4) of divergent seeds, C1 committed-class entropy is **strict-above the un-gained baseline** on >=2/3
+divergent seeds, and a blow-up (breach of the `w_eff`/`M_cross` ceiling) **self-routes
+`substrate_not_ready_requeue`** -- on the same GAP-A reef-bipartite substrate, matched seeds, never a false
+weakens.
+
+### Solution (actuator-saturated setpoint control)
+
+Replace the unbounded multiply with a controller that seeks a **parity setpoint** with **actuator +
+integrator saturation**:
+
+1. **Forward parity-ceiling** (`_parity_forward_gain` in the `W_cross` assembly): a per-step ascending gain
+   `g in [0, parity_forward_gain]` is **solved** so the limbic effective column weight
+   `w_eff[limbic] = base_l + g * asc_l` is lifted toward but **hard-capped** at
+   `parity_ceiling_ratio * w_eff[motor]`, where `base_l = g_l*(1+M[2,2])` (the un-scaled diagonal part) and
+   `asc_l = m_a*M[0,2] + g_a*M[1,2]` (the scalable ascending part). Because the motor column (col 0) has no
+   strict-upper-tri entry, `w_eff[motor]` is **gain-invariant** -- the fixed parity reference. `g` is floored
+   at 0 (never invert the ascending sign) and never exceeds the configured lift (only ever REDUCES to hold the
+   ceiling). This bounds the `w_eff[limbic]/w_eff[motor]` **ratio** -> a fair within-eligible reorder, never a
+   monopoly. Applied through the same `_ascending_gain_matrix` -> the map stays **linear** (preserving CLA-3
+   `w_eff`-collapsibility) and bit-identical-at-init.
+2. **Maturation bounded loop** (`post_action_update`): the ascending three-factor update is scaled by the
+   **bounded** `parity_plasticity_gain`, then the ascending (upper-tri) `M_cross` entries are **clamped** to
+   `[-m_cross_clamp, m_cross_clamp]` -- an anti-windup clamp on the plastic positive-feedback loop (the second
+   711 runaway source). Waking-only (the update is gated `not simulation_mode`).
+
+**Safety unchanged:** the arbitration stays STRICTLY within the F+MECH-448/449 eligible set -- reorder only,
+never re-admit a No-Go-suppressed candidate. The `w_eff`/`limbic_ge_motor` diagnostics are computed from the
+**same parity-gained** `W_cross` (so a **saturation guard** on the successor's `limbic_loop_can_win` gate can
+require a parity band + a `w_eff`/`M_cross` ceiling). Master switch False / inert defaults -> bit-identical OFF.
+
+### ML/AI engineering note (Layer 7 -- counsel, not authority)
+
+The engineering problem -- an unbounded gain on a positive-feedback plastic loop diverging exponentially -- is
+exactly what **output saturation + integrator (anti-windup) clamping** solve in setpoint control. Output
+saturation = the parity ceiling; integrator clamp = the `M_cross` clamp. This is *engineering* counsel; the
+*architecture* is Haber's bounded, parity-restoring ascending spiral (the biology supplies the bounding
+dependency the raw symbol lacked).
+
+### ARC-106 divergence-ledger rows (this sub-addendum)
+
+| id | divergence from biology | justification |
+|---|---|---|
+| ASG-3 | The parity setpoint + ceiling ratio are explicit scalars, not an emergent tonic-DA-homeostasis loop. | ARC-106 G1 function-not-homology: the FUNCTION (a homeostatically-bounded, parity-restoring ascending modulation) is preserved; the DA-homeostasis loop that would set the bound endogenously is abstracted to a configured ratio, as elsewhere in REE. |
+| ASG-4 | The ascending `M_cross` clamp is a hard box, not the soft striatal lateral-inhibition normalization that bounds the biological spiral. | Honest simplification for a cleanly-isolable falsifier; the clamp is the minimal anti-windup that stops the plastic runaway. A soft normalization can replace it if the biology demands graded bounding. |
+
 ## Related Claims
 
 ARC-108 (learned dopamine-gated gating), ARC-110 (segregated loops), MECH-439 (conversion-ceiling umbrella),

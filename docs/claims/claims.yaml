@@ -45506,6 +45506,22 @@
   version_relevance: v3
   registered_utc: "2026-06-18"
   pending_retest_after_substrate: true
+  implementation_note: >
+    SUBSTRATE BUILD 2026-07-04 (PROMOTES NOTHING): the BOUNDED ascending-spiral gain -- a target-PARITY
+    controller -- was built no-op-default in ree-v3 (config.e3.use_ascending_parity_controller +
+    loop_segregation_parity_forward_gain / parity_ceiling_ratio / parity_plasticity_gain / m_cross_clamp;
+    e3_selector._parity_forward_gain solves a per-step ascending gain holding w_eff[limbic] under
+    ceiling_ratio*w_eff[motor], + an anti-windup clamp on the ascending M_cross maturation). It repairs the
+    RAW-scalar runaway the confirmed failure_autopsy_V3-EXQ-711_2026-07-04 found (M_cross range 4897.8,
+    w_eff[limbic] 10-2274x w_eff[motor] = a limbic MONOPOLY, not a fair parity win). A SATURATION GUARD was
+    added to the falsifier's limbic_loop_can_win gate (parity band + w_eff/M_cross ceiling -> a blow-up
+    self-routes substrate_not_ready_requeue, never a decisive FAIL). Successor falsifier V3-EXQ-713 queued
+    (OFF vs bounded-ON, GAP-A reef-bipartite; parity-win precondition + C1 committed-class entropy
+    strict-above the un-gained baseline on >=2/3 divergent seeds). Byte-identical OFF. PROMOTES NOTHING:
+    MECH-439 stays candidate/substrate_ceiling + pending_retest_after_substrate until 713 adjudicates (the
+    711 self-routed DECISIVE weakens was REJECTED by the confirmed autopsy). See ree-v3/CLAUDE.md 'BOUNDED
+    ascending-spiral gain -- target-PARITY controller' + learned_cross_loop_arbitration.md 'Sub-addendum:
+    bounded parity controller' + substrate_queue v4_loop_segregation (failure_record[7].repaired_by).
   evidence_quality_note: >
     V3-EXQ-689a (MECH-439 conflict-grade GAP-BLIND falsifier; supersedes V3-EXQ-689) FAIL / non_contributory;
     readiness ALL met + non_degenerate. The pre-registered conflict-grade BOTH-levers form (ARM_A1B1: gap-scaled
@@ -46920,6 +46936,20 @@
   version_relevance: v3
   registered_utc: "2026-06-22"
   pending_retest_after_substrate: true
+  implementation_note: >
+    SUBSTRATE BUILD 2026-07-04 (PROMOTES NOTHING): the BOUNDED ascending-spiral gain -- a target-PARITY
+    controller -- was built no-op-default in ree-v3 (config.e3.use_ascending_parity_controller +
+    loop_segregation_parity_forward_gain / parity_ceiling_ratio / parity_plasticity_gain / m_cross_clamp;
+    e3_selector._parity_forward_gain holds w_eff[limbic] under ceiling_ratio*w_eff[motor], + an anti-windup
+    clamp on the ascending M_cross maturation). It repairs the RAW-scalar runaway the confirmed
+    failure_autopsy_V3-EXQ-711_2026-07-04 found (w_eff[limbic] 10-2274x w_eff[motor] = a limbic MONOPOLY),
+    so the ARC-108 learned-gating cross-loop route can be re-tested under a FAIR bounded parity arbitration
+    rather than the 711 saturated one (which never validly tested it). A SATURATION GUARD was added to the
+    falsifier's limbic_loop_can_win gate. Successor falsifier V3-EXQ-713 queued. Byte-identical OFF.
+    PROMOTES NOTHING: ARC-108 stays candidate/substrate_conditional + pending_retest_after_substrate until
+    713 adjudicates (the 711 self-routed weakens was REJECTED). See ree-v3/CLAUDE.md 'BOUNDED
+    ascending-spiral gain -- target-PARITY controller' + learned_cross_loop_arbitration.md 'Sub-addendum:
+    bounded parity controller'.
   evidence_quality_note: >
     V3-EXQ-700d (same-layer-null validity re-tune; tagged ARC-108) FAIL/non_contributory -- the
     magnitude-matched same-layer null still could not verify-lift committed-class entropy in the V3
@@ -47372,6 +47402,26 @@
     "ARC-110 x ARC-108: ascending-spiral gain" entry. Validation falsifier V3-EXQ-711 (new EXQ; STATIC/OFF vs
     ascending-gain-ON on GAP-A reef-bipartite; non-vacuity self-route substrate_not_ready_requeue) queued after
     this build lands. PROMOTES NOTHING; stays candidate / substrate_conditional / pending_retest_after_substrate.
+    BOUNDED PARITY CONTROLLER BUILT 2026-07-04 (/implement-substrate; PROMOTES NOTHING): the raw-scalar
+    ascending gain above RAN AWAY in V3-EXQ-711 (confirmed failure_autopsy_V3-EXQ-711_2026-07-04): the 20x-forward
+    x 5x-plasticity gains compounded through the positive-feedback plastic M_cross loop -> M_cross range 4897.8,
+    w_eff[limbic] 10-2274x w_eff[motor] = a limbic MONOPOLY (not a fair parity win); the 709->711 pattern showed
+    the raw scalar has NO stable parity regime (missing a controller). Repaired behind no-op-default flag
+    config.e3.use_ascending_parity_controller + loop_segregation_parity_forward_gain (lift) / parity_ceiling_ratio
+    (cap) / parity_plasticity_gain (bounded maturation) / m_cross_clamp (anti-windup). e3_selector._parity_forward_gain
+    SOLVES a per-step ascending gain in [0, forward_gain] that holds w_eff[limbic] toward but under
+    ceiling_ratio*w_eff[motor] (motor column gain-invariant -> the fixed parity reference), + the ascending M_cross
+    maturation is clamped to +/- m_cross_clamp -- actuator-saturated setpoint control bounding the
+    w_eff[limbic]/w_eff[motor] ratio (a FAIR reorder, never a monopoly). A SATURATION GUARD was added to the
+    falsifier's limbic_loop_can_win gate (parity band + w_eff/M_cross ceiling -> blow-up self-routes
+    substrate_not_ready_requeue, never a false weakens). Byte-identical OFF / inert (verified: 9 contracts
+    tests/contracts/test_ascending_parity_controller.py + the raw test_ascending_spiral_gain.py 8 still pass).
+    Design-of-record docs/architecture/learned_cross_loop_arbitration.md "Sub-addendum: bounded parity controller";
+    ree-v3/CLAUDE.md "BOUNDED ascending-spiral gain -- target-PARITY controller". Successor falsifier V3-EXQ-713
+    (new EXQ; OFF vs bounded-ON; parity-win precondition + C1 committed-class entropy strict-above the un-gained
+    baseline) queued after this build lands -- a REDESIGN of a DIFFERENT mechanism (the controller), NOT a raw-gain
+    re-letter (the 711 re-derive brake refuses that). PROMOTES NOTHING; ARC-110 stays candidate /
+    substrate_conditional / pending_retest_after_substrate.
   # PULL-FORWARD FLAGGED 2026-06-24 (user-adjudicated; failure_autopsy_V3-EXQ-700b). The
   # V3-EXQ-700 fork resolved toward escalation -> the v4_loop_segregation substrate (this
   # claim's build) is now BUILT (2026-06-27). Recorded via the assembly companion fields ONLY;
