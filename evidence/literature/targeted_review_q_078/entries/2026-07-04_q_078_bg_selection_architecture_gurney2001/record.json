@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_078",
+  "entry_id": "2026-07-04_q_078_bg_selection_architecture_gurney2001",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-078"],
+  "source": {
+    "title": "A computational model of action selection in the basal ganglia. I. A new functional anatomy.",
+    "authors": ["Kevin Gurney", "Tony J. Prescott", "Peter Redgrave"],
+    "year": 2001,
+    "venue": "Biological Cybernetics",
+    "doi": "10.1007/PL00007984",
+    "pmid": "11417052"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the canonical formalisation of the exact dichotomy Q-078 raises: that action selection is a dedicated architectural FUNCTION (a distinct 'selection' pathway implementing feedforward off-centre on-surround competition, regulated by a separate 'control' pathway) rather than an emergent property of upstream signal strength. Gurney/Prescott/Redgrave recast selection as SIGNAL selection over scalar saliences and show the biological BG is organised as a purpose-built selection circuit -- direct conceptual support for the CONSTITUTIONAL reading (a BG-like selection constitution is a real, dedicated thing beyond parametric salience). Confidence held below 0.8 because the paper does not test REE's specific F-variance-share-vs-constitution contrast; it establishes that the biological reference architecture Q-078 invokes genuinely exists and is functionally load-bearing, which is the load-bearing premise of the constitutional hypothesis but not a direct test of REE's E3 ceiling.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's E3 conversion ceiling is CONSTITUTIONAL, then no amount of parametric strengthening of upstream saliences will reliably convert committed action -- exactly the pattern Q-078 reports across CRF/OFC/SD-037/dACC/modulatory channels. Gurney 2001 predicts this: in their model, raising a channel's salience without the selection+control architecture in place does not yield clean selection; the off-centre on-surround competition and the control pathway's regulation are what make a strong signal WIN rather than merely be present.",
+    "An REE substrate that routes salience directly to action authority without a dedicated selection layer (feedforward inhibitory competition + a separate control/regulation pathway) should exhibit either no selection or distortion-of-selection under strong input -- the signature of a missing selection constitution rather than a weak signal."
+  ],
+  "tags": ["q_078", "basal_ganglia", "action_selection", "selection_control_pathways", "signal_selection", "constitutional_vs_parametric", "computational_model", "e3_conversion_ceiling"],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia are organised around a single primary computation -- action selection -- reframed as signal selection over scalar salience values. A biologically plausible feedforward off-centre on-surround network performs the selection per se (the 'selection pathway'), while a functionally distinct 'control pathway' regulates that selection to keep it effective, synergistically with dopaminergic modulation. This decomposition (selection vs control) is offered as superior to the prevailing direct/indirect-pathway segregation for explaining how one action is cleanly chosen among competitors.",
+    "ree_translation": "Q-078 asks whether REE's failure to convert a formed, measurable upstream signal into committed action is CONSTITUTIONAL (the rules by which candidates become eligible to win -- eligibility mask, Go/No-Go, conflict-sensitive hold, threshold/widening, recurrent competition, commit-permission, post-commit latch -- are under-specified) rather than PARAMETRIC. Gurney 2001 is the reference model for the constitutional side: it demonstrates that biological selection is implemented as a DEDICATED architecture (a selection network plus a separate control/regulation network), not as a threshold on raw salience. This supports the reading that REE needs a BG-like selection CONSTITUTION beyond MECH-439's F-variance-share/shortlist parametric levers -- a formed signal reaching E3 authority is necessary but not sufficient; the off-centre on-surround competition and the control regulation are the missing lawful-access machinery.",
+    "mapping_caveat": "This is a computational-neuroscience model of motor/behavioural selection, not a test of REE's E3 pathway. It establishes that the constitutional architecture Q-078 hypothesises is biologically real and functionally necessary in the reference system, but it cannot by itself adjudicate whether REE's specific ceiling is constitutional vs parametric -- that requires the paired experiment Q-078's next_action calls for. The paper also predates and does not address the F-dominance framing; the mapping is architecture-level analogy, not a measured correspondence.",
+    "source_context": "Computational model / theoretical neuroscience (Biological Cybernetics 2001). Abstracted rate-coded BG channel model; no behavioural or physiological data collected in this Part I (the functional-anatomy paper); companion Part II presents simulation results."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- the foundational, heavily-cited formalisation of BG-as-selection and the selection/control decomposition. Mapping fidelity good: the paper's central claim (selection is a dedicated architecture, not a salience threshold) is precisely the constitutional pole of Q-078. Transfer risk moderate: analogy from a rate-coded motor-selection model to REE's E3 committed-action pathway is plausible but untested; the paper supports the plausibility of the constitutional hypothesis rather than confirming it for REE."
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_080",
+  "entry_id": "2026-07-04_q_080_evc_effort_cost_shenhav2013",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-080"],
+  "source": {
+    "title": "The expected value of control: an integrative theory of anterior cingulate cortex function.",
+    "authors": ["Amitai Shenhav", "Matthew M. Botvinick", "Jonathan D. Cohen"],
+    "year": 2013,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2013.07.007",
+    "pmid": "23889930"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "The EVC theory is the canonical normative account that treats cognitive effort purely as a COST TERM SUBTRACTED from expected payoff -- exactly REE's existing value-subtraction machinery (dACC EVC effort_cost). It is a complete, well-validated framework in which effort is a foregone-value quantity, with no need to route effort through a harm/allostatic/irreversibility channel. Relative to Q-080's harm-coupling proposal this is WEAKENING evidence: the mainstream computational account of how the brain handles effort does its work entirely as value-subtraction, giving a parsimonious alternative that does not require effort-as-harm. Confidence 0.68 because it evidences the sufficiency/parsimony of value-subtraction for NORMAL effort allocation, but it does not directly test the EDGE case Q-080 cares about (over-exertion -> depletion -> a harm-adjacent allostatic state), so it cannot fully close the harm-coupling question.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If value-subtraction (EVC-style effort_cost) already reproduces the full range of REE's effort-related behaviour -- effort avoidance, effort-reward trade-offs, allocation shifts -- then adding a harm-coupling channel is unfalsifiable surplus unless it predicts something value-subtraction cannot. Q-080's harm-coupling must therefore earn its keep on the over-exertion/depletion regime specifically, where EVC is silent.",
+    "A harm-coupled effort account predicts irreversibility-aware, special-status treatment of excess effort (like REE's harm stream); EVC predicts fully reversible, linearly-tradeable cost. If REE's effort behaviour is empirically fully reversible and tradeable, the harm-coupling is wrong; the discriminating test is whether over-exertion leaves a persistent residue that ordinary opportunity-cost cannot."
+  ],
+  "tags": ["q_080", "expected_value_of_control", "dacc", "effort_cost", "value_subtraction", "cognitive_control", "harm_coupling_alternative"],
+  "mapping": {
+    "source_claim_statement": "The dorsal anterior cingulate cortex (dACC) allocates cognitive control by computing the Expected Value of Control (EVC): a normative integration of (1) the expected payoff from a controlled process, (2) the amount of control that must be invested, and (3) the COST of that control in terms of cognitive effort. dACC determines whether, where, and how much control to allocate by weighing payoff against effort cost. This single normative quantity is argued to unify dACC's diverse reported functions (reward processing, conflict/performance monitoring, action selection).",
+    "ree_translation": "Q-080 asks whether effort/energy expenditure should COUPLE to REE's harm/residue/allostatic stream (with energy conservation as an evolutionarily-primary least-effort prior), OR whether existing value-subtraction (dACC EVC effort_cost + MECH-320/ARC-068 opportunity-cost-of-time) plus pACC allostatic load already suffices WITHOUT harm-coupling. Shenhav 2013 IS the source theory behind REE's dACC EVC effort_cost term, and it is a self-contained value-subtraction account: effort is a cost subtracted from payoff, full stop. It thus supports the 'value-subtraction suffices' pole and correspondingly WEAKENS the necessity of the harm-coupling proposal -- at least for ordinary effort allocation, the brain's canonical model needs no harm channel.",
+    "mapping_caveat": "EVC concerns normal, moment-to-moment control allocation; it is silent on the OVER-EXERTION -> DEPLETION -> harm-adjacent-state regime that is the actual content of Q-080's harm-coupling proposal. So this weakens the harm-coupling claim for the ordinary regime but does not refute it for the depletion regime -- it shows value-subtraction is sufficient where EVC applies, not everywhere REE cares about. It is a theoretical/review integration, not a decisive experiment.",
+    "source_context": "Theoretical/integrative review in Neuron (2013). Synthesises a large human-and-animal dACC literature into a normative model; no new primary data. Domain: human cognitive-control neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.3,
+    "notes": "Source quality very high -- the field-defining, heavily-cited EVC theory and the direct provenance of REE's dACC effort_cost term. Mapping fidelity good: it is exactly the value-subtraction alternative Q-080 weighs against harm-coupling. Transfer risk low-moderate: the framework is already instantiated in REE, so the mapping is tight; the residual risk is the regime mismatch (normal allocation vs over-exertion), captured in the caveat."
+  }
+}

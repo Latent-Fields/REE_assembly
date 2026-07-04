@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_078",
+  "entry_id": "2026-07-04_q_078_stn_conflict_hold_frank2006",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-078"],
+  "source": {
+    "title": "Hold your horses: a dynamic computational role for the subthalamic nucleus in decision making.",
+    "authors": ["Michael J. Frank"],
+    "year": 2006,
+    "venue": "Neural Networks",
+    "doi": "10.1016/j.neunet.2006.03.006",
+    "pmid": "16945502"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Frank 2006 provides direct mechanistic backing for one specific constitutional lever Q-078 enumerates: the hyperdirect-STN conflict-sensitive HOLD and dynamic threshold adjustment. The model shows that a dedicated cortico-subthalamic-pallidal circuit RAISES the response threshold under high cortical response conflict -- a lawful-access rule that is architecturally distinct from, and cannot be reduced to, the strength of any competing action's salience. This is strong support for the claim that commit-timing/threshold machinery is a constitutional component (not parametric). Confidence at 0.7 rather than higher because it evidences one lever (conflict-hold / adaptive threshold) rather than the whole selection constitution, and because it is a computational model validated against Parkinson's/pharmacology data rather than a direct REE test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A selection system lacking a conflict-sensitive hold will commit prematurely when multiple candidates are close in value, so the ultimately-committed action is determined by transient noise rather than by lawful competition -- the STN's absence, in Frank's model, changes WHICH response is selected, not just its timing. If REE's E3 has no conflict-gated threshold-widening, strengthening an upstream channel under competition may still fail to convert because the commit fires before the competition resolves.",
+    "If REE conversion failures co-occur with high inter-candidate conflict specifically (rather than uniformly), that is the signature of a missing hyperdirect-STN-style hold rather than a globally weak signal."
+  ],
+  "tags": ["q_078", "subthalamic_nucleus", "hyperdirect_pathway", "response_conflict", "decision_threshold", "conflict_hold", "constitutional_vs_parametric", "computational_model"],
+  "mapping": {
+    "source_claim_statement": "Incorporating the subthalamic nucleus (STN) into a neural-network model of BG decision making shows that the STN dynamically modulates WHEN a response is executed. Under increased cortical response conflict, cortico-subthalamic-pallidal pathways transiently RAISE the decision threshold ('hold your horses'), reducing premature responding. Because this changes response timing under competition, it substantially affects WHICH response is ultimately selected -- not merely how fast. The model reproduces BG activity dynamics during selection and, under simulated dopamine depletion, emergent oscillations linked to Parkinsonian tremor; STN lesions relieve the oscillations but impair conflict-sensitive decision making.",
+    "ree_translation": "Q-078 explicitly lists 'hyperdirect-STN conflict-hold' and 'threshold/widening' among the constitutional levers whose under-specification could explain REE's conversion ceiling. Frank 2006 is the canonical mechanistic model of exactly that lever: a dedicated circuit that widens the commit threshold as a FUNCTION of inter-candidate conflict, gating the transition from 'signal present at E3' to 'action committed.' This supports the constitutional reading -- the conflict-hold is an architectural rule for lawful access to commitment, orthogonal to raw signal strength. It maps onto the 'conflict-sensitive hold' and 'threshold/widening' items in Q-078's constitution list, and predicts that REE conversion failures should concentrate where inter-candidate conflict is high.",
+    "mapping_caveat": "The paper models motor/cognitive response selection and validates against Parkinson's and pharmacological data, not REE's E3 committed-action pathway. It evidences ONE constitutional lever (conflict-gated threshold), not the full constitution Q-078 hypothesises; it therefore raises the prior on the constitutional reading for that specific sub-mechanism but does not decide the broader constitutional-vs-parametric question. Transfer from a biophysically-motivated BG model to REE's arbitration is analogical.",
+    "source_context": "Computational neural-network model (Neural Networks 2006), validated against human Parkinson's disease and pharmacological-challenge data. No REE-specific or new primary physiological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- landmark, extensively-replicated model of STN's role in decision thresholds. Mapping fidelity good for the specific lever (conflict-hold / adaptive threshold) that Q-078 names verbatim. Transfer risk moderate: analogical mapping to REE's E3, and the paper covers one constitutional component rather than the whole constitution."
+  }
+}

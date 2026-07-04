@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_078",
+  "entry_id": "2026-07-04_q_078_da_parametric_insufficient_prescott2024",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-078"],
+  "source": {
+    "title": "Simulated Dopamine Modulation of a Neurorobotic Model of the Basal Ganglia.",
+    "authors": ["Tony J. Prescott", "Fernando M. Montes Gonzalez", "Kevin Gurney", "Mark D. Humphries", "Peter Redgrave"],
+    "year": 2024,
+    "venue": "Biomimetics",
+    "doi": "10.3390/biomimetics9030139",
+    "pmid": "38534824"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This embodied follow-up to the Gurney/Redgrave selection model directly probes the parametric axis Q-078 contrasts against constitution: it varies a purely PARAMETRIC modulator (tonic dopamine) inside a FIXED selection architecture and shows that parametric changes alone do not yield graceful selection -- too little DA gives failure-to-initiate, too much gives distorted/leaky selection and behavioural traps, and raising salience (another parametric lever) only PARTIALLY relieves the low-DA deficit. This supports Q-078's suspicion that parametric levers are insufficient and the selection architecture is what carries lawful conversion. Confidence lower (0.62) because the paper's primary aim is modelling DA dysregulation/Parkinsonism, so the parametric-insufficiency point is inferred from its results rather than being the paper's own thesis; and it is a robot-embodied simulation, not an REE test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Increasing a parametric drive (salience) to compensate for a selection deficit only PARTIALLY restores selection and can leave the agent in a 'behavioural trap' -- the signature of a parametric fix applied to a constitutional problem. If REE conversion responds only partially, or non-monotonically, to strengthening upstream channels, that argues the ceiling is not merely parametric.",
+    "Pushing a parametric modulator too far in the other direction (excess DA) does not improve selection but degrades it -- partially-expressed losing actions leak through, selection integration is lost. A monotone 'more signal is better' assumption is therefore wrong for a genuine selection architecture."
+  ],
+  "tags": ["q_078", "basal_ganglia", "dopamine_modulation", "neurorobotics", "action_selection", "parametric_insufficiency", "behavioural_trap", "constitutional_vs_parametric"],
+  "mapping": {
+    "source_claim_statement": "A Gurney/Redgrave-lineage BG selection model embedded in a robot performing an animal-inspired foraging task was tested under systematic changes to simulated tonic dopamine. Progressive DA reduction slowed behaviour and, at low levels, produced inability to initiate movement; these deficits were only PARTIALLY relieved by increasing salience (stronger sensory/motivational input). Conversely, elevated DA distorted motor acts via partially-expressed losing actions and increased behaviour-switching frequency. Both low and high DA could cause loss of behavioural integration, sometimes trapping the robot in a 'behavioural trap.' The parallels to dopamine-dysregulation phenomena in animals and humans are noted.",
+    "ree_translation": "Q-078 frames the ceiling as constitutional (selection rules under-specified) versus parametric (upstream signals too weak / modulatory channels too quiet). This paper is an experiment on the parametric axis inside a FIXED selection constitution: it manipulates tonic dopamine (a canonical parametric/modulatory lever, the direct analogue of REE's 'modulatory channels too quiet' pole and of the SD-037-style tone signals) and finds that parametric changes alone do not deliver clean conversion -- too little yields no commitment, too much yields leaky/distorted commitment, and adding a second parametric lever (salience) only partially rescues it. That pattern supports the reading that lawful conversion is carried by the selection architecture, not recoverable by turning parametric knobs -- consistent with Q-078's observation that formed, measurable signals across five channels fail to reliably convert.",
+    "mapping_caveat": "The paper's own thesis is about modelling dopamine dysregulation and Parkinsonism, not about adjudicating constitutional-vs-parametric; the parametric-insufficiency inference is mine, drawn from its results. It also holds the selection ARCHITECTURE fixed while varying parameters, so it shows parametric levers are insufficient GIVEN a working constitution -- it does not show that adding constitution to a constitution-poor system fixes REE (the converse experiment). It is a robot-embodied simulation; transfer to REE's E3 is analogical. Weakly weighted accordingly.",
+    "source_context": "Neurorobotic simulation (Biomimetics 2024). BG selection model in a physical/simulated robot foraging task; systematic tonic-dopamine sweep. No human/animal primary data; validity rests on the model's prior empirical grounding."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality good but below the two anchors -- a specialist neurorobotics venue and a demonstration rather than a validated-prediction study. Mapping fidelity moderate: it genuinely probes the parametric pole Q-078 names, but the parametric-insufficiency reading is inferred, not the paper's thesis. Transfer risk elevated: robot-embodied simulation, architecture-held-fixed design does not test the constitution-adding converse. Included as corroborating context for the parametric-insufficiency half of the question, not as a primary anchor."
+  }
+}

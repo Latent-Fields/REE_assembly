@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_080",
+  "entry_id": "2026-07-04_q_080_energy_conservation_allocation_christie2015",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-080"],
+  "source": {
+    "title": "Cognitive cost as dynamic allocation of energetic resources.",
+    "authors": ["S. Thomas Christie", "Paul Schrater"],
+    "year": 2015,
+    "venue": "Frontiers in Neuroscience",
+    "doi": "10.3389/fnins.2015.00289",
+    "pmid": "26379482"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the single closest paper to Q-080's actual proposal, and it splits the two horns cleanly. It SUPPORTS the 'energy conservation as an evolutionarily-primary drive / least-effort prior' half: the brain is modelled as purposively conserving activity, planning longer-term allocation of a limited metabolic budget (astrocytic glycogen), so a least-effort prior is a first-class control objective, not a derived one. But it WEAKENS the 'effort = harm' framing: conservation is cast as OPTIMAL ALLOCATION of a replenishable buffer, not as damage/irreversible residue -- glycogen depletes AND repletes, with no harm-like special status. So it endorses energy-primacy while explicitly NOT reaching for a harm channel to do it. Confidence 0.6: conceptually on-target and it subsumes both cost/benefit and limited-resource views, but the glycogen-buffer mechanism is a proposal (the authors call the biological basis provisional), and it is a control-theoretic model without direct REE mapping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A replenishable energy buffer (glycogen depletes and repletes) supports a least-effort PRIOR without any harm/irreversibility semantics. If REE can get energy-conservation-as-primary-drive from a reversible-budget mechanism, then Q-080's harm-coupling is over-specified: it would wrongly assign irreversible special status to what is actually a reversible resource.",
+    "The harm-coupling proposal is only justified where the depletion is genuinely IRREVERSIBLE / damage-like. If, as here, sustained over-use merely draws down a buffer that refills with rest, the correct REE representation is an allostatic-load / opportunity-cost term (already present) plus a least-effort prior -- NOT the harm stream."
+  ],
+  "tags": ["q_080", "energy_conservation", "least_effort_prior", "metabolic_budget", "glycogen", "allostatic_load", "cognitive_cost", "optimal_allocation", "harm_coupling_partial"],
+  "mapping": {
+    "source_claim_statement": "Cognitive cost is modelled as the brain purposively conserving activity to manage longer-term allocation of limited metabolic resources. A control-theoretic (optimal-control) model with an energy budget reproduces effort-avoidance as OPTIMAL allocation of limited energetic reserves, and captures both reward-responsiveness and hypoglycemia-induced cognitive decrements. Astrocytic glycogen is proposed as the plausible limited buffer: it can transiently support neural activity beyond the rate blood glucose sustains, and its depletion/repletion dynamics match many cognitive-cost phenomena. The model is offered as SUBSUMING both the cost/benefit (opportunity-cost) and the limited-resource views.",
+    "ree_translation": "Q-080 has two horns: (A) energy-conservation weighted as an evolutionarily-PRIMARY drive / least-effort prior, and effort-over-exertion coupled to REE's HARM/allostatic stream with irreversibility-aware special status; versus (B) existing value-subtraction (EVC + opportunity-cost) plus pACC allostatic load already suffices. Christie & Schrater support horn (A)'s energy-PRIMACY component -- energy conservation is a first-class control objective, a genuine least-effort prior -- but they achieve it with a REVERSIBLE budget (glycogen depletes AND repletes), i.e. WITHOUT the harm/irreversibility semantics horn (A) also asks for. So for REE the read is: adopt the least-effort prior / energy-primacy, but represent the depletion as reversible allostatic load (pACC, already present) rather than as harm. That endorses part of the proposal and undercuts the harm-coupling part -- hence mixed.",
+    "mapping_caveat": "The glycogen-as-buffer mechanism is explicitly a PROPOSAL the authors flag as provisional in its biological basis, and the model is control-theoretic without primary experimental validation of the specific mechanism. It concerns cognitive/metabolic cost in a reversible-buffer regime; it does not address whether TRULY excessive, damaging over-exertion (rhabdomyolysis-scale, genuinely irreversible) should get harm status -- that extreme is where harm-coupling could still be right and this model is silent. So it discriminates the ordinary energy-conservation regime (reversible -> not harm) but not the pathological extreme.",
+    "source_context": "Computational / control-theoretic model with proposed neurophysiological grounding (Frontiers in Neuroscience 2015). Domain: human cognitive neuroscience / metabolic modelling. No new primary data; the glycogen dynamics are drawn from the published literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Source quality good -- a well-cited synthesis that explicitly unifies opportunity-cost and limited-resource accounts, which is exactly the terrain Q-080 occupies. Mapping fidelity moderate-good: it is the closest paper to Q-080's own framing and cleanly separates energy-primacy (supported) from harm/irreversibility (not needed). Transfer risk moderate-elevated: the glycogen mechanism is provisional and the model is not experimentally validated for the specific buffer, and it is silent on the pathological-over-exertion extreme where harm-coupling could still hold."
+  }
+}

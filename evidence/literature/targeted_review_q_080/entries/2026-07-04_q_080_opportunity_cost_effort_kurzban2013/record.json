@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_080",
+  "entry_id": "2026-07-04_q_080_opportunity_cost_effort_kurzban2013",
+  "timestamp_utc": "2026-07-04T06:04:57Z",
+  "claim_ids_tested": ["Q-080"],
+  "source": {
+    "title": "An opportunity cost model of subjective effort and task performance.",
+    "authors": ["Robert Kurzban", "Angela Duckworth", "Joseph W. Kable", "Justus Myers"],
+    "year": 2013,
+    "venue": "Behavioral and Brain Sciences",
+    "doi": "10.1017/S0140525X12003196",
+    "pmid": "24304775"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.66,
+  "confidence_rationale": "Kurzban et al. is the canonical statement of the OPPORTUNITY-COST account of subjective effort -- which is exactly REE's existing MECH-320/ARC-068 opportunity-cost-of-time machinery. They argue the aversive phenomenology of effort is the felt output of cost/benefit computations over foregone alternative uses of limited executive systems, and they explicitly ARGUE AGAINST the physical-resource-DEPLETION account that is the mechanistic cousin of Q-080's 'over-exertion -> depletion -> harm-adjacent state.' So this both (a) supports the sufficiency of value-subtraction/opportunity-cost and (b) casts specific doubt on the depletion story harm-coupling would rest on -- double-weakening for the harm proposal. Confidence 0.66: strong on the ordinary-effort regime and on the anti-depletion argument, but it is a theoretical target article (much-debated), and it addresses subjective mental effort rather than the metabolic over-exertion REE's harm-coupling most naturally concerns.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If subjective effort is the felt output of opportunity-cost computation (next-best foregone use of executive systems), then effort is FOREGONE VALUE, not harm -- and REE's existing ARC-068/MECH-320 opportunity-cost machinery already captures it, leaving no gap for a harm channel to fill.",
+    "Kurzban et al. marshal evidence AGAINST resource-depletion accounts of effort (e.g. fatigue dissipates on task-switch, is sensitive to incentives). If REE's over-exertion state behaves like opportunity cost (incentive-sensitive, relieved by better alternatives) rather than like damage (persistent, irreversibility-flagged), the harm-coupling is falsified in favour of value-subtraction."
+  ],
+  "tags": ["q_080", "opportunity_cost", "subjective_effort", "mental_fatigue", "value_subtraction", "resource_depletion_critique", "arc_068", "mech_320", "harm_coupling_alternative"],
+  "mapping": {
+    "source_claim_statement": "The aversive experience of mental effort, and the performance decrements that accompany sustained tasks, are not caused by depletion of a physical resource. Instead, executive/computational mechanisms can serve only a limited number of simultaneous tasks, so deploying them on the current task carries an OPPORTUNITY COST -- the next-best foregone use of those systems. The phenomenology of effort is the felt output of these cost/benefit computations, and it motivates disengagement (reduced deployment) from the current task. The authors review and reject resource-depletion explanations in favour of this opportunity-cost account.",
+    "ree_translation": "Q-080 weighs harm-coupling of effort against sufficiency of value-subtraction, and it names MECH-320/ARC-068 opportunity-cost-of-time as the existing machinery. Kurzban et al. is the source theory for exactly that machinery. It frames wasted/excess effort as FOREGONE VALUE (opportunity cost), not as harm, directly supporting the 'value-subtraction suffices' pole. It goes further and attacks the physical-DEPLETION account -- and depletion is the mechanistic backbone of Q-080's 'over-exertion -> depletion -> harm-adjacent state.' So it weakens the harm proposal on two fronts: it offers a complete non-harm account, and it undermines the depletion premise harm-coupling would need.",
+    "mapping_caveat": "Kurzban et al. concerns SUBJECTIVE MENTAL effort and executive-system time-sharing, whereas Q-080's harm-coupling is most naturally about METABOLIC/physical over-exertion and allostatic depletion. The anti-depletion argument is aimed at mental fatigue; it does not directly rule out genuine metabolic depletion from sustained physical exertion, which could still warrant harm-adjacent treatment. It is also a BBS target article -- deliberately provocative and extensively contested in the same issue (several commentaries defend depletion or resource views). So this weakens harm-coupling for the cognitive-effort regime while leaving the physical-exertion regime open.",
+    "source_context": "Behavioral and Brain Sciences target article (2013), a theoretical synthesis with open peer commentary. Domain: human psychology / neuroeconomics of cognitive effort. No new primary data; argues from a broad review across psychology and neuroscience."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high -- a landmark, agenda-setting target article and the provenance of REE's opportunity-cost framing. Mapping fidelity good for the cognitive-effort regime and for the anti-depletion argument. Transfer risk moderate: the mental-effort vs metabolic-over-exertion regime gap (in the caveat) and the fact that the target article's depletion critique is itself contested keep this from being a strong weakens."
+  }
+}
