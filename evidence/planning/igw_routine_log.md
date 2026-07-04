@@ -685,3 +685,4 @@ One line per hourly tick. ASCII only.
 2026-07-04T01:47:15Z complete IGW-20260704-191 spawned->completed outcome=USEFUL_LANDED: marked EVB-0102/MECH-179 blocked_substrate: no error-TYPE channel, sleep phase c
 2026-07-04T02:42:48Z reconcile-release hash=e4c9016acccc (IGW-20260704-191 -> completed)
 2026-07-04T02:42:41Z skip IGW-20260704-191: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-04T03:42:57Z STAGE IGW-20260704-174 skill=/implement-substrate prio=25 worktree=igw-174-substrate-ready-sd-063 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
