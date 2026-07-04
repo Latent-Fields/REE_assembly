@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_striatal_gain_control_bounding",
+  "entry_id": "2026-07-04_arc_110_ascending_spiral_runaway_belin2008",
+  "timestamp_utc": "2026-07-04T13:35:01Z",
+  "claim_ids_tested": [
+    "ARC-110",
+    "ARC-106"
+  ],
+  "source": {
+    "title": "Parallel and interactive learning processes within the basal ganglia: relevance for the understanding of addiction.",
+    "authors": [
+      "David Belin",
+      "Sietse Jonkman",
+      "Anthony Dickinson",
+      "Trevor W Robbins",
+      "Barry J Everitt"
+    ],
+    "year": 2008,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2008.09.027"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Authoritative Cambridge (Everitt/Robbins) review that names the exact symbol REE imported -- the serial, dopamine-dependent striato-nigro-striatal ascending spiral (Haber 2000 lineage) carrying information ventral(limbic)->dorsal(motor) through segregated cortico-striato-pallido-thalamo-cortical loops. Its highest value here is the FAILURE-MODE mapping: the review's whole thesis is that when this ascending spiral is driven UNCHECKED (by addictive drugs subverting the normal bounding), it produces a pathological runaway -- a compulsive, stimulus-response 'incentive habit' in which the dorsal-motor loop is progressively captured. That is the biological instance of exactly the 711 runaway (limbic drive climbing the spiral without a homeostatic bound and monopolising downstream selection). Direction 'mixed' not 'supports' because the review is a conceptual synthesis (no measured bounding law) and its addiction framing is a divergence-flavoured caveat: the spiral's DEFAULT healthy operation is bounded/graded; runaway is the pathology. Confidence 0.66: high source quality, strong mapping to the symbol + its failure mode, but indirect on the quantitative bound.",
+  "failure_signatures": [
+    "If the ascending limbic->motor spiral is driven without the normal homeostatic constraint (the drug-subversion analogue = REE's unbounded raw scalar gain), the dorsal/motor loop is progressively captured and behaviour collapses onto a single compulsive stimulus-response channel -- the biological form of the 711 limbic-monopoly runaway.",
+    "The spiral's benefit is contingent on it staying GRADED and serial (ventral biases dorsal by a bounded increment); a mechanism that lets one loop's ascending drive grow without bound produces maladaptive habit-capture, not adaptive integration."
+  ],
+  "tags": [
+    "arc-110",
+    "arc-106",
+    "striatonigrostriatal_spiral",
+    "ascending_spiral",
+    "runaway",
+    "addiction",
+    "loop_competition",
+    "asg-3"
+  ],
+  "mapping": {
+    "source_claim_statement": "The basal ganglia are organised as segregated parallel cortico-striato-pallido-thalamo-cortical loops, but a serial, dopamine-dependent striato-nigro-striatal ascending spiral propagates information from ventral (nucleus accumbens / limbic) to progressively more dorsal (motor) striatum; protracted addictive-drug exposure recruits and amplifies this ascending spiral, shifting control from action-outcome to compulsive stimulus-response habit.",
+    "ree_translation": "This is the biological source of ARC-110's segregated-loops-plus-ascending-integration design and of the ASG (ascending-spiral gain) mechanism REE built. Crucially it grounds the DIVERGENCE ledger: the biological spiral is a BOUNDED graded modulation whose pathological UNBOUNDING (addiction) produces a single-loop runaway -- the same shape as V3-EXQ-711's limbic monopoly. It converts ASG-3 from 'honest simplification' into a grounded divergence: the raw-scalar gain lacked the homeostatic bound that keeps the biological spiral out of the addiction-like runaway regime.",
+    "mapping_caveat": "The review documents the spiral and its drug-driven runaway anatomically/behaviourally; it does NOT supply the homeostatic control law that bounds the healthy spiral (that is pillar-1 autoreceptor lit). Mapping addiction-as-runaway onto a gain-controller blow-up is an interpretive analogy between a neuroadaptive pathology and a numerical instability, not an identity.",
+    "source_context": "Narrative review of rodent/primate basal-ganglia learning and addiction neuroscience; no REE-facing measurement."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (canonical group). Mapping fidelity good for the symbol + failure mode; transfer risk moderate-high because the bounding LAW is not in this paper and addiction->numerical-runaway is an analogy."
+  },
+  "summary_path": "summary.md"
+}

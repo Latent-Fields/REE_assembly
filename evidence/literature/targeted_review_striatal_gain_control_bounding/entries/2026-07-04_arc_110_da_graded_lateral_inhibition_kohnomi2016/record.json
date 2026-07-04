@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_striatal_gain_control_bounding",
+  "entry_id": "2026-07-04_arc_110_da_graded_lateral_inhibition_kohnomi2016",
+  "timestamp_utc": "2026-07-04T13:35:01Z",
+  "claim_ids_tested": [
+    "ARC-110",
+    "ARC-108"
+  ],
+  "source": {
+    "title": "Suppressive regulation of lateral inhibition between medium spiny neurons via dopamine D1 receptors in the rat nucleus accumbens shell.",
+    "authors": [
+      "Shuntaro Kohnomi",
+      "Katsuko Ebihara",
+      "Masayuki Kobayashi"
+    ],
+    "year": 2016,
+    "venue": "Neuroscience Letters",
+    "doi": "10.1016/j.neulet.2016.10.049"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Paired-recording study showing that dopamine GRADES the strength of MSN-MSN lateral inhibition in a concentration-dependent, stepwise (D1-then-D2-then-D3-recruited) manner -- i.e. the lateral-inhibition normalizer (pillar 2, ASG-4) is itself dopamine-gain-modulated (pillar 1). This is the bridge between the two bounding pillars and directly informs the ASG-4 'soft normalization' question: a faithful normalizer is not a static clamp but a DA-tunable one. Direction is 'mixed' rather than 'supports' because the effect is DISINHIBITORY -- higher dopamine REDUCES lateral inhibition (releases competition) -- which nuances the naive 'more DA = more bounding' reading: DA both drives the ascending spiral AND relaxes the striatal normalizer, so the bound is a balance, not a monotone. Confidence 0.58: solid electrophysiology but a short Neuroscience Letters report, accumbens-shell-specific, and the mapping to REE's controller is functional-level.",
+  "failure_signatures": [
+    "Dopamine and lateral inhibition are COUPLED, not independent: raising dopaminergic drive simultaneously relaxes the lateral-inhibition normalizer (disinhibition), so a bounding scheme that treats the ascending gain and the normalization clamp as separate constants (REE's ASG-3 setpoint + ASG-4 box) omits the biological coupling that co-tunes them.",
+    "The disinhibition is stepwise / recruited by dopamine concentration (D1 low -> +D2 -> +D3 at max mesolimbic drive); a single fixed clamp cannot express this graded, multi-receptor release of competition."
+  ],
+  "tags": [
+    "arc-110",
+    "arc-108",
+    "lateral_inhibition",
+    "dopamine_d1",
+    "nucleus_accumbens",
+    "disinhibition",
+    "normalization",
+    "asg-4",
+    "graded_gain"
+  ],
+  "mapping": {
+    "source_claim_statement": "In the nucleus accumbens shell, dopamine suppresses lateral inhibition between medium spiny neurons in a concentration-dependent, stepwise fashion (D1 receptors engaged at low DA, D2 then D3 recruited as DA rises), progressively disinhibiting MSN activity at maximal mesolimbic dopaminergic drive.",
+    "ree_translation": "Bridges the two bounding pillars and refines ASG-4: the striatal lateral-inhibition normalizer that bounds loop competition is itself DOPAMINE-GAIN-MODULATED, so the biological bound is a dynamic balance between ascending dopaminergic drive (which REE's ASG gain implements) and a DA-relaxed normalizer -- not two independent constants. Argues that if a soft normalization later replaces REE's hard M_cross clamp (the ASG-4 escape hatch), its strength should be coupled to the same signal that drives the ascending gain, not fixed.",
+    "mapping_caveat": "The direction is disinhibitory (DA reduces lateral inhibition), so this is a nuance/tension rather than clean support for 'lateral inhibition bounds runaway' -- it says the bound is RELEASED at high DA, which is itself part of how the healthy system trades off competition vs commitment. Accumbens-shell-specific; a short report; the coupling REE would need is inferred, not tested in a selection task.",
+    "source_context": "Rat nucleus accumbens shell slices; dual whole-cell recordings of unitary IPSCs between MSN pairs with D1 agonist/antagonist; no behaving-animal data."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality moderate (Neurosci Lett, short report). Mapping fidelity moderate: strong for the DA-modulates-normalizer bridge, discounted because the disinhibitory direction complicates the bounding story and the region is accumbens-shell-specific."
+  },
+  "summary_path": "summary.md"
+}

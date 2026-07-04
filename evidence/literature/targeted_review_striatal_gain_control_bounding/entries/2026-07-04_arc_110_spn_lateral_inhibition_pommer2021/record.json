@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_striatal_gain_control_bounding",
+  "entry_id": "2026-07-04_arc_110_spn_lateral_inhibition_pommer2021",
+  "timestamp_utc": "2026-07-04T13:35:01Z",
+  "claim_ids_tested": [
+    "ARC-110",
+    "ARC-106"
+  ],
+  "source": {
+    "title": "The Effect of Serotonin Receptor 5-HT1B on Lateral Inhibition between Spiny Projection Neurons in the Mouse Striatum.",
+    "authors": [
+      "Stefan Pommer",
+      "Yumiko Akamine",
+      "Serge N Schiffmann",
+      "Alban de Kerchove d'Exaerde",
+      "Jeffery R Wickens"
+    ],
+    "year": 2021,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1037-20.2021"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Whole-cell/optogenetic demonstration that striatal spiny projection neurons (SPNs) form a genuine local LATERAL INHIBITION network via axon-collateral GABAergic synapses onto each other (both direct- and indirect-pathway), and that this network is neuromodulator-tunable (5-HT1B scales its strength). This is the concrete substrate ASG-4 abstracts -- the 'soft striatal lateral-inhibition normalization that bounds the biological spiral'. It supports that lateral inhibition is a real, gain-tunable competitive-normalization primitive in the exact circuit REE models, and Wickens' own framing ties it to action selection. Direction 'supports'. Confidence 0.6 (not higher) because the authors are explicit that the FUNCTIONAL role of SPN-SPN lateral inhibition in selection is still 'currently unknown' -- so the substrate exists and is tunable, but its causal selection role is hypothesised, not measured.",
+  "failure_signatures": [
+    "Striatal competition is bounded by a DISTRIBUTED, tunable lateral-inhibition network among the projection neurons themselves, not by a hard per-edge cap; an implementation that omits any mutual-inhibition normalization (REE pre-repair) has no mechanism to keep one channel from dominating.",
+    "The lateral-inhibition strength is itself neuromodulator-scaled (5-HT1B here) -- a fixed hard clamp (ASG-4) cannot express the graded, context-dependent bound the biology uses, suggesting a soft normalization with a tunable strength is the more faithful successor."
+  ],
+  "tags": [
+    "arc-110",
+    "arc-106",
+    "lateral_inhibition",
+    "spiny_projection_neurons",
+    "striatum",
+    "normalization",
+    "action_selection",
+    "asg-4"
+  ],
+  "mapping": {
+    "source_claim_statement": "Striatal spiny projection neurons make inhibitory synaptic connections with each other via axon collaterals, forming a local lateral-inhibition network whose strength is modulated by serotonin acting at 5-HT1B receptors; this network is proposed to shape the dynamics of striatal action selection.",
+    "ree_translation": "Grounds ASG-4: the biological bound on single-loop dominance is a soft, mutually-inhibitory (divisive-normalization-like) network among the competing striatal channels, and it is gain-tunable by neuromodulators. This converts ASG-4 from 'honest simplification' into a grounded divergence -- REE's hard M_cross box is a coarse stand-in for a real soft lateral-inhibition normalizer, and the paper is direct evidence for the 'a soft normalization can replace the clamp' escape hatch the divergence row already anticipates.",
+    "mapping_caveat": "The paper establishes the lateral-inhibition SUBSTRATE and its tunability but explicitly states its functional role in selection is unknown -- so it grounds the MECHANISM ASG-4 abstracts, not a proven claim that lateral inhibition is what prevents loop runaway. It is intra-striatal (within-arena) inhibition; REE's clamp bounds a CROSS-loop ascending weight, so the analogy is functional (competitive normalization) not topological.",
+    "source_context": "Acute mouse brain slices; whole-cell recording with optogenetic activation of presynaptic SPNs / fast-spiking interneurons; no behaving-animal selection data."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (J Neurosci, Wickens lab). Mapping fidelity moderate: the substrate maps well onto ASG-4's 'soft lateral-inhibition normalization', discounted because the selection role is stated-unknown and the inhibition is within-arena vs REE's cross-loop bound."
+  },
+  "summary_path": "summary.md"
+}

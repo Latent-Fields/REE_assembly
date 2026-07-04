@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-04T06:11:20.428243Z`
+Generated: `2026-07-04T13:39:20.656962Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -367,6 +367,7 @@ Generated: `2026-07-04T06:11:20.428243Z`
 | `targeted_review_social_signal_legibility` | [`2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/record.json) | 10 | [`summary`](targeted_review_social_signal_legibility/entries/2026-04-06_mech_193_oxytocin_gaze_loop_nagasawa2015/summary.md) |
 | `targeted_review_socially_scaffolded_rule_population` | [`2026-05-18_mech_338_encoding_specificity_tulving1973`](targeted_review_socially_scaffolded_rule_population/entries/2026-05-18_mech_338_encoding_specificity_tulving1973/record.json) | 8 | [`summary`](targeted_review_socially_scaffolded_rule_population/entries/2026-05-18_mech_338_encoding_specificity_tulving1973/summary.md) |
 | `targeted_review_state_abstraction_psychiatry` | [`2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/record.json) | 3 | [`summary`](targeted_review_state_abstraction_psychiatry/entries/2026-04-16_mech_245_charles_bonnet_hallucination_ffytche2005/summary.md) |
+| `targeted_review_striatal_gain_control_bounding` | [`2026-07-04_arc_110_spn_lateral_inhibition_pommer2021`](targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_110_spn_lateral_inhibition_pommer2021/record.json) | 5 | [`summary`](targeted_review_striatal_gain_control_bounding/entries/2026-07-04_arc_110_spn_lateral_inhibition_pommer2021/summary.md) |
 | `targeted_review_systems_consolidation_waking_propagation` | [`2026-04-19_mech_261_systems_consolidation_review_frankland2005`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/record.json) | 5 | [`summary`](targeted_review_systems_consolidation_waking_propagation/entries/2026-04-19_mech_261_systems_consolidation_review_frankland2005/summary.md) |
 | `targeted_review_theta_abstraction_scaling` | [`2026-04-28_theta_abstraction_remote_replay_karlsson2009`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/record.json) | 5 | [`summary`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/summary.md) |
 | `targeted_review_tolerance_gated_rule_availability` | [`2026-06-04_arc_063_dynamic_threshold_stn_frank2006`](targeted_review_tolerance_gated_rule_availability/entries/2026-06-04_arc_063_dynamic_threshold_stn_frank2006/record.json) | 3 | [`summary`](targeted_review_tolerance_gated_rule_availability/entries/2026-06-04_arc_063_dynamic_threshold_stn_frank2006/summary.md) |

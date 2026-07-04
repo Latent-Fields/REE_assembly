@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_striatal_gain_control_bounding",
+  "entry_id": "2026-07-04_arc_108_d2_autoreceptor_homeostat_chen2020",
+  "timestamp_utc": "2026-07-04T13:35:01Z",
+  "claim_ids_tested": [
+    "ARC-108",
+    "ARC-106"
+  ],
+  "source": {
+    "title": "Dopamine D2 autoreceptor interactome: Targeting the receptor complex as a strategy for treatment of substance use disorder.",
+    "authors": [
+      "Rong Chen",
+      "Mark J Ferris",
+      "Shiyu Wang"
+    ],
+    "year": 2020,
+    "venue": "Pharmacology & Therapeutics",
+    "doi": "10.1016/j.pharmthera.2020.107583"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "High-quality mechanistic review (Pharmacology & Therapeutics) of the exact bounding dependency the 711 autopsy named as unresolved: the D2 autoreceptor (D2AR) as a tonic NEGATIVE-FEEDBACK homeostat that regulates dopamine neuron firing, DA synthesis, reuptake and release, keeping extracellular DA within a set-point band. This is precisely the 'tonic-DA homeostasis loop that bounds ascending striato-nigro-striatal drive' abstracted by ASG-3. It states dysregulation of this feedback disrupts DA homeostasis and drives substance-use vulnerability -- i.e. removing the bound produces the runaway. Direction 'supports': the biological homeostatic bound the ASG-3 divergence row assumes demonstrably exists and is a negative-feedback loop. Confidence 0.7: strong source + near-exact conceptual mapping (a homeostatic negative-feedback bound on DA drive), discounted because it is a molecular/pharmacological review, not a demonstration that this loop is what bounds the ASCENDING-SPIRAL gain specifically.",
+  "failure_signatures": [
+    "A dopaminergic drive mechanism with NO negative-feedback homeostat on its own output (REE's raw ascending gain, pre-repair) has no biological analogue in the healthy system -- the D2AR loop is always present to clamp firing/synthesis/release toward a set point; its absence is the disease state.",
+    "Because the homeostat acts at multiple stages (firing, synthesis, reuptake, release), a single hard clamp at one stage (REE's M_cross box, ASG-4) is a coarser bound than the biology's distributed graded negative feedback -- predicts the hard clamp will be brittle at the edges relative to a soft, multi-stage normalization."
+  ],
+  "tags": [
+    "arc-108",
+    "arc-106",
+    "d2_autoreceptor",
+    "dopamine_homeostasis",
+    "negative_feedback",
+    "tonic_dopamine",
+    "asg-3",
+    "gain_control"
+  ],
+  "mapping": {
+    "source_claim_statement": "D2 autoreceptors on dopamine neurons provide tonic negative-feedback control over DA neuron firing, DA synthesis, reuptake and release, tightly constraining dopamine transmission around a homeostatic set point; dysregulation of this feedback disrupts DA homeostasis and underlies substance-use disorder.",
+    "ree_translation": "Grounds ASG-3 directly: the 'emergent tonic-DA-homeostasis loop' that REE abstracts into an explicit configured parity setpoint + ceiling ratio is, in biology, the D2-autoreceptor negative-feedback homeostat. This makes REE's bounded parity controller a load-bearing functional analogue of a real neural primitive (a homeostatic negative feedback that keeps dopaminergic drive within a band) rather than an ad hoc numerical clamp -- exactly the ARC-106 load-bearing-not-decorative test.",
+    "mapping_caveat": "The review establishes the D2AR homeostat over DA transmission generally; it does not specifically measure that this autoreceptor loop is what bounds the striato-nigro-striatal ASCENDING SPIRAL gain (the spiral-specific bound is inferred by composing this homeostat with the Belin/Haber spiral anatomy). REE's controller also bounds a cross-loop WEIGHT (w_eff parity), whereas the D2AR bounds DA CONCENTRATION -- a function-level, not variable-level, analogy.",
+    "source_context": "Molecular/pharmacological review of D2-autoreceptor signalling and interacting partners; rodent + human, addiction focus."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Architectural-grounding claim: mapping_fidelity weighted heavily. The homeostat-as-negative-feedback-bound maps almost one-to-one onto ASG-3's 'DA-homeostasis loop that sets the bound endogenously'; discounted for the concentration-vs-weight variable mismatch."
+  },
+  "summary_path": "summary.md"
+}

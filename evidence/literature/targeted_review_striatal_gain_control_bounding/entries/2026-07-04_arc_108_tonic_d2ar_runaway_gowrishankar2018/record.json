@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_striatal_gain_control_bounding",
+  "entry_id": "2026-07-04_arc_108_tonic_d2ar_runaway_gowrishankar2018",
+  "timestamp_utc": "2026-07-04T13:35:01Z",
+  "claim_ids_tested": [
+    "ARC-108",
+    "ARC-106"
+  ],
+  "source": {
+    "title": "Region-Specific Regulation of Presynaptic Dopamine Homeostasis by D2 Autoreceptors Shapes the Impact of the Neuropsychiatric Disease-Associated DAT Variant Val559.",
+    "authors": [
+      "Raajaram Gowrishankar",
+      "Paul J Gresch",
+      "Gwynne L Davis",
+      "Rania M Katamish",
+      "Justin R Riele",
+      "Adele M Stewart",
+      "Roxanne A Vaughan",
+      "Maureen K Hahn",
+      "Randy D Blakely"
+    ],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0055-18.2018"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Mechanistic transgenic-mouse study that shows the bounding dependency AND its runaway failure mode in one system: normally D2 autoreceptors tonically constrain presynaptic DA (via DAT trafficking + tyrosine-hydroxylase control), but in the DAT Val559 variant tonic D2AR activation flips into a POSITIVE-FEEDBACK loop -- it drives surface expression of efflux-prone transporters, raising extracellular DA and 'overwhelming DAT-mediated DA clearance capacity'. That is a concrete biological instance of a homeostat losing its bound and running away -- the precise dynamical shape of the 711 blow-up (a plastic positive-feedback loop with no saturation). Direction 'mixed': it SUPPORTS the existence of the tonic homeostatic bound, but its headline is the PATHOLOGICAL runaway (a disease variant), so it also functions as the cautionary failure-signature. Confidence 0.62: strong mechanism, but a specific disease-variant model with region/sex specificity, so transfer to REE's abstract controller is via analogy of dynamics, not of substrate.",
+  "failure_signatures": [
+    "A tonic drive coupled to a plastic amplifier with no saturation becomes a positive-feedback runaway that overwhelms the downstream clearance/normalization capacity (Val559: tonic D2AR -> efflux-prone DAT -> DA rises -> more efflux). REE's pre-repair ascending M_cross maturation is the same shape; the anti-windup clamp (ASG-4) is the missing saturation.",
+    "Whether a homeostatic loop BOUNDS or RUNS AWAY can depend on region-specific parameters (dorsal vs ventral striatum here) -- predicts REE's parity controller may need loop-specific (limbic vs motor) bounding constants rather than one global ceiling ratio."
+  ],
+  "tags": [
+    "arc-108",
+    "arc-106",
+    "d2_autoreceptor",
+    "dopamine_homeostasis",
+    "positive_feedback_runaway",
+    "tonic_dopamine",
+    "asg-3",
+    "anti_windup"
+  ],
+  "mapping": {
+    "source_claim_statement": "Presynaptic dopamine homeostasis is set by tonic D2-autoreceptor control of DA synthesis, release and transporter-mediated clearance; when this control is perturbed (DAT Val559), tonic D2AR activation drives a positive-feedback loop that increases efflux-prone transporter surface expression, elevates extracellular DA, and overwhelms clearance capacity.",
+    "ree_translation": "Concretely grounds BOTH halves of the 711 repair: (i) ASG-3 -- the tonic-DA-homeostasis loop that normally holds dopaminergic drive within a band; (ii) the failure mode -- when that loop lacks saturation it becomes a positive-feedback runaway that overwhelms the downstream normalizer, which is exactly the unbounded ascending M_cross maturation the anti-windup clamp (ASG-4) was added to stop. Shows the homeostat and its runaway are two regimes of the SAME loop, matching REE's 709(sub-threshold)->711(runaway) 'no stable operating point' finding.",
+    "mapping_caveat": "This is a disease-variant (Val559) mouse model; the runaway is engineered by a specific transporter mutation, not a generic property of the healthy spiral. Mapping its presynaptic-efflux positive feedback onto REE's cross-loop-weight maturation is a dynamical analogy (positive feedback + no saturation -> blow-up), not a substrate correspondence.",
+    "source_context": "Ex vivo + in vivo transgenic mouse (adolescent males); voltammetry + biochemistry; region-specific (dorsal vs ventral striatum)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.5,
+    "notes": "Source quality high (J Neurosci, Blakely lab). Mapping fidelity good for the runaway-dynamics analogy; transfer risk elevated because it is a disease-variant model and the correspondence is at the level of loop dynamics, not molecular substrate."
+  },
+  "summary_path": "summary.md"
+}
