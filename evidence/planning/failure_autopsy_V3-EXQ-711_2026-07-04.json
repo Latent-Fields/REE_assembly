@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-04T04:08:19Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_711_ascending_spiral_gain_validation_20260704T021720Z_v3",
+      "queue_id": "V3-EXQ-711",
+      "claim_ids": ["MECH-439", "ARC-108", "ARC-110"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the C1 conversion step was evaluated under a DEGENERATE (saturated) arbitration regime, so none of the three claims could express itself. The self-routed decisive weakens is NOT warranted.",
+        "biological_reference": "partial -- Haber 2000 striato-nigro-striatal ascending spiral is a GRADED, parity-restoring modulation bounded by tonic-DA homeostasis + striatal lateral inhibition. REE has the symbol (asymmetric upper-triangular gain on the ascending M_cross entries) but not the functional role: a raw scalar gain (20x forward x 5x plasticity) compounding through the three-factor eligibility update produced exponential runaway (M_cross range 4897.8, 5 orders of magnitude above the un-gained ~0.05), i.e. limbic-loop MONOPOLY, not competitive parity. Missing-dependency signature, not a falsification.",
+        "prerequisites": "missing -- a gain-control / column-normalization / target-parity law that bounds w_eff so the ascending lift reaches PARITY (w_eff[limbic] ~ w_eff[motor]) rather than saturating.",
+        "implementation": "partial -- (a) ree-v3 e3_selector._ascending_gain_matrix + the M_cross maturation update have no saturation bound; (b) the experiment limbic_loop_can_win gate is a bare w_eff[limbic] >= w_eff[motor] with no parity band and no w_eff/M_cross ceiling, so it cannot distinguish a 1.01x fair win from a 2274x blow-up.",
+        "environment": "adequate -- GAP-A reef-bipartite carries divergence (3 divergent seeds on both arms).",
+        "measurement": "misleading -- the load-bearing win-gate green-lit a degenerate conversion test; the decisive-FAIL branch fired on a saturated arbitration.",
+        "integration": "unstable -- modules are live on both arms, but the gained cross-loop interaction is numerically unstable (per-seed M_cross range spans 0.42 to 4897.8).",
+        "scale": "adequate -- 6 seeds, phased P0/P1/P2; not a capacity/warmup issue."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Basal-ganglia striato-nigro-striatal ascending spiral (Haber 2000): limbic -> associative -> motor ascending DA projection graded-biases downstream loop competition.",
+        "dependencies": ["tonic dopamine homeostasis (bounds ascending drive)", "striatal lateral inhibition / normalization (prevents single-loop runaway)", "graded (not winner-take-all) cross-loop coupling"],
+        "is_formal_import": false,
+        "divergence": "The biological ascending spiral is a bounded graded modulation; the REE instantiation is an unbounded raw scalar gain on a positive-feedback plastic loop -> exponential runaway into limbic-dominance monopoly (mirror image of the F/motor-dominance it was meant to dissolve). This is load-bearing: the mechanism lacks the homeostatic/normalization dependency that keeps the biological spiral in a parity regime.",
+        "lit_status": "partial -- arc_108 sibling lit (Warnberg2023/Gilbertson2019/Mah2024) grounds the DA-gated three-factor rule; the striatal gain-control / DA-homeostasis bounding is not yet pulled."
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-711 (ARC-110 x ARC-108 ascending-spiral gain validation; experiment_purpose=evidence; claim_ids=[MECH-439, ARC-108, ARC-110]) FAIL / non_degenerate=True but self-routed DECISIVE weakens is REJECTED by confirmed failure_autopsy_V3-EXQ-711_2026-07-04 (user-approved). The 711 build tested whether a strengthened ascending gain lets a non-motor (limbic) loop reach motor effective weight and CONVERT committed-action diversity. The limbic_loop_can_win precondition was recorded MET on 3/3 divergent seeds, but NOT by a competitive parity win: the raw 20x-forward x 5x-plasticity gain compounding through the three-factor eligibility update ran AWAY (M_cross range peak 4897.8 vs the un-gained 709/OFF ~0.02-0.12; w_eff[limbic] peak 10x-2274x w_eff[motor] across divergent seeds). A 10-2274x limbic dominance is a NEW single-loop monopoly (limbic-pinning) replacing the old F/motor-pinning, not a fair arbitration -- and it did not convert: on 2/3 divergent seeds committed-class entropy FELL below the un-gained baseline (delta -0.049 / -0.210); only the most extreme blow-up seed (42, ~2274x) rose (+0.153). The conversion question was therefore tested under a DEGENERATE (saturated) arbitration and was NOT validly measured -> non_contributory for all three claims (same non-vacuity discipline as 709; the win-gate simply lacked a saturation guard so its own substrate_not_ready_requeue branch did not fire). MECH-439-intrinsic is NOT shown (F-dominance was replaced by limbic-dominance, not dissolved into competition); ARC-108 and ARC-110 are NOT weakened (a bounded/parity ascending gain was never tested). 709->711 pattern: the raw-scalar ascending gain has no stable operating regime -- sub-threshold (709, ~0.03, never wins) or runaway (711, 10-2274x, monopolizes); the mechanism is MISSING A CONTROLLER (gain-normalization / target-parity law), a genuine NEW substrate finding, not evidence of an intrinsic ceiling. Routed /implement-substrate (amend v4_loop_segregation): bounded/normalized ascending gain + saturation guard on the limbic_loop_can_win gate; a blind same-claim gain-magnitude re-queue (711b at lower gain) is REFUSED until the controller is built. PROMOTES NOTHING; all three stay candidate + pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "The ascending-spiral gain (landed ree-v3 6b660a6) has no stable parity regime: at raw scalar 20x-forward/5x-plasticity it runs the plastic ascending M_cross entries away (M_cross range peak 4897.8; w_eff[limbic] 10-2274x w_eff[motor]), replacing motor-dominance with limbic-dominance instead of restoring parity. Build a BOUNDED/normalized ascending gain -- a target-parity controller (e.g. column-normalize W_cross, clamp M_cross range, or drive w_eff[limbic] toward w_eff[motor] rather than multiply by an unbounded scalar) -- AND add a saturation guard to the experiment limbic_loop_can_win gate (require a parity band + a w_eff/M_cross ceiling so a blow-up self-routes substrate_not_ready_requeue instead of a decisive FAIL). Only then re-test the conversion.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "ARC-110"],
+        "depends_on_unresolved": ["striatal gain-control / DA-homeostasis bounding (lit not yet pulled)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_711_ascending_spiral_gain_validation_20260704T021720Z_v3",
+          "experiment_type": "v3_exq_711_ascending_spiral_gain_validation",
+          "metric": "ascending gain ran away: M_cross range peak 4897.8 (vs un-gained ~0.02-0.12); w_eff[limbic] peak 10-2274x w_eff[motor]; committed-class entropy FELL on 2/3 divergent seeds (delta -0.049 / -0.210). limbic_loop_can_win met (3/3) but by saturation, not parity -> conversion not validly measured (non_contributory).",
+          "target": "a working impl must lift w_eff[limbic] to PARITY (w_eff[limbic] ~ w_eff[motor], bounded ratio) on >=3/4 divergent seeds WITHOUT saturating (M_cross range and w_eff ratio under a ceiling), then C1 committed-class entropy strict-above the un-gained baseline on >=2/3 divergent seeds."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-710_2026-07-03",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "v4_loop_segregation"
+      },
+      "learning_extracted": [
+        "The raw-scalar ascending gain has NO stable operating regime: 709 (coupling ~0.03) is sub-threshold and never wins; 711 (20x/5x) runs away to 10-2274x limbic dominance. The mechanism is missing a controller (gain-normalization / target-parity law), which is a NEW substrate finding, not evidence of an intrinsic ceiling.",
+        "A bare w_eff[limbic] >= w_eff[motor] win-gate cannot distinguish a fair parity win from a saturated blow-up; a saturation guard (parity band + w_eff/M_cross ceiling) is required or the decisive-FAIL branch fires on a degenerate arbitration.",
+        "Saturated limbic dominance does NOT produce committed-action diversity -- it collapses committed selection onto the limbic loop's single top candidate (entropy fell on 2/3 divergent seeds), i.e. it is a mirror-image of F-dominance, not its dissolution.",
+        "C1_n_seeds=1 is the per-divergent-seed PASS-count (seed 42 only of {42,44,46}), scored correctly; the 0.855-vs-0.877 all-6-seed mean is a display statistic, not the decision statistic. No instrumentation bug (concern 2 resolved)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "within-lineage 709->711: ascending coupling too weak (never wins) -> ascending coupling runs away (monopolizes); no parity regime.",
+    "is_independent_bugs": false,
+    "structural_property": "The ascending-spiral gain as instantiated (unbounded raw scalar on a positive-feedback plastic loop) has no stable parity operating point; it needs a homeostatic gain-control / normalization dependency the biological spiral has and the REE symbol lacks.",
+    "readings": ["substrate_enrichment"]
+  }
+}
