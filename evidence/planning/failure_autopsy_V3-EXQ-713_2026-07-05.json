@@ -1,0 +1,252 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-05T09:28:06Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+      "queue_id": "V3-EXQ-713",
+      "claim_ids": [
+        "MECH-439"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (architecture); arbitration-reweighting realization exhausted",
+        "biological_reference": "clear -- Haber 2000 bounded spiral now faithfully translated + working; conversion is a selection/eligibility-face op, not arbitration reweighting",
+        "prerequisites": "controller dependency now present; conversion substrate (MECH-448 selection-face) BUILT + lifting on GAP-A",
+        "implementation": "complete -- parity controller landed 2026-07-04; fair win 4/4 seeds",
+        "environment": "adequate -- segregated loops live, 4 divergent seeds",
+        "measurement": "adequate -- first non-degenerate measurement of arbitration-level conversion",
+        "integration": "coupled -- loops + learned arbitration + controller live",
+        "scale": "adequate -- not the binding constraint"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Haber 2000 striato-nigro-striatal ascending spiral (bounded, parity-restoring)",
+        "dependencies": [
+          "bounded/normalized ascending gain (now present)",
+          "selection-face eligibility demotion MECH-448 (downstream conversion locus)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none for the controller (faithful bounded spiral); LEVEL mismatch -- conversion is a within-loop selection/eligibility op, not a cross-loop arbitration-reweighting op",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "manifest_self_route": "supports",
+      "recommended_evidence_quality_note": "CORROBORATION 2026-07-05 (confirmed failure_autopsy_V3-EXQ-713_2026-07-05): V3-EXQ-713 bounded parity-controller validation FAIL / non_degenerate=True. FIRST validly-measured arbitration-level conversion in the 709->711->713 lineage: fair band parity win 4/4 divergent seeds, no_saturation_blowup=0 (711 monopoly repaired) -- C1 STILL failed. Manifest self-routes 'supports (ceiling intrinsic)'; adjudicated NARROW corroboration only (narrow_supports_flag) -- a single-arena FAIL cannot establish global intrinsicness. NEW datum: fair arbitration parity win does NOT convert -> cross-loop-arbitration-reweighting route EXHAUSTED; conversion is the SELECTION-face op (MECH-448, lifting on GAP-A). Re-derive brake FIRES (11th MECH-439 reading); same-level arbitration re-letter REFUSED; route = selection-face MECH-448 behavioural retests (654h/485i/445h/625e). non_contributory: does NOT weaken MECH-439. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Cross-loop arbitration-reweighting conversion route: terminal failure record",
+        "implementation_hint": "Record 713 as the terminal negative for the arbitration-reweighting conversion route (weak 709 / runaway 711 / fair-bounded 713 all fail). The conversion route of record is the SELECTION-face f_dominance_conversion_ceiling (MECH-448 rank-preserving F->eligibility demotion), already BUILT and lifting on GAP-A. No new build owed on either entry by this run; forward motion is the selection-face behavioural retests already queued (654h/485i/445h/625e).",
+        "unblocks_claims": [
+          "MECH-439",
+          "ARC-108",
+          "ARC-110"
+        ],
+        "depends_on_unresolved": [
+          "f_dominance_conversion_ceiling (MECH-448 selection-face; BUILT, behavioural retests 654h/485i/445h/625e unscored)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+          "experiment_type": "v3_exq_713_bounded_parity_controller_validation",
+          "metric": "C1 learned-strict-above-static FAILED under a FAIR non-degenerate limbic parity win (limbic_loop_parity_win 4/4 divergent seeds, no_saturation_blowup=0); committed-class diversity did not lift",
+          "target": "C1 strict-above on a strict-majority of divergent seeds under a fair (in-band, non-saturated) limbic parity win"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-689_2026-06-19",
+          "failure_autopsy_V3-EXQ-689a_2026-06-20",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-710_2026-07-03",
+          "failure_autopsy_V3-EXQ-711_2026-07-04",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "711 'missing controller' gap CLOSED -- bounded target-parity controller delivers a fair non-saturated limbic parity win (4/4 divergent seeds)",
+        "A fair arbitration-level parity win, validly measured for the FIRST time, does NOT convert -> cross-loop-arbitration-reweighting route EXHAUSTED (weak/runaway/fair-bounded all fail)",
+        "Level-mismatch: committed-action conversion is a selection/eligibility-face op (MECH-448, lifting on GAP-A), not arbitration reweighting; 713 is positive triangulation for the selection-face route",
+        "Does NOT weaken ARC-108/ARC-110 as architectural commitments; closes one realization of their conversion route"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+      "queue_id": "V3-EXQ-713",
+      "claim_ids": [
+        "ARC-108"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (architecture); arbitration-reweighting realization exhausted",
+        "biological_reference": "clear -- Haber 2000 bounded spiral now faithfully translated + working; conversion is a selection/eligibility-face op, not arbitration reweighting",
+        "prerequisites": "controller dependency now present; conversion substrate (MECH-448 selection-face) BUILT + lifting on GAP-A",
+        "implementation": "complete -- parity controller landed 2026-07-04; fair win 4/4 seeds",
+        "environment": "adequate -- segregated loops live, 4 divergent seeds",
+        "measurement": "adequate -- first non-degenerate measurement of arbitration-level conversion",
+        "integration": "coupled -- loops + learned arbitration + controller live",
+        "scale": "adequate -- not the binding constraint"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Haber 2000 striato-nigro-striatal ascending spiral (bounded, parity-restoring)",
+        "dependencies": [
+          "bounded/normalized ascending gain (now present)",
+          "selection-face eligibility demotion MECH-448 (downstream conversion locus)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none for the controller (faithful bounded spiral); LEVEL mismatch -- conversion is a within-loop selection/eligibility op, not a cross-loop arbitration-reweighting op",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "manifest_self_route": "weakens",
+      "recommended_evidence_quality_note": "UPDATE 2026-07-05 (confirmed failure_autopsy_V3-EXQ-713_2026-07-05): V3-EXQ-713 (tagged ARC-108) FAIL / non_degenerate=True. Manifest self-routes 'weakens'; REJECTED. The bounded controller delivered a FAIR non-saturated limbic parity win (4/4 seeds), so unlike 709 (sub-threshold) / 711 (saturated) the learned-gating arbitration route was exercised NON-DEGENERATELY -- and did NOT convert (C1 fail). This EXHAUSTS the cross-loop-arbitration-reweighting realization of ARC-108's learned gating but does NOT weaken ARC-108 as an architectural commitment (conversion route is the downstream selection face, MECH-448, lifting on GAP-A). non_contributory. Re-derive brake FIRES (8th ARC-108 reading); same-level arbitration re-queue REFUSED; route = selection-face MECH-448 behavioural retests. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Cross-loop arbitration-reweighting conversion route: terminal failure record",
+        "implementation_hint": "Record 713 as the terminal negative for the arbitration-reweighting conversion route (weak 709 / runaway 711 / fair-bounded 713 all fail). The conversion route of record is the SELECTION-face f_dominance_conversion_ceiling (MECH-448 rank-preserving F->eligibility demotion), already BUILT and lifting on GAP-A. No new build owed on either entry by this run; forward motion is the selection-face behavioural retests already queued (654h/485i/445h/625e).",
+        "unblocks_claims": [
+          "MECH-439",
+          "ARC-108",
+          "ARC-110"
+        ],
+        "depends_on_unresolved": [
+          "f_dominance_conversion_ceiling (MECH-448 selection-face; BUILT, behavioural retests 654h/485i/445h/625e unscored)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+          "experiment_type": "v3_exq_713_bounded_parity_controller_validation",
+          "metric": "C1 learned-strict-above-static FAILED under a FAIR non-degenerate limbic parity win (limbic_loop_parity_win 4/4 divergent seeds, no_saturation_blowup=0); committed-class diversity did not lift",
+          "target": "C1 strict-above on a strict-majority of divergent seeds under a fair (in-band, non-saturated) limbic parity win"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+          "failure_autopsy_V3-EXQ-460l_2026-06-23",
+          "failure_autopsy_V3-EXQ-700-cluster_2026-06-23",
+          "failure_autopsy_V3-EXQ-700b_2026-06-24",
+          "failure_autopsy_V3-EXQ-700c_2026-06-26",
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711_2026-07-04"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "711 'missing controller' gap CLOSED -- bounded target-parity controller delivers a fair non-saturated limbic parity win (4/4 divergent seeds)",
+        "A fair arbitration-level parity win, validly measured for the FIRST time, does NOT convert -> cross-loop-arbitration-reweighting route EXHAUSTED (weak/runaway/fair-bounded all fail)",
+        "Level-mismatch: committed-action conversion is a selection/eligibility-face op (MECH-448, lifting on GAP-A), not arbitration reweighting; 713 is positive triangulation for the selection-face route",
+        "Does NOT weaken ARC-108/ARC-110 as architectural commitments; closes one realization of their conversion route"
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+      "queue_id": "V3-EXQ-713",
+      "claim_ids": [
+        "ARC-110"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (architecture); arbitration-reweighting realization exhausted",
+        "biological_reference": "clear -- Haber 2000 bounded spiral now faithfully translated + working; conversion is a selection/eligibility-face op, not arbitration reweighting",
+        "prerequisites": "controller dependency now present; conversion substrate (MECH-448 selection-face) BUILT + lifting on GAP-A",
+        "implementation": "complete -- parity controller landed 2026-07-04; fair win 4/4 seeds",
+        "environment": "adequate -- segregated loops live, 4 divergent seeds",
+        "measurement": "adequate -- first non-degenerate measurement of arbitration-level conversion",
+        "integration": "coupled -- loops + learned arbitration + controller live",
+        "scale": "adequate -- not the binding constraint"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Haber 2000 striato-nigro-striatal ascending spiral (bounded, parity-restoring)",
+        "dependencies": [
+          "bounded/normalized ascending gain (now present)",
+          "selection-face eligibility demotion MECH-448 (downstream conversion locus)"
+        ],
+        "is_formal_import": false,
+        "divergence": "none for the controller (faithful bounded spiral); LEVEL mismatch -- conversion is a within-loop selection/eligibility op, not a cross-loop arbitration-reweighting op",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "manifest_self_route": "weakens",
+      "recommended_evidence_quality_note": "UPDATE 2026-07-05 (confirmed failure_autopsy_V3-EXQ-713_2026-07-05): V3-EXQ-713 (tagged ARC-110) FAIL / non_degenerate=True. Manifest self-routes 'weakens'; adjudicated non_contributory. A fair bounded non-saturated limbic parity win across the segregated loops did NOT convert -- corroborating loop segregation necessary-but-not-sufficient and that the conversion route is a WORKING selection-face demotion (MECH-448), not arbitration reweighting. Does NOT add a second weakens; ARC-110's existing NARROW 707b single-arena-artefact weakens is UNCHANGED and STANDS. Re-derive brake FIRES (3rd ARC-110 reading); same-level arbitration re-queue REFUSED; route = selection-face MECH-448 behavioural retests. pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "sd_id_suggested": null,
+        "title": "Cross-loop arbitration-reweighting conversion route: terminal failure record",
+        "implementation_hint": "Record 713 as the terminal negative for the arbitration-reweighting conversion route (weak 709 / runaway 711 / fair-bounded 713 all fail). The conversion route of record is the SELECTION-face f_dominance_conversion_ceiling (MECH-448 rank-preserving F->eligibility demotion), already BUILT and lifting on GAP-A. No new build owed on either entry by this run; forward motion is the selection-face behavioural retests already queued (654h/485i/445h/625e).",
+        "unblocks_claims": [
+          "MECH-439",
+          "ARC-108",
+          "ARC-110"
+        ],
+        "depends_on_unresolved": [
+          "f_dominance_conversion_ceiling (MECH-448 selection-face; BUILT, behavioural retests 654h/485i/445h/625e unscored)"
+        ],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+          "experiment_type": "v3_exq_713_bounded_parity_controller_validation",
+          "metric": "C1 learned-strict-above-static FAILED under a FAIR non-degenerate limbic parity win (limbic_loop_parity_win 4/4 divergent seeds, no_saturation_blowup=0); committed-class diversity did not lift",
+          "target": "C1 strict-above on a strict-majority of divergent seeds under a fair (in-band, non-saturated) limbic parity win"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711_2026-07-04"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "711 'missing controller' gap CLOSED -- bounded target-parity controller delivers a fair non-saturated limbic parity win (4/4 divergent seeds)",
+        "A fair arbitration-level parity win, validly measured for the FIRST time, does NOT convert -> cross-loop-arbitration-reweighting route EXHAUSTED (weak/runaway/fair-bounded all fail)",
+        "Level-mismatch: committed-action conversion is a selection/eligibility-face op (MECH-448, lifting on GAP-A), not arbitration reweighting; 713 is positive triangulation for the selection-face route",
+        "Does NOT weaken ARC-108/ARC-110 as architectural commitments; closes one realization of their conversion route"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "non-motor loop wins cross-loop arbitration (weak 709 / runaway 711 / fair-bounded 713) but committed-action diversity does not lift",
+    "is_independent_bugs": false,
+    "structural_property": "committed-action conversion is a within-loop selection/eligibility-face operation (MECH-448 rank-preserving F->eligibility demotion, lifting on GAP-A), NOT a cross-loop arbitration-reweighting operation; the arbitration-reweighting route is exhausted",
+    "readings": [
+      "arbitration_route_exhausted",
+      "selection_face_is_conversion_locus"
+    ]
+  }
+}
