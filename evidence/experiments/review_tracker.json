@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-04T04:20:22Z",
+  "last_review_utc": "2026-07-05T09:37:54Z",
   "discussed_experiment_dirs": [
     "v3_exq_712_distributional_world_forward_heads",
     "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
@@ -781,7 +781,8 @@
     "v3_exq_704b_mech451_finer_channel_granularity_falsifier",
     "v3_exq_709_learned_cross_loop_arbitration_validation",
     "v3_exq_710_disinhibitory_soft_competitive_settling_validation",
-    "v3_exq_711_ascending_spiral_gain_validation"
+    "v3_exq_711_ascending_spiral_gain_validation",
+    "v3_exq_713_bounded_parity_controller_validation"
   ],
   "reviewed_run_ids": [
     "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3",
@@ -3240,7 +3241,8 @@
     "v3_exq_704b_mech451_finer_channel_granularity_falsifier_20260626T180938Z_v3",
     "v3_exq_709_learned_cross_loop_arbitration_validation_20260702T052508Z_v3",
     "v3_exq_710_disinhibitory_soft_competitive_settling_validation_20260703T112039Z_v3",
-    "v3_exq_711_ascending_spiral_gain_validation_20260704T021720Z_v3"
+    "v3_exq_711_ascending_spiral_gain_validation_20260704T021720Z_v3",
+    "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4948,6 +4950,13 @@
         "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4"
       ],
       "context": "governance-cycle-20260701T1700Z: two V4 substrate-validation falsifiers walked, both PASS, both claim_ids=[] (score NO claim; PROMOTES NOTHING; generation:v4, epoch ree_self_model_v1). V4-EXQ-002 (DR-13/SELF-1 self-recurrence) label dr13_self_recurrence_delivers_stateful_subject: precondition self_recurrence_live_state_departure MET (min_state_departure 1.15 > 0.001), non-degenerate C1_carries_history/C2_perturbation_isolated/C3_anchor_blend_live all True on 3/3 seeds; secondary untrained-GRU-vs-EMA history-retention (0.168<0.219) NOT a gate (trained superiority is a DR-10 consumer question). V4-EXQ-003 (DR-10/SELF-3 z_self-in-E3 viability wiring) label dr10_z_self_viability_changes_selection: both preconditions MET (differential self-viability range 1.23 > 0.1; applied penalty exceeds primary best-vs-second gap = decisive), non-degenerate C1_differential_flips/C2_uniform_inert True + all_decisive on 3/3 seeds. User-classified both as verified diagnostic/substrate-readiness falsifiers (no adjudication flag) and approved marking reviewed. Marked via discussed_experiment_dirs (unclaimed no-tag manifests). No claims.yaml change. Governance-tooling fix this cycle: generalized build_experiment_indexes.py architectural-commitment routing from ('v4','v5') to any implementation_phase v>=4 after Q-074 (v6) surfaced as pending_user in the same shape -- user-directed trace confirmed the 82-claim held set buries NO V3-needed claim (only 2 phase-hygiene red flags: ARC-080[v4]<-MECH-423[v3] conceptual link, ARC-034[untagged]<-MECH-129[v5] missing-tag; both deferred to chips). Q-074 now routes held_v4_by_architectural_commitment/applied; pending_user 0."
+    },
+    {
+      "utc": "2026-07-05T09:37:54Z",
+      "run_ids": [
+        "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3"
+      ],
+      "context": "governance-apply-exq713-20260705T0937Z: consumed confirmed failure_autopsy_V3-EXQ-713_2026-07-05 (user-adjudicated). V3-EXQ-713 (bounded parity-controller validation; ARC-110 x ARC-108 x MECH-439) FAIL / non_degenerate=True. Flat manifest self-routed a DECISIVE read (MECH-439 supports/ceiling-intrinsic; ARC-108/ARC-110 weakens); OVERRIDDEN -> non_contributory for all three (original preserved in evidence_direction_original_self_route + banner note). 713 is the FIRST run in the 709->711->713 arbitration lineage where the conversion question was VALIDLY measured: a FAIR bounded limbic parity win (limbic_loop_parity_win 4/4 divergent seeds, no_saturation_blowup=0 -- the 711 monopoly repaired) -- and C1 (committed-class entropy strict-above the un-gained baseline) STILL failed (ON 0.870 < OFF 0.877). A single-arena FAIL cannot establish global intrinsicness, so MECH-439 is NARROW corroboration only (not fresh support). KEY FINDING: the cross-loop-arbitration-reweighting conversion route is EXHAUSTED (weak 709 / runaway 711 / fair-bounded 713 all fail); committed-action conversion is a within-loop SELECTION/eligibility-face op (MECH-448 rank-preserving F->eligibility demotion, lifting on GAP-A), NOT arbitration reweighting. Applied the three recommended_evidence_quality_note texts to MECH-439 (11th brake) / ARC-108 (8th) / ARC-110 (3rd); all STAY candidate + pending_retest_after_substrate; PROMOTES NOTHING. AMEND substrate_queue v4_loop_segregation (+713 terminal failure_record -> 9; arbitration-reweighting route flagged EXHAUSTED; no new build owed). A same-level arbitration parity re-letter (713x) is REFUSED. User-adjudicated; approved marking reviewed."
     }
   ]
 }
