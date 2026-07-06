@@ -1,0 +1,84 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-06T16:41:21Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier_20260706T113002Z_v3",
+      "queue_id": "V3-EXQ-715",
+      "supersedes": "V3-EXQ-460l",
+      "claim_ids": ["MECH-445", "MECH-446"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Self-routed substrate_not_ready_requeue: readiness gate (a) armed_and_sustained_f_independent = 1/3 (< 2/3) and mech446_around_closure_window_nonvacuous = 0/3. The load-bearing science criteria (mech445 2of3, mech446 2of3, co-occurrence 2of3) were never reachable because readiness aborted. NOT a falsification.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; MECH-445 narrowly strengthened. The test could not let both children co-express (readiness abort), so nothing was falsified. MECH-445 gained a narrow non-scoring positive.",
+        "biological_reference": "partial. BG-like commitment/de-commit gate; the SD-034 closure-scaled refractory (de-commit) presupposes a sustained committed occupancy to release. Grounded, not a pure formal import.",
+        "prerequisites": "missing. The residual unmet dependency is F-independent closure arming that survives MODERATE F (i.e. the F-dominance conversion ceiling, MECH-439). Arming currently only occurs when the F-driven natural commit collapses (weak-natural-commit regime).",
+        "implementation": "partial->advance. use_closure_commit_entry (460o/p PASS) RESOLVED the 460h/k structural-unreachability: seed 44 sd034_n_closure_commit_intent=398 with n_f_commits=7 and ncl_hold_closure_armed_total=398 -- the counter is no longer pinned at 0 by construction. But arming is regime-scoped (1/3 seeds).",
+        "environment": "adequate. scaffolded_sd054_onboarding full curriculum; contact guard 3/3, rule-directed 3/3.",
+        "measurement": "under-instrumented for the ON regime. The MECH-446 around-closure window (beta_gate.is_elevated occupancy, anchored on SD-034 closure fires) was vacuous on the ON arm for ALL 3 seeds, INCLUDING seed 44 where the latch armed -- the closure fires and the latch-armed occupancy are temporally disjoint within-episode (mean_pre_closure_occ=0). Verified NOT an instrumentation bug: beta_history/fire_ticks reset per episode (lines 538-539) and align with per-episode tick_idx; the OFF arm formed real windows (seed 42 pre_occ 0.7, seed 43 pre_occ 0.333).",
+        "integration": "partially coupled but unstable. The two SD-034 de-commit children (MECH-445 commit-intent latch; MECH-446 closure-fire de-commit window) do not co-locate -- the 460h cross-seed disjoint-certifier problem has migrated to WITHIN-seed temporal disjointness.",
+        "scale": "adequate. 3 seeds; the blocker is regime, not budget."
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia commitment gate with closure/completion-triggered de-commitment (SD-034 closure operator + BetaGate commit-entry).",
+        "dependencies": ["F-independent sustained committed occupancy", "closure-fire co-located with that occupancy", "arming that survives moderate F-drive (MECH-439 ceiling)"],
+        "is_formal_import": false,
+        "divergence": "The de-commit magnitude DV presupposes a committed occupancy the F-independent latch, on the current substrate, only produces when F is weak -- and even then not temporally aligned with the SD-034 closure fires.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "PARTIAL RELEASE: the 460h/k structural-unreachability blocker is RESOLVED (use_closure_commit_entry). The residual ceiling has a NEW signature -- regime-scoped arming (survives only weak F) + within-seed certifier disjointness -- not the old structural-unreachability. Tag stays substrate_ceiling but the release condition has moved.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-445": "non_contributory", "MECH-446": "non_contributory"},
+      "recommended_evidence_quality_note_MECH-445": "V3-EXQ-715 (confirmed failure_autopsy_V3-EXQ-715_2026-07-06, supersedes 460l) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). 6th substrate-blocked iteration; RE-DERIVE BRAKE remains FIRED (threshold 2). SUBSTRATE ADVANCE: use_closure_commit_entry (460o/p PASS) RESOLVED the 460h/k structural-unreachability -- MECH-445's refractory-independent commit-intent counter is NO LONGER pinned at 0 by construction. NARROW NON-SCORING POSITIVE (existence proof, 1/3): seed 44 sd034_n_closure_commit_intent=398 with n_f_commits=7 and ncl_hold_closure_armed_total=398 (F-INDEPENDENT arming confirmed). Self-routed substrate_not_ready_requeue at gate (a) 1/3 (< 2/3): arming is REGIME-SCOPED -- fires only on the weak-natural-commit seed (44); strong-natural-commit seeds 42/43 never arm in the ON arm (residue of the F-dominance conversion ceiling MECH-439). NOT a falsification. Release condition: arming that survives moderate F (substrate_queue f_dominance_conversion_ceiling amend, de-commit-release face). Same-claim de-commit-falsifier re-queue REFUSED (brake). Granularity-debt recurrence (6 iterations, shifting signature) -> /claim-synthesis referral to split the now-partially-supported F-independent commit-INTENT existence child from the co-located de-commit-MAGNITUDE child.",
+      "recommended_evidence_quality_note_MECH-446": "V3-EXQ-715 (confirmed failure_autopsy_V3-EXQ-715_2026-07-06, supersedes 460l) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). 6th substrate-blocked iteration; RE-DERIVE BRAKE remains FIRED (threshold 2). The within-arm around-closure occupancy-drop DV was VACUOUS on the ON arm for all 3 seeds (n_window_events=0), INCLUDING the seed where MECH-445 armed (seed 44: 398 commit-intents but the SD-034 closure fires and the latch-armed beta occupancy are TEMPORALLY DISJOINT within-episode -> mean_pre_closure_occ=0). The 460h cross-seed disjoint-certifier problem has MIGRATED to WITHIN-seed temporal disjointness on the F-independent substrate; use_closure_commit_entry did NOT dissolve it. NOT a falsification, NOT scorable -- the MECH-446 DV is starved, not falsified. (Verified not an instrumentation artifact: beta_history/fire_ticks reset per episode and align; the OFF arm formed real windows.) Release condition: a regime where the SD-034 closure fire co-locates with a sustained latch-armed occupancy to de-commit from (substrate_queue f_dominance_conversion_ceiling amend). Same-claim re-queue REFUSED (brake). /claim-synthesis referral: the persistent within-seed certifier disjointness across 6 iterations is the granularity signal that MECH-446 (co-located de-commit MAGNITUDE) and MECH-445 (F-independent commit INTENT) may be separate claims no single regime co-satisfies.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "de-commit-release face: F-independent closure arming that survives moderate F + closure-fire co-located with latch-armed occupancy",
+        "implementation_hint": "The use_closure_commit_entry primitive resolved the structural-unreachability but arming only occurs when the F-driven natural commit collapses (weak-F regime); strong-F seeds never arm. Add/route an arming-under-moderate-F lever on the de-commit-release face so the closure-commit-entry latch gets purchase without needing F to collapse, AND so SD-034 closure fires co-locate with the latch-armed beta occupancy the MECH-446 de-commit DV reads. This is the rung6/460-lineage readiness the entry's status already flags as pending.",
+        "unblocks_claims": ["MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["MECH-439 (F-dominance conversion ceiling, de-commit-release face)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier_20260706T113002Z_v3",
+          "experiment_type": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier",
+          "metric": "gate(a) armed_and_sustained_f_independent = 1/3 (seed 44 only); mech446 around-closure window non-vacuous = 0/3 (all ON arms n_window_events=0). Advance: MECH-445 commit-intent no longer pinned at 0 (seed 44 = 398, F-independent).",
+          "target": "gate(a) >= 2/3 armed+sustained with F-independent arming AND mech446 window non-vacuous >= 2/3 (a working de-commit-release substrate must arm across regimes and co-locate closure fires with latch-armed occupancy)."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-445 seed 44: F-independent commit-intent existence proof (398 arms, 7 F-commits). Single-seed, single-pathway, weak-natural-commit regime -- does NOT clear the 2/3 gate and must not be read as a support; recorded as a narrow non-scoring positive only.",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460h_2026-06-20",
+          "failure_autopsy_V3-EXQ-460i_2026-06-21",
+          "failure_autopsy_V3-EXQ-460j_2026-06-21",
+          "failure_autopsy_V3-EXQ-460k_2026-06-22",
+          "failure_autopsy_V3-EXQ-460l_2026-06-23"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling",
+        "note": "Brake remains fired for the de-commit-MAGNITUDE face. The prior brake's release condition (build an F-independent closure occupancy substrate) WAS met by 460o/p and PARTIALLY delivered (seed 44 MECH-445 existence proof), so this is not a blind re-fire -- the substrate advanced but did not clear the gate. A same-claim de-commit-falsifier re-queue is still REFUSED; the productive next step is the f_dominance_conversion_ceiling amend + the /claim-synthesis referral, not another 715-style letter."
+      },
+      "learning_extracted": [
+        "use_closure_commit_entry (460o/p) resolved the 460h/k structural-unreachability: MECH-445's refractory-independent commit-intent counter can now fire F-independently (seed 44: 398 arms, 7 F-commits).",
+        "The residual blocker changed signature: from structural-unreachability to (1) regime-scoped arming (survives only when F collapses) and (2) within-seed temporal disjointness of the two children's certifiers.",
+        "The 460h cross-seed disjoint-certifier problem migrated to within-seed: even the arming seed cannot score the MECH-446 de-commit window because the SD-034 closure fires and the latch-armed occupancy do not co-locate.",
+        "Regime-scoped arming is a direct residue of the F-dominance conversion ceiling (MECH-439): the closure latch only gets purchase when the F-driven natural commit is weak.",
+        "6 iterations circling MECH-445/446 with a shifting failure signature -> granularity debt: the commit-INTENT existence claim (partially supported) and the co-located de-commit-MAGNITUDE claim may be separate mechanisms no single regime co-satisfies."
+      ],
+      "routing": "implement-substrate",
+      "secondary_routing": "claim-synthesis",
+      "secondary_routing_note": "Granularity-debt recurrence trigger fired (6 autopsies on MECH-445/446, >=2 distinct failure signatures). Refer the MECH-445/446 cluster to /claim-synthesis for proposal-first decomposition: separate the F-independent commit-INTENT existence child (narrow positive on seed 44) from the co-located de-commit-MAGNITUDE child (structurally unmeasurable on the current substrate). This is the SECONDARY route the user confirmed; the PRIMARY governance hand-off remains the f_dominance_conversion_ceiling amend + pending_retest_after_substrate."
+    }
+  ],
+  "cluster_pattern": null
+}
