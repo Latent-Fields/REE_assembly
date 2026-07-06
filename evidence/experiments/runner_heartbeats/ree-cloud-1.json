@@ -1,48 +1,45 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-06T06:11:36Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V4-EXQ-003",
-      "result": "PASS",
-      "completed_at": "2026-07-01T07:40:23.971872+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-709",
-      "result": "FAIL",
-      "completed_at": "2026-07-02T05:25:08.591745+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-710",
-      "result": "FAIL",
-      "completed_at": "2026-07-03T11:20:39.685097+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-711",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T02:17:21.175222+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-713",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T22:36:03.617938+00:00"
-    }
+  "last_tick_utc": "2026-07-06T06:48:46Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-716",
+  "current_exq_started_utc": "2026-07-06T06:43:46.198087+00:00",
+  "current_title": "SD-063 conditional predictive-uncertainty head validation (diagnostic falsifier: CRPS/precision-error-corr survive joint training + SD-031 agency residual preserved)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 43 / HEAD_ON",
+    "runs_done": 2,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 170,
+    "overall_pct": 33.3
+  },
+  "seconds_elapsed": 300,
+  "seconds_remaining": 682,
+  "recent_lines": [
+    "Seed 42 Condition HEAD_ON",
+    "[train] label seed=42 cond=HEAD_ON ep 50/170 phase=P0 replay=5950 test=0",
+    "[train] label seed=42 cond=HEAD_ON ep 100/170 phase=P1 replay=6000 test=0",
+    "[train] label seed=42 cond=HEAD_ON ep 150/170 phase=P2 replay=6000 test=1190",
+    "[train] label seed=42 cond=HEAD_ON ep 170/170 phase=P2 replay=6000 test=3570",
+    "seed 42 HEAD_ON: norm_resid=0.4180 crps_point=0.10229 crps_quant=0.09001 corr_quant=0.374 cf_gap=1.5181 wf_r2=0.548",
+    "verdict: PASS",
+    "Seed 42 Condition HEAD_OFF",
+    "[train] label seed=42 cond=HEAD_OFF ep 50/170 phase=P0 replay=5950 test=0",
+    "[train] label seed=42 cond=HEAD_OFF ep 100/170 phase=P1 replay=6000 test=0",
+    "[train] label seed=42 cond=HEAD_OFF ep 150/170 phase=P2 replay=6000 test=1190",
+    "[train] label seed=42 cond=HEAD_OFF ep 170/170 phase=P2 replay=6000 test=3570",
+    "seed 42 HEAD_OFF: norm_resid=0.4180 crps_point=0.10229 crps_quant=nan corr_quant=0.000 cf_gap=1.5181 wf_r2=0.548",
+    "verdict: PASS",
+    "Seed 43 Condition HEAD_ON"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3619 8928026 2026-07-05 (running r3260 daed671)",
+  "runner_version": "r3621 3e94337 2026-07-06 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
