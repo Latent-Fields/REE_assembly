@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier",
+  "run_id": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier_20260706T230559Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-06T23:05:59Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-445",
+    "MECH-446"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-445": "unknown",
+    "MECH-446": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout"
+      },
+      {
+        "name": "closure_rule_directed_commit_formed",
+        "description": "ARM_LIFT_ON_ENTRY_ON forms a goal-active rule-directed commitment the latch can set on (>= RULE_DIRECTED_MIN_TICKS) on >= 2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "ARM_LIFT_ON_ENTRY_ON eval loop"
+      },
+      {
+        "name": "lift_engaged_mech448_demotion_excluded_nonempty_tail",
+        "description": "M1 load-bearing readiness: on ARM_LIFT_ON_ENTRY_ON the MECH-448 demotion was ACTIVE and excluded a non-empty F-eligible tail (demotion_engaged_ticks >= LIFT_ENGAGE_MIN_TICKS) on >= 2/3 seeds. Guards the 485i silent all-admit: below floor the 'lift' is inert (excluded_count==0) so the moderate-F hypothesis is untestable -> substrate_not_ready_requeue (route lift_did_not_engage), NEVER a weakens.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "ARM_LIFT_ON_ENTRY_ON f_eligibility diagnostics vs ARM_LIFT_OFF (0)"
+      },
+      {
+        "name": "gate_a_armed_and_sustained_entry_driven",
+        "description": "ARM_LIFT_ON_ENTRY_ON arms (ncl_hold_closure_armed_total > 0) AND sustains (max_consecutive_beta_run >= SUSTAIN_MIN_TICKS), AND ARM_LIFT_ON_ENTRY_OFF does NOT arm (non-degenerate: occupancy is entry-driven, not F-driven) -- the 460o gate (a) under the moderate-F regime. Below floor with the lift ENGAGED -> route lift_engaged_but_arming_still_regime_scoped (the de-commit-release face needs a DISTINCT lever); substrate_not_ready_requeue, NEVER a weakens.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false,
+        "control": "ARM_LIFT_ON_ENTRY_ON vs ARM_LIFT_ON_ENTRY_OFF contrast"
+      },
+      {
+        "name": "mech446_around_closure_window_nonvacuous",
+        "description": "ARM_LIFT_ON_ENTRY_ON produced >= C2_MIN_WINDOW_EVENTS scored around-closure windows with mean_pre_closure_occ > WITHIN_PRE_OCC_FLOOR on >= 2/3 seeds. Below floor with arming OK -> route lift_engaged_arming_ok_but_window_starved (closure fires still don't co-locate; distinct lever needed) -> substrate_not_ready_requeue (starved, not falsified).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false,
+        "control": "ARM_LIFT_ON_ENTRY_ON around-closure windows"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "gate_a_armed_sustained_contrast": true,
+      "lift_actually_engaged": true
+    },
+    "criteria": [
+      {
+        "name": "mech445_commit_intent_2of3",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "mech446_within_arm_drop_2of3",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "mech445_mech446_cooccurrence_2of3",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "science_note": "Move M1 -- re-run of the 715 de-commit science WITH the selection-face lift ON. MECH-445 (child A, closure->beta commit-intent): the refractory-independent sd034_n_closure_commit_intent counter (counted BEFORE the elevate/refractory gate, so the MECH-446 magnitude lever cannot zero it) is >= MIN_COMMIT_INTENT on the ARM_LIFT_ON_ENTRY_ON arm. MECH-446 (child B): the within-arm mean post-closure occupancy drops below the pre-closure occupancy by >= DECOMMIT_MIN_DROP_FRAC. Gate (c): the two co-occur on the SAME >= 2/3 seeds. The M1 hypothesis is that the MECH-448 demotion (removing F from the committed argmin) creates a MODERATE-F regime -- the norm across seeds, not only the weak-F seed 44 -- so arming reaches >= 2/3 AND the MECH-446 window becomes scorable, unblocking BOTH children with zero new build. A PASS means the selection-face lift DOUBLES AS the de-commit-release substrate; a lift-engaged readiness abort means it does NOT and a distinct de-commit-release lever is owed (see route_reason).",
+    "levers_off_note": "The rung-6 NaturalCommitUrgencyRelease (parked 460k DURATION lever) and the ARC-108 JOB-2 dopaminergic DRIVER pair (parked 460l) are OFF in every arm. The de-commit under test is the INTRINSIC SD-034 closure de-commit. The NEW lever vs 715 is the SELECTION-face conversion-ceiling lift (MECH-448 + MECH-449), toggled per-arm.",
+    "levers_under_test": {
+      "grid": "2x2 (use_closure_commit_entry {OFF,ON} x selection-face lift {OFF,ON})",
+      "science_arm": "ARM_LIFT_ON_ENTRY_ON",
+      "nondegen_contrast_arm": "ARM_LIFT_ON_ENTRY_OFF",
+      "repro_715_arm": "ARM_LIFT_OFF_ENTRY_ON",
+      "mech448_flag": "use_f_eligibility_demotion (VALIDATED V3-EXQ-689d PASS)",
+      "mech448_engagement_diag": "e3.last_score_diagnostics.f_eligibility_excluded_count",
+      "mech449_flag": "use_go_nogo_constitution (VALIDATED V3-EXQ-689g PASS; auto-wired MECH-260 perseveration axis, no OFC viability injection)",
+      "entry_flag": "use_closure_commit_entry (VALIDATED 460o/p PASS)",
+      "mech445_counter": "beta_gate.sd034_n_closure_commit_intent (refractory-independent)",
+      "mech446_dv": "within-arm mean_pre_closure_occ vs mean_post_closure_occ",
+      "f_eligibility_envelope_floor": 0.3,
+      "rule_norm_floor": 0.01
+    }
+  }
+}
