@@ -5642,9 +5642,26 @@ def main():
     # Bind addresses: default 0.0.0.0 (all interfaces, backward-compatible).
     # Pass --bind one or more times to restrict (e.g. WireGuard IP + localhost).
     bind_addrs = args.bind if args.bind else ["0.0.0.0"]
+
+    class _QuietThreadingHTTPServer(http.server.ThreadingHTTPServer):
+        """ThreadingHTTPServer that swallows benign client-disconnect errors.
+
+        A browser tab polling an endpoint (e.g. /api/usage) that is closed,
+        navigated away, or refreshed mid-response drops the socket, so the
+        handler's wfile.write() raises BrokenPipeError / ConnectionResetError
+        deep in http.server. Those are harmless -- the client simply left --
+        but the base handler prints a full multi-line traceback per hit, which
+        floods the runner log. Suppress just those two; re-raise everything else.
+        """
+        def handle_error(self, request, client_address):
+            exc = sys.exc_info()[1]
+            if isinstance(exc, (BrokenPipeError, ConnectionResetError)):
+                return
+            super().handle_error(request, client_address)
+
     servers = []
     for addr in bind_addrs:
-        servers.append(http.server.ThreadingHTTPServer((addr, args.port), Handler))
+        servers.append(_QuietThreadingHTTPServer((addr, args.port), Handler))
     server = servers[0]  # primary (foreground); extras serve in daemon threads
 
     def shutdown(sig, frame):
@@ -5683,10 +5700,36 @@ def main():
                     ["git", "-C", str(repo), "pull", "--ff-only"],
                     capture_output=True, text=True, timeout=30,
                 )
-                if result.returncode == 0 and "Already up to date" not in result.stdout:
-                    print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
-                elif result.returncode != 0:
-                    print(f"[serve] git pull {repo.name} failed: {result.stderr.strip()}", flush=True)
+                if result.returncode == 0:
+                    if "Already up to date" not in result.stdout:
+                        print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
+                    continue
+                # --ff-only failed. The common cause is local un-pushed commits
+                # (e.g. igw-ledger automation commits on this Mac) that leave the
+                # branch diverged from origin, so it can't fast-forward. Auto-heal
+                # by rebasing the local commits onto origin -- but ONLY when the
+                # working tree is clean. Never autostash: an autostash cycle here
+                # can transiently revert another session's uncommitted evidence/
+                # or claims edits (see CLAUDE.md High-Contention Files).
+                dirty = subprocess.run(
+                    ["git", "-C", str(repo), "status", "--porcelain"],
+                    capture_output=True, text=True, timeout=30,
+                ).stdout.strip()
+                if dirty:
+                    print(f"[serve] git pull {repo.name}: diverged + local changes present; "
+                          f"skipping (will retry next cycle)", flush=True)
+                    continue
+                rebase = subprocess.run(
+                    ["git", "-C", str(repo), "pull", "--rebase"],
+                    capture_output=True, text=True, timeout=60,
+                )
+                if rebase.returncode == 0:
+                    print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
+                else:
+                    subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
+                                   capture_output=True, text=True, timeout=30)
+                    print(f"[serve] git pull {repo.name}: diverged, rebase conflict -- "
+                          f"manual merge needed", flush=True)
 
     threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
     print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)
