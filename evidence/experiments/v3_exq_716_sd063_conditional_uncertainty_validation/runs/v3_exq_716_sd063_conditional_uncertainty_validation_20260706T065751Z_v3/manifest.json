@@ -1,0 +1,135 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_716_sd063_conditional_uncertainty_validation",
+  "run_id": "v3_exq_716_sd063_conditional_uncertainty_validation_20260706T065751Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-06T06:57:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd063_conditional_uncertainty_validated",
+    "readiness_met": true,
+    "readiness_note": "",
+    "n_seeds_scored": 3,
+    "c1_seed_wins": 3,
+    "c2_seed_wins": 3,
+    "c3_seed_wins": 3,
+    "majority_needed": 2,
+    "preconditions": [
+      {
+        "name": "heldout_conditional_spread_present",
+        "measured": 0.42048390658162105,
+        "threshold": 0.05,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "sufficient_test_transitions",
+        "measured": 2142.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "e2_world_forward_discriminates_off",
+        "measured": 1.518081784248352,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_crps_quantile_beats_point",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_precision_error_corr_over_ema_null",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_sd031_agency_residual_preserved",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_crps_quantile_beats_point": true,
+      "C2_precision_error_corr": true,
+      "C3_agency_gap_preserved": true
+    },
+    "per_seed": [
+      {
+        "seed": 42,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "crps_point": 0.10229240357875824,
+        "crps_quantile": 0.09001003950834274,
+        "corr_quantile": 0.37367357098466275,
+        "cf_gap_on": 1.518081784248352,
+        "cf_gap_off": 1.518081784248352
+      },
+      {
+        "seed": 43,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "crps_point": 0.15101258456707,
+        "crps_quantile": 0.13933055102825165,
+        "corr_quantile": 0.4056237112431025,
+        "cf_gap_on": 1.4495199918746948,
+        "cf_gap_off": 1.4495199918746948
+      },
+      {
+        "seed": 44,
+        "c1": true,
+        "c2": true,
+        "c3": true,
+        "crps_point": 0.19650845229625702,
+        "crps_quantile": 0.1758907437324524,
+        "corr_quantile": 0.28922466186002627,
+        "cf_gap_on": 1.8819376230239868,
+        "cf_gap_off": 1.8819376230239868
+      }
+    ]
+  }
+}
