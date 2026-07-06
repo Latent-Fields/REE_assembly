@@ -1522,7 +1522,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-194-proposal-for-mech-182 && claude --resume 3b981679-0e7f-4148-8761-c25a418b24ce",
       "task_claim_session_id": "igw-auto-igw-194-proposal-for-mech-182-20260706T163503Z",
       "assigned_at": "2026-07-06T16:34:46Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-06T16:39:15Z",
+      "completion_summary": "marked EVB-0103 blocked_substrate: MECH-182 needs acoustic-timbre channel + self-experience harm-attribution stream + attributed other-model/multi-agent env, all absent from V3 (harder than sibling MECH-191)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -1892,6 +1896,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-02T13:58:54Z",
       "re_eligible_after": "2026-07-04T13:58:33Z"
+    },
+    {
+      "stable_hash": "d646fec26e7a",
+      "igw_id_at_disposition": "IGW-20260706-194",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-182"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-182",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-06T16:39:15Z",
+      "re_eligible_after": "2026-07-08T16:39:15Z"
     }
   ]
 }
