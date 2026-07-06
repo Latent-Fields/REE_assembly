@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-06T16:05:28Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-715",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-710",
-      "result": "FAIL",
-      "completed_at": "2026-07-03T11:20:39.685097+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-711",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T02:17:21.175222+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-713",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T22:36:03.617938+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-716",
-      "result": "PASS",
-      "completed_at": "2026-07-06T06:57:51.818166+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-714",
-      "result": "FAIL",
-      "completed_at": "2026-07-06T14:32:57.366671+00:00"
-    }
+  "last_tick_utc": "2026-07-06T17:36:05Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-717",
+  "current_exq_started_utc": "2026-07-06T17:31:55.203229+00:00",
+  "current_title": "MECH-445-only commit-intent existence falsifier (regime-scoped, M2): 12 seeds, weak/strong-natural-commit classified from OFF-arm committed fraction, commit-intent counter scored only on the weak (in-regime) subset; MECH-446 gate dropped",
+  "current_claim_id": "MECH-445",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 30,
+    "episodes_total": 265,
+    "overall_pct": 0.9
+  },
+  "seconds_elapsed": 250,
+  "seconds_remaining": 18191,
+  "recent_lines": [
+    "[v3_exq_717_mech445_commit_intent_regime_scoped_falsifier] starting (dry_run=False)",
+    "Seed 42 Condition REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON",
+    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4668 formed=True",
+    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.977 gate=pass"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3629 96701dd 2026-07-06 (running r3260 daed671)",
+  "runner_version": "r3631 29c68b5 2026-07-06 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
