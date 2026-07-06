@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-06T20:41:49Z",
+  "last_tick_utc": "2026-07-06T21:06:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-715a",
   "current_exq_started_utc": "2026-07-06T17:55:44.945447+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 43 / CURRICULUM_BUILT_DECOMMIT_SCIENCE_SELECTION_FACE_LIFT_2x2_ENTRY_x_LIFT",
     "runs_done": 5,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 295,
-    "overall_pct": 170.1
+    "overall_pct": 185.9
   },
-  "seconds_elapsed": 9964,
+  "seconds_elapsed": 11471,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier] starting (dry_run=False)",
@@ -35,7 +35,9 @@
     "verdict: FAIL seed=42 guard_pass=True lift_engaged=True ready=False cooccur=False (contact_rate=0.2184 z_goal_at_contact=0.5091)",
     "Seed 43 Condition CURRICULUM_BUILT_DECOMMIT_SCIENCE_SELECTION_FACE_LIFT_2x2_ENTRY_x_LIFT",
     "[train] stage0_nursery seed=43 ep 20/295 z_goal_peak=0.4129 formed=True",
-    "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.925 gate=pass"
+    "[train] stage0b_consolidate seed=43 ep 30/295 retention=0.925 gate=pass",
+    "[train] p0_guided seed=43 ep 130/295 mean_len=198.3 rv=0.00010",
+    "[train] hazard_avoidance seed=43 ep 170/295 median_last=5.5 survival_gate=FAIL"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
