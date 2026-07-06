@@ -1498,7 +1498,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-188-retest-after-substrate-inv-050 && claude --resume 40c6d488-4fa9-4573-8bf5-99b8ff9b38ff",
       "task_claim_session_id": "igw-auto-igw-188-retest-after-substrate-inv-050-20260706T073055Z",
       "assigned_at": "2026-07-06T07:30:43Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-06T07:41:46Z",
+      "completion_summary": "INV-050 substrate-blocked: tagged epistemic_category=substrate_ceiling (claims.yaml 51e95f265c) so retest parks blocked until deferred MEL-consumer substrate lands; measurability path exhausted (701c brake), no queue",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
     }
   ],
   "dispositions": [
@@ -1829,7 +1833,7 @@
     },
     {
       "stable_hash": "73973b62401a",
-      "igw_id_at_disposition": "IGW-20260702-188",
+      "igw_id_at_disposition": "IGW-20260706-188",
       "owner_exq": null,
       "claim_ids": [
         "INV-050"
@@ -1838,8 +1842,8 @@
       "title": "Retest after substrate: INV-050",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-07-02T06:36:47Z",
-      "re_eligible_after": "2026-07-04T06:31:28Z"
+      "noted_at": "2026-07-06T07:41:46Z",
+      "re_eligible_after": "2026-07-08T07:41:46Z"
     },
     {
       "stable_hash": "1c381ca6ae46",
