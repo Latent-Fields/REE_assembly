@@ -43232,6 +43232,26 @@
     E2WorldForward agency residual (the head must not absorb the agent-caused
     component of next-state variance -- that residual is what makes E2 an agency
     detector). Caveat carried on the SD-031 dependency.
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-07-05 (/implement-substrate, session
+    implement-sd063-20260705T1724Z), disabled-by-default. Module
+    ree-v3/ree_core/predictors/e2_world_uncertainty.py (E2WorldUncertaintyHead +
+    E2WorldUncertaintyConfig): distribution-free quantile/pinball head over
+    (z_world, action), 9 levels 0.1..0.9 (the V3-EXQ-712 winner form);
+    predictive_variance = monotone-rearranged [q0.1,q0.9] IQR -> variance. Config
+    LatentStackConfig.use_e2_world_uncertainty (default False, byte-identical OFF)
+    + E3Config.use_conditional_precision_gate (default False); both surfaced by
+    REEConfig.from_dims. E3 consumer: e3_selector.py select() gains
+    conditional_predictive_variance (default None) -- when the gate flag is on and
+    a value is supplied, the ARC-016 commit decision uses that per-input variance
+    instead of the running-variance EMA (None/off -> EMA fallback, bit-identical).
+    SD-031 guard is STRUCTURAL: the head is a separate module sharing no params
+    with E2WorldForward/the encoder and its P1 loss detaches inputs AND target, so
+    it cannot explain away the agency residual (contract-asserted). 15/15 contracts
+    in tests/contracts/test_sd063_conditional_uncertainty_head.py; full suite
+    1381/1385 (4 pre-existing unrelated fails). PROMOTES NOTHING; v3_pending STAYS
+    until the V3-EXQ-716 validation falsifier scores (CRPS/precision-error-corr
+    advantage survives joint training AND SD-031 agency residual preserved).
   location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
 
 - id: MECH-394
