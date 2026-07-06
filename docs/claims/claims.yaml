@@ -13631,6 +13631,7 @@
   emergent_from:
     - SD-017
   pending_substrate_reconfirmation: true
+  epistemic_category: substrate_ceiling
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
@@ -13678,7 +13679,7 @@
     re-queue (no 701d); substrate_queue action=none (deferral honored); the floor mis-calibration is
     recorded as a learning note for whoever later builds the consumer test-bed.
   pending_retest_after_substrate: true
-  pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design"
+  pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent."
   depends_on:
     - INV-049
     - INV-044
