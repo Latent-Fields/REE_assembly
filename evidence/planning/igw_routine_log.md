@@ -734,3 +734,4 @@ One line per hourly tick. ASCII only.
 2026-07-06T17:36:07Z reconcile-release hash=d646fec26e7a (IGW-20260706-194 -> completed)
 2026-07-06T17:35:59Z skip IGW-20260706-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-06T18:36:15Z skip IGW-20260706-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-06T19:36:29Z skip IGW-20260706-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
