@@ -13632,6 +13632,17 @@
     - SD-017
   pending_substrate_reconfirmation: true
   epistemic_category: substrate_ceiling
+  ceiling_decision: deferred
+  ceiling_routing_note: >
+    PARKED 2026-07-06 (/governance, user-confirmed). The substrate build (SD-MEL-CONSUMER
+    adaptive sleep-cadence / MEL consumer) is DELIBERATELY DEFERRED, not missing: the latest
+    autopsy failure_autopsy_V3-EXQ-701c_2026-06-30 routed implement-substrate with
+    sd_id_suggested=SD-MEL-CONSUMER but action=none ("not created -- deferred"). The retest
+    lane parks as blocked until the deferred adaptive-sleep-cadence substrate lands; do NOT
+    mint a substrate_queue entry or re-queue a same-claim test against the current substrate.
+    (IGW-20260706-188 tagged epistemic_category=substrate_ceiling but omitted this marker,
+    which is why the 6a-v audit surfaced INV-050 as orphaned.) Upstream sleep substrate:
+    SD-017 / MECH-180 (v3_pending); plan-of-record evidence/planning/sleep_substrate_plan.md.
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
@@ -46003,6 +46014,23 @@
     failure_autopsy_V3-EXQ-460h (user-confirmed): the prior unscoped clause mis-read the 460h seeds 42/43
     commit-intent=0 -- which are strong-natural-commit redundancy -- as inert coupling on 2/3.]
   evidence_quality_note: |
+    V3-EXQ-715 (confirmed failure_autopsy_V3-EXQ-715_2026-07-06, supersedes 460l) -> non_contributory +
+    pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). 6th substrate-blocked iteration;
+    RE-DERIVE BRAKE remains FIRED (threshold 2). SUBSTRATE ADVANCE: use_closure_commit_entry (460o/p PASS) RESOLVED
+    the 460h/k structural-unreachability -- MECH-445's refractory-independent commit-intent counter is NO LONGER
+    pinned at 0 by construction. NARROW NON-SCORING POSITIVE (existence proof, 1/3): seed 44
+    sd034_n_closure_commit_intent=398 with n_f_commits=7 and ncl_hold_closure_armed_total=398 (F-INDEPENDENT arming
+    confirmed). Self-routed substrate_not_ready_requeue at gate (a) 1/3 (< 2/3): arming is REGIME-SCOPED -- fires only
+    on the weak-natural-commit seed (44); strong-natural-commit seeds 42/43 never arm in the ON arm (residue of the
+    F-dominance conversion ceiling MECH-439). NOT a falsification. epistemic_category stays substrate_ceiling but the
+    release condition MOVED: arming that survives moderate F (substrate_queue f_dominance_conversion_ceiling amend,
+    de-commit-release face). Same-claim de-commit-falsifier re-queue REFUSED (brake). Granularity-debt recurrence
+    (6 iterations, shifting signature) -> /claim-synthesis referral RESOLVED 2026-07-06 = STOP/refuse-to-decompose
+    (claim_synthesis_MECH-445-446_2026-07-06.md; the commit-INTENT-existence vs de-commit-MAGNITUDE split is already
+    realized by the 2026-06-19 decomposition). FORWARD: V3-EXQ-717 (M2, MECH-445-ONLY commit-intent regime-scoped
+    falsifier decoupled from MECH-446; test-power redesign, no new substrate) and V3-EXQ-715a (M1, selection-face
+    lift) QUEUED.
+    ---
     V3-EXQ-460k (confirmed failure_autopsy_V3-EXQ-460k_2026-06-22, supersedes 460j) -> non_contributory +
     pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). epistemic_category -> substrate_ceiling
     (user-confirmed): 4th substrate-blocked iteration (460h/i/j/k); RE-DERIVE BRAKE FIRED (threshold 2). The
@@ -46071,6 +46099,22 @@
     no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold
     authority) on >= 2/3 seeds.
   evidence_quality_note: |
+    V3-EXQ-715 (confirmed failure_autopsy_V3-EXQ-715_2026-07-06, supersedes 460l) -> non_contributory +
+    pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). 6th substrate-blocked iteration;
+    RE-DERIVE BRAKE remains FIRED (threshold 2). The within-arm around-closure occupancy-drop DV was VACUOUS on the ON
+    arm for all 3 seeds (n_window_events=0), INCLUDING the seed where MECH-445 armed (seed 44: 398 commit-intents but
+    the SD-034 closure fires and the latch-armed beta occupancy are TEMPORALLY DISJOINT within-episode ->
+    mean_pre_closure_occ=0). The 460h cross-seed disjoint-certifier problem has MIGRATED to WITHIN-seed temporal
+    disjointness on the F-independent substrate; use_closure_commit_entry did NOT dissolve it. NOT a falsification, NOT
+    scorable -- the MECH-446 DV is starved, not falsified. (Verified not an instrumentation artifact: beta_history /
+    fire_ticks reset per episode and align; the OFF arm formed real windows.) Release condition: a regime where the
+    SD-034 closure fire co-locates with a sustained latch-armed occupancy to de-commit from (substrate_queue
+    f_dominance_conversion_ceiling amend). Same-claim re-queue REFUSED (brake). /claim-synthesis referral RESOLVED
+    2026-07-06 = STOP (claim_synthesis_MECH-445-446_2026-07-06.md): the within-seed certifier disjointness is the
+    granularity signal that MECH-446 (co-located de-commit MAGNITUDE) and MECH-445 (F-independent commit INTENT) are
+    separate claims no single regime co-satisfies -- already realized by the 2026-06-19 decomposition, so NOT re-carved.
+    The MECH-446 magnitude face stays blocked on the f_dominance_conversion_ceiling build.
+    ---
     V3-EXQ-460k (confirmed failure_autopsy_V3-EXQ-460k_2026-06-22, supersedes 460j) -> non_contributory +
     pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). epistemic_category -> substrate_ceiling
     (user-confirmed): 4th substrate-blocked iteration (460h/i/j/k); RE-DERIVE BRAKE FIRED (threshold 2). The

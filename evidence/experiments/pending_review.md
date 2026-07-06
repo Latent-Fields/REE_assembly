@@ -1,17 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-07-06T16:35:14Z`  
-Last review: `2026-07-05T09:37:54Z`  
-Pending: **2** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-06T20:41:24Z`  
+Last review: `2026-07-06T20:39:09Z`  
+Pending: **1** item(s) -- 0 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## Unclaimed manifests (PASS/FAIL with no claim tags)
+## FAIL (action required)
 
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_716_sd063_conditional_uncertainty_validation_20260706T065751Z_v3` | v3_exq_716_sd063_conditional_uncertainty_validation | V3-EXQ-716 | non_contributory |
-| FAIL | `v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier_20260706T113002Z_v3` | v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier | V3-EXQ-715 | unknown |
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_714_fullstack_selection_valuation_conversion_falsifier_20260706T143256Z_v3` | 2026-07-06T14:32 | ARC-062, MECH-309 | — |
 
 ---
 
