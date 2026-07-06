@@ -721,3 +721,4 @@ One line per hourly tick. ASCII only.
 2026-07-06T07:41:52Z complete IGW-20260706-188 spawned->completed outcome=NO_OP: INV-050 substrate-blocked: tagged epistemic_category=substrate_ceiling (claims.y
 2026-07-06T08:32:09Z reconcile-release hash=73973b62401a (IGW-20260706-188 -> completed)
 2026-07-06T08:32:01Z skip IGW-20260706-193: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-06T09:32:20Z skip IGW-20260706-193: no fresh runner heartbeat (experiment-lane item would just sit in queue)
