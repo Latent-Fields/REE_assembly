@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier",
+  "run_id": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier_20260706T113002Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-06T11:30:02Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-445",
+    "MECH-446"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-445": "unknown",
+    "MECH-446": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout"
+      },
+      {
+        "name": "closure_rule_directed_commit_formed",
+        "description": "ARM_ENTRY_ON forms a goal-active rule-directed commitment the latch can set on (>= RULE_DIRECTED_MIN_TICKS) on >= 2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "ARM_ENTRY_ON eval loop"
+      },
+      {
+        "name": "gate_a_armed_and_sustained_f_independent",
+        "description": "ARM_ENTRY_ON arms (ncl_hold_closure_armed_total > 0) AND sustains (max_consecutive_beta_run >= SUSTAIN_MIN_TICKS) with ZERO F-commits, AND ARM_ENTRY_OFF does NOT arm (non-degenerate) -- the 460o gate (a); below floor -> substrate_not_ready_requeue (NEVER a *_ceiling / does_not_support / weakens label).",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "met": false,
+        "control": "ARM_ENTRY_ON vs ARM_ENTRY_OFF contrast"
+      },
+      {
+        "name": "mech446_around_closure_window_nonvacuous",
+        "description": "ARM_ENTRY_ON produced >= C2_MIN_WINDOW_EVENTS scored around-closure windows with mean_pre_closure_occ > WITHIN_PRE_OCC_FLOOR on >= 2/3 seeds -- there was a sustained occupancy to de-commit. Below floor -> the MECH-446 DV is starved, not falsified -> substrate_not_ready_requeue.",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "met": false,
+        "control": "ARM_ENTRY_ON around-closure windows"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "gate_a_armed_sustained_contrast": true
+    },
+    "criteria": [
+      {
+        "name": "mech445_commit_intent_2of3",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "mech446_within_arm_drop_2of3",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "mech445_mech446_cooccurrence_2of3",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "science_note": "MECH-445 (child A, closure->beta commit-intent): the refractory-independent sd034_n_closure_commit_intent counter (counted BEFORE the elevate/refractory gate, so the MECH-446 magnitude lever cannot zero it) is > 0 on the F-independent (weak-natural-commit) ON arm. MECH-446 (child B, de-commit-authority magnitude): the within-arm mean post-closure occupancy drops below the pre-closure occupancy by >= DECOMMIT_MIN_DROP_FRAC. Gate (c): the two co-occur on the SAME >= 2/3 seeds -- the joint result the disjoint-certifier substrate (use_closure_commit_entry) was built to make reachable (dissolving the 460h disjoint-certifier problem, where commit-intent fired only on weak-commit seeds and the window only on strong-commit seeds).",
+    "levers_off_note": "The rung-6 NaturalCommitUrgencyRelease (the parked 460k DURATION lever) and the ARC-108 JOB-2 dopaminergic DRIVER pair (the parked 460l rho ramp + habenula) are OFF in every arm. The de-commit under test is the INTRINSIC SD-034 closure de-commit (the committed-run-scaled refractory that fires at every closure) -- a DIFFERENT OBJECT than the parked duration/driver lines.",
+    "primitive_under_test": {
+      "flag": "use_closure_commit_entry (ree-v3 main 84c1e7c; VALIDATED 460o/p PASS)",
+      "latch": "e3._closure_committed_active (sticky, F-INDEPENDENT)",
+      "mech445_counter": "beta_gate.sd034_n_closure_commit_intent (refractory-independent)",
+      "mech446_dv": "within-arm mean_pre_closure_occ vs mean_post_closure_occ",
+      "rule_norm_floor": 0.01
+    }
+  }
+}
