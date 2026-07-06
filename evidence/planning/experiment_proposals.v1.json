@@ -6483,7 +6483,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_182",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6492,7 +6492,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-07-06T16:37:30Z",
+      "gated_by_session": "IGW-20260706-194",
+      "gating_reason": "blocked_substrate: MECH-182 (vocalization timbre as a learned cross-modal harm-approach signal that generalizes to another agent's vocalizations) requires THREE substrate legs, ALL absent from ree-v3 ree_core (verified 2026-07-06, IGW-20260706-194): (1) a self-generated acoustic/vocalization channel whose TIMBRE is causally modulated by physiological-arousal state (surprise->adrenaline->muscle tone) -- no vocal/timbre/acoustic/phon substrate exists anywhere in ree_core; (2) a learned SELF-EXPERIENCE cross-modal association (own acoustic feature <-> harm-approach) via the harm attribution stream -- no acoustic modality and no attribution stream exist; (3) GENERALIZATION of that acoustic feature to another agent's vocalization via an attributed OTHER-MODEL -- ree_core has no other_model / attribution_stream / z_beta leakage / OTHER_SELFLIKE tagging and no multi-agent PERCEPTUAL environment (the only two-agent work, V3-EXQ-160/Q-023, feeds a hand-computed scalar other_cost=mean-recent-harm-of-agent-B into harm_eval; it is not a perceived-vocalization attribution stream and carries no acoustic modality). depends_on chain is itself unimplemented: INV-005 (harm via mirror modelling) and MECH-183 (z_beta leakage) have no V3 substrate. STRICTLY HARDER than sibling MECH-191 (EVB-0091, blocked_substrate 2026-06-22, same social-emotional-mirroring thought cluster), which was gated on 'V3 has no multi-agent environment' + no state-differential cross-arch functional-state readout -- MECH-182 additionally needs an acoustic modality that does not exist. A commitment-free measurement-only diagnostic is NOT runnable either: there is no acoustic feature to measure and no other-agent vocalization to perceive; substituting existing tonic z-norms was empirically de-risked to failure across 5 configs for MECH-191 (channels are saturated-constant tonic accumulators, causal==rotation exactly), and any synthetic acoustic proxy would be circular (labels = thresholds on the same channels it classifies -- the V3-EXQ-686 anti-pattern). A FAIL would only re-derive the known signal-externalization / no-multi-agent ceiling -- vacuous, not a PASS-or-FAIL verdict.",
+      "release_condition": "A V4-class substrate providing all three legs: (a) a self-generated acoustic/vocalization channel whose timbre is causally modulated by physiological-arousal state; (b) a harm attribution stream that learns the cross-modal (acoustic-feature <-> harm-approach) association from self-experience; AND (c) a multi-agent PERCEPTUAL environment plus an attributed other-model (z_beta leakage / OTHER_SELFLIKE tagging) so another agent's vocalization timbre can activate the harm-approach signal via the other-model. Shares the MECH-191 / MECH-183 multi-agent-legibility release gate (likely V4). Once built, run: arm A = agent learns its own timbre<->harm mapping from self-experience; arm B (transfer) = hearing a coupled other agent's harm-timbre activates harm-approach via the other-model; control = private/rotated acoustic convention (breaks cross-agent acoustic identity) must NOT transfer. Not a V3 EXQ."
     },
     {
       "acceptance_checks": [
