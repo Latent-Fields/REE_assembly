@@ -6650,7 +6650,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_184",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6659,7 +6659,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-07-07T00:55:51Z",
+      "gated_by_session": "IGW-20260707-195",
+      "gating_reason": "blocked_substrate: MECH-184 (other-directed hippocampal harm avoidance -- hippocampal rollout proposals target harm avoidance FOR a coupled other-agent, the planning architecture identical to self-preservation with only the harm-gradient SOURCE swapped to the other agent) is substrate-blocked on ree-v3 (verified 2026-07-07, IGW-20260707-195). It requires the exact multi-agent/other-model legs that are ALL absent from ree_core: (1) a coupled OTHER-model via an attribution stream + OTHER_SELFLIKE tagging, and (2) z_beta LEAKAGE that other-references the harm gradient -- i.e. its direct dependency MECH-183 (z_beta leakage), which is itself status=deferred_substrate_not_ready (EVB-0081). grep of ree_core for other_model / attribution_stream / OTHER_SELFLIKE / mirror_model / z_beta_leak / empath / other_cost / selflike returns NOTHING; the only multi-agent reference in the tree is a config comment reserving 'V5 multi-agent social synchronisation experiments'. z_beta exists only as a SELF stream (gaba module), never other-referenced. The sole two-agent V3 work (V3-EXQ-160 / Q-023) feeds a hand-computed scalar other_cost=mean-recent-harm-of-agent-B into harm_eval; it is not a perceived attribution stream and produces no hippocampal OTHER-DIRECTED rollout. Direct sibling of MECH-182 (EVB-0103, blocked_substrate 2026-07-06, IGW-20260706-194) and MECH-191 (EVB-0091, blocked_substrate 2026-06-22) in the SAME 2026-04-05_steve_dog_emotional_mirroring thought cluster -- MECH-184 shares their multi-agent-legibility block and additionally requires the hippocampal proposer's rollout to be other-directed, which has no route without the other-model. A commitment-free measurement-only diagnostic is NOT runnable either: there is no perceived other-agent harm state to leak, no attribution stream to other-reference the gradient, and no other-directed rollout to measure; any synthetic other-harm proxy would be circular (labels = thresholds on the same self z-channels, the V3-EXQ-686 anti-pattern already de-risked to failure across 5 configs for MECH-191). A FAIL would only re-derive the known no-multi-agent / self-only-signal ceiling -- vacuous, not a PASS-or-FAIL verdict.",
+      "release_condition": "A V4/V5-class substrate providing the two missing legs: (a) a multi-agent PERCEPTUAL environment with a coupled OTHER-model built via an attribution stream + OTHER_SELFLIKE tagging (the MECH-183 / MECH-191 multi-agent-legibility gate); and (b) z_beta LEAKAGE wired so the attributed other-agent's harm state directly activates the self harm gradient other-referenced (MECH-183 released from deferred_substrate_not_ready). Once built, run the MECH-184 evidence battery: arm A = self-preservation baseline (harm gradient sourced from self); arm B (transfer) = harm-gradient SOURCE swapped to the coupled distressed other via z_beta leakage -> verify hippocampal rollout proposals now target the OTHER agent's harm avoidance with the SAME planning architecture (proposer/anchor machinery unchanged); control = decoupled / rotated other-model (breaks attribution) must NOT produce other-directed rollouts. Shares the MECH-182 / MECH-191 / MECH-183 release gate. Not a V3 EXQ."
     },
     {
       "acceptance_checks": [
