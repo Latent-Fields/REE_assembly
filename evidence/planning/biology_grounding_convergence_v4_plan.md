@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Biology-Grounding Convergence (ARC-106 forward roadmap)"
   registered: 2026-06-20
-  last_updated: 2026-06-20
+  last_updated: 2026-07-07
   scope_claims: [ARC-106, MECH-439, SD-034, MECH-090, MECH-436, ARC-035, SD-011]
   sibling_plans: [behavioral_diversity_isolation, commitment_closure, drives_motivation_v4, goal_deliberation_v4, ethics_perimeter]
   roadmap_note: >
@@ -122,21 +122,48 @@ closure_plan:
     - id: "biology_grounding_convergence_v4:BG-4"
       title: "Drive / incentive salience grounding L2 -> L3"
       phase: 3
-      status: open
+      status: done
       severity: medium
-      owner_exq: null
+      owner_exq: "V3-EXQ-514u"
       unblocks_claims: [MECH-436]
       depends_on: ["biology_grounding_convergence_v4:BG-1"]
       cross_plan_link: ["drives_motivation_v4"]
       readiness_gate:
-        - "Neural analog: mesolimbic incentive salience (wanting != liking). Divergence: scalar kappa gain -- FALSIFIED as non-monotone/exhausted (V3-EXQ-514t regressed the delta)"
-        - "Re-ground after the V3-EXQ-514u measurement-redesign (continuous incentive-amplitude readout) lands"
-      last_updated: 2026-06-20
+        - "Neural analog: mesolimbic incentive salience (wanting != liking). Divergence AUDITED: the scalar kappa gain was FALSIFIED as non-monotone/exhausted across the 514r/s/t lineage (doubling kappa REGRESSED the delta; the 'needs more kappa' prediction is dead) -- the diagnosed ceiling was the MEASUREMENT layer (an argmax-flip gate discarding continuous sub-flip re-weighting), not the substrate"
+        - "FIRED: the V3-EXQ-514u measurement-redesign (continuous incentive-amplitude readout at moderate kappa <= 6.0 on the SD-049-PHASE-2 enriched substrate) LANDED PASS/supports and was reviewed + governance-applied 2026-06-21 -- mean continuous amplitude shift 0.164 > 0.05 floor on all scored seeds (k_sd 1.0, n=76), enriched per-axis drive spread 0.222 > 0.1, OFF/argmax-relevance readiness all met. MECH-436 substrate ceiling LIFTED (epistemic_category substrate_ceiling -> standard; pending_retest_after_substrate cleared). L2 -> L3 reached on the load-bearing INTENSITY disjunct (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive))"
+      last_updated: 2026-07-07
       completion_note: >
-        Wanting-liking dissociation maps to addiction; flat wanting maps to
-        apathy (psychiatric column). The gain-knob grounding is falsified; the
-        open question is whether a continuous-amplitude readout grounds it. Owning
-        substrate work is drives_motivation_v4_plan / SD-049-PHASE-2.
+        DONE 2026-07-07 (plan reconcile; PROMOTES NOTHING). L2 -> L3 grounding
+        transition FIRED. The divergence (REE's scalar kappa gain vs mesolimbic
+        incentive salience) was divergence-AUDITED to falsification of the scalar-
+        gain sub-claim (514r/s/t: kappa-magnitude lever non-monotone/exhausted;
+        the ceiling was re-diagnosed to the argmax-flip measurement layer), and
+        the replacement continuous-amplitude reading was then VALIDATED ON A REE
+        FALSIFIER -- V3-EXQ-514u (supersedes 514t; PASS, supports, non_degenerate;
+        reviewed + /governance-applied 2026-06-21) cleared the drive-coupling
+        effect margin on the enriched substrate. That is the L3 definition
+        (divergence-audited AND validated on a REE falsifier), met on the claim's
+        load-bearing INTENSITY disjunct. RESIDUAL (does not block L3, recorded for
+        honesty): the SECONDARY discrete target-FLIP disjunct still fails at
+        natural magnitude (mean wl_drive_delta -0.133) -- only the overshoot
+        positive control flips most_wanted (0.81); this is a magnitude artifact,
+        NOT a falsification (drive re-weights wanting INTENSITY toward the depleted
+        axis but does not re-select the argmax target without overshoot). CLAIM
+        PROMOTION IS SEPARATE from grounding level: MECH-436 stays candidate /
+        v3_pending: true (hold_pending_v3_substrate) -- the 514u amplitude reading
+        was sufficient to lift the ceiling and reach L3 grounding, NOT to promote
+        the claim. Psychiatric column intact (wanting-liking dissociation ->
+        addiction; flat wanting -> apathy). owner_exq set to V3-EXQ-514u per the
+        roadmap_note graduation rule (first grounding-validation experiment has run
+        + been applied); generation stays v4, so this node remains OUT of the V3
+        closure %. Owning substrate work is drives_motivation_v4_plan /
+        SD-049-PHASE-2 (the differential-depletion + bounded-kappa env amend that
+        514u ran on). NOTE for a future session: because 514u is a V3 falsifier and
+        MECH-436 is implementation_phase v3, this grounding could be pulled fully
+        into V3 (instantiate a counted V3 node) IF MECH-436's promotion becomes
+        required to close a live V3 node -- not done here (the claim is v3_pending-
+        held and closes no V3 node today; phase-label-follows-dependency has not
+        fired).
     - id: "biology_grounding_convergence_v4:BG-5"
       title: "Goal / wanting layer grounding L1 -> L2"
       phase: 4
@@ -223,8 +250,10 @@ deferral:
   gap-concentrated-vs-uniform verdict (the framework's load-bearing test).
 - **BG-3 (commitment latch)** is gated behind BG-2: if 689a routes
   readiness-met-no-lift, the blocker is the latch and BG-3 becomes the live front.
-- **BG-4 (drive)** is gated on the V3-EXQ-514u measurement-redesign (the scalar
-  gain knob is already falsified).
+- **BG-4 (drive)** -- L2 -> L3 DONE 2026-07-07. Was gated on the V3-EXQ-514u
+  measurement-redesign (the scalar gain knob was falsified); 514u LANDED
+  PASS/supports and was governance-applied 2026-06-21 (MECH-436 ceiling lifted),
+  reaching L3 on the load-bearing intensity disjunct.
 - **BG-5 (goal)**, **BG-6 (attention)**, **BG-7 (ethics)** are later-generation
   and mostly map-not-build; BG-6/BG-7 are explicitly containment-only / honest-no-analog.
 
@@ -248,9 +277,12 @@ better-finish enrichment), it is pulled into V3 like this -- `generation` is a
 This is not hypothetical: **BG-2 ↔ `behavioral_diversity_isolation:GAP-I` is the
 pattern already running.** The selector grounding was the first node to be V3-
 required; it lives as a counted V3 node in GAP-I, and BG-2 is its mirror. BG-3
-(commitment) and BG-4 (drive) follow the same route the moment 689a / 514u make
-them V3-blocking. Each BG node's `readiness_gate` already names the V3-era
-prerequisite that fires the trigger.
+(commitment) follows the same route the moment 689a makes it V3-blocking. BG-4
+(drive) has reached L3 grounding on a V3 falsifier (514u, applied 2026-06-21) but
+is NOT pulled into V3: MECH-436 is v3_pending-held and closes no live V3 node
+today, so phase-label-follows-dependency has not fired -- it stays a graduated
+(owner_exq V3-EXQ-514u) but generation-v4 node, out of the V3 %. Each BG node's
+`readiness_gate` already names the V3-era prerequisite that fires the trigger.
 
 ## Convergence backlog source
 

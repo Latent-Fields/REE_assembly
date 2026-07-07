@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-05T17:31:38Z",
+  "generated_at": "2026-07-07T18:18:31Z",
   "counts": {
     "drifted": 0,
     "stale_since": 0,
@@ -21,8 +21,8 @@
       "node_id": "behavioral_diversity_isolation:GAP-K",
       "plan": "behavioral_diversity_isolation_plan.md",
       "node_status": "assembling",
-      "awaiting": "UPDATED 2026-07-01: the full learned-gating stack is now BUILT -- ARC-108 (learned w_chan gating) + MECH-450 (settling W_lat) + ARC-110 (segregated loops) + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling (config.e3.use_learned_cross_loop_arbitration; docs/architecture/learned_cross_loop_arbitration.md). The 707b-NARROW named the last missing piece (static-arithmetic cross-loop arbitration inherits F's dominance so the live limbic loop never wins); that coupling substrate is now built (2026-07-01). Now awaiting the SEPARATE new-EXQ validation falsifier: A1_LOOPS + learned DA-gated cross-loop arbitration STRICT-ABOVE A1_LOOPS + static-arithmetic arbitration on a strict majority of divergent seeds (different claim_ids; queued via /queue-experiment now that the build lands + tests pass). This node CLOSES on the first downstream channel converting committed-action diversity on the learned selector.",
-      "assembly_status": "in_progress",
+      "awaiting": "EXHAUSTED 2026-07-06: the arbitration/learned-gating build front is fully BUILT and its validation lineage ran to TERMINAL -- V3-EXQ-709 (learned cross-loop arbitration; FAIL/non_contributory 2026-07-02, limbic sub-threshold ~0.03, never won), V3-EXQ-711 (raw-scalar ascending-spiral gain; FAIL 2026-07-03, SATURATED runaway monopoly 10-2274x, entropy fell), V3-EXQ-713 (BOUNDED ascending-parity controller; FAIL 2026-07-04, the FIRST fair non-saturated limbic parity win -- 4/4 divergent seeds, no_saturation_blowup=0 -- and the load-bearing C1 committed-class entropy lift STILL failed, ON 0.870 < OFF 0.877). All three adjudicated non_contributory (confirmed autopsies 709/711/713; the 713 autopsy governance-applied 2026-07-05 REE_assembly master 65940b83b5). CONCLUSION: cross-loop-arbitration REWEIGHTING does NOT convert committed-action diversity even under a fair, bounded limbic parity win -- the route is EXHAUSTED (weak 709 / runaway 711 / fair-bounded 713 all fail). Committed-action conversion is a within-loop SELECTION/ELIGIBILITY-face op (MECH-448 rank-preserving F->eligibility demotion, already lifting on GAP-A), not arbitration reweighting. No further build owed on this node; the MECH-439 ceiling this node attacked is STILL OPEN and continues to be tracked on the parent GAP-I via the selection-face.",
+      "assembly_status": "exhausted",
       "revisit_after": null,
       "revisit_due": false
     },
@@ -30,7 +30,7 @@
       "node_id": "conversion_ceiling_campaign:CAMPAIGN",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "P-comp + P2 + P3 composition-readiness",
+      "awaiting": "FULLSTACK selection+valuation arm QUEUED as V3-EXQ-714 (owned via the FULLSTACK child; coordinator-ingested ree-v3 main 3959dae 2026-07-06). The separable P2 root-C commit-duration face's BUILD is DONE+VALIDATED (460o/p PASS); its de-commit SCIENCE falsifier is queued as V3-EXQ-715 and composes into the COMPLETE stack once it validates. P-comp RAN + P3 face-validated; the arbitration-reweighting face (P4) is EXHAUSTED.",
       "assembly_status": "in_progress",
       "revisit_after": null,
       "revisit_due": false
@@ -39,8 +39,8 @@
       "node_id": "conversion_ceiling_campaign:P-comp",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "demotion x Go/No-Go composition falsifier (to queue via /queue-experiment)",
-      "assembly_status": "queued",
+      "awaiting": "RAN -- V3-EXQ-699 non_contributory diagnostic (precondition_unmet); optional clean re-characterization is a diagnostic re-run, not the full-stack build gate. No build owed on this prong.",
+      "assembly_status": "ran_non_contributory",
       "revisit_after": null,
       "revisit_due": false
     },
@@ -48,7 +48,7 @@
       "node_id": "conversion_ceiling_campaign:P2-rootC",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "/implement-substrate amend f_dominance_conversion_ceiling -- F-independent closure-coupled-hold arming (so a hold arms+sustains independently of the F-driven natural commit; the prerequisite 460k/460l both lacked). Until then the commit-duration face is untestable and is subordinate to the upstream commit-entry F-dominance face.",
+      "awaiting": "RUN V3-EXQ-715a (Move M1; QUEUED + coordinator-ingested 2026-07-06, ree-v3 main 2590a8d; supersedes 715). The F-independent closure-coupled-hold arming BUILD (use_closure_commit_entry) that 460k/460l lacked is DONE + VALIDATED (460o/p PASS 2026-06-24), so no build is owed; the only owed P2 work is the 715a de-commit SCIENCE falsifier RUN (levers-ON re-run) + its review. 715 already RAN + self-routed substrate_not_ready_requeue at 1/3 arming (levers OFF; failure_autopsy_V3-EXQ-715_2026-07-06) -- 715a turns on the already-paid-for selection-face lift to create the moderate-F regime it needs.",
       "assembly_status": "queued",
       "revisit_after": "2026-07-15",
       "revisit_due": false
@@ -66,8 +66,8 @@
       "node_id": "conversion_ceiling_campaign:FULLSTACK",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "P-comp + P2 + P3 composition-ready",
-      "assembly_status": "queued",
+      "awaiting": "Selection+valuation composite QUEUED NOW -- V3-EXQ-714 QUEUED + coordinator-ingested 2026-07-06 (ree-v3 main 3959dae, claimed), no P2 root-C. The P2 root-C BUILD is DONE+VALIDATED (460o/p PASS); its de-commit science is under test as V3-EXQ-715 (queued 2026-07-06). The COMPLETE stack composes the commit-duration face in once 715 validates it. FAIL-branch route = leave-one-out ablation across the included faces (demotion / Go/No-Go / OFC valuation).",
+      "assembly_status": "in_progress",
       "revisit_after": null,
       "revisit_due": false
     },
@@ -75,8 +75,8 @@
       "node_id": "conversion_ceiling_campaign:P4-learned-gating",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "UPDATED 2026-07-01: the learned-gating stack is now BUILT end-to-end -- ARC-108 (learned w_chan) + MECH-450 (settling W_lat) + ARC-110 (segregated loops, 707b-validated live) + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling (built 2026-07-01; config.e3.use_learned_cross_loop_arbitration). 707b confirmed the conversion ceiling INTRINSIC (not a single-arena artefact) and NARROWED the front to 'the cross-loop arbitration must be LEARNED, not static arithmetic'; that coupling is now built. Now awaiting the SEPARATE new-EXQ validation falsifier (A1_LOOPS + learned cross-loop arbitration STRICT-ABOVE A1_LOOPS + static arbitration; different claim_ids), queued via /queue-experiment as V3-EXQ-709 (2026-07-01, ree-v3 main 2a5e8a6, live in the coordinator DB pending a runner claim). Build owned by the mirror node behavioral_diversity_isolation:GAP-K.",
-      "assembly_status": "in_progress",
+      "awaiting": "EXHAUSTED 2026-07-06 -- no further build owed. The learned-gating stack was BUILT end-to-end (ARC-108 learned w_chan + MECH-450 settling W_lat + ARC-110 segregated loops + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling) and its validation lineage ran to TERMINAL: V3-EXQ-709 (learned cross-loop arbitration; FAIL/non_contributory 2026-07-02, limbic sub-threshold ~0.03) -> V3-EXQ-711 (raw-scalar ascending-spiral gain; FAIL 2026-07-03, SATURATED runaway monopoly 10-2274x, entropy fell) -> V3-EXQ-713 (BOUNDED ascending-parity controller; FAIL 2026-07-04, the FIRST validly-measured fair non-saturated limbic parity win -- 4/4 divergent seeds, no_saturation_blowup=0 -- and C1 committed-class entropy STILL failed, ON 0.870 < OFF 0.877). Confirmed, user-adjudicated failure_autopsy_V3-EXQ-713_2026-07-05 (governance-applied REE_assembly master 65940b83b5): the cross-loop-arbitration-REWEIGHTING conversion route is EXHAUSTED (weak / runaway / fair-bounded all fail); a fair bounded limbic parity win does NOT convert committed-action diversity. Committed-action conversion is a within-loop SELECTION/ELIGIBILITY-face op (MECH-448, lifting on GAP-A) -- THE ROUTE OF RECORD -- not arbitration reweighting. A same-level arbitration parity re-letter (713x) is REFUSED (re-derive brake, MECH-439 11th / ARC-108 8th / ARC-110 3rd); AMEND v4_loop_segregation (+713 terminal failure_record -> 9). Build front owned by the mirror node behavioral_diversity_isolation:GAP-K, reconciled EXHAUSTED in the same pass. REOPEN only for a FUNDAMENTALLY NEW arbitration mechanism (new EXQ, different claim_ids), never a 709/711/713 re-letter.",
+      "assembly_status": "exhausted",
       "revisit_after": null,
       "revisit_due": false
     },
