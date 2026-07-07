@@ -1,0 +1,157 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-07T16:37:57Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier_20260706T230559Z_v3",
+      "queue_id": "V3-EXQ-715a",
+      "supersedes": "V3-EXQ-715",
+      "claim_ids": ["MECH-445", "MECH-446"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Self-routed substrate_not_ready_requeue; route_reason lift_engaged_but_arming_still_regime_scoped. lift_engaged PASS 3/3; armed_and_sustained FAIL 1/3 (< 2/3); within_window_nonvacuous FAIL 0.0. Science criteria never reachable (readiness abort). moderate_f_delta_entry_on = -63 (lift did NOT moderate F into the arming band). Arming (seed 42) and the only non-vacuous MECH-446 window (seed 44) on disjoint seeds. NOT a falsification (non-scoring).",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; readiness abort; joint gate never scorable; NO-weakens.",
+        "biological_reference": "partial. Closure-triggered BG commitment gate; arming reliability across regimes is the missing dependency.",
+        "prerequisites": "missing. F-independent arming that survives moderate F + closure-fire co-located with latch-armed occupancy.",
+        "implementation": "live-but-insufficient. Selection-face lift (MECH-448/449) engaged 3/3 but did NOT double as the de-commit-release substrate (arming 1/3, moderate_f_delta -63).",
+        "environment": "adequate. Full curriculum; contact/rule-directed 3/3.",
+        "measurement": "under-instrumented for the ON regime. MECH-446 window vacuous again; arming and window on disjoint seeds.",
+        "integration": "partially coupled, unstable. commit-intent latch and closure-fire de-commit window do not co-locate within-seed.",
+        "scale": "adequate. 3 seeds; blocker is regime + missing lever, not budget."
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG commitment gate with closure/completion-triggered commit-entry (SD-034 closure operator + MECH-090 bistable latch)",
+        "dependencies": [
+          "F-independent arming surviving moderate F",
+          "closure fire co-located with sustained latch-armed occupancy",
+          "a distinct de-commit-release lever (moderate-F selection-face lift RULED OUT, delta -63)"
+        ],
+        "is_formal_import": false,
+        "divergence": "The selection-face lift moderated selection but not arming; the de-commit-release face needs a distinct lever, not more F-moderation.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-445": "non_contributory",
+        "MECH-446": "non_contributory"
+      },
+      "recommended_evidence_quality_note_MECH-446": "V3-EXQ-715a (confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07; M1 selection-face lift) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). Self-routed substrate_not_ready_requeue (lift_engaged_but_arming_still_regime_scoped): the within-arm around-closure occupancy window was VACUOUS on all ON-arm seeds -- arming (seed 42) and the only non-vacuous window (seed 44, pre 1.0 -> post 0.2) on disjoint seeds. The selection-face lift did NOT co-locate the closure fire with a sustained latch-armed occupancy. NOT a falsification, NOT scorable -- DV starved. 7th substrate-blocked iteration; RE-DERIVE BRAKE FIRED; same-claim re-queue REFUSED. Release condition: a de-commit-release lever where the SD-034 closure fire co-locates with a sustained latch-armed occupancy across >= 2/3 seeds. Moderate-F selection-face lift RULED OUT (moderate_f_delta -63).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "de-commit-release face: distinct arming-under-moderate-F lever (selection-face lift RULED OUT)",
+        "implementation_hint": "V3-EXQ-715a (M1) toggled the validated selection-face lift (MECH-448 demotion + MECH-449 Go/No-Go) ON to test whether it doubles as the de-commit-release substrate. It engaged 3/3 but arming stayed 1/3 and moderate_f_delta was -63 (F NOT moderated into the arming band). So the selection-face lift is RULED OUT as the de-commit-release lever. The de-commit-release face needs a DISTINCT lever that (a) produces F-independent closure-commit arming surviving moderate F on >= 2/3 seeds, and (b) co-locates the SD-034 closure fire with the sustained latch-armed occupancy the MECH-446 within-arm window reads (currently arming and window fall on disjoint seeds). Same F-dominance (MECH-439) root as the V3-EXQ-714 GAP-A-divergence-survival face.",
+        "unblocks_claims": ["MECH-445", "MECH-446"],
+        "depends_on_unresolved": ["MECH-439 (F-dominance conversion ceiling, de-commit-release face)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier_20260706T230559Z_v3",
+          "experiment_type": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier",
+          "metric": "armed_and_sustained 1/3 (< 2/3); within_window_nonvacuous 0/3; moderate_f_delta_entry_on -63 (lift did not moderate F); arming (seed 42) and MECH-446 window (seed 44) disjoint.",
+          "target": "armed_and_sustained >= 2/3 with F-independent arming surviving moderate F AND MECH-446 within-arm window non-vacuous >= 2/3 with closure fire co-located with latch-armed occupancy (a distinct de-commit-release lever -- NOT the selection-face lift)."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-460h_2026-06-20",
+          "failure_autopsy_V3-EXQ-460i_2026-06-21",
+          "failure_autopsy_V3-EXQ-460j_2026-06-21",
+          "failure_autopsy_V3-EXQ-460k_2026-06-22",
+          "failure_autopsy_V3-EXQ-460l_2026-06-23",
+          "failure_autopsy_V3-EXQ-715_2026-07-06"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "The selection-face lift (MECH-448/449) is RULED OUT as the de-commit-release lever: it engaged 3/3 but arming stayed 1/3 and moderate_f_delta was -63.",
+        "The disjoint-certifier pattern (arming and MECH-446 window on different seeds) persists on the validated use_closure_commit_entry substrate -- it is not dissolved by moderating F.",
+        "The de-commit-release face needs a DISTINCT lever, answering the M1 diagnostic question."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3",
+      "queue_id": "V3-EXQ-717",
+      "supersedes": null,
+      "claim_ids": ["MECH-445"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "GENUINE FAIR TEST (not a self-route). Readiness all cleared (contact 12/12, in-regime populated 9>=3, opportunity 1.0); science gate scorable. Commit-intent > 0 on 2/9 in-regime seeds (46=222, 52=195; a third armed seed 47=177 out-of-regime) -> fraction 0.222 < 0.667. evidence_direction weakens, non_degenerate true.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (NARROW, reliability). Fair test: F-independent existence PROVEN (2/9 + prior 715 seed-44=398) but the 2/3 RELIABILITY bar within the weak-natural-commit regime FAILED.",
+        "biological_reference": "partial. Mechanism fires F-independently when armed; reliability across the weak regime is the gap.",
+        "prerequisites": "missing. Reliable arming across weak-regime seeds (same de-commit-release lever as 715a).",
+        "implementation": "complete. use_closure_commit_entry ON; counter before the refractory gate; 12-seed power adequate.",
+        "environment": "adequate. Contact guard 12/12; 9 in-regime seeds.",
+        "measurement": "adequate. The 715 test-power hole (3-seed/2-of-3) is fixed; fair scorable gate.",
+        "integration": "isolated by design. MECH-446 dropped; MECH-445 tested alone.",
+        "scale": "adequate. 12 seeds -> 9 in-regime; power sufficient for a regime-scoped claim."
+      },
+      "biological_reference": {
+        "closest_mechanism": "SD-034 closure->beta commit-intent (MECH-090 latch coupling) -- F-independent closure-triggered commitment",
+        "dependencies": [
+          "reliable F-independent arming across weak-natural-commit seeds",
+          "closure fires present on the in-regime seeds that did not arm"
+        ],
+        "is_formal_import": false,
+        "divergence": "The F-independent commit-intent exists but is rare (2/9 in-regime) -- consistent with the substrate producing armed closure commits only in a fraction of even the weak-F regime.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "The weakens is NARROW (reliability reading). The mechanism EXISTS (proven); the reliability gap is substrate-linked (715a shows moderating F does not rescue arming). Route the reliability gap to the same de-commit-release substrate build; do NOT flip MECH-445 status.",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-445": "weakens"
+      },
+      "recommended_evidence_quality_note_MECH-445": "V3-EXQ-717 (confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07; M2 test-power decouple, 12 seeds) -> WEAKENS (NARROW, reliability-scoped). Fair test: readiness cleared, 9 in-regime seeds, opportunity 1.0, counter placed before the refractory gate. Commit-intent > 0 on 2/9 in-regime seeds (46=222, 52=195) < 2/3 -> the F-independent commit-intent EXISTS (this + prior 715 seed-44=398 are existence proofs) but does NOT clear the 2/3 RELIABILITY bar within the weak-natural-commit regime. Weakens the RELIABILITY/PREVALENCE reading ONLY; the existence claim stands. Status UNCHANGED (candidate / v3_pending); does NOT flip to weakened-overall. Paired with V3-EXQ-715a (M1, non_contributory): the selection-face lift engaged 3/3 but arming stayed 1/3 (moderate_f_delta -63), so moderating F does NOT rescue arming -- a DISTINCT de-commit-release lever is needed. 7th substrate-ceiling reading (715a); RE-DERIVE BRAKE FIRED; same-claim de-commit-MAGNITUDE re-queue REFUSED. Reliability-gap release condition: f_dominance_conversion_ceiling de-commit-release face (F-independent arming surviving moderate F).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "de-commit-release face: reliable F-independent arming across weak-regime seeds (quantified gap 2/9)",
+        "implementation_hint": "V3-EXQ-717 quantified the MECH-445 reliability gap as a fair weakens: with adequate power (9 in-regime seeds) the F-independent commit-intent fired on only 2/9. The build target for the de-commit-release face is arming that fires reliably (>= 2/3) across weak-natural-commit seeds, not just 2/9. Same lever + failure record as the 715a de-commit-release amend.",
+        "unblocks_claims": ["MECH-445"],
+        "depends_on_unresolved": ["MECH-439 (F-dominance conversion ceiling, de-commit-release face)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3",
+          "experiment_type": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier",
+          "metric": "commit-intent > 0 on 2/9 in-regime seeds (fraction 0.222) at adequate power (12 seeds, 9 in-regime). Fair weakens, non_degenerate.",
+          "target": "commit-intent > 0 on >= 2/3 of in-regime (weak-natural-commit) seeds -- reliable F-independent arming, not a 2/9 minority."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-445 F-independent commit-intent existence is PROVEN on seeds 46 (222) and 52 (195), plus prior 715 seed-44 (398). This is a genuine existence proof; the weakens is scoped to the 2/3 RELIABILITY bar, not existence. Do not read the weakens as a demotion of the existence claim.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "note": "717 is a FAIR TEST that produced a real (narrow) weakens, not a substrate-ceiling re-derive -- the brake does not apply to it. But its reliability finding routes to the SAME implement-substrate work as 715a.",
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "The 715 test-power hole (3-seed/2-of-3, ~1 in-regime) is fixed; 12 seeds gave 9 in-regime -- adequate power to certify a regime-scoped claim.",
+        "With adequate power, MECH-445 F-independent commit-intent is REAL but sub-2/3-reliable (2/9) within the weak regime.",
+        "The reliability gap is substrate-linked, not a test artifact: 715a shows moderating F does not rescue arming -- the same de-commit-release lever is the release condition."
+      ],
+      "routing": "governance-weakens-narrow"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "F-independent closure->beta commit-intent arming is real but unreliable; the reliability gap is not fixed by moderating F at the selection face -- it needs a distinct arming-under-moderate-F / closure-co-location lever on the de-commit-release face.",
+    "is_independent_bugs": false,
+    "structural_property": "One structural property with two faces: 715a establishes the distinct-lever substrate need (non-scoring diagnostic; selection-face lift RULED OUT, delta -63); 717 quantifies the reliability gap as a fair weakens (2/9). Together they are the M1/M2 resolution the claim_synthesis_MECH-445-446_2026-07-06 doc predicted -- M2 close (narrow reliability weakens), M1 far (distinct-lever substrate).",
+    "readings": ["substrate_de_commit_release_lever_needed", "reliability_gap_quantified_not_a_granularity_debt"]
+  }
+}

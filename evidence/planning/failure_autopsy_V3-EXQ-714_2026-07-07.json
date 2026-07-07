@@ -1,0 +1,82 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-07T16:37:57Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_714_fullstack_selection_valuation_conversion_falsifier_20260706T143256Z_v3",
+      "queue_id": "V3-EXQ-714",
+      "claim_ids": ["ARC-062", "MECH-309"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Self-routed substrate_not_ready_requeue at C1 readiness. C1b gapa_consumed_summary_divergence 0.004163 < 0.05 (non-vacuous 1/3 seeds/arm) and C1g ofc_valuation_devalued_range 0.000701 < 0.05 (non-vacuous seed 44 only) FAILED at full P0=200. The C2 committed_class_entropy falsifier was never scored. Selection stack C1c/C1d/C1e/C1f all PASSED. NOT a falsification.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; NO-weakens branch fired as pre-registered. Test could not let the claim express (readiness abort).",
+        "biological_reference": "partial. Rule-apprehension / gated-policy layer; failure matches the F-dominance missing-dependency signature (GAP-A divergence survives only in the rare non-F-dominant regime).",
+        "prerequisites": "missing. GAP-A consumed-summary divergence that survives moderate F (the conversion-ceiling root MECH-439); currently regime-scoped to 1/3 seeds.",
+        "implementation": "complete (selection stack). MECH-448 demotion, MECH-449 Go/No-Go, CRF maturation, OFC head training all live; composite assembled correctly.",
+        "environment": "adequate-but-ceiling-limited. Full scaffolded_sd054_onboarding curriculum; the F-dominance ceiling suppresses summary divergence on 2/3 seeds.",
+        "measurement": "adequate. C1b/C1g are correct non-vacuity guards; they aborted rather than scoring a starved DV.",
+        "integration": "partially coupled. OFC valuation range is downstream of GAP-A divergence; when divergence is starved the valuation face is inert.",
+        "scale": "adequate. Full P0=200 confirms the starvation is regime, not toy-scale artifact -- the queue-note prediction that P0=200 would satisfy C1b/C1g did NOT hold."
+      },
+      "biological_reference": {
+        "closest_mechanism": "PFC/BG gated-policy rule-apprehension layer feeding differentiated committed policy modes to the updaters",
+        "dependencies": [
+          "GAP-A consumed-summary divergence that survives moderate F",
+          "differentiated policy modes held long enough to be valued differently by the OFC face"
+        ],
+        "is_formal_import": false,
+        "divergence": "The FULLSTACK selection+valuation face cannot reach its falsifier because the F-dominance conversion ceiling (MECH-439) starves the summary divergence both the C2 DV and the OFC valuation face require.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "The FULLSTACK selection+valuation face hits the conversion ceiling (MECH-439 / GAP-A-divergence starvation) at the readiness layer -- it never reaches the C2 falsifier. Same regime-scoping fingerprint (survives 1/3 seeds) as the MECH-445 de-commit cluster.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-062": "non_contributory",
+        "MECH-309": "non_contributory"
+      },
+      "recommended_evidence_quality_note_ARC-062": "V3-EXQ-714 (confirmed failure_autopsy_V3-EXQ-714_2026-07-07; FULLSTACK selection+valuation conversion falsifier, new composite) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). Self-routed substrate_not_ready_requeue: C1b GAP-A consumed-summary divergence 0.004 < 0.05 (non-vacuous 1/3 seeds) and C1g OFC devalued-range 0.0007 < 0.05 (non-vacuous seed 44 only) FAILED at FULL P0=200; the C2 falsifier was never scored. NOT a falsification (pre-registered NO-weakens map). Selection stack fully live (C1c/C1d/C1e/C1f pass) but differentiated summaries do not survive selection on 2/3 seeds -- F-dominance conversion ceiling (MECH-439) at the readiness layer. 20th ARC-062 substrate-ceiling reading; RE-DERIVE BRAKE FIRED; same-face fullstack re-queue REFUSED. Release condition: f_dominance_conversion_ceiling GAP-A-divergence-survival face.",
+      "recommended_evidence_quality_note_MECH-309": "V3-EXQ-714 (confirmed failure_autopsy_V3-EXQ-714_2026-07-07) -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending). Same readiness abort as ARC-062 (C1b GAP-A divergence + C1g OFC range starved at full P0=200; C2 unscored). NOT a falsification. 19th MECH-309 substrate-ceiling reading; RE-DERIVE BRAKE FIRED; fullstack re-queue REFUSED. CAMPAIGN FINDING: the full selection+valuation stack cannot clear the conversion ceiling at readiness; the ceiling (GAP-A-divergence survival) is upstream of every campaign face (arbitration exhausted 713, selection 654, valuation 485m, fullstack 714). Release condition: f_dominance_conversion_ceiling GAP-A-divergence-survival face.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "GAP-A-divergence-survival face: differentiated consumed summaries that survive moderate F so the selection+valuation stack has non-vacuous material",
+        "implementation_hint": "V3-EXQ-714 assembled the full selection+valuation stack (demotion + Go/No-Go + CRF maturation + OFC devaluation face) and aborted at readiness: C1b GAP-A consumed-summary divergence and C1g OFC devalued-range were both starved (non-vacuous on only 1/3 seeds) at FULL P0=200. The selection levers are live but the summaries do not diverge under moderate F, so neither the C2 committed-class DV nor the OFC valuation face has material to work on. Add/route a lever on the GAP-A-divergence-survival face so differentiated consumed summaries survive moderate F across seeds (not just the rare non-F-dominant seed 44). This is the same root as the MECH-445 de-commit-release arming face -- both are F-dominance (MECH-439) starving the interesting regime.",
+        "unblocks_claims": ["ARC-062", "MECH-309", "MECH-439"],
+        "depends_on_unresolved": ["MECH-439 (F-dominance conversion ceiling, GAP-A-divergence-survival face)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_714_fullstack_selection_valuation_conversion_falsifier_20260706T143256Z_v3",
+          "experiment_type": "v3_exq_714_fullstack_selection_valuation_conversion_falsifier",
+          "metric": "C1b GAP-A consumed-summary divergence 0.004163 (non-vacuous 1/3 seeds); C1g OFC devalued-range 0.000701 (non-vacuous seed 44 only); both < 0.05 floor at full P0=200. C2 unscored.",
+          "target": "C1b GAP-A divergence >= 0.05 AND C1g OFC devalued-range >= 0.05 non-vacuous on >= 2/3 seeds both arms (a working GAP-A-divergence-survival substrate must let differentiated summaries survive moderate F so the valuation face is exercisable)."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-543e (ARC-062/MECH-309 543/654 lineage)",
+          "failure_autopsy_V3-EXQ-654j (brake fired 19th ARC-062 / 18th MECH-309)",
+          "failure_autopsy_V3-EXQ-713_2026-07-05 (arbitration route exhausted)"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling"
+      },
+      "learning_extracted": [
+        "The FULLSTACK selection+valuation stack cannot clear the conversion ceiling at the readiness layer -- GAP-A summary divergence is starved by F-dominance on 2/3 seeds even at full P0=200.",
+        "The queue-note prediction that P0=200 (vs toy P0=8) would satisfy C1b/C1g was FALSIFIED -- the starvation is regime-scoped, not scale-scoped.",
+        "The conversion ceiling (MECH-439 / GAP-A-divergence survival) is upstream of every campaign face tried: arbitration (exhausted 713), selection (654), valuation (485m), fullstack (714). The single owed build is the GAP-A-divergence-survival substrate.",
+        "The 'new composite / brake released' justification did not escape the ceiling -- a composite of ceiling-limited faces is still ceiling-limited."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}

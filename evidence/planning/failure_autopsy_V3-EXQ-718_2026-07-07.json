@@ -1,0 +1,80 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-07T16:37:57Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation_20260707T092402Z_v3",
+      "queue_id": "V3-EXQ-718",
+      "supersedes": null,
+      "claim_ids": ["INV-050", "MECH-180"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "Load-bearing C1 (DV monotone non-decreasing across novelty grade NONE<=LOW<=MED<=HIGH AND HIGH>=NONE*1.15) FAILED 0/3 seeds (not monotone on any seed; spread cleared only seed 42). Readiness PASS; C2 control PASS 3/3 (OFF pinned, ON-HIGH DV > OFF-HIGH DV every seed). Consumer LIVE: duration factor tracks MEL. The self-route label mel_does_not_modulate_cadence is REFUTED by C2 + the live factor.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (not tested end-to-end). MEL->cadence half works; novelty->MEL half not reliably exercised, so the claim was not fairly tested.",
+        "biological_reference": "clear. MECH-180 lit basis strong (lit_conf 0.887); mechanism class well-grounded.",
+        "prerequisites": "present. SD-MEL-CONSUMER built + landed + functional.",
+        "implementation": "complete. Consumer LIVE: factor tracks MEL; C2 confirms consumer (not env) causes variation; OFF pinned.",
+        "environment": "wrong pressures. Graded-novelty drift schedule did NOT produce monotone waking MEL across the grade (factor ordering LOW < NONE < MED ~ HIGH).",
+        "measurement": "misleading self-route. C1 tests DV monotonicity vs the NOVELTY LABEL, but the mediating MEL is non-monotone in that label; label mel_does_not_modulate_cadence mislabels the cause.",
+        "integration": "coupled. Consumer + scheduler correctly integrated (SleepLoopManager.force_cycle + per-step update_residue).",
+        "scale": "adequate. 3 seeds x 6 cycles; small-integer DV quantisation adds brittleness but is secondary to the novelty->MEL non-monotonicity."
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty/PE-driven upregulation of sleep pressure and consolidation intensity (SWS power, spindle density, replay rate scaling with prior-day novelty + prediction-error load)",
+        "dependencies": [
+          "link (i): novelty -> waking MEL (mean per-step e3 prediction error)",
+          "link (ii): MEL -> offline-phase duration (SD-MEL-CONSUMER)"
+        ],
+        "is_formal_import": false,
+        "divergence": "The failure is at link (i): the graded-novelty manipulation did not produce monotone MEL. Link (ii) (the consumer) works. Not a substrate or claim failure -- a test-design gap.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_epistemic_category_note": "NOT substrate_ceiling. Anti-V3-EXQ-642 case: substrate built + demonstrably functional; the validation C1 criterion tests the wrong link (DV vs novelty label, when novelty->MEL is non-monotone). Measurement/environment (test-design) gap.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "INV-050": "non_contributory",
+        "MECH-180": "non_contributory"
+      },
+      "recommended_evidence_quality_note_INV-050": "V3-EXQ-718 (confirmed failure_autopsy_V3-EXQ-718_2026-07-07; SD-MEL-CONSUMER adaptive-cadence validation, diagnostic) -> non_contributory + pending_retest_after_substrate (status UNCHANGED). Self-route label mel_does_not_modulate_cadence is REFUTED: the consumer is LIVE + FUNCTIONAL (duration factor tracks MEL NONE 0.885/LOW 0.822/MED 1.263/HIGH 1.266; C2 PASS 3/3, ON-HIGH DV > OFF-HIGH DV every seed, OFF pinned). MEL DOES modulate cadence. C1 monotonicity failed (0/3) because the graded-NOVELTY test-bed did not produce graded MEL (factor ordering LOW < NONE < MED ~ HIGH) -- measurement/environment (test-design) gap at the novelty->MEL link, NOT a substrate ceiling, NOT a claim falsification. NOT weakened; NOT cleared (end-to-end novelty-adaptive-cadence not yet shown). Re-derive brake does NOT fire. Route: /queue-experiment (V3-EXQ-718a): regress cadence on MEASURED MEL, and/or re-grade novelty to monotone MEL, and/or a MEL-injection probe. SD-MEL-CONSUMER stays implemented_validation_owed.",
+      "recommended_evidence_quality_note_MECH-180": "V3-EXQ-718 (confirmed failure_autopsy_V3-EXQ-718_2026-07-07) -> non_contributory + pending_retest_after_substrate (status UNCHANGED; v3_pending STAYS). Same finding as INV-050: consumer functional (link ii MEL->cadence works, C2 PASS 3/3, factor tracks MEL) but the graded-novelty test-bed did not produce monotone MEL (link i), so the novelty-adaptive-upregulation prediction was not fairly tested end-to-end. NOT weakened (claim not fairly tested), NOT cleared (not demonstrated). lit_conf 0.887 / exp_conf 0 unchanged. Route: /queue-experiment V3-EXQ-718a (test-bed redesign). Un-pins V3-EXQ-677 (which was scheduler-pinned + degenerate) -- the consumer now varies the DV, but the validation must read MEASURED MEL, not the novelty label.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-MEL-CONSUMER",
+        "sd_id_suggested": null,
+        "title": "implemented_validation_owed -- re-validate on MEASURED MEL, not the novelty label (consumer is functional)",
+        "implementation_hint": "SD-MEL-CONSUMER is built + landed + demonstrably functional (V3-EXQ-718: duration factor tracks MEL, C2 PASS 3/3, OFF pinned). NO new substrate build owed. The owed work is a re-validation experiment: the V3-EXQ-718 C1 gate tested DV monotonicity vs the NOVELTY LABEL, but the graded-novelty drift schedule produced non-monotone waking MEL (factor ordering LOW < NONE < MED ~ HIGH), so it accidentally tested the environment's novelty->MEL map rather than the consumer's MEL->cadence response. Re-queue V3-EXQ-718a to regress offline-phase duration on MEASURED per-arm mean MEL (and/or re-grade novelty to monotone MEL via a calibration pre-pass, and/or a MEL-injection probe). Keep status implemented_validation_owed until 718a scores.",
+        "unblocks_claims": ["INV-050", "MECH-180"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation_20260707T092402Z_v3",
+          "experiment_type": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
+          "metric": "C1 novelty-label monotonicity 0/3 seeds; but consumer functional (C2 PASS 3/3, factor tracks MEL). Failure is novelty->MEL non-monotonicity (factor LOW 0.822 < NONE 0.885 < MED 1.263 ~ HIGH 1.266), not MEL->cadence.",
+          "target": "offline-phase duration monotone in MEASURED per-arm mean MEL on >= 2/3 seeds (a fair end-to-end validation must read measured MEL, not the novelty label; the consumer half already passes via C2)."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "Not a claim support, but a SUBSTRATE-functional positive: the SD-MEL-CONSUMER is validated as functional (link ii MEL->cadence: C2 PASS 3/3, duration factor tracks MEL, OFF pinned). Only the end-to-end novelty->cadence validation is owed. Record so the shared substrate_ceiling framing does not read the consumer as broken.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "note": "Routing is /queue-experiment (test-bed redesign), not a substrate_ceiling re-derive. INV-050's prior brake (fired 701c) was against the measurability path; SD-MEL-CONSUMER (the release condition) is now built + functional. 718's finding is a test-bed calibration gap, not a substrate ceiling -- exempt.",
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The SD-MEL-CONSUMER substrate is validated as FUNCTIONAL: duration factor tracks MEL, C2 PASS 3/3, OFF pinned. The consumer works.",
+        "The V3-EXQ-718 C1 gate tested DV monotonicity vs the NOVELTY LABEL, but the graded-novelty drift schedule produced non-monotone waking MEL -- so it tested the environment's novelty->MEL map, not the consumer's MEL->cadence response.",
+        "Self-route label mel_does_not_modulate_cadence is a mislabel: MEL DOES modulate cadence; novelty->MEL is the broken link.",
+        "Fix is a re-validation reading MEASURED MEL (V3-EXQ-718a), not more substrate build. Anti-V3-EXQ-642: do not tag substrate_ceiling on a functional substrate."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
