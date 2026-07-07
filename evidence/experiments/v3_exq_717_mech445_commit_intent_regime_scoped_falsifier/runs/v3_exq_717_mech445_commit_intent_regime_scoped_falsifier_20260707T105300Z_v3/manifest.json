@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier",
+  "run_id": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-07T10:53:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-445"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-445": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech445_commit_intent_did_not_meet_regime_scoped_gate",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3: per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout"
+      },
+      {
+        "name": "weak_natural_commit_regime_populated",
+        "description": "The guard-passing WEAK-natural-commit subset (OFF-arm committed_frac <= WEAK_COMMIT_FRAC_MAX) has >= MIN_IN_REGIME_SEEDS members -- enough IN-REGIME seeds to certify the regime-scoped claim at 2/3. Below floor -> the 715 test-power hole (too few in-regime seeds) -> substrate_not_ready_requeue, NOT a weakens.",
+        "measured": 9.0,
+        "threshold": 3.0,
+        "met": true,
+        "control": "ARM_ENTRY_OFF committed_frac classifier over guard-passing seeds"
+      },
+      {
+        "name": "commit_intent_opportunity_on_in_regime",
+        "description": "On >= 2/3 of the in-regime seeds the ON arm formed a goal-active rule-directed commitment (SET precondition) AND a sequence completed (a closure could fire) -- the commit-intent counter had an OPPORTUNITY. Below floor -> counter starved -> substrate_not_ready_requeue, NOT a weakens.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "ARM_ENTRY_ON eval loop over the in-regime subset"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "weak_regime_populated": true,
+      "commit_intent_opportunity": true
+    },
+    "criteria": [
+      {
+        "name": "mech445_commit_intent_2of3_in_regime",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "science_note": "MECH-445 (child A, closure->beta commit-intent): the refractory-independent sd034_n_closure_commit_intent counter (counted BEFORE the elevate/refractory gate, so the -- now dropped -- MECH-446 magnitude lever cannot zero it) is > 0 on >= 2/3 of the guard-passing WEAK-natural-commit (IN-REGIME) seeds. Regime is classified from the OFF arm's F-driven committed fraction (a DIFFERENT arm + quantity than the scored ON-arm counter -- not circular). This is the M2 test-power fix for the 715 hole: a regime-scoped claim needs a POPULATED in-regime subset, which a 3-seed/2-of-3 gate (~1 in-regime) cannot provide but 12 seeds (~4 in-regime) can.",
+    "mech446_dropped_note": "The MECH-446 co-occurrence / within-arm around-closure occupancy-drop DV is DROPPED ENTIRELY -- this is a MECH-445-only test (claim_ids=[MECH-445]). MECH-446 remains routed to /implement-substrate on f_dominance_conversion_ceiling (per the 715 autopsy + claim_synthesis_MECH-445-446_2026-07-06.md). 715 is NOT superseded -- it remains the MECH-446/co-occurrence record.",
+    "levers_off_note": "The rung-6 NaturalCommitUrgencyRelease and the ARC-108 JOB-2 dopaminergic DRIVER pair are OFF in every arm. The commit-intent under test is the INTRINSIC SD-034 closure-plane commit-ENTRY engagement.",
+    "primitive_under_test": {
+      "flag": "use_closure_commit_entry (ree-v3 main 84c1e7c; VALIDATED 460o/p PASS)",
+      "latch": "e3._closure_committed_active (sticky, F-INDEPENDENT)",
+      "mech445_counter": "beta_gate.sd034_n_closure_commit_intent (refractory-independent)",
+      "regime_classifier": "ARM_ENTRY_OFF committed_frac <= WEAK_COMMIT_FRAC_MAX",
+      "rule_norm_floor": 0.01
+    }
+  }
+}
