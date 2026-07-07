@@ -1546,7 +1546,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-195-proposal-for-mech-184 && claude --resume c72d4a7d-1cd7-4b0a-b0cd-9a386413740c",
       "task_claim_session_id": "igw-auto-igw-195-proposal-for-mech-184-20260707T005326Z",
       "assigned_at": "2026-07-07T00:53:14Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-07T00:57:05Z",
+      "completion_summary": "marked EVB-0104/MECH-184 blocked_substrate: no coupled other-model/attribution/z_beta-leakage in ree_core (dep MECH-183 deferred); sibling of MECH-182/191",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0207 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -1930,6 +1934,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-06T16:39:15Z",
       "re_eligible_after": "2026-07-08T16:39:15Z"
+    },
+    {
+      "stable_hash": "e69eb8ec6c03",
+      "igw_id_at_disposition": "IGW-20260707-195",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-184"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-184",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-07T00:57:05Z",
+      "re_eligible_after": "2026-07-09T00:57:05Z"
     }
   ]
 }
