@@ -3,8 +3,8 @@ closure_plan:
   id: sleep_substrate
   title: "Sleep Substrate"
   registered: 2026-05-08
-  last_updated: 2026-05-31
-  scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
+  last_updated: 2026-07-07
+  scope_claims: [SD-017, MECH-204, MECH-205, MECH-272, MECH-273, MECH-275, MECH-285, INV-049, INV-050, MECH-180, Q-041, Q-042, SD-029, MECH-111, MECH-256, ARC-045, MECH-166]
   nodes:
     - id: "sleep_substrate:GAP-1"
       title: "MECH-204 precision recalibration consumer (F1 closure; V3-EXQ-541c PASS, cycle-count dose-response confirmed F1-sufficient)"
@@ -74,6 +74,27 @@ closure_plan:
       depends_on: []
       blocking_external: ["V4 SD-037 arousal substrate"]
       last_updated: 2026-05-08
+    - id: "sleep_substrate:GAP-5b"
+      title: "MEL-consumer: accumulated Model Error Load modulates offline-phase entry/duration (INV-050 THIRD / learning-demand drive; DISTINCT from GAP-5 SD-037 arousal entry)"
+      phase: null
+      status: in-progress
+      severity: medium
+      owner_exq: null
+      substrate_queue_id: "SD-MEL-CONSUMER"
+      unblocks_claims: [INV-050, MECH-180]
+      depends_on: []
+      last_updated: 2026-07-07
+      resume_condition: >
+        Un-deferred 2026-07-07 (user override of the 2026-06-14 + 2026-06-30 deferral). MEL
+        measurability is demonstrated (failure_autopsy_V3-EXQ-701c: MEL measurable + monotone in
+        graded novelty on a converged base). Minted substrate_queue SD-MEL-CONSUMER (ready,
+        priority 1). Route /implement-substrate: build a consumer reading accumulated waking MEL
+        (e3 prediction-error load) that modulates the offline-phase entry threshold / duration,
+        replacing the K-episode-deterministic scheduler (V3-EXQ-677 scheduler-pinned, SWS=80/REM=60
+        zero cross-arm variance). Recalibrate ABS_MEL_FLOOR (1e-4 is ~5x the converged-base signal
+        ~2e-5 -> relative floor or ~1e-6) in the validation test-bed. On the consumer landing +
+        a cadence-varies-by-MEL retest, clear INV-050 (retest) and MECH-180 (v3_pending). NOT the
+        same as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
       phase: 5

@@ -13632,17 +13632,17 @@
     - SD-017
   pending_substrate_reconfirmation: true
   epistemic_category: substrate_ceiling
-  ceiling_decision: deferred
   ceiling_routing_note: >
-    PARKED 2026-07-06 (/governance, user-confirmed). The substrate build (SD-MEL-CONSUMER
-    adaptive sleep-cadence / MEL consumer) is DELIBERATELY DEFERRED, not missing: the latest
-    autopsy failure_autopsy_V3-EXQ-701c_2026-06-30 routed implement-substrate with
-    sd_id_suggested=SD-MEL-CONSUMER but action=none ("not created -- deferred"). The retest
-    lane parks as blocked until the deferred adaptive-sleep-cadence substrate lands; do NOT
-    mint a substrate_queue entry or re-queue a same-claim test against the current substrate.
-    (IGW-20260706-188 tagged epistemic_category=substrate_ceiling but omitted this marker,
-    which is why the 6a-v audit surfaced INV-050 as orphaned.) Upstream sleep substrate:
-    SD-017 / MECH-180 (v3_pending); plan-of-record evidence/planning/sleep_substrate_plan.md.
+    MAPPED / UN-DEFERRED 2026-07-07 (user override of the 2026-06-14 + 2026-06-30 deferral
+    recorded in failure_autopsy_V3-EXQ-701c_2026-06-30, whose recommended_substrate_queue_entry
+    action was none/deferred). The MEL-consumer substrate is now minted as substrate_queue
+    SD-MEL-CONSUMER (ready, priority 1, unblocks INV-050 + MECH-180) -> INV-050 is MAPPED, no
+    longer parked. Route: /implement-substrate -- build a consumer that reads accumulated waking
+    MEL (e3 prediction-error load) and modulates the offline-phase entry threshold / duration,
+    replacing the K-episode-deterministic scheduler (V3-EXQ-677 scheduler-pinned). Measurability
+    is already demonstrated (701c: MEL measurable + monotone in graded novelty on a converged
+    base); recalibrate ABS_MEL_FLOOR for converged-base PE in the validation test-bed. Plan node
+    sleep_substrate:GAP-5b; plan-of-record evidence/planning/sleep_substrate_plan.md.
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
@@ -13833,6 +13833,14 @@
   polarity: asserts
   status: candidate
   v3_pending: true
+  pending_retest_after_substrate: true  # SD-MEL-CONSUMER (adaptive sleep-cadence), minted 2026-07-07
+  governance_2026_07_07: >
+    Un-deferred (user override). The sleep-cadence enrichment the 2026-06-14 hold awaited is now
+    minted as substrate_queue SD-MEL-CONSUMER (ready, priority 1, unblocks INV-050 + MECH-180):
+    a consumer reading accumulated waking MEL that modulates offline-phase entry/duration,
+    replacing the K-episode-deterministic scheduler (V3-EXQ-677 scheduler-pinned). Route
+    /implement-substrate; plan node sleep_substrate:GAP-5b. v3_pending STAYS until the consumer
+    lands and a cadence-varies-by-MEL retest scores. PROMOTES NOTHING.
   governance_2026_06_14: >
     User-adjudicated (decision-brief follow-up): set v3_pending hold.
     V3-EXQ-677 (novelty sleep-upregulation probe) FAILed non_contributory +
