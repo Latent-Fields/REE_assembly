@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
+  "run_id": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-07T20:33:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-050": "non_contributory",
+    "MECH-180": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_control_degenerate",
+    "preconditions": [
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds; the world model must be trained for MEL to live at a meaningful scale",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "mel_injection_positive_control_dv_monotone_response",
+        "description": "with graded waking MEL injected BY CONSTRUCTION (monotone INJECT_LEVELS x base_ref, decoupled from foraging), per-cycle DV is monotone non-decreasing + spread -- the SAME statistic C1 routes on (graded MEL -> DV) on a positive control where the MEL gradient is non-degenerate by construction. Below-floor => the consumer cannot respond to cleanly-graded MEL (not-ready / mis-configured), NOT a refuted mechanism; on >= 2/3 seeds",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": true,
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true,
+      "C3_injection_levels_produced_distinct_dv": true
+    }
+  }
+}
