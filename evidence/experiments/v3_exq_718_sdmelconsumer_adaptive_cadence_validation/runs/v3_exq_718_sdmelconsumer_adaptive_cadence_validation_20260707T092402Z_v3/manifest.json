@@ -1,0 +1,72 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
+  "run_id": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation_20260707T092402Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-07T09:24:02Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-050",
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "INV-050": "non_contributory",
+    "MECH-180": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_does_not_modulate_cadence",
+    "preconditions": [
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= floor) on >= 2/3 seeds; the converged base PE is the MEL reference set-point",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "none_arm_duration_factor_headroom",
+        "description": "NONE-arm mean MEL duration factor has headroom below FACTOR_MAX (same statistic C1 routes on: factor -> DV), so cross-arm DV range CAN be non-zero; a saturated NONE factor means base PE >> reference (base not converged) not a refuted mechanism",
+        "measured": 1.4163153351920157,
+        "threshold": 2.9,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true
+    }
+  }
+}
