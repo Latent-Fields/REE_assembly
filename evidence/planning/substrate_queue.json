@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-cycle-20260704T0251Z",
-  "last_updated_utc": "2026-07-07T06:35:00Z",
+  "last_updated_utc": "2026-07-07T17:20:49Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5025,6 +5025,24 @@
           "experiment_type": "v3_exq_715_sd034_decommit_science_closure_commit_entry_falsifier",
           "metric": "gate(a) armed_and_sustained_f_independent = 1/3 (seed 44 only); mech446 around-closure window non-vacuous = 0/3 (all ON arms n_window_events=0). Advance: MECH-445 commit-intent no longer pinned at 0 (seed 44 = 398, F-independent).",
           "target": "gate(a) >= 2/3 armed+sustained with F-independent arming AND mech446 window non-vacuous >= 2/3 (a working de-commit-release substrate must arm across regimes and co-locate closure fires with latch-armed occupancy)."
+        },
+        {
+          "run_id": "v3_exq_714_fullstack_selection_valuation_conversion_falsifier_20260706T143256Z_v3",
+          "experiment_type": "v3_exq_714_fullstack_selection_valuation_conversion_falsifier",
+          "metric": "C1b GAP-A consumed-summary divergence 0.004163 (non-vacuous 1/3 seeds); C1g OFC devalued-range 0.000701 (non-vacuous seed 44 only); both < 0.05 floor at full P0=200. C2 unscored.",
+          "target": "C1b GAP-A divergence >= 0.05 AND C1g OFC devalued-range >= 0.05 non-vacuous on >= 2/3 seeds both arms (a working GAP-A-divergence-survival substrate must let differentiated summaries survive moderate F so the valuation face is exercisable)."
+        },
+        {
+          "run_id": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier_20260706T230559Z_v3",
+          "experiment_type": "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier",
+          "metric": "armed_and_sustained 1/3 (< 2/3); within_window_nonvacuous 0/3; moderate_f_delta_entry_on -63 (lift did not moderate F); arming (seed 42) and MECH-446 window (seed 44) disjoint.",
+          "target": "armed_and_sustained >= 2/3 with F-independent arming surviving moderate F AND MECH-446 within-arm window non-vacuous >= 2/3 with closure fire co-located with latch-armed occupancy (a distinct de-commit-release lever -- NOT the selection-face lift)."
+        },
+        {
+          "run_id": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3",
+          "experiment_type": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier",
+          "metric": "commit-intent > 0 on 2/9 in-regime seeds (fraction 0.222) at adequate power (12 seeds, 9 in-regime). Fair weakens, non_degenerate.",
+          "target": "commit-intent > 0 on >= 2/3 of in-regime (weak-natural-commit) seeds -- reliable F-independent arming, not a 2/9 minority."
         }
       ],
       "metric_trajectory": {
@@ -5051,7 +5069,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-clear-715-716-20260706T2010Z",
+      "last_seen_session": "governance-apply-4-autopsies-20260707T1653Z",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -5318,12 +5336,18 @@
           "experiment_type": "v3_exq_701c_inv050_mel_measurability_recononly",
           "metric": "MEL is measurable + MONOTONE in graded novelty on a converged base (rel spread 0.33 > 0.25; NONE 2.03e-5 < LOW < MED < HIGH 2.71e-5) -- BUT sleep cadence is K-episode DETERMINISTIC so MEL cannot modulate it (V3-EXQ-677: sleep counts scheduler-pinned). ABS_MEL_FLOOR=1e-4 is ~5x the converged-base signal (per-step PE ~2e-5).",
           "target": "MEL-consumer ON arm: high-MEL / novel episodes produce measurably more/longer offline-update phase than low-MEL, monotone across >=2/3 seeds; instrument floor scaled to converged-base PE (relative floor or ~1e-6 absolute)."
+        },
+        {
+          "run_id": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation_20260707T092402Z_v3",
+          "experiment_type": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
+          "metric": "C1 novelty-label monotonicity 0/3 seeds; but consumer functional (C2 PASS 3/3, factor tracks MEL). Failure is novelty->MEL non-monotonicity (factor LOW 0.822 < NONE 0.885 < MED 1.263 ~ HIGH 1.266), not MEL->cadence.",
+          "target": "offline-phase duration monotone in MEASURED per-arm mean MEL on >= 2/3 seeds (a fair end-to-end validation must read measured MEL, not the novelty label; the consumer half already passes via C2)."
         }
       ],
       "implementation_hint": "Measurability is DONE (V3-EXQ-701c). Build the CONSUMER: a scheduler reading accumulated waking MEL (e3 prediction-error load) that modulates offline-phase entry threshold and/or duration, replacing the K-episode-deterministic entry (V3-EXQ-677 scheduler-pinned). Recalibrate ABS_MEL_FLOOR (1e-4 mis-scaled for converged-base PE ~2e-5 -> relative or ~1e-6) in the validation test-bed. DISTINCT from sleep_substrate:GAP-5 (SD-037 arousal/homeostatic entry, V4) -- this is the INV-050 THIRD / learning-demand drive (MECH-180). Un-deferred 2026-07-07 by user override of the 2026-06-14/06-30 deferral (701c recommended_substrate_queue_entry action was none/deferred).",
       "priority": 1,
       "added_session": "mint-sd-mel-consumer-20260706T2105Z",
-      "last_seen_session": "mint-sd-mel-consumer-20260706T2105Z",
+      "last_seen_session": "governance-apply-4-autopsies-20260707T1653Z",
       "implemented_utc": "2026-07-07",
       "validation_exq": "V3-EXQ-718",
       "implementation_note": "LANDED 2026-07-07 (/implement-substrate; ree-v3 main 909292c). ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated waking MEL and scales offline-phase duration (sws_consolidation_steps/rem_attribution_steps) via the SleepLoopManager; REEConfig.use_mel_consumer default False -> byte-identical (contracts+preflight PASS); relative floor recalibrated to 1e-6. Validation V3-EXQ-718 queued (diagnostic; 4 graded-novelty consumer-ON arms + 1 matched-novelty consumer-OFF control; DV=cumulative_sws_writes+rem_rollouts+mel_duration_factor). On a PASS retest + /governance, clear INV-050 (retest) + MECH-180 (v3_pending). PROMOTES NOTHING until 718 scores. Plan node sleep_substrate:GAP-5b (done at substrate-landing level)."
