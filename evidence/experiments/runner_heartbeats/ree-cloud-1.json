@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-07T06:43:58Z",
+  "last_tick_utc": "2026-07-07T06:59:00Z",
   "state": "running",
   "current_exq": "V3-EXQ-717",
   "current_exq_started_utc": "2026-07-06T17:31:55.203229+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 51 / REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON",
     "runs_done": 27,
     "runs_total": 12,
-    "episodes_done": 0,
+    "episodes_done": 30,
     "episodes_total": 265,
-    "overall_pct": 225.0
+    "overall_pct": 225.9
   },
-  "seconds_elapsed": 47524,
+  "seconds_elapsed": 48425,
   "seconds_remaining": 0,
   "recent_lines": [
-    "Seed 42 Condition REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON",
-    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4668 formed=True",
     "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.977 gate=pass",
     "[train] p0_guided seed=42 ep 130/265 mean_len=198.2 rv=0.00001",
     "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
@@ -118,7 +116,9 @@
     "Seed 50 Condition ARM_ENTRY_ON",
     "[eval] arm_eval seed=50 ep 265/265 | OFF committed_frac=0.084 committed=202 ticks=2412 f_commits=202 -> weak_regime=True | ON intent=0 f_commits=177 rdir=2022 seq=11 closures=11 | opportunity=True m445=False",
     "verdict: FAIL seed=50 guard_pass=True weak_regime=True m445=False (contact_rate=0.2112 z_goal_at_contact=0.4867)",
-    "Seed 51 Condition REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON"
+    "Seed 51 Condition REGIME_SCOPED_MECH445_COMMIT_INTENT_ENTRY_OFF_ON",
+    "[train] stage0_nursery seed=51 ep 20/265 z_goal_peak=0.3906 formed=False",
+    "[train] stage0b_consolidate seed=51 ep 30/265 retention=0.946 gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
