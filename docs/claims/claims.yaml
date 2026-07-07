@@ -13643,6 +13643,21 @@
     is already demonstrated (701c: MEL measurable + monotone in graded novelty on a converged
     base); recalibrate ABS_MEL_FLOOR for converged-base PE in the validation test-bed. Plan node
     sleep_substrate:GAP-5b; plan-of-record evidence/planning/sleep_substrate_plan.md.
+  implementation_note: >
+    SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
+    MEL consumer now exists: ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated
+    waking MEL (mean per-step e3 prediction error, populated in agent.update_residue) and,
+    via SleepLoopManager, scales the offline-phase DURATION (sws_consolidation_steps /
+    rem_attribution_steps) and optionally the ENTRY timing by a relative, scale-free factor
+    clamp(1 + mel_gain*(mel/ref - 1), min, max). Config REEConfig.use_mel_consumer (default
+    False -> byte-identical K-episode-deterministic scheduler; full contracts + preflight
+    PASS). Relative floor recalibrated to ~1e-6 (the 701c ABS_MEL_FLOOR=1e-4 was ~5x the
+    converged-base signal). DISTINCT from the SD-037 arousal entry (MECH-286/GAP-5, V4).
+    This UNBLOCKS the retest but PROMOTES NOTHING: pending_substrate_reconfirmation stays
+    until the validation falsifier (graded-novelty arms; DV cumulative_sws_writes +
+    cumulative_rem_rollouts + mel_duration_factor; high-MEL -> measurably more/longer offline
+    phase, monotone >=2/3 seeds) SCORES and /governance applies. See
+    REE_assembly/docs/architecture/sd_mel_consumer.md.
   subject: architecture.three_drive_sleep_regulation
   polarity: asserts
   status: candidate
@@ -13834,6 +13849,19 @@
   status: candidate
   v3_pending: true
   pending_retest_after_substrate: true  # SD-MEL-CONSUMER (adaptive sleep-cadence), minted 2026-07-07
+  implementation_note: >
+    SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
+    MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)
+    now scales the offline-phase duration -- sws_consolidation_steps -> sws_n_writes and
+    rem_attribution_steps -> rem_n_rollouts -- by accumulated waking MEL, directly un-pinning
+    the exact V3-EXQ-677 DV (SWS=80/REM=60 zero cross-arm variance was scheduler-pinned).
+    v3_pending STAYS: the landing makes the retest RUNNABLE but scores nothing. The owed
+    validation falsifier (graded-novelty arms; high-MEL -> measurably more/longer offline
+    phase, monotone >=2/3 seeds) must PASS + /governance apply before v3_pending clears.
+    IMPORTANT: the consumer engages only via the SleepLoopManager path (notify_episode_end /
+    force_cycle) with per-step agent.update_residue(); a driver calling agent.run_sleep_cycle()
+    directly (as V3-EXQ-677 did) bypasses it. PROMOTES NOTHING. See
+    REE_assembly/docs/architecture/sd_mel_consumer.md.
   governance_2026_07_07: >
     Un-deferred (user override). The sleep-cadence enrichment the 2026-06-14 hold awaited is now
     minted as substrate_queue SD-MEL-CONSUMER (ready, priority 1, unblocks INV-050 + MECH-180):

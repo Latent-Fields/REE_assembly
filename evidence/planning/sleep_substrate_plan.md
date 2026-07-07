@@ -77,24 +77,30 @@ closure_plan:
     - id: "sleep_substrate:GAP-5b"
       title: "MEL-consumer: accumulated Model Error Load modulates offline-phase entry/duration (INV-050 THIRD / learning-demand drive; DISTINCT from GAP-5 SD-037 arousal entry)"
       phase: null
-      status: in-progress
+      status: done
       severity: medium
-      owner_exq: null
+      owner_exq: "V3-EXQ-718"
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
       depends_on: []
       last_updated: 2026-07-07
-      resume_condition: >
-        Un-deferred 2026-07-07 (user override of the 2026-06-14 + 2026-06-30 deferral). MEL
-        measurability is demonstrated (failure_autopsy_V3-EXQ-701c: MEL measurable + monotone in
-        graded novelty on a converged base). Minted substrate_queue SD-MEL-CONSUMER (ready,
-        priority 1). Route /implement-substrate: build a consumer reading accumulated waking MEL
-        (e3 prediction-error load) that modulates the offline-phase entry threshold / duration,
-        replacing the K-episode-deterministic scheduler (V3-EXQ-677 scheduler-pinned, SWS=80/REM=60
-        zero cross-arm variance). Recalibrate ABS_MEL_FLOOR (1e-4 is ~5x the converged-base signal
-        ~2e-5 -> relative floor or ~1e-6) in the validation test-bed. On the consumer landing +
-        a cadence-varies-by-MEL retest, clear INV-050 (retest) and MECH-180 (v3_pending). NOT the
-        same as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
+      completed_note: >
+        SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main 909292c).
+        Built ree_core/sleep/mel_consumer.py (MELConsumer/MELConsumerConfig/WakingMELAccumulator):
+        reads accumulated waking MEL (mean per-step e3 prediction error, populated in
+        agent.update_residue) and via SleepLoopManager scales the offline-phase DURATION
+        (sws_consolidation_steps->sws_n_writes, rem_attribution_steps->rem_n_rollouts) by
+        clamp(1+mel_gain*(mel/ref-1),min,max); secondary ENTRY lever (use_mel_entry) fires on a
+        MEL threshold. Un-pins the exact V3-EXQ-677 DV. Config REEConfig.use_mel_consumer default
+        False -> byte-identical (full contracts + preflight PASS). Relative floor recalibrated to
+        1e-6 (the 701c ABS_MEL_FLOOR=1e-4 was ~5x the converged-base signal). DISTINCT from the
+        SD-037 arousal entry (MECH-286/GAP-5, V4). SD doc: docs/architecture/sd_mel_consumer.md.
+        VALIDATION owed: V3-EXQ-718 (v3_exq_718_sdmelconsumer_adaptive_cadence_validation;
+        diagnostic) queued 2026-07-07 (ree-v3 main 0b9ae76 + coordinator /queue/add applied) --
+        4 graded-novelty arms consumer-ON + 1 matched-novelty consumer-OFF control; DV =
+        cumulative_sws_writes + cumulative_rem_rollouts + mel_duration_factor. On a PASS retest
+        + /governance apply, clear INV-050 (retest) and MECH-180 (v3_pending). PROMOTES NOTHING
+        until 718 scores. NOT the same as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
       phase: 5

@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "governance-cycle-20260704T0251Z",
-  "last_updated_utc": "2026-07-07T01:23:10Z",
+  "last_updated_utc": "2026-07-07T06:35:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5304,9 +5304,9 @@
     {
       "sd_id": "SD-MEL-CONSUMER",
       "title": "Adaptive sleep-cadence MEL consumer: accumulated Model Error Load (INV-050 learning-demand drive) modulates offline-phase entry threshold / duration, replacing the K-episode-deterministic scheduler",
-      "status": "pending_implementation",
-      "ready": true,
-      "design_doc": null,
+      "status": "implemented_validation_owed",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_mel_consumer.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "INV-050",
@@ -5323,7 +5323,10 @@
       "implementation_hint": "Measurability is DONE (V3-EXQ-701c). Build the CONSUMER: a scheduler reading accumulated waking MEL (e3 prediction-error load) that modulates offline-phase entry threshold and/or duration, replacing the K-episode-deterministic entry (V3-EXQ-677 scheduler-pinned). Recalibrate ABS_MEL_FLOOR (1e-4 mis-scaled for converged-base PE ~2e-5 -> relative or ~1e-6) in the validation test-bed. DISTINCT from sleep_substrate:GAP-5 (SD-037 arousal/homeostatic entry, V4) -- this is the INV-050 THIRD / learning-demand drive (MECH-180). Un-deferred 2026-07-07 by user override of the 2026-06-14/06-30 deferral (701c recommended_substrate_queue_entry action was none/deferred).",
       "priority": 1,
       "added_session": "mint-sd-mel-consumer-20260706T2105Z",
-      "last_seen_session": "mint-sd-mel-consumer-20260706T2105Z"
+      "last_seen_session": "mint-sd-mel-consumer-20260706T2105Z",
+      "implemented_utc": "2026-07-07",
+      "validation_exq": "V3-EXQ-718",
+      "implementation_note": "LANDED 2026-07-07 (/implement-substrate; ree-v3 main 909292c). ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated waking MEL and scales offline-phase duration (sws_consolidation_steps/rem_attribution_steps) via the SleepLoopManager; REEConfig.use_mel_consumer default False -> byte-identical (contracts+preflight PASS); relative floor recalibrated to 1e-6. Validation V3-EXQ-718 queued (diagnostic; 4 graded-novelty consumer-ON arms + 1 matched-novelty consumer-OFF control; DV=cumulative_sws_writes+rem_rollouts+mel_duration_factor). On a PASS retest + /governance, clear INV-050 (retest) + MECH-180 (v3_pending). PROMOTES NOTHING until 718 scores. Plan node sleep_substrate:GAP-5b (done at substrate-landing level)."
     }
   ],
   "schema_version": "substrate_queue/v2"
