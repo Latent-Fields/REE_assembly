@@ -165,21 +165,49 @@ closure_plan:
         held and closes no V3 node today; phase-label-follows-dependency has not
         fired).
     - id: "biology_grounding_convergence_v4:BG-5"
-      title: "Goal / wanting layer grounding L1 -> L2"
+      title: "Goal / wanting layer grounding L1 -> L2 [L2 REACHED 2026-07-07 via on-file anchors]"
       phase: 4
-      status: open
+      status: in_progress
       severity: medium
       owner_exq: null
       unblocks_claims: []
       depends_on: ["biology_grounding_convergence_v4:BG-1"]
       cross_plan_link: ["goal_deliberation_v4"]
       readiness_gate:
-        - "Goal layer currently has no region map (non_anatomy_prefix 'goal'). First step is a function-grounding lit-pull, not a substrate build"
-        - "Sequenced behind the selector (BG-2): goal->committed-action conversion rides the same E3 gate"
-      last_updated: 2026-06-20
+        - "Neural analog (function level): frontal goal-directed control -- vmPFC/dlPFC/dACC goal encoding + routing, ventral-striatal / mesolimbic-dopamine effort-based goal-directed action initiation, and the current-concern commit->pursue->disengage lifecycle. Distinct from BG-4 (drive / incentive-salience GAIN knob): BG-5 owns the goal-LIFECYCLE face, BG-4 owns the amplitude face -- flagged so the two rows do not double-count the shared 'wanting' construct"
+        - "L1 -> L2 REACHED 2026-07-07 (IGW-20260707-036 plan-reconcile; GDL-8 no-re-pull pattern -- anchors were already on file, ASSEMBLED here rather than re-pulled to avoid double-count): the defining constraint is literature-sourced and the divergences are IDENTIFIED (not yet tested), per S4.1. Anchors: (frontal goal encoding) targeted_review_frontal_goal_grounding -- Spellman 2015 HPC->PFC rich encoding-write / Ito 2015 PFC->reuniens->HPC compact-handle goal-directed retrieval / Schmitt 2017 MD-thalamic sustaining gain / Hallock 2016 demand-conditional thalamic gate / Baram 2020 vmPFC abstract task-graph store; (goal-directed effort + clinical poles) targeted_review_goal_disengagement -- Husain & Roiser 2018 apathy/anhedonia = effort-based decision-making breakdown across ventral striatum / vmPFC-ACC / mesolimbic DA; (current-concern lifecycle) Klinger 1975 commit-onset -> consummation-OR-disengagement-offset, obstruction-appraisal trigger; Brandstaetter 2013 action-crisis = disengagement is a contested state, within-crisis goal-devaluation is NOT the trigger; (goal maintenance / progress proxy) targeted_review_proxy_progress_goal_maintenance -- Carver 1990 velocity-affect loop / Sutton 1988 TD-value-as-progress-proxy / Bandura 1981 proximal subgoals; (wanting!=liking, shared with BG-4) Berridge & Robinson 1998 / Dickinson & Balleine 1994"
+        - "Load-bearing divergence D1 (stated, not yet tested): REE's goal/wanting layer represents wanting as a scalar drive-gain x static goal value and treats goal maintenance/abandon as a THRESHOLD / one-shot flag; biology times goal-directed pursuit as a current-concern STATE whose offset is gated by an obstruction-appraisal -- NOT a value-drop or accumulated-cost tally -- with an effort-cost computation that is value-relative and continuously recomputed. A static-threshold abandon lands ON a clinical pole by construction (see psychiatric column). Secondary divergence D2: REE frontal goal encoding is a single compact z_goal handle on slow EMA; biology splits rich encoding-write (Spellman) from compact goal-directed retrieval (Ito), adds a demand-conditional thalamic gate (Hallock) + an abstract task-graph store (Baram vmPFC) -- REE collapses these into one channel (the frontal_goal_grounding review's event-gated-rich-write / structural-encoding V4 scoping)"
+        - "Psychiatric failure-mode column (two-poled, required per S7): OVER-disengagement pole = apathy / anhedonia / avolition (effort-cost overweighted or reward sensitivity blunted; goal abandoned while its outcome is still valued) -- Husain & Roiser 2018. UNDER-disengagement pole = perseverative striving / rumination (stuck in the invigoration phase) and clinical depression (abandonment arrested without redirection) -- Klinger 1975, Brandstaetter 2013. The abandon trigger must occupy the band BETWEEN the two poles"
+        - "L2 -> L3 gate (named falsifier, NOT more literature): an obstruction-appraisal-gated-abandon vs static-threshold-abandon falsifier -- does a disengage/abandon trigger keyed on obstruction-appraisal (vs value-drop or cost-tally) yield adaptive disengagement bounded STRICTLY between the apathy pole and the perseveration pole? Testable only once the goal layer holds a parked goal slot to abandon/redirect BETWEEN (goal_deliberation_v4 GDL-1 multi-slot + GDL-5 interrupt/reorient/resume). Off the V3 critical path; BG-5 stays sequenced behind BG-2 (goal->committed-action conversion rides the same E3 gate) and its owning substrate is v4"
+      last_updated: 2026-07-07
       completion_note: >
-        Function-ground the goal/wanting layer (L1 -> L2). Off the V3 critical
-        path; owning substrate work is goal_deliberation_v4 / goal_pipeline.
+        GROUNDING L1 -> L2 REACHED 2026-07-07 (IGW-20260707-036 plan-reconcile;
+        PROMOTES NOTHING -- no claims.yaml touch). Status open -> in_progress.
+        The goal/wanting layer already had comprehensive literature on file across
+        four targeted reviews (frontal_goal_grounding, goal_disengagement,
+        proxy_progress_goal_maintenance, wanting_liking synthesis); per the GDL-8
+        precedent (do not re-pull anchors already on file, to avoid double-count)
+        this pass ASSEMBLES them into the ARC-106 goal/wanting grounding rather
+        than commissioning a fresh pull. Each face of the layer -- frontal goal
+        encoding/routing, effort-based goal-directed initiation, the
+        current-concern commit->pursue->disengage lifecycle, goal maintenance --
+        now carries >=1 biological anchor; the load-bearing divergence D1
+        (static-threshold/one-shot abandon vs obstruction-appraisal-gated
+        current-concern state) is stated with a named falsifier; the two-poled
+        psychiatric column (apathy/anhedonia over-disengagement pole vs
+        perseverative-striving/arrested-depression under-disengagement pole) is
+        anchored. L2 -> L3 is gated on a REE falsifier (the obstruction-appraisal
+        abandon test), NOT more literature, and that falsifier needs the v4
+        goal-deliberation substrate (GDL-1 multi-slot + GDL-5 interrupt/resume) to
+        have a parked slot to abandon/redirect between -- so it stays off the V3
+        critical path. Owning substrate work is goal_deliberation_v4 (cross_plan_link;
+        GDL-8 grounded the DELIBERATION cluster claims) / goal_pipeline. ARC-106
+        design-doc S5 ledger gains a goal/wanting row and S9 C4 moves L1 -> L2 /
+        open -> in-progress in the same pass (S10.3 zero-silent-divergence). BG-4
+        <-> BG-5 boundary: BG-4 owns the incentive-salience GAIN face (kappa knob,
+        divergence-audited to falsification), BG-5 owns the goal-LIFECYCLE face --
+        same 'wanting' construct at cue vs goal granularity, kept as two rows so
+        neither double-counts the other's grounding.
     - id: "biology_grounding_convergence_v4:BG-6"
       title: "Attention (distributed precision-selection) grounding -- containment, not a module"
       phase: 4
@@ -254,8 +282,17 @@ deferral:
   measurement-redesign (the scalar gain knob was falsified); 514u LANDED
   PASS/supports and was governance-applied 2026-06-21 (MECH-436 ceiling lifted),
   reaching L3 on the load-bearing intensity disjunct.
-- **BG-5 (goal)**, **BG-6 (attention)**, **BG-7 (ethics)** are later-generation
-  and mostly map-not-build; BG-6/BG-7 are explicitly containment-only / honest-no-analog.
+- **BG-5 (goal / wanting)** -- L1 -> L2 REACHED 2026-07-07. The goal/wanting
+  layer's defining constraint is now literature-anchored by assembling on-file
+  reviews (frontal_goal_grounding, goal_disengagement, proxy_progress,
+  wanting_liking) rather than a fresh pull (GDL-8 no-re-pull pattern); its
+  load-bearing divergence (static-threshold abandon vs obstruction-appraisal-gated
+  current-concern state) and two-poled psychiatric column (apathy vs
+  perseverative-striving/arrested-depression) are stated. L2 -> L3 is gated on the
+  obstruction-appraisal abandon falsifier, which needs the v4 goal-deliberation
+  substrate (GDL-1 multi-slot + GDL-5 interrupt/resume) -- off the V3 critical path.
+- **BG-6 (attention)**, **BG-7 (ethics)** are later-generation and mostly
+  map-not-build; both are explicitly containment-only / honest-no-analog.
 
 ## Promotion to V3 (pull-in path)
 
