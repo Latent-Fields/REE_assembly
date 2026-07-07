@@ -79,7 +79,7 @@ closure_plan:
       phase: null
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-718"
+      owner_exq: "V3-EXQ-718a (supersedes V3-EXQ-718)"
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
       depends_on: []
@@ -95,12 +95,21 @@ closure_plan:
         False -> byte-identical (full contracts + preflight PASS). Relative floor recalibrated to
         1e-6 (the 701c ABS_MEL_FLOOR=1e-4 was ~5x the converged-base signal). DISTINCT from the
         SD-037 arousal entry (MECH-286/GAP-5, V4). SD doc: docs/architecture/sd_mel_consumer.md.
-        VALIDATION owed: V3-EXQ-718 (v3_exq_718_sdmelconsumer_adaptive_cadence_validation;
-        diagnostic) queued 2026-07-07 (ree-v3 main 0b9ae76 + coordinator /queue/add applied) --
-        4 graded-novelty arms consumer-ON + 1 matched-novelty consumer-OFF control; DV =
-        cumulative_sws_writes + cumulative_rem_rollouts + mel_duration_factor. On a PASS retest
-        + /governance apply, clear INV-050 (retest) and MECH-180 (v3_pending). PROMOTES NOTHING
-        until 718 scores. NOT the same as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
+        VALIDATION owed: V3-EXQ-718a (v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation;
+        diagnostic) queued 2026-07-07 (ree-v3 main 2c56114 + coordinator /queue/add applied) --
+        SUPERSEDES V3-EXQ-718, which FAILED and self-routed a test-bed redesign (confirmed
+        failure_autopsy_V3-EXQ-718_2026-07-07; NOT substrate_ceiling -- the consumer is LIVE +
+        functional, C2 PASS 3/3, self-route mel_does_not_modulate_cadence REFUTED). 718's
+        load-bearing C1 scored the DV against the novelty LABEL, but 718's graded-novelty drift
+        schedule made MEASURED MEL non-monotone in that label, so C1 read 0/3 for a
+        measurement-gap reason, not a substrate failure. 718a fixes the test bed: C1 now regresses
+        DV = cumulative_sws_writes + cumulative_rem_rollouts against MEASURED per-arm mean MEL
+        (4 ecological consumer-ON arms sorted by measured mean_mel + a measured-MEL-gradient
+        non-degeneracy guard), and adds a MEL-INJECTION positive-control arm (graded MEL by
+        construction) as the same-statistic readiness gate + capability check; keeps the
+        OFF-pinned C2 control. On a PASS retest + /governance apply, clear INV-050 (retest) and
+        MECH-180 (v3_pending). PROMOTES NOTHING until 718a scores (currently unrun). NOT the same
+        as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
       phase: 5
