@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-08T19:46:00Z",
+  "last_review_utc": "2026-07-08T23:20:32Z",
   "discussed_experiment_dirs": [
     "v3_exq_719_conversion_ceiling_dissociation_diagnostic",
     "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
@@ -791,7 +791,9 @@
     "v3_exq_714_fullstack_selection_valuation_conversion_falsifier",
     "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier",
     "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
-    "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier"
+    "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier",
+    "v3_exq_719a_conversion_ceiling_dissociation_diagnostic",
+    "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_719_conversion_ceiling_dissociation_diagnostic_20260708T103723Z_v3",
@@ -3259,7 +3261,8 @@
     "v3_exq_714_fullstack_selection_valuation_conversion_falsifier_20260706T143256Z_v3",
     "v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier_20260706T230559Z_v3",
     "v3_exq_718_sdmelconsumer_adaptive_cadence_validation_20260707T092402Z_v3",
-    "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3"
+    "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3",
+    "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -4999,6 +5002,13 @@
         "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3"
       ],
       "context": "bold-payne-7587d5 (/governance apply of confirmed failure_autopsy_V3-EXQ-718a_2026-07-08; landed REE_assembly master 9506cd5646): V3-EXQ-718a (SD-MEL-CONSUMER measured-MEL cadence re-validation; supersedes 718; diagnostic FAIL/non_contributory) applied to INV-050 + MECH-180. PROMOTES NOTHING; both stay candidate (MECH-180 v3_pending; both pending_retest_after_substrate). Self-route mel_control_degenerate REFUTED (OFF control IS pinned all seeds; C2 failed only on on_gt_off -- ecological HIGH DV 72/74 < OFF baseline 90, seeds 42/456); corrected reading mel_consumer_capable_ecological_novelty_not_graded. CONSUMER CAPABILITY PROVEN via C3 injection PC (DV [9,13,18,24,30,38] exact-monotone tracks injected [0.6..2.5], all seeds); C1 DV-monotone-in-MEASURED-MEL 3/3 but near-degenerate (DV is a deterministic fn of MEL). Link (i) ecological producer STILL broken (same root as 718): CausalGridWorldV2 converges too completely (conv_rel_drop ~0.98) -> residual ecological MEL ~1e-5 noise-level, scrambled vs novelty -> environment/test-bed producer gap, NOT substrate_ceiling, NOT falsification. NOT weakened, NOT cleared. Applied shared evidence_quality_note verbatim to both claims. Re-derive brake FIRED (6th non_contributory INV-050 / 3rd MECH-180) -> REFUSE same-environment 718b re-grade (NO re-queue). User disposition 2026-07-08: BANK consumer capability (SD-MEL-CONSUMER -> implemented; +718a failure record) + RE-PARK ecological end-to-end (INV-050 ceiling_decision: deferred; off V3 critical path). Reconciled sleep_substrate:GAP-5b (owner chain 718 -> 718a TERMINATES, re-parked, no owed successor). claims.json rebuilt (870)."
+    },
+    {
+      "utc": "2026-07-08T23:20:32Z",
+      "run_ids": [
+        "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3"
+      ],
+      "context": "nifty-booth-b574cf (/governance apply of confirmed failure_autopsy_V3-EXQ-719a_2026-07-08; landed REE_assembly master 05a7679e86): V3-EXQ-719a (conversion-ceiling dissociation diagnostic; supersedes 719; ARC-062/MECH-309; diagnostic FAIL/non_contributory) applied to ARC-062 + MECH-309. PROMOTES/DEMOTES NOTHING; both stay candidate/v3_pending/substrate_ceiling/ceiling_decision:deferred/pending_retest_after_substrate -- UNWEAKENED. 719->719a tick-budget fix WORKED: all MI-estimability readiness gates now MET (6005 ticks/seed, 6-10 bins, 3/3 seeds). Self-route substrate_not_ready_requeue = MISLABEL (readiness met; else-branch reused the under-sampled string for the pre-registered 'evidence against either conclusion' case; more ticks won't change it -- structural mirror of 642). Branch B (decisive_state_appropriate_commitment / metric-artifact reframe) REJECTED (debiased MI >0.05 floor 1/3; competence >1.0 floor 0/3); Branch A (genuine_monomodal_collapse) NOT clean (raw MI above shuffle null 3/3; marginal committed entropy 0.69-1.41 nats, not low). FIRST direct competence measurement: all-ON agent forages 0.065/0.0/0.455 resources/ep -> dominant diagnosis substrate_ceiling = behavioural-competence/training-regime gap (thin P1 = 90-ep bias-head-only REINFORCE on frozen encoder; all-ON interference a live alt), NOT a further selection lever (MECH-448/449 built + selection-face lifted on GAP-A). Reframes the 654h/485i/625e/460h/460i retest wall as ONE competence root. Appended verbatim evidence_quality_note to both claims; amended substrate_queue f_dominance_conversion_ceiling (+719a failure_record + competence-wall reconcile note). Re-derive brake FIRED (21st ARC-062 / 20th MECH-309) -> did NOT queue 719b; NEXT STEP = competence-localization diagnostic (brake-EXEMPT). PARKED V3-EXQ-722 (session trusting-elgamal-f8c2e8) re-gated: case (c) inconclusive-but-branch-B-rejected -> KEEP PARKED, re-gate on competence substrate (NOT moot); did NOT queue 722. claims.json rebuilt (871)."
     }
   ]
 }

@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "reverent-clarke-16000f",
-  "last_updated_utc": "2026-07-08T20:37:38Z",
+  "last_updated_utc": "2026-07-08T23:20:32Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5087,6 +5087,12 @@
           "experiment_type": "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier",
           "metric": "commit-intent > 0 on 2/9 in-regime seeds (fraction 0.222) at adequate power (12 seeds, 9 in-regime). Fair weakens, non_degenerate.",
           "target": "commit-intent > 0 on >= 2/3 of in-regime (weak-natural-commit) seeds -- reliable F-independent arming, not a 2/9 minority."
+        },
+        {
+          "run_id": "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3",
+          "experiment_type": "v3_exq_719a_conversion_ceiling_dissociation_diagnostic",
+          "metric": "P2 foraging competence 0.065/0.0/0.455 resources/ep (0/3 seeds >= 1.0 floor); debiased MI(state;committed) 0.010/0.004/0.051 (1/3 >= 0.05 floor); raw MI above shuffle null 3/3; marginal committed entropy 0.69-1.41 nats (not low) -- dissociation UNDEFINED, branch B rejected, branch A not clean",
+          "target": "competence >= 1.0 resources/ep on a majority of seeds (so the committed-action dissociation DV is defined) before any conversion-ceiling behavioural retest is licensed"
         }
       ],
       "metric_trajectory": {
@@ -5113,7 +5119,7 @@
       "priority": 1,
       "priority_note": "Highest -- the single shared blocker for 5+ generation:v3 closure fronts; lifting it cascades multiple pending_retest_after_substrate claims.",
       "added_session": "f-dominance-front-standup-20260619T2200Z",
-      "last_seen_session": "governance-apply-4-autopsies-20260707T1653Z",
+      "last_seen_session": "nifty-booth-b574cf-governance-apply-719a",
       "implementation_log": [
         {
           "session": "implement-substrate-mech-448-20260620T1842Z",
@@ -5215,7 +5221,10 @@
           "ree_v3_status_doc": "ree-v3/CLAUDE.md (\"F-independent closure-plane commit-ENTRY TRAJECTORY primitive (C-STEP ...)\" entry)"
         }
       ],
-      "source_autopsy": "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead) + failure_autopsy_V3-EXQ-654h_2026-06-21 (arc_062 rule-apprehension instance of the 485i no-op; gate cleared by 485j off-GAP-A generalisation)",
+      "source_autopsy": [
+        "failure_autopsy_V3-EXQ-654g_2026-06-19 + failure_autopsy_V3-EXQ-485h_2026-06-19 (2 convergent channels) + conversion_ceiling_phase0_synthesis_2026-06-18 (Phase 0 + Phase 1 fork) + failure_autopsy_V3-EXQ-460h_2026-06-20 (root-C reclassification: commit/release-duration face) + failure_autopsy_V3-EXQ-689a_2026-06-20 (conflict-grade near-tie parametric family exhausted; constitutional build ARC-107/MECH-448 elevated to lead) + failure_autopsy_V3-EXQ-654h_2026-06-21 (arc_062 rule-apprehension instance of the 485i no-op; gate cleared by 485j off-GAP-A generalisation)",
+        "failure_autopsy_V3-EXQ-719a_2026-07-08"
+      ],
       "pending_retest_after_substrate": true,
       "candidate_cluster_members": [
         {
@@ -5228,7 +5237,8 @@
           "claim": "SD-037",
           "note": "SD-037 axis-b -- 689a-gated F-front downstream; r4=0.0 monostrategy, MECH-439 F-dominance reasserting under the axis-b composite (failure_autopsy_V3-EXQ-625e_2026-06-20). Own in-flight autopsy."
         }
-      ]
+      ],
+      "reconcile_note_2026_07_08_719a": "719a (confirmed failure_autopsy_V3-EXQ-719a_2026-07-08; ARC-062/MECH-309; diagnostic FAIL/non_contributory; PROMOTES/DEMOTES NOTHING) is the FIRST DIRECT COMPETENCE MEASUREMENT of the integrated all-ON agent: P2 foraging 0.065/0.0/0.455 resources/ep (floor 1.0, 0/3 seeds; counter verified firing -- real behaviour, not a mis-wire). COMPETENCE-WALL REFRAME: the recurring downstream behavioural-retest wall (654h/485i/625e/460h/460i all self-routing substrate_not_ready) is ONE competence root, not N independent sampling failures -- committed-action dissociation DVs are UNDEFINED until competence exists. The self-routed substrate_not_ready_requeue on 719a is a MISLABEL (all MI-estimability readiness gates MET: 6005 ticks/seed, 6-10 bins, 3/3 seeds; the else-branch reused the under-sampled string for the pre-registered 'evidence against either conclusion' case). Branch B (metric-artifact reframe) REJECTED; Branch A (monomodal collapse) NOT clean. Diagnosis = behavioural-competence / training-regime ceiling (thin P1 = 90-ep bias-head-only REINFORCE on a frozen encoder; all-ON mechanism interference a live alternative), NOT a further selection lever (MECH-448/449 already BUILT + selection-face LIFTED on GAP-A). NEXT STEP = competence-localization diagnostic (brake-EXEMPT: different question -- WHY is the all-ON agent incompetent -- to pin the lever: P1 training budget vs frozen-encoder-in-P1 vs all-ON interference) BEFORE any build; the build target is a training-regime/competence enrichment, NOT another selection lever. Re-derive brake FIRED (21st ARC-062 / 20th MECH-309): same-claim behavioural re-tests (V3-EXQ-722, 719b) REFUSED. PARKED V3-EXQ-722 RE-GATE (session trusting-elgamal-f8c2e8): resume rule resolved to case (c) inconclusive-but-branch-B-rejected -> KEEP PARKED, re-gate on the competence substrate (NOT moot: branch B rejected leaves the SELECTION-face falsifier a target, but its committed-action DV is UNDEFINED until competence exists). Do NOT queue 722 now."
     },
     {
       "sd_id": "v4_loop_segregation",
