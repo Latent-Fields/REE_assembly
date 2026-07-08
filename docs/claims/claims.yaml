@@ -20100,6 +20100,17 @@
     workspace; it commits to a boundary gate, consistent with REE's
     fragmentation architecture.
 
+    [2026-07-08 SD-064 reframe]: candidate SD-064 revisits this disclaimer.
+    It argues the "not a single global workspace" hedge conflates Global
+    Workspace Theory with a unitary intra-E3 SELECTOR -- MECH-007 forbids the
+    latter, but GWT requires no unitary attender (its backstage is a fragmented
+    population of specialists, and the workspace is a capacity-limited BROADCAST
+    BUS over them). On that reading SD-027's boundary gate + MECH-089 packaging +
+    the MECH-287 / SD-037 broadcast machinery already CONSTITUTE a global
+    workspace at the access-functional (not phenomenal) level. SD-027 stays valid
+    as the SELECTION stage; SD-064 owns the workspace-level commitment and its
+    ablation-cliff falsifier. See SD-064.
+
     Hard V4 scope note: V4 requires substrate for lateral inhibition and
     dynamic capacity modulation that V3 does not have. Simple V3 top-k
     retrofit is feasible but is a partial approximation.
@@ -43391,6 +43402,98 @@
     until the V3-EXQ-716 validation falsifier scores (CRPS/precision-error-corr
     advantage survives joint training AND SD-031 agency residual preserved).
   location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
+
+- id: SD-064
+  title: "REE instantiates a global-workspace-like access channel: a capacity-limited selection-for-broadcast bottleneck (SD-027 boundary gate + MECH-089 theta-gamma packaging + E3 broadcast, riding the MECH-287 / SD-037 broadcast machinery) whose contents are reportable and causally load-bearing for integrative, multi-step cognition while automatic/reactive behaviour bypasses it. The SD-027 'does NOT commit to a single global workspace' disclaimer conflates Global Workspace Theory with unitary intra-E3 selection: MECH-007 (attention fragmentation) forbids the latter but is COMPATIBLE with the former, because GWT's specialized parallel processors are fragmented by construction -- fragmentation is the backstage of the theatre, not its negation."
+  claim_type: design_decision
+  subject: attention.global_workspace_access_channel
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: 2026-07-08
+  reframes: SD-027
+  depends_on:
+    - SD-027    # capacity-limited selection-for-broadcast gate at E1/E2 -> E3 -- the workspace's SELECTION stage
+    - MECH-007  # attention fragmentation -- RECONCILED not violated: GWT forbids unitary selection, not a workspace
+    - MECH-089  # theta-gamma packaging -- the broadcast FORMAT (how workspace content is packaged for E3)
+    - MECH-287  # broadcast invalidation trigger -- existing V3 broadcast substrate (BroadcastEvent queue)
+    - SD-037    # broadcast override regulator (orexin-analog) -- existing V3 broadcast machinery
+  functional_restatement: >
+    Global Workspace Theory (Baars 1988; Dehaene & Changeux 2011 global neuronal
+    workspace) is an ACCESS architecture, not a claim about a homunculus: many
+    specialized processors compute in parallel ("backstage"), and a
+    capacity-limited channel broadcasts a small selected subset to the whole
+    system, making that content globally available for report and for control of
+    downstream processors. The signature is threefold: (i) capacity limit -- only
+    a few items at once; (ii) reportability -- workspace content is what the
+    system can say it is "thinking"; (iii) causal centrality for INTEGRATION --
+    ablating the workspace collapses multi-step / cross-module cognition while
+    leaving single-step automatic behaviour (fluency, reactive classification)
+    intact.
+
+    REE already has the three functional stages of exactly this channel: SELECTION
+    (SD-027 capacity-limited boundary gate at E1/E2 -> E3, MECH-254 top-k),
+    PACKAGING (MECH-089 theta-gamma batching), and BROADCAST (the MECH-287
+    BroadcastEvent queue + SD-037 broadly-projecting override; SD-016/SD-037
+    broadcast machinery). SD-064 asserts that these together CONSTITUTE a global
+    workspace in the functional (access-consciousness) sense, and that REE should
+    own that commitment rather than hedge against it.
+
+    The hedge to retire is SD-027's note "distinct from global workspace theory in
+    that SD-027 does NOT commit to a single global workspace." That reads GWT as
+    requiring a single UNITARY SELECTOR -- which MECH-007 rightly forbids (attention
+    must be fragmented across control axes). But GWT requires no such thing: its
+    backstage is a fragmented population of specialists, and the workspace is a
+    narrow BROADCAST BUS over them, not a unitary attender. A capacity-limited bus
+    that many fragmented processors write-compete into and read-broadcast from is
+    fully consistent with MECH-007. So REE's architecture does not merely tolerate a
+    global workspace -- its selection+packaging+broadcast stack already IS one, at
+    the access-functional level. What REE deliberately does NOT claim is PHENOMENAL
+    consciousness (Block's distinction): SD-064 is an access-functional claim only.
+
+    Explanatory pairings:
+    - Psychosis / thought-broadcasting substrate (self-attribution contamination
+      claim): SD-064 says workspace content is legible-for-broadcast to the system;
+      that failure claim models an agent experiencing its own workspace content as
+      externally attributed / broadcast. Same channel, read from opposite ends.
+    - MECH-090 (beta gates E3 -> action): OUTPUT-side gate; SD-027/SD-064 SELECTION
+      is the INPUT-side gate. Together they bracket the workspace.
+  evidence_quality_note: >
+    External corroboration (NOT REE evidence; convergent, not confirmatory):
+    Anthropic's J-space / Jacobian-lens result (2026,
+    anthropic.com/research/global-workspace). A large capable model, under NO
+    design pressure to have a workspace, was found to have spontaneously developed a
+    compact reportable bottleneck -- "a few dozen concepts at a time, less than a
+    tenth of overall internal activity" -- that is (a) reportable, (b) causally
+    load-bearing (ablating it drops multi-step reasoning to near-zero while fluency /
+    sentiment / MCQ survive), and (c) bypassed by automatic processing. This is
+    convergent evidence that a capacity-limited, reportable, integration-central
+    broadcast channel is an ATTRACTOR for capable sequence models, which raises the
+    prior that REE's designed-in version is doing real work. Caveats that bound the
+    analogy: the J-space is a single-forward-pass artifact (REE's is recurrent /
+    temporally extended -- closer to Baars' actual temporal theatre), built almost
+    entirely of single tokens, and the entry mechanism is unknown; and access !=
+    phenomenal.
+
+    FALSIFIER (the load-bearing test): the workspace-ablation CLIFF. If SD-064 is
+    right, ablating the selection-for-broadcast channel should collapse integrative
+    / multi-step / committed-action cognition toward zero while leaving reactive
+    automatic behaviour intact -- a CLIFF, not graceful degradation (the pluralist /
+    no-single-workspace reading predicts graceful degradation via redundant
+    distributed pathways). This direct test is SUBSTRATE-BLOCKED: the SD-027 boundary
+    gate is not implemented in V3 (no sd027 / access-gate code in ree_core; SD-027 is
+    v4-scoped with an optional top-k retrofit), so a clean gate-ablation would
+    self-route substrate_not_ready. The RUNNABLE near-term test is an REE-native
+    J-lens DISPOSITIONAL-READOUT diagnostic on an existing all-ON agent: does a
+    compact, action-coupled, reportable subspace exist (the J-space analogue), what
+    fraction of latent activity does it occupy, and is it few-dozen-dimensional?
+    A positive existence result motivates the SD-027 V3 gate retrofit that unlocks
+    the cliff falsifier. Design + both experiment specs:
+    evidence/planning/global_workspace_jlens_plan.md. v3_pending until that
+    diagnostic (and, later, the ablation cliff) scores. PROMOTES NOTHING.
+  location: evidence/planning/global_workspace_jlens_plan.md
 
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
