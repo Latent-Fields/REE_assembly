@@ -1,0 +1,19 @@
+# PETS: uncertainty-aware dynamics models feeding action selection (Chua et al. 2018)
+
+**Claim under test:** SD-063 — E2's world-forward should carry a *conditional* (per-input) predictive-uncertainty head feeding E3 commitment gating, rather than E3 relying only on a temporally-smoothed global running-variance EMA.
+
+## What the paper did
+
+Chua, Calandra, McAllister and Levine (NeurIPS 2018) introduced PETS — Probabilistic Ensembles with Trajectory Sampling. The dynamics model is not a point predictor: each network in the ensemble is a *probabilistic* network that outputs, for every input `(state, action)`, the parameters of a predictive distribution over the next state (a Gaussian mean and an input-dependent variance). Aleatoric uncertainty is captured by that per-input variance head; epistemic uncertainty is captured by disagreement across the ensemble. At planning time, PETS propagates this uncertainty through trajectory sampling — particles are rolled forward under sampled models — so that the model-predictive controller selects actions while explicitly accounting for where the forward model is uncertain. The headline empirical result is that this uncertainty-aware model-based approach matches the asymptotic performance of model-free RL while using roughly 8× fewer samples than SAC and 125× fewer than PPO on half-cheetah.
+
+## Why it bears on SD-063
+
+This is the clearest at-scale precedent for SD-063's *architectural* thesis. SD-063 argues that the forward model (E2) should emit a predictive spread that is a function of the specific input being predicted, and that the action-commitment stage (E3) should gate on *that* signal rather than on a running average of recent error. PETS is exactly this pattern in a different substrate: a learned forward model whose uncertainty output is conditional on the current query, consumed downstream by the action-selection machinery. The whole point of PETS — and the reason it beats a deterministic dynamics model — is that a *global* or absent uncertainty term is not enough; the controller needs to know *where this particular prediction* is trustworthy. That is the same intuition as SD-063's objection to E3's running-variance EMA, whose predicted uncertainty has near-zero per-point error correlation by construction.
+
+## Where the mapping strains
+
+Two caveats keep this from being decisive support. First, PETS represents aleatoric uncertainty with a Gaussian negative-log-likelihood head — precisely the `hetero_gaussian` head form that *lost* to `quantile_pinball` in the V3-EXQ-712 diagnostic that motivated SD-063. So the paper endorses "conditional forward-model uncertainty feeds action" without endorsing SD-063's specific distribution-free quantile form. Second, PETS uses uncertainty for sampling-based trajectory optimisation, not a binary commit/hold gate, and it *separates* aleatoric from epistemic uncertainty via the ensemble. SD-063's single quantile head conflates the two and feeds a commitment decision — so PETS cannot be read as evidence that a single head will cleanly isolate the environment-noise component, nor does it speak to SD-063's open concern that the head must not absorb the SD-031 E2WorldForward agency residual (the agent-caused component of next-state variance).
+
+## Confidence
+
+I set this at **0.74, supports**. Source quality is very high — this is a foundational, heavily replicated result. Mapping fidelity is strong on the principle (conditional forward-model uncertainty improves action decisions) but only moderate on the specifics, since neither the head form nor the consumer matches SD-063. Transfer risk is real but bounded: continuous-control RL is a different substrate from REE's E1/E2/E3 latent stack, and the aleatoric/epistemic split PETS relies on is not what SD-063 builds. The paper strongly grounds the *design instinct*; it does not by itself validate the wired-in quantile head, which remains the v3_pending question.

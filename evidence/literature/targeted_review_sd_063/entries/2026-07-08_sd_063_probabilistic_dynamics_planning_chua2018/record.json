@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_063",
+  "entry_id": "2026-07-08_sd_063_probabilistic_dynamics_planning_chua2018",
+  "timestamp_utc": "2026-07-08T06:05:22Z",
+  "claim_ids_tested": ["SD-063"],
+  "source": {
+    "title": "Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models",
+    "authors": ["Kurtland Chua", "Roberto Calandra", "Rowan McAllister", "Sergey Levine"],
+    "year": 2018,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 31",
+    "doi": "10.48550/arXiv.1805.12114",
+    "url": "https://arxiv.org/abs/1805.12114"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, highly-cited NeurIPS paper establishing that a learned forward/dynamics model should emit input-conditional predictive uncertainty (aleatoric, per-input) and that propagating that uncertainty into action selection materially improves behaviour. High mapping fidelity to SD-063's architecture (E2 forward model emits per-prediction spread -> E3 gates commitment), lowered because PETS represents aleatoric uncertainty with a Gaussian-NLL head + ensemble rather than the distribution-free quantile form SD-063 prefers, and it uses uncertainty for trajectory-sampling planning rather than a single commit/hold gate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "PETS separates aleatoric from epistemic uncertainty by ensembling; a single-head E2 quantile spread conflates them, so the SD-063 head cannot be assumed to isolate the environment-noise component the way PETS's trajectory sampling does.",
+    "PETS obtains its per-input aleatoric variance from a Gaussian-NLL probabilistic network -- exactly the head form that lost to quantile_pinball in V3-EXQ-712 -- so the paper supports 'conditional uncertainty feeds action' without endorsing SD-063's specific distribution-free form."
+  ],
+  "tags": ["sd-063", "model-based-rl", "aleatoric-uncertainty", "world-model", "uncertainty-gated-action", "predictive-uncertainty"],
+  "mapping": {
+    "source_claim_statement": "An uncertainty-aware probabilistic dynamics model that captures input-dependent aleatoric (and, via ensembling, epistemic) uncertainty, with that uncertainty propagated through trajectory sampling during planning, closes the asymptotic performance gap between model-based and model-free RL while using 8-125x fewer samples.",
+    "ree_translation": "SD-063's core architectural bet -- that the E2 world-forward model should carry a per-input predictive-uncertainty signal that downstream action machinery (E3 commitment gating) conditions on -- is the same design pattern PETS validates at scale: a forward model whose uncertainty output is conditional on the current (state, action) query and is consumed by the action-selection stage, rather than a single global noise scalar.",
+    "mapping_caveat": "PETS uses uncertainty for sampling-based trajectory optimisation (MPC/CEM), not a binary commit/hold gate, and represents aleatoric uncertainty with a Gaussian-NLL head plus an ensemble for epistemic uncertainty. SD-063 proposes a single distribution-free quantile head and a commit-gating consumer; the paper supports the general principle (conditional forward-model uncertainty improves action decisions) but not the specific head form or the specific consumer, and says nothing about the SD-031 agency-residual concern.",
+    "source_context": "Continuous-control benchmarks (cartpole, half-cheetah, reacher, pusher) in simulation; deep neural dynamics models trained from a handful of trials."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (foundational NeurIPS result, widely replicated). Mapping fidelity strong on the architectural principle but not on the specific quantile head or commit-gate consumer. Transfer risk moderate: control-RL substrate differs from REE's E1/E2/E3 latent stack, and PETS's aleatoric/epistemic separation via ensembling is not what SD-063 builds."
+  }
+}

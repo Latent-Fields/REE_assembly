@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_063",
+  "entry_id": "2026-07-08_sd_063_faithful_heteroscedastic_regression_stirn2023",
+  "timestamp_utc": "2026-07-08T06:05:22Z",
+  "claim_ids_tested": ["SD-063"],
+  "source": {
+    "title": "Faithful Heteroscedastic Regression with Neural Networks",
+    "authors": ["Andrew Stirn", "Hans-Hermann Wessels", "Megan Schertzer", "Laura Pereira", "Neville E. Sanjana", "David A. Knowles"],
+    "year": 2023,
+    "venue": "Proceedings of the 26th International Conference on Artificial Intelligence and Statistics (AISTATS), PMLR vol. 206",
+    "doi": "10.48550/arXiv.2212.09184",
+    "url": "https://proceedings.mlr.press/v206/stirn23a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly on-point and high-fidelity for SD-063's central validity risk. It rigorously documents that the standard Gaussian-NLL heteroscedastic head corrupts the mean estimate (rich-get-richer via 1/sigma^2 gradient scaling), which (a) explains why hetero_gaussian lost to quantile_pinball in V3-EXQ-712 -- supporting SD-063's form choice -- but (b) warns that ANY conditional-uncertainty head coupled to the mean/encoder during joint training can degrade the point prediction, which is exactly SD-063's open, unresolved concern. Mixed because it both corroborates the form decision and raises a concrete failure mode for the wired-in build.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Minimising a heteroscedastic Gaussian NLL scales the mean gradient by 1/sigma^2(x), biasing learning toward low-variance points and creating a 'rich-get-richer' cycle where poorly-predicted points get high variance to explain away poor mean estimates rather than improving them; the resulting mean can be significantly less accurate than an equally-expressive mean-only (MSE) model.",
+    "The pathology arises specifically when mean and variance share ancestral computations (a shared trunk) and are optimised jointly -- the exact configuration a wired-in E2 uncertainty head would create -- so SD-063's joint-training validation gate is precisely where this failure would manifest.",
+    "Beta-NLL (Seitzer 2022) and the paper's stop-gradient fix are needed to recover faithful means; a naive joint head does not, meaning SD-063's head must be explicitly shielded or the E2 mean/agency-residual (SD-031) could be corrupted."
+  ],
+  "tags": ["sd-063", "heteroscedastic", "aleatoric-uncertainty", "joint-training-pathology", "mean-corruption", "predictive-variance"],
+  "mapping": {
+    "source_claim_statement": "Neural heteroscedastic regression trained by Gaussian-NLL minimisation produces mean estimates that are provably and empirically less accurate than an equally-expressive mean-only model, because the 1/sigma^2(x) gradient weighting biases the mean toward low-noise regions; a stop-gradient / Newton-step modification restores a 'faithful' mean equal to the mean-only baseline while retaining best-in-class variance calibration.",
+    "ree_translation": "SD-063 rejected the hetero_gaussian E2 head in favour of a distribution-free quantile/pinball head, and requires that a wired-in conditional-uncertainty head (a) preserve the CRPS / precision-error-corr advantage under JOINT training and (b) not explain away the SD-031 E2WorldForward agency residual. Stirn et al. give the mechanistic reason the Gaussian form is dangerous (mean corruption via variance-weighted gradients) -- corroborating the form choice -- and simultaneously show that the corruption is a general joint-training hazard for conditional-variance heads sharing a trunk, which is exactly SD-063's open risk.",
+    "mapping_caveat": "The analysis is specific to the Gaussian-NLL parameterisation; the quantile/pinball head SD-063 uses does not have the 1/sigma^2 gradient term, so it is NOT automatically subject to the same rich-get-richer pathology -- the paper is a warning-by-analogy, not a direct measurement of a pinball head's joint-training behaviour. Whether a pinball head coupled to E2's encoder corrupts the mean or absorbs the SD-031 agency residual is an empirical question SD-063's own validation experiment must answer.",
+    "source_context": "Regression benchmarks (UCI datasets, a CRISPR-guide-efficacy genomics application, and image regression); parametric Gaussian heteroscedastic networks with shared and separate mean/variance heads."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Strong peer-reviewed AISTATS analysis with theorem + broad empirics. High mapping fidelity: it speaks directly to SD-063's two open validation conditions (joint-training survival and not-explaining-away a residual). Transfer risk moderate because the sharpest result is Gaussian-specific and SD-063's head is quantile-based; the hazard transfers as a caveat, not as a proven defect of the chosen form."
+  }
+}

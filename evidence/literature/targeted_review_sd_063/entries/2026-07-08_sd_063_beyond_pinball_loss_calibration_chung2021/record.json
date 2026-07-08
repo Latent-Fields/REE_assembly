@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_063",
+  "entry_id": "2026-07-08_sd_063_beyond_pinball_loss_calibration_chung2021",
+  "timestamp_utc": "2026-07-08T06:05:22Z",
+  "claim_ids_tested": ["SD-063"],
+  "source": {
+    "title": "Beyond Pinball Loss: Quantile Methods for Calibrated Uncertainty Quantification",
+    "authors": ["Youngseog Chung", "Willie Neiswanger", "Ian Char", "Jeff Schneider"],
+    "year": 2021,
+    "venue": "ICML 2021 Workshop on Uncertainty and Robustness in Deep Learning (UDL); later NeurIPS 2021",
+    "doi": "10.48550/arXiv.2011.09588",
+    "url": "https://arxiv.org/abs/2011.09588"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly on SD-063's chosen quantile/pinball form. Supports it as an attractive distribution-free, parametric-assumption-free, model-agnostic way to represent per-input predictive spread (its opening explicitly lists model-based RL as a motivating application). But its central finding is a caveat: optimising the pinball loss alone does NOT guarantee calibrated quantiles -- the calibration/sharpness balance it strikes is arbitrary and depends on model expressivity. Mixed because it both endorses the quantile approach and flags that the raw pinball head SD-063 uses may be miscalibrated without an added calibration step.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Optimising the pinball loss is not an adequate objective to achieve calibration; the balance between calibration and sharpness implied by pinball loss is arbitrary and depends on the expressivity of the model class, so a highly expressive head can be skewed toward sharpness at the cost of calibration.",
+    "Quantile crossing and per-quantile independent optimisation mean a raw multi-quantile pinball head is not guaranteed monotone or calibrated; SD-063 mitigates crossing via monotone rearrangement of [q0.1..q0.9] but rearrangement addresses ordering, not average/adversarial-group calibration.",
+    "The paper's calibration metric (ECE over quantile levels) is not what V3-EXQ-712 measured (CRPS + precision_error_corr); a head that wins on CRPS can still be miscalibrated in the Chung sense, so SD-063's diagnostic PASS does not certify calibration."
+  ],
+  "tags": ["sd-063", "quantile-regression", "pinball-loss", "calibration", "distribution-free-uncertainty", "sharpness"],
+  "mapping": {
+    "source_claim_statement": "Quantiles are an attractive, distribution-free, interpretable representation of predictive uncertainty, but optimising the pinball (quantile) loss alone does not yield calibrated quantiles: the calibration-sharpness trade-off it implies is arbitrary and expressivity-dependent. The authors propose a model-agnostic quantile-regression procedure (MAQR) and a tunable combined calibration+sharpness loss that achieve better average and adversarial-group calibration on 7-8 UCI datasets.",
+    "ree_translation": "SD-063 selects a distribution-free quantile/pinball head (9 levels 0.1..0.9, monotone-rearranged to an IQR-derived predictive variance) as the E2 uncertainty form, on the strength of a V3-EXQ-712 CRPS win. Chung et al. endorse quantiles as the right family for exactly SD-063's kind of use (they cite model-based RL as a target application) but warn that the pinball objective SD-063 trains on does not by itself guarantee calibrated per-input spreads -- relevant because E3's commit gate will act on the magnitude of that spread.",
+    "mapping_caveat": "Chung et al. measure calibration by ECE over quantile levels on UCI regression; V3-EXQ-712 measured CRPS and precision_error_corr on held-out latent transitions. These are different objectives -- a CRPS/error-corr win does not certify Chung-style calibration, and Chung-style miscalibration does not necessarily hurt SD-063's commit gate if the gate only needs a monotone, error-correlated ranking rather than absolute-coverage calibration. The paper flags a real risk to the absolute magnitude of E2's spread without establishing that it is load-bearing for the specific E3 gating use.",
+    "source_context": "Supervised regression on 8 standard UCI benchmark datasets; neural quantile-regression and probabilistic-network baselines (SQR, mPAIC, Cali, MAQR)."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.45,
+    "notes": "Workshop paper (later NeurIPS 2021) from a strong UQ group; solid but a shorter venue, hence moderate source quality. Mapping fidelity good on the form (quantile/pinball is exactly SD-063's choice) but the calibration metric differs from what SD-063 optimised. Transfer risk elevated: UCI supervised regression vs a latent forward-model commit-gate, and whether absolute calibration (vs a monotone error-correlated ranking) matters for E3 is unresolved."
+  }
+}

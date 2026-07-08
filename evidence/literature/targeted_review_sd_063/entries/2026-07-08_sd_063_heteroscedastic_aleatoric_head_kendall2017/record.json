@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_063",
+  "entry_id": "2026-07-08_sd_063_heteroscedastic_aleatoric_head_kendall2017",
+  "timestamp_utc": "2026-07-08T06:05:22Z",
+  "claim_ids_tested": ["SD-063"],
+  "source": {
+    "title": "What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?",
+    "authors": ["Alex Kendall", "Yarin Gal"],
+    "year": 2017,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 30",
+    "doi": "10.48550/arXiv.1703.04977",
+    "url": "https://arxiv.org/abs/1703.04977"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Foundational, heavily-cited paper establishing that a per-input (heteroscedastic) aleatoric-uncertainty head predicting input-dependent observation noise outperforms a fixed/global noise assumption -- the exact 'per-input spread vs global EMA' distinction SD-063 rests on. High mapping fidelity on that point. Lowered because the paper's head is a Gaussian log-variance (NLL 'learned attenuation') form, not the distribution-free quantile/pinball form SD-063 selects, and the benefit is demonstrated on vision regression (depth, segmentation), not on a forward-model-feeds-commitment loop.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The learned-attenuation loss down-weights high-noise points, which is the same 1/sigma^2 gradient scaling later shown (Stirn 2023, Seitzer 2022) to bias mean estimates -- so this head form is exactly the one SD-063's quantile form was chosen to avoid, and using it jointly with E2 could degrade the E2 mean.",
+    "Aleatoric uncertainty here is observation noise on a supervised target; SD-063's E2 predicts a latent next-state where part of the 'noise' is agent-caused (SD-031 residual), a component this paper's setup never has to disentangle."
+  ],
+  "tags": ["sd-063", "aleatoric-uncertainty", "heteroscedastic", "predictive-variance", "input-conditional-uncertainty"],
+  "mapping": {
+    "source_claim_statement": "A neural network that predicts input-dependent (heteroscedastic) observation noise alongside its point prediction -- trained by minimising a Gaussian negative-log-likelihood that acts as 'learned loss attenuation' -- captures aleatoric uncertainty that varies across inputs and yields state-of-the-art results on depth regression and semantic segmentation, outperforming a fixed/homoscedastic global noise assumption.",
+    "ree_translation": "SD-063 asserts E2 should emit a per-input predictive spread instead of relying on E3's single global running-variance EMA. Kendall & Gal establish the general validity of that move: an input-conditional aleatoric head recovers 'this input is noisier than that one' structure that a global noise term cannot, and doing so improves the downstream task -- the same qualitative argument SD-063 makes for conditioning E3's commit gate on where THIS E2 prediction is uncertain.",
+    "mapping_caveat": "The head is a Gaussian log-variance MLE form, not SD-063's distribution-free quantile/pinball head; and the task is supervised vision regression, where the target's aleatoric noise is genuine observation noise. SD-063's E2 predicts a latent next-state whose variance includes an agent-caused (SD-031) component that must NOT be absorbed by the uncertainty head -- a disentanglement problem this paper never faces. The paper supports 'input-conditional uncertainty beats a global term' but not the specific form or the residual-guard requirement.",
+    "source_context": "Deep computer-vision regression and dense prediction (monocular depth estimation, semantic segmentation) on standard benchmarks (NYUv2, CamVid, Make3D)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.40,
+    "notes": "Very high source quality (canonical reference for aleatoric vs epistemic uncertainty). Mapping fidelity solid on the 'per-input vs global' axis but not on head form. Transfer risk elevated: vision observation-noise setting does not have the latent-next-state agency-residual disentanglement that is SD-063's central validity risk, and the specific NLL head this paper uses is the form SD-063 rejected."
+  }
+}
