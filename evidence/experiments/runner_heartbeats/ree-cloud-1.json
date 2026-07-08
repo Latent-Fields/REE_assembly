@@ -1,48 +1,35 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-07T16:10:44Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-711",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T02:17:21.175222+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-713",
-      "result": "FAIL",
-      "completed_at": "2026-07-04T22:36:03.617938+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-716",
-      "result": "PASS",
-      "completed_at": "2026-07-06T06:57:51.818166+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-714",
-      "result": "FAIL",
-      "completed_at": "2026-07-06T14:32:57.366671+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-717",
-      "result": "FAIL",
-      "completed_at": "2026-07-07T10:53:01.181133+00:00"
-    }
+  "last_tick_utc": "2026-07-08T07:03:42Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-719",
+  "current_exq_started_utc": "2026-07-08T06:58:46.654722+00:00",
+  "current_title": "Conversion-ceiling dissociation diagnostic: marginal committed-class entropy vs I(state;committed_action) + competence",
+  "current_claim_id": "MECH-309",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / all_on_diagnostic",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 30,
+    "episodes_total": 350,
+    "overall_pct": 2.9
+  },
+  "seconds_elapsed": 295,
+  "seconds_remaining": 7338,
+  "recent_lines": [
+    "Diagnostic conversion-ceiling dissociation (all-ON single config; P0=200 ep e2-warmup, P1=90 ep two-head REINFORCE, P2=60 ep eval/logging, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition all_on_diagnostic",
+    "[train] diagnostic seed=42 phase=P0 ep 10/350",
+    "[train] diagnostic seed=42 phase=P0 ep 20/350",
+    "[train] diagnostic seed=42 phase=P0 ep 30/350"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3643 da3b8bd 2026-07-07 (running r3260 daed671)",
+  "runner_version": "r3649 3f9e01d 2026-07-08 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
