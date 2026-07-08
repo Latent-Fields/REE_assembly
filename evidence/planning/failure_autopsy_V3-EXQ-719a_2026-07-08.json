@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-08T22:58:03Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3",
+      "queue_id": "V3-EXQ-719a",
+      "claim_ids": ["ARC-062", "MECH-309"],
+      "failed_criterion": "discrimination",
+      "self_route_label_adjudication": "MISLABEL: manifest self-routed `substrate_not_ready_requeue`, whose pre-registered meaning is under-sampled/re-queue-larger; but all MI-estimability readiness gates are MET (6005 ticks/seed, 6-10 bins, 3/3 seeds). The label fired from the code's else-branch (line 1203), the grid's separately-documented 'evidence against either conclusion' case, which reuses the same string. More ticks will not change the result. Structural mirror of the V3-EXQ-642 mislabel.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- neither dissociation branch could express; claim untouched, unweakened",
+        "biological_reference": "clear -- basal-ganglia committed action-selection (state-appropriate commitment); faithful biological target, not a formal-definition import",
+        "prerequisites": "missing -- competent committed foraging is an unstated prerequisite of the dissociation and is absent (competence below floor on 0/3 seeds)",
+        "implementation": "partial -- all-ON mechanisms wired, but the training regime (frozen encoder + 90-ep bias-head-only REINFORCE, P1) is too thin to produce competent behaviour",
+        "environment": "partial/unknown -- short P2 episodes (~15 ticks); reef-enabled CausalGridWorldV2 config may differ from the GAP-A substrate where MECH-448/449 validated",
+        "measurement": "under-instrumented -- no competence readiness gate; else-branch overloads the under-sampled label onto a competence-blocked case",
+        "integration": "coupled-but-possibly-unstable -- all-ON composite does not convert to competent committed behaviour (live alternative to the training-budget reading)",
+        "scale": "likely insufficient -- 90-ep bias-head-only REINFORCE is a thin budget for competent foraging"
+      },
+      "biological_reference": {
+        "closest_mechanism": "basal-ganglia committed action-selection: converting graded candidate value into decisive, state-appropriate committed action (cortico-striatal Go/No-Go arbitration)",
+        "dependencies": ["a trained sensorimotor/striatal policy (competence) before a decisive-vs-collapsed dissociation is even defined", "reward-coupled action learning budget", "state-conditioned policy representation"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism layer; the failure is at the training/prerequisite layer -- competence absent, so the arbitration readout is undefined",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-08 (failure_autopsy_V3-EXQ-719a_2026-07-08 CONFIRMED -> non_contributory; claim UNWEAKENED). V3-EXQ-719a (tick-budget re-queue of 719; diagnostic, PROMOTES/DEMOTES NOTHING) fixed 719's sampling starvation -- all MI-estimability readiness gates now MET (6005 ticks/seed, 6-10 bins, 3/3 seeds estimable). Result: the dissociation is UNDEFINED, and the self-routed substrate_not_ready_requeue label is a MISLABEL (readiness is met; the code's else-branch reused the under-sampled string for the pre-registered 'evidence against either conclusion' case -- more ticks will not change it). Branch B (decisive_state_appropriate_commitment / metric-artifact reframe) REJECTED: debiased MI clears the 0.05 floor on 1/3 seeds, competence below the 1.0 resources/ep floor on 0/3. Branch A (genuine_monomodal_collapse) NOT cleanly supported: raw MI above the shuffle null on 3/3 seeds (committed action not state-independent) and marginal committed-class entropy moderate-to-high (0.69-1.41 nats), not low. First direct competence measurement: the integrated all-ON agent forages at 0.065/0.0/0.455 resources/ep -- genuinely below floor (counter verified firing). Dominant diagnosis substrate_ceiling: a behavioural-competence / training-regime ceiling (thin P1 = 90-ep bias-head-only REINFORCE on a frozen encoder; all-ON mechanism interference a live alternative), NOT a further selection lever (MECH-448/449 built + selection-face lifted on GAP-A). This reframes the downstream behavioural-retest wall (654h/485i/625e/460h/460i substrate_not_ready) as the same competence root. pending_retest_after_substrate retained; ceiling_decision stays deferred. Re-derive brake FIRED (21st/20th) -> competence-localization diagnostic first (brake-exempt: different question), then /implement-substrate on the localized gap; same-claim behavioural re-tests (V3-EXQ-722, 719b) REFUSED.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "sd_id_suggested": null,
+        "title": "Behavioural-competence / training-regime ceiling in the integrated all-ON agent (downstream conversion-ceiling behavioural retests undefined until competence exists)",
+        "implementation_hint": "719a is the first direct competence measurement of the integrated all-ON agent: 0.065/0.0/0.455 resources/ep (floor 1.0, 0/3 seeds), after P0=200 warmup + P1=90-ep bias-head-only REINFORCE (frozen encoder). Committed-action DVs are undefined at this competence level -- the recurring substrate_not_ready self-routes across 654h/485i/625e/460h/460i share this root. NEXT STEP is a competence-localization diagnostic (brake-exempt) to pin the lever (P1 training budget vs frozen-encoder-in-P1 vs all-ON mechanism interference) BEFORE any build; the build target is a training-regime/competence enrichment, NOT a further selection lever (MECH-448/449 already built + selection-face lifted on GAP-A).",
+        "unblocks_claims": ["ARC-062", "MECH-309"],
+        "depends_on_unresolved": ["competence-localization diagnostic (to be queued)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_719a_conversion_ceiling_dissociation_diagnostic_20260708T215846Z_v3",
+          "experiment_type": "v3_exq_719a_conversion_ceiling_dissociation_diagnostic",
+          "metric": "P2 foraging competence 0.065/0.0/0.455 resources/ep (0/3 seeds >= 1.0 floor); debiased MI(state;committed) 0.010/0.004/0.051 (1/3 >= 0.05 floor); raw MI above shuffle null 3/3; marginal committed entropy 0.69-1.41 nats (not low) -- dissociation UNDEFINED, branch B rejected, branch A not clean",
+          "target": "competence >= 1.0 resources/ep on a majority of seeds (so the committed-action dissociation DV is defined) before any conversion-ceiling behavioural retest is licensed"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_EXQ-543f_2026-05-17",
+          "failure_autopsy_V3-EXQ-543h_2026-05-18",
+          "failure_autopsy_543i_2026-05-19",
+          "failure_autopsy_V3-EXQ-543i_2026-05-19",
+          "failure_autopsy_V3-EXQ-543k_2026-05-21",
+          "failure_autopsy_V3-EXQ-543l_2026-05-27",
+          "failure_autopsy_V3-EXQ-654_2026-06-09",
+          "failure_autopsy_569f-661-654a_2026-06-10",
+          "failure_autopsy_V3-EXQ-654b_2026-06-11",
+          "failure_autopsy_V3-EXQ-654c_2026-06-15",
+          "failure_autopsy_V3-EXQ-654d_2026-06-16",
+          "failure_autopsy_V3-EXQ-654f_2026-06-18",
+          "failure_autopsy_V3-EXQ-654g_2026-06-19",
+          "failure_autopsy_f-dominance-conversion-cluster_2026-06-20",
+          "failure_autopsy_V3-EXQ-690_2026-06-20",
+          "failure_autopsy_V3-EXQ-654h_2026-06-21",
+          "failure_autopsy_V3-EXQ-654i_2026-06-22",
+          "failure_autopsy_V3-EXQ-654j_2026-06-22",
+          "failure_autopsy_V3-EXQ-695-696-f-dominance-cluster_2026-06-21",
+          "failure_autopsy_V3-EXQ-714_2026-07-07"
+        ],
+        "count_prior_arc_062": 20,
+        "count_prior_mech_309": 19,
+        "refused_requeue": true,
+        "refused_requeue_targets": ["V3-EXQ-722 (parked SELECTION-face falsifier)", "any V3-EXQ-719b same-diagnostic re-queue"],
+        "brake_exempt_next_step": "competence-localization diagnostic (a different question -- WHY is the all-ON agent incompetent -- not a same-claim behavioural re-test)",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling (amend: behavioural-competence / training-regime gap)"
+      },
+      "learning_extracted": [
+        "First direct competence measurement of the integrated all-ON agent: 0.065/0.0/0.455 resources/ep, genuinely below the 1.0 floor (counter verified firing nonzero on 2/3 seeds -- real behaviour, not a mis-wire).",
+        "The conversion-ceiling behavioural DV is undefined until competence exists; the recurring substrate_not_ready self-routes across 654h/485i/625e/460h/460i share this competence root.",
+        "The substrate_not_ready_requeue self-route string is overloaded across two opposite cases (under-sampled vs competence-blocked) -- diagnostic-instrumentation debt: the else-branch should carry its own label and competence should be a readiness precondition, not a parallel discrimination criterion.",
+        "MECH-309's 'monomodal collapse' framing may be slightly mis-specified: the observed failure is 'failure to convert candidate diversity into competent state-appropriate commitment', which presents here as high-but-useless entropy (0.69-1.41 nats), not low entropy. The coarse conversion ceiling was already decomposed via f_dominance_conversion_ceiling / MECH-448/449 -- no new /claim-synthesis; this refinement feeds the substrate build."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": "Immediate: competence-localization diagnostic via /queue-experiment (brake-EXEMPT -- different question). Eventual: /implement-substrate on the localized competence/training-regime gap (brake-mandated end state). Governance: amend f_dominance_conversion_ceiling substrate entry + write the evidence_quality_note verbatim to ARC-062/MECH-309 (status UNCHANGED)."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "the ARC-062/MECH-309 downstream behavioural-retest wall (654h/485i/625e/460h/460i all self-routing substrate_not_ready) is reframed by 719a as a single competence root, not N independent sampling failures",
+    "is_independent_bugs": false,
+    "structural_property": "the integrated all-ON agent does not reach behavioural competence, so committed-action dissociation DVs are undefined -- the substrate has the selection wiring (MECH-448/449 built, selection-face lifted on GAP-A) but does not convert it into competent committed behaviour under the current training regime",
+    "readings": ["training_regime_capacity_gap", "all_on_mechanism_interference"]
+  },
+  "gated_downstream": {
+    "queue_id": "V3-EXQ-722",
+    "session": "trusting-elgamal-f8c2e8",
+    "verdict_for_gate": "inconclusive-but-branch-B-rejected",
+    "disposition": "keep parked, re-gate on the competence substrate (NOT moot -- branch B rejected leaves the falsifier a target -- but the SELECTION-face committed-action DV is undefined until competence exists)"
+  }
+}
