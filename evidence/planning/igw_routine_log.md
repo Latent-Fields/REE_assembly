@@ -775,3 +775,4 @@ One line per hourly tick. ASCII only.
 2026-07-08T07:29:50Z complete IGW-20260708-195 spawned->completed outcome=USEFUL_LANDED: marked EVB-0106/MECH-193 blocked_substrate: no multi-agent other-model/z_beta-le
 2026-07-08T08:18:31Z reconcile-release hash=8fc453a0f36b (IGW-20260708-195 -> completed)
 2026-07-08T08:18:22Z skip IGW-20260708-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-08T09:18:46Z skip IGW-20260708-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
