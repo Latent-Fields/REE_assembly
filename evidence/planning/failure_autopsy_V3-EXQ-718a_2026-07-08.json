@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-08T06:16:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
+      "queue_id": "V3-EXQ-718a",
+      "supersedes": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
+      "claim_ids": ["INV-050", "MECH-180"],
+      "failed_criterion": "negative_control",
+      "self_route_label_manifest": "mel_control_degenerate",
+      "self_route_label_corrected": "mel_consumer_capable_ecological_novelty_not_graded",
+      "self_route_mislabel_note": "Manifest label mel_control_degenerate means (script docstring) 'OFF control not pinned / not separated', but c2_pinned_ok=true on all 3 seeds (ARM_4_HIGH_OFF per_cycle_count_variance=0.0 every seed). C2 failed only on on_gt_off: ecological HIGH DV 72/74 < OFF baseline 90 on seeds 42/456. Corrected to the sibling branch mel_consumer_capable_ecological_novelty_not_graded.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- link (ii) MEL->cadence works; link (i) novelty->graded-above-reference-MEL not exercised, so the ecological claim was not fairly tested end-to-end",
+        "biological_reference": "clear -- MECH-180 lit_conf 0.887 (Process S / synaptic homeostasis); failure matches a converged-world / no-learning-load signature",
+        "prerequisites": "present -- SD-MEL-CONSUMER built + landed + functional (ree-v3 main 909292c)",
+        "implementation": "complete -- consumer LIVE: injection PC exact-tracks injected MEL ([9,13,18,24,30,38] vs [0.6..2.5]); C1 monotone in measured MEL; OFF pinned",
+        "environment": "wrong pressures -- CausalGridWorldV2 world model converges too completely (conv_rel_drop ~0.98, probe_pe ~1e-4); residual ecological MEL ~1e-5 noise-level; drift-novelty does not lift MEL above the stable-base reference; measured-MEL arm ordering scrambled vs intended novelty level on all 3 seeds",
+        "measurement": "misleading -- self-route mislabels (OFF is pinned; C2 failed on on_gt_off); AND C1's PASS is near-degenerate: DV is a deterministic monotone function of MEL (factor = 1 + gain*(mel/ref - 1)), so DV-monotone-in-measured-MEL is close to tautological and does not independently establish link (i)",
+        "integration": "coupled -- consumer + scheduler correctly integrated (SleepLoopManager.force_cycle + per-step update_residue)",
+        "scale": "adequate -- 3 seeds x 6 cycles; DV small-integer quantisation adds monotonicity brittleness, secondary"
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty / prediction-error-driven upregulation of sleep pressure + consolidation intensity (Process S / synaptic homeostasis; SWS power, spindle density, replay rate scaling with prior-day novelty + PE load)",
+        "dependencies": ["a waking environment that sustains a graded, above-baseline residual model-error (learning-load) gradient"],
+        "is_formal_import": false,
+        "divergence": "REE splits the claim into link (i) novelty->waking MEL and link (ii) MEL->offline duration; the consumer (ii) is faithful + proven; the environment fails to drive (i)",
+        "lit_status": "present"
+      },
+      "capability_result": {
+        "consumer_capability_proven": true,
+        "proof": "C3 injection positive control (ARM_5): per-cycle DV [9,13,18,24,30,38] exact-monotone tracks injected INJECT_LEVELS [0.6,0.9,1.2,1.6,2.0,2.5]; inject_pc_frac 1.0 all seeds; factor_by_cycle == injected levels to 1e-15",
+        "is_narrow_single_pathway": true,
+        "narrow_note": "injection-only capability supports 'consumer exists + translates graded MEL -> graded duration', NOT the ecological invariant (real graded experience -> graded MEL); does NOT clear v3_pending; does NOT count as ecological support"
+      },
+      "criteria_readout": {
+        "readiness_frac": 1.0,
+        "conv_frac": 1.0,
+        "inject_pc_frac": 1.0,
+        "c1_load_bearing": true,
+        "c1_pass": true,
+        "c1_frac": 1.0,
+        "c1_near_degenerate": true,
+        "c2_load_bearing": false,
+        "c2_pass": false,
+        "c2_frac": 0.3333333333333333,
+        "c2_pinned_ok_all_seeds": true,
+        "c2_failed_component": "on_gt_off",
+        "c3_load_bearing": false,
+        "c3_pass": true
+      },
+      "recommended_epistemic_category": "measurement_gap (environment / test-bed producer gap; NOT substrate_ceiling at the consumer, NOT falsification). Governance may leave INV-050 stored epistemic_category=substrate_ceiling untouched (conservative, as in the 718 cycle); the note carries the environment-producer-gap framing regardless.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-718a (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08; SD-MEL-CONSUMER measured-MEL cadence re-validation, diagnostic; supersedes 718) -> non_contributory + pending_retest_after_substrate (status UNCHANGED; MECH-180 v3_pending STAYS). The self-route label mel_control_degenerate is REFUTED: the OFF control IS pinned (per_cycle_count_variance 0.0, all seeds); C2 failed only on on_gt_off (ecological HIGH DV 72/74 < OFF baseline 90 on seeds 42/456). Corrected reading = mel_consumer_capable_ecological_novelty_not_graded. CONSUMER CAPABILITY PROVEN: the injection positive control (C3) shows graded MEL -> exact-monotone graded offline duration ([9,13,18,24,30,38] tracking [0.6..2.5], all seeds); C1 (DV monotone in MEASURED MEL) also passes but is near-degenerate (DV is a deterministic function of MEL). What FAILED is link (i): the ecological novelty arms did not produce a graded above-reference waking MEL gradient (measured MEL ~1e-5, noise-level, scrambled vs novelty level) because CausalGridWorldV2's world model converges too completely (conv_rel_drop ~0.98) to sustain ecological learning-load -- an environment/test-bed producer gap, same root as 718, NOT a substrate ceiling and NOT a falsification. NOT weakened (ecological claim not fairly tested; biology strong, lit_conf 0.887; consumer works), NOT cleared (injection capability is a narrow single-pathway positive; the ecological invariant is not demonstrated). Re-derive brake FIRES (6th non_contributory INV-050 / 3rd MECH-180) -> REFUSE a same-environment re-grade re-queue (V3-EXQ-718b). User disposition 2026-07-08: BANK the consumer capability as SD-MEL-CONSUMER's terminal validated result; RE-PARK the ecological end-to-end demonstration (off the V3 critical path; environment-blocked). No new substrate build owed now; if un-parked, a graded-MEL environment/test-bed (non-converging world) is the entry point, not another letter.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-MEL-CONSUMER",
+        "sd_id_suggested": null,
+        "title": "Adaptive sleep-cadence MEL consumer -- consumer capability validated (injection PC); ecological end-to-end demonstration re-parked",
+        "implementation_hint": "Consumer half is BUILT + VALIDATED: V3-EXQ-718a injection positive control proves graded MEL -> exact-monotone graded offline duration. The ecological end-to-end demonstration (novelty -> graded above-reference MEL -> graded sleep) is environment-blocked in CausalGridWorldV2 (world model converges too completely to sustain a graded learning-load gradient) and is RE-PARKED (user 2026-07-08; off V3 critical path). NO new build owed now. If un-parked, the entry point is a graded-MEL environment/test-bed (continual-shift / non-converging world), NOT another same-environment novelty re-grade (re-derive brake refuses V3-EXQ-718b).",
+        "unblocks_claims": ["INV-050", "MECH-180"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "status_suggested": "implemented (consumer validated; ecological demonstration re-parked, no build owed) -- governance judgement; may stay implemented_validation_owed",
+        "failure_record_entry": {
+          "run_id": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
+          "experiment_type": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
+          "metric": "Consumer CAPABILITY proven (C3 injection PC exact-monotone: DV [9,13,18,24,30,38] vs injected [0.6..2.5], all seeds; C1 DV monotone in measured MEL 3/3 but near-degenerate). C2 FAIL 1/3 on on_gt_off only (OFF pinned all seeds): ecological arms' measured MEL ~1e-5 straddles/below the calibrated reference and is scrambled vs novelty level, so ecological HIGH DV 72/74 <= OFF baseline 90 (seeds 42/456). Same root as 718: link (i) novelty->graded-above-reference-MEL broken; CausalGridWorldV2 converges too completely (conv_rel_drop ~0.98) to sustain ecological learning-load.",
+          "target": "For an ecological end-to-end retest (if un-parked): a graded-MEL environment/test-bed that sustains a graded above-reference waking MEL gradient (arms monotone in MEASURED MEL AND above the stable-base reference so ON-HIGH DV > OFF baseline), monotone on >= 2/3 seeds. NOT achievable by re-grading novelty on the current converged CausalGridWorldV2."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-701_2026-06-23 (INV-050 non_contributory)",
+          "failure_autopsy_V3-EXQ-701a_2026-06-23 (INV-050 non_contributory)",
+          "failure_autopsy_V3-EXQ-701b_2026-06-29 (INV-050 non_contributory)",
+          "failure_autopsy_V3-EXQ-701c_2026-06-30 (INV-050 non_contributory)",
+          "failure_autopsy_V3-EXQ-677_2026-06-14 (MECH-180 non_contributory)",
+          "failure_autopsy_V3-EXQ-718_2026-07-07 (INV-050 + MECH-180 non_contributory)"
+        ],
+        "count_incl_this": {"INV-050": 6, "MECH-180": 3},
+        "refused_requeue": true,
+        "refused_requeue_note": "REFUSE a same-environment ecological re-grade re-queue (hypothetical V3-EXQ-718b): same CausalGridWorldV2, same claim_ids, same ecological demonstration = another letter circling the same ceiling. A different mechanism (new EXQ, different claim_ids) or a commitment-free env-characterization read would be exempt, but is not pursued per the user's bank+re-park disposition.",
+        "route_to": "governance-repark",
+        "route_to_note": "Brake's mechanical route_to=implement-substrate is SUPERSEDED by the user's 2026-07-08 disposition: the consumer substrate is already built + validated (injection PC); the remaining gap is an off-critical-path environment producer demonstration, re-parked, not worth further compute now.",
+        "upstream_substrate": "SD-MEL-CONSUMER (built + consumer-validated); the only un-park entry point would be a NEW graded-MEL environment/test-bed substrate, deferred"
+      },
+      "learning_extracted": [
+        "Consumer capability (MEL -> graded offline duration) is now definitively PROVEN via the injection positive control -- SD-MEL-CONSUMER's consumer half is validated.",
+        "Reading DV against MEASURED MEL (718a fix 1) does not rescue the ecological demonstration: DV is a deterministic function of MEL, so C1 monotone-in-measured-MEL is near-tautological and cannot fail on a functional consumer regardless of whether the environment grades MEL.",
+        "The ecological producer gap (link i: novelty -> graded above-reference MEL) is an ENVIRONMENT-adequacy ceiling: CausalGridWorldV2's world model converges too completely (conv_rel_drop ~0.98, probe_pe ~1e-4) for drift-novelty to sustain a graded above-reference learning-load gradient; measured MEL is ~1e-5, noise-level, and scrambled vs novelty level across all seeds.",
+        "718a implemented the 718 autopsy's fixes 1 (measured-MEL DV) + 3 (injection PC) but NOT fix 2 (re-grade novelty / calibration pre-pass); the untouched producer gap resurfaced through C2's on_gt_off.",
+        "The self-route routing map has no branch for 'C1 passes but ecological arms sit below reference'; it dumps such runs into the mel_control_degenerate (degenerate-OFF-control) bucket, which mislabels the cause -- a design note for future validation scripts."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
