@@ -784,3 +784,4 @@ One line per hourly tick. ASCII only.
 2026-07-08T15:21:26Z skip IGW-20260708-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-08T19:57:45Z LAUNCH (manual interactive) IGW-20260704-174 worktree=igw-174-substrate-ready-sd-063
 2026-07-08T19:58:53Z auto-defer IGW-20260704-174 hash=5c97197f94d5 for 48h (complete)
+2026-07-08T19:58:54Z complete IGW-20260704-174 launched_manual->completed outcome=NO_OP: no action: SD-063 substrate already implemented (ree-v3 c693ccb, flags default-O
