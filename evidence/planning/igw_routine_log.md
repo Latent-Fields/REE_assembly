@@ -773,3 +773,5 @@ One line per hourly tick. ASCII only.
 2026-07-08T07:17:42Z SPAWN IGW-20260708-195 skill=/queue-experiment prio=40 uuid=bafd6b92-7485-4d97-b3d3-7b81f5aeda53 pid=6989 worktree=igw-195-proposal-for-mech-193
 2026-07-08T07:29:47Z auto-defer IGW-20260708-195 hash=8fc453a0f36b for 48h (complete)
 2026-07-08T07:29:50Z complete IGW-20260708-195 spawned->completed outcome=USEFUL_LANDED: marked EVB-0106/MECH-193 blocked_substrate: no multi-agent other-model/z_beta-le
+2026-07-08T08:18:31Z reconcile-release hash=8fc453a0f36b (IGW-20260708-195 -> completed)
+2026-07-08T08:18:22Z skip IGW-20260708-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
