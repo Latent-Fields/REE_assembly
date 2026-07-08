@@ -1,7 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-08T06:32:01Z",
+  "last_review_utc": "2026-07-08T19:46:00Z",
   "discussed_experiment_dirs": [
+    "v3_exq_719_conversion_ceiling_dissociation_diagnostic",
     "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
     "v3_exq_712_distributional_world_forward_heads",
     "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
@@ -793,6 +794,7 @@
     "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier"
   ],
   "reviewed_run_ids": [
+    "v3_exq_719_conversion_ceiling_dissociation_diagnostic_20260708T103723Z_v3",
     "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
     "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3",
     "v3_exq_701c_inv050_mel_measurability_recononly_20260629T223011Z_v3",
@@ -4175,6 +4177,14 @@
     }
   ],
   "review_log": [
+    {
+      "utc": "2026-07-08T19:46:00Z",
+      "session": "epic-lumiere-098451 (/governance cycle 2026-07-08)",
+      "reviewed_run_ids_added": [
+        "v3_exq_719_conversion_ceiling_dissociation_diagnostic_20260708T103723Z_v3"
+      ],
+      "context": "/governance walk 2026-07-08 (user-confirmed). V3-EXQ-719 (conversion-ceiling dissociation diagnostic; MECH-309/ARC-062; experiment_purpose=diagnostic) FAIL, self-route substrate_not_ready_requeue, flagged precondition_unmet. Disposition: SUPERSEDED + reviewed. 719 self-aborted on its own readiness gate (mi_estimable_sufficient_ticks 951/3000 P2 ticks; readiness_majority_seeds_mi_estimable 1/2 -- agent died early on seeds 42/44 so I(state;committed) was un-estimable; the load-bearing dissociation criterion was correctly never evaluated). This is an HONEST readiness abort, NOT the V3-EXQ-642 trap (a substrate_ceiling scientific verdict self-routed on an untrained substrate) -- the premise (readiness unmet) is true, the label clears no gate / mints no substrate / weakens no claim, and the re-queue it asks for is already done: V3-EXQ-719a (supersedes 719; tick-budget-driven P2 = 6000 committed ticks / 400-ep cap so every seed clears the 3000 floor) is QUEUED + claimed (running). Manifest stamped evidence_direction non_contributory -> superseded + superseded_by V3-EXQ-719a; index rebuilt (1435 runs). PROMOTES/DEMOTES NOTHING; all claims (MECH-309/ARC-062) unchanged, both stay candidate + pending_retest_after_substrate. No autopsy needed (642->642a re-queue + supersession pattern). Agenda: 3 pending_user items all standing holds (ARC-106 + SD-063 hold_pending_v3_substrate; Q-080 narrow_open_question) -- kept held, no claims.yaml status change."
+    },
     {
       "utc": "2026-06-29T19:33:13Z",
       "session": "governance-cycle-20260629T1933Z",
