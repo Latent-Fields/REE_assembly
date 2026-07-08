@@ -79,11 +79,11 @@ closure_plan:
       phase: null
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-718a (supersedes V3-EXQ-718)"
+      owner_exq: "V3-EXQ-718a (terminal; supersedes V3-EXQ-718; chain terminates -- no 718b)"
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
       depends_on: []
-      last_updated: 2026-07-07
+      last_updated: 2026-07-08
       completed_note: >
         SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main 909292c).
         Built ree_core/sleep/mel_consumer.py (MELConsumer/MELConsumerConfig/WakingMELAccumulator):
@@ -95,21 +95,27 @@ closure_plan:
         False -> byte-identical (full contracts + preflight PASS). Relative floor recalibrated to
         1e-6 (the 701c ABS_MEL_FLOOR=1e-4 was ~5x the converged-base signal). DISTINCT from the
         SD-037 arousal entry (MECH-286/GAP-5, V4). SD doc: docs/architecture/sd_mel_consumer.md.
-        VALIDATION owed: V3-EXQ-718a (v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation;
-        diagnostic) queued 2026-07-07 (ree-v3 main 2c56114 + coordinator /queue/add applied) --
-        SUPERSEDES V3-EXQ-718, which FAILED and self-routed a test-bed redesign (confirmed
-        failure_autopsy_V3-EXQ-718_2026-07-07; NOT substrate_ceiling -- the consumer is LIVE +
-        functional, C2 PASS 3/3, self-route mel_does_not_modulate_cadence REFUTED). 718's
-        load-bearing C1 scored the DV against the novelty LABEL, but 718's graded-novelty drift
-        schedule made MEASURED MEL non-monotone in that label, so C1 read 0/3 for a
-        measurement-gap reason, not a substrate failure. 718a fixes the test bed: C1 now regresses
-        DV = cumulative_sws_writes + cumulative_rem_rollouts against MEASURED per-arm mean MEL
-        (4 ecological consumer-ON arms sorted by measured mean_mel + a measured-MEL-gradient
-        non-degeneracy guard), and adds a MEL-INJECTION positive-control arm (graded MEL by
-        construction) as the same-statistic readiness gate + capability check; keeps the
-        OFF-pinned C2 control. On a PASS retest + /governance apply, clear INV-050 (retest) and
-        MECH-180 (v3_pending). PROMOTES NOTHING until 718a scores (currently unrun). NOT the same
-        as GAP-5 (SD-037 arousal/homeostatic entry, V4-deferred).
+        VALIDATION RESOLVED 2026-07-08 (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08;
+        /governance-applied): V3-EXQ-718a
+        (v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3; diagnostic;
+        supersedes 718) RAN and FAILED non_contributory. CONSUMER CAPABILITY VALIDATED: the C3
+        injection positive control proves graded MEL -> exact-monotone graded offline duration
+        (DV [9,13,18,24,30,38] tracking injected [0.6..2.5], all seeds) -- SD-MEL-CONSUMER's
+        consumer half is BUILT + PROVEN + BANKED (substrate_queue status -> implemented). What
+        FAILED is the ECOLOGICAL producer link (i): the graded-novelty arms did not produce a
+        graded above-reference waking MEL gradient (measured MEL ~1e-5, noise-level, scrambled vs
+        novelty level) because CausalGridWorldV2 converges too completely (conv_rel_drop ~0.98) to
+        sustain ecological learning-load -- an environment/test-bed producer gap (same root as
+        718), NOT a substrate ceiling and NOT a falsification (self-route mel_control_degenerate
+        REFUTED: OFF control IS pinned all seeds; C2 failed only on on_gt_off). INV-050/MECH-180
+        NOT weakened, NOT cleared (INV-050 stays candidate/pending_retest/re-parked; MECH-180 stays
+        candidate/v3_pending). OWNER CHAIN 718 -> 718a TERMINATES: the re-derive brake FIRED (6th
+        non_contributory INV-050 / 3rd MECH-180) and REFUSES a same-environment re-grade re-queue
+        (NO V3-EXQ-718b). The ecological end-to-end demonstration is RE-PARKED (user 2026-07-08;
+        off the V3 conversion-ceiling critical path). NO owed successor; if ever un-parked, the
+        entry point is a NEW graded-MEL environment/test-bed (continual-shift / non-converging
+        world), NOT another same-environment novelty re-grade. NOT the same as GAP-5 (SD-037
+        arousal/homeostatic entry, V4-deferred).
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
       phase: 5

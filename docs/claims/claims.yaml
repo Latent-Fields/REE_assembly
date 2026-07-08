@@ -13632,6 +13632,7 @@
     - SD-017
   pending_substrate_reconfirmation: true
   epistemic_category: substrate_ceiling
+  ceiling_decision: deferred
   ceiling_routing_note: >
     MAPPED / UN-DEFERRED 2026-07-07 (user override of the 2026-06-14 + 2026-06-30 deferral
     recorded in failure_autopsy_V3-EXQ-701c_2026-06-30, whose recommended_substrate_queue_entry
@@ -13643,6 +13644,17 @@
     is already demonstrated (701c: MEL measurable + monotone in graded novelty on a converged
     base); recalibrate ABS_MEL_FLOOR for converged-base PE in the validation test-bed. Plan node
     sleep_substrate:GAP-5b; plan-of-record evidence/planning/sleep_substrate_plan.md.
+    RE-PARKED 2026-07-08 (ceiling_decision: deferred; user disposition per confirmed
+    failure_autopsy_V3-EXQ-718a_2026-07-08). SD-MEL-CONSUMER is BUILT + consumer-validated (the injection
+    positive control proves graded MEL -> exact-monotone graded offline duration) -- that consumer capability
+    is BANKED as the substrate's terminal validated result. The remaining gap is the ECOLOGICAL end-to-end
+    producer link (real graded novelty -> graded above-reference waking MEL), which is environment-blocked in
+    CausalGridWorldV2 (world model converges too completely, conv_rel_drop ~0.98) and off the V3 conversion-ceiling
+    critical path. The re-derive brake FIRED (6th non_contributory INV-050 / 3rd MECH-180) and REFUSES a
+    same-environment re-grade re-queue (no V3-EXQ-718b). No new substrate build is owed now; if the ecological
+    demonstration is ever un-parked, the entry point is a NEW graded-MEL environment/test-bed (continual-shift /
+    non-converging world), NOT another same-environment novelty re-grade. pending_retest_after_substrate stays
+    true as the standing retest intent.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer now exists: ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated
@@ -13715,6 +13727,24 @@
     Re-derive brake does NOT fire. Route: /queue-experiment (V3-EXQ-718a): regress cadence on MEASURED
     MEL, and/or re-grade novelty to monotone MEL, and/or a MEL-injection probe. SD-MEL-CONSUMER stays
     implemented_validation_owed.
+    V3-EXQ-718a (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08; SD-MEL-CONSUMER measured-MEL cadence
+    re-validation, diagnostic; supersedes 718) -> non_contributory + pending_retest_after_substrate (status
+    UNCHANGED; MECH-180 v3_pending STAYS). The self-route label mel_control_degenerate is REFUTED: the OFF
+    control IS pinned (per_cycle_count_variance 0.0, all seeds); C2 failed only on on_gt_off (ecological HIGH
+    DV 72/74 < OFF baseline 90 on seeds 42/456). Corrected reading = mel_consumer_capable_ecological_novelty_not_graded.
+    CONSUMER CAPABILITY PROVEN: the injection positive control (C3) shows graded MEL -> exact-monotone graded
+    offline duration ([9,13,18,24,30,38] tracking [0.6..2.5], all seeds); C1 (DV monotone in MEASURED MEL) also
+    passes but is near-degenerate (DV is a deterministic function of MEL). What FAILED is link (i): the ecological
+    novelty arms did not produce a graded above-reference waking MEL gradient (measured MEL ~1e-5, noise-level,
+    scrambled vs novelty level) because CausalGridWorldV2's world model converges too completely (conv_rel_drop
+    ~0.98) to sustain ecological learning-load -- an environment/test-bed producer gap, same root as 718, NOT a
+    substrate ceiling and NOT a falsification. NOT weakened (ecological claim not fairly tested; biology strong,
+    lit_conf 0.887; consumer works), NOT cleared (injection capability is a narrow single-pathway positive; the
+    ecological invariant is not demonstrated). Re-derive brake FIRES (6th non_contributory INV-050 / 3rd MECH-180)
+    -> REFUSE a same-environment re-grade re-queue (V3-EXQ-718b). User disposition 2026-07-08: BANK the consumer
+    capability as SD-MEL-CONSUMER's terminal validated result; RE-PARK the ecological end-to-end demonstration
+    (off the V3 critical path; environment-blocked). No new substrate build owed now; if un-parked, a graded-MEL
+    environment/test-bed (non-converging world) is the entry point, not another letter.
   pending_retest_after_substrate: true
   pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent."
   depends_on:
@@ -13869,6 +13899,24 @@
     (not demonstrated). lit_conf 0.887 / exp_conf 0 unchanged. Route: /queue-experiment V3-EXQ-718a
     (test-bed redesign). Un-pins V3-EXQ-677 (which was scheduler-pinned + degenerate) -- the consumer
     now varies the DV, but the validation must read MEASURED MEL, not the novelty label.
+    V3-EXQ-718a (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08; SD-MEL-CONSUMER measured-MEL cadence
+    re-validation, diagnostic; supersedes 718) -> non_contributory + pending_retest_after_substrate (status
+    UNCHANGED; MECH-180 v3_pending STAYS). The self-route label mel_control_degenerate is REFUTED: the OFF
+    control IS pinned (per_cycle_count_variance 0.0, all seeds); C2 failed only on on_gt_off (ecological HIGH
+    DV 72/74 < OFF baseline 90 on seeds 42/456). Corrected reading = mel_consumer_capable_ecological_novelty_not_graded.
+    CONSUMER CAPABILITY PROVEN: the injection positive control (C3) shows graded MEL -> exact-monotone graded
+    offline duration ([9,13,18,24,30,38] tracking [0.6..2.5], all seeds); C1 (DV monotone in MEASURED MEL) also
+    passes but is near-degenerate (DV is a deterministic function of MEL). What FAILED is link (i): the ecological
+    novelty arms did not produce a graded above-reference waking MEL gradient (measured MEL ~1e-5, noise-level,
+    scrambled vs novelty level) because CausalGridWorldV2's world model converges too completely (conv_rel_drop
+    ~0.98) to sustain ecological learning-load -- an environment/test-bed producer gap, same root as 718, NOT a
+    substrate ceiling and NOT a falsification. NOT weakened (ecological claim not fairly tested; biology strong,
+    lit_conf 0.887; consumer works), NOT cleared (injection capability is a narrow single-pathway positive; the
+    ecological invariant is not demonstrated). Re-derive brake FIRES (6th non_contributory INV-050 / 3rd MECH-180)
+    -> REFUSE a same-environment re-grade re-queue (V3-EXQ-718b). User disposition 2026-07-08: BANK the consumer
+    capability as SD-MEL-CONSUMER's terminal validated result; RE-PARK the ecological end-to-end demonstration
+    (off the V3 critical path; environment-blocked). No new substrate build owed now; if un-parked, a graded-MEL
+    environment/test-bed (non-converging world) is the entry point, not another letter.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)

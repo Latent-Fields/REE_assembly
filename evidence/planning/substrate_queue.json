@@ -5321,8 +5321,8 @@
     },
     {
       "sd_id": "SD-MEL-CONSUMER",
-      "title": "Adaptive sleep-cadence MEL consumer: accumulated Model Error Load (INV-050 learning-demand drive) modulates offline-phase entry threshold / duration, replacing the K-episode-deterministic scheduler",
-      "status": "implemented_validation_owed",
+      "title": "Adaptive sleep-cadence MEL consumer -- consumer capability VALIDATED (injection PC); ecological end-to-end demonstration re-parked",
+      "status": "implemented",
       "ready": false,
       "design_doc": "docs/architecture/sd_mel_consumer.md",
       "depends_on_unresolved": [],
@@ -5342,15 +5342,21 @@
           "experiment_type": "v3_exq_718_sdmelconsumer_adaptive_cadence_validation",
           "metric": "C1 novelty-label monotonicity 0/3 seeds; but consumer functional (C2 PASS 3/3, factor tracks MEL). Failure is novelty->MEL non-monotonicity (factor LOW 0.822 < NONE 0.885 < MED 1.263 ~ HIGH 1.266), not MEL->cadence.",
           "target": "offline-phase duration monotone in MEASURED per-arm mean MEL on >= 2/3 seeds (a fair end-to-end validation must read measured MEL, not the novelty label; the consumer half already passes via C2)."
+        },
+        {
+          "run_id": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
+          "experiment_type": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
+          "metric": "Consumer CAPABILITY proven (C3 injection PC exact-monotone: DV [9,13,18,24,30,38] vs injected [0.6..2.5], all seeds; C1 DV monotone in measured MEL 3/3 but near-degenerate). C2 FAIL 1/3 on on_gt_off only (OFF pinned all seeds): ecological arms' measured MEL ~1e-5 straddles/below the calibrated reference and is scrambled vs novelty level, so ecological HIGH DV 72/74 <= OFF baseline 90 (seeds 42/456). Same root as 718: link (i) novelty->graded-above-reference-MEL broken; CausalGridWorldV2 converges too completely (conv_rel_drop ~0.98) to sustain ecological learning-load.",
+          "target": "For an ecological end-to-end retest (if un-parked): a graded-MEL environment/test-bed that sustains a graded above-reference waking MEL gradient (arms monotone in MEASURED MEL AND above the stable-base reference so ON-HIGH DV > OFF baseline), monotone on >= 2/3 seeds. NOT achievable by re-grading novelty on the current converged CausalGridWorldV2."
         }
       ],
       "implementation_hint": "Measurability is DONE (V3-EXQ-701c). Build the CONSUMER: a scheduler reading accumulated waking MEL (e3 prediction-error load) that modulates offline-phase entry threshold and/or duration, replacing the K-episode-deterministic entry (V3-EXQ-677 scheduler-pinned). Recalibrate ABS_MEL_FLOOR (1e-4 mis-scaled for converged-base PE ~2e-5 -> relative or ~1e-6) in the validation test-bed. DISTINCT from sleep_substrate:GAP-5 (SD-037 arousal/homeostatic entry, V4) -- this is the INV-050 THIRD / learning-demand drive (MECH-180). Un-deferred 2026-07-07 by user override of the 2026-06-14/06-30 deferral (701c recommended_substrate_queue_entry action was none/deferred).",
       "priority": 1,
       "added_session": "mint-sd-mel-consumer-20260706T2105Z",
-      "last_seen_session": "governance-apply-4-autopsies-20260707T1653Z",
+      "last_seen_session": "bold-payne-7587d5",
       "implemented_utc": "2026-07-07",
-      "validation_exq": "V3-EXQ-718",
-      "implementation_note": "LANDED 2026-07-07 (/implement-substrate; ree-v3 main 909292c). ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated waking MEL and scales offline-phase duration (sws_consolidation_steps/rem_attribution_steps) via the SleepLoopManager; REEConfig.use_mel_consumer default False -> byte-identical (contracts+preflight PASS); relative floor recalibrated to 1e-6. Validation V3-EXQ-718 queued (diagnostic; 4 graded-novelty consumer-ON arms + 1 matched-novelty consumer-OFF control; DV=cumulative_sws_writes+rem_rollouts+mel_duration_factor). On a PASS retest + /governance, clear INV-050 (retest) + MECH-180 (v3_pending). PROMOTES NOTHING until 718 scores. Plan node sleep_substrate:GAP-5b (done at substrate-landing level)."
+      "validation_exq": "V3-EXQ-718a",
+      "implementation_note": "LANDED 2026-07-07 (/implement-substrate; ree-v3 main 909292c). ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated waking MEL and scales offline-phase duration (sws_consolidation_steps/rem_attribution_steps) via the SleepLoopManager; REEConfig.use_mel_consumer default False -> byte-identical (contracts+preflight PASS); relative floor recalibrated to 1e-6. CONSUMER CAPABILITY VALIDATED 2026-07-08 (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08): the V3-EXQ-718a injection positive control proves graded MEL -> exact-monotone graded offline duration (DV [9,13,18,24,30,38] tracking injected [0.6..2.5], all seeds) -- SD-MEL-CONSUMER's consumer half is BUILT + proven, status -> implemented. The ECOLOGICAL end-to-end demonstration (real graded novelty -> graded above-reference waking MEL -> graded sleep) is environment-blocked in CausalGridWorldV2 (world model converges too completely, conv_rel_drop ~0.98, so residual ecological MEL ~1e-5 is noise-level + scrambled vs novelty level) and is RE-PARKED (user 2026-07-08; off the V3 conversion-ceiling critical path). NO new build owed now. Re-derive brake FIRED (6th non_contributory INV-050 / 3rd MECH-180) and REFUSES a same-environment re-grade re-queue (no V3-EXQ-718b). If the ecological demonstration is ever un-parked, the entry point is a NEW graded-MEL environment/test-bed (continual-shift / non-converging world), NOT another same-environment novelty re-grade. PROMOTES NOTHING (INV-050 stays candidate/pending_retest/re-parked; MECH-180 stays candidate/v3_pending). Plan node sleep_substrate:GAP-5b (owner chain 718 -> 718a terminates)."
     }
   ],
   "schema_version": "substrate_queue/v2"

@@ -1,7 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-07T17:21:49Z",
+  "last_review_utc": "2026-07-08T06:32:01Z",
   "discussed_experiment_dirs": [
+    "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
     "v3_exq_712_distributional_world_forward_heads",
     "v4_exq_002_dr13_self_recurrence_falsifier_20260701T065002Z_v4",
     "v4_exq_003_dr10_z_self_viability_falsifier_20260701T074023Z_v4",
@@ -792,6 +793,7 @@
     "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier"
   ],
   "reviewed_run_ids": [
+    "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
     "v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3",
     "v3_exq_701c_inv050_mel_measurability_recononly_20260629T223011Z_v3",
     "v3_exq_707a_arc110_loop_segregation_validation_20260629T112723Z_v3",
@@ -4980,6 +4982,13 @@
         "v3_exq_717_mech445_commit_intent_regime_scoped_falsifier_20260707T105300Z_v3"
       ],
       "context": "governance-apply-4-autopsies-20260707T1653Z: applied 4 confirmed failure autopsies (REE_assembly master 4ab13fa502). PROMOTES NOTHING; all six claims stay candidate + v3_pending. (1) V3-EXQ-714 (ARC-062/MECH-309) non_contributory/substrate_ceiling: FULLSTACK selection+valuation aborts at C1 readiness (GAP-A divergence 0.004 + OFC range 0.0007 starved at full P0=200; C2 unscored); re-derive brake FIRED (20th ARC-062/19th MECH-309); fullstack re-queue REFUSED; f_dominance_conversion_ceiling amended (+714 GAP-A-divergence-survival failure record). (2) MECH-445 cluster 715a+717: 715a non_contributory both claims (selection-face lift RULED OUT as de-commit-release lever, moderate_f_delta -63, brake 7th; manifest stamped unknown->non_contributory); 717 NARROW WEAKENS MECH-445 (reliability only -- F-independent commit-intent EXISTS 2/9 + prior 398, sub-2/3-reliable; status UNCHANGED, does NOT flip to weakened-overall; fair test, brake-exempt). f_dominance_conversion_ceiling de-commit-release face amended (+715a,+717). (3) V3-EXQ-718 (INV-050/MECH-180) non_contributory/measurement_gap (NOT substrate_ceiling, anti-EXQ-642): SD-MEL-CONSUMER LIVE+functional (C2 PASS 3/3), C1 failed 0/3 on non-monotone novelty->MEL test-bed; NOT weakened, NOT cleared; SD-MEL-CONSUMER stays implemented_validation_owed (+718 re-validation failure record); route /queue-experiment 718a. Applied drafted per-claim evidence_quality_notes verbatim; claims.json rebuilt."
+    },
+    {
+      "utc": "2026-07-08T06:32:01Z",
+      "run_ids": [
+        "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3"
+      ],
+      "context": "bold-payne-7587d5 (/governance apply of confirmed failure_autopsy_V3-EXQ-718a_2026-07-08; landed REE_assembly master 9506cd5646): V3-EXQ-718a (SD-MEL-CONSUMER measured-MEL cadence re-validation; supersedes 718; diagnostic FAIL/non_contributory) applied to INV-050 + MECH-180. PROMOTES NOTHING; both stay candidate (MECH-180 v3_pending; both pending_retest_after_substrate). Self-route mel_control_degenerate REFUTED (OFF control IS pinned all seeds; C2 failed only on on_gt_off -- ecological HIGH DV 72/74 < OFF baseline 90, seeds 42/456); corrected reading mel_consumer_capable_ecological_novelty_not_graded. CONSUMER CAPABILITY PROVEN via C3 injection PC (DV [9,13,18,24,30,38] exact-monotone tracks injected [0.6..2.5], all seeds); C1 DV-monotone-in-MEASURED-MEL 3/3 but near-degenerate (DV is a deterministic fn of MEL). Link (i) ecological producer STILL broken (same root as 718): CausalGridWorldV2 converges too completely (conv_rel_drop ~0.98) -> residual ecological MEL ~1e-5 noise-level, scrambled vs novelty -> environment/test-bed producer gap, NOT substrate_ceiling, NOT falsification. NOT weakened, NOT cleared. Applied shared evidence_quality_note verbatim to both claims. Re-derive brake FIRED (6th non_contributory INV-050 / 3rd MECH-180) -> REFUSE same-environment 718b re-grade (NO re-queue). User disposition 2026-07-08: BANK consumer capability (SD-MEL-CONSUMER -> implemented; +718a failure record) + RE-PARK ecological end-to-end (INV-050 ceiling_decision: deferred; off V3 critical path). Reconciled sleep_substrate:GAP-5b (owner chain 718 -> 718a TERMINATES, re-parked, no owed successor). claims.json rebuilt (870)."
     }
   ]
 }
