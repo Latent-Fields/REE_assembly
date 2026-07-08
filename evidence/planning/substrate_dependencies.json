@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-07-04T12:33:19Z",
+  "last_updated_utc": "2026-07-08T20:37:38Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -526,6 +526,17 @@
       "contract_test": "ree-v3/tests/contracts/test_ascending_parity_controller.py",
       "validation_experiment": "V3-EXQ-713",
       "landed_by_session": "implement-substrate-bounded-parity-ascending-20260704T0918Z"
+    },
+    {
+      "substrate": "cross_stream_binding_substrate",
+      "landed_utc": "2026-07-08T20:37:38Z",
+      "description": "Shared-latent-factor binding coupling injected into both E2.rollout_with_world stream transitions (theta-gated common cause derived from the joint z_self/z_world state), gated behind E2Config.cross_stream_binding_enabled (no-op default; OFF byte-identical). Makes cross-stream coherence C(tau) potentially non-reducible to E. ree_core/latent/cross_stream_binder.py + e2_fast.py. Retest V3-EXQ-720.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "INV-002 (unblocked-on-retest; not a depends_on edge)",
+        "entities/selection.coherence_nonreducibility (candidate, unregistered)"
+      ],
+      "stale_evidence_disposition": "none -- no-op-default flag, OFF is byte-identical, so NO prior evidence was produced with the ON mechanism; nothing becomes stale. The ON mechanism is exercised for the first time by V3-EXQ-720."
     }
   ]
 }

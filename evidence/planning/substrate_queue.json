@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "substrate-queue-reconcile-20260708T2009Z",
-  "last_updated_utc": "2026-07-08T20:17:56Z",
+  "last_seen_session": "reverent-clarke-16000f",
+  "last_updated_utc": "2026-07-08T20:37:38Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4351,9 +4351,9 @@
     {
       "sd_id": "cross_stream_binding_substrate",
       "title": "Bound multi-stream representation substrate: world_states<->states carry co-varying binding info so cross-stream coherence C(tau) can be non-reducible to E",
-      "status": "pending_implementation",
+      "status": "pending_validation",
       "ready": false,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_cross_stream_binding_substrate.md",
       "depends_on_unresolved": [
         "MECH-089 theta-gamma nesting",
         "MECH-094 hypothesis-tag write gate",
@@ -4379,7 +4379,11 @@
       "last_seen_session": "governance-cycle-20260606T1030Z",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-641a_2026-06-06.json",
       "pending_retest_after_substrate": true,
-      "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate"
+      "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate",
+      "implemented_utc": "2026-07-08T20:37:38Z",
+      "implemented_session": "reverent-clarke-16000f",
+      "retest_queue_id": "V3-EXQ-720",
+      "status_note": "IMPLEMENTED 2026-07-08: shared-latent-factor binding coupling in E2.rollout_with_world (ree_core/latent/cross_stream_binder.py; E2Config cross_stream_binding_enabled, no-op default). Retest V3-EXQ-720 QUEUED (641a harness, binding ON strength 0.5). Awaiting retest: PASS -> register candidate entities/selection.coherence_nonreducibility + close both intakes; FAIL -> /failure-autopsy (fixed-field inadequate -> V4 learned binder)."
     },
     {
       "sd_id": "escape-affordance-bridge",
@@ -4778,10 +4782,38 @@
       "downstream_retests_reconcile_2026_07_08": {
         "note": "Status-reconcile pass (session ecstatic-pare-45f7ad, PROMOTES NOTHING). The 654h/485i/445h/625e 'pending' prose in status + ready_blocked_by lagged the experiment record -- all four RAN and are reviewed. None demonstrated the GAP-A selection-face lift generalising off the foraging substrate, so the conversion route of record remains open (a fresh successor validation is a governance/queue decision, NOT any of these already-run experiments). Tracking-file correction only; MECH-448/MECH-449/MECH-439 claim statuses UNCHANGED in claims.yaml.",
         "runs": [
-          {"run_id": "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3", "ran_utc": "2026-06-21", "outcome": "FAIL", "evidence_direction": "non_contributory", "label": "substrate_not_ready_requeue", "reviewed": true},
-          {"run_id": "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3", "ran_utc": "2026-06-21", "outcome": "FAIL", "evidence_direction": "non_contributory", "label": "substrate_not_ready_requeue", "reviewed": true},
-          {"run_id": "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3", "ran_utc": "2026-06-19", "outcome": "FAIL", "evidence_direction": "non_contributory", "label": "substrate_not_ready_requeue", "reviewed": true},
-          {"run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T063313Z_v3", "ran_utc": "2026-05-08", "outcome": null, "evidence_direction": "weakens", "label": null, "reviewed": true}
+          {
+            "run_id": "v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3",
+            "ran_utc": "2026-06-21",
+            "outcome": "FAIL",
+            "evidence_direction": "non_contributory",
+            "label": "substrate_not_ready_requeue",
+            "reviewed": true
+          },
+          {
+            "run_id": "v3_exq_485i_sd033b_demotion_enabled_behavioural_20260621T124253Z_v3",
+            "ran_utc": "2026-06-21",
+            "outcome": "FAIL",
+            "evidence_direction": "non_contributory",
+            "label": "substrate_not_ready_requeue",
+            "reviewed": true
+          },
+          {
+            "run_id": "v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated_20260619T233440Z_v3",
+            "ran_utc": "2026-06-19",
+            "outcome": "FAIL",
+            "evidence_direction": "non_contributory",
+            "label": "substrate_not_ready_requeue",
+            "reviewed": true
+          },
+          {
+            "run_id": "v3_exq_445h_sd032b_dacc_reef_20260508T063313Z_v3",
+            "ran_utc": "2026-05-08",
+            "outcome": null,
+            "evidence_direction": "weakens",
+            "label": null,
+            "reviewed": true
+          }
         ],
         "decommit_release_duration_face": "460-lineage readiness diagnostics also ran: v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3 (2026-06-20 FAIL/substrate_not_ready_requeue, confirmed failure_autopsy_V3-EXQ-460h_2026-06-20) + v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3 (2026-06-21 FAIL/substrate_not_ready_requeue). Readiness gate still unmet; see commitment-closure-control-plane entry."
       },
