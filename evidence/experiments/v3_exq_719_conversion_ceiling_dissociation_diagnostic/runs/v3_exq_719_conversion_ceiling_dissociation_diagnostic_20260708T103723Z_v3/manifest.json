@@ -1,0 +1,94 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_719_conversion_ceiling_dissociation_diagnostic",
+  "run_id": "v3_exq_719_conversion_ceiling_dissociation_diagnostic_20260708T103723Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-08T10:37:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-309",
+    "ARC-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "mi_estimable_sufficient_ticks",
+        "kind": "readiness",
+        "description": "Per-seed total P2 ticks >= TOTAL_TICKS_FLOOR so I(state;committed) is estimable without finite-sample bias dominating. Below-floor => substrate_not_ready_requeue, NOT a dissociation verdict.",
+        "control": "P2 eval window tick count per seed",
+        "measured": 951.0,
+        "threshold": 3000.0,
+        "met": false
+      },
+      {
+        "name": "mi_estimable_enough_occupied_state_bins",
+        "kind": "readiness",
+        "description": "Per-seed distinct occupied ground-truth state-bins >= MIN_OCCUPIED_BINS so the joint p(state, committed) has support to estimate MI. Below-floor => substrate_not_ready_requeue, NOT a dissociation verdict.",
+        "control": "occupied (nearest-salient x rel-direction) state-bins per seed",
+        "measured": 7.0,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "readiness_majority_seeds_mi_estimable",
+        "kind": "readiness",
+        "description": "MI is estimable (both floors above) on a majority of seeds; only then is either dissociation branch licensed. Below => substrate_not_ready_requeue.",
+        "control": "count of MI-estimable seeds",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "state_drives_commitment_mi_debiased_and_above_null",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "readiness_mi_estimable": false,
+      "mi_debiased_supra_floor_majority": false,
+      "raw_mi_above_shuffle_p95_majority": true,
+      "competence_supra_random_majority": false,
+      "genuine_collapse_majority": false
+    }
+  }
+}
