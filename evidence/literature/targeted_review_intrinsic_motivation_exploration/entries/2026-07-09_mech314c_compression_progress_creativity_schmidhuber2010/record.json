@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-07-09_mech314c_compression_progress_creativity_schmidhuber2010",
+  "timestamp_utc": "2026-07-09T16:31:08Z",
+  "claim_ids_tested": ["MECH-314c", "MECH-314", "ARC-065"],
+  "source": {
+    "title": "Formal Theory of Creativity, Fun, and Intrinsic Motivation (1990-2010)",
+    "authors": ["Jurgen Schmidhuber"],
+    "year": 2010,
+    "venue": "IEEE Transactions on Autonomous Mental Development 2(3):230-247",
+    "doi": "10.1109/TAMD.2010.2056368",
+    "url": "https://people.idsia.ch/~juergen/ieeecreative.pdf"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Foundational formalisation of learning-progress-as-compression-progress that MECH-314c already cites (Schmidhuber 1991). Very high source quality. Direction is MIXED, not pure support: it corroborates the derivative-of-model-quality signal REE registered, but Schmidhuber's own framing folds curiosity, creativity, and skill acquisition into a SINGLE scalar intrinsic reward on ONE world-model+controller, which is exactly the single-functional framing REE's three-incommensurable-channels design (ARC-021/MECH-069) deliberately rejects. It is therefore simultaneously supporting evidence for MECH-314c and a documented instance of the design REE argues against.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The intrinsic reward is a single scalar (compression progress) maximised by one RL controller -- a wireheading/self-delusion surface: the agent can be drawn to data it can trivially make more compressible, and the theory needs the environment to supply genuinely novel learnable regularity to avoid degenerate loops.",
+    "Compression progress rewards improving the WORLD MODEL (knowledge), not achieving GOALS (competence); Schmidhuber acknowledges skills are acquired only as a side effect of seeking compressible data, so it does not by itself guarantee the agent crosses a behavioural competence floor.",
+    "Requires a compressor whose improvement is measurable and attributable to the agent's actions; in high-dimensional stochastic input the compression-progress estimate is noisy and can misattribute environmental change to agent learning."
+  ],
+  "tags": ["mech-314c", "mech-314", "arc-065", "compression-progress", "learning-progress", "formal-theory-of-creativity", "schmidhuber", "single-scalar-objection", "wireheading"],
+  "mapping": {
+    "source_claim_statement": "Intrinsic reward should equal the agent's COMPRESSION PROGRESS: the number of bits saved in encoding the observed history before vs after a learning step. A separate RL controller maximizes expected future compression progress, driving the agent to create or discover novel patterns that are 'interesting' -- neither fully random (incompressible) nor already known (already compressed). Curiosity, creativity, art, science, and humour are all cast as this one drive; skills are acquired as a by-product of seeking better-compressible data.",
+    "ree_translation": "Schmidhuber's compression progress is the information-theoretic form of MECH-314c's learning-progress bonus (|PE_t - PE_{t-K}|): both reward the DERIVATIVE of model quality rather than its level. The 1991 'curious model-building controller' Schmidhuber cites is one of the two references already embedded in the MECH-314c claim title. It grounds MECH-314c's information-theoretic legitimacy and supplies the 'interestingness = intermediate compressibility' intuition for tuning the bonus.",
+    "mapping_caveat": "Two departures REE must own. (1) Schmidhuber's is a SINGLE-SCALAR objective on a unified model+controller; REE's ARC-021/MECH-069 commit to three incommensurable channels (viability / social / epistemic) that must NOT be collapsed to one number, so REE can adopt the compression-progress SIGNAL for the epistemic channel only, not the whole objective. (2) Compression progress rewards world-model improvement (knowledge-based IM), whereas WS-1's competence floor is a behavioural-GOAL-achievement problem (competence-based IM, cf. Baldassarre & Mirolli) -- Schmidhuber gets skills only as a by-product, which is exactly the failure REE is seeing (curiosity substrate wired, foraging competence still zero).",
+    "source_context": "Theoretical/formal review spanning 1990-2010 across simulated artificial-scientist agents; no biological substrate (MECH-314c is flagged as the least biologically-anchored of the three MECH-314 sub-flavours). Pure computational-theory transfer into the REE RL frame."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.40,
+    "notes": "Source quality very high (canonical, ~900 citations, already cited by the claim). Mapping fidelity held to 0.60 by the single-scalar-objective mismatch with REE's three-channel design and the knowledge-vs-competence gap. Transfer risk 0.40: the compression-progress estimator's noise properties in stochastic high-dim input are a real obstacle REE's broadcast-scalar proxy would inherit."
+  }
+}

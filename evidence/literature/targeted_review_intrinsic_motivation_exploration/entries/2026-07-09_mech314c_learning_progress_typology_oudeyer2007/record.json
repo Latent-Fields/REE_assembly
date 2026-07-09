@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-07-09_mech314c_learning_progress_typology_oudeyer2007",
+  "timestamp_utc": "2026-07-09T16:31:08Z",
+  "claim_ids_tested": ["MECH-314c", "MECH-314", "ARC-065"],
+  "source": {
+    "title": "What is Intrinsic Motivation? A Typology of Computational Approaches",
+    "authors": ["Pierre-Yves Oudeyer", "Frederic Kaplan"],
+    "year": 2007,
+    "venue": "Frontiers in Neurorobotics 1:6",
+    "doi": "10.3389/neuro.12.006.2007",
+    "url": "https://www.frontiersin.org/articles/10.3389/neuro.12.006.2007/full"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the canonical source that MECH-314's typology (novelty / info-gain / learning-progress sub-flavours) is organised around, and the direct namesake of MECH-314c (learning_progress_curiosity). Very high source quality (foundational, thousands of citations, defines the field's vocabulary). Mapping fidelity is high because REE's three-way MECH-314/314a/314c split IS Oudeyer & Kaplan's typology re-expressed; the caveat is that Oudeyer & Kaplan derive learning-progress as the reward signal that provably avoids the two failure modes REE's Phase-1 broadcast-scalar instantiation does NOT yet avoid.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Prediction-error / novelty maximization (MECH-314a-like) drives the agent to unlearnable stochastic regions -- the 'noisy TV' / white-noise trap -- because raw unpredictability is maximal where nothing can be learned.",
+    "Predictability-maximization (the dual: seek maximally predictable states) collapses the agent onto trivial, already-mastered regions -- the 'blank wall' trap.",
+    "Only the DERIVATIVE (rate of change of predictive error = learning progress), not the level of error or novelty, tracks genuine competence acquisition; a scalar novelty/PE bonus without the derivative is vulnerable to both traps."
+  ],
+  "tags": ["mech-314c", "mech-314", "arc-065", "learning-progress", "intrinsic-motivation-typology", "developmental-robotics", "noisy-tv", "oudeyer", "competence-earning"],
+  "mapping": {
+    "source_claim_statement": "Intrinsic motivations can be organised into a formal typology within the RL reward framework. The most robust exploration driver is not novelty or prediction error per se but LEARNING PROGRESS -- the rate at which the agent's predictive model improves in a region. An agent that rewards itself for maximizing expected reduction in prediction error (the IAC / R-IAC algorithm) self-organises a developmental curriculum: it avoids both perfectly-predictable and perfectly-unpredictable regions and spends time exactly where it is currently learning fastest.",
+    "ree_translation": "MECH-314c (learning_progress_curiosity_intrinsic_motivation_analog) is REE's registration of exactly this signal: a bonus tracking |PE_t - PE_{t-K}| (rate-of-improvement) rather than PE level (MECH-314) or recency-of-encounter (MECH-314a). Oudeyer & Kaplan supply the theoretical justification for WHY MECH-314c should be preferred over its two sibling sub-flavours as the competence-earning driver, and the developmental-curriculum result is the mechanism WS-1 needs: an agent that cannot yet forage should be pulled toward the sub-tasks it is currently improving at, bootstrapping capability before structure is loaded.",
+    "mapping_caveat": "Oudeyer & Kaplan's learning-progress is computed PER REGION (a partition of sensorimotor space, R-IAC) with a dedicated meta-predictor of error-reduction, and it drives a goal/region-SELECTION policy. REE Phase-1 MECH-314c is a single BROADCAST SCALAR (global e3._running_variance derivative) applied uniformly to all K candidates -- it therefore cannot yet build the regional curriculum that gives Oudeyer & Kaplan's result its force. The support is for the CLAIM (learning progress is the right signal) and directly motivates a per-region/per-candidate Phase-2 upgrade; it is NOT evidence the current broadcast-scalar substrate realises the developmental-curriculum behaviour.",
+    "source_context": "Computational RL framework + developmental-robotics simulations and the Playground Experiment (a physical robot on a baby-mat autonomously structuring its own exploration into developmental stages via learning progress). No REE substrate; the transfer is architecture-to-architecture within the same RL reward formalism."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality maximal: this is the paper the MECH-314 typology is built on. Mapping fidelity high but capped below 0.85 because REE's broadcast-scalar Phase-1 does not yet instantiate the per-region learning-progress that carries the developmental-curriculum result. Transfer risk moderate: the formalism is RL-native (same frame as REE), but the load-bearing behaviour was shown on partitioned sensorimotor spaces REE has not built."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-07-09_goal_pipeline_competence_based_im_baldassarre2013",
+  "timestamp_utc": "2026-07-09T16:31:08Z",
+  "claim_ids_tested": ["MECH-314c", "ARC-065", "MECH-307"],
+  "source": {
+    "title": "Functions and Mechanisms of Intrinsic Motivations (in: Intrinsically Motivated Learning in Natural and Artificial Systems)",
+    "authors": ["Marco Mirolli", "Gianluca Baldassarre"],
+    "year": 2013,
+    "venue": "Springer, Berlin (eds. G. Baldassarre & M. Mirolli), ch. 3, pp. 49-72",
+    "doi": "10.1007/978-3-642-32375-1_3",
+    "url": "https://link.springer.com/chapter/10.1007/978-3-642-32375-1_3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "High-quality synthesis that draws the field's load-bearing distinction -- KNOWLEDGE-based vs COMPETENCE-based intrinsic motivation -- and argues they are functionally distinct drives with distinct mechanisms. Direction is MIXED for REE: it supports the legitimacy of REE's existing knowledge-based stack (MECH-314 family) as one half of IM, but it documents that REE has NO competence-based IM claim at all, which is exactly the missing ingredient WS-1's competence floor implicates. Confidence is high on the conceptual distinction (mapping fidelity strong) but the source is a conceptual/review chapter, not a single decisive experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Knowledge-based IM (novelty, prediction error, learning progress on the WORLD MODEL) improves the agent's model but does not by itself reward the acquisition of SKILLS/competence -- an agent can be maximally curious and still behaviourally incompetent (the exact WS-1 pattern: curiosity substrate wired, foraging still zero).",
+    "Competence-based IM requires a repertoire of self-generated GOALS and a per-goal competence-progress estimator; without an explicit goal representation to measure improvement against, competence-based IM cannot be computed -- a substrate with only a global scalar novelty bonus cannot host it.",
+    "Conflating the two IM types (using a single knowledge-based signal to drive skill learning) produces agents that explore richly but never consolidate reusable competences -- the pathology the chapter is written to prevent."
+  ],
+  "tags": ["competence-based-im", "knowledge-based-im", "mech-314c", "arc-065", "mech-307", "goal-pipeline", "skill-acquisition", "wanting", "competence-earning", "developmental-robotics", "ws-1"],
+  "mapping": {
+    "source_claim_statement": "Intrinsic motivations split into two functionally distinct families. KNOWLEDGE-based IM (novelty, surprise, prediction-error, learning-progress) rewards improving the agent's world MODEL and drives exploration/attention. COMPETENCE-based IM rewards improving the agent's ability to ACHIEVE self-generated goals -- the intrinsic reward is competence progress on a goal, not model progress on a prediction. Competence-based IM is the mechanism by which agents autonomously acquire hierarchies of reusable SKILLS; it presupposes an explicit repertoire of goals against which competence can be measured.",
+    "ree_translation": "REE's entire registered IM stack -- MECH-314 (info-gain), MECH-314a (novelty), MECH-314c (learning progress) -- is KNOWLEDGE-based by Mirolli & Baldassarre's taxonomy: all three reward improving prediction, none reward improving goal-achievement. The goal pipeline (MECH-307 conjunction, SD-012 drive, MECH-229 wanting/liking) supplies the goal representations competence-based IM would need but currently drives wanting from homeostatic/hedonic value, not from competence progress. The paper therefore identifies a NAMED GAP: REE has no competence-based intrinsic-motivation drive, and WS-1's competence floor (fully-integrated agent cannot forage) is the predicted symptom of trying to earn skills with a knowledge-based drive alone.",
+    "mapping_caveat": "This is a conceptual/taxonomic chapter, not a decisive experiment, so it evidences the DISTINCTION and its functional necessity rather than a specific quantitative result about REE's substrate. The claim_ids are tagged to the REE claims the distinction bears on (MECH-314c as the knowledge-based endpoint, MECH-307 as the goal-representation host, ARC-065 as the diversity umbrella) -- but competence-based IM itself is UNREGISTERED in claims.yaml; this entry documents the absence rather than testing an existing claim, which is why the direction is mixed and a candidate-claim registration is flagged as WS-9 downstream, not asserted here.",
+    "source_context": "Cognitive-science / developmental-robotics synthesis chapter drawing on animal learning, developmental psychology, and robot skill-acquisition models (e.g. TD competence-based IM, intrinsically-motivated option discovery). No REE substrate; transfer is taxonomy-to-architecture."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.28,
+    "notes": "Source quality high (canonical edited volume, pioneering authors) but it is a review chapter not primary experiment, so capped below 0.9. Mapping fidelity high: the knowledge-vs-competence cut maps cleanly and diagnostically onto REE's current stack. Transfer risk low: the distinction is architecture-agnostic and directly actionable for WS-1 / goal_pipeline_plan."
+  }
+}

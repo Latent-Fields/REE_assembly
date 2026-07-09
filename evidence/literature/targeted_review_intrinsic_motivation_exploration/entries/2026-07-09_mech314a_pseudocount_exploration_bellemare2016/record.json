@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_intrinsic_motivation_exploration",
+  "entry_id": "2026-07-09_mech314a_pseudocount_exploration_bellemare2016",
+  "timestamp_utc": "2026-07-09T16:31:08Z",
+  "claim_ids_tested": ["MECH-314a", "MECH-314", "ARC-065"],
+  "source": {
+    "title": "Unifying Count-Based Exploration and Intrinsic Motivation",
+    "authors": ["Marc G. Bellemare", "Sriram Srinivasan", "Georg Ostrovski", "Tom Schaul", "David Saxton", "Remi Munos"],
+    "year": 2016,
+    "venue": "Advances in Neural Information Processing Systems 29 (NeurIPS 2016)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1606.01868"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "The canonical RL-side instantiation of MECH-314a (novelty/count-based bonus): it derives a PSEUDOCOUNT from a density model so that count-based novelty generalises from the tabular case to high-dimensional non-tabular states, and shows a large exploration gain on Montezuma's Revenge. High source quality (NeurIPS, ~1300 citations). Supports MECH-314a's core mechanism (recency/rarity-of-encounter bonus) AND supplies the exact estimator REE needs to make a count-based bonus computable in a learned latent space rather than a tabular grid.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The pseudocount is only as good as the density model: a poorly-fit or slowly-adapting density model gives mis-calibrated novelty, either over-rewarding already-seen states or failing to flag genuinely novel ones.",
+    "Count-based novelty is a LEVEL signal (rarity), not a derivative -- it shares MECH-314a's vulnerability to the noisy-TV / stochastic-trap failure Oudeyer & Kaplan flag: irreducibly random states stay perpetually 'novel' and can sink exploration budget.",
+    "The bonus decays as counts accumulate, so it drives COVERAGE (visit-everything) not COMPETENCE (achieve-goals); on Montezuma it helps reach new rooms but does not by itself teach robust goal-directed skill."
+  ],
+  "tags": ["mech-314a", "mech-314", "arc-065", "count-based-exploration", "pseudocount", "density-model", "novelty-bonus", "bellemare", "montezuma", "rl-instantiation", "noisy-tv"],
+  "mapping": {
+    "source_claim_statement": "An exploration bonus of the form beta / sqrt(N(s)) -- classic count-based exploration -- can be generalised to non-tabular, high-dimensional state spaces by replacing the true visit count N(s) with a PSEUDOCOUNT derived from a learned density (sequential probability) model over states. The pseudocount is recovered from the model's prediction gain when a state is observed. This yields sensible per-state novelty from raw pixels and produces large exploration improvements on hard sparse-reward Atari games, notably Montezuma's Revenge.",
+    "ree_translation": "MECH-314a (novelty_bonus_striatal_analog) is REE's recency/rarity-of-encounter bonus, biologically anchored to ventral-striatal novelty (Wittmann 2008). Bellemare et al. supply its RL formalisation and, more usefully, the ESTIMATOR that lets REE compute it in a learned z-latent space (via a density model over z_world / z_resource) instead of tabular grid-cell counts -- the same generalisation step MECH-314a needs to move off a discrete CausalGridWorld tabulation onto the continuous latent substrate.",
+    "mapping_caveat": "Two caveats. (1) REE's MECH-314a is currently a striatal-analog bonus; Bellemare's pseudocount presupposes a well-fit sequential density model over the state space, which REE has NOT built -- adopting it is a substrate ADD (a latent-space density model), not a re-description of the current substrate. (2) Count-based novelty is a LEVEL signal, so it inherits the noisy-TV trap and only drives coverage; it is the weakest of the three MECH-314 sub-flavours for the WS-1 competence problem (it visits, it does not master). It is complementary to -- not a substitute for -- MECH-314c learning-progress and the (unregistered) competence-based IM the goal pipeline needs.",
+    "source_context": "Arcade Learning Environment (Atari 2600) from raw pixels; deep RL (DQN-family) agents. Structured deterministic-ish game dynamics; the Montezuma result is the field's standard sparse-reward exploration benchmark. Simulation only; no biological or REE substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (NeurIPS 2016, foundational, heavily cited). Mapping fidelity 0.70: the pseudocount mechanism maps cleanly onto MECH-314a's rarity bonus but requires a density-model substrate REE has not built. Transfer risk 0.35: Atari determinism differs from CausalGridWorld's stochasticity profile, and the coverage-not-competence limitation directly bears on why count-based novelty alone will not lift WS-1's floor."
+  }
+}
