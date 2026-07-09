@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-06-23.9 -->
+<!-- EXPLORER_VERSION: 2026-07-09.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2178,6 +2178,7 @@
     </div>
     <nav class="view-nav">
       <!-- Primary views (home -> closure) -->
+      <button id="paperViewBtn" class="view-btn" title="Morning paper: today's positive results, live decisions, queue, reviews and agenda (auto-opens once per day)">&#x1F4F0; Paper</button>
       <button id="listViewBtn" class="view-btn primary">List</button>
       <button id="graphViewBtn" class="view-btn">Graph</button>
       <button id="mapViewBtn" class="view-btn">Map</button>
@@ -2440,6 +2441,11 @@
         </div>
         <div id="archWrap" class="panel" style="display:none;padding:0;overflow:hidden;">
           <iframe id="archFrame" src="about:blank" style="width:100%;height:calc(100vh - 160px);border:0;display:block;background:#0d1117;" title="REE Architecture with Stability Overlay"></iframe>
+        </div>
+        <div id="paperWrap" class="panel" style="display:none">
+          <div id="paperDoc" style="max-width:860px;margin:0 auto;padding:12px 20px 48px;line-height:1.55;">
+            <div style="opacity:0.6;padding:24px 0;">Loading the morning paper&hellip;</div>
+          </div>
         </div>
       </div>
       <div class="panel detail" id="detailPanel">
@@ -2945,6 +2951,8 @@ END CONFLICT RESOLUTION`;
       archWrap: document.getElementById('archWrap'),
       archFrame: document.getElementById('archFrame'),
       archViewBtn: document.getElementById('archViewBtn'),
+      paperWrap: document.getElementById('paperWrap'),
+      paperViewBtn: document.getElementById('paperViewBtn'),
       contribContent: document.getElementById('contribContent'),
       expWrap: document.getElementById('expWrap'),
       expContent: document.getElementById('expContent'),
@@ -6815,6 +6823,7 @@ END CONFLICT RESOLUTION`;
         els.governanceViewBtn,
         els.experimentsViewBtn,
         els.archViewBtn,
+        els.paperViewBtn,
       ].forEach(btn => {
         if (!btn) return;
         if (btn === activeButton) btn.classList.add('primary');
@@ -6838,6 +6847,7 @@ END CONFLICT RESOLUTION`;
       if (els.expWrap) { els.expWrap.style.display = 'none'; els.expWrap.style.gridColumn = ''; }
       if (els.contribWrap) els.contribWrap.style.display = 'none';
       if (els.archWrap) { els.archWrap.style.display = 'none'; els.archWrap.style.gridColumn = ''; }
+      if (els.paperWrap) { els.paperWrap.style.display = 'none'; els.paperWrap.style.gridColumn = ''; }
       stopExpRefresh();
     }
 
@@ -6909,8 +6919,36 @@ END CONFLICT RESOLUTION`;
         return;
       }
 
+      if (view === 'paper') {
+        if (els.paperWrap) { els.paperWrap.style.display = 'block'; els.paperWrap.style.gridColumn = '1 / -1'; }
+        setPrimaryViewButton(els.paperViewBtn);
+        renderPaper();
+        return;
+      }
+
       if (els.listWrap) els.listWrap.style.display = 'block';
       setPrimaryViewButton(els.listViewBtn);
+    }
+
+    // Morning paper: fetch the daily-generated morning_agenda.md and render it.
+    // The file is written by /morning-digest (scheduled task ree-morning-digest) at the
+    // REE_assembly checkout root, which serve.py serves as a static file.
+    function renderPaper() {
+      const host = document.getElementById('paperDoc');
+      if (!host) return;
+      host.innerHTML = '<div style="opacity:0.6;padding:24px 0;">Loading the morning paper&hellip;</div>';
+      fetch('morning_agenda.md?_=' + Date.now(), { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+        .then(text => {
+          try { host.innerHTML = renderMarkdown(text); }
+          catch (e) { host.textContent = text; }
+        })
+        .catch(err => {
+          host.innerHTML = '<div style="opacity:0.7;padding:24px 0;">No morning paper found yet ('
+            + String((err && err.message) || err) + ').<br>It is generated daily by '
+            + '<code>/morning-digest</code> (scheduled task <code>ree-morning-digest</code>) into '
+            + '<code>morning_agenda.md</code> at the REE_assembly root.</div>';
+        });
     }
 
     // ── Experiment Runner dashboard ──────────────────────────────────────────
@@ -8431,6 +8469,9 @@ END CONFLICT RESOLUTION`;
       if (els.archViewBtn) {
         els.archViewBtn.addEventListener('click', () => setView('arch'));
       }
+      if (els.paperViewBtn) {
+        els.paperViewBtn.addEventListener('click', () => setView('paper'));
+      }
       if (els.contribViewBtn) {
         els.contribViewBtn.addEventListener('click', () => setView('contributors'));
       }
@@ -8631,7 +8672,19 @@ END CONFLICT RESOLUTION`;
         restoreFilterState(filterState); // subsequent refreshes: preserve in-memory state
       }
       renderTable();
-      setView(previousView || 'experiments');
+      // Morning paper: auto-open once per day on first page load (dismiss = click any
+      // other tab; the localStorage date-guard stops it reopening again that day).
+      let _paperInitialView = previousView || 'experiments';
+      try {
+        const PAPER_SEEN_KEY = 'ree_explorer.paper_seen_date.v1';
+        const _todayUTC = new Date().toISOString().slice(0, 10);
+        if (!window._paperAutoOpenDone && localStorage.getItem(PAPER_SEEN_KEY) !== _todayUTC) {
+          _paperInitialView = 'paper';
+          localStorage.setItem(PAPER_SEEN_KEY, _todayUTC);
+        }
+      } catch (_) {}
+      window._paperAutoOpenDone = true;
+      setView(_paperInitialView);
       renderMap();
 
       if (previousSelection && claimMap.has(previousSelection)) {
