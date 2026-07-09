@@ -1,0 +1,85 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-09T18:49:02Z",
+  "scope": "single",
+  "status": "confirmed",
+  "lineage": ["V3-EXQ-641", "V3-EXQ-641a", "V3-EXQ-720", "V3-EXQ-725"],
+  "prior_autopsies": [
+    "failure_autopsy_V3-EXQ-641_2026-06-06",
+    "failure_autopsy_V3-EXQ-641a_2026-06-06",
+    "failure_autopsy_V3-EXQ-720_2026-07-09"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_725_coherence_nonreducibility_learned_binder_20260709T095128Z_v3",
+      "queue_id": "V3-EXQ-725",
+      "claim_ids": [],
+      "bears_on_not_tagged": ["INV-002", "MECH-089", "MECH-094", "MECH-270", "MECH-269"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_name": "SPEC_coherence_specific (0/6, needs 4/6; regressed from 720 fixed-field 3/6 and 641a unbound 1/6; shuffle >= real in all 6 seeds)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (diagnostic, claim_ids=[]); candidate Q coherence_nonreducibility unregistered and NOT weakened -- the run did not fairly test the learned binder",
+        "biological_reference": "clear for the class (learned binding-by-synchrony / communication-through-coherence); correct mechanism class, NOT a formal-import divergence; the gap is one level down (training signal)",
+        "prerequisites": "missing (training-signal dependency): the P0 contrastive curriculum needs separable positives; CausalGridWorldV2 slow-drift collinearity provides none",
+        "implementation": "partial -- symbol not function: plastic binder + InfoNCE optimizer + P0 curriculum WIRED but DOES NOT CONVERGE (binder_last_loss 3.75-3.96 vs chance log(64)=4.16; flat, non-monotone in learn_steps 487->1760)",
+        "environment": "inadequate: near-collinear consecutive z_self/z_world -> InfoNCE positives not separable from in-batch shuffles (carried + sharpened from the 641a/720 no-binding-pressure note)",
+        "measurement": "VACUOUS readiness gate: precondition learned_binder_trained checks n_learn_steps>1 (curriculum FIRED), NOT loss convergence -> green-lit a verdict on an untrained binder (642/719a signature). The rebinding PASS is also vacuous (bilinear argmax over near-random projections flips trivially).",
+        "integration": "n/a (harness-level read; no ree_core selection wiring)",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "binding-by-synchrony / communication-through-coherence (Fries); theta-gamma binding (Singer/Gray; Buzsaki)",
+        "dependencies": ["learned/plastic cross-stream coupling", "environment presenting separable cross-stream conjunctions to train on", "converged contrastive objective (non-vacuous training signal)"],
+        "is_formal_import": false,
+        "divergence": "NOT a formal-import divergence -- the mechanism class (plastic multiplicative coincidence detector trained by contrastive co-encoding) is faithful. The failure is that it does not TRAIN in this environment: unlearnable InfoNCE positives -> loss stays at chance -> near-random coupling.",
+        "lit_status": "present (MECH-270 / binding-by-synchrony class already in the substrate); no new lit-pull owed"
+      },
+      "recommended_epistemic_category": "untrained_substrate_artifact",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-725 (2026-07-09, diagnostic, non_contributory, claim_ids=[]) -- coherence-non-reducibility RETEST of the 641a/720 harness on the LEARNED cross_stream_binding_substrate (cross_stream_binding_learned=True, strength=0.5). ADJUDICATED (user-confirmed 2026-07-09) as an UNTRAINED-SUBSTRATE ARTIFACT, NOT a coherence verdict and NOT a substrate ceiling: the learned binder never converged. The P0 contrastive (InfoNCE) curriculum ran 487-1760 steps/seed but binder_last_loss stayed at 3.75-3.96 vs the symmetric-CE chance floor log(batch=64)=4.16 -- flat and non-monotone in step count, i.e. the plastic phi_self/phi_world projections barely moved off random init (positives not separable from shuffles in slow-drift CausalGridWorldV2). Consequences: (1) SPEC regressed 3/6 (720 fixed field) -> 0/6 (shuffle >= real all 6 seeds) because a near-random plastic coupling injects noise that destroys even the partial specificity the deterministic fixed field gave -- an artifact, not a null. (2) The rebinding PASS (n_rebind 1387) is ALSO vacuous: rebinding_probe argmaxes a bilinear form over near-random projections, so a large anchor perturbation flips it trivially -- the probe mechanically fires but no MEANINGFUL binding rebinds. (3) The 720 learned-binder-as-residual-prerequisite hypothesis is UNTESTED, not refuted. Root cause includes a VACUOUS readiness gate: the learned_binder_trained precondition checks n_learn_steps>1 (curriculum fired), not loss convergence. Route implement-substrate (repair binder convergence + expose a binder_converged stat) then a gated 725a retest with a HARD learned_binder_converged precondition. Both 2026-04-23 intakes stay OPEN. Not a status change.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "cross_stream_binding_substrate",
+        "sd_id_suggested": "cross_stream_binding_substrate",
+        "title": "Learned cross-stream binder must CONVERGE: repair P0 contrastive training (InfoNCE at chance in CausalGridWorldV2) + expose a binder_converged stat",
+        "implementation_hint": "The learned binder is wired but non-functional: InfoNCE loss stuck at chance (~log(64)=4.16; observed 3.75-3.96) because within-tick z_self/z_world positives are not separable from in-batch shuffles in the slow-drift 12x12 gridworld. Repair: (1) diagnose separability (near-collinear consecutive latents) with a tiny convergence probe BEFORE the full build; (2) construct positives from causally-linked self/world conjunctions and/or add environment binding-pressure (multi-object / bipartite-reef conjunctions the reef layout already supports); tune bind_dim/lr/temperature/P0-budget; consider hard-negative mining; (3) EXPOSE binder_converged = last_loss < CONV_FRAC*log(batch) as a substrate-reported stat so the retest can gate on convergence, not on steps-ran. Flip status from 'implemented' to implemented-but-non-functional until the loss actually drops.",
+        "unblocks_claims": [],
+        "unblocks_intakes": ["thought_intake_2026-04-23_binding.md", "thought_intake_2026-04-23_path_integral_constraints_search.md"],
+        "unblocks_candidate": "entities/selection.coherence_nonreducibility (unregistered candidate Q)",
+        "depends_on_unresolved": ["environment binding-pressure adequacy (CausalGridWorldV2 slow-drift collinearity) -- free text; may require an env-side conjunction generator"],
+        "priority_suggested": 2,
+        "priority_note": "medium: not blocking a registered claim (candidate Q + 2 open intakes only), but it is the sole live path to answering a 4-iteration lineage question and repairs a substrate already marked 'implemented' that does not function.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_725_coherence_nonreducibility_learned_binder_20260709T095128Z_v3",
+          "experiment_type": "v3_exq_725_coherence_nonreducibility_learned_binder",
+          "metric": "binder_last_loss 3.75-3.96 (chance floor log(batch=64)=4.16) -> binder did not converge; SPEC 0/6 (regressed from 720 3/6); rebinding PASS vacuous",
+          "target": "binder_last_loss < CONV_FRAC*log(batch) (converged binder) AND SPEC >= 4/6 with a genuinely-trained binder"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "No 'supports' to hollow out: claim_ids=[]; candidate Q unregistered; nothing was weakened or lifted. No illusory-conflict-resolution risk.",
+      "re_derive_brake": {
+        "fired": false,
+        "reason": "claim_ids=[] so no registered claim to count; and the substrate is genuinely being enriched across the lineage (unbound -> fixed -> learned, now learned-that-must-actually-train). The naive-rerun refusal (no 725b on the same non-converging curriculum) is applied on its own merits, not via the formal brake.",
+        "refused_requeue": true,
+        "refused_requeue_detail": "REFUSE a 725b that reruns the same P0 InfoNCE curriculum on the same substrate (would circle the untrained-binder artifact). 725a is allowed ONLY after the substrate exposes binder_converged=True. /queue-experiment Step 2.5 (consumer half) should enforce this gate.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "cross_stream_binding_substrate"
+      },
+      "learning_extracted": [
+        "The learned-binder substrate is BUILT but NON-FUNCTIONAL: InfoNCE loss at chance (log(64)=4.16; observed 3.75-3.96), flat and non-monotone in 487-1760 learn-steps -- unlearnable contrastive positives in slow-drift CausalGridWorldV2. Contributory as a substrate diagnostic, NOT as a coherence verdict.",
+        "The learned_binder_trained precondition is VACUOUS (gates on n_learn_steps>1, not loss convergence) -> it green-lit a scientific verdict on an untrained binder. Any learned-binder retest MUST gate on convergence (loss < k*log(batch)). Same shape as V3-EXQ-642 / V3-EXQ-719a.",
+        "A near-random plastic coupling is WORSE than a structured fixed field for coherence-specificity (SPEC 3/6 -> 0/6): an unconverged binder injects noise that destroys the partial specificity a deterministic joint-state field provided. Plasticity only helps once trained.",
+        "The 720 learned-binder-as-residual-prerequisite hypothesis is UNTESTED (neither confirmed nor refuted); the substrate meant to test it did not train. Governance must not read 725 as falsifying learned binding.",
+        "The rebinding falsifier is now instrument-available (probe fires, 1387 rebinds) but its PASS is vacuous under an untrained binder; the binding intake's rebinding axis stays OPEN until the binder converges."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "downstream_handoff": {
+    "governance_must_record": "The 720 learned-binder hypothesis is UNTESTED, not refuted. 725 is an untrained-substrate artifact, not a coherence close-signal and not a further substrate ceiling. Both 2026-04-23 intakes stay OPEN.",
+    "soft_overlap": "Active governance walk pensive-neumann-4e2bc8 (17:42Z) was walking pending reviews; 725 is the pending unclaimed manifest but self-routes to /failure-autopsy, so its autopsy-preflight should defer 725 to this doc."
+  }
+}
