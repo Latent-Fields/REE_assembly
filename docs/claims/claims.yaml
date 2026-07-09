@@ -48642,6 +48642,7 @@
   polarity: open
   status: open
   registered_utc: "2026-06-24"
+  version_relevance: v3
   depends_on:
     - SD-032b    # dACC EVC: mode_ev = payoff - control_required*effort_cost -- effort enters VALUE here, not harm; the baseline this asks whether to extend
     - SD-032e    # pACC allostatic load (sustained z_harm_a -> drive bias); the existing depletion-integrator -- but it integrates THREAT, not EFFORT
@@ -48651,6 +48652,10 @@
     - SD-012     # homeostatic drive / energy state (obs_body energy, drive_level) -- the energy currency
     - MECH-219   # the suffering / harm hysteretic integrator that an effort-harm-coupling would feed
   what_would_answer: >
+    NARROWED 2026-07-09 (/claim-synthesis) into three orthogonal, independently-testable sub-questions --
+    Q-080.a harm-coupling, Q-080.b least-effort prior, Q-080.c MECH-454 energy-grounding -- enumerated with
+    their discriminating tests, version scopes, and lit anchors under status_note. The overall discriminating
+    frame is unchanged:
     DISCRIMINATING TEST (or derivation). Build an env that DISSOCIATES effort from benefit: a LOW-effort and a
     HIGH-effort path to the SAME benefit, with a measurable per-action energy/effort cost, plus a chronic-exertion
     regime (sustained high effort that could deplete). ANSWERED 'effort SHOULD be harm-coupled / energy-conservation
@@ -48664,6 +48669,73 @@
     NON-DEGENERACY (else the question is untestable): the env must offer a genuine low-vs-high-effort dissociation to
     the SAME benefit AND a chronic-exertion regime, with the effort/energy cost measurable and varying -- if the two
     paths cost the same energy, or depletion never accrues, neither pole can be distinguished.
+  status_note: >
+    [2026-07-09 /claim-synthesis: narrow_open_question applied]. User decision 2026-07-09 "narrow now",
+    inheriting the 2026-06-24 disposition "pose the question first, do NOT mint a mechanism on a hunch."
+    Q-080 conflates THREE separable, independently-testable propositions; each is registered here as
+    embedded testable scaffolding (the Q-040 precedent). The question STAYS open; NO mechanism is minted;
+    no status change. Lit grounding (proposal-grade, consensus 2026-07-09; full /lit-pull deferred to
+    IF a sub-question resolves toward a mechanism) WARRANTS each sub-question WITHOUT pre-deciding it --
+    the intended state for a pose-first narrowing. Proposal + lit synthesis:
+    evidence/planning/claim_synthesis_Q-080_2026-07-09.md.
+
+    NOTE ON NOTATION: the (a)/(b)/(c) inside what_would_answer are the three BEHAVIOURAL SIGNATURES a
+    harm-coupling would have to add (least-effort default / protective disengagement / irreversibility-aware
+    caution). The Q-080.a/b/c below are the three ORTHOGONAL SUB-QUESTIONS -- a different axis. Do not conflate.
+
+    (Q-080.a) HARM-COUPLING [v3; substrate-conditional on an effort-dissociating env + an SD-032e effort-input
+    variant]. Does over-exertion -> depletion REQUIRE harm's irreversibility-aware special status (residue that
+    cannot be erased / No-Go-adjacent caution), or do REE's existing allostatic (SD-032e pACC + SD-032c AIC) +
+    EVC (SD-032b dACC) loci suffice WITHOUT coupling effort into the z_harm_a stream? SHARPENED by the lit:
+    the fatigue biology (Hogan 2020 Nat Commun -- fatigue raises the subjective COST of effort in insula;
+    McMorris 2018 -- central fatigue as AIC interoception feeding ACC continue/stop; Pizzolla 2026 -- fatigue
+    from the anticipatory allostatic energy-regulation system) routes over-exertion into the two loci REE
+    ALREADY has (EVC cost + allostatic prediction) and does NOT show it recruiting harm's residue/No-Go
+    handling -- so the open residue is narrower than "is effort a harm": does it need irreversibility-aware
+    handling ON TOP of allostatic+EVC? TEST: effort-dissociating env (low- vs high-effort path to the SAME
+    benefit, per-action energy cost measurable, + a chronic-exertion depletion regime), factorial
+    {effort->z_harm_a coupling OFF/ON} with value-subtraction + allostatic machinery ON in BOTH arms.
+    ANSWERED 'harm-coupling needed' iff ON adds protective disengagement BEFORE depletion + caution scaled to
+    the non-reversibility of the depletion that the OFF baseline lacks, strict seed majority. ANSWERED
+    'suffices, close' iff OFF already reproduces those and ON adds nothing measurable (effort = foregone value;
+    do NOT mint a harm-coupling mechanism). NON-DEGENERACY: the two paths must differ measurably in energy cost
+    AND depletion must actually accrue, else substrate_not_ready_requeue, not a verdict. Bears on SD-032b,
+    SD-032e, SD-032c, MECH-219, MECH-454, SD-012.
+
+    (Q-080.b) EVOLUTIONARY-PRIMACY / LEAST-EFFORT PRIOR [v3]. Should energy-conservation be a default
+    least-effort PRIOR (an evolutionarily-primary prior over policies favouring low effort when benefit is
+    indifferent), or is it adequately a value-subtraction TERM (SD-032b EVC + MECH-320/ARC-068 opportunity-
+    cost)? Strongly lit-grounded (Selinger 2015 Curr Biol -- humans continuously optimize energetic cost in
+    real time, cost SHAPES movement rather than only scoring it; McAllister 2025 behavioural-energetics review;
+    Charnov MVT / optimal foraging -- net energy gain as the fitness currency, holding even for minimal
+    feeding-rate-only organisms), which grounds the primacy pole WITHOUT settling whether REE's existing term
+    already reproduces least-effort-default behaviour. TEST: same env, {least-effort prior OFF/ON} with the
+    value-subtraction term ON in both arms. ANSWERED 'prior warranted' iff ON defaults to the low-effort path
+    under indifferent/tied benefit where the value-subtraction-only arm leaves the tie unbroken, seed majority.
+    ANSWERED 'term suffices' iff the value arm already produces the least-effort default (prior redundant).
+    NON-DEGENERACY: benefit must be genuinely tied/indifferent across the two paths in the probe condition,
+    else the value term trivially decides. Bears on SD-032b, MECH-320, ARC-068, SD-012.
+
+    (Q-080.c) MECH-454 ENERGY-GROUNDING [v3; substrate_conditional -- inherits MECH-454's two unbuilt
+    substrates: the reachable-option-dissociating env + the E3 option-value term; a V4 meta-leg (energy over
+    REE's OWN future option-space) is already folded into the self_model_v4 plan]. Is MECH-454's uncertainty-
+    gated option-value cost better grounded as a re-acquisition-ENERGY cost (foreclosing an option = paying
+    energy to rebuild it) than as the abstract real-options / empowerment value it currently cites -- i.e. does
+    the energy-economy framing PREDICT MECH-454's behaviour better? Lit anchor: empowerment / future-option
+    maximization (Catenacci Volpi 2020 IEEE TCDS -- optionality as number of future options, handling delayed
+    goal commitment; Hayashi 2025 -- high-optionality states) grounds "option-value = future-option max" but
+    frames it INFORMATION-THEORETICALLY, not as energy re-acquisition -- so the energy-grounding move is the
+    OPEN question. TEST (gated on MECH-454's substrate landing): parameterize the MECH-454 cost two ways on
+    the reachable-option-dissociating env -- (i) abstract reachable-distinct-state count vs (ii) energy-to-
+    reacquire the foreclosed option -- and test which better predicts option-preserving behaviour under
+    manipulated forecast uncertainty. ANSWERED 'energy-grounding stronger' iff (ii) predicts committed
+    behaviour better than / subsumes (i); ANSWERED 'abstract suffices' iff behaviourally indistinguishable
+    (keep the real-options/empowerment framing). Bears on MECH-454, INV-026, SD-012, MECH-320.
+
+    RESOLUTION PATH: Q-080.a and Q-080.b are the load-bearing pair (both v3-testable once an effort-
+    dissociating env exists -- a single env can host both factorial arms). Q-080.c is a MECH-454-grounding
+    follow-on, blocked on MECH-454's substrate. No claim-status change; Q-080 stays open with these three
+    sub-questions as the testable scaffolding.
   location: >
     Interactive thought-digestion 2026-06-24 (continuation of the MECH-454 pass). Origin = the observation that the
     temporal-mechanics failure was at root an ENERGY-economy error (wasted effort re-running work; then dequeuing to
