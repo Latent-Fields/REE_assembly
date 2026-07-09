@@ -211,7 +211,21 @@ def _compute_adjudication(interpretation: Any, status: str,
                              EITHER (3b) a criterion tagged load_bearing:true with
                              passed:false (the V3-EXQ-621a aggregation-vacuity
                              pattern) OR the legacy criteria_non_degenerate value
-                             being false.
+                             being false. CONVENTION for the legacy check: a key
+                             in criteria_non_degenerate is a NON-DEGENERACY
+                             ASSERTION (True=non-degenerate/good), so a False value
+                             flags a gate cleared on nothing -- EXCEPT keys whose
+                             name ends in "_branch". Those are BRANCH-SELECTORS
+                             (direction-neutral: False = "took the other branch",
+                             often the GOOD outcome, e.g. V3-EXQ-723 J-lens
+                             diffuse_branch=False = took the compact/present branch)
+                             and are excluded from the vacuity check. Without the
+                             exclusion, a branch-selector False spuriously yields
+                             vacuous_pass -- the same directionality false-flag class
+                             as V3-EXQ-648a/649. Keep branch-selectors in
+                             signature_gates{} where they belong; if a manifest also
+                             places one in criteria_non_degenerate{}, the "_branch"
+                             suffix makes the indexer ignore it.
       - "verified"        -- declared structure(s) present and all checks hold.
 
     The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
@@ -286,7 +300,15 @@ def _compute_adjudication(interpretation: Any, status: str,
         if p.get("met") is False:
             return label, "precondition_unmet"
     # A PASS that rests on a degenerate criterion clears a gate on nothing.
-    if str(status).upper() == "PASS" and any(v is False for v in crit.values()):
+    # Exclude BRANCH-SELECTOR keys (name ends in "_branch"): for a selector,
+    # False means "took the other branch" (often the GOOD outcome, e.g.
+    # V3-EXQ-723 J-lens diffuse_branch=False = took the compact/present branch),
+    # NOT "this criterion is degenerate". Treating a selector False as degeneracy
+    # is the V3-EXQ-648a/649 directionality false-flag class. See docstring
+    # CONVENTION note + failure_autopsy_V3-EXQ-723_2026-07-09.md Sec.3.
+    degeneracy_assertions = [v for k, v in crit.items()
+                             if not str(k).endswith("_branch")]
+    if str(status).upper() == "PASS" and any(v is False for v in degeneracy_assertions):
         return label, "vacuous_pass"
     return label, "verified"
 
