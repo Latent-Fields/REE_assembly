@@ -1,0 +1,91 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_724_competence_localization_diagnostic",
+  "run_id": "v3_exq_724_competence_localization_diagnostic_20260709T211405Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-09T21:14:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "competence_deficit_diffuse",
+    "localizing_arms": [],
+    "recovery_ceiling_supra_floor": false,
+    "preconditions": [
+      {
+        "name": "oracle_resource_channel_clears_floor",
+        "kind": "readiness",
+        "description": "A greedy nearest-resource ORACLE (no agent) clears COMPETENCE_RESOURCE_FLOOR resources/episode in this exact env, proving the floor is ACHIEVABLE by a resource-seeking policy. Same statistic as the agent DV (env.step info transition_type=='resource'). Below-floor => the floor is not achievable here (env too sparse/lethal) => substrate_not_ready_requeue, NEVER a diffuse-deficit verdict.",
+        "control": "greedy nearest-resource oracle forager, same ENV_KWARGS/seed, no agent",
+        "measured": 6.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "baseline_reproduces_incompetence",
+        "kind": "readiness",
+        "description": "The baseline arm A0 (719a all-ON config) must forage BELOW the floor on a majority of seeds -- i.e. the 719a incompetence must reproduce -- for a localization to be meaningful. If A0 already clears the floor the premise is not reproduced => substrate_not_ready_requeue, NOT a localization.",
+        "control": "A0 baseline mean_resources/ep vs floor (majority of seeds)",
+        "measured": 0.25,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "sufficient_p2_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= MIN_P2_EPISODES P2 eval episodes so mean_resources_per_episode is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed P2 episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "single_factor_arm_recovers_competence",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor": true,
+      "baseline_reproduces_incompetence": true,
+      "sufficient_p2_episodes": true,
+      "any_single_factor_arm_supra": false,
+      "recovery_ceiling_supra": false
+    }
+  }
+}
