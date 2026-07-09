@@ -21409,6 +21409,13 @@
     (Rushworth lab beyond Scholl/Kolling) before committing to the
     specific computational form.
   evidence_quality_note: >
+    GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 8 confirmed substrate_ceiling failure_autopsy
+    hits (460b/460c/460f/445h/603c/603d/603e/687) with no positive discrimination on any richer
+    substrate -> demoted to contested candidate (epistemic_category standard, ceiling_decision exhausted).
+    The competing NULL reading -- dACC anti-recency is inert / does no work at E3 (bias_fraction 0.000,
+    V3-EXQ-571) -- is now carried CO-EQUALLY. NOT falsification: the claim keeps its full history;
+    promotion re-gated on a future positive discrimination on a richer substrate.
+
     2026-06-19 (governance-apply, failure_autopsy_V3-EXQ-460g CONFIRMED): V3-EXQ-460g (supersedes
     460f) self-routed substrate_not_ready_requeue (the de-commit magnitude lever suppresses its own
     coupling certifier -- see SD-034). MECH-260 -> supports (No-Go nogo_installed >= 1 on 3/3, a
@@ -21535,7 +21542,9 @@
 
     [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h]: c3 (entropy_ON>=entropy_OFF) PASS is vacuous (0.0>=0.0 under monostrategy) -- excluded as degenerate across the 445-series. MECH-260 status unaffected (exp_conf 0.799 confirmed_established, driven by V3-EXQ-463). Already carries substrate_ceiling + pending_retest_after_substrate.
 
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+  ceiling_decision: exhausted
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 8 confirmed substrate_ceiling failure_autopsy hits (460b/460c/460f/445h/603c/603d/603e/687) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading (dACC anti-recency does no work at E3 -- bias_fraction 0.000 per V3-EXQ-571) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate."
   implementation_note: >
     IMPLEMENTED 2026-04-19. DACCAdaptiveControl
     (ree_core/cingulate/dacc.py) maintains a FIFO action-class history
@@ -31942,7 +31951,7 @@
   claim_type: mechanism_hypothesis
   subject: policy.stochastic_noise_floor_lc_ne_tonic_analog
   polarity: asserts
-  status: candidate_substrate_landed
+  status: candidate  # GOV-CEIL-1 demotion 2026-07-09: floored from candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_redesign: true
@@ -31984,6 +31993,14 @@
     260-only matches both-ON, MECH-313 is contributory-not-necessary.
     Both-OFF should produce monomodal collapse irrespective of ARC-062.
   evidence_quality_note: >
+    GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 7 confirmed substrate_ceiling failure_autopsy
+    hits (573/603c/603d/603e/610f/655/687) with no positive discrimination on any richer substrate ->
+    demoted to contested candidate (epistemic_category standard, ceiling_decision exhausted, status
+    floored candidate_substrate_landed -> candidate). The competing NULL reading -- the LC-NE noise
+    floor is inert / does no work (only sub-threshold N=1 directional signals across three substrates)
+    -- is now carried CO-EQUALLY. NOT falsification: the claim keeps its full history; promotion re-gated
+    on a future positive discrimination on a richer substrate.
+
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3 + Pull 4 R4 HYBRID-naming.
     Lit anchors:
       - Aston-Jones & Cohen 2005 (Annu Rev Neurosci) -- LC-NE adaptive
@@ -32097,7 +32114,9 @@
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
 
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+  ceiling_decision: exhausted
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 7 confirmed substrate_ceiling failure_autopsy hits (573/603c/603d/603e/610f/655/687) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading (LC-NE noise floor delivers only sub-threshold N=1 directional signals) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate."
   pending_retest_after_substrate: true
   notes: >
     Pull 4 R4 verdict assigned MECH-313 to HYBRID-naming because the
@@ -32152,6 +32171,8 @@
   subject: policy.structured_curiosity_bonus_parent
   polarity: asserts
   status: candidate_substrate_landed
+  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; NOT demoted)
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 7 substrate_ceiling hits, but the umbrella CORE has a positive discrimination on a richer substrate -- V3-EXQ-604c PASS on the validated GAP-A substrate (2026-06-08) validated MECH-314's selection-face and lifted v3_pending. The 7 hits are on the curiosity-CONVERSION sub-property (705b/706/706b/590c), which has no separately-registered child claim. Per GOV-CEIL-1 granularity-first, the parent is exempt from demotion (a positive discrimination exists); parked to stop re-flagging. Owed retest re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (ARC-107 MECH-448/449), unbuilt."
   epistemic_category: substrate_ceiling # /governance 2026-06-25: failure_autopsy_V3-EXQ-705b (1st FAIR demotion test, conversion ceiling persists; 6th MECH-314 ceiling autopsy, re-derive brake FIRED). Ceiling is upstream/architectural, NOT a falsification; mapped to the brake-EXEMPT double-gated (demotion+MECH-449 Go/No-Go) re-test (substrate already built) -> V4 ARC-110 loop-segregation only if that also fails.
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
@@ -32955,6 +32976,8 @@
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
 
   epistemic_category: substrate_ceiling
+  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; demotion semantics N/A for an open_question)
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 4 substrate_ceiling hits, but this is an open_question (status: open) -- GOV-CEIL-1's demotion semantics (floor status to candidate; carry an inert-mechanism null) do not map, since an open question asserts no mechanism to call inert and open->candidate is a category error. Its dependents MECH-313 and MECH-260 were demoted in this same 2026-07-09 pass and already carry the ceiling-exhaustion signal. Parked to stop re-flagging; the collapse-vs-distinct question stays substrate-blocked pending V3 goal-pipeline / scaffolded-onboarding enrichment."
   pending_retest_after_substrate: true
   location: docs/architecture/rule_apprehension_layer.md
 
@@ -37975,6 +37998,8 @@
     MECH-341/MECH-313, not weakens INV-074) and a mandatory pre-run assertion that the three fixes are present
     so the prescription is not dropped a third time.
   epistemic_category: substrate_ceiling
+  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (formalizes the 2026-06-13 user acceptance)
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 8 substrate_ceiling hits, but this is a UNIVERSAL invariant with strong biological grounding (lit_conf 0.918, OD critical-period biology) already deliberately accepted as substrate_ceiling by user decision 2026-06-13 (see governance_note_2026_06_13) and V4-deferred (owned by plasticity_neuromodulation_v4; PLW-1 decision-to-build gate). pending_retest_after_substrate is already false -- there is no pending V3 retest. Demotion to a co-equal inert-mechanism null would contradict the well-grounded universal necessity; parked instead. Any future test is V4-scoped."
 
 - id: MECH-333
   title: "Critical period open phase: the dominant scoring pathway's effective update
@@ -45956,7 +45981,9 @@
   subject: selection.primary_score_variance_monopoly
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+  ceiling_decision: exhausted
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g)."
   implementation_phase: v3
   version_relevance: v3
   registered_utc: "2026-06-18"
@@ -45978,6 +46005,14 @@
     ascending-spiral gain -- target-PARITY controller' + learned_cross_loop_arbitration.md 'Sub-addendum:
     bounded parity controller' + substrate_queue v4_loop_segregation (failure_record[7].repaired_by).
   evidence_quality_note: >
+    GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy
+    hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer
+    substrate -> demoted to contested candidate (epistemic_category standard, ceiling_decision exhausted).
+    The competing NULL reading -- the F-dominance mechanism is inert / doing no work -- is now carried
+    CO-EQUALLY (no longer suppressed by the substrate_ceiling category). This is NOT falsification: the
+    claim keeps its full history; promotion is re-gated on a future positive discrimination on a richer
+    substrate (the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g).
+
     V3-EXQ-689a (MECH-439 conflict-grade GAP-BLIND falsifier; supersedes V3-EXQ-689) FAIL / non_contributory;
     readiness ALL met + non_degenerate. The pre-registered conflict-grade BOTH-levers form (ARM_A1B1: gap-scaled
     shortlist-width Factor A + gap-scaled commit-T Factor B) does NOT convert -- committed-action-class entropy
@@ -46417,7 +46452,9 @@
   subject: governance.closure_beta_coupling
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_ceiling  # 2026-06-22 V3-EXQ-460k autopsy (user-confirmed): 4th substrate-blocked iteration, re-derive brake fired
+  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
+  ceiling_decision: exhausted
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 6 confirmed substrate_ceiling failure_autopsy hits (460i/460k/460l/715/715a/717) with no positive discrimination on any richer substrate. SD-034 de-commit Child A (closure->beta coupling); the SD-034 umbrella and MECH-090 latch are UNCHANGED -- only this sub-property is demoted. The inert/no-op-mechanism null reading (F-independent commit-intent exists as isolated existence proofs but never clears the 2/3 reliability bar) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (f_dominance_conversion_ceiling de-commit-release face)."
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -46437,6 +46474,15 @@
     failure_autopsy_V3-EXQ-460h (user-confirmed): the prior unscoped clause mis-read the 460h seeds 42/43
     commit-intent=0 -- which are strong-natural-commit redundancy -- as inert coupling on 2/3.]
   evidence_quality_note: |
+    GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 6 confirmed substrate_ceiling failure_autopsy
+    hits (460i/460k/460l/715/715a/717) with no positive discrimination on any richer substrate ->
+    demoted to contested candidate (epistemic_category standard, ceiling_decision exhausted). SD-034
+    de-commit Child A: the SD-034 umbrella + MECH-090 latch are UNCHANGED; only this sub-property is
+    demoted. The competing NULL reading -- the closure->beta coupling is inert / does no work (F-independent
+    commit-intent appears only as isolated per-seed existence proofs, never clearing the 2/3 reliability
+    bar) -- is now carried CO-EQUALLY. NOT falsification: the claim keeps its full history; promotion
+    re-gated on a future positive discrimination on a richer substrate (f_dominance de-commit-release face).
+
     V3-EXQ-717 (confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07; M2 test-power decouple,
     12 seeds) -> WEAKENS (NARROW, reliability-scoped). Fair test: readiness cleared, 9 in-regime seeds,
     opportunity 1.0, counter placed before the refractory gate. Commit-intent > 0 on 2/9 in-regime seeds
@@ -46521,7 +46567,9 @@
   subject: governance.closure_decommit_magnitude
   polarity: asserts
   status: candidate
-  epistemic_category: substrate_ceiling  # 2026-06-22 V3-EXQ-460k autopsy (user-confirmed): 4th substrate-blocked iteration, re-derive brake fired
+  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
+  ceiling_decision: exhausted
+  ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 5 confirmed substrate_ceiling failure_autopsy hits (460i/460k/460l/715/715a) with no positive discrimination on any richer substrate. SD-034 de-commit Child B (de-commit magnitude); the SD-034 umbrella and MECH-090 latch are UNCHANGED -- only this sub-property is demoted. The inert/no-op-mechanism null reading (the within-arm around-closure occupancy-drop DV is repeatedly starved/vacuous, never scored above threshold) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (f_dominance_conversion_ceiling de-commit-release face)."
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -46535,6 +46583,15 @@
     no within-arm post-closure drop (the de-commit fires with correct sign but sub-threshold
     authority) on >= 2/3 seeds.
   evidence_quality_note: |
+    GOV-CEIL-1 CEILING-EXHAUSTION DEMOTION 2026-07-09: 5 confirmed substrate_ceiling failure_autopsy
+    hits (460i/460k/460l/715/715a) with no positive discrimination on any richer substrate -> demoted
+    to contested candidate (epistemic_category standard, ceiling_decision exhausted). SD-034 de-commit
+    Child B: the SD-034 umbrella + MECH-090 latch are UNCHANGED; only this sub-property is demoted. The
+    competing NULL reading -- the de-commit-magnitude mechanism is inert / does no work (the within-arm
+    around-closure occupancy-drop DV is repeatedly starved/vacuous, never scored above threshold on a
+    coupling-certified seed) -- is now carried CO-EQUALLY. NOT falsification: the claim keeps its full
+    history; promotion re-gated on a future positive discrimination on a richer substrate.
+
     V3-EXQ-715a (confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07; M1 selection-face lift)
     -> non_contributory + pending_retest_after_substrate (status UNCHANGED: candidate / v3_pending).
     Self-routed substrate_not_ready_requeue (lift_engaged_but_arming_still_regime_scoped): the within-arm
