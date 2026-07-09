@@ -1,3 +1,59 @@
+---
+closure_plan:
+  id: global_workspace_jlens
+  title: "Global Workspace + J-lens (SD-064 access channel)"
+  owner_claim: SD-064
+  registered: 2026-07-08
+  last_updated: 2026-07-09
+  scope_claims: [SD-064, SD-027, MECH-254, MECH-191, MECH-089, MECH-287, SD-037, MECH-007]
+  sibling_plans: [conversion_ceiling_campaign, behavioral_diversity_isolation]
+  retrofit_note: "closure_plan frontmatter RETROFITTED 2026-07-09 (session frosty-thompson-d8f490; frontmatter-only, PROMOTES NOTHING, no claims.yaml/queue touch). Before this the plan carried no closure_plan block, so it was one of the two plans invisible to the closure map (flagged in closure_status.md 'Plans WITHOUT closure_plan frontmatter') even though its Experiment A (V3-EXQ-723) had already run. Snapshot regen (generate_closure_snapshot.py) left to the next governance cycle -- the shared REE_assembly checkout currently holds other sessions' uncommitted derived closure_status/closure_drift churn, so this session lands the plan .md only and does not regenerate/commit snapshots."
+  nodes:
+    - id: "global_workspace_jlens:A"
+      title: "Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)"
+      phase: 1
+      status: done
+      severity: load-bearing
+      owner_exq: V3-EXQ-723
+      unblocks_claims: [SD-064, MECH-191]
+      depends_on: []
+      last_updated: 2026-07-09
+      completion_note: "V3-EXQ-723 RAN 2026-07-09 (v3_exq_723_jlens_dispositional_readout_diagnostic_20260709T151028Z_v3; experiment_purpose=diagnostic, claim_ids=[], evidence_direction=non_contributory, EXCLUDED from governance scoring -- PROMOTES NOTHING). Post-hoc ridge readout z_t -> committed_class_{t+H} + SVD J-space on the existing all-ON substrate (identical to V3-EXQ-714/719a); NO new mechanism. Self-route = compact_action_coupled_subspace_present on 3/3 seeds: action predictable above the 200-permutation label null (primary bal-acc 0.504 vs null p95 0.363), J-space dim ~2 capturing 0.9 energy, jspace_activity_fraction ~0.00028 (<< the 0.10 compactness ceiling), predictive_retention ~1.006 (>= 0.80 floor -- the compact subspace loses none of the full-state predictive power), broadcast-report proxy available on all seeds. READING (HYPOTHESIS, not a verdict): REE has a compact, action-coupled, broadcast-aligned latent subspace -- the J-space analogue of Anthropic's 2026 finding -- which RAISES the SD-064 prior and, per the plan's own pre-registered sequencing, is the evidence that JUSTIFIES spending the SD-027 V3 boundary-gate retrofit build (node GATE-B) that unlocks the Experiment B falsifier. Caveat carried: absolute action-predictability is modest (0.50 balanced accuracy over 5 committed classes) -- the signal is above-null but weak, and 'compact' is measured over that weak signal. Diagnostic routed to /failure-autopsy for adjudication; SD-064 stays candidate/v3_pending."
+    - id: "global_workspace_jlens:GATE-B"
+      title: "SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, no-op-default)"
+      phase: 2
+      status: open
+      severity: high
+      owner_exq: null
+      unblocks_claims: [SD-064, SD-027, MECH-254]
+      depends_on: ["global_workspace_jlens:A"]
+      decision_live: "DECISION LIVE as of 2026-07-09. Experiment A (723) returned compact_action_coupled_subspace_present -- the plan's pre-registered trigger ('A positive is the evidence that justifies spending the retrofit build on B'). The build: an /implement-substrate V3 top-k selection gate over the E1/E2 -> E3 forwarding path (use_boundary_access_gate flag, byte-identical OFF), top-k over active z_world/z_self components per heartbeat, WITH a hard ablation mode (k -> all / gate disabled) for the MECH-254 four-cell factorial. SD-027 is otherwise v4-scoped; this is the optional fixed-k V3 retrofit the SD-027 evidence_quality_note names but never queued. Not yet started -- open, not assembling."
+      last_updated: 2026-07-09
+    - id: "global_workspace_jlens:B"
+      title: "Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD-064 falsifier)"
+      phase: 3
+      status: blocked
+      severity: load-bearing
+      owner_exq: TBD
+      unblocks_claims: [SD-064, SD-027, MECH-254]
+      depends_on: ["global_workspace_jlens:GATE-B"]
+      cross_plan_link: ["conversion_ceiling_campaign:CAMPAIGN", "behavioral_diversity_isolation:GAP-I"]
+      blocking_external: ["global_workspace_jlens:GATE-B (SD-027 V3 top-k access gate not built -- a gate-ablation experiment today would self-route substrate_not_ready, the '642 trap')"]
+      resume_condition: "Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Then queue the MECH-254 four-cell factorial {gate off, gate only, template only, both on} in a task that REQUIRES multi-step committed-action integration (the conversion-ceiling / committed-action-diversity surface is the natural fit -- that DV is already the ceiling-bound one; cross-linked). DV = integrative competence + committed-action diversity; test for a CLIFF (integrative cognition -> ~0, reactive/automatic intact) vs GRACEFUL degradation. Cliff => SD-064 (genuine workspace); graceful => the SD-027-original pluralist / redundant-distributed-pathway reading. This is the sharpest SD-064 test and the direct port of Anthropic's ablation result."
+      last_updated: 2026-07-09
+    - id: "global_workspace_jlens:MECH-191"
+      title: "MECH-191 cross-architecture legibility unblock check (does A's dispositional readout resolve the tonic-channel gap?)"
+      phase: 2
+      status: open
+      severity: low
+      owner_exq: null
+      unblocks_claims: [MECH-191]
+      depends_on: ["global_workspace_jlens:A"]
+      note: "MECH-191 (cross-architecture signal legibility) is substrate-blocked because REE's functional channels are TONIC (instantaneous channel value is not a legibility map). Experiment A's dispositional readout -- 'which latent states are dispositionally coupled to future committed action' -- is exactly a legibility instrument reading disposition-toward-output rather than instantaneous value, so it is a candidate unblock. Follow-on confirmation task, not load-bearing for SD-064 closure; open pending someone checking whether the 723 J-space readout resolves MECH-191's tonic-channel problem."
+  deferred_or_external:
+    - note: "Experiment B ultimately resolves SD-064, which is v3_pending. If the SD-027 V3 top-k retrofit (GATE-B) is judged not worth building in V3, both GATE-B and B convert to deferred (SD-027 is otherwise v4-scoped) and SD-064 stays v3_pending into V4. Kept as open/blocked v3 nodes for now because A came back positive and the plan pre-registers the v3 retrofit as the intended unblock path."
+---
+
 # Global Workspace + J-lens: design note
 
 Owner claim: **SD-064** (REE instantiates a global-workspace-like access channel).
