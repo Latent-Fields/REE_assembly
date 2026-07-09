@@ -22384,6 +22384,24 @@
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
+  implementation_note: >
+    V3-NARROW DE-COMMIT LEVER LANDED 2026-07-09 (user-directed; PROMOTES NOTHING,
+    status/confidence unchanged). A deliberate low-odds-but-owed V3-narrow slice --
+    ONLY function (1) MECH-264 counterfactual-value + function (4) disengagement-for-
+    exploration, in a PARAMETER-FREE geometric form (no learned head, no training) --
+    was implemented as a commit-LATCH DE-COMMIT / switch-propensity lever for the
+    DURATION face of the F-dominance conversion ceiling (MECH-439), NOT the V4 learned
+    substrate. Config REEConfig.use_frontopolar_decommit (default False) +
+    frontopolar_gain (default 0.0), bit-identical OFF. MECH-264 counterfactual value =
+    goal-proximity ADVANTAGE ||z_chosen - z_goal|| - ||z_alt - z_goal|| (NON-F channel);
+    release pressure = frontopolar_gain * max(0, cfv_now - cfv_at_entry) (entry-relative
+    derivative) injected into ree_core/policy/natural_commit_urgency.py. The full learned
+    MECH-264/MECH-265 substrate + gateway stay V4 (implementation_phase v4, v3_pending
+    false unchanged): the use_frontopolar_analog learned-head flag is untouched, and
+    MECH-265 relative-importance is structurally V4-blocked (single-resource env, no
+    K>=2 goals). Motivated by failure_autopsy_MECH-445-cluster-715a-717_2026-07-07 (the
+    arming residual needs a DISTINCT de-commit-release lever). Record: ree-v3/CLAUDE.md
+    "SD-033e (V3-narrow)"; validation isolated-GAP-A only (all-ON gated on V3-EXQ-724).
   v3_v4_boundary:
     # commitment_closure:GAP-9, 2026-06-09 -- decision: formally DEFER the substrate.
     # implementation_phase stays v4 (NOT pulled to v3): SD-033e's only reverse-
@@ -23272,6 +23290,21 @@
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
+  implementation_note: >
+    V3-NARROW GEOMETRIC INSTANTIATION LANDED 2026-07-09 (user-directed; PROMOTES
+    NOTHING, stays candidate / implementation_phase v4 / v3_pending true). A
+    parameter-free geometric reading of the MECH-264 counterfactual value -- the
+    goal-proximity ADVANTAGE of the best UNCHOSEN candidate over the committed
+    endpoint in z_world space, ||z_chosen - z_goal|| - ||z_alt - z_goal|| -- was
+    wired as the switch signal of the SD-033e V3-narrow de-commit lever
+    (ree-v3 use_frontopolar_decommit; ree_core/pfc/frontopolar_analog.py
+    compute_counterfactual_value). This is NOT the full MECH-264 substrate: the
+    "running estimate maintained in parallel with SD-033c's chosen-option value"
+    and the switch-margin over MULTI-STEP counterfactuals remain V4 (MECH-163
+    multi-step planning prerequisite unmet; a 1-step counterfactual collapses to
+    MECH-257). The V3 slice is a single-tick geometric advantage, used only as an
+    entry-relative de-commit pressure on the natural-commit latch, not a maintained
+    parallel value channel -- so v3_pending stays true. See SD-033e implementation_note.
   depends_on:
     - SD-033e          # primary substrate this mechanism lives in
     - SD-033c          # vmPFC-analog (chosen-option value); MECH-264 is the counterfactual sibling signal
