@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-09.1 -->
+<!-- EXPLORER_VERSION: 2026-07-09.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -623,6 +623,36 @@
       overflow: auto;
       display: none;
       min-width: 0;
+    }
+
+    /* Rendered-markdown tables (Morning Paper + Docs viewer). Scoped so the
+       claims-list <table> is untouched. .md-table-wrap gives wide tables their
+       own horizontal scroll so they never push the page wider. */
+    #paperDoc .md-table-wrap, .docs-wrap .md-table-wrap {
+      overflow-x: auto;
+      margin: 12px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    #paperDoc table, .docs-wrap table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 13px;
+      background: #fff;
+    }
+    #paperDoc th, #paperDoc td, .docs-wrap th, .docs-wrap td {
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    #paperDoc thead th, .docs-wrap thead th {
+      background: #f6f8fa;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    #paperDoc tbody tr:nth-child(even), .docs-wrap tbody tr:nth-child(even) {
+      background: rgba(0,0,0,0.025);
     }
 
     .governance-wrap {
@@ -3240,7 +3270,8 @@ END CONFLICT RESOLUTION`;
         inBlockquote = false;
       }
 
-      for (const rawLine of lines) {
+      for (let __i = 0; __i < lines.length; __i++) {
+        const rawLine = lines[__i];
         const trimmed = rawLine.trim();
 
         if (trimmed.startsWith('```')) {
@@ -3307,6 +3338,48 @@ END CONFLICT RESOLUTION`;
           continue;
         } else if (inBlockquote) {
           flushBlockquote();
+        }
+
+        // GitHub-flavoured pipe tables: a row containing '|' immediately followed
+        // by a |---|:--:|---:| alignment/separator row. Consume the whole block.
+        if (trimmed.indexOf('|') !== -1 && __i + 1 < lines.length &&
+            /^\s*\|?\s*:?-{1,}:?\s*(\|\s*:?-{1,}:?\s*)+\|?\s*$/.test(lines[__i + 1])) {
+          flushParagraph();
+          closeList();
+          flushBlockquote();
+          const splitRow = (ln) => {
+            let s = ln.trim();
+            if (s.startsWith('|')) s = s.slice(1);
+            if (s.endsWith('|')) s = s.slice(0, -1);
+            return s.split('|').map(c => c.trim());
+          };
+          const headers = splitRow(trimmed);
+          const aligns = splitRow(lines[__i + 1]).map(c => {
+            const s = c.trim();
+            const l = s.startsWith(':'), r = s.endsWith(':');
+            return (l && r) ? 'center' : r ? 'right' : l ? 'left' : '';
+          });
+          const cell = (tag, txt, align) => {
+            const st = align ? ` style="text-align:${align}"` : '';
+            return `<${tag}${st}>${renderInlineMarkdown(txt || '')}</${tag}>`;
+          };
+          const out = ['<div class="md-table-wrap"><table><thead><tr>'];
+          headers.forEach((h, k) => out.push(cell('th', h, aligns[k])));
+          out.push('</tr></thead><tbody>');
+          let __j = __i + 2;
+          while (__j < lines.length && lines[__j].trim() !== '' &&
+                 lines[__j].indexOf('|') !== -1 &&
+                 !/^\s*#{1,6}\s/.test(lines[__j]) && !/^\s*```/.test(lines[__j])) {
+            const cols = splitRow(lines[__j]);
+            out.push('<tr>');
+            for (let k = 0; k < headers.length; k++) out.push(cell('td', cols[k], aligns[k]));
+            out.push('</tr>');
+            __j++;
+          }
+          out.push('</tbody></table></div>');
+          html.push(out.join(''));
+          __i = __j - 1; // resume after the consumed table block
+          continue;
         }
 
         const listMatch = trimmed.match(/^(\d+\.|[-*+])\s+(.*)$/);
