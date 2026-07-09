@@ -12,9 +12,9 @@ closure_plan:
     - id: "global_workspace_jlens:A"
       title: "Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)"
       phase: 1
-      status: done
+      status: in_progress
       severity: load-bearing
-      owner_exq: V3-EXQ-723
+      owner_exq: "V3-EXQ-723; V3-EXQ-723a claimed 2026-07-09 (supersedes 723, re-testing A reading with discriminative compactness gates)"
       unblocks_claims: [SD-064, MECH-191]
       depends_on: []
       last_updated: 2026-07-09
