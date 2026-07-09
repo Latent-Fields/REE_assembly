@@ -23905,6 +23905,37 @@
     reconsideration; Quilodran 2008 temporal-transfer coupling between
     MECH-268 and SD-034 captured in the closure_reset_pe_ema +
     closure_pe_cap_after design.
+
+    F-C3 LIVE-PATH WIRING + ECOLOGICAL-DEMONSTRATION GAP (2026-07-09,
+    ree-v3 main c7fc045). The 2026-07-09 design/implementation audit
+    (design_implementation_audit_2026-07-09.md sec 3A F-C3 + sec 6)
+    found DACC.record_outcome had ZERO callers in the live agent path,
+    so dacc_saturation_enabled=True was silently INERT ecologically --
+    _saturation_factor always returned 1.0 and the habituation /
+    rumination PE attenuation never activated in a real agent loop. Up
+    to 2026-07-09 the saturation was validated ONLY via V3-EXQ-463b's
+    harness, which manually injects record_outcome each eval step
+    (synthetic per-step stream, not the agent's own loop). c7fc045
+    closed BOTH wiring gaps: (1) the agent.py select_action tail now
+    calls record_outcome each waking tick, outcome class = harm-vs-no-
+    harm on z_harm_a thresholded by contextual_safety_harm_threshold,
+    gated on the REEConfig dacc_saturation_enabled flag (byte-identical
+    when off; 463b unaffected as it patches DACCConfig post-build); and
+    (2) DACCConfig construction now propagates the dacc_saturation_*
+    knobs from REEConfig (previously unpropagated -- the source of the
+    "does not yet propagate" caveat in 463b). So MECH-268 CAN now fire
+    ecologically. HOWEVER the SCIENCE is NOT yet demonstrated in a real
+    agent loop: as of 2026-07-09 MECH-268 still rests only on 463b's
+    synthetic injection. The ecological (live-loop, non-synthetic)
+    falsifier V3-EXQ-729 (v3_exq_729_mech268_dacc_saturation_liveloop,
+    authored + smoke-PASS 2026-07-09) is QUEUED to close this gap: it
+    makes NO manual record_outcome call, proves the _outcome_history
+    FIFO is populated by the LIVE select_action path (counting spy),
+    and asserts final-third sat_factor < 0.95 (ON) vs ~1.0 (OFF, with
+    zero live record calls) under sustained chronic-harm exposure.
+    Until V3-EXQ-729 lands a PASS the ecological demonstration is
+    OUTSTANDING. This note documents wiring + a pending falsifier and
+    PROMOTES NOTHING (status stays provisional).
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
