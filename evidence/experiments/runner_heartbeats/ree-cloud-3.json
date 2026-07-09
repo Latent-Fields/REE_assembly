@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-09T03:17:47Z",
+  "last_tick_utc": "2026-07-09T03:42:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-721",
   "current_exq_started_utc": "2026-07-08T21:00:57.763317+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 44 / CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
     "runs_done": 6,
     "runs_total": 6,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 265,
-    "overall_pct": 101.9
+    "overall_pct": 110.7
   },
-  "seconds_elapsed": 22609,
+  "seconds_elapsed": 24115,
   "seconds_remaining": 0,
   "recent_lines": [
     "[v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic] starting (dry_run=False)",
@@ -44,7 +44,9 @@
     "verdict: PASS seed=43 guard_pass=True measurable=True (contact_rate=0.2963 z_goal_at_contact=0.4230)",
     "Seed 44 Condition CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
     "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4294 formed=True",
-    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.894 gate=pass"
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.894 gate=pass",
+    "[train] p0_guided seed=44 ep 130/265 mean_len=200.0 rv=0.00004",
+    "[train] hazard_avoidance seed=44 ep 170/265 median_last=200.0 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
