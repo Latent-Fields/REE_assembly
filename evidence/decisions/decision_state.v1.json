@@ -2170,13 +2170,13 @@
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
     "SD-063": {
-      "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-2026-07-09",
+      "decision_needed": "Promotion review: candidate -> provisional (first genuine supporting evidence)",
       "decision_status": "applied",
-      "rationale": "V3-EXQ-716 validated all three load-bearing criteria (CRPS quantile beats point; precision_error_corr over EMA null; SD-031 agency residual preserved) -- exactly the note's gate condition. v3_pending cleared. 716 tagged non_contributory/claim_ids=[], so a claim-tagged evidence run (V3-EXQ-716a) is queued for candidate->provisional scoring.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Clear gate: substrate implemented + validated (V3-EXQ-716 PASSED C1/C2/C3)",
-      "timestamp_utc": "2026-07-09T19:00:29.795689Z"
+      "rationale": "V3-EXQ-716a PASS (evidence/supports, 3/3 seeds all 3 load-bearing criteria); first genuine claim-scoring entry; v3_pending=false; overall_conf 0.824, 0 opposing, confirmed_established. SD-031 agency-residual caveat carried.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote to provisional",
+      "timestamp_utc": "2026-07-09T20:23:07.151995Z"
     },
     "WEEKLY-DISPATCH": {
       "actor": "user",
@@ -2197,7 +2197,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-09T19:00:44.181661Z",
+  "generated_at_utc": "2026-07-09T20:23:53.001034Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -7488,9 +7488,9 @@
     "what_would_answer": "The 2026-06-20 pilot axis-audit (pilot_result.md s7) shows 7 of 9 proposed axes are ALREADY\nfirst-class in claims.yaml (depends_on [844 edges], implementation_phase, v3_pending + a literal\nblocks_v3_green_board field, version_relevance, exp/lit confidence split, indexer conflict_ratio,\nepistemic_category/epistemic_stance) -- so this decision is ~80-90% already realised. ADOPT\n(decision correct + worth the small remaining work) iff an explorer view built on the existing\nfields PLUS the two missing pieces -- (a) an explicit per-claim ethical-risk axis or a typed edge\ninto the SENT-*/GOV-* governance_rule layer, (b) richer typed edge labels beyond depends_on\n(contradicts / refines / tested_by / narrows / dispatches_to) -- demonstrably answers the governance\nqueries (most load-bearing / most under-evidenced / most conflict-burdened / which experiment cuts\nthe most uncertainty) BETTER than today's explorer. REJECT/CLOSE if the existing fields already\nanswer those queries unaided (the 'graph' would add vocabulary without improving a decision -- the\nDLIF kill-criterion). Non-degeneracy guard: compare against the CURRENT explorer's actual output on\nthe same queries, not a strawman tag-list. OUT OF SCOPE: any probabilistic-inference engine,\nfactor-graph message passing, or claims-registry rewrite -- none is a v3 strict green-board dependency.\n"
   },
   "SD-063": {
-    "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
-    "status": "candidate",
+    "assembly_state": "mature",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "e2.conditional_predictive_uncertainty_head",
     "title": "E2 world-forward carries a conditional predictive-uncertainty head (distribution-free quantile form) feeding E3 commitment gating: the forward model emits a per-prediction predictive spread that tracks realized error, instead of relying only on E3's running-variance EMA (a temporally-smoothed global estimate whose predicted uncertainty has near-zero per-point error correlation).",
     "type": "design_decision"

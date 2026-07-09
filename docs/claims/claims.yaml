@@ -43601,7 +43601,7 @@
   claim_type: design_decision
   subject: e2.conditional_predictive_uncertainty_head
   polarity: asserts
-  status: candidate
+  status: provisional
   implementation_phase: v3
   v3_pending: false
   claim_level: architectural
@@ -43674,6 +43674,19 @@
     deposits NO claim-scoring evidence -- SD-063 stays `candidate` and a
     claim-tagged evidence-confirmation run is queued (V3-EXQ-716a) to supply the
     scoring evidence for a candidate->provisional promotion.
+    PROMOTED candidate->provisional 2026-07-09 (governance): V3-EXQ-716a
+    (v3_exq_716a_sd063_conditional_uncertainty_confirmation_20260709T193517Z_v3)
+    PASSED as experiment_purpose=evidence / claim_ids=[SD-063] / evidence_direction
+    supports -- 3/3 seed wins on all three load-bearing criteria (C1 heldout
+    conditional spread 0.41 >> 0.05; C2 sufficient test transitions 2142; C3 E2
+    world-forward discriminates OFF), readiness_met. This is SD-063's FIRST genuine
+    claim-scoring supporting entry (712 + 716 were both non_contributory diagnostics
+    depositing no scoring evidence). Derived standing at promotion: overall_confidence
+    0.824 (exp 0.775 / lit 0.84), 0 opposing, quadrant confirmed_established, 1 genuine
+    experimental entry. v3_pending already false. SD-031 agency-residual caveat still
+    carried on the dependency (C3 preserved it, but a single confirmation -- re-check
+    the residual is not absorbed if a joint-trained successor run lands). PROMOTES SD-063
+    ONLY; no dependent claim re-weighted.
   location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
 
 - id: SD-064

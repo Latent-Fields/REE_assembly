@@ -1,21 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-07-09T19:02:15Z`  
-Last review: `2026-07-09T17:58:00Z`  
-Pending: **3** item(s) -- 2 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-09T20:24:39Z`  
+Last review: `2026-07-09T20:24:00Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_725_coherence_nonreducibility_learned_binder_20260709T095128Z_v3` | 2026-07-09T09:51 | (no claim tags) | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic_20260709T110001Z_v3` | 2026-07-09T11:00 | (no claim tags) |
-| `v3_exq_727_capability_yardstick_calibration_20260709T182049Z_v3` | 2026-07-09T18:20 | (no claim tags) |
+All experiments reviewed. Nothing pending.
 
 ---
 
