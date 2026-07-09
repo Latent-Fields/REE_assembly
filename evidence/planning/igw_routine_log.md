@@ -806,3 +806,6 @@ One line per hourly tick. ASCII only.
 2026-07-09T19:31:44Z no eligible item (skipped 197): IGW-20260709-001:skill /governance not allowed; IGW-20260709-002:skill /governance not allowed; IGW-20260709-177:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
 2026-07-09T20:32:04Z SPAWN IGW-20260709-192 skill=/queue-experiment prio=40 uuid=197b5d5c-e5a2-43ec-8cd4-b184a84c2146 pid=30612 worktree=igw-192-proposal-for-q-061
 2026-07-09T20:41:46Z auto-defer IGW-20260709-192 hash=62ccb43dcc08 for 48h (complete)
+2026-07-09T20:41:47Z complete IGW-20260709-192 spawned->completed outcome=USEFUL_LANDED: marked EVB-0307/Q-061 blocked_substrate: MECH-367 depressive-regime vector is V4
+2026-07-09T21:33:17Z reconcile-release hash=62ccb43dcc08 (IGW-20260709-192 -> completed)
+2026-07-09T21:33:08Z skip IGW-20260709-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
