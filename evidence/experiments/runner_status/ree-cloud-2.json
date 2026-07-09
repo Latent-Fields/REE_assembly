@@ -1,18 +1,40 @@
 {
   "schema_version": "v1",
-  "runner_pid": 669,
-  "runner_started_at": "2026-07-04T01:40:59.006633+00:00",
-  "last_updated": "2026-07-04T01:42:07.723652+00:00",
+  "runner_pid": 667,
+  "runner_started_at": "2026-07-09T16:50:39.378099+00:00",
+  "last_updated": "2026-07-09T18:20:50.249626+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-711",
+      "queue_id": "V3-EXQ-721",
       "backlog_id": "",
-      "claim_id": "MECH-439",
-      "title": "ARC-110 x ARC-108 ascending-spiral gain validation (loop-effective-weight repair; A_ASCENDING_OFF vs A_ASCENDING_ON)",
+      "claim_id": "",
+      "title": "MECH-446 closure-fire -> latch-armed-occupancy LAG-distribution diagnostic (Move M3): re-anchor the de-commit DV from the vacuous within-arm occupancy-drop to the fire->occupancy lag distribution",
       "description": "",
-      "estimated_minutes": 400.0,
+      "estimated_minutes": 212.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-724",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Competence-localization diagnostic (all-ON forage): OFAT over P1-budget / frozen-encoder / mechanism-interference vs a greedy-oracle positive control",
+      "description": "",
+      "estimated_minutes": 620.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-725",
+      "backlog_id": "",
+      "claim_id": null,
+      "title": "Coherence non-reducibility retest on the LEARNED-binder cross_stream_binding substrate (641a/720 harness + P0 binder curriculum; PASS = >=4/6 SPEC AND n_rebind>0)",
+      "description": "",
+      "estimated_minutes": 145.8,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2812,6 +2834,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 68.7
+    },
+    {
+      "queue_id": "V3-EXQ-727",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Capability yardstick calibration (WS-3): claim-agnostic 4-metric suite vs random floor + greedy-oracle ceiling",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS (arm=greedy_oracle seed=44 forage/ep=6.05 survival=20.95 goal_reach=1.0 plan_depth=4.25) | outcome: PASS label=capability_yardstick_calibrated readiness_met=True oracle_forage/ep=6.333333 random_forage/ep=0.266667 | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-727 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-727.json",
+      "started_at": "2026-07-09T16:50:39.401349+00:00",
+      "completed_at": "2026-07-09T18:20:50.248935+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_727_capability_yardstick_calibration_20260709T182049Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 5410.8
     }
   ]
 }
