@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-09T21:23:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "parent_autopsy": "failure_autopsy_V3-EXQ-719a_2026-07-08",
+  "context": "WS-1 of evidence/planning/ree_ai_design_critique_plan.md (capability floor before structure)",
+  "targets": [
+    {
+      "run_id": "v3_exq_724_competence_localization_diagnostic_20260709T211405Z_v3",
+      "queue_id": "V3-EXQ-724",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "self_route_label": "competence_deficit_diffuse",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a intact (diagnostic, no claim tested)",
+        "biological_reference": "partial / formal-import: prediction-rich, action-poor; dorsal-striatal learned action under-instantiated as a bias head",
+        "prerequisites": "missing: no first-class policy-learning substrate (SD) exists",
+        "implementation": "stub (prime suspect): bias-head-only REINFORCE is the shared un-varied invariant across all arms",
+        "environment": "unknown/untested: oracle wins via privileged nearest-resource access; obs may not afford resource localization; contamination 7-11/ep",
+        "measurement": "design gap: blind to the shared invariant and to H2 (no learned non-REE control)",
+        "integration": "not the story: stripping gating (A3) was worst, not best",
+        "scale": "likely insufficient: bias-head policy capacity + non-action-adapted representation"
+      },
+      "biological_reference": {
+        "closest_mechanism": "learned sensorimotor policy (dorsal-striatal RPE-driven action learning) over perceptual representations",
+        "dependencies": ["action-adapted representation", "RPE / actor-critic action-learning signal", "resource-localizing observation"],
+        "is_formal_import": true,
+        "divergence": "REE trains rich prediction but learns action only via a bias head; action-learning capacity impoverished relative to prediction-learning capacity",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-724 competence-localization diagnostic (non_contributory, promotes/demotes nothing). Diffuse across the three OFAT factors (P1 budget A1, encoder-freeze A2, mechanism count A3, combined A4 -- all sub-floor; oracle 6.05 clears the 1.0 floor). Autopsy (failure_autopsy_V3-EXQ-724_2026-07-09) localizes the deficit to the ONE invariant 724 never varied: bias-head-only REINFORCE policy learning over prediction-trained representations. Routed to /queue-experiment for a policy-learning discriminator (REE full-policy-head arm + non-REE vanilla-RL control on identical observation) to resolve H1 (REE action stack) vs H2 (observation interface unlearnable) BEFORE any competence-substrate build. Brake-exempt (different question, no claim tagged).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "f_dominance_conversion_ceiling",
+        "rationale": "Build target (policy-learning substrate vs observation encoding) is exactly what the discriminator decides; do not write a substrate entry until H1/H2 resolves."
+      },
+      "recommended_redesign": {
+        "route": "queue-experiment",
+        "suggested_queue_id": "V3-EXQ-727 (queue-experiment assigns real id)",
+        "experiment_type_suggested": "v3_exq_NNN_policy_learning_discriminator",
+        "experiment_purpose": "diagnostic",
+        "claim_ids": [],
+        "brake_exempt": true,
+        "brake_exempt_reason": "different question than ARC-062/MECH-309; tags no claim; not a lettered re-test of a same-claim ceiling",
+        "env": "identical to 724 (same ENV_KWARGS, seeds 42/43/44, P2 protocol); keep hand-coded oracle as positive control",
+        "arms": [
+          {"id": "B0", "role": "baseline_anchor", "desc": "724 A0 bias-head-only REINFORCE all-ON; reproduces incompetence"},
+          {"id": "B1", "role": "H1_test", "desc": "REE stack with a FULL trainable policy/action head (not bias-head-only) + own optimizer, representation permitted to adapt for action; else as B0"},
+          {"id": "B2", "role": "H2_test", "desc": "non-REE vanilla learned policy (small PPO or DQN MLP) on the identical observation vector, no REE machinery, comparable budget"}
+        ],
+        "load_bearing_dv": "P2 mean_resources_per_episode vs floor 1.0 (majority of seeds)",
+        "interpretation_grid": {
+          "B2_clears_AND_B1_clears": "H1 (policy-learning mechanism): bias-head-only was the bottleneck -> build proper action/policy-learning substrate under f_dominance_conversion_ceiling",
+          "B2_clears_AND_B1_fails": "deeper H1: REE stack beyond the policy head obstructs even a full head -> narrow to planner/drives/gating; do not build the head alone",
+          "B2_fails": "H2 (observation/env interface): target is the observation encoding, not the policy; a policy-learning build would be wasted",
+          "B1_clears_AND_B2_fails": "FLAG implausible (REE full-head beating vanilla RL on identical obs); check leakage / privileged input"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "reason": "brake-exempt: diagnostic tags no claim (claim_ids=[]); asks a different question than the ARC-062/MECH-309 conversion-ceiling claims; not a same-claim lettered re-test"
+      },
+      "learning_extracted": [
+        "Competence deficit is invariant to training budget, encoder plasticity, and mechanism count (and their combination) -> lives in the shared un-varied constant: bias-head-only policy learning over prediction-only representations.",
+        "REE is prediction-rich, action-poor: substantial world model, action learned via a bias head -- a biological translation gap vs dorsal-striatal action learning.",
+        "All-ON gating does NOT suppress foraging (A3 stripped it, got worse) -- kills the 'mechanisms veto action' hypothesis for this substrate.",
+        "724's OFAT design had a blind spot: varied everything except the policy-learning mechanism, and included no learned non-REE control -- future localization diagnostics should vary the learning mechanism and include a non-REE learned control."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
