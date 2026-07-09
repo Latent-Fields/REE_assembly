@@ -58,12 +58,21 @@ SUBSTRATE_CLAIM_TYPES = {
     "architecture_hypothesis",
 }
 
-# Substrate-ceiling park marker (warn-only). A `substrate_ceiling` claim may
-# carry `ceiling_decision: deferred` to tell the governance Step 6a-v audit
-# (scripts/check_substrate_ceiling_audit.py) the build-decision is deliberately
-# parked -- the ceiling is NOT an orphan awaiting a substrate-design owner. When
-# set it must be a known value AND carry a `ceiling_routing_note` (reason + date).
-VALID_CEILING_DECISIONS = {"deferred"}
+# Substrate-ceiling decision marker (warn-only). A `substrate_ceiling` claim may
+# carry `ceiling_decision` to tell the governance Step 6a-v audit
+# (scripts/check_substrate_ceiling_audit.py) how the ceiling was routed:
+#   `deferred`  -- the build-decision is deliberately parked (the ceiling is NOT
+#                  an orphan awaiting a substrate-design owner).
+#   `exhausted` -- the ceiling-exhaustion demotion rule (GOV-CEIL-1) fired: N>=3
+#                  ceiling hits with no positive discrimination on any richer
+#                  substrate; the claim is demoted to a ceiling-exhausted
+#                  contested candidate (epistemic_category -> standard, status
+#                  floored to candidate, null reading carried co-equally). The
+#                  marker is a historical stamp; the demoted claim leaves the
+#                  substrate_ceiling set, so the audit no longer processes it.
+# When set it must be a known value AND carry a `ceiling_routing_note`
+# (reason + date).
+VALID_CEILING_DECISIONS = {"deferred", "exhausted"}
 
 # Statuses that count as terminal-positive for the flag-drift check.
 # 'implemented' is included per 2026-04-17 governance decision: SD-005 and other

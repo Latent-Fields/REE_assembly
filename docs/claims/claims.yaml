@@ -47314,6 +47314,69 @@
     benefits, and whose model of mind is treated as default; surface this as an
     externally legible justice question (GOV-EXT-1).
   notes: "Source thought sec.4 (Justice / power / false exclusion). Realised as docs/governance/justice_power_and_false_exclusion_register.md (Phase 3 artefact). Cross-ref SENT-15 (denialism/anthropomorphism symmetry) and GOV-EXT-1 (external legibility)."
+- id: GOV-CEIL-1
+  title: "Substrate-ceiling exhaustion demotion rule: a claim that hits the substrate ceiling N>=3 times (>=3 confirmed failure-autopsy verdicts recommending substrate_ceiling) WITHOUT a single positive discrimination on any richer substrate is DEMOTED, not parked indefinitely. The competing null reading -- the mechanism is inert / doing no work -- is then carried co-equally with the hypothesis until a positive discrimination on a richer substrate exists. substrate_ceiling is honest but structurally lets a hypothesis never lose; this rule pre-registers the loss condition."
+  claim_type: governance_rule
+  subject: governance.epistemics.ceiling_exhaustion_demotion
+  polarity: asserts
+  status: candidate
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-09
+  source_thought: evidence/planning/ree_ai_design_critique_plan.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Epistemic-hygiene governance rule (WS-2 of the AI-design critique roadmap).
+    The substrate_ceiling category correctly treats a failed discrimination as
+    non-falsifying (the substrate, not the claim, may be too coarse) -- but that
+    same asymmetry is the exact structural incentive that lets a theory never
+    lose: 34 claims carry substrate_ceiling, 64 carry
+    pending_retest_after_substrate, and 72% of the registry is candidate. Without
+    a pre-registered loss condition the registry accumulates unkillable
+    hypotheses. This rule supplies that loss condition, symmetrically weighting
+    the null.
+    DEFINITIONS.
+    (a) CEILING HIT = one confirmed (status:confirmed) failure_autopsy_*.json
+    whose target lists the claim in claim_ids AND carries
+    recommended_epistemic_category: substrate_ceiling. N = 3 distinct hits: three
+    failed discriminations, no positive one, is enough for the inert-mechanism
+    reading to earn co-equal standing.
+    (b) RICHER SUBSTRATE = a substrate_queue entry, status: implemented, that
+    landed after the claim first acquired the ceiling AND delivers a genuinely
+    more-expressive mechanism the ceiling named (the binding mechanism, per the
+    ceiling_retest_binding_substrate semantics) -- NOT a no-op-default param, env
+    knob, or robustness fix (same "changed the mechanism the claim measures" test
+    as the Step 6a-vii evidence-staleness audit). A POSITIVE DISCRIMINATION = a
+    subsequent PASS / supports run on that enriched substrate.
+    (c) TRIGGER = ceiling_hit_count >= N AND no positive discrimination on any
+    richer substrate. EXEMPT: (i) ceiling_may_have_lifted claims -- an implemented
+    richer substrate exists with an owed, un-run retest; run the retest first, it
+    may still vindicate the claim; (ii) parked claims (ceiling_decision: deferred)
+    -- a deliberate future-version (V4/V5-leaning or convergence-intake) deferral,
+    not a stuck V3 hypothesis; (iii) self_handled claims (own implemented
+    substrate). A mapped-but-perpetually-unbuilt design owner is NOT an exemption:
+    a paper design owner that stays unbuilt across N ceiling hits does not rescue
+    the claim from the null.
+    (d) DEMOTION TARGET STATE = "ceiling-exhausted contested candidate": remove
+    the promote/demote suppression by setting epistemic_category: standard; floor
+    status to candidate (active/provisional/stable -> candidate; NOT rejected --
+    the claim is NOT falsified, its null twin is now merely co-equal); stamp
+    ceiling_decision: exhausted + a ceiling_routing_note recording the hit count
+    and date; and carry the competing "mechanism is inert / doing no work" reading
+    CO-EQUALLY in the claim's evidence_quality_note. Promotion out of this state is
+    re-gated on a future positive discrimination on a richer substrate.
+    PROCESS. Detection is automatic and non-falsifying-safe:
+    check_substrate_ceiling_audit.py counts confirmed ceiling autopsies per claim
+    and surfaces a ceiling_exhausted ACTIONABLE overlay (field-absent / count<N is
+    never flagged -- no mass demotion), run warn-only inside governance.sh.
+    APPLICATION is user-approved, never silent: governance Step 6a-v surfaces the
+    exhausted set via AskUserQuestion (like ceiling_may_have_lifted / orphaned) and
+    the user adjudicates granularity -- an umbrella claim whose CORE passed but
+    whose sub-property hit the ceiling is demoted at the sub-property (child)
+    claim, not the umbrella.
+  notes: "WS-2 deliverable of evidence/planning/ree_ai_design_critique_plan.md. Wiring: scripts/check_substrate_ceiling_audit.py (ceiling_hit counter from confirmed failure_autopsy_*.json + ceiling_exhausted overlay), scripts/governance.sh (warn-only audit step), scripts/validate_claims.py (ceiling_decision: exhausted added to VALID_CEILING_DECISIONS), governance skill Step 6a-v (surface + demotion procedure). N=3 is a module constant (CEILING_EXHAUSTION_N) -- tunable. First post-landing governance cycle clears a one-time backlog (ARC-062/MECH-309 conversion-ceiling cluster dominate the autopsy corpus); steady-state is small because ceiling_decision markers suppress re-flag. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref the substrate_ceiling epistemic-category row in REE_assembly/CLAUDE.md and Step 6a-v of the governance skill."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment

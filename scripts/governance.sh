@@ -95,6 +95,14 @@ echo "--- Step 3c-bis: Closure-status snapshot (server-free rollup) ---"
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
 "$PYTHON" scripts/validate_brain_region_map.py || true
 
+echo "--- Step 3e: Substrate-ceiling mapping + exhaustion audit (warn-only) ---"
+# Reports the substrate_ceiling partition (mapped / parked / self-handled /
+# may-have-lifted / orphaned) AND the GOV-CEIL-1 ceiling-exhaustion overlay
+# (>=N confirmed ceiling autopsies with no richer-substrate win -> surface for
+# user-approved demotion at governance Step 6a-v). Read-only; never edits
+# claims.yaml. Warn-only here -- run with --strict for a blocking CI gate.
+"$PYTHON" scripts/check_substrate_ceiling_audit.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
