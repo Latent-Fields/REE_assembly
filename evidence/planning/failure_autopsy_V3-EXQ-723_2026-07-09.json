@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-09T17:34:20Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_723_jlens_dispositional_readout_diagnostic_20260709T151028Z_v3",
+      "queue_id": "V3-EXQ-723",
+      "claim_ids": [],
+      "context_claims": ["SD-064", "MECH-191"],
+      "failed_criterion": "discrimination",
+      "flagged_adjudication": "vacuous_pass",
+      "flag_is_false_positive_mechanism": true,
+      "flag_conclusion_correct": true,
+      "flag_false_positive_cause": "criteria_non_degenerate contains branch-selector 'diffuse_branch': False; legacy indexer check any(v is False) treats it as a degenerate criterion. Deleting the key re-adjudicates to 'verified'. build_experiment_indexes.py:289.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- claim_ids=[]; SD-064 cannot express itself through non-discriminative gates",
+        "biological_reference": "clear -- Baars GWT / Anthropic J-space; ported measurement, not biology divergence",
+        "prerequisites": "present -- post-hoc readout on existing all-ON substrate; all readiness floors met",
+        "implementation": "partial -- compactness/retention carry the symbol of the <10% test without discriminative force; broadcast/reactive contrasts computed but not gated",
+        "environment": "partial -- seed 43 committed-class distribution near-degenerate (2 effective classes)",
+        "measurement": "under-instrumented/misleading (DOMINANT) -- compactness (<0.10) and retention (>=0.80) trivially satisfiable by any weak nonzero linear ridge map in a 112-dim latent",
+        "integration": "n/a",
+        "scale": "adequate for estimability; signal itself weak (bal_acc barely above null)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Baars Global Workspace (access-consciousness); Anthropic 2026 Jacobian lens as the ported method",
+        "dependencies": ["SD-027 selection gate", "MECH-089 packaging", "MECH-287 broadcast", "SD-037 override"],
+        "is_formal_import": true,
+        "divergence": "compactness operationalization (activity-fraction ceiling) does not survive REE's 112-dim recurrent geometry; non-discriminative",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-723 (J-lens dispositional readout, diagnostic, claim_ids=[]): adjudicated INCONCLUSIVE by failure_autopsy_V3-EXQ-723_2026-07-09. The vacuous_pass indexer flag is a schema-collision false positive (diffuse_branch:False inside criteria_non_degenerate). The self-route compact_action_coupled_subspace_present is NOT trustworthy on its own terms: the discrimination gates (jspace_activity_fraction<0.10; retention>=0.80) are non-discriminative -- trivially satisfied by any weak nonzero linear ridge map in a 112-dim latent. Established: committed action is WEAKLY linearly decodable above null (bal_acc 0.35-0.50 vs null_p95 0.21-0.51). NOT established: a compact action-coupled workspace. Does NOT raise the SD-064 prior; does NOT justify the SD-027 Experiment-B retrofit build. Superseded by V3-EXQ-723a (redesigned discriminative compactness + gated broadcast/reactive contrasts) when it runs.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "First autopsy tagging SD-064; and the redesign changes the measurement, not a same-ceiling re-run. Brake inapplicable."
+      },
+      "learning_extracted": [
+        "jspace_activity_fraction<0.10 is not a compactness test in a high-dim recurrent latent -- a ridge-map row space is a tiny fraction for ANY weak signal; needs a matched-rank random-subspace baseline.",
+        "predictive_retention ~1.0 is near-automatic when the J-space IS W's predictive directions; needs a non-trivial comparator or must be dropped.",
+        "The plan's positive-mode (broadcast-alignment reportability + reactive-bypass H1-vs-H5) was reported-not-gated; the label overclaims relative to the plan's own definition. Redesign must gate these.",
+        "Branch-selector flags (diffuse_branch) must not live in criteria_non_degenerate{} -- governance-tooling convention lesson."
+      ],
+      "routing": "queue-experiment",
+      "requeue_spec": {
+        "new_id": "V3-EXQ-723a",
+        "kind": "alphabetic_suffix_implementation_fix",
+        "same_scientific_question": true,
+        "changes": [
+          "discriminative compactness: J-space must beat a matched-rank random-subspace baseline",
+          "gate broadcast-alignment (reportability) and reactive-bypass (H1-vs-H5) contrasts into the verdict",
+          "prefer committed-action-balanced eval so no seed degenerates to ~2 classes"
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "spawned_tooling_task": {
+    "summary": "diffuse_branch:False schema collision false-flags compact-branch J-lens runs as vacuous_pass",
+    "fix_options": ["script-side: move branch-selectors out of criteria_non_degenerate{} or invert to compact_branch:True", "indexer-side: legacy vacuous_pass check should ignore branch-selector keys"]
+  }
+}
