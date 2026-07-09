@@ -1599,7 +1599,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-192-proposal-for-q-061 && claude --resume 197b5d5c-e5a2-43ec-8cd4-b184a84c2146",
       "task_claim_session_id": "igw-auto-igw-192-proposal-for-q-061-20260709T203217Z",
       "assigned_at": "2026-07-09T20:32:04Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-09T20:41:45Z",
+      "completion_summary": "marked EVB-0307/Q-061 blocked_substrate: MECH-367 depressive-regime vector is V4/V5, claim says DO NOT queue a V3 experiment",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0219 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -2023,6 +2027,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-08T19:58:53Z",
       "re_eligible_after": "2026-07-10T19:58:53Z"
+    },
+    {
+      "stable_hash": "62ccb43dcc08",
+      "igw_id_at_disposition": "IGW-20260709-192",
+      "owner_exq": null,
+      "claim_ids": [
+        "Q-061"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for Q-061",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-09T20:41:46Z",
+      "re_eligible_after": "2026-07-11T20:41:46Z"
     }
   ]
 }
