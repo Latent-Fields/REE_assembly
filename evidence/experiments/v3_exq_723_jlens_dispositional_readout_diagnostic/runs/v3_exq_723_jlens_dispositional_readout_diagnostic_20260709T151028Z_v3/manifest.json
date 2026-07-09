@@ -1,0 +1,106 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_723_jlens_dispositional_readout_diagnostic",
+  "run_id": "v3_exq_723_jlens_dispositional_readout_diagnostic_20260709T151028Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-09T15:10:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "compact_action_coupled_subspace_present",
+    "preconditions": [
+      {
+        "name": "readout_sufficient_p2_ticks",
+        "kind": "readiness",
+        "description": "Per-seed P2 ticks >= TOTAL_TICKS_FLOOR so the dispositional map is estimable. Below-floor => substrate_not_ready_requeue, NOT a workspace verdict.",
+        "control": "P2 eval window tick count per seed",
+        "measured": 4211.0,
+        "threshold": 3000.0,
+        "met": true
+      },
+      {
+        "name": "readout_sufficient_train_pairs_primary_h",
+        "kind": "readiness",
+        "description": "Per-seed usable (z_t, committed_class_{t+H}) TRAIN pairs at PRIMARY_H >= TRAIN_PAIRS_FLOOR so the ~112-dim ridge map is well-posed. Below-floor => substrate_not_ready_requeue.",
+        "control": "within-episode training pairs at primary horizon",
+        "measured": 2107.0,
+        "threshold": 1000.0,
+        "met": true
+      },
+      {
+        "name": "at_least_two_committed_classes",
+        "kind": "readiness",
+        "description": "Per-seed distinct committed classes >= MIN_COMMITTED_CLASSES; a classifier needs >= 2 target classes. Below => substrate_not_ready_requeue.",
+        "control": "distinct executed committed-action classes per seed",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "action_predictable_above_null_majority",
+        "kind": "readiness",
+        "description": "The linear readout predicts committed_class_{t+H=PRIMARY} above the label-permutation p95 on a majority of seeds. Absent this signal, compactness is not assessable (an undertrained-substrate signature, NOT a workspace null) => substrate_not_ready_requeue.",
+        "control": "count of seeds with bal_acc_full > null_p95 at PRIMARY_H",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "readiness_majority_seeds_estimable",
+        "kind": "readiness",
+        "description": "Readout is estimable (all floors above) on a majority of seeds; only then is a present/diffuse branch licensed. Below => substrate_not_ready_requeue.",
+        "control": "count of readout-estimable seeds",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "compact_action_coupled_subspace_present",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "readiness_estimable": true,
+      "action_predictable_above_null_majority": true,
+      "jspace_compact_majority": true,
+      "predictive_retention_majority": true,
+      "diffuse_branch": false
+    }
+  }
+}

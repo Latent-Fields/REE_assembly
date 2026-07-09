@@ -1,0 +1,77 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic",
+  "run_id": "v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic_20260709T110001Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-09T11:00:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "closure_latch_lag_distribution_measured",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4 on >= 2/3 seeds (curriculum-competent).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true,
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout"
+      },
+      {
+        "name": "lag_distribution_measurable",
+        "description": "READINESS (self-route). >= MIN_MEASURABLE_SEEDS seeds are curriculum-competent AND produced >= 1 closure fire in an episode with a sustained latch-armed occupancy, so a lag is DEFINED. This is the SAME statistic the load-bearing lag DV reads (fire-with-occupancy count on the ON arm). Below floor -> substrate_not_ready_requeue (NEVER a substrate_ceiling / does_not_support / *_nondiscriminative verdict); nothing to measure, not a negative result.",
+        "measured": 6.0,
+        "threshold": 1.0,
+        "met": true,
+        "control": "ARM_ENTRY_ON n_fires_with_occupancy on guard-competent seeds"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "lag_distribution_has_events": true
+    },
+    "criteria": [
+      {
+        "name": "lag_distribution_obtained_non_degenerate",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "measurement_note": "M3 (claim_synthesis_MECH-445-446_2026-07-06). The MECH-446 de-commit DV is RE-ANCHORED from the vacuous within-arm occupancy DROP to the DISTRIBUTION of the tick LAG between each genuine SD-034 closure fire (closure_operator._n_closures increment, the de-commit trigger) and the nearest sustained latch-armed beta occupancy (a run >= SUSTAIN_MIN_TICKS). Graded output: seed_median_lag_stats (abs-lag distribution over per-seed medians) + pooled_coreg_within_horizon_frac (fraction of fires with an occupancy within LAG_HORIZON ticks -- the fraction the 715 falsifier window could ever have scored). A large median lag / low coreg fraction quantifies exactly how much co-registration the f_dominance de-commit-release amend must buy. PROMOTES NOTHING; MECH-445/446 unchanged.",
+    "attribution_guard": "closure_exclusive_decommit_eval=True -> beta elevation is CLOSURE-EXCLUSIVE, so every measured occupancy is closure-formed by construction (not a generic beta co-occurrence). ARM_ENTRY_OFF (no entry primitive) forms no occupancy -> its lag is censored: the negative control confirming the occupancy is entry-driven.",
+    "levers_off_note": "rung-6 NaturalCommitUrgencyRelease + ARC-108 JOB-2 driver pair OFF in every arm. The measured object is the INTRINSIC SD-034 closure de-commit fire vs the closure-entry occupancy.",
+    "context_drop_dv": "n_window_events / mean_pre_closure_occ are REPORTED (not load-bearing) to show the 715 falsifier's drop window remained starved on the same measurable seeds -- the lag DV is what extracts signal the drop DV could not."
+  }
+}
