@@ -1,94 +1,94 @@
-# Project Insights — 2026-06-19
+# Project Insights — 2026-07-09
 
-Generated: 2026-06-19T14:11:25Z
-
-> **Data-freshness caveat:** `runner_status.json` was last written `2026-06-09T06:00Z` —
-> ~10 days stale. Under Phase 3 the coordinator DB is the authoritative run-state store and
-> `runner_status.json` is no longer the live mirror. The experiment-health counts below are
-> therefore a trailing snapshot through 2026-06-09; the most recent runs (688/MECH-044,
-> 468e, 514s, 654-series) appear only in `pending_review.md`, not in the counts. Treat the
-> rates as trend indicators, not a current census.
+Generated: 2026-07-09T06:21:28Z
 
 ---
 
 ## Experiment Health
 
-- **Total runs (through 2026-06-09):** 840 — PASS: 283 | FAIL: 437 | ERROR: 87 | UNKNOWN: 32 | INCONCLUSIVE: 1
-  - **Error rate:** 10.8% (87 / 807 PASS+FAIL+ERROR) — within normal band; not dominated by crashes.
-  - FAIL:PASS ≈ 1.5:1, expected for a falsification-first programme (FAIL = ran to completion, criteria not met).
+> **Caveat:** `runner_status.json` is frozen at **2026-06-09** (last_updated 2026-06-09T06:00Z). Under Phase 3 the live experiment record moved to the coordinator DB + per-run manifests in `evidence/experiments/`; the file below is the historical corpus (EXQ-000 .. ~653), **not** the current 700-series work. Counts are lifetime-to-cutover.
 
-- **High-iteration chains** (distinct lettered iterations ≥ 5 — repeated diagnose/redesign cycles).
-  *Claim attribution drifts across letters; counts are continuity flags, not single-claim verdicts:*
-  - **EXQ-085 — 14 iterations, all FAIL.** Tagged MECH-071 only at 085c; the chain's FAILs are goal-navigation, not harm-calibration (canonical claim-drift trap). Migrated to SD-015 → 622/626 ladder under a new number; not abandoned.
-  - **EXQ-514 — 13 iterations** (SD-049). Reached PASS at 514g/h/i, then forked to the non-degenerate identity-distinct-wanting retest (514j/k/l FAIL) and continues live as 514s (MECH-436 drive-coupling, in pending_review). Healthy iteration toward a moving target, not a stall.
-  - **EXQ-418 — 13 iterations.**
-  - **EXQ-543 — 10 iterations** (MECH-309 → ARC-062). 543 PASS, then 543b–543k all FAIL after re-tag to ARC-062 — the ARC-062 multi-rule-context ceiling (10 failure records in substrate_queue).
-  - **EXQ-490 — 10 iterations** (MECH-269b → Q-040 → MECH-295). Q-040 cohort contaminated+superseded 2026-05-07; resolved to PASS at 490k under MECH-295.
-  - **EXQ-445 / 047 — 9 each.**
-  - **EXQ-603 — 8 iterations** (Q-045 / scaffolded_sd054). Reached PASS at 603j; readiness flipped true 2026-06-11 (603n).
-  - **EXQ-610 — 6 iterations** (INV-074 crystallization-necessity). 610/610a ERROR → 610b–610f FAIL; longest unresolved retest chain.
+- **Total runs:** 840 (PASS: 283 | FAIL: 437 | ERROR: 87 | UNKNOWN: 32 | INCONCLUSIVE: 1)
+- **Error rate:** 10.4% (87 / 840). FAIL is the dominant outcome (52%) — expected for a falsification-driven programme, but see "high-iteration" below for where FAILs are churning rather than resolving.
 
-- **Recurring trouble spots** (claim_ids in ≥ 2 ERROR entries):
-  - **UNTAGGED — 39 ERRORs** (largest class by far; addressed by the 2026-06-06 validate_queue WARN-on-claimless-entry change, but legacy residue remains).
-  - **MECH-112 — 4 ERRORs**; **MECH-163 — 3 ERRORs**; then 2 each: SD-018, SD-012, SD-003, MECH-188, MECH-116, MECH-113, INV-052, ARC-007.
+- **High-iteration experiments** (3+ lettered iterations — 79 chains total; top offenders):
+  - `V3-EXQ-085` — 14 runs — claims: MECH-071 *(claim drifted to SD-015/ARC-030 mid-chain; goal-navigation, not harm-calibration)*
+  - `V3-EXQ-418` — 13 runs — claims: SD-016 / SD-017
+  - `V3-EXQ-514` — 13 runs — claims: SD-049 *(SD-049 Phase-2 still blocked; see substrate)*
+  - `V3-EXQ-490` — 10 runs — claims: MECH-269b / MECH-295 / Q-040 *(Q-040 cohort found contaminated 2026-05-07, superseded)*
+  - `V3-EXQ-543` — 10 runs — claims: ARC-062 / MECH-309 *(the f-dominance conversion-ceiling lineage)*
+  - `V3-EXQ-047` (9), `V3-EXQ-445` (9, untagged), `V3-EXQ-603` (8, Q-045), `V3-EXQ-433` (7, SD-029), `V3-EXQ-540` (7, MECH-307)
 
-- **Stalled chains** (FAIL with no same-number successor; verify migration before shelving):
-  - **EXQ-085** — 14 FAIL, no same-base successor. Per the no-rerun policy it migrated to SD-015 → 622/626; confirm the successor before treating 085 as dead.
-  - **EXQ-610f** (INV-074) — latest is FAIL; crystallization-necessity retest unresolved across 6 letters. Check whether the MECH-341 substrate is now deemed sufficient (making crystallization unnecessary) vs. a genuine open retest.
-  - **EXQ-543k** (ARC-062) — latest FAIL; gated on the multi-rule-context substrate (still blocked, see below).
-  - *Live (not stalled):* 514s, 688 (MECH-044), 654e are in `pending_review.md` awaiting adjudication, not abandoned.
+- **Recurring trouble spots** (claim_ids in 2+ ERROR entries):
+  - `MECH-112` — 4 ERRORs · `MECH-163` — 3 ERRORs
+  - `SD-003`, `ARC-007`, `MECH-113`, `MECH-116`, `SD-018`, `SD-012`, `MECH-188`, `INV-052` — 2 ERRORs each
+
+- **Stalled vs iterating:** the long chains above are mostly *iterating* (lettered successors queued). The genuine stall signal is now in the **substrate failure records**, not runner_status — see next section. The live queue (721/723/724) is **all diagnostics** circling one root.
 
 ---
 
 ## Substrate Bottlenecks
 
-- **Ready-but-unbuilt substrates: none.** Every `ready: true` queue item is already `implemented`/`validated`. MECH-258 and ARC-058 carry the queue *claim*-status `candidate_v3_pending` but their substrate `implementation_status` is **implemented** — `candidate_v3_pending` is the claim's governance state (held until V3 evidence promotes it), not a build-queue state. There is no `/implement-substrate` work outstanding; the open work is *validation*, not construction.
-- **Highest failure-record concentration** (experiments that failed because the substrate was missing/insufficient):
-  - **scaffolded_sd054_onboarding — 28 failure records** (now `ready: true`, readiness flipped 2026-06-11 via 603n; the long tail was the cue-to-action selection-authority ceiling).
-  - **modulatory-bias-selection-authority — 15** (implemented; the dominant E3-selection bottleneck — F monopolises 88–89% of selection variance per V3-EXQ-571).
-  - **MECH-256 — 10** (blocked_by MECH-269); **ARC-062 — 10** (the 543 chain); **ARC-065 — 7**; **commitment-closure-control-plane — 6**; **SD-037 — 6**; **crf-availability-maintenance — 5**; **SD-016 — 5**.
-- **Deeply blocked clusters** (long unresolved dependency chains — the structural ceiling on V3 progress):
-  - **SD-033 family** (SD-033/b/c/d/e) — all blocked on MECH-094 + MECH-261 + ARC-035 (the contextual-memory / write-gate-policy cluster, off the V3 critical path).
-  - **SD-026/027/028** — blocked on INV-034/037/038 + MECH-007.
-  - **ARC-064/MECH-316/317/318** — blocked on the **multi-rule-context substrate** + ARC-062 Phase-3 wiring (same root as the 543 chain).
-  - **MECH-314a-Phase-2** — blocked on a **user architecture decision** (Candidate 5A vs 5B/5C/3), not on code.
+Source: `evidence/planning/substrate_queue.json` (106 entries; 53 implemented).
+
+- **Ready to implement now (`ready: true`): 49 SDs** — this is a large implement-ready backlog, not a shortage. High-leverage ready items (by claims unblocked):
+  - `scaffolded_sd054_onboarding` — unblocks ~20 claims (ARC-030, MECH-117/230/260/295/307/313, SD-049-P2, …) — **but 28 failure records**
+  - `modulatory-bias-selection-authority` — unblocks ~18 claims (MECH-309, ARC-062/063, MECH-314*, SD-057…) — **15 failure records**
+  - `MECH-269` (9 claims), `SD-035` (6), `SD-018` (goal-directed pathway / the entire EXQ-085 cluster)
+
+- **Blocked (unresolved deps): 36 SDs.** Deepest dependency knots: the `SD-033*` cluster (033/033b/033c/033d/033e all waiting on MECH-261/094), `SD-024/025/026/027/028` chain, `SD-049-PHASE-2` (waiting on V3-EXQ-514u measurement redesign).
+
+- **SDs with failure records: 50.** The concentration is stark — two entries own the churn:
+  | Substrate | Failures | Ready? |
+  |---|---|---|
+  | `f_dominance_conversion_ceiling` (MECH-439) | **26** | ❌ |
+  | `scaffolded_sd054_onboarding` | **28** | ✅ |
+  | `modulatory-bias-selection-authority` | 15 | ✅ |
+  | `ARC-062` (rule-apprehension) | 11 | ❌ |
+  | `MECH-256` (self-attribution) | 10 | ❌ |
+  | `v4_loop_segregation` | 9 | ❌ |
+  | `SD-049-PHASE-2` | 8 | ❌ |
+
+**The single dominant bottleneck is the F-dominance committed-action conversion ceiling** (`f_dominance_conversion_ceiling`, 26 failures; its sibling `scaffolded_sd054_onboarding` foraging-competence residual, 28). The entire live queue is diagnostics against it: V3-EXQ-721 (MECH-446 closure→latch lag), V3-EXQ-724 (competence-localization OFAT — explicitly "shared root of the 654h/485i/625e/460h/460i substrate_not_ready wall"), plus V3-EXQ-723 (J-lens readout). This is where iteration effort is being spent and where it is *not yet converging* — the arbitration-reweighting route (709/711/713) was declared **exhausted** in autopsy 2026-07-05, and the question was reclassified V4→V3 (must be closed in V3).
 
 ---
 
 ## Governance State
 
-- **Claims pending V3 substrate** (`v3_pending: true`): **214**.
-- **Pending promotion/demotion decisions requiring user action** (`decision_status: pending_user`): **4** — **MECH-442** (hold pending V3 substrate), **Q-054** (narrow open question), **Q-055**, **Q-056** (hold pending V3 substrate). The other 143 decisions are auto-`applied` (held/suppressed).
-- **Evidence superseded** (rework — manifests with `evidence_direction: "superseded"`): **43** runs. Correctly excluded from scoring by the indexer.
-- **Recommendation mix:** 25 `hold_candidate_resolve_conflict`, 20 `held_v4_by_architectural_commitment`, 8 `narrow_open_question`, remainder `applied`.
+- **Claims pending V3 substrate (`v3_pending: true`): 220** · **`implementation_phase: v3`: 309**. The v3_pending pool is large and growing — most cannot move until substrate lands, and substrate is bottlenecked on the one ceiling above.
+- **Promotion/demotion decisions pending user: 3** live rows — `ARC-106`, `Q-080` (question narrowing), `SD-063`. The bulk of the decision queue (121 demote / 29 promote references) is already `applied`; the dominant standing recommendation is `hold_pending_v3_substrate`.
+- **Pending experiment review: 1** — `v3_exq_720_coherence_nonreducibility_bound_substrate` (FAIL, no claim tags). Clean.
+- **Rework (supersession):** the Q-040 / EXQ-471/483/490/490b cohort remains the canonical contamination event (swallowed TypeError → `is_active()` always False, superseded 2026-05-07); the 654-lineage CRF-gate lockout was a second multi-letter substrate-amend cycle (654c→654f).
 
 ---
 
 ## Literature Coverage
 
-- **Priority-1 (high) backlog items still open: 0.** All 82 high-priority backlog items need **experimental** (not literature) evidence — 51 in_progress, 31 covered. Literature is not the bottleneck.
-- **Open literature items: 15** — all **low** priority (the Q-059…Q-077 cluster). 1 literature item covered.
-- **351 literature directories** present under `evidence/literature/`.
-- **Recently covered** (from WORKSPACE_STATE): RHM-6 (MECH-129/164 relational-harm + love-as-care), DRV-3 (MECH-394/SD-060 drive-arbitration → minted MECH-435), plus AE-9/ABM-9/GDL-8/eth8/PA-7 concurrent V4/V5 pulls. Lit-pull is running smoothly and headless.
+- **Literature backlog is effectively saturated.** `evidence_backlog.v1.json`: of 366 items, **365 need `experimental` evidence, exactly 1 needs `literature`**. There are **no open priority-1 literature items.**
+- `evidence/literature/` holds **384 entries** (targeted reviews across ARC/MECH/SD families).
+- **Implication:** literature is no longer the constraint. The backlog is entirely experiment-bound — 150 open + 155 in_progress experimental items. Effort spent on lit-pulls now has near-zero marginal governance value except for *newly registered* claims.
 
 ---
 
 ## Human-Intervention Patterns
 
-- **Architecture/design decisions are the real gate, not literature or compute:**
-  - **MECH-314a-Phase-2** is blocked purely on a user architecture choice (Candidate 5A vs alternatives).
-  - The **B+D memory-allocation-gate** candidate claims are explicitly held for a user fold-vs-separate / amend-vs-new decision.
-  - 4 `pending_user` governance decisions outstanding.
-- **Claim-attribution disputes recur in diagnose/autopsy work** — the 085 (MECH-071 drift), 543 (MECH-309→ARC-062), and 490 (MECH-269b→Q-040→MECH-295) chains all required re-tagging mid-chain. Several recent sessions (640a, 569g/i, 654d) were dedicated to adjudicating self-routed diagnostic labels (precondition_unmet / vacuous_pass) before they could drive governance — this is now a formal gate (`pending_review.md` flags 3 such self-routes today).
-- **Duplicate-spawn / already-done sessions** — multiple WORKSPACE entries (IGW-029 NO-OP, 640a autopsy already complete, GAP-A 569h route done by 3 sessions) show parallel sessions re-doing landed work. The IGW respawn-loop fix (2026-06-04, COOLDOWN_HOURS=48) addressed the auto-spawn side.
-- **Low-friction headless tasks:** lit-pull (no disputes in recent sessions), queue-experiment (smoke+validate gates catch issues pre-queue), insights/morning-digest.
+Derived from the last ~150 WORKSPACE_STATE Recent-Work entries (session-type mentions):
+
+- **governance (44), queue-experiment (35), review (35), failure-autopsy (35), diagnose-errors (23)** dominate. sync (16), implement-substrate (16), lit-pull (7), morning-digest (7).
+- **Recurrently needs human input:**
+  - **failure-autopsy / diagnose-errors** — the highest-friction loop. The f-dominance ceiling has generated repeated autopsy cycles (709/711/713 exhaustion call, 654d, 603m, 719a) each requiring a judgement call on *root vs measurement artifact*. This is where the project actually spends its human attention.
+  - **governance decisions** — the `pending_user` rows and conflict-resolution holds are interactive by design (skill pauses for input).
+  - **claim attribution on high-iteration chains** — the EXQ-085 / 490 / 543 drift cases need a human to confirm which claim a FAIL actually bears on.
+- **Low-friction / headless-safe:** lit-pull (saturated, rarely contested), morning-digest, sync, insights, pending-review generation. These ran clean.
 
 ---
 
 ## Recommendations
 
-1. **Resolve the 4 `pending_user` governance decisions** (MECH-442, Q-054, Q-055, Q-056) and the **MECH-314a-Phase-2 architecture choice** — these are the only items blocked purely on human input, and MECH-314a unblocks a Phase-2 substrate chain. Highest leverage, zero compute.
-2. **Unstick the SD-032b dACC-analog validation chain** — MECH-258 and ARC-058 are V3-scoped but *already implemented*; what blocks their promotion is V3 evidence, and their validator (the V3-EXQ-445 series) is 9 straight FAIL/ERROR/UNKNOWN iterations (all tagged to the downstream SD-032b, not to MECH-258/ARC-058 directly). The actionable step is a `/failure-autopsy` of the latest 445 iteration (445h FAIL, 2026-05-08) to determine whether the failure is in the dACC-analog wiring or a precondition, *not* `/implement-substrate` (which would no-op — the substrate is built).
-3. **Adjudicate the MECH-044 (688) / 654e / 514s pending-review items** before they age — 3 carry untrusted self-route labels (`precondition_unmet`) that must be autopsied, not trusted, before clearing any `v3_pending` flag or minting substrate. Run `/failure-autopsy` per `proposal_diagnostic_adjudication_gate`.
-4. **Decide INV-074's status explicitly** — 610f is the longest unresolved retest chain (6 letters, ERROR→FAIL). Either confirm MECH-341 makes crystallization unnecessary (close the chain) or redesign; don't leave it spinning.
-5. **Attack the dominant bottleneck, not the symptoms** — modulatory-bias-selection-authority (15 failure records; F monopolises 88–89% of E3 selection variance, V3-EXQ-571). The 543/ARC-062 and scaffolded_sd054 failure tails both terminate at the same selector. Per the conversion-ceiling synthesis, attack channel B (top-k shortlist, 569i thin margin) or rebalance F, rather than queuing more downstream diversity probes that drown at the selector.
+1. **Stop widening; force a verdict on the F-dominance conversion ceiling.** It owns 26 (+28 sibling) failure records, the entire live queue, and the reclassified-to-V3 closure requirement. The diagnostics (721/724) are localization, not fixes. Once V3-EXQ-724 localizes *why* the all-ON agent forages below floor, route straight to a single `/implement-substrate` build attempt — do not queue further OFAT letters. The arbitration-reweighting route is already declared exhausted; a new lever (competence/training-regime), not another reweighting, is what 724 is scoped to find.
+
+2. **Harvest the 49 ready-to-implement SDs that are NOT blocked on the ceiling.** `MECH-269` (unblocks 9), `SD-035` (6), the sleep-phase cluster (MECH-272/273/275/285, contract-validated), and `MECH-287/288` are ready with passing contracts and unblock claims *independent* of f-dominance. These are being starved while attention concentrates on the one hard ceiling. Implementing even 3–4 would convert v3_pending claims that are currently just waiting.
+
+3. **Retire routine lit-pull as a standing loop.** Literature is saturated (1 open lit item of 366). Keep lit-pull **event-triggered** (fires only when a genuinely new claim registers), not scheduled. Redirect that cadence to substrate implementation and autopsy throughput.
+
+4. **Fix the stale-telemetry blind spot.** `runner_status.json` froze 2026-06-09; insights/morning-digest that read it are analysing a month-old corpus. Point trend analysis at the coordinator DB / manifests (or the `live-status` branch) so health metrics reflect the 700-series work.
