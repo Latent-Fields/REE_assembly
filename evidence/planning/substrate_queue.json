@@ -4376,6 +4376,15 @@
           "experiment_type": "v3_exq_720_coherence_nonreducibility_bound_substrate",
           "metric": "coherence-specificity SPEC 3/6 seeds (real_frac_state_div_gated > shuffle by margin >= 0.05); PARTIAL LIFT from 641a's 1/6 on the unbound substrate; D1 4/6, D3 6/6, n_rebind 0/6",
           "target": ">=4/6 seeds coherence_specific AND n_rebind>0 with a LEARNED (plastic) cross-stream binder"
+        },
+        {
+          "run_id": "v3_exq_725_coherence_nonreducibility_learned_binder_20260709T095128Z_v3",
+          "experiment_type": "v3_exq_725_coherence_nonreducibility_learned_binder",
+          "metric": "LEARNED binder did NOT converge: InfoNCE loss pinned at chance log(64)=4.16 (observed 3.75-3.96) across 487-1760 steps, flat+non-monotone. SPEC regressed 3/6 (720 fixed) -> 0/6; rebinding PASS (1387) vacuous (argmax over near-random projections).",
+          "target": ">=4/6 SPEC AND n_rebind>0 with a CONVERGED learned binder",
+          "epistemic_category": "untrained_substrate_artifact",
+          "autopsy": "evidence/planning/failure_autopsy_V3-EXQ-725_2026-07-09.json",
+          "note": "NOT a coherence verdict and NOT a substrate ceiling. The 720 learned-binder hypothesis is UNTESTED, not refuted. claim_ids=[]; both 2026-04-23 intakes stay OPEN."
         }
       ],
       "implementation_hint": "The FIXED-field V3 binder (cross_stream_binder.py, strength 0.5) lifted coherence-specificity from 1/6 (641a, unbound) to 3/6 (720, bound) but did NOT clear the 4/6 SPEC gate. A fixed random-projection shared field creates correlation but nothing shapes the coupling so that real cross-stream coherence is robustly MORE selection-informative than a contrast-matched shuffle (seeds 44/47: real divergence ~0 while shuffle diverges). Residual prerequisite = a LEARNED (plastic) binder (V4): train the shared-factor projections (e.g. a P0 binder curriculum / event-segmented co-encoding) so genuine cross-stream conjunctions carry per-candidate selection signal a shuffle destroys. FOLD IN the rebinding instrument as a substrate-level probe: a fixed field cannot be perturbed INTO a competing-config overtake (n_rebind=0 across 641/641a/720 even at boosted perturbation), so the binding intake's own falsifier (a competing config overtakes the current one under perturbation) needs the learned binder to become exercisable. Retest = the 641a harness (E-orthogonal read + shuffle-of-real-C control) on the learned-binder substrate; PASS = >=4/6 SPEC AND n_rebind>0.",
@@ -4388,25 +4397,43 @@
       "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate",
       "implemented_utc": "2026-07-08T20:37:38Z",
       "implemented_session": "reverent-clarke-16000f",
-      "retest_queue_id": "V3-EXQ-725",
+      "retest_queue_id": "V3-EXQ-725a",
       "status_note": "IMPLEMENTED two modes. FIXED-field V3 binder (2026-07-08, cross_stream_binder.py; retest V3-EXQ-720 RAN 2026-07-09 -> SPEC 1/6->3/6, 4/6 gate NOT cleared, n_rebind=0). LEARNED (plastic) binder BUILT 2026-07-09 (bold-payne-7587d5, /implement-substrate): cross_stream_binding_learned flag; plastic phi_self/phi_world trained by contrastive InfoNCE co-encoding (multiplicative conjunction g=tanh(phi_self*phi_world)); agent.update_cross_stream_binder P0 curriculum; substrate-level binding_score + rebinding_probe (anchor-perturbation) folded in. Smoke: OFF/FIXED byte-identical, LEARNED trains + binding_score discriminates (2.32 vs 0.62), rebinding_probe live (22/40). RETEST V3-EXQ-725 QUEUED 2026-07-09 (641a harness, learned=True strength 0.5, P0 binder curriculum, n_rebind via substrate probe; PASS = >=4/6 SPEC AND n_rebind>0). On C_nonreducible_coherence_specific_register: register candidate Q entities/selection.coherence_nonreducibility + close both 2026-04-23 intakes (binding + path_integral, currently OPEN/gated on this retest).",
       "next_step": {
-        "kind": "learned_binder_v4",
-        "route": "implement-substrate",
+        "kind": "gated_convergence_retest",
+        "route": "queue-experiment",
         "active_near_term": true,
-        "directed_by_user_utc": "2026-07-09",
-        "description": "Build a LEARNED (plastic) cross-stream binder replacing the fixed random-projection field: train the shared-factor projections (P0 binder curriculum / event-segmented co-encoding) so genuine cross-stream conjunctions carry per-candidate selection signal a shuffle destroys. FOLD IN the rebinding instrument as a substrate-level probe (n_rebind=0 across 641/641a/720 -- a fixed field cannot be perturbed into a rebind).",
-        "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the learned-binder substrate",
+        "description": "Queue V3-EXQ-725a: the 725 harness on the REPAIRED (converging) learned binder, HARD-gated on learned_binder_converged (loss_ema < 0.85*log(batch)) replacing the vacuous n_learn_steps>1 check; temperature=0.2.",
+        "retest_harness": "V3-EXQ-725/641a harness on the repaired learned-binder substrate",
         "pass_criteria": ">=4/6 SPEC AND n_rebind>0",
-        "built_utc": "2026-07-09T07:17:51Z",
-        "retest_queue_id": "V3-EXQ-725",
-        "status": "built; retest V3-EXQ-725 queued (awaiting run)"
+        "precondition": "binder_converged=True (smoke-confirmed 2026-07-09)",
+        "retest_queue_id": "V3-EXQ-725a",
+        "status": "repaired; 725a to be queued via /queue-experiment"
       },
       "source_autopsy_720": "evidence/planning/failure_autopsy_V3-EXQ-720_2026-07-09.json",
-      "amended_utc": "2026-07-09T07:17:51Z",
-      "amended_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
+      "amended_utc": "2026-07-09T19:14:46Z",
+      "amended_session": "wizardly-tharp-59b54c (learned-binder convergence repair / implement-substrate)",
       "learned_binder_implemented_utc": "2026-07-09T07:17:51Z",
-      "learned_binder_implemented_session": "bold-payne-7587d5 (implement-substrate)"
+      "learned_binder_implemented_session": "bold-payne-7587d5 (implement-substrate)",
+      "functional_state": "repaired_converges",
+      "convergence_repair": {
+        "repaired_utc": "2026-07-09T19:14:46Z",
+        "routed_by": "evidence/planning/failure_autopsy_V3-EXQ-725_2026-07-09.json",
+        "root_cause": "Observed (z_self,z_world) latents near-collinear buffer-wide (cos ~0.99); un-normalized dot-product InfoNCE logit dominated by near-constant projection magnitude -> positives not separable from in-batch shuffles -> loss at chance. Training-signal/geometry defect, NOT missing architecture and NOT environment-adequacy (env carries the conjunction signal; the binder discarded it).",
+        "probe": "evidence/planning/binder_convergence_probe_2026-07-09.md",
+        "fix": "L2-normalize phi_self/phi_world before the dot in learn_step + binding_score (cosine InfoNCE, SimCLR-standard). Loss drops to 0.65-0.80 of chance across seeds; temperature 0.2 deepens margin. Delta/variety/bind_dim probed and NOT adopted (no gain over plain cosine).",
+        "convergence_stat": "binder_converged = loss_ema (EMA 0.9) < conv_frac*log(effective_batch); new E2Config.cross_stream_binding_conv_frac default 0.85. Exposed as CrossStreamBinder.binder_converged / loss_ema / chance_floor.",
+        "smoke": "Real 725 latent stream: loss_ema 3.33 < gate 3.54 -> binder_converged=True at default temp; binding_score matched 0.68 vs shuffled -0.10; un-normalized control stays at chance (0.885); 725 dry-run exit 0. Fixed mode byte-identical.",
+        "files": [
+          "ree-v3/ree_core/latent/cross_stream_binder.py",
+          "ree-v3/ree_core/utils/config.py",
+          "ree-v3/ree_core/predictors/e2_fast.py",
+          "ree-v3/CLAUDE.md",
+          "REE_assembly/docs/architecture/sd_cross_stream_binding_substrate.md"
+        ],
+        "gated_retest": "V3-EXQ-725a: the 725 harness on the repaired binder with a HARD learned_binder_converged precondition (loss_ema < 0.85*log(batch)) REPLACING the vacuous learned_binder_trained (n_learn_steps>1) check; temperature=0.2. PASS = >=4/6 SPEC AND n_rebind>0. If still non-converging under real SP-CEM P0 -> environment-adequacy verdict (route /failure-autopsy). Naive 725b REFUSED.",
+        "queue_gate": "Do NOT queue 725a until the substrate exposes binder_converged=True (satisfied by smoke; /queue-experiment Step 2.5 consumer gate)."
+      }
     },
     {
       "sd_id": "escape-affordance-bridge",

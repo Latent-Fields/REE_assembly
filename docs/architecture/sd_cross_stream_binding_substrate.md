@@ -2,7 +2,7 @@
 
 **Claim ID:** cross_stream_binding_substrate (named substrate; unregistered candidate `entities/selection.coherence_nonreducibility`)
 **Subject:** latent.cross_stream_binding
-**Status:** IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic) binder (2026-07-09; retest pending) -- the residual prerequisite the 720 autopsy named.
+**Status:** IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic) binder (2026-07-09) -- the residual prerequisite the 720 autopsy named. **Learned binder CONVERGENCE REPAIRED 2026-07-09** (failure_autopsy_V3-EXQ-725: first learned build did not converge -- InfoNCE at chance; fix = L2-normalize projections / cosine InfoNCE; now `binder_converged=True`). Retest V3-EXQ-725a pending, HARD-gated on convergence.
 **Registered:** 2026-07-08 (fixed); learned mode added 2026-07-09
 **Depends on:** E2FastPredictor.rollout_with_world (SD-005 self/world split), MECH-089 (theta-gamma nesting, conceptual), MECH-270 (ephaptic coupling, conceptual). Learned mode adds a P0 binder training curriculum (satisfied by the retest's P0 phase).
 **Blocks:** the learned-binder retest (641a harness on the plastic substrate), `entities/selection.coherence_nonreducibility` candidate registration, INV-002 (coherence includes temporal/phase binding), the two 2026-04-23 intakes (binding + path_integral)
@@ -132,6 +132,57 @@ is the right build:
    perturbation gives a per-candidate shift `<W_self . p, phi_world(c)>` that
    varies with `c`, so a competitor can overtake.
 
+### Convergence repair (2026-07-09; `failure_autopsy_V3-EXQ-725`)
+
+The first learned build (above) **did not converge.** V3-EXQ-725 (the 641a harness
+with `learned=True`) ran to completion but the binder never trained: the InfoNCE
+loss pinned at chance `log(64)=4.16` (observed 3.75-3.96) across 487-1760 steps,
+flat and non-monotone, and coherence-specificity **regressed** 3/6 (720 fixed
+field) -> 0/6. The 725 autopsy adjudicated this an **untrained-substrate artifact**
+(`epistemic_category = untrained_substrate_artifact`), NOT a coherence verdict and
+NOT a substrate ceiling: the 720 learned-binder hypothesis remains **UNTESTED**,
+and the rebinding PASS (1387 rebinds) was **vacuous** (argmax over near-random
+projections).
+
+**Root cause (convergence probe -- `evidence/planning/binder_convergence_probe_2026-07-09.md`).**
+The observed `(z_self, z_world)` latents the P0 curriculum buffers are near-collinear
+**buffer-wide** (cosine ~0.99; std ~0.007), not just consecutive. The un-normalized
+dot-product InfoNCE logit `<phi_self, phi_world>` is therefore dominated by the
+near-constant projection **magnitude** and carries essentially no per-pair contrast
+-- the positives are not separable from in-batch shuffles, so the objective has no
+gradient and sits at chance. This is a **training-signal / geometry** defect, not a
+missing architecture and not an environment-adequacy failure (the environment already
+carries the conjunction signal; the binder was discarding it).
+
+**Fix -- cosine InfoNCE (L2-normalized projections).** `learn_step` (and
+`binding_score`, so the rebinding probe ranks in the trained geometry) now
+`F.normalize` `h_self`/`h_world` before the dot:
+
+```
+h_self  = normalize(phi_self(z_self))     # unit vector
+h_world = normalize(phi_world(z_world))    # unit vector
+logits  = (h_self @ h_world.T) / temperature   # cosine InfoNCE
+```
+
+Scoring **direction** rather than magnitude exposes the residual conjunction signal.
+The loss then drops to **0.65-0.80 of chance** across seeds (SimCLR-standard cosine
+InfoNCE; `temperature=0.2` deepens the margin vs the default 0.5). This is
+engineering counsel (normalized-embedding contrastive learning), biologically
+compatible: binding-by-synchrony is a coincidence read on **direction/phase**
+alignment, and the multiplicative-conjunction coupling injected into rollouts
+(`factor()`) is unchanged. Delta-binding, variety-filtered negatives, and larger
+`bind_dim` were probed and **not adopted** -- zero gain over plain cosine.
+
+**Convergence stat.** The substrate now reports
+`binder_converged = loss_ema < conv_frac * log(effective_batch)` (`loss_ema`: EMA
+decay 0.9 of the InfoNCE loss; `conv_frac` = `cross_stream_binding_conv_frac`,
+default 0.85). This is the **hard gate the retest MUST check**, replacing the
+vacuous `learned_binder_trained` (`n_learn_steps > 1`) readiness check that green-lit
+the untrained binder in 725. Smoke (real 725 latent stream): `loss_ema` 3.33 < gate
+3.54 -> `binder_converged=True` at default temperature; `binding_score` discriminates
+a matched conjunction (0.68) from a shuffle (-0.10); an un-normalized control on the
+same buffer stays at chance (0.885). Fixed mode is byte-identical.
+
 ### Config (E2Config; all no-op default)
 
 | Param | Type | Default | Purpose |
@@ -145,6 +196,7 @@ is the right build:
 | `cross_stream_binding_temperature` | float | `0.5` | InfoNCE temperature (learned only) |
 | `cross_stream_binding_buffer_size` | int | `512` | co-encoding pair buffer (learned only) |
 | `cross_stream_binding_batch` | int | `64` | contrastive batch size (learned only) |
+| `cross_stream_binding_conv_frac` | float | `0.85` | convergence gate: `binder_converged = loss_ema < conv_frac*log(batch)` (learned only; report-only) |
 
 Mode layering: `enabled=False` -> no binder (pre-substrate, byte-identical).
 `enabled=True, learned=False` -> fixed field (V3-EXQ-720 path, byte-identical).
@@ -186,12 +238,21 @@ bit-identical.
   SPEC 3/6 (lifted from 641a's 1/6) but the 4/6 gate NOT cleared; `n_rebind=0`.
   `failure_autopsy_V3-EXQ-720_2026-07-09` routed the learned binder as the
   residual prerequisite.
-- **The learned-binder retest (V3-EXQ-725, queued 2026-07-09)** -- the SAME 641a
-  harness with `learned=True`, prepended by a **P0 binder-training phase** (per-step
-  `agent.update_cross_stream_binder`), binder FROZEN for the P1 measurement. The
-  rebinding sub-signal reads through the substrate `rebinding_probe`. Pass gate
-  (carried verbatim from 720/641a, now with the rebinding clause exercisable):
-  **`>=4/6` seeds coherence_specific AND `n_rebind>0`**.
+- **The learned-binder retest (V3-EXQ-725, RAN 2026-07-09) -- untrained-substrate
+  artifact.** The 641a harness with `learned=True` ran 18/18 but the binder never
+  converged (InfoNCE at chance); SPEC regressed 3/6 -> 0/6 and the rebinding PASS
+  was vacuous. `failure_autopsy_V3-EXQ-725_2026-07-09` (confirmed) adjudicated this
+  a substrate diagnostic, NOT a coherence verdict: the 720 learned-binder hypothesis
+  is UNTESTED, not refuted. Routed `implement-substrate` -> the convergence repair
+  above.
+- **The GATED retest (V3-EXQ-725a, to be queued once `binder_converged=True`)** --
+  the SAME 725 harness on the REPAIRED binder, with a **HARD
+  `learned_binder_converged` precondition** (`loss_ema < 0.85*log(batch)`) REPLACING
+  the vacuous `learned_binder_trained` (`n_learn_steps>1`) check, and `temperature=0.2`.
+  Pass gate (carried verbatim from 720/641a): **`>=4/6` seeds coherence_specific AND
+  `n_rebind>0`**. If the repaired binder still cannot converge under the real SP-CEM
+  P0, that is an **environment-adequacy** verdict (route back to `/failure-autopsy`),
+  not a coherence verdict. A naive 725b (same non-converging curriculum) is REFUSED.
 - On registerable PASS: register the candidate
   `entities/selection.coherence_nonreducibility` (governance) and close both
   2026-04-23 intakes positive; INV-002's temporal/phase-binding clause gains

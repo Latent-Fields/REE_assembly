@@ -24242,6 +24242,19 @@
     (V4) is the residual prerequisite for coherence-non-reducibility.
     Not a status change (MECH-270 stays candidate; diagnostic
     non_contributory does not weight confidence).
+
+    V3-EXQ-725 (2026-07-09, diagnostic, non_contributory): the LEARNED
+    (plastic) binder built to test the 720 residual-prerequisite
+    hypothesis did NOT converge -- InfoNCE loss stayed at chance
+    (~log(64)=4.16; observed 3.75-3.96) because the observed latents are
+    near-collinear buffer-wide and the un-normalized dot-product logit is
+    magnitude-dominated. Coherence-specificity regressed 3/6 -> 0/6, an
+    untrained-substrate artifact, NOT a verdict on learned
+    binding-by-synchrony. The learned-binder-as-prerequisite hypothesis
+    remains UNTESTED (not refuted). REPAIRED 2026-07-09
+    (implement-substrate): L2-normalize the projections (cosine InfoNCE)
+    -> loss drops to 0.65-0.80 of chance, binder_converged=True; retest
+    V3-EXQ-725a HARD-gated on convergence. Not a status change.
   location: docs/architecture/hippocampal_anchor_selection.md
 
 - id: MECH-271
