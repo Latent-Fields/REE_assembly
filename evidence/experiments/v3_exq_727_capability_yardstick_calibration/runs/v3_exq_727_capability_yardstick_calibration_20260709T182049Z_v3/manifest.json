@@ -1,0 +1,67 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_727_capability_yardstick_calibration",
+  "run_id": "v3_exq_727_capability_yardstick_calibration_20260709T182049Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-09T18:20:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "capability_yardstick_calibrated",
+    "preconditions": [
+      {
+        "name": "oracle_clears_competence_floor",
+        "kind": "readiness",
+        "description": "The greedy nearest-resource ORACLE (ceiling anchor, no agent) must clear COMPETENCE_RESOURCE_FLOOR resources/episode, proving the floor is ACHIEVABLE in this exact env so the yardstick's scale is calibratable. Below-floor => the floor is not achievable here (env too sparse/lethal) => substrate_not_ready_requeue, NEVER a capability verdict.",
+        "control": "greedy nearest-resource oracle forager, same ENV_KWARGS/seed, no agent",
+        "measured": 6.333333,
+        "threshold": 1.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "yardstick_discriminates_ceiling_above_floor",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor": true,
+      "oracle_foraging_above_random": true
+    }
+  }
+}
