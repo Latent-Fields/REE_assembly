@@ -2,10 +2,10 @@
 
 **Claim ID:** cross_stream_binding_substrate (named substrate; unregistered candidate `entities/selection.coherence_nonreducibility`)
 **Subject:** latent.cross_stream_binding
-**Status:** IMPLEMENTED (2026-07-08; validation V3-EXQ-720 queued)
-**Registered:** 2026-07-08
-**Depends on:** E2FastPredictor.rollout_with_world (SD-005 self/world split), MECH-089 (theta-gamma nesting, conceptual), MECH-270 (ephaptic coupling, conceptual)
-**Blocks:** V3-EXQ-720 (641a retest on enriched substrate), `entities/selection.coherence_nonreducibility` candidate registration, INV-002 (coherence includes temporal/phase binding), the two 2026-04-23 intakes (binding + path_integral)
+**Status:** IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic) binder (2026-07-09; retest pending) -- the residual prerequisite the 720 autopsy named.
+**Registered:** 2026-07-08 (fixed); learned mode added 2026-07-09
+**Depends on:** E2FastPredictor.rollout_with_world (SD-005 self/world split), MECH-089 (theta-gamma nesting, conceptual), MECH-270 (ephaptic coupling, conceptual). Learned mode adds a P0 binder training curriculum (satisfied by the retest's P0 phase).
+**Blocks:** the learned-binder retest (641a harness on the plastic substrate), `entities/selection.coherence_nonreducibility` candidate registration, INV-002 (coherence includes temporal/phase binding), the two 2026-04-23 intakes (binding + path_integral)
 
 ## Problem
 
@@ -72,25 +72,65 @@ now reflects a real shared latent factor whose trajectory is a genuine
 per-candidate signature -- and permuting the per-candidate coherence values
 (the SPEC shuffle control) destroys the candidate<->value correspondence.
 
-### Why fixed (untrained) projections, not a learned head
+### Two modes: FIXED field (2026-07-08) and LEARNED binder (2026-07-09)
 
-`W_enc`, `W_out` are **fixed** `nn.Linear` maps, initialised deterministically
-under the caller's seed. This is a deliberate, load-bearing choice:
+**FIXED field (`learned=False`, default).** `W_enc`, `W_out` are **fixed**
+`nn.Linear` maps, initialised deterministically under the caller's seed. This was
+the minimal substrate that installs a genuine common cause without a training
+curriculum: a fixed, joint-state-dependent shared perturbation both streams feel
+(the ephaptic-field analog, MECH-270). It was the right first build -- but
+V3-EXQ-720 (strength 0.5) showed it is **symbol-complete but function-partial**:
+coherence-specificity lifted 1/6 (641a, unbound) -> 3/6 (720, fixed field) but
+did **not** clear the 4/6 SPEC gate, and `n_rebind` stayed 0. A random projection
+creates correlation but nothing **shapes** the coupling so real cross-stream
+conjunctions are robustly more selection-informative than a contrast-matched
+shuffle. `failure_autopsy_V3-EXQ-720_2026-07-09` (confirmed) named the residual
+prerequisite: a **learned (plastic)** binder. The fixed path is preserved
+byte-identical.
 
-1. **The retest cannot train a new head.** The 641a harness runs `agent.eval()`
-   with online-only updates (`record_transition` + `update_z_goal`); it has no
-   P0 curriculum for a new encoder. A learned binder would be
-   untrained-random in the retest and prove nothing. So **phased training does
-   NOT apply** to this SD.
-2. **A fixed shared field is the minimal substrate that creates genuine
-   binding.** The scientific question is whether *bound* streams (sharing a
-   common latent cause) make coherence non-reducible -- not whether a *learned*
-   binder helps. A fixed, joint-state-dependent shared perturbation is the
-   smallest change that installs a genuine common cause. This is the
-   ephaptic-field analog (MECH-270): a shared field that co-located populations
-   both feel, imposed structurally rather than learned.
-3. A **learned** binder (contrastive co-encoding, event-segment-conditioned
-   shared factor) is a natural V4 extension but is explicitly out of scope here.
+**LEARNED binder (`learned=True`, 2026-07-09).** The residual prerequisite, built
+per user direction 2026-07-09 as an active near-term next-step. The projections
+are **plastic**, trained by contrastive co-encoding:
+
+```
+h_self  = phi_self(z_self)          # plastic self projection  (self_dim -> bind_dim)
+h_world = phi_world(z_world)         # plastic world projection (world_dim -> bind_dim)
+g_t     = tanh(h_self * h_world)     # MULTIPLICATIVE conjunction (coincidence/AND detector)
+b_t     = to_common(g_t)             # -> common perturbation (couple() unchanged, mode-agnostic)
+```
+
+Training objective (P0 binder curriculum): **InfoNCE / event-segmented
+co-encoding**. Within-tick observed `(z_self_t, z_world_t)` pairs are POSITIVES;
+in-batch shuffled pairs are NEGATIVES. Symmetric cross-entropy over the full
+pairwise `binding_score(z_self, z_world) = <phi_self(z_self), phi_world(z_world)>`
+matrix. This trains `phi_self`/`phi_world` so genuine conjunctions bind (high
+score) and a shuffle collapses (low score) -- exactly the structure the SPEC
+shuffle control destroys, and the teeth the rebinding falsifier needs. Why this
+is the right build:
+
+1. **The load-bearing biology divergence.** Binding-by-synchrony /
+   communication-through-coherence (Fries; Singer/Gray; Buzsaki theta-gamma
+   code) is **learned and plastic** (Hebbian: fire-together -> wire-together),
+   not a fixed field. The fixed-field mode diverged from biology in exactly the
+   place the 720 autopsy flagged; the learned binder closes that divergence.
+2. **Phased training APPLIES (unlike the fixed mode).** The retest prepends a
+   **P0 binder-training phase** (per-step `agent.update_cross_stream_binder`),
+   then FREEZES the binder for the P1 641a measurement (`agent.eval()`, no
+   further updates). This is the mandatory P0->P1 discipline; joint-training
+   collapse is avoided by training the binder P0-only and on **detached**
+   `(z_self, z_world)` so no gradient leaks into E1/E2's encoders.
+3. **Substrate-level rebinding probe folded in.** `binding_score` +
+   `rebinding_probe(z_self, z_world_candidates, anchor_perturbation)` expose the
+   binding intake's own falsifier -- does a competing world-config OVERTAKE the
+   currently-bound one under an anchor perturbation -- **at the substrate**, not
+   as a separate harness instrument. A fixed field cannot express this
+   (`binding_score` is identically 0, undiscriminating), which is precisely why
+   `n_rebind` stayed 0 across 641/641a/720. The perturbation is applied to the
+   shared **anchor** `z_self` (NOT uniformly to the candidates): `binding_score`
+   is bilinear, so a uniform candidate perturbation shifts every score by the
+   same candidate-independent constant and can never flip the argmax; an anchor
+   perturbation gives a per-candidate shift `<W_self . p, phi_world(c)>` that
+   varies with `c`, so a competitor can overtake.
 
 ### Config (E2Config; all no-op default)
 
@@ -100,6 +140,15 @@ under the caller's seed. This is a deliberate, load-bearing choice:
 | `cross_stream_binding_dim` | int | `16` | shared-factor dim (`bind_dim`) |
 | `cross_stream_binding_strength` | float | `0.15` | coupling scale `strength` |
 | `cross_stream_binding_theta_period` | int | `4` | theta window period in rollout steps (MECH-089) |
+| `cross_stream_binding_learned` | bool | `False` | **False = fixed field (720 path); True = learned binder** |
+| `cross_stream_binding_lr` | float | `1e-3` | P0 binder optimizer LR (learned only) |
+| `cross_stream_binding_temperature` | float | `0.5` | InfoNCE temperature (learned only) |
+| `cross_stream_binding_buffer_size` | int | `512` | co-encoding pair buffer (learned only) |
+| `cross_stream_binding_batch` | int | `64` | contrastive batch size (learned only) |
+
+Mode layering: `enabled=False` -> no binder (pre-substrate, byte-identical).
+`enabled=True, learned=False` -> fixed field (V3-EXQ-720 path, byte-identical).
+`enabled=True, learned=True` -> learned (plastic) binder.
 
 The `CrossStreamBinder` submodule is constructed on `E2FastPredictor` **only
 when the master switch is enabled** -- so with the flag OFF no parameters are
@@ -132,17 +181,23 @@ bit-identical.
 
 ## What This SD Enables
 
-- **V3-EXQ-720** -- the 641a harness (E-orthogonal cross-stream-only coherence
-  read + shuffle-of-real-C contrast-matched control) re-run with
-  `cross_stream_binding_enabled=True`. Pass gate (pre-registered, identical to
-  641a's): `>=4/6` seeds coherence_specific, real `frac_state_div_gated`
-  exceeds shuffle by margin `>= 0.05`.
-- On PASS: register the candidate `entities/selection.coherence_nonreducibility`
-  (governance) and close both 2026-04-23 intakes positive; INV-002's
-  temporal/phase-binding clause gains substrate support.
-- On FAIL: the binding hypothesis is falsified *for this substrate design* --
-  route `/failure-autopsy` to decide whether the fixed-field design is
-  inadequate (V4 learned-binder) or the intakes close.
+- **V3-EXQ-720 (RAN, fixed field)** -- the 641a harness with
+  `cross_stream_binding_enabled=True, learned=False, strength=0.5`. Result:
+  SPEC 3/6 (lifted from 641a's 1/6) but the 4/6 gate NOT cleared; `n_rebind=0`.
+  `failure_autopsy_V3-EXQ-720_2026-07-09` routed the learned binder as the
+  residual prerequisite.
+- **The learned-binder retest (V3-EXQ-725, queued 2026-07-09)** -- the SAME 641a
+  harness with `learned=True`, prepended by a **P0 binder-training phase** (per-step
+  `agent.update_cross_stream_binder`), binder FROZEN for the P1 measurement. The
+  rebinding sub-signal reads through the substrate `rebinding_probe`. Pass gate
+  (carried verbatim from 720/641a, now with the rebinding clause exercisable):
+  **`>=4/6` seeds coherence_specific AND `n_rebind>0`**.
+- On registerable PASS: register the candidate
+  `entities/selection.coherence_nonreducibility` (governance) and close both
+  2026-04-23 intakes positive; INV-002's temporal/phase-binding clause gains
+  substrate support.
+- On FAIL: the binding hypothesis is falsified *even with a learned binder* --
+  route `/failure-autopsy` to decide whether the intakes close.
 
 ## Related Claims
 

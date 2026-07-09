@@ -13,8 +13,8 @@
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
     }
   },
-  "last_seen_session": "reverent-clarke-16000f",
-  "last_updated_utc": "2026-07-09T06:38:06Z",
+  "last_seen_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
+  "last_updated_utc": "2026-07-09T07:17:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4388,8 +4388,8 @@
       "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate",
       "implemented_utc": "2026-07-08T20:37:38Z",
       "implemented_session": "reverent-clarke-16000f",
-      "retest_queue_id": null,
-      "status_note": "IMPLEMENTED (fixed-field V3 binder, 2026-07-08, cross_stream_binder.py; E2Config cross_stream_binding_enabled). Retest V3-EXQ-720 (641a harness, binding ON strength 0.5) RAN 2026-07-09 -> coherence-specificity PARTIAL LIFT 1/6 (641a unbound) -> 3/6 (720 bound), SPEC gate 4/6 NOT cleared; n_rebind=0. Autopsy failure_autopsy_V3-EXQ-720_2026-07-09 (confirmed): fixed-field is symbol-complete but function-partial; residual prerequisite = a LEARNED (plastic) binder (V4). NEXT: /implement-substrate on the learned-binder + folded-in rebinding instrument (ACTIVE near-term per user 2026-07-09). Both 2026-04-23 intakes (binding + path_integral) stay OPEN, gated on the learned-binder retest.",
+      "retest_queue_id": "V3-EXQ-725",
+      "status_note": "IMPLEMENTED two modes. FIXED-field V3 binder (2026-07-08, cross_stream_binder.py; retest V3-EXQ-720 RAN 2026-07-09 -> SPEC 1/6->3/6, 4/6 gate NOT cleared, n_rebind=0). LEARNED (plastic) binder BUILT 2026-07-09 (bold-payne-7587d5, /implement-substrate): cross_stream_binding_learned flag; plastic phi_self/phi_world trained by contrastive InfoNCE co-encoding (multiplicative conjunction g=tanh(phi_self*phi_world)); agent.update_cross_stream_binder P0 curriculum; substrate-level binding_score + rebinding_probe (anchor-perturbation) folded in. Smoke: OFF/FIXED byte-identical, LEARNED trains + binding_score discriminates (2.32 vs 0.62), rebinding_probe live (22/40). RETEST V3-EXQ-725 QUEUED 2026-07-09 (641a harness, learned=True strength 0.5, P0 binder curriculum, n_rebind via substrate probe; PASS = >=4/6 SPEC AND n_rebind>0). On C_nonreducible_coherence_specific_register: register candidate Q entities/selection.coherence_nonreducibility + close both 2026-04-23 intakes (binding + path_integral, currently OPEN/gated on this retest).",
       "next_step": {
         "kind": "learned_binder_v4",
         "route": "implement-substrate",
@@ -4397,11 +4397,16 @@
         "directed_by_user_utc": "2026-07-09",
         "description": "Build a LEARNED (plastic) cross-stream binder replacing the fixed random-projection field: train the shared-factor projections (P0 binder curriculum / event-segmented co-encoding) so genuine cross-stream conjunctions carry per-candidate selection signal a shuffle destroys. FOLD IN the rebinding instrument as a substrate-level probe (n_rebind=0 across 641/641a/720 -- a fixed field cannot be perturbed into a rebind).",
         "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the learned-binder substrate",
-        "pass_criteria": ">=4/6 SPEC AND n_rebind>0"
+        "pass_criteria": ">=4/6 SPEC AND n_rebind>0",
+        "built_utc": "2026-07-09T07:17:51Z",
+        "retest_queue_id": "V3-EXQ-725",
+        "status": "built; retest V3-EXQ-725 queued (awaiting run)"
       },
       "source_autopsy_720": "evidence/planning/failure_autopsy_V3-EXQ-720_2026-07-09.json",
-      "amended_utc": "2026-07-09T06:38:06Z",
-      "amended_session": "cool-morse-0de4e2 (V3-EXQ-720 governance-apply)"
+      "amended_utc": "2026-07-09T07:17:51Z",
+      "amended_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
+      "learned_binder_implemented_utc": "2026-07-09T07:17:51Z",
+      "learned_binder_implemented_session": "bold-payne-7587d5 (implement-substrate)"
     },
     {
       "sd_id": "escape-affordance-bridge",
