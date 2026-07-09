@@ -42731,7 +42731,7 @@
   red_team_question: "What prevents REE's own similarity model from gating care in a way that reproduces dehumanization -- i.e. what stops care from dropping to zero the moment an agent is classified below the 'sufficiently-like-me' threshold?"
   candidate_mitigations:
     - "Care FLOOR via uncertainty-driven expansion: under Axiom 3 the agent cannot be certain where the boundary of similarity lies; Axiom 7's love-expansion derivation makes that same uncertainty EXPAND love outward. Evaluate whether that expansion can be made a hard FLOOR on care (care never falls below a positive baseline for any candidate mind under boundary uncertainty), rather than a merely emergent tendency that a confident mis-classification can defeat."
-    - "Similarity lower-bound on care: a monotone care(similarity) map with a strictly positive floor -- below some similarity level care saturates at a small positive constant instead of dropping to zero -- so no classification, however confident, removes an agent from protection entirely. Contrast with INV-072's dual-pathway corollary, where 'similarity collapse' currently drops protection to zero."
+    - "Asymmetric criterion placement on the care gate (SHARPEST mitigation; user-refined 2026-07-09): treat 'is this a mind worthy of care?' as a signal-detection problem and set the CRITERION liberal, so cost(false-exclusion: deny care to a real mind) >> cost(false-inclusion: extend care to a non-mind). This is the empathy-side analog of the hyperactive agency-detection device -- a hyperactive PATIENT-detector on the care channel. It is the CORRECT calibration under REE's own axioms: a false negative can enable terminal/irreversible harm to a bearer-of-value (Axiom 2 via Axiom 5, under Axiom 4 vulnerability) while a false positive costs only wasted protective behaviour; under permanent similarity-uncertainty (Axiom 3; Axiom 5 says similarity is LEARNED, never certain) the expected-cost-minimising criterion is liberal. Consequence: over-attribution / animism is the HEALTH SIGNATURE, and symmetric accuracy is the pathology -- a mind that never over-attributes is the mis-calibrated (dehumanization-prone) one. The care FLOOR is then the emergent shadow of a liberal criterion, not a separate bolt-on clamp. TUNABLE by the false-positive cost, which is ~0 for inert objects (rivers, dolls, robots) but RISES for deceptive agents that mimic mind-signals to extract care (Axiom 8 deception; Q-032 adversarial minds) -- i.e. the criterion balances INV-072's two pathways: the similarity term keeps it liberal, the threat term tightens it under mimicry."
     - "Epistemic-responsibility coupling (INV-070): treat mis-classification of an agent as below-threshold as a first-class ETHICAL error (not merely a modelling inaccuracy), so the care-gate is penalised for false-negative similarity judgements, not only rewarded for correct ones."
     - "Language-mediated repair as an active obligation (INV-071 / Axiom 8): make the 'expand the category of sufficiently-like-me' operation (INV-071 clause 5) a standing duty of the agent, so the similarity model is biased toward re-admission rather than exclusion."
   ree_mechanism:
@@ -42775,19 +42775,48 @@
       - INV-070 (epistemic responsibility) and INV-071 (language as
         similarity-repair) supply two of the candidate mitigations but were
         registered as ethical invariants, not as guards on REE's care-gate; neither
-        commits REE to a care FLOOR or a similarity lower-bound.
+        commits REE to a liberal care criterion. INV-070 in fact needs the friendly
+        amendment below: it optimises the similarity POSTERIOR for accuracy but is
+        silent on CRITERION placement, and accuracy at the criterion is
+        dehumanization-prone (see the amendment note).
       - Axiom 7's love-expansion-through-uncertainty is the most promising
         mitigation source (uncertainty about the similarity boundary EXPANDS care),
         but it is currently derived as an emergent TENDENCY, not enforced as a floor
         a confident mis-classification cannot defeat. Whether it can be strengthened
         into a floor is the open design question.
 
-    The two headline candidate mitigations to evaluate (see candidate_mitigations):
-    (1) uncertainty-driven expansion as a hard FLOOR on care per Axiom 7; (2) a
-    similarity LOWER-BOUND below which care saturates at a small positive constant
-    rather than dropping to zero. Both are UNDER EVALUATION, not confirmed -- the
-    ree_mechanism list points at candidate/partial addresses, not a solved defence
-    (contrast EXT-001..008 where ree_mechanism names REE's proposed SOLUTION).
+    The headline candidate mitigation (user-refined 2026-07-09, see
+    candidate_mitigations) is ASYMMETRIC CRITERION PLACEMENT on the care gate:
+    treat "is this a mind worthy of care?" as a signal-detection problem and set the
+    criterion liberal so that cost(false-exclusion) >> cost(false-inclusion). Under
+    REE's axioms this is the correct calibration (the false-negative can enable
+    terminal harm to a bearer-of-value; the false-positive costs only wasted care;
+    under permanent similarity-uncertainty the liberal criterion minimises expected
+    cost) -- so over-attribution / ANIMISM is the health signature and symmetric
+    accuracy is the pathology. This SUBSUMES the earlier "care FLOOR" framing: the
+    floor is the emergent shadow of a liberal criterion, not a separate clamp
+    (Axiom 7 love-expansion is that liberal criterion running forward under Axiom 3
+    uncertainty). It is bounded by the false-positive cost, which rises for deceptive
+    agents that mimic mind-signals (Axiom 8; Q-032) -- so the criterion balances
+    INV-072's two pathways (similarity keeps it liberal; threat tightens it under
+    mimicry). All mitigations are UNDER EVALUATION, not confirmed -- the ree_mechanism
+    list points at candidate/partial addresses, not a solved defence (contrast
+    EXT-001..008 where ree_mechanism names REE's proposed SOLUTION).
+
+    Friendly amendment to INV-070 / D2 (candidate follow-on; grist for WS-13):
+    INV-070 and D2 frame the responsibility as inferring similarity "as ACCURATELY as
+    possible", but accuracy is the wrong target AT THE CRITERION. The care gate
+    decomposes into two independent knobs INV-070 currently conflates: (1) the
+    similarity POSTERIOR -- how accurately "is X mind-like" is estimated (INV-070's
+    real target: do not let propaganda/paranoia distort it downward); and (2) the
+    CRITERION -- given that posterior and its uncertainty, where the care threshold
+    sits (the asymmetric-loss knob; answer: liberal). A PERFECTLY accurate classifier
+    is MAXIMALLY dehumanization-prone at the margin because it confidently and
+    correctly places edge-cases just below threshold and withdraws care. So the
+    defence against dehumanization is precisely the sacrifice of accuracy AT THE
+    CRITERION in favour of asymmetric caution -- orthogonal to (not a substitute for)
+    an accurate posterior. INV-070 should be read as: keep the posterior accurate AND
+    place the criterion liberally; the two are separate degrees of freedom.
 
     external_failure_mode is reference/comparative and exempt from governance
     promote/demote, which is the correct posture for a standing red-team caution.
