@@ -14,7 +14,7 @@
     }
   },
   "last_seen_session": "reverent-clarke-16000f",
-  "last_updated_utc": "2026-07-08T23:20:32Z",
+  "last_updated_utc": "2026-07-09T06:38:06Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -4350,15 +4350,15 @@
     },
     {
       "sd_id": "cross_stream_binding_substrate",
-      "title": "Bound multi-stream representation substrate: world_states<->states carry co-varying binding info so cross-stream coherence C(tau) can be non-reducible to E",
-      "status": "pending_validation",
+      "title": "Bound multi-stream representation substrate: learned (plastic) binder so real cross-stream coherence C(tau) is conjunction-specific and non-reducible to E",
+      "status": "implemented",
       "ready": false,
       "design_doc": "docs/architecture/sd_cross_stream_binding_substrate.md",
       "depends_on_unresolved": [
         "MECH-089 theta-gamma nesting",
-        "MECH-094 hypothesis-tag write gate",
-        "MECH-270 ephaptic coupling",
-        "binding intake + path_integral intake (gated on this substrate)"
+        "MECH-270 ephaptic coupling (fixed-field V3 instantiation done; learned = V4)",
+        "binding intake + path_integral intake (both OPEN, gated on the learned-binder substrate)",
+        "a P0 binder training curriculum (V4)"
       ],
       "unblocks_claims": [
         "entities/selection.coherence_nonreducibility (candidate, unregistered)",
@@ -4370,20 +4370,38 @@
           "experiment_type": "v3_exq_641a_coherence_ablation_nonreducibility",
           "metric": "coherence-specificity (real_frac_state_div_gated > shuffle_frac_state_div_gated by margin >= 0.05)",
           "target": ">=4/6 seeds coherence_specific (got 1/6; shuffle diverged >= real in 4/6 seeds)"
+        },
+        {
+          "run_id": "v3_exq_720_coherence_nonreducibility_bound_substrate_20260709T023441Z_v3",
+          "experiment_type": "v3_exq_720_coherence_nonreducibility_bound_substrate",
+          "metric": "coherence-specificity SPEC 3/6 seeds (real_frac_state_div_gated > shuffle by margin >= 0.05); PARTIAL LIFT from 641a's 1/6 on the unbound substrate; D1 4/6, D3 6/6, n_rebind 0/6",
+          "target": ">=4/6 seeds coherence_specific AND n_rebind>0 with a LEARNED (plastic) cross-stream binder"
         }
       ],
-      "implementation_hint": "641a showed that with a fair contrast-matched control, cross-stream phase-alignment over the current z_world (world_states) and z_self (states) streams carries no selection info beyond E (SPEC 1/6; shuffle diverges >= real in 4/6). Build a substrate where the two streams are genuinely bound -- e.g. a shared latent factor / event-segmented co-encoding / theta-gamma-style nesting per MECH-089/094/270 -- so that real cross-stream coherence is informative and shuffling it destroys structure. Retest is the same 641a harness (E-orthogonal read, shuffle-of-real-C control) on the enriched substrate.",
+      "implementation_hint": "The FIXED-field V3 binder (cross_stream_binder.py, strength 0.5) lifted coherence-specificity from 1/6 (641a, unbound) to 3/6 (720, bound) but did NOT clear the 4/6 SPEC gate. A fixed random-projection shared field creates correlation but nothing shapes the coupling so that real cross-stream coherence is robustly MORE selection-informative than a contrast-matched shuffle (seeds 44/47: real divergence ~0 while shuffle diverges). Residual prerequisite = a LEARNED (plastic) binder (V4): train the shared-factor projections (e.g. a P0 binder curriculum / event-segmented co-encoding) so genuine cross-stream conjunctions carry per-candidate selection signal a shuffle destroys. FOLD IN the rebinding instrument as a substrate-level probe: a fixed field cannot be perturbed INTO a competing-config overtake (n_rebind=0 across 641/641a/720 even at boosted perturbation), so the binding intake's own falsifier (a competing config overtakes the current one under perturbation) needs the learned binder to become exercisable. Retest = the 641a harness (E-orthogonal read + shuffle-of-real-C control) on the learned-binder substrate; PASS = >=4/6 SPEC AND n_rebind>0.",
       "priority": 2,
-      "priority_note": "Autopsy suggested 2 (V4-leaning cross-stream binding, off the V3 critical path); strict rule (>=1 fresh failure record) = 1. User confirmed priority 2 in governance cycle 2026-06-06.",
+      "priority_note": "V4-leaning (learned binder needs a training curriculum), but user directed 2026-07-09 to route implement-substrate NOW as an ACTIVE near-term next-step (NOT parked off the V3 critical path). Governance sets the real priority; the fixed-field V3 build stays status=implemented (its build is complete + fair), the learned binder is the new V4 next-step.",
       "added_session": "governance-cycle-20260606T1030Z",
-      "last_seen_session": "governance-cycle-20260606T1030Z",
+      "last_seen_session": "V3-EXQ-720-governance-apply-2026-07-09",
       "source_autopsy": "evidence/planning/failure_autopsy_V3-EXQ-641a_2026-06-06.json",
       "pending_retest_after_substrate": true,
       "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the enriched bound-multi-stream substrate",
       "implemented_utc": "2026-07-08T20:37:38Z",
       "implemented_session": "reverent-clarke-16000f",
-      "retest_queue_id": "V3-EXQ-720",
-      "status_note": "IMPLEMENTED 2026-07-08: shared-latent-factor binding coupling in E2.rollout_with_world (ree_core/latent/cross_stream_binder.py; E2Config cross_stream_binding_enabled, no-op default). Retest V3-EXQ-720 QUEUED (641a harness, binding ON strength 0.5). Awaiting retest: PASS -> register candidate entities/selection.coherence_nonreducibility + close both intakes; FAIL -> /failure-autopsy (fixed-field inadequate -> V4 learned binder)."
+      "retest_queue_id": null,
+      "status_note": "IMPLEMENTED (fixed-field V3 binder, 2026-07-08, cross_stream_binder.py; E2Config cross_stream_binding_enabled). Retest V3-EXQ-720 (641a harness, binding ON strength 0.5) RAN 2026-07-09 -> coherence-specificity PARTIAL LIFT 1/6 (641a unbound) -> 3/6 (720 bound), SPEC gate 4/6 NOT cleared; n_rebind=0. Autopsy failure_autopsy_V3-EXQ-720_2026-07-09 (confirmed): fixed-field is symbol-complete but function-partial; residual prerequisite = a LEARNED (plastic) binder (V4). NEXT: /implement-substrate on the learned-binder + folded-in rebinding instrument (ACTIVE near-term per user 2026-07-09). Both 2026-04-23 intakes (binding + path_integral) stay OPEN, gated on the learned-binder retest.",
+      "next_step": {
+        "kind": "learned_binder_v4",
+        "route": "implement-substrate",
+        "active_near_term": true,
+        "directed_by_user_utc": "2026-07-09",
+        "description": "Build a LEARNED (plastic) cross-stream binder replacing the fixed random-projection field: train the shared-factor projections (P0 binder curriculum / event-segmented co-encoding) so genuine cross-stream conjunctions carry per-candidate selection signal a shuffle destroys. FOLD IN the rebinding instrument as a substrate-level probe (n_rebind=0 across 641/641a/720 -- a fixed field cannot be perturbed into a rebind).",
+        "retest_harness": "V3-EXQ-641a harness (E-orthogonal cross-stream-only coherence read + shuffle-of-real-C contrast-matched control) on the learned-binder substrate",
+        "pass_criteria": ">=4/6 SPEC AND n_rebind>0"
+      },
+      "source_autopsy_720": "evidence/planning/failure_autopsy_V3-EXQ-720_2026-07-09.json",
+      "amended_utc": "2026-07-09T06:38:06Z",
+      "amended_session": "cool-morse-0de4e2 (V3-EXQ-720 governance-apply)"
     },
     {
       "sd_id": "escape-affordance-bridge",
