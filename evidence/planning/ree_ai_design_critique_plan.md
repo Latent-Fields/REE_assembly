@@ -1,0 +1,157 @@
+# REE AI-Design Critique — Roadmap Plan
+
+**Created:** 2026-07-09
+**Owner thread:** strategic / cross-cutting (not a single substrate build)
+**Purpose:** A durable, resume-across-sessions roadmap for pursuing a broad "REE as an AI design" critique — where REE is ahead, where it reinvents the wheel, where it is flawed, and where it needs work — plus the external lenses that should keep guiding it. Each thread below is a workstream (WS) with a concrete first deliverable so it can be picked up cold.
+
+This doc is the resume primitive. Update the **Status table** whenever a WS advances. Keep prose changes in the per-WS sections.
+
+---
+
+## How to read this
+
+The critique produced ~13 actionable threads. They are grouped into tiers by leverage and dependency:
+
+- **Tier 0 — Unblock.** The one thing everything else waits behind.
+- **Tier 1 — Epistemic hygiene.** Cheap, internal, no substrate needed. Do early.
+- **Tier 2 — Theory grounding.** Literature + writing. Parallelizable, mostly lit-pulls + bridge docs.
+- **Tier 3 — Thesis exercise.** Needs substrate/experiments. Puts real load on the central claim.
+- **Tier 4 — Adversarial ethics.** Red-team the moral foundation.
+
+**Do not duplicate in-flight work.** The competence-floor idea (WS-1) overlaps the already-queued **V3-EXQ-724 competence-localization diagnostic** (routed by failure_autopsy_V3-EXQ-719a). WS-1 should *consume* 724's result, not re-queue it. Check `ree-v3/experiment_queue.json` and `conversion_ceiling_campaign_plan.md` before spawning any experiment here.
+
+---
+
+## Status table (resume primitive)
+
+| WS | Tier | Title | First deliverable | Status |
+|----|------|-------|-------------------|--------|
+| WS-1 | 0 | Capability floor before structure | Read V3-EXQ-724 result; competence-floor experiment isolating "can it act" from "does structure help" | NOT STARTED |
+| WS-2 | 1 | Ceiling-claim demotion rule | New GOV-* claim: pre-registered falsification/demotion rule for `substrate_ceiling` / `pending_retest_after_substrate` | NOT STARTED |
+| WS-3 | 1 | Capability-eval yardstick | Minimal capability benchmark suite (independent of any REE claim) to separate "claim wrong" from "substrate coarse" | NOT STARTED |
+| WS-4 | 2 | Formal-ancestor mapping | Table mapping top ~30 load-bearing MECH/ARC to their nearest formal ancestor + that ancestor's measurement math | NOT STARTED |
+| WS-5 | 2 | Active-inference bridge | Lit-pull + bridge doc: precision / epistemic value / exploration math REE can inherit; document exact departures | NOT STARTED |
+| WS-6 | 2 | Bitter-Lesson rebuttal | Written, cited answer to "why won't scale + search eat this structure?" | NOT STARTED |
+| WS-7 | 2 | Corrigibility positioning | Position the commit-boundary against the formal corrigibility literature (MIRI et al.) | NOT STARTED |
+| WS-8 | 2 | Cognitive-architecture graveyard | Study of how Soar / ACT-R / LeCun AMI hit their ceilings; extract anti-patterns REE must avoid | NOT STARTED |
+| WS-9 | 2 | Intrinsic-motivation lit | Lit-pull (Oudeyer, Schmidhuber curiosity, Baldassarre) feeding WS-1 competence + goal/wanting pipeline | NOT STARTED |
+| WS-10 | 3 | Minimal 2-agent world | Trivial 2-agent environment that puts *any* load on the ethics thesis (currently V5-only) | NOT STARTED |
+| WS-11 | 3 | Early-gating vs late-judging demo | One concrete task where REE's early commit-gating demonstrably beats a Constitutional-AI/RLHF-style late judge | NOT STARTED |
+| WS-12 | 4 | Similarity / dehumanization failure mode | First-class claim: "sufficiently-like-me" gates care → structural out-group exclusion; make it explicit + testable | NOT STARTED |
+| WS-13 | 4 | Moral-philosophy red-team | Adversarial audit of the axiom chain (does love *really* expand transitively under uncertainty?) | NOT STARTED |
+
+---
+
+## Tier 0 — Unblock
+
+### WS-1 — Capability floor before structure
+**Why:** The conversion-ceiling campaign's own terminal finding is that the fully-integrated all-ON agent is not behaviourally *competent* enough to produce measurable committed behaviour (forages 0.065 / 0.0 / 0.455 resources/ep, below the 1.0 floor on 0/3 seeds). You cannot demonstrate that commitment gating matters on an agent that cannot forage. This is the Bitter Lesson biting: structure was specified faster than capability was earned. **Highest-leverage item on the board — most other WS wait behind it.**
+
+**First deliverable:**
+1. Read the V3-EXQ-724 competence-localization result the moment it lands (do not re-queue; it is already routed by 719a).
+2. If 724 confirms a competence floor, design (via `/queue-experiment`) a minimal experiment that isolates *"can this substrate act at all"* from *"does the REE structure help"* — e.g. a deliberately monolithic/dumb policy scaffold that just forages competently, then re-introduce E1/E2/E3 + commitment gating and measure the *delta*. The claim under test is not "gating helps" but "the substrate can reach the capability floor at which gating is measurable."
+
+**Dependencies:** V3-EXQ-724 (in flight). Feeds from WS-9 (intrinsic motivation) for the competence-earning mechanism.
+**Consumes:** `conversion_ceiling_campaign_plan.md`, `failure_autopsy_V3-EXQ-719a`.
+
+---
+
+## Tier 1 — Epistemic hygiene (cheap, do early)
+
+### WS-2 — Ceiling-claim demotion rule
+**Why:** 34 claims carry `substrate_ceiling` + 64 carry `pending_retest_after_substrate`, and the category explicitly says a failed discrimination is *not* a falsification. Honest, often correct — but it is also the exact structural incentive that lets a theory never lose. 72% of 871 claims are `candidate`. Risk: the registry fills with beautiful unkillable hypotheses.
+
+**First deliverable:** Register a new **GOV-*** claim encoding a pre-registered rule, e.g.: *"A claim that hits the substrate ceiling N times without a positive result on any richer substrate is demoted, not parked indefinitely; the competing reading (the mechanism is inert / doing no work) must be carried with equal weight until a positive discrimination exists."* Define N, the "richer substrate" bar, and the demotion target state. Wire it into the governance cycle.
+
+**Dependencies:** none. Pure governance. Do now.
+**Skill path:** claim registration in `claims.yaml` (governance-only edit under an active claim) + `governance` skill.
+
+### WS-3 — Capability-eval yardstick
+**Why:** The project currently cannot cleanly tell "the claim is wrong" from "the substrate is too coarse" partly because it has no *independent* capability yardstick. A small, claim-agnostic benchmark suite fixes this and directly supports WS-1 and WS-2.
+
+**First deliverable:** A minimal capability-eval suite (foraging competence, survival horizon, goal-reach rate, simple planning depth) that is *independent of any REE mechanism claim* and reported alongside every all-ON run. It becomes the denominator: "structure X moved capability metric Y by Z on a substrate already above the competence floor."
+
+**Dependencies:** light. Pairs with WS-1.
+
+---
+
+## Tier 2 — Theory grounding (literature + writing; parallelizable)
+
+### WS-4 — Formal-ancestor mapping
+**Why:** Much of REE re-derives, from biology, machinery that has a mature formal literature — and pays the cost of rebuilding without collecting the benefit of the existing math. Biology-first convergence onto an independent formalism is itself evidence (the KAUST/Neural-Computers convergence argument), but only if the mapping is made explicit.
+
+**First deliverable:** A table mapping the top ~30 load-bearing MECH/ARC to their nearest formal ancestor and that ancestor's measurement apparatus. Seed rows:
+- MECH-163 (VTA/hippocampal MB vs SNc habit MF arbitration) → Daw, Niv & Dayan 2005 uncertainty-based arbitration (has a worked arbitration formalism — adopt it, test *deviations*).
+- Valenced viability map + hippocampal trajectory proposal → Successor Representation (Dayan 1993; Stachenfeld et al. 2017 hippocampus-as-SR); Dreamer V3 / MuZero latent planning.
+- Precision routing / act-under-uncertainty → active inference (see WS-5).
+- Commit + a0→a1→a2 stepping + urgency interrupt (MECH-090/091) → options framework (Sutton/Precup/Singh) + option interruption.
+- Broadcast/override + narrative depth → Global Workspace Theory (Dehaene neuronal-workspace formalization); ties to SD-064 J-lens work.
+- E1/E2 slow/fast world-model split → JEPA / hierarchical world models (already referenced in `jepa_e1e2_integration_contract.md`).
+
+**Reserve novelty for the genuinely new parts:** residue/ownership, the commit boundary + hypothesis tag, the axiomatic ethics derivation.
+**Dependencies:** none. Big payoff. Parallelize with a lit-pull per row.
+
+### WS-5 — Active-inference bridge
+**Why:** Precision-weighted prediction error, action-under-uncertainty, epistemic vs pragmatic value — this is the free-energy program (Friston). REE's docs pointedly *don't* cite it and reject the single-functional framing. But active inference can be done with *factorized* objectives, so the "one scalar" objection is partly a strawman — and it hands you the calculus for free.
+
+**First deliverable:** `/lit-pull` on active inference (Parr, Pezzulo & Friston textbook; precision & epistemic value) → a bridge doc that (a) imports the precision/epistemic-value math REE can reuse, and (b) documents the *exact* points where REE's three-incommensurable-channels design genuinely departs from a single free-energy functional. Cross-link ARC-021 / MECH-069.
+**Dependencies:** feeds WS-4.
+
+### WS-6 — Bitter-Lesson rebuttal
+**Why:** REE is the maximally hand-structured bet (871 claims, "demote drift back to biology"). Sutton's Bitter Lesson says hand-engineered structure loses to scale + search. WS-1's competence floor is arguably that lesson biting. The project needs an explicit, written answer — not a dismissal.
+
+**First deliverable:** A cited position doc answering "why won't scale + search eat this structure?" Steelman Sutton; engage the rebuttals (Chollet's "measure of intelligence" / ARC on why *some* priors pay; the structure-vs-scale debate). Land on a falsifiable stance: which parts of REE claim to be scale-invariant priors vs which are scaffolding that scale would replace.
+
+### WS-7 — Corrigibility positioning
+**Why:** "Corrigibility" is used as a design goal; there is a formal literature on why naive corrigibility fails (MIRI corrigibility papers; Soares et al.). The commit-boundary is a fresh angle *on* corrigibility and should be argued against that backdrop rather than in isolation.
+
+**First deliverable:** A short positioning doc: map REE's commit-boundary + beta-gate + hypothesis-tag onto the formal corrigibility desiderata; show where it helps, where it is silent, where it could fail. Ties to the SENT-* sentinel layer and ethics perimeter.
+
+### WS-8 — Cognitive-architecture graveyard
+**Why:** The "integrate everything into one mind" architecture has a graveyard (Soar, ACT-R, LeCun's 2022 AMI position paper). Studying *how they hit their ceilings* is the cheapest way to avoid repeating them.
+
+**First deliverable:** A study doc extracting concrete anti-patterns (where integration overhead outran capability, where hand-specified structure ossified) and mapping each to a REE risk — especially the governance-mass-vs-cognitive-mass ratio flagged in the critique.
+
+### WS-9 — Intrinsic-motivation lit-pull
+**Why:** Directly relevant to WS-1 (competence floor) and to the goal/wanting/liking pipeline.
+
+**First deliverable:** `/lit-pull` on intrinsic motivation / developmental robotics (Oudeyer; Schmidhuber curiosity/compression; Baldassarre) → candidate mechanisms for *earning* competence, feeding WS-1 and `goal_pipeline_plan.md`.
+
+---
+
+## Tier 3 — Thesis exercise (needs substrate; puts load on the central claim)
+
+### WS-10 — Minimal 2-agent world
+**Why:** The entire philosophical payoff — ethics from modelling others as self-like, love as mechanism, responsibility as the point — is **V5, multi-agent**. V3 is single-agent. So the claim REE exists to demonstrate is currently *untouched by running code*. The axioms are doing philosophical, not computational, work.
+
+**First deliverable:** Spec (not necessarily build) a trivial 2-agent environment that puts *any* load on the ethics thesis — e.g. two agents in `CausalGridWorld` where one can harm/benefit the other's viability gradient. Enough to make MECH-164 (shared/leaked z_beta) and the "sufficiently-like-me" similarity model do *some* measurable work. Coordinate with `multi_agent_ecology_v5_plan.md` and `fast_empathy_v5_plan.md` — this is a deliberate early down-payment on V5, scoped minimal.
+**Dependencies:** WS-1 (need single-agent competence first) — an agent that can't act alone can't be ethical toward another.
+
+### WS-11 — Early-gating vs late-judging demonstration
+**Why:** REE's whole pitch is that RLHF / Constitutional AI "operate too late." That pitch is currently an assertion. One concrete demonstration would be worth 200 candidate claims.
+
+**First deliverable:** Design a single task where a late-judging baseline (score/filter after generation) demonstrably fails and REE's early commit-gating demonstrably succeeds — the vmPFC/EVR intuition made executable (correct knowledge, catastrophic choice). This is the flagship falsifiable win the project should be hunting.
+**Dependencies:** WS-1, WS-3 (need a capability yardstick + a competent substrate to run it on).
+
+---
+
+## Tier 4 — Adversarial ethics
+
+### WS-12 — Similarity / dehumanization failure mode
+**Why:** Axiom 5 grounds ethics in modelling others as *sufficiently like me*. That means the architecture has a built-in dehumanization channel: anything classified as **not** sufficiently-like-me falls *outside* the care gradient by construction — structurally, the computational shape of out-group exclusion and the mechanism of every atrocity. A design that locates ethics in similarity inherits similarity's failure mode. Currently unaddressed.
+
+**First deliverable:** Register a first-class claim naming this failure mode, plus a red-team question: what prevents the similarity model from gating care in a way that reproduces dehumanization? Candidate mitigations to evaluate (uncertainty-driven expansion as a floor; a similarity *lower bound* on care). Cross-link Axiom 5, Axiom 7 (love's expansion), INV-001, ethics perimeter.
+
+### WS-13 — Moral-philosophy red-team
+**Why:** Since ethics is the thesis, the right critics are adversarial philosophers/ethicists, not only ML people. The axiom chain makes strong moves (love expands transitively to *universal* love under uncertainty) that deserve hostile scrutiny.
+
+**First deliverable:** An adversarial audit of the axiom chain — does love *really* expand transitively under uncertainty, or does the "sufficiently like me" clause quietly gate it (linking WS-12)? Where does the derivation smuggle in a premise? Produce a list of the chain's load-bearing-but-contestable steps for external ethicist review.
+
+---
+
+## Cross-cutting notes
+
+- **Sequencing:** WS-1 unblocks WS-10/WS-11. WS-2/WS-3 are do-now hygiene with no dependencies. Tier-2 WS-4..WS-9 are lit/writing and can run in parallel by different sessions. WS-12/WS-13 pair.
+- **Skill paths:** lit threads → `/lit-pull`; new claims → `claims.yaml` + `governance`; experiments → `/queue-experiment` only; never hand-edit the queue.
+- **Anti-duplication check** before starting any WS: `ree-v3/experiment_queue.json`, `conversion_ceiling_campaign_plan.md`, other `*_plan.md` status tables, `TASK_CLAIMS.json`.
+- **Source:** distilled from a 2026-07-09 strategic critique session (ahead / reinventing / flawed / needs-work + external lenses). See WORKSPACE_STATE Recent Work for that session.
