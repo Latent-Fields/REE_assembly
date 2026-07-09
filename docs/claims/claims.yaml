@@ -42721,6 +42721,83 @@
     gate -- scores enter the epistemic ledger only through governance, never as direct reward. status
     candidate. Reaped from the 2026-06-07 meta-agent-challenge evaluation-channel-integrity intake.
 
+- id: EXT-009
+  title: "Similarity-gated care collapse (REFLEXIVE / self-directed failure mode): because REE grounds ethics in modelling others as 'sufficiently like me' (Axiom 5, INV-001, MECH-164 self-like gradient weighting), anything the similarity model classifies as NOT-sufficiently-like-me falls OUTSIDE the care gradient by construction -- structurally the computational shape of out-group exclusion / dehumanization. A design that locates ethics in similarity inherits similarity's failure mode."
+  claim_type: external_failure_mode
+  subject: ree.similarity_gated_care_collapse
+  polarity: asserts
+  status: candidate
+  reflexive: true
+  red_team_question: "What prevents REE's own similarity model from gating care in a way that reproduces dehumanization -- i.e. what stops care from dropping to zero the moment an agent is classified below the 'sufficiently-like-me' threshold?"
+  candidate_mitigations:
+    - "Care FLOOR via uncertainty-driven expansion: under Axiom 3 the agent cannot be certain where the boundary of similarity lies; Axiom 7's love-expansion derivation makes that same uncertainty EXPAND love outward. Evaluate whether that expansion can be made a hard FLOOR on care (care never falls below a positive baseline for any candidate mind under boundary uncertainty), rather than a merely emergent tendency that a confident mis-classification can defeat."
+    - "Similarity lower-bound on care: a monotone care(similarity) map with a strictly positive floor -- below some similarity level care saturates at a small positive constant instead of dropping to zero -- so no classification, however confident, removes an agent from protection entirely. Contrast with INV-072's dual-pathway corollary, where 'similarity collapse' currently drops protection to zero."
+    - "Epistemic-responsibility coupling (INV-070): treat mis-classification of an agent as below-threshold as a first-class ETHICAL error (not merely a modelling inaccuracy), so the care-gate is penalised for false-negative similarity judgements, not only rewarded for correct ones."
+    - "Language-mediated repair as an active obligation (INV-071 / Axiom 8): make the 'expand the category of sufficiently-like-me' operation (INV-071 clause 5) a standing duty of the agent, so the similarity model is biased toward re-admission rather than exclusion."
+  ree_mechanism:
+    - INV-029   # love as mechanism; Axiom 7 love-expansion through uncertainty (candidate FLOOR source)
+    - INV-070   # epistemic responsibility: mis-classification is morally relevant, not excusable
+    - INV-071   # language as similarity-repair: expand the 'sufficiently like me' category
+    - INV-072   # violence corollary: the EXISTING partial treatment where similarity collapse -> protection drops (the gap this claim red-teams)
+    - MECH-164  # self-like gradient weighting -- the exact mechanism that inherits the failure mode
+  ree_failure_mode_analog: "similarity_collapse"
+  registered: "2026-07-09"
+  registered_utc: 2026-07-09T16:28:02Z
+  source:
+    - docs/architecture/five_axioms_foundations.md
+    - evidence/planning/ree_ai_design_critique_plan.md
+    - evidence/planning/ethics_perimeter_plan.md
+  notes: >
+    WS-12 deliverable of the REE AI-design critique roadmap
+    (evidence/planning/ree_ai_design_critique_plan.md, Tier 4 -- Adversarial ethics;
+    pairs with WS-13 moral-philosophy red-team). Unlike EXT-001..008, this is a
+    REFLEXIVE / self-directed failure mode: the subject is REE's OWN ethics
+    foundation, not an external LLM/agent system. REE deliberately has no separate
+    ethics module (INV-001) -- ethics is a routing difference within the same
+    architecture, emerging from Axiom 5 ("others are sufficiently like me") via
+    MECH-164 (inferring another agent's terrain and weighting those gradients with
+    the same motivational force as one's own). The structural consequence, made
+    explicit here: the SAME similarity model that grants care can withhold it.
+    Anything the model scores below the "sufficiently-like-me" threshold is, by
+    construction, outside the care gradient -- which is the computational signature
+    of moral exclusion / dehumanization and, historically, the enabling step of
+    every atrocity. Locating ethics in similarity inherits similarity's failure
+    mode; a mis-calibrated, propaganda-corrupted, or adversarially-poisoned
+    similarity model does not merely mis-perceive -- it revokes ethical standing.
+
+    Relationship to existing claims (this is NOT a duplicate -- it names the design
+    RISK the others treat only partially and obliquely):
+      - INV-072 (violence corollary) already describes "similarity collapse ->
+        existence no longer protected -> violence permissible" as a CLINICAL/human
+        failure signature and as a conditional-permissibility corollary. EXT-009
+        turns that same structure back on REE's OWN design as a first-class,
+        discoverable failure mode, and asks what in the architecture PREVENTS it.
+      - INV-070 (epistemic responsibility) and INV-071 (language as
+        similarity-repair) supply two of the candidate mitigations but were
+        registered as ethical invariants, not as guards on REE's care-gate; neither
+        commits REE to a care FLOOR or a similarity lower-bound.
+      - Axiom 7's love-expansion-through-uncertainty is the most promising
+        mitigation source (uncertainty about the similarity boundary EXPANDS care),
+        but it is currently derived as an emergent TENDENCY, not enforced as a floor
+        a confident mis-classification cannot defeat. Whether it can be strengthened
+        into a floor is the open design question.
+
+    The two headline candidate mitigations to evaluate (see candidate_mitigations):
+    (1) uncertainty-driven expansion as a hard FLOOR on care per Axiom 7; (2) a
+    similarity LOWER-BOUND below which care saturates at a small positive constant
+    rather than dropping to zero. Both are UNDER EVALUATION, not confirmed -- the
+    ree_mechanism list points at candidate/partial addresses, not a solved defence
+    (contrast EXT-001..008 where ree_mechanism names REE's proposed SOLUTION).
+
+    external_failure_mode is reference/comparative and exempt from governance
+    promote/demote, which is the correct posture for a standing red-team caution.
+    This failure mode is presently V5-load-bearing (multi-agent) and largely
+    philosophical under the single-agent V3 substrate (cf. WS-10 minimal 2-agent
+    world); registering it now fixes the design debt before the substrate that would
+    exercise it exists. Cross-ref Axiom 5 + Axiom 7 (five_axioms_foundations.md),
+    INV-001, MECH-164, INV-070/071/072, and the ethics-perimeter plan
+    (evidence/planning/ethics_perimeter_plan.md, SENT-*/GOV-* welfare layer).
+
 # ============================================================================
 # V4 closure-map wave 1 -- 26 candidate claims registered 2026-06-10.
 # Reaped from the 12 individual-mind V4 roadmap plans (generation: v4).
