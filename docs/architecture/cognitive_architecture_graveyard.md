@@ -129,11 +129,42 @@ The pattern across all three: REE has *built the antibody* and must now *let it 
 
 ## Recommendations (falsifiable, cheap, no substrate needed)
 
-1. **Adopt the two health ratios as first-class, reported numbers** — `capability-earning claims : registered claims` and `governance-mass : cognitive-mass` — surfaced alongside the closure dashboard. Making the ratio *visible* is the whole mitigation; you cannot manage the graveyard's central failure if you never measure it.
+1. **Adopt the two health ratios as first-class, reported numbers** — `capability-earning claims : registered claims` and `governance-mass : cognitive-mass` — surfaced alongside the closure dashboard. Making the ratio *visible* is the whole mitigation; you cannot manage the graveyard's central failure if you never measure it. **[Implemented 2026-07-09.]** Ratio #2 is now live on the closure dashboard (`docs/closure_dashboard.md`, regenerated every governance run) via `scripts/graveyard_health_ratios.py` — the cheap commit-classification proxy (currently **65 %** of commits are machine-written coordination data; **~22 : 1** governance-mass : cognitive-mass by the coarse prefix bucketing). Ratio #1's *denominator* (registered claims) reports now; its *numerator* is not yet measurable and is scoped in the design note below (§ *Ratio #1 — the missing capability-earning flag*).
 2. **Feed AP-2 / AP-4 straight into WS-1.** The competence-floor experiment should explicitly test the *frozen-encoder* hypothesis: does end-to-end training clear the floor the typed structure sits on? That is the symbol-grounding test in REE dialect.
 3. **Wire AP-5 into WS-2.** The demotion rule is only an antibody if the ceiling-demotion count can go above zero. Pre-register N.
 4. **Name the configurator risk (AP-9) against the control plane (ARC-016).** Before building more of the mode/precision machinery, state the falsifier: *can the control plane select its own regime and lift a metric with no per-experiment hand-configuration?* If not, it is LeCun's configurator.
 5. **Treat AP-8 as the reason WS-10 exists.** The ethics thesis being untouched by code is the single most AMI-shaped exposure REE has; the minimal 2-agent world is the down-payment that keeps it from being a beautiful unbuilt whole.
+
+---
+
+## Ratio #1 — the missing capability-earning flag (design note)
+
+Ratio #2 (governance-mass : cognitive-mass) was computable from `git log` the day it was proposed — commit prefixes already carry the signal. Ratio #1 (**capability-earning claims : registered claims**) is not, and the gap is itself diagnostic: **REE tracks whether a claim has been *registered, reviewed, promoted, demoted, or ceiling-parked* in fine detail, but has no field for whether it ever *lifted a capability metric*.** The registry measures its own epistemic bookkeeping, not cognition delivered. That absence is the AP-1/AP-5 exposure made concrete.
+
+**What the numerator means (precise definition).** A registered claim is *capability-earning* iff there exists at least one experiment in which the claim's mechanism, switched **ON**, produced a **positive** delta on a claim-agnostic capability metric (foraging competence, survival horizon, goal-reach rate, planning depth — the WS-3 yardstick suite) on a substrate that is **already above the competence floor** (WS-1). Both qualifiers are load-bearing:
+- *Positive ON-delta* rules out flags that are merely inert-when-OFF (the flag-inertness harness proves no-harm-OFF; it says nothing about good-ON). A capability-earning claim must have *done good when ON*, not just *no harm when OFF*.
+- *On a competent substrate* rules out the conversion-ceiling trap, where a mechanism's "lift" is measured on a hand-frozen substrate that never cleared the floor (AP-4). A lift on an incompetent substrate is unearned.
+
+**Why it is ~0 today.** On the live conversion-ceiling lineage the all-ON agent forages *below* the 1.0 competence floor (`failure_autopsy_V3-EXQ-719a`), so no ON-delta measured there is "above the floor." Selection-face lifts (MECH-448/449 on GAP-A) exist but on a substrate not shown competent at the foraging task. The honest current numerator is therefore near-zero — which is exactly the number the graveyard predicts and exactly why it must be *visible*, not hidden inside per-experiment manifests.
+
+**The missing field (proposed schema, PROMOTES NOTHING to add).** A per-claim, evidence-backed record — not a hand-set boolean:
+
+```yaml
+capability_lift:            # optional; absent == not-yet-earned (numerator excludes it)
+  earned: true
+  metric: foraging_competence        # one of the WS-3 yardstick metrics
+  on_delta: 0.42                      # positive ON-minus-OFF delta on the metric
+  substrate_run_id: v3_exq_NNN_..._v3 # the run that measured it
+  above_competence_floor: true        # substrate cleared the WS-1 floor in that run
+  recorded_by: <governance cycle / failure_autopsy id>
+```
+
+**How it gets populated (not by hand).** The flag is *derived*, mirroring how `evidence_direction` and the ceiling audit already work:
+1. WS-3 lands the capability-eval block so every experiment reports the yardstick metrics + whether the substrate cleared the floor (already in flight as `ree-v3/experiments/_lib/capability_eval.py`, V3-EXQ-727).
+2. A governance-side derive step (extend `check_substrate_ceiling_audit.py` or add a sibling) scans confirmed `failure_autopsy_*.json` + reviewed manifests for `(claim_id, metric, on_delta > 0, above_floor == true)` tuples and writes `capability_lift` onto the matching claim.
+3. `scripts/graveyard_health_ratios.py` `count_registered_claims()` already reports the denominator; add a `count_capability_earning_claims()` that counts `capability_lift.earned == true` and the ratio completes itself — no schema change to this script's public surface.
+
+**Gate.** Step 1 (WS-3) is the prerequisite: you cannot mark a claim capability-earning until there is a substrate above the floor to measure the lift against. Until then the dashboard honestly reports the numerator as **UNMEASURED** and the denominator as the live registered-claim count. That honesty *is* the instrument — a blank numerator against a four-digit denominator is the graveyard warning in one line.
 
 ---
 

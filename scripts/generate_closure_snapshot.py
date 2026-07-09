@@ -34,6 +34,16 @@ try:
 except Exception:  # pragma: no cover - fallback keeps the snapshot self-contained
     parse_plan_frontmatter = None  # type: ignore
 
+# Cognitive-architecture-graveyard health ratios (WS-8 recommendation #1):
+# surface governance-mass:cognitive-mass + capability-earning:registered as a
+# first-class, periodically-reported block on the closure dashboard. Instrument
+# only -- PROMOTES NOTHING. Imported softly so a git/parse hiccup in the ratio
+# computation never blocks the closure snapshot.
+try:
+    from graveyard_health_ratios import render_markdown as render_graveyard_ratios
+except Exception:  # pragma: no cover - dashboard still generates without the section
+    render_graveyard_ratios = None  # type: ignore
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
 SNAPSHOT = PLANNING_DIR / "closure_status.md"
@@ -230,6 +240,21 @@ def write_docs_dashboard(plans, overall, tally, n_remaining, n_deferred,
         "generated `evidence/planning/closure_status.md` snapshot."
     )
     D.append("")
+
+    # Graveyard health ratios (WS-8 rec #1) -- a companion health signal to the
+    # closure %. Closure measures "how complete"; these measure "is the effort
+    # earning capability or just managing the theory". Soft-imported so the
+    # dashboard still renders if the ratio computation fails.
+    if render_graveyard_ratios is not None:
+        try:
+            D.append(render_graveyard_ratios())
+            D.append("")
+        except Exception as e:  # pragma: no cover - never block the snapshot
+            D.append("## Graveyard health ratios")
+            D.append("")
+            D.append(f"_Section unavailable this run ({e.__class__.__name__})._")
+            D.append("")
+
     DOCS_DASHBOARD.write_text("\n".join(D) + "\n", encoding="utf-8")
 
 
