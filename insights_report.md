@@ -31,10 +31,8 @@ Generated: 2026-07-09T06:21:28Z
 
 Source: `evidence/planning/substrate_queue.json` (106 entries; 53 implemented).
 
-- **Ready to implement now (`ready: true`): 49 SDs** — this is a large implement-ready backlog, not a shortage. High-leverage ready items (by claims unblocked):
-  - `scaffolded_sd054_onboarding` — unblocks ~20 claims (ARC-030, MECH-117/230/260/295/307/313, SD-049-P2, …) — **but 28 failure records**
-  - `modulatory-bias-selection-authority` — unblocks ~18 claims (MECH-309, ARC-062/063, MECH-314*, SD-057…) — **15 failure records**
-  - `MECH-269` (9 claims), `SD-035` (6), `SD-018` (goal-directed pathway / the entire EXQ-085 cluster)
+- **`ready: true`: 49 SDs — but this flag means "substrate BUILT / on the shelf", NOT "awaiting implementation".** Verified 2026-07-09: all 49 carry `implementation_status: implemented` (or landed/validated/built). **There is no starved build backlog.** What these built substrates are missing is, in most cases, a **validation experiment** that converts their unblocked claims out of `v3_pending` — not code. High-leverage built-but-unconverted examples (claims they'd unblock): `MECH-269` (9), `SD-035` (6, val V3-EXQ-473/474), `SD-022` (5, val V3-EXQ-319), `SD-018` (goal-directed pathway / EXQ-085 cluster). The sleep cluster (`MECH-272/273/275/285/287/288`) is contract-validated already.
+  - *Correction note:* an earlier draft of this report called these "ready to implement" and "starved" — that misread the `ready` flag. The genuine adjacent lever is **validation-experiment coverage of already-built substrate**, not new implementation.
 
 - **Blocked (unresolved deps): 36 SDs.** Deepest dependency knots: the `SD-033*` cluster (033/033b/033c/033d/033e all waiting on MECH-261/094), `SD-024/025/026/027/028` chain, `SD-049-PHASE-2` (waiting on V3-EXQ-514u measurement redesign).
 
@@ -87,7 +85,7 @@ Derived from the last ~150 WORKSPACE_STATE Recent-Work entries (session-type men
 
 1. **Stop widening; force a verdict on the F-dominance conversion ceiling.** It owns 26 (+28 sibling) failure records, the entire live queue, and the reclassified-to-V3 closure requirement. The diagnostics (721/724) are localization, not fixes. Once V3-EXQ-724 localizes *why* the all-ON agent forages below floor, route straight to a single `/implement-substrate` build attempt — do not queue further OFAT letters. The arbitration-reweighting route is already declared exhausted; a new lever (competence/training-regime), not another reweighting, is what 724 is scoped to find.
 
-2. **Harvest the 49 ready-to-implement SDs that are NOT blocked on the ceiling.** `MECH-269` (unblocks 9), `SD-035` (6), the sleep-phase cluster (MECH-272/273/275/285, contract-validated), and `MECH-287/288` are ready with passing contracts and unblock claims *independent* of f-dominance. These are being starved while attention concentrates on the one hard ceiling. Implementing even 3–4 would convert v3_pending claims that are currently just waiting.
+2. **Convert already-built substrate, don't "implement" it — there is no build backlog.** The 49 `ready` SDs are *built*, not waiting to be built (correction above). The real starvation is on the **validation-experiment** side: built substrates (`MECH-269`, `SD-035`, `SD-022`, `SD-018`, …) that unblock `v3_pending` claims but whose validation run hasn't landed. While the F-dominance ceiling waits on V3-EXQ-724, the highest-value *parallel* work is queuing those validation experiments (a `/queue-experiment` task, and exactly what the fleet-idle loop should surface once it filters on "validation not yet run"). Pick targets by (claims-unblocked x validation-not-run), not by leverage alone.
 
 3. **Retire routine lit-pull as a standing loop.** Literature is saturated (1 open lit item of 366). Keep lit-pull **event-triggered** (fires only when a genuinely new claim registers), not scheduled. Redirect that cadence to substrate implementation and autopsy throughput.
 
