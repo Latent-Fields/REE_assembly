@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_active_inference_bridge",
+  "entry_id": "2026-07-09_active_inference_bridge_textbook_parr2022",
+  "timestamp_utc": "2026-07-09T16:30:09Z",
+  "claim_ids_tested": ["ARC-016", "ARC-021", "MECH-069"],
+  "source": {
+    "title": "Active Inference: The Free Energy Principle in Mind, Brain, and Behavior",
+    "authors": ["Thomas Parr", "Giovanni Pezzulo", "Karl J. Friston"],
+    "year": 2022,
+    "venue": "MIT Press (book; 296 pp; ISBN 978-0-262-04535-3)",
+    "doi": "10.7551/mitpress/12441.001.0001",
+    "url": "https://direct.mit.edu/books/oa-monograph/5299/Active-InferenceThe-Free-Energy-Principle-in-Mind"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.63,
+  "confidence_rationale": "The canonical, comprehensive statement of active inference. Strongly SUPPORTS ARC-016: precision as inverse variance weighting prediction errors, and precision over policies (gamma) as the control variable that sets the behavioural regime, is exactly the precision-to-commitment vocabulary REE re-derived without the calculus. WEAKENS-leaning on the strong form of MECH-069/ARC-021: the textbook shows a single expected-free-energy functional G(pi) can absorb reward-seeking and information-seeking as decomposed terms, so REE's blanket 'active inference is one scalar' objection is partly a strawman -- but the same fact makes the unified functional a live alternative hypothesis to strict incommensurability, which is why the direction is 'mixed' not 'supports'. Confidence is moderate because a textbook is a synthesis, not new empirical evidence, and the mapping onto REE's specific three-channel architecture requires interpretation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Active inference derives everything -- perception, learning, action, precision, exploration -- from a SINGLE scalar (variational / expected free energy). This is a standing existence proof that REE's three functionally-distinct control objectives COULD in principle be unified into one functional over a factorized state space, which is precisely the alternative MECH-069 must rule out rather than assume away.",
+    "The textbook's precision is a scalar (or low-dimensional) gain on a common prediction-error currency (surprise, measured in nats). REE's ARC-016 asserts multi-axis / heterogeneous precision; active inference does not obviously supply distinct, non-exchangeable precision axes, so the departure REE claims is not free -- it must be shown that a single-currency precision cannot reproduce REE's mode transitions.",
+    "Epistemic value in active inference is information gain measured in the same nats as pragmatic value; the two are commensurable and summable by construction. REE's claim that its three error channels are INcommensurable (no common currency at all) is a stronger and different claim than 'distinct terms in one functional', and the textbook offers no support for non-commensurability -- if anything it is the null this claim contradicts."
+  ],
+  "tags": ["active_inference", "free_energy", "precision", "epistemic_value", "expected_free_energy", "arc_016", "arc_021", "mech_069", "exploration", "departure"],
+  "mapping": {
+    "source_claim_statement": "Perception, learning, planning and action can all be cast as minimisation of a single quantity -- variational free energy for inference/learning, expected free energy G(pi) for action -- under a factorized (mean-field) generative model. Expected free energy decomposes into pragmatic/extrinsic value (expected log preference, i.e. reward/utility) and epistemic/intrinsic value (expected information gain about hidden states = salience, and about parameters = novelty). Precision is the inverse variance weighting on prediction errors; precision over policies (gamma) modulates the confidence of action selection and is proposed to correspond to dopaminergic discharge.",
+    "ree_translation": "The precision-weighting apparatus maps directly onto ARC-016: E3-derived prediction variance playing the role of (inverse) precision that sets the commitment threshold is the same lever active inference calls precision; policy precision gamma is the formal analogue of the beta-gate's confidence-to-commit. The epistemic/pragmatic decomposition of G(pi) hands REE a ready exploration calculus for its control plane. The DEPARTURE REE must state precisely: ARC-021/MECH-069 assert three error channels that are incommensurable -- no shared scalar currency -- whereas active inference's whole point is that risk (pragmatic) and ambiguity (epistemic) are summed in one functional measured in nats. So REE is not rejecting 'a scalar objective' per se (active inference factorizes freely); it is rejecting a COMMON CURRENCY across sensory-prediction, motor-sensory and harm/goal errors.",
+    "mapping_caveat": "The textbook is a normative synthesis, not evidence that the brain (or REE) must be incommensurable. It is imported here as the formalism REE should ADOPT for precision and epistemic value, and simultaneously as the null hypothesis (one factorized functional) that the strong incommensurability claim must out-predict. Treating this entry as 'support' for MECH-069 would be exactly backwards; it is the sharpest available statement of the position MECH-069 departs from.",
+    "source_context": "Comprehensive textbook treatment of active inference across discrete and continuous state-spaces; theoretical, with illustrative simulations and neurophysiological mappings (no single empirical dataset)."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.40,
+    "notes": "Source quality high (canonical MIT Press synthesis by the framework's principals). Mapping fidelity strong for ARC-016 precision, weaker for the incommensurability departure because the book supplies the null, not the mechanism. Transfer risk moderate: importing a normative calculus into REE's specific E1/E2/E3 architecture is interpretive, and the 'incommensurable vs decomposed-but-summable' distinction is doing heavy lifting."
+  }
+}

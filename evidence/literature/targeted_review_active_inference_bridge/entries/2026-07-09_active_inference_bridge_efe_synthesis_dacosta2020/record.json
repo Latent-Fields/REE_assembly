@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_active_inference_bridge",
+  "entry_id": "2026-07-09_active_inference_bridge_efe_synthesis_dacosta2020",
+  "timestamp_utc": "2026-07-09T16:30:09Z",
+  "claim_ids_tested": ["ARC-021", "MECH-069", "ARC-016"],
+  "source": {
+    "title": "Active inference on discrete state-spaces: A synthesis",
+    "authors": ["Lancelot Da Costa", "Thomas Parr", "Noor Sajid", "Sebastijan Veselic", "Victorita Neacsu", "Karl Friston"],
+    "year": 2020,
+    "venue": "Journal of Mathematical Psychology (vol. 99, art. 102447)",
+    "doi": "10.1016/j.jmp.2020.102447",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0022249620300857"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.61,
+  "confidence_rationale": "This is the equation-level synthesis that makes WS-5's core point precise. It shows verbatim that (a) the approximate posterior FACTORISES under a mean-field approximation over hidden-state factors, and (b) expected free energy is a SUM of separable epistemic (salience + novelty) and extrinsic (risk) terms -- i.e. active inference optimises a factorized functional, not an undifferentiated scalar. That directly WEAKENS REE's 'active inference is just one scalar' objection (a strawman as stated). Simultaneously it pins the GENUINE departure: every term of G(pi) is measured in nats and summed, so risk + ambiguity is one commensurable number -- the exact common-currency assumption MECH-069/ARC-021 reject. Confidence moderate: it is a normative-mathematical paper (no empirical test of incommensurability), and the mapping onto REE's three specific channels is interpretive.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Expected free energy is explicitly assembled as risk + ambiguity (state pathway) or, dually, negative extrinsic value + negative epistemic value -- all in nats and additively combined. This is the concrete existence proof that reward-seeking and information-seeking are COMMENSURABLE and summable, which is the assumption REE's incommensurability claim denies. If a single summed functional over factorized states can reproduce REE's mode/credit behaviour, MECH-069's strong form is unsupported.",
+    "The mean-field factorisation Q(s_1:T | pi) = product over tau of Q(s_tau | pi), and the factorisation over distinct hidden-state factors, show active inference already SEPARATES representational dimensions. So REE cannot claim novelty for 'separate channels' -- only for the stronger claim that the separated channels' errors cannot be re-combined into any shared scalar, which this paper does not test and its formalism does not require.",
+    "Precision here (including policy precision gamma with its Gamma prior) is a scalar/low-dimensional gain on a common surprise currency. It provides no distinct, non-exchangeable precision axes, so ARC-016's multi-axis precision is an addition NOT licensed by this formalism and must be independently justified."
+  ],
+  "tags": ["active_inference", "expected_free_energy", "mean_field", "factorization", "epistemic_value", "risk_ambiguity", "precision", "arc_021", "mech_069", "arc_016", "departure"],
+  "mapping": {
+    "source_claim_statement": "On discrete state-spaces, active inference minimises variational free energy for inference/learning and expected free energy G(pi) for policy selection. The approximate posterior factorises under a mean-field approximation: Q(s_1:T | pi) = product_tau Q(s_tau | pi), with a further mean-field factorisation across distinct hidden-state factors. G(pi) decomposes into extrinsic value (expected log preference = reward/utility = negative Bayesian risk) and intrinsic/epistemic value (expected information gain about hidden states = salience, and about parameters = novelty; the latter underwrites artificial curiosity). Best policies minimise G(pi), yielding behaviour that is simultaneously risk-minimising (exploitative) and ambiguity-resolving (exploratory). Precision over policies (gamma) provides a plausible description of dopaminergic discharge.",
+    "ree_translation": "The factorisation results are the load-bearing citation for WS-5: they establish that active inference optimises a FACTORIZED objective over FACTORIZED states, so REE's stated objection ('one scalar') attacks a position the framework does not hold. REE's real, defensible departure is narrower and sharper: G(pi) sums risk and ambiguity in a single currency (nats), i.e. it assumes the value of information and the value of reward are COMMENSURABLE. ARC-021/MECH-069 assert that sensory-prediction, motor-sensory and harm/goal errors have NO common currency -- forcing them through any shared scalar mis-attributes credit even after factorisation. The mean-field precision here is also single-currency, which frames ARC-016's multi-axis precision as an explicit (and still-unproven) enrichment rather than a re-derivation.",
+    "mapping_caveat": "Normative-mathematical synthesis, not an empirical test. It cannot confirm or refute incommensurability; it supplies the precise null (a commensurable, factorized, summed functional) that REE's strong claim must out-predict. Reading it as 'support' for MECH-069 would invert its role -- it is the sharpest statement of the position MECH-069 departs from, and the source of the falsifier design (forced-shared-loss ablation must fail to converge to correct credit regardless of capacity).",
+    "source_context": "Discrete (categorical) state-space active inference; partially-observed Markov formulation; theoretical with in-silico neurophysiological illustrations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.42,
+    "notes": "High source quality (definitive open-access mathematical synthesis, J Math Psych). Mapping fidelity moderate: the factorisation and epistemic/extrinsic decomposition map cleanly to the argument, but the incommensurability translation is interpretive. Transfer risk moderate-high: importing a normative discrete-state calculus into REE's E1/E2/E3 architecture, and turning 'commensurable-but-decomposed' into a falsifiable REE experiment, both add steps."
+  }
+}
