@@ -48574,3 +48574,87 @@
     (Kool & Botvinick 2010; Westbrook & Braver); least-action / least-effort priors. DISTINCT from ARC-068 (TIME
     opportunity cost, not metabolic ENERGY) and from MECH-279 freeze (threat motor-arrest, not effort-conservation).
     PROMOTES NOTHING (open question; answer_state / asked).
+
+- id: MECH-455
+  title: "competence_based_intrinsic_motivation / goal_achievement_progress_wanting. A wanting bonus indexed to the agent's RATE-OF-IMPROVEMENT in ACHIEVING its own active goals: per active goal, an EMA of the derivative of goal-achievement competence (success-rate, or 1 - proximity-at-termination) injected as intrinsic wanting alongside MECH-229 VALENCE_WANTING, biasing the agent toward goals it is currently getting BETTER at reaching. This is the SECOND intrinsic-motivation family in Mirolli & Baldassarre (2013) -- COMPETENCE-based IM (reward = progress in achieving a self-generated goal, i.e. improving the agent's SKILLS) -- which REE's registered IM stack (MECH-314 info-gain / MECH-314a novelty / MECH-314c learning-progress, all KNOWLEDGE-based: reward = improving the WORLD MODEL) entirely lacks. Same derivative-not-level discipline as MECH-314c, but the operand is BEHAVIOURAL COMPETENCE, not predictive error."
+  claim_type: mechanism_hypothesis
+  subject: goal_pipeline.competence_based_intrinsic_motivation_wanting
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true # unbuilt; promotion gated on the WS-1 competence-based-IM ON/OFF delta experiment on the goal pipeline
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-09"
+  depends_on:
+    - MECH-307    # anticipatory-affect goal representations -- the per-goal reps the competence-progress EMA is indexed to
+    - SD-012      # homeostatic drive plane -- host for the goal pipeline / drive that the wanting bonus rides
+    - MECH-229    # VALENCE_WANTING -- the wanting injection site; competence-progress is a NEW wanting operand alongside the homeostatic/hedonic ones
+  functional_restatement: >
+    Mirolli & Baldassarre (2013) draw the field's load-bearing distinction between
+    two intrinsic-motivation families: KNOWLEDGE-based IM (novelty, surprise,
+    prediction error, learning progress -- reward improving the agent's WORLD MODEL;
+    drives exploration/attention) and COMPETENCE-based IM (reward = progress in
+    ACHIEVING a self-generated goal -- reward improving the agent's SKILLS; drives
+    autonomous cumulative skill acquisition). REE's entire registered IM stack is
+    knowledge-based (MECH-314 info-gain, MECH-314a novelty, MECH-314c
+    learning-progress). It has NO competence-based IM: the goal pipeline supplies
+    goal representations (MECH-307) but sources wanting from homeostatic/hedonic
+    value (SD-012, MECH-229), never from competence progress.
+
+    MECH-455 names the missing drive. For each active goal in the pipeline, maintain
+    an EMA of the IMPROVEMENT in the agent's success at reaching it (success-rate, or
+    1 - proximity-at-termination). Inject that derivative as an intrinsic WANTING
+    bonus that biases the agent toward goals it is currently getting better at
+    achieving -- a competence-progress operand added alongside MECH-229's existing
+    wanting sources. Same derivative discipline as MECH-314c (track the rate of
+    improvement, not its level -- avoids both the already-mastered and the
+    never-improving traps), but the operand is BEHAVIOURAL COMPETENCE rather than
+    predictive error.
+
+    Sequencing exemption from the wired-but-inert routing block: world-model-side IM
+    bonuses (MECH-314c per-candidate, MECH-314a pseudocount) are inert on the current
+    substrate until the EMA -> E3-selection routing is repaired (V3-EXQ-141b /
+    V3-EXQ-590a: broadcast novelty reaches the EMA but not the committed action).
+    MECH-455 is PARTLY EXEMPT because it injects into the WANTING/goal path, not the
+    broadcast-novelty -> E3 path -- a reason it is ranked first for the WS-1
+    competence floor. A clean demonstration of any IM bonus still benefits from the
+    routing fix the conversion-ceiling line (V3-EXQ-700b and successors) is chasing.
+
+    Falsifiable (the WS-1 competence experiment, to be queued SEPARATELY via
+    /queue-experiment): a competence-based-IM bonus ON vs OFF on the goal pipeline,
+    DV = foraging competence crossing the 1.0/episode floor. WS-1's competence floor
+    (all-ON agent forages 0.065/0.0/0.455 resources/episode, below 1.0) is the exact
+    symptom Baldassarre & Mirolli predict when skills are earned with a
+    knowledge-based drive alone.
+  evidence_quality_note: >
+    PROMOTES NOTHING. Registered 2026-07-09 as the single novel candidate the WS-9
+    intrinsic-motivation lit-pull warrants (everything else maps onto existing
+    MECH-314-family claims). WS-9 synthesis + ranking (mechanism #1, highest WS-1
+    leverage): evidence/planning/intrinsic_motivation_competence_mechanisms.md.
+    Owning thread: ree_ai_design_critique_plan.md WS-9 (lit) -> WS-1 (competence
+    floor before structure). Hosts on the goal pipeline: goal_pipeline_plan.md
+    (MECH-307 / SD-012 / MECH-229 wanting site).
+
+    Literature grounding (4 canonical entries in
+    evidence/literature/targeted_review_intrinsic_motivation_exploration/entries/):
+      - Mirolli & Baldassarre 2013 -- knowledge-based vs competence-based IM; the
+        competence-based family this claim registers
+        (2026-07-09_goal_pipeline_competence_based_im_baldassarre2013)
+      - Oudeyer & Kaplan 2007 -- IM typology; learning-progress (IAC/R-IAC) as the
+        derivative discipline shared with this claim
+        (2026-07-09_mech314c_learning_progress_typology_oudeyer2007)
+      - Schmidhuber 2010 -- compression-progress / formal theory of creativity;
+        concedes skills are a by-product of knowledge-seeking (the gap this fills)
+        (2026-07-09_mech314c_compression_progress_creativity_schmidhuber2010)
+      - Bellemare et al. 2016 -- count-based / pseudocount exploration; the
+        knowledge-side novelty estimator this is deliberately DISTINCT from
+        (2026-07-09_mech314a_pseudocount_exploration_bellemare2016)
+
+    Distinct from MECH-314c (learning-progress curiosity): 314c's operand is the
+    derivative of PREDICTIVE-MODEL error (knowledge-based, world-model side, routed
+    to E3 selection); MECH-455's operand is the derivative of GOAL-ACHIEVEMENT
+    competence (competence-based, wanting/goal side). They share only the
+    derivative-not-level form. Distinct from MECH-314a/MECH-314 (novelty / info-gain
+    coverage, not skill).
+  location: evidence/planning/intrinsic_motivation_competence_mechanisms.md

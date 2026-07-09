@@ -6104,6 +6104,14 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "SUBSTRATE-CONDITIONAL / NOT YET BUILT. Blocked on two substrates that do not exist: (1) a reachable-option-DISSOCIATING env extension on CausalGridWorld -- a cheap-REVERSIBLE branch vs a costly-IRREVERSIBLE branch (a one-way door / a region-collapsing consumable) so that an action measurably changes the agent's reachable-future-option count; (2) the E3 option-value cost term itself (a penalty on the post-action drop in reachable distinct future states/goals, scaled by forecast PE). A future ablation SUPPORTS this if, with the term ON vs OFF under MANIPULATED outcome uncertainty, the ON arm prefers the option-preserving action MORE than OFF specifically when forecast uncertainty is HIGH and converges to OFF when it is LOW (uncertainty- GATED), on a strict majority of seeds. WEAKENED if ON==OFF (the term never moves committed action -> decorative, dropped per the ARC-106 ablation test) OR ON avoids the irreversible branch REGARDLESS of uncertainty (un-gated risk-aversion, not the claimed mechanism). NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): the two branches must measurably differ in reachable-future-option count (post-action reachable distinct states/goals spread > floor) AND forecast uncertainty (E2 forward-PE or E3 running_variance) must VARY across the manipulated conditions (range > floor) -- if reachable-option count is identical across branches or PE is pinned, the term has nothing to act on and the test is vacuous.\n"
   },
+  "MECH-455": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal_pipeline.competence_based_intrinsic_motivation_wanting",
+    "title": "competence_based_intrinsic_motivation / goal_achievement_progress_wanting. A wanting bonus indexed to the agent's RATE-OF-IMPROVEMENT in ACHIEVING its own active goals: per active goal, an EMA of the derivative of goal-achievement competence (success-rate, or 1 - proximity-at-termination) injected as intrinsic wanting alongside MECH-229 VALENCE_WANTING, biasing the agent toward goals it is currently getting BETTER at reaching. This is the SECOND intrinsic-motivation family in Mirolli & Baldassarre (2013) -- COMPETENCE-based IM (reward = progress in achieving a self-generated goal, i.e. improving the agent's SKILLS) -- which REE's registered IM stack (MECH-314 info-gain / MECH-314a novelty / MECH-314c learning-progress, all KNOWLEDGE-based: reward = improving the WORLD MODEL) entirely lacks. Same derivative-not-level discipline as MECH-314c, but the operand is BEHAVIOURAL COMPETENCE, not predictive error.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
