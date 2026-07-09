@@ -1,48 +1,56 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-08T20:45:51Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-719a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "last_tick_utc": "2026-07-09T02:52:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-721",
+  "current_exq_started_utc": "2026-07-08T21:00:57.763317+00:00",
+  "current_title": "MECH-446 closure-fire -> latch-armed-occupancy LAG-distribution diagnostic (Move M3): re-anchor the de-commit DV from the vacuous within-arm occupancy-drop to the fire->occupancy lag distribution",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 44 / CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
+    "runs_done": 6,
+    "runs_total": 6,
+    "episodes_done": 30,
+    "episodes_total": 265,
+    "overall_pct": 101.9
+  },
+  "seconds_elapsed": 21103,
+  "seconds_remaining": 0,
+  "recent_lines": [
+    "[v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic] starting (dry_run=False)",
+    "Seed 42 Condition CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
+    "[train] stage0_nursery seed=42 ep 20/265 z_goal_peak=0.4783 formed=True",
+    "[train] stage0b_consolidate seed=42 ep 30/265 retention=0.989 gate=pass",
+    "[train] p0_guided seed=42 ep 130/265 mean_len=198.4 rv=0.00006",
+    "[train] hazard_avoidance seed=42 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=42 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=42 ep 235/265 contact_rate=0.2004 contact_events=85 z_goal_at_contact=0.5287",
+    "Seed 42 Condition ARM_ENTRY_OFF",
+    "Seed 42 Condition ARM_ENTRY_ON",
+    "[eval] arm_eval seed=42 ep 265/265 | OFF armed=0 fires_occ=3 | ON armed=0 run=7 f_commits=445 intent=0 fires=7 fires_occ=5 lag_med=2.0 coreg_W=0.714 | armed_sustained=False off_no_arm=True measurable=True",
+    "verdict: PASS seed=42 guard_pass=True measurable=True (contact_rate=0.2004 z_goal_at_contact=0.5287)",
+    "Seed 43 Condition CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
+    "[train] stage0_nursery seed=43 ep 20/265 z_goal_peak=0.4297 formed=True",
+    "[train] stage0b_consolidate seed=43 ep 30/265 retention=0.881 gate=pass",
+    "[train] p0_guided seed=43 ep 130/265 mean_len=198.2 rv=0.04317",
+    "[train] hazard_avoidance seed=43 ep 170/265 median_last=200.0 survival_gate=pass",
+    "[train] p1_foraging seed=43 ep 220/265 median_last=200.0 survival_gate=pass",
+    "[train] p2_guard seed=43 ep 235/265 contact_rate=0.2963 contact_events=151 z_goal_at_contact=0.4230",
+    "Seed 43 Condition ARM_ENTRY_OFF",
+    "Seed 43 Condition ARM_ENTRY_ON",
+    "[eval] arm_eval seed=43 ep 265/265 | OFF armed=0 fires_occ=0 | ON armed=111 run=5 f_commits=336 intent=111 fires=4 fires_occ=3 lag_med=2.0 coreg_W=0.750 | armed_sustained=True off_no_arm=True measurable=True",
+    "verdict: PASS seed=43 guard_pass=True measurable=True (contact_rate=0.2963 z_goal_at_contact=0.4230)",
+    "Seed 44 Condition CLOSURE_LATCH_LAG_DISTRIBUTION_ENTRY_OFF_ON",
+    "[train] stage0_nursery seed=44 ep 20/265 z_goal_peak=0.4294 formed=True",
+    "[train] stage0b_consolidate seed=44 ep 30/265 retention=0.894 gate=pass"
   ],
-  "runner_pid": 743,
-  "runner_version": "r3655 af4f638 2026-07-08 (running r3649 3f9e01d)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 745,
+  "runner_version": "r3658 eed4037 2026-07-08 (running r3656 94fe66b)",
   "gpu": {
     "available": false
   },
