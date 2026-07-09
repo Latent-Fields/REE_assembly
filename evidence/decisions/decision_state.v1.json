@@ -360,6 +360,15 @@
       "selected_option": "Keep held under the V5 architectural commitment (correct path).",
       "timestamp_utc": "2026-07-01T01:23:09.425711Z"
     },
+    "ARC-106": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "architectural_commitment thin umbrella; evidence accrues from its biology-grounded worked examples' falsifiers (MECH-439/689a, SD-011, SD-033, ARC-035), not a dedicated ARC-106-tagged V3 run. v3-phase analogue of the v4/v5 held_by_architectural_commitment reclassification; stops the per-cycle pending_user re-flag.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Keep held as a standing architectural construction-constraint (not a single-V3-substrate hold)",
+      "timestamp_utc": "2026-07-09T19:00:29.843047Z"
+    },
     "ARC-107": {
       "actor": "governance-cycle-20260620T2049Z",
       "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
@@ -2160,6 +2169,15 @@
       "selected_option": "Acknowledge all holds",
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
+    "SD-063": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-716 validated all three load-bearing criteria (CRPS quantile beats point; precision_error_corr over EMA null; SD-031 agency residual preserved) -- exactly the note's gate condition. v3_pending cleared. 716 tagged non_contributory/claim_ids=[], so a claim-tagged evidence run (V3-EXQ-716a) is queued for candidate->provisional scoring.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Clear gate: substrate implemented + validated (V3-EXQ-716 PASSED C1/C2/C3)",
+      "timestamp_utc": "2026-07-09T19:00:29.795689Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -2179,7 +2197,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-09T17:56:22.336135Z",
+  "generated_at_utc": "2026-07-09T19:00:44.181661Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

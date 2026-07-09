@@ -43590,7 +43590,7 @@
   polarity: asserts
   status: candidate
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: architectural
   registered_utc: 2026-07-04
   instantiates: MECH-059
@@ -43651,6 +43651,16 @@
     1381/1385 (4 pre-existing unrelated fails). PROMOTES NOTHING; v3_pending STAYS
     until the V3-EXQ-716 validation falsifier scores (CRPS/precision-error-corr
     advantage survives joint training AND SD-031 agency residual preserved).
+    GATE CLEARED 2026-07-09 (governance): V3-EXQ-716
+    (v3_exq_716_sd063_conditional_uncertainty_validation_...) PASSED all three
+    load-bearing criteria -- C1 CRPS quantile beats point, C2 precision_error_corr
+    over the EMA null, C3 SD-031 agency residual preserved (label
+    sd063_conditional_uncertainty_validated; preconditions all met). That is
+    exactly the condition this note set, so v3_pending is cleared. CAVEAT: 716 was
+    tagged experiment_purpose=diagnostic / claim_ids=[] / non_contributory, so it
+    deposits NO claim-scoring evidence -- SD-063 stays `candidate` and a
+    claim-tagged evidence-confirmation run is queued (V3-EXQ-716a) to supply the
+    scoring evidence for a candidate->provisional promotion.
   location: docs/architecture/sd_063_e2_conditional_uncertainty_head.md
 
 - id: SD-064
@@ -47536,6 +47546,18 @@
     (ethics/love/play/language/goal/commitment/attention/self/drive) -- the
     components deliberately left unmapped. Epistemic category resolves to
     substrate_coherence (design choice, promotion/demotion suppressed).
+  governance_disposition_note: >
+    2026-07-09 (governance, user decision): treated as a STANDING architectural
+    construction-constraint, NOT a single-V3-substrate hold. ARC-106 is a thin
+    umbrella / method whose evidence accrues from the aggregate of its
+    biology-grounded worked examples' falsifiers (depends_on MECH-439 [V3-EXQ-689a],
+    SD-011, SD-033, ARC-035), not from a dedicated V3 run tagged to ARC-106 itself.
+    The recommendation engine's generic v3-hold (implementation_phase=v3 + 0
+    ARC-106-tagged V3 runs) mislabels it as awaiting a V3 substrate and re-surfaced
+    it as pending_user each cycle -- the v3-phase analogue of the v4/v5
+    held_by_architectural_commitment reclassification (2026-04-27 / 06-06 / 07-01).
+    Decision recorded (applied) so it leaves the pending_user queue; revisit only
+    when a worked-example falsifier materially changes the grounding ledger.
   location: docs/architecture/arc_106_biology_grounding_framework.md
 - id: ARC-107
   title: "Basal-ganglia-like E3 selector constitution: committed-action selection should be governed by an explicit BG-mirroring eligibility-gating CONSTITUTION -- candidate actions pass through an eligibility mask, bounded Go (direct-pathway promotion) and No-Go (indirect-pathway suppression) pressures, a conflict-sensitive hold / threshold-raise / candidate-set widening (hyperdirect-STN), striatal-like parallel channel competition (rather than one scalar monarch), a pallidal-like permission-to-commit gate (rather than bare argmax), and a stable post-commit latch / de-commit -- so that an upstream signal's STRENGTH is necessary but not sufficient: it also needs LAWFUL ACCESS to committed action. The translation target is functional (a divergence-ledgered, falsifier-validated BG analogue), NOT anatomical mimicry."
