@@ -29,7 +29,7 @@ The critique produced ~13 actionable threads. They are grouped into tiers by lev
 | WS-1 | 0 | Capability floor before structure | Read V3-EXQ-724 result; competence-floor experiment isolating "can it act" from "does structure help" | NOT STARTED |
 | WS-2 | 1 | Ceiling-claim demotion rule | New GOV-* claim: pre-registered falsification/demotion rule for `substrate_ceiling` / `pending_retest_after_substrate` | NOT STARTED |
 | WS-3 | 1 | Capability-eval yardstick | Minimal capability benchmark suite (independent of any REE claim) to separate "claim wrong" from "substrate coarse" | NOT STARTED |
-| WS-4 | 2 | Formal-ancestor mapping | Table mapping top ~30 load-bearing MECH/ARC to their nearest formal ancestor + that ancestor's measurement math | NOT STARTED |
+| WS-4 | 2 | Formal-ancestor mapping | Table mapping top ~30 load-bearing MECH/ARC to their nearest formal ancestor + that ancestor's measurement math | **DONE** (2026-07-09) → `docs/architecture/formal_ancestor_mapping.md`; per-row `/lit-pull` confirmation still owed |
 | WS-5 | 2 | Active-inference bridge | Lit-pull + bridge doc: precision / epistemic value / exploration math REE can inherit; document exact departures | NOT STARTED |
 | WS-6 | 2 | Bitter-Lesson rebuttal | Written, cited answer to "why won't scale + search eat this structure?" | NOT STARTED |
 | WS-7 | 2 | Corrigibility positioning | Position the commit-boundary against the formal corrigibility literature (MIRI et al.) | NOT STARTED |
