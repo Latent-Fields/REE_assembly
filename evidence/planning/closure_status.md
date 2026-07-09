@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-07T18:18:29Z
+Generated: 2026-07-09T17:56:30Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -19,7 +19,7 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 | plan | title | nodes | progress | status counts | last_updated |
 |------|-------|-------|----------|---------------|--------------|
-| `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 6 | 0% | assembling:6 | 2026-07-06 |
+| `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 6 | 0% | assembling:6 | 2026-07-09 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-06-14 |
@@ -38,8 +38,8 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-23 |
-| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654j RAN TERMINAL FAIL/non_contributory 2 | V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).  | 2026-07-07 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress | 2 | load-bearing | V3-EXQ-689g -- the MECH-449 Go/No-Go conversion  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-07-07 |
+| arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-B` | MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP | in_progress | 2 | load-bearing | V3-EXQ-654j RAN TERMINAL FAIL/non_contributory 2 | V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g).  | 2026-07-09 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-I` | F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root | in_progress | 2 | load-bearing | V3-EXQ-689g -- the MECH-449 Go/No-Go conversion  | CEILING LIFTED 2026-06-21 (V3-EXQ-689d PASS) -- DOWNSTREAM RETESTS NOW UNBLOCKED. The conf | 2026-07-09 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress | 2 | high | V3-EXQ-460l (SUPERSEDES V3-EXQ-460k; RAN termina | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-06-25 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-23 |
@@ -50,7 +50,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P4` | Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on th | blocked | 4 | high | V3-EXQ-483f | depends_on: sd_037_axis_b:P3 | 2026-06-05 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | in_progress | 4 | medium | V3-EXQ-706b | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-27 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate | 4 | medium | V3-EXQ-591 | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-23 |
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | 660 base PASS/supports established the binary within-class preserver; MECH-341 RATIFIED candidate->provisional (v3_pending CLEARED 2026-06-14, commit 80f4fcf250, user-directed). Only remaining unblocks strand = ARC-062 falsifier, gated on the shared GAP-A selection-authority substrate (569g->682-gated) | load-bearing | V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is t | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-07-07 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-B` | Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341) | partial | 660 base PASS/supports established the binary within-class preserver; MECH-341 RATIFIED candidate->provisional (v3_pending CLEARED 2026-06-14, commit 80f4fcf250, user-directed). Only remaining unblocks strand = ARC-062 falsifier, gated on the shared GAP-A selection-authority substrate (569g->682-gated) | load-bearing | V3-EXQ-660b TERMINAL FAIL 2026-06-11T13:43Z is t | MECH-341 STRAND CLOSED 2026-06-14 (ratified provisional, commit 80f4fcf250). The only OPEN | 2026-07-09 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial | 2-3 | medium | [H1 curiosity leg, DONE] V3-EXQ-604c PASS 2026-0 | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-06-23 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate | 2-3 | medium | V3-EXQ-606b | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-23 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress | 2-3 | medium | V3-EXQ-546 (done, diagnostic/non_contributory);  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-19 |
@@ -66,10 +66,10 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | EXHAUSTED 2026-07-06: the arbitration/learned-gating build f | exhausted |  | 2026-07-06 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | conversion_ceiling_campaign:FULLSTACK (the co-armed full-sta | built |  | 2026-06-23 |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | FULLSTACK selection+valuation arm QUEUED as V3-EXQ-714 (owne | in_progress |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | Selection+valuation composite QUEUED NOW -- V3-EXQ-714 QUEUE | in_progress |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | Competence-localization gate (719a reframe). Every face-comp | ran_exhausted_for_substrate |  |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | RAN TERMINAL -- V3-EXQ-714 FAIL/non_contributory (readiness  | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go | assembling | RAN -- V3-EXQ-699 non_contributory diagnostic (precondition_ | ran_non_contributory |  |  |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | RUN V3-EXQ-715a (Move M1; QUEUED + coordinator-ingested 2026 | queued | 2026-07-15 |  |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | Commit-duration face (root C, MECH-445/446): de-commit authority on a  | assembling | De-commit cluster RAN TERMINAL (V3-EXQ-715/715a/717 all FAIL | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feed | assembling | composition into the full-stack arm (with P-comp + P2-rootC  | built |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic  | assembling | EXHAUSTED 2026-07-06 -- no further build owed. The learned-g | exhausted |  |  |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 prot | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress |  | 2026-06-23 |
@@ -151,11 +151,12 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (0)
+## Plans WITHOUT closure_plan frontmatter (2)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-_None -- every plan doc is mapped._
+- `evidence/planning/global_workspace_jlens_plan.md`
+- `evidence/planning/ree_ai_design_critique_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 
@@ -165,7 +166,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 100.0% across 4 non-deferred nodes in 1 plan(s).
 - **PROCESS**: 100.0% across 13 non-deferred nodes in 2 plan(s).
-- **V4**: 29.5% across 99 non-deferred nodes in 14 plan(s).
+- **V4**: 29.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
 
@@ -360,7 +361,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-5` | z_self-domain goal representation (DR-11): self-state goals representa | blocked | high | V3 WIRING AUDIT (MECH-214, 2026-04-07): z_goal lives purely in z_world; V3 grid world conf | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-6` | Proxy/hedonic dissociating environment (DR-14): substrate that surface | blocked | high | V3 LIMIT: the grid world makes proxy == hedonic by construction; you cannot show a goal pu | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-6` | Candidate-gradient episode content schema (MECH-361): affect gradient  | blocked | medium | MECH-261 (mode-conditioned write gating) -- MECH-361 amends its CONTENT schema (WHAT is wr | 2026-06-10 |
-| v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-5` | Goal / wanting layer grounding L1 -> L2 | open | medium | Goal layer currently has no region map (non_anatomy_prefix 'goal'). First step is a functi | 2026-06-20 |
+| v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-5` | Goal / wanting layer grounding L1 -> L2 [L2 REACHED 2026-07-07 via on- | in_progress | medium | Neural analog (function level): frontal goal-directed control -- vmPFC/dlPFC/dACC goal enc | 2026-07-07 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-6` | Distancing operator (MECH-382): first/third-person reframe as an arbit | blocked | medium | ARC-005 precision-routing control plane (the thing the reframe acts through) live | 2026-06-10 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-7` | Labels as top-down perceptual-control signals (MECH-383): self-directe | blocked | medium | ARC-005 precision-routing control plane + the distributed precision-selection cluster (MEC | 2026-06-10 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-5` | Non-terminal failure-grade taxonomy as a transfer-world launch profile | deferred | medium | V3 LIVE scaffold substrate it formalises: scaffolded_sd054_onboarding (nursery / protected | 2026-06-10 |

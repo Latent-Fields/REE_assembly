@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_590c_mech314_novelty_goldilocks
 
-Generated: `2026-06-29T06:03:14.383167Z`
+Generated: `2026-07-09T17:56:22.336135Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

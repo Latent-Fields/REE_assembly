@@ -1,6 +1,6 @@
 ---
-title: Axiom Chain — Adversarial Audit
-nav_order: 5
+title: Adversarial Audit of the Eight-Axiom Chain
+nav_exclude: true
 ---
 
 # Adversarial Audit of the Eight-Axiom Chain

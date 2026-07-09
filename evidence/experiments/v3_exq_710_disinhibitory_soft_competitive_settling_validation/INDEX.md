@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_710_disinhibitory_soft_competitive_settling_validation
 
-Generated: `2026-07-05T17:25:01.608792Z`
+Generated: `2026-07-09T17:56:22.336135Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-07-07T18:18:31Z
+Generated: 2026-07-09T18:44:14Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -39,11 +39,11 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 |------|------|--------|----------|-----------------|---------------|-------------|
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | assembling | conversion_ceiling_campaign:FULLSTACK (the co-armed full-sta | built | _none_ | no |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | assembling | EXHAUSTED 2026-07-06: the arbitration/learned-gating build f | exhausted | _none_ | no |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | assembling | FULLSTACK selection+valuation arm QUEUED as V3-EXQ-714 (owne | in_progress | _none_ | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | assembling | Competence-localization gate (719a reframe). Every face-comp | ran_exhausted_for_substrate | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P-comp` | assembling | RAN -- V3-EXQ-699 non_contributory diagnostic (precondition_ | ran_non_contributory | _none_ | no |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | assembling | RUN V3-EXQ-715a (Move M1; QUEUED + coordinator-ingested 2026 | queued | 2026-07-15 | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P2-rootC` | assembling | De-commit cluster RAN TERMINAL (V3-EXQ-715/715a/717 all FAIL | ran_exhausted_for_substrate | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | assembling | composition into the full-stack arm (with P-comp + P2-rootC  | built | _none_ | no |
-| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | assembling | Selection+valuation composite QUEUED NOW -- V3-EXQ-714 QUEUE | in_progress | _none_ | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | assembling | RAN TERMINAL -- V3-EXQ-714 FAIL/non_contributory (readiness  | ran_exhausted_for_substrate | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | assembling | EXHAUSTED 2026-07-06 -- no further build owed. The learned-g | exhausted | _none_ | no |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress | _none_ | no |
 

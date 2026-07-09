@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_062b_mech104_surprise_gate_spike_selectivity
 
-Generated: `2026-06-23T23:36:00.557344Z`
+Generated: `2026-07-09T17:56:22.336135Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
