@@ -162,10 +162,16 @@ def main():
         if nid in already:
             print("skip (already lifted): %s" % nid)
             continue
-        # only lift nodes that actually carry a collapsible blob
-        if not any(isinstance(rn.get(f), str) and rn.get(f).strip()
-                   for f in _HISTORY_FIELDS_HINT):
-            print("skip (no phase/owner_exq/awaiting blob): %s" % nid)
+        # Lift every node the collapse will process. The collapse detects a
+        # "blob" by the presence of a phase/owner_exq/awaiting physical LINE
+        # (any value type -- incl. integer `phase: 3` and `owner_exq: null`),
+        # so lift-eligibility must be keyed on field PRESENCE, not on the value
+        # being a non-empty string. Otherwise the collapse REFUSES an un-lifted
+        # node whose blob is a scalar/null (razor sec 5). The whole raw node is
+        # archived verbatim regardless, so lifting a trivial `phase: 3` is
+        # harmless and preserves the field for provenance.
+        if not any(f in rn for f in _HISTORY_FIELDS_HINT):
+            print("skip (no phase/owner_exq/awaiting field): %s" % nid)
             continue
         pr = projections.get(nid)
         live_view = P.stored_live_view(pr["live"]) if pr else {}
