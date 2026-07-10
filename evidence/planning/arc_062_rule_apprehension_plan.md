@@ -3,16 +3,25 @@ closure_plan:
   id: arc_062_rule_apprehension
   title: "Rule Apprehension"
   registered: 2026-05-09
-  last_updated: 2026-06-14
+  last_updated: 2026-07-10
   scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, ARC-077, MECH-337, MECH-338, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution, behavioral_diversity_isolation, conversion_ceiling_campaign]
   nodes:
     - id: "arc_062_rule_apprehension:GAP-A"
       title: "ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned context discriminator)"
-      phase: 1
       status: done
       severity: load-bearing
-      owner_exq: "V3-EXQ-542a PASS/non_contributory diagnostic (canonical ARC-062 substrate-readiness successor to V3-EXQ-542)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-062, MECH-309]
       depends_on: []
       cross_plan_link: ["commitment_closure:GAP-1"]
@@ -20,10 +29,19 @@ closure_plan:
       governance_2026_06_08: "Plan-drift reconcile. V3-EXQ-542a is the canonical substrate-readiness truth for GAP-A: the gated-policy substrate exists and passed UC1-UC6 as a diagnostic/non-governance-weighting validation. Status remains done; no new experiment is owed under GAP-A."
     - id: "arc_062_rule_apprehension:GAP-B"
       title: "MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness"
-      phase: 2
       status: in-progress
       severity: load-bearing
-      owner_exq: "V3-EXQ-654j RAN TERMINAL FAIL/non_contributory 2026-06-22T13:59Z (run_id v3_exq_654j_arc062_gapb_rule_apprehension_nogo_behavioural_falsifier_20260622T135939Z_v3; supersedes V3-EXQ-654i; claim_ids=[MECH-309, ARC-062]). CONFIRMED failure_autopsy_V3-EXQ-654j_2026-06-22 (governance-apply 2026-06-22, user-approved): pre-registered FAIL(C1 holds, C2 fails) clean substrate-ceiling -- all seven C1 readiness/non-vacuity gates met & non-degenerate, incl. C1f confirming the MECH-449 active No-Go live & suppressing (1.55) on BOTH arms -- yet the load-bearing C2 committed-class entropy lift FAILED (1/3 seeds). Both ARC-107 eligibility-governance legs (MECH-448 demotion @654i, MECH-449 Go/No-Go @654j) PASS at the selection face yet NEITHER converts to committed-class behavioural diversity: the conversion ceiling is structural and downstream of selection. Cross-substrate-corroborated by V3-EXQ-485m (OFC devaluation face -- 3rd convergent fails-C2-alone datum). Claims UNWEAKENED (substrate_ceiling / pending_retest_after_substrate). RE-DERIVE BRAKE FIRED (18th MECH-309 / 19th ARC-062); further eligibility-governance letters refused. Factor-B next-route SUPERSEDED by V3-EXQ-689c (refuted at the selection face); corrected route = root-C rung-6 (PARKED; closure-exclusive de-commit substrate built 2026-06-22) or V4, NOT another GAP-B eligibility/commit-T letter. Status stays in-progress (GAP-B closes only on a PASS C2 lift). PROMOTES NOTHING. [HISTORY] V3-EXQ-654i RAN TERMINAL FAIL/non_contributory 2026-06-22T01:47Z (run_id v3_exq_654i_arc062_gapb_rule_apprehension_behavioural_falsifier_20260622T014706Z_v3; supersedes V3-EXQ-654h; claim_ids=[MECH-309, ARC-062]). CONFIRMED failure_autopsy_V3-EXQ-654i_2026-06-22 (governance 2026-06-22, user-approved): pre-registered FAIL(C1 holds, C2 fails) clean substrate-ceiling -- all C1 readiness/non-vacuity gates met & non-degenerate (rule field 0.913, propagation 0.027, MECH-448 demotion live excluding 18.4) but the load-bearing C2 committed-class entropy lift FAILED: the differentiated rule-apprehension bias reaches committed action but does not convert to committed-class diversity even under live demotion. Conversion ceiling persists despite demotion; NOT an ARC-062/MECH-309 falsification (claims UNWEAKENED, substrate_ceiling / pending_retest_after_substrate behind MECH-449). RE-DERIVE BRAKE FIRED (17 prior substrate_ceiling autopsies): refuse a same-substrate 654j re-queue -- the next test must engage the MECH-449 Go/No-Go active No-Go (built 2026-06-21; falsifier V3-EXQ-689g PASSED + MECH-449 PROMOTED candidate->provisional 2026-06-22). [HISTORY] V3-EXQ-654i was queued 2026-06-21 as THE GAP-B FALSIFIER PORTED ONTO THE MECH-448 (ARC-107) RANK-PRESERVING F->ELIGIBILITY DEMOTION CONVERSION, NOW WITH 485j-STYLE PER-(arm,seed) ENVELOPE-FLOOR CALIBRATION so the demotion lever genuinely EXCLUDES on the SPREAD arc_062 F pool: ports the 654g/654h GAP-B committed-class-entropy falsifier with use_f_eligibility_demotion=True armed as a matched-stack constant on BOTH arms (the f_demotion mode overrides the 569i top_k per ree-v3/ree_core/predictors/e3_selector.py), ONLY use_candidate_rule_field swept, PLUS a per-(arm,seed) f_eligibility_envelope_floor calibrated below the bank's measured max per-candidate merit-share so f_eligibility_excluded_count>0 (the fix for the 654h all-admit no-op recorded below). 654i ALSO scores a fired-but-non-converting outcome as a genuine MECH-309/ARC-062 weakens rather than another silent no-op requeue (the 654h-autopsy safeguard). A 654i PASS is the first downstream confirmation that the MECH-448 demotion lever (promoted PROVISIONAL 2026-06-21 on the V3-EXQ-689d PASS) generalises off the GAP-A foraging substrate onto the GAP-B rule-apprehension composite; a 654i PASS would also close behavioral_diversity_isolation:GAP-I. PROMOTES NOTHING until 654i runs -- MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate. [HISTORY] V3-EXQ-654h RAN FAIL/non_contributory 2026-06-21T17:57Z (run_id v3_exq_654h_arc062_gapb_rule_apprehension_behavioural_falsifier_20260621T175704Z_v3; ree-cloud-3; supersedes V3-EXQ-654g; reviewed + autopsied failure_autopsy_V3-EXQ-654h_2026-06-21, status=confirmed). FIVE of six self-route gates PASSED (committed_class_axis_exercisable 1.0; GAP-A consumed_summary divergence 0.0226 > floor; rule-field differentiated+matured 0.872; propagation non-vacuity 0.0195 > 0.001) but the MECH-448 non-degeneracy gate FAILED: f_eligibility_excluded_count==0 -- the 689d-validated config (f_eligibility_envelope_floor=0.30, dn_sigma=0.0) admitted EVERY candidate because the arc_062 rule-apprehension bank yields a SPREAD/non-divergent F pool (no candidate clears the absolute 0.30 merit-share floor) -> all-admit fallback -> ARM_ON==ARM_OFF -> the F->eligibility demotion is a STRUCTURAL NO-OP, so the C2 committed-class-entropy-lift DV never ran through a genuinely-demoted selector. IDENTICAL no-op-envelope signature to V3-EXQ-485i (same MECH-448 lever, OFC bank) -- 654h is its arc_062-bank twin. The C1e non-degeneracy gate did its job (self-routed substrate_not_ready_requeue, NO false weakens). NOT a MECH-309/ARC-062 falsification. The 654i re-queue gate was CLEARED by failure_autopsy_V3-EXQ-485j (MECH-448 demotion GENERALISES off GAP-A for the discrimination/committed-diversity family that 654 tests; the one 485j signature that did NOT convert was the orthogonal devaluation/value family, pinned to a devalued-head/test-design gap -> 485k). Routed: /queue-experiment 654i (485j-style per-(arm,seed) envelope-floor calibration onto the arc_062 bank) + amend f_dominance_conversion_ceiling. 7th autopsy in the MECH-309/ARC-062 series (654/b/c/d/f/g/h); NO /claim-synthesis (the shared selector locus is already decomposed by the ARC-107 BG-selector constitution MECH-448 demotion / MECH-449 Go/No-Go). [HISTORY] V3-EXQ-654g RAN FAIL/non_contributory 2026-06-19T21:31Z (run_id v3_exq_654g_arc062_gapb_rule_apprehension_behavioural_falsifier_20260619T213118Z_v3; ree-cloud-4; supersedes V3-EXQ-654f; reviewed /governance 2026-06-19). THE GAP-B BEHAVIOURAL LINEAGE TERMINUS: first run on the de-locked CRF stack wired to the 569i-validated top-k shortlist conversion. C1 (non-vacuity) FULLY MET on all 5 preconditions (class axis exercisable 1.0; GAP-A divergence 0.080 > 0.05; ARM_ON crf_frac_active 0.94 > 0.30; propagation non-vacuous, within-arm counterfactual delta 0.0021 nonzero -- the rule_state reaches committed action). C2 (PRIMARY committed-class entropy lift) FAILED: ARM_ON 0.6728 vs ARM_OFF 0.6614 = +0.011 nats, 0/3 seeds clear the 0.05-nat margin. Pre-registered C1-holds/C2-fails branch = non_contributory, the SHARED selection-authority CONVERSION ceiling (behavioral_diversity_isolation:GAP-A; MECH-439 F-dominance live root), NOT a MECH-309/ARC-062 falsification. SECOND independent behavioural channel after V3-EXQ-485h (OFC outcome-value bias) to corroborate MECH-439 as the live root. CRF instrumentation lineage CLEANLY TERMINATED (CRF done at 654f); residual is the F-dominance ceiling, not a 654-specific gap. Route: /implement-substrate (GAP-A gain/contrast amend); the OFC behavioural retest is sequenced behind the conversion-ceiling chain (ARC-065 569i top-k ceiling-lifted / 689a / 625e). MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate -- NOT weakened. PRIOR FRONTIER (now superseded) V3-EXQ-654f RAN FAIL/non_contributory 2026-06-18T00:52Z (run_id v3_exq_654f_arc062_gapb_rule_apprehension_behavioural_falsifier_20260618T005228Z_v3; ree-cloud-1; supersedes V3-EXQ-654e -- the recovery re-queue of the phantom-completed-no-manifest 654e, science unchanged; reviewed /governance 2026-06-18, non_contributory self-route, weights nothing; the CRF-gate calibration amend did not produce a contributory committed-class-entropy verdict, a 654g successor on a de-locked CRF/monostrategy substrate is owed). PRIOR FRONTIER V3-EXQ-654e QUEUED 2026-06-17 (ree-v3 main 488ec03; supersedes V3-EXQ-654d; claim_ids=[MECH-309, ARC-062]; priority 335, machine any) -- the GAP-B committed-class-entropy falsifier ported onto the CRF-GATE CALIBRATION AMEND (crf-availability-maintenance at the CRF locus, UNGATED from GAP-A; amend landed ree-v3 main 42895f6 2026-06-17). The 654d autopsy proved GAP-A de-collapse is the WRONG lever (gate-lockout independent of GAP-A); the amend's three CRF-locus levers (crf_mature_context_match_threshold=0.7 sharpen + crf_tolerance_conflict_cap=3 + crf_maintenance_couple_to_theta=True) are armed on ARM_ON so the maintained differentiated pool clears the conflict gate (contracts C20-C24 + smoke: crowded-pool frac_active 0.000->0.98). C1c crf_frac_active>=0.30 self-routing precondition RETAINED (now expected to clear; if not -> substrate_not_ready_requeue, NEVER a false weakens); conversion-ceiling off-ramp retained (C1 holds/C2 absent -> non_contributory + /implement-substrate or /claim-synthesis). AWAITING 654e RUN + REVIEW. PREDECESSOR: V3-EXQ-654d RAN FAIL/non_contributory 2026-06-16T15:27Z (ree-cloud-2; run_id v3_exq_654d_arc062_gapb_rule_apprehension_behavioural_falsifier_20260616T152753Z_v3) -- REVIEWED + autopsied 2026-06-16 (failure_autopsy_V3-EXQ-654d_2026-06-16, status=confirmed). [QUEUED 2026-06-16T07:49Z, ree-v3 origin/main 927fe1c; supersedes V3-EXQ-654c; claim_ids=[MECH-309, ARC-062]; priority 315, machine any] -- the GAP-B falsifier ported onto the GAP-A DE-COLLAPSED substrate now that the gate cleared (V3-EXQ-684a PASS, conversion_mechanism_identified). Arms the 684a-validated ARM_STD_G2 conversion lever (modulatory_authority_normalize_basis=std + authority_gain=2.0 + use_modulatory_channel_routing + source=cand_world_summary) as a matched-stack constant on BOTH arms; only use_candidate_rule_field swept; CRF mature+maintenance+persist + trained-bias-head P1 unchanged; records crf_n_matched_last (the 654c discriminator). Pre-registered C1a/C1b/C1c/C1d preconditions each self-route substrate_not_ready_requeue (C1c crf_frac_active<0.30 routes to the CRF maintenance-theta amend, autopsy part ii -- NOT implemented in code, ready=False); three-branch map (PASS->supports; C1-holds/C2-fails->shared CONVERSION ceiling under ARM_STD_G2->non_contributory+/implement-substrate; C1-fails->substrate_not_ready_requeue); NO weakens branch. RESULT (failure_autopsy_V3-EXQ-654d_2026-06-16, confirmed): C1c FAILED again (crf_frac_active 0.0 all 3 ARM_ON seeds) -- the C1-fail branch. But 654d ARMED ARM_STD_G2 on both arms AND recorded the discriminator crf_mean_n_matched (7.08/7.29/8.70 -- the 654c-flagged instrument). LOAD-BEARING FINDING: the GAP-A conversion de-collapse is the WRONG LEVER for this gate -- ARM_STD_G2 de-collapsed the E3 selection channel (consumed_summary spread cleared the 0.05 floor 2/3 seeds) but NOT the CRF rule-match context KEY; the 16 differentiated rules (max_pairwise_dist 1.711) match 7-8/tick and ALL gate out (theta=0.15+0.25*(n_matched-1)~=1.65 >> maintenance_floor 0.45). mean_prop_counterfactual_delta=0.0 confirms the gated-out rule_state never reaches committed action. NON_CONTRIBUTORY, NO weakens -- the two CRF-locus faults the 654c autopsy named (context-key crowding + maintenance/theta calibration) remain un-amended (substrate bit-identical to 654c) and 654d proves them INDEPENDENT of the GAP-A selection conversion. ROUTE (user-confirmed): /implement-substrate AMEND crf-availability-maintenance at the CRF locus, UNGATED from GAP-A (couple maintained availability to theta(n_matched) [pure gate calibration] + de-collapse the CRF mint/match context key [distinct from the E3 channel] + keep frac_ACTIVE readiness gate); re-queue 654e on that gate, NOT on GAP-A. PREDECESSOR V3-EXQ-654c RAN FAIL/non_contributory 2026-06-15T12:38Z (run_id v3_exq_654c_arc062_gapb_rule_apprehension_behavioural_falsifier_20260615T123848Z_v3; reviewed /governance 2026-06-15; supersedes V3-EXQ-654b; claim_ids=[MECH-309, ARC-062]) -- FAILed C1c arm_on_rule_field_differentiated_and_matured (crf_frac_active = 0.0 < 0.30) for the 4th consecutive iteration, but with an INVERTED signature confirmed by failure_autopsy_V3-EXQ-654c_2026-06-15 (status=confirmed): the 666c maintenance amend FIXED the retire-churn (crf_max_pairwise_rule_dist 0.0 -> 1.711, minting stabilised at 12-16) so the pool now holds >=2 differentiated rules -- yet activation collapsed to exactly 0.0 because the GAP-A-collapsed e2_world_forward context (consumed_summary spread 0.0089 < 0.05) makes >=3 rules co-match, so gate_and_select theta = 0.15+0.25*(n_matched-1) >= 0.65 > maintenance_floor 0.45 and every matched rule is gated OUT. MAINTAINED != ACTIVE. C2 committed-class entropy DV never scored (C1 gates it). MECH-309/ARC-062 NOT weakened (non_contributory, substrate_ceiling, pending_retest_after_substrate). ROUTING (substrate_queue crf-availability-maintenance AMENDED + ready flipped True->False this cycle): de-collapse the CRF context key (sharpen/per-candidate-separate e2_world_forward feeding CRF mint/match, mirror GAP-A) + couple maintained availability to per-tick theta + upgrade the readiness gate to assert crf_frac_active>=0.30 (gate FIRING, not frac_maintained); re-queue the GAP-B falsifier (654d) ONLY AFTER GAP-A context de-collapse, since the CRF amend is necessary-but-not-sufficient while the shared monostrategy collapse persists. PREDECESSOR V3-EXQ-654b TERMINAL FAIL 2026-06-10T20:05Z (non_contributory, substrate_not_ready_requeue; reviewed /governance 2026-06-10) -- the longer-maturation (P0+P1 100->240 ep) re-run of 654a still did NOT clear the C1c crf_frac_active>=0.30 floor (measured 0.130), so the committed-class falsifier DV never scored; supersedes V3-EXQ-654a. PREDECESSOR V3-EXQ-654a QUEUED 2026-06-09 (priority 250, machine any; supersedes V3-EXQ-654) -- the gated re-run on the landed cross-episode rule-persistence amend (ree-v3 main 9797e84). Single-variable ARM_OFF vs ARM_ON with crf_persist_rules_across_episode_reset=True (matured pool clears the C1c 0.30 floor), a frozen-encoder P1 trained-bias-head REINFORCE phase (GAP-D), and a propagation non-vacuity precondition (ARM_ON bias != ARM_OFF, else substrate_not_ready_requeue); committed-class entropy PRIMARY DV. PREDECESSOR V3-EXQ-654 TERMINAL FAIL 2026-06-09T08:18Z (non_contributory, confirmed failure_autopsy_V3-EXQ-654_2026-06-09): C1c readiness FAIL (CandidateRuleField cold-started per episode) gated out the C2 falsifier DV -- NOT a falsification."
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       governance_2026_06_19: "FALSIFIER RAN + ADJUDICATED INLINE (/governance cycle 2026-06-19T21:41Z; NO claim-scoring move). V3-EXQ-654g -- the GAP-B falsifier on the de-locked CRF + 569i top-k shortlist stack the 654f autopsy called for -- RAN FAIL/non_contributory 2026-06-19T21:31Z (ree-cloud-4) and was reviewed this cycle. THE MATURED-AND-FIRING TEST the lineage owed has now run and the prediction held: C1 FULLY MET (crf_frac_active 0.94, GAP-A divergence 0.080, propagation non-vacuous, within-arm counterfactual delta 0.0021 nonzero) yet C2 committed-class entropy lift is +0.011 nats / 0/3 seeds. CONFIRMED: it is the selection-authority CONVERSION coupling (MECH-439 F-dominance live root), not CRF maturation, that is the ceiling -- the matured+active+differentiated rule_state reaches committed action but cannot move the F-dominated committed argmax. Second behavioural channel after V3-EXQ-485h (OFC) to corroborate MECH-439. User-confirmed inline disposition (no new autopsy -- a pre-registered, non-degenerate self-route to the already-mapped MECH-439 ceiling; the 654 instrumentation lineage cleanly terminated). Applied: claims.yaml ARC-062 + MECH-309 evidence_quality_note 654g entries (no status change); 654f -> superseded (manifest + index); substrate_queue ARC-062 += 654g failure_record, crf-availability-maintenance marked complete (residual is conversion ceiling, not a CRF fault); 654g reviewed; owner_exq advanced 654f -> 654g. Route: /implement-substrate GAP-A gain/contrast amend; the conversion-ceiling chain (ARC-065 569i top-k ceiling-lifted / 689a / 625e) already carries it. MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate. Status stays in-progress (GAP-B closes only on a PASS C2 lift, which requires the F-dominance rebalance). last_updated 2026-06-18 -> 2026-06-19."
       unblocks_claims: [MECH-309, ARC-062]
       depends_on: ["arc_062_rule_apprehension:GAP-A"]
@@ -58,10 +76,19 @@ closure_plan:
       resume_condition: "V3-EXQ-654h QUEUED + PENDING 2026-06-21 (pending on ree-cloud-3; supersedes V3-EXQ-654g). The MECH-439 F-dominance conversion ceiling has been LIFTED operationally by the MECH-448 (ARC-107) rank-preserving F->eligibility demotion lever (promoted PROVISIONAL 2026-06-21 on the V3-EXQ-689d PASS), so the prior 'do NOT queue a 654h on the current selector' guidance is SUPERSEDED: 654h is the GAP-B committed-class-entropy falsifier ported onto that demotion conversion (use_f_eligibility_demotion=True armed as a matched-stack constant on BOTH arms; the f_demotion mode overrides the 569i top_k per ree-v3/ree_core/predictors/e3_selector.py; ONLY use_candidate_rule_field swept). RESUME PATH: await the 654h run + /governance review. On a 654h PASS (C2 committed-class entropy lift) -> MECH-309/ARC-062 SUPPORTS evidence + the FIRST downstream confirmation that the MECH-448 demotion lever generalises off the GAP-A foraging substrate onto the GAP-B rule-apprehension composite -> consider GAP-B closure (and it also closes behavioral_diversity_isolation:GAP-I). On C1-holds/C2-fails -> the conversion ceiling persists despite demotion (non_contributory, route /implement-substrate / MECH-449 follow-on), NOT a falsification, NOT a weakens. On C1-fails -> substrate_not_ready_requeue. PROMOTES NOTHING until 654h is adjudicated -- MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate. [HISTORY -- the 654g gate: V3-EXQ-654g RAN + ADJUDICATED 2026-06-19 (FAIL/non_contributory; C1 fully met, C2 +0.011 nats 0/3 seeds = the SHARED MECH-439 F-dominance conversion ceiling, NOT a falsification). The CRF instrumentation lineage is CLEANLY TERMINATED; GAP-B no longer waits on a 654-specific substrate. The (now-superseded) post-654g read was: GAP-B closes ONLY after the MECH-439 ceiling is lifted via the conversion-ceiling chain (behavioral_diversity_isolation:GAP-A ARC-065 569i top-k ceiling-lifted + the active 689a / 625e successors + MECH-439 F-rebalance), and do NOT queue a 654h on the then-current selector (it would re-derive the ceiling) -- that lift has since landed as MECH-448 and 654h IS that re-queue onto the demotion lever. [HISTORY -- the pre-654g gate: 654f (confirmed failure_autopsy_V3-EXQ-654f_2026-06-18) proved the CRF-gate calibration amend WORKED: C1 fully met (crf_frac_active 0.83-0.97 cleared the 0.30 floor; conflict-gate lockout gone; propagation non-vacuous) and the residual blocker is the SHARED selection-authority CONVERSION ceiling (behavioral_diversity_isolation:GAP-A; 569g/569h/682). 654f hit it on the SUPERSEDED additive lever ARM_STD_G2 (569h FAIL, 1/3); GAP-A has since SOLVED it via the TOP-K shortlist (V3-EXQ-569i PASS/supports 2026-06-17, ARC-065 promoted stable). RESUME PATH: /queue-experiment 654g = the GAP-B committed-class-entropy falsifier ported onto the 569i-validated TOP-K shortlist conversion (use_modulatory_shortlist_then_modulate + modulatory_shortlist_mode=top_k + modulatory_shortlist_k) as a matched-stack constant on BOTH arms, keeping the now-working CRF stack (mature + maintenance + persist + e2-context + trained-bias-head P1) constant; only use_candidate_rule_field swept. Retain the C1c crf_frac_active>=0.30 self-routing precondition (expected to clear now) + the conversion-ceiling off-ramp; three-branch NO-weakens map (C1+C2 -> supports; C1-holds/C2-fails -> deeper conversion ceiling, non_contributory; C1-fails -> substrate_not_ready_requeue). Do NOT re-queue on ARM_STD_G2 (superseded) or on a further CRF amend (CRF done -- C1 fully met). MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate until 654g is adjudicated. [HISTORY -- the 654d gate (now superseded by the 654e->654f runs + the 654f autopsy above): AWAITING V3-EXQ-654d RUN + REVIEW (QUEUED 2026-06-16, ree-v3 origin/main 927fe1c; coordinator /queue/active CONFIRMED present). The GAP-A-context-de-collapse gate is DISCHARGED -- V3-EXQ-684a PASSED 2026-06-15 (conversion_mechanism_identified), so the ARM_STD_G2 conversion config (modulatory_authority_normalize_basis=std + authority_gain=2.0 + routed e2_world_forward channel) de-collapses the e2 context the CRF mint/match keys off. 654d arms ARM_STD_G2 on BOTH arms + records crf_n_matched_last; it tests the autopsy's PRIMARY hypothesis that de-collapse alone drops n_matched enough for the existing maintenance_floor 0.45 to clear the gate (the part-(ii) CRF maintenance-theta coupling amend is NOT implemented -- substrate_queue crf-availability-maintenance ready=False -- and the C1c precondition is the guard that self-routes to it if de-collapse is insufficient). RESUME path on the 654d run: /governance adjudicate per the three-branch map (NO weakens branch while the conversion ceiling is open): (a) C1 readiness met (crf_frac_active>=0.30 cleared + C1d propagation non-vacuous + C1a/C1b) AND C2 committed-class lift (>=2/3 seeds) -> PASS -> MECH-309/ARC-062 SUPPORTS evidence -> consider GAP-B closure. (b) C1 met AND C2 fails -> SHARED selection-authority CONVERSION CEILING persisting under the validated ARM_STD_G2 lever -> non_contributory + route /implement-substrate (deeper conversion amend), NOT a falsification, NOT a weakens. (c) C1 fails (crf_frac_active<0.30 -- read crf_n_matched_last to disambiguate matched-but-gated-out [route to the CRF maintenance-theta part-(ii) amend] from never-matched; OR propagation vacuous; OR class axis / GAP-A divergence absent) -> non_contributory / substrate_not_ready_requeue -> re-queue / substrate enrichment; do NOT weaken. The 654d script implements exactly this three-branch map. MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate until 654d is adjudicated. [HISTORY -- the 654c gate: V3-EXQ-654c RAN FAIL/non_contributory 2026-06-15 (confirmed failure_autopsy_V3-EXQ-654c): the 666c maintenance amend SOLVED mint/maintain (max_pairwise_dist 1.711, pool holds >=2 differentiated rules) but activation collapsed to frac_active 0.0 because the GAP-A-collapsed e2 context co-matched >=3 rules -> gate theta 0.65 > maintenance_floor 0.45 (MAINTAINED != ACTIVE); the autopsy gated 654d on GAP-A context de-collapse, now discharged by 684a above. The prior 'GATED ON V3-EXQ-654c RUN + REVIEW' / 'GATED ON V3-EXQ-666c PASS' gates are also DISCHARGED -- V3-EXQ-666c PASSED 2026-06-15 (the clean fraction-gated CRF-readiness re-run at the enlarged P0 cleared the maintained-pool gate AND all 4 non-vacuity preconditions simultaneously: ARM_2 mean_frac_maintained 0.854 > 0.625; field mints >=2 rules/cell; e2ctx full-pool differentiation 1.598 > 0.1 PRE-gap on all 3 seeds; ARM_2 maintained pool count 9 + differentiation 1.701 supra-floor) and substrate_queue crf-availability-maintenance flipped ready=TRUE (be7261d9ca). ON that PASS, V3-EXQ-654c was QUEUED 2026-06-15 (ree-v3 origin/main 7225065; coordinator /queue/active present) -- the committed-class-entropy GAP-B falsifier with the mature + e2ctx + maintenance flags armed on the matched GAP-A/authority/SD-056 stack + trained-bias-head P1 (GAP-D) + enlarged P0 (200 ep). RESUME path: await the 654c run, then /governance adjudicate per the CORRECTED branch map (the conversion ceiling is now confirmed open, so the prior 'C1 met & C2 fails -> weakens' branch is RETIRED): (a) C1 readiness met (crf_frac_active>=0.30 cleared + C1d propagation non-vacuous) AND C2 committed-class lift (>=2/3 seeds) -> PASS -> MECH-309/ARC-062 SUPPORTS evidence -> consider GAP-B closure. (b) C1 met AND C2 fails -> SHARED selection-authority CONVERSION CEILING (behavioral_diversity_isolation:GAP-A; failure_autopsy_V3-EXQ-569g_2026-06-14 + V3-EXQ-682: the channel range reaches the E3 accumulator but does not move the F-dominated committed argmax) -> non_contributory + route /implement-substrate (the GAP-A gain/contrast amend, already in flight via the parallel 682-gated conversion-amend session), NOT a MECH-309/ARC-062 falsification, NOT a weakens. (c) C1 fails (pool not maintained crf_frac_active<0.30, OR propagation vacuous ARM_ON bias == ARM_OFF, OR class axis / GAP-A divergence absent) -> non_contributory / substrate_not_ready_requeue -> re-queue / substrate enrichment; do NOT weaken. The 654c script implements exactly this three-branch map (NO weakens branch). Do NOT re-open the GAP-A or rule-creator blockers (both resolved); MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate until 654c is adjudicated. -- 654c is now adjudicated (FAIL/non_contributory, branch (b)/(c) hybrid: maintenance cleared, activation gated out under collapsed context); the live gate is GAP-A context de-collapse -> CRF activation amend -> 654d, per the updated lead above.]"
     - id: "arc_062_rule_apprehension:GAP-C"
       title: "ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector"
-      phase: 3
       status: done
       severity: high
-      owner_exq: V3-EXQ-598
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [SD-033a, MECH-262, SD-034]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["commitment_closure:GAP-1"]
@@ -69,10 +96,19 @@ closure_plan:
       substrate_note: "Substrate DONE 2026-05-17. Validation V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d; supersedes V3-EXQ-598a; gates_on=V3-EXQ-543l with PERMISSIVE semantic; priority 240; claim_ids=[SD-033a, MECH-262]). Per failure_autopsy_V3-EXQ-543l_2026-05-27 sections 7+9, V3-EXQ-598b is the DISCRIMINATOR between substrate-enrichment-first (predicted contributory PASS) and test-design-ceiling (predicted FAIL/weakens) readings. 543l FAIL/mixed (2026-05-26) does NOT block 598b; contributory PASS on 543l is NOT required (the autopsy explicitly routes substrate-enrichment-first regardless of 543l's branch-e verdict). Evidence closure path: contributory PASS -> ARC-062 weak-reading governance-stamped viable + commitment_closure:GAP-1 closes; FAIL/weakens -> ARC-063 V4 lit-pull + design session."
     - id: "arc_062_rule_apprehension:GAP-D"
       title: "E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias head untrained)"
-      phase: 3
       status: done
       severity: high
-      owner_exq: V3-EXQ-598b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [SD-033a, MECH-262]
       depends_on: ["arc_062_rule_apprehension:GAP-C", "arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["commitment_closure:GAP-1"]
@@ -81,38 +117,74 @@ closure_plan:
       substrate_note: "Substrate DONE 2026-05-17. Same validation EXQ as GAP-C: V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d). Gated on V3-EXQ-543l with PERMISSIVE semantic per failure_autopsy_V3-EXQ-543l_2026-05-27 routing -- requires only that 543l manifest exists with outcome in {PASS, FAIL} (clears against 543l's 2026-05-26 FAIL/mixed); contributory PASS on 543l NOT required (598b is the discriminator)."
     - id: "arc_062_rule_apprehension:GAP-E"
       title: "Multi-strategy scaling probe (>2 strategies) -- distinguishes ARC-062 weak from ARC-063 strong"
-      phase: 4
       status: deferred
       severity: medium
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-063]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       last_updated: 2026-05-09
     - id: "arc_062_rule_apprehension:GAP-F"
       title: "Clinical / failure-mode tests (trauma-schema / paranoid-rule-field / depressive-rollout-constraint) -- ARC-063 falsifiable predictions (b)"
-      phase: 5
       status: deferred
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-063]
       depends_on: ["arc_062_rule_apprehension:GAP-E"]
       last_updated: 2026-05-09
     - id: "arc_062_rule_apprehension:GAP-G"
       title: "Sleep-vs-waking refinement asymmetry tests -- ARC-063 falsifiable predictions (c) and Pull C lit-pull placeholder"
-      phase: 5
       status: deferred
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-063]
       depends_on: ["arc_062_rule_apprehension:GAP-E"]
       cross_plan_link: ["sleep_substrate:GAP-1"]
       last_updated: 2026-05-09
     - id: "arc_062_rule_apprehension:GAP-H"
       title: "ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending"
-      phase: "2-3"
       status: partial
       severity: medium
-      owner_exq: "[H1 curiosity leg, DONE] V3-EXQ-604c PASS 2026-06-07 closed the Q-044/MECH-314-family GAP-A-ready leg (MECH-314a promoted provisional); V3-EXQ-544/545/544a historical diagnostics. [H2 noise-floor leg, OPEN] Q-045/MECH-313/MECH-260 leg: V3-EXQ-687 RAN TERMINAL FAIL/non_contributory 2026-06-18 (the 4-arm tonic-noise ablation; CONFIRMED failure_autopsy_V3-EXQ-687_2026-06-18, self-routed substrate_not_ready_requeue -- a post-softmax temperature does not move the argmax, the non-propagation root; reviewed; removed from queue). The 687-successor (arming the 569i conversion stack + a dacc_max_suppression>0 non-vacuity precondition) is OWED but unqueued, blocked on behavioral_diversity_isolation:GAP-C; convergence candidate fix MECH-440/441 (NoisyNet weight-noise + RND directed-curiosity) BUILD-DECIDED 2026-06-27 (user verdict at CPKT-TONIC-EXPLORATION-NOISE-20260618; decision_due 2026-07-02 met early) -> /implement-substrate owed, tracked at behavioral_diversity_isolation:GAP-C-build. NOTE the same-day failure_autopsy_704b-706b-conversion-ceiling_2026-06-27 re-rooted the conversion ceiling to single-arena collapse (ARC-110), so the H2 noise-floor falsifier is gated on / confounded by ARC-110 and must control for the single-arena axis. GAP-B successor still owed."
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-065, Q-043, Q-044, Q-045]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link: ["behavioral_diversity_isolation:GAP-C"]
@@ -130,10 +202,19 @@ closure_plan:
       resume_condition: "PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validated GAP-A; do not queue another GAP-H curiosity retest for that leg. Hold the remaining Q-045/MECH-313/MECH-260 survival/noise-floor leg until V3-EXQ-603i lands, and hold rule-apprehension closure on the GAP-B successor. GAP-H closes only after those remaining legs settle."
     - id: "arc_062_rule_apprehension:GAP-I"
       title: "ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending"
-      phase: "2-3"
       status: blocked_pending_substrate
       severity: medium
-      owner_exq: V3-EXQ-606b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-064, MECH-318]
       depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-C"]
       last_updated: 2026-06-23
@@ -141,29 +222,56 @@ closure_plan:
       resume_condition: "BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creator/discriminator substrate that populates DIFFERENTIATED rule_state into SD-033a; scaffolded_sd054_onboarding is the candidate vehicle). The MECH-318 empirical retire-vs-promote gate (per claims.yaml MECH-318: verdict deferred to 'ARC-062 Phase 2 GAP-B PASS + Phase 3 GAP-C closure') cannot run before GAP-B resolves -- a multi-rule-context falsifier needs the cluster to produce differentiated rule_state first. MECH-318/ARC-064/MECH-316/MECH-317 are correctly held by the indexer (candidate + v3_pending/implementation_phase=v3 -> hold_pending_v3_substrate); no governance-pipeline action is stuck. STALE-PIN WARNING: the committed 606b script hardcodes GATES_ON_EXQ=V3-EXQ-543k, and 543k ran 20260522T091714Z FAIL/mixed (done, never re-runs) -- that pin is a DEAD END. Do NOT wait on a '543k successor contributory PASS' (the prior 2026-05-23 HOLD note); GAP-B was re-framed to blocked_pending_substrate on 2026-05-30 and its line moved past 543k (543l FAIL -> rule-creator substrate). 606b dry_run 20260523T223001Z FAIL/weakens (C3 PASS, C1/C2 FAIL). RESUME: when GAP-B resolves (rule-creator substrate validated via the scaffolded_sd054_onboarding cohort -- e.g. the V3-EXQ-620 / 603e / 591b line), queue a 606b-successor via /queue-experiment RE-GATED to the GAP-B-resolving EXQ (NOT 543k); the existing 606b script GATES_ON_EXQ=V3-EXQ-543k must be replaced at that time (script-logic change -> /queue-experiment, not a hand edit). DIAGNOSE-ERRORS NOTE: V3-EXQ-606a stays an unaddressed ERROR in /diagnose-errors scans (sync-lag infra error on ree-cloud-2, not a code bug; 606b is its byte-identical re-queue, parked here) until a 606b-successor actually runs -- this is expected; do not re-diagnose 606a or write a 606c. Episode-boundary multi-rule via alternating bipartite axis; MECH-318 empirical gate only. MECH-316/317 absorption checks remain doc-only (no V3 modules)."
     - id: "arc_062_rule_apprehension:GAP-I-absorption"
       title: "ARC-064 absorption checks for MECH-316 (cross-episode regularities) + MECH-317 (behavioural-pattern compression) -- doc-only, no V3 modules (split out of GAP-I)"
-      phase: "2-3"
       status: deferred
       severity: low
-      owner_exq: "null -- no V3 substrate; doc-only absorption checks"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [MECH-316, MECH-317]
       depends_on: ["arc_062_rule_apprehension:GAP-I"]
       last_updated: 2026-06-23
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) splitting MECH-316/MECH-317 out of GAP-I. Per GAP-I's resume_condition, 'MECH-316/317 absorption checks remain doc-only (no V3 modules)' -- they have NO empirical gate and no V3 substrate, unlike MECH-318 (which GAP-I retains). They are V4-leaning (the bottom-up rule-discovery cluster's deeper legs) and held deferred so GAP-I's MECH-318 empirical-gate readiness is not conflated with these doc-only legs. Reclassify to generation:v4 + cross-link to a V4 plan if/when a bottom-up rule-discovery substrate is scoped. NO claims.yaml change (MECH-316/317 stay candidate)."
     - id: "arc_062_rule_apprehension:GAP-J"
       title: "MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)"
-      phase: "2-3"
       status: blocked
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       last_updated: 2026-05-17
     - id: "arc_062_rule_apprehension:GAP-K"
       title: "MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidence falsifier LANDED PASS (supports) 2026-06-02"
-      phase: "2-3"
       status: in-progress
       severity: medium
-      owner_exq: "V3-EXQ-546 (done, diagnostic/non_contributory); V3-EXQ-628 LANDED PASS 2026-06-02 (experiment_purpose=evidence; supports MECH-319; replay/caller_sim=True admit_writes block-vs-admit rule_state divergence falsifier; 3/3 seeds)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [MECH-319]
       depends_on: ["arc_062_rule_apprehension:GAP-B", "arc_062_rule_apprehension:GAP-H", "arc_062_rule_apprehension:GAP-I"]
       last_updated: 2026-06-19
@@ -173,10 +281,19 @@ closure_plan:
       resume_condition: "IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence slice; do not re-queue that slice. GAP-K closure waits on the GAP-B successor, GAP-H remaining legs, and GAP-I multi-rule-context substrate."
     - id: "arc_062_rule_apprehension:GAP-L"
       title: "Biology lit-pull prerequisite for the socially-scaffolded rule-population sub-cluster (ARC-077 / MECH-337 / MECH-338) -- HARD GATE before any implementation"
-      phase: "3-4"
       status: done
       severity: load-bearing
-      owner_exq: "lit-pull (GAP-L litpull session 2026-05-18T205635Z)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["MECH-309", "ARC-062", "ARC-063", "ARC-064", "ARC-065", "ARC-077", "MECH-337", "MECH-338", "MECH-312", "MECH-312a", "MECH-312b", "MECH-312c", "MECH-312d", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-316", "MECH-317", "MECH-318", "MECH-319", "Q-043", "Q-044", "Q-045", "SD-054", "SD-029", "MECH-269"]
       unblocks_claims: [ARC-077, MECH-337, MECH-338, ARC-063]
       depends_on: []
       last_updated: 2026-05-18
