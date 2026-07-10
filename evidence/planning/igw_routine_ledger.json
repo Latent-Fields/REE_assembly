@@ -1647,7 +1647,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-195-proposal-for-inv-051 && claude --resume a3a9d958-ea28-4bd2-afbe-016f45e1c9fd",
       "task_claim_session_id": "igw-auto-igw-195-proposal-for-inv-051-20260710T150057Z",
       "assigned_at": "2026-07-10T15:00:44Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-10T15:07:09Z",
+      "completion_summary": "marked EVB-0111/INV-051 blocked_substrate: ecological MEL-producer re-parked (718a) + upper-bound needs missing MECH-178 NA plane; consumer proven but no runnable INV-051 signal",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0235 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -2099,6 +2103,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-10T07:05:13Z",
       "re_eligible_after": "2026-07-12T07:05:13Z"
+    },
+    {
+      "stable_hash": "3b10a117b16a",
+      "igw_id_at_disposition": "IGW-20260710-195",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-051"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-051",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-10T15:07:09Z",
+      "re_eligible_after": "2026-07-12T15:07:09Z"
     }
   ]
 }
