@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-10_actor_critic_decoupled_representation_control_stooke2021",
+  "timestamp_utc": "2026-07-10T17:18:12Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Decoupling representation learning from reinforcement learning",
+    "authors": [
+      "Adam Stooke",
+      "Kimin Lee",
+      "Pieter Abbeel",
+      "Michael Laskin"
+    ],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML), PMLR 139:9870-9879",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2009.08319"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "The most decision-relevant ML paper for REE's specific proposed architecture (frozen upstream encoder + separately-trained policy). Stooke et al. show a self-supervised temporal-contrastive encoder (ATC) can be trained separately from the policy and, held FROZEN, match or beat end-to-end RL -- but only because (a) the encoder objective was temporal-contrastive on control-relevant data and (b) a policy is STILL trained by RL on reward on top. Cuts both ways for REE: strongly supports the decoupled 'frozen e2 encoder + trainable policy head' design (V3-EXQ-737 / H1), while documenting the exact failure mode if the frozen features are not control-relevant (residual H2). Confidence 0.71 -- high relevance, but the two-edged verdict lowers directional confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Frozen-encoder success in ATC was CONDITIONAL on the encoder being trained with a temporal-contrastive objective on control-relevant observation streams. REE's e2 world-forward contrastive is temporally-contrastive in spirit, but if its features do not expose resource/hazard structure at the 5x5 local-view scale, a frozen-encoder + policy-head build can underperform -- the exact H2 residual.",
+    "ATC still trains the policy end-to-end by RL on reward. The paper is therefore ALSO evidence against REE's status quo: a decoupled encoder does NOT remove the need for a reward-trained policy; REE's bias-head is not a substitute for the RL-trained actor ATC always keeps.",
+    "Benchmarks are pixel-based DMControl/Atari with dense-ish shaping; REE's partially-observed implicit-reward forager is a harder control regime, so 'frozen encoder suffices' does not transfer automatically."
+  ],
+  "tags": [
+    "mech_457",
+    "actor_critic_action_learning",
+    "decoupled_representation",
+    "frozen_encoder",
+    "contrastive",
+    "policy_head",
+    "conversion_ceiling",
+    "f_dominance_conversion_ceiling",
+    "v3_exq_737"
+  ],
+  "mapping": {
+    "source_claim_statement": "Representation learning can be decoupled from policy learning. An unsupervised temporal-contrastive task (Augmented Temporal Contrast, ATC) trains a convolutional encoder to associate observations a short time apart; training the encoder with ATC alone matches or outperforms end-to-end RL in most tested environments, and frozen ATC-pretrained encoders used inside RL agents outperform other unsupervised objectives. In all cases a policy is still learned by RL on reward on top of the (possibly frozen) encoder.",
+    "ree_translation": "This is the closest ML precedent for REE's actual proposed fix under f_dominance_conversion_ceiling: keep the perceptual/prediction encoder (e2 world-forward contrastive) and add a separately-trained policy over it -- exactly V3-EXQ-737 (PPO policy head on frozen z_world). Stooke et al. give a positive existence proof that this decoupled shape CAN yield competent control, and that a frozen self-supervised encoder can even be sufficient. But the same paper is the evidence that REE's status quo is broken for a second reason: they ALWAYS train the policy by RL on reward -- a decoupled encoder never substitutes for the actor. REE's bias-head is not the ATC agent's RL-trained policy; it is the missing piece. So the paper simultaneously validates the H1 build design and warns that its success is gated on e2's features being control-relevant (H2).",
+    "mapping_caveat": "ATC's frozen-encoder success depended on a temporal-contrastive objective over control-relevant pixel streams with (relatively) dense reward; REE's e2 is temporally-contrastive in spirit but its features may not expose resource/hazard structure under 5x5 partial observability and implicit reward. So the paper supports the DESIGN (decoupled encoder + RL policy) more strongly than it supports the PREDICTION that REE's specific frozen e2 will suffice -- hence evidence_direction=mixed.",
+    "source_context": "Deep-RL-from-pixels benchmarks (DeepMind Control Suite, Atari); online RL plus a frozen-pretrained-encoder benchmark across several unsupervised representation objectives."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high (ICML 2021 spotlight, widely cited, directly on the decoupled-representation question). Mapping fidelity 0.72: it is the closest available precedent for REE's exact frozen-encoder + trainable-policy design, but its verdict is two-edged (supports the design, warns on feature adequacy). Transfer risk 0.42 -- pixel DMControl/Atari with denser reward vs REE's partially-observed implicit-reward forager is a real regime gap, and the 'frozen encoder suffices' result is the part most at risk in transfer."
+  }
+}

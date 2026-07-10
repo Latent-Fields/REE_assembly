@@ -49151,3 +49151,93 @@
     derivative-not-level form. Distinct from MECH-314a/MECH-314 (novelty / info-gain
     coverage, not skill).
   location: evidence/planning/intrinsic_motivation_competence_mechanisms.md
+
+- id: MECH-457
+  title: "action_learning_as_first_class_actor_critic_substrate / rpe_driven_policy_learning. Competent action learning in REE requires a DEDICATED RPE-driven actor-critic policy-learning substrate (a dorsal-striatal analog: a parameterized actor trained on a reward-error teaching signal, with a value-baseline critic), architecturally distinct from -- and NOT reducible to -- the current thin bias_head REINFORCE readout over the prediction-trained (SD-056 e2 world-forward contrastive) encoder. The V3-EXQ-724 competence autopsy localized REE's foraging wall (integrated all-ON agent forages ~0 resources/episode vs a 1.0 floor) to exactly this un-varied invariant: action is learned only as a bias on a representation trained for SENSORY PREDICTION, never as a first-class policy object trained on RETURN. 'Prediction-rich, action-poor': REE trains a substantial world model but has no dedicated action-learning system -- in brains, action learning IS a substantial learning system (O'Doherty 2004 dorsal-striatum-as-actor; Schultz 1997 dopaminergic RPE teacher), not a bias term on a prediction model."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.actor_critic_action_learning_substrate
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true # unbuilt; promotion gated on the V3-EXQ-737 H1 discriminator (a real trainable policy/actor head + value baseline over REE's frozen z_world recovering foraging competence above the 1.0 floor)
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-10"
+  depends_on:
+    - SD-056    # e2 world-forward contrastive encoder -- the prediction-trained representation the actor would ride (frozen per V3-EXQ-737, or permitted to adapt for action)
+    - MECH-229  # VALENCE_WANTING -- the valence/reward signal an actor-critic reward-error (RPE) teacher would consume to shape the policy
+  functional_restatement: >
+    The V3-EXQ-724 competence-localization diagnostic held REE's foraging deficit
+    invariant across P1 training budget, encoder-freeze, and mechanism count (and
+    their combination -- all sub-floor while a privileged oracle clears the 1.0
+    floor). The failure autopsy (failure_autopsy_V3-EXQ-724_2026-07-09) localized the
+    deficit to the ONE invariant 724 never varied: REE learns action ONLY through a
+    thin bias_head REINFORCE over representations trained for prediction (SD-056 e2
+    world-forward contrastive), with no first-class policy/action-learning substrate.
+
+    MECH-457 names the missing system. Biological action learning is a dedicated
+    learning system, not a bias term on a prediction model: dorsal striatum acts as
+    an ACTOR, dissociable from the ventral-striatal value-prediction CRITIC
+    (O'Doherty et al. 2004), taught by a dopaminergic reward-prediction-error signal
+    (Schultz, Dayan & Montague 1997), with direct/indirect-pathway (D1/D2) opponent
+    credit assignment available as a later refinement (Collins & Frank 2014 OpAL).
+    The ML statement of the same point: competent control comes from directly
+    optimizing a dedicated, separately-parameterized policy on expected return with a
+    value baseline (the policy-gradient theorem / actor-critic, Sutton et al. 2000),
+    NOT from reading a policy off a value/prediction model -- the latter proved
+    intractable under function approximation. A frozen self-supervised (contrastive)
+    encoder CAN support competent control, but only with a policy still trained by RL
+    on reward on top of it (Stooke et al. 2021, decoupled representation/policy) --
+    which is precisely the object REE lacks.
+
+    Falsifiable (the H1 discriminator, V3-EXQ-737, queued SEPARATELY via
+    /queue-experiment): a real trainable policy/actor head + value baseline over
+    REE's z_world, trained by PPO/actor-critic, DV = foraging competence crossing the
+    1.0/episode floor. If it clears the floor, the bias-head-over-prediction was the
+    bottleneck (H1, this claim's mechanism) -> build the substrate under
+    f_dominance_conversion_ceiling. If it fails while a non-REE vanilla learner on the
+    identical observation ALSO fails, the target is the observation encoding, not the
+    policy (H2) -- which would WEAKEN this claim. V3-EXQ-738 (2026-07-10) already
+    refuted the strong-H2 read: the 1.0 floor IS reachable from the agent's 5x5 local
+    view, leaving H1 as the surviving hypothesis pending 737.
+  evidence_quality_note: >
+    PROMOTES NOTHING. Registered 2026-07-10 via /lit-pull as the single novel
+    candidate the actor-critic action-learning lit-pull warrants -- grounding the
+    'prediction-rich, action-poor' translation gap the V3-EXQ-724 autopsy identified
+    as REE's competence bottleneck. Distinct from MECH-455 (competence-based
+    intrinsic motivation = why the agent doesn't WANT to earn competence, the drive
+    side) -- MECH-457 is the action-LEARNING MACHINERY that converts drive into
+    learned control (how action is learned at all). Sibling, not duplicate. Owning
+    thread: ree_ai_design_critique_plan.md WS-1 (competence floor) ->
+    conversion_ceiling_campaign_plan.md; build target = the
+    f_dominance_conversion_ceiling entry in
+    evidence/planning/substrate_queue.json. NO substrate written yet: the H1/H2
+    discriminator (V3-EXQ-737) decides the build target before any commit.
+
+    Literature grounding (5 canonical entries in
+    evidence/literature/targeted_review_actor_critic_action_learning/entries/):
+      - Schultz, Dayan & Montague 1997 (Science) -- dopaminergic reward-prediction
+        error as the dedicated teaching signal for action learning; the reward-error
+        channel REE lacks
+        (2026-07-10_actor_critic_rpe_teaching_signal_schultz1997)
+      - O'Doherty et al. 2004 (Science) -- dorsal striatum = actor, ventral = critic;
+        the direct biological anchor for action-learning as a first-class dissociable
+        system (2026-07-10_actor_critic_dorsal_ventral_striatum_odoherty2004)
+      - Collins & Frank 2014 (Psych Review) -- OpAL opponent-actor / D1-D2
+        credit-assignment internals; a later refinement, not the minimal build
+        (2026-07-10_actor_critic_opponent_actor_credit_collins_frank2014)
+      - Sutton et al. 2000 (NeurIPS) -- policy-gradient theorem / actor-critic; the
+        formal reason a separately-trained policy + value baseline learns control a
+        value/prediction model won't
+        (2026-07-10_actor_critic_policy_gradient_theorem_sutton2000)
+      - Stooke et al. 2021 (ICML) -- decoupling representation from RL; supports the
+        frozen-encoder + trainable-policy design AND flags the residual feature-
+        adequacy (H2) risk
+        (2026-07-10_actor_critic_decoupled_representation_control_stooke2021)
+
+    Distinct from targeted_review_action_policy_decomposition (how action DECOMPOSES
+    into habits/goals/hierarchy/chunks -- SD-004/ARC-021/SD-045), from
+    targeted_review_striatal_gain_control_bounding (MECH-448 gain/demotion envelope),
+    and from targeted_review_mech_090_release_motor_cessation (release/stop). This
+    dossier is 'how action is learned AT ALL', a different question.
+  location: evidence/literature/targeted_review_actor_critic_action_learning/

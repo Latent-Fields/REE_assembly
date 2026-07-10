@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-10_actor_critic_policy_gradient_theorem_sutton2000",
+  "timestamp_utc": "2026-07-10T17:18:12Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Policy gradient methods for reinforcement learning with function approximation",
+    "authors": [
+      "Richard S. Sutton",
+      "David McAllester",
+      "Satinder Singh",
+      "Yishay Mansour"
+    ],
+    "year": 2000,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS/NIPS 12)",
+    "doi": "",
+    "url": "https://proceedings.neurips.cc/paper/1999/hash/464d828b85b0bed98e80ade0a5c43b0f-Abstract.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "The foundational ML grounding: the policy-gradient theorem establishes that a separately-parameterized policy, optimized directly on expected return, converges to a local optimum -- and that an actor-critic (policy + learned value baseline) is the low-variance form. Crucially, the paper motivates policy gradient by noting the value-function-ONLY approach (derive the policy from an approximated value function) had proven theoretically intractable under function approximation. This is the exact formal reason REE's bias-head-over-prediction-features is impoverished: there is no separately-trained policy object being pushed uphill on return. Confidence 0.8 -- the theorem is canonical and the mapping to REE's gap is tight; slightly reserved because it is a formal guarantee, not evidence that policy gradient clears REE's specific env.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Policy gradient guarantees convergence to a LOCAL optimum only; a policy head over frozen prediction features could still converge to a poor local optimum if those features do not linearly separate the control-relevant structure -- the residual H2 risk (feature adequacy), not resolved by the theorem.",
+    "REINFORCE (which REE's bias-head uses) IS a policy-gradient method -- so the gap is NOT 'REE uses the wrong family'. The gap is that REE applies it to a thin bias head over a frozen prediction encoder with no value baseline (critic), i.e. high-variance, low-capacity, and representation-mismatched. The theorem clarifies the fix (full trainable policy + value baseline), it does not indict the algorithm class.",
+    "Formal/theoretical result; sample-efficiency and exploration under partial observability (REE's actual bottleneck regime) are outside its scope."
+  ],
+  "tags": [
+    "mech_457",
+    "actor_critic_action_learning",
+    "policy_gradient",
+    "actor_critic",
+    "value_baseline",
+    "function_approximation",
+    "reinforce",
+    "conversion_ceiling",
+    "f_dominance_conversion_ceiling",
+    "v3_exq_737"
+  ],
+  "mapping": {
+    "source_claim_statement": "An agent's policy can be represented by its own function approximator, independent of any value function, and updated by gradient ascent on expected reward (the policy-gradient theorem). With an appropriately-compatible learned value function serving as a baseline (the actor-critic form), the variance of the gradient estimate is reduced. The paper motivates this by noting the alternative -- approximating a value function and deriving a policy from it -- had proven theoretically intractable under function approximation.",
+    "ree_translation": "This is the ML-side statement of why REE is 'prediction-rich, action-poor'. REE learns action via a thin bias_head REINFORCE over a frozen prediction-trained encoder, with no separately-parameterized policy object and no value-baseline critic. Sutton et al. establish that competent control comes from directly pushing a dedicated policy uphill on return, with a value baseline to make the gradient usable -- exactly the object REE lacks. The f_dominance_conversion_ceiling build is, in ML terms, 'give REE a real actor (parameterized policy) + critic (value baseline)'. V3-EXQ-737 (PPO -- a modern actor-critic/policy-gradient method -- on REE's frozen z_world) is the canonical minimal instantiation, and this theorem is why that arm is the right H1 test.",
+    "mapping_caveat": "REE's bias-head already IS a policy-gradient (REINFORCE) method, so the theorem does not say REE uses the wrong algorithm family -- it says REE applies the family to an inadequate object (bias-head, no critic baseline, frozen prediction features). And policy gradient only guarantees a LOCAL optimum: if the frozen encoder's features do not expose control-relevant structure, a full policy head can still stall -- the residual H2 (feature adequacy) the theorem cannot rule out.",
+    "source_context": "Foundational reinforcement-learning theory paper (NeurIPS 12 / NIPS 1999 proceedings); proves the policy-gradient theorem and the compatible-function-approximation / actor-critic result for RL with function approximation."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.82,
+    "transfer_risk": 0.28,
+    "notes": "Source quality very high (the canonical policy-gradient theorem, thousands of citations, backbone of modern actor-critic/PPO). Mapping fidelity high (0.82): it names the exact formal reason a separately-trained policy + value baseline learns control that a value/prediction model alone won't, which is REE's precise gap. Transfer risk low-moderate (0.28) -- it is a formal guarantee about the learning object, and it transfers to REE's design directly; the residual is that a local-optimum guarantee cannot promise the frozen-encoder features suffice."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-10_actor_critic_rpe_teaching_signal_schultz1997",
+  "timestamp_utc": "2026-07-10T17:18:12Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "A neural substrate of prediction and reward",
+    "authors": [
+      "Wolfram Schultz",
+      "Peter Dayan",
+      "P. Read Montague"
+    ],
+    "year": 1997,
+    "venue": "Science",
+    "doi": "10.1126/science.275.5306.1593",
+    "url": "https://doi.org/10.1126/science.275.5306.1593"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Canonical, heavily-replicated Science paper establishing that midbrain dopamine neurons broadcast a reward-prediction-error (RPE) that functions as a dedicated teaching signal for value/action learning, formalized as TD error. Grounds the translation-gap claim that biological action learning is driven by a distinct reward-error signal, NOT emergent from sensory world-prediction. Confidence high on the biology; slightly below 0.9 because the mapping to REE's specific gap (a reward-RPE-trained policy substrate) is a formal import, and Schultz's RPE is itself a *prediction* error -- the distinction REE must honour is reward-prediction-error-for-action vs sensory-transition-prediction, which the paper supports but does not adjudicate for an artificial substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dopamine RPE is a scalar teaching signal; a naive REE import risks collapsing REE's deliberately incommensurable error channels (ARC-021/MECH-069) into one reward scalar. The lesson to import is the *existence of a dedicated reward-error teacher for action*, not a single global objective.",
+    "Schultz's RPE is a reward-*prediction* error -- it is still a prediction. This does NOT license the reading that REE already has it because it predicts the world: REE's e2 world-forward contrastive loss predicts sensory transitions, which carries no reward signal and cannot teach action-value. The gap is a reward-error channel wired to a policy, which REE lacks entirely.",
+    "Primate/rodent electrophysiology; whether an RPE teaching signal is *sufficient* to recover foraging competence in REE's partially-observed 5x5-local-view env is untested (this is exactly the residual H2 question 738 partially addressed)."
+  ],
+  "tags": [
+    "mech_457",
+    "actor_critic_action_learning",
+    "reward_prediction_error",
+    "dopamine",
+    "td_learning",
+    "conversion_ceiling",
+    "f_dominance_conversion_ceiling",
+    "v3_exq_724"
+  ],
+  "mapping": {
+    "source_claim_statement": "Midbrain dopamine neurons emit a fluctuating output that signals errors in the prediction of future reward (a reward-prediction error). This error can be understood, via temporal-difference learning, as the teaching signal that drives adaptive optimizing control -- i.e. the learning of which actions lead to reward.",
+    "ree_translation": "The V3-EXQ-724 competence autopsy localized REE's foraging deficit to the one invariant it never varied: action is learned only via a thin bias_head REINFORCE over representations trained for *sensory prediction* (SD-056 e2 world-forward contrastive). Schultz et al. establish that biological action learning is instead driven by a dedicated reward-prediction-error teaching signal (dopaminergic RPE / TD error). This grounds the 'prediction-rich, action-poor' translation gap concretely: REE has a rich sensory-prediction learner but no reward-error signal wired to shape a policy. A first-class action-learning substrate under f_dominance_conversion_ceiling should carry an explicit reward-error teacher, not rely on prediction-trained features to yield control as a byproduct.",
+    "mapping_caveat": "Schultz's RPE is a single reward-error scalar; REE's design commitment (ARC-021/MECH-069) is that error channels are incommensurable. The correct import is the *architectural role* -- a reward-error signal dedicated to action-value learning -- not the cardinality (one scalar). Importing RPE must not be read as endorsing a single global free-energy/reward objective across REE's channels.",
+    "source_context": "Primate single-unit electrophysiology of midbrain dopamine neurons plus computational (TD-learning) synthesis; reward-conditioning paradigms in behaving animals."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality maximal (foundational Science paper, framework canonical for ~30 years). Mapping fidelity moderate -- the paper anchors the *existence and role* of a reward-error teacher for action, which is exactly the missing REE ingredient, but the translation from primate dopamine to an artificial policy substrate is a formal import (transfer_risk ~0.35). The load-bearing point (action learning needs a dedicated reward-error teacher, distinct from sensory prediction) transfers cleanly; the specific TD/scalar implementation does not automatically."
+  }
+}

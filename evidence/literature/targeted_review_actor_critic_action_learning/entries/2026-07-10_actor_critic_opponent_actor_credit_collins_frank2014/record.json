@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-10_actor_critic_opponent_actor_credit_collins_frank2014",
+  "timestamp_utc": "2026-07-10T17:18:12Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Opponent actor learning (OpAL): modeling interactive effects of striatal dopamine on reinforcement learning and choice incentive",
+    "authors": [
+      "Anne G. E. Collins",
+      "Michael J. Frank"
+    ],
+    "year": 2014,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0037015",
+    "url": "https://doi.org/10.1037/a0037015"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Strong computational grounding for how a dorsal-striatal actor implements credit assignment: OpAL extends the classic actor-critic with a DUAL opponent actor (D1/Go and D2/NoGo populations, the direct/indirect pathways) that separately accumulate positive and negative action values, with dopamine gain-modulating each. It unifies learning and choice-incentive effects the standard actor-critic cannot. Directly grounds the direct/indirect-pathway credit-assignment leg of the pull. Confidence 0.74 (not higher) because the opponent-actor refinement is more architecture than REE needs for the FIRST build -- the load-bearing import is 'a dedicated actor with a value-baseline critic', and OpAL's two-channel detail is a second-order enrichment REE may or may not need.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "OpAL's dual opponent actor is a refinement REE does not need to reach for first: the minimal owed build is a single actor + critic baseline. Importing the D1/D2 opponent split prematurely risks re-instantiating the over-elaboration anti-pattern (governance-mass before capability) the graveyard doc warns against.",
+    "OpAL is fit to behavioural/pharmacological data (probabilistic RL, effort-based choice, motor-skill learning); it is a model OF dopamine effects, not a demonstration that an artificial agent needs opponent actors to forage. Transfer to REE competence is indirect.",
+    "The interactive learning x incentive effects OpAL captures depend on dopamine as a shared gain term across both actor channels -- a single modulator -- which sits in tension with REE's incommensurable-channel commitment if imported literally."
+  ],
+  "tags": [
+    "mech_457",
+    "actor_critic_action_learning",
+    "opponent_actor",
+    "direct_indirect_pathway",
+    "d1_d2",
+    "credit_assignment",
+    "dopamine",
+    "conversion_ceiling",
+    "f_dominance_conversion_ceiling",
+    "v3_exq_724"
+  ],
+  "mapping": {
+    "source_claim_statement": "The classical actor-critic architecture, extended: the actor is replaced by a dual opponent-actor system (two striatal populations, mapping to D1/direct/'Go' and D2/indirect/'NoGo' pathways) that differentially specialize in discriminating positive vs negative action values. Dopamine modulates how much each actor component contributes to both learning and choice, unifying documented dopamine effects on RL, effort/incentive, and motor-skill learning in one framework.",
+    "ree_translation": "This grounds the credit-assignment internals of the dorsal-striatal actor the V3-EXQ-724 autopsy pointed to. Two imports for the f_dominance_conversion_ceiling build, ranked: (LOAD-BEARING) an actor is a first-class learner with its own value-baseline critic -- OpAL is built on the actor-critic scaffold, reinforcing that action learning is not a bias term; (SECOND-ORDER) the actor itself can be an opponent pair (Go/NoGo, direct/indirect) so positive and negative action-value credit are assigned on separable channels. REE should build the single-actor+critic first (matching V3-EXQ-737) and treat the opponent-actor split as a later enrichment only if single-actor credit assignment proves insufficient -- consistent with the graveyard doc's warning against structure ahead of capability.",
+    "mapping_caveat": "OpAL's opponent-actor detail is more architecture than the minimal owed build requires; the honest import is the actor-critic backbone, with the D1/D2 split flagged as an available-but-not-yet-needed refinement. OpAL is fit to dopamine-pharmacology behaviour, not to a foraging-competence recovery, so it motivates the internal structure of the actor rather than proving REE needs it to clear the floor.",
+    "source_context": "Algorithmic/computational-model paper (Psychological Review) fit to human and animal data across probabilistic reinforcement learning, effort-based choice, and motor-skill learning; grounded in D1/D2 striatal microcircuit models."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (Psychological Review, Frank lab, canonical for striatal RL modeling). Mapping fidelity moderate (0.68): the actor-critic backbone imports cleanly and directly supports the 'action is a first-class learner' thesis, but the opponent-actor refinement is beyond the minimal build and could mislead toward premature elaboration. Transfer risk 0.4 -- it is a model of dopamine's behavioural signatures, one step removed from the competence-recovery question REE is actually asking."
+  }
+}

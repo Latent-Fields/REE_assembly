@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-10_actor_critic_dorsal_ventral_striatum_odoherty2004",
+  "timestamp_utc": "2026-07-10T17:18:12Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Dissociable roles of ventral and dorsal striatum in instrumental conditioning",
+    "authors": [
+      "John O'Doherty",
+      "Peter Dayan",
+      "Johannes Schultz",
+      "Ralf Deichmann",
+      "Karl Friston",
+      "Raymond J. Dolan"
+    ],
+    "year": 2004,
+    "venue": "Science",
+    "doi": "10.1126/science.1094285",
+    "url": "https://doi.org/10.1126/science.1094285"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "Direct human fMRI dissociation of the actor-critic decomposition onto the striatum: ventral striatum carries prediction-error signals whether or not an action is required (critic), while dorsal striatum carries them only when an instrumental action must be chosen (actor). This is the single closest biological anchor for the autopsy's 'dorsal-striatal RPE-driven action learning' reference -- it localizes action-learning to a dedicated substrate distinct from value-prediction. Confidence high; below 0.9 only because fMRI is a coarse, correlational readout and the actor/critic identity rests on a model-based regressor analysis rather than causal manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "fMRI BOLD is coarse and correlational; the actor/critic assignment is inferred from where TD-model regressors fit, not from lesion/causal dissociation. A skeptic could argue the dorsal-striatal signal is action-contingent value rather than a separate actor learner.",
+    "The dissociation shows action-learning is *localized to a distinct substrate*, but it does not by itself prove that a prediction-only representation cannot support action -- that negative is REE's H1 to demonstrate empirically (V3-EXQ-737), not something the fMRI establishes.",
+    "Human instrumental-conditioning task with explicit rewards; transfer to REE's foraging env (implicit resource reward, partial observability) is a formal import, not a measured equivalence."
+  ],
+  "tags": [
+    "mech_457",
+    "actor_critic_action_learning",
+    "dorsal_striatum",
+    "ventral_striatum",
+    "actor_critic",
+    "instrumental_conditioning",
+    "conversion_ceiling",
+    "f_dominance_conversion_ceiling",
+    "v3_exq_724"
+  ],
+  "mapping": {
+    "source_claim_statement": "In human instrumental conditioning, reinforcement-learning models decompose behaviour into a 'critic' (learns to predict future reward) and an 'actor' (maintains information about the rewarding outcomes of actions so better ones are chosen more often). fMRI shows partly dissociable contributions: ventral striatum corresponds to the critic (prediction-error signal present in both Pavlovian and instrumental conditions) and dorsal striatum to the actor (signal present specifically when an action must be chosen).",
+    "ree_translation": "This is the most direct biological anchor for the V3-EXQ-724 autopsy's stated reference ('dorsal-striatal RPE-driven action learning'). The brain implements an explicit actor-critic split: a value-prediction learner (critic) and a SEPARATE action learner (actor), each in its own striatal territory. REE currently has only a prediction learner (e2 world-forward, ~critic-adjacent in spirit but reward-blind) and no actor -- action falls out of a bias-head over prediction features. The owed f_dominance_conversion_ceiling substrate is precisely the missing actor: a dedicated policy/action-learning module trained on reward-error, sitting alongside (not inside) the perceptual/prediction stack. V3-EXQ-737 (PPO policy head on frozen z_world) is the minimal actor-over-frozen-critic-features test.",
+    "mapping_caveat": "The actor/critic identity is inferred from model-regressor fits to BOLD, not from causal lesion. And REE's e2 encoder is NOT a reward-critic -- it predicts sensory transitions, not future reward -- so REE is missing both a reward-critic and an actor; O'Doherty grounds the actor role most directly and the critic role by contrast. The dissociation motivates the architecture; it does not prove REE's specific bias-head is inadequate (that is H1's empirical burden).",
+    "source_context": "Event-related fMRI in healthy adults performing instrumental (action-required) and Pavlovian (no-action) reward-conditioning tasks; TD-model prediction-error regressors mapped onto striatal BOLD."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.32,
+    "notes": "Source quality high (Science, foundational, well-replicated actor-critic-in-striatum result). Mapping fidelity high (0.8): the actor/critic decomposition maps almost verbatim onto REE's missing-actor diagnosis, and 'dorsal striatum = actor' is the exact reference the autopsy named. Transfer risk moderate (correlational fMRI, explicit-reward human task vs REE's implicit-reward partially-observed forager)."
+  }
+}
