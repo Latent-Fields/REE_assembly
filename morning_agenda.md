@@ -9,14 +9,9 @@ _governance.sh SKIPPED this run — active `/claim-synthesis` session holds a cl
 
 ## Headlines — Positive Results & Live Decisions
 
-Since the last completed digest (2026-07-08), only one result reached review: **V3-EXQ-538a** — an overall **FAIL** on the load-bearing question (offline sleep consolidation did **not** lift identity discrimination: `C4_sleep_lift_over_arm0=false`, `C3a_probe_neighborhood_floor=false`). It is not a headline PASS. But it carries two per-claim `supports` directions worth surfacing so they aren't lost inside the FAIL:
+**No new positive or decision-flipping results since 2026-07-08.**
 
-- **V3-EXQ-538a — sd049_phase2_with_sleep — per-claim `supports` (embedded in overall FAIL)**
-  - **Moves:** SD-017 `supports` (SWS+REM consolidation writes/rollouts fire cleanly between episodes — C1a/C1b/C2a/C2b all pass; SD-017 already `stable`, exp_conf 0.868) and SD-049 `supports` (candidate, v3_pending, exp_conf 0.755).
-  - **Makes live / unblocks:** nothing new — the sleep *machinery* firing was already established (supersedes 514f/538). The **scientific** result is the FAIL: sleep etching did not recover discrimination on this waking pipeline.
-  - **Gate on acting:** the honest read is FAIL, not a decision-flip. SD-015 got `weakens`; MECH-229/230 `non_contributory`. Route to `/governance` for the walk, not to a build. **Do not** read the two per-claim supports as a green light.
-
-No PASS and no decision-flipping diagnostic since 2026-07-08.
+The one result that reached review, **V3-EXQ-538a** (sleep-consolidation ablation), is an overall **FAIL** — and its manifest's per-claim `supports` for SD-049/SD-017 are **vacuous artifacts, not genuine support**. A failure-autopsy landed earlier today (`failure_autopsy_V3-EXQ-538a_2026-07-10`, session youthful-mirzakhani 06:36Z) re-adjudicated all 5 claims to `non_contributory` / `substrate_ceiling` / `pending_retest_after_substrate`, explicitly overriding the manifest: the SD-049 "supports" was a noise-OR of C3b, the SD-017 "supports" was SWS/REM write-liveness only. The real binding failure is C4 alone (sleep lift on the well-powered neighborhood probe = **-0.001**). So there is nothing here to promote or greenlight. See the Awaiting-Review section for the routing (already handed to `/implement-substrate`; governance-apply pending).
 
 ---
 
@@ -30,17 +25,17 @@ No PASS and no decision-flipping diagnostic since 2026-07-08.
 
 ## Experiments Awaiting Review (1 indexed / 0 runner-only)
 
-### V3-EXQ-538a — sd049_phase2_with_sleep — FAIL
-- **Claims tested (per-claim direction):**
-  - SD-049 (`candidate`, v3_pending, substrate_ceiling, exp_conf 0.755) — `supports`
-  - SD-017 (`stable`, exp_conf 0.868) — `supports`
-  - SD-015 (`candidate`, substrate_ceiling, exp_conf 0.615) — `weakens`
-  - MECH-229 (`provisional`, standard, exp_conf 0.812) — `non_contributory`
-  - MECH-230 (`provisional`, substrate_ceiling, exp_conf 0.751) — `non_contributory`
-- **Key metrics:** sleep machinery fires (C1a/C1b/C2a/C2b OK, classifier converges C3b OK); **no lift** (C4 sleep-lift-over-arm0 FAIL, floor 0.1) and **probe-neighborhood floor not met** (C3a FAIL, floor 0.6). 3 seeds.
-- **Classification:** evidence.
-- **Governance impact if confirmed:** would leave the sleep-consolidation -> identity-discrimination bridge (SD-015 face) unproven on this pipeline; the mechanism-fires supports (SD-017/SD-049) are confirmatory of already-established firing, not promotion-moving. Direction: mild support for SD-017/SD-049 firing, mild weaken for SD-015's recovery claim.
-- **Supersedes:** V3-EXQ-538 (SIGTERM/ERROR) and diagnostic V3-EXQ-514f (classifier diverged in P0 at weight=0.1); 538a turns on SD-017 SWS+REM consolidation between episodes (ARM_1 manual cycle, ARM_2 SleepLoopManager K=3).
+### V3-EXQ-538a — sd049_phase2_with_sleep — FAIL (autopsy already landed; governance-apply pending)
+- **Claims tested (manifest per-claim → autopsy re-adjudication):**
+  - SD-049 (`candidate`, v3_pending, substrate_ceiling) — manifest `supports` → autopsy **non_contributory** (the "supports" was a vacuous noise-OR of C3b)
+  - SD-017 (`stable`, exp_conf 0.868) — manifest `supports` → autopsy **non_contributory** (write-liveness only; SD-017's real support is V3-EXQ-691, unchanged/stable)
+  - SD-015 (`candidate`, substrate_ceiling) — manifest `weakens` → autopsy **non_contributory / substrate_ceiling**
+  - MECH-229 (`provisional`, standard) — `non_contributory`
+  - MECH-230 (`provisional`, substrate_ceiling) — `non_contributory`
+- **Key metrics:** sleep machinery fires (160/40 SWS/REM writes); **the binding failure is C4 alone** — sleep lift on the well-powered neighborhood probe (~9k samples) = **-0.001** (floor 0.1). The manifest-headlined consumption-probe numbers are n=45-72 near chance and NOT in the pass criteria.
+- **Root cause (per autopsy):** the identity classifier updates only on consumption ticks (~30-50 gradient updates over 9,000 steps / 3 classes); the waking pass never encodes consumption-identity, so sleep has nothing to consolidate — a missing-dependency signature, not falsification. 514m already recovered identity to probe 0.926 with sleep OFF once foraging-competence was scaffolded → identity recovery needs foraging-competence, not sleep.
+- **Routing (autopsy, user-gated):** re-derive brake **FIRED** (4th substrate_ceiling autopsy for SD-049, 5th for MECH-229) → route `/implement-substrate` on the 3-type ARM_2 foraging-contact gap (amend onto SD-049-PHASE-2 / scaffolded_sd054_onboarding); **REFUSE** a same-config SD-049-Phase-2 sleep re-queue. **Do not** treat 538a as a fresh open decision — it is already adjudicated; only the `/governance` apply (mark-reviewed + claims-note) remains.
+- **Supersedes:** V3-EXQ-538 (SIGTERM/ERROR) and diagnostic V3-EXQ-514f.
 
 ---
 
