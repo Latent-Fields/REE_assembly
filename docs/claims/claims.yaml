@@ -47683,7 +47683,69 @@
     the user adjudicates granularity -- an umbrella claim whose CORE passed but
     whose sub-property hit the ceiling is demoted at the sub-property (child)
     claim, not the umbrella.
-  notes: "WS-2 deliverable of evidence/planning/ree_ai_design_critique_plan.md. Wiring: scripts/check_substrate_ceiling_audit.py (ceiling_hit counter from confirmed failure_autopsy_*.json + ceiling_exhausted overlay), scripts/governance.sh (warn-only audit step), scripts/validate_claims.py (ceiling_decision: exhausted added to VALID_CEILING_DECISIONS), governance skill Step 6a-v (surface + demotion procedure). N=3 is a module constant (CEILING_EXHAUSTION_N) -- tunable. First post-landing governance cycle clears a one-time backlog (ARC-062/MECH-309 conversion-ceiling cluster dominate the autopsy corpus); steady-state is small because ceiling_decision markers suppress re-flag. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref the substrate_ceiling epistemic-category row in REE_assembly/CLAUDE.md and Step 6a-v of the governance skill."
+  notes: "WS-2 deliverable of evidence/planning/ree_ai_design_critique_plan.md. Wiring: scripts/check_substrate_ceiling_audit.py (ceiling_hit counter from confirmed failure_autopsy_*.json + ceiling_exhausted overlay), scripts/governance.sh (warn-only audit step), scripts/validate_claims.py (ceiling_decision: exhausted added to VALID_CEILING_DECISIONS), governance skill Step 6a-v (surface + demotion procedure). N=3 is a module constant (CEILING_EXHAUSTION_N) -- tunable. First post-landing governance cycle clears a one-time backlog (ARC-062/MECH-309 conversion-ceiling cluster dominate the autopsy corpus); steady-state is small because ceiling_decision markers suppress re-flag. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref the substrate_ceiling epistemic-category row in REE_assembly/CLAUDE.md and Step 6a-v of the governance skill. Companion rule for the claim_ids=[] blind spot: GOV-DIAG-1."
+- id: GOV-DIAG-1
+  title: "Diagnostic-chain recurrence rule (diagnostic-side analog of the re-derive brake / GOV-CEIL-1): the re-derive brake and GOV-CEIL-1 are BOTH claim-keyed -- they count confirmed failure-autopsy verdicts per claim_id. A pure-diagnostic chain (targets with claim_ids: []) accumulates ZERO on that counter, so a chain of diagnostics circling the same substrate floor never trips the mechanical brake -- it is caught only by a human reading the autopsy stream. This rule adds the missing counter: when N>=3 confirmed pure-diagnostic (claim_ids: []) failure-autopsies that reached NO verdict (recommended_evidence_direction non_contributory / inconclusive) share one bears_on work-stream token, the chain is surfaced with the reading 'the question may be MIS-POSED, not under-powered' -- re-pose the operationalization; do not re-run it harder. Warn-only; PROMOTES/DEMOTES NOTHING."
+  claim_type: governance_rule
+  subject: governance.epistemics.diagnostic_chain_recurrence
+  polarity: asserts
+  status: candidate
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-10
+  source_thought: evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Epistemic-hygiene governance rule; the diagnostic-side companion to GOV-CEIL-1.
+    The re-derive brake (in /failure-autopsy) and GOV-CEIL-1 (ceiling-exhaustion
+    demotion) both count confirmed failure_autopsy_*.json verdicts KEYED ON
+    claim_id. A pure-diagnostic experiment carries claim_ids: [] (it tests no
+    claim -- it localizes where a build should go), so it is INVISIBLE to every
+    claim-keyed counter. A chain of such diagnostics can therefore circle the same
+    substrate floor indefinitely without any mechanical brake firing -- the
+    recurrence lives only in the autopsy stream, caught by a human. The validating
+    instance: V3-EXQ-719a -> 724 -> 732 -> 732a all bottomed out on the same
+    f_dominance_conversion_ceiling / ree_ai_design_critique_plan:WS-1 competence
+    floor; 719a was claim-keyed (ARC-062/MECH-309 -> substrate_ceiling, caught by
+    GOV-CEIL-1) but its pure-diagnostic tail (724/732/732a) was invisible, so 732's
+    autopsy had to pre-register the recurrence as terminal BY HAND and 732a honored
+    it manually. This rule makes that detection MECHANICAL.
+    DEFINITIONS.
+    (a) DIAGNOSTIC RECURRENCE HIT = one confirmed (status:confirmed)
+    failure_autopsy_*.json TARGET that (i) carries claim_ids: [] (a pure
+    diagnostic, invisible to the claim-keyed brake / GOV-CEIL-1 -- a claim-tagged
+    diagnostic is ALREADY covered there and is EXCLUDED, never double-counted; a
+    MISSING claim_ids is not treated as empty), AND (ii) reached no verdict,
+    operationalized as recommended_evidence_direction in {non_contributory,
+    inconclusive} (a supports / refutes direction or a substrate build decision
+    means a verdict WAS reached -- not a circling hit).
+    (b) WORK-STREAM KEY = the target's bears_on field (string or list of strings)
+    naming the plan work-stream(s) / competence-gap(s) the diagnostic circles --
+    e.g. ree_ai_design_critique_plan:WS-1 (a <plan_stem>:WS-N plan work-stream) or
+    f_dominance_conversion_ceiling (a named competence gap). Each token gets one
+    hit per (artifact stem, run_id) so re-listing a token across an artifact's
+    targets does not inflate the count. Authors SHOULD tag bears_on with namespaced
+    work-stream / competence-gap tokens (not incidental claim ids).
+    (c) TRIGGER = some bears_on token reaches diagnostic_recurrence_hit_count >= N
+    (N = 3, matching GOV-CEIL-1). The reading: the operationalization is likely
+    confounded (the question is MIS-POSED), not merely under-powered -- re-pose it
+    (fix the measurement / reference frame) rather than re-run it harder, and
+    refuse a same-question re-queue in the re-derive brake's spirit.
+    NON-FALSIFYING-SAFE: absent a bears_on-tagged corpus every count is 0, so a
+    missing / untagged corpus can never mass-surface (same posture as GOV-CEIL-1).
+    RESPONSE. This rule PROMOTES / DEMOTES NOTHING and touches no claim -- the
+    chain is claim_ids: [] by construction. The surface is an ACTIONABLE routing
+    signal: hand /governance (or the user) a re-operationalization decision for the
+    named work-stream, and refuse a same-question letter re-queue. It is the
+    diagnostic-stream twin of GOV-CEIL-1's claim-level demotion, not a demotion
+    itself.
+    PROCESS. Detection is automatic: check_diagnostic_chain_recurrence.py counts
+    pure-diagnostic no-verdict autopsies per bears_on token and surfaces a
+    recurrence overlay, run warn-only inside governance.sh. APPLICATION (the
+    re-operationalization) is a human governance decision at Step 6a-v-ter.
+  notes: "Diagnostic-side companion to GOV-CEIL-1 (which stays claim-keyed). Wiring: scripts/check_diagnostic_chain_recurrence.py (pure-diagnostic no-verdict hit counter from confirmed failure_autopsy_*.json, keyed on bears_on; recurrence overlay at N>=3), scripts/governance.sh (Step 3f warn-only audit), governance skill Step 6a-v-ter (surface + re-operationalization procedure). N=3 is a module constant (DIAG_RECURRENCE_N) -- tunable. Requires a bears_on work-stream token on failure_autopsy targets (schema addition, target-level, string-or-list; pre-existing informal field formalized here); the 719a/724/732/732a chain was backfilled as the validating example (trips WS-1 + f_dominance_conversion_ceiling at 3 hits from the 724/732/732a tail; 719a excluded as claim-keyed). PROMOTES/DEMOTES NOTHING -- it surfaces a mis-posed-question pattern for a human to route. Cross-ref GOV-CEIL-1 and the re-derive brake in the /failure-autopsy skill."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment

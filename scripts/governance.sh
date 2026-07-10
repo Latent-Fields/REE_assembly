@@ -103,6 +103,16 @@ echo "--- Step 3e: Substrate-ceiling mapping + exhaustion audit (warn-only) ---"
 # claims.yaml. Warn-only here -- run with --strict for a blocking CI gate.
 "$PYTHON" scripts/check_substrate_ceiling_audit.py || true
 
+echo "--- Step 3f: Diagnostic-chain recurrence audit (GOV-DIAG-1, warn-only) ---"
+# Diagnostic-side analog of the claim-keyed re-derive brake / GOV-CEIL-1. Counts
+# confirmed pure-diagnostic (claim_ids=[]) no-verdict failure autopsies grouped by
+# their bears_on work-stream token; a token with >=N (default 3) hits surfaces a
+# "diagnostic-chain recurrence -- question may be mis-posed, not under-powered"
+# overlay (governance Step 6a-v-ter). Catches the claim_ids=[] chains that
+# accumulate ZERO on every claim-keyed counter. Read-only; promotes/demotes
+# nothing. Warn-only here -- run with --strict for a blocking CI gate.
+"$PYTHON" scripts/check_diagnostic_chain_recurrence.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
