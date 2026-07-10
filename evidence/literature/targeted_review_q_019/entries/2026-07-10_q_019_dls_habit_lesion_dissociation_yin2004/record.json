@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-07-10_q_019_dls_habit_lesion_dissociation_yin2004",
+  "timestamp_utc": "2026-07-10T08:05:31Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Lesions of dorsolateral striatum preserve outcome expectancy but disrupt habit formation in instrumental learning",
+    "authors": ["Henry H. Yin", "Barbara J. Knowlton", "Bernard W. Balleine"],
+    "year": 2004,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/j.1460-9568.2004.03095.x"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Foundational, heavily replicated lesion dissociation from the Balleine lab. Provides the single cleanest instance of the 'dissociable lesion signature' Q-019 makes central to the three-gate hypothesis: excitotoxic lesion of the dorsolateral striatum abolishes habit formation (behaviour reverts to outcome-devaluation-sensitive goal-directed control) while lesion of the dorsomedial striatum leaves habit intact -- a double dissociation of two anatomically distinct striatal territories serving distinct control modes. Confidence held below 0.8 because the DMS/DLS axis is goal-directed-vs-habitual, which maps onto the sensorimotor/action-commitment leg of Q-019 (loop 3 and its automaticity gradient) but is not a 1:1 image of the full sensorium/thought/motor triad, and because rodent instrumental habit must transfer to the REE commit-gate construct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If commit-gating were implemented by a single convergent gate rather than separable territories, then removing the putative habit/sensorimotor territory should degrade action selection globally rather than selectively abolishing outcome-insensitive (habitual) responding while sparing goal-directed control -- the opposite of what the DLS lesion produces.",
+    "If the DLS territory were a generic motor-output stage rather than a distinct gating locus, DLS lesion should impair lever-pressing capability generally; instead it leaves responding intact but restores outcome sensitivity, indicating loss of a specific control mode, not a motor deficit."
+  ],
+  "tags": ["q_019", "basal_ganglia", "dorsolateral_striatum", "habit", "goal_directed", "lesion_dissociation", "automaticity_gradient", "action_commitment_loop"],
+  "mapping": {
+    "source_claim_statement": "The dorsolateral striatum is necessary for habit formation: DLS lesions render interval-trained instrumental responding sensitive to outcome devaluation again (goal-directed), whereas dorsomedial striatum lesions do not, establishing a DMS/DLS functional double dissociation in instrumental control.",
+    "ree_translation": "Supports the three-gate reading of Q-019's substrate question: commit-gating is served by anatomically separable gating territories with dissociable lesion signatures, not a single convergent gate. The DLS-as-habit result instantiates loop 3 (action-commitment / sensorimotor) and its automaticity gradient -- over-trained/automated behaviour migrates to a distinct sensorimotor territory whose removal selectively strips the automated mode while sparing the deliberate (goal-directed) mode.",
+    "mapping_caveat": "The DMS/DLS dissociation is a two-territory goal-directed-vs-habit axis, not the three-way sensorium/thought/motor axis Q-019 posits; the paper evidences dissociability-in-principle and the action-commitment leg specifically, not the sensorium or thought gates. Rodent lever-press habit is a narrow behavioural proxy for the REE commit boundary.",
+    "source_context": "Excitotoxic (quinolinic acid) lesions in Long-Evans rats; instrumental lever-pressing for sucrose under interval schedules; outcome devaluation by lithium-chloride-induced taste aversion; extinction test."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "High source quality (canonical, replicated, causal lesion + devaluation design). Mapping_fidelity moderate-high because the dissociable-lesion signature is exactly the three-gate prediction, discounted because the axis is two-territory not three. Transfer_risk moderate: well-established construct but rat-to-REE-substrate extrapolation."
+  }
+}

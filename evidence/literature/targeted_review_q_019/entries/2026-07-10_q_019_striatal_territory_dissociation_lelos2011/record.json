@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-07-10_q_019_striatal_territory_dissociation_lelos2011",
+  "timestamp_utc": "2026-07-10T08:05:31Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Impaired sensitivity to Pavlovian stimulus-outcome learning after excitotoxic lesion of the ventrolateral neostriatum",
+    "authors": ["Mariah J. Lelos", "David J. Harrison", "Stephen B. Dunnett"],
+    "year": 2011,
+    "venue": "Behavioural Brain Research",
+    "doi": "10.1016/j.bbr.2011.08.017"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Solid Dunnett-lab lesion study that adds a third dissociable striatal territory to the established DMS (goal-directed) / DLS (habit) pair: the ventrolateral striatum (VLS) is shown necessary for using a Pavlovian stimulus-outcome association to guide behaviour, while sparing both instrumental goal-directed action and habit. Taken with the DMS/DLS literature, it evidences a three-way functional parcellation of the striatum -- three territories with dissociable lesion signatures -- which is the parcellation the three-gate reading of Q-019 predicts over a single convergent gate. Confidence held at 0.6 because the striatal axis here (goal-directed / habit / Pavlovian-incentive) is not the same axis as Q-019's sensorium / thought / motor-commitment triad; it supports dissociability-of-territories in principle rather than the specific three loops.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the striatum implemented a single convergent selector, an excitotoxic lesion of any one subregion should produce a graded global deficit across instrumental and Pavlovian control; instead the VLS lesion selectively impairs Pavlovian-stimulus-guided responding while leaving instrumental goal-directed action and habit intact -- a selective, not global, signature.",
+    "If the three striatal territories were functionally redundant, VLS loss should be compensated by DMS/DLS; the persistence of the specific Pavlovian deficit indicates non-redundant, dissociable functions."
+  ],
+  "tags": ["q_019", "basal_ganglia", "ventrolateral_striatum", "striatal_parcellation", "functional_dissociation", "pavlovian", "goal_directed", "habit", "three_gate"],
+  "mapping": {
+    "source_claim_statement": "The ventrolateral neostriatum is a third functionally distinct striatal territory: its lesion selectively impairs the use of Pavlovian stimulus-outcome associations to guide behaviour, while leaving intact instrumental goal-directed action (a DMS function) and habitual responding (a DLS function) -- extending the DMS/DLS dissociation to a three-territory scheme.",
+    "ree_translation": "Supports the three-gate over single-gate reading of Q-019: the striatum is not one convergent action selector but a set of anatomically distinct territories, each with a dissociable lesion signature on its own control axis. This is the parcellation principle three-gate requires -- distinct gating loci rather than one gate scoring several criteria.",
+    "mapping_caveat": "The three territories here (DMS goal-directed / DLS habit / VLS Pavlovian-incentive) are NOT the same three loops Q-019 posits (sensorium-attention / thought-trajectory / motor-commitment). The paper evidences that striatal gating is functionally parcellated with dissociable lesions -- supporting three-gate-in-principle -- but does not map territory-for-territory onto the REE loops. Rodent lesion-behaviour dissociation to REE substrate transfer also applies.",
+    "source_context": "Quinolinic-acid excitotoxic lesions of the ventrolateral neostriatum in rats; sensory-specific outcome devaluation for instrumental goal-directed action; Pavlovian approach with devaluation; test of habitual (devaluation-insensitive) responding."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.4,
+    "notes": "Good source quality (careful triple-condition lesion design, established lab), lower journal impact than the Nature/EJN entries. Mapping_fidelity moderate-low: strongly supports functional parcellation / dissociability of striatal territories but on a control-mode axis that differs from Q-019's loop axis. Transfer_risk moderate."
+  }
+}

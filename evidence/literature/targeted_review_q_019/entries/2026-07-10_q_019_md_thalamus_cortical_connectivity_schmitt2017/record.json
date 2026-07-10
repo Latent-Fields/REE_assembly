@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_019",
+  "entry_id": "2026-07-10_q_019_md_thalamus_cortical_connectivity_schmitt2017",
+  "timestamp_utc": "2026-07-10T08:05:31Z",
+  "claim_ids_tested": ["Q-019"],
+  "source": {
+    "title": "Thalamic amplification of cortical connectivity sustains attentional control",
+    "authors": ["L. Ian Schmitt", "Ralf D. Wimmer", "Miho Nakajima", "Michael Happ", "Sima Mofakham", "Michael M. Halassa"],
+    "year": 2017,
+    "venue": "Nature",
+    "doi": "10.1038/nature22073"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Landmark Nature paper (Halassa lab) using optogenetic gain- and loss-of-function plus prefrontal electrophysiology in mice to establish that the mediodorsal (MD) thalamus sustains rule-specific PFC representations by amplifying local intracortical connectivity, without itself relaying categorical rule information -- a thalamic control of functional cortical connectivity dissociable from information relay. This directly grounds Q-019's thought-loop substrate claim, which posits the MD thalamus as the thalamic gate that maintains and protects thought-level (associative) representations. Confidence held at 0.68 because Q-019's specific functional attribution to MD is 'prevents bleed-back into sensorium', whereas Schmitt demonstrates a sustaining/amplifying role; the two are compatible but not identical, and mouse PFC-to-REE-E3 transfer is non-trivial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If the thalamus were purely a relay (the single-gate-friendly view in which loops share one undifferentiated thalamic pass-through), then enhancing or suppressing MD activity should scale information throughput uniformly; instead MD manipulation selectively changes rule-representation specificity and behavioural performance without relaying categorical content, indicating a dedicated control function.",
+    "If maintenance of thought-level representations required no separate thalamic gate, broadly enhancing PFC excitability should preserve or improve rule specificity; instead it diminishes specificity and performance, showing that non-specific cortical drive is not a substitute for targeted MD amplification."
+  ],
+  "tags": ["q_019", "mediodorsal_thalamus", "prefrontal_cortex", "thought_loop", "rule_representation", "thalamocortical", "attentional_control", "optogenetics"],
+  "mapping": {
+    "source_claim_statement": "The mediodorsal thalamus sustains rule representations in prefrontal cortex by amplifying local PFC connectivity (enabling rule-specific neural sequences), rather than by relaying categorical information; enhancing MD excitability improves rule specificity and behaviour, enhancing PFC excitability broadly degrades both -- establishing thalamic control of functional cortical connectivity as a function dissociable from relay.",
+    "ree_translation": "Supports Q-019's thought loop (loop 2), which locates a mediodorsal-thalamic gate in the associative/theta-associated loop where the E3 complex operates. MD-mediated sustaining of rule-specific cortical sequences is the biological analogue of a thought-loop gate that maintains and stabilises the currently held trajectory/rule representation rather than passing raw content through -- consistent with a separable gating locus for thought, distinct from the sensorium and motor gates.",
+    "mapping_caveat": "Q-019 specifically attributes to MD the role of preventing bleed-back of thought into sensorium; Schmitt evidences a sustaining/amplifying (maintenance) role, not the bleed-back-suppression function per se. The two are compatible (a maintained, protected thought representation is what suppression of sensory intrusion would serve) but the paper does not test the suppression claim directly. Mouse two-rule attention task maps only loosely onto the REE E3 thought loop.",
+    "source_context": "Head-fixed mice performing a cross-modal (auditory/visual) attention task requiring rule-guided selection; optogenetic enhancement and suppression of MD and PFC; multi-electrode PFC recordings of rule-specific sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Very high source quality (Nature, causal optogenetics both directions, electrophysiology, within-study dissociation from relay). Mapping_fidelity moderate: strongly grounds the MD-as-thought-loop-gate substrate but evidences maintenance/amplification rather than the exact bleed-back-suppression function Q-019 names. Transfer_risk moderate-high: mouse PFC rule-representation to REE E3 associative loop."
+  }
+}
