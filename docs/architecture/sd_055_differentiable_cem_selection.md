@@ -3,6 +3,9 @@ title: "SD-055: Differentiable CEM Selection Approximation"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 24
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-055
 ---
 
 # SD-055: Differentiable CEM Selection Approximation

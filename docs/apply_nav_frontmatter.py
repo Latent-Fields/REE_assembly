@@ -26,6 +26,7 @@ Adjust the ASSIGN map below to move a page between themes.
 """
 
 import os
+import re
 
 DOCS = os.path.dirname(os.path.abspath(__file__))
 ARCH = os.path.join(DOCS, "architecture")
@@ -285,7 +286,25 @@ def strip_existing_frontmatter(text):
     return text[end + 5:]
 
 
-def render_frontmatter(fm):
+# SHP-5 co-tenancy: docs/apply_status_frontmatter.py stamps status_* keys into the
+# SAME frontmatter block this script owns and re-strips every run. To let the two
+# stampers compose in either order, we carry the status_* lines across a nav re-stamp
+# instead of clobbering them. Keep this key set in sync with STATUS_KEYS there.
+_STATUS_KEYS_RE = re.compile(r"^(status|status_asof|status_claim):")
+
+
+def _extract_status_lines(text):
+    """Raw status_* frontmatter lines from an existing block, preserved verbatim so a
+    nav re-stamp does not wipe docs/apply_status_frontmatter.py's SHP-5 keys."""
+    if not text.startswith("---\n"):
+        return []
+    end = text.find("\n---\n", 4)
+    if end == -1:
+        return []
+    return [ln for ln in text[4:end].split("\n") if _STATUS_KEYS_RE.match(ln)]
+
+
+def render_frontmatter(fm, extra_lines=None):
     lines = ["---"]
     for k, v in fm.items():
         if isinstance(v, bool):
@@ -298,6 +317,8 @@ def render_frontmatter(fm):
                 lines.append('{}: "{}"'.format(k, str(v).replace('"', '\\"')))
             else:
                 lines.append("{}: {}".format(k, v))
+    if extra_lines:
+        lines.extend(extra_lines)
     lines.append("---")
     return "\n".join(lines) + "\n"
 
@@ -309,8 +330,9 @@ def stamp(rel_path, fm):
         return False
     with open(abs_path, "r", encoding="utf-8") as f:
         text = f.read()
+    carried = _extract_status_lines(text)
     body = strip_existing_frontmatter(text)
-    new_text = render_frontmatter(fm) + "\n" + body.lstrip("\n")
+    new_text = render_frontmatter(fm, carried) + "\n" + body.lstrip("\n")
     with open(abs_path, "w", encoding="utf-8") as f:
         f.write(new_text)
     return True
@@ -420,9 +442,10 @@ def sweep_unplaced():
         text = open(abs_path, encoding="utf-8", errors="ignore").read()
         title = title_of(abs_path)
         fm = {"title": title, "nav_exclude": True}
+        carried = _extract_status_lines(text)
         body = strip_existing_frontmatter(text)
         open(abs_path, "w", encoding="utf-8").write(
-            render_frontmatter(fm) + "\n" + body.lstrip("\n"))
+            render_frontmatter(fm, carried) + "\n" + body.lstrip("\n"))
     return leaks
 
 

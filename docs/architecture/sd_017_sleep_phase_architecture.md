@@ -3,13 +3,15 @@ title: "SD-017: Minimal Sleep-Phase Architecture (V3)"
 parent: "Sleep & Offline Integration"
 grandparent: Architecture
 nav_order: 9
+status: stable
+status_asof: 2026-07-10
+status_claim: SD-017
 ---
 
 # SD-017: Minimal Sleep-Phase Architecture (V3)
 
 **Claim ID:** SD-017
 **Subject:** `sleep_phase.minimal_sleep_infrastructure_v3`
-**Status:** candidate
 **Registered:** 2026-04-05
 **Depends on:** MECH-092, ARC-038, ARC-007, SD-014
 **Blocks:** ARC-045, MECH-166, MECH-167 (and transitively all claims requiring attribution mapping convergence)

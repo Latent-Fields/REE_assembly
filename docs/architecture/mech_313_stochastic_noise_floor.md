@@ -3,6 +3,9 @@ title: "MECH-313: stochastic_noise_floor (LC-NE tonic / SAC max-entropy analog)"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 7
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-313
 ---
 
 # MECH-313: stochastic_noise_floor (LC-NE tonic / SAC max-entropy analog)

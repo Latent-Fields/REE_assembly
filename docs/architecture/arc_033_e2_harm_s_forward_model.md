@@ -3,13 +3,15 @@ title: "ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 1
+status: provisional
+status_asof: 2026-07-10
+status_claim: ARC-033
 ---
 
 # ARC-033: E2_harm_s Sensory-Discriminative Harm Forward Model
 
 **Claim ID:** ARC-033
 **Subject:** harm_stream.sensory_discriminative_forward_model
-**Status:** IMPLEMENTED
 **Registered:** 2026-03-24
 **Implemented:** 2026-04-09
 **Depends on:** SD-010, SD-011, ARC-027

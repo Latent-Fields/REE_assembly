@@ -3,6 +3,9 @@ title: Candidate-Differentiated Affective Gradients (V4/V5 cluster)
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 5
+status: candidate
+status_asof: 2026-07-10
+status_claim: MECH-359
 ---
 
 # Candidate-Differentiated Affective Gradients (V4/V5 cluster)

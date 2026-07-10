@@ -3,13 +3,15 @@ title: "SD-050: relief.suffering_derivative_comparator"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
 nav_order: 11
+status: candidate
+status_asof: 2026-07-10
+status_claim: SD-050
 ---
 
 # SD-050: relief.suffering_derivative_comparator
 
 **Claim ID:** SD-050
 **Subject:** relief.suffering_derivative_comparator
-**Status:** IMPLEMENTED
 **Registered:** 2026-05-04
 **Depends on:** SD-011 (z_harm_a affective stream), MECH-057a (commitment-release pipeline), MECH-091 (salient-event phase-reset), MECH-094 (categorical tag write)
 **Blocks:** MECH-302 (relief-completion event substrate), MECH-303 (safety-cue prediction teaching signal)

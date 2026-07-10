@@ -3,13 +3,15 @@ title: "MECH-342: Maintenance-time readiness-driven commitment-release coupling"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 12
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-342
 ---
 
 # MECH-342: Maintenance-time readiness-driven commitment-release coupling
 
 **Claim ID:** MECH-342
 **Subject:** control_plane.commit_maintenance_release
-**Status:** IMPLEMENTED
 **Registered:** 2026-06-02
 **Depends on:** MECH-090 (commit-entry predicate / R-c readiness conjunction; beta-gate latch + CommitReadiness signal)
 **Blocks:** V3-EXQ-592f reach-axis retest (`pending_retest_after_substrate`); the implicit "R-c governs maintenance/release too" claim that 592f localised as a substrate gap.

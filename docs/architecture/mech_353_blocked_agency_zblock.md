@@ -3,6 +3,9 @@ title: "MECH-353: affect.blocked_agency_control_failure_stream (z_block)"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 8
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-353
 ---
 
 # MECH-353: affect.blocked_agency_control_failure_stream (z_block)

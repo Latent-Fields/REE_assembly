@@ -3,6 +3,9 @@ title: "SD-013: E2_harm_s Interventional Training"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 11
+status: provisional
+status_asof: 2026-07-10
+status_claim: SD-013
 ---
 
 # SD-013: E2_harm_s Interventional Training

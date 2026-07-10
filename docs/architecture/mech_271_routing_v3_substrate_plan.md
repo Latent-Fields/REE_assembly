@@ -3,6 +3,9 @@ title: MECH-271 Hypothesis-Tag-as-Routing -- V3 Substrate Landing Plan
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 6
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-271
 ---
 
 # MECH-271 Hypothesis-Tag-as-Routing -- V3 Substrate Landing Plan

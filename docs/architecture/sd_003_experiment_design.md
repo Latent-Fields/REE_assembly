@@ -1,5 +1,8 @@
 ---
 nav_exclude: true
+status: superseded
+status_asof: 2026-07-10
+status_claim: SD-003
 ---
 
 # SD-003 Self-Attribution Experiment Design

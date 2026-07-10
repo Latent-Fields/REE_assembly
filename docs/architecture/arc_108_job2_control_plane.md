@@ -3,6 +3,9 @@ title: "ARC-108 JOB-2: the dopaminergic control-plane DRIVER pair"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 2
+status: candidate
+status_asof: 2026-07-10
+status_claim: ARC-108
 ---
 
 # ARC-108 JOB-2: the dopaminergic control-plane DRIVER pair

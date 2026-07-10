@@ -3,6 +3,9 @@ title: "SD-035: Amygdala Analogue — BLA + CeA Salience Stage"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 17
+status: stable
+status_asof: 2026-07-10
+status_claim: SD-035
 ---
 
 # SD-035: Amygdala Analogue — BLA + CeA Salience Stage

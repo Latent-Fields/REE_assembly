@@ -3,6 +3,9 @@ title: "SD-033: PFC Subdivision Architecture"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 19
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-033
 ---
 
 # SD-033: PFC Subdivision Architecture

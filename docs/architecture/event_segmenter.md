@@ -3,12 +3,14 @@ title: Event-Segment Detection Substrate (MECH-288)
 parent: "Attention, Binding & Objects"
 grandparent: Architecture
 nav_order: 3
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-288
 ---
 
 # Event-Segment Detection Substrate (MECH-288)
 
 **Claim:** MECH-288 (event-segmentation substrate; hippocampal.event_segmenter)
-**Status:** candidate, v3_pending
 **Registered:** 2026-04-22
 **Origin:** Phase 2 substrate planning for V_s invalidation runtime cluster (MECH-269 anchor sets,
 MECH-284 staleness accumulator, MECH-287 dual-component trigger) needs region IDs; ree-v3 has no

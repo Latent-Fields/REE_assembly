@@ -3,6 +3,9 @@ title: ARC-080 -- Object Identity as a Cross-Cutting Representational Primitive
 parent: "Attention, Binding & Objects"
 grandparent: Architecture
 nav_order: 1
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: ARC-080
 ---
 
 # ARC-080 -- Object Identity as a Cross-Cutting Representational Primitive

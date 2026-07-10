@@ -1,5 +1,8 @@
 ---
 nav_exclude: true
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-318
 ---
 
 # MECH-318 Absorption Check

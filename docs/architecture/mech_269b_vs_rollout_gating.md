@@ -3,6 +3,9 @@ title: "MECH-269b: Symmetric V_s Gating on E1/E2 Cortical Rollouts"
 parent: "Modes, Agency & Default Mode"
 grandparent: Architecture
 nav_order: 4
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: MECH-269B
 ---
 
 # MECH-269b: Symmetric V_s Gating on E1/E2 Cortical Rollouts

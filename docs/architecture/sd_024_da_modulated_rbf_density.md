@@ -3,6 +3,9 @@ title: "SD-024: DA-Modulated RBF Center Density"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 13
+status: candidate
+status_asof: 2026-07-10
+status_claim: SD-024
 ---
 
 # SD-024: DA-Modulated RBF Center Density

@@ -3,6 +3,9 @@ title: MECH-423 Super-Additivity Readiness Substrate (R1 / R2 / R3)
 parent: "Roadmap & Planning (V4+)"
 grandparent: Architecture
 nav_order: 2
+status: candidate
+status_asof: 2026-07-10
+status_claim: MECH-423
 ---
 
 # MECH-423 Super-Additivity Readiness Substrate (R1 / R2 / R3)

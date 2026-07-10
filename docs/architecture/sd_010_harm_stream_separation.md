@@ -3,13 +3,15 @@ title: "SD-010: Harm Stream Separation"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 9
+status: implemented
+status_asof: 2026-07-10
+status_claim: SD-010
 ---
 
 # SD-010: Harm Stream Separation
 
 **Claim ID:** SD-010
 **Subject:** `harm_stream.nociceptive_separation`
-**Status:** Implemented
 **Registered:** 2026-03-19 (after V2 governance cycle)
 **Implemented:** 2026-03-20 (EXQ-056c/058b/059c PASS)
 **Depends on:** SD-005, SD-007, ARC-027

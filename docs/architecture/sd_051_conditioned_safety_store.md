@@ -3,13 +3,15 @@ title: "SD-051: safety_prediction.cue_specific_conditioned_inhibition_substrate"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
 nav_order: 12
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-051
 ---
 
 # SD-051: safety_prediction.cue_specific_conditioned_inhibition_substrate
 
 **Claim ID:** SD-051
 **Subject:** safety_prediction.cue_specific_conditioned_inhibition_substrate
-**Status:** IMPLEMENTED
 **Registered:** 2026-05-04
 **Depends on:** SD-011 (z_harm_a affective stream), SD-050 / MECH-302 (relief-completion teaching signal), MECH-094 (categorical tag write gate), MECH-057a (commitment-release pipeline)
 **Blocks:** MECH-304 (cue-specific conditioned safety prediction substrate)

@@ -3,6 +3,9 @@ title: Learned dopamine-gated E3 selection (ARC-108 JOB-1 steps 1 + 2)
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 8
+status: candidate
+status_asof: 2026-07-10
+status_claim: ARC-108
 ---
 
 # Learned dopamine-gated E3 selection (ARC-108 JOB-1 steps 1 + 2)

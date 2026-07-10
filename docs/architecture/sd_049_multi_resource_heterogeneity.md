@@ -3,6 +3,9 @@ title: "SD-049: Multi-Resource Heterogeneity"
 parent: "Development & Curriculum"
 grandparent: Architecture
 nav_order: 12
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-049
 ---
 
 # SD-049: Multi-Resource Heterogeneity

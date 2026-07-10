@@ -3,6 +3,9 @@ title: "MECH-189: Super-Ordinal Goal-Anchor ContextMemory Writes Substrate"
 parent: "Memory & Hippocampus"
 grandparent: Architecture
 nav_order: 9
+status: candidate
+status_asof: 2026-07-10
+status_claim: MECH-189
 ---
 
 # MECH-189: Super-Ordinal Goal-Anchor ContextMemory Writes Substrate

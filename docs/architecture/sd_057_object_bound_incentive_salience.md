@@ -3,6 +3,9 @@ title: "SD-057: drive.object_bound_incentive_salience"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
 nav_order: 13
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-057
 ---
 
 # SD-057: drive.object_bound_incentive_salience

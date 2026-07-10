@@ -1,3 +1,9 @@
+---
+status: provisional
+status_asof: 2026-07-10
+status_claim: SD-063
+---
+
 # SD-063 — E2 conditional predictive-uncertainty head
 
 **Claim:** SD-063 (design_decision, candidate, implementation_phase v3, v3_pending)

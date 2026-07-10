@@ -3,6 +3,9 @@ title: "MECH-341: E3 Score Diversity Preservation"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 11
+status: provisional
+status_asof: 2026-07-10
+status_claim: MECH-341
 ---
 
 # MECH-341: E3 Score Diversity Preservation

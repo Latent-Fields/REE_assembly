@@ -1,5 +1,8 @@
 ---
 nav_exclude: true
+status: implemented
+status_asof: 2026-07-10
+status_claim: SD-016
 ---
 
 # SD-016 ContextMemory v3 -- Auxiliary Diversification Loss (Path 1)

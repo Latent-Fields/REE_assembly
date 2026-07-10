@@ -3,6 +3,9 @@ title: "MECH-319: Simulation-Mode Rule-Write Gate (Categorical Replay Tag)"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 10
+status: provisional
+status_asof: 2026-07-10
+status_claim: MECH-319
 ---
 
 # MECH-319: Simulation-Mode Rule-Write Gate (Categorical Replay Tag)

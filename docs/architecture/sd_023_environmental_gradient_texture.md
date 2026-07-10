@@ -3,6 +3,9 @@ title: "SD-023: Environmental Gradient Texture (World Extension)"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 16
+status: candidate
+status_asof: 2026-07-10
+status_claim: SD-023
 ---
 
 # SD-023: Environmental Gradient Texture (World Extension)

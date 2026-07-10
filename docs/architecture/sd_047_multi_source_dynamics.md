@@ -3,6 +3,9 @@ title: "SD-047: Multi-Source Environmental Dynamics"
 parent: "Development & Curriculum"
 grandparent: Architecture
 nav_order: 11
+status: provisional
+status_asof: 2026-07-10
+status_claim: SD-047
 ---
 
 # SD-047: Multi-Source Environmental Dynamics

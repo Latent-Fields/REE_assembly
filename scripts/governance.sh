@@ -163,6 +163,21 @@ echo "--- Step 9: Left-nav tidiness (hide unplaced docs; warn on titled leaks) -
 "$PYTHON" docs/apply_nav_frontmatter.py --check || echo "  (nav leak above will be auto-hidden by the stamping run)"
 "$PYTHON" docs/apply_nav_frontmatter.py
 
+echo "--- Step 9b: Stamp claims.yaml-derived status frontmatter on architecture docs (SHP-5) ---"
+# Companion to the nav stamper: derives status:/status_asof:/status_claim: frontmatter
+# from claims.yaml for every architecture doc that names a claim id, and retires the
+# boilerplate hand-typed **Status:** body lines (prose lines are kept -- razor). MUST run
+# AFTER the nav stamper (both own the frontmatter block; nav preserves the status_* keys,
+# so the pair composes either way). Idempotent; PROMOTES/DEMOTES NOTHING.
+"$PYTHON" docs/apply_status_frontmatter.py
+
+echo "--- Step 9c: Claims-doc status drift check (warn-only) ---"
+# Mirror of the closure-plan drift check (Step 3c), for the doc-status plane: flags docs
+# whose status has fallen out of step with claims.yaml (hard frontmatter drift, plus soft
+# review buckets for residual hand-line contradictions). Warn-only here (|| true); run
+# `python scripts/claims_doc_drift.py --strict` for a blocking gate once the backlog clears.
+"$PYTHON" scripts/claims_doc_drift.py || true
+
 echo "--- Step 10: Refreshing the goblin tale's campaign stanza (from closure snapshot) ---"
 # Updates ONLY the CAMPAIGN_STATE marker block in docs/ree_for_my_parents.md
 # (and the private canonical tale if present). Never writes an episode; never

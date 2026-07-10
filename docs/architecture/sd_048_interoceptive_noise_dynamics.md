@@ -3,6 +3,9 @@ title: "SD-048: Interoceptive Noise Dynamics"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 18
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-048
 ---
 
 # SD-048: Interoceptive Noise Dynamics

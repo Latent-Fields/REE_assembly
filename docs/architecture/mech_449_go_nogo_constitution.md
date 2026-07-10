@@ -3,6 +3,9 @@ title: "MECH-449 / ARC-107: Go/No-Go eligibility constitution"
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 14
+status: provisional
+status_asof: 2026-07-10
+status_claim: MECH-449
 ---
 
 # MECH-449 / ARC-107: Go/No-Go eligibility constitution

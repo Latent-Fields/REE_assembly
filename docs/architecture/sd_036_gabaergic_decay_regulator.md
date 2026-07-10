@@ -3,13 +3,15 @@ title: "SD-036: GABAergic Cross-Stream Decay Regulator"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 14
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-036
 ---
 
 # SD-036: GABAergic Cross-Stream Decay Regulator
 
 **Claim ID:** SD-036 (parent), MECH-279 (PAG freeze-gate child)
 **Subject:** `gabaergic.cross_stream_decay_regulator`
-**Status:** candidate, v3_pending
 **Registered:** 2026-04-22
 **Origin exemplar:** V3-EXQ-471 seed 0 ep 0 — sustained 200-step `avoid`-mode lock with
 `z_harm_norm` pinned at ~0.7 absent input. See

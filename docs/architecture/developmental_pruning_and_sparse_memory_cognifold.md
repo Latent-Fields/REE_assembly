@@ -3,6 +3,9 @@ title: Developmental pruning and sparse memory cognifold
 parent: "Development & Curriculum"
 grandparent: Architecture
 nav_order: 7
+status: candidate
+status_asof: 2026-07-10
+status_claim: MECH-362
 ---
 
 # Developmental pruning and sparse memory cognifold

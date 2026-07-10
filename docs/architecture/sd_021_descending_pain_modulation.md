@@ -3,11 +3,13 @@ title: "SD-021: Descending Pain Modulation — Commitment-Gated z_harm_s Attenua
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 14
+status: candidate
+status_asof: 2026-07-10
+status_claim: SD-021
 ---
 
 # SD-021: Descending Pain Modulation — Commitment-Gated z_harm_s Attenuation
 
-**Status:** candidate  
 **Implementation phase:** v3  
 **Implemented:** 2026-04-10  
 **Depends on:** SD-011, SD-020, ARC-016, MECH-090  

@@ -3,6 +3,9 @@ title: Reafference Comparator Family
 parent: "Foundations & Rationale"
 grandparent: Architecture
 nav_order: 10
+status: active
+status_asof: 2026-07-10
+status_claim: MECH-095
 ---
 
 # Reafference Comparator Family

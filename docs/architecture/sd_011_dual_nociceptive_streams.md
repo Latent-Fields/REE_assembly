@@ -3,6 +3,9 @@ title: "SD-011: Dual Nociceptive Streams"
 parent: "Affect, Harm & Nociception"
 grandparent: Architecture
 nav_order: 10
+status: stable
+status_asof: 2026-07-10
+status_claim: SD-011
 ---
 
 # SD-011: Dual Nociceptive Streams

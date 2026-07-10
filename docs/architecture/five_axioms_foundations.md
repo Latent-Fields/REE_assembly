@@ -1,6 +1,9 @@
 ---
 title: Foundations
 nav_order: 4
+status: active
+status_asof: 2026-07-10
+status_claim: INV-025
 ---
 
 # Eight Foundational Axioms and Their Architectural Consequences

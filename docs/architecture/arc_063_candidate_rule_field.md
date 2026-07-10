@@ -3,6 +3,9 @@ title: "ARC-063: policy.rule_apprehension_layer (V3-tractable distributed Candid
 parent: "Executive & PFC Control"
 grandparent: Architecture
 nav_order: 1
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: ARC-063
 ---
 
 # ARC-063: policy.rule_apprehension_layer (V3-tractable distributed CandidateRule field)

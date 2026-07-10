@@ -3,6 +3,9 @@ title: "SD-031: E2_world Causal-Footprint Forward Model Comparator"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
 nav_order: 9
+status: candidate/v3_pending
+status_asof: 2026-07-10
+status_claim: SD-031
 ---
 
 # SD-031: E2_world Causal-Footprint Forward Model Comparator

@@ -3,6 +3,9 @@ title: "SD-030: E2_self Motor-Proprioceptive Forward Model Comparator"
 parent: "Core Engines & Forward Models"
 grandparent: Architecture
 nav_order: 8
+status: candidate
+status_asof: 2026-07-10
+status_claim: SD-030
 ---
 
 # SD-030: E2_self Motor-Proprioceptive Forward Model Comparator
