@@ -7542,7 +7542,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_048",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7551,7 +7551,12 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-07-10T07:00:57Z",
+      "gated_by": "IGW-20260710-197",
+      "gating_reason": "ARC-048 asserts language is a high-bandwidth EXTERNALIZATION of pre-existing functional states requiring those states as referents -- a communication/signal-legibility claim that sits strictly downstream of MECH-191/MECH-192 (its two mechanism dependencies), plus needs a language/utterance channel V3 does not have. Two independent substrate gaps: (1) MECH-191 is itself already blocked_substrate (EVB-0091, IGW-192, 2026-06-22): V3 functional channels are TONIC accumulators (z_goal decaying attractor, z_block slow-leak, z_harm_a slow EMA) whose scalar norm readouts are saturated-constant across induced states, so they do not phasically externalize a state-differential, cross-architecturally-consistent signal -- the referent-to-signal externalization ARC-048 needs cannot be demonstrated. Empirically de-risked across 5 configs (goal/block activation was solved; the deeper tonic-saturation blocker remained). (2) The 'bandwidth increase over an existing channel' and 'bootstrap requires referents' core needs a multi-agent communication / language channel: V3 has NO multi-agent environment and no utterance/language stream (grep of ree-v3/ree_core confirms only a 'communication-through-coherence' binder comment, not inter-agent signalling); the language-prediction stream (MECH-424) is explicitly V6. A measurement-only diagnostic collapses to the MECH-191 cross-arch legibility LOAO test, which is exactly the de-risked blocked path -- a V3 run would only re-derive that known tonic-saturation negative (vacuous), not a PASS-or-FAIL verdict on ARC-048.",
+      "release_condition": "BOTH: (a) MECH-191 released -- a phasic/state-differential, cross-architecture-comparable functional-state readout exists (norms of tonic accumulators do not qualify; learned cross-agent alignment is itself a learned convention and violates the claim); AND (b) a multi-agent communication substrate + a language/utterance channel (MECH-424 language-prediction stream, V6) so the referent-requiring language bootstrap can be exhibited as a bandwidth increase over the functional-state channel. Likely V4 (legibility substrate) then V6 (language channel). Then queue the ARC-048 battery: signal->referent decode with referent-states-ablated vs -intact arms (bootstrap fails without pre-existing referents) atop the MECH-183 multi-agent legibility env.",
+      "gated_note": "ARC-048 language-bootstrap: downstream of MECH-191 tonic-saturation block (EVB-0091) + no V3 multi-agent/language channel (MECH-424 is V6). Sibling of the MECH-191/192 signal-legibility family."
     },
     {
       "acceptance_checks": [
