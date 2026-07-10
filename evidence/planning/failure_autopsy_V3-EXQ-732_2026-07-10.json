@@ -1,0 +1,90 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-10T06:24:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_732_policy_learning_discriminator_20260710T014857Z_v3",
+      "queue_id": "V3-EXQ-732",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "self_route_label": "H2_observation_interface_unlearnable",
+      "self_route_adjudication": "REJECTED_unconfirmed",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a intact (diagnostic, no claim tested)",
+        "biological_reference": "partial; not the operative axis (test-power is). 724's prediction-rich/action-poor H1 remains live but unadjudicated here",
+        "prerequisites": "present (env solvable at oracle 6.05; obs carries world_state resource field)",
+        "implementation": "test under-powered (prime suspect): ~200 Monte-Carlo A2C updates, entropy 0.01, net-negative contamination-dominated reward; budget set for the B1-vs-B2 contrast, not for learnability",
+        "environment": "adequate (oracle clears floor; proximity shaping present)",
+        "measurement": "design gap: readiness battery validates env-achievability but not learner-adequacy, so sub-floor B2 mis-reads as 'unlearnable'",
+        "integration": "n/a (single-arm learners)",
+        "scale": "insufficient learner budget: 40k steps / 200 MC updates far below vanilla-RL foraging convergence; B2 still climbing (seed-42 12/20 episodes)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal RPE-driven learned sensorimotor foraging policy over a perceptual field",
+        "dependencies": ["adequate learner budget/updates", "exploration during sparse pre-first-resource phase", "credit assignment vs contamination penalty"],
+        "is_formal_import": false,
+        "divergence": "not the operative divergence this run; the operative axis is test-power (learner adequacy), not a biological mechanism mismatch",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-732 policy-learning discriminator (diagnostic, claim_ids=[], non_contributory -- promotes/demotes nothing). Self-routed H2_observation_interface_unlearnable (b1/b2 sub-floor, readiness met). Autopsy failure_autopsy_V3-EXQ-732_2026-07-10 REJECTS the H2 verdict as UNCONFIRMED: the shared 200-episode / ~40k-step Monte-Carlo A2C budget was set for the B1-vs-B2 contrast, not for learnability; the H2 arm B2 (vanilla raw-obs) was the BEST arm (0.35) and foraged in 12/20 episodes on seed 42 (partial-learning signature, not an unlearnable interface); net reward was negative across all arms (contamination-dominated credit-assignment confound); and 732's readiness battery validates env-achievability (oracle 6.05) but has NO learner-adequacy gate -- so a sub-floor B2 conflates 'unlearnable observation' with 'under-powered learner' (direct analog of the V3-EXQ-642 precondition-unmet incident). 732 is UNDER-POWERED, resolving neither H1 nor H2. Routed to /queue-experiment for V3-EXQ-732a (supersedes 732): re-run the discriminator with an off-policy/minibatched learner (PPO/DQN) at 10-50x budget + stronger exploration + a learner-adequacy readiness gate, BEFORE any observation-encoding build. No substrate_queue write (recommended_substrate_queue_entry.action=none) -- the build target is exactly what the powered re-run decides. Brake-exempt (no claim tagged).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "H2 (observation-encoding gap) is NOT confirmed. Queuing an observation-encoding substrate now would build on an unconfirmed ceiling (the V3-EXQ-642 failure mode). The build target -- action/policy substrate (H1) vs observation encoding (H2) -- is exactly what the re-powered discriminator V3-EXQ-732a decides."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "reason_not_fired": "claim_ids=[] (claim-keyed counter is 0); and the confirmed routing is a re-queue that explicitly REFUSES to declare a ceiling, so the brake's intent (do not build on an unconfirmed ceiling) is satisfied a fortiori. The 719a->724->732 chain is a healthy localization drill-down, not a same-claim re-derive loop.",
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A 'sub-floor control' is only an 'unlearnable' verdict if the control was trained enough to succeed; 732's B2 was starved to ~200 Monte-Carlo updates and was still the best, partially-foraging arm (seed-42 12/20).",
+        "A discriminator's budget must be sized for the harder of its questions; 732's was sized for the equal-starvation contrast, too small to answer the learnability question the H2 branch needs.",
+        "Readiness batteries need a learner-adequacy gate, not just env-achievability: oracle-clears-floor proves the ENV is solvable with privileged access, not that the learner extracts the solution from the observation at the given budget.",
+        "Monte-Carlo A2C at ~200 updates is the wrong control for a 'can it be learned at all' question; an off-policy/minibatched learner (PPO/DQN) with many updates per env-step is the fair control.",
+        "719a->724->732 is a healthy localization drill-down; but 732a is the third diagnostic routing to re-queue -- if a properly-powered 732a still fails to resolve H1 vs H2, that recurrence is the signal (is the competence question well-posed on this env), not another power bump."
+      ],
+      "routing": "queue-experiment",
+      "requeue_spec": {
+        "new_id_suggested": "V3-EXQ-732a",
+        "label_rule": "alphabetic suffix (same scientific question, implementation power-fix)",
+        "supersedes": "V3-EXQ-732",
+        "brake_exempt": true,
+        "claim_ids": [],
+        "experiment_purpose": "diagnostic",
+        "evidence_direction": "non_contributory",
+        "primary_lever": "off_policy_or_minibatched_learner_plus_bigger_budget",
+        "changes": [
+          "Replace end-of-episode Monte-Carlo A2C (~200 updates) with PPO or DQN doing minibatched updates per rollout, at a 10-50x larger budget known to solve comparable gridworld foraging; apply the SAME learner+budget to BOTH B1 and B2 so the representation-front-end contrast stays powered.",
+          "Stronger exploration than entropy_beta 0.01 (raise entropy and/or add a count-based/novelty bonus for the sparse pre-first-resource phase).",
+          "Normalize/rescale returns so foraging is not drowned by contamination penalties (net-negative reward across all 732 arms); keep P2 mean_resources_per_episode as the load-bearing DV.",
+          "ADD a learner-adequacy readiness gate: the vanilla control must clear foraging (>= X% of oracle) on a plain sanity env within budget before any sub-floor is read as an H2 verdict; failure => substrate_not_ready_requeue (learner too weak), NOT an H2 verdict."
+        ],
+        "keep_verbatim": ["ENV_KWARGS (size-12, 5 resources, 4 hazards, reef)", "seeds 42/43/44", "200 steps/episode", "20 P2 eval episodes", "1.0 competence floor", "greedy nearest-resource oracle positive control", "B0 724-A0 incompetence anchor"],
+        "interpretation_grid": {
+          "powered_b2_clears": "observation IS learnable -> H1 (build action/policy substrate under f_dominance_conversion_ceiling, informed by MECH-455 competence-based IM); B1-vs-B2 delta then distinguishes H1 vs deeper-H1 (representation helps/hurts).",
+          "powered_b2_subfloor_with_learner_adequacy_gate_passed": "H2 CONFIRMED -> THEN route /implement-substrate on the observation encoding.",
+          "b1_clears_and_b2_subfloor": "flag_implausible_leakage_check"
+        }
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "cross_refs": {
+    "parent_autopsy": "failure_autopsy_V3-EXQ-724_2026-07-09",
+    "grandparent_autopsy": "failure_autopsy_V3-EXQ-719a_2026-07-08",
+    "canonical_precedent": "failure_autopsy_V3-EXQ-642_2026-06-06 (precondition_unmet self-route; correct route was re-queue not enrichment)",
+    "plan": "ree_ai_design_critique_plan.md WS-1 (competence floor before structure)",
+    "campaign": "conversion_ceiling_campaign_plan.md",
+    "related_claim": "MECH-455 (competence-based intrinsic motivation; informs the H1 build if confirmed)"
+  }
+}
