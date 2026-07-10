@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_732a_policy_learning_discriminator",
+  "run_id": "v3_exq_732a_policy_learning_discriminator_20260710T103144Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-10T10:31:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "b1_clears_floor": false,
+    "b2_clears_floor": false,
+    "learner_adequate": false,
+    "preconditions": [
+      {
+        "name": "oracle_resource_channel_clears_floor",
+        "kind": "readiness",
+        "description": "Greedy nearest-resource ORACLE (no agent) clears the competence floor in the REAL env, proving the floor is ACHIEVABLE. SAME statistic as the agent DV (env.step info transition_type=='resource'). Below-floor => substrate_not_ready_requeue, NEVER an H1/H2 verdict.",
+        "control": "greedy nearest-resource oracle forager, same ENV_KWARGS/seed",
+        "measured": 6.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "learner_adequacy_on_sanity_env",
+        "kind": "readiness",
+        "description": "The SAME vanilla PPO learner (as B2) must clear >= 0.5 of the sanity-env oracle on a majority of seeds on a PLAIN foraging env (hazards/reef/contamination OFF) within budget, BEFORE a sub-floor B2 is allowed to read as H2. Asserts the SAME statistic (mean_resources_per_episode) the H2 branch routes on -- this is the direct fix for the V3-EXQ-732 mis-read (under-powered learner mistaken for an unlearnable observation). Below => substrate_not_ready_requeue (learner too weak), NEVER an H2 verdict. measured = n_seeds L0 adequate; threshold = majority seed count.",
+        "control": "L0 vanilla PPO on sanity env vs sanity oracle; adequate if L0 res/ep >= 0.5 x sanity_oracle res/ep (per seed)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "met": false
+      },
+      {
+        "name": "baseline_reproduces_incompetence",
+        "kind": "readiness",
+        "description": "B0 (724 A0 bias-head REINFORCE all-ON) must forage BELOW the floor on a majority of seeds -- i.e. the 724 incompetence must reproduce -- for the H1/H2 discrimination to be meaningful. If B0 already clears the floor the premise is not reproduced => substrate_not_ready_requeue.",
+        "control": "B0 mean_resources/ep vs floor (majority of seeds)",
+        "measured": 0.2,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "sufficient_p2_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= MIN_P2_EPISODES P2 eval episodes so mean_resources_per_episode is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed P2 episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "discriminator_resolved_nondegenerate",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor": true,
+      "learner_adequate_on_sanity": false,
+      "baseline_reproduces_incompetence": true,
+      "sufficient_p2_episodes": true,
+      "discriminator_arms_not_identical": true
+    }
+  }
+}
