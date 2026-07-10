@@ -11,10 +11,24 @@
         "target": "Threshold expression the fully-implemented SD must satisfy"
       },
       "purpose": "Track how the primary test metric for each SD has moved across substrate iterations. Enables predictive hypotheses: given the co-variation of metric value vs substrate state, what should the next experiment produce? The trajectory is more informative than any individual PASS/FAIL because it reveals whether the substrate is the bottleneck or the hypothesis."
+    },
+    "node_class": {
+      "purpose": "Per-entry work-graph debt classification (docs/architecture/work_graph_debt_vocabulary.md). Makes an entry's KIND machine-readable so a 'gated on X' phrase in implementation_hint / status prose can be validated against it, and so the /governance recommendation sweep can order discovery-debt ahead of execution backlog (prefer-discovery-debt = the EFE epistemic-value term on the work graph).",
+      "allowed_values": [
+        "complicated (buildable)",
+        "complex (probe-gated)",
+        "puzzle (known rules)",
+        "mystery (known data)",
+        "aleatoric (irreducible)"
+      ],
+      "value_note": "The bracket is PART of the token -- write it verbatim, never the bare word. puzzle/mystery are the two sub-kinds of complex (probe-gated); a complex (probe-gated) entry MAY be refined to puzzle (known rules) or mystery (known data) once the probe's shape is known.",
+      "default_reading": "A substrate_queue entry is by construction the execution backlog for /implement-substrate -- an UNMARKED entry is read as complicated (buildable) (build it). Mark node_class explicitly only when the entry's residual is actually a reducible unknown: complex (probe-gated) when what is owed is a spike (a REE diagnostic), not a build; aleatoric (irreducible) when the residual is real noise to robustify against, not research. A complex (probe-gated) entry usually should not be a naked build task -- surface it to the /governance sweep first.",
+      "gated_on_rule": "Any 'gated on X' / 'gated_on' phrase in an entry's implementation_hint or status prose is well-formed only if X resolves to one of allowed_values (or names a concrete upstream node that itself carries one). verify_governance_cycle.py check I flags a 'gated on' phrase whose entry has no valid node_class.",
+      "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
   "last_seen_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
-  "last_updated_utc": "2026-07-10T13:26:48Z",
+  "last_updated_utc": "2026-07-10T19:22:41Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,

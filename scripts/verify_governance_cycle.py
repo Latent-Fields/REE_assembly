@@ -510,6 +510,101 @@ def check_heartbeat_scope_bleed(repo_root, findings):
 
 
 # ---------------------------------------------------------------------------
+# Check I: substrate_queue node_class well-formed (work-graph debt vocabulary)
+# ---------------------------------------------------------------------------
+# docs/architecture/work_graph_debt_vocabulary.md -- the bracket is part of the
+# token. An UNMARKED substrate_queue entry is read as complicated (buildable)
+# (the queue is the execution backlog by construction), so a missing node_class
+# is only an aggregate info signal, never a block. This check exists so a bad
+# EXPLICIT value cannot slip in and so a "gated on X" phrase without a resolving
+# token gets surfaced.
+NODE_CLASS_TOKENS = frozenset({
+    "complicated (buildable)",
+    "complex (probe-gated)",
+    "puzzle (known rules)",
+    "mystery (known data)",
+    "aleatoric (irreducible)",
+})
+
+
+def check_substrate_queue_node_class(repo_root, findings):
+    sq_path = repo_root / "evidence" / "planning" / "substrate_queue.json"
+    if not sq_path.exists():
+        return
+    try:
+        data = json.loads(sq_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    queue = [it for it in (data.get("queue") or []) if isinstance(it, dict)]
+    if not queue:
+        return
+
+    bad_value = []      # explicit node_class not in the token set
+    gated_no_token = []  # "gated on" prose but no valid node_class
+    missing = 0
+    for entry in queue:
+        sid = entry.get("sd_id") or "<no-sd_id>"
+        nc = entry.get("node_class")
+        has_valid = nc in NODE_CLASS_TOKENS
+        if nc is None:
+            missing += 1
+        elif not has_valid:
+            bad_value.append(f"{sid}={nc!r}")
+        # "gated on X" language (in hint or free-text status) must resolve to a token
+        hint = entry.get("implementation_hint") or ""
+        status = entry.get("status") if isinstance(entry.get("status"), str) else ""
+        blob = (hint + " " + status).lower()
+        if ("gated on" in blob or "gated_on" in blob) and not has_valid:
+            gated_no_token.append(sid)
+
+    if bad_value:
+        findings.append(make_finding(
+            "warn", "SUBSTRATE_QUEUE_NODE_CLASS_INVALID",
+            (
+                f"{len(bad_value)} substrate_queue entr(y/ies) carry a node_class "
+                "outside the work-graph debt vocabulary token set "
+                "(docs/architecture/work_graph_debt_vocabulary.md): "
+                + "; ".join(bad_value[:12])
+            ),
+            evidence_paths=[str(sq_path)],
+            suggested_next_action=(
+                "Set node_class to exactly one of: complicated (buildable), "
+                "complex (probe-gated), puzzle (known rules), mystery (known data), "
+                "aleatoric (irreducible). The bracket is part of the token."
+            )
+        ))
+    if gated_no_token:
+        findings.append(make_finding(
+            "warn", "SUBSTRATE_QUEUE_GATED_ON_NO_TOKEN",
+            (
+                f"{len(gated_no_token)} substrate_queue entr(y/ies) use 'gated on' "
+                "language but carry no resolving node_class token: "
+                + ", ".join(gated_no_token[:12])
+            ),
+            evidence_paths=[str(sq_path)],
+            suggested_next_action=(
+                "'Gated on X' is well-formed only if X resolves to a node_class "
+                "token. Classify the entry (usually complex (probe-gated) if the "
+                "residual is a reducible unknown) or reword the note."
+            )
+        ))
+    if missing:
+        findings.append(make_finding(
+            "info", "SUBSTRATE_QUEUE_NODE_CLASS_UNMARKED",
+            (
+                f"{missing}/{len(queue)} substrate_queue entries lack node_class; "
+                "read as complicated (buildable) by default (the queue is the "
+                "execution backlog). Governance Step 6a populates it going forward."
+            ),
+            evidence_paths=[str(sq_path)],
+            suggested_next_action=(
+                "No action required. node_class is backfilled lazily as a "
+                "governance cycle next touches each entry."
+            )
+        ))
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
@@ -531,6 +626,7 @@ def main():
     check_drained_exq_without_manifest(repo_root, findings)
     check_failed_experiments_without_diagnosis(repo_root, findings)
     check_heartbeat_scope_bleed(repo_root, findings)
+    check_substrate_queue_node_class(repo_root, findings)
 
     block_count = sum(1 for f in findings if f["severity"] == "block")
     warn_count = sum(1 for f in findings if f["severity"] == "warn")
