@@ -106,6 +106,28 @@ means the *opposite-in-time*: the accumulated **opacity of systems you already b
 can no longer understand** (Ponnusamy & Nembhard 2019). Ours is a *pre*-construction
 unknown; theirs is *post*-construction opacity. Keep them apart.
 
+## Wiring status (what uses this, and what still owes it)
+
+**Wired (2026-07-10, session modest-faraday-58b67a):**
+- `REE_Working/CLAUDE.md` (General Rules) — startup pointer + tokens + razor + the
+  prefer-discovery-debt stance.
+- `/failure-autopsy` routing — classify the node into a token before routing (the token
+  *is* the routing decision).
+- `/queue-experiment` Step 2.5 — `blocked_substrate` == `complicated (buildable)` → build,
+  not experiment; queue only `complex (probe-gated)` spikes; "gated on X" must name a token.
+
+**Owed (not yet wired — a `complicated (buildable)` build, do when returning to it):**
+- **`/governance`** — teach the recommendation sweep to report each open node *by token*,
+  so the governance walk surfaces `complex (probe-gated)` discovery-debt ahead of
+  `complicated (buildable)` execution backlog (the prefer-discovery-debt ordering, applied
+  at the point work is prioritised). Mirror into both skill dirs (`.claude` + `.agents`).
+- **`substrate_queue.json` schema** — add a per-entry `node_class` field whose value is one
+  of the five tokens, so a queue entry's kind is machine-readable (and "gated on X" in an
+  entry `note` can be validated against it). Update `_schema_notes` and any validator.
+
+These two are additive and low-blast-radius; deferred deliberately so the current wiring
+can be lived with first. Tracked as a follow-on chip from the 2026-07-10 session.
+
 ## References
 
 - Snowden & Boone, "A Leader's Framework for Decision Making," *HBR* 2007 (Cynefin
