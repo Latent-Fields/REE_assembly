@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-10T06:35:17Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_725a_coherence_nonreducibility_converged_binder_20260709T221114Z_v3",
+      "queue_id": "V3-EXQ-725a",
+      "claim_ids": [],
+      "bears_on_not_tagged": ["INV-002", "MECH-089", "MECH-094", "MECH-270", "MECH-269"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear->settle; candidate Q entities/selection.coherence_nonreducibility (unregistered) tested under the fairest substrate to date; the registerable specificity bar (SPEC) not cleared (1/6, gate 4/6)",
+        "biological_reference": "partial; binding-by-synchrony / cross-region coherence gating selection. Trained-binder translation now present (not a fixed random field) and STILL non-specific -> not a missing-dependency signature; formal-import caution operative",
+        "prerequisites": "present; converged binder + exercised rebinding + adequate gating all satisfied -- the 720/725 residuals are cleared this run",
+        "implementation": "complete; learned binder built + converged (loss_ema 0.65-0.80 of chance), P0->P1 discipline honoured (binder trained P0-only, frozen in P1)",
+        "environment": "adequate (caveat); CausalGridWorldV2 slow-drift; gating adequate (238-640 gated steps); competence-floor tie is secondary because SPEC tracks binder architecture not competence",
+        "measurement": "under-instrumented (secondary): frac_state_div SATURATES on 3/6 seeds (44,46 at 1.0/1.0; 42 ~0.95) -> SPEC unmeasurable there. This is NOT the flagged SP-CEM low-gating gap (that did not fire: primary_seeds_low_gated=[], gating_adequacy_warning=false)",
+        "integration": "coupled; binder<->selection coupled, rebinds under anchor perturbation (n_rebind_total=1676)",
+        "scale": "adequate; 6 seeds, P0/P1 40/25 episodes, 120 steps/ep, converged binder"
+      },
+      "biological_reference": {
+        "closest_mechanism": "binding-by-synchrony / cross-stream (cross-region) coherence influencing action selection",
+        "dependencies": ["a converged/plastic cross-stream binder", "rebinding-under-perturbation capability", "adequate two-mode-active P1 diversity"],
+        "is_formal_import": true,
+        "divergence": "path-integral / least-action / cross-stream phase-alignment is a formal-physics import; the path_integral intake pre-registered the 'philosophy-right, mechanism-wrong' caution. C(tau) behaves as any orthogonal tie-breaking bias (reproduced by a contrast-matched shuffle), not a coherence-specific selection factor -- caution vindicated",
+        "lit_status": "present (formal-import caution already registered in the intake; biology not the identified gap)"
+      },
+      "recommended_epistemic_category": "genuine_fair_test_negative_coherence_specificity_unsupported (NOT substrate_ceiling -- substrate mature; NOT untrained_substrate_artifact -- binder converged)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-725a (diagnostic, claim_ids=[], non_contributory): converged learned-binder retest of the 641a/720/725 coherence-nonreducibility harness. Gating adequate (all 6 seeds, 238-640 gated steps; SP-CEM measurement gap did NOT fire -- primary_seeds_low_gated=[], gating_adequacy_warning=false). Load-bearing SPEC 1/6 (gate 4/6): coherence changes selection (D1 6/6) non-reducibly to E (D3 5/6) but NOT coherence-specifically vs a contrast-matched shuffle (F3). Lineage SPEC 641a 1/6 -> 720 fixed-field 3/6 (peak) -> 725 unconverged 0/6 -> 725a converged 1/6: the converged learned binder REFUTES the 720 learned-binder-prerequisite hypothesis in the negative and underperforms the fixed field. Rebinding now positively exercised (1676 events). Settles both 2026-04-23 intakes NO-CLAIM (candidate Q coherence_nonreducibility not registered; formal-import caution vindicated); rebinding-under-perturbation MECH salvaged to /claim-synthesis. Refuse SP-CEM re-run; a different-mechanism redesign with a non-saturating divergence metric is the only sanctioned continuation.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The cross_stream_binding_substrate is already built + converged (720 autopsy routed the learned-binder build; 725 autopsy routed the convergence fix, both LANDED). No further binder substrate work is owed; the converged learned binder was tested here and underperformed the fixed field. Routing is intake-settlement + claim-synthesis salvage, not a substrate build."
+      },
+      "intake_settlement": {
+        "intakes": [
+          "REE_assembly/evidence/planning/thought_intake_2026-04-23_binding.md",
+          "REE_assembly/evidence/planning/thought_intake_2026-04-23_path_integral_constraints_search.md"
+        ],
+        "disposition": "settle_no_claim",
+        "detail": "Resolve both intakes: do NOT register candidate Q entities/selection.coherence_nonreducibility. Coherence-specificity unproven under the fairest, most-mature test (converged learned binder + exercised rebinding + adequate gating); formal-import caution vindicated. On the intakes' OWN literal falsifiers C survives weakly (D1 non-inert, D3 non-reducible, rebinding exercised) but the stronger registerable-novelty specificity bar (real vs contrast-matched shuffle) fails.",
+        "salvage_rebinding_mech": {
+          "route": "claim-synthesis",
+          "candidate": "rebinding-under-perturbation: monitor coherence and rebind when a competing configuration overtakes the current one in exp(-beta*E)*C",
+          "detail": "Now positively exercisable + observed at the substrate (n_rebind_total=1676; 0 in every predecessor). Decoupled from the coherence-nonreducibility Q that closes; hand to /claim-synthesis proposal-first, lit-grounded. This is the one load-bearing positive from the lineage."
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "reason_not_fired": "claim_ids=[] (no registered claim to mechanically count). Prior lineage autopsies (720, 725) both recorded fired=false under the substrate-enrichment EXEMPTION. That exemption is now SPENT: unbound -> fixed -> learned-unconverged -> learned-converged; the terminal enrichment (converged learned binder) underperformed the fixed-field peak (SPEC 1/6 < 3/6). The brake's PURPOSE is now fully engaged even though the mechanical count cannot trigger.",
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-720_2026-07-09", "failure_autopsy_V3-EXQ-725_2026-07-09"],
+        "refused_requeue": true,
+        "refused_requeue_detail": "REFUSE the specific 'escalate SP-CEM diversity/steps and re-run' re-queue -- that confound is ABSENT (gating adequate), so it repairs nothing. REFUSE a same-question 725b on this substrate lineage (enrichment path exhausted). ALLOWED (user-selected): a redesigned test of a DIFFERENT coherence mechanism -- new EXQ number, different claim_ids, and a graded/non-saturating divergence metric replacing frac_state_div (which saturates on 3/6 seeds).",
+        "route_to": "governance-intake-settlement + claim-synthesis (rebinding MECH salvage)",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The learned-binder-as-residual-prerequisite hypothesis (720 autopsy) is REFUTED in the negative: converged learned binder gives SPEC 1/6, below fixed-field peak 3/6 and at the unbound floor. Plasticity did not lift coherence-specificity; it regressed it.",
+        "The best coherence-specificity in the entire lineage came from the FIXED-FIELD binder (720, 3/6) -- a structured deterministic joint-state field -- and even that plateaued below the 4/6 gate.",
+        "The SP-CEM measurement gap did NOT fire (gating adequate all seeds); the flagged confound class is absent, so an SP-CEM-diversity re-run is unwarranted.",
+        "Residual measurement note for any future different-mechanism test: frac_state_div SATURATES on 3/6 seeds -> use a graded/non-saturating divergence metric so both arms can separate.",
+        "Rebinding-under-perturbation is now positively exercised (1676 events; 0 in all predecessors). The binding intake's candidate MECH is the one salvageable positive -- decoupled from the coherence-nonreducibility Q that closes."
+      ],
+      "routing": "governance-intake-settlement + claim-synthesis"
+    }
+  ],
+  "cluster_pattern": null,
+  "lineage": {
+    "family": "coherence_nonreducibility",
+    "iterations": [
+      {"queue_id": "V3-EXQ-641a", "substrate": "unbound fixed field", "spec_seeds": "1/6", "rebinding": 0},
+      {"queue_id": "V3-EXQ-720", "substrate": "fixed-field bound", "spec_seeds": "3/6 (peak)", "rebinding": 0},
+      {"queue_id": "V3-EXQ-725", "substrate": "learned binder UNCONVERGED", "spec_seeds": "0/6", "rebinding": "vacuous"},
+      {"queue_id": "V3-EXQ-725a", "substrate": "learned binder CONVERGED + rebinding exercised", "spec_seeds": "1/6", "rebinding": 1676}
+    ],
+    "read": "SPEC tracks binder architecture (3/6 fixed vs 1/6 learned on the same harness), not the competence floor. Converged learned binder underperforms fixed field -> 720 learned-binder-prerequisite hypothesis refuted-negative; substrate-enrichment path exhausted."
+  }
+}
