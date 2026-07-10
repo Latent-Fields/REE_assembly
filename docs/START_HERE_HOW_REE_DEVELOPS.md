@@ -197,6 +197,7 @@ Agents: read [NEW_AGENT_START_HERE.md](../../NEW_AGENT_START_HERE.md) at the umb
 
 ## Where detail lives
 
+- **The single live front (where we are right now):** [CURRENT_FRONT.md](CURRENT_FRONT.md) — short, generated, live-only (no history); links onward to `insights_report.md` and `closure_status.md`.
 - **Philosophy and architecture stakes:** [README.md](../README.md)
 - **Contributor setup, weekly cadence, intake flow:** [DEVELOPMENT.md](../DEVELOPMENT.md)
 - **Current phase and immediate queue:** [roadmap.md](roadmap.md)

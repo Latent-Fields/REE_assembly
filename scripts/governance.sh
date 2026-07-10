@@ -92,6 +92,12 @@ echo "--- Step 3c-tris: Inter-governance workset regen + drift check (warn-only)
 echo "--- Step 3c-bis: Closure-status snapshot (server-free rollup) ---"
 "$PYTHON" scripts/generate_closure_snapshot.py
 
+echo "--- Step 3c-bis-2: Current-front routing doc (SHP-6; derives docs/CURRENT_FRONT.md) ---"
+# SHORT, LIVE-ONLY front doc the Session-Startup entry docs route to (fixes the
+# status_history_plane 'Failure A -- routing'). Derived from insights_report.md +
+# the closure snapshot just produced; regenerable, PROMOTES/DEMOTES NOTHING.
+"$PYTHON" scripts/generate_current_front.py
+
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
 "$PYTHON" scripts/validate_brain_region_map.py || true
 
