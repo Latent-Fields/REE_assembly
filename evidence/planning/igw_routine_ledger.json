@@ -1623,7 +1623,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-197-proposal-for-arc-048 && claude --resume 0df5d9fb-0b11-4348-9a81-4f84ed30ca25",
       "task_claim_session_id": "igw-auto-igw-197-proposal-for-arc-048-20260710T065707Z",
       "assigned_at": "2026-07-10T06:56:42Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-10T07:05:12Z",
+      "completion_summary": "marked EVB-0109/ARC-048 blocked_substrate: language-bootstrap downstream of MECH-191 tonic-saturation block (EVB-0091) + no V3 multi-agent/language channel (MECH-424 is V6)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0229 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -2061,6 +2065,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-09T20:41:46Z",
       "re_eligible_after": "2026-07-11T20:41:46Z"
+    },
+    {
+      "stable_hash": "afbe5a4eac2a",
+      "igw_id_at_disposition": "IGW-20260710-197",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-048"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-048",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-10T07:05:13Z",
+      "re_eligible_after": "2026-07-12T07:05:13Z"
     }
   ]
 }
