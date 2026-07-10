@@ -116,17 +116,20 @@ unknown; theirs is *post*-construction opacity. Keep them apart.
 - `/queue-experiment` Step 2.5 — `blocked_substrate` == `complicated (buildable)` → build,
   not experiment; queue only `complex (probe-gated)` spikes; "gated on X" must name a token.
 
-**Owed (not yet wired — a `complicated (buildable)` build, do when returning to it):**
-- **`/governance`** — teach the recommendation sweep to report each open node *by token*,
-  so the governance walk surfaces `complex (probe-gated)` discovery-debt ahead of
-  `complicated (buildable)` execution backlog (the prefer-discovery-debt ordering, applied
-  at the point work is prioritised). Mirror into both skill dirs (`.claude` + `.agents`).
-- **`substrate_queue.json` schema** — add a per-entry `node_class` field whose value is one
-  of the five tokens, so a queue entry's kind is machine-readable (and "gated on X" in an
-  entry `note` can be validated against it). Update `_schema_notes` and any validator.
+**Wired (2026-07-10, session optimistic-babbage-363511 — the two formerly-owed pieces):**
+- `/governance` — Step 3 (the recommendation / next-work sweep) now classifies each open
+  node *by token* and surfaces `complex (probe-gated)` discovery-debt AHEAD of
+  `complicated (buildable)` execution backlog (prefer-discovery-debt, applied at the point
+  work is prioritised); Step 6a wires `node_class` into the schema block, the autopsy-create
+  field list, and the 6a-vi report. Mirrored byte-identical to both skill dirs.
+- `substrate_queue.json` schema — per-entry `node_class` field (one of the five tokens);
+  documented in `_schema_notes` (allowed values, default reading = `complicated (buildable)`,
+  gated-on rule, populated-by). `scripts/verify_governance_cycle.py` check I validates it
+  (warn/info only, never blocks): invalid value → warn, "gated on" phrase without a
+  resolving token → warn, unmarked entries → aggregate info. Historical entries are
+  backfilled lazily as a governance cycle next touches each entry.
 
-These two are additive and low-blast-radius; deferred deliberately so the current wiring
-can be lived with first. Tracked as a follow-on chip from the 2026-07-10 session.
+Nothing further owed: every surface named in this section is now wired.
 
 ## References
 
