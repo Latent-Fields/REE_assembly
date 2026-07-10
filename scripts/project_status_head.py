@@ -486,6 +486,31 @@ def _next(ev):
     return None
 
 
+# The STABLE subset of a projected `live` dict that SHP-2 persists into the plan
+# node (design sec 4a) and that the SHP-2 status-plane drift check compares
+# (projected `live` == stored `live`). Volatile derivations -- brake_count,
+# slice_size, forward_events -- are DELIBERATELY excluded: they change as events
+# accrue without changing the projected *status reading*, so including them would
+# make the drift check perpetually red. `brake` (fired/not_fired) IS included; the
+# raw count is not. This is the single source of truth for "what live: looks like
+# when stored", shared by the collapse tool and check_closure_drift.py.
+STORED_LIVE_FIELDS = ("as_of", "from", "verdict", "next", "brake", "needs_review")
+
+
+def stored_live_view(live):
+    """Project a full `live` dict down to the stable, persisted-into-plan subset.
+
+    Returns an ordered plain dict with STORED_LIVE_FIELDS, plus
+    `needs_review_reasons` only when needs_review is true (so the stored block
+    carries the human-glance reason without noise when there is none)."""
+    if not live:
+        return {}
+    out = {k: live.get(k) for k in STORED_LIVE_FIELDS}
+    if live.get("needs_review") and live.get("needs_review_reasons"):
+        out["needs_review_reasons"] = list(live["needs_review_reasons"])
+    return out
+
+
 # ---------------------------------------------------------------------------
 # Diff-vs-blob (the non-destructive razor audit, contract sec 5)
 # ---------------------------------------------------------------------------
@@ -547,6 +572,69 @@ def _dedup(pairs):
         seen.append(t)
         out.append({"kind": k, "token": t})
     return out
+
+
+# ---------------------------------------------------------------------------
+# Event loading + full projection (shared by the shadow run and the drift check)
+# ---------------------------------------------------------------------------
+
+
+def load_events(repo_root):
+    """Load the full append-only event log. Returns (events, event_counts)."""
+    autopsies = load_autopsies(repo_root)
+    manifests = load_manifests(repo_root)
+    decisions = load_decisions(repo_root)
+    events = autopsies + manifests + decisions
+    counts = {"autopsy": len(autopsies), "manifest_PASS": len(manifests),
+              "decision": len(decisions)}
+    return events, counts
+
+
+def _umbrella_children_disagree_pass(plans, projections):
+    """contract term 3: flag an umbrella node needs_review when its children's
+    projected verdicts disagree. Mutates projections[*]['live'] in place."""
+    for plan in plans:
+        umbrellas = [n for n in plan["nodes"]
+                     if "umbrella" in (n["title"] + " "
+                                       + n["blobs"]["owner_exq"]).lower()]
+        child_nodes = list(plan["nodes"])
+        for um in umbrellas:
+            children = [n for n in child_nodes if n["id"] != um["id"]]
+            verdicts = sorted({projections[c["id"]]["live"]["verdict"]
+                               for c in children
+                               if projections[c["id"]]["live"]["verdict"]})
+            if len(verdicts) > 1:
+                live = projections[um["id"]]["live"]
+                if not live["needs_review"]:
+                    live["needs_review"] = True
+                live["needs_review_reasons"].append(
+                    "umbrella_children_disagree:" + "|".join(verdicts))
+
+
+def build_projections(plans, events, threshold, global_coverage=None):
+    """Project `live`+`join` for every node across `plans`, including the umbrella
+    children-disagreement review pass. When `global_coverage` is supplied, also
+    attaches the diff-vs-blob finding per node (needed only for the shadow report).
+
+    This is THE projection code path: the shadow run and check_closure_drift.py
+    both call it, so a re-projection in the drift check is bit-identical to what
+    the collapse tool stored (given the same event log)."""
+    projections = {}
+    for plan in plans:
+        for node in plan["nodes"]:
+            slc, tokens, prov = join_node(node, events)
+            live, head = project_live(node, slc, threshold)
+            join_bears_on = sorted({b for ev in slc for b in ev.bears_on})
+            pr = {
+                "live": live, "head": head, "slice": slc, "tokens": tokens,
+                "prov": prov, "join_bears_on": join_bears_on,
+                "plan_id": plan["plan_id"],
+            }
+            if global_coverage is not None:
+                pr["diff"] = diff_blob(node, slc, global_coverage)
+            projections[node["id"]] = pr
+    _umbrella_children_disagree_pass(plans, projections)
+    return projections
 
 
 # ---------------------------------------------------------------------------
@@ -737,12 +825,10 @@ def main():
     now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
     plans, skipped = load_plans(planning_dir)
-    autopsies = load_autopsies(repo_root)
-    manifests = load_manifests(repo_root)
-    decisions = load_decisions(repo_root)
-    events = autopsies + manifests + decisions
-    event_counts = {"autopsy": len(autopsies), "manifest_PASS": len(manifests),
-                    "decision": len(decisions)}
+    events, event_counts = load_events(repo_root)
+    autopsies = event_counts["autopsy"]
+    manifests = event_counts["manifest_PASS"]
+    decisions = event_counts["decision"]
 
     global_coverage = set()
     for ev in events:
@@ -753,36 +839,7 @@ def main():
             plan["nodes"] = [n for n in plan["nodes"] if args.node in n["id"]]
         plans = [p for p in plans if p["nodes"]]
 
-    projections = {}
-    for plan in plans:
-        for node in plan["nodes"]:
-            slc, tokens, prov = join_node(node, events)
-            live, head = project_live(node, slc, args.threshold)
-            join_bears_on = sorted({b for ev in slc for b in ev.bears_on})
-            projections[node["id"]] = {
-                "live": live, "head": head, "slice": slc, "tokens": tokens,
-                "prov": prov, "join_bears_on": join_bears_on,
-                "diff": diff_blob(node, slc, global_coverage),
-                "plan_id": plan["plan_id"],
-            }
-
-    # umbrella children-disagreement pass (contract term 3)
-    for plan in plans:
-        umbrellas = [n for n in plan["nodes"]
-                     if "umbrella" in (n["title"] + " "
-                                       + n["blobs"]["owner_exq"]).lower()]
-        child_nodes = [n for n in plan["nodes"]]
-        for um in umbrellas:
-            children = [n for n in child_nodes if n["id"] != um["id"]]
-            verdicts = sorted({projections[c["id"]]["live"]["verdict"]
-                               for c in children
-                               if projections[c["id"]]["live"]["verdict"]})
-            if len(verdicts) > 1:
-                live = projections[um["id"]]["live"]
-                if not live["needs_review"]:
-                    live["needs_review"] = True
-                live["needs_review_reasons"].append(
-                    "umbrella_children_disagree:" + "|".join(verdicts))
+    projections = build_projections(plans, events, args.threshold, global_coverage)
 
     review_ct, total_at_risk = emit(out_dir, plans, projections, skipped,
                                     event_counts, args.threshold, now_iso)
@@ -794,7 +851,7 @@ def main():
     print("project_status_head.py (SHP-1, READ-ONLY) -- wrote shadow output to:")
     print("  %s" % out_dir)
     print("  plans=%d nodes=%d  events: autopsy=%d manifest_PASS=%d decision=%d"
-          % (len(plans), n_nodes, len(autopsies), len(manifests), len(decisions)))
+          % (len(plans), n_nodes, autopsies, manifests, decisions))
     print("  needs_review(ambiguous head)=%d   no_events=%d   non_forward_head=%d"
           % (review_ct, no_events, non_forward))
     print("  at-risk history refs (diff-vs-blob)=%d" % total_at_risk)

@@ -150,6 +150,18 @@ def _blocker(node: dict) -> str:
     return ""
 
 
+def _live_next(node: dict) -> str:
+    """The projected next-step from a two-plane `live:` block (status_history_plane
+    SHP-2), used as a fallback when a collapsed node no longer carries `awaiting:`.
+    Empty string when the node has no `live` block."""
+    live = node.get("live")
+    if isinstance(live, dict):
+        nxt = live.get("next")
+        if isinstance(nxt, str) and nxt.strip():
+            return nxt.strip()
+    return ""
+
+
 def _cell(v) -> str:
     """Sanitise a value for a markdown table cell."""
     if v is None:
@@ -452,7 +464,7 @@ def main() -> int:
                     nid=_cell(n.get("id")),
                     title=_cell(n.get("title"))[:70],
                     st=n["_status"],
-                    aw=_cell(n.get("awaiting") or _blocker(n))[:60],
+                    aw=_cell(n.get("awaiting") or _live_next(n) or _blocker(n))[:60],
                     asx=_cell(n.get("assembly_status")),
                     rv=_cell(n.get("revisit_after")),
                     lu=_cell(n.get("last_updated")),

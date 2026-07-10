@@ -71,6 +71,16 @@ except ImportError:
     print("ERROR: PyYAML required.", file=sys.stderr)
     sys.exit(0)
 
+# status_history_plane:SHP-2 -- the status-plane drift check re-projects `live`
+# via the SAME code path the shadow projector / collapse tool use, so a stored
+# `live:` that has gone stale vs the event log is flagged. Guarded so this drift
+# script still runs (skipping only the status-plane section) if the projector is
+# unavailable.
+try:
+    import project_status_head as _psh
+except Exception:  # pragma: no cover - projector optional
+    _psh = None
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
@@ -505,6 +515,90 @@ def assembly_frontier_record(node: dict, today) -> dict | None:
     }
 
 
+# --- Status-plane drift (status_history_plane:SHP-2) --------------------------
+
+
+def _stored_live_view_from_plan(live_block) -> dict:
+    """Coerce a plan node's stored `live:` block to the same shape the projector's
+    `stored_live_view` emits, so the two are directly comparable."""
+    if not isinstance(live_block, dict) or _psh is None:
+        return {}
+    out = {k: live_block.get(k) for k in _psh.STORED_LIVE_FIELDS}
+    if live_block.get("needs_review") and live_block.get("needs_review_reasons"):
+        out["needs_review_reasons"] = list(live_block["needs_review_reasons"])
+    return out
+
+
+def _live_diff(stored: dict, projected: dict) -> list[str]:
+    """Field-level mismatches between a stored and a projected live view.
+    Scalars compared as strings; needs_review as bool; reasons as ordered lists."""
+    fields = list(_psh.STORED_LIVE_FIELDS) + ["needs_review_reasons"]
+    diffs: list[str] = []
+    for f in fields:
+        sv, pv = stored.get(f), projected.get(f)
+        if f == "needs_review":
+            if bool(sv) != bool(pv):
+                diffs.append(f"{f}: stored={bool(sv)} projected={bool(pv)}")
+        elif f == "needs_review_reasons":
+            if list(sv or []) != list(pv or []):
+                diffs.append(f"{f}: stored={sv or []} projected={pv or []}")
+        else:
+            if (None if sv is None else str(sv)) != (None if pv is None else str(pv)):
+                diffs.append(f"{f}: stored={sv!r} projected={pv!r}")
+    return diffs
+
+
+def status_plane_drift() -> tuple[list[dict], int, str | None]:
+    """Re-project every collapsed node's `live` head and compare to the stored one.
+
+    Returns (drifted, n_checked, note). `drifted` lists nodes where the stored
+    two-plane `live:` block no longer matches the projection from the append-only
+    event log -- i.e. the plan needs re-projection (SHP-3 will do this
+    automatically in governance.sh; for now it is a warn-only hint). `note` is a
+    skip reason when the projector is unavailable."""
+    if _psh is None:
+        return [], 0, "project_status_head unavailable -- status-plane check skipped"
+    planning_dir = REPO_ROOT / "evidence" / "planning"
+    try:
+        plans, _skipped = _psh.load_plans(str(planning_dir))
+        events, _counts = _psh.load_events(str(REPO_ROOT))
+        projections = _psh.build_projections(plans, events, _psh.DEFAULT_BRAKE_THRESHOLD)
+    except Exception as e:  # pragma: no cover - defensive
+        return [], 0, f"status-plane projection failed: {e}"
+
+    # stored `live:` blocks live in the raw frontmatter (load_plans drops them).
+    drifted: list[dict] = []
+    n_checked = 0
+    for path in sorted(planning_dir.glob("*_plan.md")):
+        fm = parse_plan_frontmatter(path)
+        plan = fm.get("closure_plan") if isinstance(fm, dict) else None
+        if not isinstance(plan, dict):
+            continue
+        for node in plan.get("nodes", []) or []:
+            if not isinstance(node, dict):
+                continue
+            live_block = node.get("live")
+            if not isinstance(live_block, dict):
+                continue  # not a two-plane (collapsed) node -- nothing to check
+            nid = node.get("id")
+            pr = projections.get(nid)
+            if pr is None:
+                continue
+            n_checked += 1
+            stored = _stored_live_view_from_plan(live_block)
+            projected = _psh.stored_live_view(pr["live"])
+            diffs = _live_diff(stored, projected)
+            if diffs:
+                drifted.append({
+                    "plan": path.name,
+                    "node_id": nid,
+                    "diffs": diffs,
+                    "projected_from": projected.get("from"),
+                    "stored_from": stored.get("from"),
+                })
+    return drifted, n_checked, None
+
+
 def main() -> int:
     today = datetime.now(timezone.utc).date()
     queue_ids = load_queue_ids()
@@ -611,6 +705,8 @@ def main() -> int:
                 suppressed.append(record)
             else:
                 findings.append(record)
+
+    status_drifted, status_checked, status_note = status_plane_drift()
 
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     lines: list[str] = []
@@ -767,6 +863,45 @@ def main() -> int:
             )
         lines.append("")
 
+    # --- Status-plane drift (status_history_plane:SHP-2) ----------------------
+    lines.append(
+        f"## Status-plane drift -- projected `live` != stored `live` "
+        f"({len(status_drifted)} of {status_checked} collapsed node(s))"
+    )
+    lines.append("")
+    lines.append(
+        "SHP-2 two-plane nodes carry a stored `live:` head that is a pure "
+        "projection over the append-only event log. This section re-projects each "
+        "and flags any whose stored head has gone stale vs the events (a new "
+        "autopsy / PASS manifest / decision landed, or the reconcile / brake state "
+        "moved). It is warn-only: SHP-3 will re-project automatically in "
+        "`governance.sh`; until then, regenerate with "
+        "`scripts/shp2_collapse_plan.py --plan <plan>` (re-lift is idempotent) or "
+        "hand-refresh the `live:` block. Nodes with no `live:` block are not yet "
+        "collapsed and are not checked here."
+    )
+    lines.append("")
+    if status_note:
+        lines.append(f"_Skipped: {status_note}._")
+        lines.append("")
+    elif not status_drifted:
+        lines.append("_None -- every collapsed node's stored `live` matches its projection._")
+        lines.append("")
+    else:
+        lines.append("| plan | node | stored from | projected from | drifted fields |")
+        lines.append("|------|------|-------------|----------------|----------------|")
+        for d in status_drifted:
+            lines.append(
+                "| {plan} | `{node}` | {sf} | {pf} | {fields} |".format(
+                    plan=d["plan"],
+                    node=d["node_id"] or "?",
+                    sf=d["stored_from"] or "_none_",
+                    pf=d["projected_from"] or "_none_",
+                    fields="; ".join(d["diffs"]),
+                )
+            )
+        lines.append("")
+
     lines.append(f"## Plans missing `closure_plan.last_updated` ({len(missing_plan_last_updated)})")
     lines.append("")
     if not missing_plan_last_updated:
@@ -797,6 +932,13 @@ def main() -> int:
             "suppressed": len(suppressed),
             "assembling": len(assembly_frontier),
             "assembling_revisit_due": len(revisit_due),
+            "status_plane_drifted": len(status_drifted),
+            "status_plane_checked": status_checked,
+        },
+        "status_plane_drift": {
+            "checked": status_checked,
+            "skipped_reason": status_note,
+            "drifted": status_drifted,
         },
         "assembly_frontier": [
             {
@@ -842,6 +984,7 @@ def main() -> int:
         f"suppressed={len(suppressed)}  "
         f"stale_since_review={len(stale_review)}  "
         f"assembling={len(assembly_frontier)} (revisit_due={len(revisit_due)})  "
+        f"status_plane_drift={len(status_drifted)}/{status_checked}  "
         f"plans_missing_last_updated={len(missing_plan_last_updated)}  "
         f"plans_missing_on_disk={len(missing_files)}"
     )
