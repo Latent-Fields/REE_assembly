@@ -98,6 +98,14 @@ echo "--- Step 3c-bis-2: Current-front routing doc (SHP-6; derives docs/CURRENT_
 # the closure snapshot just produced; regenerable, PROMOTES/DEMOTES NOTHING.
 "$PYTHON" scripts/generate_current_front.py
 
+echo "--- Step 3c-bis-3: Retire abandoned manual status docs (SHP-7; regenerates stubs) ---"
+# Owns the 3 docs that had NO generator and rotted silently (GOVERNANCE_STATE.md,
+# REE_overview.md, index.md) -- regenerates them GENERATED-marked + timestamped so a
+# cold-start reader can't mistake stale hand-prose for current state. Must run BEFORE
+# Step 9 apply_nav_frontmatter.py (which owns these docs' nav frontmatter + preserves
+# the body written here). PROMOTES/DEMOTES NOTHING.
+"$PYTHON" scripts/generate_status_stubs.py
+
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
 "$PYTHON" scripts/validate_brain_region_map.py || true
 
