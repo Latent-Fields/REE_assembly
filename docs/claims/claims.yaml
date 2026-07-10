@@ -47746,6 +47746,75 @@
     recurrence overlay, run warn-only inside governance.sh. APPLICATION (the
     re-operationalization) is a human governance decision at Step 6a-v-ter.
   notes: "Diagnostic-side companion to GOV-CEIL-1 (which stays claim-keyed). Wiring: scripts/check_diagnostic_chain_recurrence.py (pure-diagnostic no-verdict hit counter from confirmed failure_autopsy_*.json, keyed on bears_on; recurrence overlay at N>=3), scripts/governance.sh (Step 3f warn-only audit), governance skill Step 6a-v-ter (surface + re-operationalization procedure). N=3 is a module constant (DIAG_RECURRENCE_N) -- tunable. Requires a bears_on work-stream token on failure_autopsy targets (schema addition, target-level, string-or-list; pre-existing informal field formalized here); the 719a/724/732/732a chain was backfilled as the validating example (trips WS-1 + f_dominance_conversion_ceiling at 3 hits from the 724/732/732a tail; 719a excluded as claim-keyed). PROMOTES/DEMOTES NOTHING -- it surfaces a mis-posed-question pattern for a human to route. Cross-ref GOV-CEIL-1 and the re-derive brake in the /failure-autopsy skill."
+- id: GOV-FANOUT-1
+  title: "Bottleneck fan-out escalation rule (constructive complement to GOV-CEIL-1 / GOV-DIAG-1 / the re-derive brake): the existing brakes DETECT that work is circling one root (N>=3 same-root ceiling or diagnostic-recurrence hits) and correctly REFUSE another same-question sequential letter -- but they prescribe no constructive next move, so the default is a single re-posed sequential probe that can itself inherit the prior confound and return a confident-but-wrong verdict. This rule supplies the missing response: when a brake fires AND the open question is a DISCRIMINATION (which-hypothesis, not a single named build), the standard escalates from sequential retry to a DIVERSE PARALLEL PORTFOLIO -- enumerate the live hypothesis space, design >=K probes each attacking a DIFFERENT design axis (not power-bumps), each declaring what a null result means, adversarially audit the portfolio for coverage gaps + verdict aliasing BEFORE queuing, and run them in parallel accepting some legs will be non_contributory. Warn-only routing signal; PROMOTES/DEMOTES NOTHING."
+  claim_type: governance_rule
+  subject: governance.epistemics.bottleneck_fanout_escalation
+  polarity: asserts
+  status: candidate
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-10
+  source_thought: evidence/planning/ree_ai_design_critique_plan.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Epistemic-hygiene governance rule (WS-14 of the AI-design critique roadmap); the
+    CONSTRUCTIVE complement to the DETECTION rules GOV-CEIL-1 (claim-keyed ceiling
+    exhaustion) and GOV-DIAG-1 (pure-diagnostic chain recurrence) and the
+    /failure-autopsy re-derive brake. Those three all answer "have we circled this
+    root enough to STOP?" and correctly refuse another same-question sequential
+    letter -- but none answers "what do we do INSTEAD?", so the default response is a
+    single re-posed sequential probe. A single discriminator can silently inherit the
+    prior confound (the validating instance: the V3-EXQ-732/732a competence
+    discriminator's adequacy gate referenced a privileged-global oracle while the
+    learner saw a 5x5 local view, so a sub-floor reading was uninterpretable) and
+    return a confident-but-wrong verdict -- the failure mode is not lost time, it is
+    BUILDING THE WRONG SUBSTRATE on a laundered artifact.
+    DEFINITIONS.
+    (a) BOTTLENECK = any of: GOV-CEIL-1 ceiling-exhaustion fired; GOV-DIAG-1
+    diagnostic-recurrence fired (>=N same-work-stream no-verdict diagnostics); or the
+    re-derive brake fired on a lineage.
+    (b) DISCRIMINATION QUESTION = the open work is "WHICH of >=2 live hypotheses
+    holds" (e.g. H1 action-stack vs H2 observation interface), NOT a single
+    already-named build. A brake that routes to one clear /implement-substrate build
+    is NOT in scope -- just build it.
+    (c) DIVERSE PORTFOLIO = >=K probes (default K = number of live hypotheses, min 2)
+    that each attack a DIFFERENT design axis (representation / measurement /
+    observation / drive / algorithm), NOT power-bumps of one design (the re-derive
+    brake already refuses those); each leg pre-registers its DECLARED-NULL (what a
+    non_contributory result would and would NOT mean) so a null leg is informative,
+    not wasted; the set is adversarially DESIGN-AUDITED for (i) hypothesis-space
+    COVERAGE gaps and (ii) verdict ALIASING (could two distinct causes produce the
+    same reading?) BEFORE any leg is queued; legs run in PARALLEL.
+    TRIGGER = bottleneck fired AND question is a discrimination AND no diverse
+    portfolio has yet been run for it. NON-FALSIFYING-SAFE / does nothing on its own:
+    it changes no claim and gates no promotion -- it is a routing standard that
+    escalates HOW the next probes are designed. EXEMPT: a bottleneck that routes to a
+    single unambiguous build (no discrimination); a genuinely one-shot probe with no
+    plausible second hypothesis.
+    RESPONSE / WIRING. (1) /failure-autopsy: when re_derive_brake.fired AND the route
+    is a discrimination, emit a fanout_recommendation block enumerating the live
+    hypotheses + suggested diverse probe axes (instead of ONLY "route to
+    /implement-substrate <substrate>"). (2) /queue-experiment: Step 2.5b checklist --
+    if this is the >=Kth attempt on a braked lineage and the question is a
+    discrimination, prefer a portfolio; enumerate the hypothesis space, confirm each
+    leg attacks a distinct axis + declares its null, and design-audit for
+    coverage/aliasing before queuing. (3) /governance: Step 6a-v surfaces
+    fanout-candidate lineages (a bottleneck-tripped discrimination with no portfolio
+    run) alongside GOV-CEIL-1 / GOV-DIAG-1 surfacing, for the user to route.
+    VALIDATING INSTANCE (this session, 2026-07-10). The 719a -> 724 -> 732 -> 732a
+    sequential discriminator chain circled the same competence floor (the exact
+    GOV-DIAG-1 recurrence); the corrective was the 737/738/739 diverse portfolio --
+    P-A trainable policy head on the REE latent (representation axis), P-B
+    local-view-achievable ceiling anchor (measurement axis), P-C observation-encoder
+    probe (observation axis) -- each with a declared null, design-audited for
+    coverage + the 732 aliasing confound before queuing. P-B (V3-EXQ-738) ran first
+    and its result (the 1.0 floor is reachable from the 5x5 local view) refuted H2
+    and re-valued P-C to reserve -- the early answer a single sequential probe could
+    not have produced.
+  notes: "WS-14 deliverable of evidence/planning/ree_ai_design_critique_plan.md; constructive complement to GOV-CEIL-1 (WS-2) + GOV-DIAG-1 -- REUSES their detection (the re-derive brake count / check_substrate_ceiling_audit.py / check_diagnostic_chain_recurrence.py), adds only the fan-out RESPONSE. Wiring: /failure-autopsy skill (fanout_recommendation block on brake-fired discrimination), /queue-experiment skill Step 2.5b (portfolio-vs-sequential + declared-null + coverage/aliasing design-audit), /governance skill Step 6a-v (surface fanout-candidate lineages), graveyard doc antibody (sequential-retry-instead-of-fan-out). K defaults to the number of live hypotheses (min 2). PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application; its first application (737/738/739) was already run this session. Cross-ref GOV-CEIL-1, GOV-DIAG-1, the re-derive brake, and the perspective-diverse-verification principle."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment

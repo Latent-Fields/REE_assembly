@@ -39,6 +39,7 @@ The critique produced ~13 actionable threads. They are grouped into tiers by lev
 | WS-11 | 3 | Early-gating vs late-judging demo | One concrete task where REE's early commit-gating demonstrably beats a Constitutional-AI/RLHF-style late judge | NOT STARTED |
 | WS-12 | 4 | Similarity / dehumanization failure mode | First-class claim: "sufficiently-like-me" gates care → structural out-group exclusion; make it explicit + testable | **DONE** (2026-07-09) → `EXT-009` in `docs/claims/claims.yaml` (reflexive failure mode + red_team_question + 4 candidate_mitigations; cross-links Axiom 5/7, INV-001, MECH-164, INV-070/071/072, ethics-perimeter plan) |
 | WS-13 | 4 | Moral-philosophy red-team | Adversarial audit of the axiom chain (does love *really* expand transitively under uncertainty?) | **DONE** (2026-07-09) → `docs/architecture/axiom_chain_adversarial_audit.md`; cites EXT-009; ready for external-ethicist handoff |
+| WS-14 | 1 | Bottleneck fan-out escalation rule | New GOV-* claim: when a brake fires on a *discrimination*, escalate from sequential retry to a diverse **parallel portfolio** (declared nulls + coverage/aliasing design-audit) | **DONE** (2026-07-10) → `GOV-FANOUT-1` in `claims.yaml` (constructive complement to GOV-CEIL-1/GOV-DIAG-1/re-derive-brake; reuses their detection, adds the response). Wired: `/failure-autopsy` (`fanout_recommendation`), `/queue-experiment` Step 2.5b, `/governance` Step 6a-v-quater, graveyard antibody. Worked example: the 737/738/739 portfolio (P-A representation / P-B measurement / P-C observation axes) that replaced the 719a→724→732→732a sequential chain; P-B ran first and refuted H2 (floor reachable from the 5×5 local view) |
 
 ---
 
@@ -85,6 +86,16 @@ V3-EXQ-727 (PASS / `capability_yardstick_calibrated`) is **not invalidated** —
 
 **Dependencies:** none. Pure governance. Do now.
 **Skill path:** claim registration in `claims.yaml` (governance-only edit under an active claim) + `governance` skill.
+
+### WS-14 — Bottleneck fan-out escalation rule
+**Why:** GOV-CEIL-1 (WS-2), GOV-DIAG-1, and the `/failure-autopsy` re-derive brake all *detect* that work is circling one root and *refuse* another same-question sequential letter — but none prescribes the constructive next move, so the default is a single re-posed sequential probe. A single discriminator can silently inherit the prior confound and return a confident-but-wrong verdict; the failure mode is **building the wrong substrate on a laundered artifact**, not lost time. The 719a→724→732→732a competence chain is the worked example: four sequential discriminators circling the same floor, the last two inheriting the 732 global-oracle confound.
+
+**Deliverable (DONE 2026-07-10):** Registered **GOV-FANOUT-1** (`claims.yaml`, governance_rule; PROMOTES/DEMOTES NOTHING on register) — the constructive complement to the detection rules. When a brake fires AND the open question is a *discrimination* (which-hypothesis, not a single named build), the standard escalates from sequential retry to a **diverse parallel portfolio**: enumerate the live hypotheses, design ≥K legs each on a *different* design axis (representation / measurement / observation / drive / algorithm — never power-bumps), each declaring its null, adversarially design-audited for coverage + verdict-aliasing before queuing, run in parallel (accepting some legs are `non_contributory`). Wired: `/failure-autopsy` (emit `fanout_recommendation` on a brake-fired discrimination — producer), `/queue-experiment` Step 2.5b (portfolio-vs-sequential + declared-null + design-audit — consumer), `/governance` Step 6a-v-quater (surface fanout-candidate lineages), `cognitive_architecture_graveyard.md` antibody (sequential-retry-instead-of-fan-out).
+
+**Worked example (this session, 2026-07-10):** the 737/738/739 portfolio replaced the 719a→724→732→732a sequential chain — P-A trainable policy head on the REE latent (representation), P-B local-view-achievable ceiling anchor (measurement), P-C observation-encoder probe (observation, held to reserve). P-B (V3-EXQ-738) ran first and refuted H2 (the 1.0 floor is reachable from the 5×5 local view), re-valuing P-C to reserve — an early answer the sequential chain could not have produced.
+
+**Dependencies:** none. Pure governance; reuses the existing brake detection. Complements WS-2.
+**Skill path:** claim registration in `claims.yaml` + skill wiring (`/failure-autopsy`, `/queue-experiment`, `/governance`, both dirs).
 
 ### WS-3 — Capability-eval yardstick
 **Why:** The project currently cannot cleanly tell "the claim is wrong" from "the substrate is too coarse" partly because it has no *independent* capability yardstick. A small, claim-agnostic benchmark suite fixes this and directly supports WS-1 and WS-2.

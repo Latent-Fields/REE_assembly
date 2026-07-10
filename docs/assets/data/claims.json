@@ -1017,12 +1017,28 @@
     "title": "Substrate-ceiling exhaustion demotion rule: a claim that hits the substrate ceiling N>=3 times (>=3 confirmed failure-autopsy verdicts recommending substrate_ceiling) WITHOUT a single positive discrimination on any richer substrate is DEMOTED, not parked indefinitely. The competing null reading -- the mechanism is inert / doing no work -- is then carried co-equally with the hypothesis until a positive discrimination on a richer substrate exists. substrate_ceiling is honest but structurally lets a hypothesis never lose; this rule pre-registers the loss condition.",
     "type": "governance_rule"
   },
+  "GOV-DIAG-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.diagnostic_chain_recurrence",
+    "title": "Diagnostic-chain recurrence rule (diagnostic-side analog of the re-derive brake / GOV-CEIL-1): the re-derive brake and GOV-CEIL-1 are BOTH claim-keyed -- they count confirmed failure-autopsy verdicts per claim_id. A pure-diagnostic chain (targets with claim_ids: []) accumulates ZERO on that counter, so a chain of diagnostics circling the same substrate floor never trips the mechanical brake -- it is caught only by a human reading the autopsy stream. This rule adds the missing counter: when N>=3 confirmed pure-diagnostic (claim_ids: []) failure-autopsies that reached NO verdict (recommended_evidence_direction non_contributory / inconclusive) share one bears_on work-stream token, the chain is surfaced with the reading 'the question may be MIS-POSED, not under-powered' -- re-pose the operationalization; do not re-run it harder. Warn-only; PROMOTES/DEMOTES NOTHING.",
+    "type": "governance_rule"
+  },
   "GOV-EXT-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "governance.external.framework_crosswalk",
     "title": "External framework crosswalk: internal REE ethics must remain externally legible -- map each ethically active higher-version component against EU AI Act, Council of Europe AI Convention, NIST AI RMF, ISO/IEC 42001 & 23894, and OECD AI Principles before public release.",
+    "type": "governance_rule"
+  },
+  "GOV-FANOUT-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.bottleneck_fanout_escalation",
+    "title": "Bottleneck fan-out escalation rule (constructive complement to GOV-CEIL-1 / GOV-DIAG-1 / the re-derive brake): the existing brakes DETECT that work is circling one root (N>=3 same-root ceiling or diagnostic-recurrence hits) and correctly REFUSE another same-question sequential letter -- but they prescribe no constructive next move, so the default is a single re-posed sequential probe that can itself inherit the prior confound and return a confident-but-wrong verdict. This rule supplies the missing response: when a brake fires AND the open question is a DISCRIMINATION (which-hypothesis, not a single named build), the standard escalates from sequential retry to a DIVERSE PARALLEL PORTFOLIO -- enumerate the live hypothesis space, design >=K probes each attacking a DIFFERENT design axis (not power-bumps), each declaring what a null result means, adversarially audit the portfolio for coverage gaps + verdict aliasing BEFORE queuing, and run them in parallel accepting some legs will be non_contributory. Warn-only routing signal; PROMOTES/DEMOTES NOTHING.",
     "type": "governance_rule"
   },
   "GOV-HEALTH-1": {
@@ -7385,7 +7401,7 @@
     "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "MECH-204",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "environment.multi_resource_heterogeneity",
     "title": "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work.",

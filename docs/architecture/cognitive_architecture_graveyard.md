@@ -123,7 +123,9 @@ The graveyard is a warning, not a verdict. REE has three defences the classical 
 
 3. **No-op-default flag discipline + the flag-inertness harness** (`ree-v3/tests/test_flag_inertness.py`, landed 2026-07-09) is a real antidote to AP-3 module-accretion interference: every new flag is byte-identical OFF, so accretion cannot silently corrupt the baseline. Its limit: inertness proves a flag *does no harm when OFF*, not that it *does good when ON*. Dead-but-inert mass is still mass (AP-3's health metric above).
 
-The pattern across all three: REE has *built the antibody* and must now *let it act*. A demotion rule that never demotes, a learned substrate run frozen, and an inertness harness that never asks "did ON help" are antibodies held in reserve.
+4. **Bottleneck fan-out over sequential retry** (`GOV-FANOUT-1`, landed 2026-07-10). The graveyard's subtlest failure is *sequential retry*: when a discrimination is stuck, the reflex is one more re-posed lettered probe — which burns compute circling one root (the 719a→724→732→732a competence chain) and, worse, can inherit the prior confound and return a confident-but-wrong verdict that then gets *built on*. That is AP-3/AP-6 in the experiment stream — motion mistaken for progress. GOV-FANOUT-1 is the antidote: when a brake fires on a discrimination, escalate to a **diverse parallel portfolio** (≥K legs on different design axes, each with a declared null, design-audited for coverage + verdict-aliasing before queuing). Its limit: the rule forces the *reflex* and the *audit*, but the *axes* still take judgment. Unlike antibodies 1–3, its first application already acted — the 737/738/739 portfolio, where the cheapest leg (P-B) refuted H2 before the sequential chain could have produced any answer.
+
+The pattern across all four: REE has *built the antibody* and must now *let it act*. A demotion rule that never demotes, a learned substrate run frozen, and an inertness harness that never asks "did ON help" are antibodies held in reserve — GOV-FANOUT-1 is the one that has already fired once, and the test is whether the *next* bottleneck triggers a fan-out without a human prompting it.
 
 ---
 
