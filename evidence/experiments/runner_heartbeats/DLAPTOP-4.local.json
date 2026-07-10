@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-07-10T07:12:56Z",
+  "last_tick_utc": "2026-07-10T10:48:42Z",
   "state": "running",
   "current_exq": "V3-EXQ-729",
   "current_exq_started_utc": "2026-07-09T17:44:23.218935+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / liveloop",
     "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 40,
+    "episodes_done": 80,
     "episodes_total": 120,
-    "overall_pct": 77.8
+    "overall_pct": 88.9
   },
-  "seconds_elapsed": 40077,
-  "seconds_remaining": 16283,
+  "seconds_elapsed": 53024,
+  "seconds_remaining": 8142,
   "recent_lines": [
     "Seed 42 Condition liveloop",
     "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
@@ -52,7 +52,16 @@
     "[arm ON] seed=43 sat_final=0.2500 live_calls=50 fifo_end=16 harm_frac=1.000 zha_norm=0.5453",
     "verdict: PASS",
     "Seed 44 Condition liveloop",
-    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True"
+    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 probe] ep 80/120  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 train] ep 80/120  rv=0.00000  reward=0.1402",
+    "[P0 probe] ep 120/120  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
+    "[arm OFF] seed=44 P0 ep 120/120 converged=True aborted=False rv=0.00000",
+    "[arm OFF] seed=44 sat_final=1.0000 live_calls=0 fifo_end=0 harm_frac=1.000 zha_norm=1.4157",
+    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 probe] ep 80/120  rv=0.00000  threshold=0.4  converging=True",
+    "[P0 train] ep 80/120  rv=0.00000  reward=-1.3733"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
