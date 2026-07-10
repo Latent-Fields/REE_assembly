@@ -3,16 +3,25 @@ closure_plan:
   id: commitment_closure
   title: "Commitment / Closure / Mode-Governance"
   registered: 2026-05-08
-  last_updated: 2026-06-12
+  last_updated: 2026-07-10
   scope_claims: [SD-033a, SD-033b, SD-033c, SD-033d, SD-033e, SD-034, MECH-090, MECH-091, MECH-260, MECH-262, MECH-263, MECH-266, MECH-267, MECH-268]
   sibling_plans: [sd033_governance]
   nodes:
     - id: "commitment_closure:GAP-1"
       title: "SD-033a bias head untrained (Go-side mechanically silent)"
-      phase: 1
       status: done
       severity: load-bearing
-      owner_exq: V3-EXQ-598b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-033a, MECH-262, SD-034]
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       cross_plan_link:
@@ -27,20 +36,38 @@ closure_plan:
       substrate_note: "GAP-C + GAP-D substrate implemented 2026-05-17 (discriminator_proj + train_rule_bias_head + bias_head_parameters). V3-EXQ-598b queued 2026-05-27 (ree-v3 main 94db78d; supersedes V3-EXQ-598a; gates_on_exq=V3-EXQ-543l with permissive semantic per autopsy routing; priority 240): frozen vs trainable bias head on ARC-062+SD-054 stack (SP-CEM main-path defaults, differential heads, mode_separation_floor=0.25, P1_W_DEVIATION_AUX_WEIGHT=0.1). claim_ids=[SD-033a, MECH-262] with evidence_direction_per_claim (SD-034 dropped: closure_operator not exercised by 2-arm ablation). Dry-run smoke: ARM_0 frozen PASS bias=0; ARM_1 trainable FAIL on tiny 3+4+2 ep schedule (documented insufficient-budget signature). Per autopsy section 9 retest sequence on full-run completion: contributory PASS -> close GAP-1 + ARC-062 weak-reading governance-stamped viable; FAIL/weakens -> ARC-063 V4 lit-pull + design session; non_contributory -> /diagnose-errors."
     - id: "commitment_closure:GAP-2"
       title: "EXP-0157 (V3-EXQ-461) delayed-reward persistence PASS"
-      phase: 2
       status: done
       severity: high
-      owner_exq: V3-EXQ-461
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-033a, MECH-090, SD-034]
       depends_on: []
       completion_note: "V3-EXQ-461 substrate-readiness runner PASS reviewed 2026-05-12; full behavioural delayed-reward arm remains blocked on GAP-3 env extensions."
       last_updated: 2026-05-12
     - id: "commitment_closure:GAP-3"
       title: "CausalGridWorldV2 env extensions (tolerance/counter-evidence/dual-cue)"
-      phase: 3
       status: done
       severity: high
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-034, MECH-266, MECH-268]
       depends_on: []
       blocking_external: []
@@ -48,10 +75,19 @@ closure_plan:
       completion_note: "Primitives 1-3 IMPLEMENTED 2026-05-17 in ree-v3/ree_core/environment/causal_grid_world.py (env-only constructor kwargs; NO config.py/REEConfig/queue -- concurrency-safe vs the active goal_pipeline:GAP-3 session). Validated by ree-v3/tests/contracts/test_env_extensions_gap3.py 14/14 (C1 bit-identical OFF + frac=0.0 dynamics-identical; C2 tolerance band/graded_exp; C3 counter-evidence persistent-only + monotone validity->floor + context-invariant; C4 dual-cue SD-049 fail-fast + accounting; C5 spec-section-5 integration smoke) and full ree-v3 contract regression 434/434. NO claim-validation EXQ (spec section 5: env infrastructure; concurrency forbade queue) -- a spec-sanctioned deviation from the implement-substrate skill Step 8. Scope deviation: completion_tolerance_targets='waypoint+resource' is reserved/fail-fast (primitive 1 ships waypoint-only per Q-1a; no EXP arm needs the resource half). GAP-3 (= the tolerance/counter-evidence/dual-cue env primitives) is DONE; this unblocks GAP-8 (depends_on GAP-3). NOTE: the SD-034/MECH-266/MECH-268 *behavioural* arms still require deliverable 4 (phased rule_state training curriculum -- the V3-EXQ-321/261 blocker), which was deliberately split into its own separate design pass (spec section 6) and is NOT part of GAP-3. Spec: causalgridworldv2_env_extensions_spec.md (Status: IMPLEMENTED 2026-05-17)."
     - id: "commitment_closure:GAP-4"
       title: "OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction"
-      phase: 2
       status: in-progress
       severity: high
-      owner_exq: "V3-EXQ-460l (SUPERSEDES V3-EXQ-460k; RAN terminal FAIL/non_contributory 2026-06-22T22:17:57Z on ree-cloud-4 -- the ARC-108 JOB-2 control-plane L0/L1/L2 falsifier [rho_t maintenance ramp + habenula negative-delta_t de-commit DRIVER pair, ree-v3 main c5614ab]; clean substrate_not_ready_requeue at readiness gate 3 (closure_exclusive_eval_did_not_arm_hold): ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on every arm/seed -- the closure-coupled latch-hold never armed in a real eval, INDEPENDENTLY CONFIRMING the 460k wiring diagnosis (_closure_commit_active gated on the F-driven e3._committed_trajectory). L0 also not monolithic (mean per-commit hold ~1.2 vs floor 5.0); rho_peak_max=0. The JOB-2 DRIVER pair is UNEXERCISABLE on this substrate; the habenula INPUT (JOB-1 signed-RPE delta_t) is live (n_neg_delta_ticks 834-1117) = a narrow JOB-1-RPE positive only, NOT JOB-2 control-plane evidence. CONFIRMED failure_autopsy_V3-EXQ-460l_2026-06-23 (interactive gate); re-derive brake FIRED on MECH-445/446 (5th lineage autopsy 460h..460l) -> route /implement-substrate amend f_dominance_conversion_ceiling (closure-coupled-hold arming, F-independent of the natural commit), REFUSE a 460m re-queue; see governance_2026_06_23. PROMOTES NOTHING). [HISTORICAL 460k owner record:] V3-EXQ-460k (QUEUED + INGESTED 2026-06-22, ree-v3 main 979a943; machine_affinity any; supersedes V3-EXQ-460j; the rung-6 commit/release-DURATION lever retest on the now-BUILT closure-exclusive de-commit eval substrate [closure_exclusive_decommit_eval=True on every arm, ree-v3 main e52158d]; NEW gate 2.5 closure_exclusive_eval_armed self-routes substrate_not_ready_requeue if the eval mode does not arm the closure-coupled hold; SEVEN readiness gates; claim_ids=[MECH-446 scored, MECH-445 precondition], experiment_purpose=evidence; PROMOTES NOTHING until it scores; see governance_2026_06_22 + resume_condition). [HISTORICAL 460j owner record:] V3-EXQ-460j (QUEUED + INGESTED 2026-06-21, ree-v3 main f425f89; machine_affinity ree-cloud-3; gate-3 sustained-hold redesign + no-op-default natural_commit_latch_hold lever, superseded V3-EXQ-460i; RAN terminal FAIL/non_contributory 2026-06-21T11:55Z, self-routed substrate_not_ready_requeue route_reason=off_baseline_not_sustained per governance_2026_06_21c; rung-6 lever PARKED per failure_autopsy_V3-EXQ-460j_2026-06-21, then the named dissociable closure-exclusive de-commit eval substrate was BUILT ree-v3 main e52158d -- see governance_2026_06_21b). PREDECESSOR V3-EXQ-460i RAN terminal FAIL/non_contributory 2026-06-21 (self-routed substrate_not_ready_requeue at readiness gate 3 -- lever correctly armed but the 460h sustained-hold regime did not reproduce, CO_OCCURRENCE DV never ran; confirmed failure_autopsy_V3-EXQ-460i_2026-06-21, applied governance-cycle-20260621T0639Z). [HISTORICAL 460i owner record:] V3-EXQ-460i (QUEUED + INGESTED 2026-06-20, ree-v3 main 21903a5; coordinator DB + /queue/active confirmed, machine_affinity ree-cloud-3 -- the de-commit falsifier of MECH-445/446 on the rung-6 COMMIT/RELEASE-DURATION lever = graded natural-commit-occupancy release [ree_core/policy/natural_commit_urgency.py NaturalCommitUrgencyRelease, built ree-v3 main ab2c1a9 2026-06-20]; see governance_2026_06_20b + resume_condition). PREDECESSOR V3-EXQ-460h RAN terminal FAIL/non_contributory 2026-06-20 (confirmed failure_autopsy_V3-EXQ-460h_2026-06-20). [HISTORICAL 460h owner record:] V3-EXQ-460h (QUEUED 2026-06-19, ree-v3 main b46c777, supersedes V3-EXQ-460g, ingested in the coordinator DB; the refractory-INDEPENDENT commit-intent retest of the re-grained SD-034 closure cluster -- same de-commit MAGNITUDE lever + within-arm around-closure C2 occupancy-delta DV, but with non-vacuity gated on sd034_n_closure_commit_intent>0; claim_ids=[MECH-446 scored, MECH-445 precondition]). Predecessor V3-EXQ-460g RAN terminal FAIL/non_contributory 2026-06-19T18:57Z (supersedes 460f; confirmed failure_autopsy_V3-EXQ-460g_2026-06-19, applied by governance-cycle-20260619T2013Z), self-routed substrate_not_ready_requeue: the 460f-prescribed de-commit MAGNITUDE lever (committed-run-scaled Leg-B refractory) was SELF-DEFEATING -- the scaled refractory pinned at the 60-tick cap on ~530-560-step runs and BetaGate.elevate() is a no-op while the refractory is active, so the closure-coupled re-elevations the tightened non-vacuity gate counts collapsed (sd034_n_closure_coupled_elevations 36->0 seed42, closure_coupling_nonvacuous 0/3) even though the refractory HAS authority (seed-42 within-arm occupancy 0.333->0.0, C2 PASS). 7th SD-034-lineage autopsy -> the granularity-debt WATCH ITEM fired: /claim-synthesis decomposed the coarse SD-034 closure claim (2026-06-19, applied REE_assembly master 6a35087fd6) into SD-034 narrowed umbrella + MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude), both candidate/v3_pending/pending_retest_after_substrate; /implement-substrate landed the refractory-independent commit-intent amend (ree-v3 main 167b3b7) that decouples the MECH-446 magnitude lever from the MECH-445 coupling-engagement non-vacuity metric. See governance_2026_06_19b. (Lineage 460f + 468e -- the de-commit and perseveration sides of the beta-engagement amend, BOTH RAN + AUTOPSIED 2026-06-18, together confirming ONE structural property [de-commit/release fires with correct sign but sub-threshold authority magnitude] via TWO independent DVs -- detail in governance_2026_06_18/_18b; 460e in governance_2026_06_17; 460d/468d + *c cohort in governance_2026_06_13/_12b. 468f still separately owed. 462b/465b NEVER scoped -- MECH-267 + MECH-094 behavioural arms deferred per sd033_governance Phase 4/5; do not hunt for them.)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-090, MECH-342]
       depends_on: ["commitment_closure:GAP-2"]
       cross_plan_link: ["sd033_governance:CHK-EXP_PROPOSALS", "conversion_ceiling_campaign:P2-rootC"]
@@ -83,10 +119,19 @@ closure_plan:
       completion_note: "Phase 2 DONE 2026-05-21 reconcile: V3-EXQ-460..468 scripts in ree-v3/experiments/; substrate-readiness PASS on all nine (460/466 x2, 461 reviewed 2026-05-12, 462/465 executed 2026-04-21, 463/464/467/468 authored+PASS 2026-04-21). Queue slots consumed post-run (not re-queued). 2026-05-21 V3-EXQ-592 surfaced rv-only commit-entry pathology (seed 42 rv=2.7e-5 with nav_competence=0.0). 2026-05-28 lit-pull synthesis (REE_assembly/evidence/literature/targeted_review_connectome_mech_090/synthesis.md commit 9e68c5ca8a) dispositioned R-a NOT defensible / R-b conservative / R-c strongest. 2026-05-28 implement-substrate landed the within-tick decisiveness axis of R-c (per-candidate score_margin gate at BetaGate.should_admit_elevation; floor 0.05). 2026-05-29 implement-substrate landed the across-tick motor-program readiness axis of R-c (CommitReadiness EMA module + nav_competence harness-push seam + conjunction AND-composed with score_margin gate at both elevate sites; floor 0.3). Both axes are R-c readings; both can be enabled/disabled independently. 2026-05-29 V3-EXQ-592b (2-arm, score_margin-axis-only) FAILed DLAPTOP-4 (manifest silent-drop pre-runner-pipeline-fix 41c3411). 2026-05-30 V3-EXQ-592c (2-arm, score_margin-axis-only re-run post-fix) FAILed ree-cloud-3. 2026-05-31 V3-EXQ-592d queued (expanded to 4-arm, FIRST-EVER nav_competence axis validation; supersedes 592c). Phase 4/5 behavioural arms still blocked on V3-EXQ-592d PASS."
     - id: "commitment_closure:GAP-4-battery"
       title: "OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) for SD-034/MECH-266/267/268 + MECH-342 ecological -- split out of GAP-4"
-      phase: 2
       status: in_progress
       severity: medium
-      owner_exq: V3-EXQ-466e
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-034, MECH-266, MECH-267, MECH-268, MECH-342]
       depends_on: ["commitment_closure:GAP-4", "commitment_closure:GAP-3", "commitment_closure:GAP-11"]
       cross_plan_link: ["sd033_governance:CHK-SD034"]
@@ -97,41 +142,76 @@ closure_plan:
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to surface the OCD-battery-completeness half of GAP-4, whose work has diverged from the de-commit-conversion lineage GAP-4 now tracks. The *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) is substrate-UNBLOCKED (curriculum + env primitives both DONE since 2026-06-02) but was never queued; the sd033_governance CHK-SD034/MECH266/267/268 nodes are `done` only at substrate-readiness, so SD-034/MECH-266/267/268 remain candidate awaiting these behavioural arms. CAUTION (per the standing don't-queue-commitment-dependent-behavioural rule): any arm whose DV needs sustained action-commitment would re-derive the F-dominance conversion ceiling while the BG layer is incomplete -- gate against that; the commitment-FREE arms (e.g. 466b residue-discharge / satisficing reads) are the safer first queue. Author via /queue-experiment. NOT queued here (experiment_queue.json held by concurrent sessions). NO claims.yaml change."
     - id: "commitment_closure:GAP-5"
       title: "MECH-090 V_s commit-release pathway (V3-EXQ-481 FAIL)"
-      phase: 6
       status: done
       severity: medium
-      owner_exq: V3-EXQ-481b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [MECH-090]
       depends_on: []
       last_updated: 2026-05-17
       completion_note: "Root causes audited (2026-05-17): (1) natural variance gate never crossed in short runs -> beta never elevated -> _committed_anchor_keys never set; (2) empty-snapshot secondary: set().issubset(any)=True -> predicate vacuously False. Fixes: (1) V3-EXQ-481b uses forced commitment (beta_gate.elevate() + manual snapshot) per EXQ-461 pattern; (2) lazy re-population added to agent.py select_action() -- if snapshot is non-None but empty and current_keys is non-empty while beta elevated, re-populate; release runs on next tick. 477/477 contracts pass. Dry-run: UC1 (ON fires) + UC2 (OFF silent) + UC3 (empty-snapshot re-pop) all PASS. Queued 2026-05-17."
     - id: "commitment_closure:GAP-6"
       title: "MECH-260 vs SD-034 No-Go pulse boundary unclear (V4 flag)"
-      phase: 8
       status: deferred
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [MECH-260, SD-034, SD-033a]
       depends_on: ["commitment_closure:GAP-4"]
       last_updated: 2026-05-08
     - id: "commitment_closure:GAP-7"
       title: "MECH-091 phase-reset deferred (SD-006 phase 2)"
-      phase: 8
       status: deferred
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [MECH-091]
       depends_on: []
       blocking_external: ["SD-006 phase 2 async heartbeat"]
       last_updated: 2026-05-08
     - id: "commitment_closure:GAP-8"
       title: "SD-033b behavioural validation (devaluation + perceptual discrimination)"
-      phase: 7
       status: assembling
       severity: medium
-      awaiting: "conversion_ceiling_campaign:FULLSTACK (the co-armed full-stack arm) -- the OFC valuation face is FACE-VALIDATED + folded in (use_ofc_devaluation_head ON); isolated 485n re-queue REFUSED (re-derive brake fired 11th)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       assembly_status: built
-      owner_exq: "V3-EXQ-485m RAN TERMINAL FAIL/non_contributory 2026-06-22T14:33Z (run_id v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural_20260622T143349Z_v3; ree-cloud-4; supersedes V3-EXQ-485l; claim_ids=[SD-033b, MECH-263]). CONFIRMED failure_autopsy_V3-EXQ-485m_2026-06-22 (governance-apply 2026-06-22, user-approved): on the BUILT decoupled devaluation_bias_head (ree-v3 758956f) the 485l clamp-starvation is FIXED -- C1 devaluation behavioural shift 3/3, MECH-449 No-Go engages 2/3, devalued bias range supra-floor 3/3 (mechanism EXERCISED not falsified) -- but C1b vector-inversion 1/3 and C2 committed-class separation 1/3 still FAIL. Ruling out the magnitude artifact, the valuation face does NOT convert in isolation. 3rd convergent fails-C2-alone datum (654i demotion, 654j Go/No-Go, 485m OFC): conversion is emergent from the assembled stack, not any single selection-face lever. P3-ofc FACE-VALIDATED -> folds into conversion_ceiling_campaign:FULLSTACK co-armed arm (use_ofc_devaluation_head ON). Re-derive brake FIRED (11th); a 485n isolated valuation-face re-queue is REFUSED; next test is the co-armed full-stack arm. Status stays in-progress (GAP-8 closes only on a behavioural PASS). Claims UNWEAKENED -- SD-033b/MECH-263 stay candidate / substrate_conditional / pending_retest_after_substrate. PROMOTES NOTHING. [HISTORY] V3-EXQ-485l QUEUED 2026-06-22 (supersedes V3-EXQ-485k; ree-v3 origin/main queue, script tracked) -- the GAP-8 successor frontier, AWAITING RUN: the MECH-449-engaging corrected OFC outcome-devaluation behavioural retest. ENGAGES the now-built MECH-449 Go/No-Go eligibility constitution (built 2026-06-21; falsifier V3-EXQ-689g PASSED; MECH-449 promoted candidate->provisional 2026-06-22) to drive the active No-Go WITHDRAWAL at the devaluation comparison that demotion-alone (MECH-448, rank-preserving) structurally CANNOT express -- the root the 485e->k lineage kept re-deriving (readiness-met / DVs-vacuous). Five fixes vs 485k: use_go_nogo_constitution=True matched-constant on both arms + injected viability No-Go = active WITHDRAWAL; in-band re-rank devaluation gain (no +/-0.5 OFC clamp saturation); 485j C2 discrimination protected; scored bias-vector l2/cosine inversion DV (C1b); use_f_eligibility_adaptive_floor; PLUS per-seed readiness preconditions (>=2/3, the 485k aggregate-max / 642 same-statistic fix). claim_ids=[SD-033b, MECH-263], experiment_purpose=evidence. NO claims.yaml status change -- SD-033b/MECH-263 stay candidate / substrate_ceiling / pending_retest_after_substrate. PROMOTES NOTHING until it scores; governance applies after the run. [HISTORY] PREDECESSOR V3-EXQ-485k RAN FAIL 2026-06-21T19:25Z (supersedes V3-EXQ-485j; manifest v3_exq_485k_sd033b_demotion_devalued_rerank_behavioural_20260621T192541Z_v3) -- the prior GAP-8 successor frontier; self-routed substrate_not_ready_requeue / non_contributory / non_degenerate:false (scoring_excluded, NO governance weight). NEW SIGNATURE vs the 485e-j lineage: for the FIRST time ALL FOUR readiness/non-vacuity preconditions MET (high-threat bias range 0.423; FIX-2 devalued-state bias range 0.107 >= 0.05; head weight-delta 5.64; MECH-448 f_eligibility_excluded_count=5 > 0 -- the envelope FIRED, not all-admit) yet BOTH load-bearing behavioural DVs came out VACUOUS (C1 devaluation passed=false/non_degenerate=false; C2 discrimination passed=false/non_degenerate=false -- a REGRESSION, C2 CONVERTED in 485j; C3 silence control clean). The self-routed substrate_not_ready_requeue label is QUESTIONABLE (readiness was actually met), so this is a readiness-met / DVs-vacuous puzzle, NOT a clean substrate-not-ready -- the 'self-route is a hypothesis, not a verdict' case. FLAGGED for /failure-autopsy by governance-cycle-20260621T1919Z (user-confirmed via AskUserQuestion): diagnose why both DVs went vacuous despite readiness met, and whether FIX-1's re-ranking devalued driver regressed the 485j C2 conversion; flag the 485e->k /claim-synthesis recurrence. LEFT PENDING this cycle (no evidence stamp beyond the manifest's self-reported non_contributory). FIX 1 = re-ranking devalued-state OFC driver (inverted high-threat outcome-coupling); FIX 2 = C1 readiness retargeted to the devalued-state range. claim_ids=[SD-033b, MECH-263]. NO claims.yaml status change -- SD-033b/MECH-263 stay candidate / substrate_ceiling / pending_retest_after_substrate. [HISTORY] PREDECESSOR V3-EXQ-485j QUEUED 2026-06-21 (supersedes V3-EXQ-485i; ree-v3 main 4680c0d, coordinator-ingested; priority 410, machine_affinity any, claim_ids=[SD-033b, MECH-263], experiment_purpose=evidence) RAN FAIL 2026-06-21T18:00Z -- SPLIT result: C2 task-role discrimination CONVERTED (between-context TV 1.0 on 2/3 seeds; ARM_1 demotion-off control 0.0 all seeds) = first cross-substrate corroboration the MECH-448 demotion lever generalises off GAP-A to the OFC channel (MECH-448 untagged on this manifest); C1 devaluation below the non-vacuity floor (devalued-state bias range ~0.02; C1 precondition mis-targeted the high-threat range = the 642 same-statistic miss). Manifest self-stamped weakens OVERTURNED -> non_contributory both claims by confirmed failure_autopsy_V3-EXQ-485j_2026-06-21 + governance-cycle-20260621T1919Z (index rebuilt, SD-033b/MECH-263 genuine_exp weakens 1->0); superseded_by 485k. Re-ran the trained-OFC-head C1/C2 behavioural DVs through the real E3.select() on the MECH-448 demotion-enabled selector with the f_eligibility_envelope_floor CALIBRATED per-(arm,seed). PROMOTES NOTHING. [HISTORY] PREDECESSOR V3-EXQ-485i RAN FAIL 2026-06-21T12:42Z / self-routed substrate_not_ready_requeue / non_contributory / non_degenerate:false (scoring_excluded -- carries NO governance weight; failure_autopsy_V3-EXQ-485i_2026-06-21 status=confirmed, user-adjudicated): readiness MET (OFC bias cross-candidate range 0.368, state_bias_head weight-delta 5.39) but the MECH-448 F->eligibility demotion lever SILENTLY DID NOT ENGAGE -- f_eligibility_excluded_count==0, the 0.30 absolute merit-share floor admitted ALL 8 candidates on every seed (the OFC-isolated SD-054 reef/forage bank's SPREAD F leaves the best candidate at <30% share), so the demotion-ON test arm collapsed to the demotion-OFF arm (ARM_2==ARM_1, the F-dominance ceiling control) and C1/C2 never ran through a genuinely-demoted selector. A behavioural-harness envelope-calibration miss, NOT a SD-033b/MECH-263 weakens and NOT a MECH-439 F-variance problem. owner_exq lead repointed 485i -> 485j with the 485i/485h/485g records preserved; last_updated bumped. NO claims.yaml status change -- SD-033b/MECH-263 stay candidate / substrate_ceiling / pending_retest_after_substrate (485j PROMOTES NOTHING until it scores). PREDECESSOR V3-EXQ-485h RAN FAIL 2026-06-19T19:27Z (supersedes V3-EXQ-485g; 2nd non-vacuous trained-OFC-head test -- an even LARGER cross-candidate bias range 0.50 vs 485g 0.17, head delta 5.63, still ZERO behavioural conversion; self-stamped weakens NEUTRALIZED to non_contributory, flagged for a fresh /failure-autopsy, left PENDING -- see governance_2026_06_19b). PRIOR FRONTIER V3-EXQ-485g RAN FAIL 2026-06-19T14:54Z on ree-cloud-3 (supersedes V3-EXQ-485f; trained-OFC-head behavioural arm, claim_ids=[SD-033b, MECH-263]). Readiness MET this time (the 485f vacuity fix worked: OFC bias cross-candidate range 0.171 >= the re-aligned 0.05 DV floor; head genuinely trained, weight-delta 6.32, 120 grad updates / 3683 outcome-coupled loss terms) but the load-bearing behavioural DVs FAIL (C1 devaluation_selection_shift {0.001,0.0,0.010} << 0.05; C2 between-context TV ~0). The trained head produced real cross-candidate bias RANGE with ZERO behavioural conversion -- the MECH-439 F-dominance conversion-ceiling signature (F ~88-89% of E3 committed-selection variance, V3-EXQ-571). FLAGGED for /failure-autopsy by governance-20260619T1455Z (user-confirmed): the self-stamped weakens was NEUTRALIZED to non_contributory pending adjudication of genuine-weakens vs conversion-ceiling/substrate_ceiling; SD-033b/MECH-263 exp_conf 0.325->0.0, conflict-resolution rec auto-resolved, both stay pending_retest_after_substrate. NOT marked reviewed (stays in pending_review until the autopsy resolves). 485f marked superseded. Lineage owner advanced 485f -> 485g. PREDECESSORS: 485e (FAIL/non_contributory, autopsied 2026-06-11), 485d (substrate-readiness diagnostic), 485c/485b representation-level MECH-263 diagnostics PASS 2026-06-04 (NOT a supersession lineage)."
       unblocks_claims: [SD-033b, MECH-263]
       depends_on: ["commitment_closure:GAP-3"]
       cross_plan_link: ["conversion_ceiling_campaign:P3-ofc", "conversion_ceiling_campaign:FULLSTACK"]
@@ -152,20 +232,38 @@ closure_plan:
       governance_2026_06_03: "Blocker GAP-3 (env extensions) DONE 2026-05-17 -> GAP-8 unblocked. Audit found V3-EXQ-485b/485c were NEVER queued (no manifests / no runner_status rows / no git history / no coordinator-DB rows) -- the prior 'queued 485b/c' note was aspirational. Authored + smoke-PASSED + queued both as REPRESENTATION-LEVEL MECH-263 functional-signature diagnostics (ree-v3 main 9f45b0f). SUBSTRATE FINDING: the OFC reads only z_world + z_harm (no appetitive value/drive input), so SD-049 satiety AND the GAP-3 counter-evidence primitive are invisible to the state_code; 485b uses an AVERSIVE outcome devaluation, 485c uses same-z_world/different-task-stage. status->in-progress (awaiting runner). NOTE: FULL SD-033b candidate->provisional promotion still needs the deferred trained-OFC-head behavioural arm (frozen-zeroed bias head -> behaviour-change not measurable; parallel to SD-033a GAP-1) -- so GAP-8 will land 'partial' on 485b/c PASS, not fully done."
     - id: "commitment_closure:GAP-9"
       title: "SD-033c/d/e graph-consolidation incomplete"
-      phase: 8
       status: done
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-033c, SD-033d, SD-033e]
       depends_on: []
       last_updated: 2026-06-09
       completion_note: "GAP-9 graph/registration finishing CLOSED 2026-06-09 (V3-scope, no experiment, no substrate). Three deliverables landed in one pass on REE_assembly master: (1) SD-033c (vmPFC value integration) consolidation step TAKEN -- the subsumption of ARC-035 / MECH-151 / MECH-152 / MECH-235 is now an explicit closed bidirectional edge: SD-033c gains a subsumes list + consolidation_status=complete; each of the four sources already carried instantiates: SD-033c. No new implementation, no status change. (2) SD-033d (premotor/SMA) design_doc was null -> wrote docs/architecture/sd_033d_premotor_sma_analog.md mapping the EXISTING E3 sequence-selection machinery (propose_trajectories / action_object = PMd; E3TrajectorySelector.select = pre-SMA; MECH-090 _committed_step_idx + bistable BetaGate = SMA execution; ARC-028/MECH-105 completion = sequence-end release) onto the Tanji & Hoshi 2008 gradient; linked via a design_doc field on the claim; no new substrate (records the SD-033d-i/ii/iii split trigger). (3) SD-033e (frontopolar) V3/V4 boundary made EXPLICIT via a structured v3_v4_boundary field + notes addendum: formally DEFER the substrate, implementation_phase STAYS v4 (no genuine v3 dependency to reclassify; reverse-deps MECH-264/265 are v4). V3-scope = the forward-compat hook only (reserved parallel_goal_deliberation mode + keyed-dict MECH-261 gate + no-op frontopolar_analog.py stub), which is present + complete. Also reconciled a stale doc drift: sd_033_pfc_subdivision_architecture.md had retained the old deliberative_branching placeholder in 2 places -> now parallel_goal_deliberation matching the claim + ree-v3 code. No claim promotion/demotion (registration completeness only)."
     - id: "commitment_closure:GAP-10"
       title: "StepHarness audit of governance write paths"
-      phase: 8
       status: done
       severity: medium
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: []
       depends_on: []
       cross_plan_link: ["sleep_substrate:GAP-6"]
@@ -173,10 +271,19 @@ closure_plan:
       completion_note: "Audit complete 2026-05-17. All 6 write sub-sites documented in sd_034_governance_closure_operator.md under 'StepHarness write-path audit (GAP-10)'. All sites are within-select_action() architectural exceptions (steps 1+4 prerequisites met before step 7 runs) or experiment-only unit tests (dacc.record_outcome). Zero sites require StepHarness re-routing. dacc.record_outcome() canonical wiring deferred to GAP-3 env extension landing (no routing error; intentional deferral)."
     - id: "commitment_closure:GAP-11"
       title: "Phased rule_state training curriculum (GAP-3 deliverable 4 -- committed-mode elicitation)"
-      phase: 4
       status: done
       severity: load-bearing
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
       unblocks_claims: [SD-034, MECH-266, MECH-268, MECH-090, SD-021]
       depends_on: ["commitment_closure:GAP-3"]
       last_updated: 2026-05-17
