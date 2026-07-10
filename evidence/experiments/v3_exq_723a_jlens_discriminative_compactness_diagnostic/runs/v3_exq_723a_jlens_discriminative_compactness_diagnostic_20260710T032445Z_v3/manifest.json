@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_723a_jlens_discriminative_compactness_diagnostic",
+  "run_id": "v3_exq_723a_jlens_discriminative_compactness_diagnostic_20260710T032445Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-10T03:24:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "no_compact_workspace_diffuse",
+    "preconditions": [
+      {
+        "name": "readout_sufficient_p2_ticks",
+        "kind": "readiness",
+        "description": "Seeds with P2 ticks >= TOTAL_TICKS_FLOOR (4500) so the dispositional map is estimable, counted >= READINESS_MIN_SEEDS. min P2 ticks this run = 7603. Below => substrate_not_ready_requeue, NOT a verdict.",
+        "control": "count of seeds clearing the P2-tick floor",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "readout_sufficient_train_pairs_primary_h",
+        "kind": "readiness",
+        "description": "Seeds with usable (z_t, committed_class_{t+H}) TRAIN pairs at PRIMARY_H >= TRAIN_PAIRS_FLOOR (1500), counted >= READINESS_MIN_SEEDS. min train pairs this run = 4062. Below => substrate_not_ready_requeue.",
+        "control": "count of seeds clearing the train-pairs floor at primary horizon",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "at_least_three_effective_committed_classes",
+        "kind": "readiness",
+        "description": "Seeds with >= MIN_EFFECTIVE_CLASSES (3) EFFECTIVE committed classes (>= 25 train / >= 8 test instances each), counted >= READINESS_MIN_SEEDS. FIX 3: guards the 723 seed-43 degeneracy (one class with a single instance -> effectively binary). min effective classes this run = 2. Below => substrate_not_ready_requeue.",
+        "control": "count of seeds with enough well-populated committed-action classes",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "action_predictable_above_null_with_margin_majority",
+        "kind": "readiness",
+        "description": "The linear readout predicts committed_class_{t+H=PRIMARY} above the label-permutation p95 by >= SIGNAL_MARGIN_FLOOR on >= MAJORITY_MIN_SEEDS seeds. Absent a real signal, '90% of predictive power' is a degenerate concentration target (undertrained-substrate signature, NOT a workspace null) => substrate_not_ready_requeue.",
+        "control": "count of seeds with (bal_acc_full - null_p95) >= SIGNAL_MARGIN_FLOOR at PRIMARY_H",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      },
+      {
+        "name": "concentration_control_discriminable_random_ordering",
+        "kind": "readiness",
+        "description": "The random-ordering control needs >= CONCENTRATION_CONTROL_FLOOR (0.25) of the latent dims to recover 90% of the above-chance accuracy (SAME frac_dims_90 statistic the load-bearing concentration gate routes on, measured on the random negative control). If the control is itself concentrated, 'top beats random' is vacuous => substrate_not_ready_requeue, NEVER a diffuse/compact verdict.",
+        "control": "min over ready seeds of frac_dims_90 under RANDOM dim ordering (negative control)",
+        "measured": 0.836124,
+        "threshold": 0.25,
+        "met": true
+      },
+      {
+        "name": "readiness_majority_seeds_estimable",
+        "kind": "readiness",
+        "description": "Readout is estimable (all floors above) on >= READINESS_MIN_SEEDS seeds; only then is a compact/diffuse branch licensed. Below => substrate_not_ready_requeue.",
+        "control": "count of readout-estimable seeds",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "concentration_discriminative_majority",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "matched_rank_activity_discriminative_majority",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "reactive_bypass_H1_vs_H5_majority",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "broadcast_reportability_majority",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "readiness_estimable": true,
+      "above_null_signal_with_margin_majority": true,
+      "concentration_control_nondegenerate_majority": true,
+      "reactive_bypass_assessable_majority": true
+    }
+  }
+}
