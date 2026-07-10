@@ -1,52 +1,46 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-07-10T04:07:10Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-729",
-  "current_exq_started_utc": "2026-07-10T01:53:03.409109+00:00",
-  "current_title": "MECH-268 dACC conflict-saturation LIVE-LOOP falsifier (ecological analogue of 463b)",
-  "current_claim_id": "MECH-268",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 43 / liveloop",
-    "runs_done": 1,
-    "runs_total": 3,
-    "episodes_done": 120,
-    "episodes_total": 120,
-    "overall_pct": 66.7
-  },
-  "seconds_elapsed": 8048,
-  "seconds_remaining": 4136,
-  "recent_lines": [
-    "Seed 42 Condition liveloop",
-    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/120  rv=0.00000  reward=-1.0060",
-    "[P0 probe] ep 120/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[arm OFF] seed=42 P0 ep 120/120 converged=True aborted=False rv=0.00000",
-    "[arm OFF] seed=42 sat_final=1.0000 live_calls=0 fifo_end=0 harm_frac=1.000 zha_norm=1.0121",
-    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/120  rv=0.00000  reward=-0.4337",
-    "[P0 probe] ep 120/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[arm ON] seed=42 P0 ep 120/120 converged=True aborted=False rv=0.00000",
-    "[arm ON] seed=42 sat_final=0.2500 live_calls=50 fifo_end=16 harm_frac=1.000 zha_norm=1.0556",
-    "verdict: PASS",
-    "Seed 43 Condition liveloop",
-    "[P0 probe] ep 40/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 probe] ep 80/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 train] ep 80/120  rv=0.00000  reward=-0.3162",
-    "[P0 probe] ep 120/120  rv=0.00000  threshold=0.4  converging=True",
-    "[P0 CONVERGED] rv=0.00000 < 0.4 stable for 3 probes. P0 done at ep=120.",
-    "[arm OFF] seed=43 P0 ep 120/120 converged=True aborted=False rv=0.00000",
-    "[arm OFF] seed=43 sat_final=1.0000 live_calls=0 fifo_end=0 harm_frac=1.000 zha_norm=0.5100"
+  "last_tick_utc": "2026-07-10T06:51:49Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-723a",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-691",
+      "result": "PASS",
+      "completed_at": "2026-06-20T10:33:20.648948+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-697",
+      "result": "PASS",
+      "completed_at": "2026-06-21T13:30:52.728706+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-466e",
+      "result": "PASS",
+      "completed_at": "2026-06-25T03:02:06.012901+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-732",
+      "result": "FAIL",
+      "completed_at": "2026-07-10T01:48:58.455836+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-729",
+      "result": "PASS",
+      "completed_at": "2026-07-10T06:51:47.630482+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 667,
   "runner_version": "r3702 f87f6a0 2026-07-10 (running r3692 677f80a)",
   "gpu": {
