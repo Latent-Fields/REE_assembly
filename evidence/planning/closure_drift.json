@@ -1,18 +1,25 @@
 {
-  "generated_at": "2026-07-10T13:29:32Z",
+  "generated_at": "2026-07-10T20:03:55Z",
   "counts": {
     "drifted": 0,
     "stale_since": 0,
-    "suppressed": 10,
+    "suppressed": 3,
     "assembling": 9,
-    "assembling_revisit_due": 0
+    "assembling_revisit_due": 0,
+    "status_plane_drifted": 0,
+    "status_plane_checked": 43
+  },
+  "status_plane_drift": {
+    "checked": 43,
+    "skipped_reason": null,
+    "drifted": []
   },
   "assembly_frontier": [
     {
       "node_id": "commitment_closure:GAP-8",
       "plan": "commitment_closure_plan.md",
       "node_status": "assembling",
-      "awaiting": "conversion_ceiling_campaign:FULLSTACK (the co-armed full-stack arm) -- the OFC valuation face is FACE-VALIDATED + folded in (use_ofc_devaluation_head ON); isolated 485n re-queue REFUSED (re-derive brake fired 11th)",
+      "awaiting": null,
       "assembly_status": "built",
       "revisit_after": null,
       "revisit_due": false
@@ -21,7 +28,7 @@
       "node_id": "behavioral_diversity_isolation:GAP-K",
       "plan": "behavioral_diversity_isolation_plan.md",
       "node_status": "assembling",
-      "awaiting": "EXHAUSTED 2026-07-06: the arbitration/learned-gating build front is fully BUILT and its validation lineage ran to TERMINAL -- V3-EXQ-709 (learned cross-loop arbitration; FAIL/non_contributory 2026-07-02, limbic sub-threshold ~0.03, never won), V3-EXQ-711 (raw-scalar ascending-spiral gain; FAIL 2026-07-03, SATURATED runaway monopoly 10-2274x, entropy fell), V3-EXQ-713 (BOUNDED ascending-parity controller; FAIL 2026-07-04, the FIRST fair non-saturated limbic parity win -- 4/4 divergent seeds, no_saturation_blowup=0 -- and the load-bearing C1 committed-class entropy lift STILL failed, ON 0.870 < OFF 0.877). All three adjudicated non_contributory (confirmed autopsies 709/711/713; the 713 autopsy governance-applied 2026-07-05 REE_assembly master 65940b83b5). CONCLUSION: cross-loop-arbitration REWEIGHTING does NOT convert committed-action diversity even under a fair, bounded limbic parity win -- the route is EXHAUSTED (weak 709 / runaway 711 / fair-bounded 713 all fail). Committed-action conversion is a within-loop SELECTION/ELIGIBILITY-face op (MECH-448 rank-preserving F->eligibility demotion, already lifting on GAP-A), not arbitration reweighting. No further build owed on this node; the MECH-439 ceiling this node attacked is STILL OPEN and continues to be tracked on the parent GAP-I via the selection-face.",
+      "awaiting": null,
       "assembly_status": "exhausted",
       "revisit_after": null,
       "revisit_due": false
@@ -30,7 +37,7 @@
       "node_id": "conversion_ceiling_campaign:CAMPAIGN",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "Competence-localization gate (719a reframe). Every face-composition arm has RUN terminal against the current substrate (FULLSTACK V3-EXQ-714 FAIL/non_contributory readiness-abort; P2 de-commit V3-EXQ-715/715a/717 FAIL; arbitration P4 EXHAUSTED 713; valuation 485m face-validated-but-fails-C2-alone). The campaign routes to the brake-EXEMPT V3-EXQ-724 competence-localization diagnostic (running), then /implement-substrate on the localized competence/training-regime gap. No conversion/de-commit falsifier re-queue -- both re-derive brakes REFUSE it.",
+      "awaiting": null,
       "assembly_status": "ran_exhausted_for_substrate",
       "revisit_after": null,
       "revisit_due": false
@@ -39,7 +46,7 @@
       "node_id": "conversion_ceiling_campaign:P-comp",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "RAN -- V3-EXQ-699 non_contributory diagnostic (precondition_unmet); optional clean re-characterization is a diagnostic re-run, not the full-stack build gate. No build owed on this prong.",
+      "awaiting": null,
       "assembly_status": "ran_non_contributory",
       "revisit_after": null,
       "revisit_due": false
@@ -48,7 +55,7 @@
       "node_id": "conversion_ceiling_campaign:P2-rootC",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "De-commit cluster RAN TERMINAL (V3-EXQ-715/715a/717 all FAIL, confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07); no experiment re-queue owed. The F-independent closure-coupled-hold arming BUILD (use_closure_commit_entry) is DONE + VALIDATED (460o/p PASS 2026-06-24). Route = /implement-substrate on the f_dominance_conversion_ceiling DE-COMMIT-RELEASE face (moderate-F selection-face lift RULED OUT as that lever, 715a delta -63) -- gated behind the 719a behavioural-competence reframe (brake-EXEMPT V3-EXQ-724 competence-localization diagnostic first, running). Re-derive brake FIRED; same-claim de-commit re-queue REFUSED.",
+      "awaiting": null,
       "assembly_status": "ran_exhausted_for_substrate",
       "revisit_after": null,
       "revisit_due": false
@@ -57,7 +64,7 @@
       "node_id": "conversion_ceiling_campaign:P3-ofc",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "composition into the full-stack arm (with P-comp + P2-rootC composition-ready)",
+      "awaiting": null,
       "assembly_status": "built",
       "revisit_after": null,
       "revisit_due": false
@@ -66,7 +73,7 @@
       "node_id": "conversion_ceiling_campaign:FULLSTACK",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "RAN TERMINAL -- V3-EXQ-714 FAIL/non_contributory (readiness abort, C2 never scored; confirmed failure_autopsy_V3-EXQ-714_2026-07-07); no re-queue owed. Route = the brake-EXEMPT V3-EXQ-724 competence-localization diagnostic (719a reframe; running), then /implement-substrate on the localized behavioural-competence gap. Re-derive brake FIRED; a further fullstack / lettered conversion falsifier (714b) is REFUSED. FAIL-branch leave-one-out ablation is MOOT -- the arm never reached C2; the blocker is upstream (GAP-A-divergence survival / behavioural competence), not one includable face.",
+      "awaiting": null,
       "assembly_status": "ran_exhausted_for_substrate",
       "revisit_after": null,
       "revisit_due": false
@@ -75,7 +82,7 @@
       "node_id": "conversion_ceiling_campaign:P4-learned-gating",
       "plan": "conversion_ceiling_campaign_plan.md",
       "node_status": "assembling",
-      "awaiting": "EXHAUSTED 2026-07-06 -- no further build owed. The learned-gating stack was BUILT end-to-end (ARC-108 learned w_chan + MECH-450 settling W_lat + ARC-110 segregated loops + the ARC-108xARC-110 LEARNED CROSS-LOOP arbitration coupling) and its validation lineage ran to TERMINAL: V3-EXQ-709 (learned cross-loop arbitration; FAIL/non_contributory 2026-07-02, limbic sub-threshold ~0.03) -> V3-EXQ-711 (raw-scalar ascending-spiral gain; FAIL 2026-07-03, SATURATED runaway monopoly 10-2274x, entropy fell) -> V3-EXQ-713 (BOUNDED ascending-parity controller; FAIL 2026-07-04, the FIRST validly-measured fair non-saturated limbic parity win -- 4/4 divergent seeds, no_saturation_blowup=0 -- and C1 committed-class entropy STILL failed, ON 0.870 < OFF 0.877). Confirmed, user-adjudicated failure_autopsy_V3-EXQ-713_2026-07-05 (governance-applied REE_assembly master 65940b83b5): the cross-loop-arbitration-REWEIGHTING conversion route is EXHAUSTED (weak / runaway / fair-bounded all fail); a fair bounded limbic parity win does NOT convert committed-action diversity. Committed-action conversion is a within-loop SELECTION/ELIGIBILITY-face op (MECH-448, lifting on GAP-A) -- THE ROUTE OF RECORD -- not arbitration reweighting. A same-level arbitration parity re-letter (713x) is REFUSED (re-derive brake, MECH-439 11th / ARC-108 8th / ARC-110 3rd); AMEND v4_loop_segregation (+713 terminal failure_record -> 9). Build front owned by the mirror node behavioral_diversity_isolation:GAP-K, reconciled EXHAUSTED in the same pass. REOPEN only for a FUNDAMENTALLY NEW arbitration mechanism (new EXQ, different claim_ids), never a 709/711/713 re-letter.",
+      "awaiting": null,
       "assembly_status": "exhausted",
       "revisit_after": null,
       "revisit_due": false

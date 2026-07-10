@@ -5,30 +5,31 @@ nav_order: 12
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-07-09T17:56:30Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-07-10T20:03:57Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
 ## Overall
 
-<p style="font-size:1.6em;font-weight:600;margin:.2em 0">80.5%</p>
+<p style="font-size:1.6em;font-weight:600;margin:.2em 0">77.5%</p>
 
-<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:80.5%"></div></div>
+<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:77.5%"></div></div>
 
-76 non-deferred nodes across 11 plan(s) · **56 done · 20 remaining · 13 deferred** · **9 on the assembly frontier** (under construction, off the % axis).
+80 non-deferred nodes across 12 plan(s) · **57 done · 23 remaining · 13 deferred** · **9 on the assembly frontier** (under construction, off the % axis).
 
-Status tally: `assembling`&nbsp;9 · `blocked`&nbsp;7 · `blocked_pending_substrate`&nbsp;2 · `deferred`&nbsp;13 · `done`&nbsp;56 · `in_progress`&nbsp;8 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
+Status tally: `assembling`&nbsp;9 · `blocked`&nbsp;9 · `blocked_pending_substrate`&nbsp;2 · `deferred`&nbsp;13 · `done`&nbsp;57 · `in_progress`&nbsp;7 · `open`&nbsp;2 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
 
 ## By plan
 
 <table style="border-collapse:collapse;width:100%">
 <thead><tr style="text-align:left;border-bottom:2px solid #d0d7de"><th style="padding:6px 10px">Plan</th><th style="padding:6px 10px;width:55%">Progress</th><th style="padding:6px 10px">Nodes</th><th style="padding:6px 10px">Updated</th></tr></thead><tbody>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Conversion-Ceiling Campaign (prong-map / parallel multi-face)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:0.0%"></div></div>&nbsp;<span style="color:#57606a">0%</span></td><td style="padding:6px 10px">6</td><td style="padding:6px 10px;color:#57606a">2026-07-09</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Conversion-Ceiling Campaign (prong-map / parallel multi-face)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:0.0%"></div></div>&nbsp;<span style="color:#57606a">0%</span></td><td style="padding:6px 10px">6</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Global Workspace + J-lens (SD-064 access channel)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:5.0%"></div></div>&nbsp;<span style="color:#57606a">5%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (b): Sustained-Threat Env Curriculum</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:10.0%"></div></div>&nbsp;<span style="color:#57606a">10%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-05</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Self-Attribution Comparator Loop</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:32.5%"></div></div>&nbsp;<span style="color:#57606a">32%</span></td><td style="padding:6px 10px">5</td><td style="padding:6px 10px;color:#57606a">2026-06-04</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Rule Apprehension</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:61.1%"></div></div>&nbsp;<span style="color:#57606a">61%</span></td><td style="padding:6px 10px">13</td><td style="padding:6px 10px;color:#57606a">2026-06-14</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Behavioural Diversity Isolation</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:71.2%"></div></div>&nbsp;<span style="color:#57606a">71%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-07-06</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Commitment / Closure / Mode-Governance</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:86.7%"></div></div>&nbsp;<span style="color:#57606a">87%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-06-12</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Rule Apprehension</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:61.1%"></div></div>&nbsp;<span style="color:#57606a">61%</span></td><td style="padding:6px 10px">13</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Behavioural Diversity Isolation</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:78.8%"></div></div>&nbsp;<span style="color:#57606a">79%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Commitment / Closure / Mode-Governance</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:86.7%"></div></div>&nbsp;<span style="color:#57606a">87%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Sleep Substrate</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:90.0%"></div></div>&nbsp;<span style="color:#57606a">90%</span></td><td style="padding:6px 10px">10</td><td style="padding:6px 10px;color:#57606a">2026-07-07</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Infant Substrate Expansion</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:91.2%"></div></div>&nbsp;<span style="color:#57606a">91%</span></td><td style="padding:6px 10px">17</td><td style="padding:6px 10px;color:#57606a">2026-05-30</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Goal Pipeline (wanting / liking / drive cascade)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">7</td><td style="padding:6px 10px;color:#57606a">2026-06-12</td></tr>
@@ -46,25 +47,25 @@ The two health signals from [`docs/architecture/cognitive_architecture_graveyard
 
 ### Ratio 2 -- governance-mass : cognitive-mass  (commit proxy)
 
-Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3289 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
+Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3308 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
 
-- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **65%** of all commits (2129 / 3289). The source critique's ~60-77% estimate, live.
-- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **22 : 1** (governance 2738 : cognitive 124).
+- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **67%** of all commits (2230 / 3308). The source critique's ~60-77% estimate, live.
+- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **27 : 1** (governance 2801 : cognitive 103).
 
 Bucket tally (both repos, window):
 
 | bucket | commits | what it is |
 |--------|--------:|------------|
-| machine coordination | 2129 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
-| human governance | 609 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
-| cognitive / substrate | 124 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
-| neutral / other | 427 | docs, explorer/serve, site, tooling (excluded from the ratio) |
+| machine coordination | 2230 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
+| human governance | 571 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
+| cognitive / substrate | 103 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
+| neutral / other | 404 | docs, explorer/serve, site, tooling (excluded from the ratio) |
 
 > Reading: a very high ratio is the graveyard signal, not a bug to 'fix' by suppressing coordination commits. It is only a problem if, cycle after cycle, governance is busy while capability is flat. The governance mass is justified *only* as a falsification engine that kills dead structure -- never as a substitute for earning capability.
 
 ### Ratio 1 -- capability-earning claims : registered claims  (owed)
 
-- Registered claims (denominator): **874**.
+- Registered claims (denominator): **878**.
 - Capability-earning claims (numerator): **UNMEASURED** -- no claim-level "has this lifted a capability metric on a competent substrate" flag exists in `claims.yaml` yet. On the conversion-ceiling lineage the honest lower bound is ~0 (the all-ON agent forages below the competence floor; see `failure_autopsy_V3-EXQ-719a`).
 - Design note for the missing flag: [`cognitive_architecture_graveyard.md` -> "Ratio #1 -- the missing flag"](architecture/cognitive_architecture_graveyard.html). Populating it is gated on the WS-3 capability yardstick (a substrate above the competence floor to measure against).
 

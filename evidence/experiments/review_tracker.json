@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-10T13:28:20Z",
+  "last_review_utc": "2026-07-10T20:16:34Z",
   "discussed_experiment_dirs": [
     "v3_exq_538a_sd049_phase2_with_sleep",
     "v3_exq_732a_policy_learning_discriminator",
@@ -809,7 +809,8 @@
     "v3_exq_725a_coherence_nonreducibility_converged_binder",
     "v3_exq_732_policy_learning_discriminator",
     "v3_exq_723a_jlens_discriminative_compactness_diagnostic",
-    "v3_exq_728_trained_allon_capability_point"
+    "v3_exq_728_trained_allon_capability_point",
+    "v3_exq_738_local_view_achievable_ceiling_anchor"
   ],
   "reviewed_run_ids": [
     "v3_exq_538a_sd049_phase2_with_sleep_20260710T035148Z_v3",
@@ -3294,7 +3295,8 @@
     "v3_exq_725a_coherence_nonreducibility_converged_binder_20260709T221114Z_v3",
     "v3_exq_732_policy_learning_discriminator_20260710T014857Z_v3",
     "v3_exq_723a_jlens_discriminative_compactness_diagnostic_20260710T032445Z_v3",
-    "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3"
+    "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3",
+    "v3_exq_738_local_view_achievable_ceiling_anchor_20260710T151626Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -5079,6 +5081,14 @@
         "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3"
       ],
       "note": "Governance walk 2026-07-10 (user-interactive). 6 pending walked; ALL claim_ids=[] non_contributory diagnostics / one baseline PASS -- PROMOTES/DEMOTES/WEIGHTS NOTHING; NO claims.yaml change (Q-080 agenda re-flag KEPT HELD, already narrowed into Q-080.a/b/c). Convergent story: 724/731/732/723a all bottom out on ONE root -- the V3 competence floor (integrated all-ON agent forages ~0). (1) V3-EXQ-732 policy-learning discriminator resolves the 724 autopsy H1/H2 fork -> H2_observation_interface_unlearnable: readiness MET (oracle 6.05>floor 1.0; B0 reproduces incompetence 0.2); b1_clears_floor=false (REE rep + FULL trainable A2C head does NOT recover foraging) AND b2_clears_floor=false (vanilla A2C on raw obs ALSO fails). RULES OUT an action-head build as the WS-1 fix; points the competence build at the OBSERVATION ENCODING. DECISION-FLIPPING -> /failure-autopsy chip (adjudicate 'unlearnable obs interface' vs 'insufficient budget/hard-exploration' before scoping the WS-1 build). (2) V3-EXQ-723a J-lens discriminative-compactness (SD-064 Exp A; supersedes 723; VERIFIED, non-degenerate all True) -> no_compact_workspace_diffuse: load-bearing concentration_discriminative FALSE. Does NOT greenlight the SD-027 Experiment-B build (saves/defers it); BUT reads the same competence-limited all-ON substrate GATE-B is already gated on, so diffuse-vs-monostrategy is confounded -> /failure-autopsy chip. (3) V3-EXQ-725a coherence-nonreducibility learned-binder retest (supersedes 725; converged binder) FAIL again; review_caveats flag a MEASUREMENT GAP (D1/SPEC over gated >=2-first-action-class steps; low-gated seeds = fraction over near-empty denominator, same competence/diversity confound as 642/719a) -> /failure-autopsy chip (continue 641a->720->725->725a lineage; measurement-gap vs genuine null). (4) V3-EXQ-731 q080b least-effort-prior (claim_ids=[Q-080]) precondition_unmet/substrate_not_ready_requeue: substrate_can_navigate=False (untrained agent never enters a corridor) -> competence floor again; drives NO governance action (Q-080 stays open); marked reviewed as competence-floor-blocked, requeues when the floor lifts. (5) V3-EXQ-724 competence_localization -- CONFIRMED autopsy (failure_autopsy_V3-EXQ-724_2026-07-09; competence_deficit_diffuse; rec non_contributory; substrate_entry.action=none; routed to 732 which has now run). Applied: nothing to weight. (6) V3-EXQ-728 trained_allon_capability_point PASS (WS-3 baseline; trained all-ON 4-metric point on the 727 scale). No claim tags. 3 /failure-autopsy chips spawned (732, 723a, 725a). No autopsy for 731 (explained by competence floor). No claims.yaml/manifest/substrate_queue edit this cycle (autopsy chips own any substrate recommendation)."
+    },
+    {
+      "utc": "2026-07-10T20:16:34Z",
+      "session": "brave-ishizaka-fa60b4 (/governance cycle 2026-07-10)",
+      "reviewed": [
+        "v3_exq_738_local_view_achievable_ceiling_anchor_20260710T151626Z_v3"
+      ],
+      "note": "Governance walk 2026-07-10 (brave-ishizaka-fa60b4, user-interactive). 2 pending walked. (1) V3-EXQ-738 local_view_achievable_ceiling_anchor -- VERIFIED PASS (P-B leg of the 737/738/739 competence-floor portfolio; claim_ids=[]). Both preconditions met (D3 global oracle 57.2 >> 1.0 floor; resource_field_view present); load-bearing criterion passed; criteria_non_degenerate all True. REFUTES H2 (partial-observability/obs-unlearnable is the ceiling): a 5x5 local-view greedy forager clears the 1.0 floor (48/ep D3, 3/3 seeds). DECISION-FLIP (723 rule): removes H2 -> H1 (prediction-rich/action-poor translation gap, MECH-457) is the surviving hypothesis -> makes V3-EXQ-737 (trainable policy head on frozen z_world, already queued pri 155) the live discriminator. Reached a verdict (local_view_achievable) -> does NOT count toward GOV-DIAG-1 recurrence. PROMOTES/DEMOTES NOTHING (no claim tags). Marked reviewed. (2) V3-EXQ-733 rebinding_functional_ground_truth (MECH-456 evidence) -- FAIL/non_contributory on the seed-quorum readiness gate (only ~1-2/6 seeds reached >=20 P1 overtakes) BUT the one fully-ready seed (42) passed BOTH DVs strongly (DV1 align margin 0.57; DV2 latency gap 13.1). User flagged for /failure-autopsy -> STAYS PENDING this cycle, no evidence stamp beyond the self-stamped non_contributory; MECH-456 unchanged (candidate/v3_pending). Autopsy chip spawned. Agenda: MECH-457 hold_pending_v3_substrate APPLIED (gated on 737); Q-080 narrow_open_question KEPT BROAD (730/731 ablations queued, not landed). No promotions/demotions. 1 claims.yaml note edit (Q-080 status_note)."
     }
   ]
 }

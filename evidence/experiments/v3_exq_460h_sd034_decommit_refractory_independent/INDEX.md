@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_460h_sd034_decommit_refractory_independent
 
-Generated: `2026-07-10T13:26:58.282090Z`
+Generated: `2026-07-10T20:20:03.229558Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,31 +1,50 @@
 {
-  "generated_at_utc": "2026-05-23T20:45:20.899286+00:00",
+  "generated_at_utc": "2026-07-10T20:18:51.754373+00:00",
   "repo_root": "/Users/dgolden/REE_Working/REE_assembly",
-  "git_head": "9734540e1ec152abb67431237462a5de419912a4",
-  "status": "fail",
+  "git_head": "a37bde261098d4fa709d72634d97aa72e28c1190",
+  "status": "pass",
   "findings": [
     {
       "severity": "warn",
+      "code": "ROADMAP_PENDING_REVIEW_COUNT_UNPARSEABLE",
+      "message": "Could not parse pending_review count from most recent roadmap Status Snapshot.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/docs/roadmap.md"
+      ],
+      "suggested_next_action": "Check roadmap.md snapshot format for '-> **N** items' pattern."
+    },
+    {
+      "severity": "warn",
       "code": "CENTRAL_RUNNER_STATUS_STALE",
-      "message": "evidence/experiments/runner_status.json last_updated 2026-05-21T14:26:59.490765+00:00 is 54.3h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
+      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 758.3h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status.json"
       ],
       "suggested_next_action": "Check whether coordinator->central-status merge has wedged. If Phase-2 coordinator is active, per-machine files are authoritative."
     },
     {
-      "severity": "block",
-      "code": "EXQ_DRAINED_WITHOUT_MANIFEST_OR_DISPOSITION",
-      "message": "V3-EXQ-543k is mentioned as drained in the roadmap Status Snapshot but no manifest was found in evidence/experiments/. Roadmap context: 'V3-EXQ-543k drained this window -- the 2026-05-21T14:13Z force_rerun re-queue is no longer in the queue, but no fresh 54'",
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_733_rebinding_functional_ground_truth_20260710T130132Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
       "evidence_paths": [
-        "/Users/dgolden/REE_Working/REE_assembly/docs/roadmap.md"
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
       ],
-      "suggested_next_action": "Determine V3-EXQ-543k's fate: check per-machine runner_status files and coordinator panel. If manifest is on a remote machine, wait for sync. If the run was pruned or never ran, add an explicit disposition note in roadmap.md. Then re-queue if needed."
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "info",
+      "code": "SUBSTRATE_QUEUE_NODE_CLASS_UNMARKED",
+      "message": "100/106 substrate_queue entries lack node_class; read as complicated (buildable) by default (the queue is the execution backlog). Governance Step 6a populates it going forward.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning/substrate_queue.json"
+      ],
+      "suggested_next_action": "No action required. node_class is backfilled lazily as a governance cycle next touches each entry."
     }
   ],
   "summary": {
-    "block_count": 1,
-    "warn_count": 1,
-    "info_count": 0
+    "block_count": 0,
+    "warn_count": 3,
+    "info_count": 1
   }
 }

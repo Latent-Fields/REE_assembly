@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-07-10T18:17:20Z
+Generated: 2026-07-10T20:05:07Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -20,20 +20,11 @@ Docs that resolve to a registered claim but have no `status:` frontmatter. Run `
 
 _None._
 
-## Hand-line contradiction -- REVIEW (8)
+## Hand-line contradiction -- REVIEW (0)
 
 Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place per the non-destructive razor) whose epistemic status word or v3_pending assertion contradicts the registry. Lift/rewrite by hand, then the frontmatter carries the machine-checkable truth.
 
-| doc | claim | hand **Status:** line | why |
-|-----|-------|-----------------------|-----|
-| mech_189_super_ordinal_goal_anchors.md | MECH-189 | IMPLEMENTED (substrate) 2026-06-09 — v3_pending until the validation EXQ PASSes | hand line asserts v3_pending but registry v3_pending is not set |
-| mech_219_hysteretic_integrator.md | MECH-219 | IMPLEMENTED 2026-06-10 (substrate; SD-019b stays `v3_pending` until the | hand line asserts v3_pending but registry v3_pending is not set |
-| mech_314a_phase2_novelty_source_design.md | MECH-314A | IMPLEMENTED 2026-06-05 (Candidate 5A). User assent on | hand line says candidate; registry status is provisional |
-| mech_448_f_eligibility_demotion.md | MECH-448 | IMPLEMENTED 2026-06-20 (substrate; MECH-448 stays `candidate` -- | hand line says candidate; registry status is provisional |
-| mech_449_go_nogo_constitution.md | MECH-449 | IMPLEMENTED 2026-06-21 (substrate; `candidate` / `substrate_conditional` — PROMOTES NOTHING; the falsifier gates promoti | hand line says candidate; registry status is provisional |
-| sd_003_experiment_design.md | SD-003 | Active design — substrate ready, experiments pending (EXQ-027, EXQ-028) | hand line says active; registry status is superseded |
-| sd_035_amygdala_analog.md | SD-035 | candidate, v3_pending — NOT YET IMPLEMENTED | hand line says candidate; registry status is stable; hand line asserts v3_pending but registry v3_pending is not set |
-| sd_063_e2_conditional_uncertainty_head.md | SD-063 | IMPLEMENTED 2026-07-05 (substrate built, disabled-by-default; v3_pending until the V3-EXQ-716 validation falsifier score | hand line asserts v3_pending but registry v3_pending is not set |
+_None._
 
 ## Unresolved with a hand status line -- INFO (108)
 

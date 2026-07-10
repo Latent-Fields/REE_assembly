@@ -1665,6 +1665,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-06-24T21:53:17.293018Z"
     },
+    "MECH-457": {
+      "actor": "governance/brave-ishizaka-fa60b4",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "v3_pending gate; promotion gated on the V3-EXQ-737 H1 discriminator + the f_dominance_conversion_ceiling actor-critic build. Stays candidate.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path).",
+      "timestamp_utc": "2026-07-10T20:15:33.790607Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -1925,6 +1934,15 @@
       "recommendation": "held_v4_by_architectural_commitment",
       "selected_option": "Keep held under the V5 architectural commitment (correct path).",
       "timestamp_utc": "2026-07-01T01:23:10.615805Z"
+    },
+    "Q-080": {
+      "actor": "governance/brave-ishizaka-fa60b4",
+      "decision_needed": "Question narrowing review",
+      "decision_status": "applied",
+      "rationale": "Already narrowed 2026-07-09 into Q-080.a/b/c scaffolding; ablations 730/731 queued (not yet run). No further narrowing / no mechanism mint until they land.",
+      "recommendation": "narrow_open_question",
+      "selected_option": "Keep broad until V3-EXQ-730/731 land",
+      "timestamp_utc": "2026-07-10T20:15:33.824360Z"
     },
     "SD-008": {
       "actor": "user",
@@ -2197,7 +2215,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-10T13:26:58.282090Z",
+  "generated_at_utc": "2026-07-10T20:20:03.229558Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

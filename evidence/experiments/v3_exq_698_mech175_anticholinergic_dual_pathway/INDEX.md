@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_698_mech175_anticholinergic_dual_pathway
 
-Generated: `2026-07-10T13:26:58.282090Z`
+Generated: `2026-07-10T20:20:03.229558Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
