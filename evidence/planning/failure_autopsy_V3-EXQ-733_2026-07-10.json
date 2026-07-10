@@ -1,0 +1,74 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-10T20:23:01Z",
+  "scope": "single",
+  "status": "confirmed",
+  "flagged_by": "governance cycle 2026-07-10 (session brave-ishizaka-fa60b4)",
+  "targets": [
+    {
+      "run_id": "v3_exq_733_rebinding_functional_ground_truth_20260710T130132Z_v3",
+      "queue_id": "V3-EXQ-733",
+      "claim_ids": ["MECH-456"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_detail": "Readiness precondition overtake_events_adequate unmet (min overtakes/seed = 2 vs floor 20; only seed 42 (26) clears it). The two DV criteria BOTH pass (DV1 6/6, DV2 5/6); only all_ready=False blocks a functional_rebinding_supported PASS. NOT a discrimination-criterion failure and NOT a rebinding verdict.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (partial) -- DV1 6/6, DV2 5/6; binder tracks truth AND confers a graded advantage on every seed with enough overtake events. Test let the claim express itself on ready seed 42.",
+        "biological_reference": "clear -- object-file updating / PE-driven switching / latent-cause inference; explicitly non-formal-import (coherence C(tau) excluded, settled by 725a). Not the fault locus; no lit-pull owed.",
+        "prerequisites": "present but un-invoked -- validated survival onboarding (scaffolded_sd054_onboarding, P1 survival 3/3 via 603m/603n) exists but 733 runs a cold agent, so it dies early.",
+        "implementation": "complete -- binder converged, harness-level measurement, ree_core unmodified.",
+        "environment": "wrong pressures for this readout -- SD-054 reef env (hazard_food_attraction=0.7) kills a cold agent in ~10-40 steps before it can traverse regions; overtake generation entangled with foraging survival.",
+        "measurement": "partial -- 20-overtake/seed floor mismatched to an env that ends episodes far below the 120-step cap.",
+        "integration": "isolated -- binder works alone; the test-bed cannot feed it enough overtakes.",
+        "scale": "adequate -- P0 binder convergence and region coverage both met."
+      },
+      "biological_reference": {
+        "closest_mechanism": "object-file updating / reviewing (Kahneman-Treisman-Gibbs 1992); PE-driven perceptual switching (Weilnhammer 2017; Cole 2024 ACC); latent-cause inference (Gershman 2010/2017); serial-dependence hysteresis (Manassi & Whitney 2022).",
+        "dependencies": ["ARC-006 bindable entities", "INV-002 temporal binding", "MECH-045 object-file persistence", "MECH-269 proposer anchor-reset (sibling, different locus)", "MECH-270 ephaptic binder substrate"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; grounding rests on E(tau)/stability machinery, not the coherence-C(tau) import 725a settled.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_epistemic_category_note": "substrate_ceiling of the survival/navigation-competence flavour, BUT the blocking substrate (scaffolded_sd054_onboarding) is already built + validated; repair is a re-queue over the existing scaffold, NOT a new deep-substrate build and NOT the exhausted f_dominance/v4_loop_segregation conversion-ceiling park.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-733 (functional rebinding test) FAILed on the pre-registered readiness quorum only (min overtakes/seed 2 vs 20; only seed 42 reached the floor) -> non_contributory, not a rebinding verdict. Root cause (autopsy 2026-07-10): a cold, un-onboarded agent dies to hazards in ~10-40 steps (done=health<=0, episodes capped at 120<500) in the lethal SD-054 reef env, starving within-episode ground-truth overtakes. The binder itself passed DV1 6/6 and DV2 5/6, both strongly on the one ready seed -- encouraging for MECH-456. Re-queued as V3-EXQ-733a (2-leg portfolio: P-A survival-onboarded agent via validated scaffolded_sd054_onboarding; P-B directed-traversal test-bed decoupling overtakes from foraging survival). pending_retest. NOT co-blocked on the exhausted f_dominance_conversion_ceiling / v4_loop_segregation substrate; the survival substrate needed here is already built + validated.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The survival/navigation substrate that would restore episode length + overtake generation (scaffolded_sd054_onboarding) is already implemented and validated (P1 survival 3/3, V3-EXQ-603m/603n). No new substrate build is owed; the fix is a re-queued redesign (V3-EXQ-733a) that invokes the existing scaffold and/or decouples overtake generation from survival. Dependency recorded in the evidence_quality_note."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest": true,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "MECH-456 registered 2026-07-10; this is its first functional test and it carries no other weighted supports, so a non_contributory reading creates no illusory conflict resolution.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "First substrate_ceiling/non_contributory autopsy tagging MECH-456; brake count 0."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-PA: episodes are too short because the cold agent lacks survival onboarding -> equipping the validated scaffold restores episode length and overtakes.",
+          "H-PB: overtake generation is entangled with foraging survival -> a directed-traversal / finer-lattice / softened-env test-bed generates overtakes independent of survival competence."
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-PA", "axis": "training-regime", "sketch": "functional test on a scaffolded_sd054_onboarding-trained agent; target >=20 overtakes/seed on >=4/6; null = still <20 -> survival not the (only) lever."},
+          {"hypothesis": "H-PB", "axis": "environment", "sketch": "directed reset spawns across regions and/or larger G_PARTITION and/or lower hazard_harm so region-crossings are guaranteed; null = with overtakes guaranteed, DV1/DV2 still fail on >=4/6 -> seed-42 signal not general."}
+        ],
+        "note": "GOV-FANOUT-1: the overtake bottleneck has two live, different-axis resolutions (training-regime vs environment/test-bed); queue V3-EXQ-733a as a 2-leg portfolio rather than one sequential letter. Both legs test MECH-456's what_would_answer faithfully; each declares its null. Design-audit coverage + verdict-aliasing before queuing."
+      },
+      "learning_extracted": [
+        "The MECH-456 functional readout is entangled with foraging-survival competence: overtakes (ground-truth region crossings) accrue only while the agent stays alive and navigates.",
+        "A cold agent in the SD-054 env dies in ~10-40 steps (done=health<=0, episode cap 120<500), starving the measurement -- the binder mechanism is not at fault.",
+        "The binder tracks ground-truth and confers a graded re-acquisition advantage on every seed with enough overtake events (DV1 6/6, DV2 5/6); MECH-456's what_would_answer is affirmatively met on the ready seed -- the block is purely the seed-quorum.",
+        "A self-generating-ground-truth functional test must either equip the validated survival onboarding or decouple event generation from the floored competence, else the readiness gate (not the mechanism) decides the outcome."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
