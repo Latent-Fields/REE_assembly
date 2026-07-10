@@ -1,48 +1,49 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-10T14:39:46Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
+  "last_tick_utc": "2026-07-10T15:20:12Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-735",
+  "current_exq_started_utc": "2026-07-10T14:42:27.646067+00:00",
+  "current_title": "Drive/reward-balance approach-weighting sweep (Track-1b): is the 728 forage-vs-survive inversion a reward-balance failure (drive-gain-buildable) or not the lever",
   "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-734",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / A0_default_balance",
+    "runs_done": 6,
+    "runs_total": 18,
+    "episodes_done": 125,
+    "episodes_total": 290,
+    "overall_pct": 35.7
+  },
+  "seconds_elapsed": 2264,
+  "seconds_remaining": 8536,
+  "recent_lines": [
+    "Drive/reward-balance approach-weighting sweep (4 drive arms + 2 anchors x 3 seeds; P0=200, P1=90, P2_eval=20, steps=200, dry_run=False)",
+    "Seed 42 Condition random_walk",
+    "verdict: PASS (anchor=random_walk seed=42 forage/ep=0.4 survival=12.4)",
+    "Seed 43 Condition random_walk",
+    "verdict: PASS (anchor=random_walk seed=43 forage/ep=0.2 survival=10.9)",
+    "Seed 44 Condition random_walk",
+    "verdict: PASS (anchor=random_walk seed=44 forage/ep=0.2 survival=11.2)",
+    "Seed 42 Condition greedy_oracle",
+    "verdict: PASS (anchor=greedy_oracle seed=42 forage/ep=6.75 survival=22.0)",
+    "Seed 43 Condition greedy_oracle",
+    "verdict: PASS (anchor=greedy_oracle seed=43 forage/ep=6.2 survival=20.7)",
+    "Seed 44 Condition greedy_oracle",
+    "verdict: PASS (anchor=greedy_oracle seed=44 forage/ep=6.05 survival=20.95)",
+    "Seed 42 Condition A0_default_balance",
+    "[train] balance seed=42 phase=P0 ep 25/290",
+    "[train] balance seed=42 phase=P0 ep 50/290",
+    "[train] balance seed=42 phase=P0 ep 75/290",
+    "[train] balance seed=42 phase=P0 ep 100/290",
+    "[train] balance seed=42 phase=P0 ep 125/290"
   ],
-  "runner_pid": 746,
-  "runner_version": "r3716 e7aef74 2026-07-10 (running r3713 e2141de)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 745,
+  "runner_version": "r3718 44adafc 2026-07-10 (running r3716 e7aef74)",
   "gpu": {
     "available": false
   },
