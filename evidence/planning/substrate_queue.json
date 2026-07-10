@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
-  "last_updated_utc": "2026-07-10T19:22:41Z",
+  "last_updated_utc": "2026-07-10T19:47:15Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -890,6 +890,7 @@
       "last_seen_session": "governance-2026-04-24T08:10",
       "priority": 2,
       "ready": false,
+      "node_class": "complicated (buildable)",
       "sd_id": "SD-026",
       "title": "attention.prospective_precision_write_channel",
       "unblocks_claims": [
@@ -974,6 +975,7 @@
       "last_seen_session": "implement-substrate-sd031-comparator-zworld-20260606T1327Z",
       "priority": 3,
       "ready": false,
+      "node_class": "puzzle (known rules)",
       "ready_blocked_by": "discriminative/attribution validation gated on world_dim>=128 AND ARC-065 behavioral diversity (failure_autopsy_zworld-integration-cluster_2026-06-06); substrate landed, validation experiment not yet queued",
       "sd_id": "SD-031",
       "status": "implemented",
@@ -1549,6 +1551,7 @@
       },
       "priority": 1,
       "ready": false,
+      "node_class": "complicated (buildable)",
       "sd_id": "MECH-269b",
       "status": "implemented",
       "title": "Symmetric V_s gating on E1 sensory predictor and E2 forward models",
@@ -2284,6 +2287,7 @@
       },
       "priority": 1,
       "ready": true,
+      "node_class": "puzzle (known rules)",
       "sd_id": "MECH-295",
       "status": "implemented",
       "title": "Drive -> liking-stream -> approach cue bridge (weak reading)",
@@ -4581,6 +4585,7 @@
       "title": "CRF availability maintenance: hold a differentiated rule's availability across sparse-matching / context-absent ticks (activity-silent synaptic trace) + redefine the readiness readout to the maintained pool so a differentiated pool also persists [666a amend: maintenance confirmed functional, ready-gate re-stated on crf_frac_maintained -> V3-EXQ-666b]",
       "status": "READY 2026-06-19: CRF-GATE CALIBRATION AMEND VALIDATED. The amend landed 2026-06-17 (ree-v3 main 42895f6, ungated from GAP-A); V3-EXQ-654f (the 654e re-queue after the 654e phantom-completion, ran 2026-06-18T00:52Z) CLEARED the C1c crf_frac_active>=0.30 gate-firing precondition on all 3 ARM_ON seeds (crf_frac_active 0.869/0.968/0.828 vs 0.0 on ARM_OFF; crf_mean_n_matched 2.18-3.81 vs 654d's gated-out 7-8). The substrate amend's job -- make the maintained differentiated pool clear the conflict gate -- is DONE; ready flipped True 2026-06-19. The residual conversion ceiling (654f's C2 committed-class-entropy DV was non_contributory) is NOT a fault of this substrate -- it is the GAP-A/F-dominance selection-conversion question now owned by the GAP-B falsifier V3-EXQ-654g (queued+claimed ree-cloud-4 2026-06-19T14:20Z, ported onto the 569i top-k shortlist conversion config), not a further CRF amend. PRIOR (pre-654f) re-queue dependency context: CORRECTED re-queue dependency (was the stale 654c reading 'gate 654d behind GAP-A context de-collapse'): failure_autopsy_V3-EXQ-654d_2026-06-16 (confirmed) PROVED GAP-A de-collapse is the WRONG lever -- 654d armed an equivalent de-collapse (ARM_STD_G2) and recorded crf_mean_n_matched 7.08/7.29/8.70, and crf_frac_active stayed EXACTLY 0.0 on all 3 ARM_ON seeds EVEN on the seeds where consumed_summary divergence cleared the 0.05 floor; the gate-lockout is INDEPENDENT of GAP-A (consumed_summary = cross-candidate E3 channel; n_matched = cross-rule CRF context-match key; different vectors/loci). Root cause: theta=0.15+0.25*(n_matched-1); at n_matched~7-8 theta~=1.65 >> maintenance_floor 0.45 -> every matched rule gated out. THE AMEND (3 no-op-default levers under mature_pool_dynamics, bit-identical OFF; ree-v3 contracts C20-C24 + activation smoke PASS, frac_active 0.000->0.98 on the crowded maintained pool): mature_context_match_threshold (FAULT 1: sharpen gate cutoff -> n_matched ~2-3) + tolerance_conflict_cap (FAULT 2a: theta<1.0) + maintenance_couple_to_theta (FAULT 2b: floor maintained avail to max(floor, theta+eps) so the maintained differentiated pool clears the gate). V3-EXQ-654e arms 0.7/3/True with the C1c crf_frac_active>=0.30 self-routing readiness gate; ready flips True on 654e PASS. MECH-309/ARC-062/ARC-063 unweakened (654d was non_contributory). | 2026-06-19 UPDATE: V3-EXQ-654g RAN (the GAP-B falsifier on the de-locked CRF + 569i top-k stack) -- C1 fully met (crf_frac_active 0.94, propagation non-vacuous) CONFIRMING the CRF amend is DONE; C2 non_contributory (committed-class lift +0.011 nats, 0/3 seeds). The residual is the shared MECH-439 F-dominance conversion ceiling (2nd channel after 485h OFC), NOT a CRF fault. This substrate entry is complete; no further CRF amend owed.",
       "ready": true,
+      "node_class": "complex (probe-gated)",
       "design_doc": "REE_assembly/docs/architecture/arc_063_candidate_rule_field.md (CRF conflict-gate calibration amend section, 2026-06-17; + availability-maintenance amend section, 2026-06-11)",
       "depends_on_unresolved": [],
       "depends_on_resolved": [
@@ -4888,6 +4893,7 @@
         "decommit_release_duration_face": "460-lineage readiness diagnostics also ran: v3_exq_460h_sd034_decommit_refractory_independent_20260620T014714Z_v3 (2026-06-20 FAIL/substrate_not_ready_requeue, confirmed failure_autopsy_V3-EXQ-460h_2026-06-20) + v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier_20260621T023222Z_v3 (2026-06-21 FAIL/substrate_not_ready_requeue). Readiness gate still unmet; see commitment-closure-control-plane entry."
       },
       "ready": false,
+      "node_class": "complex (probe-gated)",
       "ready_blocked_by": "RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T0639Z) and MECH-449 (Go/No-Go; V3-EXQ-689g RAN PASS 2026-06-21, promoted governance 2026-06-22). depends_on_unresolved was [V3-EXQ-689g falsifier run], which has now SCORED -> emptied. NO NEW BUILD is owed on this entry (confirmed failure_autopsy_V3-EXQ-713_2026-07-05: the cross-loop-arbitration-REWEIGHTING route is exhausted and conversion is a SELECTION-face op -- this entry, MECH-448 -- already lifting on GAP-A). ready stays FALSE because the remaining work is DOWNSTREAM BEHAVIOURAL VALIDATION, not a buildable substrate item. UPDATE 2026-07-08 (substrate-queue reconcile): the named selection-face retests have all RUN and did NOT yet demonstrate the GAP-A lift generalising off the foraging substrate -- 654h (arc_062 GAP-B rule-apprehension) RAN 2026-06-21 FAIL/substrate_not_ready_requeue; 485i (sd033b demotion-enabled) RAN 2026-06-21 FAIL/substrate_not_ready_requeue; 625e (sd037 axis-b P1b) RAN 2026-06-19 FAIL/substrate_not_ready_requeue; 445h (sd032b dACC reef) RAN 2026-05-08 evidence_direction=weakens; all four reviewed. The rung-6 de-commit/release-DURATION face (460-lineage; separately BUILT via the closure-commit-entry primitive) also ran its readiness diagnostics (460h 2026-06-20 + 460i 2026-06-21, both FAIL/substrate_not_ready_requeue) -- readiness gate still unmet. So none of the named runs are 'queued/pending' any longer; what is owed is a FRESH successor validation (a queue/governance decision), not these specific runs. ready stays FALSE (no buildable substrate item owed here). flipping ready=true would misread as 'a build is ready to pick up' when none is owed. This entry is now the campaign CONVERSION ROUTE OF RECORD (arbitration route retired); its forward motion is validation, not construction.",
       "design_doc": "evidence/planning/conversion_ceiling_phase0_synthesis_2026-06-18.md",
       "prong_map": "evidence/planning/conversion_ceiling_prong_map.md",
