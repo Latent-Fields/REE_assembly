@@ -3886,6 +3886,36 @@
     Relevant literature: O'Reilly & Frank 2006 (PBWM), Hazy/Frank/O'Reilly 2007,
     Aron et al. 2007 (STN hyperdirect), Brittain & Brown 2014 (beta oscillations),
     Buckner et al. 2008 (DMN), Crick 1984 / Zikopoulos & Barbas (reticular nucleus).
+    TESTABILITY DEPENDENCY (annotated 2026-07-10, session relaxed-matsumoto-6aef13;
+    PROMOTES NOTHING -- no confidence change, Q-019 stays open/v3_pending). The V3
+    experiment that resolves this open_question ALREADY EXISTS half-built and costs
+    ~zero marginal build: ree-v3/ree_core/predictors/e3_selector.py
+    _segregated_loop_arbitrate (ARC-110) runs three parallel cortico-BG-thalamic loops
+    (motor F / associative / limbic) with cross-loop arbitration + ARC-109 D1/D2 split,
+    and references loop-lesion arms ARM_DROP_LIMBIC / ARM_DROP_* -- those ARM_DROP_* arms
+    ARE Q-019's dissociable-lesion sweep (single-gate arm vs three-gate ARM_DROP_* arms).
+    BLOCKER (shared with the live conversion-ceiling attack): the loops are currently
+    DEGENERATE -- the flat bias-head scalar (per-candidate range ~0) is inert under the
+    per-loop zscore, so the limbic loop carries no per-candidate competition (the
+    V3-EXQ-707 ARM_DROP_LIMBIC==A1 byte-identity, e3_selector.py ~line 1652). That
+    byte-identity IS this claim's non-degeneracy precondition FAILING. F still dominates
+    (MECH-439 single-arena conversion ceiling) and the integrated all-ON agent forages
+    below the 1.0 competence floor (719a/724/732/723a autopsy cluster). The loop-liveness
+    build is tracked as substrate_queue sd_id v4_loop_segregation (owning claim ARC-110,
+    ready:false); MECH-448 selection-face demotion is the current conversion route of
+    record (arbitration-reweighting route 709/711/713 EXHAUSTED per
+    failure_autopsy_V3-EXQ-713_2026-07-05). DO NOT queue the lesion sweep until
+    loop-liveness lands (ARM_DROP_* arms non-degenerate + integrated competence over the
+    1.0 forage floor); a below-liveness result self-routes substrate_not_ready_requeue,
+    NEVER a single-gate/three-gate verdict (mandatory non-degeneracy readiness gate).
+    Two lit-motivated follow-on substrate features (from the 2026-07-10 targeted_review_q_019
+    pull -- indexed, NOT pending_review): (1) a thought-loop maintenance / anti-bleed-back
+    mechanism (Schmitt/Halassa 2017 MD-thalamus analog: E3 currently RECOMPUTES the
+    associative loop at selection and does not HOLD it across steps); (2) an automaticity
+    gradient (Yin/Knowlton/Balleine 2004: over-trained tasks migrate to lower-overhead
+    sensorimotor control with harm-residue re-elevating to E3 oversight -- absent in V3).
+    These tilt the biological prior toward three-gate but are NOT load-bearing for a
+    v3_pending open_question; only the V3 lesion experiment resolves Q-019.
   depends_on:
     - MECH-057a
     - MECH-059
