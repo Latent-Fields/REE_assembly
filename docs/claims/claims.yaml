@@ -24255,7 +24255,124 @@
     (implement-substrate): L2-normalize the projections (cosine InfoNCE)
     -> loss drops to 0.65-0.80 of chance, binder_converged=True; retest
     V3-EXQ-725a HARD-gated on convergence. Not a status change.
+
+    V3-EXQ-725a (2026-07-10, diagnostic, non_contributory): the converged
+    learned binder was tested. Coherence-SPECIFICITY did NOT clear the gate
+    (SPEC 1/6, gate 4/6; divergence reproduced by a contrast-matched shuffle
+    -> settled NO-CLAIM on the coherence_nonreducibility Q; formal-import
+    caution vindicated), and the converged learned binder UNDERPERFORMED the
+    fixed-field peak (720 3/6). The one decoupled positive: rebinding-under-
+    perturbation is now positively exercised at the substrate --
+    n_rebind_total=1676 across 6 seeds via cross_stream_binder.rebinding_probe
+    (0 in every predecessor 641/641a/720; vacuous in 725). Salvaged to the
+    entity-layer rebinding sibling MECH-456 (candidate). Descriptive, NOT a
+    confidence move (claim_ids=[]); MECH-270 stays candidate/v3_pending.
   location: docs/architecture/hippocampal_anchor_selection.md
+
+- id: MECH-456
+  title: "Entity binding is continuously re-evaluated, not fixed: an established self-anchor <-> world-configuration binding is re-bound to a competing configuration when that competitor overtakes the currently-bound one under perturbation of the shared anchor. Rebinding is the ENTITY-LAYER analogue of MECH-269(b) anchor-reset -- it operates over self<->world-config bindings rather than proposer stream-anchors. The rebinding trigger is prediction-error / competitor-overtake driven (object-file updating; serial-dependence hysteresis; PE-driven perceptual switching), NOT a coherence-specific selection factor C(tau) (that coherence-SPECIFICITY question is settled NO-CLAIM by V3-EXQ-725a and is explicitly excluded from this claim)."
+  claim_type: mechanism_hypothesis
+  subject: entities.rebinding_under_perturbation
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: 2026-07-10
+  depends_on:
+    - ARC-006   # entities are sparse, persistent, bindable structures (the binding this re-evaluates)
+    - INV-002   # coherence includes temporal/phase binding (the coherence a binding maintains)
+    - MECH-045  # object-file persistence (the buffer whose binding is re-evaluated)
+    - MECH-269  # proposer anchor-reset -- the sibling mechanism at a DIFFERENT locus (stream-anchor, not entity binding)
+    - MECH-270  # ephaptic verisimilitude readout (the binder substrate the rebinding probe reads)
+  functional_restatement: >
+    Mechanism hypothesis (entity-binding layer). ARC-006 asserts entities
+    are bindable/persistent and INV-002 that coherence includes temporal
+    binding, but neither names the DYNAMIC: what happens when the currently-
+    bound configuration stops being the best-supported one. MECH-456 asserts
+    that binding is maintained-not-intrinsic -- the binder monitors competing
+    world-configurations against the current binding and re-binds when a
+    competitor overtakes under perturbation of the shared anchor (z_self).
+
+    Distinct from MECH-269(b). MECH-269(b) anchor-reset selects which LATENT
+    STREAM anchors the proposer's rollout (mark_inactive + seek_new_anchor
+    when effective verisimilitude drops). MECH-456 operates one layer over:
+    which WORLD-CONFIGURATION is bound to the self-anchor. Same abstract
+    mechanism (drop the current bound thing when a competitor becomes better),
+    different locus; wired via depends_on, not a replacement.
+
+    Biological grounding (non-formal-import). Object-file updating / reviewing
+    (Kahneman/Treisman/Gibbs 1992; Sasi 2022): object correspondence is
+    actively re-linked across time and perceptual gaps. Serial-dependence /
+    illusory stability (Manassi & Whitney 2022): an online hysteresis biases
+    the percept toward the recent past -- the stability counterweight rebinding
+    must overcome, motivating a threshold rather than chatter. Prediction-error-
+    driven switching (Weilnhammer 2017 bistable perception; Cole 2024 ACC PE
+    drives single-trial state-switching): the competitor overtakes when the
+    current config accrues prediction-error. Latent-cause inference (Gershman
+    2010/2017): switch causes when the current one stops explaining the data.
+    This grounding rests on E(tau) / stability machinery, NOT the coherence-
+    C(tau) formal import that V3-EXQ-725a settled -- so MECH-456 does NOT
+    inherit the formal-import caution.
+
+    Substrate status. ALREADY BUILT + CONVERGED: the learned
+    cross_stream_binder (ree-v3/ree_core/latent/cross_stream_binder.py) and
+    its rebinding_probe() make the falsifier exercisable. V3-EXQ-725a observed
+    n_rebind_total=1676 across 6 seeds (0 in every predecessor). BUT that is an
+    EXERCISABILITY / non-degeneracy signal (a competitor CAN flip the argmax
+    under anchor perturbation -- near-guaranteed for a trained bilinear scorer),
+    NOT yet a demonstration that rebinding does behavioural work. The sibling
+    MECH-269(b) precedent is load-bearing here: V3-EXQ-478/480 showed anchor
+    resets fire abundantly (63/31 per seed) but freeze_recommit_count was
+    bit-identical OFF=ON -- abundant rebinding events with no behavioural
+    consequence read as inconclusive, not support. Promotion of MECH-456 is
+    therefore gated on a FUNCTIONAL test, not on n_rebind > 0.
+  what_would_answer: >
+    A V3 experiment on the converged learned cross_stream_binder in which the
+    environment presents a genuine competing-configuration overtake (the
+    world-config that best matches the agent's realized situation changes
+    mid-episode) must show BOTH: (1) the binder re-binds to the newly-correct
+    configuration -- rebinding tracks the TRUE competitor, not arbitrary anchor
+    noise, measured by rebinding-alignment-with-ground-truth above a shuffle
+    control; AND (2) a behavioural / competence consequence -- rebinding-ON
+    produces a downstream outcome difference (e.g. faster re-acquisition,
+    fewer stale-binding errors) vs a rebinding-frozen arm, using a GRADED,
+    non-saturating metric (per the V3-EXQ-725a frac_state_div saturation note).
+    Unsupported if rebinding events fire but are bit-identical OFF=ON on the
+    behavioural DV (the MECH-269(b) V3-EXQ-478 inert-reset signature), OR if
+    rebinding does not track the true competitor above the shuffle control
+    (arbitrary anchor-sensitivity, not functional rebinding).
+  notes: >
+    Registered 2026-07-10 via /claim-synthesis, salvaged from
+    failure_autopsy_V3-EXQ-725a_2026-07-10 as the one decoupled positive of
+    the 641a->720->725->725a coherence-nonreducibility lineage. Explicitly
+    DECOUPLED from the coherence-SPECIFICITY question (candidate Q
+    entities/selection.coherence_nonreducibility), which is settled NO-CLAIM by
+    725a (SPEC 1/6; divergence reproduced by a contrast-matched shuffle) and is
+    NOT re-opened by this claim. Origin thought: thought_intake_2026-04-23_
+    binding.md sec 4 candidate MECH ("monitor coherence and rebind when a
+    competing configuration overtakes the current one") -- registered here with
+    the coherence-specific selection factor STRIPPED (settled no-claim) and the
+    trigger re-grounded on prediction-error/competitor-overtake biology.
+  evidence_quality_note: >
+    Candidate, no functional experimental support yet. Substrate BUILT +
+    CONVERGED (learned cross_stream_binder; rebinding_probe). V3-EXQ-725a
+    (2026-07-10, diagnostic, claim_ids=[], non_contributory): rebinding
+    positively EXERCISED (n_rebind_total=1676 across 6 seeds; 0 in all
+    predecessors 641/641a/720; vacuous in 725) -- an exercisability /
+    non-degeneracy result, NOT weighted as confidence and NOT a functional
+    demonstration. Lit grounding (2026-07-10 /claim-synthesis pull, biology
+    NON-formal-import): Kahneman/Treisman/Gibbs 1992 + Sasi 2022 (object-file
+    updating/reviewing); Manassi & Whitney 2022 (serial-dependence / illusory
+    stability -- hysteresis counterweight); Weilnhammer 2017 (predictive-coding
+    bistable perception) + Cole 2024 (ACC prediction-error drives single-trial
+    switching); Gershman 2010/2017 (latent-cause inference). Promotion requires
+    the what_would_answer FUNCTIONAL test (rebinding tracks the true competitor
+    above shuffle AND moves a graded behavioural DV) -- exercisability (n_rebind
+    > 0) is explicitly insufficient per the MECH-269(b) V3-EXQ-478 inert-reset
+    precedent.
+  location: docs/architecture/entities_and_binding.md
 
 - id: MECH-271
   title: "MECH-094's hypothesis tag is realized as differential downstream routing of hippocampal replay, not as a source-side boolean. Anchored replay (trusted starting state, MECH-269) preferentially reaches subiculum -> entorhinal deep layers -> neocortex (E1 consolidation) and lateral PFC (SD-033a viability map); probe replay (low-verisimilitude seed, strengthened tag) preferentially reaches BLA (affective tagging without consolidation) and NAc (curiosity / novelty scaffolding). Tag loss presents as probe content reaching consolidation destinations it should not reach -- an auditable confabulatory-planning signature distinct from psychosis or hallucination."

@@ -6112,6 +6112,15 @@
     "title": "competence_based_intrinsic_motivation / goal_achievement_progress_wanting. A wanting bonus indexed to the agent's RATE-OF-IMPROVEMENT in ACHIEVING its own active goals: per active goal, an EMA of the derivative of goal-achievement competence (success-rate, or 1 - proximity-at-termination) injected as intrinsic wanting alongside MECH-229 VALENCE_WANTING, biasing the agent toward goals it is currently getting BETTER at reaching. This is the SECOND intrinsic-motivation family in Mirolli & Baldassarre (2013) -- COMPETENCE-based IM (reward = progress in achieving a self-generated goal, i.e. improving the agent's SKILLS) -- which REE's registered IM stack (MECH-314 info-gain / MECH-314a novelty / MECH-314c learning-progress, all KNOWLEDGE-based: reward = improving the WORLD MODEL) entirely lacks. Same derivative-not-level discipline as MECH-314c, but the operand is BEHAVIOURAL COMPETENCE, not predictive error.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-456": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "entities.rebinding_under_perturbation",
+    "title": "Entity binding is continuously re-evaluated, not fixed: an established self-anchor <-> world-configuration binding is re-bound to a competing configuration when that competitor overtakes the currently-bound one under perturbation of the shared anchor. Rebinding is the ENTITY-LAYER analogue of MECH-269(b) anchor-reset -- it operates over self<->world-config bindings rather than proposer stream-anchors. The rebinding trigger is prediction-error / competitor-overtake driven (object-file updating; serial-dependence hysteresis; PE-driven perceptual switching), NOT a coherence-specific selection factor C(tau) (that coherence-SPECIFICITY question is settled NO-CLAIM by V3-EXQ-725a and is explicitly excluded from this claim).",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "A V3 experiment on the converged learned cross_stream_binder in which the environment presents a genuine competing-configuration overtake (the world-config that best matches the agent's realized situation changes mid-episode) must show BOTH: (1) the binder re-binds to the newly-correct configuration -- rebinding tracks the TRUE competitor, not arbitrary anchor noise, measured by rebinding-alignment-with-ground-truth above a shuffle control; AND (2) a behavioural / competence consequence -- rebinding-ON produces a downstream outcome difference (e.g. faster re-acquisition, fewer stale-binding errors) vs a rebinding-frozen arm, using a GRADED, non-saturating metric (per the V3-EXQ-725a frac_state_div saturation note). Unsupported if rebinding events fire but are bit-identical OFF=ON on the behavioural DV (the MECH-269(b) V3-EXQ-478 inert-reset signature), OR if rebinding does not track the true competitor above the shuffle control (arbitrary anchor-sensitivity, not functional rebinding).\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7376,7 +7385,7 @@
     "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "MECH-204",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "environment.multi_resource_heterogeneity",
     "title": "Multi-resource heterogeneity: qualitatively distinct resource types (e.g. food / water / novelty) with per-type identity tags, type-specific spawn distributions, type-specific benefit profiles, and a per-axis homeostatic drive system, plus a curriculum-introduction hook. Provides the goal-identity vocabulary the wanting/liking + identity-distinct-goal cohort (MECH-229/230, MECH-117/216, ARC-030/032, Q-030, SD-015 unblock chain) needs to be honestly tested at substrate level, and the substrate scaffold for downstream developmental-schedule work.",

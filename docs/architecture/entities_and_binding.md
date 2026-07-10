@@ -131,6 +131,36 @@ precision‑weighted continuity constraints.
 
 ---
 
+## Rebinding Under Perturbation (MECH-456)
+
+**Claim ID:** MECH-456 (candidate / substrate_conditional / v3_pending, registered 2026-07-10)
+
+Binding is **maintained, not intrinsic**. An established self-anchor ↔ world-configuration
+binding is continuously re-evaluated against competing configurations, and the binder
+**re-binds** to a competitor when that competitor overtakes the currently-bound one under
+perturbation of the shared anchor (`z_self`). This is the **entity-layer analogue** of
+MECH-269(b) anchor-reset: MECH-269(b) selects which latent *stream* anchors the proposer's
+rollout, while MECH-456 operates one layer over — which *world-configuration* is bound to the
+self-anchor. Same abstract mechanism (drop the current bound thing when a competitor becomes
+better), different locus; wired via `depends_on`, not a replacement.
+
+**Trigger is prediction-error / competitor-overtake, NOT coherence-specific.** Grounded in
+object-file updating/reviewing (Kahneman/Treisman/Gibbs 1992; Sasi 2022), serial-dependence
+hysteresis (Manassi & Whitney 2022), and prediction-error-driven perceptual/state switching
+(Weilnhammer 2017; Cole 2024) — E(τ)/stability machinery, not the coherence-`C(τ)` formal
+import. The coherence-**specificity** question is settled NO-CLAIM by V3-EXQ-725a and is
+explicitly **excluded** from this claim.
+
+**Substrate:** ALREADY BUILT + CONVERGED — `ree-v3/ree_core/latent/cross_stream_binder.py`
+(`rebinding_probe`). V3-EXQ-725a observed `n_rebind_total=1676` across 6 seeds (0 in every
+predecessor), but that is an **exercisability** result, not a functional one. Promotion is
+gated on a functional test (rebinding must track the *true* competitor above a shuffle control
+**and** move a graded behavioural DV) — `n_rebind > 0` is explicitly insufficient, per the
+MECH-269(b) V3-EXQ-478 inert-reset precedent. See `docs/claims/claims.yaml` MECH-456
+`what_would_answer` and `evidence/planning/claim_synthesis_rebinding_under_perturbation_2026-07-10.md`.
+
+---
+
 ## Error Ownership
 
 Prediction errors in REE are not global.  
@@ -183,6 +213,9 @@ Open items from preserved sources include entity emergence mechanisms; binding c
 - MECH-044
 - MECH-045
 - MECH-050
+- MECH-456 (rebinding under perturbation; entity-layer sibling of MECH-269(b) anchor-reset)
+- MECH-269 (proposer anchor-reset; the sibling mechanism at the stream-anchor locus)
+- MECH-270 (ephaptic verisimilitude readout; the binder substrate MECH-456's probe reads)
 - ARC-080 (object-representation umbrella; this layer is its representational-substrate dependency)
 
 ## References / Source Fragments
