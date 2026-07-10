@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_570_e2_rollout_collapse_diagnostic
 
-Generated: `2026-07-09T19:00:44.181661Z`
+Generated: `2026-07-10T13:26:58.282090Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
