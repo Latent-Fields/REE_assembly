@@ -831,3 +831,4 @@ One line per hourly tick. ASCII only.
 2026-07-10T15:07:10Z complete IGW-20260710-195 spawned->completed outcome=USEFUL_LANDED: marked EVB-0111/INV-051 blocked_substrate: ecological MEL-producer re-parked (71
 2026-07-10T16:01:32Z reconcile-release hash=3b10a117b16a (IGW-20260710-195 -> completed)
 2026-07-10T16:01:18Z skip IGW-20260710-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-10T17:01:49Z skip IGW-20260710-195: no fresh runner heartbeat (experiment-lane item would just sit in queue)
