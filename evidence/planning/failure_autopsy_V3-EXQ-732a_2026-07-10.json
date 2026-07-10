@@ -1,0 +1,97 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-10T11:53:40Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_732a_policy_learning_discriminator_20260710T103144Z_v3",
+      "queue_id": "V3-EXQ-732a",
+      "supersedes": "V3-EXQ-732",
+      "claim_ids": [],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "readiness_precondition (learner_adequacy_on_sanity_env); discriminator load-bearing criterion consequently not evaluable",
+      "self_routed_label": "substrate_not_ready_requeue",
+      "self_route_is_hypothesis": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a intact (diagnostic, claim_ids=[], no claim tested)",
+        "biological_reference": "partial -- learned local-view sensorimotor foraging vs an omniscient teleport oracle; operative axis is test-design/observability, not biology",
+        "prerequisites": "present -- env solvable with privileged access (real oracle 6.05); obs carries a faint global resource gradient (resource_field_decay=0.5)",
+        "implementation": "adequate -- all four prescribed power-fixes applied (PPO 2000ep ~30x updates on B1+B2; entropy 0.03 + count-based novelty; forage-bonus + running-std reward scaling + advantage norm; learner-adequacy gate)",
+        "environment": "confounded reference -- env solvable by a GLOBAL oracle but that is not solvable by a LOCAL-view policy; the two differ ~50x on the trivial sanity env (57.2 vs 0.7)",
+        "measurement": "design gap (PRIMARY) -- adequacy reference = 0.5 x privileged-global oracle = 28.6 res/ep, structurally unreachable by any 5x5-local-view policy and 28x the discriminator's own 1.0 competence floor -> spurious learner_inadequate flag",
+        "integration": "n/a -- single-arm learners",
+        "scale": "insufficient AND non-monotone -- learner fragile at 30x budget (L0 clears 1.0 floor on 1/3 sanity seeds) -> power is not the remaining lever"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal RPE-driven local-view sensorimotor foraging policy over a partial perceptual field",
+        "dependencies": ["local-view perception", "exploration under partial observability", "competence-based intrinsic motivation (MECH-455)"],
+        "is_formal_import": false,
+        "divergence": "not the operative axis; the failure is a test-power / observability-fairness measurement gap, not a biology divergence",
+        "lit_status": "partial"
+      },
+      "verified_mechanism": {
+        "learner_observation": "5x5 LOCAL view of a 12x12 grid (world_obs_dim = local_view 175 + contamination_view 25 + hazard_field_view 25 + resource_field_view 25); resource_field_view is a 5x5 slice of a shallow global gradient 1/(1+0.5d)",
+        "oracle_access": "_oracle_action (724:570-581) reads env.resources (all global coords), global-nearest by Manhattan distance, optimal step, instant retarget on respawn -- zero exploration cost, no partial observability",
+        "chasm": "sanity env (hazards/reef/contamination OFF): local learner L0 = 0.7 res/ep vs sanity oracle 57.2 = 1.2%; adequacy threshold 28.6 = 28x the 1.0 competence floor"
+      },
+      "reads_adjudicated": {
+        "A_learner_genuinely_weak": "PARTIAL -- even vs a fair 1.0-floor bar L0 clears only 1/3 sanity seeds (0.25/0.55/1.30) at 30x budget; fragility survived the power bump, so power is not the lever",
+        "B_adequacy_gate_miscalibrated": "CONFIRMED (primary) -- 0.5 x privileged-global oracle is unreachable by a local-view policy and 28x the competence floor; learner_adequate=False is untrustworthy (642/732 shape, one level deeper)",
+        "C_partial_observability_leans_H2": "SECONDARY, NON-LICENSING (user-confirmed) -- 57->0.7 caps absolute RATE but B1 seed42=1.00 and B2 seed42=0.95 show the 1.0 floor is near-reachable; does NOT license an observation-encoding build"
+      },
+      "key_numbers": {
+        "real_oracle_res_per_ep_mean": 6.33,
+        "real_oracle_res_per_ep_min": 6.05,
+        "sanity_oracle_res_per_ep_mean": 57.2,
+        "L0_sanity_res_per_ep_mean": 0.7,
+        "L0_sanity_by_seed": [0.25, 0.55, 1.30],
+        "L0_n_adequate_seeds_vs_28p6": 0,
+        "L0_n_clears_1p0_floor": 1,
+        "B0_res_per_ep": 0.20,
+        "B1_res_per_ep_mean": 0.65,
+        "B1_by_seed": [1.00, 0.75, 0.20],
+        "B2_res_per_ep_mean": 0.316667,
+        "B2_by_seed": [0.95, 0.00, 0.00],
+        "competence_floor": 1.0,
+        "adequacy_threshold": 28.6
+      },
+      "recommended_epistemic_category": "test_design_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-732a power-fixed policy-learning discriminator (diagnostic, claim_ids=[], non_contributory -- promotes/demotes nothing; supersedes V3-EXQ-732). Applied all four 732-autopsy power-fixes (PPO 2000ep ~30x updates on B1+B2; entropy 0.03 + novelty; forage-bonus + reward-std scaling; a learner-adequacy gate). Self-routed substrate_not_ready_requeue because the NEW learner-adequacy gate failed (L0 vanilla PPO on the trivial sanity env = 0.7 res/ep, 0/3 seeds >= the 0.5x sanity-oracle=28.6 threshold). Autopsy failure_autopsy_V3-EXQ-732a_2026-07-10 finds the gate MIS-CALIBRATED: its reference is the PRIVILEGED-GLOBAL oracle (_oracle_action reads all resource coords + teleport-beelines) while the learner sees only a 5x5 LOCAL view -- no local-view policy can reach 50% of a global-omniscient oracle, and 28.6 is 28x the discriminator's own 1.0 competence floor on an EASIER env. Learner is also genuinely fragile (clears the 1.0 floor on only 1/3 sanity seeds even at 30x budget), so more power is not the lever. Read that partial-observability leans H2 recorded as secondary/non-licensing (B1 & B2 both ~1.0 on seed 42 -> the 1.0 floor is near-reachable; not a structural observation ceiling). 4th diagnostic (719a->724->732->732a) bottoming out on the same observability-confounded competence floor; 732's autopsy pre-registered THIS recurrence as the terminal signal (NOT another power bump). REFUSES a V3-EXQ-732b same-question re-queue. Routed to /governance for a WS-1 re-operationalization: (ii) replace the adequacy reference with a local-view-achievable ceiling (never the global oracle), and (iii) re-pose the competence-floor probe so it is not observability-confounded (give the floor control the learner's 5x5 view, or move the adequacy bar into WS-2's V3-EXQ-727 yardstick). No substrate_queue write (recommended_substrate_queue_entry.action=none) -- no H1/H2 target confirmed. Brake-exempt at the claim level (claim_ids=[]); refusal of (i) comes from the autopsy-stream recurrence.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Neither H1 (action/policy substrate) nor H2 (observation encoding) is confirmed -- the discriminator could not read because the adequacy reference is observability-unfair. No substrate should be queued until the competence question is re-operationalized fairly. The build target is exactly what a fairly-operationalized probe would decide."
+      },
+      "ws1_reoperationalization": {
+        "refused_route_i": "V3-EXQ-732b same-question power bump -- forbidden by 732's pre-registration; power shown non-load-bearing (L0 fragility survived 30x updates)",
+        "route_ii_fair_reference": "adequacy/competence reference MUST be a local-view-achievable ceiling (strong local-view learner asymptote OR a local-view heuristic forager seeing only the 5x5 window); the global _oracle_action stays a floor-achievability control ONLY, never a learner-adequacy denominator",
+        "route_iii_target_pivot": "re-pose the competence-floor probe so it is not observability-confounded: (a) give the floor-achievability control the learner's 5x5 view so 'floor' = local-view-reachable, or (b) move the adequacy bar into WS-2's capability-yardstick V3-EXQ-727 and make its bar local-view-fair",
+        "decision_owner": "governance + user (WS-1 plan-of-record in ree_ai_design_critique_plan.md)"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "claim_keyed_counter": 0,
+        "reason_not_fired_mechanically": "claim_ids=[] -- no claim accumulates substrate_ceiling/non_contributory autopsies, so the claim-keyed counter is 0",
+        "autopsy_stream_recurrence": true,
+        "recurrence_chain": ["failure_autopsy_V3-EXQ-719a_2026-07-08", "failure_autopsy_V3-EXQ-724_2026-07-09", "failure_autopsy_V3-EXQ-732_2026-07-10", "failure_autopsy_V3-EXQ-732a_2026-07-10"],
+        "recurrence_count": 4,
+        "refused_requeue": true,
+        "refused_requeue_id": "V3-EXQ-732b",
+        "route_to": "governance (WS-1 re-operationalization)",
+        "note": "Claim-keyed brake does not fire on a pure-diagnostic (claim_ids=[]) chain; the equivalent signal is the 4th-diagnostic autopsy-stream recurrence on the same competence floor, which 732 pre-registered as terminal. Same-question re-queue refused in the brake's spirit."
+      },
+      "learning_extracted": [
+        "A readiness gate is only as fair as its reference frame -- 732a's learner-adequacy gate referenced a privileged-global oracle and became the new spurious precondition (642/732 shape one level deeper).",
+        "'Oracle clears the floor' proves ENV-achievability, not OBSERVATION-achievability; the 57->0.7 sanity gap is mostly privileged access, not policy skill. Floor-achievability controls and learner-adequacy references must not share the same privileged denominator.",
+        "When power is bumped 30x and the result does not move (L0 still 1/3 seeds), power was not the lever -- a 5th bump is predictably futile.",
+        "A diagnostic chain that keeps resolving sub-forks without reaching a verdict is mis-posed, not under-powered -- re-pose the question (observability-fair), do not re-run it harder.",
+        "The re-derive brake's claim-keyed counter has a blind spot for claim_ids=[] diagnostics; an autopsy-stream recurrence counter keyed on bears_on/work-stream would catch pure-diagnostic loops."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
