@@ -1,0 +1,98 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-10T06:33:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_538a_sd049_phase2_with_sleep_20260710T035148Z_v3",
+      "queue_id": "V3-EXQ-538a",
+      "claim_ids": ["SD-049", "SD-015", "SD-017", "MECH-229", "MECH-230"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C4 sleep-lift on neighborhood probe = -0.001 (floor 0.10); C3a neighborhood>=0.60 also false (0.443/0.516). But the discrimination metric is starved -- see measurement layer.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (untested) -- waking pass never encoded consumption-identity; sleep cannot consolidate the absent representation",
+        "biological_reference": "clear -- sleep consolidation is downstream of waking encoding (Lansink 2009/Stickgold 2013/Walker 2017); FAIL matches missing-dependency signature, weak positive for encoding-precedes-consolidation",
+        "prerequisites": "missing -- foraging-competence on the 3-type SD-049 reef substrate (goal_pipeline:GAP-2); ARM_2 contact-rate gap open per 693a",
+        "implementation": "complete -- SWS/REM writes fire (160/40); sleep substrate is not the gap",
+        "environment": "too sparse -- ~0.4% consumption rate starves the identity pathway at training and eval",
+        "measurement": "under-instrumented/misleading -- consumption probe n=45-72 (chance-straddling noise), classifier ~30-50 updates, seed-44 truncation (1088-1364 vs 9000 prox updates)",
+        "integration": "isolated -- sleep runs but downstream consolidation target is absent",
+        "scale": "adequate on 2 seeds; seed 44 degenerate (12-15% of steps, peak drive ~0.11 vs 0.45)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal SWR replay + REM-dependent schema consolidation of consummatory/identity experience",
+        "dependencies": ["waking foraging/consumption experience to replay", "populated identity encoding during the waking pass"],
+        "is_formal_import": false,
+        "divergence": "none -- SD-017 is biologically well-grounded; the failure is environment/measurement starvation, not a formal-import divergence. Consolidation-downstream-of-encoding is honored, not violated.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-049": "non_contributory",
+        "SD-015": "non_contributory",
+        "SD-017": "non_contributory",
+        "MECH-229": "non_contributory",
+        "MECH-230": "non_contributory"
+      },
+      "overrides_manifest_self_declared": {
+        "manifest_top_level": "weakens",
+        "manifest_per_claim": {"SD-049": "supports", "SD-015": "weakens", "SD-017": "supports", "MECH-229": "non_contributory", "MECH-230": "non_contributory"},
+        "reason": "Top-level 'weakens' is the crude FAIL->weakens script default. SD-049 'supports' rides the noise-dominated C3b OR; SD-017 'supports' is SWS/REM-write liveness only (vacuous). User-adjudicated 2026-07-10: all five non_contributory; SD-017 stays stable/unchanged."
+      },
+      "recommended_evidence_quality_note": "2026-07-10 (failure_autopsy_V3-EXQ-538a, confirmed): V3-EXQ-538a (SD-049 Phase-2 reef behavioural validation, sleep-on ablation; supersedes the 538 SIGTERM) FAILed on C4 (sleep lift over ARM_0 on the neighborhood probe = -0.001) and self-declared weakens. Re-tagged non_contributory / substrate_ceiling / pending_retest_after_substrate for all five tagged claims. The run re-ran the pre-enrichment 514f reef config (classifier_loss_weight=0.1, ~0.4% consumption): the identity classifier gets only ~30-50 gradient updates over 9,000 steps and the consumption probe is starved (n=45-72), so the waking pass never encoded consumption-identity for sleep to consolidate. Sleep substrate fired (SWS/REM writes 160/40) but has nothing to etch -- a missing-dependency signature (consolidation is downstream of encoding; Lansink/Stickgold/Walker), not a falsification. 514m already recovered identity to probe 0.926 (n=3,455) with sleep OFF once foraging-competence was scaffolded, so the sleep hypothesis targeted a symptom of the wrong root cause. Seed 44 was a truncated run (12-15% of steps). The manifest's per-claim 'supports' for SD-049 (noise-OR C3b) and SD-017 (SWS/REM-write liveness) are vacuous and NOT counted; SD-017 stays stable/unchanged (its genuine support is V3-EXQ-691). Re-derive brake fired (4th substrate_ceiling autopsy for SD-049, 5th for MECH-229): route to /implement-substrate on the 3-type ARM_2 foraging-contact gap (SD-049-PHASE-2 / scaffolded_sd054_onboarding, same track as the 693a failure record); REFUSE a same-config SD-049-Phase-2 sleep re-queue.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-049-PHASE-2",
+        "sd_id_suggested": "SD-049-PHASE-2",
+        "title": "3-type ARM_2 foraging-competence / consumption-floor for SD-049 Phase-2 identity + sleep-consolidation tests",
+        "implementation_hint": "Same 3-type foraging-contact ceiling already recorded via 693a on scaffolded_sd054_onboarding: the SD-049 3-type reef primary arm cannot reach a consumption rate that populates the identity pathway (~0.4% consumption -> ~30-50 classifier updates over 9,000 steps). Until ARM_2 3-type behav_contact_rate clears a consumption floor on >=2/3 seeds, neither the identity-discrimination criteria NOR any sleep-consolidation test can be scored. Govern this 538a record onto the existing SD-049-PHASE-2 / scaffolded_sd054_onboarding foraging-competence track; do not create a duplicate entry.",
+        "unblocks_claims": ["SD-049", "SD-015", "MECH-229", "MECH-230"],
+        "depends_on_unresolved": ["goal_pipeline:GAP-2 foraging contact on the 3-type SD-049 substrate"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_538a_sd049_phase2_with_sleep_20260710T035148Z_v3",
+          "experiment_type": "v3_exq_538a_sd049_phase2_with_sleep",
+          "metric": "identity classifier ~30-50 updates over 9,000 steps (~0.4% consumption); consumption probe n=45-72 (non-monotone 0.286/0.433/0.139, chance ~0.33); sleep lift on neighborhood probe = -0.001 -> sleep-on cannot rescue a starved identity pathway",
+          "target": "3-type ARM_2 behav_contact_rate above the consumption floor on >=2/3 seeds so the identity pathway is populated (waking) before any sleep-consolidation ablation is scored; then a NEW-EXQ sleep test on the scaffolded substrate is brake-exempt"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-514l_2026-06-03",
+          "failure_autopsy_V3-EXQ-693_2026-06-20",
+          "failure_autopsy_V3-EXQ-693a_2026-06-21"
+        ],
+        "prior_substrate_ceiling_autopsies_mech229": [
+          "failure_autopsy_V3-EXQ-514l_2026-06-03",
+          "failure_autopsy_V3-EXQ-514m_2026-06-11",
+          "failure_autopsy_V3-EXQ-514p_2026-06-15",
+          "failure_autopsy_V3-EXQ-514q_2026-06-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-049-PHASE-2",
+        "note": "538a re-ran the pre-enrichment 514f reef config, not the ready scaffolded_sd054_onboarding substrate. User-adjudicated 2026-07-10: do NOT pre-authorize a redesigned sleep test now; a new-EXQ different-substrate sleep design is brake-exempt only AFTER the 3-type ARM_2 foraging-contact gap is built."
+      },
+      "learning_extracted": [
+        "The 514f->538a sleep hypothesis was a misdiagnosis: the classifier divergence was foraging-competence starvation, not missing offline consolidation.",
+        "Identity recovery does not need sleep once foraging-competence exists (514m probe 0.926, n=3,455, sleep OFF).",
+        "Well-powered != claim-relevant: the C4 neighborhood null (~9k samples) is a clean null of a mis-specified intervention on an untrained substrate.",
+        "Manifest self-declared directions are unreliable: top-level weakens contradicts per-claim; SD-049/SD-017 'supports' are vacuous (noise-OR / sleep-write liveness).",
+        "Seed-44 truncation (early episode death ~step 40) is a recurring per-seed instability on this reef config."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "SD-049 Phase-2 identity-discrimination on the 3-type reef substrate: substrate liveness passes (encoder/cascade/sleep all fire) but the consumption-identity pathway is starved (~0.4% consumption), so every discrimination criterion fails or is noise. 538a adds the sleep axis and confirms sleep cannot rescue a starved pathway.",
+    "is_independent_bugs": false,
+    "structural_property": "The substrate has the wiring the claims assert (z_resource encoder, identity head, SWS/REM consolidation) but does not carry consumption-identity information at the sampling density the claims require, because foraging-competence on the 3-type reef substrate is below the consumption floor. This is the same ceiling diagnosed in 514l/693/693a; 538a is a same-granularity re-derive against it, on a stale pre-enrichment config.",
+    "readings": ["substrate_ceiling (foraging-competence starvation)", "mis-specified-intervention (sleep aimed at the wrong root cause)"]
+  }
+}
