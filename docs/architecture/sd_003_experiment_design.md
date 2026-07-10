@@ -7,9 +7,17 @@ status_claim: SD-003
 
 # SD-003 Self-Attribution Experiment Design
 
-**Status:** Active design — substrate ready, experiments pending (EXQ-027, EXQ-028)
+> **SUPERSEDED 2026-04-18 by MECH-256 + SD-029.** This two-pass counterfactual
+> experiment design is no longer the active path. The self-attribution mechanism is
+> now MECH-256 (general single-pass forward-model comparator) with SD-029 as the
+> concrete `z_harm_s` instantiation, after 28 FAILs accumulated across V2+V3 with no
+> PASS on the two-pass architecture (see the SD-003 `supersession_note` in
+> `docs/claims/claims.yaml`). This doc is retained as historical design record only.
+> Governance status is carried by the `status:` frontmatter / claims.yaml.
+
+**Historical design (superseded):** two-pass counterfactual self-attribution.
 **Date:** 2026-03-14
-**Depends on:** EXQ-018 PASS (CausalGridWorld baseline — SD-003 substrate validation)
+**Depended on:** EXQ-018 PASS (CausalGridWorld baseline — SD-003 substrate validation)
 
 ---
 

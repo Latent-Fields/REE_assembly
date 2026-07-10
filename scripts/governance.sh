@@ -171,12 +171,15 @@ echo "--- Step 9b: Stamp claims.yaml-derived status frontmatter on architecture 
 # so the pair composes either way). Idempotent; PROMOTES/DEMOTES NOTHING.
 "$PYTHON" docs/apply_status_frontmatter.py
 
-echo "--- Step 9c: Claims-doc status drift check (warn-only) ---"
+echo "--- Step 9c: Claims-doc status drift check (blocking gate: --strict) ---"
 # Mirror of the closure-plan drift check (Step 3c), for the doc-status plane: flags docs
 # whose status has fallen out of step with claims.yaml (hard frontmatter drift, plus soft
-# review buckets for residual hand-line contradictions). Warn-only here (|| true); run
-# `python scripts/claims_doc_drift.py --strict` for a blocking gate once the backlog clears.
-"$PYTHON" scripts/claims_doc_drift.py || true
+# review buckets for residual hand-line contradictions). Promoted to a blocking gate
+# 2026-07-10 once the REVIEW backlog cleared (SHP-5): --strict exits 1 on HARD frontmatter
+# drift only (frontmatter != claims.yaml-derived), which aborts the pipeline under
+# `set -e`. The soft REVIEW/INFO buckets never fail --strict; they stay report-only in
+# evidence/planning/claims_doc_drift.md.
+"$PYTHON" scripts/claims_doc_drift.py --strict
 
 echo "--- Step 10: Refreshing the goblin tale's campaign stanza (from closure snapshot) ---"
 # Updates ONLY the CAMPAIGN_STATE marker block in docs/ree_for_my_parents.md

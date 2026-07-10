@@ -6,8 +6,8 @@ status_claim: SD-063
 
 # SD-063 — E2 conditional predictive-uncertainty head
 
-**Claim:** SD-063 (design_decision, candidate, implementation_phase v3, v3_pending)
-**Status:** IMPLEMENTED 2026-07-05 (substrate built, disabled-by-default; v3_pending until the V3-EXQ-716 validation falsifier scores — PROMOTES NOTHING)
+**Claim:** SD-063 (design_decision, implementation_phase v3)
+**Substrate:** built 2026-07-05, disabled-by-default; the V3-EXQ-716 validation falsifier gates any promotion — PROMOTES NOTHING. Governance status is carried by the `status:` frontmatter / claims.yaml.
 **Instantiates:** MECH-059 (confidence channel distinct from residual error)
 **Depends on:** MECH-059, SD-031
 **Motivating diagnostic:** `v3_exq_712_distributional_world_forward_heads_20260704T014207Z_v3`

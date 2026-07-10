@@ -12,7 +12,11 @@ status_claim: SD-035
 
 **Claim ID:** SD-035 (substrate) + MECH-046 (CeA mode prior) + MECH-074 parent + MECH-074a-d (split children)
 **Subject:** `amygdala.analog_substrate`
-**Status:** candidate, v3_pending — NOT YET IMPLEMENTED
+**Substrate:** the BLAAnalog + CeAAnalog modules this doc designs have since been
+built (`ree-v3/ree_core/amygdala/bla.py`, `cea.py`, wired in `agent.py`). The
+present-tense "Problem" section below is the original as-designed framing (registered
+2026-04-21), predating that implementation. Governance status is carried by the
+`status:` frontmatter / claims.yaml.
 **Registered:** 2026-04-21
 **Depends on:** SD-011, SD-032a, ARC-005, ARC-007, MECH-039
 **Paired with:** SD-032 (cingulate integration) — SD-035 is the missing upstream stage that feeds SD-032a

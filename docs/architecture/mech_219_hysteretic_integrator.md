@@ -12,8 +12,7 @@ status_claim: MECH-219
 
 **Claim ID:** MECH-219 (`affect.affective_harm_hysteretic_integration`)
 **Unblocks:** SD-019b (`harm_stream.suffering_accumulator`), Q-036
-**Status:** IMPLEMENTED 2026-06-10 (substrate; SD-019b stays `v3_pending` until the
-validation EXQ PASSes)
+**Substrate:** built 2026-06-10 (as-built doc). The SD-019b suffering-accumulator this unblocks stays validation-gated until its EXQ PASSes. Governance status is carried by the `status:` frontmatter / claims.yaml.
 **Depends on:** SD-019a (z_harm_un, the drive input), SD-011 (z_harm_s/z_harm_a),
 SD-022 (body-damage, folded into the drive), SD-058 (escapability source, soft)
 **Plan-of-record (full design rationale):**

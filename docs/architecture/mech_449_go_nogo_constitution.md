@@ -11,7 +11,7 @@ status_claim: MECH-449
 # MECH-449 / ARC-107: Go/No-Go eligibility constitution
 
 **Claim ID:** MECH-449 (subject `selection.go_nogo_eligibility_constitution`)
-**Status:** IMPLEMENTED 2026-06-21 (substrate; `candidate` / `substrate_conditional` — PROMOTES NOTHING; the falsifier gates promotion)
+**Substrate:** built 2026-06-21 (`substrate_conditional`) — PROMOTES NOTHING; the falsifier gates promotion. Governance status is carried by the `status:` frontmatter / claims.yaml.
 **Owns:** the core opponency leg (component 1) of the ARC-107 basal-ganglia E3-selector constitution
 **Depends on:** ARC-107, MECH-448 (the eligibility envelope this governs), MECH-260 (the existing No-Go this generalises), MECH-439, Q-078
 **Grounded under:** ARC-106 (brain-like construction) — grounding synthesis §2.1 (Kravitz 2010 D1/D2 opponency; Mink 1996 focal-go + surround-no-go; Maia & Frank 2011 disorders)

@@ -12,7 +12,7 @@ status_claim: MECH-189
 
 **Claim ID:** MECH-189
 **Subject:** development.super_ordinal_goal_formation
-**Status:** IMPLEMENTED (substrate) 2026-06-09 — v3_pending until the validation EXQ PASSes
+**Substrate:** built 2026-06-09 (as-built doc). Promotion is gated on the MECH-189 validation retest (the V3-EXQ-588 successor with a new letter) — building the substrate PROMOTES NOTHING. Governance status is carried by the `status:` frontmatter / claims.yaml.
 **Registered (substrate doc):** 2026-06-09
 **Closure node:** `infant_substrate:GAP-11` (EXQ-ISEF-002 transient-benefit-patch z_goal seeding)
 **Depends on:** INV-041, SD-016, INV-037, INV-038, MECH-117, MECH-112

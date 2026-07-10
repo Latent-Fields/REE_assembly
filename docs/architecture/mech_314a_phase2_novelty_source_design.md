@@ -10,7 +10,7 @@ status_claim: MECH-314A
 
 # MECH-314a Phase-2 Novelty-Source Architecture Design
 
-**Status:** IMPLEMENTED 2026-06-05 (Candidate 5A). User assent on
+**Build:** IMPLEMENTED 2026-06-05 (design Candidate 5A). User assent on
 Candidate 5A granted 2026-06-05; the implementation landed via the
 `MECH-314a-Phase-2-impl` substrate_queue entry (status
 `implemented_pending_validation`) by session

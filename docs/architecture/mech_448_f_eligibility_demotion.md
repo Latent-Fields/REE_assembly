@@ -13,8 +13,9 @@ status_claim: MECH-448
 **Claim ID:** MECH-448
 **Architecture:** ARC-107 (basal-ganglia-like E3-selector constitution)
 **Subject:** `ethics_engine_3.rank_preserving_f_to_eligibility_demotion`
-**Status:** IMPLEMENTED 2026-06-20 (substrate; MECH-448 stays `candidate` --
-this PROMOTES NOTHING; the 689a-successor falsifier is the next, separate step)
+**Substrate:** built 2026-06-20 — this PROMOTES NOTHING; the 689a-successor
+falsifier is the next, separate step and gates any promotion. Governance status
+is carried by the `status:` frontmatter / claims.yaml.
 **Grounded under:** ARC-106 (brain-like construction); first major worked
 application of the grounding ladder + divergence ledger + ablation falsifier.
 
