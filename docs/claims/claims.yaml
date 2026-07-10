@@ -23050,13 +23050,65 @@
     calibrated against this -- don't expect mode-prior ablation to
     produce clean signals if upstream PE is broken.
   evidence_quality_note: >
-    Registered 2026-04-21 as candidate with v3_pending:true. Eight
-    literature entries seed the config defaults (see
+    Registered 2026-04-21 as candidate with v3_pending:true, seeded by
+    eight literature entries (see
     evidence/literature/targeted_review_amygdala_analog/synthesis.md).
-    Substrate not yet implemented; EXQ-A and EXQ-B not yet queued.
-    Promote off v3_pending only after (a) BLAAnalog + CeAAnalog land,
-    (b) backward-compat smoke test passes bit-identical with flag OFF,
-    (c) EXQ-A and EXQ-B pass their acceptance criteria.
+    The three original promotion criteria were (a) BLAAnalog + CeAAnalog
+    land, (b) backward-compat smoke test bit-identical with flag OFF,
+    (c) EXQ-A + EXQ-B pass acceptance.
+
+    PROMOTION HISTORY (note refreshed 2026-07-10 after an SHP-5
+    claims_doc_drift reconcile flagged this note as still reading its
+    pre-implementation registration text while status=stable). Status
+    is stable / v3_pending:false, and that is supported by the record:
+
+    (a) LANDED. ree_core/amygdala/bla.py + cea.py, wired in
+    ree_core/agent.py + utils/config.py behind use_amygdala_analog
+    (default OFF), both peer modules present.
+
+    (b) BIT-IDENTICAL-OFF verified. V3-EXQ-473 (CeA) and V3-EXQ-474 (BLA)
+    each record c1_backward_compat_entropy_delta = 0.0 across 3 seeds
+    (CEA/BLA_ON_QUIET vs _OFF_QUIET). Now also guarded by standing
+    contracts in ree-v3: tests/test_flag_inertness.py (use_amygdala_analog
+    + use_bla_analog in the PROBED set, probe F-P1) and
+    tests/contracts/test_feature_flag_boot_matrix.py (tpj_and_amygdala row).
+
+    (c) VALIDATION (satisfied, with one proxy caveat). Four reviewed
+    PASS/supports runs (all in review_tracker.json):
+      - V3-EXQ-473 sd035_cea_mode_prior (EXQ-A lineage): CeA fires on
+        threat, mode_prior/fast_prime reach the SalienceCoordinator,
+        |mode_prior| bound respected, MECH-094 simulation gate, tau
+        decay/hold dynamics. Substrate-readiness level.
+      - V3-EXQ-474 sd035_bla_encoding_remap (EXQ-B lineage): inverted-U
+        encoding-gain curve, attribution-gated remap, post-event window
+        monotonicity. Documented caveat: an env.step 5-tuple unpacking bug
+        meant BLA was not exercised in the live loop (bla_n_ticks=0), so
+        C2-C5 are synthetic BLAAnalog.tick() tests; the live-loop
+        threat-context recall half was deferred to V3-EXQ-659.
+      - V3-EXQ-501 sd035_amygdala_analog_vs_binary (2026-04-29,
+        purpose=evidence): behavioural ANALOG vs BINARY_SIGN_ONLY
+        discrimination, PASS x3 seeds on c1 approach/avoid smoothness
+        (RMSE reduction ~0.31 >= 0.25), c2 intermediate-valence
+        discrimination (MAE reduction ~0.58 >= 0.25), and c3
+        mode-transition lag (+1 step). Covers the scientific substance of
+        both falsifiers.
+      - V3-EXQ-659 mech074a_bla_encoding_gain_replay_bias (2026-06-09):
+        PASS/supports for child MECH-074a -- the full-loop BLA
+        encoding-gain follow-up that 474 owed.
+    Governance promotion provisional->stable 2026-04-24: 3 supporting lit
+    entries (Everitt 2003, Ciocchi 2010, Parkinson 2000), lit_conf 0.828.
+
+    PROXY CAVEAT (recorded, not blocking). Criteria (a)+(b) are met
+    directly. Criterion (c) was met by substrate-readiness (473/474) plus
+    a behavioural discriminative run (501) plus the child follow-up (659),
+    rather than by two runs each hitting the literal EXQ-A/EXQ-B wording
+    ("CeA ON beats OFF on mode-switch LATENCY AND zeroed-prior control
+    matches OFF"; "gain improves threat-context RECALL without harming
+    neutral recall in the live loop"). The ON-vs-OFF latency comparison
+    (501 tested ANALOG-vs-BINARY instead) and a single live-loop recall
+    run under EXQ-B were never executed as originally specified. A strict
+    reviewer could re-demand those exact reruns; the 2026-07-10 review
+    judged the scientific intent covered and left status=stable.
   location: docs/architecture/sd_035_amygdala_analog.md
   source:
     - docs/architecture/sd_035_amygdala_analog.md
