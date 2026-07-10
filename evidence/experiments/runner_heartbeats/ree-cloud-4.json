@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-07-10T01:16:01Z",
+  "last_tick_utc": "2026-07-10T01:26:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-732",
   "current_exq_started_utc": "2026-07-09T22:40:42.604139+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / B0_ree_biashead_reinforce_allon",
     "runs_done": 2,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 100,
     "episodes_total": 420,
-    "overall_pct": 22.2
+    "overall_pct": 24.9
   },
-  "seconds_elapsed": 9318,
-  "seconds_remaining": 44720,
+  "seconds_elapsed": 9924,
+  "seconds_remaining": 43199,
   "recent_lines": [
     "Policy-learning discriminator (3 arms x 3 seeds + greedy-oracle positive control; P0=200, P1_B0=90, P1_A2C=200, P2=20, steps=200, oracle_eps=20, dry_run=False)",
     "[oracle] seed=42 mean_resources/ep=6.75 max=24",
@@ -89,7 +89,11 @@
     "[train] localize arm=B0_ree_biashead_reinforce_allon seed=43 phase=P2 ep 309/310",
     "[train] localize arm=B0_ree_biashead_reinforce_allon seed=43 phase=P2 ep 310/310",
     "verdict: PASS (arm=B0_ree_biashead_reinforce_allon seed=43 resources/ep=0.0 supra_floor=False)",
-    "Seed 44 Condition B0_ree_biashead_reinforce_allon"
+    "Seed 44 Condition B0_ree_biashead_reinforce_allon",
+    "[train] localize arm=B0_ree_biashead_reinforce_allon seed=44 phase=P0 ep 25/310",
+    "[train] localize arm=B0_ree_biashead_reinforce_allon seed=44 phase=P0 ep 50/310",
+    "[train] localize arm=B0_ree_biashead_reinforce_allon seed=44 phase=P0 ep 75/310",
+    "[train] localize arm=B0_ree_biashead_reinforce_allon seed=44 phase=P0 ep 100/310"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
