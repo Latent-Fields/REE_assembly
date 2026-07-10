@@ -2,7 +2,7 @@
 title: "Replay as Developmental Restructuring: Analysis and Proposals"
 parent: "Development & Curriculum"
 grandparent: Architecture
-nav_order: 9
+nav_order: 10
 ---
 
 <!-- version: 2026-05-16.1 -->

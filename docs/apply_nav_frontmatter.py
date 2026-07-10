@@ -210,6 +210,7 @@ ASSIGN = {
     "developmental_pruning_and_sparse_memory_cognifold.md": "development", "replay_development_analysis.md": "development",
     "critical_period_crystallization.md": "development", "sd_047_multi_source_dynamics.md": "development",
     "sd_049_multi_resource_heterogeneity.md": "development", "sd_054_reef_enrichment_substrate.md": "development",
+    "effort_dissociation_env.md": "development",
 
     # --- Specs, Diagrams & Versions ---
     "diagram_views.md": "specs", "jepa_e1e2_integration_contract.md": "specs",

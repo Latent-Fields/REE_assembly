@@ -1,8 +1,8 @@
 ---
-title: "Effort-Dissociating Environment (Q-080)"
-parent: "Goals, Drives & Motivation"
+title: Effort-Dissociating Environment (Q-080)
+parent: "Development & Curriculum"
 grandparent: Architecture
-nav_order: 11
+nav_order: 8
 ---
 
 # Effort-Dissociating Environment (Q-080)

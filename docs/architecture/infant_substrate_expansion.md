@@ -2,7 +2,7 @@
 title: Infant Substrate Expansion Design
 parent: "Development & Curriculum"
 grandparent: Architecture
-nav_order: 8
+nav_order: 9
 ---
 
 # Infant Substrate Expansion Design

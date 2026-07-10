@@ -2,7 +2,7 @@
 title: Scientist-Agent Principle and Developmental Ordering
 parent: "Development & Curriculum"
 grandparent: Architecture
-nav_order: 13
+nav_order: 14
 ---
 
 # Scientist-Agent Principle and Developmental Ordering
