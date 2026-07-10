@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-09T20:24:00Z",
+  "last_review_utc": "2026-07-10T06:17:38Z",
   "discussed_experiment_dirs": [
     "v3_exq_719_conversion_ceiling_dissociation_diagnostic",
     "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
@@ -800,7 +800,13 @@
     "v3_exq_725_coherence_nonreducibility_learned_binder",
     "v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic",
     "v3_exq_727_capability_yardstick_calibration",
-    "v3_exq_716a_sd063_conditional_uncertainty_confirmation"
+    "v3_exq_716a_sd063_conditional_uncertainty_confirmation",
+    "v3_exq_724_competence_localization_diagnostic",
+    "v3_exq_731_q080b_least_effort_prior",
+    "v3_exq_725a_coherence_nonreducibility_converged_binder",
+    "v3_exq_732_policy_learning_discriminator",
+    "v3_exq_723a_jlens_discriminative_compactness_diagnostic",
+    "v3_exq_728_trained_allon_capability_point"
   ],
   "reviewed_run_ids": [
     "v3_exq_719_conversion_ceiling_dissociation_diagnostic_20260708T103723Z_v3",
@@ -3275,7 +3281,13 @@
     "v3_exq_725_coherence_nonreducibility_learned_binder_20260709T095128Z_v3",
     "v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic_20260709T110001Z_v3",
     "v3_exq_727_capability_yardstick_calibration_20260709T182049Z_v3",
-    "v3_exq_716a_sd063_conditional_uncertainty_confirmation_20260709T193517Z_v3"
+    "v3_exq_716a_sd063_conditional_uncertainty_confirmation_20260709T193517Z_v3",
+    "v3_exq_724_competence_localization_diagnostic_20260709T211405Z_v3",
+    "v3_exq_731_q080b_least_effort_prior_20260709T211800Z_v3",
+    "v3_exq_725a_coherence_nonreducibility_converged_binder_20260709T221114Z_v3",
+    "v3_exq_732_policy_learning_discriminator_20260710T014857Z_v3",
+    "v3_exq_723a_jlens_discriminative_compactness_diagnostic_20260710T032445Z_v3",
+    "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3"
   ],
   "discussion_notes": [
     "2026-04-27T14:11Z_governance",
@@ -5047,6 +5059,19 @@
         "v3_exq_716a_sd063_conditional_uncertainty_confirmation_20260709T193517Z_v3"
       ],
       "note": "Governance walk 2026-07-09 (evening). 725 learned-binder coherence retest FAIL (diagnostic/non_contributory; rebinding now EXERCISED 6/6 but SPEC 0/6; self-routes /failure-autopsy for register/V4/park -- chip spawned). 721 MECH-446 lag-distribution PASS (diagnostic, feeds implement-substrate). 727 capability-yardstick PASS (baseline, calibrates competence eval for 724). 716a SD-063 confirmation PASS (evidence/supports 3/3) -> SD-063 PROMOTED candidate->provisional."
+    },
+    {
+      "utc": "2026-07-10T06:17:38Z",
+      "session": "happy-knuth-eb01d1 (/governance cycle 2026-07-10)",
+      "reviewed": [
+        "v3_exq_724_competence_localization_diagnostic_20260709T211405Z_v3",
+        "v3_exq_731_q080b_least_effort_prior_20260709T211800Z_v3",
+        "v3_exq_725a_coherence_nonreducibility_converged_binder_20260709T221114Z_v3",
+        "v3_exq_732_policy_learning_discriminator_20260710T014857Z_v3",
+        "v3_exq_723a_jlens_discriminative_compactness_diagnostic_20260710T032445Z_v3",
+        "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3"
+      ],
+      "note": "Governance walk 2026-07-10 (user-interactive). 6 pending walked; ALL claim_ids=[] non_contributory diagnostics / one baseline PASS -- PROMOTES/DEMOTES/WEIGHTS NOTHING; NO claims.yaml change (Q-080 agenda re-flag KEPT HELD, already narrowed into Q-080.a/b/c). Convergent story: 724/731/732/723a all bottom out on ONE root -- the V3 competence floor (integrated all-ON agent forages ~0). (1) V3-EXQ-732 policy-learning discriminator resolves the 724 autopsy H1/H2 fork -> H2_observation_interface_unlearnable: readiness MET (oracle 6.05>floor 1.0; B0 reproduces incompetence 0.2); b1_clears_floor=false (REE rep + FULL trainable A2C head does NOT recover foraging) AND b2_clears_floor=false (vanilla A2C on raw obs ALSO fails). RULES OUT an action-head build as the WS-1 fix; points the competence build at the OBSERVATION ENCODING. DECISION-FLIPPING -> /failure-autopsy chip (adjudicate 'unlearnable obs interface' vs 'insufficient budget/hard-exploration' before scoping the WS-1 build). (2) V3-EXQ-723a J-lens discriminative-compactness (SD-064 Exp A; supersedes 723; VERIFIED, non-degenerate all True) -> no_compact_workspace_diffuse: load-bearing concentration_discriminative FALSE. Does NOT greenlight the SD-027 Experiment-B build (saves/defers it); BUT reads the same competence-limited all-ON substrate GATE-B is already gated on, so diffuse-vs-monostrategy is confounded -> /failure-autopsy chip. (3) V3-EXQ-725a coherence-nonreducibility learned-binder retest (supersedes 725; converged binder) FAIL again; review_caveats flag a MEASUREMENT GAP (D1/SPEC over gated >=2-first-action-class steps; low-gated seeds = fraction over near-empty denominator, same competence/diversity confound as 642/719a) -> /failure-autopsy chip (continue 641a->720->725->725a lineage; measurement-gap vs genuine null). (4) V3-EXQ-731 q080b least-effort-prior (claim_ids=[Q-080]) precondition_unmet/substrate_not_ready_requeue: substrate_can_navigate=False (untrained agent never enters a corridor) -> competence floor again; drives NO governance action (Q-080 stays open); marked reviewed as competence-floor-blocked, requeues when the floor lifts. (5) V3-EXQ-724 competence_localization -- CONFIRMED autopsy (failure_autopsy_V3-EXQ-724_2026-07-09; competence_deficit_diffuse; rec non_contributory; substrate_entry.action=none; routed to 732 which has now run). Applied: nothing to weight. (6) V3-EXQ-728 trained_allon_capability_point PASS (WS-3 baseline; trained all-ON 4-metric point on the 727 scale). No claim tags. 3 /failure-autopsy chips spawned (732, 723a, 725a). No autopsy for 731 (explained by competence floor). No claims.yaml/manifest/substrate_queue edit this cycle (autopsy chips own any substrate recommendation)."
     }
   ]
 }
