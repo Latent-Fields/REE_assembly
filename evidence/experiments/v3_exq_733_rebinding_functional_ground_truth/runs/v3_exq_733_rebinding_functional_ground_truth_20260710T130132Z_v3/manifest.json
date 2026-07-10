@@ -42,5 +42,10 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Reviewed 2026-07-10 via /governance (failure_autopsy_V3-EXQ-733_2026-07-10). FAILed on the pre-registered readiness quorum ONLY (min overtakes/seed 2 vs 20; only seed 42 reached the floor) -> non_contributory, NOT a rebinding verdict; not weighted in confidence/conflict scoring. Root cause: a cold un-onboarded agent dies to hazards in ~10-40 steps (done=health<=0; episodes capped 120<500) in the lethal SD-054 reef env, starving within-episode ground-truth overtakes -- the binder is not at fault. Binder passed DV1 6/6 + DV2 5/6, both strongly on the one ready seed (42) -- encouraging for MECH-456. Superseded by V3-EXQ-733a (2-leg portfolio: P-A survival-onboarded via validated scaffolded_sd054_onboarding; P-B directed-traversal test-bed). pending_retest. NOT co-blocked on the exhausted f_dominance_conversion_ceiling / v4_loop_segregation substrate; the survival substrate needed is already built + validated.",
+  "pending_retest": true,
+  "superseded_by": "V3-EXQ-733a",
+  "reviewed": true,
+  "reviewed_utc": "2026-07-10T23:20:56Z"
 }

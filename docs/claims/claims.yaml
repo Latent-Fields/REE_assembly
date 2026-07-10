@@ -24459,6 +24459,30 @@
     above shuffle AND moves a graded behavioural DV) -- exercisability (n_rebind
     > 0) is explicitly insufficient per the MECH-269(b) V3-EXQ-478 inert-reset
     precedent.
+
+    2026-07-10 (V3-EXQ-733, the functional what_would_answer test; evidence,
+    claim_ids=[MECH-456]; consumed via /governance from
+    failure_autopsy_V3-EXQ-733_2026-07-10): FAILed on the pre-registered
+    readiness quorum ONLY (min overtakes/seed 2 vs 20; only seed 42 reached the
+    floor) -> self-routed non_contributory, NOT a rebinding verdict and NOT
+    weighted in confidence/conflict scoring. Root cause (autopsy): a cold,
+    un-onboarded agent dies to hazards in ~10-40 steps (done=health<=0,
+    episodes capped at 120 < 500) in the lethal SD-054 reef env, starving
+    within-episode ground-truth region overtakes -- the binder itself is not at
+    fault. The binder passed DV1 6/6 (rebinding tracks the true competitor above
+    the shuffle control) and DV2 5/6 (graded re-acquisition-latency advantage
+    ON vs frozen), both strongly and clear of margin on the one fully-ready seed
+    (seed 42) -- ENCOURAGING for MECH-456, not refuting. Re-queued as
+    V3-EXQ-733a (2-leg portfolio; supersedes V3-EXQ-733): P-A survival-onboarded
+    agent via the validated scaffolded_sd054_onboarding curriculum so P1
+    episodes survive long enough to accrue >=20 overtakes/seed; P-B
+    directed-traversal test-bed that generates region-crossings independent of
+    foraging survival. pending_retest = True. NOT co-blocked on the exhausted
+    f_dominance_conversion_ceiling / v4_loop_segregation substrate -- the
+    survival substrate needed here (scaffolded_sd054_onboarding) is already
+    built + validated (P1 survival 3/3; V3-EXQ-603m/603n), so the repair is a
+    re-queue over existing scaffold, not a new deep-substrate build. MECH-456
+    stays candidate / v3_pending (V3-pending gate); no promotion/demotion.
   location: docs/architecture/entities_and_binding.md
 
 - id: MECH-271
