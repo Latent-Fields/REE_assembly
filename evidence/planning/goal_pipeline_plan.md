@@ -33,20 +33,36 @@ closure_plan:
   nodes:
     - id: "goal_pipeline:GAP-1"
       title: "MECH-307 anticipatory-affect conjunction architecture"
-      phase: 1
       status: done
       severity: load-bearing
-      owner_exq: V3-EXQ-540g
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: [MECH-307, SD-014]
       depends_on: []
       last_updated: 2026-05-21
       completion_note: "Substrate landed 2026-05-11. Gap 1 Option-b split channels; Gaps 2/3/4 2026-05-08. Canonical substrate-readiness V3-EXQ-540g PASS 2026-05-15. substrate_queue closed IGW-20260521-023 2026-05-21. GAP-2/GAP-4 behavioural retests are downstream queue items."
     - id: "goal_pipeline:GAP-2"
       title: "SD-049 Phase 2 hybrid encoder behavioural validation (V3-EXQ-514 successor)"
-      phase: 2
       status: done
       severity: high
-      owner_exq: "V3-EXQ-514o PASS/supports 2026-06-15 (object-bound wanting!=liking dissociation; MECH-229; mean_object_bound_wl_dissoc_fraction=0.80 >= 0.6 pre-registered, n_scored_wl_steps 5/6/7 across seeds, both readiness gates met, non_degenerate=true). CLOSES the terminal L9 acceptance criterion. Lineage owner advanced 514n -> 514o. PREDECESSORS: V3-EXQ-514n FAIL/non_contributory (n_scored_wl_steps=0 -- liking-source read the post-consumption-cleared obs cell; cured in 514o by sourcing info[sd049_consumed_type_tag_this_tick]); V3-EXQ-514m vacuous FAIL (measurement_test_design_defect)."
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: [SD-049, SD-015, MECH-229, MECH-230, MECH-117, MECH-216, ARC-030, ARC-032, Q-030]
       depends_on: ["goal_pipeline:GAP-1"]
       cross_plan_link: ["infant_substrate:GAP-14"]
@@ -66,20 +82,36 @@ closure_plan:
       resume_condition: "RESUME once the scaffolded_sd054_onboarding substrate-readiness gates pass (substrate_queue.ready=true: Stage-0 z_goal>0.4 AND P1 survival AND P2 benefit-contact AND P2 z_goal>0.4, each >=2/3 seeds), then re-issue the SD-049 Phase 2 behavioural validation (MECH-229/MECH-230-tagged, with a foraging-contact-rate guard) via /queue-experiment. PRIOR (2026-05-16, verbatim -- now SUPERSEDED by the 2026-06-03 foraging-competence finding): Monostrategy root cause has a validated substrate fix (V3-EXQ-567 PASS, supports ARC-065: SP-CEM lifts natural action entropy 0.012->0.497, candidate support 1.007->2.810). V3-EXQ-550 settled that the blocker is NOT z_goal wiring. Retest unblockable once SP-CEM lands in the main agent action path; re-issue the SD-049 Phase 2 behavioural validation via /queue-experiment then. See 2026-05-16 decision-log entry."
     - id: "goal_pipeline:GAP-3"
       title: "SD-012 sustained-drive amendment (EMA Option 1 + drive_floor Option 2)"
-      phase: 3
       status: done
       severity: high
-      owner_exq: V3-EXQ-582a
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: [SD-012, MECH-216, MECH-306, ARC-051]
       depends_on: []
       last_updated: 2026-05-20
       completion_note: "V3-EXQ-582a PASS 2026-05-19T01:45Z (drive_floor sweep; floor=0.9 first-PASS arm A1-A4). Option 1 (drive_ema_alpha) substrate landed but V3-EXQ-582 FAIL (drive near-zero all episode). Option 2 (drive_floor) validated. MECH-306 registered 2026-05-20. Operating recommendation for downstream EXQs: drive_floor=0.9 with drive_ema_alpha=1.0 unless a combined arm is pre-registered."
     - id: "goal_pipeline:GAP-4"
       title: "MECH-295 drive->liking->approach cascade Tier-1 retest cohort"
-      phase: 4
       status: done
       severity: high
-      owner_exq: "V3-EXQ-490k TERMINAL 2026-06-04 (modulatory-sufficiency argmin-flip probe; ran PASS/probe_ran but non_contributory per confirmed failure_autopsy_V3-EXQ-490k -- ROW_2_fires_but_never_flips, mech295_bias_range_mean=0.0 so argmin cannot flip BY CONSTRUCTION; reviewed /governance 2026-06-04 pm); NEXT successor V3-EXQ-490L on enriched substrate with a pre-registered mech295_bias_range_mean>0 guard. Prior: V3-EXQ-490j TERMINAL 2026-05-31 (severed-bridge baseline; modulatory-not-necessary established at substrate-firing layer; supersedes 490i); lineage V3-EXQ-490g (FAIL 2026-05-29 cohort autopsy), V3-EXQ-490h FAIL silent-drop 2026-05-30 (runner bug 41c3411), V3-EXQ-490i (superseded by 490j)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: [MECH-295, ARC-030, MECH-117, Q-040]
       depends_on: ["goal_pipeline:GAP-1", "goal_pipeline:GAP-3"]
       last_updated: 2026-06-09
@@ -92,20 +124,36 @@ closure_plan:
       resume_condition: "Tier-1 cohort TERMINAL (V3-EXQ-490j landed 2026-05-31, see last_updated_note): MECH-295 behavioural-necessity falsified, modulatory reading substrate-supported. NEXT is a governance decision (re-scope MECH-295 to modulatory + close GAP-4, OR queue a modulatory-sufficiency behavioural successor). Background substrate context: GAP-3 done (MECH-306 + V3-EXQ-582a PASS). ARC-065 SP-CEM default landed 2026-05-17 (V3-EXQ-567). Tier-1 StepHarness retest cohort (V3-EXQ-490g / 471a / 475a / 524a) active; V3-EXQ-483c ran 2026-05-23 FAIL non_contributory (measurement gap: use_dacc=True omitted from all 4 arm configs; dacc is None; C2 cannot fire -- failure_autopsy_V3-EXQ-483c_2026-05-23). V3-EXQ-483d queued 2026-05-24 (PAG/override_signal C2 criterion + goal_norm_peak C3 + use_dacc cluster fix). MECH-307 4-arm discriminative pair still pending but GAP-1 substrate is landed. SCOPE: prereq (2) of behavioral_diversity_isolation:GAP-C is owned at `scaffolded_sd054_onboarding`, NOT this node; see scope_clarification_2026_05_31 above."
     - id: "goal_pipeline:GAP-5"
       title: "SD-049 Phase 3 consumer cascade migration (read-side fidelity)"
-      phase: 5
       status: done
       severity: low
-      owner_exq: V3-EXQ-618
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: []
       depends_on: ["goal_pipeline:GAP-4"]
       last_updated: 2026-06-15
       completion_note: "Closed superseded-by-implementation 2026-06-15. The cascade migration was BUILT + LANDED (ree-v3 main 2026-05-31T13:00Z, 'SD-049 Phase 3 SD-032 consumer cascade') independent of this node's documented deferral trigger ('Phase 4 PASSes Tier-3 + reveals a drive-cascade fidelity gap', which never fired -- GAP-4 closed 2026-06-09 by re-scope/falsification, not a Tier-3 fidelity-gap). All seven named consumers now carry the optional per_axis_drive kwarg (ree_core/cingulate/{aic_analog,pcc_analog,pacc_analog,dacc,salience_coordinator}.py, ree_core/regulators/{broadcast_override,mech295_liking_bridge}.py), preserving bit-identical OFF when per_axis_drive is None; causal_grid_world surfaces obs_dict['per_axis_drive'] under per_axis_drive_enabled. Readiness validated by V3-EXQ-618 (2026-05-31T17:59Z, experiment_purpose=diagnostic, all 4 acceptance criteria PASS: C1 per_axis_drive evolves min_peak=0.027>floor 0.02; C2 no crashes; C3 AIC reads per-axis mean_l1=5.92; C4 MECH-295 axis routes mean_l1=0.169). 618 is tagged evidence_direction=non_contributory because a substrate-readiness diagnostic does not behaviourally test SD-049/MECH-295; that is correct and does NOT block GAP-5 closure (GAP-5 is a refactor with no load-bearing dependent claim -- unblocks_claims:[]). NOTE: the *behavioural* validation of the Phase 3 cascade (V3-EXQ-619, reserved/not-queued, replicates V3-EXQ-514g structure on the Phase 3 substrate) is owned by goal_pipeline:GAP-2, NOT this node -- 619's downstream_owed lists the GAP-2 cluster (SD-049/SD-015/MECH-229/MECH-230/MECH-117/ARC-030/ARC-032/Q-030). The original 'fidelity refactor for its own sake' justification was never demonstrated necessary; the cascade got pulled forward as substrate plumbing for GAP-2's behavioural line, which is the correct place its remaining behavioural test now lives. No claims.yaml/scoring edit (refactor, no dependent claim)."
     - id: "goal_pipeline:GAP-6"
       title: "MECH-269b V_s staleness-corrected consumer migration"
-      phase: 6
       status: done
       severity: medium
-      owner_exq: V3-EXQ-490b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       unblocks_claims: [MECH-269b]
       depends_on: []
       blocking_external: ["external V_s invalidation runtime evolution"]
@@ -113,10 +161,18 @@ closure_plan:
       completion_note: "Substrate fully implemented: HippocampalConfig.use_vs_gate_staleness_lookup, VsRolloutGate.gate() per_stream_staleness path, agent.py end-to-end wiring, HippocampalModule.compute_per_stream_staleness(). V3-EXQ-490b C1 PASS (gate fires); V3-EXQ-490c/e/f completed Q-040 factorial (MECH-295 dominant cause of catatonic-lock, not MECH-269b alone). Monostrategy confound resolved at substrate level by ARC-065 SP-CEM landing as default 2026-05-17. Q-040b behavioral sufficiency of staleness correction alone is a claims-level question continuing under v_s_invalidation_runtime.md; GAP-6 goal_pipeline dependency is satisfied."
     - id: "goal_pipeline:GAP-7"
       title: "Object-bound incentive-salience layer (L2-L3) + L1 harness positive control + L7 consumer-readout wiring audit"
-      phase: 7
       status: done
       severity: load-bearing
-      owner_exq: "V3-EXQ-514o PASS/supports 2026-06-15 (via goal_pipeline:GAP-2 close) -- the terminal L9 wanting!=liking dissociation, the sole residual of this fully-built (L2-L8) node, now scores 0.80 behaviourally. The L2-L8 substrate landed 2026-06-04 as SD-057 (MECH-344..348)."
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-012", "SD-014", "SD-015", "SD-018", "SD-049", "MECH-117", "MECH-216", "MECH-229", "MECH-230", "MECH-295", "MECH-306", "MECH-307", "MECH-455", "ARC-030", "ARC-032", "ARC-036", "ARC-051"]
       blocked_by: []
       unblocks_claims: [MECH-229, MECH-230, MECH-117, ARC-030]
       depends_on: ["goal_pipeline:GAP-2"]
