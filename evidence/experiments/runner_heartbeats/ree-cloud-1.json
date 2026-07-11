@@ -1,59 +1,48 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-11T06:02:53Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-733a-a",
-  "current_exq_started_utc": "2026-07-10T23:10:13.231514+00:00",
-  "current_title": "MECH-456 functional-rebinding redesign, Leg P-A (training-regime axis): run the 733 functional test on a survival-onboarded agent so overtakes accrue",
-  "current_claim_id": "MECH-456",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 45 / rebinding_pA_onboarded",
-    "runs_done": 3,
-    "runs_total": 6,
-    "episodes_done": 0,
-    "episodes_total": 65,
-    "overall_pct": 50.0
-  },
-  "seconds_elapsed": 24760,
-  "seconds_remaining": 26936,
-  "recent_lines": [
-    "Seed 42 Condition rebinding_pA_onboarded",
-    "(onboard curriculum then func-test P0=40 ep, P1=25 ep, steps=120, K_regions=4, align_margin=0.1, latency_margin=2.0, dry_run=False)",
-    "[measure] seed=42 ep 10/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=42 ep 20/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=42 ep 30/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=42 ep 40/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=42 ep 50/65 phase=P1 p1_steps=737 regions_covered=4/4",
-    "[measure] seed=42 ep 60/65 phase=P1 p1_steps=1707 regions_covered=4/4",
-    "[measure] seed=42 ep 65/65 phase=P1 p1_steps=1962 regions_covered=4/4",
-    "verdict: PASS",
-    "Seed 43 Condition rebinding_pA_onboarded",
-    "[measure] seed=43 ep 10/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=43 ep 20/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=43 ep 30/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=43 ep 40/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=43 ep 50/65 phase=P1 p1_steps=735 regions_covered=4/4",
-    "[measure] seed=43 ep 60/65 phase=P1 p1_steps=1588 regions_covered=4/4",
-    "[measure] seed=43 ep 65/65 phase=P1 p1_steps=2071 regions_covered=4/4",
-    "verdict: PASS",
-    "Seed 44 Condition rebinding_pA_onboarded",
-    "[measure] seed=44 ep 10/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=44 ep 20/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=44 ep 30/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=44 ep 40/65 phase=P0 p1_steps=0 regions_covered=4/4",
-    "[measure] seed=44 ep 50/65 phase=P1 p1_steps=851 regions_covered=4/4",
-    "[measure] seed=44 ep 60/65 phase=P1 p1_steps=1704 regions_covered=4/4",
-    "[measure] seed=44 ep 65/65 phase=P1 p1_steps=2073 regions_covered=4/4",
-    "verdict: PASS",
-    "Seed 45 Condition rebinding_pA_onboarded"
+  "last_tick_utc": "2026-07-11T10:18:00Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-737",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-724",
+      "result": "FAIL",
+      "completed_at": "2026-07-09T21:14:06.331550+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-730",
+      "result": "ERROR",
+      "completed_at": "2026-07-09T21:17:59.070529+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-731",
+      "result": "FAIL",
+      "completed_at": "2026-07-09T21:24:47.766532+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-495a",
+      "result": "ERROR",
+      "completed_at": "2026-07-10T19:10:54.654467+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-733a-a",
+      "result": "FAIL",
+      "completed_at": "2026-07-11T10:07:54.092095+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 1415947,
-  "runner_version": "r3729 8f6d886 2026-07-11 (running r3260 daed671)",
+  "runner_version": "r3735 77c4540 2026-07-11 (running r3260 daed671)",
   "gpu": {
     "available": false
   },
