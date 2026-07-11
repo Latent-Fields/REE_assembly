@@ -853,3 +853,4 @@ One line per hourly tick. ASCII only.
 2026-07-11T10:51:33Z complete IGW-20260711-196 spawned->completed outcome=USEFUL_LANDED: marked EVB-0263/INV-060 blocked_substrate: no play-mode/play-type-curriculum sub
 2026-07-11T11:46:50Z reconcile-release hash=0841514c54ad (IGW-20260711-196 -> completed)
 2026-07-11T11:46:41Z skip IGW-20260711-196: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-11T12:47:03Z skip IGW-20260711-196: no fresh runner heartbeat (experiment-lane item would just sit in queue)
