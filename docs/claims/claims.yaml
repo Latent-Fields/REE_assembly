@@ -6797,19 +6797,20 @@
   claim_type: mechanism_hypothesis
   subject: tpj.agency_detection_comparator
   polarity: asserts
-  status: active
+  status: candidate
   live_status:
-    reading: active/substrate_ceiling
+    reading: candidate/substrate_ceiling
     as_of: 2026-07-11
-    needs_review: true
+    needs_review: false
     evidence:
-      from: "decision:MECH-095@2026-05-02T10:09:00Z"
-      as_of: 2026-05-02
-      verdict: hold_substrate_ceiling/applied
-  last_reviewed: 2026-03-25
+      from: "decision:MECH-095@2026-07-11T12:41:01Z"
+      as_of: 2026-07-11
+      verdict: demote_to_candidate/applied
+  last_reviewed: 2026-07-11
   epistemic_category: substrate_ceiling
-  adjudicated_at_utc: "2026-03-25T00:00:00Z"
-  adjudication_outcome: promoted
+  pending_retest_after_substrate: true
+  adjudicated_at_utc: "2026-07-11T12:37:35Z"
+  adjudication_outcome: demoted
   implementation_phase: v3
   evidence_quality_note: |
     EXQ-121 FAIL (2026-03-28): AUC_COMP_ON=0.411 vs AUC_COMP_ABLATED=0.745 (delta=-0.334).
@@ -6868,6 +6869,32 @@
     isolates the EXQ-047k condition (larger-N stratification) as the substrate-condition-of-
     success, (c) deferral to V4 multi-channel/multi-agent territory. See MECH-102 for the
     cluster diagnosis and the substrate_ceiling category if it is later formalised.
+
+    GOV-CEIL-1 FLOORING (2026-07-11, decision:MECH-095@2026-07-11T12:37:35Z): status
+    demoted active -> candidate. This resolves the sole SHP-4 live_status internal
+    inconsistency (promoted status carrying epistemic_category: substrate_ceiling).
+    Adjudication (b), NOT (a): the substrate_ceiling tag is CORRECT and CURRENT, not
+    stale -- the 2026-05-02 diagnosis holds (7 successor attempts all weakens/mixed;
+    thin-world reading) and the ceiling is MAPPED to a design owner (SD-047 multi-source
+    environmental dynamics = resolution path (a) above). The 2026-03-25 promotion to
+    active was legitimate AT THE TIME (EXQ-047k PASS 5/5 + lit_conf=0.907) but predates
+    both the ceiling diagnosis (2026-05-02) and GOV-CEIL-1 (2026-07-09). GOV-CEIL-1
+    floors ceilings to candidate: a substrate_ceiling claim held at promoted standing is
+    exactly the "hypothesis never loses" asymmetry the rule closes (the conflict that
+    would otherwise demote it was being discounted as substrate, not claim error). So
+    the active status was a pre-GOV-CEIL-1 residue; candidate is the consistent reading.
+    NOT a GOV-CEIL-1 EXHAUSTION demotion: n_ceiling_hits=0 (no confirmed
+    failure_autopsy_*.json recommending substrate_ceiling), so epistemic_category STAYS
+    substrate_ceiling (NOT flipped to standard) and the SD-047 enrichment mapping is
+    preserved -- this is a flooring, not the N>=3 co-equal-null exhaustion.
+    RETEST OWED: SD-047 landed (status: implemented) but MECH-095 carried no
+    pending_retest_after_substrate flag, so the audit filed it under `mapped` and the
+    owed retest on the enriched substrate has NEVER run -> still ZERO positive
+    discrimination on the richer substrate (EXQ-047k's PASS was on the thin
+    CausalGridWorldV2, pre-SD-047). pending_retest_after_substrate now set true so the
+    substrate-ceiling audit reclassifies MECH-095 as ceiling_may_have_lifted (ACTIONABLE:
+    queue the agency-detection retest on the SD-047 multi-source substrate; a PASS there
+    is the positive discrimination that would re-gate promotion).
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
