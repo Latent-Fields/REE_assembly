@@ -863,3 +863,4 @@ One line per hourly tick. ASCII only.
 2026-07-11T21:07:30Z auto-defer IGW-20260711-196 hash=1a471fc1c19e for 48h (reaped -> completed_resumable)
 2026-07-11T21:07:30Z reaped TASK_CLAIMS igw-auto-igw-196-proposal-for-inv-064-20260711T200628Z (ledger IGW-20260711-196 -> completed_resumable)
 2026-07-11T21:07:30Z GC keep igw-196-proposal-for-inv-064 (ledger IGW-20260711-196 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-07-11T21:07:16Z SPAWN IGW-20260711-196 skill=/queue-experiment prio=40 uuid=de4b22f7-ce75-42d7-a1db-9c6ed444639b pid=3547 worktree=igw-196-proposal-for-mech-006
