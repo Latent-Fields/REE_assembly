@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-11T20:16:23Z",
+  "last_tick_utc": "2026-07-11T20:21:26Z",
   "state": "running",
   "current_exq": "V3-EXQ-517d",
   "current_exq_started_utc": "2026-07-11T19:57:46.357008+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-302",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_A_mech302_on",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_B_mech302_off",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 60,
+    "episodes_done": 40,
     "episodes_total": 70,
-    "overall_pct": 14.3
+    "overall_pct": 26.2
   },
-  "seconds_elapsed": 1117,
-  "seconds_remaining": 6349,
+  "seconds_elapsed": 1420,
+  "seconds_remaining": 5718,
   "recent_lines": [
     "EXQ-517d: MECH-302 env-curriculum discriminative pair",
     "comparator: window=30 threshold=0.005 min_norm=0.01",
@@ -28,7 +28,13 @@
     "[train] seed=42 arm=ARM_A_mech302_on ep 30/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
     "[train] seed=42 arm=ARM_A_mech302_on ep 40/70 p1_events=449 p1_writes=449 p1_curriculum_injections=25",
     "[train] seed=42 arm=ARM_A_mech302_on ep 50/70 p1_events=791 p1_writes=791 p1_curriculum_injections=44",
-    "[train] seed=42 arm=ARM_A_mech302_on ep 60/70 p1_events=1128 p1_writes=1128 p1_curriculum_injections=67"
+    "[train] seed=42 arm=ARM_A_mech302_on ep 60/70 p1_events=1128 p1_writes=1128 p1_curriculum_injections=67",
+    "[train] seed=42 arm=ARM_A_mech302_on ep 70/70 p1_events=1479 p1_writes=1479 p1_curriculum_injections=85",
+    "Seed 42 Condition ARM_B_mech302_off",
+    "[train] seed=42 arm=ARM_B_mech302_off ep 10/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=42 arm=ARM_B_mech302_off ep 20/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=42 arm=ARM_B_mech302_off ep 30/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=42 arm=ARM_B_mech302_off ep 40/70 p1_events=0 p1_writes=0 p1_curriculum_injections=1"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
