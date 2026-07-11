@@ -1,0 +1,121 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-11T22:00:37Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_733a_rebinding_pA_survival_onboarded_20260711T100753Z_v3",
+      "queue_id": "V3-EXQ-733a-a",
+      "claim_ids": ["MECH-456"],
+      "failed_criterion": "readiness",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested-not-weakened: the readout was starved (overtakes min 14<20; binder non-convergent 2/6) so MECH-456 never got to express; NOT a mechanism verdict",
+        "biological_reference": "clear; non-formal-import (object-file updating / serial-dependence); not the fault locus",
+        "prerequisites": "present: survival onboarding (scaffolded_sd054_onboarding) and binder substrate both exist and work",
+        "implementation": "complete; ree_core unmodified; binder converges where coverage is adequate",
+        "environment": "wrong pressures for the readout: competent onboarded foraging concentrates the agent in 2 of 4 regions (visits [1563,1926,23,13]), suppressing boundary crossings and starving non-reef prototypes",
+        "measurement": "overtake floor (20) and binder-convergence both starved by foraging concentration, not by a mechanism deficit",
+        "integration": "isolated: binder works alone; test-bed under-feeds P1 overtakes and P0 prototypes",
+        "scale": "adequate (P0 episodes now full-length ~200 steps post-onboarding)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "object-file updating/reviewing (Kahneman/Treisman/Gibbs); serial-dependence hysteresis (Manassi & Whitney); PE-driven perceptual switching",
+        "dependencies": ["ARC-006", "INV-002", "MECH-045", "MECH-269", "MECH-270"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; coherence-C(tau) formal import already settled NO-CLAIM by V3-EXQ-725a and excluded from MECH-456",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "P-A (survival-onboarded leg): survival was fixed (episodes full ~200 steps, onboard gates 6/6) but the readiness gate still failed -- overtakes min 14<20 (declared NULL fired: survival is not the overtake lever) and the binder stalled at the chance floor on 2/6 seeds. Root: a competent onboarded forager exploits the reef band and over-visits 2 of 4 regions (e.g. [1563,1926,23,13]), suppressing region-boundary crossings and starving non-reef prototypes -- foraging competence is antagonistic to the traversal this readout needs. non_contributory for MECH-456; contributory as a falsification of the survival-onboarding repair axis. Survival-onboarding axis REFUSED by the re-derive brake.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-733_2026-07-10"],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "rebinding-harness-p0-coverage-decoupling",
+        "refusal_scope": "REFUSES the P-A survival-onboarding axis (its null fired; foraging competence is antagonistic to the readout). The P-B directed-traversal design is NOT refused -- it passed DV1/DV2 6/6 and only a granularity-blind P0-coverage precondition tripped it; its brake-permitted retest-after-substrate (V3-EXQ-733b) is the routed productive path."
+      },
+      "learning_extracted": [
+        "Survival onboarding is the wrong lever for this readout and is counterproductive: fixing survival makes a competent forager concentrate coverage, worsening both overtake generation and binder prototype coverage.",
+        "Binder non-convergence here is a coverage artifact (2 of 4 regions starved), not a substrate/mechanism failure."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
+      "queue_id": "V3-EXQ-733a-b",
+      "claim_ids": ["MECH-456"],
+      "failed_criterion": "readiness",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened: DV1 6/6, DV2 6/6, both_pass=True -- the binder tracks the true competitor 3-6x above the shuffle control and confers an 8-14 step graded re-acquisition advantage over a frozen arm on all 6 seeds; NOT weakened",
+        "biological_reference": "clear; non-formal-import; not the fault locus",
+        "prerequisites": "present; binder converged 6/6",
+        "implementation": "complete; ree_core unmodified; harness-level teleport is a pure position read (does not advance health)",
+        "environment": "softened survival (hazard_harm=0) removes contact death but starvation/energy death still fires, truncating P0 on unlucky seeds (seed 43 ~545 P0 step-visits vs ~4600 on seed 42)",
+        "measurement": "THE FAULT LOCUS: MIN_REGION_VISITS_P0=10 is granularity-blind (calibrated for K=4, applied to K=16 where 3x3 regions let the agent drift out before dwell accrues); P0 coverage is not guaranteed by construction the way P1 overtakes are",
+        "integration": "P1 channel fully decoupled and clean (overtakes 62-808, DVs 6/6); P0 channel still survival-coupled",
+        "scale": "adequate; the design trivially generates 62-808 overtakes once decoupled"
+      },
+      "biological_reference": {
+        "closest_mechanism": "object-file updating/reviewing; serial-dependence hysteresis; PE-driven perceptual switching",
+        "dependencies": ["ARC-006", "INV-002", "MECH-045", "MECH-269", "MECH-270"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "P-B (directed-traversal leg): the decoupled P1 channel PASSED every mechanism criterion -- DV1 6/6, DV2 6/6, both_pass=True, binder converged 6/6, overtakes 62-808/seed; the binder tracked the true competitor 3-6x above the region-label-shuffle control and re-acquired 8-14 steps faster than a frozen arm on all 6 seeds (strongest affirmative rebinding signal to date). Blocked ONLY by a granularity-blind, survival-coupled P0-coverage floor (min 9<10 on one starved seed). Near-decision-flipping positive for MECH-456; stamped non_contributory now (readiness genuinely unmet), expected to convert to SUPPORT on the test-bed-fixed retest (V3-EXQ-733b). NOT a mechanism ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "rebinding-harness-p0-coverage-decoupling",
+        "title": "Decouple rebinding functional-harness P0 prototype-coverage from agent survival (teleport-time prototype accrual + starvation-proof P0 + granularity-scaled coverage floor)",
+        "implementation_hint": "In ree-v3/experiments/_lib/rebinding_functional_harness.py: (1) accrue a guaranteed clean per-region prototype sample at teleport-time (read the region at the directed-respawn cell before drift) so P0 coverage is deterministic by construction; (2) prevent starvation/health death from truncating P0 episodes during the scripted directed tour (respawn/refill or ignore health-done in P0); (3) scale MIN_REGION_VISITS_P0 to lattice granularity K (or count at teleport-time). Mirrors the P1 overtake decoupling that P-B already validated (DV1/DV2 6/6). Bounded test-bed change; ree_core untouched.",
+        "unblocks_claims": ["MECH-456"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
+          "experiment_type": "v3_exq_733a_rebinding_pB_directed_traversal",
+          "metric": "P0 region coverage min 9 < 10 on 1/6 seeds (seed 43 starved P0); the sole unmet readiness precondition -- DV1 6/6, DV2 6/6, both_pass=True otherwise",
+          "target": "min_region_visits_p0 >= floor on >=4/6 completed seeds, guaranteed by construction (teleport-time accrual) rather than by foraging survival"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-733_2026-07-10"],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "rebinding-harness-p0-coverage-decoupling",
+        "refusal_scope": "Brake refuses the P-A survival-onboarding axis, not this P-B design. P-B is the brake-permitted productive path: build the harness P0-coverage fix, then a SINGLE P-B re-run (V3-EXQ-733b) to count the already-demonstrated DV passes. This is a retest-after-substrate, not a same-ceiling lettered loop."
+      },
+      "learning_extracted": [
+        "Decoupling the readout from survival works: guaranteed events -> the rebinding mechanism passes DV1 6/6 and DV2 6/6 (tracks truth 3-6x above shuffle; 8-14 step graded advantage vs frozen).",
+        "The teleport decoupled P1 overtakes but NOT P0 prototype-build: it is a pure position read that cannot stop starvation truncating P0 episodes; and MIN_REGION_VISITS_P0 is granularity-blind (K=4 floor applied to K=16).",
+        "P-B is one harness fix away from a counted PASS -- the recurrence is a test-bed operationalisation gap, not a mechanism ceiling."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "readiness-gate-unmet across both legs of the 733a portfolio, but via structurally different proximate causes (P-A: overtakes+binder starved by foraging concentration; P-B: P0 coverage starved by starvation-truncation + granularity-blind floor)",
+    "is_independent_bugs": false,
+    "structural_property": "Every readiness measure remains coupled to the agent's foraging survival/spatial distribution, and competent foraging concentrates coverage. Wherever the test-bed forcibly decouples a measure from foraging (P-B P1 teleport -> overtakes 62-808, DV1/DV2 6/6) it clears cleanly; wherever it stays survival-coupled (P-A overtakes, P-A binder prototypes, P-B P0 build) it fails. The fault is the incomplete decoupling of readiness from survival in the functional harness; the MECH-456 mechanism is refuted as the fault locus.",
+    "readings": ["test_bed_operationalisation_ceiling (CONFIRMED)", "mechanism_ceiling (REFUTED by P-B DV1/DV2 6/6)"],
+    "forces_planning_decision": "Fix the test-bed (decouple P0 prototype-coverage from survival + granularity-scale the floor), refuse the P-A survival-onboarding axis, then one P-B re-run (V3-EXQ-733b). Do NOT demote or V4-park MECH-456; do NOT re-queue a survival letter.",
+    "fanout_recommendation": {
+      "is_discrimination": false,
+      "note": "GOV-FANOUT-1 EXEMPT. The discrimination is already complete: this cluster IS the fanout, and it resolved cleanly -- H(survival is the lever) FALSIFIED (P-A null fired); H(decouple events from foraging) CONFIRMED (P-B DV1/DV2 6/6). The remaining bottleneck routes to ONE unambiguous build (harness P0-coverage decoupling), so no further fanout is owed -- just build it and re-run P-B once."
+    }
+  }
+}
