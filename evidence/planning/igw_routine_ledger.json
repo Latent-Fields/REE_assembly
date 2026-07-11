@@ -1695,6 +1695,29 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-196-proposal-for-inv-064 && claude --resume f1b47d63-7941-47f1-b4c5-ff66fce57493",
       "task_claim_session_id": "igw-auto-igw-196-proposal-for-inv-064-20260711T200628Z",
       "assigned_at": "2026-07-11T20:06:06Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-11T21:07:22Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit ref INV-064 since 2026-07-11T20:06:06Z: c2e612e V3-EXQ-740: INV-064 maturational-sequence E3-bounded curriculum-order di"
+    },
+    {
+      "igw_id": "IGW-20260711-196",
+      "stable_hash": "50965e54b64b",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-006"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for MECH-006",
+      "worktree": ".claude/worktrees/igw-196-proposal-for-mech-006",
+      "branch": "claude/igw-196-proposal-for-mech-006",
+      "session_uuid": "de4b22f7-ce75-42d7-a1db-9c6ed444639b",
+      "pid": 3547,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-196-proposal-for-mech-006 && claude --resume de4b22f7-ce75-42d7-a1db-9c6ed444639b",
+      "task_claim_session_id": "igw-auto-igw-196-proposal-for-mech-006-20260711T210735Z",
+      "assigned_at": "2026-07-11T21:07:16Z",
       "status": "spawned"
     }
   ],
@@ -2175,6 +2198,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-11T10:51:31Z",
       "re_eligible_after": "2026-07-13T10:51:31Z"
+    },
+    {
+      "stable_hash": "1a471fc1c19e",
+      "igw_id_at_disposition": "IGW-20260711-196",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-064"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-064",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-11T21:07:30Z",
+      "re_eligible_after": "2026-07-13T21:07:22Z"
     }
   ]
 }
