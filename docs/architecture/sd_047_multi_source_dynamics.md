@@ -205,6 +205,23 @@ Independently implementable.
 
 ## Validation experiment (deferred)
 
+> **Amendment 2026-07-11 (agency_comparator_testbed_sd047).** The SD-047 *substrate*
+> validated in 2026-05-03 (V3-EXQ-509, bit-identical OFF + calibration ratio in band),
+> but the MECH-095 agency-comparator retests on it (V3-EXQ-047l/047m) were both
+> adjudicated **non_contributory**: the `env_events>0` additive label fold is degenerate
+> at intensity 1.0 (drift moves ~every tick), so any self/world label folding it saturates
+> (047l in the eval probe, 047m in the training label). The fix is a small `ree_core`
+> amendment — CausalGridWorldV2 flat kwarg `tag_env_caused_multisource_ttype` (default
+> False, bit-identical OFF) tags residual `transition_type=="none"` env-caused-multisource
+> steps, giving a **non-saturating** self/world ground-truth label directly from
+> `transition_type` (is_world ~0.15 at intensity 1.0, not the saturated ~0.93). The
+> pre-registered 4-arm sweep below is realized by **V3-EXQ-741**
+> (`v3_exq_741_mech095_agency_comparator_testbed_sd047`), which additionally contrasts two
+> comparator operationalisations — a gradient BCE-head label (the 047 lineage, now with a
+> valid label) and a query-time efference-copy **read-out** (biology-favoured per MECH-095's
+> notes; additive, so it cannot corrupt z_world) — and adds a **self-world-balance guard**
+> (the training-label guard 047m lacked). See `failure_autopsy_V3-EXQ-047m_2026-07-11`.
+
 **Pre-registered protocol for SD-047 validation — noise-level sweep:**
 
 The original draft proposed a binary ON-vs-OFF discriminative pair.
