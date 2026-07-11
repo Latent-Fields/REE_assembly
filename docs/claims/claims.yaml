@@ -53988,10 +53988,11 @@
       as_of: 2026-07-10
       verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
-  v3_pending: true # unbuilt; promotion gated on the V3-EXQ-737 H1 discriminator (a real trainable policy/actor head + value baseline over REE's frozen z_world recovering foraging competence above the 1.0 floor)
+  v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent instantiation refuted); promotion now gated on the MECH-457 ON/OFF validation (co-trained vs frozen encoder x plain vs successor-feature critic) clearing the 1.0 floor at D3 vs the 738 local-view denominator
   epistemic_category: standard
   claim_level: mechanistic
   registered_utc: "2026-07-10"
+  implementation_note: "Substrate IMPLEMENTED 2026-07-12 (session nice-blackwell-f367f8, /implement-substrate PRIMARY routing from failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11). ree_core/action_learning/actor_critic.py (ActorCriticPolicy: dorsal-striatal actor + plain value critic + optional successor-feature critic V_SF=psi.w, w grounded in MECH-229 VALENCE_WANTING), config knobs use_actor_critic / actor_critic_cotrain_encoder (the co-shaping ablation lever) / actor_critic_use_sf_critic / actor_critic_hidden / actor_critic_sf_feature_dim (all no-op default; bit-identical OFF), agent hooks actor_critic_step (applies co-shape-vs-detach) / actor_critic_reward (R_t = benefit_eval - harm_eval, ARC-108) / actor_critic_parameters / actor_critic_encoder_parameters (latent_stack = the co-shape seam). Distinct from the lateral_pfc/ofc bias_head REINFORCE readout: emits its own action distribution + value, not a clamped +/-bias_scale nudge into E3's argmin. Smoke PASS; backward-compat verified (defaults -> action_critic None). Design doc docs/architecture/sd_actor_critic_action_learning.md (IMPLEMENTED). PROMOTES NOTHING: MECH-457 stays candidate/v3_pending until the ON/OFF validation runs + is reviewed. Deps SD-056 (built) + MECH-229 (built) unchanged."
   depends_on:
     - SD-056    # e2 world-forward contrastive encoder -- the prediction-trained representation the actor would ride (frozen per V3-EXQ-737, or permitted to adapt for action)
     - MECH-229  # VALENCE_WANTING -- the valence/reward signal an actor-critic reward-error (RPE) teacher would consume to shape the policy

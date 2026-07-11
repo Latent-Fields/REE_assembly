@@ -3,8 +3,8 @@ title: "MECH-457: First-Class RPE-Driven Actor-Critic Action-Learning Substrate"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
 nav_order: 12
-status: proposed
-status_asof: 2026-07-11
+status: implemented
+status_asof: 2026-07-12
 status_claim: MECH-457
 ---
 
@@ -12,7 +12,7 @@ status_claim: MECH-457
 
 **Claim ID:** MECH-457 (candidate / v3_pending)
 **Subject:** `f_dominance_conversion_ceiling.actor_critic_action_learning_substrate`
-**Status:** PROPOSED — build in flight (substrate_queue `sd_actor_critic_action_learning`, priority 1, `ready: true`, `node_class: complicated (buildable)`)
+**Status:** IMPLEMENTED 2026-07-12 (substrate landed; validation experiment queued — see §7). substrate_queue `sd_actor_critic_action_learning`, priority 1, `node_class: complicated (buildable)`. MECH-457 stays `candidate / v3_pending` — the substrate existing PROMOTES NOTHING; promotion awaits the ON/OFF validation.
 **Registered:** 2026-07-10
 **Depends on:** SD-056 (e2 world-forward contrastive encoder, IMPLEMENTED 2026-05-29 `ree_core/predictors/e2_fast.py`), MECH-229 (VALENCE_WANTING, provisional/built)
 **Unblocks:** MECH-457, `f_dominance_conversion_ceiling`, ARC-063
@@ -256,7 +256,68 @@ action-learning credit assignment → **route re-autopsy, NOT a lettered floor r
 
 ---
 
-*Design doc authored 2026-07-11 to wire the REE_convergence action-representation
-co-shaping synthesis into the MECH-457 build artifacts. Grounded in the materialized
-substrate_queue entry `sd_actor_critic_action_learning` (REE_assembly `6e971edda2`) +
-the MECH-457 claim. PROMOTES / DEMOTES NOTHING.*
+---
+
+## 7. Implementation (landed 2026-07-12, session `nice-blackwell-f367f8`)
+
+Built via `/implement-substrate` (PRIMARY routing from the autopsy). All config
+defaults are no-op; with `use_actor_critic=False` the substrate is byte-identical
+(verified: default `REEAgent` has `action_critic is None`, empty param group).
+
+**Module** `ree_core/action_learning/actor_critic.py` — `ActorCriticPolicy(nn.Module)`
+(+ `ActorCriticStep` dataclass). Shared Tanh trunk → `policy_head` (the dorsal-striatal
+ACTOR, own `Categorical` over `config.e2.action_dim`) + `value_head` (plain CRITIC,
+cand-A). When `use_sf_critic=True`: `phi_head` (state features), `psi_head` (successor
+features), and a learned reward-weight `reward_w` (`r ~= phi·w`); the SF critic value is
+`V_SF = psi·w` (cand-B). `select(z, deterministic)` returns the graph-connected
+`ActorCriticStep`; `sf_reward_prediction(phi)` exposes `phi·w` for the reward-regression
+loss. Trunk width 128 matches the validated V3-EXQ-734/737 PPO net so the frozen arm
+reproduces 737.
+
+**Config** (flat `REEConfig` fields, threaded through `from_dims`, all no-op default):
+`use_actor_critic` (master), `actor_critic_cotrain_encoder` (**the frozen-vs-co-trained
+ablation lever**), `actor_critic_use_sf_critic` (plain vs SF critic = cand-A vs cand-B),
+`actor_critic_hidden=128`, `actor_critic_sf_feature_dim=32`. The four validation arms are
+`(cotrain_encoder ∈ {F,T}) × (use_sf_critic ∈ {F,T})` = A0/A1/A2/A3.
+
+**Agent wiring** (`ree_core/agent.py`): `self.action_critic` instantiated under the
+master switch. Hooks:
+- `actor_critic_step(latent, deterministic)` — applies the co-shape/detach lever
+  (`z = latent.z_world` if `cotrain_encoder` else `z_world.detach()`) and returns the
+  `ActorCriticStep`. A distinct dorsal/habitual action pathway; does NOT route through
+  E3's cost argmin.
+- `actor_critic_reward(latent)` — the substrate RPE teacher
+  `R_t = detach(e3.benefit_eval(z_world) − e3.harm_eval(z_world))` (ARC-108; user-directed
+  substrate-signal teacher, not foraging reward).
+- `actor_critic_parameters()` — actor + both critic heads (for the experiment optimizer).
+- `actor_critic_encoder_parameters()` — `latent_stack.parameters()`, the z_world encoder
+  the cotrain arm co-shapes (the ablation seam: cotrain adds these to the optimizer,
+  frozen omits them).
+
+**Training** (PPO/GAE + SF-TD losses) lives in the experiment, reusing
+`x734._ppo_update` / `_compute_gae` — matching the REE convention where the bias_head
+REINFORCE update also lives in the experiment.
+
+**Smoke test PASS** (2026-07-12): backward-compat (defaults → `None`); plain-critic
+forward; the ablation lever (frozen trains the actor-critic but NOT z_world; cotrain
+flows gradient into z_world); SF-critic `phi/psi` shapes + `V_SF == psi·w`; the
+substrate reward hook. Reused all-ON/PPO experiment modules (x724/x734/x737) still
+import cleanly (no backward-compat break).
+
+**Reward-hacking guard owed at validation** (§ "Reward-hacking hazard" was folded from
+this build): the substrate `R_t` reads z_world through the (frozen-in-P1)
+`benefit_eval`/`harm_eval` heads, so a co-shaped encoder could inflate the frozen benefit
+head without real foraging. `R_t` is detached (no gradient path), and the eval DV is
+UNSHAPED real foraging (not gameable); the validation MUST instrument a
+`train_return_vs_eval_foraging_divergence` guard — a large divergence routes to
+"substrate teacher inadequate", not to a false MECH-457 refutation. Whether the
+`benefit_eval`/`harm_eval` heads are grounded enough in the all-ON recipe to teach is a
+validation-time check.
+
+---
+
+*Design doc authored 2026-07-11 (REE_convergence co-shaping synthesis wired into the
+build artifacts); implementation landed 2026-07-12 by session `nice-blackwell-f367f8`
+via `/implement-substrate`. Grounded in the materialized substrate_queue entry
+`sd_actor_critic_action_learning` (REE_assembly `6e971edda2`) + the MECH-457 claim.
+PROMOTES / DEMOTES NOTHING.*
