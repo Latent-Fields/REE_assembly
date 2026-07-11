@@ -642,7 +642,47 @@ def build_projections(plans, events, threshold, global_coverage=None):
 # ---------------------------------------------------------------------------
 
 
-def emit(out_dir, plans, projections, skipped, event_counts, threshold, now_iso):
+def write_history_sidecars(hist_dir, plans, projections, repo_root,
+                           generated_note="Generated (SHADOW)"):
+    """Write per-plan `<plan>_history.md` pointer-index sidecars (newest LAST).
+
+    Shared by the SHP-1 read-only shadow run (`emit`) and the SHP-3 governance
+    promoter (`promote_status_history.py`), so both produce byte-identical
+    sidecars given the same projection -- ONE sidecar-generation path, mirroring
+    the ONE-projection-path principle. `repo_root` computes the event-file link
+    prefix relative to `hist_dir`, so the pointer links resolve whether the dir
+    is the git-ignored `scratch/status_history_shadow/history/` tree or the
+    committed `evidence/planning/status_history/history/` tree (different depths)."""
+    os.makedirs(hist_dir, exist_ok=True)
+    rel_root = os.path.relpath(repo_root, hist_dir)
+    for plan in plans:
+        lines = ["# History sidecar -- %s" % plan["plan_id"], "",
+                 "> Pointer index into the append-only event log, **newest last**. "
+                 "%s; never hand-edited, never re-pasted into the plan." % generated_note,
+                 "", "Source plan: `%s`" % plan["file"], ""]
+        for node in plan["nodes"]:
+            pr = projections[node["id"]]
+            lines.append("## `%s`" % node["id"])
+            head_id = pr["live"]["from"]
+            if not pr["slice"]:
+                lines.append("\n_(no joined events)_\n")
+                continue
+            lines.append("")
+            for ev in pr["slice"]:  # already chronological, newest last
+                stamp = ev.ts.strftime("%Y-%m-%dT%H:%MZ") if ev.ts else "????-??-??"
+                mark = " **<- live head**" if ev.eid == head_id else \
+                       (" _(modifier)_" if ev.is_measurement() else "")
+                link = os.path.join(rel_root, ev.source_path)
+                lines.append("- `%s` [%s] `%s` -> [`%s`](%s) :: %s%s"
+                             % (stamp, ev.kind, ev.eid, ev.source_path,
+                                link, ev.summary, mark))
+            lines.append("")
+        with open(os.path.join(hist_dir, "%s_history.md" % plan["plan_id"]), "w") as f:
+            f.write("\n".join(lines) + "\n")
+
+
+def emit(out_dir, plans, projections, skipped, event_counts, threshold, now_iso,
+         repo_root):
     os.makedirs(out_dir, exist_ok=True)
     hist_dir = os.path.join(out_dir, "history")
     os.makedirs(hist_dir, exist_ok=True)
@@ -724,29 +764,7 @@ def emit(out_dir, plans, projections, skipped, event_counts, threshold, now_iso)
         f.write("\n".join(md) + "\n")
 
     # ---- 2. per-plan *_history.md sidecars (pointer index, newest LAST) ----
-    for plan in plans:
-        lines = ["# History sidecar -- %s" % plan["plan_id"], "",
-                 "> Pointer index into the append-only event log, **newest last**. "
-                 "Generated (SHADOW); never hand-edited, never re-pasted into the plan.",
-                 "", "Source plan: `%s`" % plan["file"], ""]
-        for node in plan["nodes"]:
-            pr = projections[node["id"]]
-            lines.append("## `%s`" % node["id"])
-            head_id = pr["live"]["from"]
-            if not pr["slice"]:
-                lines.append("\n_(no joined events)_\n")
-                continue
-            lines.append("")
-            for ev in pr["slice"]:  # already chronological, newest last
-                stamp = ev.ts.strftime("%Y-%m-%dT%H:%MZ") if ev.ts else "????-??-??"
-                mark = " **<- live head**" if ev.eid == head_id else \
-                       (" _(modifier)_" if ev.is_measurement() else "")
-                lines.append("- `%s` [%s] `%s` -> [`%s`](../../../%s) :: %s%s"
-                             % (stamp, ev.kind, ev.eid, ev.source_path,
-                                ev.source_path, ev.summary, mark))
-            lines.append("")
-        with open(os.path.join(hist_dir, "%s_history.md" % plan["plan_id"]), "w") as f:
-            f.write("\n".join(lines) + "\n")
+    write_history_sidecars(hist_dir, plans, projections, repo_root)
 
     # ---- 3. diff-vs-blob report (SHP-2 input) ----
     dl = ["# Diff-vs-blob report -- status_history_plane:SHP-1 -> SHP-2 input", "",
@@ -842,7 +860,7 @@ def main():
     projections = build_projections(plans, events, args.threshold, global_coverage)
 
     review_ct, total_at_risk = emit(out_dir, plans, projections, skipped,
-                                    event_counts, args.threshold, now_iso)
+                                    event_counts, args.threshold, now_iso, repo_root)
 
     n_nodes = sum(len(p["nodes"]) for p in plans)
     no_events = sum(1 for pr in projections.values() if pr["live"]["no_events"])

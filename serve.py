@@ -3202,6 +3202,135 @@ def read_workset() -> dict:
     return empty
 
 
+# --- Status/history plane query (status_history_plane:SHP-3, Q2=both) ---------
+
+STATUS_HISTORY_LOG = PLANNING_DIR / "status_history" / "status_snapshot.v1.jsonl"
+
+
+def _iter_status_history_records():
+    """Yield each JSON record from the append-only status-plane log, skipping
+    blank/malformed lines. The log holds two kinds: `shp2_backfill_lift` (SHP-2
+    non-destructive archive) and `status_projection` (SHP-3 derived-live timeline)."""
+    if not STATUS_HISTORY_LOG.exists():
+        return
+    try:
+        with open(STATUS_HISTORY_LOG, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    yield json.loads(line)
+                except ValueError:
+                    continue
+    except OSError:
+        return
+
+
+def read_status_history_for_node(node_id: str) -> dict:
+    """History-plane slice for one node from the append-only log: the
+    `status_projection` timeline (append order = oldest first) plus the SHP-2
+    backfill-lift archive record (if the node was collapsed via the razor)."""
+    projections: list[dict] = []
+    backfill = None
+    for d in _iter_status_history_records():
+        if d.get("node_id") != node_id:
+            continue
+        kind = d.get("kind")
+        if kind == "status_projection":
+            projections.append({
+                "projected_utc": d.get("projected_utc"),
+                "projected_by": d.get("projected_by"),
+                "status": d.get("status"),
+                "severity": d.get("severity"),
+                "live": d.get("live"),
+            })
+        elif kind == "shp2_backfill_lift":
+            backfill = {
+                "lifted_utc": d.get("lifted_utc"),
+                "lifted_by": d.get("lifted_by"),
+                "reason": d.get("reason"),
+                "at_risk_history_bits": d.get("at_risk_history_bits") or [],
+            }
+    return {
+        "projection_count": len(projections),
+        "projections": projections,
+        "backfill_lift": backfill,
+    }
+
+
+def _node_head_view(plan: dict, fname: str, node: dict) -> dict:
+    """The status-plane head view for one collapsed-plan node (the `live:` block
+    plus its `join:` and plan provenance). `collapsed` is False for any node that
+    predates the SHP-2 two-plane collapse (no `live:` block)."""
+    live = node.get("live")
+    join = node.get("join")
+    plan_id = str(plan.get("id") or fname.replace("_plan.md", ""))
+    return {
+        "node_id": node.get("id"),
+        "plan_id": plan_id,
+        "plan_file": f"evidence/planning/{fname}",
+        "status": node.get("status"),
+        "severity": node.get("severity"),
+        "collapsed": isinstance(live, dict),
+        "live": live if isinstance(live, dict) else None,
+        "join": join if isinstance(join, dict) else None,
+    }
+
+
+def query_status_history(node_id: str | None = None,
+                         claim_id: str | None = None) -> dict:
+    """Q2=BOTH query (design sec 3): for a node id OR a claim id, return the
+    collapsed-plan `live:` head (status plane) AND the appended
+    `status_snapshot/v1` history slice (history plane) from the append-only log.
+
+    - `?node=<id>`  -> {found, node:{...live..., history:{...}}}
+    - `?claim=<id>` -> {found, match_count, nodes:[{...}]} for every node whose
+      node-level (or plan-level) scope_claims contains the claim."""
+    if node_id:
+        found = None
+        if PLANNING_DIR.exists():
+            for path in sorted(PLANNING_DIR.glob("*_plan.md")):
+                plan = _parse_plan_frontmatter(path)
+                if not plan:
+                    continue
+                for node in plan.get("nodes") or []:
+                    if isinstance(node, dict) and node.get("id") == node_id:
+                        found = _node_head_view(plan, path.name, node)
+                        break
+                if found:
+                    break
+        if found is None:
+            return {"query": {"node": node_id}, "found": False,
+                    "message": "No closure-plan node with this id."}
+        found["history"] = read_status_history_for_node(node_id)
+        return {"query": {"node": node_id}, "found": True, "node": found}
+
+    if claim_id:
+        matches: list[dict] = []
+        if PLANNING_DIR.exists():
+            for path in sorted(PLANNING_DIR.glob("*_plan.md")):
+                plan = _parse_plan_frontmatter(path)
+                if not plan:
+                    continue
+                plan_scope = plan.get("scope_claims") or []
+                for node in plan.get("nodes") or []:
+                    if not isinstance(node, dict) or not node.get("id"):
+                        continue
+                    join = node.get("join") if isinstance(node.get("join"), dict) else {}
+                    scope = (node.get("scope_claims")
+                             or join.get("scope_claims") or plan_scope or [])
+                    if claim_id in scope:
+                        view = _node_head_view(plan, path.name, node)
+                        view["history"] = read_status_history_for_node(node["id"])
+                        matches.append(view)
+        return {"query": {"claim": claim_id}, "found": bool(matches),
+                "match_count": len(matches), "nodes": matches}
+
+    return {"error": "provide ?node=<node_id> or ?claim=<claim_id>",
+            "example": "/api/status_history?node=goal_pipeline:GAP-1"}
+
+
 def read_igw_ledger() -> dict:
     """Load the IGW auto-spawn routine ledger for the explorer panel.
 
@@ -5168,6 +5297,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/igw/ledger":
             body = json.dumps(read_igw_ledger(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
+        if path == "/api/status_history":
+            # status_history_plane:SHP-3 (Q2=both): collapsed-plan live: head +
+            # appended status_snapshot/v1 history slice for a node or claim.
+            from urllib.parse import parse_qs
+            qs = parse_qs(urlparse(self.path).query)
+            node_id = (qs.get("node", [""])[0] or "").strip()
+            claim_id = (qs.get("claim", [""])[0] or "").strip()
+            body = json.dumps(
+                query_status_history(node_id or None, claim_id or None),
+                indent=2, default=str,
+            ).encode()
             self._json_response(body)
             return
         if path in ("/igw", "/igw.html"):

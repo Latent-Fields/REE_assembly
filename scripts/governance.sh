@@ -106,6 +106,18 @@ echo "--- Step 3c-bis-3: Retire abandoned manual status docs (SHP-7; regenerates
 # the body written here). PROMOTES/DEMOTES NOTHING.
 "$PYTHON" scripts/generate_status_stubs.py
 
+echo "--- Step 3c-bis-4: Promote status-plane history (SHP-3; snapshot log + committed sidecars) ---"
+# status_history_plane:SHP-3. Appends a CHANGE-ONLY status_snapshot/v1 projection
+# record per node (the derived live head at this run's timestamp) onto the
+# append-only evidence/planning/status_history/status_snapshot.v1.jsonl, and
+# regenerates the committed per-plan *_history.md sidecars under
+# status_history/history/ (server-free human view). Change-only append (a stable
+# run with no new events appends ZERO records) mirrors the state-change heartbeat
+# design that retired the git-history-bloating liveness tick. Shares the ONE
+# projection path with project_status_head.py (SHP-1) + check_closure_drift.py.
+# PROMOTES/DEMOTES NOTHING; edits no *_plan.md, no claims.yaml.
+"$PYTHON" scripts/promote_status_history.py
+
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
 "$PYTHON" scripts/validate_brain_region_map.py || true
 
