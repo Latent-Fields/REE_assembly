@@ -227,6 +227,12 @@ are now precisely scoped.
 **Suggested order:** SHP-6 (cheapest, fixes the felt problem) can go first or in parallel;
 SHP-1 -> SHP-2 -> SHP-3 is the structural spine; SHP-4/5 port the pattern; SHP-7 mops up.
 
+**Status (2026-07-11): all phases done.** Process retrospective (what the workflow got
+right, the operational friction, and the reusable checklist for any future field
+collapse of this shape): `shp_process_retrospective.md`. Per-plan collapse+verify
+wrapper (backfill -> collapse -> all 5 gates, hard-fail; ONE plan at a time):
+`scripts/shp2_collapse_and_verify.py`.
+
 ---
 
 ## 8. Open items / risks
