@@ -1,0 +1,111 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_736_curriculum_competence_recovery_diagnostic",
+  "run_id": "v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-11T20:04:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "curriculum_recovering_arms": [],
+    "curriculum_premise_arms": [],
+    "control_reproduces_incompetence": true,
+    "preconditions": [
+      {
+        "name": "hard_oracle_clears_floor",
+        "kind": "readiness",
+        "description": "A greedy nearest-resource ORACLE clears COMPETENCE_RESOURCE_FLOOR resources/episode on the HARD env (724/728 convention). Same statistic as the load-bearing DV. Below => floor not achievable on hard => substrate_not_ready_requeue, NEVER a transfer verdict.",
+        "control": "greedy nearest-resource oracle, HARD env, same seed, no agent",
+        "measured": 5.15,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "easy_oracle_clears_floor",
+        "kind": "readiness",
+        "description": "A greedy nearest-resource ORACLE clears the floor on the EASY (Stage-A) env, proving the Stage-A floor is achievable. Same statistic as the DV. Below => easy env too sparse => substrate_not_ready_requeue.",
+        "control": "greedy nearest-resource oracle, EASY env, same seed, no agent",
+        "measured": 55.55,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "curriculum_premise_agent_forages_easy",
+        "kind": "readiness",
+        "description": "LOAD-BEARING PREMISE. At least one CURRICULUM arm must forage the EASY env >= floor on a majority (min_seeds) of seeds AFTER Stage-A -- i.e. the all-ON stack CAN forage when the env is easy. Measured as the per-seed count of Stage-A easy foraging >= floor (SAME per-seed-supra-floor statistic the load-bearing HARD criterion routes on), so met matches the indexer recompute. If NO curriculum arm forages even the easy env, the curriculum has no foundation to transfer => substrate_not_ready_requeue, NEVER a transfer-ceiling verdict (this is the guard the 732a learner-adequacy stream warns about).",
+        "control": "max over curriculum arms of the count of seeds with Stage-A easy mean_resources/ep >= floor; met when that count >= min_seeds",
+        "measured": 1.0,
+        "threshold": 3.0,
+        "met": false
+      },
+      {
+        "name": "control_reproduces_incompetence",
+        "kind": "readiness",
+        "description": "The flat-hard control A0 (matched 300ep budget) must forage BELOW the floor on a majority of seeds -- i.e. the flat-RL incompetence must reproduce -- for curriculum-vs-flat to be meaningful. If A0 already clears the hard floor the premise is not reproduced => substrate_not_ready_requeue.",
+        "control": "A0 flat-hard mean_resources/ep vs floor (majority of seeds)",
+        "measured": 0.15,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "sufficient_p2_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= MIN_P2_EPISODES HARD P2 eval episodes so mean_resources_per_episode is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed HARD P2 episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "curriculum_recovers_hard_competence",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "hard_oracle_clears_floor": true,
+      "easy_oracle_clears_floor": true,
+      "curriculum_premise_met": false,
+      "control_reproduces_incompetence": true,
+      "sufficient_p2_episodes": true,
+      "curriculum_recovers_hard": false
+    }
+  }
+}
