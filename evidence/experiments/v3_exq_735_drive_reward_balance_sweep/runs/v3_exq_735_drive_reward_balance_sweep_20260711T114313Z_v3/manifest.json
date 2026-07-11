@@ -1,0 +1,90 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_735_drive_reward_balance_sweep",
+  "run_id": "v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-11T11:43:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "reward_balance_not_the_lever",
+    "recovering_approach_arms": [],
+    "preconditions": [
+      {
+        "name": "oracle_foraging_clears_floor",
+        "kind": "readiness",
+        "description": "The greedy nearest-resource ORACLE (capability_eval ceiling anchor, no agent) clears COMPETENCE_RESOURCE_FLOOR resources/episode in this exact env, proving the foraging floor is ACHIEVABLE. Same statistic as the load-bearing DV (env.step info transition_type=='resource'). Below-floor => the floor is not achievable here => substrate_not_ready_requeue, NEVER a reward-balance verdict.",
+        "control": "capability_eval greedy OraclePolicy, same ENV_KWARGS/seed, no agent",
+        "measured": 6.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "control_reproduces_incompetence",
+        "kind": "readiness",
+        "description": "The A0 default-balance arm (724/728 all-ON balance) must forage BELOW the floor on a majority of seeds -- i.e. the 728 incompetence must reproduce -- for a reward-balance conclusion to be meaningful. If A0 already clears the floor the premise is not reproduced => substrate_not_ready_requeue.",
+        "control": "A0 mean foraging_competence vs floor (majority of seeds)",
+        "measured": 0.166667,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "sufficient_eval_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= 5 eval episodes so foraging_competence is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed eval episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "approach_weighting_recovers_foraging",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor": true,
+      "control_reproduces_incompetence": true,
+      "yardstick_discriminates": true,
+      "sufficient_eval_episodes": true,
+      "any_approach_arm_supra": false
+    }
+  }
+}
