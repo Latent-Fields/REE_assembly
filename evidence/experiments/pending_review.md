@@ -1,7 +1,7 @@
 # Pending Experiment Review
 
-Generated: `2026-07-11T21:31:00Z`  
-Last review: `2026-07-11T21:29:49Z`  
+Generated: `2026-07-11T22:37:16Z`  
+Last review: `2026-07-11T22:37:09Z`  
 Pending: **8** item(s) -- 0 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
@@ -13,9 +13,9 @@ Pending: **8** item(s) -- 0 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 | `v3_exq_733a_rebinding_pA_survival_onboarded_20260711T100753Z_v3` | 2026-07-11T10:07 | MECH-456 | — |
 | `v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3` | 2026-07-11T11:43 | (no claim tags) | — |
 | `v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3` | 2026-07-11T19:28 | (no claim tags) | — |
-| `v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3` | 2026-07-11T19:58 | MECH-095 | — |
 | `v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3` | 2026-07-11T20:04 | (no claim tags) | — |
 | `v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3` | 2026-07-11T21:16 | INV-064 | — |
+| `v3_exq_737_ree_latent_policy_head_competence_probe_20260711T222643Z_v3` | 2026-07-11T22:26 | (no claim tags) | — |
 
 ## Diagnostic adjudication required (self-route unverified)
 
