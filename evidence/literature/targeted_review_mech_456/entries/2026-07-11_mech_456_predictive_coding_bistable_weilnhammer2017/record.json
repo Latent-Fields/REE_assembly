@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_456",
+  "entry_id": "2026-07-11_mech_456_predictive_coding_bistable_weilnhammer2017",
+  "timestamp_utc": "2026-07-11T06:05:25Z",
+  "claim_ids_tested": [
+    "MECH-456"
+  ],
+  "source": {
+    "title": "A predictive coding account of bistable perception - a model-based fMRI study",
+    "authors": [
+      "Veith Weilnhammer",
+      "Heiner Stuke",
+      "Guido Hesselmann",
+      "Philipp Sterzer",
+      "Katharina Schmack"
+    ],
+    "year": 2017,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1005536",
+    "url": "https://doi.org/10.1371/journal.pcbi.1005536"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "A computational + model-based-fMRI account in which endogenous perceptual switches are DRIVEN by prediction errors accruing from residual evidence for the currently-suppressed interpretation, outperforming classic adaptation/noise models and localising the PE signal to frontal cortex. This is the closest mechanistic analogue of MECH-456's asserted trigger: the competitor overtakes when the current configuration accrues prediction error. The predictive-coding framing is also architecturally congenial to REE. Held below 0.8 because bistable perception switches between two fixed interpretations of a CONSTANT ambiguous stimulus with no ground-truth winner, whereas MECH-456 requires an exogenous ground-truth overtake -- the trigger transfers cleanly, the 'which is correct' semantics do not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bistable perception has no ground-truth correct percept -- switching is endogenous and either interpretation is 'right'. MECH-456's rebinding must track a TRUE competitor that genuinely becomes better-supported by the environment; the paper's mechanism explains switching-on-PE but not tracking-the-true-winner (that is DV1 of the functional test, un-addressed here).",
+    "The PE signal was localised to inferior frontal gyri / anterior insula via model-based fMRI regressors -- correlational, and in a perceptual-report task, not a self<->world-config binding.",
+    "Model comparison favoured predictive coding over adaptation+noise, but bistable dynamics are notoriously fit by multiple models; the win is evidential, not decisive."
+  ],
+  "tags": [
+    "mech_456",
+    "predictive_coding",
+    "prediction_error",
+    "bistable_perception",
+    "perceptual_switching",
+    "rebinding_trigger"
+  ],
+  "mapping": {
+    "source_claim_statement": "Endogenous perceptual transitions in bistable vision are caused by prediction errors that emerge from residual evidence for the currently-suppressed percept. A Bayesian predictive-coding model reproduces the temporal statistics of bistability, its stabilisation parameter predicts individuals' switch frequency, it outperforms adaptation/noise/adaptation+noise models in formal comparison, and its prediction-error time-course correlates with frontal (IFG/anterior insula) BOLD.",
+    "ree_translation": "This is the mechanistic core of MECH-456's rebinding TRIGGER. The claim asserts the competitor world-configuration overtakes 'when the current config accrues prediction-error', and that the switch is prediction-error / competitor-overtake driven rather than a coherence-specific selection factor. Weilnhammer et al. supply exactly that mechanism in a biological + computational setting: accumulating prediction error for the suppressed alternative drives the switch, and a stabilisation parameter (the hysteresis MECH-456 also needs) governs how readily it fires. The predictive-coding / Bayesian framing maps naturally onto REE's E(tau) prediction-error machinery on which the claim's grounding rests.",
+    "mapping_caveat": "Bistable perception switches between two FIXED interpretations of a constant ambiguous stimulus with NO ground-truth winner -- the PE trigger transfers, but the paper cannot speak to MECH-456's DV1 (rebinding tracks the TRUE competitor above a shuffle control), because in bistability there is no true competitor to track. The neural localisation is correlational fMRI in a perceptual-report task, not a latent binder.",
+    "source_context": "Human model-based fMRI; binocular-rivalry / ambiguous-structure bistable perception with Bayesian predictive-coding model fitting and formal model comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (PLoS Comput Biol, model comparison + fMRI validation). Mapping fidelity good (0.7): PE-accrual-drives-switch is very nearly MECH-456's stated trigger, and the stabilisation parameter mirrors the rebinding threshold. Transfer risk moderate (0.35): endogenous bistable switching with no ground-truth winner vs exogenous ground-truth overtake -- trigger transfers, correctness semantics do not."
+  }
+}

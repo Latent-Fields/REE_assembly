@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_456",
+  "entry_id": "2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023",
+  "timestamp_utc": "2026-07-11T06:05:25Z",
+  "claim_ids_tested": [
+    "MECH-456"
+  ],
+  "source": {
+    "title": "Serial dependence in visual perception: A meta-analysis and review",
+    "authors": [
+      "Mauro Manassi",
+      "Yuki Murai",
+      "David Whitney"
+    ],
+    "year": 2023,
+    "venue": "Journal of Vision",
+    "doi": "10.1167/jov.23.8.18",
+    "url": "https://doi.org/10.1167/jov.23.8.18"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "A rigorous meta-analysis establishing that perception is systematically biased toward the recent past (serial dependence), tuned by time, space, feature-similarity, and attention. For MECH-456 this is genuinely two-directional: it is strong evidence for the STABILITY COUNTERWEIGHT that a rebinding mechanism must overcome, and therefore for the DESIGN choice of a threshold (rebind only when a competitor decisively overtakes, not on every fluctuation) rather than free chatter. But on its own face serial dependence is a persistence/hysteresis phenomenon -- the force OPPOSING rebinding -- so it does not directly support that rebinding occurs, only that if it does it must clear a hysteresis band. Marked mixed for that reason.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Serial dependence is, at face value, evidence for perceptual STICKINESS -- the opposite of rebinding. A skeptic could read it as showing the system resists switching, i.e. as pressure AGAINST MECH-456's re-bind-on-overtake dynamic rather than for it.",
+    "The phenomenon is characterised on low-level continuous features (orientation, numerosity, face identity) in human psychophysics, not on discrete self<->world-configuration bindings; the 'threshold/hysteresis' transfer is a design analogy, not a measured property of any binder.",
+    "Meta-analysis of many small-N studies with heterogeneous paradigms; individual differences are large, so the magnitude of the hysteresis a binder should emulate is not pinned down."
+  ],
+  "tags": [
+    "mech_456",
+    "serial_dependence",
+    "hysteresis",
+    "perceptual_stability",
+    "illusory_stability",
+    "threshold",
+    "rebinding"
+  ],
+  "mapping": {
+    "source_claim_statement": "Serial dependence is a robust, systematic bias in which current perception, decision, and memory of a feature or object are attracted toward what was seen in the recent past. The meta-analysis shows it is defined by four tunings -- it decays over time (temporal), depends on relative spatial location (spatial), occurs only between similar features/objects (feature), and is modulated by attention -- constituting a general mechanism that smooths perception into an 'illusory stability' across time.",
+    "ree_translation": "Serial dependence is the biological name for the STABILITY COUNTERWEIGHT in MECH-456's design. The claim explicitly frames rebinding against 'the stability counterweight rebinding must overcome, motivating a threshold rather than chatter.' Manassi/Murai/Whitney supply the empirical warrant for that counterweight: perception carries an online hysteresis toward the recent past. A well-formed rebinding rule therefore should NOT flip the self<->world-config binding on every transient fluctuation; it should require a competitor to overtake decisively -- exactly the threshold/hysteresis band MECH-456 posits, and the feature-tuning result ('only between similar objects') even predicts that competition is scored between comparable configurations.",
+    "mapping_caveat": "This is the counterweight, not the switch -- it evidences the FORCE OPPOSING rebinding and the NEED for a threshold, not that rebinding happens. It is measured on low-level continuous visual features in humans, not on discrete latent bindings; the mapping onto a binder's rebind threshold is an architectural analogy. Do not read it as direct support that REE's binder re-binds.",
+    "source_context": "Meta-analysis and review of human visual psychophysics across orientation, face, and numerosity perception."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.42,
+    "notes": "Source quality very high (quantitative meta-analysis, canonical authors). Mapping fidelity deliberately moderate-low (0.5): it grounds the DESIGN necessity of a rebinding threshold but is the opposing-force phenomenon, hence evidence_direction=mixed. Transfer risk moderate: human low-level feature psychophysics -> latent-binding threshold."
+  }
+}

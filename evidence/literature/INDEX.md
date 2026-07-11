@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-10T20:20:03.229558Z`
+Generated: `2026-07-11T06:09:12.046594Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -235,6 +235,7 @@ Generated: `2026-07-10T20:20:03.229558Z`
 | `targeted_review_mech_371` | [`2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014`](targeted_review_mech_371/entries/2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014/record.json) | 1 | [`summary`](targeted_review_mech_371/entries/2026-06-12_mech_371_p_factor_general_psychopathology_caspi2014/summary.md) |
 | `targeted_review_mech_423_integration_prerequisites` | [`2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/record.json) | 6 | [`summary`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/summary.md) |
 | `targeted_review_mech_454` | [`2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019`](targeted_review_mech_454/entries/2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019/record.json) | 5 | [`summary`](targeted_review_mech_454/entries/2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019/summary.md) |
+| `targeted_review_mech_456` | [`2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023`](targeted_review_mech_456/entries/2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023/record.json) | 5 | [`summary`](targeted_review_mech_456/entries/2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
 | `targeted_review_memory_lifecycle_store` | [`2026-06-13_mech_391_systems_consolidation_staging_frankland2005`](targeted_review_memory_lifecycle_store/entries/2026-06-13_mech_391_systems_consolidation_staging_frankland2005/record.json) | 7 | [`summary`](targeted_review_memory_lifecycle_store/entries/2026-06-13_mech_391_systems_consolidation_staging_frankland2005/summary.md) |

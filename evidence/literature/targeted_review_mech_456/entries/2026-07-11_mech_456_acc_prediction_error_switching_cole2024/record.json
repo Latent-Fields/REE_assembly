@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_456",
+  "entry_id": "2026-07-11_mech_456_acc_prediction_error_switching_cole2024",
+  "timestamp_utc": "2026-07-11T06:05:25Z",
+  "claim_ids_tested": [
+    "MECH-456"
+  ],
+  "source": {
+    "title": "Prediction-error signals in anterior cingulate cortex drive task-switching",
+    "authors": [
+      "Nicholas Cole",
+      "Matthew Harvey",
+      "Dylan Myers-Joseph",
+      "Aditya Gilra",
+      "Adil G. Khan"
+    ],
+    "year": 2024,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-024-51368-9",
+    "url": "https://doi.org/10.1038/s41467-024-51368-9"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "The strongest CAUSAL grounding for MECH-456's trigger: optogenetic silencing/un-silencing plus two-photon imaging show ACC prediction-error signals are specifically REQUIRED for single-trial switching between two response rules, and the PE signal is LARGER preceding successful transitions -- a graded, causal, single-trial mechanism. This maps onto both DVs in spirit: PE-driven overtake (trigger) and a graded consequence (larger PE -> more successful switch, cf. DV2's graded re-acquisition). Held below 0.8 because task-rule switching in mice is a cognitive-state switch, not an entity/self<->world-config rebinding, and the ACC-circuit specificity does not map onto REE's binder locus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Task-switching between two response rules is a cognitive-STATE switch, not a rebinding of an entity/self<->world-configuration; the abstract 'switch when PE says the current model is wrong' transfers, but the bound thing differs.",
+    "The causal circuit is ACC + a specific disinhibitory interneuron motif in mouse cortex; REE has no homologous locus, so the mechanism grounds the PRINCIPLE, not REE's implementation.",
+    "Larger PE preceding successful transitions is a graded correlate but the single-trial causal test (opto) is on the switch itself, not on a downstream re-acquisition-latency metric like MECH-456 DV2."
+  ],
+  "tags": [
+    "mech_456",
+    "prediction_error",
+    "anterior_cingulate",
+    "task_switching",
+    "single_trial",
+    "causal",
+    "rebinding_trigger",
+    "optogenetics"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mice trained to respond to identical stimuli under two distinct rules, a prediction-error is used to switch rule in a single trial. Optogenetic silencing and un-silencing plus widefield/two-photon calcium imaging show the anterior cingulate cortex is specifically required for this rapid switching -- but only when it exhibits neural prediction-error signals; those signals are projection-target dependent and are larger preceding successful behavioural transitions, and a disinhibitory interneuron circuit is required to compute them.",
+    "ree_translation": "This is the causal, single-trial version of MECH-456's rebinding trigger. Where Weilnhammer shows PE accrual CORRELATES with endogenous switching, Cole et al. show PE is CAUSALLY NECESSARY for a single-trial switch of the operative model, and that the switch is GRADED in the PE magnitude (larger PE -> more successful transition). MECH-456 asserts rebinding is prediction-error / competitor-overtake driven and demands a graded, non-saturating behavioural consequence (DV2). Cole et al. supply the animal-causal analogue of both: a PE that must be present for the switch to happen, scaled to how decisively the current model has failed.",
+    "mapping_caveat": "The switched thing is a RESPONSE RULE (cognitive set), not a self<->world-configuration binding -- the abstract 'drop the current model when PE says it is wrong' transfers, but the locus and the bound object differ. The causal mechanism is ACC-specific mouse cortical circuitry with no REE homologue, so this grounds the PRINCIPLE (PE causally drives single-trial model switching, graded by error) not REE's binder implementation. Ground-truth tracking (DV1) is present here (there IS a correct rule) but is not separated from the PE-drives-switch result.",
+    "source_context": "Head-fixed mice, two-rule stimulus-response task with single-trial rule switches; optogenetic causal manipulation + two-photon and widefield calcium imaging of ACC."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Source quality high (Nat Commun, causal optogenetics + all-optical + imaging -- rare causal PE result). Mapping fidelity moderate (0.62): PE causally-drives-single-trial-switch and the graded-with-PE finding map onto the trigger and DV2 in spirit, but the switched object is a task rule not an entity binding. Transfer risk moderate-high (0.42): mouse ACC circuit -> latent binder is a principle-level transfer."
+  }
+}

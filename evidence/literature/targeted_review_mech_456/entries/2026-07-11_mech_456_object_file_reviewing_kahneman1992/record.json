@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_456",
+  "entry_id": "2026-07-11_mech_456_object_file_reviewing_kahneman1992",
+  "timestamp_utc": "2026-07-11T06:05:25Z",
+  "claim_ids_tested": [
+    "MECH-456"
+  ],
+  "source": {
+    "title": "The reviewing of object files: Object-specific integration of information",
+    "authors": [
+      "Daniel Kahneman",
+      "Anne Treisman",
+      "Brian J. Gibbs"
+    ],
+    "year": 1992,
+    "venue": "Cognitive Psychology",
+    "doi": "10.1016/0010-0285(92)90007-O",
+    "url": "https://doi.org/10.1016/0010-0285(92)90007-O"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical, heavily-replicated demonstration that a perceived object is a persisting FILE that is actively re-linked and updated across time, motion, and occlusion -- not a fixed one-shot binding. This grounds MECH-456's core premise ('binding is maintained-not-intrinsic'). Held below 0.7 because object-file reviewing establishes the UPDATABILITY / maintained-correspondence half of the claim strongly but speaks only obliquely to the SWITCHING half (a competitor world-configuration overtaking and forcing a re-bind); and because it is a 1992 visual-attention psychophysics result whose transfer to a latent self<->world-config binder is analogical, not measured.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Object-file reviewing shows correspondence is maintained and updated across a gap, but the paradigm does not force a competitor to OVERTAKE the current file -- it is largely evidence for continuity, the opposite pole from rebinding, so it under-tests the switch trigger MECH-456 asserts.",
+    "The 'object' is an attended visual token over a brief display (hundreds of ms); MECH-456's bound thing is a self-anchored world-configuration in a trained latent architecture. Equating the two is a formal import, not a measured equivalence.",
+    "No prediction-error / competitor-support variable is manipulated; the mechanism that decides WHEN to keep vs re-link the file is not isolated here."
+  ],
+  "tags": [
+    "mech_456",
+    "object_file",
+    "entity_binding",
+    "rebinding",
+    "object_correspondence",
+    "visual_attention"
+  ],
+  "mapping": {
+    "source_claim_statement": "A perceived object is represented as an 'object file' -- a temporary episodic representation that collects and integrates information about that object as it is encountered. When a later stimulus is interpreted as a new state of a previously seen object, information is reviewed and re-linked to the existing file (object-specific priming), showing that object correspondence across time, motion, and occlusion is an active, continuously-maintained process rather than a fixed one-shot binding.",
+    "ree_translation": "This is the psychological ancestor of MECH-456's central premise that binding is MAINTAINED, not intrinsic. REE's cross_stream_binder holds a self-anchor <-> world-configuration binding; MECH-456 asserts that binding is continuously re-evaluated the way an object file is continuously reviewed and re-linked. Kahneman/Treisman/Gibbs establish that biological perception treats a bound entity as an updatable file whose correspondence must be actively re-computed as the input evolves -- the necessary precondition for a rebinding operation to be a real functional process rather than a static lookup.",
+    "mapping_caveat": "This grounds the 'binding is an active, updatable correspondence' half of MECH-456; it does NOT evidence the specific rebinding TRIGGER (competitor-overtake under prediction error) that separates MECH-456 from mere maintenance. Object files are a visual-attention construct over brief displays; the transfer to a latent architectural binder is analogical (the claim's own 'non-formal-import' grounding), and none of REE's binder behaviour is measured by this paper.",
+    "source_context": "Human visual psychophysics; object-specific priming across preview/target displays with moving and occluded objects."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (foundational, ~2000+ citations, robust and replicated). Mapping fidelity moderate: grounds updatability/maintained-correspondence tightly but the competitor-overtake switch only obliquely. Transfer risk elevated: 1992 visual-attention psychophysics -> trained latent binder is an analogy, and the timescale (sub-second attention) differs from REE's within-episode binding."
+  }
+}

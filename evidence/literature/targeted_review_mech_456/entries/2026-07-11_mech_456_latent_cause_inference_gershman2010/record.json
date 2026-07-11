@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_456",
+  "entry_id": "2026-07-11_mech_456_latent_cause_inference_gershman2010",
+  "timestamp_utc": "2026-07-11T06:05:25Z",
+  "claim_ids_tested": [
+    "MECH-456"
+  ],
+  "source": {
+    "title": "Context, learning, and extinction",
+    "authors": [
+      "Samuel J. Gershman",
+      "David M. Blei",
+      "Yael Niv"
+    ],
+    "year": 2010,
+    "venue": "Psychological Review",
+    "doi": "10.1037/a0017808",
+    "url": "https://doi.org/10.1037/a0017808"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The normative-inference justification for MECH-456's rebinding rule: online Bayesian inference over an unbounded number of latent causes infers a NEW cause when the current one stops explaining the data, reproducing renewal/latent-inhibition and other context-dependent conditioning results. This is exactly 'drop the currently-bound configuration when a competitor better explains the situation', at the level of principle. Held below 0.75 because the timescale (across-trial conditioning contexts) and domain (associative learning) differ from MECH-456's within-episode perceptual binding, and the paper is a model of behavioural data rather than a neural or architectural test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Latent-cause inference here operates over conditioning CONTEXTS across trials (renewal, latent inhibition) -- a slower, associative-learning timescale than MECH-456's within-episode rebinding of a perceptual self<->world-config binding.",
+    "It is a normative Bayesian model fit to behavioural phenomena, not a neural or architectural mechanism; the 'switch to a new cause' is inferential, and the paper's own twist is that this capacity is LIMITED (absent in young animals / after hippocampal lesion), which MECH-456 does not model.",
+    "'A competitor overtakes' in MECH-456 is a comparison between concurrently-available configurations; latent-cause inference is more naturally 'the current cause stops fitting, infer a (possibly new) one' -- adjacent but not identical framings."
+  ],
+  "tags": [
+    "mech_456",
+    "latent_cause_inference",
+    "bayesian",
+    "structure_learning",
+    "context",
+    "new_cause_inference",
+    "rebinding_principle"
+  ],
+  "mapping": {
+    "source_claim_statement": "Context-dependent learning and extinction are modelled as normative statistical inference: online Bayesian inference within a model that assumes an unbounded number of latent causes categorises observations into causes and infers a NEW latent cause when existing ones stop explaining the data. This reproduces renewal and latent-inhibition results, and predicts that context dependence is reduced when the capacity to infer new causes is restricted (young animals, pre-training hippocampal lesions).",
+    "ree_translation": "This is the normative principle underneath MECH-456's rebinding rule. The claim's biological grounding explicitly cites latent-cause inference (Gershman 2010/2017): 'switch causes when the current one stops explaining the data.' MECH-456 asserts the binder re-binds to a competing world-configuration when that competitor becomes the better explanation of the agent's realised situation. Gershman/Blei/Niv give the rational-inference form of exactly this move -- infer/switch to a different latent cause when the current one loses explanatory support -- and ground it as the optimal thing to do, not merely a mechanistic quirk. It supplies the 'why re-binding is the correct behaviour' half that the trigger papers (mechanism) and the object-file paper (updatability) do not.",
+    "mapping_caveat": "The timescale and domain differ: latent-cause inference here spans conditioning contexts across many trials (renewal, latent inhibition), whereas MECH-456 rebinds within an episode over perceptual bindings. And 'competitor overtake' (comparing concurrent configurations) is subtly different from 'current cause stops fitting, infer a new one'. This is a principle-level grounding of the switch RULE, not a measurement of any binder; the paper's own emphasis on LIMITED new-cause capacity is not part of the claim.",
+    "source_context": "Computational (normative Bayesian) model of animal associative-learning phenomena -- renewal and latent inhibition -- fit to behavioural data across developmental and lesion manipulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (Psychological Review, canonical latent-cause paper). Mapping fidelity moderate-good (0.66): the normative 'infer a new cause when the current stops explaining' is nearly MECH-456's rebinding rule, at the principle level. Transfer risk moderate (0.4): across-trial conditioning contexts vs within-episode perceptual binding; normative model of behaviour, not a neural/architectural test."
+  }
+}
