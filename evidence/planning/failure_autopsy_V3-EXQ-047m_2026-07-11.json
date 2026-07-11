@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-11T21:38:53Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3",
+      "queue_id": "V3-EXQ-047m",
+      "claim_ids": ["MECH-095"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- comparator invalidly trained (saturated label); neither supports nor weakens MECH-095",
+        "biological_reference": "clear -- TPJ read-out comparator; the 047-lineage auxiliary-BCE-head-reshaping-z_world is a candidate functional-translation divergence (redesign input, not falsification)",
+        "prerequisites": "present -- SD-005 split-latent active; SD-047 landed and active",
+        "implementation": "partial (dominant) -- routing head active but trained on a saturated is_world label (~const 1 at intensity 1.0); the non-degeneracy guard checked only the probe partition, not the training-label balance",
+        "environment": "wrong pressure at this intensity -- SD-047 @ intensity 1.0 makes world-caused change ~ubiquitous so the self-vs-world contrast collapses; the pre-registered fix is the 4-arm intensity sweep, not a single point",
+        "measurement": "adequate this time -- probe partition non-degenerate (n_no_contact_min 8 >= floor 5); the eval contrast is real, the failure is upstream in training",
+        "integration": "isolated -- single-mechanism probe; n/a",
+        "scale": "adequate -- 97-110 contacts x 4 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "temporoparietal junction (TPJ) agency-detection comparator: self- vs other-caused change against a textured causal background",
+        "dependencies": ["efference-copy prediction of z_self change", "split self/world latent (SD-005)", "textured multi-source causal background (SD-047)"],
+        "is_formal_import": false,
+        "divergence": "MECH-095's notes specify a query-time READ-OUT comparator (efference-copy-predicted vs observed z_self change); the 047-lineage operationalises it as an auxiliary BCE head that RESHAPES z_world by gradient -- plausibly the wrong functional translation (makes the comparator compete with E1+E2, hence routing degrades an already-good z_world). Load-bearing redesign input, not a falsification.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-047m (2026-07-11, SD-047 @ intensity 1.0, 4 seeds, ree-cloud-2) is the CORRECTED successor to 047l. Its probe-partition fix worked (non_degenerate=true, n_no_contact_min=8 >= floor 5) so the EVAL contrast was real, and it FAILed 3/5 with routing HURTING recall (ROUTED 0.492 vs BASELINE 0.795, improvement -0.302). But this is NON_CONTRIBUTORY -- a SECOND operationalisation degeneracy, NOT a substrate_ceiling confirmation and NOT a weakens. Root cause: the identical env_events fold that saturated 047l's PROBE now saturates the TRAINING label. is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0), and at intensity 1.0 the 2 background-drift sources fire env_events>0 on ~93%+ of steps (env_ev_ticks ~4470 of ~4800; episodes die ~11 steps), so is_world ~= constant 1 -- the routing head never sees a self-caused negative and cannot learn the discrimination; instead it homogenizes z_world, degrading an already-good BASELINE contact encoding (0.795) and collapsing action-dissociation (BASELINE +0.140 -> ROUTED -0.002; seed 123 catastrophic: world 0.111 / self 1.000). The 047m guard validated only the PROBE partition, not the training-label balance, so non_degenerate=true is a FALSE CLEAR of validity. Three independent reasons this is not a valid ceiling hit: (1) comparator invalidly trained (saturated label); (2) 047m is a binary comparator-ON-vs-ABLATED at fixed intensity 1.0, NOT the pre-registered 4-arm SD-047 intensity sweep (sd_047 doc warns a binary test cannot distinguish 'SD-047 works' from 'SD-047 overshot calibration' -- the Asai overshoot branch is exactly the label saturation and is unexcluded); (3) the BASELINE succeeds at 0.795, so the substrate carries the contact signal -- the failure is corruption of a good representation, not an absent one. n_ceiling_hits STAYS 0. RE-DERIVE BRAKE FIRES (2nd non_contributory MECH-095 read, threshold 2): route to a test-bed redesign, REFUSE a third 047 letter. The convergent 047l(probe)+047m(training) shape implicates the OPERATIONALISATION (the env_events fold is degenerate at intensity 1.0 wherever applied), not the substrate. Load-bearing redesign input: MECH-095's notes describe a query-time read-out comparator (efference-copy-predicted vs observed z_self), but the 047-lineage operationalises it as an auxiliary BCE head reshaping z_world by gradient -- plausibly the wrong functional translation. Substrate_queue: CREATE an agency-comparator test-bed entry (non-saturating training label / read-out reoperationalisation + a training-label non-degeneracy guard + the pre-registered 4-arm intensity sweep). pending_retest_after_substrate stays true but RE-POINTED from 'SD-047 build' (done) to that test-bed; ceiling audit moves MECH-095 off 'ceiling_may_have_lifted' to 'ceiling-retest-blocked-on-testbed'. MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate; this consumption PROMOTES/DEMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "agency_comparator_testbed_sd047",
+        "title": "Agency-comparator (MECH-095) valid test-bed on SD-047: non-saturating training label + pre-registered 4-arm intensity sweep",
+        "implementation_hint": "SD-047 the substrate is built and correct; the missing upstream is a VALID test-bed. Two coupled gaps: (1) the routing-head training label `is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0)` saturates to ~constant 1 at intensity 1.0 (2 drift sources fire env_events>0 ~every step), so the comparator is never validly trained -- either restrict the label to prev_ttype in WORLD_CAUSED and make SD-047 env-caused events SET a transition_type so the label carries a real self/world contrast, OR reoperationalise MECH-095 as a query-time read-out comparator (efference-copy-predicted vs observed z_self change) that does not reshape z_world by gradient; add a training-label non-degeneracy guard mirroring the probe guard. (2) Run the pre-registered 4-arm intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x) keyed ARM_0-vs-ARM_2 per docs/architecture/sd_047_multi_source_dynamics.md so the Asai non-monotonicity and Woo/Spelke falsifier branch are both testable. Report BASELINE+ROUTED contact_recall and action_dissoc at every arm.",
+        "unblocks_claims": ["MECH-095", "MECH-098", "MECH-099"],
+        "depends_on_unresolved": ["SD-047 (implemented -- substrate present; the gap is the test-bed, not the substrate)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3",
+          "experiment_type": "v3_exq_047m_mech095_agency_routing_sd047",
+          "metric": "recall_improvement = -0.302 (ROUTED 0.492 < BASELINE 0.795); training-label is_world saturated ~const 1 at intensity 1.0 (env_events>0 on ~93%+ of steps) so the comparator was invalidly trained",
+          "target": "a valid test-bed must (a) present the routing head a balanced self-vs-world training label and (b) show recall_improvement > 0.04 at the sweep's informative arm before MECH-095 can be re-gated"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-047l_2026-07-11"],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "agency_comparator_testbed_sd047"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: operationalisation fault -- the env_events-fold auxiliary-BCE-head training label is the cause; a non-saturating label OR a read-out reoperationalisation on the intensity sweep would show discrimination (SD-047 is fine)",
+          "H2: Woo/Spelke branch -- the comparator's load-bearing features are motion-contingency/goal-directedness requiring genuine other-agents (V4-bound); no V3 env-dynamics enrichment lifts it -> route substrate_ceiling to substrate_conditional (V4-1)",
+          "H3: Asai calibration overshoot -- intensity 1.0 overshot; the informative regime is a lower intensity (ARM_1)"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "operationalisation", "sketch": "non-saturating training label (restrict to WORLD_CAUSED + env events set transition_type) OR query-time read-out comparator; + training-label non-degeneracy guard"},
+          {"hypothesis": "H3", "axis": "calibration", "sketch": "the pre-registered 4-arm intensity sweep ARM_0..ARM_3 keyed ARM_0-vs-ARM_2 (Asai non-monotonicity)"},
+          {"hypothesis": "H2", "axis": "architecture-route", "sketch": "if the sweep is flat/all-FAIL with a valid operationalisation, route MECH-095 substrate_ceiling -> substrate_conditional (V4-1 multi-agent ecology) per the sd_047 interpretation grid"}
+        ],
+        "note": "GOV-FANOUT-1: the discrimination is REALIZED INSIDE the test-bed build (the intensity sweep IS the calibration-axis portfolio; a corrected operationalisation is the H1 axis). Per the exemption for a bottleneck that routes to one unambiguous build, the immediate routing is the single test-bed build, NOT sequential 047 letters (brake refuses those). This field records what the test-bed must contrast, not separate probes to queue now."
+      },
+      "learning_extracted": [
+        "Training-label saturation: the env_events additive fold necessary for ROUTED!=BASELINE on SD-047 also makes is_world ~const 1 at intensity 1.0, degenerating the comparator's supervision. A non-degeneracy guard must check TRAINING-label balance, not only the probe partition.",
+        "Binary-at-fixed-intensity is NOT the pre-registered SD-047 validation. The owed test is the 4-arm intensity sweep (Asai non-monotonicity + Woo/Spelke falsifier), never run.",
+        "Convergence: 047l degenerated the eval probe, 047m the training label -- same env_events-fold disease -> the OPERATIONALISATION is the fault, not the substrate (baseline succeeds at 0.795).",
+        "Candidate biological-translation divergence: auxiliary-BCE-head-reshaping-z_world vs a query-time read-out comparator; biology (MECH-095 notes) favours the read-out. Redesign input, not a falsification."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "env_events additive fold is degenerate at intensity 1.0 wherever applied (047l eval probe -> empty negative class; 047m training label -> is_world ~const 1)",
+    "is_independent_bugs": false,
+    "structural_property": "the 047-on-SD-047 operationalisation of MECH-095 cannot validly exercise the comparator at intensity 1.0: SD-047's per-step drift makes world-caused change ~ubiquitous, so any label folding env_events saturates. Fixing it in the probe (047m) exposed it in the training label. Two non-valid reads implicate the operationalisation, not the substrate.",
+    "readings": ["operationalisation_degeneracy", "test_design_ceiling"]
+  }
+}
