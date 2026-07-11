@@ -1741,7 +1741,10 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-196-proposal-for-mech-053 && claude --resume 9744e394-9dd7-4485-b98a-187aa489aaf5",
       "task_claim_session_id": "igw-auto-igw-196-proposal-for-mech-053-20260711T220812Z",
       "assigned_at": "2026-07-11T22:07:58Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-11T23:08:34Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0242 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -2249,6 +2252,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-11T22:08:11Z",
       "re_eligible_after": "2026-07-13T22:08:05Z"
+    },
+    {
+      "stable_hash": "975e36981c01",
+      "igw_id_at_disposition": "IGW-20260711-196",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-053"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-053",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-11T23:08:41Z",
+      "re_eligible_after": "2026-07-13T23:08:34Z"
     }
   ]
 }
