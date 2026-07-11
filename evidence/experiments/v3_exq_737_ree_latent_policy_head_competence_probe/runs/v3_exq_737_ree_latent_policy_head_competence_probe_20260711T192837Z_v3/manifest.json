@@ -1,0 +1,84 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_737_ree_latent_policy_head_competence_probe",
+  "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-11T19:28:37Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "policy_learning_insufficient_or_deeper",
+    "preconditions": [
+      {
+        "name": "d0_oracle_clears_floor",
+        "description": "D0 (724 baseline) env must be floor-achievable with global info.",
+        "control": "greedy_oracle on D0 vs the 1.0 floor",
+        "measured": 6.333333,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "d3_oracle_clears_floor",
+        "description": "Hazard-free D3 env must be floor-achievable with global info.",
+        "control": "greedy_oracle on D3 vs the 1.0 floor",
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "bias_head_reproduces_incompetence_at_d0",
+        "description": "The warmed all-ON bias-head agent must forage BELOW the floor at D0 (reproduce the 724/719a deficit) for the H1 premise to hold; if it already clears the floor the deficit is not present and no H1 read is licensed.",
+        "control": "ree_bias_head D0 mean resources/ep vs floor (strict majority of seeds)",
+        "measured": 0.166667,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "ppo_ree_latent_beats_random_floor_at_d3": false,
+      "random_floor_below_competence_floor_at_d3": true,
+      "bias_head_below_oracle_at_d3": true
+    },
+    "criteria": [
+      {
+        "name": "C_ppo_ree_latent_clears_floor_at_D3",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  }
+}
