@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-07-10T20:18:51.754373+00:00",
+  "generated_at_utc": "2026-07-11T21:35:26.178206+00:00",
   "repo_root": "/Users/dgolden/REE_Working/REE_assembly",
-  "git_head": "a37bde261098d4fa709d72634d97aa72e28c1190",
+  "git_head": "e1cf7c5121dfd0b9111413e06be3dc604478145e",
   "status": "pass",
   "findings": [
     {
@@ -16,7 +16,7 @@
     {
       "severity": "warn",
       "code": "CENTRAL_RUNNER_STATUS_STALE",
-      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 758.3h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
+      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 783.6h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status.json"
       ],
@@ -25,7 +25,67 @@
     {
       "severity": "warn",
       "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_733_rebinding_functional_ground_truth_20260710T130132Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "message": "FAIL experiment 'v3_exq_734_env_difficulty_competence_recovery_sweep_20260711T092149Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_733a_rebinding_pA_survival_onboarded_20260711T100753Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
         "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
@@ -44,7 +104,7 @@
   ],
   "summary": {
     "block_count": 0,
-    "warn_count": 3,
+    "warn_count": 9,
     "info_count": 1
   }
 }

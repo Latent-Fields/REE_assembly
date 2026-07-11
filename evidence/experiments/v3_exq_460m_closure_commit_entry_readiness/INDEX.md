@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_460m_closure_commit_entry_readiness
 
-Generated: `2026-07-10T20:20:03.229558Z`
+Generated: `2026-07-11T21:26:16.738500Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

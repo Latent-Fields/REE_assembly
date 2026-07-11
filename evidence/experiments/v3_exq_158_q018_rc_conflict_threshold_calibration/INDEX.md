@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_158_q018_rc_conflict_threshold_calibration
 
-Generated: `2026-07-10T20:20:03.229558Z`
+Generated: `2026-07-11T21:26:16.738500Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

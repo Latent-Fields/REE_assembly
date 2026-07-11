@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-07-10T20:03:55Z
+Generated: 2026-07-11T21:31:13Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -10,15 +10,13 @@ Warn-only -- this script never blocks the governance pipeline.
 
 _None._
 
-## Suppressed (legitimately non-terminal) (3)
+## Suppressed (legitimately non-terminal) (1)
 
 Nodes whose `owner_exq` reached a terminal state but where suppression rules say the node is legitimately non-terminal (Case-3 self-tag or non-contributory manifest evidence_direction). Listed here for audit; not counted as drift.
 
 | plan | node | status | owner_exq | suppress reason |
 |------|------|--------|-----------|-----------------|
-| infant_substrate_plan.md | `infant_substrate:GAP-13` | in_progress | V3-EXQ-706b | manifest_evidence_direction=non_contributory |
 | self_attribution_plan.md | `self_attribution:GAP-1` | blocked | V3-EXQ-445h | case_3_self_tag |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | V3-EXQ-265a | case_3_self_tag |
 
 ## Stale since last update -- review (0)
 
@@ -40,7 +38,7 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | assembling | _unset_ | exhausted | _none_ | no |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress | _none_ | no |
 
-## Status-plane drift -- projected `live` != stored `live` (0 of 43 collapsed node(s))
+## Status-plane drift -- projected `live` != stored `live` (0 of 98 collapsed node(s))
 
 SHP-2 two-plane nodes carry a stored `live:` head that is a pure projection over the append-only event log. This section re-projects each and flags any whose stored head has gone stale vs the events (a new autopsy / PASS manifest / decision landed, or the reconcile / brake state moved). It is warn-only: SHP-3 will re-project automatically in `governance.sh`; until then, regenerate with `scripts/shp2_collapse_plan.py --plan <plan>` (re-lift is idempotent) or hand-refresh the `live:` block. Nodes with no `live:` block are not yet collapsed and are not checked here.
 
