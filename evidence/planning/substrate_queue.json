@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "bold-payne-7587d5 (learned-binder implement-substrate)",
-  "last_updated_utc": "2026-07-11T21:29:49Z",
+  "last_seen_session": "nice-blackwell-f367f8 (implement-substrate MECH-457 substrate_queue materialization)",
+  "last_updated_utc": "2026-07-11T22:32:17Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5497,6 +5497,82 @@
       "implemented_utc": "2026-07-07",
       "validation_exq": "V3-EXQ-718a",
       "implementation_note": "LANDED 2026-07-07 (/implement-substrate; ree-v3 main 909292c). ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated waking MEL and scales offline-phase duration (sws_consolidation_steps/rem_attribution_steps) via the SleepLoopManager; REEConfig.use_mel_consumer default False -> byte-identical (contracts+preflight PASS); relative floor recalibrated to 1e-6. CONSUMER CAPABILITY VALIDATED 2026-07-08 (confirmed failure_autopsy_V3-EXQ-718a_2026-07-08): the V3-EXQ-718a injection positive control proves graded MEL -> exact-monotone graded offline duration (DV [9,13,18,24,30,38] tracking injected [0.6..2.5], all seeds) -- SD-MEL-CONSUMER's consumer half is BUILT + proven, status -> implemented. The ECOLOGICAL end-to-end demonstration (real graded novelty -> graded above-reference waking MEL -> graded sleep) is environment-blocked in CausalGridWorldV2 (world model converges too completely, conv_rel_drop ~0.98, so residual ecological MEL ~1e-5 is noise-level + scrambled vs novelty level) and is RE-PARKED (user 2026-07-08; off the V3 conversion-ceiling critical path). NO new build owed now. Re-derive brake FIRED (6th non_contributory INV-050 / 3rd MECH-180) and REFUSES a same-environment re-grade re-queue (no V3-EXQ-718b). If the ecological demonstration is ever un-parked, the entry point is a NEW graded-MEL environment/test-bed (continual-shift / non-converging world), NOT another same-environment novelty re-grade. PROMOTES NOTHING (INV-050 stays candidate/pending_retest/re-parked; MECH-180 stays candidate/v3_pending). Plan node sleep_substrate:GAP-5b (owner chain 718 -> 718a terminates)."
+    },
+    {
+      "added_session": "nice-blackwell-f367f8 (/implement-substrate MECH-457; materialized autopsy recommended_substrate_queue_entry)",
+      "source_autopsy": "failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11",
+      "sd_id": "sd_actor_critic_action_learning",
+      "title": "First-class RPE-driven actor-critic action-learning substrate (dorsal-striatal actor + value-baseline critic), representation co-shaping (NOT a readout over the frozen prediction latent)",
+      "status": "proposed",
+      "ready": true,
+      "priority": 1,
+      "node_class": "complicated (buildable)",
+      "design_doc": "docs/architecture/sd_actor_critic_action_learning.md",
+      "depends_on_unresolved": [],
+      "implementation_hint": "Build MECH-457: a parameterized actor trained on a reward-prediction-error teaching signal with a value-baseline critic, architecturally distinct from the thin bias_head REINFORCE over the SD-056 prediction-trained encoder. Per V3-EXQ-737, the actor must NOT ride a FROZEN z_world (a trainable actor+critic on the frozen latent scored below random and below raw-obs); the action-learning loss must co-shape/augment the representation (or add an action-adequate stream). Validation experiment MUST carry a frozen-vs-co-trained-encoder ablation arm to settle the action-adequacy sub-question empirically. Success = all-ON agent forages above the 1.0 competence floor (majority of seeds) at D3, using the local-view-achievable ceiling (V3-EXQ-738: 48.05 @D3) as the fair yardstick denominator, NOT the global teleport oracle. Deps SD-056 (e2 world-forward contrastive encoder, IMPLEMENTED 2026-05-29 ree_core/predictors/e2_fast.py) and MECH-229 (VALENCE_WANTING reward signal the RPE teacher consumes, provisional/built) both present -> buildable now, no probe gate. Biological grounding: O'Doherty 2004 dorsal-actor/ventral-critic dissociation; Schultz/Dayan/Montague 1997 dopaminergic RPE teacher; Collins & Frank 2014 D1/D2 opponent credit (later refinement).",
+      "unblocks_claims": [
+        "MECH-457",
+        "f_dominance_conversion_ceiling",
+        "ARC-063"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+          "experiment_type": "v3_exq_737_ree_latent_policy_head_competence_probe",
+          "metric": "D3 ppo_ree_latent mean resources/ep = 0.217 (below random 0.267; below ppo_raw_obs 0.567)",
+          "target": ">= 1.0 competence floor, strict majority of 3 seeds (a working actor-critic action substrate must exceed this), fair denominator = 738 local-view ceiling 48.05 @D3"
+        }
+      ],
+      "metric_trajectory": {
+        "primary_metric": "d3_foraging_competence_mean_resources_per_ep",
+        "primary_metric_description": "Mean resources collected per episode by the integrated all-ON agent at difficulty D3, measured via capability_eval; the competence floor the conversion-ceiling campaign is blocked on.",
+        "direction": "higher_is_better",
+        "target": ">= 1.0 (competence floor), strict majority of seeds; fair denominator = 738 local-view-achievable ceiling (48.05 @D3), NOT the 57.2 global teleport oracle",
+        "current_blocker": "No first-class action-learning system exists; action is learned only as a thin bias_head REINFORCE over the SD-056 prediction-trained encoder, and that frozen prediction latent is action-inadequate (737: 0.217 < raw-obs 0.567 < floor 1.0).",
+        "observations": [
+          "V3-EXQ-724 (2026-07-09): all-ON agent forages ~0 res/ep vs 1.0 floor; deficit held invariant across P1 budget, encoder-freeze, mechanism count -> localized to the un-varied action-learning invariant.",
+          "V3-EXQ-734 (env difficulty, non_contributory): REE all-ON recovers at NO rung; PPO control recovers at D2 -> difficulty is not the lever.",
+          "V3-EXQ-735 (reward-balance, non_contributory): no approach-weighting arm supra-floor -> reward-balance is not the lever.",
+          "V3-EXQ-736 (curriculum, precondition_unmet/vacuous): agent cannot forage even the easy env (1.0 vs threshold 3.0) -> reinforces the floor.",
+          "V3-EXQ-737 (representation, LOAD-BEARING FAIL): trainable PPO actor+value head over FROZEN z_world = 0.217 @D3 < random 0.267 < ppo_raw_obs 0.567 < floor 1.0 -> frozen-latent+bolt-on-head instantiation REFUTED; latent action-INADEQUACY.",
+          "V3-EXQ-738 (PASS anchor, x-ref): greedy 5x5 local-view forager = 6.05 @D0, 48.05 @D3 -> env is trivially forageable; the wall is action-LEARNING, not observability."
+        ],
+        "prediction": "A dedicated RPE actor-critic whose action-learning loss co-shapes the encoder (co-trained arm) should clear the 1.0 floor at D3 for a majority of seeds; a frozen-encoder arm is predicted to remain at or below the 737 latent-inadequacy level (<0.6), settling how much the representation must co-adapt. If the co-trained arm also stays sub-floor, the deficit is deeper than action-learning credit-assignment (route re-autopsy, NOT a lettered floor re-test)."
+      }
+    },
+    {
+      "sd_id": "agency_comparator_testbed_sd047",
+      "title": "Agency-comparator (MECH-095) valid test-bed on SD-047: non-saturating training label + pre-registered 4-arm intensity sweep",
+      "status": "pending_implementation",
+      "node_class": "complicated (buildable)",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "depends_on_resolved_note": "SD-047 implemented -- multi-source dynamics substrate PRESENT; the gap is a VALID test-bed (non-saturating training label + guard + pre-registered intensity sweep), not the substrate.",
+      "unblocks_claims": [
+        "MECH-095",
+        "MECH-098",
+        "MECH-099"
+      ],
+      "pending_retest_after_substrate": true,
+      "failure_record": [
+        {
+          "run_id": "v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3",
+          "experiment_type": "v3_exq_047m_mech095_agency_routing_sd047",
+          "metric": "recall_improvement = -0.302 (ROUTED 0.492 < BASELINE 0.795); training-label is_world saturated ~const 1 at intensity 1.0 (env_events>0 on ~93%+ of steps) so the comparator was invalidly trained",
+          "target": "a valid test-bed must (a) present the routing head a balanced self-vs-world training label and (b) show recall_improvement > 0.04 at the sweep's informative arm before MECH-095 can be re-gated"
+        }
+      ],
+      "implementation_hint": "SD-047 the substrate is built and correct; the missing upstream is a VALID test-bed. Two coupled gaps: (1) the routing-head training label `is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0)` saturates to ~constant 1 at intensity 1.0 (2 drift sources fire env_events>0 ~every step), so the comparator is never validly trained -- either restrict the label to prev_ttype in WORLD_CAUSED and make SD-047 env-caused events SET a transition_type so the label carries a real self/world contrast, OR reoperationalise MECH-095 as a query-time read-out comparator (efference-copy-predicted vs observed z_self change) that does not reshape z_world by gradient; add a training-label non-degeneracy guard mirroring the probe guard. (2) Run the pre-registered 4-arm intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x) keyed ARM_0-vs-ARM_2 per docs/architecture/sd_047_multi_source_dynamics.md so the Asai non-monotonicity and Woo/Spelke falsifier branch are both testable. Report BASELINE+ROUTED contact_recall and action_dissoc at every arm.",
+      "priority": 2,
+      "generation": "v3",
+      "off_critical_path": false,
+      "source_autopsy": "failure_autopsy_V3-EXQ-047m_2026-07-11",
+      "sd_id_suggested_in_autopsy": "agency_comparator_testbed_sd047",
+      "note": "Created by governance consumption of failure_autopsy_V3-EXQ-047m_2026-07-11 (confirmed). Re-points MECH-095's owed retest from 'SD-047 build' (done) to this test-bed. RE-DERIVE BRAKE FIRED (2nd MECH-095 non_contributory autopsy, 047l probe-saturation + 047m training-label-saturation = same env_events-fold operationalisation degeneracy): a 3rd 047 letter is REFUSED; the discrimination (H1 operationalisation / H2 Woo-Spelke V4 route / H3 Asai overshoot) is realized INSIDE the test-bed build via the pre-registered 4-arm SD-047 intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x, keyed ARM_0-vs-ARM_2). Route: /implement-substrate.",
+      "added_session": "happy-williamson-328b69",
+      "last_seen_session": "happy-williamson-328b69",
+      "added_utc": "2026-07-11T22:32:17Z"
     }
   ],
   "schema_version": "substrate_queue/v2"
