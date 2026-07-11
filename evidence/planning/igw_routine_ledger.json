@@ -1671,7 +1671,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-196-proposal-for-inv-060 && claude --resume e26f0d50-a7bf-45fb-b5dc-f05a94176140",
       "task_claim_session_id": "igw-auto-igw-196-proposal-for-inv-060-20260711T104554Z",
       "assigned_at": "2026-07-11T10:45:38Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-11T10:51:31Z",
+      "completion_summary": "marked EVB-0263/INV-060 blocked_substrate: no play-mode/play-type-curriculum substrate in V3 (play cluster ARC-049/050 MECH-194..199 unimplemented)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0237 -> blocked_substrate (triage landed)"
     }
   ],
   "dispositions": [
@@ -2137,6 +2141,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-10T15:07:09Z",
       "re_eligible_after": "2026-07-12T15:07:09Z"
+    },
+    {
+      "stable_hash": "0841514c54ad",
+      "igw_id_at_disposition": "IGW-20260711-196",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-060"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-060",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-11T10:51:31Z",
+      "re_eligible_after": "2026-07-13T10:51:31Z"
     }
   ]
 }
