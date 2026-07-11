@@ -6895,6 +6895,30 @@
     substrate-ceiling audit reclassifies MECH-095 as ceiling_may_have_lifted (ACTIONABLE:
     queue the agency-detection retest on the SD-047 multi-source substrate; a PASS there
     is the positive discrimination that would re-gate promotion).
+
+    047l ADDENDUM (2026-07-11, governance consumption of failure_autopsy_V3-EXQ-047l_2026-07-11,
+    confirmed; session fervent-lamport-cacb46): the ceiling_may_have_lifted retest was run as
+    V3-EXQ-047l (SD-047 multi-source env, 4 seeds, ree-cloud-1) and FAILed 3/5 -- but the verdict
+    is NON_CONTRIBUTORY / measurement_degeneracy, NOT a substrate_ceiling confirmation. The probe's
+    contact-vs-no-contact partition SATURATED: is_contact folded env_events>0, which on SD-047's
+    dense per-step drift/transient dynamics was true on every probe step, so the no-contact negative
+    class was empty (n_contact_probe == n_probe_steps in all 8 cells: 126==126 / 119==119 / 113==113
+    / 105==105) and contact_recall_world was structurally pinned at 0.0 in BOTH ROUTED and BASELINE.
+    The agency comparator was NEVER exercised -- the owed SD-047 positive-discrimination retest STILL
+    has not validly run, so n_ceiling_hits STAYS 0 (an instrument failure, not a ceiling hit). The
+    env-events fold is correct/necessary in the TRAINING is_world routing label but was over-applied
+    into the EVAL partition. Secondary, claim-orthogonal non-degenerate signal: routing collapsed the
+    self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0). No substrate build owed
+    (autopsy recommended_substrate_queue_entry.action=none -- SD-047 is already implemented and
+    correctly mapped as resolution path (a); this is a measurement bug, not a substrate gap). Superseded
+    by V3-EXQ-047m (keeps the env-events fold in the training routing label; reverts probe is_contact to
+    047k's non-folded CONTACT_SET; adds a probe-partition non-degeneracy guard PROBE_NEG_FLOOR=5 blocking).
+    MECH-095 STAYS candidate / substrate_ceiling / pending_retest_after_substrate; this consumption
+    PROMOTES/DEMOTES NOTHING.
+    RE-DERIVE-BRAKE ESCALATION FLAG: 047l is the 1st MECH-095 non_contributory autopsy (brake threshold
+    2, NOT fired -- prior_count 0). Per the autopsy: a SECOND non_contributory -- i.e. if the corrected
+    successor V3-EXQ-047m ALSO returns non_contributory -- implicates the OPERATIONALISATION (not one
+    probe bug) and MUST route MECH-095 to a substrate/test-bed redesign, NOT a third 047 letter.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."

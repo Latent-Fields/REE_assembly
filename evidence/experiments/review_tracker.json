@@ -1,8 +1,8 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-10T23:20:56Z",
+  "last_review_utc": "2026-07-11T20:33:28Z",
   "discussed_experiment_dirs": [
-    "v3_exq_538a_sd049_phase2_with_sleep",
+    "v3_exq_047l_mech095_agency_routing_sd047",
     "v3_exq_732a_policy_learning_discriminator",
     "v3_exq_729_mech268_dacc_saturation_liveloop",
     "v3_exq_719_conversion_ceiling_dissociation_diagnostic",
@@ -814,7 +814,7 @@
     "v3_exq_733_rebinding_functional_ground_truth"
   ],
   "reviewed_run_ids": [
-    "v3_exq_538a_sd049_phase2_with_sleep_20260710T035148Z_v3",
+    "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
     "v3_exq_732a_policy_learning_discriminator_20260710T103144Z_v3",
     "v3_exq_729_mech268_dacc_saturation_liveloop_20260710T065147Z_v3",
     "v3_exq_729_mech268_dacc_saturation_liveloop_20260710T113825Z_v3",
@@ -5096,6 +5096,14 @@
         "v3_exq_738_local_view_achievable_ceiling_anchor_20260710T151626Z_v3"
       ],
       "note": "Governance walk 2026-07-10 (brave-ishizaka-fa60b4, user-interactive). 2 pending walked. (1) V3-EXQ-738 local_view_achievable_ceiling_anchor -- VERIFIED PASS (P-B leg of the 737/738/739 competence-floor portfolio; claim_ids=[]). Both preconditions met (D3 global oracle 57.2 >> 1.0 floor; resource_field_view present); load-bearing criterion passed; criteria_non_degenerate all True. REFUTES H2 (partial-observability/obs-unlearnable is the ceiling): a 5x5 local-view greedy forager clears the 1.0 floor (48/ep D3, 3/3 seeds). DECISION-FLIP (723 rule): removes H2 -> H1 (prediction-rich/action-poor translation gap, MECH-457) is the surviving hypothesis -> makes V3-EXQ-737 (trainable policy head on frozen z_world, already queued pri 155) the live discriminator. Reached a verdict (local_view_achievable) -> does NOT count toward GOV-DIAG-1 recurrence. PROMOTES/DEMOTES NOTHING (no claim tags). Marked reviewed. (2) V3-EXQ-733 rebinding_functional_ground_truth (MECH-456 evidence) -- FAIL/non_contributory on the seed-quorum readiness gate (only ~1-2/6 seeds reached >=20 P1 overtakes) BUT the one fully-ready seed (42) passed BOTH DVs strongly (DV1 align margin 0.57; DV2 latency gap 13.1). User flagged for /failure-autopsy -> STAYS PENDING this cycle, no evidence stamp beyond the self-stamped non_contributory; MECH-456 unchanged (candidate/v3_pending). Autopsy chip spawned. Agenda: MECH-457 hold_pending_v3_substrate APPLIED (gated on 737); Q-080 narrow_open_question KEPT BROAD (730/731 ablations queued, not landed). No promotions/demotions. 1 claims.yaml note edit (Q-080 status_note)."
+    },
+    {
+      "utc": "2026-07-11T20:33:28Z",
+      "session": "fervent-lamport-cacb46 (/governance -- explicit autopsy consumption)",
+      "reviewed": [
+        "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3"
+      ],
+      "note": "Explicit consumption of failure_autopsy_V3-EXQ-047l_2026-07-11 (confirmed) into the MECH-095 governance record. 047l did NOT surface in the pending walk because its manifest self-reported non_degenerate:false (scoring-excluded on contact_recall_world zero-spread) -- consumed directly from the autopsy artifact, not via generate_pending_review. VERDICT: non_contributory / measurement_degeneracy, NOT a substrate_ceiling confirmation. Root cause (autopsy DOMINANT layer): the probe's contact-vs-no-contact partition saturated -- is_contact folded env_events>0, which on SD-047's dense per-step drift/transient dynamics was true on EVERY probe step, so the no-contact negative class was empty (n_contact_probe == n_probe_steps in all 8 cells: 126==126, 119==119, 113==113, 105==105) and contact_recall_world was structurally pinned at 0.0 in BOTH ROUTED and BASELINE. The MECH-095 TPJ agency comparator was NEVER exercised; the owed SD-047 positive-discrimination retest STILL has not validly run -> n_ceiling_hits stays 0 (a measurement/instrument failure, not a ceiling hit). The fold is correct/necessary in the TRAINING is_world routing label but was over-applied into the EVAL partition. Secondary, claim-orthogonal non-degenerate signal: routing collapsed the self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0). Applied: evidence_direction non_contributory + measurement_degeneracy + superseded_by=V3-EXQ-047m stamped on BOTH the flat and runs/ pack manifests; MECH-095 evidence_quality_note got a dated 047l addendum. MECH-095 STAYS candidate / substrate_ceiling / pending_retest_after_substrate -- PROMOTES/DEMOTES NOTHING. No substrate_queue write (autopsy recommended_substrate_queue_entry.action=none; SD-047 already implemented + mapped as resolution path (a)). Re-derive brake: this is the 1st MECH-095 non_contributory (threshold 2, NOT fired); registered escalation flag -- if the corrected successor V3-EXQ-047m ALSO returns non_contributory, the operationalisation (not one probe bug) is implicated -> route MECH-095 to a substrate/test-bed redesign, NOT a third 047 letter. 047m result review is blocked-on-upstream (not yet run). Plan-gap deferred: multi_agent_ecology_v5:MAE-3 (blocked, unblocks MECH-095) flagged possibly-stale but outcome-contingent on the 047m retest -- left for a later governance/inter-governance pass."
     }
   ]
 }

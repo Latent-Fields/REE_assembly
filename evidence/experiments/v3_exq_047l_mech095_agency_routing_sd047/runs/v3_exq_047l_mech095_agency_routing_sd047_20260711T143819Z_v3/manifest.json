@@ -23,8 +23,13 @@
     "MECH-095"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {"MECH-095": "non_contributory"},
+  "epistemic_category": "measurement_degeneracy",
+  "superseded_by": "V3-EXQ-047m",
+  "reviewed": true,
+  "pending_retest_after_substrate": true,
+  "evidence_direction_note": "NON_CONTRIBUTORY (measurement_degeneracy), governance-stamped 2026-07-11 (fervent-lamport-cacb46) per failure_autopsy_V3-EXQ-047l_2026-07-11 (confirmed). Probe-partition label saturation: is_contact folded env_events>0, true on every probe step on SD-047's dense dynamics, so the no-contact negative class was empty (n_contact_probe==n_probe_steps in all 8 cells) and contact_recall_world was structurally pinned at 0.0 in BOTH ROUTED and BASELINE (non_degenerate:false). MECH-095 comparator never exercised; the owed SD-047 positive-discrimination retest still has not validly run; n_ceiling_hits stays 0 (measurement failure, NOT a substrate_ceiling hit). Superseded by V3-EXQ-047m (keeps fold in training routing label; reverts probe is_contact to 047k's non-folded CONTACT_SET; adds PROBE_NEG_FLOOR=5 blocking guard). Secondary claim-orthogonal: routing collapsed the self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0). MECH-095 stays candidate/substrate_ceiling/pending_retest_after_substrate; PROMOTES/DEMOTES NOTHING.",
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
