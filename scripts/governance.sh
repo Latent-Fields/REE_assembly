@@ -118,6 +118,21 @@ echo "--- Step 3c-bis-4: Promote status-plane history (SHP-3; snapshot log + com
 # PROMOTES/DEMOTES NOTHING; edits no *_plan.md, no claims.yaml.
 "$PYTHON" scripts/promote_status_history.py
 
+echo "--- Step 3c-bis-5: Claims live_status drift check (SHP-4; warn-only) ---"
+# status_history_plane:SHP-4. Doc-status-plane analog of the closure-plan drift
+# check, for the per-claim live_status block in claims.yaml: re-derives each claim's
+# live_status (reading/as_of/needs_review) as a pure fn of status+v3_pending+
+# epistemic_category and warns when the STORED block differs from the derived one
+# (the stamper scripts/apply_live_status.py was not re-run since a claim's status
+# moved, or the block was hand-edited). Mirror of Step 9c's claims_doc_drift.py, but
+# deliberately WARN-ONLY (no --strict): apply_live_status.py is NOT run in this
+# pipeline -- it writes high-contention claims.yaml and stays a claimed manual op --
+# so a --strict gate would abort governance the moment any claim's status changes.
+# When this report shows HARD reading-drift, an operator re-stamps by running
+# `scripts/apply_live_status.py` under a TASK_CLAIMS claim on docs/claims/claims.yaml
+# (per the heartbeat-autostash rule). PROMOTES/DEMOTES NOTHING; edits no claims.yaml.
+"$PYTHON" scripts/claims_live_status_drift.py || true
+
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
 "$PYTHON" scripts/validate_brain_region_map.py || true
 
