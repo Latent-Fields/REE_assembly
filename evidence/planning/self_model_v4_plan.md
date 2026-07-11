@@ -24,7 +24,6 @@ closure_plan:
   nodes:
     - id: "self_model_v4:SELF-1"
       title: "z_self promoted from body-state latent to a stateful self-model (DR-13 temporal depth)"
-      phase: 1
       status: done
       ethical_metadata:
         welfare_relevance: high
@@ -33,7 +32,16 @@ closure_plan:
         forbidden_combinations: [self_model_plus_inescapability]
         note: "Self-continuity ingredient; with valence + autobiographical memory + inescapability + replay it forms the prohibited Class-4 combination."
       severity: load-bearing
-      owner_exq: "V4-EXQ-002"
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [ARC-081]
       depends_on: []
       cross_plan_link: ["object_representation_v4:OBJ-3"]
@@ -46,11 +54,19 @@ closure_plan:
       completion_note: "DR-13 from v4_spec V4-2. This is the substrate floor for the whole plan: z_self must be a stateful self-model before it can be a privileged object-file slot (OBJ-3) or the subject of agentive prediction (MECH-215). MECHANISM RESOLVED 2026-06-14 (interactive IGW design-fork session): HYBRID -- z_self gains temporal depth via a light DEDICATED self-recurrence REGULARISED by E1 generative feedback (both motifs committed, not one). The recurrence supplies the stability-isolated, lesionable subject DR-10/11/12 + INV-064 attach to; the E1-feedback regulariser keeps it consistent with the E-stream generative account (SD-030/DR-12 stay E-stream-native). Residual sub-question = the regularisation-coupling strength (light = preserves stability-isolation; strong = collapses toward pure E1-feedback). Decision recorded on ARC-081 notes. SUBSTRATE NOW BUILT 2026-07-01 (see build_2026_07_01) -- the design decision of 2026-06-14 is now realised in ree-v3 as a no-op-default lever; PROMOTES NOTHING (ARC-081 stays candidate/v4/substrate_coherence). Validation = the DR-13 falsifier queued via /queue-experiment."
     - id: "self_model_v4:SELF-2"
       title: "Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)"
-      phase: 2
       status: blocked
       blocker_class: sibling_node
       severity: load-bearing
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [SD-030]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: []
@@ -63,10 +79,18 @@ closure_plan:
       completion_note: "This is the user-named 'finish self-attribution' work. V3 has the world-stream comparator (SD-031) and the general mechanism (MECH-256); the missing piece is the motor-proprioceptive self-stream comparator (SD-030), which is blocked until z_self has its own forward model. Three-stream attribution (self/world/harm) is only complete once SD-030 lands."
     - id: "self_model_v4:SELF-3"
       title: "z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability"
-      phase: 3
       status: in_progress
       severity: load-bearing
-      owner_exq: "V4-EXQ-003"
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [MECH-215, ARC-081]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: ["object_representation_v4:OBJ-3"]
@@ -81,10 +105,18 @@ closure_plan:
       completion_note: "DR-10 from v4_spec V4-2. Partially V3-tractable per v4_spec but the cohort coheres around the V4 self-model. Unblocks the (1) prerequisite of MECH-215 (a stable z_self as the subject of viability planning) and is the E3-scoring half of the ARC-081 object-file cutover. STATUS RECONCILE 2026-07-01 (IGW-20260701-165, plan lane): flipped status open -> blocked (blocker_class: sibling_node). Verified still-true against source: e3_selector.score_trajectory() F/M/goal scorers operate entirely over z_world (SD-005) -- there is no z_self term in viability (the SELF-4/DR-12 build added a PE-magnitude confidence weight, not a z_self term), so DR-10 is genuinely unbuilt. The node read as actionable-open because its sole depends_on (SELF-1) flipped done 2026-06-14 and drift/workset tooling saw a satisfied dependency (SELF-5/SELF-7 were surfacing `Blocked by: SELF-3 [open]`) -- but SELF-1 `done` is DESIGN-resolved only (the EMA stays the V3 latent; BUILD is the V4 DR-13 cutover, unqueued, no owner_exq). SELF-3 needs that materialised stateful z_self, so the honest status is blocked on the SELF-1 substrate build, matching SELF-5/SELF-7 and SELF-4's 2026-06-16 note. PROMOTES NOTHING; queues nothing; no graduation (a V4 build graduation needs user adjudication per the SELF-4 graduation_decision precedent). No claims.yaml edit; MECH-215/ARC-081 stay candidate/v4. UNBLOCKED SAME DAY 2026-07-01 (user directed the SELF-1 DR-13 substrate be built): SELF-1 substrate landed in ree-v3, so SELF-3 flipped blocked->open -- the stateful z_self subject now exists (see unblocked_2026_07_01). SELF-3 is now the buildable DR-10 step on top of it."
     - id: "self_model_v4:SELF-4"
       title: "E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability"
-      phase: 3
       status: in_progress
       severity: medium
-      owner_exq: "V4-EXQ-001"
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [MECH-215]
       depends_on: ["self_model_v4:SELF-1"]
       cross_plan_link: []
@@ -99,11 +131,19 @@ closure_plan:
       graduation_decision_2026_06_16: "GRADUATION APPROVED (user, 2026-06-16 V4 tractability pass) -- SELF-4 is the first V4 node cleared to build. Build path (owner_exq assigned WITH the experiment, not before, to keep check_closure_drift.py dormant against this generation:v4 node until a real run exists): (1) /implement-substrate -- add a no-op-default confidence-by-PE lever in ree-v3 e3_selector.score_trajectory() that down-weights a trajectory's viability/confidence as a monotone function of E2 FORWARD-PE magnitude in that trajectory's region (E2 forward-PE is already produced on the z_gamma forward model; E3 already consumes E1-novelty + running-variance PE, so this is a new lever on existing machinery, bit-identical OFF). (2) /queue-experiment -- DR-12 pilot, architecture_epoch per v4_spec.md:267 (own V4 epoch parallel to ree_hybrid_guardrails_v1). FALSIFIER: if PE-conditioned confidence weighting does not change trajectory selection in high-PE (poorly-modelled) regions vs the unconditional-trust baseline, DR-12 buys nothing and the wiring is inert. unblocks MECH-215 (E2 self-transition-accuracy half). Cheapest possible V3->V4 cutover; proves the cutover pattern for the rest of the roadmap. NOT YET BUILT -- this records the decision; the implement-substrate+queue chain is the next step."
     - id: "self_model_v4:SELF-5"
       title: "z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals"
-      phase: 4
       status: blocked
       blocker_class: sibling_node
       severity: high
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [MECH-214]
       depends_on: ["self_model_v4:SELF-1", "self_model_v4:SELF-3"]
       cross_plan_link: ["goal_pipeline"]
@@ -116,7 +156,6 @@ closure_plan:
       completion_note: "DR-11 from v4_spec V4-2. Cross-links goal_pipeline because z_goal is shared substrate. Gated on a scorable z_self (SELF-3) -- a self-state goal is meaningless if E3 cannot score viability against z_self. The addiction mapping (pursuit of a z_goal proxy without hedonic grounding) only becomes measurable once self-state and world-location goals dissociate."
     - id: "self_model_v4:SELF-6"
       title: "Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure"
-      phase: 4
       status: blocked
       ethical_metadata:
         welfare_relevance: hard_review
@@ -126,7 +165,16 @@ closure_plan:
         note: "Proxy/hedonic dissociation deliberately surfaces a wanting-without-satisfaction distress-like state; needs relief pathway + boundedness (no valley without a bridge)."
       blocker_class: v3_substrate
       severity: high
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [MECH-214]
       depends_on: ["self_model_v4:SELF-5"]
       cross_plan_link: []
@@ -139,7 +187,6 @@ closure_plan:
       completion_note: "DR-14 from v4_spec V4-2. This is the measurement substrate that makes MECH-214's central clinical prediction (anhedonia/incoherent-wanting as E1-self poverty, not pure dopaminergic disorder) experimentally surfaceable. Env work, not core-model work; sequenced last because it presupposes the DR-11 goal channel."
     - id: "self_model_v4:SELF-7"
       title: "Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar"
-      phase: 5
       status: blocked
       ethical_metadata:
         welfare_relevance: low
@@ -148,7 +195,16 @@ closure_plan:
         note: "Maturational-sequence honesty gate IS a SENT-13 assembly-routing instance: self-stability must precede the social/other pillar."
       blocker_class: sibling_node
       severity: high
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [INV-064]
       depends_on:
         - "self_model_v4:SELF-1"
@@ -163,11 +219,19 @@ closure_plan:
       completion_note: "INV-064 is not a substrate step but a sequencing invariant: it pins the order self -> world -> others and forbids building the social pillar before the self is stable. This node is the honesty gate between this plan and the social roadmap; it depends on the shared MECH-163 V4-entry gate, not on new self-model code beyond SELF-1/SELF-3."
     - id: "self_model_v4:SELF-8"
       title: "Biology grounding completion (self-as-object body-ownership, agency/forward-model self, interoceptive self lit-pulls + completion-set harvest)"
-      phase: 2
       status: done
       lit_pull_status: done
       severity: medium
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: [MECH-214, MECH-215, SD-030, INV-064, ARC-081]
       depends_on: []
       cross_plan_link: ["object_representation_v4:OBJ-6"]
@@ -179,15 +243,22 @@ closure_plan:
       completion_note: "Self_model had NO grounding node; self-as-object integration imports body-ownership / agency / interoception constructs with no formal /lit-pull (project rule feedback_biology_before_formal_definitions). Cross-references OBJ-6 L4 to avoid duplication; tracks the integration-specific strands + completion-set harvest (insula interoceptive-self, TPJ self/other boundary). Off V3 closure path; promotes nothing. LIT-PULL DONE 2026-06-13 (targeted_review_self_model_integration, 6 entries): L1 body-ownership = Botvinick & Cohen 1998 (rubber-hand, ARC-081/SD-030, 0.61) + Tsakiris 2010 (neurocognitive model, ARC-081/SD-030/MECH-215/INV-064, 0.66 -- harvests right-TPJ self/other + right-posterior-insula ownership partners); L2 sense-of-agency/efference-copy = Blakemore/Wolpert/Frith 2002 (comparator model, SD-030/MECH-215, 0.70 -- strongest mapping) + Frith/Blakemore/Wolpert 2000 (parietal predicted-state vs prefrontal intention dissociation, SD-030/MECH-215, 0.68); L3 interoceptive self = Craig 2009 (AIC re-represents interoception, MECH-214/MECH-215, 0.60 -- anterior-insula partner) + Seth 2013 (interoceptive inference = MECH-214 satisfaction-referent-as-modelled-quantity, MECH-214/MECH-215/INV-064, 0.64). lit_conf raised SD-030 0.831 / MECH-215 0.828 / INV-064 0.725 / ARC-081 0.718 / MECH-214 0.71; ALL exp_conf 0.0, plausible_unproven -- PROMOTES NOTHING. Did NOT duplicate OBJ-6 L4 self-as-object (Gallagher/Botvinick object-file) -- that remains OBJ-6's tracking. COMPLETION-SET PARTNERS surfaced proposal-first (NOT auto-registered): (a) insula as the interoceptive-self locus -- two independent strands converge (Tsakiris right-posterior-insula ownership + Craig AIC interoceptive awareness); (b) right-TPJ self/other boundary as the V5 social-tier cross-link; (c) candidate design note that the self-model is ONE predictive-comparator form over TWO streams (motor-self SD-030 + interoceptive-self MECH-214), per Seth's unification. See decision log 2026-06-13. STATUS RECONCILE 2026-06-14: the biology /lit-pull deliverable was confirmed already landed (6 entries on disk under targeted_review_self_model_integration, lit_conf attached to all 5 scope claims, present in evidence/literature/INDEX.md); only the node status lagged. Flipped status open->done as a reconcile (lit_pull_status was already done). NO claims.yaml edit and NO lit-pull re-run -- re-running would duplicate the existing directory, which the skill forbids. exp_conf stays 0.0 on every scope claim; PROMOTES NOTHING."
     - id: "self_model_v4:SELF-9"
       title: "Own-future-option uncertainty: does REE need an explicit self-model of its OWN future option-space (second-order uncertainty over its developmental/decision branches) to avoid premature irreversible commitment, or do the object-level MECH-454 option-value cost + the existing de-commit/ghost-trace machinery suffice?"
-      phase: 2
       status: assembling
       lit_pull_status: pending
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-06-06"
+        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
+        verdict: "held_v4_by_architectural_commitment/applied"
+        next: "decision held_v4_by_architectural_commitment (applied)"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["ARC-081", "MECH-214", "MECH-215", "SD-030", "INV-064"]
       unblocks_claims: []
       depends_on: [MECH-454]
       cross_plan_link: []
-      awaiting: "MECH-454 (object-level option-value cost) built + the V4 self-model substrate (DR-10 / MECH-215)"
       assembly_status: queued
       readiness_gate:
         - "what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where the load-bearing uncertainty is about REE's OWN future capability/branch (not the world's). If MECH-454 + de-commit (MECH-090/091/342, SD-034, ARC-108-JOB-2) + ghost-trace (MECH-292/SD-039) ALONE prevent premature foreclosure -> the explicit self-future-model is UNNECESSARY (close this node). If REE still forecloses because it cannot represent uncertainty about its OWN future options -> the explicit V4 self-model is REQUIRED (route to the self-model build)."

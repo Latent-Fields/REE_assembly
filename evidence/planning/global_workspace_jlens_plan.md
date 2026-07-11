@@ -11,10 +11,19 @@ closure_plan:
   nodes:
     - id: "global_workspace_jlens:A"
       title: "Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)"
-      phase: 1
       status: blocked
       severity: load-bearing
-      owner_exq: "V3-EXQ-723 (superseded); V3-EXQ-723a RAN 2026-07-10 (v3_exq_723a_jlens_discriminative_compactness_diagnostic_20260710T032445Z_v3; supersedes 723; diagnostic, claim_ids=[], non_contributory; terminal FAIL/no_compact_workspace_diffuse -- CONFOUNDED by the V3 competence floor, adjudicated by failure_autopsy_V3-EXQ-723a_2026-07-10). Same-substrate V3-EXQ-723b REFUSED (re-derive brake fired substantively)."
+      live:
+        as_of: "2026-05-31"
+        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+      join:
+        bears_on: []
+        scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, MECH-191]
       depends_on: []
       blocking_external: ["observation-encoding competence build (V3-EXQ-732-localized H2_observation_interface_unlearnable) -- owned by the competence cluster / f_dominance_conversion_ceiling / ree_ai_design_critique_plan WS-1; Experiment A's J-lens re-read shares this dependency and cannot license compact-vs-diffuse until it lands"]
@@ -24,10 +33,19 @@ closure_plan:
       completion_note: "V3-EXQ-723 RAN 2026-07-09 (v3_exq_723_jlens_dispositional_readout_diagnostic_20260709T151028Z_v3; experiment_purpose=diagnostic, claim_ids=[], evidence_direction=non_contributory, EXCLUDED from governance scoring -- PROMOTES NOTHING). Post-hoc ridge readout z_t -> committed_class_{t+H} + SVD J-space on the existing all-ON substrate (identical to V3-EXQ-714/719a); NO new mechanism. Self-route = compact_action_coupled_subspace_present on 3/3 seeds: action predictable above the 200-permutation label null (primary bal-acc 0.504 vs null p95 0.363), J-space dim ~2 capturing 0.9 energy, jspace_activity_fraction ~0.00028 (<< the 0.10 compactness ceiling), predictive_retention ~1.006 (>= 0.80 floor -- the compact subspace loses none of the full-state predictive power), broadcast-report proxy available on all seeds. READING (HYPOTHESIS, not a verdict): REE has a compact, action-coupled, broadcast-aligned latent subspace -- the J-space analogue of Anthropic's 2026 finding -- which RAISES the SD-064 prior and, per the plan's own pre-registered sequencing, is the evidence that JUSTIFIES spending the SD-027 V3 boundary-gate retrofit build (node GATE-B) that unlocks the Experiment B falsifier. Caveat carried (LOAD-BEARING): absolute action-predictability is modest (0.50 balanced accuracy over 5 committed classes) -- the signal is above-null but weak, and 'compact' is measured over that weak signal. CONFOUND: 723 read the same all-ON substrate that V3-EXQ-719a showed is competence-limited (forages below floor; state->commitment MI barely above floor), so a compact J-space and an impoverished near-monostrategy policy look alike from this readout. This is why GATE-B is gated on competence-localization first (user-agreed 2026-07-09; see the GATE-B decision_live note) rather than proceeding on the A-positive alone. Diagnostic routed to /failure-autopsy for adjudication; SD-064 stays candidate/v3_pending."
     - id: "global_workspace_jlens:GATE-B"
       title: "SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, no-op-default)"
-      phase: 2
       status: open
       severity: high
-      owner_exq: null
+      live:
+        as_of: "2026-05-31"
+        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+      join:
+        bears_on: []
+        scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:A"]
       blocking_external: ["competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cross_plan_link"]
@@ -37,10 +55,19 @@ closure_plan:
       reconcile_2026_07_10: "The A-positive that this decision was surfaced on is SUPERSEDED. V3-EXQ-723 (compact_action_coupled_subspace_present) -> V3-EXQ-723a (RAN 2026-07-10, supersedes 723, fixed the non-discriminative gates) now returns no_compact_workspace_diffuse, CONFOUNDED by the competence floor (failure_autopsy_V3-EXQ-723a_2026-07-10). So the pre-registered build trigger is NOT met: compact-vs-diffuse is UNRESOLVED, not positive. This does not change the routing (localize competence first) but removes the standing 'A came back positive' justification -- GATE-B is now gated by BOTH an unresolved Experiment A AND the observation-encoding competence build. Do NOT greenlight the SD-027/MECH-254 access-gate build. Node A re-read on a competent substrate is the prerequisite that re-supplies (or falsifies) the trigger."
     - id: "global_workspace_jlens:B"
       title: "Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD-064 falsifier)"
-      phase: 3
       status: blocked
       severity: load-bearing
-      owner_exq: TBD
+      live:
+        as_of: "2026-05-31"
+        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+      join:
+        bears_on: []
+        scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [SD-064, SD-027, MECH-254]
       depends_on: ["global_workspace_jlens:GATE-B"]
       cross_plan_link: ["conversion_ceiling_campaign:CAMPAIGN", "behavioral_diversity_isolation:GAP-I"]
@@ -49,10 +76,19 @@ closure_plan:
       last_updated: 2026-07-09
     - id: "global_workspace_jlens:MECH-191"
       title: "MECH-191 cross-architecture legibility unblock check (does A's dispositional readout resolve the tonic-channel gap?)"
-      phase: 2
       status: open
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-05-31"
+        from: "failure_autopsy_V3-EXQ-483e_2026-05-31"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+      join:
+        bears_on: []
+        scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
       unblocks_claims: [MECH-191]
       depends_on: ["global_workspace_jlens:A"]
       note: "MECH-191 (cross-architecture signal legibility) is substrate-blocked because REE's functional channels are TONIC (instantaneous channel value is not a legibility map). Experiment A's dispositional readout -- 'which latent states are dispositionally coupled to future committed action' -- is exactly a legibility instrument reading disposition-toward-output rather than instantaneous value, so it is a candidate unblock. Follow-on confirmation task, not load-bearing for SD-064 closure; open pending someone checking whether the 723 J-space readout resolves MECH-191's tonic-channel problem."

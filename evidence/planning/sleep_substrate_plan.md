@@ -8,19 +8,35 @@ closure_plan:
   nodes:
     - id: "sleep_substrate:GAP-1"
       title: "MECH-204 precision recalibration consumer (F1 closure; V3-EXQ-541c PASS, cycle-count dose-response confirmed F1-sufficient)"
-      phase: 1
       status: done
       severity: load-bearing
-      owner_exq: V3-EXQ-541c
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: [Q-041, Q-042, SD-029, MECH-111, MECH-256]
       depends_on: []
       last_updated: 2026-05-09
     - id: "sleep_substrate:GAP-2"
       title: "SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending ARC-065 substrate; 500a / 503a in pending review)"
-      phase: 2
       status: upstream-blocked
       severity: high
-      owner_exq: V3-EXQ-265a
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       owner_exq_status: passed
       pending_owner_exqs: [V3-EXQ-500a, V3-EXQ-503a]
       reclassified_non_contributory: [V3-EXQ-418l, V3-EXQ-436a]
@@ -36,20 +52,36 @@ closure_plan:
       governance_2026_05_31: "Drift report freshness bump only. Today's governance cleared ARC-065 v3_pending + pending_retest_after_substrate via V3-EXQ-614a + V3-EXQ-569d + V3-EXQ-615 PASS convergence on the behavioural-diversity / SP-CEM stack. This does NOT lift the GAP-2 gate: the new gate (rule-creator / discriminator substrate landing under arc_062_rule_apprehension:GAP-B) is orthogonal to the ARC-065 SP-CEM clearance and remains blocked / routing to /implement-substrate. 543l autopsy still authoritative: ARC-065 SP-CEM alone is insufficient. Sleep retest cohort (418m + 436b + 500a + 503a) stays deferred. Status remains upstream-blocked. Case 3 in closure-drift terms."
     - id: "sleep_substrate:GAP-3"
       title: "Phase B-E master flags default-False (cluster silent) -- unified use_sleep_aggregation_cluster master flag landed 2026-05-16"
-      phase: 3
       status: done
       severity: high
-      owner_exq: V3-EXQ-581
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: [MECH-285, MECH-272, MECH-275, MECH-273]
       depends_on: ["sleep_substrate:GAP-8"]
       last_updated: 2026-05-16
       completed_note: "Root cause was eight independent default-False flags (use_sleep_loop, sws_enabled, rem_enabled, use_mech285_sampler, use_mech272_routing, use_mech272_routing_consumer, use_mech275_aggregator, use_mech273_self_model); the offline-consolidation pathway was silent unless an experiment set all eight by hand. Fix: REEConfig.use_sleep_aggregation_cluster field + enable_sleep_aggregation_cluster() method, resolved in __post_init__ (direct construction) and at the end of from_dims (factory path experiments use), mirroring the use_mech307_conjunction / enable_goal_stream conventions. OR-only (flips False->True); MECH-204 precision recalibration and the anchor-set / e2_harm_s substrate prereqs are deliberately NOT bundled (separate GAP-1 / MECH-269 / ARC-033 switches; keeps GAP-3 scoped to the sleep-phase flags). Bit-identical OFF (default False; full contracts 410 + preflight 9 PASS). New contract test test_sleep_aggregation_cluster_gap3.py 7/7. V3-EXQ-581 dry-run 6/6 PASS: C1-C5 all four Phase B-E components fire end-to-end under the single flag; C6 ARM_CLUSTER == ARM_EXPLICIT (master flag is pure ergonomics, zero behavioural divergence -- after threading torch+numpy+random seeds, since the MECH-285 sampler draws via the module-level numpy RNG). NOTE: the 2026-05-16 GAP-4 decision-log entry's claim 'GAP-3 PASS (V3-EXQ-565 on 2026-05-15)' was a conflation -- V3-EXQ-565 is GAP-8's owner-EXQ; GAP-3's own deliverable (the unified flag) was not done until 2026-05-16 / V3-EXQ-581. GAP-4 was completed ahead of its stated GAP-3 dependency; that dependency is now satisfied."
     - id: "sleep_substrate:GAP-3b"
       title: "MECH-285 / MECH-272 / MECH-275 / MECH-273 empirical promotion -- the behavioural discriminative run the GAP-3/4/8 substrates exist to ENABLE (use_sleep_aggregation_cluster ON)"
-      phase: 2
       status: done
       severity: medium
-      owner_exq: V3-EXQ-702
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: [MECH-285, MECH-272, MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-06-23
@@ -58,29 +90,53 @@ closure_plan:
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to surface owed work that was hidden behind three green DONE boxes. GAP-3 (unified use_sleep_aggregation_cluster master flag), GAP-4 (MECH-273 replay-derived gradient), and GAP-8 (MECH-272 routing consumer) are all `done` at the SUBSTRATE-LANDING level, and each lists MECH-285/272/275/273 in unblocks_claims as the claims its substrate makes reachable for PROMOTION -- but all four claims are STILL `candidate` in claims.yaml (verified 2026-06-23) because no behavioural discriminative promotion experiment was ever queued. The substrate's whole purpose (offline-consolidation pathway reachable under one flag) is unrealised at the evidence layer. This node tracks the owed promotion run: a discriminative arm-ON vs arm-OFF behavioural experiment over use_sleep_aggregation_cluster that produces scoreable evidence for the four claims. Author via /queue-experiment (claim_ids=[MECH-285, MECH-272, MECH-275, MECH-273] with per-claim direction). NOT queued here (experiment_queue.json is held by 2 concurrent sessions). NO claims.yaml change. PROMOTES NOTHING until the run scores."
     - id: "sleep_substrate:GAP-4"
       title: "MECH-273 offline gradient uses synthetic batch (replace with replay-derived)"
-      phase: 4
       status: done
       severity: high
-      owner_exq: "V3-EXQ-574"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: [MECH-273]
       depends_on: ["sleep_substrate:GAP-3"]
       last_updated: 2026-05-16
     - id: "sleep_substrate:GAP-5"
       title: "Sleep entry K-episode deterministic (no arousal trigger)"
-      phase: null
       status: deferred
       severity: low
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: []
       depends_on: []
       blocking_external: ["V4 SD-037 arousal substrate"]
       last_updated: 2026-05-08
     - id: "sleep_substrate:GAP-5b"
       title: "MEL-consumer: accumulated Model Error Load modulates offline-phase entry/duration (INV-050 THIRD / learning-demand drive; DISTINCT from GAP-5 SD-037 arousal entry)"
-      phase: null
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-718a (terminal; supersedes V3-EXQ-718; chain terminates -- no 718b)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       substrate_queue_id: "SD-MEL-CONSUMER"
       unblocks_claims: [INV-050, MECH-180]
       depends_on: []
@@ -119,10 +175,18 @@ closure_plan:
         arousal/homeostatic entry, V4-deferred).
     - id: "sleep_substrate:GAP-6"
       title: "StepHarness audit: SWS / REM write paths vs canonical sense/update sequence"
-      phase: 5
       status: done
       severity: medium
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: []
       depends_on: []
       cross_plan_link: ["commitment_closure:GAP-10"]
@@ -130,20 +194,36 @@ closure_plan:
       completed_note: "All 7 write sites audited and documented in sleep_aggregation_cluster.md; all are documented architectural exceptions; zero require StepHarness routing."
     - id: "sleep_substrate:GAP-7"
       title: "Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)"
-      phase: 6
       status: done
       severity: medium
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: []
       depends_on: []
       last_updated: 2026-05-17
       completed_note: "Deliverable 1: added 'multi-episode driver' section + 'SLEEP DRIVER' code-review check to /queue-experiment skill (both .claude/skills/ and .agents/skills/). Deliverable 2: audited all 41 sleep-touching experiments; 17 are sleep-adjacent only (SHY/serotonin/context-memory, no SleepLoopManager); 24 use the sleep cycle pipeline and were annotated with canonical SLEEP DRIVER: label in their docstrings. Pattern breakdown: 8 manual-multi (run_sleep_cycle every SLEEP_INTERVAL=10 ep, 265/385/385a/418/418a/429/430/436), 2 manual-cycle-loop (500/503), 5 K=1 default (265a/418l/436a/500a/503a), 4 K=1 explicit (541c/565/581/585), 4 K=N multi-fire (538 K=3; 541/541a/541b K=2), 1 K=never (574, K=TOTAL_EPS+1). Deliverable 3: this node open->done. No validation EXQ (process improvement only)."
     - id: "sleep_substrate:GAP-8"
       title: "MECH-272 routing weights flip but HippocampalRouter does not consume them"
-      phase: 3
       status: done
       severity: high
-      owner_exq: V3-EXQ-565
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
+        verdict: "non_contributory/substrate_ceiling"
+        next: "routing=implement-substrate"
+        brake: "not_fired"
+        needs_review: false
+      join:
+        bears_on: []
+        scope_claims: ["SD-017", "MECH-204", "MECH-205", "MECH-272", "MECH-273", "MECH-275", "MECH-285", "INV-049", "INV-050", "MECH-180", "Q-041", "Q-042", "SD-029", "MECH-111", "MECH-256", "ARC-045", "MECH-166"]
       unblocks_claims: [MECH-272, MECH-285]
       depends_on: []
       last_updated: 2026-05-15

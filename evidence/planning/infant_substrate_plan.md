@@ -8,100 +8,199 @@ closure_plan:
   nodes:
     - id: "infant_substrate:GAP-1"
       title: "Harm gradient env feature (harm_gradient_enabled, graduated harm proximity signal without terminal contact)"
-      phase: 1
       status: done
       severity: high
-      owner_exq: "V3-EXQ-576"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: []
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-2"
       title: "Microhabitat zones env feature (microhabitat_enabled, zone_A/B/C resource+hazard density modulation via Voronoi seed)"
-      phase: 1
       status: done
       severity: high
-      owner_exq: "V3-EXQ-577"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-003, DEV-NEED-007, ARC-065]
       depends_on: []
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-3"
       title: "Transient benefit patches env feature (transient_benefit_enabled, stochastic high-salience patch spawn for z_goal seeding)"
-      phase: 1
       status: done
       severity: high
-      owner_exq: "V3-EXQ-578"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: []
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-4"
       title: "Stochastic attractor audit (enumerate CausalGridWorldV2 sources of irreducible randomness; mark or remove before high novelty_bonus_weight deployment)"
-      phase: 1
       status: done
       severity: high
-      owner_exq: "audit-note (infant_substrate_expansion.md S5.6; code-read only, no EXQ)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-003, MECH-314]
       depends_on: []
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-5"
       title: "H_pos / zone_coverage telemetry (Shannon entropy of position histogram per episode, per-zone cell coverage fraction)"
-      phase: 2
       status: done
       severity: high
-      owner_exq: "V3-EXQ-579"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-008]
       depends_on: []
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-6"
       title: "residue_coverage_pct metric (fraction of grid cells with |residue| > threshold; harm_benefit_ratio)"
-      phase: 2
       status: done
       severity: high
-      owner_exq: "V3-EXQ-580"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, DEV-NEED-008]
       depends_on: ["infant_substrate:GAP-1"]
       last_updated: 2026-05-16
     - id: "infant_substrate:GAP-7"
       title: "traj_pairwise_cosine_mean metric (edit/cosine distance across stored trajectories; volumetric coverage estimate)"
-      phase: 2
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-584"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-002, DEV-NEED-005, DEV-NEED-008]
       depends_on: []
       last_updated: 2026-05-17
     - id: "infant_substrate:GAP-8"
       title: "post_sleep_z_goal_retention metric (z_goal.norm ratio before/after sleep integration; replay_diversity_index)"
-      phase: 2
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-585"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-007, DEV-NEED-008]
       depends_on: []
       last_updated: 2026-05-17
     - id: "infant_substrate:GAP-9"
       title: "4-phase infant curriculum scheduler (config hook for phase-gated parameter switching; Phase 0 babbling -> Phase 1 benefit -> Phase 2 geography -> Phase 3 gate)"
-      phase: 3
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-586"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-1", "infant_substrate:GAP-2", "infant_substrate:GAP-3"]
       last_updated: 2026-05-17
     - id: "infant_substrate:GAP-10"
       title: "EXQ-ISEF-001: harm gradient vs binary-contact residue geography formation speed"
-      phase: 4
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-587"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-004, ARC-013]
       depends_on: ["infant_substrate:GAP-1", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
       last_updated: 2026-05-17
     - id: "infant_substrate:GAP-11"
       title: "EXQ-ISEF-002: transient benefit patches z_goal seeding rate comparison"
-      phase: 4
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-588c"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-006, MECH-189]
       depends_on: ["infant_substrate:GAP-3", "infant_substrate:GAP-5"]
       blocked_by: ""
@@ -113,10 +212,19 @@ closure_plan:
       governance_2026_05_29: "V3-EXQ-588b ran 20260521T053758Z FAIL non_contributory (diagnostic, no claim tags). GAP-11 blocked on the ContextMemory path prerequisite called out in the original resume_condition; the MECH-189 retest cannot proceed until ContextMemory writes are implemented (separate substrate work, not a re-queue of 588 chain)."
     - id: "infant_substrate:GAP-11b"
       title: "MECH-189 trained-encoder evidence successor -- the DEV-NEED-006 0.4 ABSOLUTE adult z_goal crossing (588c near-miss 0.394) that the closed GAP-11 deferred to a separate run"
-      phase: 4
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-588e (claim-tagged MECH-189/DEV-NEED-006 evidence successor; supersedes the 588d diagnostic readiness probe)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [MECH-189, DEV-NEED-006]
       depends_on: ["infant_substrate:GAP-11"]
       last_updated: 2026-06-23
@@ -126,20 +234,38 @@ closure_plan:
       registered_note: "Registered 2026-06-23 (session closure-map-enhance-20260623T043407Z) to surface owed work buried in GAP-11's completion prose. GAP-11 closed `done` 2026-06-10 on its C1 discrimination criterion (588c PASS), but its resume_condition explicitly defers the DEV-NEED-006 0.4 ABSOLUTE crossing (a near-miss 0.394, 2/3 seeds) to 'a SEPARATE trained-encoder MECH-189 evidence successor (the absolute governance gate)' that is 'tracked on MECH-189 (candidate / conf 0.0; full behavioural validation pending), not as GAP-11'. MECH-189 is confirmed still `candidate` (verified 2026-06-23) and that successor has no closure node + no queued experiment. This node tracks it so the owed trained-encoder run is visible on the map rather than only in a completion_note. Author via /queue-experiment when prioritised. NOT queued here (experiment_queue.json held by concurrent sessions). NO claims.yaml change."
     - id: "infant_substrate:GAP-12"
       title: "EXQ-ISEF-003: microhabitat zones vs homogeneous geography (latent state diversity)"
-      phase: 4
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-589"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-001, DEV-NEED-007, ARC-065]
       depends_on: ["infant_substrate:GAP-2", "infant_substrate:GAP-5", "infant_substrate:GAP-7"]
       last_updated: 2026-05-29
       completion_note: "V3-EXQ-589 ran 20260518T134905Z PASS supports ARC-065 (microhabitat zones produce greater latent-state diversity than homogeneous geography per the per-claim direction). GAP-12 closes for ARC-065. DEV-NEED-001 / DEV-NEED-007 measurement gaps satisfied by this run's metrics."
     - id: "infant_substrate:GAP-13"
       title: "EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attractor capture)"
-      phase: 4
       status: in_progress
       severity: medium
-      owner_exq: V3-EXQ-706b
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-003, MECH-314]
       depends_on: ["infant_substrate:GAP-4", "infant_substrate:GAP-5", "infant_substrate:GAP-6"]
       cross_plan_link: ["behavioral_diversity_isolation:GAP-A", "behavioral_diversity_isolation:GAP-I"]
@@ -155,10 +281,19 @@ closure_plan:
       governance_2026_05_29: "V3-EXQ-590 ran 20260525T084057Z PASS but evidence_direction=pending_retest_after_substrate with MECH-314 + MECH-111 per-claim non_contributory: Goldilocks calibration is degenerate across novelty_bonus_weight 0.1..1.0 (all 5 arms produce byte-identical mean_coverage=1.0, mean_h_pos, mean_novelty_ema to 16 sig figs -- the MECH-111 broadcast-novelty signal does not propagate to E3 selection variance). Same routing-break signature as 2026-05-08 EXQ-141b. Blocked on MECH-111 broadcast -> E3-selection routing substrate; calibration is unmeasurable until that channel carries per-candidate variance. Routes to /implement-substrate on the MECH-111 routing rather than a re-queue with a finer novelty_bonus_weight grid."
     - id: "infant_substrate:GAP-14"
       title: "EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)"
-      phase: 4
       status: blocked_pending_substrate
       severity: medium
-      owner_exq: V3-EXQ-591
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["ARC-046", "f_dominance_conversion_ceiling", "infant_substrate:GAP-14", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: [DEV-NEED-008, ARC-046]
       depends_on: ["infant_substrate:GAP-9", "infant_substrate:GAP-5", "infant_substrate:GAP-6", "infant_substrate:GAP-7", "infant_substrate:GAP-8", "infant_substrate:GAP-14-c2"]
       cross_plan_link: ["behavioral_diversity_isolation:GAP-A", "behavioral_diversity_isolation:GAP-I"]
@@ -174,20 +309,38 @@ closure_plan:
       resume_condition: "2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-uniform; 1/7 gate criteria across all 3 arms x 5 seeds; only trivial C3 residue_cov saturation). failure_autopsy_V3-EXQ-591_2026-05-27 (status: confirmed) applied: manifest evidence_direction overridden to non_contributory; epistemic_category=substrate_ceiling; ARC-046 NOT weakened; pending_retest_after_substrate=true. Root finding: InfantCurriculumScheduler Phase 0->1 advancement gate (H_pos >= 0.70*ln(144) ~= 3.48) is structurally unreachable under random-policy 2000-episode training (observed rolling-mean H_pos peaks 0.03-1.08). z_goal collapses to ~1e-7 in every arm. Cluster pattern: fourth member of substrate-uniform z_goal-zero family (V3-EXQ-540 / 603 chain / 590a / 591). Status changed in-progress -> blocked: three substrate prerequisites must clear before V3-EXQ-591b can be queued: (a) MECH-307 default-value recalibration validated via V3-EXQ-540e; (b) goal-pipeline training regime produces non-trivial z_goal in default config via V3-EXQ-603c P0/P1 phased training (NOW FAIL 2026-05-27 -- Q-045 routed to substrate_conditional; this prerequisite needs V4 substrate or alternative resolution); (c) InfantCurriculumScheduler Phase 0->1 advancement signal tuned to achievable H_pos magnitudes OR replaced with z_goal-norm-based / residue-progression-based exit gate (routed to /implement-substrate)."
     - id: "infant_substrate:GAP-14-c2"
       title: "GAP-14 defect (c-2): Phase 0->1 gate over-permissiveness -- discriminating crossing-count criterion identified + wired into the live scheduler"
-      phase: 4
       status: done
       severity: medium
-      owner_exq: "V3-EXQ-591f (PASS 2026-06-15, sustained_level_criterion_discriminates_crossing_count) + /implement-substrate wiring (ree-v3 infant_curriculum.py, 2026-06-19)"
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       unblocks_claims: []
       depends_on: ["infant_substrate:GAP-9"]
       last_updated: 2026-06-23
       completion_note: "The c-2 over-permissiveness strand of GAP-14, RESOLVED end-to-end and split out 2026-06-23 from the GAP-14 parent (it was masked behind GAP-14's blocked_pending_substrate box). Lineage 591d FAIL -> 591e FAIL -> 591f PASS 2026-06-15 (a crossing-count criterion on the sustained h_pos level DISCRIMINATES: admits genuine explorers seeds 42/43/44, rejects the seed-45 false-advancer). WIRED 2026-06-19 (/implement-substrate, InfantCurriculumScheduler phase_0to1_use_crossing_count / phase_0to1_crossing_count_min, no-op default; 27/27 + 8/8 tests; online==offline replay contract). Claim-free (ARC-046 not weighted). The residual GAP-14 work is c-1 (exploration-strength collapse), tracked on the GAP-14 parent."
     - id: "infant_substrate:GAP-15"
       title: "Gate update: replace single z_goal.norm criterion in developmental_curriculum.md with 7-criterion table (3 blocking + 4 advisory) from infant_substrate_expansion.md Section 8"
-      phase: 5
       status: done
       severity: governance
-      owner_exq: null
+      live:
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+      join:
+        bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
+        scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
       completion_note: "developmental_curriculum.md Gate Criterion section replaced with 8-criterion table (C1-C3 blocking, C4-C8 advisory) matching developmental_metrics.md DEV-NEED-008. Thresholds noted as proposals pending EXQ-ISEF-001..004. 2026-05-17T10:54Z"
       unblocks_claims: [DEV-NEED-008]
       depends_on: ["infant_substrate:GAP-10", "infant_substrate:GAP-11", "infant_substrate:GAP-12", "infant_substrate:GAP-13"]
