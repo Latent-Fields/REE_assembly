@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-11T19:23:22Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
+      "queue_id": "V3-EXQ-047l",
+      "claim_ids": ["MECH-095"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the probe never exercised MECH-095; neither supports nor weakens",
+        "biological_reference": "clear -- TPJ agency-detection comparator, functional translation (not a formal import); failure is not a biology divergence; lit already strong (lit_conf ~0.907)",
+        "prerequisites": "present -- SD-005 split-latent active, SD-047 landed and active",
+        "implementation": "complete -- routing head active (route_loss 0.0046), agent trained; only the eval probe was ill-posed",
+        "environment": "adequate -- SD-047 active (env_ev_ticks ~4470); the label, not the env, is the fault",
+        "measurement": "misleading (DOMINANT) -- env-events fold saturated is_contact -> empty negative class (n_contact==n_probe in all 8 cells) -> contact_recall_world pinned at 0.0",
+        "integration": "isolated -- single-mechanism probe, n/a",
+        "scale": "adequate -- 105-126 contacts x 4 seeds; ample if the partition were well-posed"
+      },
+      "biological_reference": {
+        "closest_mechanism": "temporoparietal junction agency-detection comparator (self- vs other-caused change)",
+        "dependencies": ["textured causal background", "self/world split latent (SD-005)"],
+        "is_formal_import": false,
+        "divergence": "none -- failure is a measurement artifact, not a mechanism/biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-047l (2026-07-11, SD-047 retest, 4 seeds, ree-cloud-1) FAILed 3/5 but is NON_CONTRIBUTORY, not a ceiling confirmation. The probe's contact-vs-no-contact partition saturated: is_contact folded env_events>0, which on SD-047's dense per-step drift/transient dynamics was true on every probe step, so the no-contact negative class was empty (n_contact == n_probe in all 8 cells) and contact_recall_world was structurally pinned at 0.0 in BOTH ROUTED and BASELINE. The MECH-095 agency comparator was never exercised. Root cause: the `or env_events>0` fold over-applied to the probe partition (correct only in the training is_world routing label). The owed SD-047 positive-discrimination retest therefore STILL has not validly run; n_ceiling_hits stays 0 (measurement degeneracy, not a substrate_ceiling hit). Re-queued as V3-EXQ-047m (keep the fold in the training label; revert probe is_contact to 047k's non-folded CONTACT_SET, which gave n_contact_min=164 + recall 0.796 on the same grid; add a probe-partition non-degeneracy guard). MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate. Secondary non-degenerate signal: routing collapsed the self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0) -- real but claim-orthogonal; carry into 047m interpretation.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-047",
+        "note": "SD-047 is already implemented and correctly mapped as MECH-095's ceiling resolution path (a); this run is a measurement bug, not a substrate gap. No substrate_queue write owed. The routed retest is re-queued as V3-EXQ-047m (test-design fix), not a substrate build."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "prior_count": 0,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "First autopsy for MECH-095; brake threshold not reached. This non_contributory reading is a measurement/instrument failure, NOT a substrate_ceiling confirmation -- n_ceiling_hits stays 0. It will register as 1 in the brake's generic non_contributory tally; if V3-EXQ-047m (corrected probe) ALSO returns non_contributory, the brake's spirit engages (operationalisation, not one probe bug, is implicated -> route to substrate/test-bed work rather than a third 047 letter)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "Not a discrimination bottleneck -- exactly one live hypothesis (does the SD-047-enriched routed z_world discriminate world-caused contact, once the probe is well-posed). Single-build test-design fix; no fan-out."
+      },
+      "learning_extracted": [
+        "Measurement gap: an additive label fold that is necessary in a training signal must NOT be mirrored into the evaluation partition; on a dense substrate (SD-047) it saturates the eval class and empties the negative class, making the probe vacuous.",
+        "The owed SD-047 positive-discrimination retest of MECH-095 has still not validly run; 047l does not count as a ceiling test (n_ceiling_hits stays 0).",
+        "Secondary, claim-orthogonal: routing collapsed the self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0), a mild hint the routing head injects generic transition/action structure into z_world rather than cleanly isolating world-causation."
+      ],
+      "routing": "queue-experiment",
+      "requeue_spec": {
+        "successor_queue_id": "V3-EXQ-047m",
+        "successor_kind": "same-question implementation fix (alphabetic suffix)",
+        "changes": [
+          "KEEP env-events fold in the training is_world routing label (necessary for ROUTED != BASELINE on SD-047).",
+          "REVERT probe is_contact to 047k's non-folded CONTACT_SET (ttype in {hazard_approach, agent_caused_hazard, env_caused_hazard}).",
+          "ADD a probe-partition non-degeneracy guard: require n_no_contact >= ~20 per arm; else self-route non_contributory (substrate/test-bed-not-ready) instead of emitting a spurious 0.0.",
+          "Report the secondary action-dissociation collapse alongside the recall result."
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
