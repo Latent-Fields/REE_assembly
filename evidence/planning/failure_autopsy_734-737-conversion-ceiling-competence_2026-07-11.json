@@ -1,0 +1,121 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-11T22:20:51Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "slug": "734-737-conversion-ceiling-competence",
+  "bears_on": ["ree_ai_design_critique_plan:WS-1", "f_dominance_conversion_ceiling", "conversion_ceiling_campaign_plan:CAMPAIGN"],
+  "cross_reference_pass": {
+    "v3_exq_738_local_view_achievable_ceiling_anchor": {
+      "outcome": "PASS",
+      "reviewed_utc": "2026-07-10",
+      "role": "portfolio P-B (measurement/observation axis); refutes H2 (observability). Greedy 5x5 local-view forager clears the 1.0 floor at D0 (6.05) and D3 (48.05).",
+      "load_bearing_for_synthesis": true
+    }
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260711T092149Z_v3",
+      "queue_id": "V3-EXQ-734",
+      "claim_ids": [],
+      "self_route_label": "ree_substrate_ceiling",
+      "failed_criterion": "discrimination",
+      "role_in_cluster": "env-difficulty axis: REE all-ON recovers foraging at NO difficulty rung; a PPO control recovers at de-risked D2. Preconditions all met (oracle 6.04>floor; baseline reproduces incompetence 0.09<floor; hazard-free rung achievable 56.9; >=20 eval eps).",
+      "reading": "Difficulty / de-risking is NOT the lever for REE's native (bias-head) stack. The env is achievable (a PPO control recovers at D2), so the deficit is in REE's action pathway, not the env pressure.",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory"
+    },
+    {
+      "run_id": "v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3",
+      "queue_id": "V3-EXQ-735",
+      "claim_ids": [],
+      "self_route_label": "reward_balance_not_the_lever",
+      "failed_criterion": "discrimination",
+      "role_in_cluster": "drive/reward axis: no approach-weighting arm recovers foraging. Preconditions all met (oracle 6.05>floor; control reproduces incompetence 0.17<floor; yardstick discriminates; >=20 eval eps).",
+      "reading": "Reweighting the drive/reward balance toward approach does NOT make REE forage. Rules out a drive-balance fix; consistent with a missing action-LEARNING system that no reward-shaping can substitute for.",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory"
+    },
+    {
+      "run_id": "v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3",
+      "queue_id": "V3-EXQ-736",
+      "claim_ids": [],
+      "self_route_label": "substrate_not_ready_requeue",
+      "flag": "precondition_unmet",
+      "failed_criterion": "absolute",
+      "role_in_cluster": "curriculum axis: VACUOUS. The curriculum premise precondition (agent forages the EASY env post-Stage-A, threshold 3.0) FAILED at 1.0 -- the agent cannot forage even the easy env, so the easy->hard transfer premise is undefined.",
+      "reading": "Recorded, NOT treated as a verdict (correctly self-routed substrate_not_ready_requeue). It reinforces the cluster: even the maximally-de-risked easy rung is sub-floor, consistent with an action-learning deficit that difficulty/curriculum cannot fix. It is not a curriculum-mechanism verdict.",
+      "vacuous": true,
+      "recommended_epistemic_category": "substrate_not_ready_requeue",
+      "recommended_evidence_direction": "non_contributory"
+    },
+    {
+      "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+      "queue_id": "V3-EXQ-737",
+      "claim_ids": [],
+      "self_route_label": "policy_learning_insufficient_or_deeper",
+      "failed_criterion": "discrimination",
+      "load_bearing": true,
+      "role_in_cluster": "representation axis (portfolio P-A). Load-bearing criterion C_ppo_ree_latent_clears_floor_at_D3 FAILED: a first-class trainable PPO actor + value baseline over REE's FROZEN z_world latent scores 0.217 res/ep at D3 -- BELOW the 1.0 floor AND below random_walk (0.267). The same PPO actor on raw obs scores 0.567 (also sub-floor). All preconditions met (D0/D3 oracle clear floor; bias-head reproduces D0 incompetence).",
+      "reading": "The deficit is NOT merely a missing policy-learning head over the existing representation: a real actor+critic bolted onto the frozen prediction-trained z_world does WORSE than random and WORSE than the same actor on raw pixels. REE's frozen z_world is a strictly worse ACTION substrate than raw obs -> latent action-INADEQUACY. MECH-457's promotion was explicitly gated on THIS discriminator (a trainable actor+value head over frozen z_world recovering competence); it FAILED, refuting the 'frozen-latent + bolt-on actor' instantiation while leaving the mechanism (need a first-class RPE actor-critic) intact.",
+      "confound_surfaced": "ppo_raw_obs ALSO stayed sub-floor (0.567 < 1.0), so 737 alone does not cleanly separate 'latent action-inadequacy' from 'PPO-from-scratch too sample-inefficient in 1000 episodes even from raw obs'. Resolved at the PORTFOLIO level: 738 shows a hand-coded greedy local-view policy clears the floor 48x, so the env is trivially forageable -> the wall is action-LEARNING sample-efficiency/credit-assignment (MECH-457's thesis: no dopaminergic-RPE actor-critic). The latent<raw ordering (0.217<0.567) adds the action-adequacy signal on top. Both readings route to the SAME build; they differ only on how much the encoder must co-adapt -- to be settled by a frozen-vs-co-trained-encoder ablation ARM inside the MECH-457 ON experiment (user-directed 2026-07-11).",
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "sd_actor_critic_action_learning",
+        "title": "First-class RPE-driven actor-critic action-learning substrate (dorsal-striatal actor + value-baseline critic), representation co-shaping (NOT a readout over the frozen prediction latent)",
+        "implementation_hint": "Build MECH-457: a parameterized actor trained on a reward-prediction-error teaching signal with a value-baseline critic, architecturally distinct from the thin bias_head REINFORCE over the SD-056 prediction-trained encoder. Per V3-EXQ-737, the actor must NOT ride a FROZEN z_world (a trainable actor+critic on the frozen latent scored below random and below raw-obs); the action-learning loss must co-shape/augment the representation (or add an action-adequate stream). Validation experiment MUST carry a frozen-vs-co-trained-encoder ablation arm to settle the action-adequacy sub-question empirically. Success = all-ON agent forages above the 1.0 competence floor (majority of seeds) at D3, using the local-view-achievable ceiling (738) as the fair yardstick denominator, NOT the global teleport oracle.",
+        "unblocks_claims": ["MECH-457", "f_dominance_conversion_ceiling", "ARC-063"],
+        "depends_on_unresolved": ["SD-056 (BUILT: e2 world-forward contrastive encoder)", "MECH-229 (BUILT/provisional: VALENCE_WANTING reward signal the RPE teacher consumes)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+          "experiment_type": "v3_exq_737_ree_latent_policy_head_competence_probe",
+          "metric": "D3 ppo_ree_latent mean resources/ep = 0.217 (below random 0.267; below ppo_raw_obs 0.567)",
+          "target": ">= 1.0 competence floor, strict majority of 3 seeds (a working actor-critic action substrate must exceed this)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "claim_keyed_counter": 0,
+        "reason_not_fired_mechanically": "claim_ids=[] on all four targets -- no claim accumulates a substrate_ceiling/non_contributory counter, so the mechanical claim-keyed brake is 0.",
+        "autopsy_stream_recurrence": true,
+        "recurrence_chain": ["failure_autopsy_V3-EXQ-719a_2026-07-08", "failure_autopsy_V3-EXQ-724_2026-07-09", "failure_autopsy_V3-EXQ-732_2026-07-10", "failure_autopsy_V3-EXQ-732a_2026-07-10", "failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11"],
+        "recurrence_status": "RESOLVED_BY_FANOUT",
+        "refused_requeue": true,
+        "refused_requeue_note": "The GOV-DIAG-1-flagged sequential chain (719a->724->732->732a, terminal at N=4, 732b refused) was replaced by this GOV-FANOUT-1 portfolio, which has now RESOLVED the discrimination (NOT observability/738, NOT difficulty/734, NOT reward-balance/735, NOT a bolt-on head/737 -> action-learning + latent action-adequacy). This is not 'stuck, stop spinning' but 'the discrimination is settled -- proceed to build, do not re-litigate.' REFUSE any further same-question competence-floor lettered re-test (no 737a / 732b-style re-pose). A DIFFERENT-mechanism experiment (the MECH-457 ON/OFF validation, new EXQ, new claim MECH-457) is the sanctioned next test.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "sd_actor_critic_action_learning (MECH-457)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "status": "DISCRIMINATION_RESOLVED",
+        "live_hypotheses_at_start": ["H1: action-learning stack too weak (missing first-class policy substrate)", "H1-deeper: REE latent action-inadequate", "H2: observation interface unlearnable"],
+        "resolution": "H2 refuted (738). H1 confirmed AND deepened (737): not merely a missing head -- the frozen latent is a worse action substrate than raw obs. Route to build MECH-457 with representation co-shaping; no further pre-build probe owed (the frozen-vs-adaptive question folds into the build's ablation arm).",
+        "note": "GOV-FANOUT-1 producer half already discharged by the 734/735/736/737/738 portfolio; this synthesis is the consumer-side adjudication. No new fanout leg recommended -- the bottleneck now routes to a single named build (MECH-457)."
+      },
+      "learning_extracted": [
+        "The conversion-ceiling campaign's competence floor localizes to a MISSING first-class action-learning system (MECH-457), not to observation (738), difficulty (734), reward-balance (735), or curriculum (736 vacuous).",
+        "REE's frozen prediction-trained z_world is a strictly WORSE action substrate than raw observations for a learned actor (737: 0.217 < 0.567) -- 'prediction-rich, action-poor' is not just a missing readout head, it is latent action-INADEQUACY.",
+        "MECH-457's build spec is refined by 737: the RPE actor-critic must co-shape/augment the representation, NOT ride a frozen prediction latent.",
+        "The GOV-FANOUT-1 portfolio worked as designed: a diverse-axis fan-out resolved a 4-deep sequential discrimination the sequential chain could not (738 refuted H2 first, re-valuing the rest).",
+        "736's precondition_unmet is vacuous as a curriculum verdict but reinforces the floor (even the easy env is sub-floor)."
+      ],
+      "routing": "implement-substrate",
+      "secondary_routing": "convergence-demand-intake",
+      "secondary_routing_note": "User-directed 2026-07-11: alongside the MECH-457 build, commission a REE_convergence intake for external action-learning / representation-for-action frameworks (e.g. successor representations, world-model-with-action / Dreamer / MuZero action-value, decision-transformer, representation-learning-for-RL) to inform HOW to make the representation action-adequate -- the specific gap 737 exposed. The build proceeds in parallel; the intake de-risks the co-shaping design, it does not gate the build."
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Negative-control / achievability preconditions PASS at every leg (oracle clears floor, local-view greedy clears floor, control reproduces incompetence), while every DISCRIMINATION criterion FAILS across five structurally-different attack axes (difficulty, reward-balance, curriculum, trainable-actor-on-latent) -- the substrate-ceiling fingerprint, here localized rather than diffuse.",
+    "is_independent_bugs": false,
+    "structural_property": "REE has the wiring an action agent needs (encoder, drives, bias-head readout) but no first-class action-LEARNING system, and its prediction-trained latent is action-inadequate. The floor is a single missing mechanism (MECH-457), demonstrated by five independent non-recoveries that each rule out an alternative lever.",
+    "readings": ["substrate_missing_mechanism (MECH-457 action-learning substrate)"],
+    "reconcile_campaign_plan": "conversion_ceiling_campaign_plan.md :CAMPAIGN umbrella currently 'assembling / converged on competence gate (all faces RAN terminal)'. Recommend governance annotate: WS-1 competence-floor discrimination RESOLVED by the 734/735/736/737/738 portfolio -> localized to MECH-457 action-learning substrate; the conversion route of record (MECH-448 selection face) is upstream-blocked on this floor being lifted. Nodes stay assembling (build owed); no % credit for an unbuilt substrate."
+  }
+}
