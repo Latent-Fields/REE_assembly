@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-11T20:56:39Z",
+  "last_tick_utc": "2026-07-11T21:16:46Z",
   "state": "running",
   "current_exq": "V3-EXQ-517d",
   "current_exq_started_utc": "2026-07-11T19:57:46.357008+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / ARM_B_mech302_off",
     "runs_done": 5,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 60,
     "episodes_total": 70,
-    "overall_pct": 83.3
+    "overall_pct": 97.6
   },
-  "seconds_elapsed": 3533,
-  "seconds_remaining": 825,
+  "seconds_elapsed": 4741,
+  "seconds_remaining": 118,
   "recent_lines": [
     "EXQ-517d: MECH-302 env-curriculum discriminative pair",
     "comparator: window=30 threshold=0.005 min_norm=0.01",
@@ -62,7 +62,13 @@
     "[train] seed=44 arm=ARM_A_mech302_on ep 50/70 p1_events=174 p1_writes=174 p1_curriculum_injections=24",
     "[train] seed=44 arm=ARM_A_mech302_on ep 60/70 p1_events=290 p1_writes=290 p1_curriculum_injections=37",
     "[train] seed=44 arm=ARM_A_mech302_on ep 70/70 p1_events=452 p1_writes=452 p1_curriculum_injections=50",
-    "Seed 44 Condition ARM_B_mech302_off"
+    "Seed 44 Condition ARM_B_mech302_off",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 10/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 20/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 30/70 p1_events=0 p1_writes=0 p1_curriculum_injections=0",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 40/70 p1_events=0 p1_writes=0 p1_curriculum_injections=14",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 50/70 p1_events=0 p1_writes=0 p1_curriculum_injections=35",
+    "[train] seed=44 arm=ARM_B_mech302_off ep 60/70 p1_events=0 p1_writes=0 p1_curriculum_injections=57"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
