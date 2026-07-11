@@ -286,9 +286,13 @@ master switch. Hooks:
   (`z = latent.z_world` if `cotrain_encoder` else `z_world.detach()`) and returns the
   `ActorCriticStep`. A distinct dorsal/habitual action pathway; does NOT route through
   E3's cost argmin.
-- `actor_critic_reward(latent)` — the substrate RPE teacher
-  `R_t = detach(e3.benefit_eval(z_world) − e3.harm_eval(z_world))` (ARC-108; user-directed
-  substrate-signal teacher, not foraging reward).
+- `actor_critic_reward(latent)` — an OPTIONAL convenience helper for ONE
+  substrate-internal reward, `R_t = detach(e3.benefit_eval(z_world) − e3.harm_eval(z_world))`
+  (ARC-108). The substrate is teacher-AGNOSTIC; the validation experiment supplies its own
+  reward. **Teacher source is an OPEN validation-design choice** (foraging reward is the
+  clean grounded-by-construction default; this substrate signal needs the `benefit_eval` /
+  `harm_eval` heads grounded via ARC-030 first — they start random-init behind the ARC-030
+  warmup gate — with a readiness gate on a positive control before any arm is trusted).
 - `actor_critic_parameters()` — actor + both critic heads (for the experiment optimizer).
 - `actor_critic_encoder_parameters()` — `latent_stack.parameters()`, the z_world encoder
   the cotrain arm co-shapes (the ablation seam: cotrain adds these to the optimizer,
@@ -310,9 +314,13 @@ this build): the substrate `R_t` reads z_world through the (frozen-in-P1)
 head without real foraging. `R_t` is detached (no gradient path), and the eval DV is
 UNSHAPED real foraging (not gameable); the validation MUST instrument a
 `train_return_vs_eval_foraging_divergence` guard — a large divergence routes to
-"substrate teacher inadequate", not to a false MECH-457 refutation. Whether the
-`benefit_eval`/`harm_eval` heads are grounded enough in the all-ON recipe to teach is a
-validation-time check.
+"substrate teacher inadequate", not to a false MECH-457 refutation. **Finding (2026-07-12):**
+the all-ON recipe (x724/x734) does NOT ground `benefit_eval`/`harm_eval` (no
+`record_benefit_sample`, no benefit optimizer — they stay random-init behind the ARC-030
+warmup gate), so IF the substrate-signal teacher is chosen the validation must ground them
+via the ARC-030 phased protocol in P0 + a readiness gate before P1. This is why the
+foraging-reward teacher (grounded by construction) is the recommended default, and the
+teacher source is left OPEN for the validation build (see §5 handoff).
 
 ---
 
