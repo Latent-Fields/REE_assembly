@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-4.local",
-  "last_tick_utc": "2026-07-11T14:55:01Z",
+  "last_tick_utc": "2026-07-11T15:00:33Z",
   "state": "running",
   "current_exq": "V3-EXQ-737",
   "current_exq_started_utc": "2026-07-10T15:35:51.726787+00:00",
@@ -10,19 +10,15 @@
   "current_description": "",
   "progress": {
     "run_label": "Seed 43 / D3_hazard_free",
-    "runs_done": 24,
+    "runs_done": 25,
     "runs_total": 30,
-    "episodes_done": 287,
+    "episodes_done": 0,
     "episodes_total": 290,
     "overall_pct": 83.3
   },
-  "seconds_elapsed": 81983,
-  "seconds_remaining": 1469,
+  "seconds_elapsed": 82315,
+  "seconds_remaining": 1466,
   "recent_lines": [
-    "[train] ppo_raw_obs rung=D3_hazard_free seed=42 phase=P1 ep 600/1000",
-    "[train] ppo_raw_obs rung=D3_hazard_free seed=42 phase=P1 ep 800/1000",
-    "[train] ppo_raw_obs rung=D3_hazard_free seed=42 phase=P1 ep 1000/1000",
-    "verdict: FAIL",
     "Seed 42 Condition D3_hazard_free:greedy_oracle",
     "verdict: PASS",
     "Seed 42 Condition D3_hazard_free:random_walk",
@@ -118,7 +114,11 @@
     "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 284/290",
     "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 285/290",
     "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 286/290",
-    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 287/290"
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 287/290",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 288/290",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 289/290",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P1 ep 290/290",
+    "Seed 43 Condition D3_hazard_free:ree_bias_head"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
