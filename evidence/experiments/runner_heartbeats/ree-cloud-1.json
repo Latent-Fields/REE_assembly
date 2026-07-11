@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-11T20:21:25Z",
+  "last_tick_utc": "2026-07-11T20:56:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-737",
   "current_exq_started_utc": "2026-07-11T15:16:35.921624+00:00",
@@ -12,15 +12,13 @@
     "run_label": "Seed 43 / D3_hazard_free",
     "runs_done": 24,
     "runs_total": 30,
-    "episodes_done": 0,
-    "episodes_total": 1000,
-    "overall_pct": 80.0
+    "episodes_done": 100,
+    "episodes_total": 290,
+    "overall_pct": 81.1
   },
-  "seconds_elapsed": 18290,
-  "seconds_remaining": 604,
+  "seconds_elapsed": 20402,
+  "seconds_remaining": 569,
   "recent_lines": [
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P1 ep 212/290",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P1 ep 213/290",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P1 ep 214/290",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P1 ep 215/290",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P1 ep 216/290",
@@ -118,7 +116,9 @@
     "verdict: PASS",
     "Seed 42 Condition D3_hazard_free:random_walk",
     "verdict: PASS",
-    "Seed 43 Condition D3_hazard_free:warmup_all_on"
+    "Seed 43 Condition D3_hazard_free:warmup_all_on",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 50/290",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 100/290"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
