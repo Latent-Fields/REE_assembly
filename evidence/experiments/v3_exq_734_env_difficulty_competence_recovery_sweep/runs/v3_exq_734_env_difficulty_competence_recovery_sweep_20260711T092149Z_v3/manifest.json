@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_734_env_difficulty_competence_recovery_sweep",
+  "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260711T092149Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-11T09:21:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ree_substrate_ceiling",
+    "ree_recovery_rungs": [],
+    "ppo_recovery_rungs": [
+      "D2_proximity_layout_derisked"
+    ],
+    "hardest_ree_recovery_rung": null,
+    "preconditions": [
+      {
+        "name": "oracle_clears_floor_all_rungs",
+        "kind": "readiness",
+        "description": "The greedy nearest-resource ORACLE must clear COMPETENCE_RESOURCE_FLOOR resources/episode at EACH difficulty rung, proving the floor is ACHIEVABLE in that env. Same statistic as the load-bearing recovery criterion (mean resources/episode). Below-floor at a rung => that cell is not ready; below-floor at D0 => substrate_not_ready_requeue, NEVER a ceiling verdict.",
+        "control": "greedy nearest-resource oracle forager per rung, same env/seed, no agent",
+        "measured": 6.0375,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "baseline_reproduces_incompetence_at_D0",
+        "kind": "readiness",
+        "description": "The all-ON stack trained on the D0 (=724) env must forage BELOW the floor on a strict majority of seeds -- i.e. the 724/728 incompetence must reproduce -- for the sweep premise to hold. If it already clears the floor at D0 the premise is not reproduced => substrate_not_ready_requeue.",
+        "control": "ree_trained_allon D0 mean resources/ep vs floor (strict majority of seeds)",
+        "measured": 0.0875,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "hazard_free_rung_achievable",
+        "kind": "readiness",
+        "description": "The maximally de-risked D3 (hazard-free) env must be oracle-achievable (oracle clears the floor) so that 'neither learner recovers even hazard-free' can license the deepest learner/observability branch rather than an env-too-hard artifact.",
+        "control": "greedy oracle on D3 hazard-free env vs floor",
+        "measured": 56.8625,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "sufficient_eval_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= MIN_EVAL_EPISODES eval episodes so foraging_competence is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed eval episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "ree_allon_recovers_above_floor_at_some_difficulty",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor_all_rungs": true,
+      "baseline_reproduces_incompetence_at_D0": true,
+      "hazard_free_rung_achievable": true,
+      "sufficient_eval_episodes": true,
+      "ppo_control_informative": true
+    }
+  }
+}
