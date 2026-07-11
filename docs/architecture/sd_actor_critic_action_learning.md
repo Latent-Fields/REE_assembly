@@ -12,7 +12,7 @@ status_claim: MECH-457
 
 **Claim ID:** MECH-457 (candidate / v3_pending)
 **Subject:** `f_dominance_conversion_ceiling.actor_critic_action_learning_substrate`
-**Status:** IMPLEMENTED 2026-07-12 (substrate landed; validation experiment queued — see §7). substrate_queue `sd_actor_critic_action_learning`, priority 1, `node_class: complicated (buildable)`. MECH-457 stays `candidate / v3_pending` — the substrate existing PROMOTES NOTHING; promotion awaits the ON/OFF validation.
+**Status:** SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **Validation experiment NOT yet queued** — the A0–A3 ON/OFF ablation of §4 is still owed, and the co-train arm's PPO update path is an open design decision (see §7 "Open: co-train-arm update path"). substrate_queue `sd_actor_critic_action_learning`, priority 1, `node_class: complicated (buildable)`. MECH-457 stays `candidate / v3_pending` — the substrate existing PROMOTES NOTHING; promotion awaits the (not-yet-queued) ON/OFF validation.
 **Registered:** 2026-07-10
 **Depends on:** SD-056 (e2 world-forward contrastive encoder, IMPLEMENTED 2026-05-29 `ree_core/predictors/e2_fast.py`), MECH-229 (VALENCE_WANTING, provisional/built)
 **Unblocks:** MECH-457, `f_dominance_conversion_ceiling`, ARC-063
@@ -321,6 +321,38 @@ warmup gate), so IF the substrate-signal teacher is chosen the validation must g
 via the ARC-030 phased protocol in P0 + a readiness gate before P1. This is why the
 foraging-reward teacher (grounded by construction) is the recommended default, and the
 teacher source is left OPEN for the validation build (see §5 handoff).
+
+**Open: co-train-arm update path (2026-07-12, blocks the validation build).** §7 says the
+PPO update reuses `x734._ppo_update` / `_compute_gae`. That works verbatim for the **frozen**
+arms (A0/A2): `actor_critic_step` detaches `z_world`, so the stored state is a fixed vector
+and `_ppo_update`'s multi-epoch minibatch re-forward `policy(mb_states)` is well-defined —
+this is exactly x737's `ppo_ree_latent` path. It does **NOT** transfer to the **co-train**
+arms (A1/A3): there `z_world` must carry encoder gradient, but `z_world` is produced by
+`latent_stack.encode(enc_combined, self._current_latent, prev_action=self._last_action, …)`
+— **recurrent and stateful** (conditioned on the previous latent + last action, with
+per-step side effects). So a shuffled-minibatch re-forward through `sense()` cannot reproduce
+the rollout-time `z_world` and would corrupt agent state; there is no stateless differentiable
+re-encode. The co-train arm therefore needs an explicitly chosen update scheme, e.g. one of:
+- **(i) single-pass A2C-style co-train** — keep the rollout graph, compute one advantage-weighted
+  actor + value (+ entropy) loss over the rollout, backward once into `action_critic` +
+  `actor_critic_encoder_parameters()`. Bio/CURL-consistent, but drops PPO clipping/epochs, so
+  **A0 no longer bit-reproduces 737's multi-epoch PPO** (loses the §7 "frozen arm reproduces
+  737" anchor).
+- **(ii) detached-PPO + separate encoder-directed auxiliary** — run the clipped multi-epoch PPO
+  on detached `z_world` (identical for all arms, A0 reproduces 737), and co-shape the encoder
+  with a *separate* CURL/UNREAL auxiliary (contrastive + reward-prediction) computed on stored
+  obs. This is cand-A's literal "auxiliary co-training" reading, but the actor-critic gradient
+  then does NOT flow into the encoder — which is what `actor_critic_cotrain_encoder=True` and
+  the `actor_critic_step` live-`z_world` branch were built to mean.
+- **(iii) retain-graph mini-PPO** — store the rollout-time graph-connected tensors and run the
+  clipped update with `retain_graph` (no re-encode). Preserves both PPO and encoder gradient,
+  at higher memory cost and a nonstandard "epochs over a fixed graph" semantics.
+
+These are not interchangeable — (i) and (ii) answer the cand-A frozen-vs-co-trained ablation
+with materially different encoders, and (ii) arguably tests a *different* claim than the one
+`actor_critic_step` encodes. The choice is a validation-design decision owed to the substrate
+author / operator before the A0–A3 experiment is written; it is NOT resolvable from the landed
+artifacts. Recorded here so the validation build starts from the fork, not a silent guess.
 
 ---
 
