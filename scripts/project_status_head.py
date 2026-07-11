@@ -475,7 +475,13 @@ def _next(ev):
     if ev is None:
         return None
     if ev.kind == "autopsy":
-        nxt = (ev.routing_detail or "").strip()
+        # routing_detail is normally a string, but a few autopsies carry a
+        # structured (dict/list) routing_detail. Coerce defensively: str() is
+        # identity for the string case (so closure-plane output is unchanged),
+        # and keeps project_live from crashing on the richer heads the per-claim
+        # join (SHP-4) surfaces that the closure-plan joins never reached.
+        rd = ev.routing_detail
+        nxt = (rd if isinstance(rd, str) else ("" if rd is None else str(rd))).strip()
         if nxt:
             return nxt if len(nxt) <= 400 else nxt[:397] + "..."
         return "routing=%s" % (ev.routing or "?")

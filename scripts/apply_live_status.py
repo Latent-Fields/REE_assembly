@@ -15,6 +15,17 @@ This is the claims-registry port of the plane-separation razor (design Sec.2 + 5
     still V3-pending is not the same live thing as a plain `candidate`; a `provisional`
     claim whose epistemic_category is `substrate_ceiling` is parked, not promotable).
 
+    On top of the self-field reading, an EVENT-STREAM PROVENANCE sub-block
+    (`live_status.evidence`: `from` / `as_of` / `verdict`) is projected from the
+    append-only event log (autopsies + PASS manifests + decision_log) via
+    project_status_head -- the ONE projection path SHP-1/2/3 use, joining each claim by
+    scope_claims=[claim_id] (design Sec.4b: "carries the derived current reading + as_of
+    + from"). It records the newest event bearing on the claim and its date, so
+    "recently-moved truth" is sortable and the reading has a provenance anchor the
+    self-field composite alone cannot give. It is nested one level under `live_status`
+    so `evidence.as_of` (the event date) never collides with the reading-plane
+    `live_status.as_of` (the reading-change date). Event-less claims omit it entirely.
+
   * HISTORY PLANE (record-once) -- `last_reviewed`. A fact-at-a-timestamp that can only
     be recorded when it happened, never recomputed -> APPEND-ONLY. Seeded once from the
     claim's existing authoritative review event (`adjudicated_at_utc`) where present;
@@ -64,6 +75,21 @@ except ImportError:  # pragma: no cover
 SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPTS)
 CLAIMS_YAML = os.path.join(REPO_ROOT, "docs", "claims", "claims.yaml")
+
+# SHP-4 augmentation (design Sec.4b: "carries the derived current reading + as_of + from").
+# The self-field `reading` above is the regenerable STATUS PLANE; on top of it we attach an
+# event-stream PROVENANCE sub-block (`live_status.evidence`: from / as_of / verdict) projected
+# from the append-only event log (autopsies + PASS manifests + decision_log) via
+# project_status_head -- the ONE projection path SHP-1/2/3 already use, joining each claim by
+# scope_claims=[claim_id]. This answers "what event last moved this claim, and when" that the
+# self-field reading alone cannot. Optional import: if the projector is unavailable the stamper
+# still writes the self-field block (evidence sub-block simply omitted).
+if SCRIPTS not in sys.path:
+    sys.path.insert(0, SCRIPTS)
+try:
+    import project_status_head as _psh
+except Exception:  # pragma: no cover
+    _psh = None
 
 # A top-level claim starts here (column-0 list item). Nested `- id:` items (e.g. under
 # child_claims / competing_claims, indented) are intentionally NOT block boundaries.
@@ -190,6 +216,42 @@ def load_registry(path=CLAIMS_YAML):
 
 
 # ---------------------------------------------------------------------------
+# Event-stream provenance (SHP-4 augmentation -- reuse the ONE projection path)
+# ---------------------------------------------------------------------------
+
+def build_provenance(claim_ids, repo_root=REPO_ROOT, threshold=None):
+    """Return {claim_id: {"from","as_of","verdict"}} projected from the append-only
+    event log via project_status_head, joining each claim by scope_claims=[claim_id].
+
+    Only claims with >= 1 joined event (a projected head exists) get an entry; event-less
+    claims (most INV-/ARC- foundational claims) are omitted, so no `evidence:` sub-block is
+    stamped for them (minimal churn -- the block appears exactly where there is real
+    provenance). `{}` when the projector is unavailable (evidence sub-block then omitted
+    everywhere; the self-field reading is unaffected). The projection is a pure fn of the
+    event log, so a re-run against an unchanged log yields identical provenance; the block
+    updates only when a newer event lands (which is the point -- it tracks the live front)."""
+    if _psh is None:
+        return {}
+    thr = _psh.DEFAULT_BRAKE_THRESHOLD if threshold is None else threshold
+    events, _counts = _psh.load_events(repo_root)
+    prov = {}
+    for cid in claim_ids:
+        node = {"id": cid, "scope_claims": [cid]}
+        slc, _tokens, _p = _psh.join_node(node, events)
+        if not slc:
+            continue
+        live, head = _psh.project_live(node, slc, thr)
+        if head is None:
+            continue
+        sv = _psh.stored_live_view(live)
+        entry = {"from": sv.get("from"), "as_of": sv.get("as_of"),
+                 "verdict": sv.get("verdict")}
+        if entry["from"]:
+            prov[cid] = entry
+    return prov
+
+
+# ---------------------------------------------------------------------------
 # Line surgery
 # ---------------------------------------------------------------------------
 
@@ -247,16 +309,20 @@ def extract_existing(block_lines):
     while i < n:
         line = block_lines[i]
         if LIVE_STATUS_KEY_RE.match(line):
-            # consume nested children (indent > 2)
+            # consume nested children (indent > 2), but only read the DIRECT children
+            # (indent == 4). A deeper `as_of:` inside the nested `evidence:` sub-block
+            # (indent 6) must NOT be mistaken for the top-level live_status.as_of --
+            # else re-runs would clobber the reading-change as_of with the event date.
             j = i + 1
             while j < n and block_lines[j].strip() and _leading_spaces(block_lines[j]) > 2:
-                child = block_lines[j].strip()
-                cm = re.match(r"^(as_of|reading|needs_review):\s*(.*)$", child)
-                if cm:
-                    if cm.group(1) == "as_of":
-                        as_of = _strip_scalar(cm.group(2))
-                    elif cm.group(1) == "reading":
-                        reading = _strip_scalar(cm.group(2))
+                if _leading_spaces(block_lines[j]) == 4:
+                    child = block_lines[j].strip()
+                    cm = re.match(r"^(as_of|reading|needs_review):\s*(.*)$", child)
+                    if cm:
+                        if cm.group(1) == "as_of":
+                            as_of = _strip_scalar(cm.group(2))
+                        elif cm.group(1) == "reading":
+                            reading = _strip_scalar(cm.group(2))
                 j += 1
             i = j
             continue
@@ -296,13 +362,24 @@ def _yaml_scalar(value):
     return s
 
 
-def build_stamp_lines(reading, as_of, needs_review, last_reviewed):
+def build_stamp_lines(reading, as_of, needs_review, last_reviewed, provenance=None):
     out = [
         "  live_status:",
         f"    reading: {_yaml_scalar(reading)}",
         f"    as_of: {as_of}",
         f"    needs_review: {'true' if needs_review else 'false'}",
     ]
+    # Event-stream provenance sub-block (SHP-4 augmentation). Nested one level under
+    # live_status so live_status.evidence.as_of (the newest bearing event's date) never
+    # collides with the reading-plane live_status.as_of (the reading-change date). Emitted
+    # only when the claim has a projected head (event-less claims omit it entirely).
+    if provenance and provenance.get("from"):
+        out.append("    evidence:")
+        out.append(f"      from: {_yaml_scalar(provenance['from'])}")
+        if provenance.get("as_of"):
+            out.append(f"      as_of: {provenance['as_of']}")
+        if provenance.get("verdict"):
+            out.append(f"      verdict: {_yaml_scalar(provenance['verdict'])}")
     if last_reviewed:
         out.append(f"  last_reviewed: {last_reviewed}")
     return out
@@ -317,7 +394,7 @@ def _insert_index(stripped):
     return 1  # after the `- id:` line
 
 
-def process_block(claim_id, block_lines, registry, today):
+def process_block(claim_id, block_lines, registry, today, provenance_map=None):
     """Return (new_block_lines, changed_bool, result_dict). Non-registry ids are left
     untouched."""
     claim = registry.get(claim_id)
@@ -337,8 +414,10 @@ def process_block(claim_id, block_lines, registry, today):
     # last_reviewed: record-once. Preserve any existing value; else seed once.
     last_reviewed = old_last_reviewed if old_last_reviewed else seed_last_reviewed(claim)
 
+    provenance = (provenance_map or {}).get(claim_id)
+
     stripped = strip_stamp_lines(block_lines)
-    stamp = build_stamp_lines(reading, as_of, needs_review, last_reviewed)
+    stamp = build_stamp_lines(reading, as_of, needs_review, last_reviewed, provenance)
     idx = _insert_index(stripped)
     new_block = stripped[:idx] + stamp + stripped[idx:]
 
@@ -346,7 +425,9 @@ def process_block(claim_id, block_lines, registry, today):
     return new_block, changed, {
         "id": claim_id, "action": "stamp", "reading": reading,
         "prev_reading": old_reading, "as_of": as_of, "needs_review": needs_review,
-        "last_reviewed": last_reviewed, "changed": changed,
+        "last_reviewed": last_reviewed,
+        "has_evidence": bool(provenance and provenance.get("from")),
+        "changed": changed,
     }
 
 
@@ -378,13 +459,19 @@ def run(dry_run=False, mark_reviewed=None, path=CLAIMS_YAML):
 
     preamble, blocks = split_claim_blocks(lines)
 
+    # Event-stream provenance projected ONCE over the whole registry (reuses
+    # project_status_head's ONE projection path). {} if the projector is unavailable.
+    # claims.yaml lives at <repo>/docs/claims/claims.yaml -> repo root is 3 levels up.
+    _repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(path))))
+    provenance_map = build_provenance(registry.keys(), repo_root=_repo_root)
+
     mark_set = set()
     if mark_reviewed:
         for tok in mark_reviewed.replace(",", " ").split():
             mark_set.add(tok.strip())
 
     new_lines = list(preamble)
-    stamped = changed = needs_review_ct = seeded = 0
+    stamped = changed = needs_review_ct = seeded = evidence_ct = 0
     unregistered = []
     changed_ids = []
     for claim_id, block in blocks:
@@ -399,7 +486,7 @@ def run(dry_run=False, mark_reviewed=None, path=CLAIMS_YAML):
                 registry[claim_id] = dict(registry[claim_id])
                 registry[claim_id]["adjudicated_at_utc"] = today  # seed path picks it up
 
-        new_block, ch, res = process_block(claim_id, block, registry, today)
+        new_block, ch, res = process_block(claim_id, block, registry, today, provenance_map)
         if res["action"] == "unregistered":
             unregistered.append(claim_id)
         else:
@@ -408,6 +495,8 @@ def run(dry_run=False, mark_reviewed=None, path=CLAIMS_YAML):
                 needs_review_ct += 1
             if res["last_reviewed"]:
                 seeded += 1
+            if res.get("has_evidence"):
+                evidence_ct += 1
             if ch:
                 changed += 1
                 changed_ids.append(claim_id)
@@ -418,7 +507,8 @@ def run(dry_run=False, mark_reviewed=None, path=CLAIMS_YAML):
 
     verb = "would change" if dry_run else "changed"
     print(f"apply_live_status: {stamped} claims stamped; {changed} {verb} on disk; "
-          f"{needs_review_ct} needs_review; {seeded} carry last_reviewed.")
+          f"{needs_review_ct} needs_review; {seeded} carry last_reviewed; "
+          f"{evidence_ct} carry event provenance.")
     if unregistered:
         print(f"  {len(unregistered)} `- id:` block(s) not in the yaml registry, left "
               f"untouched: {', '.join(unregistered[:8])}"
@@ -530,6 +620,37 @@ def _self_test():
     check("no-status block -> live_status after id line, reading unknown",
           bq[1] == "  live_status:" and "    reading: unknown" in bq
           and "    needs_review: true" in bq)
+
+    # --- SHP-4 augmentation: event-stream provenance sub-block ----------------
+    prov = {"from": "failure_autopsy_V3-EXQ-733_2026-07-10", "as_of": "2026-07-10",
+            "verdict": "non_contributory/substrate_ceiling"}
+    pmap = {"MECH-999": prov}
+    be, che, _re = process_block("MECH-999", sample, reg, "2026-07-11", pmap)
+    check("evidence sub-block nested under live_status", "    evidence:" in be)
+    check("evidence.from stamped (event id)",
+          "      from: failure_autopsy_V3-EXQ-733_2026-07-10" in be)
+    check("evidence.as_of is the EVENT date (nested, indent 6)", "      as_of: 2026-07-10" in be)
+    check("evidence.verdict stamped (unquoted; '/' needs no quoting)",
+          "      verdict: non_contributory/substrate_ceiling" in be)
+    check("reading-plane as_of still the reading date (not clobbered by event date)",
+          "    as_of: 2026-07-11" in be)
+    check("evidence sits between needs_review and last_reviewed",
+          be.index("    evidence:") > be.index("    needs_review: false")
+          and be.index("    evidence:") < be.index("  last_reviewed: 2026-02-25"))
+    # idempotent re-run WITH provenance + a later 'today': nested event as_of must NOT be
+    # read as the top-level as_of, so the block stays bit-identical (the extract_existing fix).
+    be2, che2, _re2 = process_block("MECH-999", be, reg, "2026-12-31", pmap)
+    check("re-run with nested evidence is bit-identical (no as_of clobber)",
+          che2 is False and be2 == be)
+    check("no duplicate evidence block after re-stamp", be.count("    evidence:") == 1)
+    # dropping provenance removes the evidence block cleanly on re-stamp
+    be3, che3, _re3 = process_block("MECH-999", be, reg, "2026-07-11", {})
+    check("no-provenance re-stamp strips the evidence block",
+          che3 is True and "    evidence:" not in be3 and be3.count("  live_status:") == 1)
+    # provenance with no 'from' emits no block
+    bn, _chn, _rn = process_block("MECH-999", sample, reg, "2026-07-11",
+                                  {"MECH-999": {"from": None}})
+    check("provenance lacking 'from' -> no evidence block", "    evidence:" not in bn)
 
     print()
     if failures:

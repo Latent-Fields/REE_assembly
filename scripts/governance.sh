@@ -120,17 +120,23 @@ echo "--- Step 3c-bis-4: Promote status-plane history (SHP-3; snapshot log + com
 
 echo "--- Step 3c-bis-5: Claims live_status drift check (SHP-4; warn-only) ---"
 # status_history_plane:SHP-4. Doc-status-plane analog of the closure-plan drift
-# check, for the per-claim live_status block in claims.yaml: re-derives each claim's
-# live_status (reading/as_of/needs_review) as a pure fn of status+v3_pending+
-# epistemic_category and warns when the STORED block differs from the derived one
-# (the stamper scripts/apply_live_status.py was not re-run since a claim's status
-# moved, or the block was hand-edited). Mirror of Step 9c's claims_doc_drift.py, but
-# deliberately WARN-ONLY (no --strict): apply_live_status.py is NOT run in this
-# pipeline -- it writes high-contention claims.yaml and stays a claimed manual op --
-# so a --strict gate would abort governance the moment any claim's status changes.
-# When this report shows HARD reading-drift, an operator re-stamps by running
-# `scripts/apply_live_status.py` under a TASK_CLAIMS claim on docs/claims/claims.yaml
-# (per the heartbeat-autostash rule). PROMOTES/DEMOTES NOTHING; edits no claims.yaml.
+# check, for the per-claim live_status block in claims.yaml. Re-derives each claim's
+# live_status: the STATUS-PLANE reading (reading/as_of/needs_review) as a pure fn of
+# status+v3_pending+epistemic_category, PLUS the SHP-4 event-provenance sub-block
+# (live_status.evidence: from/as_of/verdict) re-projected from the append-only event
+# log via project_status_head (the ONE projection path). Warns when the STORED block
+# differs from the re-derivation (the stamper scripts/apply_live_status.py was not
+# re-run since a claim's status moved / a new event landed, or the block was
+# hand-edited). Mirror of Step 9c's claims_doc_drift.py, but deliberately WARN-ONLY
+# (no --strict) -- UNLIKE the SHP-5 doc stamper at Step 9b, apply_live_status.py is
+# NOT run in this pipeline: it WRITES high-contention claims.yaml, which the
+# derive-only governance pipeline must not do (heartbeat-autostash rule + derive-only
+# invariant), and it stays a claimed manual op. A --strict gate here would abort
+# governance the moment any claim's status changes or a new event lands. When this
+# report shows HARD reading-drift, an operator re-stamps by running
+# `scripts/apply_live_status.py` under a TASK_CLAIMS claim on docs/claims/claims.yaml.
+# (Event-provenance drift is warn-only even in --strict -- it fluctuates as the fleet
+# produces evidence.) PROMOTES/DEMOTES NOTHING; edits no claims.yaml.
 "$PYTHON" scripts/claims_live_status_drift.py || true
 
 echo "--- Step 3d: Brain region map drift check (warn-only) ---"
