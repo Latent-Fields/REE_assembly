@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`). Cumulative: **625 of 1028 scripts** now route through `write_flat_manifest`. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stays **103**.
+**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`). Cumulative: **640 of 1028 scripts** now route through `write_flat_manifest`. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stays **103**.
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -363,6 +363,83 @@ re-queued/run (a correction must also confirm the early-era `run_id` ends `_v3`,
 `write_flat_manifest` raises). The **84 non-canonical-path** (hardcoded literal filenames) are the
 next-safest mechanical batch but need a per-script proof that the literal filename ==
 `f"{run_id}.json"`. Re-run the migrator `--report` after each broadening.
+
+### Progress — step 3 BATCH 5, session 2026-07-12 (`magical-jennings-84d86f`; 15 scripts LANDED, ree-v3 main `ae74b63`)
+
+The **84 non-canonical-path** class (`detect_manifest_var` SUCCEEDED but the path is not the
+canonical `<dir>/f"{run_id}.json"`). The migrator gained an **AST filename-proof** and migrated
+the **15** genuinely-safe scripts; the other **69 are correctly REFUSED** (routing them would
+RENAME the flat file). Cumulative **640 of 1028**.
+
+Why only 15 of 84 — the whole point of the per-script proof. `write_flat_manifest` writes to
+`Path(out_dir)/f"{manifest['run_id']}.json"`, so routing a non-canonical filename is byte-safe
+**only** if that filename provably equals `f"{run_id}.json"`. A survey of the 84 found the
+overwhelming early-era shape `out_path = out_dir / f"{EXPERIMENT_TYPE}_{ts}.json"` pairs with
+`run_id = f"{EXPERIMENT_TYPE}_{ts}_v3"` — the **filename is missing the `_v3`**, so routing would
+rename `{TYPE}_{ts}.json` -> `{TYPE}_{ts}_v3.json`. Those (31) plus `ts`-vs-`ts_utc` variable
+mismatches (1: `451`), inline **second** `datetime.now()` reads in the run_id (`263`/`531`/`533`/
+`534` etc.: the run_id timestamp is a different clock read than the filename's `ts`, so NOT
+provably equal — 9 `filename-not-templatable`), `out_dir/"manifest.json"` pack-style writes (6:
+`178`/`198`/`518`...), `{TYPE}_{run_id}` (`085m`), `{run_id}_manifest.json` (`610`/`610a`), and
+un-extractable run_ids (5) are ALL genuine renames/relocations or non-deterministic → refused.
+
+The 15 migrated (each `filename == f"{run_id}.json"` proven):
+- **hardcoded literal** (`051b`: `"exq_051b_v3.json"` == `run_id "exq_051b_v3"`; compound dir
+  `ROOT.parent / "REE_assembly" / "evidence" / "experiments"`);
+- **`"%s.json" % run_id`** idiom (`184`, `308` — a spelling of `f"{run_id}.json"`);
+- **`f"{TYPE}_{ts}_v3.json"` that already equals run_id** (`264`/`265`/`265a`/`266`/`266a`/`267`/
+  `355`/`355a`/`429`/`430` via `os.path.join`; `526`/`527` via slash with `ts_utc`).
+
+Generalisation (added to `migrate_manifest_writers.py`, fires ONLY when the canonical
+`match_primary` walk-up fails — so the batch-1..4 canonical output is byte-unchanged):
+`noncanonical_filename_proof()` reduces both the filename expr and the `<mvar>['run_id']` value
+expr to a **template** (a list of atoms: literal chunks `('L',s)` + single-static-assignment
+bare-Name leaves `('N',name)`), then proves `normalize(template(filename)) ==
+normalize(template(run_id) + [('L','.json')])`. Soundness rails: f-string interpolations must be
+BARE NAMES (an inline `Call` like `datetime.now()` -> refuse, catching the clock-read-twice
+`263` bug); only `%s`-style `%`-formatting and `+` string-concat are accepted (any other `%`
+code -> refuse); every `('N',name)` leaf must have EXACTLY ONE binding site NOT inside a loop, so
+the run_id and the filename read the SAME runtime value (even a once-computed `ts =
+datetime.now()...`, which is why a reused single-assignment `ts` is safe but an inline re-read is
+not). On proof, the transform is a **write-only-rewrite** (like the batch-3 non-adjacent path):
+the original `out_path = <dir>/<fn>` assignment + any `mkdir` are LEFT in place (so downstream
+refs + the dir's free names stay valid), only the `with open/json.dump` (or `write_text`) is
+swapped for `write_flat_manifest(<mvar>, <dir-sub-expression-verbatim>, ...)`. Because
+`filename == f"{run_id}.json"` is proven and the ORIGINAL `out_dir` sub-expression is passed
+verbatim (`ast.get_source_segment`, quote-style preserved), `write_flat_manifest` recomputes a
+byte-location-identical target — no rename, no relocate.
+
+Validation (batches 1-4 process): backward-compat **0-diff** vs the frozen origin/main migrator
+on 25 canonical pre-migration scripts (the new path never fires for them); **byte-equivalent** vs
+INDEPENDENT hand-migrations of `051b` (compound-dir literal), `264` (os.path.join + `output` var),
+`184` (`%s` + `pack` var); `py_compile` + AST-`Path`-bound 15/15; `validate_experiments --strict
+--paths` = **14 manifest-writer findings cleared, 0 NEW** non-conformances (`051b` was never in the
+lint backlog — it carries no `evidence_direction` token — but is still routed); a **SEPARATELY-
+IMPLEMENTED oracle** (different code from the migrator's proof, same spec, re-derives the mvar +
+run_id + filename templates from the origin source) independently PROVED the same 15 and REFUSED
+the same 69; `str`->`Path` op-scan on the 8
+`os.path.join` scripts (0 risky post-write string ops on `out_path`); runtime smoke (`wfm`
+recomputes the byte-identical filename for the literal / `os.path.join`-`str`-dir / `%s` shapes);
+full-corpus regression NEW-vs-FROZEN migrator = **+15 migrate / -15 unmatched, 638 skip unchanged,
+the 306 edge-case-A class UNTOUCHED**; merge gate `pytest tests/` = **1437 passed, 0 failed, 39
+subtests** (2:36). `elapsed_seconds`
+NOT retrofitted here (the §7.4 companion tool covers newly-routed scripts as a follow-up).
+
+**Updated remaining-unmatched taxonomy (387 unmatched of 1040, post-batch-5):**
+
+| Unmatched class | ~count | Broadening needed | Risk |
+|---|---|---|---|
+| **edge-case-A** (`detect_manifest_var`→None; `result`-var; ree-v3-local `{TYPE}_{ts}.json`) | 306 | **TEAM DECISION 2026-07-12: HYBRID** (classify vs queue/run history; exempt archival, correct still-active) | high (rename+relocate) |
+| non-canonical filename provably **!=** run_id (`{TYPE}_{ts}` missing `_v3` (31); inline `datetime.now()` re-read (9); `manifest.json`/pack-path (6); un-extractable run_id (5+3); `ts`/`ts_utc` or order mismatch (4); `{run_id}_manifest.json` (2); filename-var (2); `{TYPE}_{run_id}` (1)) | 69 | genuine rename/relocate or non-determinism — **correctly refused**; correct `run_id`/out_dir first or `MANIFEST_WRITER_EXEMPT` | high |
+| no `out_dir` assignment above tail | 8 | dir var assigned out of the walked region | med |
+| odd with-open / multi-write branchy (`354`) / pack-subdir multi-manifest (`540f`) | ~4 | per-script; multi-write needs both-branch rewrite | med |
+
+Recommended next-session order: the **306 edge-case-A** class is the only remaining *large* block
+and is the **HYBRID team-decision** work above (classify → exempt-or-correct); the **69
+non-canonical refusals** are genuine renames and should NOT be forced mechanically (correct the
+early-era `run_id`/out_dir per-script first, or `MANIFEST_WRITER_EXEMPT` the archival ones). The
+`no out_dir` (8) + odd-idiom (~4) are small provably-safe-idiom tails. Re-run the migrator
+`--report` after each broadening.
 
 Shape families (survey; total 1,028; migrate top-down):
 
