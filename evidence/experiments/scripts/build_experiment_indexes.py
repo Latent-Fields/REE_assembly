@@ -5614,6 +5614,9 @@ def _write_arm_fingerprint_index(base_dir: Path, generated_at: str) -> dict[str,
                 "superseded": False,
                 "fingerprint_schema": fp_obj.get("schema"),
                 "seed": fp_obj.get("seed", cell.get("seed")),
+                # Audit: whether the mint narrowed its substrate hash to a declared
+                # dependency scope (plan sec 11). None/absent -> whole-tree (default).
+                "substrate_scope_declared": bool(fp_obj.get("substrate_scope_declared", False)),
             }
             # Collapse same-fingerprint runs: prefer the newest (all non-superseded
             # here by construction; tie-break on timestamp string).

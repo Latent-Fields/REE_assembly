@@ -636,6 +636,16 @@ returns a cached cell **only if ALL hold**, else `None` (caller then runs the ar
 On reuse, the returned cell is stamped with provenance:
 `reused_from_run_id`, `reused_fingerprint`, `reused_at_utc`.
 
+**Substrate-scope threading (added 2026-07-12, §11 generalization).** `try_reuse_cell`
+/ `evaluate_reuse` now accept an optional `substrate_scope` (default `None` = whole-tree,
+byte-unchanged). If the mint declared a dependency scope (§11) when emitting its
+fingerprint, the consumer MUST pass the SAME scope here to reproduce the mint's
+fingerprint and HIT -- exactly as `include_driver_script_in_hash` must match on both
+sides. A mismatched or absent scope simply yields a different fingerprint that is not in
+the index -> reuse REFUSED (the safe, false-miss-only outcome). Fingerprint equality
+therefore still implies matched substrate content **at the mint's declared granularity**,
+plus config_slice + seed + machine_class + regime.
+
 ### 9.3 Provenance + governance (a reused run must be as rigorous as a fresh one)
 
 - Every reused cell in the consuming manifest carries the provenance fields above
@@ -1008,3 +1018,64 @@ provenance for audit (mirrors `config_slice_declared`). **The sec-9 generalisati
 now met** -- the conservatism guard is demonstrated sound; extending declared substrate
 scope to the global `arm_fingerprint` path (a broader author-declared surface) is the
 sanctioned next step, still opt-in + default-to-all.
+
+### Status -- sec-9 generalization LANDED (2026-07-12, session relaxed-matsumoto-6aef13)
+
+The author-declared substrate scope is now available on the GLOBAL `arm_fingerprint` path,
+so any multi-arm experiment (not just the maturation-curriculum prefix cache) can narrow
+its substrate hash the same way -- strictly opt-in + default-to-all + false-miss-only.
+
+**Guard machinery PROMOTED to a shared module.** The two conservatism guards were lifted
+out of `maturation_curriculum.py` into scope-generic `ree-v3/experiments/_lib/`
+`substrate_scope_guard.py` (stdlib-only: `ast` + `pathlib` + `sys`, importable without
+ree_core/torch). Public surface: `expand_scope`, `static_data_closure`, `verify_scope_static`
+(guard 2), `traced_execution_files` + `verify_scope_conservatism(scope, run_once=None)`
+(guard 1). A `scope` is a sequence of repo-root-relative globs (exact one-file paths are
+valid single-match globs; wildcards expand against the tree, matching
+`compute_substrate_hash`'s own glob semantics). `maturation_curriculum.py` now keeps ONLY
+the per-leg scope declarations + thin leg-keyed wrappers (`_verify_scope_static(leg)`,
+`verify_scope_conservatism(leg, run_once)`) that delegate to the shared module; its behaviour
+is byte-preserved (the sec-10 tensor-cache keys are unchanged -- `test_maturation_scope.py`
+6/6 green after the refactor).
+
+**Opt-in surface (`ree-v3/experiments/_lib/arm_fingerprint.py`).** `compute_arm_fingerprint`
+and `arm_cell` / `_ArmCell` take an optional `substrate_scope=None`. `None` (DEFAULT) hashes
+the whole `_SUBSTRATE_GLOBS` trees -- regression-asserted BYTE-identical to before, so every
+existing fingerprint + the whole prior sec-9 corpus is untouched. A non-None value is folded
+into `compute_substrate_hash(scope=...)` AND into the fingerprint hash as a discriminator
+(mirrors the `driver_script_excluded` discriminator + the maturation `_prefix_key` scope
+fold): a scoped fingerprint can NEVER collide with a whole-tree one, and two different
+declared scopes key differently (narrowing/widening the reuse contract must change the key).
+`substrate_scope_declared` + the glob list are recorded in the returned payload for audit
+(like `config_slice_declared`), surfaced into `arm_fingerprint_index.json`
+(`substrate_scope_declared` per entry), and threaded through `arm_reuse.py`
+(`evaluate_reuse` / `try_reuse_cell` -- see §9.2) so a scoped mint is reusable via the scalar
+path when the consumer declares the same scope.
+
+**Conservatism is the CALLER's obligation (governing asymmetry, §2).** Exactly as the
+prototype required, `compute_arm_fingerprint` does NOT itself prove a declared scope is a
+superset of what a cell executes -- an UNDER-approximating scope is a false-HIT bug that
+corrupts a conclusion. Every consumer MUST run BOTH guards on its scope BEFORE trusting it:
+guard 1 (`verify_scope_conservatism(scope, run_once=...)` -- call-trace: every executed repo
+file is in scope) in its smoke/contract test, and guard 2 (static AST data-closure fixpoint)
+which also runs opt-in at emit time via `REE_ARM_SCOPE_GUARD=1` (lazy-imported cheap
+tripwire; off by default so the normal path is byte-unchanged and stays stdlib-only). Note
+guard 1 captures ANY repo file whose code runs -- including the file that DEFINES `run_once`
+(the cell driver) -- so a scope must name its driver, or the driver harness must live outside
+the repo tree (as the maturation scratch harness did).
+
+**Tests (all green; full `pytest tests/` = 1437 passed, 0 regressions):**
+- `ree-v3/tests/contracts/test_substrate_scope_guard.py` -- the promoted guard module
+  standalone: glob expansion, data-closure fixpoint, guard 2 catches a non-data-closed scope
+  (dropping the regulators SITE_* leaf) + a missing declared file, guard 1 catches an
+  under-approximating scope + passes a covering one.
+- `ree-v3/tests/contracts/test_arm_fingerprint_scope.py` -- the global surface: default path
+  byte-identical; scope folds into the key (no collision with whole-tree; declared-whole-tree
+  != undeclared; two scopes differ); an OUT-OF-scope substrate edit now HITS while an IN-scope
+  edit refuses; `arm_cell` threads the scope identically; the `REE_ARM_SCOPE_GUARD=1` tripwire.
+
+**Not yet done (forward work, not blocking):** no live experiment declares a global
+`substrate_scope` yet -- the surface is available + guarded, but the first real consumer (a
+multi-arm script whose OFF closure is clean enough to declare + guard) is a follow-on. The
+`/queue-experiment` opt-in step (§9.4) documents `include_driver_script_in_hash`; a
+`substrate_scope` opt-in note there is the natural next addition when the first consumer lands.
