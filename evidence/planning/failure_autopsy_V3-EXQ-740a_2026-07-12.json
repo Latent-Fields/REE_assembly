@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-12T10:53:14Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_740a_inv064_maturational_sequence_e3_bounded_20260711T233512Z_v3",
+      "queue_id": "V3-EXQ-740a",
+      "supersedes": "V3-EXQ-740",
+      "claim_ids": ["INV-064"],
+      "failed_criterion": "precondition",
+      "four_layer_diagnosis": {
+        "claim_alignment": "split -- the IV/world leg now expresses (world_feat_decode_r2 rises 0.048->0.245, PC_iv_moved true; first valid demonstration that E1/E2 task-relevant differentiation increases with maturation); the harm/DV leg was NEVER validly exercised because its target is undecodable from the probed stream",
+        "biological_reference": "clear -- PFC-last-myelination; strong non-formal-import class existence proof (unchanged from 740)",
+        "prerequisites": "present -- warmup curriculum runs; the immature anchor is now genuinely immature (onset_0 eff_rank 6.4-8.3, E2 fwd ~0); FIX 2 (window) worked",
+        "implementation": "partial / mis-targeted -- the probe AND the substrate's harm_eval_head read z_world; SD-010 deliberately routes harm through a dedicated z_harm=HarmEncoder(harm_obs) stream (harm_eval_z_harm), instantiated outside the z_world encoder and exempt from reafference correction (EXQ-027b over-correction fix). Harm-from-z_world reads the wrong stream",
+        "environment": "adequate -- dense predictable harm (min harm_event_frac 0.878); not the binding issue",
+        "measurement": "misleading (DOMINANT) -- the positive control decodes realized SCALAR harm = f(world-state, body/z_self, random action) from z_world ALONE: structurally under-determined (body + random-action variance are noise w.r.t. z_world) AND wrong-stream (SD-010 routes harm via z_harm). Dispositive contrast: harm WORLD-FEATURES (harm_obs) decode fine from the same frozen z_world (0.245) and RISE with maturation, while realized scalar harm does not (0.034, flat)",
+        "integration": "n/a -- single-module frozen-representation probe",
+        "scale": "adequate now -- onset 0..30 spans immature->mature; FIX 2 resolved 740's post-saturation window"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cortical maturation order (PFC last to myelinate, mid-20s); maturation increases task-relevant discriminability -- which the corrected IV world_feat_decode_r2 now captures (0.048->0.245)",
+        "dependencies": ["staged developmental curriculum (ARC-019)", "E1 schema differentiation", "E2 forward model", "SD-010 dedicated nociceptive z_harm stream (HarmEncoder / harm_eval_z_harm)"],
+        "is_formal_import": false,
+        "divergence": "none as biology-divergence -- the failure is a claim<->substrate mismatch (the canonical claim names z_world as E3's harm input while SD-010 routes harm through a dedicated z_harm stream), plus an under-determined harm DV target. Not a formal import; not a biological gap",
+        "lit_status": "present -- developmental ordering well-grounded; lit is not the bottleneck"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-12 (V3-EXQ-740a, corrected successor to V3-EXQ-740; consumed from failure_autopsy_V3-EXQ-740a_2026-07-12, confirmed): 2nd INV-064 degeneracy. The 740 IV fix SUCCEEDED -- the corrected task-relevant differentiation observable (world_feat_decode_r2, predictive z_world -> harm_obs[t+1]) rises monotonically 0.048 -> 0.245 across onset {0,1,4,12,30} with a genuine immature anchor; PC_iv_moved passes (mean delta 0.197). This is the first valid demonstration that E1/E2 task-relevant differentiation increases with maturation. But the run FAILed DEGENERATE on the NEW mature-anchor harm-decodability positive control (PC_harm_decodable): mean linear harm decode R2 0.034 < 0.05 -- realized scalar harm is not decodable from z_world even at maturity. Root cause is measurement, NOT claim pressure and NOT a substrate ceiling: (a) SD-010 deliberately routes harm through a dedicated z_harm = HarmEncoder(harm_obs) stream (harm_eval_z_harm), outside the z_world encoder -- the probe (and the 740a harm_eval_head) read z_world, the wrong stream; (b) realized post-random-action scalar harm = f(world-state, body/z_self, action), structurally under-determined from z_world alone. The contrast is dispositive: harm WORLD-FEATURES decode fine from the same z_world (0.245, rising) while realized scalar harm does not (0.034, flat). evidence_direction non_contributory / epistemic_category measurement_degeneracy; NOT weighted. Re-derive brake FIRED (2nd non_contributory INV-064 autopsy) -- REFUSE a same-observable 740b; NO implement-substrate (substrate carries the info; z_harm evaluator exists). Route: /claim-synthesis FIRST -- the different-signature recurrence (740 IV-backwards; 740a DV-undecodable) plus the z_world-vs-z_harm mismatch is granularity debt: INV-064 likely conflates a world/goal-evaluator maturational bound on z_world (IV now validly demonstrated) with a harm-evaluator maturational bound on z_harm. Resolve claim scope proposal-first before any re-posed experiment. INV-064 stays candidate / pending_substrate_reconfirmation; PROMOTES/DEMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate build owed. z_world demonstrably carries rising task-relevant harm-relevant information (world_feat_decode_r2 0.245 at maturity), and the dedicated harm evaluator (harm_eval_z_harm on the SD-010 z_harm stream) already exists. The gap is claim scope + observable choice, resolved via /claim-synthesis then a re-posed experiment -- not a missing mechanism.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-740_2026-07-11"],
+        "refused_requeue": true,
+        "route_to": "claim-synthesis",
+        "upstream_substrate": null,
+        "route_deviation_note": "Brake fired on the 2nd non_contributory INV-064 degeneracy; its REFUSAL half applies (no same-observable 740b decoding scalar harm from z_world). Its DEFAULT route (implement-substrate) does NOT apply -- no substrate build is owed: world_feat_decode_r2 0.245 proves z_world carries the information and the SD-010 z_harm evaluator (harm_eval_z_harm) already exists. This matches the 740 autopsy's pre-registered contingency that a 2nd degeneracy implicates the OPERATIONALISATION -> route to claim scope / measurement redesign, not a third letter. User selected /claim-synthesis at the interactive gate."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [],
+        "suggested_probes": [],
+        "note": "GOV-FANOUT-1 does not apply. The bottleneck is not a discrimination between mutually-exclusive substrate hypotheses; it is a claim-scope resolution (does INV-064's harm-leg maturational bound live on z_world or the SD-010 z_harm stream?), routed to /claim-synthesis before any experiment."
+      },
+      "granularity_debt_trigger": {
+        "fires": true,
+        "prior_autopsies_same_claim": ["failure_autopsy_V3-EXQ-740_2026-07-11"],
+        "distinct_failure_signatures": ["740: IV differentiation observable ran backwards (eff_rank)", "740a: harm DV target undecodable from z_world (wrong stream + under-determined)"],
+        "hypothesized_decomposition": ["world/goal-evaluator maturational bound on z_world differentiation (IV now validly demonstrated: world_feat_decode_r2 0.048->0.245)", "harm-evaluator maturational bound on z_harm differentiation (SD-010 HarmEncoder stream; a different maturation trajectory)"],
+        "route": "claim-synthesis"
+      },
+      "learning_extracted": [
+        "The 740 IV fix WORKED: world_feat_decode_r2 (predictive z_world -> harm_obs[t+1]) rises monotonically 0.048 -> 0.245 across onset {0,1,4,12,30} with a genuine immature anchor (onset_0 fresh encoder, eff_rank 6.4-8.3, E2 fwd ~0). PC_iv_moved passes (mean delta 0.197). First valid demonstration that E1/E2 task-relevant differentiation increases with maturation on the V3 substrate -- the IV half of INV-064.",
+        "The harm leg reads the WRONG STREAM: both the 740a positive control and the substrate harm_eval(z_world) decode harm from z_world, but SD-010 deliberately routes harm through a dedicated z_harm = HarmEncoder(harm_obs) stream (harm_eval_z_harm), exempt from reafference correction (introduced to fix the EXQ-027b over-correction paradox). Any INV-064 harm-leg test must exercise the stream E3 actually uses for harm.",
+        "Realized post-random-action scalar harm is a structurally under-determined DV for a z_world probe: harm_target = f(world-state, body/z_self, action); z_world carries only the world-state part. The decodable, rising world_feat_decode_r2 (harm world-features) is the existence proof that the TARGET FORM, not the substrate, was the problem.",
+        "Recurrence with DIFFERING signatures is the granularity signal: 740 (IV backwards) and 740a (DV undecodable) are two different measurement failures circling one claim -- the tell that INV-064 is probably two claims (world/goal-eval bound on z_world vs harm-eval bound on z_harm). This is why the route is /claim-synthesis before a third experiment.",
+        "The positive-control guard (FIX 3, added in the 740 redesign) worked: 740a self-routed non_degenerate=false on the failed positive control rather than emitting a spurious weakens on a confounded DV. No guard defect -- the control caught exactly the confound it was designed to catch."
+      ],
+      "routing": "claim-synthesis"
+    }
+  ],
+  "cluster_pattern": null
+}
