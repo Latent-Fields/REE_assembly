@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_614a_mech341_p3_behavioural_falsifier_3arm
 
-Generated: `2026-07-11T21:26:16.738500Z`
+Generated: `2026-07-12T10:01:29.922877Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

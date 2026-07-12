@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "nice-blackwell-f367f8 (implement-substrate MECH-457 substrate_queue materialization)",
-  "last_updated_utc": "2026-07-11T23:22:35Z",
+  "last_updated_utc": "2026-07-12T10:03:22Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5561,9 +5561,15 @@
           "experiment_type": "v3_exq_047m_mech095_agency_routing_sd047",
           "metric": "recall_improvement = -0.302 (ROUTED 0.492 < BASELINE 0.795); training-label is_world saturated ~const 1 at intensity 1.0 (env_events>0 on ~93%+ of steps) so the comparator was invalidly trained",
           "target": "a valid test-bed must (a) present the routing head a balanced self-vs-world training label and (b) show recall_improvement > 0.04 at the sweep's informative arm before MECH-095 can be re-gated"
+        },
+        {
+          "run_id": "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
+          "experiment_type": "v3_exq_741_mech095_agency_comparator_testbed_sd047",
+          "metric": "valid test-bed (non_degenerate:True, all 4 arms pass guards); comparator does no work -- no arm discriminates (best +0.028<0.04), ROUTED_A -0.114, ROUTED_B +0.003, baseline carries contact 0.75-0.93",
+          "target": "a comparator that adds value needs a structurally-distinct OTHER (multi_agent_ecology_v5:MAE-3); routing improvement > 0.04 on an OTHER-caused-event partition -- NOT achievable in a single-agent V3 env"
         }
       ],
-      "implementation_hint": "SD-047 the substrate is built and correct; the missing upstream is a VALID test-bed. Two coupled gaps: (1) the routing-head training label `is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0)` saturates to ~constant 1 at intensity 1.0 (2 drift sources fire env_events>0 ~every step), so the comparator is never validly trained -- either restrict the label to prev_ttype in WORLD_CAUSED and make SD-047 env-caused events SET a transition_type so the label carries a real self/world contrast, OR reoperationalise MECH-095 as a query-time read-out comparator (efference-copy-predicted vs observed z_self change) that does not reshape z_world by gradient; add a training-label non-degeneracy guard mirroring the probe guard. (2) Run the pre-registered 4-arm intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x) keyed ARM_0-vs-ARM_2 per docs/architecture/sd_047_multi_source_dynamics.md so the Asai non-monotonicity and Woo/Spelke falsifier branch are both testable. Report BASELINE+ROUTED contact_recall and action_dissoc at every arm.",
+      "implementation_hint": "SD-047 the substrate is built and correct; the missing upstream is a VALID test-bed. Two coupled gaps: (1) the routing-head training label `is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0)` saturates to ~constant 1 at intensity 1.0 (2 drift sources fire env_events>0 ~every step), so the comparator is never validly trained -- either restrict the label to prev_ttype in WORLD_CAUSED and make SD-047 env-caused events SET a transition_type so the label carries a real self/world contrast, OR reoperationalise MECH-095 as a query-time read-out comparator (efference-copy-predicted vs observed z_self change) that does not reshape z_world by gradient; add a training-label non-degeneracy guard mirroring the probe guard. (2) Run the pre-registered 4-arm intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x) keyed ARM_0-vs-ARM_2 per docs/architecture/sd_047_multi_source_dynamics.md so the Asai non-monotonicity and Woo/Spelke falsifier branch are both testable. Report BASELINE+ROUTED contact_recall and action_dissoc at every arm. | 2026-07-12 (V3-EXQ-741): test-bed ran VALIDLY (degeneracy fixed) but the comparator is non-load-bearing in a single-agent env (baseline pre-empts). Ceiling CONFIRMED and re-pointed to multi_agent_ecology_v5:MAE-3 -- the real lift is a structurally-distinct OTHER, not this test-bed. This entry is exhausted as the MECH-095 ceiling substrate.",
       "priority": 2,
       "generation": "v3",
       "off_critical_path": false,
@@ -5571,13 +5577,37 @@
       "sd_id_suggested_in_autopsy": "agency_comparator_testbed_sd047",
       "note": "Created by governance consumption of failure_autopsy_V3-EXQ-047m_2026-07-11 (confirmed). Re-points MECH-095's owed retest from 'SD-047 build' (done) to this test-bed. RE-DERIVE BRAKE FIRED (2nd MECH-095 non_contributory autopsy, 047l probe-saturation + 047m training-label-saturation = same env_events-fold operationalisation degeneracy): a 3rd 047 letter is REFUSED; the discrimination (H1 operationalisation / H2 Woo-Spelke V4 route / H3 Asai overshoot) is realized INSIDE the test-bed build via the pre-registered 4-arm SD-047 intensity sweep (ARM_0 OFF / ARM_1 0.25x / ARM_2 1.0x / ARM_3 4.0x, keyed ARM_0-vs-ARM_2). Route: /implement-substrate.",
       "added_session": "happy-williamson-328b69",
-      "last_seen_session": "happy-williamson-328b69",
+      "last_seen_session": "modest-faraday-58b67a",
       "added_utc": "2026-07-11T22:32:17Z",
       "implemented_utc": "2026-07-11T23:22:35Z",
       "implemented_by_session": "lucid-gagarin-f96880",
       "testbed_queue_id": "V3-EXQ-741",
       "testbed_experiment_type": "v3_exq_741_mech095_agency_comparator_testbed_sd047",
       "implementation_note": "IMPLEMENTED 2026-07-11 (lucid-gagarin-f96880). Two coupled gaps closed: (1) ree_core CausalGridWorldV2 flat kwarg tag_env_caused_multisource_ttype (default False, bit-identical OFF, verified) fills a residual transition_type=='none' with 'env_caused_multisource' when an SD-047 multi-source event fired but no agent-caused transition did -> a NON-saturating self/world label (is_world ~0.15 at intensity 1.0, not the saturated ~0.93 the env_events fold produced). (2) V3-EXQ-741 test-bed (v3_exq_741_mech095_agency_comparator_testbed_sd047): 4-arm SD-047 intensity sweep (ARM_0 OFF/0.25x/1.0x/4.0x, key ARM_0-vs-ARM_2) x 4 seeds; per cell THREE conditions BASELINE / ROUTED_A (gradient BCE head on the non-saturating label) / ROUTED_B (query-time read-out efference-copy vs observed z_self, additive -> cannot corrupt z_world, so recall_improvement_B cannot go negative like 047m's -0.302). Two guards per arm x seed: probe-partition (047m) + NEW self-world balance (the training-label guard 047m LACKED, its false non_degenerate=true). Re-derive brake was FIRED (2 MECH-095 non_contributory autopsies) and is CLEARED by this build: new EXQ number, different operationalisation + pre-registered sweep, enabling substrate now built -- NOT a 3rd 047 letter. Baseline mint SKIPPED (disqualifier #2: operationalisation genuinely in flux for this lineage). Landed ree-v3 main 64e9dad; coordinator DB applied:true. PROMOTES/DEMOTES NOTHING -- MECH-095 stays candidate/substrate_ceiling/pending_retest until V3-EXQ-741 runs and is consumed."
+    },
+    {
+      "sd_id": "rebinding-harness-p0-coverage-decoupling",
+      "title": "Rebinding test-bed: decouple P0 region-coverage from foraging survival (directed traversal)",
+      "node_class": "complicated (buildable)",
+      "status": "implemented",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-456"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
+          "experiment_type": "v3_exq_733a_rebinding_pB_directed_traversal",
+          "metric": "P-B passed every mechanism criterion (DV1 6/6, DV2 6/6, binder 6/6) but was blocked by a survival-coupled P0-coverage floor (min 9<10, one starved seed)",
+          "target": "directed_tour_p0_coverage guarantees region-crossings independent of foraging survival -> P0 coverage >= floor on all seeds"
+        }
+      ],
+      "implementation_hint": "Harness-level fix (directed_tour_p0_coverage flag) decoupling P0 region-coverage from foraging survival. Built + validated by V3-EXQ-733b (PASS/supports; MECH-456 promoted candidate->provisional 2026-07-12). Recorded implemented for the autopsy->substrate_queue audit trail (733a-pB autopsy recommended action=create).",
+      "priority": 1,
+      "added_session": "modest-faraday-58b67a",
+      "last_seen_session": "modest-faraday-58b67a"
     }
   ],
   "schema_version": "substrate_queue/v2"

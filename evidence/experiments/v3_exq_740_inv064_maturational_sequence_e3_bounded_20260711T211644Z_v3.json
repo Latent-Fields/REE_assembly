@@ -1,1 +1,467 @@
-{"run_id": "v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3", "experiment_type": "v3_exq_740_inv064_maturational_sequence_e3_bounded", "queue_id": "V3-EXQ-740", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["INV-064"], "claim_ids_tested": ["INV-064"], "evidence_class": "exp:simulation", "experiment_purpose": "evidence", "outcome": "FAIL", "evidence_direction": "unknown", "non_degenerate": false, "degeneracy_reason": "IV did not move: mean eff_rank ratio 0.770 < 1.15 (E1/E2 differentiation did not increase across arms)", "timestamp_utc": "20260711T211644Z", "seeds": [42, 7, 19], "onset_episodes": [2, 5, 11, 22], "thresholds": {"R2_DELTA_FLOOR": 0.15, "R2_DELTA_SD_MULT": 2.0, "MONOTONE_RHO_MIN": 0.8, "GAP_DELTA_FLOOR": 0.08, "DIFF_INCREASE_FLOOR": 1.15, "HARM_EVENT_FRAC_FLOOR": 0.03}, "criteria": {"onset_min": 2, "onset_max": 22, "per_seed_delta_r2": [-0.18909602951861992, 0.5800806259619271, -0.16812030954663082], "per_seed_gap_delta": [0.029245516150583795, 0.555663387923579, -0.04939892819418401], "per_seed_spearman_rho": [-0.9999999999999998, 0.19999999999999996, -0.9999999999999998], "per_seed_effrank_ratio": [0.8552702302380981, 0.49343733603336404, 0.9620804523650347], "mean_delta_r2": 0.07428809563222545, "sd_delta_r2": 0.43815471926030586, "mean_gap_delta": 0.17850332529332627, "mean_spearman_rho": -0.5999999999999999, "mean_effrank_ratio": 0.7702626728788323, "min_harm_event_frac": 0.8775510191917419, "PC_iv_moved": false, "PC_events": true, "preconditions_met": false, "C1_quality_gain": false, "C2_monotone": false, "C3_noise_signature": true}, "by_onset": {"onset_2": {"mean_harm_r2_test": -0.4267997128894363, "mean_harm_r2_train": -0.06283052607876523, "mean_harm_gap": 0.3639691868106711, "mean_zworld_eff_rank": 1.4768361088007993, "mean_e2_forward_r2": 0.9891999525633833}, "onset_5": {"mean_harm_r2_test": -0.14204997022654645, "mean_harm_r2_train": -0.043164317813395504, "mean_harm_gap": 0.09888565241315095, "mean_zworld_eff_rank": 1.0883598987527459, "mean_e2_forward_r2": 0.9948103024318455}, "onset_11": {"mean_harm_r2_test": -0.23487387061372367, "mean_harm_r2_train": -0.12931810208636038, "mean_harm_gap": 0.1055557685273633, "mean_zworld_eff_rank": 1.2472031414171283, "mean_e2_forward_r2": 0.9811474319932799}, "onset_22": {"mean_harm_r2_test": -0.35251161725721086, "mean_harm_r2_train": -0.16704575573986605, "mean_harm_gap": 0.1854658615173448, "mean_zworld_eff_rank": 1.0408833958029318, "mean_e2_forward_r2": 0.9898791453605834}}, "arm_results": [{"arm_id": "onset_2", "onset_episodes": 2, "seed": 42, "zworld_var": 0.0007570281159132719, "zworld_eff_rank": 1.1980138517224277, "e2_forward_r2": 0.9911043008329415, "harm_r2_train": -0.05243704805924132, "harm_r2_test": -0.046088906358239035, "harm_gap": -0.006348141701002286, "harm_event_frac": 0.9333333373069763, "n_samples": 195, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "581584bc37809af403ec022393df2795240f9e862a277aaa3082cb780de0ae7c", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_5", "onset_episodes": 5, "seed": 42, "zworld_var": 0.0017227906500920653, "zworld_eff_rank": 1.0777249354399616, "e2_forward_r2": 0.9930776588589246, "harm_r2_train": -0.08368834553687776, "harm_r2_test": -0.10211567733203153, "harm_gap": 0.018427331795153767, "harm_event_frac": 0.9333333373069763, "n_samples": 195, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "772f398af4c57aa807b0916b1b751943bdc47d687f4aeb17f3b4d9dc7e226c14", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_11", "onset_episodes": 11, "seed": 42, "zworld_var": 0.005726232193410397, "zworld_eff_rank": 1.0299855431141842, "e2_forward_r2": 0.9887878087687672, "harm_r2_train": -0.21269311489725307, "harm_r2_test": -0.1997562229541341, "harm_gap": -0.012936891943118978, "harm_event_frac": 0.9333333373069763, "n_samples": 195, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "41605fdaf5e3759adbdc5efe40e23cfcabaa96acdedfeed9f7c2a8d9cf470597", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_22", "onset_episodes": 22, "seed": 42, "zworld_var": 0.007304432336241007, "zworld_eff_rank": 1.0246255827910715, "e2_forward_r2": 0.9900407239513396, "harm_r2_train": -0.27077859372844504, "harm_r2_test": -0.23518493587685896, "harm_gap": -0.03559365785158608, "harm_event_frac": 0.9333333373069763, "n_samples": 195, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "f7c13fc03ebd295bd023368ae27309b44b8c4f8f1f348e0f49ad058c758aba13", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 42, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_2", "onset_episodes": 2, "seed": 7, "zworld_var": 0.00028780734282918274, "zworld_eff_rank": 2.1592019739253225, "e2_forward_r2": 0.9800726045001849, "harm_r2_train": -0.09876374006300392, "harm_r2_test": -1.1726102399862386, "harm_gap": 1.0738464999232347, "harm_event_frac": 0.8775510191917419, "n_samples": 196, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "89d9b26ebbb602f7258e5a5f5bd0787e6650f2d408b414906cdef2d74039850d", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 7, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_5", "onset_episodes": 5, "seed": 7, "zworld_var": 0.004646828398108482, "zworld_eff_rank": 1.1365976570630825, "e2_forward_r2": 0.9950899322279739, "harm_r2_train": 0.008680693877567869, "harm_r2_test": -0.249780361852735, "harm_gap": 0.25846105573030287, "harm_event_frac": 0.8775510191917419, "n_samples": 196, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "25e900a526f68a1953428f8c0cc1805b430d8dbbae613a7de78ee8501ead8ebc", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 7, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_11", "onset_episodes": 11, "seed": 7, "zworld_var": 0.010753083974123001, "zworld_eff_rank": 1.0288568554876347, "e2_forward_r2": 0.9970662516103501, "harm_r2_train": -0.035367594030185856, "harm_r2_test": -0.4019913546377729, "harm_gap": 0.36662376060758706, "harm_event_frac": 0.8775510191917419, "n_samples": 196, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "4b84f4dd9f8cf59daddabad6b6883a2e3784a78fc448c9da56967a26db8ef6b9", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 7, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_22", "onset_episodes": 22, "seed": 7, "zworld_var": 0.011806081980466843, "zworld_eff_rank": 1.0654308699716923, "e2_forward_r2": 0.9933992182619172, "harm_r2_train": -0.07434650202465587, "harm_r2_test": -0.5925296140243115, "harm_gap": 0.5181831119996556, "harm_event_frac": 0.8775510191917419, "n_samples": 196, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "57598896f870615c10117973601016bab32eb43cc2ef76cf7471096a610752a8", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 7, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_2", "onset_episodes": 2, "seed": 19, "zworld_var": 0.004100849386304617, "zworld_eff_rank": 1.073292500754648, "e2_forward_r2": 0.9964229523570232, "harm_r2_train": -0.037290790114050454, "harm_r2_test": -0.061699992323831276, "harm_gap": 0.024409202209780823, "harm_event_frac": 0.9071038365364075, "n_samples": 183, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "90a130f4e56a9f7052c23dc1111bbe1866c9e93e890bf1f94f18a2d4cf141275", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 19, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_5", "onset_episodes": 5, "seed": 19, "zworld_var": 0.006639670580625534, "zworld_eff_rank": 1.0507571037551933, "e2_forward_r2": 0.9962633162086381, "harm_r2_train": -0.05448530178087663, "harm_r2_test": -0.07425387149487284, "harm_gap": 0.01976856971399621, "harm_event_frac": 0.9071038365364075, "n_samples": 183, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "be28ba850c96cdc7acb6d41c3dc2ec5d91b27a9ee0ef19336d26b37822a0a3f2", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 19, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_11", "onset_episodes": 11, "seed": 19, "zworld_var": 0.0005033958004787564, "zworld_eff_rank": 1.6827670256495655, "e2_forward_r2": 0.9575882356007227, "harm_r2_train": -0.1398935973316422, "harm_r2_test": -0.102874034249264, "harm_gap": -0.03701956308237819, "harm_event_frac": 0.9071038365364075, "n_samples": 183, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "e0c859c3c9b369a18966661189e078a032b91a9446b5fe2092fb737aac3bce38", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 19, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}, {"arm_id": "onset_22", "onset_episodes": 22, "seed": 19, "zworld_var": 0.007668617647141218, "zworld_eff_rank": 1.0325937346460312, "e2_forward_r2": 0.9861974938684935, "harm_r2_train": -0.15601217146649726, "harm_r2_test": -0.2298203018704621, "harm_gap": 0.07380813040396483, "harm_event_frac": 0.9071038365364075, "n_samples": 183, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "38d338f1341073659e815740980d3fa67c897354c2acb808b255c293678c1088", "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14", "substrate_n_files": 116, "machine_class": "linux-x86_64-py3.10", "regime": "A", "seed": 19, "config_slice_declared": true, "reuse_eligible": false, "reuse_ineligible_reasons": ["frozen_representation_from_maturation_trajectory"], "driver_script_in_substrate_hash": true, "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"}}], "ethics_preflight": {"involves_negative_valence": false, "involves_suffering_like_state": false, "involves_self_model": false, "involves_inescapability_or_helplessness": false, "involves_offline_replay_over_harm": false, "involves_social_mind_or_language": false, "involves_human_data_or_clinical_context": false, "decision": "allow"}, "machine": "ree-cloud-2"}
+{
+  "run_id": "v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3",
+  "experiment_type": "v3_exq_740_inv064_maturational_sequence_e3_bounded",
+  "queue_id": "V3-EXQ-740",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-064"
+  ],
+  "claim_ids_tested": [
+    "INV-064"
+  ],
+  "evidence_class": "exp:simulation",
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "non_degenerate": false,
+  "degeneracy_reason": "IV did not move: mean eff_rank ratio 0.770 < 1.15 (E1/E2 differentiation did not increase across arms)",
+  "timestamp_utc": "20260711T211644Z",
+  "seeds": [
+    42,
+    7,
+    19
+  ],
+  "onset_episodes": [
+    2,
+    5,
+    11,
+    22
+  ],
+  "thresholds": {
+    "R2_DELTA_FLOOR": 0.15,
+    "R2_DELTA_SD_MULT": 2.0,
+    "MONOTONE_RHO_MIN": 0.8,
+    "GAP_DELTA_FLOOR": 0.08,
+    "DIFF_INCREASE_FLOOR": 1.15,
+    "HARM_EVENT_FRAC_FLOOR": 0.03
+  },
+  "criteria": {
+    "onset_min": 2,
+    "onset_max": 22,
+    "per_seed_delta_r2": [
+      -0.18909602951861992,
+      0.5800806259619271,
+      -0.16812030954663082
+    ],
+    "per_seed_gap_delta": [
+      0.029245516150583795,
+      0.555663387923579,
+      -0.04939892819418401
+    ],
+    "per_seed_spearman_rho": [
+      -0.9999999999999998,
+      0.19999999999999996,
+      -0.9999999999999998
+    ],
+    "per_seed_effrank_ratio": [
+      0.8552702302380981,
+      0.49343733603336404,
+      0.9620804523650347
+    ],
+    "mean_delta_r2": 0.07428809563222545,
+    "sd_delta_r2": 0.43815471926030586,
+    "mean_gap_delta": 0.17850332529332627,
+    "mean_spearman_rho": -0.5999999999999999,
+    "mean_effrank_ratio": 0.7702626728788323,
+    "min_harm_event_frac": 0.8775510191917419,
+    "PC_iv_moved": false,
+    "PC_events": true,
+    "preconditions_met": false,
+    "C1_quality_gain": false,
+    "C2_monotone": false,
+    "C3_noise_signature": true
+  },
+  "by_onset": {
+    "onset_2": {
+      "mean_harm_r2_test": -0.4267997128894363,
+      "mean_harm_r2_train": -0.06283052607876523,
+      "mean_harm_gap": 0.3639691868106711,
+      "mean_zworld_eff_rank": 1.4768361088007993,
+      "mean_e2_forward_r2": 0.9891999525633833
+    },
+    "onset_5": {
+      "mean_harm_r2_test": -0.14204997022654645,
+      "mean_harm_r2_train": -0.043164317813395504,
+      "mean_harm_gap": 0.09888565241315095,
+      "mean_zworld_eff_rank": 1.0883598987527459,
+      "mean_e2_forward_r2": 0.9948103024318455
+    },
+    "onset_11": {
+      "mean_harm_r2_test": -0.23487387061372367,
+      "mean_harm_r2_train": -0.12931810208636038,
+      "mean_harm_gap": 0.1055557685273633,
+      "mean_zworld_eff_rank": 1.2472031414171283,
+      "mean_e2_forward_r2": 0.9811474319932799
+    },
+    "onset_22": {
+      "mean_harm_r2_test": -0.35251161725721086,
+      "mean_harm_r2_train": -0.16704575573986605,
+      "mean_harm_gap": 0.1854658615173448,
+      "mean_zworld_eff_rank": 1.0408833958029318,
+      "mean_e2_forward_r2": 0.9898791453605834
+    }
+  },
+  "arm_results": [
+    {
+      "arm_id": "onset_2",
+      "onset_episodes": 2,
+      "seed": 42,
+      "zworld_var": 0.0007570281159132719,
+      "zworld_eff_rank": 1.1980138517224277,
+      "e2_forward_r2": 0.9911043008329415,
+      "harm_r2_train": -0.05243704805924132,
+      "harm_r2_test": -0.046088906358239035,
+      "harm_gap": -0.006348141701002286,
+      "harm_event_frac": 0.9333333373069763,
+      "n_samples": 195,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "581584bc37809af403ec022393df2795240f9e862a277aaa3082cb780de0ae7c",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_5",
+      "onset_episodes": 5,
+      "seed": 42,
+      "zworld_var": 0.0017227906500920653,
+      "zworld_eff_rank": 1.0777249354399616,
+      "e2_forward_r2": 0.9930776588589246,
+      "harm_r2_train": -0.08368834553687776,
+      "harm_r2_test": -0.10211567733203153,
+      "harm_gap": 0.018427331795153767,
+      "harm_event_frac": 0.9333333373069763,
+      "n_samples": 195,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "772f398af4c57aa807b0916b1b751943bdc47d687f4aeb17f3b4d9dc7e226c14",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_11",
+      "onset_episodes": 11,
+      "seed": 42,
+      "zworld_var": 0.005726232193410397,
+      "zworld_eff_rank": 1.0299855431141842,
+      "e2_forward_r2": 0.9887878087687672,
+      "harm_r2_train": -0.21269311489725307,
+      "harm_r2_test": -0.1997562229541341,
+      "harm_gap": -0.012936891943118978,
+      "harm_event_frac": 0.9333333373069763,
+      "n_samples": 195,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "41605fdaf5e3759adbdc5efe40e23cfcabaa96acdedfeed9f7c2a8d9cf470597",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_22",
+      "onset_episodes": 22,
+      "seed": 42,
+      "zworld_var": 0.007304432336241007,
+      "zworld_eff_rank": 1.0246255827910715,
+      "e2_forward_r2": 0.9900407239513396,
+      "harm_r2_train": -0.27077859372844504,
+      "harm_r2_test": -0.23518493587685896,
+      "harm_gap": -0.03559365785158608,
+      "harm_event_frac": 0.9333333373069763,
+      "n_samples": 195,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f7c13fc03ebd295bd023368ae27309b44b8c4f8f1f348e0f49ad058c758aba13",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_2",
+      "onset_episodes": 2,
+      "seed": 7,
+      "zworld_var": 0.00028780734282918274,
+      "zworld_eff_rank": 2.1592019739253225,
+      "e2_forward_r2": 0.9800726045001849,
+      "harm_r2_train": -0.09876374006300392,
+      "harm_r2_test": -1.1726102399862386,
+      "harm_gap": 1.0738464999232347,
+      "harm_event_frac": 0.8775510191917419,
+      "n_samples": 196,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "89d9b26ebbb602f7258e5a5f5bd0787e6650f2d408b414906cdef2d74039850d",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 7,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_5",
+      "onset_episodes": 5,
+      "seed": 7,
+      "zworld_var": 0.004646828398108482,
+      "zworld_eff_rank": 1.1365976570630825,
+      "e2_forward_r2": 0.9950899322279739,
+      "harm_r2_train": 0.008680693877567869,
+      "harm_r2_test": -0.249780361852735,
+      "harm_gap": 0.25846105573030287,
+      "harm_event_frac": 0.8775510191917419,
+      "n_samples": 196,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "25e900a526f68a1953428f8c0cc1805b430d8dbbae613a7de78ee8501ead8ebc",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 7,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_11",
+      "onset_episodes": 11,
+      "seed": 7,
+      "zworld_var": 0.010753083974123001,
+      "zworld_eff_rank": 1.0288568554876347,
+      "e2_forward_r2": 0.9970662516103501,
+      "harm_r2_train": -0.035367594030185856,
+      "harm_r2_test": -0.4019913546377729,
+      "harm_gap": 0.36662376060758706,
+      "harm_event_frac": 0.8775510191917419,
+      "n_samples": 196,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "4b84f4dd9f8cf59daddabad6b6883a2e3784a78fc448c9da56967a26db8ef6b9",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 7,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_22",
+      "onset_episodes": 22,
+      "seed": 7,
+      "zworld_var": 0.011806081980466843,
+      "zworld_eff_rank": 1.0654308699716923,
+      "e2_forward_r2": 0.9933992182619172,
+      "harm_r2_train": -0.07434650202465587,
+      "harm_r2_test": -0.5925296140243115,
+      "harm_gap": 0.5181831119996556,
+      "harm_event_frac": 0.8775510191917419,
+      "n_samples": 196,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "57598896f870615c10117973601016bab32eb43cc2ef76cf7471096a610752a8",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 7,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_2",
+      "onset_episodes": 2,
+      "seed": 19,
+      "zworld_var": 0.004100849386304617,
+      "zworld_eff_rank": 1.073292500754648,
+      "e2_forward_r2": 0.9964229523570232,
+      "harm_r2_train": -0.037290790114050454,
+      "harm_r2_test": -0.061699992323831276,
+      "harm_gap": 0.024409202209780823,
+      "harm_event_frac": 0.9071038365364075,
+      "n_samples": 183,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "90a130f4e56a9f7052c23dc1111bbe1866c9e93e890bf1f94f18a2d4cf141275",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 19,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_5",
+      "onset_episodes": 5,
+      "seed": 19,
+      "zworld_var": 0.006639670580625534,
+      "zworld_eff_rank": 1.0507571037551933,
+      "e2_forward_r2": 0.9962633162086381,
+      "harm_r2_train": -0.05448530178087663,
+      "harm_r2_test": -0.07425387149487284,
+      "harm_gap": 0.01976856971399621,
+      "harm_event_frac": 0.9071038365364075,
+      "n_samples": 183,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "be28ba850c96cdc7acb6d41c3dc2ec5d91b27a9ee0ef19336d26b37822a0a3f2",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 19,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_11",
+      "onset_episodes": 11,
+      "seed": 19,
+      "zworld_var": 0.0005033958004787564,
+      "zworld_eff_rank": 1.6827670256495655,
+      "e2_forward_r2": 0.9575882356007227,
+      "harm_r2_train": -0.1398935973316422,
+      "harm_r2_test": -0.102874034249264,
+      "harm_gap": -0.03701956308237819,
+      "harm_event_frac": 0.9071038365364075,
+      "n_samples": 183,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "e0c859c3c9b369a18966661189e078a032b91a9446b5fe2092fb737aac3bce38",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 19,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    },
+    {
+      "arm_id": "onset_22",
+      "onset_episodes": 22,
+      "seed": 19,
+      "zworld_var": 0.007668617647141218,
+      "zworld_eff_rank": 1.0325937346460312,
+      "e2_forward_r2": 0.9861974938684935,
+      "harm_r2_train": -0.15601217146649726,
+      "harm_r2_test": -0.2298203018704621,
+      "harm_gap": 0.07380813040396483,
+      "harm_event_frac": 0.9071038365364075,
+      "n_samples": 183,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "38d338f1341073659e815740980d3fa67c897354c2acb808b255c293678c1088",
+        "substrate_hash": "8363741e862e7d174cdebe4ee5a7d21d6d7160cd510f509e45ca23cfc4350a14",
+        "substrate_n_files": 116,
+        "machine_class": "linux-x86_64-py3.10",
+        "regime": "A",
+        "seed": 19,
+        "config_slice_declared": true,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "frozen_representation_from_maturation_trajectory"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "d84a19e8c48753d333e31bf730bf258e860c35fc9868c31a3e83eae44201b96e"
+      }
+    }
+  ],
+  "ethics_preflight": {
+    "involves_negative_valence": false,
+    "involves_suffering_like_state": false,
+    "involves_self_model": false,
+    "involves_inescapability_or_helplessness": false,
+    "involves_offline_replay_over_harm": false,
+    "involves_social_mind_or_language": false,
+    "involves_human_data_or_clinical_context": false,
+    "decision": "allow"
+  },
+  "machine": "ree-cloud-2",
+  "epistemic_category": "measurement_degeneracy",
+  "evidence_direction_note": "2026-07-12 /governance IGW-20260712-001 (failure_autopsy_V3-EXQ-740, confirmed): degenerate FAIL, PC_iv_moved=false (eff_rank ratio 0.770<1.15 ran backwards). measurement_degeneracy; NOT weighted against INV-064. Superseded by V3-EXQ-740a (itself deferred to its own autopsy - 2nd degeneracy)."
+}

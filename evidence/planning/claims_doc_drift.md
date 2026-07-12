@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-07-10T20:05:07Z
+Generated: 2026-07-12T09:21:20Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (108)
+## Unresolved with a hand status line -- INFO (109)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -111,6 +111,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `residue_geometry.md` -- "stable"
 - `rule_apprehension_layer.md` -- "registered architectural slot. Weak reading (ARC-062) at implementation_phase=v3 candidate, **BLOCKED** (GAP-B status=bl"
 - `rule_distinguishability_maintenance.md` -- "architecture stub for candidate claims MECH-437 / MECH-438 (candidate / substrate_conditional / implementation_phase v4 "
+- `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
 - `sd_mel_consumer.md` -- "IMPLEMENTED"
 - `sd_v4_loop_segregation.md` -- "IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving"

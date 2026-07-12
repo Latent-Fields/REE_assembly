@@ -23,7 +23,7 @@
     "INV-064"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -40,5 +40,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "epistemic_category": "measurement_degeneracy",
+  "evidence_direction_note": "2026-07-12 /governance IGW-20260712-001 (failure_autopsy_V3-EXQ-740, confirmed): degenerate FAIL, PC_iv_moved=false (eff_rank ratio 0.770<1.15 ran backwards). measurement_degeneracy; NOT weighted against INV-064. Superseded by V3-EXQ-740a (itself deferred to its own autopsy - 2nd degeneracy)."
 }

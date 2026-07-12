@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-11T22:37:09Z",
+  "last_review_utc": "2026-07-12T09:48:20Z",
   "discussed_experiment_dirs": [
     "v3_exq_047l_mech095_agency_routing_sd047",
     "v3_exq_732a_policy_learning_discriminator",
@@ -814,7 +814,16 @@
     "v3_exq_733_rebinding_functional_ground_truth",
     "v3_exq_538a_sd049_phase2_with_sleep",
     "v3_exq_517d_mech302_relief_completion_discriminative_pair",
-    "v3_exq_047m_mech095_agency_routing_sd047"
+    "v3_exq_047m_mech095_agency_routing_sd047",
+    "v3_exq_733a_rebinding_pA_survival_onboarded",
+    "v3_exq_733a_rebinding_pB_directed_traversal",
+    "v3_exq_733b_rebinding_pB_directed_traversal",
+    "v3_exq_734_env_difficulty_competence_recovery_sweep",
+    "v3_exq_735_drive_reward_balance_sweep",
+    "v3_exq_736_curriculum_competence_recovery_diagnostic",
+    "v3_exq_737_ree_latent_policy_head_competence_probe",
+    "v3_exq_740_inv064_maturational_sequence_e3_bounded",
+    "v3_exq_741_mech095_agency_comparator_testbed_sd047"
   ],
   "reviewed_run_ids": [
     "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
@@ -3304,7 +3313,17 @@
     "v3_exq_733_rebinding_functional_ground_truth_20260710T130132Z_v3",
     "v3_exq_538a_sd049_phase2_with_sleep_20260710T035148Z_v3",
     "v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3",
-    "v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3"
+    "v3_exq_047m_mech095_agency_routing_sd047_20260711T195846Z_v3",
+    "v3_exq_734_env_difficulty_competence_recovery_sweep_20260711T092149Z_v3",
+    "v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3",
+    "v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3",
+    "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+    "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T222643Z_v3",
+    "v3_exq_733a_rebinding_pA_survival_onboarded_20260711T100753Z_v3",
+    "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
+    "v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3",
+    "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
+    "v3_exq_733b_rebinding_pB_directed_traversal_20260712T000900Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5111,6 +5130,23 @@
         "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3"
       ],
       "note": "Explicit consumption of failure_autopsy_V3-EXQ-047l_2026-07-11 (confirmed) into the MECH-095 governance record. 047l did NOT surface in the pending walk because its manifest self-reported non_degenerate:false (scoring-excluded on contact_recall_world zero-spread) -- consumed directly from the autopsy artifact, not via generate_pending_review. VERDICT: non_contributory / measurement_degeneracy, NOT a substrate_ceiling confirmation. Root cause (autopsy DOMINANT layer): the probe's contact-vs-no-contact partition saturated -- is_contact folded env_events>0, which on SD-047's dense per-step drift/transient dynamics was true on EVERY probe step, so the no-contact negative class was empty (n_contact_probe == n_probe_steps in all 8 cells: 126==126, 119==119, 113==113, 105==105) and contact_recall_world was structurally pinned at 0.0 in BOTH ROUTED and BASELINE. The MECH-095 TPJ agency comparator was NEVER exercised; the owed SD-047 positive-discrimination retest STILL has not validly run -> n_ceiling_hits stays 0 (a measurement/instrument failure, not a ceiling hit). The fold is correct/necessary in the TRAINING is_world routing label but was over-applied into the EVAL partition. Secondary, claim-orthogonal non-degenerate signal: routing collapsed the self-vs-world action dissociation (BASELINE +0.10..+0.23 -> ROUTED ~0). Applied: evidence_direction non_contributory + measurement_degeneracy + superseded_by=V3-EXQ-047m stamped on BOTH the flat and runs/ pack manifests; MECH-095 evidence_quality_note got a dated 047l addendum. MECH-095 STAYS candidate / substrate_ceiling / pending_retest_after_substrate -- PROMOTES/DEMOTES NOTHING. No substrate_queue write (autopsy recommended_substrate_queue_entry.action=none; SD-047 already implemented + mapped as resolution path (a)). Re-derive brake: this is the 1st MECH-095 non_contributory (threshold 2, NOT fired); registered escalation flag -- if the corrected successor V3-EXQ-047m ALSO returns non_contributory, the operationalisation (not one probe bug) is implicated -> route MECH-095 to a substrate/test-bed redesign, NOT a third 047 letter. 047m result review is blocked-on-upstream (not yet run). Plan-gap deferred: multi_agent_ecology_v5:MAE-3 (blocked, unblocks MECH-095) flagged possibly-stale but outcome-contingent on the 047m retest -- left for a later governance/inter-governance pass."
+    },
+    {
+      "utc": "2026-07-12T09:48:20Z",
+      "session": "modest-faraday-58b67a (/governance IGW-20260712-001)",
+      "reviewed": [
+        "v3_exq_734_env_difficulty_competence_recovery_sweep_20260711T092149Z_v3",
+        "v3_exq_735_drive_reward_balance_sweep_20260711T114313Z_v3",
+        "v3_exq_736_curriculum_competence_recovery_diagnostic_20260711T200431Z_v3",
+        "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T192837Z_v3",
+        "v3_exq_737_ree_latent_policy_head_competence_probe_20260711T222643Z_v3",
+        "v3_exq_733a_rebinding_pA_survival_onboarded_20260711T100753Z_v3",
+        "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
+        "v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3",
+        "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
+        "v3_exq_733b_rebinding_pB_directed_traversal_20260712T000900Z_v3"
+      ],
+      "note": "Governance walk IGW-20260712-001 (modest-faraday-58b67a, user-interactive). 11 pending walked; 10 reviewed, V3-EXQ-740a left PENDING (deferred to /failure-autopsy). GROUP D: V3-EXQ-733b PASS/supports -> MECH-456 PROMOTED candidate->provisional (first functional rebinding demonstration on the coverage-decoupled directed-traversal harness; V3-pending gate LIFTED v3_pending:false; decision_log promote_to_provisional/applied). GROUP C inline autopsy: V3-EXQ-741 (MECH-095 valid SD-047 test-bed; failure_autopsy_V3-EXQ-741_2026-07-12 confirmed) adjudicated non_contributory/substrate_ceiling, OVERRIDING the script self-route 'weakens' (ROUTED_A -0.114 is a gradient-head over-parameterization artifact; ROUTED_B neutral; baseline carries contact). 1st VALID ceiling hit; env lacks a structurally-distinct OTHER; empirically CONFIRMS multi_agent_ecology_v5:MAE-3. MECH-095 implementation_phase REASSIGNED v3->v5, ceiling re-pointed to MAE-3; re-derive brake FIRED (3rd non_contributory) but re-points not re-blocks, refuses a 4th single-agent letter; manifest weakens->non_contributory (flat+pack). GROUP A (confirmed autopsies, all non_contributory, WEIGHTS NOTHING): 734/735/736/737-first conversion-ceiling cluster (claim_ids=[]); 733a-pA + 733a-pB -> MECH-456 (subsumed by the 733b promotion); 740 -> INV-064 measurement_degeneracy. GROUP B: V3-EXQ-737-second pure diagnostic (claim_ids=[]), same conversion-ceiling family conclusion -> MECH-457 (built), marked discussed. DEFERRED: V3-EXQ-740a (INV-064, non_degenerate:false 2nd degeneracy: mature-anchor harm not decodable-in-principle R2 0.034<0.05) stays PENDING, chipped for /failure-autopsy (2nd degeneracy implicates the operationalisation). Step 3 agenda: MECH-302 promote_to_provisional. PROMOTES: MECH-456. DEMOTES: nothing."
     }
   ]
 }

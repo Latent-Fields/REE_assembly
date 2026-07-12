@@ -2,7 +2,7 @@
 title: "SD-051: safety_prediction.cue_specific_conditioned_inhibition_substrate"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 12
+nav_order: 13
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: SD-051

@@ -6,37 +6,46 @@ Source plan: `evidence/planning/self_model_v4_plan.md`
 
 ## `self_model_v4:SELF-1`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-2`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-3`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-4`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-5`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-6`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-7`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-8`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 
 ## `self_model_v4:SELF-9`
 
-- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied) **<- live head**
+- `2026-06-06T07:53Z` [decision] `decision:ARC-081@2026-06-06T07:53:48.739107Z` -> [`evidence/decisions/decision_log.v1.jsonl#L284`](../../../../evidence/decisions/decision_log.v1.jsonl#L284) :: decision held_v4_by_architectural_commitment (applied)
+- `2026-07-11T21:41Z` [autopsy] `failure_autopsy_V3-EXQ-740_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-740_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment **<- live head**
 

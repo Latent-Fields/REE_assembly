@@ -12,7 +12,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-2`
 
@@ -22,7 +25,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-3`
 
@@ -32,7 +38,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-4`
 
@@ -42,7 +51,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-5`
 
@@ -52,7 +64,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-6`
 
@@ -62,7 +77,10 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 
 ## `multi_agent_ecology_v5:MAE-7`
 
@@ -72,5 +90,8 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-03-24T15:33Z` [decision] `decision:MECH-095@2026-03-24T15:33:11.358559Z` -> [`evidence/decisions/decision_log.v1.jsonl#L99`](../../../../evidence/decisions/decision_log.v1.jsonl#L99) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-095@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L203`](../../../../evidence/decisions/decision_log.v1.jsonl#L203) :: decision hold_substrate_ceiling (applied)
 - `2026-05-02T10:09Z` [decision] `decision:MECH-102@2026-05-02T10:09:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L204`](../../../../evidence/decisions/decision_log.v1.jsonl#L204) :: decision hold_substrate_ceiling (applied)
-- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports **<- live head**
+- `2026-05-06T09:41Z` [manifest] `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` -> [`evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json`](../../../../evidence/experiments/v3_exq_533_mech102_harm_stream_ablation/manifest.json) :: PASS manifest supports
+- `2026-07-11T12:41Z` [decision] `decision:MECH-095@2026-07-11T12:41:01Z` -> [`evidence/decisions/decision_log.v1.jsonl#L352`](../../../../evidence/decisions/decision_log.v1.jsonl#L352) :: decision demote_to_candidate (applied)
+- `2026-07-11T19:23Z` [autopsy] `failure_autopsy_V3-EXQ-047l_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047l_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=queue-experiment
+- `2026-07-11T21:38Z` [autopsy] `failure_autopsy_V3-EXQ-047m_2026-07-11` -> [`evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-047m_2026-07-11.json) :: autopsy non_contributory/measurement_degeneracy routing=implement-substrate **<- live head**
 

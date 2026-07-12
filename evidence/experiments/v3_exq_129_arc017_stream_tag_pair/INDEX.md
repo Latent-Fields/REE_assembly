@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_129_arc017_stream_tag_pair
 
-Generated: `2026-07-11T21:26:16.738500Z`
+Generated: `2026-07-12T10:01:29.922877Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

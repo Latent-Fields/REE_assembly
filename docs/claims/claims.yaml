@@ -6799,21 +6799,21 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/substrate_ceiling
-    as_of: 2026-07-11
+    reading: candidate/substrate_ceiling/v5-reassigned
+    as_of: 2026-07-12
     needs_review: false
     evidence:
-      from: "decision:MECH-095@2026-07-11T12:41:01Z"
-      as_of: 2026-07-11
-      verdict: demote_to_candidate/applied
-  last_reviewed: 2026-07-11
+      from: V3-EXQ-741
+      as_of: 2026-07-12
+      verdict: non_contributory/substrate_ceiling (1st valid ceiling hit; v3->v5, ceiling bound to multi_agent_ecology_v5:MAE-3)
+  last_reviewed: 2026-07-12
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
-  ceiling_retest_binding_substrate: ["MECH-095"]
-  ceiling_retest_binding_note: "Re-pointed 2026-07-11 (governance consumption of failure_autopsy_V3-EXQ-047m, confirmed): the owed positive-discrimination retest is BLOCKED on substrate_queue sd_id agency_comparator_testbed_sd047 (a VALID test-bed), NOT on SD-047 alone. 047l+047m proved the 047-lineage env_events-fold operationalisation is degenerate at intensity 1.0 on SD-047 (probe saturation then training-label saturation), so the implemented SD-047 substrate does NOT lift this ceiling. The binding-substrate marker keeps the audit at `mapped` (ceiling-retest-blocked-on-testbed) until an IMPLEMENTED entry delivers a valid MECH-095 retest; MECH-095 was removed from SD-047's substrate_queue unblocks_claims to make the re-point load-bearing."
+  ceiling_retest_binding_substrate: ["multi_agent_ecology_v5:MAE-3"]
+  ceiling_retest_binding_note: "Re-pointed 2026-07-12 (governance IGW-20260712-001 consumption of failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed ran VALIDLY (non_degenerate:True, all 4 arms pass guards) and the comparator does no functional work (no arm discriminates, best +0.028; baseline already carries contact). This is the 1st VALID substrate_ceiling hit and it EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction: a single-agent V3 env cannot make an agency comparator load-bearing because world-caused drift is not a structurally-distinct OTHER. The owed positive-discrimination retest is now BLOCKED on the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3), NOT on any single-agent SD-047 test-bed. Re-derive brake refuses a 4th single-agent SD-047 letter. PRIOR (superseded) re-point 2026-07-11 (047m): had pointed at agency_comparator_testbed_sd047 -- that test-bed is now built + validly exercised, so it is retired as the binding substrate."
   adjudicated_at_utc: "2026-07-11T12:37:35Z"
   adjudication_outcome: demoted
-  implementation_phase: v3
+  implementation_phase: v5
   evidence_quality_note: |
     EXQ-121 FAIL (2026-03-28): AUC_COMP_ON=0.411 vs AUC_COMP_ABLATED=0.745 (delta=-0.334).
     Only 1/5 criteria passed. AgencyComparator actively hurts attribution performance at current
@@ -6923,6 +6923,8 @@
     probe bug) and MUST route MECH-095 to a substrate/test-bed redesign, NOT a third 047 letter.
 
     V3-EXQ-047m (2026-07-11, SD-047 @ intensity 1.0, 4 seeds, ree-cloud-2) is the CORRECTED successor to 047l. Its probe-partition fix worked (non_degenerate=true, n_no_contact_min=8 >= floor 5) so the EVAL contrast was real, and it FAILed 3/5 with routing HURTING recall (ROUTED 0.492 vs BASELINE 0.795, improvement -0.302). But this is NON_CONTRIBUTORY -- a SECOND operationalisation degeneracy, NOT a substrate_ceiling confirmation and NOT a weakens. Root cause: the identical env_events fold that saturated 047l's PROBE now saturates the TRAINING label. is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0), and at intensity 1.0 the 2 background-drift sources fire env_events>0 on ~93%+ of steps (env_ev_ticks ~4470 of ~4800; episodes die ~11 steps), so is_world ~= constant 1 -- the routing head never sees a self-caused negative and cannot learn the discrimination; instead it homogenizes z_world, degrading an already-good BASELINE contact encoding (0.795) and collapsing action-dissociation (BASELINE +0.140 -> ROUTED -0.002; seed 123 catastrophic: world 0.111 / self 1.000). The 047m guard validated only the PROBE partition, not the training-label balance, so non_degenerate=true is a FALSE CLEAR of validity. Three independent reasons this is not a valid ceiling hit: (1) comparator invalidly trained (saturated label); (2) 047m is a binary comparator-ON-vs-ABLATED at fixed intensity 1.0, NOT the pre-registered 4-arm SD-047 intensity sweep (sd_047 doc warns a binary test cannot distinguish 'SD-047 works' from 'SD-047 overshot calibration' -- the Asai overshoot branch is exactly the label saturation and is unexcluded); (3) the BASELINE succeeds at 0.795, so the substrate carries the contact signal -- the failure is corruption of a good representation, not an absent one. n_ceiling_hits STAYS 0. RE-DERIVE BRAKE FIRES (2nd non_contributory MECH-095 read, threshold 2): route to a test-bed redesign, REFUSE a third 047 letter. The convergent 047l(probe)+047m(training) shape implicates the OPERATIONALISATION (the env_events fold is degenerate at intensity 1.0 wherever applied), not the substrate. Load-bearing redesign input: MECH-095's notes describe a query-time read-out comparator (efference-copy-predicted vs observed z_self), but the 047-lineage operationalises it as an auxiliary BCE head reshaping z_world by gradient -- plausibly the wrong functional translation. Substrate_queue: CREATE an agency-comparator test-bed entry (non-saturating training label / read-out reoperationalisation + a training-label non-degeneracy guard + the pre-registered 4-arm intensity sweep). pending_retest_after_substrate stays true but RE-POINTED from 'SD-047 build' (done) to that test-bed; ceiling audit moves MECH-095 off 'ceiling_may_have_lifted' to 'ceiling-retest-blocked-on-testbed'. MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate; this consumption PROMOTES/DEMOTES NOTHING.
+
+    V3-EXQ-741 (2026-07-12, /governance IGW-20260712-001 inline autopsy failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed the 047m brake demanded ran VALIDLY for the first time -- non_degenerate=True, all 4 intensity arms (0/0.25x/1.0x/4.0x) pass BOTH the probe-partition and self/world-balance guards the 047l/047m lineage lacked. The 047l/047m measurement degeneracy is FIXED. On the valid test-bed the comparator does no functional work: no arm discriminates (best routing improvement +0.028 < 0.04 floor), ROUTED_A gradient-head HURTS recall (mean -0.114), ROUTED_B efference-copy read-out neutral (+0.003), baseline already carries contact recall (0.75-0.93). evidence_direction NON_CONTRIBUTORY (NOT the script's self-routed 'weakens'): SD-047's world-caused drift is not a structurally-distinct OTHER, so the env cannot make the comparator load-bearing and the baseline pre-empts it -- the test could not let the claim express its value. This EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction (MECH-095 is intrinsically relational; needs a genuine second agent). This is the 1st VALID substrate_ceiling hit (n_ceiling_hits 0 -> 1; 047l/047m were measurement-degeneracy, uncounted). RE-DERIVE BRAKE FIRED (3rd non_contributory) but its test-bed-rebuild demand was honored -- it does NOT re-block; it RE-POINTS the ceiling from the now-built+validly-exercised test-bed to the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3) and REFUSES a 4th single-agent SD-047 letter. Secondary learning: the read-out framing (ROUTED_B) is the biology-faithful translation; the gradient-BCE-head (ROUTED_A) is not. Positive base remains NARROW (only 047k, a single thin-env operationalisation) -- flagged per the illusory-conflict-resolution rule. implementation_phase REASSIGNED v3 -> v5 (user-confirmed, phase-follows-dependency: the multi-agent ecology is the enabling substrate; MECH-095 removed from V3-completion accounting). pending_retest_after_substrate stays true, re-pointed to multi_agent_ecology_v5:MAE-3. MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate; PROMOTES/DEMOTES NOTHING.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
@@ -18185,9 +18187,13 @@
   pending_substrate_reconfirmation: true
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: candidate/pending_substrate_reconfirmation
+    as_of: 2026-07-12
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-740_2026-07-11
+      as_of: 2026-07-12
+      verdict: non_contributory/measurement_degeneracy (V3-EXQ-740; 740a successor deferred to its own autopsy)
   subject: development.maturational_sequence
   description: >
     The developmental sequence in which sensory-perceptual systems (E1) mature before
@@ -18225,6 +18231,26 @@
     concept is not stateable as a curriculum constraint. ARC-001/002/003 are
     active; ARC-019 is provisional, so pending_substrate_reconfirmation: true
     (propagates from the lowest-status substrate per governance rule).
+  evidence_quality_note: |
+    2026-07-12 (V3-EXQ-740, /governance IGW-20260712-001; consumed from
+    failure_autopsy_V3-EXQ-740_2026-07-11, confirmed): the maturational-sequence
+    necessity test FAILed DEGENERATE -- validity precondition PC_iv_moved=false,
+    the z_world eff_rank ratio ran BACKWARDS (0.770 < 1.15). evidence_direction
+    non_contributory / epistemic_category measurement_degeneracy (NOT weighted).
+    Root cause: the eff_rank/participation-ratio of the trained alpha_world=0.9
+    EMA z_world DECREASES with maturation (the latent specialises onto a low-dim
+    task manifold) -- opposite to INV-064's task-relevant differentiation -- and
+    the onset window 2..22 was entirely post-saturation (E2 forward R2 ~0.99 at
+    onset_2), so there was no immature anchor. NOT claim falsification (PFC
+    myelination biology is strong, non-formal-import), NOT substrate_ceiling.
+    Route (queue-experiment): V3-EXQ-740a, a corrected successor with a
+    task-relevant predictive-decodability observable, an immature-anchor arm, and
+    a mature-anchor harm-decodability positive control. 740a has since run and
+    ALSO self-reports non_degenerate=false (2nd degeneracy: mature-anchor harm
+    target not decodable-in-principle, linear R2 0.034 < 0.05) -- DEFERRED to its
+    own /failure-autopsy (a 2nd degeneracy implicates the operationalisation; see
+    the 740 autopsy note). INV-064 stays candidate / pending_substrate_reconfirmation;
+    PROMOTES/DEMOTES NOTHING.
 
 - id: MECH-214
   title: goal_referent_e1_representability
@@ -27244,18 +27270,18 @@
   claim_type: mechanism_hypothesis
   subject: entities.rebinding_under_perturbation
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate/v3_pending/substrate_conditional
-    as_of: 2026-07-11
+    reading: provisional/substrate_conditional_satisfied
+    as_of: 2026-07-12
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-733_2026-07-10
-      as_of: 2026-07-10
-      verdict: non_contributory/substrate_ceiling
+      from: V3-EXQ-733b
+      as_of: 2026-07-12
+      verdict: supports (PASS; first functional rebinding demonstration on the coverage-decoupled harness)
   epistemic_category: substrate_conditional
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-07-10
   depends_on:
@@ -27374,6 +27400,35 @@
     built + validated (P1 survival 3/3; V3-EXQ-603m/603n), so the repair is a
     re-queue over existing scaffold, not a new deep-substrate build. MECH-456
     stays candidate / v3_pending (V3-pending gate); no promotion/demotion.
+
+    2026-07-11 (V3-EXQ-733a, 2-leg GOV-FANOUT-1 portfolio; consumed via
+    /governance from failure_autopsy_V3-EXQ-733a_2026-07-11; both legs
+    non_contributory/substrate_ceiling, NOT weighted): P-A (survival-onboarded)
+    fixed survival but overtakes stayed below the readiness quorum and the binder
+    stalled at chance on 2/6 seeds (a competent forager over-visits 2 of 4
+    regions, suppressing coverage) -> readiness stays coupled to foraging
+    survival. P-B (directed-traversal) PASSED every mechanism criterion (DV1 6/6,
+    DV2 6/6, binder 6/6, overtakes 62-808, tracks truth 3-6x above shuffle with
+    an 8-14 step graded advantage) and was blocked ONLY by the survival-coupled
+    P0-coverage floor (min 9<10, one starved seed) -> narrow_supports_flag=True
+    ("converts to SUPPORT on retest once P0-coverage is decoupled from
+    survival"). Re-derive brake fired (2nd MECH-456 non_contributory) -> refused
+    the P-A survival axis; prescribed a harness P0-coverage decoupling
+    (directed_tour_p0_coverage) then ONE brake-permitted P-B retest.
+
+    2026-07-12 (V3-EXQ-733b, the brake-permitted retest-after-substrate; evidence,
+    claim_ids=[MECH-456]; consumed via /governance IGW-20260712-001): PASS /
+    supports, non_degenerate. The directed-traversal P-B design run on the
+    coverage-decoupled harness (directed_tour_p0_coverage=True) confirmed the
+    733a P-B near-pass: this is MECH-456's FIRST functional rebinding
+    demonstration (prior runs were exercisability-only / non_contributory). The
+    substrate_conditional condition (a P0-coverage floor decoupled from foraging
+    survival) is now SATISFIED and the functional what_would_answer test passed.
+    V3-pending gate LIFTED (v3_pending: false) and MECH-456 PROMOTED candidate ->
+    provisional. Positive base is a single PASS on the directed-traversal design;
+    a confirmatory retest on an independent design / seed-set would strengthen
+    but is not gating for provisional. decision_log: promote_to_provisional /
+    applied.
   location: docs/architecture/entities_and_binding.md
 
 - id: MECH-271
@@ -32184,15 +32239,15 @@
   claim_type: mechanism_hypothesis
   subject: relief.completion_event_reuses_goal_achievement_pipeline
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-12
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-517b_2026-05-30
-      as_of: 2026-05-30
-      verdict: non_contributory/substrate_ceiling
+      from: V3-EXQ-517d
+      as_of: 2026-07-12
+      verdict: supports (promote_to_provisional/applied; 2 clean discriminative PASSes 517c+517d, exp_conf 0.824, conflict_ratio 0)
   implementation_phase: v3
   v3_pending: false
   claim_level: mechanistic

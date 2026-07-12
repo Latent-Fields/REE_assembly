@@ -2,7 +2,7 @@
 title: "SD-061: difficulty_gated_proposal_entropy"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 16
+nav_order: 17
 status: candidate/v3_pending
 status_asof: 2026-07-10
 status_claim: SD-061
