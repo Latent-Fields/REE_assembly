@@ -157,6 +157,7 @@ ASSIGN = {
     "sd_050_suffering_derivative_comparator.md": "goals", "sd_051_conditioned_safety_store.md": "goals",
     "sd_057_object_bound_incentive_salience.md": "goals", "sd_058_instrumental_avoidance_acquisition.md": "goals",
     "sd_059_escape_affordance_bridge.md": "goals", "trainable_relief_safety_affordance_learners.md": "goals",
+    "sd_actor_critic_action_learning.md": "goals",
     "mech_111_per_candidate_novelty.md": "goals", "mech_314_structured_curiosity_bonus.md": "goals",
     "mech_314a_phase2_novelty_source_design.md": "goals",
     "sd_061_difficulty_gated_proposal_entropy.md": "goals",
