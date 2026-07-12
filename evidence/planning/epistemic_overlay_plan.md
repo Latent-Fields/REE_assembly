@@ -1,6 +1,6 @@
-# Epistemic Overlay — Phase 1 Plan-of-Record (Option C + C-slice of D)
+# Epistemic Overlay — Plan-of-Record (Phase 1 Option C; Phase 2 Option B)
 
-**Status:** ACTIVE — Phase 1 implementation. Derive-only overlay. Promotes/demotes nothing.
+**Status:** Phase 1 (Option C + C-slice of D) LANDED (REE_assembly master 7edabd57b6). Phase 2 (Option B — pairwise MRF + damped loopy BP) design + implementation ACTIVE (this session, 2026-07-12). Derive-only overlay. Promotes/demotes nothing.
 **Date opened:** 2026-07-12.
 **Parent memo:** [`epistemic_system_formalization_options_2026-07-12.md`](epistemic_system_formalization_options_2026-07-12.md) — the user picked **Phase 1 = Option C + the C-enabled slice of Option D** (memo §6).
 **Sibling doc:** [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) — input-quality side; a parallel session (`great-antonelli-05f6c3`) is widening the indexer's consumed-field set concurrently. User approved parallel edits to `build_experiment_indexes.py` on 2026-07-12.
@@ -153,3 +153,136 @@ Both are advisory diagnostics. Neither changes any status or recommendation.
 - **Honestly uncalibrated.** Labelled "model-based, not yet calibrated" until a resolved-claim validation set exists.
 - **ASCII-only** in any `.py` stdout; timestamps from `date -u`.
 - **Phase-2-ready.** The per-node posterior is B's unary potential; the alarm module is where loopy BP grows. No throwaway scaffolding.
+
+---
+---
+
+# Phase 2 Plan-of-Record — Option B (pairwise MRF + damped loopy BP)
+
+**Status:** ACTIVE — grows `build_epistemic_overlay.py` in place (NOT a rewrite). Derive-only. Promotes/demotes nothing.
+**Date opened:** 2026-07-12.
+**Parent memo:** `epistemic_system_formalization_options_2026-07-12.md` §3 (Option B), §6 (recommendation). Phase 1 landed the unary potentials; Phase 2 adds the pairwise potentials + belief propagation the memo names as the principled end-state for a **cyclic** claims graph (an MRF with loopy BP — NOT a directed Bayes net, which the 132-cycle topology rejects, memo §2/§6).
+
+## P2.0 What Phase 2 adds (and still does NOT do)
+
+Phase 1 gave every node an honest per-node posterior but confidence still **does not propagate** — the single biggest gap vs the user's mental model (memo §1). Phase 2 makes the claims graph a genuine **undirected pairwise Markov random field** and runs **damped loopy belief propagation** so evidence for a substrate claim flows to the invariants emergent from it, and a weak foundation transitively drags down everything built on it.
+
+**In scope (Phase 2):**
+1. **Pairwise potentials** on the graph edges — the ONLY invented objects. Strong + directional on the 62 `emergent_from` edges; weak/near-uniform/tunable on generic `depends_on`. At the weak defaults the MRF degenerates to Phase-1 per-node scoring (t=0 recovery).
+2. **Damped loopy sum-product BP** over the full 880-node graph (132 cycles tolerated natively — no SCC-collapse, no edge re-orientation). Convergence + oscillation monitoring, per channel.
+3. **Propagated beliefs** emitted alongside the unary (own-evidence) belief, exp/lit kept decoupled (two BP runs, two propagated numbers, never fused).
+4. **Evidence-flow animation** (Option D viz layer) over the propagated beliefs in `explorer.html`.
+
+**Still explicitly OUT (unchanged from Phase 1):**
+- No directed Bayes net, no edge re-orientation, no SCC-collapse (Option A — rejected on topology).
+- No status mutation, no auto-promotion, no `v3_pending` clear. **PROMOTES/DEMOTES NOTHING.**
+- No fusing of exp and lit into one belief.
+- No calibration claim — still labelled "model-based, not yet calibrated".
+- The propagated belief NEVER feeds the promotion gate; the honesty surface (§3) stays keyed to the unary posterior.
+
+## P2.1 The MRF model
+
+**Nodes.** All N=880 claims (every `id` in `claims.yaml`), not just the 479 with evidence. A claim with no evidence is a **connector node** with a uniform unary that still passes messages between its neighbours — this is how propagation reaches through the graph. Each node is a binary latent `X_i in {0=unsupported, 1=supported}`; the belief we report is `b_i = P(X_i = 1)`.
+
+**Unary potentials — REUSED, not recomputed (guardrail).** For each node, `phi_i = (1 - m_i, m_i)` where `m_i` is the **existing** Beta posterior mean from `claim_evidence.v1.json`. Two **decoupled** channels, each run separately:
+- **exp channel:** `m_i = exp_posterior.mean` if `exp_posterior.n_entries > 0`, else `0.5` (uniform — no own experimental evidence).
+- **lit channel:** `m_i = lit_posterior.mean` if `lit_posterior.n_entries > 0`, else `0.5`.
+
+exp is load-bearing (it is what gates promotion); lit is the sanity channel. They are **never** combined into one number — Phase 2 runs BP twice and emits two propagated beliefs, honouring the Option-E decoupling regime.
+
+**Pairwise potentials — the ONLY invented objects (initialise weak; strengthen only where justified).**
+
+- **Generic `depends_on` edge** (an edge NOT also `emergent_from`): a symmetric associative (Potts/Ising) coupling
+  ```
+  psi_dep(x_i, x_j) = exp(+w_dep) if x_i == x_j        (agree)
+                      exp(-w_dep) if x_i != x_j        (disagree)
+  ```
+  with `w_dep` **small** (default **0.15** — near-uniform). **At `w_dep = 0` the potential is the all-ones matrix, the MRF factorises into the product of unaries, and `b_i == unary_i` exactly** — i.e. it degenerates to today's per-node scoring. `w_dep` is a documented, tunable knob. `depends_on` carries no measured strength (memo §1: "unweighted, untyped, homogeneous"), so it MUST stay near-uniform until something licenses more.
+
+- **`emergent_from` edge** (child C `emergent_from` parent P): a **directional** potential encoding the structural-zero semantics — "retract substrate P and C's subject becomes ill-defined" — by penalising the single incoherent corner `(C = supported, P = unsupported)`:
+  ```
+  psi_ef(x_C, x_P) =            x_P=0        x_P=1
+                     x_C=0 [    1.0          1.0    ]   child unsupported: consistent with either parent
+                     x_C=1 [  exp(-w_ef)     1.0    ]   child supported: parent-unsupported penalised
+  ```
+  with `w_ef` **strong** (default **1.6**). This is exactly the Phase-1 single-hop "unsupported foundation" alarm promoted to a pairwise factor: it becomes the FIRST BP message and now propagates **multi-hop** (a weak foundation drags down the whole cluster emergent from it, transitively). The potential is intentionally **non-symmetric** — a supported child pulls a parent up only weakly, but an unsupported parent pulls a supported child down hard (parents can hold without their emergents; emergents cannot hold without their parents). Undirected message passing is well-defined on a non-symmetric potential: the two directed messages simply use the two argument orders.
+
+**Degree normalization (regularization — added at implementation, honestly disclosed).** Raw loopy BP on this graph saturates: a hub with ~78 `depends_on` neighbours floods to belief ~1.0 even at `w_dep = 0.15`, because weak associative pushes compound multiplicatively with degree — the classic loopy-BP overconfidence pathology. Since `depends_on` is precisely the "unweighted, untyped, homogeneous" catch-all (memo §1), letting hub-degree dominate is exactly wrong. So each edge's coupling is **degree-normalised** (a symmetric normalised-adjacency `D^{-1/2} A D^{-1/2}`-style scaling), by **type-specific** degree:
+- `depends_on`: `w_eff = w_dep / sqrt(dep_deg_a * dep_deg_b)` — bounds each node's dependency-coupling budget so hubs do not saturate.
+- `emergent_from`: `w_eff = w_ef / sqrt(ef_deg_a * ef_deg_b)` — `ef_deg` is usually 1-3, so a child with few foundations keeps a strong pull while a hub-foundation with many emergents does not saturate.
+
+This preserves the `w=0 -> per-node scoring` degeneracy (verified: at `w_dep=w_ef=0` the max `|propagated - unary|` is ~1e-15, converging in 1 iteration) and turns propagation into a **gentle refinement** (with the tuned defaults: exp-channel median delta ~0.004, p90 ~0.04, max ~0.25; biggest movers are foundational substrate claims where dependency structure genuinely carries signal) rather than a saturation. The normalization is recorded in the output `mrf.pairwise[*].degree_norm`.
+
+Only the pairwise potentials (and their degree normalization) are new. Everything else (unary potentials, evidence entries) is reused unchanged. This is the memo's "lowest-invention principled formalization" (§3).
+
+## P2.2 Damped loopy belief propagation
+
+**Sum-product BP.** For each directed edge `i -> j`:
+```
+m_{i->j}(x_j)  proportional to  sum_{x_i} phi_i(x_i) * psi_ij(x_i, x_j) * prod_{k in N(i)\j} m_{k->i}(x_i)
+```
+Beliefs:
+```
+b_i(x_i)  proportional to  phi_i(x_i) * prod_{k in N(i)} m_{k->i}(x_i)
+```
+All messages are 2-vectors normalised to sum 1; the reported propagated belief is `b_i(1)`.
+
+**Damping (oscillation control).** Update in message space with damping factor `lambda = 0.5`:
+```
+m^{t+1} = (1 - lambda) * m_computed + lambda * m^t
+```
+Damping is the standard mitigation for loopy-BP oscillation on cyclic graphs (memo §3 names this as the real engineering surface).
+
+**Convergence + oscillation monitoring.** Iterate to `max_iters = 200` or until `max over all directed edges |m^{t+1} - m^t|_inf < tol = 1e-6`. Track the per-iteration max-delta; if it never crosses `tol` AND is non-monotone / rising over the last window, set `oscillating = true`. Emit `{iterations, converged, final_max_delta, oscillating}` **per channel**. A non-converged channel still emits its propagated belief but flags it `converged=false` so downstream never silently trusts it.
+
+**Cycle safety.** The 132 cycles are handled natively — loopy BP is *designed* for cyclic graphs; no SCC-collapse, no re-orientation (that was Option A). Because the default couplings are weak (`w_dep = 0.15`, and `emergent_from` is only 62 of ~3200 edges) the influence graph is near-tree-like and converges in a handful of iterations at 880 nodes; convergence is verified and reported rather than assumed.
+
+## P2.3 Output schema (additive; Phase-1 fields untouched)
+
+Per **evidence-bearing** claim entry in `overlay["claims"][cid]` (own-evidence must exist so the guardrail "own-evidence shown beside propagated" holds):
+```
+"exp_propagated": {"mean", "delta_vs_unary", "n_neighbors"}   # ONLY if exp_posterior.n_entries > 0
+"lit_propagated": {"mean", "delta_vs_unary", "n_neighbors"}   # ONLY if lit_posterior.n_entries > 0
+```
+A node with only lit evidence gets `lit_propagated` beside its lit unary and NO `exp_propagated` (decoupled). A connector node with no evidence gets neither attached (nothing to show a propagated belief *beside*) — it still participates in message passing.
+
+Top-level `overlay["mrf"]` block:
+```
+{"model": "pairwise-mrf-loopy-bp",
+ "pairwise": {"emergent_from": {"coupling": w_ef, "form": "directional; penalizes child-supported-while-parent-unsupported"},
+              "depends_on":   {"coupling": w_dep, "form": "symmetric-associative (near-uniform); w=0 -> per-node scoring"},
+              "note": "only pairwise potentials are invented; unary = existing Beta posteriors, reused unchanged"},
+ "bp": {"damping": lambda, "max_iters", "tol", "states": ["unsupported","supported"]},
+ "convergence": {"exp": {...}, "lit": {...}},
+ "graph": {"nodes", "depends_on_edges", "emergent_from_edges"},
+ "movers": [{"id","channel","unary","propagated","delta"} ...],   # largest |delta|, for the animation + inspection
+ "calibration": "model-based, not yet calibrated"}
+```
+`counts` gains `beliefs_moved_exp` / `beliefs_moved_lit` (nodes with `|delta| > 0.01`).
+
+## P2.4 Evidence-flow animation (Option D viz layer)
+
+In `explorer.html renderGraph`, when a node is focused (anchor mode):
+- Animate belief flow along the focused node's **in-edges** from evidence-bearing neighbours — an SMIL dot travels each edge toward the focused node, coloured by the neighbour's own-belief direction (green if unary > 0.5, red if < 0.5). `emergent_from` in-edges animate thicker/stronger (they carry the strong potential).
+- The focused node's posterior bar gains a **second tick = propagated mean**, with the unary tick retained beside it so the delta is visible at a glance (guardrail: own-evidence always shown beside propagated).
+- `overlaySummaryHtml` gains a "Propagated (exp): X (unary Y, delta)" line, only where a propagated belief exists.
+- Honesty label ("model-based, not yet calibrated") retained wherever propagated beliefs surface.
+
+## P2.5 Build order / checklist (Phase 2)
+
+1. [x] Plan-of-record extension (this section). **Land first.**
+2. [ ] `scripts/build_epistemic_overlay.py`: add `_build_graph`, pairwise-potential builders, `_loopy_bp` (damped, per-channel, convergence/oscillation report); attach `exp_propagated`/`lit_propagated` to evidence-bearing entries; emit top-level `mrf` block + `movers`. Keep ALL Phase-1 code (posterior mirror, conflict split, posterior_gate, single-hop alarm) intact.
+3. [ ] Smoke-run: verify both channels converge, `w=0` sanity (propagated == unary), alarms unchanged, Phase-1 fields byte-stable except the additive blocks.
+4. [ ] `explorer.html`: propagated tick on the posterior bar + summary line + table hint; evidence-flow animation on focus; honesty label; bump `EXPLORER_VERSION`.
+5. [ ] Verify on a spare-port `serve.py`; screenshot proof.
+6. [ ] Land `REE_assembly` on `master` (Session Land Protocol).
+
+## P2.6 Guardrails (Phase 2 — restated)
+
+- **Derive-only.** Reads `claims.yaml` + `claim_evidence.v1.json`; writes only `docs/assets/data/epistemic_overlay.json` + the viz. No source mutated. PROMOTES/DEMOTES NOTHING; the promotion-gate honesty surface stays keyed to the **unary** posterior, never the propagated one.
+- **exp/lit decoupled.** Two BP runs, two propagated numbers, never fused.
+- **Own-evidence always shown beside any propagated belief.** Propagated beliefs are attached ONLY to nodes that have own evidence in that channel.
+- **Cycle-native.** MRF + loopy BP over the 132-cycle graph; no re-orientation into a DAG.
+- **Honestly uncalibrated + convergence-flagged.** Labelled "model-based, not yet calibrated"; a non-converged channel is flagged, never silently trusted.
+- **Weak by default.** Pairwise potentials initialise near-uniform (`w_dep=0.15`); the MRF recovers Phase-1 per-node scoring at `w=0`. Strengthen only where the semantics are earned (`emergent_from`).
+- **ASCII-only** `.py` stdout.

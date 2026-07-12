@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-12.1 -->
+<!-- EXPLORER_VERSION: 2026-07-12.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2391,7 +2391,8 @@
                 <span class="legend-item"><svg width="30" height="6" style="vertical-align:middle"><rect x="0" y="1" width="18" height="3" fill="#2e9e6b"></rect><rect x="18" y="1" width="12" height="3" fill="#d9534f"></rect></svg> Support / weaken split-fill</span>
                 <span class="legend-item"><svg width="12" height="12" style="vertical-align:middle"><path d="M2,2 L10,2 L6,10 Z" fill="#d9534f"></path></svg> Unsupported foundation</span>
                 <span class="legend-item"><svg width="12" height="12" style="vertical-align:middle"><path d="M2,2 L10,2 L6,10 Z" fill="none" stroke="#c98a1e" stroke-width="1.2"></path></svg> Untested foundation</span>
-                <span class="legend-item" style="opacity:0.65">Posteriors: Beta-Binomial, model-based &mdash; <b>not yet calibrated</b></span>
+                <span class="legend-item"><svg width="14" height="12" style="vertical-align:middle"><path d="M7,1 L11,6 L7,11 L3,6 Z" fill="#fff" stroke="hsl(75,62%,42%)" stroke-width="1"></path></svg> MRF propagated belief (beside own-evidence)</span>
+                <span class="legend-item" style="opacity:0.65">Posteriors: Beta-Binomial; propagated = pairwise-MRF loopy BP &mdash; both <b>model-based, not yet calibrated</b></span>
               </div>
             </div>
           </div>
@@ -3126,6 +3127,18 @@ END CONFLICT RESOLUTION`;
         out += `<rect x="${(bx + lo * bw).toFixed(1)}" y="${trackY}" width="${((hi - lo) * bw).toFixed(1)}" height="4" rx="2" fill="${col}" fill-opacity="0.28"></rect>`;
         const mx = bx + Math.max(0, Math.min(1, post.mean)) * bw;
         out += `<rect x="${(mx - 1).toFixed(1)}" y="${(trackY - 2).toFixed(1)}" width="2" height="8" fill="${col}"></rect>`;
+        // Phase-2 MRF propagated belief: a hollow diamond marker beside the solid
+        // unary tick (own-evidence ALWAYS shown beside the propagated one). A faint
+        // connector shows the direction/magnitude of the propagation nudge.
+        const prop = bel.source === 'lit' ? ov.lit_propagated : ov.exp_propagated;
+        if (prop && typeof prop.mean === 'number') {
+          const px = bx + Math.max(0, Math.min(1, prop.mean)) * bw;
+          const pcol = posteriorColor(prop.mean);
+          if (Math.abs(prop.delta_vs_unary || 0) > 0.015) {
+            out += `<line x1="${mx.toFixed(1)}" y1="${(trackY + 2).toFixed(1)}" x2="${px.toFixed(1)}" y2="${(trackY + 2).toFixed(1)}" stroke="${pcol}" stroke-width="1" stroke-dasharray="1.5,1.5" opacity="0.75"></line>`;
+          }
+          out += `<path d="M${px.toFixed(1)},${(trackY - 2).toFixed(1)} L${(px + 3).toFixed(1)},${(trackY + 2).toFixed(1)} L${px.toFixed(1)},${(trackY + 6).toFixed(1)} L${(px - 3).toFixed(1)},${(trackY + 2).toFixed(1)} Z" fill="#fff" stroke="${pcol}" stroke-width="1"></path>`;
+        }
       }
       return out;
     }
@@ -3162,6 +3175,19 @@ END CONFLICT RESOLUTION`;
           + `<span style="color:${col};font-weight:600">${fmt(post.mean)}</span> `
           + `<span style="opacity:0.75">CI [${fmt(post.ci_low)}, ${fmt(post.ci_high)}]</span> `
           + `<span style="opacity:0.6">n=${post.n_entries}</span></div>`;
+        // Phase-2 MRF propagated belief, always shown BESIDE the own-evidence
+        // (unary) line above so the reader sees whether a move is direct or from
+        // neighbours. Diamond marker matches the graph node.
+        const prop = bel.source === 'lit' ? ov.lit_propagated : ov.exp_propagated;
+        if (prop && typeof prop.mean === 'number') {
+          const d = Number(prop.delta_vs_unary || 0);
+          const pcol = posteriorColor(prop.mean);
+          const arrow = d > 0.005 ? '&#9650;' : (d < -0.005 ? '&#9660;' : '&#8594;');
+          html += `<div class="meta">&#9670; Propagated (${src}, MRF): `
+            + `<span style="color:${pcol};font-weight:600">${fmt(prop.mean)}</span> `
+            + `<span style="opacity:0.75">${arrow} ${d >= 0 ? '+' : ''}${fmt(d)} vs own-evidence</span> `
+            + `<span style="opacity:0.55">(${prop.n_neighbors} nbrs)</span></div>`;
+        }
       }
       const cf = ov.conflict || {};
       if ((cf.supports || 0) + (cf.weakens || 0) > 0) {
@@ -3210,12 +3236,22 @@ END CONFLICT RESOLUTION`;
       const hi = Math.max(0, Math.min(1, post.ci_high));
       const mx = Math.max(0, Math.min(1, post.mean));
       const src = bel.source === 'lit' ? 'lit' : 'exp';
+      const prop = bel.source === 'lit' ? ov.lit_propagated : ov.exp_propagated;
+      let propMark = '';
+      let propTick = '';
+      if (prop && typeof prop.mean === 'number' && Math.abs(prop.delta_vs_unary || 0) > 0.01) {
+        const pcol = posteriorColor(prop.mean);
+        const pmx = Math.max(0, Math.min(1, prop.mean));
+        propTick = `<path d="M${(pmx * W).toFixed(1)},1 L${(pmx * W + 2.5).toFixed(1)},4 L${(pmx * W).toFixed(1)},7 L${(pmx * W - 2.5).toFixed(1)},4 Z" fill="#fff" stroke="${pcol}" stroke-width="0.8"></path>`;
+        const d = Number(prop.delta_vs_unary);
+        propMark = ` <span title="MRF propagated ${prop.mean.toFixed(2)} (${d >= 0 ? '+' : ''}${d.toFixed(2)} vs own-evidence)" style="color:${pcol};font-size:10px">&#9670;${prop.mean.toFixed(2)}</span>`;
+      }
       const bar = `<svg width="${W}" height="10" style="vertical-align:middle" `
         + `title="${src} posterior ${post.mean.toFixed(2)} CI [${post.ci_low.toFixed(2)}, ${post.ci_high.toFixed(2)}] n=${post.n_entries}">`
         + `<rect x="0" y="3" width="${W}" height="4" rx="2" fill="#dfe1e6"></rect>`
         + `<rect x="${(lo * W).toFixed(1)}" y="3" width="${((hi - lo) * W).toFixed(1)}" height="4" rx="2" fill="${col}" fill-opacity="0.28"></rect>`
-        + `<rect x="${(mx * W - 1).toFixed(1)}" y="1" width="2" height="8" fill="${col}"></rect></svg>`;
-      return `${bar} <span style="color:${col};font-weight:600;font-size:11px">${post.mean.toFixed(2)}</span>${glyph}`;
+        + `<rect x="${(mx * W - 1).toFixed(1)}" y="1" width="2" height="8" fill="${col}"></rect>${propTick}</svg>`;
+      return `${bar} <span style="color:${col};font-weight:600;font-size:11px">${post.mean.toFixed(2)}</span>${propMark}${glyph}`;
     }
     let graphZoom = { scale: 1, tx: 0, ty: 0 };
     let graphDrag = { active: false, lastX: 0, lastY: 0 };
@@ -6965,6 +7001,46 @@ END CONFLICT RESOLUTION`;
         }
         svgParts.push(`<line class="${edgeClass}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arrow)" />`);
       });
+
+      // Phase-2 evidence-flow animation (Option D) over the propagated beliefs:
+      // when a node is focused (anchor mode), animate belief flowing along its
+      // incident dependency edges from evidence-bearing neighbours toward it,
+      // each dot coloured by that neighbour's own-evidence direction (green
+      // supports / red weakens). emergent_from neighbours pulse larger + faster
+      // (they carry the strong, directional MRF potential). This makes the
+      // otherwise-invisible message passing that produced the propagated belief
+      // legible. Capped to keep the animation readable on high-degree hubs.
+      if (focusMode === 'anchor' && selected && positions[selected] && epistemicOverlay
+          && Object.keys(epistemicOverlay).length) {
+        const selOv = epistemicOverlay[selected] || {};
+        const selEf = new Set(selOv.emergent_from || []);
+        let animCount = 0;
+        edges.forEach(([f, t]) => {
+          if (animCount >= 30) return;
+          if (f !== selected && t !== selected) return;
+          const neighbor = (f === selected) ? t : f;
+          const nov = epistemicOverlay[neighbor];
+          if (!nov) return;
+          const nbel = nov.own_belief || {};
+          if (typeof nbel.mean !== 'number') return;
+          const p1 = positions[f], p2 = positions[t];
+          if (!p1 || !p2) return;
+          let sx, sy, ex, ey;
+          if (t === selected) { sx = p1.x + 180; sy = p1.y + 16; ex = p2.x; ey = p2.y + 16; }
+          else { sx = p2.x; sy = p2.y + 16; ex = p1.x + 180; ey = p1.y + 16; }
+          const dir = nbel.mean >= 0.5 ? '#2e9e6b' : '#d9534f';
+          const isEf = selEf.has(neighbor) || (nov.emergent_from || []).includes(selected);
+          const r = isEf ? 4 : 2.5;
+          const dur = isEf ? 1.1 : 1.6;
+          const begin = (animCount * 0.12).toFixed(2);
+          svgParts.push(`<circle r="${r}" fill="${dir}" opacity="0.85">`
+            + `<animate attributeName="cx" values="${sx.toFixed(1)};${ex.toFixed(1)}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"></animate>`
+            + `<animate attributeName="cy" values="${sy.toFixed(1)};${ey.toFixed(1)}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"></animate>`
+            + `<animate attributeName="opacity" values="0;0.9;0" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"></animate>`
+            + `</circle>`);
+          animCount++;
+        });
+      }
 
       nodeList.forEach(n => {
         const p = positions[n.id];
