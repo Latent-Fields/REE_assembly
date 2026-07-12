@@ -126,18 +126,19 @@ Keyed by experiment family:
 
 ## 4. Enforcement surface (where this bites)
 
-The audit found **no single enforcement point today**: only 1 script imports the sanctioned `ree-v3/experiments/pack_writer.py`; 79 scripts define their own `write_manifest`, and 106 write JSON directly with bespoke schemas. And `pack_writer._clean_numeric_metrics` (line ~236) *coerces every metric to a scalar* — it structurally cannot store per-seed lists, `arm_results`, or nested readouts, which is the mechanical reason packs are flat and rich readouts survive only in hand-rolled manifests. So enforcement is **authoring-time discipline via the skill**, backstopped by review, not a single writer chokepoint (yet):
+The audit found **no single enforcement point today**: only 1 script imports the sanctioned `ree-v3/experiments/pack_writer.py`; 79 scripts define their own `write_manifest`, and 106 write JSON directly with bespoke schemas. And `pack_writer._clean_numeric_metrics` (line ~236) *coerces every metric to a scalar* — it structurally cannot store per-seed lists, `arm_results`, or nested readouts, which is the mechanical reason packs are flat and rich readouts survive only in hand-rolled manifests. So enforcement is **authoring-time discipline via the skill**, backstopped by review, now with a shared mechanical stamper + a relaxed writer + a linter beneath it (below):
 
 1. **`/queue-experiment` Step 3 (authoring)** — a "Record generously" block instructs the author to emit the always-core + the family-keyed optional payload. (Landed 2026-07-12.)
 2. **`/queue-experiment` Step 3.5 (code review)** — a checklist group verifies the always-core is present and the family-appropriate optional readouts are recorded before smoke test. (Landed 2026-07-12.)
 3. **`failure-autopsy`** — when an autopsy concludes "we couldn't tell because X wasn't recorded", it should cite this standard and route the fix to *recording* X in the re-run, not just re-running. (Reference added; see that skill.)
 4. **`view-experiments`** — surfaces which manifests carry the rich readouts vs which are thin (reader-side visibility; optional follow-up).
+5. **`experiments/_lib/manifest_core.stamp_recording_core(...)`** — the shared always-core stamper: one no-op-safe call stamps `recording_schema` + `substrate_hash` (multi-arm hoist / single-arm compute via `arm_fingerprint.py`) + `machine`/`machine_class` + `elapsed_seconds` + full `config` + explicit `seeds`. This is the highest-value item (0% of flat manifests carried a substrate hash). (Landed 2026-07-12.)
 
-### Deferred hardening (NOT done here — candidate follow-on work)
+### Deferred-hardening status (landed 2026-07-12)
 
-- Relax `pack_writer._clean_numeric_metrics` to allow a structured `values`/`per_seed`/`latent`/`config`/`timing` sub-schema, and make `pack_writer` the mandatory single writer across the ~106 direct-writers. This is the real chokepoint fix but is a substantial ree-v3 refactor with fleet blast-radius — stage it behind an `integration/` branch per the root CLAUDE.md code-plane policy.
-- Extend `build_experiment_indexes.py` (consumed-field set at lines ~561-573 / 720-837) so the new always-core fields (`substrate_hash`, `label_balance`) become *load-bearing* to governance rather than decorative. Today the indexer captures none of the high-reuse readouts in its scoring.
-- A lightweight `validate_recording.py --strict` (soft-validate: warn on missing always-core, error only under `--strict`) mirroring `validate_experiments.py`.
+- ✅ **Relaxed `pack_writer`** to carry structured `per_seed`/`latent`/`config`/`timing` sections VERBATIM beside the scalar `values` block (`_clean_structured_sections`), so the sanctioned writer no longer drops rich readouts. `values` stays scalar (indexer-safe); the change is backward-compatible (a scalar-only caller is byte-identical). **Still open:** making `pack_writer` the *mandatory single writer* across the ~106 direct-writers (a larger migration).
+- ✅ **Widened `build_experiment_indexes.py`** so `substrate_hash` + `label_balance` are surfaced/queryable on index entries (`_FLAT_AUTHORITATIVE_FIELDS`, `RunRecord`, `_scan_runs`, the entry + `unlinked_runs` emitters). Verified inert on the current corpus (a full rebuild is byte-identical modulo `generated_at`). **Deliberately still open:** making these fields *load-bearing* to confidence scoring — that changes promotion math and needs user sign-off.
+- ✅ **Added `ree-v3/validate_recording.py`** — soft-validate linter: WARN on a manifest missing the always-core, `--strict` to exit non-zero; forward-compatible (unknown `recording_schema` warns, never fails) per §3d.
 
 ---
 
