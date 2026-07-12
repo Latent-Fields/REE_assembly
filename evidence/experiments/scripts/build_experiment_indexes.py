@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 import sys
 from collections import Counter, defaultdict
@@ -1563,6 +1564,167 @@ def _evidence_quadrant(exp_conf: float, lit_conf: float, n_exp: int, n_lit: int)
     return "speculative"
 
 
+# --- Beta-Binomial per-node posterior (epistemic overlay Phase 1) ------------
+# Explicit probabilistic per-node score over P(claim is supported): the
+# magic-number weighted-linear heuristic's implicit point estimate is augmented
+# (NOT replaced -- exp_conf/lit_conf stay) with a Beta posterior mean + credible
+# interval. EXP and LIT stay decoupled (two posteriors, never fused). This
+# posterior IS the unary potential a Phase-2 factor-graph/MRF consumes unchanged.
+# Plan: evidence/planning/epistemic_overlay_plan.md sec 2. Uncalibrated by design.
+#
+# Self-contained regularized incomplete beta -- no scipy dependency (the indexer
+# runs in the governance pipeline with stdlib + torch only). Numerical-Recipes
+# style continued fraction; quantile by bisection (I_x is monotone in x).
+_POSTERIOR_PRIOR_A = 1.0
+_POSTERIOR_PRIOR_B = 1.0
+_POSTERIOR_CI_MASS = 0.95
+_POSTERIOR_RECENCY_FLOOR = 0.25
+_POSTERIOR_HORIZON_EXP = 90
+_POSTERIOR_HORIZON_LIT = 365
+
+
+def _betacf(a: float, b: float, x: float) -> float:
+    max_iter = 200
+    eps = 3.0e-12
+    fpmin = 1.0e-300
+    qab = a + b
+    qap = a + 1.0
+    qam = a - 1.0
+    c = 1.0
+    d = 1.0 - qab * x / qap
+    if abs(d) < fpmin:
+        d = fpmin
+    d = 1.0 / d
+    h = d
+    for m in range(1, max_iter + 1):
+        m2 = 2 * m
+        aa = m * (b - m) * x / ((qam + m2) * (a + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        h *= d * c
+        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))
+        d = 1.0 + aa * d
+        if abs(d) < fpmin:
+            d = fpmin
+        c = 1.0 + aa / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        delta = d * c
+        h *= delta
+        if abs(delta - 1.0) < eps:
+            break
+    return h
+
+
+def _betai(a: float, b: float, x: float) -> float:
+    """Regularized incomplete beta I_x(a, b) in [0, 1]."""
+    if x <= 0.0:
+        return 0.0
+    if x >= 1.0:
+        return 1.0
+    lbeta = math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b)
+    bt = math.exp(lbeta + a * math.log(x) + b * math.log(1.0 - x))
+    if x < (a + 1.0) / (a + b + 2.0):
+        return bt * _betacf(a, b, x) / a
+    return 1.0 - bt * _betacf(b, a, 1.0 - x) / b
+
+
+def _beta_quantile(a: float, b: float, p: float) -> float:
+    """Inverse regularized incomplete beta by bisection."""
+    if p <= 0.0:
+        return 0.0
+    if p >= 1.0:
+        return 1.0
+    lo, hi = 0.0, 1.0
+    for _ in range(80):
+        mid = 0.5 * (lo + hi)
+        if _betai(a, b, mid) < p:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def _beta_binomial_posterior(
+    entries: list[dict[str, Any]],
+    now: datetime,
+    horizon_days: int,
+) -> dict[str, Any]:
+    """Beta posterior over P(supported) from directional evidence.
+
+    supports -> alpha, weakens -> beta, mixed -> split; unknown / non_contributory
+    / inconclusive / superseded are excluded (matches the existing scoring
+    exclusions). Per-entry weight = quality(entry confidence) * recency, with
+    recency = max(floor, 1 - age/horizon). Uniform Beta(1,1) prior -- deliberately
+    weak, so little evidence pulls the mean toward 0.5 (2 entries must not look
+    like 40). Returns mean + equal-tailed credible interval. Not yet calibrated.
+    """
+    a = _POSTERIOR_PRIOR_A
+    b = _POSTERIOR_PRIOR_B
+    sup_w = 0.0
+    wk_w = 0.0
+    n_used = 0
+    for e in entries:
+        direction = str(e.get("evidence_direction", "unknown"))
+        if direction not in ("supports", "weakens", "mixed"):
+            continue
+        quality = float(e.get("confidence", 0.5) or 0.0)
+        if quality <= 0.0:
+            continue
+        try:
+            ts = _parse_timestamp_only(str(e.get("timestamp_utc", "")))
+            age_days = max(0.0, (now - ts).total_seconds() / 86400.0)
+            recency = max(_POSTERIOR_RECENCY_FLOOR, 1.0 - (age_days / float(horizon_days)))
+        except (ValueError, TypeError):
+            recency = _POSTERIOR_RECENCY_FLOOR
+        w = quality * recency
+        if direction == "supports":
+            sup_w += w
+        elif direction == "weakens":
+            wk_w += w
+        else:  # mixed
+            sup_w += 0.5 * w
+            wk_w += 0.5 * w
+        n_used += 1
+    a += sup_w
+    b += wk_w
+    mean = a / (a + b)
+    lo_p = (1.0 - _POSTERIOR_CI_MASS) / 2.0
+    hi_p = 1.0 - lo_p
+    return {
+        "mean": round(mean, 4),
+        "ci_low": round(_beta_quantile(a, b, lo_p), 4),
+        "ci_high": round(_beta_quantile(a, b, hi_p), 4),
+        "alpha": round(a, 4),
+        "beta": round(b, 4),
+        "n_support_w": round(sup_w, 4),
+        "n_weaken_w": round(wk_w, 4),
+        "n_entries": n_used,
+    }
+
+
+def _posterior_model_metadata() -> dict[str, Any]:
+    """Matrix-level provenance for the per-node posteriors. The calibration note
+    is load-bearing: there is no resolved-claim validation set yet, so these are
+    model-based, not calibrated. Do not overstate rigour downstream."""
+    return {
+        "family": "beta-binomial",
+        "prior": f"Beta({_POSTERIOR_PRIOR_A:g},{_POSTERIOR_PRIOR_B:g})",
+        "ci_mass": _POSTERIOR_CI_MASS,
+        "recency_horizon_days": {"exp": _POSTERIOR_HORIZON_EXP, "lit": _POSTERIOR_HORIZON_LIT},
+        "recency_floor": _POSTERIOR_RECENCY_FLOOR,
+        "decoupled": True,
+        "calibration": "model-based, not yet calibrated",
+        "plan": "evidence/planning/epistemic_overlay_plan.md",
+    }
+
+
 def _compute_claim_confidence(
     entries: list[dict[str, Any]],
     now: datetime,
@@ -1686,6 +1848,15 @@ def _summarize_claim_entries(
     exp_conf, lit_conf, overall_conf, rationale = _compute_claim_confidence(ordered_entries, now)
     latest = ordered_entries[-1]
 
+    # Beta-Binomial per-node posteriors (epistemic overlay Phase 1). Additive:
+    # exp_conf/lit_conf above are untouched. EXP and LIT kept decoupled. These
+    # are the unary potentials a Phase-2 MRF consumes unchanged. See
+    # evidence/planning/epistemic_overlay_plan.md.
+    exp_entries = [e for e in ordered_entries if e.get("source_type") == "experimental"]
+    lit_entries = [e for e in ordered_entries if e.get("source_type") == "literature"]
+    exp_posterior = _beta_binomial_posterior(exp_entries, now, _POSTERIOR_HORIZON_EXP)
+    lit_posterior = _beta_binomial_posterior(lit_entries, now, _POSTERIOR_HORIZON_LIT)
+
     # Option E shadow fields (decoupled regime, no behavioral effect yet).
     # See REE_assembly/CLAUDE.md "Lit/Exp Decoupling Shadow" for the methodology
     # and the phase 2/3 plan.
@@ -1713,6 +1884,8 @@ def _summarize_claim_entries(
         "experimental_confidence_decoupled": exp_conf,
         "literature_confidence_parallel": lit_conf,
         "evidence_quadrant": quadrant,
+        "exp_posterior": exp_posterior,
+        "lit_posterior": lit_posterior,
         "recent_entries": ordered_entries[-5:],
     }
 
@@ -1746,6 +1919,7 @@ def _write_claim_evidence_matrix(
         "schema_version": "claim_evidence_matrix/v1",
         "generated_at_utc": generated_at,
         "source_root": "evidence",
+        "posterior_model": _posterior_model_metadata(),
         "claims": {},
         "entries": [],
         "unlinked_runs": [],

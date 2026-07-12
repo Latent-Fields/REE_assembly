@@ -197,6 +197,13 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
+echo "--- Step 4a: Rebuilding epistemic overlay (posteriors + emergent_from alarm) ---"
+# Derive-only Phase-1 overlay (Option C + C-slice of D): joins the Beta
+# posteriors in claim_evidence.v1.json (Step 2) with the emergent_from edges in
+# claims.yaml -> docs/assets/data/epistemic_overlay.json. Promotes/demotes
+# nothing. Plan: evidence/planning/epistemic_overlay_plan.md.
+"$PYTHON" scripts/build_epistemic_overlay.py || true
+
 echo "--- Step 4b: Backward traceability check (G2) ---"
 if ! "$PYTHON" scripts/check_backward_traceability.py; then
   echo "" >&2

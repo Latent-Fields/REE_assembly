@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-09.2 -->
+<!-- EXPLORER_VERSION: 2026-07-12.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1514,6 +1514,17 @@
       color: var(--muted);
     }
 
+    .epistemic-overlay-box {
+      margin: 8px 0;
+      padding: 8px 10px;
+      border: 1px solid var(--border, #e0e0e0);
+      border-left: 3px solid #6b8fb5;
+      border-radius: 4px;
+      background: rgba(107, 143, 181, 0.06);
+      font-size: 12px;
+    }
+    .epistemic-overlay-box .meta { margin: 2px 0; }
+
     .claim-toggles input {
       width: auto;
       margin-right: 4px;
@@ -2289,6 +2300,7 @@
                 <th>Status</th>
                 <th>Subject</th>
                 <th>Depends On</th>
+                <th title="Beta posterior mean over P(supported) with 95% credible interval; own-evidence (exp preferred). Model-based, not yet calibrated.">Posterior</th>
                 <th>Conflicts</th>
                 <th>Thought</th>
                 <th>Conflict</th>
@@ -2370,6 +2382,16 @@
                 <span class="legend-item"><span class="legend-line downstream"></span>Downstream focus path</span>
                 <span class="legend-item"><span class="legend-line dim"></span>Outside focus</span>
                 <span class="legend-item"><code>*</code> Claim has conflict file(s)</span>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item">
+                  <svg width="46" height="10" style="vertical-align:middle"><rect x="0" y="3" width="46" height="4" rx="2" fill="#dfe1e6"></rect><rect x="10" y="3" width="26" height="4" rx="2" fill="hsl(75,62%,42%)" fill-opacity="0.28"></rect><rect x="27" y="1" width="2" height="8" fill="hsl(75,62%,42%)"></rect></svg>
+                  Posterior mean + 95% CI (own-evidence; red&rarr;green)
+                </span>
+                <span class="legend-item"><svg width="30" height="6" style="vertical-align:middle"><rect x="0" y="1" width="18" height="3" fill="#2e9e6b"></rect><rect x="18" y="1" width="12" height="3" fill="#d9534f"></rect></svg> Support / weaken split-fill</span>
+                <span class="legend-item"><svg width="12" height="12" style="vertical-align:middle"><path d="M2,2 L10,2 L6,10 Z" fill="#d9534f"></path></svg> Unsupported foundation</span>
+                <span class="legend-item"><svg width="12" height="12" style="vertical-align:middle"><path d="M2,2 L10,2 L6,10 Z" fill="none" stroke="#c98a1e" stroke-width="1.2"></path></svg> Untested foundation</span>
+                <span class="legend-item" style="opacity:0.65">Posteriors: Beta-Binomial, model-based &mdash; <b>not yet calibrated</b></span>
               </div>
             </div>
           </div>
@@ -3059,6 +3081,142 @@ END CONFLICT RESOLUTION`;
     let processDashboard = null;
     let processDashboardError = '';
     let processDetailMode = '';
+    // Epistemic overlay (Phase 1, Option C + C-slice of D): per-claim Beta
+    // posteriors, conflict split, promotion-gate honesty surface, and the
+    // emergent_from single-hop alarm. Derived read-only overlay; promotes nothing.
+    // Source: docs/assets/data/epistemic_overlay.json (build_epistemic_overlay.py).
+    let epistemicOverlay = {};
+    let epistemicOverlayMeta = null;
+
+    // Continuous confidence ramp: red (0) -> amber (~0.5) -> green (1). Deliberately
+    // continuous, NOT a 3-bucket threshold -- the posterior mean is a real number.
+    function posteriorColor(mean) {
+      const m = Math.max(0, Math.min(1, Number(mean)));
+      return `hsl(${Math.round(m * 120)}, 62%, 42%)`;
+    }
+    // Build the SVG for a node's posterior + credible-interval bar and the
+    // support/weaken conflict split-fill. `ov` is the overlay entry for the claim.
+    // W is the node width. Returns an SVG string (possibly empty) positioned
+    // relative to the node's top-left (x, y). The mean tick IS the own-evidence
+    // (unary) belief -- always drawn beside any alarm badge so a human sees whether
+    // a flag reflects direct evidence.
+    function posteriorBarSvg(ov, x, y, W) {
+      if (!ov) return '';
+      let out = '';
+      const pad = 4;
+      const bx = x + pad;
+      const bw = W - 2 * pad;
+      // conflict split-fill: thin support(green)/weaken(red) strip at top.
+      const cf = ov.conflict || {};
+      const s = Number(cf.supports || 0), wk = Number(cf.weakens || 0);
+      if (s + wk > 0) {
+        const gw = (s / (s + wk)) * bw;
+        out += `<rect x="${bx}" y="${y + 2}" width="${gw.toFixed(1)}" height="3" fill="#2e9e6b"></rect>`;
+        out += `<rect x="${(bx + gw).toFixed(1)}" y="${y + 2}" width="${(bw - gw).toFixed(1)}" height="3" fill="#d9534f"></rect>`;
+      }
+      // posterior + CI bar (own-evidence unary belief) at the bottom.
+      const bel = ov.own_belief || {};
+      const post = bel.source === 'lit' ? ov.lit_posterior : ov.exp_posterior;
+      if (post && typeof post.mean === 'number') {
+        const trackY = y + 26;
+        out += `<rect x="${bx}" y="${trackY}" width="${bw}" height="4" rx="2" fill="#dfe1e6"></rect>`;
+        const lo = Math.max(0, Math.min(1, post.ci_low));
+        const hi = Math.max(0, Math.min(1, post.ci_high));
+        const col = posteriorColor(post.mean);
+        out += `<rect x="${(bx + lo * bw).toFixed(1)}" y="${trackY}" width="${((hi - lo) * bw).toFixed(1)}" height="4" rx="2" fill="${col}" fill-opacity="0.28"></rect>`;
+        const mx = bx + Math.max(0, Math.min(1, post.mean)) * bw;
+        out += `<rect x="${(mx - 1).toFixed(1)}" y="${(trackY - 2).toFixed(1)}" width="2" height="8" fill="${col}"></rect>`;
+      }
+      return out;
+    }
+    // Alarm badge for the emergent_from single-hop alarm. Solid red triangle for a
+    // CONTRADICTED foundation (unsupported_foundation), hollow amber for an
+    // UNTESTED one (absence of evidence != evidence of absence).
+    function alarmBadgeSvg(ov, x, y, W) {
+      const al = ov && ov.alarms;
+      if (!al) return '';
+      const cx = x + W - 11;
+      const cy = y + 3;
+      if (al.unsupported_foundation) {
+        return `<path d="M${cx},${cy} L${cx + 8},${cy} L${cx + 4},${cy + 8} Z" fill="#d9534f" stroke="#8a2b23" stroke-width="0.5"></path>`;
+      }
+      if (al.untested_foundation) {
+        return `<path d="M${cx},${cy} L${cx + 8},${cy} L${cx + 4},${cy + 8} Z" fill="none" stroke="#c98a1e" stroke-width="1.2"></path>`;
+      }
+      return '';
+    }
+    // Compact posterior + gate + alarm summary for tooltip / detail panel. Always
+    // shows the own-evidence (unary) belief alongside any derived alarm. Labelled
+    // uncalibrated -- there is no resolved-claim validation set yet.
+    function overlaySummaryHtml(id) {
+      const ov = epistemicOverlay[id];
+      if (!ov) return '';
+      const fmt = v => (typeof v === 'number' ? v.toFixed(2) : '-');
+      let html = '';
+      const bel = ov.own_belief || {};
+      const post = bel.source === 'lit' ? ov.lit_posterior : ov.exp_posterior;
+      if (post && typeof post.mean === 'number') {
+        const src = bel.source === 'lit' ? 'lit' : 'exp';
+        const col = posteriorColor(post.mean);
+        html += `<div class="meta">Posterior (${src}, own-evidence): `
+          + `<span style="color:${col};font-weight:600">${fmt(post.mean)}</span> `
+          + `<span style="opacity:0.75">CI [${fmt(post.ci_low)}, ${fmt(post.ci_high)}]</span> `
+          + `<span style="opacity:0.6">n=${post.n_entries}</span></div>`;
+      }
+      const cf = ov.conflict || {};
+      if ((cf.supports || 0) + (cf.weakens || 0) > 0) {
+        html += `<div class="meta">Evidence split: <span style="color:#2e9e6b">+${cf.supports}</span> / `
+          + `<span style="color:#d9534f">-${cf.weakens}</span> (conflict ${fmt(cf.conflict_ratio)})</div>`;
+      }
+      const g = ov.posterior_gate;
+      if (g) {
+        const agree = g.agrees_with_current_heuristic;
+        html += `<div class="meta">Promotion gate (exp posterior mean&ge;0.62 &amp; CI excl 0.5): `
+          + `<b>${g.would_promote_candidate_to_provisional ? 'promote-eligible' : 'hold'}</b>`
+          + (agree ? '' : ` <span style="color:#c98a1e">(heuristic exp_conf=${fmt(g.heuristic_exp_conf)} would ${g.heuristic_would_promote ? 'promote' : 'hold'})</span>`)
+          + `</div>`;
+      }
+      const al = ov.alarms;
+      if (al && al.unsupported_foundation) {
+        const u = al.unsupported_foundation;
+        html += `<div class="meta" style="color:#d9534f">&#9650; Unsupported foundation: believed (${fmt(al.child_mean)}) but `
+          + `<b>${u.weakest_parent}</b> is contradicted (${fmt(u.weakest_parent_mean)})</div>`;
+      }
+      if (al && al.untested_foundation) {
+        const parents = al.untested_foundation.parents.map(p => p.parent).join(', ');
+        html += `<div class="meta" style="color:#c98a1e">&#9651; Untested foundation: believed (${fmt(al.child_mean)}) but ${parents} has no evidence</div>`;
+      }
+      if (html) {
+        html += `<div class="meta" style="opacity:0.55;font-size:10px">model-based, not yet calibrated</div>`;
+      }
+      return html;
+    }
+    // Inline claim-table cell: continuous posterior mean + CI mini-bar, alarm glyph.
+    function posteriorCellHtml(id) {
+      const ov = epistemicOverlay[id];
+      if (!ov) return '<span style="opacity:0.4">-</span>';
+      const bel = ov.own_belief || {};
+      const post = bel.source === 'lit' ? ov.lit_posterior : ov.exp_posterior;
+      let glyph = '';
+      const al = ov.alarms;
+      if (al && al.unsupported_foundation) glyph = ' <span title="Unsupported foundation (contradicted)" style="color:#d9534f">&#9650;</span>';
+      else if (al && al.untested_foundation) glyph = ' <span title="Untested foundation (no evidence)" style="color:#c98a1e">&#9651;</span>';
+      if (!post || typeof post.mean !== 'number' || post.n_entries === 0) {
+        return `<span style="opacity:0.4">-</span>${glyph}`;
+      }
+      const W = 46;
+      const col = posteriorColor(post.mean);
+      const lo = Math.max(0, Math.min(1, post.ci_low));
+      const hi = Math.max(0, Math.min(1, post.ci_high));
+      const mx = Math.max(0, Math.min(1, post.mean));
+      const src = bel.source === 'lit' ? 'lit' : 'exp';
+      const bar = `<svg width="${W}" height="10" style="vertical-align:middle" `
+        + `title="${src} posterior ${post.mean.toFixed(2)} CI [${post.ci_low.toFixed(2)}, ${post.ci_high.toFixed(2)}] n=${post.n_entries}">`
+        + `<rect x="0" y="3" width="${W}" height="4" rx="2" fill="#dfe1e6"></rect>`
+        + `<rect x="${(lo * W).toFixed(1)}" y="3" width="${((hi - lo) * W).toFixed(1)}" height="4" rx="2" fill="${col}" fill-opacity="0.28"></rect>`
+        + `<rect x="${(mx * W - 1).toFixed(1)}" y="1" width="2" height="8" fill="${col}"></rect></svg>`;
+      return `${bar} <span style="color:${col};font-weight:600;font-size:11px">${post.mean.toFixed(2)}</span>${glyph}`;
+    }
     let graphZoom = { scale: 1, tx: 0, ty: 0 };
     let graphDrag = { active: false, lastX: 0, lastY: 0 };
     let filterRestoredFromStorage = false;
@@ -5969,6 +6127,7 @@ END CONFLICT RESOLUTION`;
           <td>${c.status}</td>
           <td>${c.subject || '-'}</td>
           <td title="${dependsTitle(c.depends_on)}">${c.depends_on.length || '-'}</td>
+          <td>${posteriorCellHtml(c.id)}</td>
           <td>${conflicts.length ? `<span class="conflict">${conflicts.length} conflict</span>` : '-'}</td>
           <td><input type="checkbox" data-role="thought" /></td>
           <td><input type="checkbox" data-role="conflict" /></td>
@@ -6388,6 +6547,7 @@ END CONFLICT RESOLUTION`;
             return `<a href="${link}" target="_blank">${f}</a>`;
           }).join(', ') : '-'}</li>
         </ul>
+        ${overlaySummaryHtml(c.id) ? `<div class="epistemic-overlay-box">${overlaySummaryHtml(c.id)}</div>` : ''}
       `;
       els.detailContent.querySelectorAll('a[data-id]').forEach(a => {
         a.addEventListener('click', (e) => {
@@ -6443,6 +6603,7 @@ END CONFLICT RESOLUTION`;
               return `<a href="${link}" target="_blank">${f}</a>`;
             }).join(', ') : '-'}</li>
           </ul>
+          ${overlaySummaryHtml(c.id) ? `<div class="epistemic-overlay-box">${overlaySummaryHtml(c.id)}</div>` : ''}
           ${sectionBlock}
           ${conflictDetailsBlock}
         `;
@@ -6496,11 +6657,13 @@ END CONFLICT RESOLUTION`;
       updateHoverPoint(evt);
       const cached = claimTextCache.get(id);
       const claimLine = cached && cached.claimLine ? cached.claimLine : '';
+      const overlayHtml = overlaySummaryHtml(id);
       tip.innerHTML = `
         <div class="title">${c.id}</div>
         <div class="meta">${c.type} | ${c.status}</div>
         <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
         ${claimLine ? `<div>${escapeHtml(claimLine)}</div>` : '<div class="meta">Loading claim...</div>'}
+        ${overlayHtml}
       `;
       tip.style.display = 'block';
       positionGraphTooltip();
@@ -6514,6 +6677,7 @@ END CONFLICT RESOLUTION`;
             <div class="meta">${c.type} | ${c.status}</div>
             <div class="meta">Subject: ${escapeHtml(c.subject || '-')}</div>
             <div>${line}</div>
+            ${overlayHtml}
           `;
           positionGraphTooltip();
         }).catch(() => {});
@@ -6820,10 +6984,16 @@ END CONFLICT RESOLUTION`;
           if (selectedWorkset.has(n.id)) nodeClass = ' selected';
           else if (!focus.has(n.id)) nodeClass = ' dim';
         }
+        // Epistemic overlay channels: continuous posterior + CI bar, support/weaken
+        // conflict split-fill, and the emergent_from single-hop alarm badge. The
+        // mean tick is the own-evidence (unary) belief, always beside the alarm.
+        const ov = epistemicOverlay[n.id];
+        const overlaySvg = posteriorBarSvg(ov, p.x, p.y, 180) + alarmBadgeSvg(ov, p.x, p.y, 180);
         svgParts.push(`
           <g class="node${nodeClass}" data-id="${n.id}" opacity="${opacity}">
             <rect x="${p.x}" y="${p.y}" rx="8" ry="8" width="180" height="32" fill="${fill}" stroke="${stroke}" stroke-width="1" stroke-dasharray="${dash}"></rect>
-            <text x="${p.x + 8}" y="${p.y + 20}" fill="#1f2328">${n.id}${conflict ? ' *' : ''}</text>
+            <text x="${p.x + 8}" y="${p.y + 18}" fill="#1f2328">${n.id}${conflict ? ' *' : ''}</text>
+            ${overlaySvg}
           </g>
         `);
       });
@@ -8706,6 +8876,19 @@ END CONFLICT RESOLUTION`;
       } catch (e) {
         // non-fatal: filter simply won't show any evidenced claims
         console.warn('claim_evidence.v1.json load failed:', e);
+      }
+
+      // Epistemic overlay (Phase 1). Non-fatal: absent overlay just means no
+      // posterior bars / alarms are drawn (the graph degrades to type colour).
+      try {
+        const ovResp = await fetch('docs/assets/data/epistemic_overlay.json', { cache: 'no-store' });
+        if (ovResp.ok) {
+          const ovData = await ovResp.json();
+          epistemicOverlay = (ovData && ovData.claims) ? ovData.claims : {};
+          epistemicOverlayMeta = ovData || null;
+        }
+      } catch (e) {
+        console.warn('epistemic_overlay.json load failed:', e);
       }
 
       try {
