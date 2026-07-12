@@ -27397,13 +27397,13 @@
   polarity: asserts
   status: provisional
   live_status:
-    reading: provisional/substrate_conditional_satisfied
+    reading: provisional/substrate_conditional_satisfied (independent-seed replicated)
     as_of: 2026-07-12
     needs_review: false
     evidence:
-      from: V3-EXQ-733b
+      from: V3-EXQ-733c
       as_of: 2026-07-12
-      verdict: supports (PASS; first functional rebinding demonstration on the coverage-decoupled harness)
+      verdict: supports (PASS; confirmatory independent-seed [101-106] replication of the 733b functional-rebinding PASS -- consolidates provisional, no status change)
   epistemic_category: substrate_conditional
   implementation_phase: v3
   v3_pending: false
@@ -27554,6 +27554,31 @@
     a confirmatory retest on an independent design / seed-set would strengthen
     but is not gating for provisional. decision_log: promote_to_provisional /
     applied.
+
+    2026-07-12 (V3-EXQ-733c, the confirmatory retest; evidence,
+    claim_ids=[MECH-456]; consumed via /governance review-tracker update): PASS /
+    supports, non_degenerate. The 733b P-B directed-traversal design run
+    BIT-IDENTICAL except the seed-set (independent disjoint [101-106] vs 733b's
+    [42-47]); each seed independently seeds torch (agent init + P0 binder-training)
+    and the env, so this is a genuine independent binder-convergence + latent-
+    trajectory replication, NOT a re-run of identical computation. Clean second
+    PASS: DV1 6/6 (rebinding tracks the true competitor above the shuffle control,
+    alignment margins 0.15-0.32), DV2 6/6 (graded re-acquisition-latency advantage
+    ON vs frozen, latency gaps 6.0-12.3 steps), binder converged 6/6, overtakes
+    166-821/seed -- all load-bearing criteria met on all six seeds, clear of margin.
+    Does NOT supersede 733b (adds an independent replication). VERDICT: CONSOLIDATE
+    provisional -- NO status change. The replication removes the single-run /
+    seed-luck caveat the 733b note flagged (seed-luck is now ruled out across two
+    disjoint seed-sets, 12/12 on both DVs), materially strengthening confidence
+    WITHIN the provisional band. It does NOT clear the bar for active/accepted:
+    733c diversifies only the SEED half of the 733b note's "independent design /
+    seed-set" bar and adds no design/test-bed variation -- both PASSes rest on the
+    single directed-traversal harness whose teleport is a harness-level directed
+    respawn (a deliberately artificial coverage-decoupled test-bed, not an
+    ecological foraging context). Promotion to active should await an independent
+    DESIGN / test-bed or an ecological (non-teleport-harness) behavioural
+    consequence. PROMOTES/DEMOTES NOTHING; decision_state stays
+    promote_to_provisional / applied (accurate -- no rung change).
   location: docs/architecture/entities_and_binding.md
 
 - id: MECH-271

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-12T09:48:20Z",
+  "last_review_utc": "2026-07-12T13:01:48Z",
   "discussed_experiment_dirs": [
     "v3_exq_047l_mech095_agency_routing_sd047",
     "v3_exq_732a_policy_learning_discriminator",
@@ -823,7 +823,9 @@
     "v3_exq_736_curriculum_competence_recovery_diagnostic",
     "v3_exq_737_ree_latent_policy_head_competence_probe",
     "v3_exq_740_inv064_maturational_sequence_e3_bounded",
-    "v3_exq_741_mech095_agency_comparator_testbed_sd047"
+    "v3_exq_741_mech095_agency_comparator_testbed_sd047",
+    "v3_exq_733c_rebinding_pB_confirmatory_independent_seeds",
+    "v3_exq_740a_inv064_maturational_sequence_e3_bounded"
   ],
   "reviewed_run_ids": [
     "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
@@ -3323,7 +3325,9 @@
     "v3_exq_733a_rebinding_pB_directed_traversal_20260711T095846Z_v3",
     "v3_exq_740_inv064_maturational_sequence_e3_bounded_20260711T211644Z_v3",
     "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
-    "v3_exq_733b_rebinding_pB_directed_traversal_20260712T000900Z_v3"
+    "v3_exq_733b_rebinding_pB_directed_traversal_20260712T000900Z_v3",
+    "v3_exq_733c_rebinding_pB_confirmatory_independent_seeds_20260712T121111Z_v3",
+    "v3_exq_740a_inv064_maturational_sequence_e3_bounded_20260711T233512Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5147,6 +5151,15 @@
         "v3_exq_733b_rebinding_pB_directed_traversal_20260712T000900Z_v3"
       ],
       "note": "Governance walk IGW-20260712-001 (modest-faraday-58b67a, user-interactive). 11 pending walked; 10 reviewed, V3-EXQ-740a left PENDING (deferred to /failure-autopsy). GROUP D: V3-EXQ-733b PASS/supports -> MECH-456 PROMOTED candidate->provisional (first functional rebinding demonstration on the coverage-decoupled directed-traversal harness; V3-pending gate LIFTED v3_pending:false; decision_log promote_to_provisional/applied). GROUP C inline autopsy: V3-EXQ-741 (MECH-095 valid SD-047 test-bed; failure_autopsy_V3-EXQ-741_2026-07-12 confirmed) adjudicated non_contributory/substrate_ceiling, OVERRIDING the script self-route 'weakens' (ROUTED_A -0.114 is a gradient-head over-parameterization artifact; ROUTED_B neutral; baseline carries contact). 1st VALID ceiling hit; env lacks a structurally-distinct OTHER; empirically CONFIRMS multi_agent_ecology_v5:MAE-3. MECH-095 implementation_phase REASSIGNED v3->v5, ceiling re-pointed to MAE-3; re-derive brake FIRED (3rd non_contributory) but re-points not re-blocks, refuses a 4th single-agent letter; manifest weakens->non_contributory (flat+pack). GROUP A (confirmed autopsies, all non_contributory, WEIGHTS NOTHING): 734/735/736/737-first conversion-ceiling cluster (claim_ids=[]); 733a-pA + 733a-pB -> MECH-456 (subsumed by the 733b promotion); 740 -> INV-064 measurement_degeneracy. GROUP B: V3-EXQ-737-second pure diagnostic (claim_ids=[]), same conversion-ceiling family conclusion -> MECH-457 (built), marked discussed. DEFERRED: V3-EXQ-740a (INV-064, non_degenerate:false 2nd degeneracy: mature-anchor harm not decodable-in-principle R2 0.034<0.05) stays PENDING, chipped for /failure-autopsy (2nd degeneracy implicates the operationalisation). Step 3 agenda: MECH-302 promote_to_provisional. PROMOTES: MECH-456. DEMOTES: nothing."
+    },
+    {
+      "utc": "2026-07-12T13:01:48Z",
+      "session": "frosty-rubin-ee5b9f (/governance review-tracker update)",
+      "reviewed": [
+        "v3_exq_733c_rebinding_pB_confirmatory_independent_seeds_20260712T121111Z_v3",
+        "v3_exq_740a_inv064_maturational_sequence_e3_bounded_20260711T233512Z_v3"
+      ],
+      "note": "Focused /governance review-tracker update (frosty-rubin-ee5b9f, user-interactive) of the 2 runs landed after the 2026-07-12T09:48Z pending_review regen. (1) V3-EXQ-733c (PASS/supports MECH-456, rebinding-under-perturbation): CONFIRMATORY independent-seed [101-106] retest of the V3-EXQ-733b P-B directed-traversal PASS (bit-identical harness/criteria, ONLY the seed-set changes vs 733b's [42-47]). Clean 2nd PASS -- DV1 6/6 (tracks true competitor above shuffle, margins 0.15-0.32), DV2 6/6 (graded re-acq-latency advantage ON vs frozen, 6.0-12.3 steps), binder converged 6/6, overtakes 166-821/seed. VERDICT: CONSOLIDATE provisional -- NO status change. Removes the single-run/seed-luck caveat the 733b note flagged (12/12 across two disjoint seed-sets) = strengthens WITHIN the provisional band, but diversifies only the SEED half of the 733b bar ('independent design / seed-set') -- no design/test-bed variation (both PASSes rest on the single teleport-based directed-traversal harness). Promotion to active awaits an independent DESIGN / test-bed or an ecological (non-teleport) behavioural consequence. claims.yaml MECH-456 live_status + evidence_quality_note updated; claims.json rebuilt (no diff -- projection carries no live_status/eqn). PROMOTES/DEMOTES NOTHING beyond consolidation. (2) V3-EXQ-740a (FAIL, INV-064): bookkeeping closure ONLY -- scientific adjudication already DONE (failure_autopsy_V3-EXQ-740a_2026-07-12 consumed via /claim-synthesis, REE_assembly master c53ba38bc6, decomposing INV-064 into INV-088 z_world world/goal-eval bound + INV-089 z_harm harm-eval bound; successors V3-EXQ-744 (INV-088, running) and V3-EXQ-743 (INV-089, queued) in flight). SUPERSEDED-BY-DECOMPOSITION; marked reviewed to clear pending_review. NOT re-autopsied, NOT re-queued. INV-064 stays candidate/pending_substrate_reconfirmation (claims.yaml already reconciled by the claim-synthesis session -- decomposition_note present). Did NOT touch running V3-EXQ-742."
     }
   ]
 }
