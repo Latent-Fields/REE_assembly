@@ -1,30 +1,41 @@
 {
   "schema_version": "v1",
   "runner_pid": 747,
-  "runner_started_at": "2026-07-11T19:55:42.101318+00:00",
-  "last_updated": "2026-07-11T21:16:51.549439+00:00",
+  "runner_started_at": "2026-07-12T12:35:40.710004+00:00",
+  "last_updated": "2026-07-12T12:40:06.788498+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-047m",
+      "queue_id": "V3-EXQ-742",
       "backlog_id": "",
-      "claim_id": "MECH-095",
-      "title": "MECH-095 TPJ agency-routing CORRECTED retest on SD-047: revert the probe partition to 047k's non-folded CONTACT_SET (drop the env_events fold that emptied 047l's eval negative class) + add a probe-partition non-degeneracy guard, and ask whether the routed z_world discriminates world-caused contact on the enriched substrate",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 first-class actor-critic action-learning ON/OFF validation (A0-A3 cotrain x SF-critic + bias_head control + local_view/oracle/random anchors; D0+D3; foraging teacher)",
       "description": "",
-      "estimated_minutes": 426.7,
+      "estimated_minutes": 6400.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-736",
+      "queue_id": "V3-EXQ-744",
+      "backlog_id": "",
+      "claim_id": "INV-088",
+      "title": "INV-088 world/goal-evaluator DV-coupling: held-out quality of a re-init z_world-reading E3 evaluator (harm_eval SD-003 + benefit_eval) tracks rising z_world differentiation (frozen-rep curriculum-order; onset {0,1,4,12,30}; extends 740a)",
+      "description": "",
+      "estimated_minutes": 60.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-742-m",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Curriculum competence-recovery diagnostic (Track-1c): does a two-stage easy->hard curriculum clear the 1.0 foraging floor where flat P1-long (724 A1/A4) did not, or is transfer/capacity the true ceiling",
+      "title": "MECH-457 bias_head_baseline MINT -- order-independent reuse insurance for the V3-EXQ-742 OFF arm (724-A0 all-ON; D0+D3; baseline)",
       "description": "",
-      "estimated_minutes": 1152.0,
-      "status": "claimed",
+      "estimated_minutes": 232.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -1971,18 +1982,18 @@
       "actual_secs": 2315.5
     },
     {
-      "queue_id": "V3-EXQ-517d",
+      "queue_id": "V3-EXQ-743",
       "backlog_id": "",
-      "claim_id": "MECH-302",
-      "title": "MECH-302 relief-completion discriminative pair (517c sentinel-emit fix)",
+      "claim_id": "INV-089",
+      "title": "INV-089 harm-evaluator z_harm positive control: realized harm decodes-in-principle from the frozen z_harm stream E3 actually uses (rising with HarmEncoder maturation) -- re-streamed successor to V3-EXQ-740a's mis-streamed harm leg (frozen-rep curriculum-order; onset {0,1,4,12,30})",
       "description": "",
       "result": "PASS",
-      "result_summary": "outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-517d -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-517d.json",
-      "started_at": "2026-07-11T19:57:46.357008+00:00",
-      "completed_at": "2026-07-11T21:16:51.548679+00:00",
-      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_517d_mech302_relief_completion_discriminative_pair_20260711T195747Z_v3.json",
+      "result_summary": "C1 harm_decodable_from_zharm: True (mature_zharm_decode_r2=0.124 vs floor 0.05 vs 740a z_world 0.034; crosses_zworld=True) | OUTCOME: PASS (direction=supports) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-743 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-743.json",
+      "started_at": "2026-07-12T12:39:47.449722+00:00",
+      "completed_at": "2026-07-12T12:40:06.787316+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_743_inv089_harm_evaluator_z_harm_bounded/v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3.json",
       "completed_by": "ree-cloud-3",
-      "actual_secs": 4745.2
+      "actual_secs": 19.3
     }
   ]
 }
