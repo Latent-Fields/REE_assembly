@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-12T04:24:04Z",
+  "last_tick_utc": "2026-07-12T04:39:10Z",
   "state": "running",
   "current_exq": "V3-EXQ-742",
   "current_exq_started_utc": "2026-07-12T00:05:43.915329+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-457",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 43 / D0_baseline_724",
-    "runs_done": 4,
+    "run_label": "Seed 44 / D0_baseline_724",
+    "runs_done": 5,
     "runs_total": 48,
-    "episodes_done": 400,
+    "episodes_done": 50,
     "episodes_total": 1000,
-    "overall_pct": 9.2
+    "overall_pct": 10.5
   },
-  "seconds_elapsed": 15500,
-  "seconds_remaining": 108511,
+  "seconds_elapsed": 16407,
+  "seconds_remaining": 106893,
   "recent_lines": [
     "MECH-457 actor-critic ON/OFF validation (8 arms x 2 rungs x 3 seeds; P0=200, P1_reinforce=90, AC=1000, eval=20, steps=200)",
     "Seed 42 Condition D0_baseline_724:actor_critic_frozen_plain",
@@ -70,7 +70,13 @@
     "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 150/200",
     "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 200/200",
     "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 200/1000",
-    "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 400/1000"
+    "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 400/1000",
+    "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 600/1000",
+    "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 800/1000",
+    "[train] actor_critic_cotrain_plain rung=D0_baseline_724 seed=43 phase=P1 ep 1000/1000",
+    "verdict: FAIL (rung=D0_baseline_724 arm=actor_critic_cotrain_plain seed=43 forage/ep=0.0)",
+    "Seed 44 Condition D0_baseline_724:actor_critic_cotrain_plain",
+    "[train] ree_allon rung=D0_baseline_724 seed=44 phase=P0 ep 50/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
