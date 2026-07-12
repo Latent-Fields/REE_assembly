@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-06-23.3 -->
+<!-- CLOSURE_VERSION: 2026-07-11.4 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -60,6 +60,13 @@
   }
   header.bar .gen-switch button:hover { color: var(--text); border-color: var(--accent); }
   header.bar .gen-switch button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  header.bar .links #shp-toggle {
+    background: var(--bg-2); color: var(--muted);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 600;
+  }
+  header.bar .links #shp-toggle:hover { color: var(--text); border-color: var(--st-partial); }
+  header.bar .links #shp-toggle.active { background: var(--st-partial); color: #1c2128; border-color: var(--st-partial); }
   header.bar .links { margin-left: auto; display: flex; gap: 8px; }
   header.bar .links a {
     color: var(--muted); text-decoration: none;
@@ -433,6 +440,72 @@
     border-color: #3fb950; color: #3fb950; background: rgba(63,185,80,0.14);
   }
 
+  /* status_history_plane drill panel: docks right when a node is selected (and
+     the SHP overlay is on). Shows the collapsed node's live: head (status plane)
+     + its status_snapshot/v1 timeline and backfill-lift archive (history plane)
+     + a claims traversal, all from /api/status_history?node=. */
+  #drill-panel {
+    position: fixed; right: 14px; top: 96px; z-index: 65;
+    display: none; width: 340px; max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    background: rgba(13,17,23,0.98);
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size: 11.5px; line-height: 1.45; color: var(--text);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.55);
+  }
+  #drill-panel.show { display: block; }
+  #drill-panel .dp-head {
+    display: flex; align-items: center; gap: 8px;
+    position: sticky; top: 0; background: var(--bg-1);
+    border-bottom: 1px solid var(--border); border-radius: 8px 8px 0 0;
+    padding: 8px 10px;
+  }
+  #drill-panel .dp-title { font-weight: 700; font-size: 12px; word-break: break-all; flex: 1; }
+  #drill-panel .dp-close {
+    cursor: pointer; background: transparent; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 5px;
+    width: 22px; height: 22px; font-size: 15px; line-height: 1; flex: none;
+  }
+  #drill-panel .dp-close:hover { color: var(--text); border-color: var(--st-blocked); }
+  #drill-panel .dp-body { padding: 9px 11px; }
+  #drill-panel .dp-sec { margin-bottom: 11px; }
+  #drill-panel .dp-sec > h5 {
+    margin: 0 0 5px; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--st-partial);
+    border-bottom: 1px solid var(--border); padding-bottom: 3px;
+  }
+  #drill-panel .dp-sec.plane-status > h5 { color: var(--st-partial); }
+  #drill-panel .dp-sec.plane-history > h5 { color: var(--accent); }
+  #drill-panel dl.dp-dl { margin: 0; display: grid; grid-template-columns: 74px 1fr; gap: 2px 8px; }
+  #drill-panel dl.dp-dl dt { color: var(--muted); }
+  #drill-panel dl.dp-dl dd { margin: 0; word-break: break-word; }
+  #drill-panel .dp-review { color: #1c2128; background: var(--st-partial); border-radius: 4px; padding: 3px 6px; margin-bottom: 6px; font-weight: 600; }
+  /* history timeline: newest first, a left rail with change dots */
+  #drill-panel .dp-tl { list-style: none; margin: 0; padding: 0; }
+  #drill-panel .dp-tl li {
+    position: relative; padding: 0 0 8px 14px; border-left: 1px solid var(--border);
+  }
+  #drill-panel .dp-tl li:last-child { border-left-color: transparent; }
+  #drill-panel .dp-tl li::before {
+    content: ''; position: absolute; left: -4px; top: 3px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); border: 1px solid var(--bg-0);
+  }
+  #drill-panel .dp-tl li.newest::before { background: var(--st-done); }
+  #drill-panel .dp-tl .dp-when { color: var(--muted); font-size: 10.5px; }
+  #drill-panel .dp-tl .dp-what { color: var(--text); }
+  #drill-panel .dp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  #drill-panel .dp-chip {
+    cursor: pointer; background: rgba(88,166,255,0.12); color: var(--accent);
+    border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; font-size: 10.5px;
+  }
+  #drill-panel .dp-chip:hover { border-color: var(--accent); background: rgba(88,166,255,0.22); }
+  #drill-panel .dp-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #drill-panel .dp-siblings { margin-top: 5px; font-size: 10.5px; color: var(--muted); }
+  #drill-panel .dp-siblings a { color: var(--accent); text-decoration: none; cursor: pointer; }
+  #drill-panel .dp-siblings a:hover { text-decoration: underline; }
+  #drill-panel .dp-empty { color: var(--muted); font-style: italic; }
+
   .edge { fill: none; stroke: rgba(139,148,158,0.5); stroke-width: 1.4; cursor: help; pointer-events: stroke; transition: opacity 0.15s ease; }
   .edge:hover { stroke: rgba(139,148,158,0.95); stroke-width: 2.4; }
   .edge.cross-plan { stroke: rgba(163,113,247,0.7); stroke-dasharray: 4 3; stroke-width: 1.7; }
@@ -531,6 +604,8 @@
   /* text-only tip body (pills / badges / edges); pre-line keeps the multi-line
      edge descriptions readable. */
   #tip .tip-text { white-space: pre-line; line-height: 1.4; }
+  #tip .tip-shp { margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--st-partial); }
+  #tip .tip-shp h4 { margin: 0 0 4px; color: var(--st-partial); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
 
   /* ============ EASTER EGG LAYER ============ */
   #egg-layer {
@@ -715,6 +790,7 @@
   </span>
   <span class="gen" id="gen"></span>
   <span class="links">
+    <button type="button" id="shp-toggle" class="active" title="Status-history-plane overlay (SHP-2): amber dashed ring = the projected live: head is ambiguous (needs_review); collapsed cards fade as their head goes stale. Hover a card for the live head.">SHP head</button>
     <a href="/explorer.html">&larr; Explorer</a>
     <a href="/workset">Workset</a>
     <a href="/fishtank_viz.html">Fishtank &#x1F41F;</a>
@@ -796,6 +872,10 @@
     <span class="bdg" style="background:#f85149" title="CEIL -- unblocks a substrate_ceiling claim (needs substrate enrichment, not more experiments).">CEIL</span>
     <span style="color:var(--muted)">hover a node badge for detail</span>
   </span>
+  <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;" title="Status-history-plane overlay (toggle: SHP head). Corner flag = the projected live head needs review (ambiguous; in current data tracks brake=fired). Faded card = the head's as_of is going stale. Click a node to open the live head + event timeline + claims drill.">
+    <span style="display:inline-block;width:0;height:0;border-top:9px solid #d29922;border-right:9px solid transparent;vertical-align:middle;"></span>
+    <span style="color:var(--muted)">SHP: flag = needs-review &middot; faded = stale head &middot; click = drill</span>
+  </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
     solid = active dep; faded dotted = resolved lineage (predecessor done/deferred); dashed purple = cross-plan; long-dash faint purple = plan-level cross-link (depends on a whole plan, anchored to its column head); <span style="color:#2ea043">green</span> = both endpoints done (link no longer gates work)
@@ -814,6 +894,13 @@
   <div class="rp-title"></div>
   <div class="rp-sub">Paste into a new Claude Code session to resume this node.</div>
   <button class="rp-copy" type="button">Copy resume prompt</button>
+</div>
+<div id="drill-panel">
+  <div class="dp-head">
+    <span class="dp-title"></span>
+    <button class="dp-close" type="button" title="Close (or click empty space)">&times;</button>
+  </div>
+  <div class="dp-body"></div>
 </div>
 <div id="readout"></div>
 <div id="egg-layer"></div>
@@ -910,8 +997,25 @@ async function load() {
   wireFacetFilter();
   wireGenSwitch();
   wireAssemblyToggle();
+  wireShpToggle();
+  wireDrillPanel();
   applyHighlightFromUrl();
   scheduleEasterEggs();
+}
+
+// status_history_plane overlay toggle: flips window.SHP_OVERLAY and re-renders
+// the graph so the needs_review rings + currency fade appear/disappear.
+function wireShpToggle() {
+  const btn = document.getElementById('shp-toggle');
+  if (!btn || btn.dataset.wired) return;
+  if (window.SHP_OVERLAY === undefined) window.SHP_OVERLAY = true;
+  btn.addEventListener('click', () => {
+    window.SHP_OVERLAY = !window.SHP_OVERLAY;
+    btn.classList.toggle('active', window.SHP_OVERLAY);
+    renderGraph();
+    updateDrillPanel();
+  });
+  btn.dataset.wired = '1';
 }
 
 // Build the cross-generation plan/node lookup tables once from the full payload.
@@ -1552,6 +1656,7 @@ function applySelectionStyling() {
     for (const el of svg.querySelectorAll('.selected')) el.classList.remove('selected');
     updateReadout();
     updateResumePanel();
+    updateDrillPanel();
     return;
   }
   const reachable = bfsReachable(SELECTED_NODE_ID);
@@ -1568,6 +1673,7 @@ function applySelectionStyling() {
   }
   updateReadout();
   updateResumePanel();
+  updateDrillPanel();
 }
 
 // Resume-prompt panel: shown only when the selected node is a ready gap (the
@@ -1588,6 +1694,142 @@ function updateResumePanel() {
   btn.classList.remove('done');
   btn.onclick = (ev) => { ev.stopPropagation(); copyResumePrompt(prompt, btn); };
   panel.classList.add('show');
+}
+
+// status_history_plane drill panel ------------------------------------------
+// Click a node -> fetch /api/status_history?node= -> render its live: head
+// (status plane) + the status_snapshot/v1 change-point timeline & backfill-lift
+// archive (history plane) + a claims traversal (node -> claim -> sibling nodes).
+// Part of the SHP UI: only opens when the "SHP head" overlay is on.
+let SHP_HISTORY_CACHE = {};
+let DRILL_REQ = 0;
+function wireDrillPanel() {
+  const panel = document.getElementById('drill-panel');
+  if (!panel || panel.dataset.wired) return;
+  const close = panel.querySelector('.dp-close');
+  if (close) close.addEventListener('click', (ev) => {
+    ev.stopPropagation();
+    if (SELECTED_NODE_ID) { SELECTED_NODE_ID = null; applySelectionStyling(); }
+    else panel.classList.remove('show');
+  });
+  panel.dataset.wired = '1';
+}
+function updateDrillPanel() {
+  const panel = document.getElementById('drill-panel');
+  if (!panel) return;
+  const nid = SELECTED_NODE_ID;
+  if (!nid || window.SHP_OVERLAY === false) { panel.classList.remove('show'); return; }
+  panel.querySelector('.dp-title').textContent = nid;
+  const body = panel.querySelector('.dp-body');
+  panel.classList.add('show');
+  const myReq = ++DRILL_REQ;
+  if (SHP_HISTORY_CACHE[nid]) { renderDrill(body, nid, SHP_HISTORY_CACHE[nid]); return; }
+  body.innerHTML = '<div class="dp-empty">loading status-history&hellip;</div>';
+  fetch('/api/status_history?node=' + encodeURIComponent(nid))
+    .then(r => r.json())
+    .then(d => {
+      SHP_HISTORY_CACHE[nid] = d;
+      if (myReq === DRILL_REQ && SELECTED_NODE_ID === nid) renderDrill(body, nid, d);
+    })
+    .catch(() => { if (myReq === DRILL_REQ) body.innerHTML = '<div class="dp-empty">status-history unavailable.</div>'; });
+}
+function shpDay(s) { return s ? String(s).slice(0, 10) : ''; }
+function renderDrill(body, nid, d) {
+  if (!d || !d.found) {
+    body.innerHTML = '<div class="dp-empty">No closure-plan node with this id.</div>';
+    return;
+  }
+  const node = d.node || {};
+  const live = node.live || null;
+  const join = node.join || {};
+  const hist = node.history || {};
+  let h = '';
+
+  // --- status plane -------------------------------------------------------
+  h += '<div class="dp-sec plane-status"><h5>live head &middot; status plane</h5>';
+  if (node.collapsed && live) {
+    if (live.needs_review)
+      h += '<div class="dp-review">&#9888; needs review &mdash; projected head is ambiguous</div>';
+    h += '<dl class="dp-dl">';
+    if (live.verdict) h += '<dt>verdict</dt><dd>' + escapeHtml(String(live.verdict)) + '</dd>';
+    if (live.next) h += '<dt>next</dt><dd>' + escapeHtml(String(live.next)) + '</dd>';
+    if (live.brake != null) h += '<dt>brake</dt><dd>' + escapeHtml(String(live.brake)) + '</dd>';
+    if (live.as_of) h += '<dt>as of</dt><dd>' + escapeHtml(shpDay(live.as_of)) + escapeHtml(shpAgeSuffix(live.as_of)) + '</dd>';
+    if (live.from) h += '<dt>from</dt><dd>' + escapeHtml(String(live.from)) + '</dd>';
+    h += '<dt>status</dt><dd>' + escapeHtml(String(node.status || '')) + '</dd>';
+    h += '</dl>';
+  } else {
+    h += '<div class="dp-empty">No SHP head &mdash; node predates the SHP-2 two-plane collapse.</div>';
+  }
+  h += '</div>';
+
+  // --- history plane: change-point timeline (newest first) ----------------
+  const projs = (hist.projections || []).slice().reverse();
+  h += '<div class="dp-sec plane-history"><h5>history &middot; ' + projs.length + ' change-point' + (projs.length === 1 ? '' : 's') + '</h5>';
+  if (projs.length) {
+    h += '<ul class="dp-tl">';
+    projs.forEach((p, i) => {
+      const pl = p.live || {};
+      const what = pl.verdict || pl.next || p.status || '(head)';
+      h += '<li' + (i === 0 ? ' class="newest"' : '') + '>'
+        + '<div class="dp-when">' + escapeHtml(shpDay(p.projected_utc)) + (i === 0 ? ' &middot; newest' : '') + '</div>'
+        + '<div class="dp-what">' + escapeHtml(String(what)) + '</div></li>';
+    });
+    h += '</ul>';
+  } else {
+    h += '<div class="dp-empty">No change-points recorded yet (change-only log; a stable head appends nothing).</div>';
+  }
+  // backfill-lift archive (the SHP-2 razor record)
+  const bf = hist.backfill_lift;
+  if (bf) {
+    h += '<div class="dp-when" style="margin-top:6px">razor-lift ' + escapeHtml(shpDay(bf.lifted_utc));
+    const bits = bf.at_risk_history_bits || [];
+    if (bits.length) h += ' &middot; ' + bits.length + ' at-risk bit' + (bits.length === 1 ? '' : 's') + ' archived';
+    h += '</div>';
+  }
+  h += '</div>';
+
+  // --- claims traversal (join plane) --------------------------------------
+  const claims = (join.scope_claims || node.join_scope_claims || []);
+  if (claims.length) {
+    h += '<div class="dp-sec plane-join"><h5>claims &middot; ' + claims.length + '</h5>';
+    h += '<div class="dp-chips">'
+      + claims.map(c => '<span class="dp-chip" data-claim="' + escapeHtml(String(c)) + '">' + escapeHtml(String(c)) + '</span>').join('')
+      + '</div><div class="dp-siblings" id="dp-siblings"></div></div>';
+  }
+
+  body.innerHTML = h;
+  // wire claim chips -> traverse to sibling nodes
+  body.querySelectorAll('.dp-chip').forEach(chip => {
+    chip.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      traverseClaim(chip.getAttribute('data-claim'), chip, body);
+    });
+  });
+}
+function traverseClaim(cid, chipEl, body) {
+  const out = body.querySelector('#dp-siblings');
+  if (!out) return;
+  body.querySelectorAll('.dp-chip').forEach(c => c.classList.remove('active'));
+  chipEl.classList.add('active');
+  out.innerHTML = 'traversing ' + escapeHtml(cid) + '&hellip;';
+  fetch('/api/status_history?claim=' + encodeURIComponent(cid))
+    .then(r => r.json())
+    .then(d => {
+      const nodes = (d && d.nodes) || [];
+      const others = nodes.map(n => n.node_id).filter(id => id && id !== SELECTED_NODE_ID);
+      if (!others.length) { out.innerHTML = escapeHtml(cid) + ' scopes only this node.'; return; }
+      out.innerHTML = escapeHtml(cid) + ' also scopes: '
+        + others.map(id => '<a data-goto="' + escapeHtml(id) + '">' + escapeHtml(id) + '</a>').join(', ');
+      out.querySelectorAll('a[data-goto]').forEach(a => {
+        a.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          const gid = a.getAttribute('data-goto');
+          if (NODES_BY_ID[gid]) { SELECTED_NODE_ID = gid; applySelectionStyling(); highlightNode(gid); }
+        });
+      });
+    })
+    .catch(() => { out.innerHTML = 'traversal unavailable.'; });
 }
 function copyResumePrompt(text, btn) {
   const done = () => {
@@ -1811,6 +2053,34 @@ function renderGraph() {
     g.setAttribute('class', nodeCls);
     g.setAttribute('data-node-id', n.id);
     g.setAttribute('transform', 'translate(' + pos.x + ',' + pos.y + ')');
+
+    // status_history_plane overlay (SHP-2), toggled via #shp-toggle.
+    //  - currency fade: dim the card as its projected head goes stale.
+    //  - needs_review ring: amber dashed halo where the projected head is
+    //    ambiguous (umbrella disagreement / newest-event != head).
+    // Primary ambient SHP channel = currency fade (per-node, independent of any
+    // other marker). needs_review is DEMOTED to a small corner flag (not a full
+    // halo): in the current projector data it fires ~all-or-nothing per plan and
+    // collinear with brake=fired, so it must not dominate. The full explanation
+    // lives in the hover tooltip + drill panel (with the verdict as its "why").
+    // A follow-on SHP item persists needs_review_reasons so the flag can later be
+    // gated to genuine umbrella-disagreement and re-promoted.
+    const shpOn = window.SHP_OVERLAY !== false;
+    if (shpOn && n.collapsed) {
+      g.setAttribute('opacity', shpCurrencyOpacity(n.live_as_of).toFixed(2));
+    }
+    if (shpOn && n.needs_review) {
+      const flag = el('path');
+      flag.setAttribute('class', 'node-review-flag');
+      flag.setAttribute('d', 'M0,0 L13,0 L0,13 Z');
+      flag.setAttribute('fill', '#d29922');
+      flag.setAttribute('fill-opacity', '0.85');
+      flag.__desc = 'NEEDS REVIEW (SHP) -- the projected live head is ambiguous, '
+        + 'so the shown "next" may be stale (a later event superseded the forward '
+        + 'routing). Hover the card / open it to read the live head. NOTE: in the '
+        + 'current data this closely tracks brake=fired; a follow-on will separate them.';
+      g.appendChild(flag);
+    }
 
     const color = STATUS_COLOR[n.status] || STATUS_COLOR.open;
     const rect = el('rect');
@@ -2274,6 +2544,31 @@ function annotateRef(id) {
   return escapeHtml(id + suffix);
 }
 
+// status_history_plane overlay helpers -------------------------------------
+// Days between an as_of (YYYY-MM-DD) and today; null if unparseable. Uses the
+// snapshot's own generated_at as "now" so a static-hosted snapshot ages against
+// its own capture, not the viewer's clock.
+function shpAgeDays(asOf) {
+  if (!asOf) return null;
+  const d = Date.parse(String(asOf));
+  if (isNaN(d)) return null;
+  const now = (CLOSURE && CLOSURE.generated_at) ? Date.parse(CLOSURE.generated_at) : Date.now();
+  return Math.max(0, Math.round((now - d) / 86400000));
+}
+function shpAgeSuffix(asOf) {
+  const a = shpAgeDays(asOf);
+  return a == null ? '' : ' (' + a + 'd ago)';
+}
+// Currency fade: fresh heads render full-strength; a head stale past ~21d dims
+// toward 0.55 so the eye is drawn to the current front. Honest with change-only
+// data -- a fresh node never dims, absence of an as_of never dims.
+function shpCurrencyOpacity(asOf) {
+  const a = shpAgeDays(asOf);
+  if (a == null) return 1;
+  if (a <= 21) return 1;
+  return Math.max(0.55, 1 - (a - 21) / 120);
+}
+
 function showTip(ev, n) {
   const tip = document.getElementById('tip');
   let html = '<h4>' + escapeHtml(n.id) + '</h4><dl>';
@@ -2314,6 +2609,21 @@ function showTip(ev, n) {
   if (n.blocking_external && n.blocking_external.length) html += '<dt>ext blocker</dt><dd>' + n.blocking_external.map(escapeHtml).join('; ') + '</dd>';
   if (n.last_updated) html += '<dt>updated</dt><dd>' + escapeHtml(String(n.last_updated)) + '</dd>';
   html += '</dl>';
+  // status_history_plane (SHP-2) head: the projected live: reading, separated
+  // from the depends_on/phase lineage above. Only present on collapsed nodes.
+  if (n.collapsed) {
+    html += '<div class="tip-shp"><h4>live head (SHP)</h4><dl>';
+    if (n.needs_review)
+      html += '<dt>&#9888; review</dt><dd>projected head is ambiguous &mdash; glance before trusting</dd>';
+    if (n.live_verdict) html += '<dt>verdict</dt><dd>' + escapeHtml(String(n.live_verdict)) + '</dd>';
+    if (n.live_next) html += '<dt>next</dt><dd>' + escapeHtml(String(n.live_next)) + '</dd>';
+    if (n.brake) html += '<dt>brake</dt><dd>' + escapeHtml(String(n.brake)) + '</dd>';
+    if (n.live_as_of) html += '<dt>as of</dt><dd>' + escapeHtml(String(n.live_as_of)) + shpAgeSuffix(n.live_as_of) + '</dd>';
+    if (n.live_from) html += '<dt>from</dt><dd>' + escapeHtml(String(n.live_from)) + '</dd>';
+    if (n.join_scope_claims && n.join_scope_claims.length)
+      html += '<dt>claims</dt><dd>' + n.join_scope_claims.map(escapeHtml).join(', ') + '</dd>';
+    html += '</dl></div>';
+  }
   tip.innerHTML = html;
   tip.style.opacity = '1';
   moveTip(ev);

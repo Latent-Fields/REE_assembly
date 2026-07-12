@@ -2968,6 +2968,32 @@ def _enrich_closure_v2(data: dict) -> dict:
 
 
 
+def _closure_shp_head(n: dict) -> dict:
+    """status_history_plane (SHP-2) head projection for a closure node, flattened
+    for the map overlay. Pulls the two-plane `live:` / `join:` blocks straight from
+    the node frontmatter (same source read_status_history serves) and derives the
+    convenience channels the closure map renders: needs_review (ambiguity ring),
+    live_as_of (currency fade), brake (substrate-blocked badge), live_next (tooltip).
+    `collapsed` is False for any node predating the SHP-2 collapse (no `live:`)."""
+    live = n.get("live") if isinstance(n.get("live"), dict) else None
+    join = n.get("join") if isinstance(n.get("join"), dict) else None
+    out = {
+        "collapsed": live is not None,
+        "live": live,
+        "join": join,
+        "needs_review": bool(live.get("needs_review")) if live else False,
+        "live_as_of": (live.get("as_of") if live else None),
+        "live_from": (live.get("from") if live else None),
+        "live_verdict": (live.get("verdict") if live else None),
+        "live_next": (live.get("next") if live else None),
+        "brake": (str(live.get("brake")) if live and live.get("brake") is not None else None),
+        # bears_on / scope_claims surfaced for the node<->claim / node<->event edges
+        "bears_on": list(join.get("bears_on") or []) if join else [],
+        "join_scope_claims": list(join.get("scope_claims") or []) if join else [],
+    }
+    return out
+
+
 def read_closure() -> dict:
     """Aggregate closure_plan frontmatter across planning/*_plan.md docs."""
     plans: list[dict] = []
@@ -3064,6 +3090,9 @@ def read_closure() -> dict:
                 "assembly_status": n.get("assembly_status"),
                 "revisit_after": n.get("revisit_after"),
             }
+            # status_history_plane (SHP-2) head overlay: live:/join: + derived
+            # needs_review / currency / brake / next channels for the map.
+            node_record.update(_closure_shp_head(n))
             # If a node id appears in multiple plans, keep first and record alias.
             if nid in nodes_by_id:
                 nodes_by_id[nid].setdefault("aliases", []).append(plan_id)
