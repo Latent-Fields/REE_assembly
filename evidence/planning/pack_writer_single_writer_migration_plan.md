@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.2). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`).
+**Status:** IN PROGRESS (v0.3). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12.
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -162,6 +162,69 @@ Recommended next-session order: the low-risk local-`run_id` sub-class first (bro
 edge-case-A filename correction), then `default=str`. Re-run the migrator `--report` after
 each broadening to re-measure.
 
+### Progress — step 3 BATCH 2, session 2026-07-12 (135 scripts LANDED, ree-v3 main)
+
+Migrator broadened **most-common-shape-first, lowest-risk-first** across three classes
+(each validated byte-equivalent against a hand-migration diff, py_compile clean, and
+`validate_experiments --strict --paths` with **0 new** non-conformances vs the origin/main
+baseline + 0 manifest-writer-backlog). **Total 135 scripts** migrated this batch. Full
+`pytest tests/` = **1413 passed, 1 pre-existing unseeded-stochastic flake**
+(`test_scaffolded_sd054_onboarding.py::test_c12_build_env_hazard_spawn_in_reef_half_optional`
+— 40 unseeded random hazard spawns asserting >=1 in the reef half; **passes in isolation**,
+order/global-RNG dependent, orthogonal to the mechanical write swaps). The three suites that
+directly exercise the change (`test_recording_standard` + `test_arm_fingerprint_lint` +
+`test_arm_reuse`/indexer) = 44 passed. (Worktree note: `test_arm_reuse` computes the indexer
+path as `<ree-v3-parent>/REE_assembly/...`; from a `.claude/worktrees/` worktree that needs a
+`.claude/worktrees/REE_assembly` symlink to the real checkout, else 6 FileNotFound *errors*
+unrelated to any code — with the symlink all 24 pass.)
+
+1. **Local-`run_id` out_path (65 scripts).** Broadened `PRIMARY_RE`/`DRY_REASSIGN_RE` to accept
+   `out_dir / f"{run_id}.json"` (local var) in addition to `{manifest['run_id']}`. **Safety
+   guard** added: the bare-`run_id` form is accepted ONLY when the manifest sets
+   `"run_id": run_id` (new `runid_is_manifest_runid`), proving the recomputed
+   `out_dir / f"{manifest['run_id']}.json"` is byte-identical. All 65 carried that field (0
+   guard rejections). Non-conforming 145->82 on the set (63 manifest-writer findings fixed).
+2. **`write_text(json.dumps(manifest))` idiom (65 scripts).** Added `WRITETEXT_RE` as an
+   alternative single-line write statement (`out_path.write_text(json.dumps(manifest, indent=2)
+   [ + "\n"][, encoding="utf-8"])`) — restricted to the `manifest` var (same identity guarantee
+   as the `json.dump(manifest` tail) and `path == out_path`. Correctly SKIPS multi-manifest
+   writers (write to `manifest_path`, not `out_path`, e.g. 540f/540g) and non-adjacent out_path
+   (e.g. 620). Non-conforming 70->10 on the set.
+3. **`default=str` (5 scripts: 570/571/572/609/618).** Extended the writer, not the manifest:
+   `write_flat_manifest` gained an optional `json_default: Optional[Callable] = None` param
+   threaded into the final `json.dumps(..., default=json_default)`. `None` (the default) is
+   byte-identical to the previous plain `json.dumps` for EVERY existing caller (backward-safe);
+   the migrator emits `json_default=str` when the tail used `default=str`. `DUMP_RE` broadened
+   to capture `default=str`. Runtime-verified: a non-JSON-native value (`Path`) stringifies
+   identically to the original `default=str`, and omitting `json_default` raises `TypeError`
+   exactly as a plain `json.dump` (proving no behaviour drift). 702/703 SKIP (non-adjacent
+   out_path). Non-conforming 10->5 on the set.
+
+Migrator changes are the resume primitive at `ree-v3/tools/migrate_manifest_writers.py`
+(re-validated conservative-by-construction). `elapsed_seconds` still NOT retrofitted (batch
+scripts gain 6/7 always-core incl. `substrate_hash`; a lone advisory elapsed gap remains, hard
+`manifest_writer_lint` unaffected) — the §7.4 timer retrofit stays a deliberate follow-up
+(injecting a `_run_started` timer far from the write tail is per-script-variable; deferred to
+keep this batch's blast radius contained).
+
+**Updated remaining-unmatched taxonomy (799 unmatched of 1039, post-batch-2):**
+
+| Unmatched class | ~count | Broadening needed | Risk |
+|---|---|---|---|
+| `.write_text(json.dumps(<var>))` / `json.dump(<var>` where var is NOT `manifest` (often `result`/`episode_log`, early-era) | 496 | accept non-`manifest` var **after** proving it is the flat manifest dict | med (var identity) |
+| non-canonical out_path — remaining `{TYPE}_{ts}.json` (edge-case A) + non-adjacent `{run_id}.json` | 156 | correct run_id/out_dir or `MANIFEST_WRITER_EXEMPT` (edge-A); relax adjacency (non-adjacent) | high (edge-A renames) / low (non-adjacent) |
+| no canonical `with open(out_path)` above dump | 100 | different write idiom | med |
+| with-open path/handle name mismatch | 37 | generalize path/handle names | low |
+| no `out_dir` assignment above tail | 8 | different dir var | low |
+| `write_text(json.dumps(manifest` non-canonical (multi-manifest / non-adjacent) | 2 | per-script decision | med |
+
+Recommended next-session order: the low-risk **with-open handle/path name mismatch (37)** and
+**non-adjacent `{run_id}.json`** sub-classes next (both provably safe, just idiom/adjacency
+generalisation), then the **496 non-`manifest`-var** class ONLY with a per-script proof that
+the written var IS the flat manifest (highest var-identity risk; the `v3_onboard_smoke_*`
+crash-shapes in it must be `MANIFEST_WRITER_EXEMPT`, per §6 edge-cases). Re-run the migrator
+`--report` after each broadening.
+
 Shape families (survey; total 1,028; migrate top-down):
 
 | # | Family | ~count | Distinguishing keys | Migration note | Status |
@@ -191,7 +254,7 @@ Shape families (survey; total 1,028; migrate top-down):
 1. **Unify the pack skeleton.** Make `sync_v3_results.build_runpack_docs` and `pack_writer.write_pack` delegate to ONE shared skeleton so they cannot drift. Update the golden byte-shape test (`coordinator/test_phase3_runpack_materialize.py`) in the same change.
 2. **Carry the always-core through sync into the pack** (`substrate_hash`/`config`/`seeds`/`machine`/`elapsed_seconds` + `non_degenerate`/`arm_results`/`label_balance`), so the indexer can eventually score on always-core inputs. This is the standard §4 "deliberately still open: making these fields load-bearing to confidence scoring" — needs user sign-off (changes promotion math).
 3. **Harden the lint to a `validate_queue`/commit gate** once the backlog is mostly cleared (mirrors the arm-fingerprint gate's trajectory).
-4. **`elapsed_seconds` retrofit for the batch.** Batch 1 (98 scripts) gains 6/7 always-core but NOT `elapsed_seconds` (needs a `_run_started` timer at `main()` entry, done for the F pilot but not mechanically safe to inject across the heterogeneous batch). Add a migrator pass that inserts `_run_started = datetime.now(timezone.utc)` after `args = parser.parse_args()` and threads `elapsed_seconds=(...).total_seconds()` ONLY where `datetime`/`timezone` are imported and the parse_args anchor is unambiguous; else leave the advisory gap. Until then, batch-migrated manifests show a lone `elapsed_seconds` always-core gap in `validate_recording` (advisory, not blocking; the hard `manifest_writer_lint` is unaffected).
+4. **`elapsed_seconds` retrofit for the batch.** Batch 1 (98 scripts) **and batch 2 (135 scripts)** gain 6/7 always-core but NOT `elapsed_seconds` (needs a `_run_started` timer at `main()` entry, done for the F pilot but not mechanically safe to inject across the heterogeneous batch). Add a migrator pass that inserts `_run_started = datetime.now(timezone.utc)` after `args = parser.parse_args()` and threads `elapsed_seconds=(...).total_seconds()` ONLY where `datetime`/`timezone` are imported and the parse_args anchor is unambiguous; else leave the advisory gap. Until then, batch-migrated manifests show a lone `elapsed_seconds` always-core gap in `validate_recording` (advisory, not blocking; the hard `manifest_writer_lint` is unaffected).
 
 ---
 
