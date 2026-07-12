@@ -33,10 +33,10 @@ closure_plan:
         note: "Self-continuity ingredient; with valence + autobiographical memory + inescapability + replay it forms the prohibited Class-4 combination."
       severity: load-bearing
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -58,10 +58,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: load-bearing
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -82,10 +82,10 @@ closure_plan:
       status: in_progress
       severity: load-bearing
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -108,10 +108,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -135,10 +135,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -166,10 +166,10 @@ closure_plan:
       blocker_class: v3_substrate
       severity: high
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -196,10 +196,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -223,10 +223,10 @@ closure_plan:
       lit_pull_status: done
       severity: medium
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -247,10 +247,10 @@ closure_plan:
       lit_pull_status: pending
       severity: low
       live:
-        as_of: "2026-06-06"
-        from: "decision:ARC-081@2026-06-06T07:53:48.739107Z"
-        verdict: "held_v4_by_architectural_commitment/applied"
-        next: "decision held_v4_by_architectural_commitment (applied)"
+        as_of: "2026-07-11"
+        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        verdict: "non_contributory/measurement_degeneracy"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
