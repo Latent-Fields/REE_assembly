@@ -950,3 +950,61 @@ refuses the cached prefix and (b) an edit to an out-of-closure `ree_core` module
 where it previously missed -- both while the section 10 bit-identity harness still passes.
 Generalising the declared scope to the section 9 arm_fingerprint path is a later step,
 gated on the prototype proving the conservatism guard holds.
+
+### Status -- prototype BUILT + guard proven (2026-07-12, session focused-lehmann-caed72)
+
+Implemented in `ree-v3/experiments/_lib/arm_fingerprint.py` (optional `scope=` param on
+`compute_substrate_hash`; `scope=None` DEFAULT hashes everything = today's behaviour,
+BYTE-unchanged -- regression-asserted, so the sec-9 path + every existing fingerprint are
+untouched) and `ree-v3/experiments/_lib/baselines/maturation_curriculum.py` (`_prefix_key`
+now hashes only the per-leg DECLARED SCOPE; schema bumped `maturation_prefix/v1 -> v2`).
+
+**Static-import closure was NOT viable** (the preferred option): `ree_core/agent.py`
+(REEAgent) statically imports ~all of `ree_core` at module level (sleep, pfc, amygdala,
+governance, most of policy, ...), so the transitive import closure from the entry
+functions is essentially the whole tree -- zero benefit. Both legs build a REEAgent, so
+this is unavoidable. The prototype therefore uses the **author-declared scope +
+conservatism guard** path, grounded in EXECUTION rather than imports.
+
+**Declared scope = (executed-file closure) UNION (data-closure), per leg.** Ground truth
+is a call-trace of `build+warmup+collect`: only the files whose code actually RUNS on the
+frozen-prefix path. REEAgent's `__init__` is config-gated, so in this env config it
+constructs only a narrow sub-graph -- sleep/pfc/amygdala/governance/most-of-policy never
+execute. Result: **WORLD 24 files, HARM 19 files, vs 121 in the old whole-tree glob**
+(HARM subset of WORLD). The one residual data-read channel (a scope file value-importing a
+module-level CONSTANT from an un-executed module -- here only `ree_core.regulators`
+`SITE_GATED_POLICY`/`SITE_LATERAL_PFC` string labels, re-exported through
+`regulators/__init__` from `simulation_mode_rule_gate`) is closed by folding those 2 files
+into scope; a leaf-kind AST data-closure proves nothing else escapes. Class/function
+imports of un-executed modules are correctly EXCLUDED (the trace proves they are never
+called, so their bodies cannot affect the deterministic prefix).
+
+**Conservatism guard (`verify_scope_conservatism`) HOLDS -- the gate is met:**
+- guard 1 (call-trace): every executed repo file is in the declared scope (PASS both legs).
+- guard 2 (static AST): the scope is a data-closed FIXPOINT of existing files (PASS both
+  legs). Runs opt-in at key time via `REE_PREFIX_SCOPE_GUARD=1`, and in the contract test.
+
+**Which substrate edits now HIT that previously MISSed:** any edit to a `ree_core` module
+the frozen prefix does not execute -- `sleep/**`, `hippocampal/{anchor_set,event_segmenter,
+ghost_goal_bank,...}` (only `hippocampal/module` executes), the E3 downstream-head training
+code, `amygdala/**`, `pfc/**` (except the `lateral_pfc`/`ofc` *config classes* that are
+data-closed but uncalled -> still HIT), `governance/**`, `safety/**`, `pag/**`, `entities`,
+`attribution`, `comparator`, `affect`, and most of `policy/**` -- as well as any edit to an
+UNRELATED env or another `_lib` experiment helper. All of `ree_core`'s continuous churn in
+those areas is now a cache HIT instead of a bust. An edit INSIDE the declared closure
+(env, E1/E2 encoder path, `latent/stack`, `goal_pipeline_tier1`, `agent.py` build path,
+the regulators SITE_ leaf, this module) still REFUSES the cached prefix.
+
+**Tests:** committed fast contract `ree-v3/tests/contracts/test_maturation_scope.py`
+(regression: default byte-unchanged; scope sizes 24/19; IN-CLOSURE refuses / OUT-OF-CLOSURE
+hits at hash+key layer; static guard 2 tripwire; provenance record). The slow guard 1
+(call-trace) + the cold-MISS/warm-HIT bit-identity harness (all 7 world tensors + fresh
+head inits + warmed E2-forward readout + frozen state_dict `torch.equal`, provenance
+`substrate_scope_declared`) ran GREEN as a scratch harness (23/23) and live in
+`verify_scope_conservatism(run_once=...)`. Full `pytest tests/` clean (no regression).
+
+`substrate_scope_declared` + the glob list are recorded in the cache blob + returned
+provenance for audit (mirrors `config_slice_declared`). **The sec-9 generalisation gate is
+now met** -- the conservatism guard is demonstrated sound; extending declared substrate
+scope to the global `arm_fingerprint` path (a broader author-declared surface) is the
+sanctioned next step, still opt-in + default-to-all.
