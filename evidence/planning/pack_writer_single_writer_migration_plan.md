@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`). Cumulative: **480 of 1028 scripts** now route through `write_flat_manifest`. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel.
+**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`). Cumulative: **625 of 1028 scripts** now route through `write_flat_manifest`. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel.
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -295,6 +295,70 @@ experiments/<run_id>.json` path) BEFORE routing — or a blanket `MANIFEST_WRITE
 team decides these archival early-era manifests stay as-is. The **211 "other"** are a grab-bag of
 idioms (do the os.path.join + non-canonical-with-open sub-shapes next; they are provably safe idiom
 generalisations). Re-run the migrator `--report` after each broadening.
+
+### Progress — step 3 BATCH 4, session 2026-07-12 (145 scripts LANDED, ree-v3 main `681f490`)
+
+The **211 "other"** grab-bag's provably-safe canonical-`{run_id}.json`-path sub-shapes (the
+recommended do-first from batch 3). Migrator broadened conservatively; **145 scripts** routed
+(83 pathlib slash-path + 62 `os.path.join` ; 103 `manifest` + 42 non-`manifest` `output`/`pack`).
+Every one is byte-location-identical — **no rename, no relocate** (the canonical `{run_id}.json`
+path guard is preserved, so edge-case-A `{TYPE}_{ts}` scripts stay refused BY CONSTRUCTION).
+Cumulative **625 of 1028**. Landed as 2 commits (migrator `c53f1dc`→ rebased; scripts) rebased
+past concurrent origin/main writers (arm_fingerprint sec11 `9f91c4d` + elapsed-retrofit
+`d57e893`) — **zero file overlap** (set-intersection verified before the rebase; the 145 are
+previously-*unmatched* scripts, disjoint from the *already-routed* retrofit set by construction).
+
+Generalisations (each preserves the batch-1/2/3 canonical guard; the `os.path.join` / non-
+`manifest` alternatives only fire when the slash / `manifest` fast-path fails):
+
+1. **With-open SPELLING variants (~80).** `WITH_RE` accepts a trailing `, encoding="..."` in the
+   mode arg; new `WITH_METHOD_RE` accepts the bound-path method form `<path>.open("w", ...)`.
+   Irrelevant to output bytes — `write_flat_manifest` always writes utf-8 + a trailing newline,
+   and every matched dump is `ensure_ascii` JSON (`dump_re`/`writetext_re` never accept
+   `ensure_ascii=False`).
+2. **`os.path.join(<dir>, f"{run_id}.json")` path (62).** `primary_res`/`dry_res` add an
+   `os.path.join` alternative to the pathlib slash form — byte-location-identical on POSIX (the
+   only fleet platform), since `write_flat_manifest` does `Path(out_dir)` and accepts a `str` dir.
+3. **Per-mvar run_id key.** The canonical path may key run_id off the detected non-`manifest` var
+   (`pack['run_id']`/`output['run_id']`), not just `manifest['run_id']` — the run_id pattern is
+   now built per detected mvar. Subscript form needs no proof (`write_flat_manifest` reads the same
+   `<mvar>['run_id']`); the bare-`run_id` guard is generalised to `<mvar>`.
+4. **write_text `default=str` capture + Path-import guard.** The emitted call uses
+   `Path(__file__)`; the `os.path`-family scripts import only `os`, so `ensure_path_import` adds
+   `from pathlib import Path` when the bare name is unbound (no-op for slash-form scripts, so the
+   frozen-origin byte check stays 0-diff). **This was a real bug the AST-Path-bound check caught**
+   (44 scripts would have `NameError`d at runtime before the fix).
+
+**New guard — multi-write-site refusal.** A script whose mvar is written via `json.dump`/
+`write_text` more than once (branchy `if dry: {..write..} else: {..write..}`, e.g. `v3_exq_354`)
+is refused: the migrator rewrites only the FIRST write, so routing would leave a raw `json.dump`
+behind AND mark the script already-routed. Correctly held for a dedicated pass.
+
+Validation (batches 1-3 process): backward-compat 0-diff vs frozen origin/main migrator on 25
+canonical; per-script `py_compile` + AST-Path-bound (145/145); `validate_experiments --strict
+--paths` **0 NEW** non-conformances (144 raw-`json.dump` manifest-writer findings cleared; residual
+degeneracy-self-report/readiness backlog orthogonal + unchanged); an **independent oracle**
+(re-derives from origin source, not the migrator) proved 145/145 path-identity + the strict
+flat-manifest dict-literal proof for the 42 non-`manifest` vars; runtime smoke (wfm accepts the
+`os.path.join` `str` dir, recomputes the byte-identical path, stamps always-core); downstream
+`str`→`Path` op-scan on the 62 `os.path.join` scripts (0 risky); byte-equivalence vs independent
+hand-migrations of `244a` (os.path.join+output+default=str) and `460b` (encoding=+manifest slash);
+merge gate `pytest tests/` = **1420 passed, 0 failed, 39 subtests**.
+
+**Updated remaining-unmatched taxonomy (402 unmatched of 1040, post-batch-4):**
+
+| Unmatched class | ~count | Broadening needed | Risk |
+|---|---|---|---|
+| **edge-case-A `{TYPE}_{ts}.json`** early-era (ree-v3-local; `result`-var; `detect_manifest_var`→None) | 306 | RENAMES + relocates the flat file -> correct `run_id`/out_dir FIRST, or blanket `MANIFEST_WRITER_EXEMPT` — **NEEDS A TEAM DECISION** | high (rename+relocate) |
+| non-canonical path (hardcoded literal filename `exq_051b_v3.json`; proven-var `{TYPE}_{ts}`; other) | 84 | per-script proof that the literal filename == `f"{run_id}.json"` | med |
+| no `out_dir` assignment above tail | 8 | dir var assigned out of the walked region | med |
+| pack-subdir / `runs/<id>/manifest.json` multi-manifest (`540f`), odd with-open, multi-write branchy (`354`) | ~4 | route the FLAT sibling per §D; multi-write needs both-branch rewrite | med |
+
+Recommended next-session order: the **306 edge-case-A** class is now the dominant remaining block
+and is **blocked on a team decision** (run_id/out_dir correction pass vs blanket
+`MANIFEST_WRITER_EXEMPT` for archival early-era manifests) — do not touch it mechanically until
+that is settled. The **84 non-canonical-path** are next-safest but need a per-script literal-filename
+== `f"{run_id}.json"` proof. Re-run the migrator `--report` after each broadening.
 
 Shape families (survey; total 1,028; migrate top-down):
 
