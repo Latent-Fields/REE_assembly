@@ -851,3 +851,102 @@ realized by a later world-leg sibling / a 744a re-run. Forward work: (a) a z_har
 minting consumer (a `743` successor) to exercise the harm-leg cache in the wild;
 (b) optional promotion of the machine-local cache to a shared (per-machine-class)
 location if cross-session reuse on one worker proves valuable.
+
+**Re-verified independently 2026-07-12** (session `friendly-ptolemy-7f207b`) in
+isolated cache dirs on a stable working tree: (1) 744's 3 seeds x 5 onsets --
+every warm-HIT cell reproduced its cold-MISS `arm_fingerprint` and every row
+metric bit-identically; (2) all 7 frozen-prefix tensors `torch.equal` cold vs
+warm; (3) two independent fresh processes produced identical `substrate_hash`
+`ff1220aa4d2f` + prefix key -- so the fingerprint/key are cross-process
+deterministic. NOTE ON DIRTY-TREE FALSE MISSES: the first full run showed the
+process's *first* seed's key/fingerprint transiently differing for ~5 cells, then
+stabilising -- traced to a concurrent working-tree edit to a substrate `.py`
+(parallel session / heartbeat autostash window) shifting `compute_substrate_hash`
+mid-run. Per the section 3.2 content-hash-of-the-working-tree choice this is the
+*designed* behaviour and its only effect is a cheap false MISS (over-inclusive key
+= false-miss-only); it is NOT a defect and must NOT be "fixed" by hashing the git
+SHA (that reintroduces the section 3.2 dirty-tree false-HIT hazard). It does,
+however, motivate section 11.
+
+---
+
+## 11. Dependency-scoped substrate hashing (addendum, 2026-07-12; user-directed)
+
+**The gap.** Section 3.2 defines `substrate_hash` as a content hash over *"the source
+files the cell **depends on**."* The implementation (`arm_fingerprint._SUBSTRATE_GLOBS`)
+instead hashes the WHOLE trees `ree_core/**/*.py` + `experiments/_lib/**/*.py`. That is
+the coarsest possible over-approximation of "depends on": an edit to *any* module in
+those trees -- sleep, the hippocampal proposer, an unrelated env, a comment -- busts a
+`z_world` prefix arm that never executes a line of it. Given how continuously `ree_core`
+churns, this makes cross-substrate-version reuse rarer than the validity model actually
+requires, and is the dominant source of (cheap but real) false misses on top of the
+section 10 tensor cache and the section 9 scalar path alike.
+
+**The invariant that bounds every option (unchanged, section 2).** A false MISS wastes
+compute; a false HIT corrupts a conclusion. So looseness is sound **only** in the
+"ignore inputs that provably cannot change the cell's result" direction, **never** the
+"treat two genuinely-different cells as equal" direction. Narrowing the hashed set is
+safe **iff the set stays a SUPERSET of everything the cell can execute** -- then the only
+new error mode remains a false miss.
+
+**Design: author-declared scope, safe-default-to-ALL (mirrors `config_slice`).** Exactly
+as `config_slice_declared` narrows the config with a conservative default (whole config
+when undeclared), add an optional per-cell **substrate scope** -- the set of
+`ree_core` subpackages / `_lib` modules the arm's build+collect path touches. When
+undeclared, `compute_substrate_hash` hashes everything (today's behaviour, so existing
+fingerprints are byte-unchanged and this ships shadow-safe). When declared, it hashes
+only the declared closure. A `substrate_scope_declared: bool` + the declared glob list
+are recorded in the fingerprint for audit, precisely like the config-slice discriminator.
+
+**Conservatism requirement (the one thing that must not be wrong).** A declared scope
+that UNDER-approximates -- omits a module the cell actually executes -- is a false-HIT
+bug. So the declared scope must be a provable over-approximation. Acceptable ways to
+obtain one, in decreasing order of safety:
+  - **Static import-closure at module granularity** from the arm's entry function
+    (e.g. the transitive `import` graph reachable from `build_world_agent` +
+    `warmup_train` + `collect_world_dataset`). Over-includes (imports not exercised on a
+    given path are still hashed) -> false-miss-only. Dynamic imports / `getattr`
+    dispatch / registry lookups are the trap: if any pulls in a module NOT in the static
+    graph, the scope is unsound. A guard (assert no import outside the declared closure
+    fires during a smoke run, via an import hook) converts that trap into a loud failure.
+  - **Author-declared subpackage list**, reviewed like `config_slice`. Lower automation,
+    same safe default; relies on review rather than a tool for conservatism.
+
+**Concrete first target: the section 10 maturation-curriculum prefix.** Its dependency
+slice is unusually clean and narrow -- `CausalGridWorldV2` (env), the
+`E1` + `E2.world_transition` + `E2.world_action_encoder` + `latent_stack` encoder path,
+`_lib.goal_pipeline_tier1.{ArmSpec, build_config, warmup_train}`, and this baseline
+module. It does NOT touch the E3 evaluator heads (trained fresh downstream, so head-code
+edits are correctly irrelevant to the frozen prefix), the harm stream, the hippocampal
+proposer, sleep/consolidation, or most of `ree_core`. Scoping the frozen-prefix cache key
+(`maturation_curriculum._prefix_key`) to that closure turns the majority of `ree_core`
+churn from a cache-bust into a legitimate hit, while staying strictly false-miss-only.
+This is the natural prototype: the cache is new, self-contained, machine-local, and
+already has a bit-identity harness to prove the narrowed key still refuses on any change
+inside the declared closure.
+
+**AST-normalised hashing (orthogonal, cheap).** Independent of scoping: hash the
+comment/whitespace/docstring-stripped AST of each depended-on file instead of raw bytes,
+so a comment-only or reformat edit to an in-scope file stops busting the arm. Semantics-
+preserving, low risk, stacks with dependency scoping.
+
+**Explicitly rejected (all reintroduce false-HIT risk):**
+  - Hashing the committed git SHA / blob set instead of working-tree content -- section 3.2
+    rejects this: the tree is dirty continuously (heartbeat autostash, in-flight edits),
+    so a SHA would falsely match across an uncommitted edit that matters. The transient
+    dirty-tree MISS noted at the end of section 10 is the accepted cost of that safety, not
+    a problem this addendum should "solve" by weakening the key.
+  - Behavioural / output canaries as the equality test -- can false-hit when the canary is
+    blind to a change that matters downstream, and you must run the arm to compare, which
+    defeats a lookup key. Distributional equivalence (Regime A, section 2.3) belongs at the
+    ACCEPTANCE layer where it already lives, not the key layer.
+  - Manual "recipe version" tags a human bumps -- a forgotten bump is a false hit; the
+    whole section 2 apparatus exists so correctness never depends on a human remembering.
+
+**Prototype scope (chip):** implement declared substrate-scope for
+`maturation_curriculum._prefix_key` only (default-to-all preserved elsewhere), with the
+static-import-closure guard and a test that (a) an edit inside the declared closure still
+refuses the cached prefix and (b) an edit to an out-of-closure `ree_core` module now HITS
+where it previously missed -- both while the section 10 bit-identity harness still passes.
+Generalising the declared scope to the section 9 arm_fingerprint path is a later step,
+gated on the prototype proving the conservatism guard holds.
