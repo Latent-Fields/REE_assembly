@@ -137,6 +137,16 @@ class RunRecord:
     non_degenerate: bool | None = None
     non_degenerate_per_claim: dict[str, bool] = field(default_factory=dict)
     degeneracy_reason: str = ""
+    # Experimental Recording Standard always-core (2026-07-12). Surfaced for
+    # queryability ONLY -- neither field feeds confidence/conflict scoring. Widening
+    # the consumed-field set to make these visible is the standard's section-4
+    # deferred-hardening item; changing how they SCORE requires user sign-off.
+    #   substrate_hash: content hash over ree_core/** + env + _lib/** (the reuse
+    #     prerequisite -- 0% of flat manifests carried it pre-standard).
+    #   label_balance: {"<label>": {"train_pos_frac": .., "eval_pos_frac": ..}} --
+    #     the 047m false-clear fix (a saturated TRAINING label invalidates a run).
+    substrate_hash: str = ""
+    label_balance: dict[str, Any] = field(default_factory=dict)
 
 
 def _is_number(value: Any) -> bool:
@@ -570,6 +580,16 @@ _FLAT_AUTHORITATIVE_FIELDS = (
     "pending_retest_after_substrate_per_claim",
     "superseded_by_substrate",
     "superseded_by_substrate_per_claim",
+    # Experimental Recording Standard always-core (2026-07-12). These are
+    # PROVENANCE/READOUT fields, NOT governance-direction fields -- they never
+    # change how a run scores (they are absent from _FLAT_DIRECTION_FIELDS below,
+    # so a flat/pack disagreement on them merges silently rather than WARNing).
+    # Listing them here just lets a flat-copy value ride the same overlay when a
+    # governance correction lands, so the surfaced substrate_hash/label_balance
+    # stay consistent with the corrected flat copy. Purpose: make these fields
+    # queryable in the emitted index, not load-bearing to promotion math.
+    "substrate_hash",
+    "label_balance",
 )
 
 # Subset of the above whose disagreement actually changes how a run scores a
@@ -835,6 +855,13 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
              if _coerce_bool(v) is False}
             if isinstance(raw_nd_pc, dict) else {})
         degeneracy_reason = str(manifest.get("degeneracy_reason", "") or "").strip()
+        # Experimental Recording Standard always-core (2026-07-12): surfaced for
+        # queryability, NOT scored. substrate_hash is the reuse prerequisite;
+        # label_balance is the training/eval class-balance guard (047m false-clear
+        # fix). Read defensively -- absent on the legacy corpus (a no-op default).
+        substrate_hash = str(manifest.get("substrate_hash", "") or "").strip()
+        raw_label_balance = manifest.get("label_balance") or {}
+        label_balance = raw_label_balance if isinstance(raw_label_balance, dict) else {}
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -866,6 +893,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 non_degenerate=non_degenerate,
                 non_degenerate_per_claim=non_degenerate_per_claim,
                 degeneracy_reason=degeneracy_reason,
+                substrate_hash=substrate_hash,
+                label_balance=label_balance,
             )
         )
 
@@ -1753,18 +1782,22 @@ def _write_claim_evidence_matrix(
                       f"diagnostic adjudication gate (queue-experiment SKILL.md).")
 
         if not run.claim_ids_tested:
-            matrix["unlinked_runs"].append(
-                {
-                    "source_type": "experimental",
-                    "experiment_type": run.experiment_type,
-                    "run_id": run.run_id,
-                    "timestamp_utc": run.timestamp_raw,
-                    "status": run.final_status,
-                    "experiment_purpose": run.experiment_purpose,
-                    "interpretation_label": run.interpretation_label,
-                    "adjudication": run.adjudication,
-                }
-            )
+            unlinked_entry = {
+                "source_type": "experimental",
+                "experiment_type": run.experiment_type,
+                "run_id": run.run_id,
+                "timestamp_utc": run.timestamp_raw,
+                "status": run.final_status,
+                "experiment_purpose": run.experiment_purpose,
+                "interpretation_label": run.interpretation_label,
+                "adjudication": run.adjudication,
+            }
+            # Recording-standard always-core: surfaced for queryability only.
+            if run.substrate_hash:
+                unlinked_entry["substrate_hash"] = run.substrate_hash
+            if run.label_balance:
+                unlinked_entry["label_balance"] = run.label_balance
+            matrix["unlinked_runs"].append(unlinked_entry)
             continue
 
         # Warn if multi-claim experiment lacks per-claim direction overrides.
@@ -1808,6 +1841,13 @@ def _write_claim_evidence_matrix(
                 entry["adjudication"] = run.adjudication
             if run.architecture_epoch:
                 entry["architecture_epoch"] = run.architecture_epoch
+            # Recording-standard always-core: surfaced for queryability only (does
+            # NOT affect scoring). Emitted only when present, so legacy entries are
+            # byte-identical.
+            if run.substrate_hash:
+                entry["substrate_hash"] = run.substrate_hash
+            if run.label_balance:
+                entry["label_balance"] = run.label_balance
             matrix["entries"].append(entry)
 
             # Epoch-stale, explicitly excluded, or superseded entries are logged
