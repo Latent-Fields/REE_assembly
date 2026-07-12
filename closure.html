@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-07-12.1 -->
+<!-- CLOSURE_VERSION: 2026-07-12.2 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -870,11 +870,12 @@
     <span class="bdg" style="background:#58a6ff" title="EXQ -- this node has an owner experiment in the queue/evidence (hover the badge on a node for detail).">EXQ</span>
     <span class="bdg" style="background:#a371f7" title="RETEST -- unblocks a claim flagged pending_retest_after_substrate. Click the lozenge on a node card (or a cusp chip) to copy a paste-ready retest prompt for Claude Code.">RETEST</span>
     <span class="bdg" style="background:#f85149" title="CEIL -- unblocks a substrate_ceiling claim (needs substrate enrichment, not more experiments).">CEIL</span>
+    <span class="bdg" style="background:#db6d28" title="BRAKE (SHP overlay) -- the status-history head's re-derive brake has FIRED: an active refusal-to-retry on the current substrate. Broader than CEIL (most brake=fired nodes carry no CEIL claim-flag). Shown only with the SHP head overlay on.">BRAKE</span>
     <span style="color:var(--muted)">hover a node badge for detail</span>
   </span>
   <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;" title="Status-history-plane overlay (toggle: SHP head). Corner flag = GENUINE head ambiguity only -- an umbrella whose children project conflicting verdicts (needs_review with an umbrella_children_disagree reason). The brake-collinear needs_review kind (a later event postdates the forward head) no longer flags here: brake + verdict already cover it, and it fired all-or-nothing. Faded card = the head's as_of is going stale. Click a node to open the live head + event timeline + claims drill (both show the review reason).">
     <span style="display:inline-block;width:0;height:0;border-top:9px solid #d29922;border-right:9px solid transparent;vertical-align:middle;"></span>
-    <span style="color:var(--muted)">SHP: flag = umbrella ambiguity &middot; faded = stale head &middot; click = drill</span>
+    <span style="color:var(--muted)">SHP: flag = umbrella ambiguity &middot; faded = stale head &middot; sparkline = status-history change-points (flat = stable) &middot; BRAKE = fired refusal-to-retry &middot; click = drill</span>
   </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
@@ -943,6 +944,7 @@ const BADGE_DESC = {
   EXQ: 'EXQ (blue) -- this node HAS an owner experiment; it does NOT mean one is running. Most are already complete (the card status -- done/blocked/etc -- is the real state). A node is actually running only when its border glows green and the node tooltip shows [LIVE]; that live flag is gated on a fresh runner heartbeat, so a crashed/stale runner no longer shows as running.',
   RETEST: 'RETEST (purple) -- unblocks a claim flagged pending_retest_after_substrate: that parked claim must be re-tested once this substrate work LANDS (i.e. once this node is done/green). Before then the retest is pending, not due.',
   CEIL: 'CEIL (red) -- unblocks a substrate_ceiling claim: the current substrate is too coarse to decide it, so the fix is substrate enrichment, not more experiments.',
+  BRAKE: 'BRAKE (orange, SHP overlay) -- the status-history head\'s re-derive brake has FIRED: an active refusal-to-retry, derived from a substrate_ceiling-EVENT count crossing threshold. Distinct from CEIL (a claim flag): most brake=fired nodes carry no CEIL, so BRAKE is the broader history-plane signal that further runs on the current substrate are refused. Only shown with the SHP head overlay on.',
   GOV: 'GOV -- unblocks a governance_rule claim (a SENT-*/GOV-* ethics-perimeter gate). The right response is to advance the owning governance artifact, not to run an experiment.',
 };
 
@@ -2191,7 +2193,14 @@ function renderGraph() {
     // Badges sit on their own row along the bottom edge of the card, so they
     // never overlap the ID / title / meta text. Each carries a __desc read by
     // the node group's mouseover handler to show a focused #tip.
-    const badges = n.badges || [];
+    // BRAKE (SHP-gated): the status-history head's re-derive brake actually FIRED
+    // (an active refusal-to-retry, derived from a substrate_ceiling-event count
+    // threshold). It is NOT redundant with CEIL: in current data brake=fired hits 79
+    // nodes but only 20 also carry the CEIL claim-flag (59 fire WITHOUT it), so BRAKE
+    // is the broader history-plane signal and earns its own lozenge. Injected here
+    // (not server-side in n.badges) so it appears/vanishes with the SHP toggle.
+    const badges = (n.badges || []).slice();
+    if (shpOn && n.brake === 'fired' && badges.indexOf('BRAKE') === -1) badges.push('BRAKE');
     let bx = 10;
     const badgeY = pos.h - 16;
     for (const b of badges) {
@@ -2203,7 +2212,8 @@ function renderGraph() {
       bg.setAttribute('width', bw);
       bg.setAttribute('height', 12);
       bg.setAttribute('rx', 4);
-      const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149' : '#58a6ff');
+      const col = b === 'RETEST' ? '#a371f7' : (b === 'CEIL' ? '#f85149'
+        : (b === 'BRAKE' ? '#db6d28' : '#58a6ff'));
       bg.setAttribute('fill', col);
       bg.__desc = BADGE_DESC[b] || b;
       // Clickable RETEST lozenge: copies a paste-ready retest prompt. The badge
@@ -2224,6 +2234,10 @@ function renderGraph() {
       g.appendChild(bt);
       bx += bw + 4;
     }
+
+    // SHP per-node status-history sparkline (top-right, under the pill). Collapsed
+    // nodes only; flat baseline == stable (change-only log). Fades with the card.
+    if (shpOn && n.collapsed) renderSparkline(g, n, pos);
 
     // mouseover (unlike mouseenter) fires when crossing into child elements, so
     // we can show a focused explanation for the pill / a badge and fall back to
@@ -2577,6 +2591,63 @@ function shpCurrencyOpacity(asOf) {
   if (a <= 21) return 1;
   return Math.max(0.55, 1 - (a - 21) / 120);
 }
+// Colour a status-history change-point by its projected verdict (prefix before
+// the '/'). Parked verdicts read blue, promotions green, demotions/ceilings amber/red,
+// non_contributory + unknown muted grey -- so the sparkline segments carry the same
+// semantics as the drill-panel timeline without a legend swatch per verdict.
+function shpVerdictColor(verdict) {
+  const p = String(verdict || '').split('/')[0];
+  if (p === 'supports' || p === 'promote_to_stable') return '#3fb950';
+  if (p === 'demote_to_candidate') return '#d29922';
+  if (p === 'hold_pending_v3_substrate' || p === 'held_v4_by_architectural_commitment') return '#58a6ff';
+  if (p === 'refuted' || p === 'substrate_ceiling') return '#f85149';
+  return '#6e7681';
+}
+// Per-node status-history sparkline (SHP change-only timeline). Drawn top-right,
+// under the status pill, for collapsed nodes only. CRITICAL honesty rule: the log
+// is CHANGE-ONLY, so a flat baseline == a stable span (no recorded change), NEVER
+// "unknown"/missing -- a 0-1 change-point node must read as stable, not broken.
+function renderSparkline(g, n, pos) {
+  const hc = n.history_changepoints || {};
+  const pts = hc.points || [];
+  const W = 56, xR = pos.w - 8, xL = xR - W, yBase = 27;
+  // Always draw the flat baseline: it IS the "stable" reading for gaps and for the
+  // common 0-1 change-point node.
+  const base = el('line');
+  base.setAttribute('x1', xL); base.setAttribute('x2', xR);
+  base.setAttribute('y1', yBase); base.setAttribute('y2', yBase);
+  base.setAttribute('stroke', 'var(--border)');
+  base.setAttribute('stroke-width', '1');
+  base.setAttribute('pointer-events', 'none');
+  g.appendChild(base);
+  const nP = pts.length;
+  const verds = pts.map(p => p.verdict).filter(Boolean);
+  const desc = 'STATUS HISTORY (SHP change-only log): ' + (hc.count || 0)
+    + ' change-point' + ((hc.count === 1) ? '' : 's')
+    + (hc.last_utc ? ('; last ' + hc.last_utc) : '')
+    + (verds.length ? ('; verdicts ' + verds.join(' -> ')) : '')
+    + '. Flat baseline = a STABLE span (no recorded change), not missing data.';
+  for (let i = 0; i < nP; i++) {
+    // Oldest-first, even index spacing; single point anchors at the newest (right) end.
+    const x = (nP === 1) ? xR : (xL + (W * i) / (nP - 1));
+    const newest = (i === nP - 1);
+    const dot = el('circle');
+    dot.setAttribute('cx', x); dot.setAttribute('cy', yBase);
+    dot.setAttribute('r', newest ? 2.6 : 1.9);
+    dot.setAttribute('fill', shpVerdictColor(pts[i].verdict));
+    if (newest) { dot.setAttribute('stroke', 'var(--bg-2)'); dot.setAttribute('stroke-width', '0.8'); }
+    dot.__desc = desc;
+    g.appendChild(dot);
+  }
+  // A wide invisible hit-strip so hovering the (mostly empty) baseline still shows
+  // the change-point summary, not the whole-card tooltip.
+  const hit = el('rect');
+  hit.setAttribute('x', xL); hit.setAttribute('y', yBase - 6);
+  hit.setAttribute('width', W + 4); hit.setAttribute('height', 12);
+  hit.setAttribute('fill', 'transparent');
+  hit.__desc = desc;
+  g.appendChild(hit);
+}
 // status_history_plane needs_review reasons (persisted by project_status_head as
 // live.needs_review_reasons, flattened onto the node by serve._closure_shp_head).
 // Two kinds: "umbrella_children_disagree:<verdicts>" is a GENUINE head ambiguity
@@ -2650,7 +2721,15 @@ function showTip(ev, n) {
     }
     if (n.live_verdict) html += '<dt>verdict</dt><dd>' + escapeHtml(String(n.live_verdict)) + '</dd>';
     if (n.live_next) html += '<dt>next</dt><dd>' + escapeHtml(String(n.live_next)) + '</dd>';
-    if (n.brake) html += '<dt>brake</dt><dd>' + escapeHtml(String(n.brake)) + '</dd>';
+    if (n.brake) html += '<dt>brake</dt><dd>' + escapeHtml(String(n.brake))
+      + (n.brake === 'fired' ? ' &mdash; refusal-to-retry (see BRAKE badge)' : '') + '</dd>';
+    if (n.history_changepoints) {
+      const hc = n.history_changepoints;
+      const cpTxt = (hc.count || 0) + ' change-point' + (hc.count === 1 ? '' : 's')
+        + (hc.count ? '' : ' (stable -- change-only log)');
+      html += '<dt>history</dt><dd>' + escapeHtml(cpTxt)
+        + (hc.last_utc ? (' &middot; last ' + escapeHtml(String(hc.last_utc))) : '') + '</dd>';
+    }
     if (n.live_as_of) html += '<dt>as of</dt><dd>' + escapeHtml(String(n.live_as_of)) + shpAgeSuffix(n.live_as_of) + '</dd>';
     if (n.live_from) html += '<dt>from</dt><dd>' + escapeHtml(String(n.live_from)) + '</dd>';
     if (n.join_scope_claims && n.join_scope_claims.length)

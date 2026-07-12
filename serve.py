@@ -2968,13 +2968,18 @@ def _enrich_closure_v2(data: dict) -> dict:
 
 
 
-def _closure_shp_head(n: dict) -> dict:
+def _closure_shp_head(n: dict, cp_index: dict | None = None) -> dict:
     """status_history_plane (SHP-2) head projection for a closure node, flattened
     for the map overlay. Pulls the two-plane `live:` / `join:` blocks straight from
     the node frontmatter (same source read_status_history serves) and derives the
     convenience channels the closure map renders: needs_review (ambiguity ring),
     live_as_of (currency fade), brake (substrate-blocked badge), live_next (tooltip).
-    `collapsed` is False for any node predating the SHP-2 collapse (no `live:`)."""
+    `collapsed` is False for any node predating the SHP-2 collapse (no `live:`).
+
+    `cp_index` (optional, from `_status_changepoints_index()`, built ONCE by the
+    caller) supplies the compact `history_changepoints` channel the map draws as a
+    per-node sparkline: {count, last_utc, points:[{utc,status,verdict}]}. CHANGE-ONLY
+    log => 0-1 points is a STABLE node (flat baseline), never a broken/blank one."""
     live = n.get("live") if isinstance(n.get("live"), dict) else None
     join = n.get("join") if isinstance(n.get("join"), dict) else None
     # needs_review has two reason kinds (project_status_head.project_live +
@@ -2987,6 +2992,16 @@ def _closure_shp_head(n: dict) -> dict:
     review_reasons = list(live.get("needs_review_reasons") or []) if live else []
     review_ambiguous = any(
         str(r).startswith("umbrella_children_disagree") for r in review_reasons)
+    # Sparkline channel: the node's change-only status_projection timeline. Cap the
+    # embedded point list (the tail, still oldest-first) so the payload stays small;
+    # `count` keeps the honest total. Empty/short list == stable, not missing.
+    nid = str(n.get("id") or "")
+    cp_points = list(cp_index.get(nid, [])) if cp_index else []
+    history_changepoints = {
+        "count": len(cp_points),
+        "last_utc": (cp_points[-1].get("utc") if cp_points else None),
+        "points": cp_points[-12:],
+    }
     out = {
         "collapsed": live is not None,
         "live": live,
@@ -3002,6 +3017,7 @@ def _closure_shp_head(n: dict) -> dict:
         # bears_on / scope_claims surfaced for the node<->claim / node<->event edges
         "bears_on": list(join.get("bears_on") or []) if join else [],
         "join_scope_claims": list(join.get("scope_claims") or []) if join else [],
+        "history_changepoints": history_changepoints,
     }
     return out
 
@@ -3014,6 +3030,11 @@ def read_closure() -> dict:
     cross_links: list[dict] = []
 
     seen_files: set[str] = set()
+
+    # Build the per-node change-point index ONCE (reads the append-only status log a
+    # single time) so _closure_shp_head can attach each node's sparkline timeline
+    # without re-scanning the log per node.
+    cp_index = _status_changepoints_index()
 
     # Load known plans first (preserves order in UI), then any other *_plan.md.
     candidates = list(CLOSURE_KNOWN_PLANS)
@@ -3104,7 +3125,7 @@ def read_closure() -> dict:
             }
             # status_history_plane (SHP-2) head overlay: live:/join: + derived
             # needs_review / currency / brake / next channels for the map.
-            node_record.update(_closure_shp_head(n))
+            node_record.update(_closure_shp_head(n, cp_index))
             # If a node id appears in multiple plans, keep first and record alias.
             if nid in nodes_by_id:
                 nodes_by_id[nid].setdefault("aliases", []).append(plan_id)
@@ -3266,6 +3287,32 @@ def _iter_status_history_records():
                     continue
     except OSError:
         return
+
+
+def _status_changepoints_index() -> dict:
+    """Compact per-node change-point index for the closure-map sparkline. Reads the
+    append-only status log ONCE (avoids the O(nodes x file) blow-up of calling
+    read_status_history_for_node per node) and returns
+    {node_id: [{"utc","status","verdict"}, ...]} in append order (oldest first).
+
+    Only `status_projection` records count as change-points. The log is
+    CHANGE-ONLY: a gap between two points is a STABLE span, never missing data, so
+    a node with 0-1 points reads as "stable" (flat baseline), never "unknown"."""
+    idx: dict[str, list] = {}
+    for d in _iter_status_history_records():
+        if d.get("kind") != "status_projection":
+            continue
+        nid = d.get("node_id")
+        if not nid:
+            continue
+        live = d.get("live") if isinstance(d.get("live"), dict) else {}
+        idx.setdefault(str(nid), []).append({
+            "utc": d.get("projected_utc"),
+            "status": d.get("status"),
+            "verdict": (str(live.get("verdict"))
+                        if live.get("verdict") is not None else None),
+        })
+    return idx
 
 
 def read_status_history_for_node(node_id: str) -> dict:
