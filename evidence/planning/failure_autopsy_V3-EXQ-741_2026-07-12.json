@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-12T09:34:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
+      "queue_id": "V3-EXQ-741",
+      "claim_ids": ["MECH-095"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the test could not let the claim express itself (no structurally-distinct OTHER present)",
+        "biological_reference": "clear -- TPJ agency comparator; failure matches the missing-dependency (no OTHER agent) signature exactly",
+        "prerequisites": "missing -- the structurally-distinct OTHER (multi_agent_ecology MAE-1/MAE-2) is absent",
+        "implementation": "partial -- ROUTED_A gradient BCE head plausibly the wrong translation (hurts); ROUTED_B efference-copy read-out is the faithful one (neutral)",
+        "environment": "wrong pressures -- SD-047 multi-source drift is not an other agent; baseline pre-empts the comparator (recall 0.75-0.93)",
+        "measurement": "adequate -- valid this time; probe-partition + self/world-balance guards all pass (the test-bed rebuild worked)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "temporoparietal junction (TPJ) agency-detection comparator (self- vs other-caused attribution)",
+        "dependencies": ["structurally-distinct OTHER agent", "inter-agent observation (MAE-2)"],
+        "is_formal_import": false,
+        "divergence": "047-lineage uses a gradient BCE head reshaping z_world (ROUTED_A, hurts); the biology-faithful query-time read-out (ROUTED_B) is neutral -- read-out is the correct translation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-12 (V3-EXQ-741, /governance IGW-20260712-001 inline autopsy): the SD-047 agency-comparator test-bed (agency_comparator_testbed_sd047) ran VALIDLY for the first time (non_degenerate:True; all 4 intensity arms pass the probe-partition + self/world-balance guards the 047l/047m lineage lacked). On the valid test-bed the comparator does no functional work: no arm discriminates (best routing improvement +0.028 < 0.04 floor), ROUTED_A gradient-head HURTS recall (mean -0.114), ROUTED_B efference-copy read-out neutral (+0.003), baseline already carries contact recall (0.75-0.93). evidence_direction non_contributory (NOT weakens): SD-047's world-caused drift is not a structurally-distinct OTHER, so the env cannot make the comparator load-bearing and the baseline pre-empts it -- the test could not let the claim express its value. This EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction (MECH-095 is intrinsically relational; needs a genuine second agent). 1st VALID substrate_ceiling hit (n_ceiling_hits 0->1; 047l/047m were measurement-degeneracy, uncounted). Re-derive brake FIRED (3rd non_contributory) but its test-bed-rebuild demand was honored; it re-points the ceiling from the (done) test-bed to the multi-agent ecology and REFUSES a 4th single-agent SD-047 letter. Secondary learning: the read-out framing (ROUTED_B) is the biology-faithful translation; the gradient-BCE-head (ROUTED_A) is not. Positive base is narrow (only 047k). implementation_phase reassigned v3 -> v5 (phase-follows-dependency; the multi-agent ecology is the enabling substrate). pending_retest_after_substrate stays true, re-pointed to multi_agent_ecology_v5:MAE-3. PROMOTES/DEMOTES NOTHING (stays candidate / substrate_ceiling / pending_retest).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "agency_comparator_testbed_sd047",
+        "failure_record_entry": {
+          "run_id": "v3_exq_741_mech095_agency_comparator_testbed_sd047_20260711T234706Z_v3",
+          "experiment_type": "v3_exq_741_mech095_agency_comparator_testbed_sd047",
+          "metric": "valid test-bed (non_degenerate:True, all 4 arms pass guards); no arm discriminates -- best routing improvement +0.028 < 0.04, ROUTED_A mean -0.114, ROUTED_B +0.003, baseline carries contact 0.75-0.93",
+          "target": "a comparator that adds value requires a structurally-distinct OTHER (multi_agent_ecology_v5:MAE-3); routing improvement > 0.04 on an OTHER-caused-event partition. NOT achievable in a single-agent V3 env."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-047l_2026-07-11", "failure_autopsy_V3-EXQ-047m_2026-07-11"],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "multi_agent_ecology_v5:MAE-3"
+      },
+      "learning_extracted": [
+        "The V3 single-agent substrate (even SD-047 multi-source dynamics) cannot make an agency comparator load-bearing: world-caused drift is not a structurally-distinct OTHER and the baseline already carries contact recall. Empirical confirmation of multi_agent_ecology_v5:MAE-3's standing prediction.",
+        "ROUTED_B (efference-copy read-out) is the biology-faithful operationalisation; ROUTED_A (gradient BCE head) is not (it actively harms). Carry the read-out framing into the MAE-3 retest.",
+        "The re-derive-brake test-bed-rebuild loop worked: agency_comparator_testbed_sd047 fixed the 047l/047m degeneracy; 741 validly exercised the comparator for the first time."
+      ],
+      "routing": "implement-substrate",
+      "reassignment_recommendation": {
+        "field": "implementation_phase",
+        "from": "v3",
+        "to": "v5",
+        "user_confirmed": true,
+        "rationale": "phase-follows-dependency: 741 empirically confirms MECH-095's functional demonstration requires the multi-agent ecology (V5 substrate, MAE-3). Bind ceiling to multi_agent_ecology_v5:MAE-3; removes MECH-095 from V3-completion accounting."
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
