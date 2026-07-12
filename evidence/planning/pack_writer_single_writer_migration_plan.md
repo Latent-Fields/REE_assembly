@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`). Cumulative: **640 of 1028 scripts** now route through `write_flat_manifest`. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stays **103**.
+**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`); step 3 **edge-case-A HYBRID** (276 scripts: 267 archival `MANIFEST_WRITER_EXEMPT` + 9 active corrected-and-routed; the `{TYPE}_{ts}.json` `result`-var `detect_manifest_var`→None class) LANDED 2026-07-12 (ree-v3 main `7b8c150`). Cumulative: **649 of 1028 scripts** now route through `write_flat_manifest` (+ 272 `MANIFEST_WRITER_EXEMPT`; migrator unmatched 402->111). §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stays **103**.
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -434,12 +434,72 @@ NOT retrofitted here (the §7.4 companion tool covers newly-routed scripts as a 
 | no `out_dir` assignment above tail | 8 | dir var assigned out of the walked region | med |
 | odd with-open / multi-write branchy (`354`) / pack-subdir multi-manifest (`540f`) | ~4 | per-script; multi-write needs both-branch rewrite | med |
 
-Recommended next-session order: the **306 edge-case-A** class is the only remaining *large* block
-and is the **HYBRID team-decision** work above (classify → exempt-or-correct); the **69
-non-canonical refusals** are genuine renames and should NOT be forced mechanically (correct the
-early-era `run_id`/out_dir per-script first, or `MANIFEST_WRITER_EXEMPT` the archival ones). The
-`no out_dir` (8) + odd-idiom (~4) are small provably-safe-idiom tails. Re-run the migrator
-`--report` after each broadening.
+Recommended next-session order: the **306 edge-case-A** class **is now DONE** (edge-case-A HYBRID
+section below). The remaining live block is the **69 non-canonical refusals** (`detect_manifest_var`
+SUCCEEDED but the filename is a genuine rename) — these need the SAME HYBRID (exempt archival /
+correct-and-route active) since they cannot be forced mechanically. The `no out_dir` (8) +
+odd-idiom (~4) are small provably-safe-idiom tails. Re-run the migrator `--report` after each
+broadening.
+
+### Progress — step 3 edge-case-A HYBRID, session 2026-07-12 (`amazing-kepler-0c8b71`; 276 scripts LANDED, ree-v3 main `7b8c150`)
+
+Executed the **2026-07-12 TEAM DECISION (HYBRID)** on the edge-case-A class
+(`{TYPE}_{ts}.json`, `result`-var, `detect_manifest_var`→None; migrator-refused because routing
+would rename the flat file). **Distinct from batch 5**: batch 5's 84 were `detect_manifest_var`
+SUCCEEDED + non-canonical filename; this class is `detect_manifest_var`→None — disjoint by
+construction (verified: zero file overlap; clean rebase past `ae74b63`).
+
+**Enumerate + refine.** The migrator's `no json.dump(manifest tail` (`detect_manifest_var`→None)
+reason = **306**. An independent AST classifier cross-checked the `{TYPE}_{ts}.json` path shape:
+**276 genuine edge-A** (`{TYPE}_{ts}` filename → routing renames) = 25 ree-v3-local
+(`parents[1]/evidence`) + 251 REE_assembly-location (`parents[2]/.../experiments/<TYPE>/`) —
+both `result`-var, both migrator-refused. **30 out-of-scope, EXCLUDED** (not edge-A): 22
+`RUNID_only` that already write the canonical `{run_id}.json` (a future *var-identity* batch —
+relax `detect_manifest_var` to a non-dict-literal `result` var; exempting them would DISHONESTLY
+suppress a routable lint) + 8 emit-only/harness with no raw flat-manifest `json.dump` (not
+lint-flagged). Correctness check: the residual-from-306-still-unmatched is *exactly* these 30, with
+**zero `{TYPE}_{ts}` writes** — every genuine edge-A script was handled.
+
+**Classify (queue + recent-run history).** Live queue held only `V3-EXQ-742` (none of the 276
+queued). Recency = canonical-manifest presence at `evidence/experiments/<run_id>.json` +
+most-recent `runner_status/*.json` `completed_at` per queue_id.
+- **267 ARCHIVAL** (not queued; no recent canonical manifest; last-completed >45d or never) →
+  mechanical module-level `MANIFEST_WRITER_EXEMPT = "archival early-era manifest (pre-canonical
+  {TYPE}_{ts} path/naming; not re-run)"` (dedicated AST inserter after the last top-level import;
+  **no migrator change**). manifest-writer-backlog **249→0**; non-conforming findings **516→267**
+  (the 267 residual are the PRE-EXISTING degeneracy-self-report backlog — orthogonal; the
+  before/after non-conforming SCRIPT set is *identical*, **0 NEW**); 267/267 `py_compile`; merge
+  gate `pytest tests/` **1437 passed, 0 failed**. (18 of the 267 were already lint-clean — no
+  `evidence_direction` token — so their exempt is inert, per the batch-3 onboard_smoke precedent.)
+- **9 ACTIVE** (`047l 047m 063a 623 630 664 665 671 741`; all `_v3`, REE_assembly-base, a canonical
+  manifest present or completed ≤40d) → **run_id/out_dir CORRECTION** (hand-migrated, no migrator
+  change): drop the `<TYPE>` subdir from the manifest dir → canonical top-level
+  `REE_assembly/evidence/experiments/`, route `result` through `write_flat_manifest(...)`;
+  `run_id` already `{TYPE}_{ts}_v3` (`require_v3` passes); `emit_outcome(manifest_path=<wfm return>)`
+  preserved. 664/665 keep `out_dir` (the `<TYPE>` subdir) for their `episode_log` and route the
+  manifest to `out_dir.parent`. Per-script dry var: `args.dry_run` (047l/047m/623/630/664/665/741),
+  `False` (063a — no `--dry-run`; 671 — write inside `if not args.dry_run:`). manifest-writer
+  **9→0**; **0 NEW** non-conforming (13→4, the 4 pre-existing degeneracy).
+
+**Validation (batches 1-4 process).** 276/276 `py_compile`; `validate_experiments --strict --paths`
+0 NEW; **independent AST oracle** 9/9 (single `write_flat_manifest(result, canonical-top-level)`,
+no residual raw dump, run_id `_v3`, `<TYPE>`-subdir logic consistent) + **static scope oracle** 9/9
+(every call ref bound); **dry-run smoke** — 047l end-to-end (canonical `<run_id>.json`,
+**`substrate_hash` now populated** — was 0% — + machine/machine_class/recording_schema core, emit
+relocated the `_dry_` file to scratch, **no evidence-dir leak**) and 664 episode_log variant
+(manifest at canonical top-level with always-core, episode_log stays in the `<TYPE>/` subdir). The
+664 smoke **CAUGHT a real bug**: the 664/665 write is at module-`__main__` scope, not `run()` —
+`dry_run=dry_run` NameError'd → corrected to `args.dry_run`; re-smoke clean (this is exactly why the
+runtime smoke is mandatory). Merge gate `pytest tests/` = **1437 passed, 0 failed** (post-rebase 3
+direct suites 52 passed). Staged on `integration/pack-writer-edgeA-hybrid` in a dedicated worktree
+off `ree-v3` main (`.claude/worktrees/REE_assembly` symlink for the `test_arm_reuse` gotcha).
+
+**Cumulative: 649 of 1028** route through `write_flat_manifest` (640 + 9 corrected) **+ 272
+`MANIFEST_WRITER_EXEMPT`** (267 archival edge-A + 5 pre-existing onboard_smoke). Migrator unmatched
+**402→111** (267 exempt→skip + 9 routed; batch 5 also reduced its class in parallel). Remaining 111
+unmatched (77 still lint-flagged): the **69 batch-5 non-canonical genuine-renames** (need the same
+HYBRID) + the 22 RUNID_only var-identity + 8 emit-only + 8 no-out_dir + 3 no-with-open + 1 branchy
+(`354`).
 
 Shape families (survey; total 1,028; migrate top-down):
 
