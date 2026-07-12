@@ -782,3 +782,72 @@ ree-cloud-1. `V3-EXQ-656` is an unqueued backup variant of 655, not the queued
 successor. **Re-evaluate this item when governance runs on the 655 results** -- a
 collapse outcome warrants 610g, a no-collapse outcome accepts INV-074
 substrate_ceiling and 610g likely never runs.)
+
+---
+
+## 10. Frozen-prefix tensor cache (added 2026-07-12; the maturation-curriculum family)
+
+**Mechanism, not a phase of §§1-9.** §§1-9 describe *whole-cell, metrics-only*
+reuse: a consumer skips an OFF arm by reading a prior cell's recorded scalar
+metrics from a manifest (§6: "whole-cell reuse only"; §9: "no warm-start"). §10 is
+a **distinct, complementary** mechanism for a family whose members share an
+expensive UPSTREAM PREFIX but compute DIFFERENT downstream metrics off it -- where
+the metrics-only path structurally cannot help (a differently-targeted sibling has
+no matching recorded metric to read).
+
+**Motivating family.** The maturation-curriculum frozen-representation experiments
+INV-064 (`V3-EXQ-740a`, z_world IV leg), INV-088 (`V3-EXQ-744`/`744a`, z_world DV
+coupling) and INV-089 (`V3-EXQ-743`, z_harm leg). Each runs an expensive prefix --
+`warmup_train(onset)` (z_world) or a standalone `HarmEncoder` maturation (z_harm),
+then a FIXED frozen-dataset collection -- and diverges only in a cheap tail (which
+target it ridge-probes / trains an evaluator head on). The earlier
+`frozen_representation_from_maturation_trajectory` reuse-ineligible flag on these
+cells was **empirically FALSE**: verified bit-identical 2026-07-12 (two in-process
+runs of `v3_exq_744` `_run_cell(42, 4)` -> identical `arm_fingerprint`
+`ddce40b7...` and every metric to full float precision). The trajectory is
+regenerated deterministically inside the cell (`warmup_train(seed, onset)`, RNG
+reset by `arm_cell` on entry), so the prefix is a pure function of
+`(substrate, config_slice, seed)` -- the same Regime-A determinism §§2-3 assume.
+
+**Implementation:** `ree-v3/experiments/_lib/baselines/maturation_curriculum.py`.
+Exposes, per leg, `build_*_agent` + `collect_*_dataset` + a cache-aware
+`mature_and_collect_world / mature_and_collect_harm` returning a target-agnostic
+SUPERSET (z_world leg: `{Z, Y, Hcur, Hnext, Zprev, A, Zcurr}`; z_harm leg:
+`{Zharm, Y, Prox}`) plus the FRESH pre-maturation evaluator-head inits. The
+`frozen_prefix_cache` memoises the frozen encoder (agent / HarmEncoder
+`state_dict`) + the dataset tensors as a `torch.save` blob under a machine-local
+dir (`REE_PREFIX_CACHE_DIR`, default `~/.ree_maturation_prefix_cache`).
+
+**Not the §6-excluded partial-training warm-start.** §6 excludes "caching *partial
+training* (checkpoint/warm-start reuse)". This cache does NOT warm-start training:
+the downstream evaluator head still trains FRESH from a fixed init on every cell.
+It memoises only the *completed* deterministic frozen (encoder, dataset). So the
+soundness surface is the whole-cell one §§2-3 already ratified, applied to the
+shared prefix rather than the whole cell.
+
+**Soundness.** Governing asymmetry unchanged (§2): the cache key is OVER-inclusive
+-- `substrate_hash` (ree_core + `experiments/_lib/**` content, so any substrate or
+recipe edit invalidates) + FULL `env_kwargs` + every recipe scalar + `machine_class`
++ `seed` + `onset` + the leg tag -- so a false HIT is structurally excluded and only
+(cheap) false MISSes remain. The stored key is re-verified on load; any
+mismatch / unreadable / partial blob is a MISS. A cache HIT skips warmup+collect but
+still rebuilds a fresh agent in the same RNG order (so the fresh head inits are
+bit-identical) and the downstream tail re-seeds explicitly
+(`torch.manual_seed(EVAL_TRAIN_SEED)`, local `default_rng`) -- so a HIT is
+bit-identical to a cold MISS. **Verified** by
+`test_maturation_bitidentity` (scratch): the module reproduces `740a`/`744`/`743`
+inline output exactly across every tensor, and a HIT reproduces a cold MISS
+(dataset + warmed E2-forward readout).
+
+**Relation to the arm_fingerprint (§§0-1).** Independent and coexisting. The cells
+are ALSO emitted arm_fingerprint reuse-ELIGIBLE (`include_driver_script_in_hash=False`)
+so the scalar §9 path can serve an exact-config re-run; the tensor cache serves the
+differently-targeted-sibling case the scalar path cannot.
+
+**First minting consumer: `V3-EXQ-744a`** (queued 2026-07-12) -- an 8-seed
+re-estimate of `744` built via `mature_and_collect_world`. `744` ran inline so
+744a's run is fully cold (mints all 40 prefix cells); the tensor-reuse saving is
+realized by a later world-leg sibling / a 744a re-run. Forward work: (a) a z_harm-leg
+minting consumer (a `743` successor) to exercise the harm-leg cache in the wild;
+(b) optional promotion of the machine-local cache to a shared (per-machine-class)
+location if cross-session reuse on one worker proves valuable.
