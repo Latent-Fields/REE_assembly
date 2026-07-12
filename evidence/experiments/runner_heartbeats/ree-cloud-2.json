@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-12T11:05:22Z",
+  "last_tick_utc": "2026-07-12T11:20:28Z",
   "state": "running",
   "current_exq": "V3-EXQ-742",
   "current_exq_started_utc": "2026-07-12T00:05:43.915329+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 43 / D0_baseline_724",
     "runs_done": 13,
     "runs_total": 48,
-    "episodes_done": 50,
+    "episodes_done": 100,
     "episodes_total": 1000,
-    "overall_pct": 27.2
+    "overall_pct": 27.3
   },
-  "seconds_elapsed": 39578,
-  "seconds_remaining": 70451,
+  "seconds_elapsed": 40485,
+  "seconds_remaining": 70350,
   "recent_lines": [
-    "[train] actor_critic_cotrain_sf rung=D0_baseline_724 seed=44 phase=P1 ep 1000/1000",
     "verdict: FAIL (rung=D0_baseline_724 arm=actor_critic_cotrain_sf seed=44 forage/ep=0.35)",
     "Seed 42 Condition D0_baseline_724:bias_head_baseline",
     "[train] ree_allon rung=D0_baseline_724 seed=42 phase=P0 ep 50/290",
@@ -118,7 +117,8 @@
     "[train] ree_allon rung=D0_baseline_724 seed=42 phase=P1 ep 290/290",
     "verdict: FAIL (rung=D0_baseline_724 arm=bias_head_baseline seed=42 forage/ep=0.0)",
     "Seed 43 Condition D0_baseline_724:bias_head_baseline",
-    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 50/290"
+    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 50/290",
+    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 100/290"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
