@@ -18251,6 +18251,131 @@
     own /failure-autopsy (a 2nd degeneracy implicates the operationalisation; see
     the 740 autopsy note). INV-064 stays candidate / pending_substrate_reconfirmation;
     PROMOTES/DEMOTES NOTHING.
+  decomposition_note: |
+    2026-07-12 (/claim-synthesis, consumed from failure_autopsy_V3-EXQ-740a_2026-07-12,
+    user-approved per-child): INV-064 is now an UMBRELLA (narrowed-and-retained, still
+    candidate / pending_substrate_reconfirmation). The 2nd INV-064 degeneracy surfaced a
+    granularity-debt claim<->substrate mismatch: INV-064's "E3 evaluator quality bounded by
+    E1/E2 differentiation" clause names z_world as E3's harm input, but SD-010 routes harm
+    through a DEDICATED z_harm = HarmEncoder(harm_obs) stream (harm_eval_z_harm, exempt from
+    reafference, e3_selector.py:660) that matures on a DISTINCT trajectory from the z_world
+    encoder. The single bound is therefore two bounds on two streams, now split into:
+      - INV-088 (world/goal-evaluator bound on z_world differentiation) -- the leg V3-EXQ-740a's
+        IV validly exercises (world_feat_decode_r2 rose 0.048->0.245 with maturation);
+      - INV-089 (harm-evaluator bound on z_harm differentiation) -- the SD-010 HarmEncoder
+        stream; the mis-streamed harm leg of 740a, re-posed as z_harm-decodability.
+    INV-064's E1->E2->E3 ordering-necessity content is unchanged; MECH-214 / MECH-215 continue
+    to depend on the umbrella. Re-derive brake FIRED: no same-observable z_world 740b; no
+    substrate build owed (both streams + evaluators exist). Proposal:
+    evidence/planning/claim_synthesis_INV-064_2026-07-12.md.
+
+- id: INV-088
+  title: world_goal_evaluator_bounded_by_z_world_differentiation
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-001
+    - ARC-003
+    - ARC-019
+  pending_substrate_reconfirmation: true
+  status: candidate
+  live_status:
+    reading: candidate/pending_substrate_reconfirmation
+    as_of: 2026-07-12
+    needs_review: false
+  subject: development.maturational_sequence
+  description: >
+    Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
+    quality -- the z_world-reading evaluators: harm_eval(z_world) (SD-003 attribution
+    head, e3_selector.py:593), benefit_eval, and goal/trajectory scoring -- is strictly
+    bounded by z_world (E1) representational differentiation. Poorly-differentiated
+    z_world yields a noise-fitted goal/world-feature evaluator, so productive training
+    of the z_world-reading evaluators cannot precede sufficient E1 schema
+    differentiation. This is the leg V3-EXQ-740a's corrected IV validly exercises:
+    task-relevant differentiation of z_world (predictive decodability of harm-relevant
+    world features, world_feat_decode_r2 = held-out ridge R2 of z_world[t] -> harm_obs[t+1])
+    rises monotonically 0.048 -> 0.245 across onset {0,1,4,12,30} -- first valid
+    demonstration that E1/E2 task-relevant differentiation increases with maturation on
+    the V3 substrate. Distinct from INV-089 (the z_harm harm-evaluator leg), which reads
+    a separate encoder with its own maturation trajectory.
+  what_would_answer: >
+    A frozen-representation curriculum-order contrast (onset including a genuinely
+    immature anchor ~0, differentiation-IV moving in the predicted direction) in which
+    (a) world-feature decodability from frozen z_world rises monotonically with E1/E2
+    maturation -- ALREADY ESTABLISHED by V3-EXQ-740a (world_feat_decode_r2 0.048 -> 0.245,
+    PC_iv_moved passed) -- AND (b) the held-out quality of a re-initialised z_world-reading
+    E3 evaluator (fixed training budget on frozen z_world) improves monotonically with
+    that rising decodability. The remaining test is the DV coupling (evaluator quality
+    tracks z_world differentiation); the IV leg is done. Falsified if evaluator quality is
+    flat or non-monotone across a validly-moving z_world-differentiation gradient.
+  notes: >
+    Grounded in the PFC-last-myelination developmental existence proof (inherited from
+    INV-064) and the dual-systems cognitive-control leg (Casey 2011; Strang 2013:
+    cognitive-control and affective systems develop on different timetables). Testable-now:
+    substrate ready, partial positive evidence in hand (740a IV). Motivating evidence is
+    the SUPPORTED half of the INV-064 740-cluster. Not substrate_ceiling.
+  registered: "2026-07-12"
+  depends_on: [INV-064, ARC-001, ARC-003, ARC-019]
+  origin: >
+    Registered via /claim-synthesis 2026-07-12 as child (i) of INV-064, from the
+    granularity-debt decomposition in failure_autopsy_V3-EXQ-740a_2026-07-12 (proposal
+    evidence/planning/claim_synthesis_INV-064_2026-07-12.md). PROMOTES/DEMOTES NOTHING.
+
+- id: INV-089
+  title: harm_evaluator_bounded_by_z_harm_differentiation
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-003
+    - ARC-019
+    - ARC-027
+  pending_substrate_reconfirmation: true
+  status: candidate
+  live_status:
+    reading: candidate/pending_substrate_reconfirmation
+    as_of: 2026-07-12
+    needs_review: false
+  subject: development.maturational_sequence
+  description: >
+    Child (ii) of INV-064 (harm leg). E3's nociceptive harm-evaluation quality --
+    harm_eval_z_harm (e3_selector.py:660), which reads z_harm = HarmEncoder(harm_obs)
+    (stack.py:119) -- is strictly bounded by z_harm representational differentiation, a
+    maturation trajectory DISTINCT from z_world's. Under SD-010 the HarmEncoder is
+    instantiated OUTSIDE the z_world encoder and is exempt from reafference correction
+    (introduced to resolve the EXQ-027b over-correction paradox where the
+    ReafferencePredictor subtracted hazard when harm was fused into z_world). Because harm
+    is routed through its own encoder, harm-evaluator quality is bounded by z_harm
+    differentiation, NOT z_world differentiation -- which is why V3-EXQ-740a's harm leg,
+    which decoded realized harm from z_world, was mis-streamed and never validly exercised
+    (harm world-features decode from z_world at 0.245 and rise, while realized scalar harm
+    does not: 0.034, flat). Productive harm-evaluator training cannot precede sufficient
+    z_harm differentiation.
+  what_would_answer: >
+    A frozen-representation contrast over HarmEncoder (z_harm) maturation: decode realized
+    harm_target from FROZEN z_harm across HarmEncoder onset, verify z_harm-harm-decodability
+    RISES with z_harm maturation (the positive control that harm is decodable-in-principle
+    from the stream E3 actually uses), then show harm_eval_z_harm held-out quality is bounded
+    by z_harm differentiation, with a z_harm maturation trajectory reported SEPARATELY from
+    the z_world trajectory (distinct encoder). Explicitly NOT a z_world decode -- the
+    re-derive brake refuses a same-observable 740b; this probes z_harm, a different
+    observable. Falsified if harm_eval_z_harm quality is flat/non-monotone across a
+    validly-moving z_harm-differentiation gradient (given z_harm-harm-decodability confirmed).
+  notes: >
+    New mechanistic content grounded in the distinct nociceptive-maturation literature:
+    parallel spino-thalamic / spino-parabrachial pathway to operculo-insular / mid-cingulate
+    cortex, anatomically separate from fronto-parietal exteroceptive processing (Bastuji 2016);
+    the MD->ACC nociceptive projection undergoes its own silent-synapse -> AMPAR-stabilised
+    maturation (Wang 2020); dual-systems "different timetables" for affective vs cognitive-
+    control systems (Casey 2011; Strang 2013). Testable-now: substrate ready (harm_eval_z_harm
+    + HarmEncoder exist); no build owed. Motivating evidence is the MIS-STREAMED harm half of
+    the INV-064 740-cluster (the measurement collision that revealed the stream-split). Not
+    substrate_ceiling.
+  registered: "2026-07-12"
+  depends_on: [INV-064, SD-010, ARC-003, ARC-019, ARC-027]
+  origin: >
+    Registered via /claim-synthesis 2026-07-12 as child (ii) of INV-064, from the
+    granularity-debt decomposition in failure_autopsy_V3-EXQ-740a_2026-07-12 (proposal
+    evidence/planning/claim_synthesis_INV-064_2026-07-12.md). PROMOTES/DEMOTES NOTHING.
 
 - id: MECH-214
   title: goal_referent_e1_representability

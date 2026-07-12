@@ -2237,6 +2237,38 @@
     "type": "invariant",
     "what_would_answer": "Inject a maintenance proxy that is NOT a potential difference over goal-proximity (e.g. a raw progress bonus) into the E3 selection landscape and show it shifts the selected-candidate distribution AWAY from the clean-goal optimum (true-goal quality of the selected candidate drops), while a potential-based proxy (gamma*Phi(s')-Phi(s)) over the SAME proximity leaves the clean-goal optimum intact. NON-DEGENERACY: the clean-goal optimum must be discriminable -- selected- candidate true-quality must have non-zero range across proxy conditions on an identical base landscape (else nothing to divert). Tractable as a controlled E3-selection probe in the V3-EXQ-674 family (no env / no training -> avoids the monostrategy / z_goal-collapse confounds). FAIL = the non-potential proxy does NOT divert behaviour (tethering constraint not load-bearing on this substrate).\n"
   },
+  "INV-088": {
+    "assembly_state": "remaining",
+    "emergent_from": [
+      "ARC-001",
+      "ARC-003",
+      "ARC-019"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "development.maturational_sequence",
+    "title": "world_goal_evaluator_bounded_by_z_world_differentiation",
+    "type": "invariant",
+    "what_would_answer": "A frozen-representation curriculum-order contrast (onset including a genuinely immature anchor ~0, differentiation-IV moving in the predicted direction) in which (a) world-feature decodability from frozen z_world rises monotonically with E1/E2 maturation -- ALREADY ESTABLISHED by V3-EXQ-740a (world_feat_decode_r2 0.048 -> 0.245, PC_iv_moved passed) -- AND (b) the held-out quality of a re-initialised z_world-reading E3 evaluator (fixed training budget on frozen z_world) improves monotonically with that rising decodability. The remaining test is the DV coupling (evaluator quality tracks z_world differentiation); the IV leg is done. Falsified if evaluator quality is flat or non-monotone across a validly-moving z_world-differentiation gradient.\n"
+  },
+  "INV-089": {
+    "assembly_state": "remaining",
+    "emergent_from": [
+      "ARC-003",
+      "ARC-019",
+      "ARC-027"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "development.maturational_sequence",
+    "title": "harm_evaluator_bounded_by_z_harm_differentiation",
+    "type": "invariant",
+    "what_would_answer": "A frozen-representation contrast over HarmEncoder (z_harm) maturation: decode realized harm_target from FROZEN z_harm across HarmEncoder onset, verify z_harm-harm-decodability RISES with z_harm maturation (the positive control that harm is decodable-in-principle from the stream E3 actually uses), then show harm_eval_z_harm held-out quality is bounded by z_harm differentiation, with a z_harm maturation trajectory reported SEPARATELY from the z_world trajectory (distinct encoder). Explicitly NOT a z_world decode -- the re-derive brake refuses a same-observable 740b; this probes z_harm, a different observable. Falsified if harm_eval_z_harm quality is flat/non-monotone across a validly-moving z_harm-differentiation gradient (given z_harm-harm-decodability confirmed).\n"
+  },
   "MECH-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -6130,6 +6162,8 @@
   },
   "MECH-456": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "built",
+    "awaiting": "rebinding-harness-p0-coverage-decoupling",
     "epistemic_stance": "shown",
     "status": "provisional",
     "subject": "entities.rebinding_under_perturbation",
