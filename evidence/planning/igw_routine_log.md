@@ -875,3 +875,4 @@ One line per hourly tick. ASCII only.
 2026-07-12T00:48:17Z complete IGW-20260712-197 spawned->completed outcome=USEFUL_LANDED: marked EVB-0203/MECH-054 blocked_substrate: no signed harm/benefit PE-precision
 2026-07-12T01:14:50Z reconcile-release hash=3575634d0dfe (IGW-20260712-197 -> completed)
 2026-07-12T01:14:43Z skip IGW-20260712-197: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-12T02:15:02Z skip IGW-20260712-197: no fresh runner heartbeat (experiment-lane item would just sit in queue)
