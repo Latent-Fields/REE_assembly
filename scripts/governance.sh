@@ -174,6 +174,26 @@ echo "--- Step 3f: Diagnostic-chain recurrence audit (GOV-DIAG-1, warn-only) ---
 # nothing. Warn-only here -- run with --strict for a blocking CI gate.
 "$PYTHON" scripts/check_diagnostic_chain_recurrence.py || true
 
+echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---"
+# The THIRD claim-keyed recurrence sibling and the standing-scan complement to the
+# REACTIVE granularity-debt trigger in the /failure-autopsy skill. GOV-CEIL-1 (3e)
+# catches SAME-wall ceiling recurrence (-> demotion); GOV-DIAG-1 (3f) catches
+# claimless mis-posed-question chains (-> re-pose). This catches claim-keyed
+# DIFFERENT-signature recurrence: >=N no-verdict NON-ceiling autopsies circling one
+# claim in structurally different ways -> the claim is too COARSE (several claims)
+# -> /claim-synthesis decomposition. Surfaces two things a human autopsy author can
+# miss: P0 a DROPPED HANDOFF (an autopsy fired the trigger / routed to
+# /claim-synthesis but no claim_synthesis_<claim>_*.md exists -- the "relies on a
+# human doing the next step" reliability hole, made mechanical), and P1 an
+# UNFLAGGED recurrence spread across sessions no one author saw together. This is
+# the too-COARSE analog of the non-degeneracy net (which catches the inverse,
+# too-FINE / degenerate-criterion, with standing code). Excludes substrate_ceiling
+# hits (GOV-CEIL-1's lane) + already-metabolized claims (decomposition_note /
+# existing claim_synthesis doc / suppressed epistemic_category). Read-only;
+# promotes/demotes nothing; response is a human decision at Step 6a-v-quater. Run
+# with --strict for a blocking CI gate.
+"$PYTHON" scripts/check_granularity_debt_recurrence.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 

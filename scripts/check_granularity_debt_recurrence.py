@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+"""Granularity-debt recurrence audit (governance Step 6a-v-quater, GOV-GRAN-1).
+
+The THIRD sibling of the claim-keyed recurrence auditors, and the standing-scan
+complement to the reactive granularity-debt trigger in the `/failure-autopsy`
+skill. The three siblings partition the "recurrent FAIL circling one target"
+space by what the recurrence MEANS:
+
+  * GOV-CEIL-1 (check_substrate_ceiling_audit.py) -- CLAIM-keyed, SAME wall.
+    >= N `substrate_ceiling` verdicts on one claim -> the claim may be
+    unbuildable-as-stated -> user-approved DEMOTION. The signature repeats.
+  * GOV-DIAG-1 (check_diagnostic_chain_recurrence.py) -- CLAIMLESS, by bears_on.
+    >= N pure-diagnostic (`claim_ids: []`) no-verdict autopsies on one
+    work-stream -> the QUESTION is mis-posed -> RE-POSE. Invisible to claim
+    counters.
+  * GOV-GRAN-1 (this file) -- CLAIM-keyed, DIFFERENT signatures. >= N no-verdict
+    non-ceiling autopsies on one claim, failing in structurally DIFFERENT ways
+    -> the CLAIM is too coarse (it is several claims) -> `/claim-synthesis`
+    decomposition. The claim is not wrong and not hitting one wall; it keeps
+    breaking differently because it bundles >1 mechanism.
+
+WHY THIS AUDIT EXISTS. The `/failure-autopsy` skill already tells its author to
+grep the planning dir at write-time and, on the second-or-later autopsy circling
+a claim, fire a `granularity_debt_trigger` + route to `/claim-synthesis`. That is
+a REACTIVE, human-run check: it depends on (a) the second failure being autopsied
+at all and (b) the author running the grep and (c) the `/claim-synthesis` handoff
+actually being executed. The non-degeneracy net (`scoring_excluded="degenerate"`)
+catches the INVERSE granularity problem (an over-specified / degenerate criterion)
+with STANDING CODE that runs on every index build and cannot be forgotten. This
+audit gives the too-COARSE direction the same standing-scan property: it sweeps
+the whole confirmed-autopsy corpus every governance cycle and surfaces two things
+a human author can miss --
+
+  1. DROPPED HANDOFF (the reliability hole made mechanical): an autopsy that
+     EXPLICITLY fired the granularity trigger / routed to `/claim-synthesis`, but
+     for which NO `claim_synthesis_<claim>_*.md` proposal doc exists. The trigger
+     fired and the follow-through never happened. This is exactly the "relies on
+     a human doing the next step" failure the standing scan is meant to close.
+  2. UNFLAGGED RECURRENCE: a claim with >= N no-verdict non-ceiling autopsies
+     where no single author fired the trigger, because the recurrence lives
+     ACROSS separate autopsy sessions that no one author saw together.
+
+WHAT IS COUNTED. A "granularity-debt hit" is one confirmed (`status: confirmed`)
+`failure_autopsy_*.json` target that:
+
+  (i)   carries a NON-empty `claim_ids` -- CLAIM-keyed (the claimless case is
+        GOV-DIAG-1's job; counting it here would double-count); AND
+  (ii)  resolved WITHOUT a clean verdict -- `recommended_evidence_direction in
+        {non_contributory, inconclusive}`. A clean `weakens` / `refutes` is a
+        FALSIFICATION (decomposing a wrong claim does not rescue it -> that is
+        GOV-CEIL-1 / demotion territory, not granularity debt); AND
+  (iii) `recommended_epistemic_category NOT in _EPI_SUPPRESS_PROPOSAL` -- excludes
+        substrate_ceiling / substrate_conditional / derivational / etc. Those are
+        the SAME-wall / substrate-enrichment story owned by GOV-CEIL-1 and the
+        `/claim-synthesis` Step-1 metabolized set; re-flagging them here would
+        double-count with GOV-CEIL-1 (symmetric to GOV-DIAG-1 excluding
+        claim-tagged targets). What survives is measurement_degeneracy /
+        measurement_test_design / etc. -- exactly where the granularity-debt vs
+        test-design-debt fork lives.
+
+Hits are keyed on `claim_id`; each hit is a distinct (artifact stem, run_id) so
+re-listing a claim across an artifact's targets does not inflate the count.
+
+METABOLIZED EXCLUSIONS (a claim is NOT surfaced when ANY fires -- mirrors the
+`/claim-synthesis` Step-1 disjunction, using only the PRECISE markers to avoid
+false exclusion):
+  * the claim's `epistemic_category` in _EPI_SUPPRESS_PROPOSAL (the cheap
+    machine-readable pass -- enrichment-in-progress, not undetected debt);
+  * the claim carries a `decomposition_note` (the exact marker `/claim-synthesis`
+    stamps on an umbrella it has already split -- e.g. INV-064 after 2026-07-12);
+  * a `claim_synthesis_<claim>_*.md` proposal doc already exists (already
+    synthesized -- done or in-flight);
+  * the claim's `status` is dead (resolved / superseded / deprecated).
+  Deliberately NOT excluded on raw reverse-dep fan-in alone: a claim can be
+  depended-upon by unrelated downstream consumers (INV-064 <- MECH-214/215)
+  without having been decomposed, so bare fan-in over-excludes. The precise
+  "already decomposed" markers above are used instead.
+
+THE OVERLAY (ACTIONABLE, warn-only), in priority order:
+  * P0 dropped_handoff  -- explicit trigger fired, no proposal doc, not otherwise
+                           metabolized. A mechanical reliability failure.
+  * P1 unflagged_recurrence -- >= N no-verdict non-ceiling hits, not metabolized,
+                           no proposal doc, no explicit trigger. Surface for the
+                           human granularity-debt-vs-coherent-substrate-campaign
+                           discrimination (the judgment the skill keeps human --
+                           cf. the 460e..i lineage, which an author correctly
+                           adjudicated NOT granularity debt).
+Detection is automatic; the response is a human governance decision at
+Step 6a-v-quater (route to `/claim-synthesis` for proposal-first decomposition).
+Absent a claim-tagged corpus every count is 0, so a missing / untagged corpus can
+never mass-surface (same non-falsifying-safe posture as GOV-CEIL-1 / GOV-DIAG-1).
+
+This audit READS ONLY and PROMOTES / DEMOTES NOTHING. It does not touch
+claims.yaml.
+
+Usage:
+  python3 scripts/check_granularity_debt_recurrence.py            # human report, exit 0
+  python3 scripts/check_granularity_debt_recurrence.py --strict   # exit 1 if any P0/P1
+  python3 scripts/check_granularity_debt_recurrence.py --json     # machine-readable
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_AUTOPSY_DIR = REPO_ROOT / "evidence" / "planning"
+DEFAULT_CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
+
+# GOV-GRAN-1 (granularity-debt recurrence rule). N distinct confirmed no-verdict
+# non-ceiling claim-keyed autopsy targets on ONE claim is the threshold -- it
+# matches the /failure-autopsy skill's own "second-or-later autopsy circling the
+# same claim" trigger (one autopsy is a diagnosis; the second is a pattern). Lower
+# than GOV-CEIL-1 / GOV-DIAG-1's N=3 BECAUSE the differentiator here is not the
+# raw count but the STRUCTURAL DIFFERENCE between the signatures -- two
+# structurally-different no-verdict failures already imply >= 2 bundled mechanisms.
+GRAN_RECURRENCE_N = 2
+
+# A no-verdict direction: the autopsy contributed no evidence to the claim (so no
+# clean falsification). A weakens / refutes / supports means a verdict WAS reached.
+NO_VERDICT_DIRECTIONS = {"non_contributory", "inconclusive"}
+
+# Mirror scripts/generate_inter_governance_workset.py:_EPI_SUPPRESS_PROPOSAL. A
+# hit whose epistemic_category is one of these is the substrate-enrichment / SAME
+# -wall story (GOV-CEIL-1 owns it) -- excluded here to avoid double-count, exactly
+# as GOV-DIAG-1 excludes claim-tagged targets. Kept in sync with that set.
+_EPI_SUPPRESS_PROPOSAL = {
+    "substrate_coherence", "substrate_ceiling", "substrate_conditional",
+    "derivational", "out_of_domain", "governance_rule",
+}
+_CLAIM_DEAD_STATUSES = {"resolved", "superseded", "deprecated"}
+
+# claim-id token, e.g. INV-064, MECH-445, ARC-065, SD-034, Q-080, EVB-0339.
+_CLAIM_ID_RE = re.compile(r"\b([A-Z]{2,4}-\d{2,4}[a-z]?)\b")
+
+
+def _norm_dir(value) -> str:
+    return str(value or "").strip().lower()
+
+
+def _trigger_claims(tgt: dict) -> set[str]:
+    """Return the set of claim_ids this target's /claim-synthesis trigger is ABOUT.
+
+    An autopsy target can carry several claim_ids (a run tagged with a cluster of
+    claims), but its granularity trigger is about ONE recurrence subject. Bare
+    target-level `routing == "claim-synthesis"` does NOT say WHICH claim, so on a
+    multi-claim target it must not fan the trigger out to every incidental claim
+    (the SD-034 460g case: claim_ids [SD-034, MECH-260, MECH-261], trigger about
+    SD-034 -> attributing P0 to MECH-260/261 is a false positive). Attribution
+    rule: a claim gets the trigger iff it is the SOLE claim_id, OR it is named in
+    the trigger/brake/recommendation block itself.
+    """
+    claim_ids = [str(c).strip() for c in (tgt.get("claim_ids") or []) if str(c).strip()]
+    triggered = False
+    gdt = tgt.get("granularity_debt_trigger")
+    if isinstance(gdt, dict) and gdt.get("fires") is True:
+        triggered = True
+    if _norm_dir(tgt.get("routing")) == "claim-synthesis":
+        triggered = True
+    rdb = tgt.get("re_derive_brake")
+    if isinstance(rdb, dict) and _norm_dir(rdb.get("route_to")) == "claim-synthesis":
+        triggered = True
+    if tgt.get("claim_synthesis_recommended"):
+        triggered = True
+    if not triggered:
+        return set()
+    if len(claim_ids) == 1:
+        return set(claim_ids)
+    # multi-claim target: attribute only to claims NAMED in the trigger fields.
+    blob = json.dumps({
+        "gdt": gdt, "rdb": rdb,
+        "rec": tgt.get("claim_synthesis_recommended"),
+    })
+    named = set(_CLAIM_ID_RE.findall(blob))
+    return {c for c in claim_ids if c in named}
+
+
+def _signature(tgt: dict) -> str:
+    """Coarse structural signature of a failure, for the distinct-signature count.
+
+    (epistemic_category, failed_criterion). NOT a fine classifier -- when it reads
+    the SAME on every autopsy for a claim the reading is 'may be one wall (check
+    GOV-CEIL-1), or a difference this coarse key cannot see'; the human resolves
+    it. The explicit-trigger tier does not depend on this (an author who fired the
+    trigger already asserted the signatures differ).
+    """
+    epi = str(tgt.get("recommended_epistemic_category") or "").strip().lower()
+    crit = str(tgt.get("failed_criterion") or "").strip().lower()
+    return f"{epi}|{crit}"
+
+
+def _load_claim_meta(claims_yaml: Path) -> dict[str, dict]:
+    """Return {claim_id: {epistemic_category, status, has_decomposition_note}}.
+
+    Full safe_load (as generate_pending_review.py does) -- correctness over the
+    first-occurrence field scan; the registry is large but this runs once.
+    """
+    try:
+        import yaml  # noqa: PLC0415
+    except ImportError:
+        return {}
+    try:
+        with open(claims_yaml, encoding="utf-8") as f:
+            claims = yaml.safe_load(f) or []
+    except (OSError, ValueError):
+        return {}
+    meta: dict[str, dict] = {}
+    for c in claims:
+        if not isinstance(c, dict):
+            continue
+        cid = c.get("id")
+        if not cid:
+            continue
+        meta[str(cid)] = {
+            "epistemic_category": str(c.get("epistemic_category") or "").strip().lower(),
+            "status": str(c.get("status") or "").strip().lower(),
+            "has_decomposition_note": bool(c.get("decomposition_note")),
+        }
+    return meta
+
+
+def _synthesized_claims(autopsy_dir: Path) -> set[str]:
+    """Claim ids already considered in a claim_synthesis_<...>.md proposal doc.
+
+    Scans every claim-id token in each proposal's FILENAME *and CONTENT*. A
+    decomposition proposal names its umbrella, its children, and the cluster's
+    context claims -- all of which have been reasoned about, so re-surfacing them
+    is noise (the SD-034 doc names MECH-260/261 as cluster context; INV-064's doc
+    names INV-064/088/089). Deliberate low-noise bias: a claim merely name-dropped
+    in a `depends_on` list inside some proposal is treated as considered. This can
+    hide a genuinely-fresh recurrence on a name-dropped claim; that trade is
+    accepted for a quiet standing scan (the reactive autopsy trigger remains the
+    first line, and a real fresh cluster will also fire the P0 explicit-trigger
+    path, which is protected by _trigger_claims naming, not by this set).
+    """
+    out: set[str] = set()
+    for fp in autopsy_dir.glob("claim_synthesis_*.md"):
+        try:
+            text = fp.read_text(encoding="utf-8")
+        except OSError:
+            text = fp.stem
+        out.update(_CLAIM_ID_RE.findall(fp.stem + "\n" + text))
+    return out
+
+
+def count_recurrence_hits(autopsy_dir: Path) -> dict[str, dict]:
+    """Count no-verdict non-ceiling claim-keyed autopsy hits per claim_id.
+
+    Returns {claim_id: {"n_hits", "hits": [(stem, run_id)], "signatures": set,
+    "explicit_trigger": bool, "trigger_artifacts": [stem]}}. See module docstring
+    for the (i)/(ii)/(iii) hit definition.
+    """
+    per_claim: dict[str, dict] = {}
+    if not autopsy_dir.is_dir():
+        return {}
+    for fp in sorted(autopsy_dir.glob("failure_autopsy_*.json")):
+        try:
+            data = json.loads(fp.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            continue
+        if str(data.get("status", "")).strip().lower() != "confirmed":
+            continue
+        for tgt in (data.get("targets") or []):
+            claim_ids = tgt.get("claim_ids")
+            # (i) CLAIM-keyed -- non-empty list only. Missing/empty -> GOV-DIAG-1.
+            if not isinstance(claim_ids, list) or not claim_ids:
+                continue
+            # (ii) no clean verdict.
+            if _norm_dir(tgt.get("recommended_evidence_direction")) not in NO_VERDICT_DIRECTIONS:
+                continue
+            # (iii) non-ceiling epistemic category (else GOV-CEIL-1 owns it).
+            epi = str(tgt.get("recommended_epistemic_category") or "").strip().lower()
+            if epi in _EPI_SUPPRESS_PROPOSAL:
+                continue
+            run_key = str(tgt.get("run_id") or tgt.get("queue_id") or fp.stem)
+            trig_claims = _trigger_claims(tgt)
+            sig = _signature(tgt)
+            for cid in claim_ids:
+                cid = str(cid).strip()
+                if not cid:
+                    continue
+                rec = per_claim.setdefault(cid, {
+                    "hits": set(), "signatures": set(),
+                    "explicit_trigger": False, "trigger_artifacts": set(),
+                })
+                rec["hits"].add((fp.stem, run_key))
+                rec["signatures"].add(sig)
+                if cid in trig_claims:
+                    rec["explicit_trigger"] = True
+                    rec["trigger_artifacts"].add(fp.stem)
+    return {
+        cid: {
+            "n_hits": len(rec["hits"]),
+            "hits": sorted(rec["hits"]),
+            "n_signatures": len(rec["signatures"]),
+            "explicit_trigger": rec["explicit_trigger"],
+            "trigger_artifacts": sorted(rec["trigger_artifacts"]),
+        }
+        for cid, rec in per_claim.items()
+    }
+
+
+def audit(recurrence_hits: dict[str, dict], claim_meta: dict[str, dict],
+          synthesized: set[str], n: int = GRAN_RECURRENCE_N) -> dict[str, list]:
+    """Partition flagged claims into P0 (dropped_handoff), P1 (unflagged), excluded.
+
+    A claim qualifies for surfacing when n_hits >= n OR an explicit trigger fired
+    (a single explicit trigger with a dropped handoff is actionable even at 1 hit).
+    Metabolized claims are moved to `excluded` with a reason.
+    """
+    p0, p1, excluded = [], [], []
+    for cid, rec in recurrence_hits.items():
+        qualifies = rec["n_hits"] >= n or rec["explicit_trigger"]
+        if not qualifies:
+            continue
+        meta = claim_meta.get(cid, {})
+        already_synth = cid in synthesized
+        reason = None
+        if meta.get("epistemic_category") in _EPI_SUPPRESS_PROPOSAL:
+            reason = f"epistemic_category={meta['epistemic_category']} (substrate/enrichment; GOV-CEIL-1 lane)"
+        elif meta.get("status") in _CLAIM_DEAD_STATUSES:
+            reason = f"claim status={meta['status']} (dead)"
+        elif meta.get("has_decomposition_note"):
+            reason = "already decomposed (decomposition_note present)"
+        elif already_synth:
+            reason = "already synthesized (claim_synthesis_*.md exists)"
+        record = {
+            "claim_id": cid,
+            "n_hits": rec["n_hits"],
+            "n_signatures": rec["n_signatures"],
+            "chain": [run for (_stem, run) in rec["hits"]],
+            "artifacts": [stem for (stem, _run) in rec["hits"]],
+            "explicit_trigger": rec["explicit_trigger"],
+            "trigger_artifacts": rec["trigger_artifacts"],
+        }
+        if reason:
+            excluded.append({**record, "excluded_reason": reason})
+            continue
+        # Not metabolized. P0 = an explicit trigger whose handoff was dropped
+        # (no proposal doc). P1 = unflagged recurrence.
+        if rec["explicit_trigger"] and not already_synth:
+            p0.append({**record, "tier": "dropped_handoff"})
+        else:
+            p1.append({**record, "tier": "unflagged_recurrence"})
+    p0.sort(key=lambda r: (-r["n_hits"], -r["n_signatures"], r["claim_id"]))
+    p1.sort(key=lambda r: (-r["n_signatures"], -r["n_hits"], r["claim_id"]))
+    return {"dropped_handoff": p0, "unflagged_recurrence": p1, "excluded": excluded}
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--autopsy-dir", type=Path, default=DEFAULT_AUTOPSY_DIR,
+                    help="dir of failure_autopsy_*.json + claim_synthesis_*.md")
+    ap.add_argument("--claims-yaml", type=Path, default=DEFAULT_CLAIMS_YAML,
+                    help="claims.yaml for the metabolized-exclusion signals")
+    ap.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+    ap.add_argument("--strict", action="store_true",
+                    help="exit 1 if any P0/P1 granularity-debt recurrence is flagged")
+    args = ap.parse_args()
+
+    recurrence_hits = count_recurrence_hits(args.autopsy_dir)
+    claim_meta = _load_claim_meta(args.claims_yaml)
+    synthesized = _synthesized_claims(args.autopsy_dir)
+    result = audit(recurrence_hits, claim_meta, synthesized, n=GRAN_RECURRENCE_N)
+    p0, p1, excluded = (result["dropped_handoff"],
+                        result["unflagged_recurrence"], result["excluded"])
+
+    if args.json:
+        print(json.dumps({
+            "gran_recurrence_n": GRAN_RECURRENCE_N,
+            "n_claims_with_hits": len(recurrence_hits),
+            "dropped_handoff": p0,
+            "unflagged_recurrence": p1,
+            "excluded_metabolized": excluded,
+        }, indent=2))
+    else:
+        print("Granularity-debt recurrence audit (GOV-GRAN-1): "
+              f"{len(recurrence_hits)} claim(s) carry no-verdict non-ceiling "
+              "claim-keyed autopsies")
+        print(f"  P0 dropped-handoff (trigger fired, NO proposal doc): {len(p0)}")
+        print(f"  P1 unflagged recurrence (>= {GRAN_RECURRENCE_N} hits, not metabolized): {len(p1)}")
+        print(f"  excluded (already metabolized): {len(excluded)}")
+        if p0:
+            print("  -- P0 DROPPED HANDOFF: an autopsy routed to /claim-synthesis but no")
+            print("     claim_synthesis_<claim>_*.md exists. Run /claim-synthesis on:")
+            for r in p0:
+                print(f"    [P0] {r['claim_id']} -- {r['n_hits']} hit(s), "
+                      f"{r['n_signatures']} distinct signature(s); "
+                      f"trigger in {', '.join(r['trigger_artifacts'])}")
+                print(f"        chain: {' -> '.join(r['chain'])}")
+        if p1:
+            print("  -- P1 UNFLAGGED RECURRENCE: claim circled by structurally-different")
+            print("     no-verdict failures no author flagged. Discriminate coarse-claim")
+            print("     (=> /claim-synthesis) vs coherent substrate-build campaign:")
+            for r in p1:
+                print(f"    [P1] {r['claim_id']} -- {r['n_hits']} hits, "
+                      f"{r['n_signatures']} distinct signature(s)")
+                print(f"        chain: {' -> '.join(r['chain'])}")
+        if not p0 and not p1:
+            print("  -- no actionable granularity-debt recurrence (healthy: the reactive"
+                  " autopsy trigger caught everything, or nothing is circling).")
+
+    if args.strict and (p0 or p1):
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
