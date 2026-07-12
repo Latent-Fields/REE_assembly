@@ -870,3 +870,5 @@ One line per hourly tick. ASCII only.
 2026-07-11T23:08:41Z auto-defer IGW-20260711-196 hash=975e36981c01 for 48h (reaped -> completed_resumable)
 2026-07-11T23:08:41Z GC keep igw-196-proposal-for-mech-053 (ledger IGW-20260711-196 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-07-11T23:08:27Z no eligible item (skipped 202): IGW-20260711-001:skill /governance not allowed; IGW-20260711-002:skill /governance not allowed; IGW-20260711-182:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
+2026-07-12T00:09:42Z SPAWN IGW-20260712-197 skill=/queue-experiment prio=40 uuid=bcd748b1-bef0-464f-a5f4-fb45579a9ce5 pid=36071 worktree=igw-197-proposal-for-mech-054
+2026-07-12T00:48:12Z auto-defer IGW-20260712-197 hash=3575634d0dfe for 48h (complete)

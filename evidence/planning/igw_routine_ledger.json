@@ -1745,6 +1745,30 @@
       "reaped_at": "2026-07-11T23:08:34Z",
       "outcome": "USEFUL_LANDED",
       "outcome_evidence": "proposal EXP-0242 -> blocked_substrate (triage landed)"
+    },
+    {
+      "igw_id": "IGW-20260712-197",
+      "stable_hash": "3575634d0dfe",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-054"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for MECH-054",
+      "worktree": ".claude/worktrees/igw-197-proposal-for-mech-054",
+      "branch": "claude/igw-197-proposal-for-mech-054",
+      "session_uuid": "bcd748b1-bef0-464f-a5f4-fb45579a9ce5",
+      "pid": 36071,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-197-proposal-for-mech-054 && claude --resume bcd748b1-bef0-464f-a5f4-fb45579a9ce5",
+      "task_claim_session_id": "igw-auto-igw-197-proposal-for-mech-054-20260712T001232Z",
+      "assigned_at": "2026-07-12T00:09:42Z",
+      "status": "completed",
+      "completed_at": "2026-07-12T00:48:12Z",
+      "completion_summary": "marked EVB-0203/MECH-054 blocked_substrate: no signed harm/benefit PE-precision split (one unsigned ARC-016 precision scalar; harm/benefit are value heads only)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "1 commit(s) on worktree branch"
     }
   ],
   "dispositions": [
@@ -2266,6 +2290,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-11T23:08:41Z",
       "re_eligible_after": "2026-07-13T23:08:34Z"
+    },
+    {
+      "stable_hash": "3575634d0dfe",
+      "igw_id_at_disposition": "IGW-20260712-197",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-054"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-054",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-12T00:48:12Z",
+      "re_eligible_after": "2026-07-14T00:48:12Z"
     }
   ]
 }
