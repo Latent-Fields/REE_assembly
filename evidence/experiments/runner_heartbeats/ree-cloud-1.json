@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-11T23:52:50Z",
+  "last_tick_utc": "2026-07-12T00:02:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-733b",
   "current_exq_started_utc": "2026-07-11T23:09:12.203449+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-456",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 46 / rebinding_pB_traversal",
-    "runs_done": 4,
+    "run_label": "Seed 47 / rebinding_pB_traversal",
+    "runs_done": 5,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 65,
-    "overall_pct": 66.7
+    "overall_pct": 85.9
   },
-  "seconds_elapsed": 2618,
-  "seconds_remaining": 1285,
+  "seconds_elapsed": 3224,
+  "seconds_remaining": 510,
   "recent_lines": [
     "Seed 42 Condition rebinding_pB_traversal",
     "(func-test P0=40 ep, P1=25 ep, steps=120, K_regions=16, traverse_period=8, align_margin=0.1, latency_margin=2.0, min_region_visits_floor=3, directed_tour_p0_coverage=True, dry_run=False)",
@@ -56,7 +56,17 @@
     "[measure] seed=45 ep 60/65 phase=P1 p1_steps=341 regions_covered=16/16",
     "[measure] seed=45 ep 65/65 phase=P1 p1_steps=423 regions_covered=16/16",
     "verdict: PASS",
-    "Seed 46 Condition rebinding_pB_traversal"
+    "Seed 46 Condition rebinding_pB_traversal",
+    "[measure] seed=46 ep 10/65 phase=P0 p1_steps=0 regions_covered=16/16",
+    "[measure] seed=46 ep 20/65 phase=P0 p1_steps=0 regions_covered=16/16",
+    "[measure] seed=46 ep 30/65 phase=P0 p1_steps=0 regions_covered=16/16",
+    "[measure] seed=46 ep 40/65 phase=P0 p1_steps=0 regions_covered=16/16",
+    "[measure] seed=46 ep 50/65 phase=P1 p1_steps=175 regions_covered=16/16",
+    "[measure] seed=46 ep 60/65 phase=P1 p1_steps=429 regions_covered=16/16",
+    "[measure] seed=46 ep 65/65 phase=P1 p1_steps=639 regions_covered=16/16",
+    "verdict: PASS",
+    "Seed 47 Condition rebinding_pB_traversal",
+    "[measure] seed=47 ep 10/65 phase=P0 p1_steps=0 regions_covered=16/16"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
