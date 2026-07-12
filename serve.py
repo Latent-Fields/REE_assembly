@@ -2977,11 +2977,23 @@ def _closure_shp_head(n: dict) -> dict:
     `collapsed` is False for any node predating the SHP-2 collapse (no `live:`)."""
     live = n.get("live") if isinstance(n.get("live"), dict) else None
     join = n.get("join") if isinstance(n.get("join"), dict) else None
+    # needs_review has two reason kinds (project_status_head.project_live +
+    # _umbrella_children_disagree_pass): "umbrella_children_disagree:<verdicts>" is
+    # a GENUINE head ambiguity (the map's prominent flag), while
+    # "newest_forward_predates_later_<kinds>_event(s)" is collinear with the brake
+    # (substrate_ceiling) + verdict channels the map already renders. Surface the
+    # raw reasons AND a derived `needs_review_ambiguous` gate so the map can promote
+    # only genuine ambiguity and soften the brake-collinear case.
+    review_reasons = list(live.get("needs_review_reasons") or []) if live else []
+    review_ambiguous = any(
+        str(r).startswith("umbrella_children_disagree") for r in review_reasons)
     out = {
         "collapsed": live is not None,
         "live": live,
         "join": join,
         "needs_review": bool(live.get("needs_review")) if live else False,
+        "needs_review_reasons": review_reasons,
+        "needs_review_ambiguous": review_ambiguous,
         "live_as_of": (live.get("as_of") if live else None),
         "live_from": (live.get("from") if live else None),
         "live_verdict": (live.get("verdict") if live else None),

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- CLOSURE_VERSION: 2026-07-11.4 -->
+<!-- CLOSURE_VERSION: 2026-07-12.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -790,7 +790,7 @@
   </span>
   <span class="gen" id="gen"></span>
   <span class="links">
-    <button type="button" id="shp-toggle" class="active" title="Status-history-plane overlay (SHP-2): amber dashed ring = the projected live: head is ambiguous (needs_review); collapsed cards fade as their head goes stale. Hover a card for the live head.">SHP head</button>
+    <button type="button" id="shp-toggle" class="active" title="Status-history-plane overlay (SHP-2): amber corner flag = GENUINE head ambiguity (an umbrella whose children disagree); collapsed cards fade as their head goes stale. The brake-collinear needs_review kind is shown softly in the tooltip/drill, not as a flag. Hover a card for the live head.">SHP head</button>
     <a href="/explorer.html">&larr; Explorer</a>
     <a href="/workset">Workset</a>
     <a href="/fishtank_viz.html">Fishtank &#x1F41F;</a>
@@ -872,9 +872,9 @@
     <span class="bdg" style="background:#f85149" title="CEIL -- unblocks a substrate_ceiling claim (needs substrate enrichment, not more experiments).">CEIL</span>
     <span style="color:var(--muted)">hover a node badge for detail</span>
   </span>
-  <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;" title="Status-history-plane overlay (toggle: SHP head). Corner flag = the projected live head needs review (ambiguous; in current data tracks brake=fired). Faded card = the head's as_of is going stale. Click a node to open the live head + event timeline + claims drill.">
+  <span class="lg" style="border-left:1px solid var(--border); padding-left:14px;" title="Status-history-plane overlay (toggle: SHP head). Corner flag = GENUINE head ambiguity only -- an umbrella whose children project conflicting verdicts (needs_review with an umbrella_children_disagree reason). The brake-collinear needs_review kind (a later event postdates the forward head) no longer flags here: brake + verdict already cover it, and it fired all-or-nothing. Faded card = the head's as_of is going stale. Click a node to open the live head + event timeline + claims drill (both show the review reason).">
     <span style="display:inline-block;width:0;height:0;border-top:9px solid #d29922;border-right:9px solid transparent;vertical-align:middle;"></span>
-    <span style="color:var(--muted)">SHP: flag = needs-review &middot; faded = stale head &middot; click = drill</span>
+    <span style="color:var(--muted)">SHP: flag = umbrella ambiguity &middot; faded = stale head &middot; click = drill</span>
   </span>
   <span class="lg" style="margin-left:auto">
     <button class="ready-toggle" id="ready-toggle" title="Highlight nodes that are open + unblocked + load-bearing, high, or medium severity. Click a node to highlight only its dependency graph; click background to clear.">ready-to-work</button>
@@ -1748,8 +1748,13 @@ function renderDrill(body, nid, d) {
   // --- status plane -------------------------------------------------------
   h += '<div class="dp-sec plane-status"><h5>live head &middot; status plane</h5>';
   if (node.collapsed && live) {
-    if (live.needs_review)
-      h += '<div class="dp-review">&#9888; needs review &mdash; projected head is ambiguous</div>';
+    if (live.needs_review) {
+      const dAmb = shpReviewIsAmbiguous(live.needs_review_reasons);
+      const dTxt = (live.needs_review_reasons || []).map(shpReviewReasonText).join('; ');
+      h += '<div class="dp-review"' + (dAmb ? '' : ' style="background:var(--border);color:var(--muted);font-weight:500"')
+        + '>&#9888; needs review &mdash; ' + (dAmb ? 'GENUINE ambiguity' : 'soft (brake-collinear)')
+        + (dTxt ? ': ' + escapeHtml(dTxt) : '') + '</div>';
+    }
     h += '<dl class="dp-dl">';
     if (live.verdict) h += '<dt>verdict</dt><dd>' + escapeHtml(String(live.verdict)) + '</dd>';
     if (live.next) h += '<dt>next</dt><dd>' + escapeHtml(String(live.next)) + '</dd>';
@@ -2056,29 +2061,33 @@ function renderGraph() {
 
     // status_history_plane overlay (SHP-2), toggled via #shp-toggle.
     //  - currency fade: dim the card as its projected head goes stale.
-    //  - needs_review ring: amber dashed halo where the projected head is
-    //    ambiguous (umbrella disagreement / newest-event != head).
-    // Primary ambient SHP channel = currency fade (per-node, independent of any
-    // other marker). needs_review is DEMOTED to a small corner flag (not a full
-    // halo): in the current projector data it fires ~all-or-nothing per plan and
-    // collinear with brake=fired, so it must not dominate. The full explanation
-    // lives in the hover tooltip + drill panel (with the verdict as its "why").
-    // A follow-on SHP item persists needs_review_reasons so the flag can later be
-    // gated to genuine umbrella-disagreement and re-promoted.
+    //  - needs_review flag: amber corner triangle where the projected head is
+    //    GENUINELY ambiguous -- an umbrella whose children project conflicting
+    //    verdicts (needs_review_ambiguous). This is now GATED on the reason kind
+    //    (persisted as live.needs_review_reasons, flattened by _closure_shp_head):
+    //    the brake-collinear "newest_forward_predates_later" reason no longer earns
+    //    a flag, because the brake badge + verdict channels already cover it, and
+    //    it fired ~all-or-nothing per plan (72/98 nodes) drowning the real signal.
+    // Primary ambient SHP channel = currency fade (per-node). The brake-collinear
+    // needs_review still surfaces as a soft note in the hover tooltip + drill panel
+    // (with its reason), just not as a map-surface marker.
     const shpOn = window.SHP_OVERLAY !== false;
     if (shpOn && n.collapsed) {
       g.setAttribute('opacity', shpCurrencyOpacity(n.live_as_of).toFixed(2));
     }
-    if (shpOn && n.needs_review) {
+    const reviewAmbiguous = n.needs_review_ambiguous || shpReviewIsAmbiguous(n.needs_review_reasons);
+    if (shpOn && n.needs_review && reviewAmbiguous) {
       const flag = el('path');
       flag.setAttribute('class', 'node-review-flag');
       flag.setAttribute('d', 'M0,0 L13,0 L0,13 Z');
       flag.setAttribute('fill', '#d29922');
       flag.setAttribute('fill-opacity', '0.85');
-      flag.__desc = 'NEEDS REVIEW (SHP) -- the projected live head is ambiguous, '
-        + 'so the shown "next" may be stale (a later event superseded the forward '
-        + 'routing). Hover the card / open it to read the live head. NOTE: in the '
-        + 'current data this closely tracks brake=fired; a follow-on will separate them.';
+      flag.__desc = 'NEEDS REVIEW (SHP) -- GENUINE head ambiguity: this umbrella\'s '
+        + 'children project conflicting verdicts, so its single live head cannot be '
+        + 'trusted without a glance. '
+        + (n.needs_review_reasons || []).map(shpReviewReasonText).join('; ')
+        + '. Open the card to reconcile the children. (The brake-collinear '
+        + 'needs_review kind no longer flags here -- brake + verdict already cover it.)';
       g.appendChild(flag);
     }
 
@@ -2568,6 +2577,26 @@ function shpCurrencyOpacity(asOf) {
   if (a <= 21) return 1;
   return Math.max(0.55, 1 - (a - 21) / 120);
 }
+// status_history_plane needs_review reasons (persisted by project_status_head as
+// live.needs_review_reasons, flattened onto the node by serve._closure_shp_head).
+// Two kinds: "umbrella_children_disagree:<verdicts>" is a GENUINE head ambiguity
+// (an umbrella whose children project conflicting verdicts) -- this earns the
+// prominent corner flag. "newest_forward_predates_later_<kinds>_event(s)" is
+// collinear with brake=fired + verdict, which the map already renders, so it
+// never earns the flag; it surfaces only as a soft note in the tooltip / drill.
+function shpReviewReasonText(r) {
+  const s = String(r || '');
+  if (s.indexOf('umbrella_children_disagree') === 0) {
+    const verdicts = s.split(':').slice(1).join(':');
+    return 'umbrella children disagree' + (verdicts ? ' (' + verdicts + ')' : '');
+  }
+  const m = s.match(/^newest_forward_predates_later_(.+)_event\(s\)$/);
+  if (m) return 'a later ' + m[1].replace(/\+/g, '/') + ' event postdates the forward head (collinear with brake=fired)';
+  return s;
+}
+function shpReviewIsAmbiguous(reasons) {
+  return (reasons || []).some(r => String(r).indexOf('umbrella_children_disagree') === 0);
+}
 
 function showTip(ev, n) {
   const tip = document.getElementById('tip');
@@ -2613,8 +2642,12 @@ function showTip(ev, n) {
   // from the depends_on/phase lineage above. Only present on collapsed nodes.
   if (n.collapsed) {
     html += '<div class="tip-shp"><h4>live head (SHP)</h4><dl>';
-    if (n.needs_review)
-      html += '<dt>&#9888; review</dt><dd>projected head is ambiguous &mdash; glance before trusting</dd>';
+    if (n.needs_review) {
+      const rvAmb = n.needs_review_ambiguous || shpReviewIsAmbiguous(n.needs_review_reasons);
+      const rvTxt = (n.needs_review_reasons || []).map(shpReviewReasonText).join('; ');
+      html += '<dt>&#9888; review</dt><dd>' + (rvAmb ? 'GENUINE ambiguity &mdash; ' : 'soft (brake-collinear) &mdash; ')
+        + escapeHtml(rvTxt || 'projected head is ambiguous') + '</dd>';
+    }
     if (n.live_verdict) html += '<dt>verdict</dt><dd>' + escapeHtml(String(n.live_verdict)) + '</dd>';
     if (n.live_next) html += '<dt>next</dt><dd>' + escapeHtml(String(n.live_next)) + '</dd>';
     if (n.brake) html += '<dt>brake</dt><dd>' + escapeHtml(String(n.brake)) + '</dd>';
