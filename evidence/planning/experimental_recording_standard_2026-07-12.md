@@ -148,8 +148,9 @@ This standard is the *input-quality* sibling of the governance epistemic system.
 - More runs are reusable (fewer forced re-derivations → the arm-reuse fingerprint gets more cache hits).
 - More readouts are available to become *load-bearing* evidence if the indexer's consumed-field set is later widened (§4 deferred).
 - The confidence-scoring layer (`build_experiment_indexes.py`) has richer, more auditable inputs.
+- **A *later* scientific question can sometimes be answered from data a prior run already recorded — no re-run.** This payoff is realized by the **consumer rule `GOV-REUSE-1`** (registered `governance_rule`, 2026-07-12): before a new experiment is queued, `/queue-experiment` **Step 2.4 (existing-evidence / reanalysis-first check)** asks whether the decisive readout is already recorded on a compatible `substrate_hash` (or derivable post-hoc from recorded raw inputs) and, if so, routes to a **recorded post-hoc reanalysis** citing the source `run_id`s instead of burning compute. `GOV-REUSE-1` is the forward `mystery (known-data)` router and the reason over-recording here is not waste; `substrate_hash` is the compatibility key that makes a reused readout trustworthy. (`/failure-autopsy`'s recording-gap pathway is the reverse case: a *past* run under-recorded.)
 
-It could be registered as a `governance_rule`-type claim (like GOV-DIAG-1 / GOV-FANOUT-1) if the standard proves out — deferred pending adoption evidence. See the sibling analysis [`epistemic_system_formalization_options_2026-07-12.md`](epistemic_system_formalization_options_2026-07-12.md) for how the downstream representation could be formalised.
+The recording standard *itself* could additionally be registered as a `governance_rule`-type claim (like GOV-DIAG-1 / GOV-FANOUT-1 / the now-registered GOV-REUSE-1) if it proves out — deferred pending adoption evidence. See the sibling analysis [`epistemic_system_formalization_options_2026-07-12.md`](epistemic_system_formalization_options_2026-07-12.md) for how the downstream representation could be formalised.
 
 ---
 

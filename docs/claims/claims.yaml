@@ -18283,6 +18283,22 @@
     reading: candidate/pending_substrate_reconfirmation
     as_of: 2026-07-12
     needs_review: false
+    evidence:
+      from: v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3
+      as_of: 2026-07-12
+      verdict: inconclusive/underpowered (DV-coupling near-miss; NOT weighted -- see evidence_quality_note)
+  evidence_quality_note: >
+    V3-EXQ-744 (DV-coupling half of the world/goal leg) adjudicated 2026-07-12 as
+    INCONCLUSIVE / underpowered -- NOT weighted against INV-088. All preconditions met
+    (PC_iv_moved/PC_dv_decodable/PC_target_var), non_degenerate, empty interpretation
+    (no self-route). The re-init z_world-reading evaluator quality gain is directionally
+    present and above the raw floor (mean_delta_r2=0.232 > 0.15) but fails the SD-scaled
+    effect gate (2*SD=0.336) and monotonicity (mean_spearman_rho=0.70 < 0.8) on cross-seed
+    variance: seeds 42 & 19 strongly couple (rho 0.9/1.0, benefit_rho 0.9/1.0), seed 7 is
+    the sole outlier (delta 0.099, rho 0.2, benefit_rho -0.4). A high-variance near-miss,
+    not a flat null -- the IV leg is already positive (740a world_feat_decode_r2
+    0.048->0.245, PC_iv_moved). Manifest evidence_direction reset weakens->inconclusive;
+    re-queue with more seeds (or a variance-reduced design) to resolve the DV coupling.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -18329,12 +18345,28 @@
     - ARC-003
     - ARC-019
     - ARC-027
-  pending_substrate_reconfirmation: true
-  status: candidate
+  pending_substrate_reconfirmation: false
+  status: provisional
   live_status:
-    reading: candidate/pending_substrate_reconfirmation
+    reading: provisional
     as_of: 2026-07-12
     needs_review: false
+    evidence:
+      from: v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3
+      as_of: 2026-07-12
+      verdict: supports (PASS positive control -- harm decodable from z_harm, mature zharm_decode_r2=0.124 >0.05 floor, rises with HarmEncoder maturation, crosses the 0.034-flat z_world reference)
+  evidence_quality_note: >
+    Promoted candidate->provisional 2026-07-12 on V3-EXQ-743 (PASS/supports). The
+    load-bearing positive control passed: realized harm is decodable-in-principle from
+    the dedicated z_harm stream E3 actually uses (mature zharm_decode_r2=0.124, C1 floor
+    0.05) and decodability RISES with HarmEncoder maturation (C2), dispositively crossing
+    the 0.034-flat z_world decode that mis-streamed V3-EXQ-740a produced. The CORE bounding
+    coupling (harm_eval_z_harm held-out quality bounded by z_harm differentiation, SEC_*)
+    is REPORTED-NOT-GATING in 743 (SEC_quality_gain/SEC_monotone false), and its calibrated
+    bound test (state-determined DV target + z_harm-scaled thresholds) is DEFERRED to a
+    follow-up because the realized post-random-action harm DV is under-determined (740a's
+    flagged confound). Provisional, not stable, until that calibrated bound test lands.
+    Re-derive brake honoured (z_harm observable, distinct claim -- not a z_world 740b).
   subject: development.maturational_sequence
   description: >
     Child (ii) of INV-064 (harm leg). E3's nociceptive harm-evaluation quality --
@@ -52750,6 +52782,67 @@
     and re-valued P-C to reserve -- the early answer a single sequential probe could
     not have produced.
   notes: "WS-14 deliverable of evidence/planning/ree_ai_design_critique_plan.md; constructive complement to GOV-CEIL-1 (WS-2) + GOV-DIAG-1 -- REUSES their detection (the re-derive brake count / check_substrate_ceiling_audit.py / check_diagnostic_chain_recurrence.py), adds only the fan-out RESPONSE. Wiring: /failure-autopsy skill (fanout_recommendation block on brake-fired discrimination), /queue-experiment skill Step 2.5b (portfolio-vs-sequential + declared-null + coverage/aliasing design-audit), /governance skill Step 6a-v (surface fanout-candidate lineages), graveyard doc antibody (sequential-retry-instead-of-fan-out). K defaults to the number of live hypotheses (min 2). PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application; its first application (737/738/739) was already run this session. Cross-ref GOV-CEIL-1, GOV-DIAG-1, the re-derive brake, and the perspective-diverse-verification principle."
+- id: GOV-REUSE-1
+  title: "Reanalysis-first / answer-from-recorded-data rule (consumer complement to the Experimental Recording Standard): before authoring a NEW experiment, check whether the decisive readout the experiment would produce is ALREADY RECORDED -- or derivable by post-hoc reprocessing -- in existing manifests on a COMPATIBLE substrate (a matching or lineage-equivalent top-level substrate_hash, or a provably substrate-invariant readout). If the answer is fully recoverable, do NOT queue a run: produce a RECORDED post-hoc reanalysis artifact that cites the source run_ids. If only partially recoverable, DOWNGRADE to a minimal targeted run for the missing readout alone. Author a fresh full experiment only when the answer genuinely cannot be recovered from recorded data. This is the forward mystery(known-data) router -- it converts the recording standard's over-recorded readouts into avoided compute. Warn-only routing standard; PROMOTES/DEMOTES NOTHING."
+  claim_type: governance_rule
+  subject: governance.epistemics.reanalysis_first
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-12
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-12
+  source_thought: evidence/planning/experimental_recording_standard_2026-07-12.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Epistemic-hygiene governance rule; the CONSUMER complement to the Experimental
+    Recording Standard (evidence/planning/experimental_recording_standard_2026-07-12.md).
+    The standard is the PRODUCER side ("record generously", 3b/3c) -- its whole payoff
+    is that a future question may already be answerable from data a prior run recorded.
+    GOV-REUSE-1 is the rule that ACTS on that payoff at authoring time, so the
+    over-recording is not wasted. It is the forward direction of the work-graph
+    mystery(known-data) token ("you already have the data; do not gather more --
+    reprocess / reframe"); /failure-autopsy's recording-gap pathway is the REVERSE
+    (a past run under-recorded), this is the forward (a new run may be unnecessary).
+    DEFINITIONS.
+    (a) DECISIVE READOUT = the specific metric/quantity the new experiment's PASS/FAIL
+    would route on (not the whole manifest -- the one number the question turns on).
+    (b) COMPATIBLE SUBSTRATE = a prior run whose top-level substrate_hash matches the
+    lineage the question is about, OR whose readout is provably substrate-invariant. A
+    readout from a stale / different substrate answers a DIFFERENT question. substrate_hash
+    is the compatibility KEY -- which is exactly why pre-standard manifests (0% carried a
+    substrate_hash) are mostly untrustworthy for reuse, and why the standard makes it
+    mandatory. Respect derived-vs-raw discipline: a readout can be RE-DERIVED from raw
+    inputs a prior run recorded (per-seed arrays, custom_information) even if the exact
+    aggregate was not itself stored.
+    (c) POST-HOC REANALYSIS = an analysis OVER existing manifests (NOT a queued
+    experiment) that computes or derives the answer and is ITSELF recorded as an
+    artifact citing the source run_ids, so governance can weight it -- the reanalysis
+    obeys the same recording standard it consumes.
+    TRIGGER = a new experiment is being authored AND its decisive readout is plausibly
+    present or derivable in recorded manifests on a compatible substrate.
+    NON-FALSIFYING-SAFE / does nothing on its own: it changes no claim and gates no
+    promotion -- it is a routing standard that changes WHETHER the next run happens.
+    EXEMPT: a question requiring a NEW manipulation / condition present in no recorded
+    run; a lineage whose substrate is genuinely in flux (no compatible substrate_hash
+    exists); a readout neither recorded nor derivable from recorded raw inputs.
+    RESPONSE / WIRING. (1) /queue-experiment: new Step 2.4 "Existing-evidence /
+    reanalysis-first check" BEFORE script authoring -- name the decisive readout, query
+    compatible-substrate manifests + the index (substrate_hash / label_balance are now
+    surfaced on index entries), route to a recorded reanalysis when recoverable, and
+    record the check outcome in the queue entry note (or the reanalysis artifact). Plus a
+    Step 3.5 necessity checklist item. (2) Experimental Recording Standard 5 (relationship
+    to the epistemic system) names GOV-REUSE-1 as the consumer that realizes "more
+    readouts available as evidence". (3) DISTINCT from the arm-reuse fingerprint: that
+    skips RE-TRAINING a bit-identical baseline CELL but the experiment still runs and its
+    criteria still execute; GOV-REUSE-1 can avoid the run ENTIRELY by answering from
+    recorded data.
+  notes: "Consumer complement to the Experimental Recording Standard (producer). Source: experimental_recording_standard_2026-07-12.md section 5. Wiring: /queue-experiment Step 2.4 (existing-evidence / reanalysis-first check) + Step 3.5 necessity item. Distinct from the arm-reuse fingerprint (cell-level compute reuse -- experiment still runs) and from the re-derive brake (refuses a same-claim same-ceiling RE-TEST; GOV-REUSE-1 asks whether ANY run is needed). Forward mystery(known-data) router; /failure-autopsy recording-gap is the reverse. PROMOTES/DEMOTES NOTHING on registration. Cross-ref the recording standard, GOV-CEIL-1 / the re-derive brake, and the work_graph_debt_vocabulary mystery(known-data) token."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment
