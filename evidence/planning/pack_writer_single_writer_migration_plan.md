@@ -349,16 +349,20 @@ merge gate `pytest tests/` = **1420 passed, 0 failed, 39 subtests**.
 
 | Unmatched class | ~count | Broadening needed | Risk |
 |---|---|---|---|
-| **edge-case-A `{TYPE}_{ts}.json`** early-era (ree-v3-local; `result`-var; `detect_manifest_var`→None) | 306 | RENAMES + relocates the flat file -> correct `run_id`/out_dir FIRST, or blanket `MANIFEST_WRITER_EXEMPT` — **NEEDS A TEAM DECISION** | high (rename+relocate) |
+| **edge-case-A `{TYPE}_{ts}.json`** early-era (ree-v3-local; `result`-var; `detect_manifest_var`→None) | 306 | **TEAM DECISION 2026-07-12: HYBRID** — classify each vs the queue + recent-run history; blanket `MANIFEST_WRITER_EXEMPT` the truly-archival (never re-run), run the `run_id`/out_dir CORRECTION pass ONLY on any still actively re-queued/run. | high (rename+relocate) |
 | non-canonical path (hardcoded literal filename `exq_051b_v3.json`; proven-var `{TYPE}_{ts}`; other) | 84 | per-script proof that the literal filename == `f"{run_id}.json"` | med |
 | no `out_dir` assignment above tail | 8 | dir var assigned out of the walked region | med |
 | pack-subdir / `runs/<id>/manifest.json` multi-manifest (`540f`), odd with-open, multi-write branchy (`354`) | ~4 | route the FLAT sibling per §D; multi-write needs both-branch rewrite | med |
 
-Recommended next-session order: the **306 edge-case-A** class is now the dominant remaining block
-and is **blocked on a team decision** (run_id/out_dir correction pass vs blanket
-`MANIFEST_WRITER_EXEMPT` for archival early-era manifests) — do not touch it mechanically until
-that is settled. The **84 non-canonical-path** are next-safest but need a per-script literal-filename
-== `f"{run_id}.json"` proof. Re-run the migrator `--report` after each broadening.
+Recommended next-session order: the **306 edge-case-A** class is now the dominant remaining block;
+the **2026-07-12 team decision is HYBRID** — first classify each script against
+`ree-v3/experiment_queue.json` + recent-run history (evidence manifests / `runner_status`), then
+blanket `MANIFEST_WRITER_EXEMPT` the truly-archival (never re-run — the always-core stamp only
+benefits NEW runs) and run the `run_id`/out_dir CORRECTION pass ONLY on any still actively
+re-queued/run (a correction must also confirm the early-era `run_id` ends `_v3`, else
+`write_flat_manifest` raises). The **84 non-canonical-path** (hardcoded literal filenames) are the
+next-safest mechanical batch but need a per-script proof that the literal filename ==
+`f"{run_id}.json"`. Re-run the migrator `--report` after each broadening.
 
 Shape families (survey; total 1,028; migrate top-down):
 
