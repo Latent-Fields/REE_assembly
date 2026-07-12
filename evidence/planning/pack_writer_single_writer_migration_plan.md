@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.1). Authored 2026-07-12.
+**Status:** IN PROGRESS (v0.2). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`).
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -108,6 +108,60 @@ Recurring hand-rolled fields with no home in `write_pack`'s typed signature (app
 
 **Process constraint (mandatory):** editing an existing `v3_exq_*.py` experiment script goes through the `/queue-experiment` skill (root CLAUDE.md "Mandatory skill path"). A **batch mechanical migration** (swap the `json.dump` tail for `write_flat_manifest`, no logic change) is the efficient path but needs explicit user sanction to run outside the skill, and must be staged on an `integration/<slug>` branch off `ree-v3` main with `pytest tests/` as the merge gate (root CLAUDE.md code-plane policy). Migrate **most-common-shape-first**; verify each batch produces a byte-compatible flat manifest (same keys, plus the always-core) and that `sync_v3_results` + the indexer still score it.
 
+### Progress — step 3, session 2026-07-12 (F pilot + batch 1 LANDED, ree-v3 main `d88c373`)
+
+**Key correction to the family framing below.** "A+B+I = 672, one backbone" is a
+*manifest-shape* clustering, NOT a single migratable *tail*. A precise per-script tail
+survey (via the migrator, `ree-v3/tools/migrate_manifest_writers.py`) found only **98**
+scripts across ALL families share the exact canonical tail that is safe to auto-migrate:
+```
+out_path = out_dir / f"{manifest['run_id']}.json"     [+ optional `_dry_` branch]
+with open(out_path, "w") as f: json.dump(manifest, f, indent=2[, sort_keys=True])
+```
+So the batch is **tail-shape-first, not family-first.** The other ~940 need per-class
+transforms (broadening taxonomy below).
+
+**Landed (ree-v3 main):**
+- **F pilot (4): 734/735/736/737** — commit `8f7ee9d`. Fully verified: dry-run smoke
+  (737+734 ran clean), `validate_experiments --strict --paths` (0 manifest-writer-backlog),
+  `validate_recording --strict` (always-core complete), `sync_v3_results.runpack_for_flat`
+  -> valid pack with status resolved, indexer unaffected (sync mapper drops the always-core
+  extras as designed; flat file keeps them for the overlay). `substrate_hash` now populated
+  (was 0% of flat manifests). Pilot surfaced two per-script gaps folded into the recipe:
+  (a) the sweep family carries config under `config_summary`, not `config` -> pass
+  `config=manifest.get('config') or manifest.get('config_summary')`; (b) `elapsed_seconds`
+  needs a `_run_started = datetime.now(timezone.utc)` timer at main entry + a
+  `(now - _run_started).total_seconds()` arg (only 737 had it).
+- **Batch 1 (98 canonical-tail): commit `0f153a4`** — applied by the migrator (validated
+  byte-equivalent against the pilot hand-edit; caught 2 real tool bugs first: replacement
+  indent used the json.dump BODY level -> IndentationError; import inserted inside a
+  multi-line `import (` -> SyntaxError). **SAFE BY CONSTRUCTION:** the generated call
+  references only names the original tail already used (`manifest`, `out_dir`, the dry cond)
+  plus the module-level `SEEDS` global. All 98 py_compile clean; `pytest tests/` 1414 passed
+  0 failed; non-conforming DROPS 155->59 vs origin/main baseline (fixes ~96 manifest-writer
+  non-conformances, 0 new; the 59 remaining are pre-existing orthogonal degeneracy/readiness
+  backlog, out of scope). `elapsed_seconds` NOT retrofitted in batch 1 (needs the per-script
+  timer) -> these gain 6/7 always-core incl. substrate_hash; **elapsed retrofit is a
+  follow-up** (see §7.4).
+- Migrator tool committed `d88c373` at `ree-v3/tools/migrate_manifest_writers.py` (the
+  resume primitive: `python3 tools/migrate_manifest_writers.py --report experiments/v3_*.py`).
+
+**Broadening taxonomy for the next batches (precise per-tail counts, 1038 scripts scanned):**
+
+| Unmatched class | ~count | Broadening needed | Risk |
+|---|---|---|---|
+| no `json.dump(manifest` — writes via `.write_text(json.dumps(<var>))`, var often `result` not `manifest` (early-era 001/002/003...) | 569 | accept `.write_text(json.dumps(X))` + non-`manifest` var, after verifying X is the manifest dict | med (var identity) |
+| non-canonical out_path `out_dir / f"{run_id}.json"` (run_id LOCAL var) | subset of 221 | accept local `run_id` (== `manifest['run_id']` by construction) | low — do FIRST |
+| non-canonical out_path `out_dir / f"{TYPE}_{ts}.json"` (early-era filename, edge-case A) | subset of 221 | correct `run_id`/out_dir first, or `MANIFEST_WRITER_EXEMPT` | high — RENAMES the flat file |
+| no canonical `with open(out_path)` above dump | 100 | different write idiom | med |
+| with-open path/handle name mismatch | 37 | generalize path/handle names | low |
+| `json.dump(manifest` not `indent=2` (uses `default=str`) | 7 | `write_flat_manifest` has NO `default=str` -> clean the manifest OR extend the writer | med |
+
+Recommended next-session order: the low-risk local-`run_id` sub-class first (broaden
+`PRIMARY_RE`), then the `.write_text(json.dumps(result))` early-era class (with the
+edge-case-A filename correction), then `default=str`. Re-run the migrator `--report` after
+each broadening to re-measure.
+
 Shape families (survey; total 1,028; migrate top-down):
 
 | # | Family | ~count | Distinguishing keys | Migration note | Status |
@@ -117,7 +171,7 @@ Shape families (survey; total 1,028; migrate top-down):
 | 3 | I. Other minimal | 131 | `status`/`outcome`/`metrics` only | shares backbone | pending |
 | — | **(A+B+I = 672, ~65% — one "flat metrics + evidence fields" backbone; do first)** | | | | |
 | 4 | D. arm_results / per_arm grid | 172 | `arm_results`, `per_arm`, `acceptance` | multi-arm hoist path | pending |
-| 5 | F. Recent interpretation+result | 57 | `interpretation`, `non_degenerate`, `env_kwargs`, `result` | the 724/73x lineage | pending |
+| 5 | F. Recent interpretation+result | 57 | `interpretation`, `non_degenerate`, `env_kwargs`, `result` | the 724/73x lineage | pilot 734/735/736/737 DONE (`8f7ee9d`); rest via canonical batch |
 | 6 | E. Multi-arm acceptance | 39 | `acceptance_checks`, `per_arm_summaries`, `thresholds` | pending |
 | 7 | C. schema_version + outcome (mid-era) | 76 | `schema_version`, `outcome`, `criteria_met`, `supersedes` | pending |
 | 8 | G. INV maturational grid | 4 | `by_onset`, `preconditions_met`, `claim_pass` | pending |
@@ -137,6 +191,7 @@ Shape families (survey; total 1,028; migrate top-down):
 1. **Unify the pack skeleton.** Make `sync_v3_results.build_runpack_docs` and `pack_writer.write_pack` delegate to ONE shared skeleton so they cannot drift. Update the golden byte-shape test (`coordinator/test_phase3_runpack_materialize.py`) in the same change.
 2. **Carry the always-core through sync into the pack** (`substrate_hash`/`config`/`seeds`/`machine`/`elapsed_seconds` + `non_degenerate`/`arm_results`/`label_balance`), so the indexer can eventually score on always-core inputs. This is the standard §4 "deliberately still open: making these fields load-bearing to confidence scoring" — needs user sign-off (changes promotion math).
 3. **Harden the lint to a `validate_queue`/commit gate** once the backlog is mostly cleared (mirrors the arm-fingerprint gate's trajectory).
+4. **`elapsed_seconds` retrofit for the batch.** Batch 1 (98 scripts) gains 6/7 always-core but NOT `elapsed_seconds` (needs a `_run_started` timer at `main()` entry, done for the F pilot but not mechanically safe to inject across the heterogeneous batch). Add a migrator pass that inserts `_run_started = datetime.now(timezone.utc)` after `args = parser.parse_args()` and threads `elapsed_seconds=(...).total_seconds()` ONLY where `datetime`/`timezone` are imported and the parse_args anchor is unambiguous; else leave the advisory gap. Until then, batch-migrated manifests show a lone `elapsed_seconds` always-core gap in `validate_recording` (advisory, not blocking; the hard `manifest_writer_lint` is unaffected).
 
 ---
 
