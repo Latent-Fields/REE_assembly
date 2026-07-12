@@ -12,7 +12,7 @@ status_claim: MECH-457
 
 **Claim ID:** MECH-457 (candidate / v3_pending)
 **Subject:** `f_dominance_conversion_ceiling.actor_critic_action_learning_substrate`
-**Status:** SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **Validation experiment NOT yet queued** — the A0–A3 ON/OFF ablation of §4 is still owed, and the co-train arm's PPO update path is an open design decision (see §7 "Open: co-train-arm update path"). substrate_queue `sd_actor_critic_action_learning`, priority 1, `node_class: complicated (buildable)`. MECH-457 stays `candidate / v3_pending` — the substrate existing PROMOTES NOTHING; promotion awaits the (not-yet-queued) ON/OFF validation.
+**Status:** SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **Validation experiment QUEUED + RUNNING: V3-EXQ-742** (`experiments/v3_exq_742_mech457_actor_critic_onoff.py`, ree-v3 `79fb5da`; priority 49, status `claimed` on origin/main as of 2026-07-12). The co-train update path is **resolved** — single-pass A2C (see §7 "Resolved: co-train-arm update path"). substrate_queue `sd_actor_critic_action_learning`, priority 1, `node_class: complicated (buildable)`. MECH-457 stays `candidate / v3_pending` — the substrate existing PROMOTES NOTHING; promotion awaits the V3-EXQ-742 result + a `/failure-autopsy` adjudication.
 **Registered:** 2026-07-10
 **Depends on:** SD-056 (e2 world-forward contrastive encoder, IMPLEMENTED 2026-05-29 `ree_core/predictors/e2_fast.py`), MECH-229 (VALENCE_WANTING, provisional/built)
 **Unblocks:** MECH-457, `f_dominance_conversion_ceiling`, ARC-063
@@ -322,7 +322,19 @@ via the ARC-030 phased protocol in P0 + a readiness gate before P1. This is why 
 foraging-reward teacher (grounded by construction) is the recommended default, and the
 teacher source is left OPEN for the validation build (see §5 handoff).
 
-**Open: co-train-arm update path (2026-07-12, blocks the validation build).** §7 says the
+**Resolved: co-train-arm update path (2026-07-12) → single-pass A2C, in V3-EXQ-742.** The
+fork below was resolved to **option (i) single-pass A2C** — chosen by the operator 2026-07-12
+and independently implemented by the queued validation `v3_exq_742_mech457_actor_critic_onoff.py`:
+all arms take one advantage-weighted actor + value(+entropy) A2C backward per episode over the
+in-order rollout graph (GAE advantages from detached values); co-train arms read live `z_world`
+and add `actor_critic_encoder_parameters()` (= `latent_stack`) to the optimizer, frozen arms
+read `z_world.detach()`. The grad-flow seam was verified directly (co-train → encoder grad
+present; frozen → encoder grad absent; both → actor-critic grad present). A0 is accepted as a
+valid frozen-encoder A2C baseline (it is not required to bit-reproduce 737's clipped-PPO
+number; the A0↔A1 / A2↔A3 contrasts are learner-controlled because every arm shares the update).
+The original fork analysis is retained below for the record.
+
+**Fork analysis (superseded by the resolution above).** §7 says the
 PPO update reuses `x734._ppo_update` / `_compute_gae`. That works verbatim for the **frozen**
 arms (A0/A2): `actor_critic_step` detaches `z_world`, so the stored state is a fixed vector
 and `_ppo_update`'s multi-epoch minibatch re-forward `policy(mb_states)` is well-defined —
@@ -350,9 +362,9 @@ re-encode. The co-train arm therefore needs an explicitly chosen update scheme, 
 
 These are not interchangeable — (i) and (ii) answer the cand-A frozen-vs-co-trained ablation
 with materially different encoders, and (ii) arguably tests a *different* claim than the one
-`actor_critic_step` encodes. The choice is a validation-design decision owed to the substrate
-author / operator before the A0–A3 experiment is written; it is NOT resolvable from the landed
-artifacts. Recorded here so the validation build starts from the fork, not a silent guess.
+`actor_critic_step` encodes. The choice was a validation-design decision owed to the substrate
+author / operator before the A0–A3 experiment was written; it was not resolvable from the landed
+artifacts. It was resolved to option (i) — see the "Resolved" note at the top of this block.
 
 ---
 
