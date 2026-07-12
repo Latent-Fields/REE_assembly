@@ -16,8 +16,18 @@ outside the target plan's frontmatter node lines. All other fields (title, statu
 severity, assembly_status, cross_plan_link, *_note_* annotations) are preserved
 byte-for-byte.
 
-Refuses to run unless every target node is already lifted (safety: never collapse
-an un-archived blob). PROMOTES/DEMOTES NOTHING.
+RE-STAMP path (SHP-2 status-plane refresh): a node that is ALREADY collapsed (a
+two-plane `live:` block, no `phase:`/`owner_exq:`/`awaiting:` blob) is re-projected
+in place when a new event has made its stored `live:` head stale vs the projection
+(the `status_plane_drift` the drift check flags). The stored `live:`+`join:` block
+is regenerated via the ONE projection path and replaced only when it differs, so an
+up-to-date node is a byte-identical no-op and the body below the frontmatter is
+never touched (the wrapper's gate 2). This is the sanctioned re-stamp for
+already-collapsed drifted nodes -- there is no blob to lift (the history was lifted
+at the original collapse), so the not-lifted REFUSE does not apply to it.
+
+Refuses to run unless every target node with a blob is already lifted (safety:
+never collapse an un-archived blob). PROMOTES/DEMOTES NOTHING.
 
 Usage (from REE_assembly/ root):
     /opt/local/bin/python3 scripts/shp2_collapse_plan.py \
@@ -75,6 +85,34 @@ def _live_join_lines(stored_live, bears_on, scope_claims):
     return lines
 
 
+def _live_join_span(node_lines):
+    """Locate the existing machine-written `live:`+`join:` block within an
+    already-collapsed node's lines. Returns (start, end) indices (end exclusive)
+    or None if the node carries no `live:` block.
+
+    The block is written by `_live_join_lines` with `live:`/`join:` keys at 6-space
+    indent and their children at 8-space indent, so the span is: the `      live:`
+    line, its 8-space children, then (optionally) the `      join:` line and its
+    8-space children. A shallower / differently-indented line ends the block, so a
+    hand-edited or absent block leaves the span unmatched (safe: no re-stamp)."""
+    ls = None
+    for idx, nl in enumerate(node_lines):
+        if nl == "      live:":
+            ls = idx
+            break
+    if ls is None:
+        return None
+    n = len(node_lines)
+    idx = ls + 1
+    while idx < n and node_lines[idx].startswith("        "):  # live: children
+        idx += 1
+    if idx < n and node_lines[idx] == "      join:":
+        idx += 1
+        while idx < n and node_lines[idx].startswith("        "):  # join: children
+            idx += 1
+    return ls, idx
+
+
 def main():
     ap = argparse.ArgumentParser(description="SHP-2 two-plane collapse (design sec 4a).")
     ap.add_argument("--plan", required=True, help="repo-relative *_plan.md to collapse")
@@ -109,6 +147,7 @@ def main():
     out = []
     i = 0
     collapsed = []
+    restamped = []
     skipped = []
     while i < len(lines):
         line = lines[i]
@@ -126,11 +165,38 @@ def main():
 
         has_blob = any(_BLOB_RE.match(nl) for nl in node_lines)
         pr = projections.get(nid)
-        if not has_blob or pr is None:
+        if pr is None:
             out.extend(node_lines)
-            skipped.append((nid, "no blob" if not has_blob else "no projection"))
+            skipped.append((nid, "no projection"))
             i = j
             continue
+
+        if not has_blob:
+            # Already-collapsed node: re-project (re-stamp) the two-plane block if
+            # its stored `live:` head has drifted from the projection. Pure
+            # status-plane refresh -- regenerate via the ONE projection path and
+            # replace ONLY when it differs, so an up-to-date node is a byte-identical
+            # no-op and the body below the frontmatter is untouched. No blob to lift
+            # (the history was lifted at the original collapse), so the not-lifted
+            # REFUSE does not apply here.
+            span = _live_join_span(node_lines)
+            if span is None:
+                out.extend(node_lines)
+                skipped.append((nid, "no blob"))
+                i = j
+                continue
+            ls, le = span
+            sl = P.stored_live_view(pr["live"])
+            new_block = _live_join_lines(sl, pr["join_bears_on"], plan_scope)
+            if node_lines[ls:le] == new_block:
+                out.extend(node_lines)
+                skipped.append((nid, "collapsed, current"))
+            else:
+                out.extend(node_lines[:ls] + new_block + node_lines[le:])
+                restamped.append(nid)
+            i = j
+            continue
+
         if nid not in lifted:
             raise SystemExit("REFUSE: node %s not lifted to snapshot log; run "
                              "shp2_backfill_snapshot.py first (razor sec 5)." % nid)
@@ -162,6 +228,8 @@ def main():
 
     print("plan: %s" % plan_id)
     print("collapsed nodes (%d): %s" % (len(collapsed), ", ".join(collapsed)))
+    print("re-stamped collapsed nodes (%d): %s"
+          % (len(restamped), ", ".join(restamped)))
     if skipped:
         print("skipped nodes: %s" % ", ".join("%s(%s)" % s for s in skipped))
     if args.dry_run:

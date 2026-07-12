@@ -11,6 +11,12 @@ failure). It deliberately operates on a SINGLE plan (the "do not batch blindly" 
 of the design doc, sec 8): to collapse several plans, call it once per plan and read
 each result -- it does not loop over plans.
 
+The collapse step also RE-STAMPS any already-collapsed (two-plane, no-blob) node
+whose stored `live:` has drifted from the projection, so a plan that is fully
+collapsed but has stale heads (a new autopsy / PASS / decision landed) is refreshed
+here and passes gate 4 rather than failing it. Re-stamp is a byte-identical no-op on
+up-to-date nodes.
+
 Gates (all must pass):
   1. frontmatter parses as YAML and still declares closure_plan.nodes
   2. body BELOW the frontmatter is byte-identical (collapse must touch ONLY frontmatter)
@@ -117,7 +123,8 @@ def main():
         print("FAIL: collapse exited %d (REFUSE = un-lifted node)\n%s" % (rc, out))
         return 1
     for line in out.strip().splitlines():
-        if line.startswith("collapsed nodes") or line.startswith("skipped"):
+        if (line.startswith("collapsed nodes") or line.startswith("re-stamped")
+                or line.startswith("skipped")):
             print("[collapse] %s" % line)
 
     if args.dry_run:

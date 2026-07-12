@@ -874,11 +874,13 @@ def main() -> int:
         "projection over the append-only event log. This section re-projects each "
         "and flags any whose stored head has gone stale vs the events (a new "
         "autopsy / PASS manifest / decision landed, or the reconcile / brake state "
-        "moved). It is warn-only: SHP-3 will re-project automatically in "
-        "`governance.sh`; until then, regenerate with "
-        "`scripts/shp2_collapse_plan.py --plan <plan>` (re-lift is idempotent) or "
-        "hand-refresh the `live:` block. Nodes with no `live:` block are not yet "
-        "collapsed and are not checked here."
+        "moved). It is warn-only. To re-stamp a flagged plan, run "
+        "`scripts/shp2_collapse_and_verify.py --plan <plan>` (the collapse step "
+        "re-projects already-collapsed drifted nodes in place, then re-runs this "
+        "check as gate 4), or `scripts/shp2_collapse_plan.py --plan <plan>` for the "
+        "re-stamp without the gates. Both regenerate `live:`+`join:` via the one "
+        "projection path and are byte-identical no-ops on up-to-date nodes. Nodes "
+        "with no `live:` block are not yet collapsed and are not checked here."
     )
     lines.append("")
     if status_note:
