@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_701a_inv050_mel_measurability_converged_p0
 
-Generated: `2026-07-12T10:01:29.922877Z`
+Generated: `2026-07-12T13:27:18.825485Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1065,6 +1065,14 @@
     "title": "Ethics-as-process: translate the ethics-perimeter intakes into REE's claim-governed loop as governance claims, roadmap metadata, experiment preflights, review-status updates, and release gates -- progressively binding (V3 tag-and-continue -> V4 welfare/continuity -> V5 social/refusal/external-review -> V6 security/release/legal).",
     "type": "governance_rule"
   },
+  "GOV-REUSE-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.reanalysis_first",
+    "title": "Reanalysis-first / answer-from-recorded-data rule (consumer complement to the Experimental Recording Standard): before authoring a NEW experiment, check whether the decisive readout the experiment would produce is ALREADY RECORDED -- or derivable by post-hoc reprocessing -- in existing manifests on a COMPATIBLE substrate (a matching or lineage-equivalent top-level substrate_hash, or a provably substrate-invariant readout). If the answer is fully recoverable, do NOT queue a run: produce a RECORDED post-hoc reanalysis artifact that cites the source run_ids. If only partially recoverable, DOWNGRADE to a minimal targeted run for the missing readout alone. Author a fresh full experiment only when the answer genuinely cannot be recovered from recorded data. This is the forward mystery(known-data) router -- it converts the recording standard's over-recorded readouts into avoided compute. Warn-only routing standard; PROMOTES/DEMOTES NOTHING.",
+    "type": "governance_rule"
+  },
   "GOV-SEC-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -2254,7 +2262,7 @@
     "what_would_answer": "A frozen-representation curriculum-order contrast (onset including a genuinely immature anchor ~0, differentiation-IV moving in the predicted direction) in which (a) world-feature decodability from frozen z_world rises monotonically with E1/E2 maturation -- ALREADY ESTABLISHED by V3-EXQ-740a (world_feat_decode_r2 0.048 -> 0.245, PC_iv_moved passed) -- AND (b) the held-out quality of a re-initialised z_world-reading E3 evaluator (fixed training budget on frozen z_world) improves monotonically with that rising decodability. The remaining test is the DV coupling (evaluator quality tracks z_world differentiation); the IV leg is done. Falsified if evaluator quality is flat or non-monotone across a validly-moving z_world-differentiation gradient.\n"
   },
   "INV-089": {
-    "assembly_state": "remaining",
+    "assembly_state": "mature",
     "emergent_from": [
       "ARC-003",
       "ARC-019",
@@ -2262,8 +2270,7 @@
     ],
     "epistemic_stance": "believed",
     "invariant_type": "emergent",
-    "pending_substrate_reconfirmation": true,
-    "status": "candidate",
+    "status": "provisional",
     "subject": "development.maturational_sequence",
     "title": "harm_evaluator_bounded_by_z_harm_differentiation",
     "type": "invariant",

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_676_mech423_readiness_readouts_nonvacuous
 
-Generated: `2026-07-12T10:01:29.922877Z`
+Generated: `2026-07-12T13:27:18.825485Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

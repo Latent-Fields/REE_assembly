@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_700_arc108_sec7_learned_gating_2x2
 
-Generated: `2026-07-12T10:01:29.922877Z`
+Generated: `2026-07-12T13:27:18.825485Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

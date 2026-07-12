@@ -1,17 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-07-12T13:01:56Z`  
-Last review: `2026-07-12T13:01:48Z`  
-Pending: **2** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-12T13:27:49Z`  
+Last review: `2026-07-12T13:26:43Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3` | v3_exq_743_inv089_harm_evaluator_z_harm_bounded | V3-EXQ-743 | supports |
-| FAIL | `v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3` | v3_exq_744_inv088_world_goal_evaluator_dv_coupling | V3-EXQ-744 | weakens |
+All experiments reviewed. Nothing pending.
 
 ---
 

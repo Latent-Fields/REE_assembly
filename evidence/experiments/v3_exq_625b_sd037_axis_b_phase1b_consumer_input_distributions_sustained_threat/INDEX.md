@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat
 
-Generated: `2026-07-12T10:01:29.922877Z`
+Generated: `2026-07-12T13:27:18.825485Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
