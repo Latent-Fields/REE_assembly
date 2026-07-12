@@ -82,6 +82,20 @@ echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
 # gate. Promote to blocking once the closure frontmatter is stable.
 "$PYTHON" scripts/check_closure_links.py || true
 
+echo "--- Step 3c-pre-heal: Self-heal status-plane drift (SHP-3; re-stamp in place, NO commit) ---"
+# status_history_plane:SHP-3. Closes the SHP-3 automation gap: check_closure_drift's
+# status-plane section only REPORTED drift (a collapsed node whose stored two-plane
+# `live:` head fell out of step with the re-projection). This re-stamps every
+# fully-collapsed drifted plan IN PLACE via shp2_collapse_plan.py (the ONE projection
+# path), so the Step 3c report below reflects the post-heal state. Runs BEFORE 3c on
+# purpose. Deliberately does NOT git-add/commit -- it leaves the edited *_plan.md in
+# the working tree for a human to review + commit pathspec-limited (the derive-only /
+# no-trunk-writer-auto-commit posture + CLAUDE.md dropped-file discipline). A drifted
+# plan that still has un-collapsed blob nodes is SKIPPED (collapse-migration stays a
+# human step) and surfaced with its manual command. Exits 0 always (a hint, never a
+# gate). PROMOTES/DEMOTES NOTHING; edits only derived live:/join: blocks.
+"$PYTHON" scripts/heal_status_plane_drift.py || true
+
 echo "--- Step 3c: Closure-plan drift check (warn-only) ---"
 "$PYTHON" scripts/check_closure_drift.py
 

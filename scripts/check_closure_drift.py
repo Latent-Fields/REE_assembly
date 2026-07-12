@@ -553,9 +553,13 @@ def status_plane_drift() -> tuple[list[dict], int, str | None]:
 
     Returns (drifted, n_checked, note). `drifted` lists nodes where the stored
     two-plane `live:` block no longer matches the projection from the append-only
-    event log -- i.e. the plan needs re-projection (SHP-3 will do this
-    automatically in governance.sh; for now it is a warn-only hint). `note` is a
-    skip reason when the projector is unavailable."""
+    event log -- i.e. the plan needs re-projection. governance.sh Step 3c-pre-heal
+    (scripts/heal_status_plane_drift.py) now re-stamps every fully-collapsed
+    drifted plan in place BEFORE this check runs, so in a governance cycle this
+    section reports the post-heal residual -- typically only mixed plans that still
+    carry un-collapsed blob nodes (collapse-migration stays a human step). Run
+    standalone it is still a pure warn-only hint. `note` is a skip reason when the
+    projector is unavailable."""
     if _psh is None:
         return [], 0, "project_status_head unavailable -- status-plane check skipped"
     planning_dir = REPO_ROOT / "evidence" / "planning"
@@ -874,13 +878,19 @@ def main() -> int:
         "projection over the append-only event log. This section re-projects each "
         "and flags any whose stored head has gone stale vs the events (a new "
         "autopsy / PASS manifest / decision landed, or the reconcile / brake state "
-        "moved). It is warn-only. To re-stamp a flagged plan, run "
-        "`scripts/shp2_collapse_and_verify.py --plan <plan>` (the collapse step "
-        "re-projects already-collapsed drifted nodes in place, then re-runs this "
-        "check as gate 4), or `scripts/shp2_collapse_plan.py --plan <plan>` for the "
-        "re-stamp without the gates. Both regenerate `live:`+`join:` via the one "
-        "projection path and are byte-identical no-ops on up-to-date nodes. Nodes "
-        "with no `live:` block are not yet collapsed and are not checked here."
+        "moved). In a governance cycle it is self-healing: Step 3c-pre-heal "
+        "(scripts/heal_status_plane_drift.py) re-stamps every fully-collapsed "
+        "drifted plan IN PLACE before this check runs (leaving the edited plan "
+        "file uncommitted for a human to review + commit pathspec-limited), so a "
+        "residual count here is normally a MIXED plan that still has un-collapsed "
+        "blob nodes -- re-stamp it manually with "
+        "`scripts/shp2_collapse_and_verify.py --plan <plan>` once collapsed (the "
+        "collapse step re-projects already-collapsed drifted nodes in place, then "
+        "re-runs this check as gate 4), or `scripts/shp2_collapse_plan.py --plan "
+        "<plan>` for the re-stamp without the gates. Both regenerate `live:`+`join:` "
+        "via the one projection path and are byte-identical no-ops on up-to-date "
+        "nodes. Nodes with no `live:` block are not yet collapsed and are not "
+        "checked here."
     )
     lines.append("")
     if status_note:
