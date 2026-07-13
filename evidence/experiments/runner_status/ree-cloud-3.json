@@ -1,30 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 747,
-  "runner_started_at": "2026-07-12T12:35:40.710004+00:00",
-  "last_updated": "2026-07-12T12:40:06.788498+00:00",
+  "runner_pid": 744,
+  "runner_started_at": "2026-07-13T06:20:52.953799+00:00",
+  "last_updated": "2026-07-13T06:30:44.577740+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-742",
+      "queue_id": "V3-EXQ-747",
       "backlog_id": "",
       "claim_id": "MECH-457",
-      "title": "MECH-457 first-class actor-critic action-learning ON/OFF validation (A0-A3 cotrain x SF-critic + bias_head control + local_view/oracle/random anchors; D0+D3; foraging teacher)",
+      "title": "MECH-457 GOV-FANOUT-1 leg A (H-rep): raw-5x5-view actor-critic",
       "description": "",
-      "estimated_minutes": 6400.0,
+      "estimated_minutes": 1600.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-744",
+      "queue_id": "V3-EXQ-748",
       "backlog_id": "",
-      "claim_id": "INV-088",
-      "title": "INV-088 world/goal-evaluator DV-coupling: held-out quality of a re-init z_world-reading E3 evaluator (harm_eval SD-003 + benefit_eval) tracks rising z_world differentiation (frozen-rep curriculum-order; onset {0,1,4,12,30}; extends 740a)",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg B (H-explore): z_world dense-teacher actor-critic",
       "description": "",
-      "estimated_minutes": 60.0,
-      "status": "claimed",
+      "estimated_minutes": 2000.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -1982,18 +1982,18 @@
       "actual_secs": 2315.5
     },
     {
-      "queue_id": "V3-EXQ-743",
+      "queue_id": "V3-EXQ-749",
       "backlog_id": "",
-      "claim_id": "INV-089",
-      "title": "INV-089 harm-evaluator z_harm positive control: realized harm decodes-in-principle from the frozen z_harm stream E3 actually uses (rising with HarmEncoder maturation) -- re-streamed successor to V3-EXQ-740a's mis-streamed harm leg (frozen-rep curriculum-order; onset {0,1,4,12,30})",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg C (conjunction): raw-view dense-teacher actor-critic",
       "description": "",
       "result": "PASS",
-      "result_summary": "C1 harm_decodable_from_zharm: True (mature_zharm_decode_r2=0.124 vs floor 0.05 vs 740a z_world 0.034; crosses_zworld=True) | OUTCOME: PASS (direction=supports) | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-743 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-743.json",
-      "started_at": "2026-07-12T12:39:47.449722+00:00",
-      "completed_at": "2026-07-12T12:40:06.787316+00:00",
-      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_743_inv089_harm_evaluator_z_harm_bounded/v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3.json",
+      "result_summary": "verdict: PASS (arm=ac_rawview_bc seed=44 forage/ep=18.9) | outcome: PASS label=conjunction_clears_need_adequate_input_and_dense_teacher readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-749 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-749.json",
+      "started_at": "2026-07-13T06:20:53.172265+00:00",
+      "completed_at": "2026-07-13T06:30:44.576767+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_749_mech457_hrep_x_hexplore_rawview_dense_actor_critic_20260713T063043Z_v3.json",
       "completed_by": "ree-cloud-3",
-      "actual_secs": 19.3
+      "actual_secs": 590.2
     }
   ]
 }
