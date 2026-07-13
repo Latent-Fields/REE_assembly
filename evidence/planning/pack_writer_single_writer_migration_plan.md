@@ -750,6 +750,52 @@ Shape families (survey; total 1,028; migrate top-down):
 - **ERROR-only onboarding smokes** (`v3_onboard_smoke_*`) write a `{status,error,traceback,run_id,...}` crash shape — mark `MANIFEST_WRITER_EXEMPT`.
 - **`_lib/rebinding_functional_harness.py`** is an informal convergence point (recent F-family routes evidence-direction through `H.evidence_direction`); fold it onto the chokepoint too.
 
+### Progress — step 3 `no json.dump(manifest` tail: independent all-refuse confirmation, session 2026-07-13 (`brave-ishizaka-fa60b4`; NO code change, doc-only)
+
+Independent re-verification of the **18-script `no json.dump(manifest` residual** left after
+the RUNID_only var-identity batch routed 12 (`31eb700`). This session was tasked to route the
+byte-safe ones and REFUSE (documented) the rest; **the entire residual is genuinely un-routable
+— 0 routed, 18 refused** — confirming the RUNID_only taxonomy table above from origin source, with
+one sharpened finding. **Disjoint by construction** from the concurrent sessions carving up this
+same tail: `charming-goldberg-195eca` (the 8 no-status → archival `MANIFEST_WRITER_EXEMPT`) and
+`vigorous-cohen-e338ad` (241a/241b/247 `no canonical with open`). This session touched **only the
+8 no-status's siblings** — the **2 non-canonical-dir + 8 emit-only** — and made **no ree-v3 change**
+(exempt-insertion is those sessions' scope; the mandatory worktree/integration/pytest gates are
+vacuous with 0 scripts routed).
+
+Per-script proof (AST, from origin source) of why each refuses — all three failure modes hit
+`write_flat_manifest`'s own raise-guards, so routing would BREAK the run, not rename a file:
+
+- **8 no resolvable status** (`028`/`212`/`255`/`256`/`407`/`470`/`470a`/`479`) — the written var
+  (`run_pack`/`result`/`output`/`summary`) carries `final_verdict` / `pass` / `verdict` / `passed`
+  but NONE of `status`|`outcome`|`overall_outcome`, so `write_flat_manifest` raises at its
+  `_resolve_flat_status(...) is None` guard. **Owned by `charming-goldberg`** (archival-exempt
+  pass) — confirmed here, not modified.
+- **2 non-canonical dir + no-run_id** (`683`/`686`) — SHARPER than the table's "non-canonical dir":
+  both write `result` (a `run_experiment()` return) to a single hardcoded relative f-string
+  `f"../REE_assembly/evidence/experiments/{run_id}.json"` (no `<dir>/<fn>` split → the migrator's
+  path walk-up refuses) AND, independently, **`result` carries no `run_id` key at all** (verified:
+  zero `"run_id"` literals in either file; `run_id` exists only as a local var consumed by the path
+  f-string). Both carry `architecture_epoch`+`outcome`, so they are *almost* flat manifests, but the
+  missing `run_id` trips `write_flat_manifest`'s "requires a non-empty string 'run_id'" guard on top
+  of the dir issue. Routing is therefore a **correct-and-route** (inject `result["run_id"] = run_id`
+  + split the dir), NOT a byte-safe mechanical migration — REFUSED here, left as a follow-up.
+- **8 emit-only / harness** (`187`/`445d`/`449c`/`455a`/`476`/`599`/`600`/`669`) — no raw
+  flat-manifest `json.dump` exists to route (already "not lint-flagged — no action needed" in the
+  table). Sub-classified for the resume record: `187` is a 49-line STUB (`sys.exit(1)`);
+  `445d`/`449c`/`455a`/`476` `raise NotImplementedError` (substrate-blocked, "do not run until
+  SD-037 lands"); `599`/`600` call `experiment_protocol.emit_outcome(...)` (which writes only the
+  runner sentinel `<signal_dir>/<queue_id>.json`) with NO `manifest_path` and no evidence write;
+  `669` builds a flat `manifest` dict but **never persists it** — it passes it (malformed, dict as
+  the first positional `outcome`) to `emit_outcome`, and its `run_id` lacks `_v3`. All correctly
+  refused; the pure stubs (`187`/`445d`/`449c`/`455a`/`476`) + emit-only (`599`/`600`) are
+  `MANIFEST_WRITER_EXEMPT`-eligible if a future pass wants to clear them from the unmatched count;
+  `669`'s malformed emit_outcome + non-`_v3` run_id is a pre-existing script bug (out of scope).
+
+**Net: the `no json.dump(manifest` tail is exhausted** — 12 routed (`31eb700`) + 18 refused (8 no-status
+[charming-goldberg exempt], 2 non-canonical-dir+no-run_id [683/686, follow-up], 8 emit-only). No
+migrator or script change in this session.
+
 ---
 
 ## 7. Follow-ups (deferred; sequence after the top-3 families migrate)
