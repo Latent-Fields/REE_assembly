@@ -1,48 +1,51 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-13T18:57:01Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-742-m",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-744",
-      "result": "FAIL",
-      "completed_at": "2026-07-12T12:51:38.063096+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-744a",
-      "result": "FAIL",
-      "completed_at": "2026-07-12T14:40:28.445784+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-745",
-      "result": "FAIL",
-      "completed_at": "2026-07-12T16:25:19.520859+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-746a",
-      "result": "FAIL",
-      "completed_at": "2026-07-12T17:00:11.945579+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-747",
-      "result": "FAIL",
-      "completed_at": "2026-07-13T06:22:29.878826+00:00"
-    }
+  "last_tick_utc": "2026-07-13T20:03:07Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-751",
+  "current_exq_started_utc": "2026-07-13T19:39:15.839355+00:00",
+  "current_title": "MECH-457 GOV-FANOUT-1 leg D (H-optim): stronger unsupervised explorer (RND + ICM) vs sparse z_world actor-critic",
+  "current_claim_id": "MECH-457",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / D3_hazard_free",
+    "runs_done": 9,
+    "runs_total": 18,
+    "episodes_done": 50,
+    "episodes_total": 1000,
+    "overall_pct": 50.3
+  },
+  "seconds_elapsed": 1432,
+  "seconds_remaining": 31,
+  "recent_lines": [
+    "MECH-457 GOV-FANOUT-1 leg D (H-optim: stronger unsupervised explorer) diagnostic (6 arms x 1 rung [D3_hazard_free] x 3 seeds; P0=200, RL=1000, eval=20, steps=200)",
+    "Seed 42 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=42 forage/ep=45.75)",
+    "Seed 43 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=43 forage/ep=49.7)",
+    "Seed 44 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=44 forage/ep=48.7)",
+    "Seed 42 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=42 forage/ep=57.0)",
+    "Seed 43 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=43 forage/ep=57.3)",
+    "Seed 44 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=44 forage/ep=57.3)",
+    "Seed 42 Condition D3_hazard_free:random_walk",
+    "verdict: PASS (arm=random_walk seed=42 forage/ep=1.05)",
+    "Seed 43 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk seed=43 forage/ep=0.9)",
+    "Seed 44 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk seed=44 forage/ep=0.85)",
+    "Seed 42 Condition D3_hazard_free:ac_zworld_sparse",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 50/200"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 2069716,
-  "runner_version": "r3831 7cb21eb 2026-07-13 (running r3755 edb42a3)",
+  "runner_version": "r3832 987b84d 2026-07-13 (running r3755 edb42a3)",
   "gpu": {
     "available": false
   },
