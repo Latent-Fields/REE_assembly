@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-13T22:28:42Z",
+  "last_tick_utc": "2026-07-13T22:43:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-750",
   "current_exq_started_utc": "2026-07-13T22:25:37.456425+00:00",
@@ -12,11 +12,11 @@
     "run_label": "Seed 42 / D3_hazard_free",
     "runs_done": 9,
     "runs_total": 21,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 1000,
-    "overall_pct": 42.9
+    "overall_pct": 43.1
   },
-  "seconds_elapsed": 185,
+  "seconds_elapsed": 1092,
   "seconds_remaining": 87,
   "recent_lines": [
     "MECH-457/INV-088 single-step strategy-diversity readout on the 2x2 factorial (7 arms x 1 rung [D3_hazard_free] x 3 seeds; p0=200, RL=1000, eval=20, steps=200)",
@@ -38,7 +38,8 @@
     "verdict: FAIL (arm=random_walk seed=43 forage/ep=0.9 H_greedy=2.320096 eff_actions=4.993654)",
     "Seed 44 Condition D3_hazard_free:random_walk",
     "verdict: FAIL (arm=random_walk seed=44 forage/ep=0.85 H_greedy=2.317903 eff_actions=4.986068)",
-    "Seed 42 Condition D3_hazard_free:ac_zworld_sparse_rl"
+    "Seed 42 Condition D3_hazard_free:ac_zworld_sparse_rl",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 50/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
