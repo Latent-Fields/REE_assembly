@@ -922,3 +922,4 @@ One line per hourly tick. ASCII only.
 2026-07-13T13:45:31Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-13T15:46:12Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-13T16:46:47Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-13T17:47:12Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
