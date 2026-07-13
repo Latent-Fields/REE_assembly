@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-12T13:26:43Z",
+  "last_review_utc": "2026-07-13T05:54:21Z",
   "discussed_experiment_dirs": [
     "v3_exq_047l_mech095_agency_routing_sd047",
     "v3_exq_732a_policy_learning_discriminator",
@@ -827,7 +827,12 @@
     "v3_exq_733c_rebinding_pB_confirmatory_independent_seeds",
     "v3_exq_740a_inv064_maturational_sequence_e3_bounded",
     "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
-    "v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3"
+    "v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3",
+    "v3_exq_742_mech457_actor_critic_onoff",
+    "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling",
+    "v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound",
+    "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2",
+    "v3_exq_745_rebinding_ecological_patchflip"
   ],
   "reviewed_run_ids": [
     "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
@@ -3331,7 +3336,12 @@
     "v3_exq_733c_rebinding_pB_confirmatory_independent_seeds_20260712T121111Z_v3",
     "v3_exq_740a_inv064_maturational_sequence_e3_bounded_20260711T233512Z_v3",
     "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
-    "v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3"
+    "v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3",
+    "v3_exq_742_mech457_actor_critic_onoff_20260713T032215Z_v3",
+    "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3",
+    "v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound_20260712T142637Z_v3",
+    "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3",
+    "v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5164,6 +5174,18 @@
         "v3_exq_740a_inv064_maturational_sequence_e3_bounded_20260711T233512Z_v3"
       ],
       "note": "Focused /governance review-tracker update (frosty-rubin-ee5b9f, user-interactive) of the 2 runs landed after the 2026-07-12T09:48Z pending_review regen. (1) V3-EXQ-733c (PASS/supports MECH-456, rebinding-under-perturbation): CONFIRMATORY independent-seed [101-106] retest of the V3-EXQ-733b P-B directed-traversal PASS (bit-identical harness/criteria, ONLY the seed-set changes vs 733b's [42-47]). Clean 2nd PASS -- DV1 6/6 (tracks true competitor above shuffle, margins 0.15-0.32), DV2 6/6 (graded re-acq-latency advantage ON vs frozen, 6.0-12.3 steps), binder converged 6/6, overtakes 166-821/seed. VERDICT: CONSOLIDATE provisional -- NO status change. Removes the single-run/seed-luck caveat the 733b note flagged (12/12 across two disjoint seed-sets) = strengthens WITHIN the provisional band, but diversifies only the SEED half of the 733b bar ('independent design / seed-set') -- no design/test-bed variation (both PASSes rest on the single teleport-based directed-traversal harness). Promotion to active awaits an independent DESIGN / test-bed or an ecological (non-teleport) behavioural consequence. claims.yaml MECH-456 live_status + evidence_quality_note updated; claims.json rebuilt (no diff -- projection carries no live_status/eqn). PROMOTES/DEMOTES NOTHING beyond consolidation. (2) V3-EXQ-740a (FAIL, INV-064): bookkeeping closure ONLY -- scientific adjudication already DONE (failure_autopsy_V3-EXQ-740a_2026-07-12 consumed via /claim-synthesis, REE_assembly master c53ba38bc6, decomposing INV-064 into INV-088 z_world world/goal-eval bound + INV-089 z_harm harm-eval bound; successors V3-EXQ-744 (INV-088, running) and V3-EXQ-743 (INV-089, queued) in flight). SUPERSEDED-BY-DECOMPOSITION; marked reviewed to clear pending_review. NOT re-autopsied, NOT re-queued. INV-064 stays candidate/pending_substrate_reconfirmation (claims.yaml already reconciled by the claim-synthesis session -- decomposition_note present). Did NOT touch running V3-EXQ-742."
+    },
+    {
+      "utc": "2026-07-13T05:54:21Z",
+      "session": "vigilant-blackburn-5258dd (/governance apply-only)",
+      "reviewed": [
+        "v3_exq_742_mech457_actor_critic_onoff_20260713T032215Z_v3",
+        "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3",
+        "v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound_20260712T142637Z_v3",
+        "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3",
+        "v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3"
+      ],
+      "note": "Governance APPLY pass (vigilant-blackburn-5258dd, user-directed, non-interactive) of the 5 confirmed failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13 verdicts (adjudicated at the autopsy interactive gate 2026-07-13). (1) V3-EXQ-742/MECH-457 WEAKENS: RPE actor-critic ON/OFF validation -- all 4 arms forage 0.20-0.27/ep at D3, below random_walk 0.93 and 0.5% of local_view_greedy 48.05, readiness gates all met; sufficiency reading refuted, REFUTES the 734-737 'single missing mechanism=MECH-457' conclusion, necessity NOT falsified; deficit UPSTREAM of action-learning; routed GOV-FANOUT-1 (H-rep vs H-explore); MECH-457 stays candidate/v3_pending. (2) V3-EXQ-744a/INV-088 WEAKENS (FIRST weighted entry; 744 was inconclusive/unweighted): 8-seed re-estimate mean_delta_r2=0.130 fails 0.15 floor + 2xSD gate with preconditions met, C2 rho=0.69; real-but-weak high-variance coupling below the effect-size floor; INV-088 stays candidate. (3) V3-EXQ-746/INV-089 SUPERSEDED: starved (non_degenerate:false, IV inert/DV undecodable/numerical blow-up), manifest evidence_direction=superseded -> indexer scoring-excluded (confirmed scoring_excluded=superseded); superseded by 746a; index rebuilt. (4) V3-EXQ-746a/INV-089 WEAKENS: first met-precondition dense-target bound test -- harm_eval_z_harm quality does NOT track z_harm differentiation (C1 rho=-0.53, C2 couple rho=-0.08, mean_dv_delta=-34.5). narrow_supports re-weigh: sole remaining 743 support is a single-pathway decodability positive control; re-weighed with BOTH in view -> INV-089 STAYS provisional (no advance toward stable until a bound-coupling PASS). (5) V3-EXQ-745/MECH-456 NON_CONTRIBUTORY (not weighted; couple-inert substrate, readiness gate unmet; V3-EXQ-478 precedent -> substrate_ceiling not a rebinding refutation); MECH-456 stays provisional. Re-derive brake did NOT fire: user raised RE_DERIVE_BRAKE_THRESHOLD for MECH-456 to 3 (733/733a + 745 = 3 substrate-limited autopsies on different axes); count 3/3, 4th fires; threshold=3 recorded in MECH-456 claims.yaml note + the 745 autopsy re_derive_brake carrier (standing scans currently don't false-fire: GOV-GRAN-1 excludes ceiling-category, GOV-CEIL-1 excludes substrate_conditional MECH-456). PROMOTES nothing; DEMOTES nothing. claims.yaml (MECH-457/INV-088/INV-089/MECH-456) + 746 manifest + claims.json + experiment index all rebuilt."
     }
   ]
 }

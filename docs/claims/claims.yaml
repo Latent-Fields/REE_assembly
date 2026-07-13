@@ -18281,12 +18281,12 @@
   status: candidate
   live_status:
     reading: candidate/pending_substrate_reconfirmation
-    as_of: 2026-07-12
+    as_of: 2026-07-13
     needs_review: false
     evidence:
-      from: v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3
-      as_of: 2026-07-12
-      verdict: inconclusive/underpowered (DV-coupling near-miss; NOT weighted -- see evidence_quality_note)
+      from: v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3
+      as_of: 2026-07-13
+      verdict: weakens (8-seed re-estimate; mean_delta_r2=0.130 fails the 0.15 floor + 2xSD gate with preconditions met, C2 monotone rho=0.69; real-but-weak high-variance coupling -- first WEIGHTED entry for INV-088; stays candidate)
   evidence_quality_note: >
     V3-EXQ-744 (DV-coupling half of the world/goal leg) adjudicated 2026-07-12 as
     INCONCLUSIVE / underpowered -- NOT weighted against INV-088. All preconditions met
@@ -18299,6 +18299,15 @@
     not a flat null -- the IV leg is already positive (740a world_feat_decode_r2
     0.048->0.245, PC_iv_moved). Manifest evidence_direction reset weakens->inconclusive;
     re-queue with more seeds (or a variance-reduced design) to resolve the DV coupling.
+
+    V3-EXQ-744a (2026-07-12, 8-seed re-estimate of the 744 inconclusive, EXTENDS 744;
+    consumed via /governance 2026-07-13 from
+    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13) WEAKENS the strong
+    bound reading: mean_delta_r2=0.130 fails the 0.15 floor and the 2xSD effect-size gate
+    with preconditions met; monotone C2 fails (rho=0.69). The world/goal-evaluator vs
+    z_world-differentiation coupling is real-but-weak and high-variance, not a clean
+    threshold effect. FIRST WEIGHTED entry for INV-088 (744 was inconclusive / not
+    weighted); stays candidate.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -18349,12 +18358,12 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-12
+    as_of: 2026-07-13
     needs_review: false
     evidence:
-      from: v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3
-      as_of: 2026-07-12
-      verdict: supports (PASS positive control -- harm decodable from z_harm, mature zharm_decode_r2=0.124 >0.05 floor, rises with HarmEncoder maturation, crosses the 0.034-flat z_world reference)
+      from: v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3
+      as_of: 2026-07-13
+      verdict: weakens (first met-precondition bound test -- harm_eval_z_harm quality does NOT track z_harm differentiation on a dense decodable target, C1 rho=-0.53/C2 couple rho=-0.08/mean_dv_delta=-34.5; STAYS provisional, re-weighed with the sole remaining 743 single-pathway positive control in view; 746 superseded/scoring-excluded)
   evidence_quality_note: >
     Promoted candidate->provisional 2026-07-12 on V3-EXQ-743 (PASS/supports). The
     load-bearing positive control passed: realized harm is decodable-in-principle from
@@ -18367,6 +18376,30 @@
     follow-up because the realized post-random-action harm DV is under-determined (740a's
     flagged confound). Provisional, not stable, until that calibrated bound test lands.
     Re-derive brake honoured (z_harm observable, distinct claim -- not a z_world 740b).
+
+    2026-07-13 (calibrated bound test landed; consumed via /governance from
+    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13). Two runs:
+    V3-EXQ-746 STARVED (non_degenerate:false) -- z_harm gradient did not move
+    (IV delta -0.184), state target not decodable-in-principle (decode r2 -0.196),
+    DV blew up numerically (seed-3 -6.3e7) on a sparse single-cell target with an
+    un-clipped DV head; NOT a falsification, manifest evidence_direction set
+    superseded (indexer scoring-excluded, no weight). V3-EXQ-746a (corrected
+    calibrated bound: denser target + raw-std precondition + gradient-clipped DV
+    head; SUPERSEDES 746, EXTENDS 743) WEAKENS: on the met-precondition dense target
+    the harm_eval_z_harm quality bound does not rise monotonically (C1 rho=-0.53) or
+    track z_harm differentiation (C2 couple rho=-0.08); mean_dv_delta=-34.5. This is
+    the FIRST met-precondition bound-test evidence against the strict-bound reading.
+    GOVERNANCE WEIGH-IN (narrow_supports flag): INV-089 was promoted candidate->
+    provisional 2026-07-12 on 743's POSITIVE CONTROL alone (harm decodable-in-principle
+    from z_harm, decodability rises with HarmEncoder maturation). 743 is a
+    SINGLE-PATHWAY positive control (decodability existence), NOT the bound coupling;
+    the bound coupling now has its first met-precondition test and it WEAKENS. Re-weighed
+    with BOTH in view (not just the weakens removed): INV-089 STAYS provisional -- the
+    743 decodability control is undisturbed, but the 'strictly bounded by z_harm
+    differentiation' reading is now actively pressured, and provisional must NOT advance
+    toward stable until a bound-coupling PASS exists. Net: no promotion; the single
+    remaining support is a decodability positive control, and the sole bound test to
+    date weakens.
   subject: development.maturational_sequence
   description: >
     Child (ii) of INV-064 (harm leg). E3's nociceptive harm-evaluation quality --
@@ -27611,6 +27644,38 @@
     DESIGN / test-bed or an ecological (non-teleport-harness) behavioural
     consequence. PROMOTES/DEMOTES NOTHING; decision_state stays
     promote_to_provisional / applied (accurate -- no rung change).
+
+    2026-07-13 (V3-EXQ-745, world-driven patch-flip + ecological couple()-path DV;
+    evidence attempt, claim_ids=[MECH-456]; consumed via /governance from
+    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13):
+    NON_CONTRIBUTORY: readiness gate unmet -- the couple() path is behaviourally
+    inert (disabling the binding does not move foraging; positive-control
+    couple_authority below floor). Per the V3-EXQ-478 precedent a null DV2 on a
+    couple-inert substrate is substrate_ceiling, NOT a rebinding refutation. Declared
+    null; NOT weighted (no change to confidence/conflict scoring; DV1 affinity-tracks-
+    config still works, only the ecological foraging DV2 is uninterpretable on this
+    substrate). Distinct measurement axis from the braked 733/733a survival-onboarding
+    axis. A re-queue must target a substrate whose couple() path carries foraging
+    authority. MECH-456 stays provisional (unchanged by this non_contributory run).
+
+    RE-DERIVE BRAKE (recorded for the standing granularity-debt scan): MECH-456 now
+    has 3 substrate-limited autopsies -- 733 + 733a (survival-onboarding axis) + 745
+    (world-flip / ecological couple-path axis), on DIFFERENT measurement axes. The
+    user RAISED RE_DERIVE_BRAKE_THRESHOLD for MECH-456 from the default 2 to 3
+    (threshold_raised_by_user_utc 2026-07-13T05:22:21Z), accepting the 745 author's
+    different-axis argument that the substrate was legitimately explored across axes.
+    count_including_this=3; brake does NOT fire on 745 (fired:false). The NEXT (4th)
+    MECH-456 substrate-limited autopsy fires the brake. Machine-readable carrier of
+    threshold=3 is the 745 target's re_derive_brake block in
+    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13.json. NOTE: the
+    standing scans (check_granularity_debt_recurrence.py GOV-GRAN-1 N=2;
+    check_substrate_ceiling_audit.py GOV-CEIL-1 N=3) currently use hardcoded module
+    constants and do NOT read a per-claim override -- and neither presently flags
+    MECH-456 (GOV-GRAN-1 excludes substrate_ceiling-category autopsies; GOV-CEIL-1
+    excludes MECH-456 because its epistemic_category is substrate_conditional, not
+    substrate_ceiling), so there is no false-fire at count=3. This record + the
+    autopsy carrier are the durable threshold=3 provenance for the next cycle / a
+    future per-claim-override implementation.
   location: docs/architecture/entities_and_binding.md
 
 - id: MECH-271
@@ -54279,14 +54344,14 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-07-13
     needs_review: false
     evidence:
-      from: "decision:MECH-457@2026-07-10T20:15:33.790607Z"
-      as_of: 2026-07-10
-      verdict: hold_pending_v3_substrate/applied
+      from: v3_exq_742_mech457_actor_critic_onoff_20260713T032215Z_v3
+      as_of: 2026-07-13
+      verdict: weakens (ON/OFF validation FAILED -- all 4 arms forage 0.20-0.27/ep at D3, below random_walk 0.93 and 0.5% of local_view_greedy 48.05, readiness gates all met; sufficiency reading refuted, necessity NOT falsified; routed GOV-FANOUT-1)
   implementation_phase: v3
-  v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent instantiation refuted); promotion now gated on the MECH-457 ON/OFF validation (co-trained vs frozen encoder x plain vs successor-feature critic) clearing the 1.0 floor at D3 vs the 738 local-view denominator
+  v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic
   registered_utc: "2026-07-10"
@@ -54381,4 +54446,20 @@
     (NB: "gated on 737" here = gated on the 737 spike's OUTCOME being supporting, which
     is what promotion needs; the BUILD is gated on the 737 DECISION, i.e. go/no-go +
     target. Not blocked: nothing that must exist is missing.)
+
+    2026-07-13 (V3-EXQ-742, the MECH-457 ON/OFF validation; evidence,
+    claim_ids=[MECH-457]; consumed via /governance from
+    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13):
+    V3-EXQ-742 (2026-07-13, evidence, ON/OFF validation) WEAKENS the sufficiency
+    reading: the first-class RPE actor-critic substrate (all 4 arms:
+    frozen/cotrain x plain/SF) forages 0.20-0.27/ep at D3 -- below random_walk
+    (0.93) and 0.5% of the local_view_greedy ceiling (48.05) -- while every
+    readiness precondition holds (oracle + local-view clear the floor, bias_head
+    reproduces incompetence). Necessity NOT falsified; the deficit sits UPSTREAM
+    of action-learning credit-assignment. Refutes the 734-737 autopsy's 'single
+    missing mechanism = MECH-457' conclusion; the surviving structural-property
+    half ('prediction-trained z_world is action-inadequate') is the leading
+    hypothesis. Routed to GOV-FANOUT-1: H-rep (actor on raw 5x5 view) vs H-explore
+    (reward-shaping / BC-warmup). Same-question floor re-pose REFUSED. MECH-457
+    stays candidate/v3_pending.
   location: evidence/literature/targeted_review_actor_critic_action_learning/

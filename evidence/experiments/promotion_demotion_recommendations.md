@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-07-13T04:18:41.580229Z`
+Generated: `2026-07-13T06:02:23.431582Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -752,7 +752,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057b
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.263, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.262, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: No genuine experiments. This claim is explicitly V3-scoped. The thought-loop trajectory promotion gate requires HippocampalModule to implement a feedback path that suppresses trajectory candidates from being promoted to E3 consideration before hippocampal sequence completion is verified. This path is not present in V1 or V2. V3 primary scope: full HippocampalModule trajectory promotion policy and …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -845,7 +845,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.478, conflict_ratio=0.857, exp_entries=19, lit_entries=9; directions supports=12, weakens=9, mixed=7, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.477, conflict_ratio=0.857, exp_entries=19, lit_entries=9; directions supports=12, weakens=9, mixed=7, unknown=0, conflict_ratio=0.857
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -1143,7 +1143,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-204
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.546, conflict_ratio=0.571, exp_entries=5, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=2, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.545, conflict_ratio=0.571, exp_entries=5, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=2, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

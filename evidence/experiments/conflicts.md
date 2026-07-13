@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-07-13T04:18:41.580229Z`
+Generated: `2026-07-13T06:02:23.431582Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -257,7 +257,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### ARC-033
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=22, weakens=7, conflict_ratio=0.483, exp_conf=0.656, lit_conf=0.779, overall_confidence_legacy=0.717
+- Evidence breakdown: supports=22, weakens=7, conflict_ratio=0.483, exp_conf=0.655, lit_conf=0.779, overall_confidence_legacy=0.717
 - Recent entries:
   - `2026-05-05T22:04:44Z` `experimental` `v3_exq_525_sd003_attribution_anchor` direction=`weakens` confidence=0.75
   - `2026-05-06T06:51:02Z` `experimental` `v3_exq_525_sd003_attribution_anchor` direction=`supports` confidence=0.75
@@ -476,7 +476,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Evidence breakdown: supports=1, weakens=1, conflict_ratio=1, exp_conf=0.599, lit_conf=0, overall_confidence_legacy=0.599
 - Recent entries:
   - `2026-07-12T12:40:06Z` `experimental` `v3_exq_743_inv089_harm_evaluator_z_harm_bounded` direction=`supports` confidence=0.75
-  - `2026-07-12T14:26:37Z` `experimental` `v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound` direction=`weakens` confidence=0.75
+  - `2026-07-12T14:26:37Z` `experimental` `v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound` direction=`superseded` confidence=0.55
   - `2026-07-12T17:00:11Z` `experimental` `v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2` direction=`weakens` confidence=0.75
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
@@ -505,7 +505,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-057b
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.263, lit_conf=0.849, overall_confidence_legacy=0.702
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0.262, lit_conf=0.849, overall_confidence_legacy=0.702
 - Recent entries:
   - `2026-04-27T22:35:20Z` `literature` `targeted_review_connectome_mech_057b` direction=`supports` confidence=0.78
   - `2026-04-27T22:35:20Z` `literature` `targeted_review_connectome_mech_057b` direction=`supports` confidence=0.74
@@ -645,7 +645,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-091
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.141, lit_conf=0.834, overall_confidence_legacy=0.661
+- Evidence breakdown: supports=5, weakens=1, conflict_ratio=0.333, exp_conf=0.14, lit_conf=0.834, overall_confidence_legacy=0.66
 - Recent entries:
   - `2026-04-08T17:00:00Z` `literature` `targeted_review_connectome_mech_091` direction=`supports` confidence=0.72
   - `2026-04-08T17:00:00Z` `literature` `targeted_review_connectome_mech_091` direction=`supports` confidence=0.74
@@ -725,7 +725,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-098
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.478, lit_conf=0.893, overall_confidence_legacy=0.686
+- Evidence breakdown: supports=12, weakens=9, conflict_ratio=0.857, exp_conf=0.477, lit_conf=0.893, overall_confidence_legacy=0.685
 - Recent entries:
   - `2026-04-18T12:40:10.705519Z` `experimental` `v3_exq_110_mech098_reafference_pair` direction=`weakens` confidence=0.75
   - `2026-04-18T12:40:10.705966Z` `experimental` `v3_exq_110_mech098_reafference_pair` direction=`weakens` confidence=0.75
@@ -1057,7 +1057,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-204
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.546, lit_conf=0.846, overall_confidence_legacy=0.696
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.545, lit_conf=0.846, overall_confidence_legacy=0.696
 - Recent entries:
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.78
   - `2026-05-09T12:43:42Z` `literature` `targeted_review_rem_precision_recalibration_timing` direction=`supports` confidence=0.74
@@ -1157,7 +1157,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-256
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.593, lit_conf=0.852, overall_confidence_legacy=0.723
+- Evidence breakdown: supports=9, weakens=3, conflict_ratio=0.5, exp_conf=0.592, lit_conf=0.852, overall_confidence_legacy=0.722
 - Recent entries:
   - `2026-05-08T18:02:53.257324Z` `experimental` `v3_exq_537b_sd029_decoupled_curricula` direction=`non_contributory` confidence=0
   - `2026-05-08T20:59:35.208807Z` `experimental` `v3_exq_537c_sd029_capacity_lift` direction=`non_contributory` confidence=0
@@ -1319,7 +1319,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### Q-007
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.125, lit_conf=0.736, overall_confidence_legacy=0.583
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0.125, lit_conf=0.735, overall_confidence_legacy=0.583
 - Recent entries:
   - `2026-03-28T19:53:15Z` `experimental` `v3_exq_051c_q007_zbeta_volatility_injection` direction=`unknown` confidence=0.45
   - `2026-03-30T18:08:14Z` `experimental` `v3_exq_051c_q007_zbeta_volatility_injection` direction=`superseded` confidence=0.55
@@ -1513,7 +1513,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-011
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=37, weakens=3, conflict_ratio=0.15, exp_conf=0.744, lit_conf=0.857, overall_confidence_legacy=0.8
+- Evidence breakdown: supports=37, weakens=3, conflict_ratio=0.15, exp_conf=0.743, lit_conf=0.857, overall_confidence_legacy=0.8
 - Recent entries:
   - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.68
   - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.78
@@ -1533,7 +1533,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-012
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=25, weakens=3, conflict_ratio=0.214, exp_conf=0.555, lit_conf=0.854, overall_confidence_legacy=0.705
+- Evidence breakdown: supports=25, weakens=3, conflict_ratio=0.214, exp_conf=0.555, lit_conf=0.853, overall_confidence_legacy=0.704
 - Recent entries:
   - `2026-06-05T19:44:17Z` `literature` `targeted_review_fatigue_vs_helplessness_dissociation` direction=`supports` confidence=0.82
   - `2026-06-05T19:44:17Z` `literature` `targeted_review_fatigue_vs_helplessness_dissociation` direction=`supports` confidence=0.84
@@ -1593,7 +1593,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-016
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, exp_conf=0.45, lit_conf=0.77, overall_confidence_legacy=0.61
+- Evidence breakdown: supports=3, weakens=5, conflict_ratio=0.75, exp_conf=0.45, lit_conf=0.769, overall_confidence_legacy=0.61
 - Recent entries:
   - `2026-04-28T20:58:50Z` `experimental` `v3_exq_418h_sd016_env_entropy_precondition` direction=`unknown` confidence=0.45
   - `2026-04-28T21:14:30Z` `experimental` `v3_exq_418f_sd016_attention_uniformity_probe` direction=`unknown` confidence=0.45
@@ -1652,7 +1652,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-023
 - Conflict types: directional, source_disagreement
-- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.135, lit_conf=0.853, overall_confidence_legacy=0.673
+- Evidence breakdown: supports=4, weakens=1, conflict_ratio=0.4, exp_conf=0.135, lit_conf=0.852, overall_confidence_legacy=0.673
 - Recent entries:
   - `2026-04-17T12:36:30Z` `literature` `targeted_review_sd_023` direction=`supports` confidence=0.8
   - `2026-04-18T12:40:11.183787Z` `experimental` `v3_exq_263b_sd023_mech216_landmark_wanting` direction=`supports` confidence=0.55
@@ -1672,7 +1672,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### SD-029
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=10, weakens=3, conflict_ratio=0.462, exp_conf=0.55, lit_conf=0.846, overall_confidence_legacy=0.698
+- Evidence breakdown: supports=10, weakens=3, conflict_ratio=0.462, exp_conf=0.549, lit_conf=0.846, overall_confidence_legacy=0.698
 - Recent entries:
   - `2026-05-09T21:45:17.436275Z` `experimental` `v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier` direction=`non_contributory` confidence=0
   - `2026-05-10T17:25:58.458500Z` `experimental` `v3_exq_543b_arc062_phase3_optimized_falsifier` direction=`superseded` confidence=0.55
