@@ -932,6 +932,69 @@ unmatched count).
 |---|---|---|---|
 | emit-only / harness, no raw flat-manifest `json.dump` (187/445d/449c/455a/476/599/600/669) | 8 | not lint-flagged — no action needed (exempt-eligible only to zero the unmatched count) | n/a |
 
+### Progress — step 3 683/686 correct-and-route OVERRIDE, session 2026-07-13 (`admiring-pasteur-85116f`; 2 scripts LANDED, ree-v3 main `8f4a76a`)
+
+**Supersedes the `7cb21eb` exempt above** (user-decided). The prior session `exciting-jang-7bee3b`
+classified `683`/`686` ARCHIVAL → `MANIFEST_WRITER_EXEMPT` by the standing "unqueued + never-ran →
+exempt" precedent. On review the user directed a **correct-and-route** instead, because the precedent's
+exempt rule was written for a *different* condition than these two present:
+
+- **The prior archival exempts (edge-A 267 / batch-5 69 / no-canonical 3 / no-status 8) were exempted
+  because routing them would RENAME or RELOCATE the flat file** — a real risk with no upside for a dead
+  script. **That condition does NOT hold for 683/686:** routing is **byte-location-identical** —
+  `write_flat_manifest(result, Path("../REE_assembly/evidence/experiments"), ...)` writes to the exact same
+  `.../{run_id}.json` the raw `json.dump` did (no rename, no relocate).
+- **Routing repairs a genuine latent defect.** `result` carries **no `run_id` key** (only a `__main__`
+  local var in the path f-string). `sync_v3_results._is_flat_v3` reads `run_id` **from the manifest dict**
+  (`run_id = str(data.get("run_id",""))` → `if run_id.endswith("_v3")`); with no key it is `""` → the gate
+  **fails → the manifest is never converted to a pack, never scored.** So if either ever ran, its result
+  would be written and then **silently dropped** by the pipeline. Injecting `result["run_id"] = run_id`
+  (what a correct-and-route does; what `write_flat_manifest` also requires) is what makes the manifest
+  scoreable at all — exempt freezes the broken state in place.
+- **Cost asymmetry favors routing.** Routing is correct whether or not the script ever runs again and adds
+  the always-core; exempt is correct *only* if these are permanently dead, and a wrong-exempt is a silent,
+  unscoreable run with the lint deliberately quieted. The correct-and-route is cheap and pre-designed.
+
+**The edit (each script, +18/−19 net vs `7cb21eb`).** Remove the 10-line `MANIFEST_WRITER_EXEMPT`
+constant + add `from experiments.pack_writer import write_flat_manifest`; in the non-dry `else:` branch,
+add `result["run_id"] = run_id`, `out_dir = Path("../REE_assembly/evidence/experiments")`, and route the
+raw `with open()/json.dump(result)` through `out_path = write_flat_manifest(result, out_dir, dry_run=False,
+config=result.get("config"), seeds=result.get("seeds"), script_path=Path(__file__))`, preserving the
+`emit_outcome(manifest_path=out_path)` handoff. `dry_run=False` is byte-faithful (the write is only reached
+in the non-dry branch); `run_id` already ends `_v3` (`require_v3` passes); `Path` already imported.
+
+**MATERIAL FINDING — both experiment BODIES are substrate-drifted and cannot currently run.** The write-tail
+smoke (running each `run_experiment` for real against the current substrate) surfaced that **neither script
+executes**: `683` → `CausalGridWorld.__init__() got an unexpected keyword argument 'device'` (env API dropped
+`device=` since 2026-06-15); `686` → `mat1 and mat2 shapes cannot be multiplied (1x200 and 54x54)` (agent/env
+shape drift). This is **identical on `origin/main`** (present in both the exempt and pre-exempt versions) and
+**orthogonal to the write-tail migration** — but it means these are dormant-pending-a-body-fix, not merely
+dormant-pending-substrate: any future resurrection must fix the body too. The value of routing now is that
+the manifest write is already correct for that eventual run (and the missing-`run_id` scoring hole is closed).
+
+**Validation (batches 1-6 process).** 2/2 `py_compile`. `validate_experiments --strict --paths` BEFORE
+(`7cb21eb` exempt) vs AFTER (routed) = **identical**: `0 manifest-writer-backlog` both (exempt suppresses it
+BEFORE; `write_flat_manifest` name-presence satisfies it AFTER), **0 NEW** non-conforming (the sole residual
+is `683`'s PRE-EXISTING degeneracy-self-report finding — orthogonal, unchanged; `686` already calls
+`check_degeneracy`). **Write-path smoke** (scratch out_dir, no evidence-dir leak): `683` via its real dry
+result + `686` via a real-shaped result (with `seeds`) both land the canonical `<run_id>.json` with the
+**always-core COMPLETE** — `substrate_hash` populated (was 0% of these flat manifests),
+`machine`/`machine_class`/`recording_schema`/`seeds`/`run_id`/`architecture_epoch` all set — and the
+`_is_flat_v3` `run_id`-endswith-`_v3` gate now **PASSES** (the defect the route repairs). (The dry-run branch
+does NOT reach the write, so `--dry-run` alone cannot smoke `write_flat_manifest`; the scratch harness
+exercises the real write tail.) Merge gate `pytest tests/` = **1437 passed, 0 failed, 39 subtests (1:18:48,
+contention-slow)**. Staged on `integration/pack-writer-noncanonical-dir-683-686` in a dedicated worktree off
+`ree-v3` origin/main (`.claude/worktrees/REE_assembly` symlink for the `test_arm_reuse` indexer-path gotcha),
+ff-merged to `main`, branch + worktree removed. `elapsed_seconds` NOT retrofitted here (the §7.4 companion
+tool covers newly-routed scripts as a follow-up; both would qualify only after a `datetime.now(timezone.utc)`
+timer is added — they import `datetime` only, so they are by-design advisory gaps like the batch-7 12).
+
+**Cumulative: 672 of 1028** route through `write_flat_manifest` (670 + 2) **+ 352 `MANIFEST_WRITER_EXEMPT`**
+(354 − 2, the 683/686 exempts removed). Migrator unmatched stays **8** (683/686 move from exempt-skip to
+routed-skip; both remain non-unmatched). The lint-flagged migration backlog remains fully cleared; the 8
+emit-only/harness scripts are the only residual unmatched (no raw flat-manifest `json.dump`, not
+lint-flagged — no action).
+
 Shape families (survey; total 1,028; migrate top-down):
 
 | # | Family | ~count | Distinguishing keys | Migration note | Status |
