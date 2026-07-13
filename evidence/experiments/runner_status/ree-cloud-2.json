@@ -1,41 +1,41 @@
 {
   "schema_version": "v1",
   "runner_pid": 670,
-  "runner_started_at": "2026-07-09T19:20:44.562132+00:00",
-  "last_updated": "2026-07-09T19:35:17.792826+00:00",
+  "runner_started_at": "2026-07-13T06:20:44.573918+00:00",
+  "last_updated": "2026-07-13T11:19:11.795683+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-724",
+      "queue_id": "V3-EXQ-747",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "Competence-localization diagnostic (all-ON forage): OFAT over P1-budget / frozen-encoder / mechanism-interference vs a greedy-oracle positive control",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg A (H-rep): raw-5x5-view actor-critic",
       "description": "",
-      "estimated_minutes": 620.0,
+      "estimated_minutes": 1600.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-729",
+      "queue_id": "V3-EXQ-749",
       "backlog_id": "",
-      "claim_id": "MECH-268",
-      "title": "MECH-268 dACC conflict-saturation LIVE-LOOP falsifier (ecological analogue of 463b)",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg C (conjunction): raw-view dense-teacher actor-critic",
       "description": "",
-      "estimated_minutes": 48.0,
-      "status": "claimed",
+      "estimated_minutes": 2000.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-728",
+      "queue_id": "V3-EXQ-742-m",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Trained all-ON capability point (WS-3): 4-metric yardstick on the 724 A0-trained all-ON stack vs 727 floor/ceiling scale",
+      "title": "MECH-457 bias_head_baseline MINT -- order-independent reuse insurance for the V3-EXQ-742 OFF arm (724-A0 all-ON; D0+D3; baseline)",
       "description": "",
-      "estimated_minutes": 348.0,
-      "status": "claimed",
+      "estimated_minutes": 232.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2862,6 +2862,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_716a_sd063_conditional_uncertainty_confirmation_20260709T193517Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 873.2
+    },
+    {
+      "queue_id": "V3-EXQ-748",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg B (H-explore): z_world dense-teacher actor-critic",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS (arm=ac_zworld_bc seed=44 forage/ep=22.6) | outcome: PASS label=dense_teacher_on_zworld_clears_sparsity_was_the_wall readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-748 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-748.json",
+      "started_at": "2026-07-13T06:20:44.595150+00:00",
+      "completed_at": "2026-07-13T11:19:11.794923+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_748_mech457_hexplore_reward_density_actor_critic_20260713T111911Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 17906.4
     }
   ]
 }
