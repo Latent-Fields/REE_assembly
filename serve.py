@@ -2051,6 +2051,171 @@ def read_brain_map() -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# Code Atlas -- ree-v3 Understand-Anything knowledge-graph reader
+# ---------------------------------------------------------------------------
+# Reads the nightly-refreshed graph from ../ree-v3/.ua/knowledge-graph.json
+# (committed weekly to ree-v3 main so a fresh clone can also serve it) and
+# projects it for the code_atlas.html panels. Read-only; never mutates.
+
+CODE_ATLAS_GRAPH_PATH = SERVE_DIR.parent / "ree-v3" / ".ua" / "knowledge-graph.json"
+CODE_ATLAS_META_PATH  = SERVE_DIR.parent / "ree-v3" / ".ua" / "meta.json"
+CODE_ATLAS_GITHUB_REPO = "https://github.com/Latent-Fields/ree-v3"
+_code_atlas_cache: dict = {"mtime": None, "payload": None}
+
+
+def _code_atlas_github_link(rel_path: str, commit: str | None) -> str:
+    if not rel_path:
+        return ""
+    ref = commit if commit else "main"
+    return f"{CODE_ATLAS_GITHUB_REPO}/blob/{ref}/{rel_path}"
+
+
+def read_code_atlas() -> dict:
+    """Return the ree-v3 code atlas payload for /api/code_atlas.
+
+    Caches on the graph file's mtime so a nightly refresh is picked up
+    without a server restart. Never raises: on missing / unreadable graph
+    the payload carries an `error` and an empty `nodes`/`layers`/`tour`."""
+    try:
+        stat = CODE_ATLAS_GRAPH_PATH.stat()
+    except FileNotFoundError:
+        return {
+            "schema_version": 1,
+            "generated_at": _utc_now_compact(),
+            "error": "ree-v3 knowledge-graph not found (expected at "
+                     f"{CODE_ATLAS_GRAPH_PATH}). Run /understand /path/to/ree-v3 "
+                     "or wait for the nightly refresh.",
+            "project": {}, "nodes": [], "edges": [], "layers": [], "tour": [],
+        }
+    except Exception as exc:
+        return {
+            "schema_version": 1,
+            "generated_at": _utc_now_compact(),
+            "error": f"cannot stat knowledge-graph: {exc}",
+            "project": {}, "nodes": [], "edges": [], "layers": [], "tour": [],
+        }
+
+    if _code_atlas_cache["mtime"] == stat.st_mtime_ns and _code_atlas_cache["payload"]:
+        return _code_atlas_cache["payload"]
+
+    try:
+        graph = json.loads(CODE_ATLAS_GRAPH_PATH.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return {
+            "schema_version": 1,
+            "generated_at": _utc_now_compact(),
+            "error": f"cannot parse knowledge-graph: {exc}",
+            "project": {}, "nodes": [], "edges": [], "layers": [], "tour": [],
+        }
+
+    # Prefer the meta.json's committed hash (matches what's on origin/main);
+    # fall back to project.gitCommitHash on the graph itself.
+    commit = None
+    try:
+        meta = json.loads(CODE_ATLAS_META_PATH.read_text(encoding="utf-8"))
+        commit = str(meta.get("gitCommitHash") or "").strip() or None
+    except Exception:
+        commit = None
+    project = dict(graph.get("project") or {})
+    if not commit:
+        commit = str(project.get("gitCommitHash") or "").strip() or None
+
+    # Project nodes: preserve id + type + name + filePath + summary + tags,
+    # add a GitHub source link, drop heavier fields the page doesn't render
+    # (languageNotes, complexity). Tags default to [] so the page never NPEs.
+    #
+    # Layers list file-level nodes only; propagate the file's layer to its
+    # class/function children so a search click always shows a layer.
+    id_to_layer: dict[str, str] = {}
+    for L in (graph.get("layers") or []):
+        for nid in (L.get("nodeIds") or []):
+            id_to_layer[str(nid)] = str(L.get("name") or L.get("id") or "")
+    # Build a filePath -> layer index over the layered file nodes so class /
+    # function nodes on the same file inherit their parent's layer.
+    file_id_by_path: dict[str, str] = {}
+    for n in (graph.get("nodes") or []):
+        rel = str(n.get("filePath") or "")
+        if rel and str(n.get("type") or "") in ("file", "config", "document",
+                                                "service", "pipeline", "table",
+                                                "schema", "resource", "endpoint"):
+            file_id_by_path.setdefault(rel, str(n.get("id") or ""))
+    nodes_out: list[dict] = []
+    for n in (graph.get("nodes") or []):
+        nid = str(n.get("id") or "")
+        rel = str(n.get("filePath") or "")
+        layer = id_to_layer.get(nid, "")
+        if not layer and rel:
+            layer = id_to_layer.get(file_id_by_path.get(rel, ""), "")
+        nodes_out.append({
+            "id": nid,
+            "type": str(n.get("type") or ""),
+            "name": str(n.get("name") or nid),
+            "filePath": rel,
+            "summary": str(n.get("summary") or ""),
+            "tags": list(n.get("tags") or []),
+            "layer": layer,
+            "githubUrl": _code_atlas_github_link(rel, commit) if rel else "",
+        })
+
+    # Edges: keep every one -- 628 * ~140 chars ~= 90 KB, well under any
+    # response budget, and the module-lookup panel walks them for the
+    # neighborhood chip strip.
+    edges_out: list[dict] = []
+    for e in (graph.get("edges") or []):
+        edges_out.append({
+            "source": str(e.get("source") or ""),
+            "target": str(e.get("target") or ""),
+            "type": str(e.get("type") or ""),
+        })
+
+    layers_out: list[dict] = []
+    for L in (graph.get("layers") or []):
+        layers_out.append({
+            "id": str(L.get("id") or ""),
+            "name": str(L.get("name") or ""),
+            "description": str(L.get("description") or ""),
+            "nodeIds": [str(x) for x in (L.get("nodeIds") or [])],
+        })
+
+    tour_out: list[dict] = []
+    for step in (graph.get("tour") or []):
+        tour_out.append({
+            "order": int(step.get("order") or 0),
+            "title": str(step.get("title") or ""),
+            "description": str(step.get("description") or ""),
+            "nodeIds": [str(x) for x in (step.get("nodeIds") or [])],
+        })
+    tour_out.sort(key=lambda s: s["order"])
+
+    payload = {
+        "schema_version": 1,
+        "generated_at": _utc_now_compact(),
+        "project": {
+            "name": str(project.get("name") or "ree-v3"),
+            "description": str(project.get("description") or ""),
+            "languages": list(project.get("languages") or []),
+            "frameworks": list(project.get("frameworks") or []),
+            "analyzedAt": str(project.get("analyzedAt") or ""),
+            "gitCommitHash": commit or "",
+            "githubRepo": CODE_ATLAS_GITHUB_REPO,
+        },
+        "counts": {
+            "nodes": len(nodes_out),
+            "edges": len(edges_out),
+            "layers": len(layers_out),
+            "tour_steps": len(tour_out),
+        },
+        "nodes": nodes_out,
+        "edges": edges_out,
+        "layers": layers_out,
+        "tour": tour_out,
+    }
+    _code_atlas_cache["mtime"] = stat.st_mtime_ns
+    _code_atlas_cache["payload"] = payload
+    return payload
+
+
 def _closure_pending_review_count() -> int:
     try:
         text = PENDING_REVIEW_FILE.read_text(encoding="utf-8")
@@ -5325,6 +5490,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if path == "/api/brain-map":
             body = json.dumps(read_brain_map(), indent=2, default=str).encode()
             self._json_response(body)
+            return
+        if path == "/api/code_atlas":
+            body = json.dumps(read_code_atlas(), default=str).encode()
+            self._json_response(body)
+            return
+        if path in ("/code-atlas", "/code_atlas", "/code_atlas.html"):
+            atlas_page = SERVE_DIR / "code_atlas.html"
+            if atlas_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(atlas_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         if path in ("/brain-map", "/brain-map.html"):
             brain_page = SERVE_DIR / "brain_map.html"

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!-- CODE_ATLAS_VERSION: 2026-07-13.1 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>REE Code Atlas -- ree-v3 knowledge-graph</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg-0: #0d1117; --bg-1: #161b22; --bg-2: #1c2128; --bg-3: #21262d;
+      --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --accent: #58a6ff;
+      --accent-2: #7ee787; --warn: #f2cc60; --danger: #ff7b72;
+      /* layer palette (10 hues, all readable on dark) */
+      --l1: #58a6ff; --l2: #79c0ff; --l3: #7ee787; --l4: #d2a8ff;
+      --l5: #ff9e64; --l6: #f2cc60; --l7: #ff7b72; --l8: #56d4dd;
+      --l9: #a5d6ff; --l10: #ffa198;
+    }
+    html, body { margin: 0; padding: 0; background: var(--bg-0); color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 13px; line-height: 1.45; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header.bar { display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+      background: var(--bg-1); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+    header.bar h1 { font-size: 15px; font-weight: 600; margin: 0; }
+    header.bar .subtitle { color: var(--muted); font-size: 12px; }
+    header.bar .links { margin-left: auto; display: flex; gap: 8px; }
+    header.bar .links a { color: var(--muted); text-decoration: none; font-size: 12px;
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; }
+    header.bar .links a:hover { color: var(--text); background: var(--bg-2); }
+
+    .meta-strip { display: flex; flex-wrap: wrap; gap: 14px; padding: 10px 16px;
+      background: var(--bg-1); border-bottom: 1px solid var(--border); font-size: 12px; }
+    .meta-strip .k { color: var(--muted); }
+    .meta-strip .v { color: var(--text); font-weight: 500; }
+    .meta-strip .lang { display: inline-block; padding: 1px 7px; border: 1px solid var(--border);
+      border-radius: 10px; margin-right: 4px; font-size: 11px; color: var(--muted); background: var(--bg-2); }
+    .meta-strip .commit { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .disclaimer { padding: 8px 16px; background: #1a2332; border-bottom: 1px solid var(--border);
+      color: var(--muted); font-size: 11px; }
+    .disclaimer.error { background: #2d1e1e; color: var(--danger); }
+
+    main.wrap { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px; max-width: 1400px; margin: 0 auto; }
+    @media (min-width: 1100px) {
+      main.wrap { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+      main.wrap .layers-panel { grid-column: 1 / -1; }
+    }
+
+    section.panel { background: var(--bg-1); border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 16px 16px; min-width: 0; }
+    section.panel h2 { font-size: 13px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted); font-weight: 600; }
+    section.panel .hint { color: var(--muted); font-size: 11px; margin-bottom: 12px; }
+
+    /* --- Layer strip --- */
+    .layer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+    .layer-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 10px; cursor: pointer; transition: transform 0.06s, border-color 0.06s; position: relative; }
+    .layer-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .layer-card.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+    .layer-card .layer-name { font-weight: 600; font-size: 12px; color: var(--text); }
+    .layer-card .layer-count { color: var(--muted); font-size: 10.5px; margin-top: 2px; }
+    .layer-card .layer-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 6px 0 0 6px; }
+    .layer-card.dim { opacity: 0.45; }
+    .layer-card .layer-desc { color: var(--muted); font-size: 10.5px; margin-top: 4px; }
+    .filter-status { display: flex; gap: 8px; align-items: center; margin-top: 10px; font-size: 11px; color: var(--muted); }
+    .filter-status button { background: var(--bg-2); color: var(--muted); border: 1px solid var(--border);
+      border-radius: 4px; padding: 3px 8px; font-size: 11px; cursor: pointer; }
+    .filter-status button:hover { border-color: var(--accent); color: var(--text); }
+
+    /* --- Tour --- */
+    .tour-list { display: flex; flex-direction: column; gap: 6px; }
+    .tour-step { border: 1px solid var(--border); border-radius: 6px; background: var(--bg-2); overflow: hidden; }
+    .tour-step.hidden { display: none; }
+    .tour-step summary { list-style: none; padding: 8px 10px; cursor: pointer; display: flex; gap: 10px; align-items: baseline; }
+    .tour-step summary::-webkit-details-marker { display: none; }
+    .tour-step summary::after { content: "▸"; margin-left: auto; color: var(--muted); font-size: 11px; transition: transform 0.15s; }
+    .tour-step[open] summary::after { transform: rotate(90deg); }
+    .tour-step .step-order { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; min-width: 24px; }
+    .tour-step .step-title { font-weight: 600; font-size: 13px; color: var(--text); }
+    .tour-step .step-body { padding: 4px 12px 12px 46px; }
+    .tour-step .step-desc { color: var(--text); font-size: 12.5px; margin-bottom: 8px; }
+    .tour-step .chip-strip { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; background: var(--bg-3);
+      border: 1px solid var(--border); border-radius: 12px; font-size: 11px; color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; cursor: pointer; transition: border-color 0.06s; }
+    .chip:hover { border-color: var(--accent); color: var(--text); }
+    .chip .chip-type { display: inline-block; padding: 0 4px; border-radius: 8px; font-size: 9.5px;
+      background: var(--bg-1); color: var(--muted); text-transform: lowercase; }
+    .chip .chip-name { color: var(--text); }
+    .chip.file .chip-type { background: rgba(88,166,255,0.15); color: var(--l1); }
+    .chip.class .chip-type { background: rgba(126,231,135,0.15); color: var(--l3); }
+    .chip.function .chip-type { background: rgba(210,168,255,0.15); color: var(--l4); }
+    .chip.document .chip-type { background: rgba(242,204,96,0.15); color: var(--l6); }
+    .chip.table .chip-type { background: rgba(86,212,221,0.15); color: var(--l8); }
+    .chip.schema .chip-type { background: rgba(165,214,255,0.15); color: var(--l9); }
+
+    /* --- Module lookup --- */
+    .search-row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+    .search-row input { flex: 1; background: var(--bg-2); color: var(--text); border: 1px solid var(--border);
+      border-radius: 4px; padding: 7px 10px; font-size: 13px; font-family: inherit; }
+    .search-row input:focus { outline: none; border-color: var(--accent); }
+    .search-row .count { color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .search-results { display: flex; flex-direction: column; gap: 4px; max-height: 60vh; overflow-y: auto; }
+    .result-row { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; border-radius: 4px;
+      cursor: pointer; border: 1px solid transparent; }
+    .result-row:hover { background: var(--bg-2); border-color: var(--border); }
+    .result-row.active { background: var(--bg-2); border-color: var(--accent); }
+    .result-row .type-badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px;
+      color: var(--muted); text-transform: lowercase; min-width: 46px; }
+    .result-row .name { font-weight: 500; color: var(--text); font-size: 12.5px; }
+    .result-row .path { color: var(--muted); font-size: 10.5px; margin-left: auto; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    /* --- Node detail card --- */
+    .node-detail { margin-top: 12px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px;
+      padding: 12px 14px; display: none; }
+    .node-detail.shown { display: block; }
+    .node-detail .nd-head { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+    .node-detail .nd-name { font-size: 15px; font-weight: 600; }
+    .node-detail .nd-type { padding: 1px 8px; border-radius: 10px; font-size: 10.5px; background: var(--bg-3);
+      color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .node-detail .nd-layer { color: var(--muted); font-size: 11px; }
+    .node-detail .nd-tags { margin: 6px 0 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .node-detail .nd-tag { font-size: 10.5px; padding: 1px 7px; border-radius: 10px; background: var(--bg-3);
+      color: var(--muted); border: 1px solid var(--border); }
+    .node-detail .nd-summary { font-size: 12.5px; margin: 8px 0 10px; color: var(--text); }
+    .node-detail .nd-links { display: flex; gap: 10px; margin-bottom: 8px; font-size: 12px; }
+    .node-detail .nb-block { margin-top: 8px; }
+    .node-detail .nb-block h4 { margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--muted); font-weight: 600; }
+    .node-detail .nb-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .node-detail .nb-none { color: var(--muted); font-size: 11px; font-style: italic; }
+
+    footer.pagefoot { padding: 14px 16px; color: var(--muted); font-size: 11px; text-align: center;
+      border-top: 1px solid var(--border); margin-top: 16px; }
+    footer.pagefoot a { color: var(--muted); }
+    footer.pagefoot a:hover { color: var(--accent); }
+
+    .empty { padding: 40px 16px; text-align: center; color: var(--muted); }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--bg-2);
+      border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; font-size: 10.5px; }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <h1>Code Atlas</h1>
+    <span class="subtitle">A curated map of the ree-v3 codebase &mdash; 10 layers, 14-step guided tour, searchable modules.</span>
+    <span class="links">
+      <a href="/explorer.html" title="Back to the main explorer">&larr; Explorer</a>
+      <a href="/brain-map" title="Brain-region view of REE claims">Brain Map</a>
+      <a href="/closure" title="ree-v3 closure progress">Closure</a>
+    </span>
+  </header>
+
+  <div id="metaStrip" class="meta-strip">
+    <span class="k">loading&hellip;</span>
+  </div>
+  <div id="disclaimer" class="disclaimer" style="display:none;"></div>
+
+  <main class="wrap">
+    <section class="panel layers-panel">
+      <h2>Layers</h2>
+      <div class="hint">Click a layer to focus the tour and search results on its files.
+        Layers are semantic groupings inferred from module boundaries + import structure, not project-directory shape.</div>
+      <div id="layerGrid" class="layer-grid"></div>
+      <div class="filter-status">
+        <span id="filterStatus">All layers shown.</span>
+        <button id="clearFilter" hidden>Clear filter</button>
+      </div>
+    </section>
+
+    <section class="panel tour-panel">
+      <h2>Guided tour</h2>
+      <div class="hint">Fourteen steps that read V3 the way its authors would explain it.
+        Each step opens the specific files it touches. Use this to onboard from cold.</div>
+      <div id="tourList" class="tour-list"></div>
+    </section>
+
+    <section class="panel lookup-panel">
+      <h2>Module lookup</h2>
+      <div class="hint">Search across file, class, function, table and document names, paths, tags, and summaries.
+        Click a result to see its layer, source link, and its two-hop neighbourhood
+        (imports / exports / contains / tested_by / calls).</div>
+      <div class="search-row">
+        <input id="searchInput" type="text" placeholder="e.g. beta_gate, ethics_engine_3, hippocampal, closure_operator, MECH-090..." autocomplete="off" spellcheck="false">
+        <span id="searchCount" class="count">0 nodes</span>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+      <div id="nodeDetail" class="node-detail"></div>
+    </section>
+  </main>
+
+  <footer class="pagefoot">
+    <span>Rendered from <span class="kbd">ree-v3/.ua/knowledge-graph.json</span>, generated by the Understand-Anything nightly refresh.</span>
+    &nbsp;&middot;&nbsp; <a id="ghLink" href="#" target="_blank" rel="noopener">Source on GitHub</a>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    const state = {
+      raw: null,
+      layerColors: {},
+      nodesById: new Map(),
+      edgesBySource: new Map(),
+      edgesByTarget: new Map(),
+      activeLayer: null,
+      activeNodeId: null,
+    };
+
+    const PALETTE = [
+      "var(--l1)", "var(--l2)", "var(--l3)", "var(--l4)", "var(--l5)",
+      "var(--l6)", "var(--l7)", "var(--l8)", "var(--l9)", "var(--l10)",
+    ];
+
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    function truncate(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+
+    function renderMeta(payload) {
+      const p = payload.project || {};
+      const c = payload.counts || {};
+      const strip = document.getElementById("metaStrip");
+      const langs = (p.languages || []).map(l => `<span class="lang">${esc(l)}</span>`).join("");
+      strip.innerHTML = `
+        <span><span class="k">Project</span> <span class="v">${esc(p.name || "ree-v3")}</span></span>
+        <span>${esc(p.description || "")}</span>
+        <span>${langs}</span>
+        <span><span class="k">Nodes</span> <span class="v">${c.nodes || 0}</span></span>
+        <span><span class="k">Edges</span> <span class="v">${c.edges || 0}</span></span>
+        <span><span class="k">Layers</span> <span class="v">${c.layers || 0}</span></span>
+        <span><span class="k">Tour</span> <span class="v">${c.tour_steps || 0} steps</span></span>
+        <span><span class="k">Commit</span> <span class="v commit">${esc((p.gitCommitHash || "").slice(0,7) || "n/a")}</span></span>
+        <span><span class="k">Analysed</span> <span class="v">${esc(p.analyzedAt || payload.generated_at || "")}</span></span>
+      `;
+      const gh = document.getElementById("ghLink");
+      if (p.githubRepo) {
+        const ref = p.gitCommitHash ? "/tree/" + encodeURIComponent(p.gitCommitHash) : "";
+        gh.href = p.githubRepo + ref;
+      }
+    }
+
+    function assignLayerColors(layers) {
+      const map = {};
+      layers.forEach((L, i) => { map[L.id] = PALETTE[i % PALETTE.length]; });
+      state.layerColors = map;
+    }
+
+    function renderLayers(layers) {
+      const grid = document.getElementById("layerGrid");
+      if (!layers.length) { grid.innerHTML = `<div class="empty">No layers defined.</div>`; return; }
+      grid.innerHTML = layers.map((L, i) => {
+        const color = state.layerColors[L.id] || PALETTE[i % PALETTE.length];
+        return `
+          <div class="layer-card" data-layer-id="${esc(L.id)}">
+            <div class="layer-bar" style="background:${color}"></div>
+            <div class="layer-name">${esc(L.name)}</div>
+            <div class="layer-count">${(L.nodeIds || []).length} nodes</div>
+            <div class="layer-desc">${esc(truncate(L.description || "", 130))}</div>
+          </div>
+        `;
+      }).join("");
+      grid.querySelectorAll(".layer-card").forEach(el => {
+        el.addEventListener("click", () => setFilter(el.dataset.layerId));
+      });
+    }
+
+    function nodesInLayer(layerId) {
+      const L = (state.raw.layers || []).find(x => x.id === layerId);
+      return L ? new Set(L.nodeIds || []) : new Set();
+    }
+
+    function setFilter(layerId) {
+      if (state.activeLayer === layerId) { layerId = null; }
+      state.activeLayer = layerId;
+      const grid = document.getElementById("layerGrid");
+      grid.querySelectorAll(".layer-card").forEach(card => {
+        const on = !layerId || card.dataset.layerId === layerId;
+        card.classList.toggle("active", card.dataset.layerId === layerId);
+        card.classList.toggle("dim", !!layerId && !on);
+      });
+      const st = document.getElementById("filterStatus");
+      const btn = document.getElementById("clearFilter");
+      if (layerId) {
+        const L = (state.raw.layers || []).find(x => x.id === layerId);
+        st.textContent = `Filtered to layer: ${L ? L.name : layerId} (${(L?.nodeIds || []).length} nodes).`;
+        btn.hidden = false;
+      } else {
+        st.textContent = "All layers shown.";
+        btn.hidden = true;
+      }
+      renderTour();
+      renderSearch();
+    }
+
+    function chipFor(nodeId) {
+      const n = state.nodesById.get(nodeId);
+      if (!n) return `<span class="chip"><span class="chip-name">${esc(nodeId)}</span></span>`;
+      const cls = "chip " + (n.type || "");
+      const gh = n.githubUrl
+        ? `<a href="${esc(n.githubUrl)}" target="_blank" rel="noopener" class="${esc(cls)}" title="${esc(n.summary || "")}">
+             <span class="chip-type">${esc(n.type || "")}</span>
+             <span class="chip-name">${esc(n.name)}</span>
+           </a>`
+        : `<span class="${esc(cls)}" title="${esc(n.summary || "")}">
+             <span class="chip-type">${esc(n.type || "")}</span>
+             <span class="chip-name">${esc(n.name)}</span>
+           </span>`;
+      return gh;
+    }
+
+    function renderTour() {
+      const list = document.getElementById("tourList");
+      const tour = state.raw.tour || [];
+      if (!tour.length) { list.innerHTML = `<div class="empty">No guided tour available.</div>`; return; }
+      const activeIds = state.activeLayer ? nodesInLayer(state.activeLayer) : null;
+      list.innerHTML = tour.map(step => {
+        const stepNodes = step.nodeIds || [];
+        const inLayer = activeIds ? stepNodes.some(id => activeIds.has(id)) : true;
+        const chips = stepNodes.map(id => chipFor(id)).join(" ");
+        return `
+          <details class="tour-step ${inLayer ? "" : "hidden"}" ${step.order === 1 && !state.activeLayer ? "open" : ""}>
+            <summary>
+              <span class="step-order">${String(step.order).padStart(2, "0")}</span>
+              <span class="step-title">${esc(step.title)}</span>
+            </summary>
+            <div class="step-body">
+              <div class="step-desc">${esc(step.description)}</div>
+              <div class="chip-strip">${chips}</div>
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
+    // --- Search ------------------------------------------------------------
+    function nodeMatches(n, q) {
+      if (!q) return true;
+      const hay = [n.name, n.filePath, n.type, n.summary, (n.tags || []).join(" ")].join(" ").toLowerCase();
+      return q.toLowerCase().split(/\s+/).filter(Boolean).every(tok => hay.includes(tok));
+    }
+
+    function renderSearch() {
+      const box = document.getElementById("searchResults");
+      const q = document.getElementById("searchInput").value.trim();
+      const activeIds = state.activeLayer ? nodesInLayer(state.activeLayer) : null;
+      const all = state.raw.nodes || [];
+      const matched = all.filter(n => {
+        if (activeIds && !activeIds.has(n.id)) return false;
+        return nodeMatches(n, q);
+      });
+      // Rank: informative files & classes first, then everything else; then by name.
+      // Barrel files (empty-summary __init__.py) sink to the bottom -- they clutter
+      // the default (empty-query) view and rarely tell a reader anything useful.
+      const typeRank = { file: 0, class: 1, function: 2, table: 3, schema: 4, document: 5 };
+      const isBarrel = (n) => n.type === "file" && n.name === "__init__.py" && !n.summary.trim();
+      matched.sort((a, b) => {
+        const ba = isBarrel(a) ? 1 : 0, bb = isBarrel(b) ? 1 : 0;
+        if (ba !== bb) return ba - bb;
+        const ra = typeRank[a.type] ?? 9, rb = typeRank[b.type] ?? 9;
+        if (ra !== rb) return ra - rb;
+        return a.name.localeCompare(b.name);
+      });
+      const shown = matched.slice(0, 150);
+      document.getElementById("searchCount").textContent =
+        `${matched.length} node${matched.length === 1 ? "" : "s"}` +
+        (matched.length > shown.length ? ` (showing first ${shown.length})` : "");
+      if (!shown.length) {
+        box.innerHTML = `<div class="empty">No matches.</div>`;
+        return;
+      }
+      box.innerHTML = shown.map(n => `
+        <div class="result-row ${state.activeNodeId === n.id ? "active" : ""}" data-node-id="${esc(n.id)}">
+          <span class="type-badge">${esc(n.type)}</span>
+          <span class="name">${esc(n.name)}</span>
+          <span class="path">${esc(n.filePath || "")}</span>
+        </div>
+      `).join("");
+      box.querySelectorAll(".result-row").forEach(row => {
+        row.addEventListener("click", () => showNode(row.dataset.nodeId));
+      });
+    }
+
+    function neighbors(nodeId, direction) {
+      const out = [];
+      const src = direction === "outgoing" ? state.edgesBySource : state.edgesByTarget;
+      const key = nodeId;
+      const list = src.get(key) || [];
+      list.forEach(e => {
+        const other = direction === "outgoing" ? e.target : e.source;
+        out.push({ id: other, type: e.type });
+      });
+      return out;
+    }
+
+    function showNode(nodeId) {
+      const n = state.nodesById.get(nodeId);
+      const box = document.getElementById("nodeDetail");
+      if (!n) { box.classList.remove("shown"); return; }
+      state.activeNodeId = nodeId;
+      document.querySelectorAll(".result-row").forEach(r =>
+        r.classList.toggle("active", r.dataset.nodeId === nodeId));
+
+      const outgoing = neighbors(nodeId, "outgoing");
+      const incoming = neighbors(nodeId, "incoming");
+      const byType = (arr) => {
+        const g = new Map();
+        arr.forEach(e => {
+          if (!g.has(e.type)) g.set(e.type, []);
+          g.get(e.type).push(e.id);
+        });
+        return g;
+      };
+      const outGroups = byType(outgoing);
+      const inGroups = byType(incoming);
+
+      const renderGroup = (group, arrow) => {
+        if (!group.size) return `<div class="nb-none">none</div>`;
+        return Array.from(group.entries()).map(([type, ids]) => `
+          <div style="margin-bottom:5px">
+            <span style="color:var(--muted);font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">${arrow} ${esc(type)}</span>
+            <div class="nb-chips" style="margin-top:2px">${ids.slice(0, 10).map(id => chipFor(id)).join(" ")}${ids.length > 10 ? `<span class="nb-none"> +${ids.length - 10} more</span>` : ""}</div>
+          </div>
+        `).join("");
+      };
+
+      const tags = (n.tags || []).map(t => `<span class="nd-tag">${esc(t)}</span>`).join("");
+      const layerLabel = n.layer ? `<span class="nd-layer">${esc(n.layer)}</span>` : "";
+      const gh = n.githubUrl ? `<a href="${esc(n.githubUrl)}" target="_blank" rel="noopener">Source &nearr;</a>` : "";
+      box.innerHTML = `
+        <div class="nd-head">
+          <span class="nd-name">${esc(n.name)}</span>
+          <span class="nd-type">${esc(n.type)}</span>
+          ${layerLabel}
+        </div>
+        <div class="nd-tags">${tags}</div>
+        <div class="nd-summary">${esc(n.summary || "(no summary)")}</div>
+        <div class="nd-links">
+          ${gh}
+          ${n.filePath ? `<span style="color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;">${esc(n.filePath)}</span>` : ""}
+        </div>
+        <div class="nb-block">
+          <h4>Outgoing edges</h4>
+          ${renderGroup(outGroups, "&rarr;")}
+        </div>
+        <div class="nb-block">
+          <h4>Incoming edges</h4>
+          ${renderGroup(inGroups, "&larr;")}
+        </div>
+      `;
+      box.classList.add("shown");
+      box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // --- Bootstrap ---------------------------------------------------------
+    function indexPayload(p) {
+      state.raw = p;
+      state.nodesById = new Map();
+      state.edgesBySource = new Map();
+      state.edgesByTarget = new Map();
+      (p.nodes || []).forEach(n => state.nodesById.set(n.id, n));
+      (p.edges || []).forEach(e => {
+        if (!state.edgesBySource.has(e.source)) state.edgesBySource.set(e.source, []);
+        state.edgesBySource.get(e.source).push(e);
+        if (!state.edgesByTarget.has(e.target)) state.edgesByTarget.set(e.target, []);
+        state.edgesByTarget.get(e.target).push(e);
+      });
+    }
+
+    async function load() {
+      try {
+        const r = await fetch("/api/code_atlas", { cache: "no-cache" });
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const payload = await r.json();
+        if (payload.error) {
+          const d = document.getElementById("disclaimer");
+          d.classList.add("error");
+          d.style.display = "block";
+          d.textContent = payload.error;
+        }
+        indexPayload(payload);
+        assignLayerColors(payload.layers || []);
+        renderMeta(payload);
+        renderLayers(payload.layers || []);
+        renderTour();
+        renderSearch();
+      } catch (exc) {
+        document.getElementById("metaStrip").innerHTML =
+          `<span class="k">Failed to load the code atlas:</span> <span class="v">${esc(String(exc))}</span>`;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("searchInput").addEventListener("input", renderSearch);
+      document.getElementById("clearFilter").addEventListener("click", () => setFilter(null));
+      load();
+    });
+  })();
+  </script>
+</body>
+</html>
