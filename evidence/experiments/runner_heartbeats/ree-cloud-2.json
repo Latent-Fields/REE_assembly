@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-13T07:05:35Z",
+  "last_tick_utc": "2026-07-13T07:30:38Z",
   "state": "running",
   "current_exq": "V3-EXQ-748",
   "current_exq_started_utc": "2026-07-13T06:20:44.595150+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-457",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / D3_hazard_free",
-    "runs_done": 9,
+    "run_label": "Seed 43 / D3_hazard_free",
+    "runs_done": 10,
     "runs_total": 15,
-    "episodes_done": 150,
+    "episodes_done": 0,
     "episodes_total": 1000,
-    "overall_pct": 61.0
+    "overall_pct": 66.7
   },
-  "seconds_elapsed": 2690,
-  "seconds_remaining": 19,
+  "seconds_elapsed": 4193,
+  "seconds_remaining": 17015,
   "recent_lines": [
     "MECH-457 GOV-FANOUT-1 leg B (H-explore z_world dense-teacher) diagnostic (5 arms x 1 rung [D3_hazard_free] x 3 seeds; P0=200, RL=1000, BC=300, eval=20, steps=200)",
     "Seed 42 Condition D3_hazard_free:local_view_greedy",
@@ -41,7 +41,15 @@
     "Seed 42 Condition D3_hazard_free:ac_zworld_shaped_rl",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 50/200",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 150/200"
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 150/200",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 200/200",
+    "[train] ac_zworld_shaped_rl seed=42 phase=RL ep 200/1000",
+    "[train] ac_zworld_shaped_rl seed=42 phase=RL ep 400/1000",
+    "[train] ac_zworld_shaped_rl seed=42 phase=RL ep 600/1000",
+    "[train] ac_zworld_shaped_rl seed=42 phase=RL ep 800/1000",
+    "[train] ac_zworld_shaped_rl seed=42 phase=RL ep 1000/1000",
+    "verdict: FAIL (arm=ac_zworld_shaped_rl seed=42 forage/ep=0.3)",
+    "Seed 43 Condition D3_hazard_free:ac_zworld_shaped_rl"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
