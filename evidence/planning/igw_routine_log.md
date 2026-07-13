@@ -916,3 +916,4 @@ One line per hourly tick. ASCII only.
 2026-07-13T08:44:14Z GC keep igw-198-proposal-for-mech-077 (ledger IGW-20260713-198 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-07-13T08:43:55Z skip IGW-20260713-199: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-13T09:44:17Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-13T10:44:34Z skip IGW-20260713-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
