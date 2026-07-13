@@ -1,0 +1,131 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-13T18:33:20Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_slug": "MECH-457-fanout-747-748-749",
+  "fans_out_from": "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13.json",
+  "targets": [
+    {
+      "run_id": "v3_exq_747_mech457_hrep_rawview_actor_critic_20260713T062229Z_v3",
+      "queue_id": "V3-EXQ-747",
+      "leg": "H-rep (raw 5x5 view + sparse)",
+      "claim_ids": ["MECH-457"],
+      "outcome": "FAIL",
+      "failed_criterion": "absolute",
+      "self_route_label": "rawview_sparse_insufficient",
+      "key_metric": "d3_rawview_sparse_forage=0.217 (floor 1.0, local_view_greedy 48.05) -- ~= 742 z_world sparse 0.20-0.27",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- refutes H-rep in the sparse regime: raw view does not beat z_world under sparse reward",
+        "biological_reference": "clear -- stripped-dependency signature (no scaffold, sparse reward)",
+        "prerequisites": "missing -- bootstrappable action-level teaching signal",
+        "implementation": "complete",
+        "environment": "adequate -- oracle 57.2, local_view_greedy 48.05 clear the floor",
+        "measurement": "adequate -- always-core recorded",
+        "integration": "z_world->policy interface is NOT the wall (refuted); RL bootstrap is",
+        "scale": "budget not the sole story -- BC clears in same budget"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "narrow_supports_flag": false,
+      "pending_retest_after_substrate": false
+    },
+    {
+      "run_id": "v3_exq_748_mech457_hexplore_reward_density_actor_critic_20260713T111911Z_v3",
+      "queue_id": "V3-EXQ-748",
+      "leg": "H-explore (z_world + dense shaping / BC)",
+      "claim_ids": ["MECH-457"],
+      "outcome": "PASS",
+      "failed_criterion": "none -- diagnostic PASS adjudicated for verdict-aliasing",
+      "self_route_label": "dense_teacher_on_zworld_clears_sparsity_was_the_wall",
+      "self_route_adjudication": "MISLEADING -- aliases 'reward sparsity was the wall' (FALSE: shaped arm 0.217 sub-floor) with 'RL exploration is the wall, only an expert action-target bypasses it' (TRUE: BC arm 32.72). Correct reading is the latter.",
+      "key_metric": "d3_zworld_shaped_forage=0.217 FAIL vs d3_zworld_bc_forage=32.72 PASS (acc 0.802)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact-but-refined -- machinery functional-when-taught (BC); representation-inadequacy refuted",
+        "biological_reference": "clear -- BC = observational/scaffolded acquisition analog; the arm that works",
+        "prerequisites": "missing -- action-level teaching signal (scalar reward density insufficient)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate -- always-core recorded",
+        "integration": "z_world control substrate adequate under BC (beats raw view)",
+        "scale": "budget adequate -- BC clears in-budget"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "narrow_supports_flag": false,
+      "pending_retest_after_substrate": false
+    },
+    {
+      "run_id": "v3_exq_749_mech457_hrep_x_hexplore_rawview_dense_actor_critic_20260713T063043Z_v3",
+      "queue_id": "V3-EXQ-749",
+      "leg": "H-rep x H-explore (raw 5x5 view + dense shaping / BC)",
+      "claim_ids": ["MECH-457"],
+      "outcome": "PASS",
+      "failed_criterion": "none -- diagnostic PASS adjudicated for verdict-aliasing",
+      "self_route_label": "conjunction_clears_need_adequate_input_and_dense_teacher",
+      "self_route_adjudication": "PARTIALLY MISLEADING -- 'need adequate input' is not supported (z_world+BC 32.72 > raw+BC 20.93); shaped arm 0.767 sub-floor. Only the BC (imitation) arm clears -- teacher axis, not input axis.",
+      "key_metric": "d3_rawview_shaped_forage=0.767 FAIL vs d3_rawview_bc_forage=20.93 PASS (acc 0.872)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact-but-refined -- FAIL/PASS splits on teacher axis, not representation axis",
+        "biological_reference": "clear",
+        "prerequisites": "missing -- bootstrappable action-level teaching signal",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate -- always-core recorded",
+        "integration": "raw view NOT superior to z_world under BC -- refutes 'need adequate input'",
+        "scale": "budget adequate"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "narrow_supports_flag": false,
+      "pending_retest_after_substrate": false
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "2x3 (representation x teacher) grid; FAIL/PASS splits cleanly on the TEACHER axis (sparse & shaping FAIL on both inputs; BC PASSes on both inputs), NOT the representation axis",
+    "is_independent_bugs": false,
+    "structural_property": "unsupervised policy-gradient RL cannot bootstrap this task in-budget on either representation, even with dense reward shaping; supervised imitation (BC) clears the floor on both inputs, and z_world+BC > raw+BC. The wall is the RL exploration/credit-assignment bootstrap (learning signal), not input representation and not reward density.",
+    "readings": ["dependency_strengthened_bootstrappable_teaching_signal"],
+    "refuted_hypotheses": [
+      "H-rep: prediction-trained z_world is action-inadequate (REFUTED: z_world+BC beats raw+BC; raw+sparse ~= z_world+sparse)",
+      "reward-density: a denser scalar reward rescues policy-gradient (REFUTED: shaping sub-floor on both inputs)"
+    ]
+  },
+  "consolidated_claim_recommendation": {
+    "claim_id": "MECH-457",
+    "status_unchanged": "candidate / v3_pending",
+    "recommended_epistemic_category": "competence_implementation_gap",
+    "recommended_evidence_direction": "weakens",
+    "recommended_evidence_quality_note": "2026-07-13 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-747/748/749, diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13): the two-axis fanout (representation x teacher) REFUTES H-rep and the reward-density reading. Reward SHAPING rescues neither representation (z_world shaped 0.217, raw shaped 0.767 -- both sub-floor 1.0/ceiling 48.05); only behavior-cloning clears the floor, on BOTH inputs (z_world+BC 32.72, raw+BC 20.93), and z_world+BC > raw+BC -- so the prediction-trained z_world is NOT action-inadequate. The discriminated cause is the RL exploration/credit-assignment bootstrap (only imitation bypasses it), not representation and not reward density. This STRENGTHENS a dependency reading: action-learning requires a bootstrappable action-level teaching signal / developmental scaffold (BC = observational-acquisition analog), consistent with the O'Doherty/Schultz/Sutton biology. MECH-457 stays candidate/v3_pending, competence_implementation_gap; sufficiency weakens, dependency strengthened. One live discrimination remains on the algorithm axis (is an expert teacher necessary, or is unsupervised exploration merely too weak). Routed to /lit-pull (developmental scaffolding / exploration under sparse reward) to decide the build target before any substrate commit; H-optim leg preserved as the next empirical discrimination. No substrate_queue entry amended/created this cycle.",
+    "recommended_substrate_queue_entry": {
+      "action": "none",
+      "note": "Do NOT amend/create a substrate entry this cycle. The build target -- a better unsupervised explorer vs an imitation/curriculum scaffold -- is exactly what the /lit-pull + H-optim leg must decide. The f_dominance_conversion_ceiling entry stays as-is until that discrimination lands."
+    },
+    "re_derive_brake": {
+      "fired": false,
+      "threshold": 2,
+      "prior_substrate_ceiling_autopsies": [],
+      "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457; the 742 autopsy was competence_implementation_gap/weakens. Brake does not apply."
+    },
+    "fanout_recommendation": {
+      "is_discrimination": true,
+      "resolved_this_cycle": ["H-rep (REFUTED)", "H-explore/reward-density (REFUTED as sole cause)"],
+      "live_hypotheses": [
+        "H-teacher-necessary: no unsupervised RL can bootstrap this task in-budget; an expert action-level teaching signal / scaffold is required",
+        "H-optim: vanilla policy-gradient exploration is merely too weak; a stronger unsupervised explorer (PPO+entropy / intrinsic motivation / count-based) clears the floor without an expert"
+      ],
+      "suggested_probes": [
+        {"hypothesis": "H-optim", "axis": "algorithm", "sketch": "same env + input; replace vanilla policy-gradient with PPO+entropy or an intrinsic-motivation/count-based explorer, NO expert to clone. Null: clears floor -> exploration was the wall, build a better explorer; fails -> an expert teaching-signal/scaffold is necessary, build that."}
+      ],
+      "note": "GOV-FANOUT-1: the two-leg result is NOT ambiguous about H-rep/H-explore -- both refuted -- but it lands on the algorithm axis neither leg isolated, which is exactly when the fanout's optional third leg (H-optim) becomes warranted. Gated behind /lit-pull per user decision: the literature on developmental scaffolding / observational action acquisition / exploration under sparse reward should inform whether the build is 'better explorer' or 'imitation/curriculum scaffold' before the H-optim leg is queued."
+    },
+    "learning_extracted": [
+      "H-rep refuted: z_world+BC (32.72) > raw+BC (20.93); raw+sparse (0.217) ~= z_world+sparse (0.20-0.27). Prediction-trained z_world is NOT action-inadequate.",
+      "Reward-density refuted: potential-based dense shaping is sub-floor on both representations (0.217, 0.767). A denser scalar reward does not rescue policy-gradient in-budget.",
+      "Discriminated cause = RL exploration/credit-assignment bootstrap; only supervised imitation (BC) bypasses it. Strengthens the bootstrappable-teaching-signal / developmental-scaffold dependency, consistent with O'Doherty 2004 / Schultz 1997 / Sutton 2000.",
+      "One live discrimination remains on the algorithm axis (expert teacher necessary vs unsupervised exploration too weak); decides the build target.",
+      "Recording debt from 742 is fixed -- all three legs carry the always-core (substrate_hash, seeds, recording_schema, elapsed_seconds, machine_class)."
+    ],
+    "routing": "lit-pull"
+  }
+}
