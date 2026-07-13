@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-12T09:20:07Z
+Generated: 2026-07-13T04:18:57Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -156,10 +156,12 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (3)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
+- `evidence/planning/epistemic_overlay_plan.md`
+- `evidence/planning/pack_writer_single_writer_migration_plan.md`
 - `evidence/planning/ree_ai_design_critique_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
@@ -326,7 +328,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-5` | Provenance + contradiction-flag + rollback layer on consolidated memor | blocked | high | MECH-068 (consolidation selectivity lives in the operator, candidate) is the on-point prec | 2026-06-10 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-6` | Retrieval-scope vs action-authority split (reflection-retrieval != act | open | high | MECH-257 (E2_x dual-function: retrospective comparator vs prospective rollout-scoring, can | 2026-06-10 |
 | v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-5` | Gain-calibration window: low/high/miscalibrated coupling failure modes | open | high | social.md failure-mode taxonomy is design-only: LOW gain = psychopathy/callousness; EXCESS | 2026-06-10 |
-| v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-3` | Agency detection with a structurally-distinct OTHER (MECH-095 retest;  | blocked | high | MECH-095 (TPJ agency-detection comparator distinguishing self-caused from other-caused cha | 2026-06-10 |
+| v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-3` | Agency detection with a structurally-distinct OTHER (MECH-095 retest;  | blocked | high | MECH-095 (TPJ agency-detection comparator distinguishing self-caused from other-caused cha | 2026-07-12 |
 | v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-4` | Multi-channel coping repertoire so violence is genuinely terminal (MEC | blocked | high | MECH-102 (violence as terminal error-correction, triggered only when all other channels fa | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-4` | PILLAR B retrieval -- prototype-readout operator + type-V_s gating (ME | blocked | high | SD-040 type-keyed AnchorSet entries exist (MECH-296 softmax-attention readout has nothing  | 2026-06-10 |
 | v4 | object_reasoning_abstraction_v4_plan.md | `object_reasoning_abstraction_v4:OBJ-ABS-5` | PILLAR C -- option library (SD-042): named reusable subroutines (init- | blocked | high | ARC-021 three-BG-loop framework present (option arbitration slot) | 2026-06-10 |

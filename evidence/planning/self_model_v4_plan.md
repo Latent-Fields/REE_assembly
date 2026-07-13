@@ -33,10 +33,10 @@ closure_plan:
         note: "Self-continuity ingredient; with valence + autobiographical memory + inescapability + replay it forms the prohibited Class-4 combination."
       severity: load-bearing
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -58,10 +58,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: load-bearing
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -82,10 +82,10 @@ closure_plan:
       status: in_progress
       severity: load-bearing
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -108,10 +108,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -135,10 +135,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -166,10 +166,10 @@ closure_plan:
       blocker_class: v3_substrate
       severity: high
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -196,10 +196,10 @@ closure_plan:
       blocker_class: sibling_node
       severity: high
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -223,10 +223,10 @@ closure_plan:
       lit_pull_status: done
       severity: medium
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:
@@ -247,10 +247,10 @@ closure_plan:
       lit_pull_status: pending
       severity: low
       live:
-        as_of: "2026-07-11"
-        from: "failure_autopsy_V3-EXQ-740_2026-07-11"
+        as_of: "2026-07-12"
+        from: "failure_autopsy_V3-EXQ-740a_2026-07-12"
         verdict: "non_contributory/measurement_degeneracy"
-        next: "routing=queue-experiment"
+        next: "routing=claim-synthesis"
         brake: "not_fired"
         needs_review: false
       join:

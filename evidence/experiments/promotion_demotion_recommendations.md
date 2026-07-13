@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-07-12T13:27:18.825485Z`
+Generated: `2026-07-13T04:18:41.580229Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -194,7 +194,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-030
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.407, conflict_ratio=0.625, exp_entries=7, lit_entries=10; directions supports=11, weakens=5, mixed=1, unknown=0, conflict_ratio=0.625
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.406, conflict_ratio=0.625, exp_entries=7, lit_entries=10; directions supports=11, weakens=5, mixed=1, unknown=0, conflict_ratio=0.625
 - Evidence quality note: Hold at candidate (2026-03-29): no new experiments this session. SD-010 dependency and approach-avoidance symmetry (Go sub-channel implementation) required before testing. No experimental evidence yet. EXQ-086 INCONCLUSIVE/bug (2026-03-30, re-run of 20260323): benefit_rate=0 despite 274 buffered benefit events -- measurement bug in benefit_rate computation from buffer. Go sub-channel logging works…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -250,7 +250,7 @@ Use this as the human-in-the-loop review queue.
 ### ARC-042
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.229, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: epistemic_category=substrate_coherence, exp_conf=0.228, conflict_ratio=0.75, exp_entries=3, lit_entries=5; directions supports=5, weakens=3, mixed=0, unknown=0, conflict_ratio=0.75
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -671,7 +671,7 @@ Use this as the human-in-the-loop review queue.
 ### INV-054
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.24, conflict_ratio=0.667, exp_entries=3, lit_entries=6; directions supports=6, weakens=3, mixed=0, unknown=0, conflict_ratio=0.667
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.238, conflict_ratio=0.667, exp_entries=3, lit_entries=6; directions supports=6, weakens=3, mixed=0, unknown=0, conflict_ratio=0.667
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -752,7 +752,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-057b
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.264, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.263, conflict_ratio=0.5, exp_entries=1, lit_entries=4; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
 - Evidence quality note: No genuine experiments. This claim is explicitly V3-scoped. The thought-loop trajectory promotion gate requires HippocampalModule to implement a feedback path that suppresses trajectory candidates from being promoted to E3 consideration before hippocampal sequence completion is verified. This path is not present in V1 or V2. V3 primary scope: full HippocampalModule trajectory promotion policy and …
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -807,7 +807,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-075
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.322, conflict_ratio=0.75, exp_entries=5, lit_entries=7; directions supports=5, weakens=3, mixed=4, unknown=0, conflict_ratio=0.75
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.321, conflict_ratio=0.75, exp_entries=5, lit_entries=7; directions supports=5, weakens=3, mixed=4, unknown=0, conflict_ratio=0.75
 - Evidence quality note: EXQ-192a FAIL 1/4 x2 runs (2026-04-03): Hippocampal-VTA novelty loop probe FAIL. Run 1 (T04:39): criteria_met=1/4. Run 2 (T10:25): criteria_met=1/4. mean_novelty_signal_on = 6.4e-05 (threshold C4 > 1e-04: FAIL). cell_gap=0, hazard_gap=0 across both conditions -- NOVELTY_LOOP_ON identical to NOVELTY_LOOP_OFF. Root cause: novelty_gain=2.0 but novelty signal itself is below detection threshold; CEM n…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -826,7 +826,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-095
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.6, conflict_ratio=0.462, exp_entries=11, lit_entries=24; directions supports=20, weakens=6, mixed=9, unknown=0, conflict_ratio=0.462
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.598, conflict_ratio=0.462, exp_entries=11, lit_entries=24; directions supports=20, weakens=6, mixed=9, unknown=0, conflict_ratio=0.462
 - Evidence quality note: EXQ-047k PASS 5/5 (2026-03-25, 4 seeds): contact_recall_routed=0.796 > 0.55, recall_improvement=+0.065 > 0.04, action_dissoc=-0.007 > -0.05, n_contact_min=164. 4-seed replication with clean discriminative test. Promoted from provisional to active. Combined with lit_conf=0.907 (Blakemore 2002, Gu 2008, Pitcher & Ungerleider 2021, Rolls 2023), evidence for TPJ as agency-detection comparator is stron…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -845,7 +845,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-098
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.479, conflict_ratio=0.857, exp_entries=19, lit_entries=9; directions supports=12, weakens=9, mixed=7, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.478, conflict_ratio=0.857, exp_entries=19, lit_entries=9; directions supports=12, weakens=9, mixed=7, unknown=0, conflict_ratio=0.857
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
   - Keep candidate and run conflict-resolution experiments (most balanced)
@@ -882,7 +882,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-111
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.325, conflict_ratio=0.8, exp_entries=4, lit_entries=2; directions supports=2, weakens=3, mixed=1, unknown=0, conflict_ratio=0.8
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.324, conflict_ratio=0.8, exp_entries=4, lit_entries=2; directions supports=2, weakens=3, mixed=1, unknown=0, conflict_ratio=0.8
 - Evidence quality note: EXQ-141 FAIL/weakens (2026-03-29): novelty drive discriminative pair FAIL. First experimental entry.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -901,7 +901,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-112
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.678, conflict_ratio=0.375, exp_entries=15, lit_entries=6; directions supports=13, weakens=3, mixed=5, unknown=0, conflict_ratio=0.375
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.677, conflict_ratio=0.375, exp_entries=15, lit_entries=6; directions supports=13, weakens=3, mixed=5, unknown=0, conflict_ratio=0.375
 - Evidence quality note: EXQ-074c superseded (2026-03-27): resource_respawn bug -- zero resource visits in all conditions. Superseded by EXQ-074d. EXQ-074d FAIL 3/4, EXQ-074e FAIL 3/4 (2026-03-27): C1 FAIL in both (resource_rate_gap=0). C1 confound: greedy navigation applied uniformly to all conditions -- wanting cannot show a behavioural lift above nogo even when z_goal is active (goal_active=True, goal_norm=0.28 in 074d…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1049,7 +1049,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-153
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.275, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.273, conflict_ratio=0.6, exp_entries=4, lit_entries=7; directions supports=7, weakens=3, mixed=1, unknown=0, conflict_ratio=0.6
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1143,7 +1143,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-204
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.547, conflict_ratio=0.571, exp_entries=5, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=2, conflict_ratio=0.571
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.546, conflict_ratio=0.571, exp_entries=5, lit_entries=5; directions supports=5, weakens=2, mixed=1, unknown=2, conflict_ratio=0.571
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -1180,7 +1180,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-220
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.137, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.135, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2276,7 +2276,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-457
 - Current status: `candidate`
 - Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
-- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=4, weakens=1, mixed=1, unknown=0, conflict_ratio=0.4
 - Recommendation: `hold_pending_v3_substrate`
 - Options (pros/cons):
   - Wait for V3 substrate implementation (correct path).
@@ -2461,7 +2461,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-044
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.698, conflict_ratio=0, exp_entries=1, lit_entries=5; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.696, conflict_ratio=0, exp_entries=1, lit_entries=5; directions supports=5, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -2480,7 +2480,7 @@ Use this as the human-in-the-loop review queue.
 ### Q-054
 - Current status: `open`
 - Decision needed: Question narrowing review
-- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.387, conflict_ratio=0, exp_entries=1, lit_entries=2; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0.385, conflict_ratio=0, exp_entries=1, lit_entries=2; directions supports=2, weakens=0, mixed=1, unknown=0, conflict_ratio=0
 - Evidence quality note: >
 - Recommendation: `narrow_open_question`
 - Options (pros/cons):
@@ -2658,7 +2658,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.536, conflict_ratio=0.857, exp_entries=9, lit_entries=13; directions supports=12, weakens=9, mixed=1, unknown=0, conflict_ratio=0.857
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.535, conflict_ratio=0.857, exp_entries=9, lit_entries=13; directions supports=12, weakens=9, mixed=1, unknown=0, conflict_ratio=0.857
 - Evidence quality note: 2026-07-10 (governance, failure_autopsy_V3-EXQ-538a, confirmed; user-adjudicated): V3-EXQ-538a (SD-049 Phase-2 sleep-on ablation) re-ran the pre-enrichment 514f coarse reef config (~0.4% consumption, ~30-50 classifier updates); the identity/consumption pathway was starved so the run is non_contributory for SD-015 (manifest self-declared weakens overridden). SD-015 UNCHANGED candidate / substrate_c…
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2677,7 +2677,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-021
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.241, conflict_ratio=0.5, exp_entries=3, lit_entries=9; directions supports=9, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.24, conflict_ratio=0.5, exp_entries=3, lit_entries=9; directions supports=9, weakens=3, mixed=0, unknown=0, conflict_ratio=0.5
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2696,7 +2696,7 @@ Use this as the human-in-the-loop review queue.
 ### SD-023
 - Current status: `candidate`
 - Decision needed: Conflict resolution before promotion
-- Why this decision is needed: epistemic_category=standard, exp_conf=0.136, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
+- Why this decision is needed: epistemic_category=standard, exp_conf=0.135, conflict_ratio=0.4, exp_entries=1, lit_entries=4; directions supports=4, weakens=1, mixed=0, unknown=0, conflict_ratio=0.4
 - Evidence quality note: >
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):
@@ -2984,6 +2984,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 
 | claim_id | status | conflict_ratio |
 |---|---|---|
+| `INV-089` | `provisional` | 1 |
 | `MECH-445` | `candidate` | 1 |
 | `MECH-098` | `candidate` | 0.857 |
 | `SD-015` | `candidate` | 0.857 |
@@ -3029,6 +3030,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-135` | `candidate` | 0.4 |
 | `MECH-220` | `candidate` | 0.4 |
 | `MECH-442` | `candidate` | 0.4 |
+| `MECH-457` | `candidate` | 0.4 |
 | `Q-020` | `resolved` | 0.4 |
 | `SD-023` | `candidate` | 0.4 |
 | `SD-047` | `provisional` | 0.4 |
@@ -3041,7 +3043,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-091` | `candidate` | 0.333 |
 | `MECH-155` | `candidate` | 0.333 |
 
-WARNING: 56 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+WARNING: 58 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
 
 ## Substrate changes with dependent invariants
 

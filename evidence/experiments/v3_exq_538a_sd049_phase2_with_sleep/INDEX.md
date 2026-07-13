@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_538a_sd049_phase2_with_sleep
 
-Generated: `2026-07-12T13:27:18.825485Z`
+Generated: `2026-07-13T04:18:41.580229Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

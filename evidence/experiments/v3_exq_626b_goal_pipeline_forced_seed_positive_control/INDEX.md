@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_626b_goal_pipeline_forced_seed_positive_control
 
-Generated: `2026-07-12T13:27:18.825485Z`
+Generated: `2026-07-13T04:18:41.580229Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

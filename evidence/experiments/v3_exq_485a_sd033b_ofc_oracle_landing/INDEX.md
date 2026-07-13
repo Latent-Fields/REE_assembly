@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_485a_sd033b_ofc_oracle_landing
 
-Generated: `2026-07-12T13:27:18.825485Z`
+Generated: `2026-07-13T04:18:41.580229Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

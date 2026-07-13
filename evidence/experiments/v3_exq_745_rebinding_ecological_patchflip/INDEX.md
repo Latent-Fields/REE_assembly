@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_745_rebinding_ecological_patchflip
+
+Generated: `2026-07-13T04:18:41.580229Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3` | `2026-07-12T16:25:19Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3/summary.md) / [`manifest`](runs/v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3/manifest.json) / [`metrics`](runs/v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3/metrics.json) |
