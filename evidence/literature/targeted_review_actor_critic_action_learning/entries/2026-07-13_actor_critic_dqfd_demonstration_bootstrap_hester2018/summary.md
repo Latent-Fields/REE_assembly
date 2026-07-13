@@ -1,0 +1,17 @@
+# Deep Q-learning from Demonstrations (Hester et al., 2018) — MECH-457
+
+## What the paper did
+
+DQfD tackles the case where an agent must perform well *from its very first interactions* with a hard-exploration environment. It pre-trains a Q-network purely on a small set of human demonstrations, using a compound objective: one-step and N-step double-Q temporal-difference losses (so the value function is consistent for later RL), a supervised large-margin classification loss (so the demonstrator's chosen action is valued above unseen alternatives), and L2 regularisation. After pre-training it continues learning from self-generated experience mixed with the retained demonstrations. Across 42 Atari games it beat Prioritized Dueling Double DQN on initial performance in 41 of 42 (PDD-DQN needed ~83M steps on average to catch up), out-performed the demonstrator in 14, and set state-of-the-art on 11 — with the largest gains on the exploration-hard, sparse-reward titles.
+
+## Why it is relevant to MECH-457
+
+This is the closest ML precedent for what REE's 748/749 behavior-cloning arms actually showed. The combined autopsy discriminated the wall as the RL exploration/credit-assignment bootstrap — reward-only policy gradient cannot get competent foraging off the ground in-budget on either representation, but supervised imitation of an expert clears the floor. DQfD is that story at scale: on games where deep RL flounders for tens of millions of frames, a handful of demonstrations bootstraps a dedicated policy through the exploration wall, and — the part that matters most for the build decision — the bootstrapped policy is then *continued with RL* and goes on to match or exceed the human it imitated. That is direct support both for the autopsy's "bootstrappable action-level teaching signal / developmental scaffold" dependency and for MECH-457's core assertion that the dedicated policy substrate is the right locus: the demonstrations fix *exploration*, not *representation*, exactly matching the refutation of H-rep in the portfolio.
+
+## The mapping and its caveat
+
+The important nuance for our governance record is that DQfD is imitation *plus continued RL*, not pure behavior cloning. The REE BC arms cloned an expert without a documented continued-RL phase. So DQfD most strongly supports a *scaffold-then-RL* design — use the expert to bootstrap, then let the actor-critic keep learning on-policy — rather than "clone the expert and stop". Read next to the DAgger entry, this is the crux: pure BC has a covariate-shift ceiling, and DQfD's continued-RL phase is precisely how the literature escapes that ceiling. DQfD is silent, though, on *necessity*: it shows demonstrations help enormously, not that an unsupervised explorer (RND/ICM) could not have reached the same competence given the right bonus. That necessity question is what the H-optim leg exists to settle.
+
+## Confidence reasoning
+
+0.75, `supports`. Source quality high (AAAI 2018, widely reproduced). Mapping fidelity is the strongest in this batch — the demonstration-bootstrap-through-an-exploration-wall pattern is the literal shape of REE's 748/749 PASS. The discount is transfer (Atari) plus the imitation-plus-RL-versus-pure-BC distinction. This entry is the affirmative case for the scaffold build target; it should be weighed against the RND/ICM explorer entries, and its own caveat (needs the continued-RL phase) is developed in the DAgger entry.

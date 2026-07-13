@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-13_actor_critic_dqfd_demonstration_bootstrap_hester2018",
+  "timestamp_utc": "2026-07-13T18:46:19Z",
+  "claim_ids_tested": ["MECH-457"],
+  "source": {
+    "title": "Deep Q-learning from Demonstrations",
+    "authors": ["Todd Hester", "Matej Vecerik", "Olivier Pietquin", "Marc Lanctot", "Tom Schaul", "Bilal Piot", "Dan Horgan", "John Quan", "Andrew Sendonaris", "Ian Osband", "Gabriel Dulac-Arnold", "John Agapiou", "Joel Z. Leibo", "Audrunas Gruslys"],
+    "year": 2018,
+    "venue": "AAAI 2018 (arXiv:1704.03732)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1704.03732"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Direct, well-replicated precedent for the exact pattern the 748/749 BC arms displayed: a small demonstration set bootstraps a dedicated RL policy through the hard-exploration wall that reward-only RL cannot cross in-budget, and the combined learner then matches or exceeds the demonstrator. High mapping fidelity to REE's discriminated cause (learning-signal/exploration bootstrap, not representation). Discounted for Atari-to-REE transfer and for the fact that DQfD blends imitation WITH continued RL rather than pure BC.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "DQfD's early performance is upper-bounded by demonstration quality and coverage; on games where the human demonstrations were poor, the pretraining advantage was small and pure RL eventually caught up.",
+    "It requires the supervised large-margin loss plus continued TD learning to avoid the demonstrations biasing the value function toward unseen actions -- pure supervised cloning without the RL loss would inherit the covariate-shift problem (see the DAgger entry).",
+    "The bootstrap accelerates learning but does not by itself prove the substrate can learn WITHOUT a teacher -- it is silent on whether an unsupervised explorer could reach the same competence."
+  ],
+  "tags": ["mech_457", "actor_critic_action_learning", "learning_from_demonstration", "behavior_cloning", "demonstration_bootstrap", "hard_exploration", "developmental_scaffold", "imitation", "conversion_ceiling", "f_dominance_conversion_ceiling", "gov_fanout_1"],
+  "mapping": {
+    "source_claim_statement": "DQfD pre-trains a Q-network on a small set of demonstrations using a combined temporal-difference, N-step, supervised large-margin, and L2 loss, then continues learning from self-generated experience mixed with the demonstrations. It has better initial performance than PDD-DQN on 41 of 42 Atari games (PDD-DQN takes on average 83M steps to catch up), and learns to out-perform the demonstrator on 14 of 42, achieving state-of-the-art on 11.",
+    "ree_translation": "This is the ML archetype of the MECH-457 autopsy's strengthened dependency -- a bootstrappable action-level teaching signal / developmental scaffold. It mirrors the REE 748/749 result almost exactly: a dedicated policy substrate that reward-only RL cannot get off the ground in-budget IS bootstrappable by imitating an expert, and (crucially) once bootstrapped it can be continued with RL to match or beat the teacher. Supports both the 'scaffold' build target and MECH-457's core claim that the dedicated policy substrate is the right locus -- the demonstrations rescue exploration, not representation.",
+    "mapping_caveat": "DQfD is imitation PLUS continued RL, not pure behavior cloning; the REE BC arms (748/749) cloned an expert without a documented continued-RL phase, so DQfD is evidence for the scaffold-then-RL design more than for BC-as-endpoint. Atari-to-REE transfer also applies. It does not adjudicate necessity of a teacher versus a stronger explorer.",
+    "source_context": "Deep RL, 42 hard Atari-2600 games including exploration-hard titles, DQN-family value learning bootstrapped from human demonstrations, pixel observations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "High venue/replication weight; mapping fidelity high because the demonstration-bootstrap-through-an-exploration-wall pattern is the precise shape of REE's 748/749 PASS. Transfer risk moderate -- Atari, and DQfD's continued-RL phase differs from the REE BC arms."
+  }
+}

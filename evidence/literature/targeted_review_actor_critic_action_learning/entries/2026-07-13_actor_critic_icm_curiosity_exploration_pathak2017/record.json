@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-13_actor_critic_icm_curiosity_exploration_pathak2017",
+  "timestamp_utc": "2026-07-13T18:46:19Z",
+  "claim_ids_tested": ["MECH-457"],
+  "source": {
+    "title": "Curiosity-driven Exploration by Self-supervised Prediction",
+    "authors": ["Deepak Pathak", "Pulkit Agrawal", "Alexei A. Efros", "Trevor Darrell"],
+    "year": 2017,
+    "venue": "ICML 2017 (arXiv:1705.05363)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1705.05363"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Influential, well-replicated demonstration that an intrinsic-curiosity bonus solves sparse-reward tasks vanilla A2C cannot, which supports the viability of the unsupervised-explorer path. Marked mixed rather than supports because the same line of work exposes curiosity's structural fragilities (the noisy-TV problem; dependence on the inverse-dynamics feature space) that make it an unreliable universal fix -- exactly the uncertainty the H-optim leg must resolve. Confidence tempered by Atari/VizDoom-to-REE transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The forward-model prediction-error bonus is attracted to inherently unpredictable stimuli (the 'noisy-TV' problem): an agent can be trapped maximising curiosity at a stochastic source instead of exploring task-relevant structure.",
+    "Curiosity is only useful to the extent the inverse-dynamics feature space captures action-controllable variation; if the learned features miss the task-relevant degrees of freedom, the bonus does not guide exploration toward the goal.",
+    "Demonstrated on VizDoom and Super Mario; sparse-reward success is task-structure-dependent and does not guarantee in-budget success on an arbitrary new environment such as REE forage."
+  ],
+  "tags": ["mech_457", "actor_critic_action_learning", "exploration", "sparse_reward", "intrinsic_motivation", "curiosity", "inverse_dynamics", "unsupervised_explorer", "h_optim_leg", "conversion_ceiling", "f_dominance_conversion_ceiling", "gov_fanout_1"],
+  "mapping": {
+    "source_claim_statement": "An Intrinsic Curiosity Module -- a forward dynamics model whose prediction error in an inverse-dynamics-learned feature space is used as intrinsic reward -- lets an A3C agent explore and learn in sparse- and no-extrinsic-reward settings where a reward-only agent fails, solving tasks in under 100M frames that vanilla A2C failed to solve in 500M.",
+    "ree_translation": "A second, well-cited instance of the unsupervised-explorer path: an intrinsic signal derived only from the agent's own experience can drive competent action learning under sparse reward, on top of a policy-gradient actor-critic. Supports keeping 'better explorer' as a MECH-457 build target, but the paper's own caveats (noisy-TV, feature-space dependence) argue that an intrinsic bonus is not a guaranteed fix -- consistent with the possibility that a scaffold/imitation teacher is still needed for REE.",
+    "mapping_caveat": "Curiosity's success is contingent on the environment having learnable, action-controllable structure that its features capture; REE forage may or may not satisfy that. The 'mixed' direction is deliberate -- this entry both supports the explorer path (it works where vanilla RL fails) AND flags why it may not be sufficient (structural fragility), leaving the H-optim leg as the arbiter.",
+    "source_context": "Deep RL, VizDoom navigation and Super Mario Bros., A3C actor-critic with an ICM intrinsic reward, pixel observations."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "High venue/citation weight. Mapping fidelity moderate: the mechanism (intrinsic bonus over an actor-critic) maps cleanly to the H-optim leg, but the demonstrated environments differ from REE. Transfer risk raised by the documented failure modes that could bite in REE forage."
+  }
+}

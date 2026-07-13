@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-13_actor_critic_dagger_bc_covariate_shift_ross2011",
+  "timestamp_utc": "2026-07-13T18:46:19Z",
+  "claim_ids_tested": ["MECH-457"],
+  "source": {
+    "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+    "authors": ["Stephane Ross", "Geoffrey J. Gordon", "J. Andrew Bagnell"],
+    "year": 2011,
+    "venue": "AISTATS 2011 (PMLR 15:627-635)",
+    "doi": null,
+    "url": "https://proceedings.mlr.press/v15/ross11a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Canonical, theoretically-grounded result with a general (task-agnostic) guarantee, so transfer risk is low. Mixed relative to MECH-457: it WEAKENS a naive 'the BC PASS is the answer' reading of 748/749 (pure cloning compounds error quadratically under covariate shift), while SUPPORTING MECH-457's insistence that a dedicated RL/interactive-correction loop -- not imitation alone -- is load-bearing. This is the key interpretive caveat on the whole discrimination portfolio.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A policy trained by supervised behavior cloning to error rate epsilon under the expert's state distribution can incur cost that grows as O(epsilon * T^2) over a horizon T, because its own mistakes carry it into states the expert never visited and never demonstrated -- covariate shift / compounding error.",
+    "The guarantee that removes the quadratic blow-up (DAgger, linear in T) REQUIRES an interactive expert queryable at states the learner actually visits; a fixed demonstration set (as used by REE's BC arms) does not provide that, so the offline-BC ceiling still applies.",
+    "High held-out action-match accuracy (REE 748: 0.802, 749: 0.872) does NOT certify closed-loop competence -- per-step accuracy is the exact quantity that compounds; a strong action-match number can still yield a policy that drifts off the expert manifold at deployment."
+  ],
+  "tags": ["mech_457", "actor_critic_action_learning", "behavior_cloning", "imitation", "covariate_shift", "compounding_error", "dagger", "distribution_shift", "conversion_ceiling", "f_dominance_conversion_ceiling", "gov_fanout_1"],
+  "mapping": {
+    "source_claim_statement": "Supervised imitation (behavior cloning) violates the i.i.d. assumption because the learner's own actions determine its future state distribution; this yields error compounding quadratically in the task horizon. DAgger -- iteratively aggregating data by querying the expert on states the current learner visits -- reduces this to no-regret online learning with error linear in the horizon.",
+    "ree_translation": "This is the load-bearing caveat on how to read the 748/749 BC PASS. The autopsy correctly concluded that only imitation (not shaping) cleared the floor -- but Ross et al. warn that a pure-BC policy's competence is fragile: its per-step action-match accuracy (0.802 / 0.872) is precisely the error that compounds over an episode, and a fixed demonstration set gives no correction at the off-distribution states the learner drifts into. So the BC PASS is best read as 'the exploration bottleneck is real and an action-level teacher bypasses it', NOT as 'cloning is a sufficient build target'. It argues the scaffold must be imitation-PLUS-interactive-correction-or-RL, consistent with MECH-457's claim that a dedicated RL policy loop is required.",
+    "mapping_caveat": "The O(T^2) bound is worst-case and horizon-dependent; REE's forage episodes and the benign-ness of drift there are not characterised, so the practical severity is unquantified. The theorem is about deployment-time closed-loop cost, whereas 748/749 report evaluated return -- if that evaluation was itself closed-loop, some compounding is already reflected in the PASS margins, and the caveat is about robustness/generalisation beyond the measured setting.",
+    "source_context": "Imitation learning / structured prediction theory; empirical validation on a driving simulator and handwriting recognition; general (task-agnostic) reduction and regret bound."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "Very high source weight (canonical, thousands of citations, formal guarantee). Low transfer risk because the result is a general theorem, not a task-specific empirical finding. Mapping fidelity high: it speaks directly to how the 748/749 BC PASS should be interpreted for the build decision."
+  }
+}

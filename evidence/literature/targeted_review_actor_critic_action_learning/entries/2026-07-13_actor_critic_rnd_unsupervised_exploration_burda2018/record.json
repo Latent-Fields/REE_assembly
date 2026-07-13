@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018",
+  "timestamp_utc": "2026-07-13T18:46:19Z",
+  "claim_ids_tested": ["MECH-457"],
+  "source": {
+    "title": "Exploration by Random Network Distillation",
+    "authors": ["Yuri Burda", "Harrison Edwards", "Amos Storkey", "Oleg Klimov"],
+    "year": 2019,
+    "venue": "ICLR 2019 (arXiv:1810.12894, 2018)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1810.12894"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong, heavily-replicated result (ICLR, first >human-mean Montezuma without demonstrations) that a dedicated RL policy plus a purely unsupervised exploration bonus can clear hard sparse-reward. Directly bears on the live GOV-FANOUT-1 discrimination (is an expert teacher necessary, or is unsupervised exploration merely too weak). Confidence held below 0.8 by domain transfer: Atari pixel hard-exploration at ~1e9 frames and large parallel actor budgets is a very different regime from REE D3 5x5 forage in-budget.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "RND's SOTA on Montezuma required hundreds of parallel environments and ~1.6-2 billion frames; the exploration bonus is a large-compute solution, not a cheap in-budget one -- so 'unsupervised exploration is sufficient' does not imply 'sufficient in REE's per-arm budget'.",
+    "RND is susceptible to the same detachment/derailment failure as other novelty bonuses: the bonus fades as states become familiar, so it can under-explore late-appearing bottleneck states.",
+    "Gains were confined to the exploration-hard sparse-reward subset (Montezuma, Gravitar, Venture, Private Eye); on Pitfall! it still scored ~0, i.e. some sparse-reward structures resist even a strong unsupervised explorer."
+  ],
+  "tags": ["mech_457", "actor_critic_action_learning", "exploration", "sparse_reward", "intrinsic_motivation", "random_network_distillation", "unsupervised_explorer", "h_optim_leg", "conversion_ceiling", "f_dominance_conversion_ceiling", "gov_fanout_1"],
+  "mapping": {
+    "source_claim_statement": "An exploration bonus equal to the prediction error of a network trained to mimic a fixed random network yields state-of-the-art exploration, achieving better-than-average-human performance on Montezuma's Revenge -- the first method to do so without demonstrations or access to the emulator state.",
+    "ree_translation": "The H-optim leg the MECH-457 autopsy defers -- a stronger UNSUPERVISED explorer (PPO+entropy / intrinsic motivation) on the same env+input with no expert to clone -- has real precedent for clearing hard sparse-reward. RND is existence-proof that a dedicated RL policy substrate (which MECH-457 asserts REE needs) plus a good exploration bonus can bootstrap competent control from sparse reward alone, so an action-level expert teacher is not logically necessary in general.",
+    "mapping_caveat": "Existence in Atari at billion-frame scale is not sufficiency in REE's per-arm compute budget. RND does not tell us whether the SAME env (D3 forage, ceiling 48.05) is clearable by an intrinsic-motivation explorer in-budget -- that is exactly what the H-optim leg must measure. The paper narrows the search space (explorer path is not a dead end) without deciding it.",
+    "source_context": "Deep RL, Atari-2600 hard-exploration games, PPO actor-critic with a distillation-error intrinsic reward, pixel observations, massively parallel rollouts."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Venue + replication weight is very high; the discount is entirely transfer -- Atari-at-scale to REE-in-budget. Weighted toward mapping_fidelity because the claim under test is architectural (is a better explorer viable), for which existence-of-a-strong-explorer is the load-bearing datum."
+  }
+}

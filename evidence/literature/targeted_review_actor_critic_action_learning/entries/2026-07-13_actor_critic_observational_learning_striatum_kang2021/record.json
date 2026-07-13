@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_actor_critic_action_learning",
+  "entry_id": "2026-07-13_actor_critic_observational_learning_striatum_kang2021",
+  "timestamp_utc": "2026-07-13T18:46:19Z",
+  "claim_ids_tested": ["MECH-457"],
+  "source": {
+    "title": "Neural Mechanisms of Observational Learning: A Neural Working Model",
+    "authors": ["Weixi Kang", "Sonia Pineda Hernandez", "Jie Mei"],
+    "year": 2021,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2020.609312",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8100516/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Biological grounding for the scaffold path: a neuroimaging synthesis arguing observational/imitative action acquisition recruits the same fronto-striatal (and dorsal-frontoparietal, cerebellar) machinery as trial-and-error learning, so a developmental-scaffold/imitation route to REE's actor-critic substrate is biologically faithful rather than an ad-hoc engineering shortcut. Confidence moderate: it is a review (not a single strong causal study), and it flags an inverted ventral-striatal observational prediction-error that complicates naive transfer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The ventral striatum shows an INVERTED coding pattern for observational prediction errors relative to individually-experienced reward prediction errors (Burke et al.), so observational and first-person RL are not simply the same computation with a different input -- naive 'imitation reuses the RPE teacher unchanged' is too strong.",
+    "The review draws on healthy-adult neuroimaging (correlational BOLD), not lesion/electrophysiology or developmental data, so the causal necessity of the fronto-striatal pathway for observational action acquisition is asserted rather than demonstrated.",
+    "It distinguishes imitation (replicating observed actions WITHOUT outcome processing) from observational learning (processing others' action-outcome contingencies) -- REE's behavior-cloning arms are the former, so the review's outcome-processing observational-learning findings map only partially onto the BC result."
+  ],
+  "tags": ["mech_457", "actor_critic_action_learning", "observational_learning", "imitation", "developmental_scaffold", "fronto_striatal", "dorsal_striatum", "reward_prediction_error", "biology_before_formalism", "conversion_ceiling", "f_dominance_conversion_ceiling"],
+  "mapping": {
+    "source_claim_statement": "Observational and trial-and-error learning share neural systems: regardless of whether stimulus-response associations are acquired by observation or by direct experience, a dorsal-frontoparietal, a fronto-striatal, and a cerebellar network are recruited at acquisition; a three-phase working model (observation / acquisition / response) organises the observational-learning circuitry, with the ventral striatum carrying observational prediction errors (inverted relative to first-person reward signals).",
+    "ree_translation": "Biological warrant for the scaffold build target. The MECH-457 autopsy names 'developmental scaffolding (innate approach + curriculum + imitation)' as a stripped dependency; this review says observational/imitative action acquisition in biology recruits the SAME fronto-striatal actor-critic machinery REE's substrate models, so bootstrapping REE's dorsal-striatal-analog policy from an expert (the 748/749 BC arms; a curriculum/imitation scaffold going forward) is faithful to how brains actually acquire action, not an engineering hack. Consistent with the project's biology-before-formalism design constraint.",
+    "mapping_caveat": "This is correlational human neuroimaging, and the inverted ventral-striatal observational prediction-error means the imitation route is NOT a trivial re-use of the first-person RPE teacher -- it is a related but distinct computation. The review also separates outcome-processing observational learning from pure action-replication imitation; REE's BC is the latter, so the mapping is partial. Grounds biological plausibility of the scaffold, not a specific algorithm.",
+    "source_context": "Human functional-neuroimaging review of observational learning; healthy adult participants; synthesises S-R association, action-observation, and prediction-error findings into a neural working model."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Review-level neuroimaging synthesis, so source_quality moderate (no single causal design). Mapping fidelity moderate: grounds the biological plausibility of the scaffold path but not a build algorithm. Transfer risk raised by the imitation-vs-observational distinction and the inverted observational PE."
+  }
+}

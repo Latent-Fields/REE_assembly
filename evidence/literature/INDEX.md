@@ -1,13 +1,13 @@
 # Literature Evidence Index
 
-Generated: `2026-07-13T06:10:52.615093Z`
+Generated: `2026-07-13T18:52:03.644517Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
 | `neuro_pe_habenula_da` | [`2026-02-13_habenula_da_signed_pe_review`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/record.json) | 1 | [`summary`](neuro_pe_habenula_da/entries/2026-02-13_habenula_da_signed_pe_review/summary.md) |
 | `targeted_review_action_policy_decomposition` | [`2026-06-13_sd_045_sequence_chunk_start_stop_jin2010`](targeted_review_action_policy_decomposition/entries/2026-06-13_sd_045_sequence_chunk_start_stop_jin2010/record.json) | 7 | [`summary`](targeted_review_action_policy_decomposition/entries/2026-06-13_sd_045_sequence_chunk_start_stop_jin2010/summary.md) |
 | `targeted_review_active_inference_bridge` | [`2026-07-09_active_inference_bridge_textbook_parr2022`](targeted_review_active_inference_bridge/entries/2026-07-09_active_inference_bridge_textbook_parr2022/record.json) | 2 | [`summary`](targeted_review_active_inference_bridge/entries/2026-07-09_active_inference_bridge_textbook_parr2022/summary.md) |
-| `targeted_review_actor_critic_action_learning` | [`2026-07-10_actor_critic_rpe_teaching_signal_schultz1997`](targeted_review_actor_critic_action_learning/entries/2026-07-10_actor_critic_rpe_teaching_signal_schultz1997/record.json) | 5 | [`summary`](targeted_review_actor_critic_action_learning/entries/2026-07-10_actor_critic_rpe_teaching_signal_schultz1997/summary.md) |
+| `targeted_review_actor_critic_action_learning` | [`2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/record.json) | 10 | [`summary`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/summary.md) |
 | `targeted_review_affect_stream_relief_safety_soothing` | [`2026-06-05_soothing_social_buffering_hpa_review_hostinar2014`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/record.json) | 5 | [`summary`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
