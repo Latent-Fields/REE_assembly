@@ -1,6 +1,6 @@
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
-**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`); step 3 **edge-case-A HYBRID** (276 scripts: 267 archival `MANIFEST_WRITER_EXEMPT` + 9 active corrected-and-routed; the `{TYPE}_{ts}.json` `result`-var `detect_manifest_var`→None class) LANDED 2026-07-12 (ree-v3 main `7b8c150`); step 3 batch 6 (9 scripts: the `no out_dir assignment` param-dir class via a `dir_bound_as_param` migrator generalization [8: `621`/`621a`/`622`/`626`/`626a`/`626b`/`636`/`637`] + `354` real-branch hand-migration; `540f` dropped to the concurrent 69-rename HYBRID, `241a`/`241b`/`247` refused as pack-subdir rename/relocate) LANDED 2026-07-13 (ree-v3 main `bf7724a`). Cumulative: **658 of 1028 scripts** now route through `write_flat_manifest` (+ 272 `MANIFEST_WRITER_EXEMPT`; migrator unmatched 402->102). §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stayed **103**. §7.4 batch-5 pass (2026-07-13, session `pack_writer §7.4 batch-5 elapsed retrofit`, ree-v3 main `a442440`): **1 of the 15 batch-5 scripts eligible (527); the other 14 stay by-design advisory gaps** (2 no unaliased `timezone` import [`526` has `datetime` only], 5 no argparse at all, 7 scope-split like batch-4's 705/706); retrofit cumulative **104**.
+**Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`); step 3 **edge-case-A HYBRID** (276 scripts: 267 archival `MANIFEST_WRITER_EXEMPT` + 9 active corrected-and-routed; the `{TYPE}_{ts}.json` `result`-var `detect_manifest_var`→None class) LANDED 2026-07-12 (ree-v3 main `7b8c150`); step 3 batch 6 (9 scripts: the `no out_dir assignment` param-dir class via a `dir_bound_as_param` migrator generalization [8: `621`/`621a`/`622`/`626`/`626a`/`626b`/`636`/`637`] + `354` real-branch hand-migration; `540f` dropped to the concurrent 69-rename HYBRID, `241a`/`241b`/`247` refused as pack-subdir rename/relocate) LANDED 2026-07-13 (ree-v3 main `bf7724a`); step 3 **batch-5 non-canonical genuine-rename HYBRID** (69 scripts: the `detect_manifest_var` SUCCEEDED but the filename is not provably `== f"{run_id}.json"` class -- `{TYPE}_{ts}` missing `_v3` / `manifest.json` pack-style / `{run_id}_manifest.json` / filename-var / `ts`-`ts_utc`-order mismatch; classified **all 69 ARCHIVAL, ZERO active** -> `MANIFEST_WRITER_EXEMPT`; disjoint from the edge-case-A HYBRID [`detect_manifest_var`->None] by construction) LANDED 2026-07-13 (ree-v3 main `acd1a50`). Cumulative: **658 of 1028 scripts** now route through `write_flat_manifest` (+ **341** `MANIFEST_WRITER_EXEMPT`; migrator unmatched 402->33). §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stayed **103**. §7.4 batch-5 pass (2026-07-13, session `pack_writer §7.4 batch-5 elapsed retrofit`, ree-v3 main `a442440`): **1 of the 15 batch-5 scripts eligible (527); the other 14 stay by-design advisory gaps** (2 no unaliased `timezone` import [`526` has `datetime` only], 5 no argparse at all, 7 scope-split like batch-4's 705/706); retrofit cumulative **104**.
 **Closes:** the "no single enforcement chokepoint" gap named in the Experimental Recording Standard [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md) §4.
 **Owns:** making `ree-v3/experiments/pack_writer.py` the mandatory single manifest writer across the experiment corpus, incrementally, without breaking the flat -> sync -> pack -> indexer chain.
 **Sibling:** [`arm_reuse_fingerprint_plan.md`](arm_reuse_fingerprint_plan.md) (the arm-reuse fingerprint is the readout-reuse instance of the same over-record principle).
@@ -581,14 +581,77 @@ gate `pytest tests/` = **1437 passed, 0 failed, 39 subtests (7:18)**.
 
 | Unmatched class | ~count | Broadening needed | Risk |
 |---|---|---|---|
-| non-canonical filename provably **!=** run_id (batch-5 69 genuine renames) + `540f` pack-index flat sibling | ~70 | active `priceless-snyder-3ffc30` HYBRID (exempt archival / correct-and-route active) | high |
+| ~~non-canonical filename provably **!=** run_id (batch-5 69 genuine renames; `540f` counted within)~~ **DONE 2026-07-13 (`acd1a50`): all 69 ARCHIVAL -> `MANIFEST_WRITER_EXEMPT`** | 0 | -- (section below) | -- |
 | `no json.dump(manifest` tail (non-`manifest`-var / episode_log / write_text idioms not yet var-proven) | 30 | per-script var-identity proof (batch-3 class) or HYBRID | med |
 | pack-subdir multi-manifest rename/relocate (`241a`/`241b` flat `<TYPE>_output.json`; `247` `runs/<id>/manifest.json`) | 3 | route the flat sibling only IFF `{run_id}.json`; else §7 pack track | med |
 | misc (`no run_id in result dict literal`, un-templatable) | ~1 | per-script | low |
 
-The remaining live blocks are the `priceless-snyder-3ffc30` rename HYBRID and the 30
-`no json.dump(manifest` non-`manifest`-var tail (needs the batch-3 var-identity proof extended
-or its own HYBRID). Re-run the migrator `--report` after each broadening.
+The remaining live blocks are the `priceless-snyder-3ffc30` rename HYBRID (**now DONE** --
+section below) and the 30 `no json.dump(manifest` non-`manifest`-var tail (needs the batch-3
+var-identity proof extended or its own HYBRID). Re-run the migrator `--report` after each
+broadening.
+
+### Progress — step 3 batch-5 non-canonical genuine-rename HYBRID, session 2026-07-13 (`priceless-snyder-3ffc30`; 69 scripts LANDED, ree-v3 main `acd1a50`)
+
+Executed the **HYBRID** on the **69 batch-5 non-canonical genuine-rename refusals** --
+scripts where the migrator's `detect_manifest_var` **SUCCEEDED** but it refused because the
+output filename is not provably `== f"{run_id}.json"` (so routing would RENAME the flat file).
+**Distinct from the edge-case-A HYBRID** (`detect_manifest_var`->None) by construction: this
+class is `detect_manifest_var` SUCCEEDED + non-canonical filename. Enumerated via the migrator
+`UNMATCH` reason `non-canonical filename not provably == run_id` = **69** (31 `{TYPE}_{ts}`
+missing `_v3` + 8 un-templatable JoinedStr + 6 `manifest.json` pack-style + 5+3 no-run_id-in-dict
++ 4 `ts_unix` + 3 `TYPE`/`ts` order-swap + 2 `{run_id}_manifest.json` + 2 filename-var + 1
+`ts_utc` + 1 `ts_compact` + 1 `{TYPE}_{run_id}`). `540f` is one of the 69 (batch-6's "+540f"
+note counts it within, not additional).
+
+**Classify (queue + recent-run history).** Live queue held only `V3-EXQ-742-m` (none of the 69
+queued). Recency = canonical top-level manifest presence at `evidence/experiments/<run_id>.json`
++ most-recent `runner_status/*.json` `completed_at` per queue_id. **ALL 69 ARCHIVAL, ZERO ACTIVE**:
+none queued; **none run within 40d** (nearest is `610a` at 44d completed / 41d manifest); and every
+one of the 12 that carry a canonical manifest is **superseded by a later-lettered sibling that
+already writes canonical** (`110`/`111`/`118`->`517*`/`529`/`623`; `418j`/`418k`->`418l`/`418m`;
+`516`->`517*`; `563a`->`563b`/`563c`; `608`->`611`..`660b`; `610`/`610a`->`610b`..`610f`/`655`/`656`).
+The `mech216` `263`/`332` pair has no successor but is 84-89d old + unqueued. The 12 manifests date
+80-114d ago (several share the `2026-04-18T12:40:10Z` bulk-backfill timestamp, not a real run).
+Because zero are active, the `run_id`/out_dir **CORRECTION + mandatory dry-run smoke** path was
+**not exercised** (no active script to correct); the exempt path adds an inert module constant with
+no runtime behaviour change, so no smoke is applicable (mirrors the edge-A archival 267).
+
+-> mechanical module-level `MANIFEST_WRITER_EXEMPT = "archival early-era manifest (non-canonical
+filename not provably == run_id.json; superseded lineage, not re-run)"`, inserted after the last
+top-level import by a **dedicated AST inserter** (byte-preserving line insertion, idempotent; **no
+migrator change**). Every changed file exactly **+2/-0**.
+
+**Validation (batches 1-4 process).** 69/69 `py_compile`; `validate_experiments --strict --paths`
+over the 69 = **manifest-writer findings 51->0, 0 NEW** (degeneracy-self-report backlog **67->67**
+unchanged; total finding lines **189->138 = -51 exactly**; the before/after non-conforming finding
+SET differs ONLY by the 51 removed manifest-writer lines -- `comm` proved 0 non-manifest-writer
+removed + 0 NEW). **18 of the 69 carry no `evidence_direction` token** so their exempt is inert
+(batch-3 onboard_smoke / edge-A 18/267 precedent). An **independent classification+writer oracle**
+(separate code from the analysis: re-derives from git-HEAD source + the queue + the evidence dir)
+confirmed **69/69 genuine raw-dump manifest writers AND 69/69 archival** (0 queued, 0 recent) --
+the oracle initially flagged 3 "phantom" (AnnAssign / base-module-inherited / helper-param manifest
+idioms its dict-literal detector missed) + 4 "not archival" (85d-manifest scripts its over-strict
+supersession rule tripped on); both were oracle bugs, fixed (AnnAssign + name-based writer fallback;
+archival = unqueued AND not-recent, supersession informational) -> clean 69/69. Post-rebase migrator:
+the 69 all report `skip`/`MANIFEST_WRITER_EXEMPT`. Merge gate `pytest tests/` = **1436 passed, 1
+pre-existing order/global-RNG flake** (`test_scaffolded_sd054_onboarding.py::test_c17_reinforce_loss_
+gradient_reaches_rule_bias_head` -- unseeded within-test [its `manual_seed(0)` is in a *different*
+test], **PASSES in isolation**, and this diff touches **0 test/`ree_core` files**; the same suite's
+sibling `test_c12` was the documented batch-2 flake), 39 subtests passed; 3 direct suites
+(`test_recording_standard` + `test_arm_fingerprint_lint` + `test_arm_reuse`) 44 passed pre- and
+post-rebase. Staged on `integration/pack-writer-batch5-noncanonical-hybrid` in a dedicated worktree
+off `ree-v3` main (`.claude/worktrees/REE_assembly` symlink for the `test_arm_reuse` gotcha),
+rebased past the 4 concurrent commits (batch6 `52741e0`/`3e87734`/`bf7724a` + §7.4-b5 `a442440`;
+**zero file overlap** verified), ff-merged to `main`, branch + worktree removed.
+
+**Cumulative: 658 of 1028** route through `write_flat_manifest` (unchanged -- this pass routes 0)
+**+ 341 `MANIFEST_WRITER_EXEMPT`** (272 + 69). Migrator unmatched **102->33** (the 69 exempt->skip).
+Remaining 33 unmatched (still the live block): **30 `no json.dump(manifest` tail**
+(`detect_manifest_var`->None: ~22 `RUNID_only` var-identity that already write canonical
+`{run_id}.json` [a var-identity batch, relax `detect_manifest_var` to a non-dict-literal `result`
+var] + ~8 emit-only/harness with no raw flat-manifest dump [not lint-flagged]) + **3
+`no canonical with open`**.
 
 Shape families (survey; total 1,028; migrate top-down):
 
