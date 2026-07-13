@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- CODE_ATLAS_VERSION: 2026-07-13.1 -->
+<!-- CODE_ATLAS_VERSION: 2026-07-13.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -131,6 +131,23 @@
       color: var(--muted); font-weight: 600; }
     .node-detail .nb-chips { display: flex; flex-wrap: wrap; gap: 4px; }
     .node-detail .nb-none { color: var(--muted); font-size: 11px; font-style: italic; }
+    /* Related-claims chips: link out to the brain map at the claim anchor. */
+    .claim-chip { display: inline-flex; align-items: center; gap: 5px; text-decoration: none;
+      font-size: 11px; padding: 1px 7px; border-radius: 10px; background: var(--bg-3);
+      border: 1px solid var(--border); color: var(--text); line-height: 1.5; }
+    .claim-chip:hover { border-color: var(--l3); }
+    .claim-chip .cc-id { font-family: ui-monospace,SFMono-Regular,Menlo,monospace; font-weight: 600; }
+    .claim-chip .cc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex: 0 0 auto; }
+    .claim-chip.st-stable .cc-dot { background: #2ea043; }
+    .claim-chip.st-provisional .cc-dot { background: #d29922; }
+    .claim-chip.st-candidate .cc-dot { background: #a371f7; }
+    .nd-copy { background: none; border: 1px solid var(--border); color: var(--muted); cursor: pointer;
+      font-size: 11px; padding: 1px 8px; border-radius: 10px; font-family: inherit; }
+    .nd-copy:hover { border-color: var(--l3); color: var(--text); }
+    .claim-filter-note { font-size: 11px; color: var(--muted); margin: 2px 0 6px; }
+    .claim-filter-note b { color: var(--text); font-family: ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .claim-filter-note button { background: none; border: none; color: var(--l3); cursor: pointer;
+      font-size: 11px; padding: 0 0 0 6px; }
 
     footer.pagefoot { padding: 14px 16px; color: var(--muted); font-size: 11px; text-align: center;
       border-top: 1px solid var(--border); margin-top: 16px; }
@@ -208,6 +225,7 @@
       edgesByTarget: new Map(),
       activeLayer: null,
       activeNodeId: null,
+      activeClaim: null,
     };
 
     const PALETTE = [
@@ -346,6 +364,10 @@
       return q.toLowerCase().split(/\s+/).filter(Boolean).every(tok => hay.includes(tok));
     }
 
+    function nodeHasClaim(n, claimId) {
+      return (n.related_claims || []).some(c => c.claim_id === claimId);
+    }
+
     function renderSearch() {
       const box = document.getElementById("searchResults");
       const q = document.getElementById("searchInput").value.trim();
@@ -353,6 +375,7 @@
       const all = state.raw.nodes || [];
       const matched = all.filter(n => {
         if (activeIds && !activeIds.has(n.id)) return false;
+        if (state.activeClaim && !nodeHasClaim(n, state.activeClaim)) return false;
         return nodeMatches(n, q);
       });
       // Rank: informative files & classes first, then everything else; then by name.
@@ -371,11 +394,16 @@
       document.getElementById("searchCount").textContent =
         `${matched.length} node${matched.length === 1 ? "" : "s"}` +
         (matched.length > shown.length ? ` (showing first ${shown.length})` : "");
+      const claimNote = state.activeClaim
+        ? `<div class="claim-filter-note">Filtered to nodes related to <b>${esc(state.activeClaim)}</b><button type="button" id="clearClaimFilter">clear</button></div>`
+        : "";
       if (!shown.length) {
-        box.innerHTML = `<div class="empty">No matches.</div>`;
+        box.innerHTML = claimNote + `<div class="empty">No matches.</div>`;
+        const cc = document.getElementById("clearClaimFilter");
+        if (cc) cc.addEventListener("click", () => setClaimFilter(null));
         return;
       }
-      box.innerHTML = shown.map(n => `
+      box.innerHTML = claimNote + shown.map(n => `
         <div class="result-row ${state.activeNodeId === n.id ? "active" : ""}" data-node-id="${esc(n.id)}">
           <span class="type-badge">${esc(n.type)}</span>
           <span class="name">${esc(n.name)}</span>
@@ -385,6 +413,20 @@
       box.querySelectorAll(".result-row").forEach(row => {
         row.addEventListener("click", () => showNode(row.dataset.nodeId));
       });
+      const cc = document.getElementById("clearClaimFilter");
+      if (cc) cc.addEventListener("click", () => setClaimFilter(null));
+    }
+
+    // Filter the result list to nodes whose related_claims contain `claimId`.
+    // Exactly one match -> open it directly; otherwise show the filtered list.
+    function setClaimFilter(claimId) {
+      state.activeClaim = claimId || null;
+      document.getElementById("searchInput").value = "";
+      renderSearch();
+      if (state.activeClaim) {
+        const hits = (state.raw.nodes || []).filter(n => nodeHasClaim(n, state.activeClaim));
+        if (hits.length === 1) showNode(hits[0].id);
+      }
     }
 
     function neighbors(nodeId, direction) {
@@ -433,6 +475,23 @@
       const tags = (n.tags || []).map(t => `<span class="nd-tag">${esc(t)}</span>`).join("");
       const layerLabel = n.layer ? `<span class="nd-layer">${esc(n.layer)}</span>` : "";
       const gh = n.githubUrl ? `<a href="${esc(n.githubUrl)}" target="_blank" rel="noopener">Source &nearr;</a>` : "";
+
+      // Related claims -- chips linking to the brain map at the claim anchor.
+      const claims = n.related_claims || [];
+      const knownStatus = { stable: 1, provisional: 1, candidate: 1 };
+      const claimChips = claims.map(c => {
+        const st = knownStatus[c.status] ? c.status : "other";
+        return `<a class="claim-chip st-${esc(st)}" href="/brain-map#claim=${encodeURIComponent(c.claim_id)}"
+                   target="_blank" rel="noopener" title="${esc(c.title || "")} [${esc(c.status || "?")}]">
+                  <span class="cc-dot"></span><span class="cc-id">${esc(c.claim_id)}</span>
+                </a>`;
+      }).join(" ");
+      const claimBlock = `
+        <div class="nb-block">
+          <h4>Related claims${claims.length ? ` (${claims.length})` : ""}</h4>
+          ${claims.length ? `<div class="nb-chips">${claimChips}</div>` : `<div class="nb-none">none</div>`}
+        </div>`;
+
       box.innerHTML = `
         <div class="nd-head">
           <span class="nd-name">${esc(n.name)}</span>
@@ -444,7 +503,9 @@
         <div class="nd-links">
           ${gh}
           ${n.filePath ? `<span style="color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;">${esc(n.filePath)}</span>` : ""}
+          <button type="button" class="nd-copy" id="ndCopyBtn" title="Copy a shareable link to this node">Copy link</button>
         </div>
+        ${claimBlock}
         <div class="nb-block">
           <h4>Outgoing edges</h4>
           ${renderGroup(outGroups, "&rarr;")}
@@ -454,6 +515,18 @@
           ${renderGroup(inGroups, "&larr;")}
         </div>
       `;
+      const copyBtn = document.getElementById("ndCopyBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+          const link = location.origin + "/code-atlas?node=" + encodeURIComponent(nodeId);
+          const done = () => { copyBtn.textContent = "Copied!"; setTimeout(() => { copyBtn.textContent = "Copy link"; }, 1400); };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(link).then(done, () => { window.prompt("Copy link to this node:", link); });
+          } else {
+            window.prompt("Copy link to this node:", link);
+          }
+        });
+      }
       box.classList.add("shown");
       box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
@@ -490,15 +563,28 @@
         renderLayers(payload.layers || []);
         renderTour();
         renderSearch();
+        applyQueryParams();
       } catch (exc) {
         document.getElementById("metaStrip").innerHTML =
           `<span class="k">Failed to load the code atlas:</span> <span class="v">${esc(String(exc))}</span>`;
       }
     }
 
+    // Deep-link honouring: ?node= opens a node, ?layer= filters, ?claim= filters to
+    // nodes related to a claim. node/layer may combine; claim yields to an explicit node.
+    function applyQueryParams() {
+      const params = new URLSearchParams(location.search);
+      const node = params.get("node");
+      const layer = params.get("layer");
+      const claim = params.get("claim");
+      if (layer && (state.raw.layers || []).some(L => L.id === layer)) setFilter(layer);
+      if (node && state.nodesById.has(node)) showNode(node);
+      else if (claim) setClaimFilter(claim);
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("searchInput").addEventListener("input", renderSearch);
-      document.getElementById("clearFilter").addEventListener("click", () => setFilter(null));
+      document.getElementById("clearFilter").addEventListener("click", () => { state.activeClaim = null; setFilter(null); });
       load();
     });
   })();

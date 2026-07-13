@@ -2071,6 +2071,127 @@ def _code_atlas_github_link(rel_path: str, commit: str | None) -> str:
     return f"{CODE_ATLAS_GITHUB_REPO}/blob/{ref}/{rel_path}"
 
 
+def _code_atlas_related_claims_index(graph_nodes: list) -> dict:
+    """Map each source filePath -> related claim chips {claim_id, title, status}.
+
+    The claim<->file join is architectural: docs/architecture/brain_region_map.yaml
+    co-locates each region's subject_prefixes (-> claims via claim.subject) with its
+    ree_core_paths / functional_analogs (-> source files). A file inherits a region's
+    claims when it is either
+
+      (a) a *specific* owner match -- named in the region's functional_analogs, or under
+          a sub-path (contains '/') ree_core_path -- in which case ALL that region's
+          claims attach; or
+      (b) a *broad* bare-directory ree_core_path match (e.g. control_plane owns the whole
+          heartbeat/ package), in which case a claim attaches ONLY if its text names a
+          symbol defined in the file (class/function) or the file's stem. The symbol gate
+          keeps package-level directory ownership from flooding every file in a package
+          with the region's entire claim set.
+
+    claim_evidence.v1.json carries no file paths (it indexes claim -> runs/entries only),
+    so it is not consulted here. Never raises: any failure -- missing brain_region_map.yaml,
+    missing claims.yaml, unavailable PyYAML -- degrades to an empty index, i.e. every node
+    gets related_claims: []."""
+    try:
+        if not _YAML_OK:
+            return {}
+        map_doc = _brain_load_region_map()
+        claims_list = _tl_load_claims()
+        if not map_doc or not claims_list:
+            return {}
+
+        _norm_re = re.compile(r"[^a-z0-9]+")
+        _camel_re = re.compile(r"(?<!^)(?=[A-Z])")
+
+        def _norm(s) -> str:
+            return _norm_re.sub(" ", str(s).lower()).strip()
+
+        status_rank = {"stable": 0, "provisional": 1, "candidate": 2}
+
+        # subject-prefix -> claim chip records; and normalized claim text for the gate.
+        by_pref: dict = {}
+        claim_text: dict = {}
+        for c in claims_list:
+            cid = str(c.get("id") or "")
+            if not cid:
+                continue
+            sub = str(c.get("subject") or "")
+            pref = sub.split(".")[0] if sub else ""
+            if pref:
+                by_pref.setdefault(pref, []).append({
+                    "claim_id": cid,
+                    "title": str(c.get("title") or ""),
+                    "status": str(c.get("status") or ""),
+                })
+            claim_text[cid] = _norm(" ".join(str(c.get(k) or "") for k in (
+                "title", "functional_restatement", "subject", "evidence_quality_note")))
+
+        # filePath -> symbol tokens (class / function / method names defined in that file).
+        sym_by_file: dict = {}
+        for n in graph_nodes or []:
+            fp = str(n.get("filePath") or "")
+            if fp and str(n.get("type") or "") in ("class", "function", "method"):
+                nm = str(n.get("name") or "")
+                if nm:
+                    sym_by_file.setdefault(fp, set()).add(nm)
+
+        regions = list(map_doc.get("regions") or []) + list(map_doc.get("engineering_nodes") or [])
+
+        def _needles(fp: str) -> set:
+            rel = fp[len("ree_core/"):] if fp.startswith("ree_core/") else fp
+            stem = rel.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+            out = {_norm(stem), _norm(stem.replace("_", " "))}
+            for s in sym_by_file.get(fp, ()):
+                out.add(_norm(s))
+                out.add(_norm(_camel_re.sub(" ", s)))
+            return {n for n in out if len(n) >= 4}
+
+        def _match(rel: str, region: dict):
+            specific = broad = False
+            for p in (region.get("functional_analogs") or []):
+                p = str(p)
+                if rel == p or rel.startswith(p.rstrip("/") + "/"):
+                    specific = True
+            for p in (region.get("ree_core_paths") or []):
+                p = str(p)
+                if rel == p or rel.startswith(p.rstrip("/") + "/"):
+                    if "/" in p:
+                        specific = True
+                    else:
+                        broad = True
+            return specific, broad
+
+        index: dict = {}
+        file_paths = {str(n.get("filePath") or "") for n in (graph_nodes or []) if n.get("filePath")}
+        for fp in file_paths:
+            rel = fp[len("ree_core/"):] if fp.startswith("ree_core/") else fp
+            needles = None
+            picked: dict = {}
+            for region in regions:
+                specific, broad = _match(rel, region)
+                if not (specific or broad):
+                    continue
+                for pref in (region.get("subject_prefixes") or []):
+                    for rec in by_pref.get(str(pref), ()):
+                        cid = rec["claim_id"]
+                        if specific:
+                            picked[cid] = rec
+                        elif cid not in picked:
+                            if needles is None:
+                                needles = _needles(fp)
+                            txt = claim_text.get(cid, "")
+                            if any(nd in txt for nd in needles):
+                                picked[cid] = rec
+            if picked:
+                index[fp] = sorted(
+                    picked.values(),
+                    key=lambda r: (status_rank.get(r["status"], 3), r["claim_id"]),
+                )
+        return index
+    except Exception:
+        return {}
+
+
 def read_code_atlas() -> dict:
     """Return the ree-v3 code atlas payload for /api/code_atlas.
 
@@ -2140,6 +2261,10 @@ def read_code_atlas() -> dict:
                                                 "service", "pipeline", "table",
                                                 "schema", "resource", "endpoint"):
             file_id_by_path.setdefault(rel, str(n.get("id") or ""))
+    # filePath -> related claim chips (architectural claim<->file join; see helper).
+    # Built here so it caches on the graph mtime alongside the payload; degrades to an
+    # empty index (related_claims: []) if the region map / claims registry is absent.
+    related_index = _code_atlas_related_claims_index(graph.get("nodes") or [])
     nodes_out: list[dict] = []
     for n in (graph.get("nodes") or []):
         nid = str(n.get("id") or "")
@@ -2156,6 +2281,7 @@ def read_code_atlas() -> dict:
             "tags": list(n.get("tags") or []),
             "layer": layer,
             "githubUrl": _code_atlas_github_link(rel, commit) if rel else "",
+            "related_claims": related_index.get(rel, []) if rel else [],
         })
 
     # Edges: keep every one -- 628 * ~140 chars ~= 90 KB, well under any
