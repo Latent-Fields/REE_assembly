@@ -1,0 +1,209 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-13T05:22:21Z",
+  "scope": "batch",
+  "status": "confirmed",
+  "batch_note": "Five independent morning-digest targets. 742 is the load-bearing weakens and refutes the 734-737 autopsy's 'single missing mechanism = MECH-457' conclusion. 744a/746/746a/745 are supporting adjudications confirmed at the interactive gate 2026-07-13.",
+  "targets": [
+    {
+      "run_id": "v3_exq_742_mech457_actor_critic_onoff_20260713T032215Z_v3",
+      "queue_id": "V3-EXQ-742",
+      "claim_ids": ["MECH-457"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- 'MECH-457 is THE competence lever / sufficient' refuted; necessity NOT falsified",
+        "biological_reference": "clear -- dorsal-striatal actor + value critic + RPE teacher is a faithful translation (O'Doherty 2004 / Schultz 1997 / Sutton 2000); brain dependencies (action-adequate cortical input, dense/shaped RPE, developmental scaffolding) are all absent in REE",
+        "prerequisites": "missing -- action-adequate input representation and/or a bootstrappable teaching signal",
+        "implementation": "complete -- substrate built, bit-identical OFF, smoke pass, trains (train forage moves to ~1.2); not an impl bug",
+        "environment": "adequate -- local_view_greedy clears the 1.0 floor at 48.05 (D3); env solvable, raw 5x5 view sufficient",
+        "measurement": "adequate -- 738 fair local-view denominator, all readiness gates met (recording-gap footnote: no top-level substrate_hash/seeds/elapsed_seconds/recording_schema)",
+        "integration": "coupled-but-fails -- the prediction-trained z_world -> policy interface is the suspect seam",
+        "scale": "possibly insufficient -- 1000 eps, but train forage plateaus at ~1.2 vs 48 achievable, so budget is not the sole story"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal striatum as ACTOR dissociable from ventral-striatal value CRITIC, taught by dopaminergic RPE; ML form = actor-critic / policy-gradient with value baseline",
+        "dependencies": ["action-adequate cortical (sensorimotor) input representation", "dense/shaped RPE teaching signal", "developmental scaffolding (innate approach + curriculum)"],
+        "is_formal_import": false,
+        "divergence": "faithful class translation, but the biological actor's three dependencies (adequate input, shaped teacher, scaffolding) are all stripped in 742: actor reads prediction-trained z_world, foraging reward is sparse/unshaped, no BC/curriculum warmup -- the FAIL matches a missing-dependency signature, not a mechanism-class falsification",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-742 (2026-07-13, evidence, ON/OFF validation) WEAKENS the sufficiency reading: the first-class RPE actor-critic substrate (all 4 arms: frozen/cotrain x plain/SF) forages 0.20-0.27/ep at D3 -- below random_walk (0.93) and 0.5% of the local_view_greedy ceiling (48.05) -- while every readiness precondition holds (oracle + local-view clear the floor, bias_head reproduces incompetence). Necessity NOT falsified; the deficit sits UPSTREAM of action-learning credit-assignment. Refutes the 734-737 autopsy's 'single missing mechanism = MECH-457' conclusion; the surviving structural-property half ('prediction-trained z_world is action-inadequate') is the leading hypothesis. Routed to GOV-FANOUT-1: H-rep (actor on raw 5x5 view) vs H-explore (reward-shaping / BC-warmup). Same-question floor re-pose REFUSED. MECH-457 stays candidate/v3_pending.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "sd_actor_critic_action_learning already exists (unblocks MECH-457) and is BUILT; 742 shows it is not the lever. Do NOT amend/create a substrate entry this cycle -- the fanout must DISCRIMINATE the deeper cause (encoder interface vs reward density) BEFORE any new substrate is named."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "reason": "first autopsy tagging MECH-457 (0 priors); brake does not apply"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-rep: the prediction-trained z_world discards the action-relevant resource geometry that the raw 5x5 view carries -- the encoder->policy interface is action-inadequate (refined H2', distinct from strong-H2 which 738 refuted)",
+          "H-explore: the sparse unshaped foraging reward is not bootstrappable by policy-gradient in-budget (train forage never leaves ~1.2) -- reward-sparsity/exploration is the wall, not the representation"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-rep", "axis": "representation", "sketch": "train the actor-critic head directly on the raw 5x5 resource_field_view (bypass z_world, the exact input local_view_greedy uses). Null: clears floor -> z_world is action-inadequate (interface is the wall); still fails -> points to H-explore/optimization."},
+          {"hypothesis": "H-explore", "axis": "drive", "sketch": "keep z_world input but replace sparse foraging reward with distance-to-nearest-resource shaping OR a behavior-cloning warmup from local_view_greedy. Null: clears floor -> reward-sparsity/exploration was the wall; fails -> sparsity is not the (sole) wall."}
+        ],
+        "note": "GOV-FANOUT-1: two legs on DIFFERENT design axes (representation vs drive), each with a declared null, neither a power-bump of the braked floor design. queue-experiment Step 2.5b design-audits coverage + verdict-aliasing before queuing. Optional third leg (H-optim, algorithm axis: PPO+entropy on raw-view input) only if the two are ambiguous. REFUSE any 737a/732b-style same-question floor re-pose."
+      },
+      "learning_extracted": [
+        "The 734-737 'single missing mechanism = MECH-457' conclusion is REFUTED: the predicted fix (dedicated actor-critic) was built and does not clear the foraging floor.",
+        "The competence wall is NOT an env/substrate-wiring ceiling: local_view_greedy on the raw 5x5 view clears the floor at 48x -- the env is solvable and the raw observation is sufficient. Every LEARNED agent fails; the wall is a learning/representation interface, not the world.",
+        "The surviving hypothesis from the 734-737 structural property ('prediction-trained z_world is action-inadequate') is now leading, but is confounded with a reward-sparsity/exploration failure (train forage plateaus at ~1.2) -- these must be discriminated on separate design axes before naming a build.",
+        "Recording debt: 742 lacks top-level substrate_hash/seeds/elapsed_seconds/recording_schema; the fanout re-runs should stamp_recording_core(...) per the Experimental Recording Standard."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3",
+      "queue_id": "V3-EXQ-744a",
+      "claim_ids": ["INV-088"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- the strong 'quality gain tracks / strictly bounded by z_world differentiation' reading pressured; not demoted (candidate)",
+        "biological_reference": "partial -- emergent representation-quality bound; the evaluator head has capacity to noise-fit even poorly-differentiated z_world, so the bound is loose not tight",
+        "prerequisites": "present -- preconditions met (IV moved, DV decodable, target variance)",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate -- 8-seed higher-n re-estimate with identical pre-registered criteria; definitive read, not underpowered",
+        "integration": "isolated",
+        "scale": "adequate -- more seeds does not shrink the intrinsic per-seed SD; the coupling is intrinsically high-CV"
+      },
+      "biological_reference": {
+        "closest_mechanism": "representational-differentiation bound on downstream evaluator quality (INV-064 world/goal child)",
+        "dependencies": ["z_world (E1) representational differentiation"],
+        "is_formal_import": false,
+        "divergence": "coupling is directionally real (mean 0.130 > 0; several strong seeds) but below the pre-registered effect-size floor",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-744a (2026-07-12, 8-seed re-estimate of the 744 inconclusive, EXTENDS 744) WEAKENS the strong bound reading: mean_delta_r2=0.130 fails the 0.15 floor and the 2xSD effect-size gate with preconditions met; monotone C2 fails (rho=0.69). The world/goal-evaluator vs z_world-differentiation coupling is real-but-weak and high-variance, not a clean threshold effect. First weighted entry for INV-088; stays candidate.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "reason": "not substrate_ceiling/non_contributory; met-precondition weakens"},
+      "learning_extracted": [
+        "The 744 inconclusive resolves definitively at 8 seeds: the INV-088 DV coupling is real-but-variable (high per-seed CV), not a clean threshold effect -- mean fell 0.232->0.130, now below both the floor and the 2xSD gate.",
+        "First weighted evidence entry for INV-088 (744 was inconclusive / not weighted)."
+      ],
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_746_inv089_harm_eval_z_harm_calibrated_bound_20260712T142637Z_v3",
+      "queue_id": "V3-EXQ-746",
+      "claim_ids": ["INV-089"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- test starved; no interpretable claim signal",
+        "biological_reference": "n/a -- bound never got off the ground",
+        "prerequisites": "missing -- IV inert (z_harm gradient did not move) + DV undecodable + numerical blow-up",
+        "implementation": "partial -- sparse single-cell target + un-clipped DV head produced non-finite excursions (seed-3 -6.3e7); fixed in 746a",
+        "environment": "adequate",
+        "measurement": "misleading -- normalised-std mis-gate + sparse target; corrected in 746a",
+        "integration": "isolated",
+        "scale": "unknown"
+      },
+      "biological_reference": {"closest_mechanism": "harm_eval_z_harm bound (INV-064 harm child)", "dependencies": ["z_harm differentiation"], "is_formal_import": false, "divergence": "starved -- no valid read", "lit_status": "partial"},
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "superseded",
+      "recommended_evidence_quality_note": "V3-EXQ-746 (2026-07-12) STARVED (non_degenerate:false): z_harm differentiation gradient did not move (IV delta -0.184) and the state target was not decodable-in-principle (decode r2 -0.196); DV blew up numerically (seed-3 -6.3e7) on a sparse single-cell target with an un-clipped DV head. Correctly superseded by V3-EXQ-746a. Governance: set evidence_direction=superseded so the indexer scoring-excludes it; no weight toward INV-089.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "reason": "starved/superseded, not a substrate-ceiling verdict"},
+      "learning_extracted": [
+        "746 is a starved bound (IV inert + DV undecodable + numerical blow-up), NOT a falsification -- superseded by the corrected 746a.",
+        "Route: governance marks evidence_direction=superseded for indexer scoring-exclusion."
+      ],
+      "routing": "governance-demotion"
+    },
+    {
+      "run_id": "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3",
+      "queue_id": "V3-EXQ-746a",
+      "claim_ids": ["INV-089"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- the 'strictly bounded by z_harm differentiation' reading pressured; INV-089 stays provisional",
+        "biological_reference": "partial -- harm_eval quality vs z_harm differentiation bound; the bound does not hold on a met-precondition dense target",
+        "prerequisites": "present -- primary target (dens) preconditions met (IV delta +0.032, IV-mature decode 0.398, target var); secondary targets (at/next) starved, non-gating",
+        "implementation": "complete -- corrected calibrated bound (denser target, raw-std precondition, gradient-clipped DV head)",
+        "environment": "adequate",
+        "measurement": "adequate -- fixes the 746 mis-gates",
+        "integration": "isolated",
+        "scale": "adequate -- 8 seeds"
+      },
+      "biological_reference": {"closest_mechanism": "harm_eval_z_harm quality bounded by z_harm differentiation (INV-064 harm child, SD-010 separate HarmEncoder)", "dependencies": ["z_harm differentiation (HarmEncoder maturation)"], "is_formal_import": false, "divergence": "on the met-precondition dense target the quality bound does not rise/track maturation (C1 rho -0.53, C2 couple rho -0.08, mean_dv_delta -34.5)", "lit_status": "partial"},
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-746a (2026-07-12, corrected calibrated bound, SUPERSEDES starved 746, EXTENDS 743) WEAKENS: on the met-precondition dense target the harm_eval_z_harm quality bound does not rise monotonically (C1 rho=-0.53) or track z_harm differentiation (C2 couple rho=-0.08); mean_dv_delta=-34.5. First met-precondition bound-test evidence against the strict-bound reading; INV-089 stays provisional pending governance weigh-in.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "INV-089 was promoted candidate->provisional on 743's POSITIVE CONTROL (decodability rises with HarmEncoder maturation). This first BOUND test weakens the strict-bound reading. The remaining support (743) is a single-pathway positive control -- flag for governance so the provisional status is re-weighed with both in view, not just the weakens removed.",
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "reason": "INV-089 substrate_ceiling autopsies: 0 (honoured in the manifest); met-precondition weakens"},
+      "learning_extracted": [
+        "First met-precondition bound-test weakens for INV-089: harm_eval quality does not track z_harm differentiation on a dense, decodable target -- pressures the 'strictly bounded' reading behind the 743-promotion.",
+        "746a validates the corrected calibration (denser target + raw-std precondition + gradient-clipped DV head) that 746 lacked."
+      ],
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3",
+      "queue_id": "V3-EXQ-745",
+      "claim_ids": ["MECH-456"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- readiness gate unmet; declared null, NOT a rebinding verdict",
+        "biological_reference": "partial -- entity-layer rebinding (MECH-269(b) analogue over self<->world-config bindings)",
+        "prerequisites": "missing -- the couple() path lacks behavioural (foraging) authority; disabling the binding does not move foraging (positive-control couple_authority below floor)",
+        "implementation": "complete -- cross_stream_binding_substrate built + converged; rebinding positively exercised (per 725a)",
+        "environment": "wrong pressures -- the world-flip test-bed does not give the couple() perturbation foraging resolution on this substrate",
+        "measurement": "adequate -- DV1 (affinity tracks config above shuffle) works; DV2 (ecological foraging) uninterpretable on a couple-inert substrate",
+        "integration": "partially coupled -- binder is measurable but behaviourally inert",
+        "scale": "unknown"
+      },
+      "biological_reference": {"closest_mechanism": "continuous entity-binding re-evaluation (rebinding); entity-layer analogue of MECH-269(b) anchor-reset", "dependencies": ["a couple() path with behavioural authority over foraging", "adequate P0 config coverage"], "is_formal_import": false, "divergence": "the learned binder tracks config (DV1) but its couple() coupling does not move behaviour (DV2) -- couple-inert substrate", "lit_status": "partial"},
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-745 (2026-07-12, world-driven patch-flip + ecological couple()-path DV) NON_CONTRIBUTORY: readiness gate unmet -- the couple() path is behaviourally inert (disabling the binding does not move foraging; positive-control couple_authority below floor). Per the V3-EXQ-478 precedent a null DV2 on a couple-inert substrate is substrate_ceiling, NOT a rebinding refutation. Declared null; not weighted. Distinct measurement axis from the braked 733/733a survival-onboarding axis. A re-queue must target a substrate whose couple() path carries foraging authority.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Brake NOT fired (user raised threshold to 3). No forced implement-substrate this cycle. The real gap -- a couple()-authority substrate -- is recorded as an advisory: any MECH-456 re-queue MUST give the couple() path foraging authority or it re-hits this couple-inert wall. cross_stream_binding_substrate (implemented) covers the binder; no entry covers couple() behavioural authority yet -- if the 4th autopsy fires the brake, that becomes a create."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 3,
+        "threshold_raised_by_user_utc": "2026-07-13T05:22:21Z",
+        "threshold_raised_from": 2,
+        "count_including_this": 3,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-733_2026-07-10", "failure_autopsy_V3-EXQ-733a_2026-07-11"],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "reason": "MECH-456 now has 3 substrate-limited autopsies (733/733a survival-onboarding axis + 745 world-flip/ecological couple-path axis). Default threshold (2) crossed, but the user RAISED RE_DERIVE_BRAKE_THRESHOLD for MECH-456 to 3, accepting the 745 author's different-measurement-axis argument (substrate legitimately explored across axes). Brake does NOT fire on 745. The NEXT (4th) MECH-456 substrate-limited autopsy fires the brake -- standing scan (check_granularity_debt_recurrence.py) should honour threshold=3."
+      },
+      "learning_extracted": [
+        "745's couple() path is behaviourally inert on this substrate: the learned binder tracks config (DV1) but disabling it does not move foraging (DV2 uninterpretable) -- the real gap is a couple()-authority substrate, not the binder itself.",
+        "Re-derive brake evaluated and deliberately NOT fired: user raised MECH-456 threshold to 3 for the different-axis reading; the 4th substrate-limited autopsy fires it."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Not one convergent cluster -- five independent adjudications. But 742 sits on the recurring foraging-competence wall (724 -> 732/732a -> 734-737 -> 742) and its result refutes the 734-737 autopsy's 'single missing mechanism = MECH-457' conclusion.",
+    "is_independent_bugs": true,
+    "structural_property": "For 742 specifically: every LEARNED agent fails an env that a raw-5x5-view heuristic solves at 48x floor -- so the competence wall is a learning/representation interface (encoder->policy) or a teaching-signal (reward-sparsity) problem, NOT an env/substrate-wiring ceiling and NOT the missing actor-critic head. Discrimination pending via GOV-FANOUT-1.",
+    "readings": ["representation_interface_inadequate (H-rep)", "reward_sparsity_exploration (H-explore)"]
+  }
+}
