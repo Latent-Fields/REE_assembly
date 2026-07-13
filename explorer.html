@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-13.1 -->
+<!-- EXPLORER_VERSION: 2026-07-13.3 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -3421,7 +3421,13 @@ END CONFLICT RESOLUTION`;
       const parts = text.split(/(`[^`]+`)/g);
       return parts.map(part => {
         if (part.startsWith('`') && part.endsWith('`')) {
-          return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
+          // Backtick pairing can diverge between the server linkifier (per line)
+          // and this per-paragraph renderer; if a server-injected atlas-xref
+          // anchor lands inside a code span, strip it back to its label so the
+          // code renders cleanly (we never want a link inside <code>).
+          const inner = part.slice(1, -1)
+            .replace(/<a class="atlas-xref"[^>]*>([\s\S]*?)<\/a>/g, '$1');
+          return `<code>${escapeHtml(inner)}</code>`;
         }
         let out = escapeHtml(part);
         out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, url) => {
@@ -3430,6 +3436,17 @@ END CONFLICT RESOLUTION`;
         });
         out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
         out = out.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        // Restore Code Atlas cross-reference anchors injected server-side (see
+        // serve.py linkify_code_atlas). They arrive here HTML-escaped; rebuild
+        // them verbatim so file / class / EXQ / claim mentions become clickable.
+        // Attribute order is fixed by the server and the href/title/label values
+        // carry no un-escaped quotes, so the captures are unambiguous. Any '&amp;'
+        // left in the href (from a GitHub search URL) is already valid HTML.
+        out = out.replace(
+          /&lt;a class=&quot;atlas-xref&quot; href=&quot;(.*?)&quot; title=&quot;(.*?)&quot;&gt;(.*?)&lt;\/a&gt;/g,
+          (_m, href, title, label) =>
+            `<a class="atlas-xref" href="${href}" title="${title}">${label}</a>`
+        );
         return out;
       }).join('');
     }

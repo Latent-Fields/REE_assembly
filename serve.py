@@ -2342,6 +2342,199 @@ def read_code_atlas() -> dict:
     return payload
 
 
+# --- Code Atlas cross-reference linkifier ------------------------------------
+# Auto-links bare mentions of source files, class/method names, EXQ ids and
+# claim ids in served Markdown prose (docs/roadmap.md + the doc-viewer) to the
+# exact Code Atlas node / GitHub blob / claim view. Purely additive and a strict
+# no-op when the atlas payload is unavailable -- it returns the input verbatim.
+#
+# Design (see the "Recommended path" of the source chip):
+#   * Build three lookup indexes off the atlas payload, cached on the payload
+#     object identity (read_code_atlas already caches the payload on graph mtime,
+#     so a nightly refresh rebuilds these for free).
+#   * A single re.sub pass over the text with a master regex whose FIRST
+#     alternative matches "protected" spans (fenced code, inline code, HTML
+#     tags, existing <a>...</a>, markdown links, HTML comments); those are
+#     emitted verbatim so we never linkify inside code or double-wrap an anchor
+#     (idempotent). Remaining alternatives match linkifiable tokens.
+#
+# The emitted anchor carries class="atlas-xref" and RAW href/label characters
+# (no server-side entity-escaping). The doc viewer's client renderer escapes the
+# whole string and then restores atlas-xref anchors verbatim, so a raw '&' in a
+# GitHub search href round-trips to a valid '&amp;' in the DOM. Labels/titles are
+# constrained to a safe character set so the round-trip is unambiguous.
+
+REE_ASSEMBLY_GITHUB_REPO = "https://github.com/Latent-Fields/REE_assembly"
+
+_atlas_link_index_cache: dict = {"key": None, "indexes": None}
+
+
+def _code_atlas_link_indexes() -> dict:
+    """Return {by_path, by_class} lookup indexes derived from the atlas payload.
+
+    by_path : filePath (exact, repo-relative) -> node id of the FILE node.
+    by_class: class-node name -> node id (first definition wins).
+
+    Cached on the payload object's identity: read_code_atlas returns the same
+    cached dict until the graph mtime changes, so we rebuild only on refresh.
+    On an unavailable / errored payload the indexes are empty (linkifier no-op)."""
+    payload = read_code_atlas()
+    key = id(payload)
+    if _atlas_link_index_cache["key"] == key and _atlas_link_index_cache["indexes"] is not None:
+        return _atlas_link_index_cache["indexes"]
+
+    by_path: dict[str, str] = {}
+    by_class: dict[str, str] = {}
+    _file_like = ("file", "config", "document", "service", "pipeline",
+                  "table", "schema", "resource", "endpoint")
+    for n in (payload.get("nodes") or []):
+        nid = str(n.get("id") or "")
+        if not nid:
+            continue
+        ntype = str(n.get("type") or "")
+        rel = str(n.get("filePath") or "")
+        if rel and ntype in _file_like:
+            by_path.setdefault(rel, nid)
+        if ntype == "class":
+            by_class.setdefault(str(n.get("name") or ""), nid)
+    by_class.pop("", None)
+
+    indexes = {"by_path": by_path, "by_class": by_class,
+               "commit": str((payload.get("project") or {}).get("gitCommitHash") or "")}
+    _atlas_link_index_cache["key"] = key
+    _atlas_link_index_cache["indexes"] = indexes
+    return indexes
+
+
+# Master scanner. Protected spans FIRST (ordered alternation -> first wins at
+# each position), then linkifiable token classes. NOTE: this is deliberately NOT
+# re.DOTALL -- only fenced blocks and HTML comments are allowed to span newlines
+# (via explicit [\s\S]); inline code, anchors and markdown links are line-bounded
+# (matching Markdown semantics and the client renderer, which processes one line
+# at a time). A whole-document `[^`]+` that crossed newlines would let a single
+# stray backtick desync inline-code pairing for the rest of the document. Token
+# order matters: file paths and EXQ/claim ids are tried before the generic
+# ClassName.method / bare-identifier alternatives.
+_ATLAS_LINK_RE = re.compile(
+    r"(?P<prot>"
+    r"```[\s\S]*?```"                 # fenced code block (multi-line)
+    r"|<!--[\s\S]*?-->"               # HTML comment (multi-line)
+    r"|<a\b[^>]*>.*?</a>"             # existing anchor (idempotency guard)
+    r"|<[^>]+>"                       # any other HTML tag / attribute soup
+    r"|`[^`\n]+`"                     # inline code span (line-bounded)
+    r"|\[[^\]\n]*\]\([^)\n]*\)"       # markdown [label](url) (line-bounded)
+    r")"
+    r"|(?P<path>\b(?:ree_core|coordinator|experiments)/[A-Za-z0-9_./-]+\.py)"
+    r"|(?P<exq>\bV3-EXQ-\d+[a-z]?(?:-[A-Za-z0-9]+)?)"
+    r"|(?P<claim>\b(?:MECH|ARC|INV|IMPL|SD|Q)-\d+[a-z]?)"
+    r"|(?P<dotted>\b[A-Z][A-Za-z0-9_]{2,}\.[a-z_][A-Za-z0-9_]{2,})"
+    r"|(?P<ident>\b[A-Z][A-Za-z0-9_]{2,})",
+)
+
+_ATLAS_TITLE_SAFE_RE = re.compile(r"[^A-Za-z0-9 :._/#-]+")
+# A "distinctive" CamelCase transition (lower/digit -> upper) -- gates bare
+# identifier linking so plain capitalized words (Handler, Status, IMPORTANT)
+# are not linked even when they collide with an atlas class name.
+_ATLAS_CAMEL_RE = re.compile(r"[a-z0-9][A-Z]")
+
+
+def _atlas_safe_title(text: str) -> str:
+    return _ATLAS_TITLE_SAFE_RE.sub(" ", str(text)).strip()[:120]
+
+
+def _atlas_anchor(href: str, label: str, title: str) -> str:
+    """Build an atlas-xref anchor. href/label are emitted RAW (see module note);
+    title is sanitised to a safe charset. Labels here are always code
+    identifiers / paths / ids, so they carry no HTML-special characters."""
+    return (f'<a class="atlas-xref" href="{href}" '
+            f'title="{_atlas_safe_title(title)}">{label}</a>')
+
+
+def _atlas_node_href(node_id: str) -> str:
+    from urllib.parse import quote
+    return "/code-atlas?node=" + quote(node_id, safe="")
+
+
+def linkify_code_atlas(text: str) -> str:
+    """Return `text` with bare code/experiment/claim references wrapped in
+    Code Atlas cross-reference anchors. Strict no-op (returns input verbatim) if
+    the text is empty or the atlas payload is unavailable. Idempotent: existing
+    <a>...</a> spans are protected, so re-running produces identical output."""
+    if not text:
+        return text
+    try:
+        idx = _code_atlas_link_indexes()
+    except Exception:
+        return text
+    by_path = idx.get("by_path") or {}
+    by_class = idx.get("by_class") or {}
+    commit = idx.get("commit") or None
+    # No-op when the atlas is empty: nothing to link file paths / classes to.
+    # EXQ + claim ids are atlas-independent, but without any atlas signal we keep
+    # the whole pass off so an unavailable atlas is a true verbatim no-op.
+    if not by_path and not by_class:
+        return text
+
+    def _link_path(tok: str) -> str:
+        nid = by_path.get(tok)
+        if nid:
+            return _atlas_anchor(_atlas_node_href(nid), tok, f"Code Atlas: {tok}")
+        # Not an atlas node (e.g. experiments/*.py live outside the graph) --
+        # fall back to the GitHub blob on ree-v3.
+        gh = _code_atlas_github_link(tok, commit)
+        if gh:
+            return _atlas_anchor(gh, tok, f"GitHub: {tok}")
+        return tok
+
+    def _link_exq(tok: str) -> str:
+        from urllib.parse import quote
+        # No standalone experiment_detail page exists; land the reader on the
+        # manifest via a GitHub code search over REE_assembly for the run-id stem.
+        stem = tok.lower().replace("v3-exq-", "v3_exq_").split("-")[0]
+        q = quote(f"repo:Latent-Fields/REE_assembly {stem}", safe="")
+        href = f"https://github.com/search?q={q}&type=code"
+        return _atlas_anchor(href, tok, f"Find manifest for {tok}")
+
+    def _link_claim(tok: str) -> str:
+        from urllib.parse import quote
+        href = "/code-atlas?claim=" + quote(tok, safe="")
+        return _atlas_anchor(href, tok, f"Code Atlas claim view: {tok}")
+
+    def _link_dotted(tok: str) -> str:
+        cls = tok.split(".", 1)[0]
+        nid = by_class.get(cls)
+        if nid:
+            return _atlas_anchor(_atlas_node_href(nid), tok, f"Code Atlas: {cls}")
+        return tok
+
+    def _link_ident(tok: str) -> str:
+        nid = by_class.get(tok)
+        if nid and _ATLAS_CAMEL_RE.search(tok):
+            return _atlas_anchor(_atlas_node_href(nid), tok, f"Code Atlas: {tok}")
+        return tok
+
+    def _repl(m: "re.Match") -> str:
+        if m.lastgroup == "prot" or m.group("prot") is not None:
+            return m.group(0)
+        tok = m.group(0)
+        if m.group("path") is not None:
+            return _link_path(tok)
+        if m.group("exq") is not None:
+            return _link_exq(tok)
+        if m.group("claim") is not None:
+            return _link_claim(tok)
+        if m.group("dotted") is not None:
+            return _link_dotted(tok)
+        if m.group("ident") is not None:
+            return _link_ident(tok)
+        return tok
+
+    try:
+        return _ATLAS_LINK_RE.sub(_repl, text)
+    except Exception:
+        return text
+
+
 def _closure_pending_review_count() -> int:
     try:
         text = PENDING_REVIEW_FILE.read_text(encoding="utf-8")
@@ -2365,7 +2558,7 @@ def _closure_roadmap_snippet(max_len: int = 900) -> str:
     snippet = (m.group(1) if m else text[:max_len]).strip()
     if len(snippet) > max_len:
         snippet = snippet[: max_len - 3] + "..."
-    return snippet
+    return linkify_code_atlas(snippet)
 
 
 def _closure_queue_claimed() -> list[dict]:
@@ -5880,6 +6073,28 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             }, default=str).encode()
             self._json_response(body)
             return
+        # Auto-linkify Code Atlas references in served Markdown prose. The doc
+        # viewer fetches these .md files raw and renders them client-side; we
+        # rewrite bare file / class / EXQ / claim mentions into atlas anchors on
+        # the way out. Strictly additive: any failure (or an unavailable atlas)
+        # falls straight through to the normal static handler.
+        if path.endswith(".md"):
+            try:
+                fs = Path(self.translate_path(self.path)).resolve()
+                serve_root = SERVE_DIR.resolve()
+                if fs.is_file() and (serve_root == fs or serve_root in fs.parents):
+                    linked = linkify_code_atlas(fs.read_text(encoding="utf-8"))
+                    body = linked.encode("utf-8")
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/markdown; charset=utf-8")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+                    self.end_headers()
+                    if self.command != "HEAD":
+                        self.wfile.write(body)
+                    return
+            except Exception:
+                pass  # fall through to the default static handler
         super().do_GET()
 
     def do_POST(self):
