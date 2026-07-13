@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_088",
+  "entry_id": "2026-07-13_inv_088_age_of_reason_both_ends_tooley2022",
+  "timestamp_utc": "2026-07-13T06:06:53Z",
+  "claim_ids_tested": ["INV-088"],
+  "source": {
+    "title": "The Age of Reason: Functional Brain Network Development during Childhood",
+    "authors": ["Ursula A. Tooley", "Anne T. Park", "Julia A. Leonard", "Austin L. Boroshok", "Cassidy L. McDermott", "Matthew D. Tisdall", "Dani S. Bassett", "Allyson P. Mackey"],
+    "year": 2022,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0511-22.2022",
+    "url": "https://doi.org/10.1523/JNEUROSCI.0511-22.2022"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Empirical fMRI study (ages 4-10) that directly challenges the strict back-to-front reading INV-088 leans on: it finds pronounced development at BOTH ends of the sensory-association gradient, not sensory-first-then-association. This weakens any claim that the world-representation must fully differentiate before the evaluator begins maturing. However, INV-088's actual assertion is a functional BOUND (evaluator quality bounded by differentiation), which is compatible with concurrent co-development so long as the bound holds -- so the study is a genuine caveat on the ordering premise rather than a refutation of the bound. Logged 'mixed' at moderate confidence because it is a real, well-powered counter-signal on the timing story while not measuring the bound itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Development was pronounced at both the perceptual (visual) and abstract (medial prefrontal) ends of the sensory-association gradient in 4-10 year olds, contradicting the classical view -- which INV-088's ordering premise invokes -- that sensory areas develop first and association areas last.",
+    "The study measures functional network segregation/integration, not evaluator readout quality as a function of representational differentiation, so it can neither confirm nor refute the causal bound; it only removes strict temporal precedence as supporting evidence."
+  ],
+  "tags": ["inv-088", "childhood-development", "sensory-association-gradient", "functional-networks", "counter-evidence", "ordering-caveat"],
+  "mapping": {
+    "source_claim_statement": "In children aged 4-10, age is associated with increasing segregation between externally-oriented perceptual systems and internally-oriented abstract systems, with pronounced functional development at BOTH ends of the sensory-association gradient -- challenging the classical theory that cortical maturation proceeds strictly back-to-front (sensory first, association last).",
+    "ree_translation": "INV-088 leans on a sensory-before-evaluator ordering (z_world differentiates, then the evaluator can be productively trained). Tooley et al. show that in early childhood both the perceptual (z_world-like) and abstract/evaluative (E3-like) ends develop concurrently and prominently, so strict temporal precedence of world-representation over evaluator is not a safe assumption. The bound INV-088 asserts can still hold under concurrent development -- but the developmental-timing argument for it is weakened.",
+    "mapping_caveat": "This is a caveat on the ordering premise, not a test of the functional bound. INV-088 does not strictly require sensory to finish before the evaluator starts; it requires evaluator quality to track differentiation. Concurrent maturation at both ends is consistent with a live bound. Reading this as a hard refutation would over-claim; reading it as no-signal would be dishonest.",
+    "source_context": "Human task-free fMRI functional connectivity, N~92 children ages 4-10, advanced pediatric acquisition; graph-theoretic network segregation measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Strong methods on a hard-to-scan population (J Neurosci). Mapping fidelity 0.55: it targets the ordering premise, not the bound. Direction 'mixed' -- it weakens strict precedence while leaving the functional bound untouched; kept as an explicit balance against the two supporting developmental anchors."
+  }
+}

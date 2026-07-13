@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_088",
+  "entry_id": "2026-07-13_inv_088_value_generalization_bound_lelan2022",
+  "timestamp_utc": "2026-07-13T06:06:53Z",
+  "claim_ids_tested": ["INV-088"],
+  "source": {
+    "title": "On the Generalization of Representations in Reinforcement Learning",
+    "authors": ["Charline Le Lan", "Stephen Tu", "Adam Oberman", "Rishabh Agarwal", "Marc G. Bellemare"],
+    "year": 2022,
+    "venue": "AISTATS 2022 (Proceedings of Machine Learning Research)",
+    "doi": "10.48550/arXiv.2203.00543",
+    "url": "https://arxiv.org/abs/2203.00543"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the computational formalization of exactly what INV-088 claims: the generalization error of a value function is provably bounded by the quality of the underlying state representation, quantified via 'effective dimension'. In REE terms z_world IS the state representation and the harm/benefit/goal evaluators ARE value-function-like readouts, so the domain match is direct (low transfer risk). Confidence 0.72 rather than higher because the paper's representation-quality construct (effective dimension / generalization-approximation tradeoff) is related to but not identical with INV-088's 'task-relevant differentiation' (decodability of harm-relevant world features), and because a formal bound existing does not itself prove that the REE substrate operates in the regime where the bound is tight.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The bound characterizes a generalization-vs-approximation TRADEOFF: representations that generalize well can approximate poorly and vice versa, so 'more differentiated' is not monotonically 'better evaluator' in all regimes -- a nuance that could produce non-monotone evaluator-quality-vs-differentiation curves, echoing the high-variance/non-monotone cross-seed coupling already seen in V3-EXQ-744a.",
+    "Effective dimension bounds generalization across states; it does not directly certify that a poorly-differentiated representation forces evaluator noise-fitting during TRAINING, which is INV-088's specific developmental-training failure mode."
+  ],
+  "tags": ["inv-088", "reinforcement-learning", "state-representation", "value-function-bound", "effective-dimension", "computational-anchor"],
+  "mapping": {
+    "source_claim_statement": "The generalization error of a value function is bounded by an informative quantity determined by the state representation -- its 'effective dimension', measuring how much the value at one state informs values at other states -- and this exposes a fundamental tradeoff between representations that generalize well and those that approximate values accurately; validated empirically on classic representation-learning methods and Atari.",
+    "ree_translation": "INV-088 asserts that E3's z_world-reading evaluators (harm_eval, benefit_eval, goal/trajectory scoring) are bounded by z_world (E1) differentiation. In RL terms z_world is the learned state representation and the evaluators are value-function-like readouts. Le Lan et al. prove, in the abstract, exactly this dependency: value-readout quality is bounded by the state representation. A poorly-differentiated z_world is a low-quality representation, and the theorem says the evaluator built on it cannot generalize better than the representation permits.",
+    "mapping_caveat": "The paper's 'effective dimension' is a generalization construct, whereas INV-088's differentiation proxy is task-relevant decodability (world_feat_decode_r2). These are related notions of representation quality but not identical, and the paper documents a generalize-vs-approximate tradeoff, so the differentiation->evaluator-quality relationship need not be simply monotone. The bound also concerns generalization across states, not the training-time noise-fitting INV-088 emphasizes.",
+    "source_context": "Machine-learning theory + empirical validation; tabular/linear analysis and deep RL agents on Atari 2600 (Arcade Learning Environment). Same domain family as the REE substrate (representation + value learning)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.25,
+    "notes": "AISTATS theory paper with empirical validation. Low transfer risk (0.25): this IS the RL-representation domain the REE substrate lives in, unlike the human-imaging entries. Mapping fidelity 0.7: near-direct conceptual match, docked for the effective-dimension-vs-differentiation gap and the generalize/approximate tradeoff."
+  }
+}

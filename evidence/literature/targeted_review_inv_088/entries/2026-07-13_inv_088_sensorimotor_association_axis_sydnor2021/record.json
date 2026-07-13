@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_088",
+  "entry_id": "2026-07-13_inv_088_sensorimotor_association_axis_sydnor2021",
+  "timestamp_utc": "2026-07-13T06:06:53Z",
+  "claim_ids_tested": ["INV-088"],
+  "source": {
+    "title": "Neurodevelopment of the association cortices: Patterns, mechanisms, and implications for psychopathology",
+    "authors": ["Valerie J. Sydnor", "Bart Larsen", "Danielle S. Bassett", "Aaron Alexander-Bloch", "Damien A. Fair", "Conor Liston", "Allyson P. Mackey", "Michael P. Milham", "Adam Pines", "David R. Roalf", "Jakob Seidlitz", "Ting Xu", "Armin Raznahan", "Theodore D. Satterthwaite"],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.06.016",
+    "url": "https://doi.org/10.1016/j.neuron.2021.06.016"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High-authority multimodal Neuron review establishing the sensorimotor-to-association axis of cortical maturation as a robust, evolutionarily rooted developmental program: lower-order sensory/unimodal cortices mature before higher-order transmodal association cortices, and this ordering exists precisely to enhance feature differentiation between the two. Maps cleanly onto INV-088's premise that world-feature representation (E1/z_world, sensory-like) differentiates before the goal/evaluator (E3, association/PFC-like) can be productively trained. Confidence held below 0.8 because the review evidences the maturational ordering and the differentiation-enhancement, but does not directly test the FUNCTIONAL bound (an evaluator trained on poorly-differentiated input noise-fits) that INV-088 asserts; mapping_fidelity weighted heavily as this is an architectural claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review documents maturational timing (sensory-before-association) and enhanced feature variation, but does not measure evaluator/value-readout quality as a function of upstream representational differentiation, so it cannot by itself confirm the strict bound (evaluator quality strictly bounded by z_world differentiation) vs merely a temporal correlation.",
+    "The same protracted association-cortex plasticity that supports the ordering is shown to confer psychopathology risk, indicating the sensory-first program is not uniformly protective -- a poorly-differentiated-but-still-plastic association stage is a documented failure mode rather than a guaranteed clean sequence."
+  ],
+  "tags": ["inv-088", "cortical-maturation", "sensorimotor-association-axis", "developmental-hierarchy", "representation-differentiation"],
+  "mapping": {
+    "source_claim_statement": "Human cortical development proceeds hierarchically along a sensorimotor-to-association axis: primary/unimodal sensory and motor cortices mature first, higher-order transmodal association cortices (executive, socioemotional, mentalizing) mature last, and this staggered program serves to enhance feature variation between lower- and higher-order regions.",
+    "ree_translation": "INV-088 asserts that the quality of E3's z_world-reading evaluators (harm_eval(z_world), benefit_eval, goal/trajectory scoring) is bounded by E1's z_world representational differentiation, so productive training of the evaluators cannot precede sufficient world-schema differentiation. The paper's sensory-before-association maturational ordering is the biological existence proof for this dependency: the world-representation (sensory-like) must differentiate before the evaluator (association/PFC-like) matures, and the differentiation gap is exactly what late association maturation exploits.",
+    "mapping_caveat": "The review establishes temporal ordering and feature differentiation, not a measured functional bound. INV-088's stronger claim -- that a poorly-differentiated z_world yields a noise-fitted evaluator -- is consistent with, but not directly demonstrated by, the developmental-timing evidence. Temporal precedence is necessary but not sufficient evidence for a causal representational bound.",
+    "source_context": "Human in-vivo multimodal neuroimaging (structural, functional, microstructural MRI) across childhood and adolescence; review synthesizing cross-study developmental gradients."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Neuron flagship review, framework widely replicated. Transfer risk moderate: the sensorimotor-to-association axis is architectural/evolutionary and plausibly substrate-general, but human-neuroimaging -> REE artificial-substrate transfer plus the ordering-to-bound inferential step keep transfer_risk non-trivial."
+  }
+}

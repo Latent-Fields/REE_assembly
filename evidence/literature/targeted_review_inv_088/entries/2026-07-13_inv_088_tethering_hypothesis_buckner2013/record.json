@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_088",
+  "entry_id": "2026-07-13_inv_088_tethering_hypothesis_buckner2013",
+  "timestamp_utc": "2026-07-13T06:06:53Z",
+  "claim_ids_tested": ["INV-088"],
+  "source": {
+    "title": "The evolution of distributed association networks in the human brain",
+    "authors": ["Randy L. Buckner", "Fenna M. Krienen"],
+    "year": 2013,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2013.09.017",
+    "url": "https://doi.org/10.1016/j.tics.2013.09.017"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "The tethering hypothesis supplies the MECHANISM behind INV-088's ordering premise: sensory hierarchies form under strong molecular-gradient and early-activity constraints, while distributed association networks that fill the gaps are 'untethered' from those constraints and mature late. This explains WHY the evaluator (association-like E3) develops after and is scaffolded by the differentiated sensory representation (E1/z_world), rather than merely asserting that it does. Confidence moderate (0.6) because it is an evolutionary/developmental hypothesis paper, and the untethering story supports the ordering/scaffolding premise but is one inferential step removed from the functional bound INV-088 states.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The tethering hypothesis is explicitly framed as a hypothesis with acknowledged limitations; it argues association networks are freed from the gradients that build sensory hierarchies, which could equally be read as association representations being LESS constrained by upstream sensory differentiation -- a reading that would tension INV-088's strict bound rather than support it.",
+    "The paper is about cross-species evolution and large-scale network topology, not about training dynamics of an evaluator on graded-quality input, so it provides no direct measurement of evaluator degradation under poor upstream differentiation."
+  ],
+  "tags": ["inv-088", "tethering-hypothesis", "association-networks", "developmental-mechanism", "cortical-hierarchy"],
+  "mapping": {
+    "source_claim_statement": "Rapid cortical expansion in human evolution untethered large portions of association cortex from the molecular gradients and early activity cascades that construct sensory hierarchies; the densely interconnected association networks that fill the gaps between sensory hierarchies mature late in development.",
+    "ree_translation": "INV-088 requires that the z_world-reading evaluator (association-like E3) is scaffolded by, and cannot precede, the differentiated world representation (E1/z_world). The tethering hypothesis gives the mechanistic reason for the late maturation of association machinery -- it develops after and around the anchored sensory hierarchies -- consistent with the evaluator maturing on top of an already-differentiating world representation.",
+    "mapping_caveat": "The untethering framing is double-edged: 'freed from sensory gradients' can be read as association cortex being decoupled from, not dependent on, upstream sensory differentiation. The mapping to INV-088 relies on the developmental-timing reading (association matures late, on top of sensory hierarchies), not on a claim of tight representational dependence, which the paper does not make.",
+    "source_context": "Comparative primate/human neuroanatomy and evolutionary theory; conceptual review, no new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "Influential TiCS review but a hypothesis paper. Mapping fidelity held at 0.55 because the untethering framing supports the late-maturation ordering yet is ambiguous about representational dependence. Transfer risk 0.4: evolutionary/cross-species argument applied to a maturational-bound claim in an artificial substrate."
+  }
+}
