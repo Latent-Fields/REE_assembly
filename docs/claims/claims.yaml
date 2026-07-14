@@ -29395,17 +29395,17 @@
   claim_type: mechanism_hypothesis
   subject: regulators.broadcast_invalidation_trigger
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-14
     needs_review: false
     evidence:
-      from: "decision:MECH-287@2026-04-25T15:42:09.107876Z"
-      as_of: 2026-04-25
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:MECH-287@2026-07-14T20:19:21.313158Z"
+      as_of: 2026-07-14
+      verdict: promote_to_provisional/applied
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -29568,6 +29568,21 @@
     the four-arm trigger-vs-accumulator dissociation factorial.
 
     [2026-05-08 governance]: EXQ-476c diagnostic inconclusive (same reading as MECH-269 sibling).
+
+    [2026-07-14 governance -- promote candidate->provisional, v3_pending
+    cleared]: V3-EXQ-757 (v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3)
+    is the FIRST indexed in-silico evidence for MECH-287. PASS / evidence_direction
+    supports, evidence_class exp:simulation. Wall-independent functional-signature
+    isolation test (action-free, training-free) driving the invalidation-trigger
+    substrate with controlled latent streams over 5 seeds; non_degenerate, all
+    three MECH-287 load-bearing criteria met -- C287_phasic (broadcast fires on the
+    A-condition trigger), C287_dissoc (no dissociated broadcast on the B condition),
+    C287_tonic (storm suppression: 373 suppressed vs 34 broadcast). This clears the
+    "no in-silico evidence" precondition behind the v3_pending hold. NOT-YET-CLEARED
+    for promotion-to-active: this isolation test does not exercise the integrated
+    closed-loop agent, so the pre-registered promotion bar above -- the V3-EXQ-476
+    unlock test AND the four-arm trigger-vs-accumulator dissociation factorial --
+    remains the separate promote-to-active gate.
   implementation_note: >
     Upstream broadcast trigger (invalidation_trigger.py) was implemented
     in Phase 2 (2026-04-23). Downstream accumulator consumer
@@ -29594,17 +29609,17 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.event_segmenter
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-14
     needs_review: false
     evidence:
-      from: "decision:MECH-288@2026-04-25T15:42:09.107878Z"
-      as_of: 2026-04-25
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:MECH-288@2026-07-14T20:19:21.367028Z"
+      as_of: 2026-07-14
+      verdict: promote_to_provisional/applied
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -29894,6 +29909,27 @@
     accept input_stream label so observation-side and rollout-side
     consumers can be dispatched correctly under MECH-094
     hypothesis_tag gating.
+
+    [2026-07-14 governance -- promote candidate->provisional, v3_pending
+    cleared]: V3-EXQ-757 (v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3)
+    is the FIRST indexed in-silico evidence for MECH-288. PASS / evidence_direction
+    supports, evidence_class exp:simulation. Wall-independent functional-signature
+    isolation test (action-free, training-free) over 5 seeds; non_degenerate, all
+    three MECH-288 load-bearing criteria met -- C288_hit (slow BOCPD posterior fires
+    on the A-condition boundary, mean slow_hit_rate 1.0, 27 A-slow vs 0 B-slow
+    detections), C288_silence (no boundary on the stationary B stream), C288_graded
+    (continuous boundary posteriors on the fast scale). This clears the "no in-silico
+    evidence" precondition behind the v3_pending hold. SPECIFICITY CAVEAT (load-bearing
+    for how strong this evidence is): MECH-288 specificity is demonstrated on the
+    SLOW / BOCPD OUTER scale only -- the canonical slow detector is a DECISIVE-change
+    detector (posterior->1.0 only on ||z_goal|| shifts >=~8). The FAST PE-threshold
+    INNER scale fires ~15% on ANY stationary z-score stream by construction (reported
+    descriptively, NOT gated), so the fast scale is a gradedness readout, not a
+    specificity claim. NOT-YET-CLEARED for promotion-to-active: this isolation test
+    does not exercise the integrated downstream substrate, so the pre-registered
+    promotion bar above -- integration into Phase 2 (ii)+(iii)+(iv) downstream
+    substrate plus the falsifiable predictions -- remains the separate
+    promote-to-active gate.
   location: docs/architecture/event_segmenter.md
 
 - id: MECH-289
