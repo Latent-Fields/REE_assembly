@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_757_mech288_mech287_event_boundary_trigger_functional",
+  "run_id": "v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-14T20:00:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-288",
+    "MECH-287"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-288": "supports",
+    "MECH-287": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "functional_signature_measured",
+    "preconditions": [
+      {
+        "name": "fast_input_contrast_posctrl",
+        "measured": 7.249692812431829,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "slow_zgoal_shift_ratio_posctrl",
+        "measured": 697.6384568923812,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "storm_boundary_density_posctrl",
+        "measured": 0.9,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C288_hit": true,
+      "C288_silence": true,
+      "C288_graded": true,
+      "C287_phasic": true,
+      "C287_dissoc": true,
+      "C287_tonic": true
+    },
+    "criteria": [
+      {
+        "name": "C288_hit",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C287_tonic",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
