@@ -52931,6 +52931,68 @@
     criteria still execute; GOV-REUSE-1 can avoid the run ENTIRELY by answering from
     recorded data.
   notes: "Consumer complement to the Experimental Recording Standard (producer). Source: experimental_recording_standard_2026-07-12.md section 5. Tooling: scripts/reanalysis_query.py -- `query --readout <name> [--substrate-hash <h>]` scans manifests, groups by substrate_hash, flags MATCH/INCOMPATIBLE/UNVERIFIABLE per candidate (hash read top-level OR hoisted from arm_results[].arm_fingerprint); `emit` writes a recorded reanalysis/v1 artifact under evidence/reanalysis/ citing source run_ids, and REFUSES unless the sources share a compatible substrate_hash (or --substrate-invariant). Wiring: /queue-experiment Step 2.4 (existing-evidence / reanalysis-first check) + Step 3.5 necessity item. Distinct from the arm-reuse fingerprint (cell-level compute reuse -- experiment still runs) and from the re-derive brake (refuses a same-claim same-ceiling RE-TEST; GOV-REUSE-1 asks whether ANY run is needed). Forward mystery(known-data) router; /failure-autopsy recording-gap is the reverse. PROMOTES/DEMOTES NOTHING on registration (the recorded reanalysis artifact is NOT yet wired into build_experiment_indexes confidence scoring -- deferred follow-up, same posture as the recording standard's deferred items). Cross-ref the recording standard, GOV-CEIL-1 / the re-derive brake, and the work_graph_debt_vocabulary mystery(known-data) token."
+- id: GOV-CONFIRM-1
+  title: "Evidence-confirmer detection rule (GENERATIVE complement to the consume-only inter-governance workset): the IGW workset + auto-spawn routine can COMPLETE an experiment confirmer, but only re-surface a confirmer whose `status: proposed` entry was hand-authored first -- _proposed_experiments() applies only EXCLUSION filters over pre-authored proposals and has no path that scans claims.yaml to AUTHOR a confirmer for a thin-evidence candidate whose substrate is already built. This rule supplies the missing generative discovery: scan candidate/provisional claims and surface a low-priority `evidence_confirmer` lane for each claim that is confirmable-but-unconfirmed -- substrate BUILT, thin/zero experimental evidence, decent literature support, NOT wall-bound / substrate-blocked, not already covered -- so the auto-spawn routine completes these non-urgent-but-important confirmers as background fill behind the live front. The judgement piece (scoping a confirming DV buildable NOW -- a representation-level / functional-signature readout, self-routing substrate_not_ready_requeue if only a wall-bound behavioural DV exists) stays in the per-item /queue-experiment pass. The detector owns DISCOVERY, not design. Warn-only routing standard; PROMOTES/DEMOTES NOTHING."
+  claim_type: governance_rule
+  subject: governance.epistemics.evidence_confirmer_discovery
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-14
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-14
+  source_thought: evidence/planning/gov_confirm_1_plan.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Governance discovery rule; the GENERATIVE-DISCOVERY member of the warn-only
+    routing-standard family (GOV-CEIL-1 ceiling-exhaustion detection, GOV-DIAG-1
+    diagnostic-recurrence detection, GOV-FANOUT-1 bottleneck-response, GOV-REUSE-1
+    reanalysis-first consumer). Those act at STOP / RESPONSE / AUTHORING time on work
+    that is already in motion; GOV-CONFIRM-1 acts at DISCOVERY time on work nobody has
+    started -- the confirmable-but-unconfirmed candidate claims that the consume-only
+    workset never surfaces.
+    THE GAP. scripts/generate_inter_governance_workset.py _proposed_experiments()
+    (line 684) is consume-only: it re-surfaces `status: proposed` proposals and applies
+    only EXCLUSION filters (drop v3_pending / substrate-blocked / already-evidenced /
+    V4+). Nothing scans claims.yaml to AUTHOR a confirmer for a thin-evidence candidate
+    whose substrate is built. MOTIVATING INCIDENT (2026-07-14): finding buildable
+    evidence confirmers required a bespoke 634-candidate subagent scan; it surfaced five
+    claims (MECH-304 lit 0.892, MECH-288 0.875, MECH-287 0.824, MECH-303 0.863, MECH-284
+    0.824 -- each candidate, exp_conf 0, substrate built, not wall-bound) that ALREADY
+    pass the workset's exclusion filters and were invisible only because no proposal was
+    hand-authored. These are the "non-urgent but important evidence confirmers" the
+    machinery should discover, not a human by memory.
+    DEFINITIONS.
+    (a) CONFIRMABLE-BUT-UNCONFIRMED = a candidate/provisional claim that is
+    v3-testable (not v3_pending, testable epistemic_category), has thin/zero
+    experimental evidence (not in claim_evidence.v1.json genuine-exp set), decent
+    literature support (lit_conf >= a threshold, default 0.6), is NOT substrate-blocked
+    (no unresolved substrate_queue entry lists it -- the same _retest_blockers gate the
+    retest lane uses), is not V4/V5-only, and whose substrate is actually BUILT (its
+    claims.yaml `location` resolves to an existing ree-v3/ree_core module).
+    (b) EVIDENCE_CONFIRMER LANE = a low-priority workset lane, one item per
+    confirmable-but-unconfirmed claim, naming the claim id + location + lit_conf + a note
+    to scope the confirming DV at /queue-experiment.
+    (c) The rule does NOT hard-encode the transient "competence wall": the durable core
+    is surfacing confirmable-but-unconfirmed candidates; wall-bound behavioural
+    confirmers are already excluded by the reused substrate-block / epistemic-category
+    predicates, and any that slip through self-route vacuous at /queue-experiment.
+    RESPONSE / WIRING. (P1) generate_inter_governance_workset.py: add a generative lane
+    iterating ALL claims_meta (not just proposals), REUSING _claim_v3_testable /
+    _claims_with_experimental_evidence / _retest_blockers / _is_deferred_beyond_v3 plus a
+    lit_conf floor + a location-exists substrate-built gate; output-only, additive
+    (bit-identical for non-confirmer items). (P2) wire the lane into the hourly auto-spawn
+    eligibility at a priority STRICTLY BELOW the wall-campaign lanes, so confirmers run as
+    background fill only. NON-FALSIFYING-SAFE: it changes no claim and gates no promotion;
+    the confirming experiments it seeds move claims candidate->provisional through the
+    normal /governance path, not through this rule. EXEMPT: claims with no built substrate
+    (nothing to confirm yet) and claims already covered by a queued/proposed run.
+  notes: "Plan of record: evidence/planning/gov_confirm_1_plan.md (P0 done -- this claim + plan; P1 shadow detector + P2 low-priority autospawn build after user review). GENERATIVE-DISCOVERY complement to GOV-CEIL-1 / GOV-DIAG-1 (detection), GOV-FANOUT-1 (response), GOV-REUSE-1 (reanalysis consumer). Reuses existing workset predicates -- adds only the generative iteration + a lit_conf floor + a location-exists substrate-built gate. First-application seed set (2026-07-14 subagent scan, chips spawned this session): MECH-304, MECH-288, MECH-287, MECH-303, MECH-284; borderline MECH-271 (substrate unconfirmed) / MECH-292 (scope-risky). PROMOTES/DEMOTES NOTHING on registration. Cross-ref the IGW auto-spawn routine, ree_ai_design_critique_plan.md (WS family), and the work_graph_debt_vocabulary complex(probe-gated) token (the wall-independent-DV judgement stays a per-item /queue-experiment probe)."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment

@@ -1017,6 +1017,14 @@
     "title": "Substrate-ceiling exhaustion demotion rule: a claim that hits the substrate ceiling N>=3 times (>=3 confirmed failure-autopsy verdicts recommending substrate_ceiling) WITHOUT a single positive discrimination on any richer substrate is DEMOTED, not parked indefinitely. The competing null reading -- the mechanism is inert / doing no work -- is then carried co-equally with the hypothesis until a positive discrimination on a richer substrate exists. substrate_ceiling is honest but structurally lets a hypothesis never lose; this rule pre-registers the loss condition.",
     "type": "governance_rule"
   },
+  "GOV-CONFIRM-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.evidence_confirmer_discovery",
+    "title": "Evidence-confirmer detection rule (GENERATIVE complement to the consume-only inter-governance workset): the IGW workset + auto-spawn routine can COMPLETE an experiment confirmer, but only re-surface a confirmer whose `status: proposed` entry was hand-authored first -- _proposed_experiments() applies only EXCLUSION filters over pre-authored proposals and has no path that scans claims.yaml to AUTHOR a confirmer for a thin-evidence candidate whose substrate is already built. This rule supplies the missing generative discovery: scan candidate/provisional claims and surface a low-priority `evidence_confirmer` lane for each claim that is confirmable-but-unconfirmed -- substrate BUILT, thin/zero experimental evidence, decent literature support, NOT wall-bound / substrate-blocked, not already covered -- so the auto-spawn routine completes these non-urgent-but-important confirmers as background fill behind the live front. The judgement piece (scoping a confirming DV buildable NOW -- a representation-level / functional-signature readout, self-routing substrate_not_ready_requeue if only a wall-bound behavioural DV exists) stays in the per-item /queue-experiment pass. The detector owns DISCOVERY, not design. Warn-only routing standard; PROMOTES/DEMOTES NOTHING.",
+    "type": "governance_rule"
+  },
   "GOV-DIAG-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -6180,7 +6188,7 @@
   },
   "MECH-457": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "sd_actor_critic_action_learning",
     "epistemic_stance": "believed",
     "status": "candidate",
