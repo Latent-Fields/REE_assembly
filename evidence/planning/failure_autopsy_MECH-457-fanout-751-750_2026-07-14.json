@@ -56,26 +56,41 @@
         "fired": false,
         "threshold": 2,
         "prior_substrate_ceiling_autopsies": [],
-        "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457 (742 + 747/748/749 were competence_implementation_gap/weakens). This target is a diagnostic PASS routing to a lit-pull (build class undecided), not a re-tested ceiling. Brake does not apply.",
+        "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457 (742 + 747/748/749 were competence_implementation_gap/weakens). This target is a diagnostic PASS; the lit-pull is complete and routes to a GOV-FANOUT-1 discrimination portfolio (4 classes on distinct axes), not a re-tested ceiling. Brake does not apply.",
         "refused_requeue": false,
-        "route_to": "lit-pull",
-        "upstream_substrate": "TBD -- build-target class to be selected by /lit-pull (candidate: mech457_unsupervised_novelty_explorer)"
+        "route_to": "queue-experiment",
+        "upstream_substrate": "TBD -- decided by the fanout portfolio (H-credit / H-return / H-curriculum / H-mode); build class to follow the winning or additive-combination arm"
       },
       "fanout_recommendation": {
         "is_discrimination": true,
-        "resolved_this_cycle": ["H-optim (algorithm axis): exploration-was-the-wall NULL realized; expert teacher NOT necessary; RND (learned novelty) clears the FLOOR, ICM (curiosity) does not"],
-        "live_hypotheses": ["novelty-drive/intrinsic-motivation (RND-family) -- risks duplicating landed ARC-065/MECH-314", "behavioural-mode explore/exploit arbitration", "options/skills temporal abstraction", "go-explore/archive-based", "credit-assignment/reverse-replay (hippocampal)", "curriculum/goal-generation"],
-        "note": "NOT yet a queued experiment portfolio: the OPEN question is which mechanism CLASS closes the floor->competent gap, which is a literature+design question, not a next-experiment discrimination. Route to /lit-pull scoped to class-choice + composition-vs-duplication against existing REE exploration substrate (ARC-065/MECH-313/MECH-314/MECH-455/hippocampal-replay). The lit-pull's output decides whether the eventual build is a novelty module, a mode arbitrator, a skills layer, a replay-credit fix, or a curriculum -- and only then does a substrate_queue entry (and possibly a GOV-FANOUT-1 experiment portfolio) follow."
+        "lit_pull_grounding": "evidence/literature/targeted_review_action_learning_bootstrap_class_choice/ (12 entries, 5 classes, SYNTHESIS.md; MECH-457 lit_conf 0.836). REFUTES the novelty-drive class as the build (coverage not competence; noisy-TV/detachment intrinsic; duplicates ARC-065/MECH-314). Names the composable candidate classes below.",
+        "resolved_this_cycle": ["H-optim (algorithm axis): exploration-was-the-wall NULL realized; expert teacher NOT necessary; RND (learned novelty) clears the FLOOR, ICM (curiosity) does not", "lit-pull class-choice: novelty-drive REJECTED as the build (duplicates landed substrate + plateaus)"],
+        "live_hypotheses": [
+          "H-credit: extend the EXISTING hippocampal backward_credit_sweep (fire on the forage-reward trajectory + prioritise updates by utility/TD-error, Foster&Wilson 2006 / Mattar&Daw 2018) -- credit-assignment axis; reuses landed substrate",
+          "H-return: add a Go-Explore-style archive + deterministic return-to-frontier (Ecoffet 2021) -- memory/frontier axis; fixes the detachment that makes RND plateau",
+          "H-curriculum: self-generated goal frontier / learning-progress (AMIGo Campero 2021 / IMGEP Forestier 2022) -- teaching-signal axis; the unsupervised analogue of the BC arm",
+          "H-mode: critic-utility-gated explore/exploit mode scalar (Aston-Jones&Cohen 2005 / Daw 2006) -- policy-control axis; bidirectional consolidation into exploitation (composable adjunct)"
+        ],
+        "deprioritised": ["options/skills DIAYN -- distinct capability but heaviest build and worst-fit to a small substrate; hold as a lightweight hand-specified-options probe only if the above fail"],
+        "suggested_probes": [
+          {"hypothesis": "H-credit", "axis": "credit-assignment", "sketch": "same env/input/z_world(cotrain); fire backward_credit_sweep on the forage trajectory with TD-error-prioritised updates. Null: prioritised sweep does not lift unsupervised forage above the RND ~5 band toward BC 32.72."},
+          {"hypothesis": "H-return", "axis": "memory/frontier", "sketch": "archive of discretised z_world/position cells + return-to-selected-cell then explore. Null: archive+return does not lift forage above the RND band."},
+          {"hypothesis": "H-curriculum", "axis": "teaching-signal", "sketch": "AMIGo-style goal-proposer + goal-conditioned actor-critic on reachable forage cells, learning-progress goal selection, NO expert. Null: self-generated frontier does not approach the BC 32.72 band unsupervised."},
+          {"hypothesis": "H-mode", "axis": "policy-control", "sketch": "scalar mode gate m driven by critic utility, jointly annealing entropy/temperature + the RND coefficient toward greedy exploitation. Null: mode gate does not improve consolidation over fixed-coefficient RND."}
+        ],
+        "combination_aware": true,
+        "combination_note": "USER DIRECTIVE (2026-07-14): design the portfolio to ALLOW A COMBINATION outcome, not a forced single winner -- hopefully one class wins decisively, but the gap has two plausibly-ADDITIVE halves (credit-propagation H-credit + frontier-return H-return) and H-mode composes with any. The /queue-experiment design MUST: (1) share one env / input / z_world(cotrain) baseline + the 742-sparse and RND-5.22 reference cells so arms are comparable on the SAME forage metric (floor 1.0 / RND ~5 / BC 32.72 / ceiling 48.05); (2) run each class ALONE on a DIFFERENT design axis (never a power-bump of the braked sparse-RL design); (3) include at least the most-promising PAIR cell (H-credit x H-return) so complementarity/additivity is directly readable rather than inferred; (4) declare each arm's null. This is the GOV-FANOUT-1 producer half; /queue-experiment Step 2.5b is the consumer (design-audit coverage + verdict-aliasing before queuing).",
+        "note": "Route to /queue-experiment (the lit-pull is COMPLETE). NOT a re-derive-brake violation: each probe tests a DIFFERENT mechanism on a DIFFERENT axis (new EXQ), not another letter of the sparse-RL/novelty design. Whichever class (or additive combination) reaches matched-competent UNSUPERVISED foraging decides the substrate_queue entry; also gates the INV-088 750 retest (needs matched competence on BOTH z_world and raw view)."
       },
       "learning_extracted": [
         "Algorithm-axis fork RESOLVED: a stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with no expert (RND z_world 5.22, 3/3 supra-floor) -> an expert teacher is NOT necessary; vanilla policy-gradient exploration was merely too weak. Confirms the 747/748/749 autopsy's H-optim null.",
         "The working intrinsic signal is LEARNED NOVELTY (RND / random-target distillation), NOT forward-model curiosity (ICM): ICM foraged 0.22 (~ sparse baseline) with HIGHER intrinsic reward (0.069 vs 0.030) -- degenerate-forward-model failure. The build seed is RND-family, not ICM.",
         "Unsupervised RND clears only the FLOOR (5.22) -- ~16% of the BC expert (32.72), ~11% of the local_view_greedy observability ceiling (48.05). 'Off the floor' is not 'competent'; the build target is a substantially stronger novelty explorer, not merely 'any intrinsic bonus'.",
-        "The build target the 747/748/749 autopsy deferred is now decidable in PRINCIPLE, but the class is NOT settled by 751: novelty clearing the floor does not mean a novelty bonus closes the floor->competent gap. Route to /lit-pull scoped to class-choice before committing a substrate entry (user decision 2026-07-14).",
-        "DUPLICATION RISK: REE already has landed exploration substrate -- ARC-065 (stable) structured-curiosity cluster, MECH-314 (substrate_ceiling) structured-curiosity/EFE analog, MECH-313 noise floor, MECH-455 competence-drive, and hippocampal reverse-replay credit. A new RND novelty module risks re-building what exists; the lit-pull must weigh composition-vs-duplication, not just 'more novelty'.",
-        "751's RND/ICM arms are driver-defined intrinsic modules -> reuse-INELIGIBLE (excluded from substrate hash); whichever class is selected must be promoted to a first-class, reuse-eligible substrate module."
+        "The build target the 747/748/749 autopsy deferred is now decidable in PRINCIPLE, but the class was NOT settled by 751. Lit-pull (evidence/literature/targeted_review_action_learning_bootstrap_class_choice/, 12 entries) REFUTED the novelty class as the build (coverage-not-competence + duplicates ARC-065/MECH-314) and named 4 composable candidate classes; route to a GOV-FANOUT-1 discrimination portfolio via /queue-experiment (user decision 2026-07-14).",
+        "The two highest-composition moves REUSE landed substrate: extend the existing hippocampal backward_credit_sweep (H-credit) and add a Go-Explore archive/return (H-return); curriculum/AMIGo (H-curriculum) is the strongest standalone unsupervised competence-manufacturer; mode-gate (H-mode) is a cheap composable adjunct. The gap has two plausibly-ADDITIVE halves (credit-propagation + frontier-return), so the portfolio allows a combination outcome, not a forced single winner.",
+        "751's RND/ICM arms are driver-defined intrinsic modules -> reuse-INELIGIBLE (excluded from substrate hash); whichever class (or additive combination) wins must be promoted to a first-class, reuse-eligible substrate module."
       ],
-      "routing": "lit-pull"
+      "routing": "queue-experiment"
     },
     {
       "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
@@ -142,19 +157,19 @@
         "750 is NON_CONTRIBUTORY / starved: the dense pair matched-competent precondition is unmet, so the INV-088 representation-vs-diversity contrast cannot be read. Weights against neither MECH-457 nor INV-088.",
         "Design pitfall recorded: 750's 'dense' arms are dense-reward-SHAPING RL (shaping_coef=1.0), the sub-floor variant already starved in 748/749 -- NOT the BC variant that cleared the floor. The 2x2 label 'dense teacher = PASS' conflated BC (the arm that passed) with shaping (the arm that failed).",
         "Deeper design constraint: even BC arms would not give a clean representation->diversity read -- BC launders the representation's diversity contribution through the imitated expert. The clean read requires matched-competent UNSUPERVISED policies on both representations.",
-        "Therefore 750's retest blocks on the SAME (now class-undecided) matched-competent unsupervised-competence build the 751 target routes to /lit-pull, extended to reach matched competence on BOTH z_world and raw 5x5 view (751 ran z_world explorer arms only).",
+        "Therefore 750's retest blocks on whichever class (or additive combination) from the 751 fanout portfolio reaches matched-competent UNSUPERVISED foraging on BOTH z_world and raw 5x5 view (751 ran z_world explorer arms only). Enabled once the portfolio lands a matched-competent unsupervised arm.",
         "Confound flag (NOT evidence against INV-088): at sub-floor competence z_world arms collapse to near-monostrategy (direction opposite to INV-088's prediction) -- a training-collapse artifact that vindicates the matched-competence gate."
       ],
-      "routing": "lit-pull"
+      "routing": "queue-experiment"
     }
   ],
   "cluster_pattern": {
     "shape": "Convergent continuation, not a substrate-ceiling shared-shape cluster: 751 (diagnostic PASS) POSITIVELY demonstrates the seed (RND learned-novelty clears the floor unsupervised on z_world), and 750 (FAIL, non_contributory) is STARVED for exactly that seed (needs matched-competent unsupervised policies on both representations to read INV-088).",
     "is_independent_bugs": false,
     "structural_property": "The MECH-457 line's remaining bottleneck is a SINGLE buildable substrate -- a better unsupervised novelty-driven explorer (RND-family) that reaches competent foraging on both z_world and raw 5x5 view. 751 shows the seed works but clears only the floor; 750 cannot be adjudicated until that explorer reaches matched competence. One build unblocks both. This is complicated (buildable) execution backlog behind a now-DISCHARGED complex (probe-gated) node -- the 747/748/749 expert-vs-exploration puzzle is answered.",
-    "readings": ["single_substrate_gap_unblocks_both_diagnostics_but_mechanism_class_undecided"],
-    "resolved_this_cluster": ["algorithm-axis fork (expert-necessary vs exploration-too-weak): RESOLVED toward exploration-too-weak; RND (learned novelty) clears the FLOOR, ICM (curiosity) does not"],
-    "open_this_cluster": ["mechanism CLASS for the floor->competent gap: novelty-drive (RND, risks duplicating ARC-065/MECH-314) vs behavioural-mode explore/exploit vs options/skills vs go-explore vs replay-credit vs curriculum -- 751 does NOT settle this"],
-    "build_target": "DEFERRED pending /lit-pull (user decision 2026-07-14): class-choice + composition-vs-duplication against landed REE exploration substrate; candidate-if-novelty-class = mech457_unsupervised_novelty_explorer. No substrate_queue entry created this cycle."
+    "readings": ["single_substrate_gap_unblocks_both_diagnostics_class_narrowed_by_litpull_to_a_fanout_portfolio"],
+    "resolved_this_cluster": ["algorithm-axis fork (expert-necessary vs exploration-too-weak): RESOLVED toward exploration-too-weak; RND clears the FLOOR, ICM does not", "lit-pull class-choice: novelty-drive REJECTED as the build (duplicates ARC-065/MECH-314 + plateaus); 4 composable candidate classes named"],
+    "open_this_cluster": ["which of H-credit (extend backward_credit_sweep) / H-return (Go-Explore archive) / H-curriculum (AMIGo) / H-mode (explore-exploit gate) -- or their ADDITIVE combination -- reaches matched-competent unsupervised foraging"],
+    "build_target": "DECIDED BY the GOV-FANOUT-1 discrimination portfolio (user decision 2026-07-14: combination-aware, not forced single-winner). Route: /queue-experiment (lit-pull complete, grounding: targeted_review_action_learning_bootstrap_class_choice/SYNTHESIS.md). No substrate_queue entry until the portfolio names the winning/additive class. Highest-composition candidates reuse landed substrate (H-credit extends the existing sweep)."
   }
 }
