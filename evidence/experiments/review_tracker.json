@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-14T20:07:59Z",
+  "last_review_utc": "2026-07-14T20:43:46Z",
   "discussed_experiment_dirs": [
     "v3_exq_047l_mech095_agency_routing_sd047",
     "v3_exq_732a_policy_learning_discriminator",
@@ -837,7 +837,8 @@
     "v3_exq_748_mech457_hexplore_reward_density_actor_critic",
     "v3_exq_749_mech457_hrep_x_hexplore_rawview_dense_actor_critic",
     "v3_exq_757_mech288_mech287_event_boundary_trigger_functional",
-    "v3_exq_759_mech304_cue_specific_conditioned_safety_prediction"
+    "v3_exq_759_mech304_cue_specific_conditioned_safety_prediction",
+    "v3_exq_758_mech284_staleness_accumulator_monotonicity"
   ],
   "reviewed_run_ids": [
     "v3_exq_047l_mech095_agency_routing_sd047_20260711T143819Z_v3",
@@ -3351,7 +3352,8 @@
     "v3_exq_748_mech457_hexplore_reward_density_actor_critic_20260713T111911Z_v3",
     "v3_exq_749_mech457_hrep_x_hexplore_rawview_dense_actor_critic_20260713T063043Z_v3",
     "v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3",
-    "v3_exq_759_mech304_cue_specific_conditioned_safety_prediction_20260714T201108Z_v3"
+    "v3_exq_759_mech304_cue_specific_conditioned_safety_prediction_20260714T201108Z_v3",
+    "v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -3706,6 +3708,15 @@
         "MECH-287"
       ],
       "note": "First indexed exp evidence for MECH-288 (event-segment boundary detection) and MECH-287 (dual-component invalidation trigger). Functional-signature isolation test (exp:simulation), 5 seeds, non-degenerate, wall-independent; all 6 load-bearing criteria (C288_hit/silence/graded, C287_phasic/dissoc/tonic) True; 3 readiness preconditions met. Caveat: MECH-288 specificity shown on the SLOW/BOCPD outer scale only (decisive-change detector, posterior=1.0 on ||z_goal|| shifts >=~8); fast PE-threshold inner scale fires ~15% on any stationary z-score stream (descriptive, not gated). Gradedness via fast-scale continuous posteriors. Evidence class: functional-signature isolation of substrate modules on controlled latent streams, action-free/training-free -- NOT integrated-agent behavioural. Weighs toward clearing v3_pending gate; promotion pending governance adjudication."
+    },
+    {
+      "run_id": "v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3",
+      "reviewed_utc": "2026-07-14T20:43:46Z",
+      "outcome": "PASS",
+      "claims": [
+        "MECH-284"
+      ],
+      "note": "First indexed exp evidence for MECH-284 (V_s residual schema-staleness accumulator). Wall-independent functional-signature isolation test (exp:simulation), 5 seeds, non-degenerate; drives the REAL StalenessAccumulator.integrate()/tick_leak()/snapshot() path with real BroadcastEvent+Anchor objects; DV = region-indexed snapshot() scalar. All 3 criteria True 5/5: C2_region_locality_spread (LOAD-BEARING; perturbed region -> peak, non-overlapping fresh regions stay 0.0, range 1.0), C1_monotone_rise (graded 0.15->1.0), C3_leak_decay (factor-0.5 geometric decay to drop). Both readiness preconditions met (peak cross-region RANGE + peak vs_p supra-floor, populated only via real integrate() -- guards the 688 vacuous-null). Accumulator complement to MECH-287 (invalidation trigger), promoted same day via sibling V3-EXQ-757. Evidence class: functional-signature isolation of substrate module on controlled latent streams, action-free/training-free -- NOT integrated-agent behavioural. Cleared v3_pending gate; promoted candidate->provisional (mirrors MECH-287/288/304). Promote-to-active remains gated on EXQ-475 unlock + dissociation-from-PE + attribution_weight specificity tests."
     }
   ],
   "review_history": [

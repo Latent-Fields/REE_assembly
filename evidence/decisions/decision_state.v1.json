@@ -1198,13 +1198,14 @@
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
     "MECH-284": {
-      "actor": "governance-2026-04-25T15:15",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-2026-07-14T20:41Z",
+      "decision_needed": "First indexed V3 evidence (V3-EXQ-758 staleness-accumulator functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
       "decision_status": "applied",
-      "rationale": "governance 2026-04-25: hold acknowledged (mechanical hold; no claim status change)",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Apply hold (no status change)",
-      "timestamp_utc": "2026-04-25T15:42:09.107871Z"
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Clear v3_pending gate and promote to provisional",
+      "rationale": "governance 2026-07-14: V3-EXQ-758 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate; drives real StalenessAccumulator.integrate()/tick_leak()/snapshot(); load-bearing C2 region-locality + C1 monotone rise + C3 leak decay all met 5/5; both readiness preconditions met). First indexed in-silico evidence for MECH-284 (the 2026-04-25 EXQ-478/480 runs were inconclusive/behaviourally-inert, not supporting). Accumulator complement to MECH-287 (promoted same day via sibling V3-EXQ-757). v3_pending:false, status provisional. NOT-YET-CLEARED for promote-to-active: the pre-registered EXQ-475 unlock test + dissociation-from-prediction-error + attribution_weight specificity remain the separate gate. Precedent: MECH-287/288/304 promote_to_provisional 2026-07-14.",
+      "timestamp_utc": "2026-07-14T20:41:53.792349Z",
+      "source_file": "evidence/experiments/v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3.json"
     },
     "MECH-285": {
       "actor": "governance-2026-06-23T22:14",

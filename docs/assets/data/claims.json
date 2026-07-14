@@ -4690,9 +4690,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-284": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "mature",
     "epistemic_stance": "believed",
-    "status": "candidate",
+    "status": "provisional",
     "subject": "hippocampal.v_s_residual_schema_staleness_accumulator",
     "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
     "type": "mechanism_hypothesis"

@@ -29015,17 +29015,17 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.v_s_residual_schema_staleness_accumulator
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-14
     needs_review: false
     evidence:
-      from: "decision:MECH-284@2026-04-25T15:42:09.107871Z"
-      as_of: 2026-04-25
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:MECH-284@2026-07-14T20:41:53.792349Z"
+      as_of: 2026-07-14
+      verdict: promote_to_provisional/applied
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-04-22
   depends_on:
@@ -29160,6 +29160,34 @@
     / v3_pending; not weakening evidence against MECH-284. Next step:
     revisit BoundaryEvent rate, anchor-key snapshot scope, or
     commit-entry capture sites before re-running unlock-test suite.
+
+    [2026-07-14 governance -- promote candidate->provisional, v3_pending
+    cleared]: V3-EXQ-758 (v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3)
+    is the FIRST indexed in-silico SUPPORTING evidence for MECH-284. PASS /
+    evidence_direction supports, evidence_class exp:simulation. Wall-independent
+    functional-signature isolation test (action-free, training-free) driving the
+    REAL StalenessAccumulator.integrate()/tick_leak()/snapshot() path with real
+    BroadcastEvent + Anchor objects over 5 seeds; DV = region-indexed snapshot()
+    scalar; non_degenerate, both readiness preconditions met (peak cross-region
+    RANGE and peak vs_p level supra-floor, populated ONLY via real integrate(),
+    guarding the V3-EXQ-688 vacuous-null). All three MECH-284 criteria met across
+    5/5 seeds -- C2_region_locality_spread (LOAD-BEARING: perturbed region rises
+    to peak while non-overlapping fresh regions stay 0.0, range 1.0), C1_monotone_rise
+    (graded dose-integration 0.15->1.0, monotone), C3_leak_decay (geometric
+    leak_factor=0.5 decay to drop-from-snapshot). This is the decisive region-indexed
+    readout that was ABSENT from every prior manifest (455a/592f reference MECH-284
+    but never tested its functional signature; the 2026-04-25 EXQ-478/480 runs were
+    inconclusive/behaviourally-inert on a dead read-side hook, NOT supporting
+    evidence). Clears the "no in-silico supporting evidence" precondition behind the
+    v3_pending hold. Accumulator complement to MECH-287 (the invalidation trigger
+    that drives MECH-284), promoted candidate->provisional the same day via the sibling
+    isolation run V3-EXQ-757. NOT-YET-CLEARED for promotion-to-active: this isolation
+    test does not exercise the integrated closed-loop agent, so the pre-registered
+    promotion bar above -- the EXQ-475 unlock test (V3-EXQ-478 lineage), the
+    dissociation-from-prediction-error test, and the attribution_weight specificity
+    test -- remains the separate promote-to-active gate. (No arm_results / no OFF
+    training arm -> no baseline mint; pure-arithmetic substrate probe, nothing to
+    re-train.)
   implementation_note: >
     MECH-284 Phase 3 implemented 2026-04-24 in ree-v3. Module
     ree_core/hippocampal/staleness_accumulator.py. Config flags
