@@ -32834,17 +32834,17 @@
   claim_type: mechanism_hypothesis
   subject: safety_prediction.cue_specific_conditioned_inhibition_substrate
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-14
     needs_review: false
     evidence:
-      from: "decision:MECH-304@2026-05-31T19:22:15.717729Z"
-      as_of: 2026-05-31
-      verdict: hold_pending_v3_substrate/applied
+      from: "decision:MECH-304@2026-07-14T20:39:20.788928Z"
+      as_of: 2026-07-14
+      verdict: promote_to_provisional/applied
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   claim_level: mechanistic
   registered_utc: 2026-05-04
   revised_utc: 2026-06-05
@@ -32974,6 +32974,35 @@
     Guards the over-split mirror of the philosophy-right/mechanism-wrong
     failure mode (feedback_biology_before_formal_definitions).
 
+    [2026-07-14 governance -- promote candidate->provisional, v3_pending
+    cleared]: V3-EXQ-759
+    (v3_exq_759_mech304_cue_specific_conditioned_safety_prediction_20260714T201108Z_v3)
+    is the FIRST indexed in-silico evidence for MECH-304. PASS /
+    evidence_direction supports. It is a WALL-INDEPENDENT
+    functional-signature ISOLATION test: the DV is a read-only
+    ConditionedSafetyStore.predict() scalar on a FROZEN, action-free
+    agent (random rollouts are only a world-state sampler; no committed
+    action / goal / training), so it is independent of the competence
+    wall (GAP-I; precedent functional-signature DVs 447/448/455). Result:
+    load-bearing C1 cue-discrimination AUC is non-degenerate and above
+    chance on all 6 valid seeds (mean AUC 0.739, min 0.619), the
+    orthogonal-class positive control AUC is 0.997, and all four
+    readiness preconditions are met (positive_control_auc>=0.9,
+    n_valid_seeds>=3, store prototype populated, predict spread
+    non-degenerate). This clears the "no in-silico evidence" precondition
+    behind the v3_pending hold. NOT-YET-CLEARED for promotion-to-active:
+    this isolation test measures cue-specific PREDICTION discriminability
+    only -- it does NOT exercise the integrated closed-loop agent or the
+    pre-registered behavioural falsifier (classical conditioned
+    inhibition: a learned safety cue suppresses avoidance when presented
+    CONCURRENTLY with a threat cue), nor the ablation dissociation
+    (MECH-304 ablation should abolish cue-specific safety inhibition while
+    sparing MECH-303 contextual safety). Those behavioural /
+    dissociation tests remain the separate promote-to-active gate. This
+    disposition mirrors the MECH-287/288 candidate->provisional promote
+    (2026-07-14, V3-EXQ-757), the sibling functional-signature
+    isolation precedent.
+
   implementation_note: |
     SD-051 IMPLEMENTED 2026-05-04. ConditionedSafetyStore in
     ree_core/safety/conditioned_safety_store.py. Config:
@@ -33003,6 +33032,19 @@
     by EXQ-517 PASS). The reuniens relay + remote/recent axis remain
     UNIMPLEMENTED (enrichment is documentation-only; see notes
     candidate-third-mechanism flag).
+    [2026-07-14 governance] v3_pending CLEARED and status promoted
+    candidate->provisional on the first indexed in-silico evidence:
+    V3-EXQ-759 (cue-specific conditioned safety PREDICTION, PASS /
+    supports), a wall-independent functional-signature isolation test of
+    ConditionedSafetyStore.predict on a frozen action-free agent (6/6
+    seeds above chance, positive control AUC 0.997, load-bearing C1
+    non-degenerate). This is NECESSARY-NOT-SUFFICIENT for promote-to-
+    active: 759 isolates the cue-discriminative predictive structure but
+    does NOT run the pre-registered behavioural falsifier (the
+    conditioned-inhibition discriminative-pair with a concurrent threat
+    cue, the EXQ-519-family gate named above) or the MECH-303-sparing
+    ablation. Those behavioural / dissociation tests remain the
+    promote-to-active gate. See notes 2026-07-14 governance block.
   location: evidence/literature/targeted_review_connectome_mech_303/
   enrichment_anchors:
     - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
