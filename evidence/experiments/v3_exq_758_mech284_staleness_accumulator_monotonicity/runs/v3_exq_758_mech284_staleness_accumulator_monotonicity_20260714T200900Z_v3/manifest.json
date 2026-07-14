@@ -1,0 +1,94 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_758_mech284_staleness_accumulator_monotonicity",
+  "run_id": "v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-14T20:09:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-284"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "confirms_region_indexed_staleness_tracking",
+    "readiness_met": true,
+    "all_seeds_C1_monotone_rise": true,
+    "all_seeds_C2_region_locality": true,
+    "all_seeds_C3_leak_decay": true,
+    "all_seeds_pass": true,
+    "min_peak_range": 1.0,
+    "min_peak_vs_p": 1.0,
+    "preconditions": [
+      {
+        "name": "peak_cross_region_range_supra_floor",
+        "description": "perturbed region minus max fresh region at Phase-A peak -- SAME statistic the load-bearing locality criterion C2 routes on",
+        "measured": 1.0,
+        "threshold": 1e-06,
+        "control": "perturbed region after graded real integrate() vs fresh non-overlapping active regions",
+        "met": true
+      },
+      {
+        "name": "peak_vs_p_level_supra_floor",
+        "description": "perturbed-region V_s level at Phase-A peak (secondary)",
+        "measured": 1.0,
+        "threshold": 0.001,
+        "control": "perturbed region after L graded doses via integrate()",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_monotone_rise": true,
+      "C2_region_locality": true,
+      "C3_leak_decay": true
+    },
+    "criteria": [
+      {
+        "name": "C2_region_locality_spread",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C1_monotone_rise",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_leak_decay",
+        "load_bearing": false,
+        "passed": true
+      }
+    ]
+  }
+}
