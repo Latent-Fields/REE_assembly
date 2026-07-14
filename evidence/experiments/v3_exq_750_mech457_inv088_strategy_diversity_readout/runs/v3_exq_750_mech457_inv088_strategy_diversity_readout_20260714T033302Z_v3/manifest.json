@@ -1,0 +1,102 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_750_mech457_inv088_strategy_diversity_readout",
+  "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-14T03:33:02Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457",
+    "INV-088"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown",
+    "INV-088": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "matched_competence_precondition_unmet",
+    "preconditions": [
+      {
+        "name": "local_view_greedy_clears_forage_floor_at_d3",
+        "kind": "readiness",
+        "description": "Foraging env is solvable from the 5x5 local view (competence anchor).",
+        "control": "local_view_greedy foraging_competence @D3 vs the 1.0 floor",
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "greedy_oracle_clears_forage_floor_at_d3",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "instrument_diversity_spread_registerable",
+        "kind": "readiness",
+        "description": "The instrument registers a between-policy H_greedy SPREAD (the SAME statistic the verdict routes on) on controls with KNOWN-different single-step diversity: random_walk (maximally action-diverse, H_greedy ~= log2(action_dim)) vs a constant-action calibration control (monostrategy, H_greedy == 0). Cannot false-fail on legitimately-similar arms.",
+        "control": "H_greedy(random_walk) - H_greedy(constant_action_calibration), bits",
+        "measured": 2.319354,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "dense_pair_matched_competent",
+        "kind": "precondition",
+        "description": "The decisive representation contrast requires the dense pair (748 vs 749) to be matched-competent -- both clear the forage floor -- so any diversity difference there is NOT explained by competence.",
+        "control": "min(majority_supra_floor(z_world_dense), majority_supra_floor(raw_dense))",
+        "measured": 0,
+        "threshold": 1,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_representation_gates_diversity_at_matched_competence",
+        "load_bearing": true,
+        "passed": true,
+        "description": "|H_greedy(z_world_dense) - H_greedy(raw_dense)| > 0.2 bits on a strict majority of seeds, with the dense pair matched-competent."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "instrument_diversity_spread_registerable": true,
+      "dense_pair_matched_competent": false,
+      "h_greedy_spread_across_cells": true
+    }
+  }
+}
