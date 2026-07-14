@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_striatal_start_stop_chunking_jin_costa2010",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Start/stop signals emerge in nigrostriatal circuits during sequence learning",
+    "authors": [
+      "Xin Jin",
+      "Rui M. Costa"
+    ],
+    "year": 2010,
+    "venue": "Nature 466:457-462",
+    "doi": "10.1038/nature09263",
+    "url": "https://doi.org/10.1038/nature09263"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Biological instantiation of the options-framework primitives (learned start/stop bracketing = initiation/termination of a chunked sequence). Grounds temporal abstraction as a real learned mechanism the brain uses to consolidate practised behaviour; neuroscience, not an RL benchmark.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Provides mechanistic grounding for chunking/termination but is observational neuroscience -- it grounds the class rather than quantifying a floor->competent delta."
+  ],
+  "tags": [
+    "mech-457",
+    "striatum",
+    "action_chunking",
+    "start_stop",
+    "temporal_abstraction",
+    "biological_grounding"
+  ],
+  "mapping": {
+    "source_claim_statement": "In mice on a self-paced operant sequence task, dorsal-striatal neurons and their nigrostriatal dopaminergic afferents develop activity signalling the initiation and termination of a learned action sequence, emerging over learning -- the neural signature of action chunking.",
+    "ree_translation": "Biologically validates the options-framework initiation-set and termination-condition primitives (learned start/stop bracketing); if REE builds temporal abstraction, the brain-faithful form is explicit learned start/stop bracketing of sequences rather than fixed-length macro-actions.",
+    "mapping_caveat": "Rodent electrophysiology, not an RL benchmark; grounds the mechanism class and the correct form of termination, not a competence number.",
+    "source_context": "Mouse dorsal-striatum / nigrostriatal recordings during operant sequence learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Cheap as a design constraint (adopt bracketing idea) even if full skill-discovery is skipped; satisfies brain-like-construction."
+  },
+  "class_surveyed": "OPTIONS / SKILLS"
+}

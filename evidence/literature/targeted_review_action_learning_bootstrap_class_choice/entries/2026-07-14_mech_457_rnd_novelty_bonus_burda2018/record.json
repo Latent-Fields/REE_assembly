@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_rnd_novelty_bonus_burda2018",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Exploration by Random Network Distillation",
+    "authors": [
+      "Yuri Burda",
+      "Harrison Edwards",
+      "Amos Storkey",
+      "Oleg Klimov"
+    ],
+    "year": 2018,
+    "venue": "ICLR 2019 (arXiv:1810.12894)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1810.12894"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong source (first method above-average-human on Montezuma without demos); high mapping fidelity to REE's RND arm; but its own framing (bonus rewards coverage, not task success, and vanishes as states become familiar) predicts the plateau REE observed, so it weakens the 'more novelty closes the gap' reading.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The RND bonus rewards state coverage, not task success; it is non-stationary and vanishes as states become familiar, so it does not convert coverage into competent exploitation once the space is covered.",
+    "RND on Montezuma succeeds because progress requires visiting new rooms (novelty aligned with reward by construction); a sparse-pellet forager gives only partial alignment."
+  ],
+  "tags": [
+    "mech-457",
+    "novelty",
+    "rnd",
+    "intrinsic_motivation",
+    "exploration",
+    "duplication_risk"
+  ],
+  "mapping": {
+    "source_claim_statement": "A frozen random target network + trained predictor yields a prediction-error exploration bonus (a smooth pseudo-count) that drives above-average-human play on the sparse-reward game Montezuma's Revenge without demonstrations.",
+    "ree_translation": "RND IS the learned-novelty signal REE's V3-EXQ-751 ac_zworld_rnd arm added; it cleared the 1.0 forage floor (5.22) but stayed far below the BC expert (32.72) and observability ceiling (48.05).",
+    "mapping_caveat": "RND's Montezuma success depends on novelty being correlated with task progress by construction; the forage gridworld only weakly satisfies this, so the transfer of 'RND reaches competence' does NOT hold and the floor-then-plateau shape is expected.",
+    "source_context": "Deep RL on the Atari suite (esp. Montezuma's Revenge), pixel observations, PPO-scale training."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.85,
+    "transfer_risk": 0.45,
+    "notes": "High source+mapping; transfer_risk elevated because Atari novelty-reward alignment does not transfer to sparse foraging."
+  },
+  "class_surveyed": "NOVELTY-DRIVE"
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_cortical_exploration_modes_daw2006",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Cortical substrates for exploratory decisions in humans",
+    "authors": [
+      "Nathaniel D. Daw",
+      "John P. O'Doherty",
+      "Peter Dayan",
+      "Ben Seymour",
+      "Raymond J. Dolan"
+    ],
+    "year": 2006,
+    "venue": "Nature 441(7095):876-879",
+    "doi": "10.1038/nature04766",
+    "url": "https://doi.org/10.1038/nature04766"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Human fMRI: exploration is implemented as a separable MODE with its own substrate (frontopolar cortex / IPS) distinct from the value/exploitation system (striatum/vmPFC). Supports mode-as-distinct-mechanism; but the behavioural model fit was a softmax temperature (bonus-like), so it argues substrate separability more than mode>bonus.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The fitted computational model was a softmax exploration parameter (random exploration), so the paper evidences a mode SUBSTRATE more than it proves a committed-mode latent outperforms a temperature/bonus."
+  ],
+  "tags": [
+    "mech-457",
+    "explore_exploit",
+    "mode",
+    "frontopolar",
+    "fmri",
+    "separability"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a four-armed bandit, frontopolar cortex and intraparietal sulcus were preferentially active on exploratory choices while striatum and vmPFC tracked value-based exploitative choice -- a dedicated cortical system that switches between exploratory and exploitative behavioural modes, anatomically separate from the valuation system.",
+    "ree_translation": "Supports building exploration control as a separable mode gate (a frontopolar analog) over two action-selection regimes, distinct from the critic's value estimate -- a different computational object from a novelty reward addend.",
+    "mapping_caveat": "The behavioural model fit was a softmax/random-exploration parameter, not an explicit committed-mode latent; so the neural finding argues for a separable mode substrate more than it proves a mode beats a bonus at closing a competence gap.",
+    "source_context": "Human fMRI, four-armed restless-bandit decision task."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Nature fMRI; strongest evidence for anatomical separability of exploration control; caveat on the bonus-vs-mode model form. Note frontopolar locus overlaps REE SD-033e de-commit lever."
+  },
+  "class_surveyed": "EXPLORE-EXPLOIT MODE"
+}

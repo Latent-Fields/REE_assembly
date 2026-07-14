@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_reverse_replay_credit_foster_wilson2006",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Reverse replay of behavioural sequences in hippocampal place cells during the awake state",
+    "authors": [
+      "David J. Foster",
+      "Matthew A. Wilson"
+    ],
+    "year": 2006,
+    "venue": "Nature 440:680-683",
+    "doi": "10.1038/nature04587",
+    "url": "https://doi.org/10.1038/nature04587"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical biological evidence that the brain propagates reward backward along a just-experienced trajectory via reverse replay -- the exact operation a novelty bonus lacks and the archetype of REE's existing backward_credit_sweep. Grounds the credit-assignment lever; indirect (observational, not an RL benchmark).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A per-step novelty bonus has no mechanism to propagate a terminal reward backward along the trajectory that earned it; reverse replay is that missing operation."
+  ],
+  "tags": [
+    "mech-457",
+    "reverse_replay",
+    "credit_assignment",
+    "hippocampus",
+    "backward_credit_sweep",
+    "biological_grounding"
+  ],
+  "mapping": {
+    "source_claim_statement": "During awake pauses after spatial experience, hippocampal place-cell sequences replay in reversed order (most-recent-location-first, back toward the start), which the authors suggest plays a role in evaluating event sequences in the manner of reinforcement-learning models.",
+    "ree_translation": "Reverse replay is the biological archetype of REE's already-present hippocampal backward_credit_sweep; it validates that the sweep is the faithful primitive for propagating forage reward backward along the visited trajectory -- the credit-assignment half of the floor->competent gap.",
+    "mapping_caveat": "Observational neuroscience, not an RL performance result; it grounds the mechanism class and validates existing REE machinery but does not itself measure a floor->competent delta.",
+    "source_context": "Rat hippocampal place-cell recordings on a linear track, awake immobility after runs."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Strong biological grounding; the value is that it maps onto machinery REE ALREADY has, so the move is to exercise/strengthen the sweep, not add a parallel novelty mechanism."
+  },
+  "class_surveyed": "MEMORY / REVERSE-REPLAY CREDIT"
+}

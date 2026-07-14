@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_go_explore_return_then_explore_ecoffet2021",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "First return, then explore",
+    "authors": [
+      "Adrien Ecoffet",
+      "Joost Huizinga",
+      "Joel Lehman",
+      "Kenneth O. Stanley",
+      "Jeff Clune"
+    ],
+    "year": 2021,
+    "venue": "Nature 590:580-586",
+    "doi": "10.1038/s41586-020-03157-9",
+    "url": "https://www.nature.com/articles/s41586-020-03157-9"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Nature paper; names detachment/derailment as WHY novelty bonuses plateau and shows an archive+return mechanism clears a floor->competent gap novelty cannot (>43k vs ~11k RND on Montezuma). Directly on-point for the class-choice; buildable in a small gridworld.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Detachment: novelty/intrinsic-reward algorithms forget how to reach previously visited promising states once the local bonus is consumed, so the bonus stops pulling the agent back to the true frontier.",
+    "Derailment: stochastic exploratory actions prevent reliable RETURN to a known good state to explore onward from it."
+  ],
+  "tags": [
+    "mech-457",
+    "go_explore",
+    "archive",
+    "return_to_frontier",
+    "detachment",
+    "memory",
+    "exploration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Novelty/intrinsic-motivation exploration fails via detachment and derailment; an archive of visited states plus a deterministic return-then-explore loop fixes both, scoring >43,000 mean on Montezuma's Revenge (vs RND ~11,000) and solving all previously-unsolved Atari games.",
+    "ree_translation": "The archive+return mechanism is the concrete 'different class' REE's open question hunts for: it decouples reaching a frontier state from exploring at it (which novelty bonuses conflate), and directly explains why REE's RND arm stalled at 5.22.",
+    "mapping_caveat": "Full Go-Explore assumes a resettable/deterministic env and a state-cell archive; both are cheap in a small gridworld (cell = discretised z_world, return = replay/reset), but the Atari competence numbers do not transfer verbatim to the forage metric.",
+    "source_context": "Deep RL on hard-exploration Atari (Montezuma's Revenge, Pitfall), with save/restore or goal-conditioned return."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Nature venue; the RND-vs-Go-Explore gap on the SAME benchmark is the load-bearing datapoint that the missing ingredient is memory+return, not a stronger bonus."
+  },
+  "class_surveyed": "MEMORY / GO-EXPLORE"
+}

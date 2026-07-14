@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_prioritized_replay_mattar_daw2018",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": [
+      "Marcelo G. Mattar",
+      "Nathaniel D. Daw"
+    ],
+    "year": 2018,
+    "venue": "Nature Neuroscience 21:1609-1617",
+    "doi": "10.1038/s41593-018-0232-z",
+    "url": "https://doi.org/10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Normative theory giving the priority rule (utility = gain x need) for WHICH transitions a credit sweep should update first; reproduces reverse-replay-after-reward. Directly upgrades REE's existing backward_credit_sweep (prioritise by utility/TD-error) -- extend, not duplicate. Theoretical, not a benchmark.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An undirected per-step novelty bonus spreads learning uniformly; a utility-prioritised backward sweep concentrates updates on exactly the reward-relevant transitions, which is what makes replay efficient."
+  ],
+  "tags": [
+    "mech-457",
+    "prioritized_replay",
+    "credit_assignment",
+    "utility",
+    "backward_credit_sweep",
+    "hippocampus"
+  ],
+  "mapping": {
+    "source_claim_statement": "Replay accesses memories in order of utility (gain x need): 'gain' propagates a newly-encountered outcome backward to preceding states (reverse replay), 'need' evaluates imminent choices forward; this single prioritised-access rule reproduces empirical replay phenomenology and unifies planning, learning and consolidation.",
+    "ree_translation": "Gives REE's existing backward_credit_sweep a priority rule -- order updates by utility/TD-error rather than uniform or recency-only -- so credit concentrates on the forage-reward-relevant transitions; the ML analog is prioritised sweeping / prioritised experience replay.",
+    "mapping_caveat": "Normative model, not a performance benchmark on a forage task; the efficiency claim is theoretical + fits neural data, so 'closes the gap faster' is a strong hypothesis, not a measured delta.",
+    "source_context": "Normative modelling of rodent hippocampal replay + human planning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "High-value low-cost upgrade to machinery REE already has; prioritised queue is tiny in a small gridworld."
+  },
+  "class_surveyed": "MEMORY / REVERSE-REPLAY CREDIT"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_options_framework_sutton1999",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Between MDPs and semi-MDPs: A framework for temporal abstraction in reinforcement learning",
+    "authors": [
+      "Richard S. Sutton",
+      "Doina Precup",
+      "Satinder Singh"
+    ],
+    "year": 1999,
+    "venue": "Artificial Intelligence 112(1-2):181-211",
+    "doi": "10.1016/S0004-3702(99)00052-1",
+    "url": "https://doi.org/10.1016/S0004-3702(99)00052-1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational warrant that temporal abstraction is a distinct capability (faster credit assignment, structured exploration over a semi-MDP). But silent on where good options come from; demonstrations use hand-specified options. Supports the framework, not a floor->competent number.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The options framework is silent on option DISCOVERY; its speedups are shown with hand-specified options, so it does not by itself close a floor->competent gap without a source of good options."
+  ],
+  "tags": [
+    "mech-457",
+    "options",
+    "temporal_abstraction",
+    "hierarchical_rl",
+    "credit_assignment"
+  ],
+  "mapping": {
+    "source_claim_statement": "An option (initiation set, policy, termination condition) is a temporally-extended closed-loop sub-behaviour usable like a primitive action; planning/learning over the resulting semi-MDP jump value backups across timesteps, giving faster credit assignment and structured exploration.",
+    "ree_translation": "Options change the decision granularity and credit-assignment timescale of REE's actor-critic -- orthogonal to a novelty bonus (which changes what states are visited, not the timescale of decision/credit).",
+    "mapping_caveat": "The framework requires a source of options; its gridworld demonstrations use hand-specified options, so the floor->competent benefit depends on option discovery (Paper: DIAYN) or hand-design.",
+    "source_context": "Tabular RL theory + small gridworld planning demonstrations."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "Framework-level support; buildable with hand-specified options as a cheap probe, heavier with learned options."
+  },
+  "class_surveyed": "OPTIONS / SKILLS"
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_amigo_intrinsic_goals_campero2021",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Learning with AMIGo: Adversarially Motivated Intrinsic Goals",
+    "authors": [
+      "Andres Campero",
+      "Roberta Raileanu",
+      "Heinrich Kuttler",
+      "Joshua B. Tenenbaum",
+      "Tim Rocktaschel",
+      "Edward Grefenstette"
+    ],
+    "year": 2021,
+    "venue": "ICLR 2021 (arXiv:2006.12122)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/2006.12122"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.8,
+  "confidence_rationale": "Directly on-point: a self-generated goal frontier solves hard procedurally-generated MiniGrid sparse tasks where count-based/RND-style bonuses stay at floor -- the unsupervised analogue of what BC achieved for REE. Moderate build (goal-proposer + goal-conditioned policy). Needs a parameterizable goal space.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "AMIGo/goal-generation assume a parameterizable goal space (e.g. (x,y) target cells); if the useful competence is not expressible as a reachable goal-state the curriculum cannot target it."
+  ],
+  "tags": [
+    "mech-457",
+    "amigo",
+    "curriculum",
+    "goal_generation",
+    "frontier",
+    "competence_directed",
+    "unsupervised_teacher"
+  ],
+  "mapping": {
+    "source_claim_statement": "A goal-generating teacher network proposes target cells to a goal-conditioned student, rewarded (adversarially) for goals the student reaches in more than t* steps but not never -- keeping goals at the moving frontier of competence; this solves KeyCorridor/ObstructedMaze where IMPALA and count-based/RND intrinsic bonuses fail.",
+    "ree_translation": "AMIGo is the unsupervised analogue of REE's competence-clearing BC arm: it manufactures a dense, self-paced achievable teaching signal WITHOUT an expert -- the 'unsupervised route to what BC (32.72) achieved' the floor->competent gap needs.",
+    "mapping_caveat": "Wins are on navigation/reach tasks with (x,y)-parameterized goals; the REE forage competence must be reducible to a nameable reachable goal for the guarantee to transfer, and the teacher is a learned net (more than a one-line reward change).",
+    "source_context": "Deep RL on procedurally-generated MiniGrid (KeyCorridor, ObstructedMaze), goal-conditioned IMPALA student."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.38,
+    "notes": "Cleanest discrete-gridworld precedent for an unsupervised competence-manufacturing signal; the goal-space precondition is the main transfer risk."
+  },
+  "class_surveyed": "CURRICULUM / GOAL-GENERATION"
+}

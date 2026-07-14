@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_imgep_learning_progress_forestier2022",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Intrinsically Motivated Goal Exploration Processes with Automatic Curriculum Learning",
+    "authors": [
+      "Sebastien Forestier",
+      "Remy Portelas",
+      "Yoan Mollard",
+      "Pierre-Yves Oudeyer"
+    ],
+    "year": 2022,
+    "venue": "JMLR 23(152):1-41 (arXiv:1708.02190)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1708.02190"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Establishes learning-progress as a distinct, competence-directed intrinsic drive (abandons both mastered AND unlearnable regions -- escapes the noisy-TV trap novelty falls into). Lightest build (a goal-selection bookkeeping layer). Framework/robotics evidence, not a MiniGrid floor number.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A plain novelty/count bonus keeps rewarding irreducible-noise regions (noisy-TV); learning-progress instead tracks reducible error and abandons unlearnable regions -- the property novelty lacks."
+  ],
+  "tags": [
+    "mech-457",
+    "imgep",
+    "learning_progress",
+    "curriculum",
+    "competence_directed",
+    "oudeyer",
+    "developmental"
+  ],
+  "mapping": {
+    "source_claim_statement": "An agent self-generates parameterized goals and selects which to pursue by maximizing learning progress (empirical improvement in achieving goals from a region), producing an automatic curriculum from easy/high-progress to harder goals, reusing information across goals (hindsight-like).",
+    "ree_translation": "Learning-progress is the competence-directed drive that separates this class from REE's density-directed curiosity substrate; it is the goal-selection rule that makes a curriculum abandon both mastered and unlearnable regions, targeting exactly the frontier where competence is gainable.",
+    "mapping_caveat": "Framework + robotic-arm/multi-goal experiments, not a MiniGrid floor->competent benchmark; it corroborates the mechanism class and the learning-progress-vs-novelty distinction more than it supplies a head-to-head number.",
+    "source_context": "Developmental robotics / multi-goal exploration; parameterized goal spaces, robotic-arm and simulated tasks."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.4,
+    "notes": "Load-bearing for the 'learning-progress != novelty' composition argument; lightest-weight build of the curriculum class."
+  },
+  "class_surveyed": "CURRICULUM / GOAL-GENERATION"
+}

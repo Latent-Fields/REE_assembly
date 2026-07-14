@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_action_learning_bootstrap_class_choice",
+  "entry_id": "2026-07-14_mech_457_curiosity_noisy_tv_burda2018b",
+  "timestamp_utc": "2026-07-14T17:51:03Z",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "source": {
+    "title": "Large-Scale Study of Curiosity-Driven Learning",
+    "authors": [
+      "Yuri Burda",
+      "Harrison Edwards",
+      "Deepak Pathak",
+      "Amos Storkey",
+      "Trevor Darrell",
+      "Alexei A. Efros"
+    ],
+    "year": 2018,
+    "venue": "ICLR 2019 (arXiv:1808.04355)",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1808.04355"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "Canonical documentation that pure curiosity is reward-agnostic (noisy-TV) and succeeds only where environment design aligns novelty with reward; directly explains why REE's ICM arm failed and why the whole novelty class plateaus. Weakens 'build more curiosity'.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A purely curious agent that finds a stochastic/unpredictable source (a noisy TV) parks in front of it forever, because prediction error stays permanently high -- the noisy-TV problem.",
+    "Forward-model prediction-error curiosity (ICM) is the most noisy-TV-vulnerable member of the class; REE's ac_zworld_icm arm reproduced this (0.22, sub-floor)."
+  ],
+  "tags": [
+    "mech-457",
+    "curiosity",
+    "icm",
+    "noisy_tv",
+    "intrinsic_motivation",
+    "limitation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 54 environments, purely curiosity-driven agents (forward-model prediction error, no extrinsic reward) play many Atari games competently BECAUSE game designers align extrinsic reward with novelty; where that alignment breaks (stochastic elements) curiosity fails (noisy-TV).",
+    "ree_translation": "Explains REE's V3-EXQ-751 result that ICM (forward-model curiosity) did NOT clear the floor (0.22) despite higher intrinsic reward than RND -- the forward model is the most noisy-TV-prone variant, and the forager only weakly aligns novelty with reward.",
+    "mapping_caveat": "The study runs pure-curiosity (no extrinsic reward); REE trains with sparse extrinsic reward + bonus, so the noisy-TV pathology is milder, but the reward-agnostic-coverage conclusion still bounds what the class can deliver.",
+    "source_context": "Deep RL over 54 environments incl. full Atari, pixel observations, feature-space ablations."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.4,
+    "notes": "Diagnostic value is high; it tells us the plateau is the class's expected behaviour, not a tuning failure."
+  },
+  "class_surveyed": "NOVELTY-DRIVE"
+}
