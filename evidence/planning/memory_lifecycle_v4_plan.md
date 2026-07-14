@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Memory Lifecycle: allocation gate + consolidation anti-overwrite + provenance/rollback (V4 roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-07-14
   scope_claims: [MECH-261, MECH-094, ARC-035, MECH-272, MECH-273, INV-039, INV-049, MECH-068, MECH-124, MECH-147, ARC-007, ARC-020, MECH-257, SD-017]
   sibling_plans: [sleep_substrate, hippocampal_planning_v4, self_model_v4, inference_belief_state_v4]
   roadmap_note: >
@@ -123,7 +123,7 @@ closure_plan:
     - id: "memory_lifecycle_v4:MEM-6"
       title: "Retrieval-scope vs action-authority split (reflection-retrieval != action-authority-retrieval)"
       phase: 3
-      status: open
+      status: done
       severity: high
       owner_exq: null
       unblocks_claims: [MECH-257, ARC-035, MECH-393]
@@ -134,8 +134,8 @@ closure_plan:
         - "MECH-257 (E2_x dual-function: retrospective comparator vs prospective rollout-scoring, candidate v3_pending) is the existing dual-mode-readout substrate the split refines"
         - "ARC-035 (stored != active; vmPFC converts stored -> active at eval time, candidate) is the existing stored-vs-active distinction the authority gate extends"
         - "MECH-150/151/152 (cue retrieval feeds bias, decoupled from integration) -- the retrieval path that must be tagged retrieval_scope vs action_authority"
-      last_updated: 2026-06-10
-      completion_note: "Consolidation-faults intake Section 2: retrieval_scope vs action_authority as distinct fields on a memory record is NOVEL (no current home). A consolidated abstraction lacking source-episode grounding may inform reflection but not unilaterally drive committed action. Distinct from MECH-257's read-mode arbitration: this gates AUTHORITY, not read-mode."
+      last_updated: 2026-07-14
+      completion_note: "Consolidation-faults intake Section 2: retrieval_scope vs action_authority as distinct fields on a memory record is NOVEL (no current home). A consolidated abstraction lacking source-episode grounding may inform reflection but not unilaterally drive committed action. Distinct from MECH-257's read-mode arbitration: this gates AUTHORITY, not read-mode. CLOSED 2026-07-14 (IGW-20260714-119 plan reconcile): the new-claim-vs-amend decision was already settled at registration -- MECH-393 was minted 2026-06-10 as a distinct mechanism_hypothesis (subject memory.retrieval.scope_vs_authority, substrate_conditional/v4, depends_on MECH-257/ARC-035/MECH-150, distinct_from MECH-257 [gates READ-MODE] + ARC-035 [gates stored-vs-active]). Intake row 73 confirms retrieval_scope vs action_authority had NO existing home (verdict NEW), so registration IS the deliverable. Residual artifact added this pass: MECH-257 and ARC-035 now each carry a dated mem6_backref_2026_07_14 note acknowledging MECH-393 and making the previously one-directional MECH-393->anchor distinct_from links bidirectional (MECH-257: authority is orthogonal to comparator/evaluator read-mode; ARC-035: authority is a further axis beyond stored-vs-active). No new claim minted; no anchor amendment (both stay candidate). exp_conf 0 -- PROMOTES NOTHING; DO NOT build in V3."
     - id: "memory_lifecycle_v4:MEM-7"
       title: "Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)"
       phase: 2
@@ -262,6 +262,18 @@ honest to build.
   retrieval-scope-vs-action-authority); the gated-write-authority candidate is
   folded into MEM-7 as an MECH-261/SD-017 amendment rather than a separate stub.
   `generation: v4` set so the V3 closure % is unaffected. No claims.yaml edits.
+- **2026-07-14** -- MEM-6 CLOSED (IGW-20260714-119 plan reconcile). Retrieval-scope
+  vs action-authority split. Registration deliverable already landed: MECH-393 was
+  minted 2026-06-10 as a distinct `mechanism_hypothesis` (subject
+  `memory.retrieval.scope_vs_authority`, substrate_conditional/v4), `distinct_from`
+  MECH-257 (gates read-mode) + ARC-035 (gates stored-vs-active). Intake row 73
+  confirms the field pair had no existing REE home (verdict NEW), so no
+  amendment was warranted. Residual artifact this pass: added dated
+  `mem6_backref_2026_07_14` notes to MECH-257 and ARC-035 making the previously
+  one-directional MECH-393->anchor links bidirectional. No new claim minted, no
+  anchor amendment; exp_conf 0 -- promotes nothing; DO NOT build in V3. With MEM-6
+  done, phase-3 provenance/authority now has MEM-5 (blocked on the 6-state store)
+  as its sole remaining open node.
 - **Noted for the orchestrator:** the consolidation-faults intake references
   "SD-024 (sleep.protected_offline_consolidation_boundary)" but the actual
   SD-024 in claims.yaml is "DA-modulated RBF center density." The nearest real

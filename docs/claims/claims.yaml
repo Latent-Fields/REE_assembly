@@ -10410,6 +10410,17 @@
     evaluation time. Both are necessary; failure modes are complementary and partially orthogonal.
     Registered 2026-03-24.
 
+    mem6_backref_2026_07_14 (IGW-20260714-119, memory_lifecycle_v4:MEM-6 plan
+    reconcile): MECH-393 (retrieval-scope vs action-authority split) EXTENDS the
+    ARC-035 stored-vs-active distinction along a further axis. ARC-035 gates
+    whether stored content becomes ACTIVE in the navigable state at evaluation
+    time; MECH-393 gates, among active/retrieved content, whether a trace carries
+    ACTION AUTHORITY -- a consolidated abstraction lacking source-episode grounding
+    may be active for reflection yet be barred from unilaterally driving committed
+    action. The MECH-393->ARC-035 distinct_from link was previously one-directional;
+    this note makes it bidirectional. No amendment to ARC-035 (V4
+    substrate-conditional; promotes nothing; DO NOT build in V3).
+
 - id: ARC-036
   title: "Hippocampal terrain maps encode separable valence dimensions (wanting, liking, harm-discriminative, surprise); ARC-007 residue-field navigation is the harm-causal special case of this general architecture."
   claim_type: architectural_commitment
@@ -23629,6 +23640,18 @@
     population showing the same units contribute to both retrospective
     prediction-error and prospective rollout-evaluation within one
     session. No such paper in the pull; this is a stated open question.
+
+    mem6_backref_2026_07_14 (IGW-20260714-119, memory_lifecycle_v4:MEM-6 plan
+    reconcile): MECH-393 (retrieval-scope vs action-authority split) is a
+    DISTINCT axis from MECH-257's read-mode arbitration. MECH-257 gates WHICH
+    READ-MODE is active (retrospective comparator vs prospective rollout-scoring
+    over one shared E2_x substrate); MECH-393 gates whether a retrieved trace
+    carries ACTION AUTHORITY (a consolidated abstraction lacking source-episode
+    grounding may inform reflection but not unilaterally drive committed action).
+    The two compose -- action_authority is orthogonal to comparator/evaluator
+    mode -- and the MECH-393->MECH-257 distinct_from link was previously
+    one-directional; this note makes it bidirectional. No amendment to MECH-257
+    (V4 substrate-conditional; promotes nothing; DO NOT build in V3).
   evidence_quality_note: >
     Literature pull 2026-04-18 (targeted_review_sd003_successor_evaluator,
     5 entries, and targeted_review_e2_dual_function_mode_distinction,

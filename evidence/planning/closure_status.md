@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-14T19:23:56Z
+Generated: 2026-07-14T19:30:36Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -170,7 +170,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
 - **PROCESS**: 96.7% across 18 non-deferred nodes in 3 plan(s).
-- **V4**: 29.9% across 99 non-deferred nodes in 14 plan(s).
+- **V4**: 30.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
 
@@ -324,7 +324,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v6 | language_trust_deception_institutions_v6_plan.md | `language_trust_deception_institutions_v6:LTI-4` | Language failure modes as REE pathologies (rationalisation / ideologic | blocked | high | MECH-013 (language_failure_modes.md) already enumerates the five modes and maps them to RE | 2026-06-10 |
 | v5 | loveability_ethical_agency_v5_plan.md | `loveability_ethical_agency_v5:LOVE-5` | Love-mediated repair after harm: repair as relationship restoration, n | blocked | high | LOVE-4 correction-without-annihilation | 2026-06-10 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-5` | Provenance + contradiction-flag + rollback layer on consolidated memor | blocked | high | MECH-068 (consolidation selectivity lives in the operator, candidate) is the on-point prec | 2026-06-10 |
-| v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-6` | Retrieval-scope vs action-authority split (reflection-retrieval != act | open | high | MECH-257 (E2_x dual-function: retrospective comparator vs prospective rollout-scoring, can | 2026-06-10 |
+| v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-6` | Retrieval-scope vs action-authority split (reflection-retrieval != act | done | high | MECH-257 (E2_x dual-function: retrospective comparator vs prospective rollout-scoring, can | 2026-07-14 |
 | v5 | mirror_modelling_other_self_v5_plan.md | `mirror_modelling_other_self_v5:MIRROR-5` | Gain-calibration window: low/high/miscalibrated coupling failure modes | open | high | social.md failure-mode taxonomy is design-only: LOW gain = psychopathy/callousness; EXCESS | 2026-06-10 |
 | v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-3` | Agency detection with a structurally-distinct OTHER (MECH-095 retest;  | blocked | high | MECH-095 (TPJ agency-detection comparator distinguishing self-caused from other-caused cha | 2026-07-12 |
 | v5 | multi_agent_ecology_v5_plan.md | `multi_agent_ecology_v5:MAE-4` | Multi-channel coping repertoire so violence is genuinely terminal (MEC | blocked | high | MECH-102 (violence as terminal error-correction, triggered only when all other channels fa | 2026-06-10 |
