@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_073",
+  "entry_id": "2026-07-14_mech_073_reward_value_modulates_placemap_michon2021",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "MECH-073"
+  ],
+  "source": {
+    "title": "Single-trial dynamics of hippocampal spatial representations are modulated by reward value.",
+    "authors": [
+      "Frederic Michon",
+      "Esther Krul",
+      "Jyh-Jang Sun",
+      "Fabian Kloosterman"
+    ],
+    "year": 2021,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2021.07.058",
+    "url": "https://doi.org/10.1016/j.cub.2021.07.058"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Reward value demonstrably reshapes the hippocampal place map itself -- faster reorganization/stabilization and value-selective replay when a goal carries large reward. This supports MECH-073's core: value/valence is woven into map geometry, not merely read off downstream. Confidence moderate: value modulates map DYNAMICS (rate, field appearance, replay), which is compatible with, but does not uniquely establish, valence being INTRINSIC to the map's geometric code as opposed to an extrinsically-driven reshaping.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Value modulation of map reorganization could be driven by an extrinsic reward/dopamine signal acting ON the hippocampus, which would be consistent with a 'downstream value applied to a value-free map' account -- the very alternative MECH-073 denies. The study shows value affects the map but not that value is represented within the map's own geometry."
+  ],
+  "tags": [
+    "mech-073",
+    "hippocampus",
+    "place-cells",
+    "reward-value",
+    "replay",
+    "map-geometry"
+  ],
+  "mapping": {
+    "source_claim_statement": "The size of reward at a goal location modulates single-trial reorganization and stabilization of the hippocampal place map and biases replay toward behaviorally relevant experiences.",
+    "ree_translation": "Supports MECH-073: valence/value is entangled with hippocampal map formation and geometry (reward reshapes which fields form and stabilize), consistent with valence being intrinsic to map geometry rather than applied purely downstream.",
+    "mapping_caveat": "'Value modulates the map' is weaker than 'valence is intrinsic to the map geometry': the modulation could originate from an extrinsic value signal. The entry is scored supports-but-not-decisive precisely because it cannot separate intrinsic-geometry from extrinsic-modulation-of-geometry.",
+    "source_context": "Rat dorsal CA1 tetrode recordings during place-reward association learning with varying reward size."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Strong electrophysiology; mapping fidelity capped because 'value modulates map dynamics' underdetermines 'valence is intrinsic to map geometry'."
+  }
+}

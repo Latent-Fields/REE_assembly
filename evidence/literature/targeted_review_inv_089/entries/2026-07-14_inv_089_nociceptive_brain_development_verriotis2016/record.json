@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_089",
+  "entry_id": "2026-07-14_inv_089_nociceptive_brain_development_verriotis2016",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "INV-089"
+  ],
+  "source": {
+    "title": "The development of the nociceptive brain.",
+    "authors": [
+      "Madeleine Verriotis",
+      "Pishan Chang",
+      "Maria Fitzgerald",
+      "Lorenzo Fabrizi"
+    ],
+    "year": 2016,
+    "venue": "Neuroscience",
+    "doi": "10.1016/j.neuroscience.2016.07.026",
+    "url": "https://doi.org/10.1016/j.neuroscience.2016.07.026"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "A focused review arguing the nociceptive system develops on its own terms and -- unlike other sensory systems -- cannot rely on prolonged activity-dependent shaping through repeated noxious input. This is close to a direct statement of INV-089's core: harm-evaluation quality is bounded by a maturation trajectory distinct from the exteroceptive (z_world) one. Confidence held below higher because it is a narrative review, not a single decisive measurement, and 'distinct timetable' is asserted across heterogeneous sub-findings.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review notes neurophysiological (EEG) and hemodynamic (fMRI/NIRS) measures of infant nociceptive development are 'not always consistent', so the exact ordering and rate of nociceptive-cortex maturation relative to exteroceptive cortex is not pinned to a single agreed curve."
+  ],
+  "tags": [
+    "inv-089",
+    "nociception",
+    "development",
+    "maturation",
+    "infant"
+  ],
+  "mapping": {
+    "source_claim_statement": "The nociceptive brain matures through a distinct developmental process; unlike other sensory systems it cannot depend on prolonged activity-dependent shaping by repeated noxious stimulation, and mature nociceptive cortical network activity emerges on its own developmental schedule.",
+    "ree_translation": "Directly supports INV-089's central premise that z_harm has a differentiation trajectory DISTINCT from z_world's, so productive harm-evaluator training cannot precede sufficient z_harm differentiation -- the biological nociceptive system likewise cannot be shaped like the exteroceptive senses.",
+    "mapping_caveat": "The biological 'cannot rely on activity-dependent shaping' point cuts two ways: it supports a distinct trajectory but also warns that the REE analogy (train the harm-evaluator once z_harm differentiates) may over-assume that experience-driven refinement is the operative mechanism for harm at all. The mapping treats 'distinct maturation schedule' as the shared content and does not import the specific shaping mechanism.",
+    "source_context": "Review of human infant + animal-model nociceptive-system development (spinal cord to cortex)."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.3,
+    "notes": "High mapping fidelity -- the review's thesis is almost a restatement of INV-089's premise; source is an authoritative Fitzgerald-lab review rather than one experiment."
+  }
+}

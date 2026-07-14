@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_089",
+  "entry_id": "2026-07-14_inv_089_parallel_nociceptive_pathways_bastuji2016",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "INV-089"
+  ],
+  "source": {
+    "title": "Pain networks from the inside: Spatiotemporal analysis of brain responses leading from nociception to conscious perception.",
+    "authors": [
+      "Helene Bastuji",
+      "Maud Frot",
+      "Caroline Perchet",
+      "Michel Magnin",
+      "Luis Garcia-Larrea"
+    ],
+    "year": 2016,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.23310",
+    "url": "https://doi.org/10.1002/hbm.23310"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Direct human intracranial-EEG evidence that nociceptive input reaches sensory and limbic cortex in parallel via anatomically distinct ascending routes (spino-thalamic + spino-parabrachial), supporting a harm stream routed separately from exteroceptive processing. Strong source (iEEG in humans, the exact paper cited in the claim). Confidence held below source_quality because the paper is about adult cortical dynamics, not the developmental-differentiation-bounds-quality mechanism INV-089 actually asserts -- it grounds the separateness premise, not the maturation-order conclusion.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper characterizes the temporal dynamics of an already-mature adult nociceptive network; it provides no developmental time-course, so it cannot by itself establish that z_harm differentiation matures on a schedule distinct from z_world's -- only that the two streams are anatomically separable in the adult."
+  ],
+  "tags": [
+    "inv-089",
+    "nociception",
+    "pain-matrix",
+    "spino-parabrachial",
+    "stream-separation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Nociceptive inputs reach sensory and limbic networks simultaneously through parallel spino-thalamic and spino-parabrachial pathways, with operculo-insular and mid-cingulate cortices activated as an initial pre-conscious stage distinct from the fronto-parietal exteroceptive network.",
+    "ree_translation": "Supports the SD-010 architectural choice underpinning INV-089: harm is carried by its own encoder (HarmEncoder -> z_harm), anatomically parallel to and separable from the z_world exteroceptive encoder, rather than being a downstream read-off of the world representation.",
+    "mapping_caveat": "The biological separateness is a parallel ANATOMICAL/functional routing in adults; INV-089's load-bearing content is a DEVELOPMENTAL claim (z_harm has its own differentiation trajectory that bounds harm-evaluator quality). This paper evidences the routing premise, not the maturation-ordering conclusion -- transfer to the developmental claim is an inference, not a measurement.",
+    "source_context": "Human intracranial (depth-electrode) EEG in 12 epilepsy patients; nociceptive-specific laser pulses; first 1 s post-stimulus."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "iEEG in humans is high-quality and directly on-target for the stream-separation premise; transfer_risk is moderate because the claim's real payload is developmental and this is adult data."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_073",
+  "entry_id": "2026-07-14_mech_073_place_cells_value_insensitive_duvelle2019",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "MECH-073"
+  ],
+  "source": {
+    "title": "Insensitivity of Place Cells to the Value of Spatial Goals in a Two-Choice Flexible Navigation Task.",
+    "authors": [
+      "Eleonore Duvelle",
+      "Roddy M Grieves",
+      "Vincent Hok",
+      "Bruno Poucet",
+      "Angelo Arleo",
+      "Kate J Jeffery",
+      "Etienne Save"
+    ],
+    "year": 2019,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1578-18.2018",
+    "url": "https://doi.org/10.1523/JNEUROSCI.1578-18.2018"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "The most direct counter-evidence found: rats behaviorally preferred higher-value goals, yet dorsal CA1/CA3 place-cell activity was NOT modulated by goal value. The authors explicitly argue place cells form a 'value-free map' that links to value 'in other parts of the brain' -- i.e., value is applied downstream, the exact alternative MECH-073 denies. High confidence as a genuine conflict source; this is why the backlog flags MECH-073 active_conflict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Place-cell firing showed goal-related out-of-field activity but no value modulation; value affected behavior without a corresponding hippocampal value signal, directly instantiating a 'value-free spatial map + downstream value' architecture."
+  ],
+  "tags": [
+    "mech-073",
+    "hippocampus",
+    "place-cells",
+    "value-free-map",
+    "downstream-value",
+    "conflict"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dorsal hippocampal place cells encode space independently of its associated value; they form a spontaneously constructed value-free map that links to value-related information located elsewhere in the brain.",
+    "ree_translation": "Weakens MECH-073: if the biological hippocampal map is value-free and valence is supplied by downstream structures (e.g. ventral striatum), then the REE claim that valence is INTRINSIC to hippocampal map geometry is contradicted for the dorsal-CA1 spatial code.",
+    "mapping_caveat": "Scope caveat cuts toward reconciliation: this is DORSAL hippocampus and value = external reward magnitude at a goal. MECH-073 (via ARC-007/MECH-035) may concern a broader or more ventral/affective valence woven into map geometry, which this task does not probe. The weakening is strong for the dorsal-spatial-value case but does not necessarily refute an intrinsic-valence claim scoped to affective/ventral maps.",
+    "source_context": "Rat dorsal CA1 and CA3 recordings; continuous place-navigation task dissociating spatial goal from reward consumption, two goals of differing reward magnitude."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Well-controlled dissociation of goal from reward; high-quality direct counter-evidence. Mapping fidelity slightly reduced by the dorsal/external-reward scoping that leaves an affective-valence escape hatch."
+  }
+}

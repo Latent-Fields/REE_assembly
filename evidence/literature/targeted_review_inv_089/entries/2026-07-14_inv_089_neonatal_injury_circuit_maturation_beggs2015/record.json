@@ -1,0 +1,46 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_089",
+  "entry_id": "2026-07-14_inv_089_neonatal_injury_circuit_maturation_beggs2015",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "INV-089"
+  ],
+  "source": {
+    "title": "Long-Term Consequences of Neonatal Injury.",
+    "authors": [
+      "Simon Beggs"
+    ],
+    "year": 2015,
+    "venue": "Canadian Journal of Psychiatry",
+    "doi": "10.1177/070674371506000404",
+    "url": "https://doi.org/10.1177/070674371506000404"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Supports the separateness + postnatal-refinement premise: nociceptive circuitry functions at birth but undergoes considerable postnatal organization, including the separation of tactile and nociceptive afferent input and maturation of inhibitory control, before full discrimination of noxious from tactile input is possible. Secondary/supporting rather than decisive: the paper's focus is injury-induced plasticity, and the developmental point is scaffolding for that, not its main measured result.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Evidence is drawn largely from rodent neonatal-injury models; the timetable and even the direction of some plasticity effects may not transfer cleanly to the human harm-representation maturation INV-089 posits."
+  ],
+  "tags": [
+    "inv-089",
+    "nociception",
+    "postnatal-development",
+    "tactile-nociceptive-separation",
+    "inhibitory-maturation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Nociceptive circuitry is functional at birth but undergoes substantial postnatal organization -- including separation of tactile and nociceptive afferent input in the dorsal horn and maturation of local/descending inhibition -- before full discrimination of tactile vs noxious input is achieved.",
+    "ree_translation": "Supports INV-089's claim that harm representation differentiates over its own developmental course: the biological nociceptive channel is present-but-undifferentiated early and must refine before it can discriminate, mirroring 'productive harm-evaluator training cannot precede sufficient z_harm differentiation'.",
+    "mapping_caveat": "The biological separation described is at the spinal dorsal-horn afferent level, whereas INV-089 concerns a cortical representational encoder (z_harm) and its differentiation; the level-of-analysis gap plus rodent-model provenance makes this corroborating context rather than a direct measurement of the REE mechanism.",
+    "source_context": "Review; primarily rodent neonatal surgical-incision models with human clinical framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Corroborating context; spinal-level + rodent provenance and injury-model focus lower both mapping fidelity and transfer confidence."
+  }
+}

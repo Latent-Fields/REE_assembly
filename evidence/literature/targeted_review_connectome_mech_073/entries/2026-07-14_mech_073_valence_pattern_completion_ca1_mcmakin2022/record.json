@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_073",
+  "entry_id": "2026-07-14_mech_073_valence_pattern_completion_ca1_mcmakin2022",
+  "timestamp_utc": "2026-07-14T17:28:47Z",
+  "claim_ids_tested": [
+    "MECH-073"
+  ],
+  "source": {
+    "title": "Negative overgeneralization is associated with anxiety and mechanisms of pattern completion in peripubertal youth.",
+    "authors": [
+      "Dana L McMakin",
+      "Adam Kimbler",
+      "Nicholas J Tustison",
+      "Jeremy W Pettit",
+      "Aaron T Mattfeld"
+    ],
+    "year": 2022,
+    "venue": "Social Cognitive and Affective Neuroscience",
+    "doi": "10.1093/scan/nsab089",
+    "url": "https://doi.org/10.1093/scan/nsab089"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.48,
+  "confidence_rationale": "Mixed and indirect. On one hand valence is legible in hippocampal CA1 activity patterns (negative vs neutral produce distinct/over-similar CA1 pattern-completion signatures), consistent with valence being carried in the hippocampal representation. On the other, the valence effect is driven by amygdala + mPFC modulation of CA1 at encoding -- i.e., extrinsic affective circuitry shapes the hippocampal valence signature, which cuts toward the downstream/applied view. Low-moderate confidence: human fMRI, developmental/clinical sample, tangential task.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The hippocampal valence signature is reported as MODULATED BY amygdala and mPFC coupling at encoding, so the study cannot separate valence intrinsic to the hippocampal map from valence imposed on the hippocampus by extrinsic affective structures."
+  ],
+  "tags": [
+    "mech-073",
+    "hippocampus",
+    "ca1",
+    "valence",
+    "pattern-completion",
+    "amygdala-mpfc-modulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Negative (vs neutral) valence is associated with distinct CA1 pattern-completion activity and greater amygdala-CA1 / amygdala-dmPFC functional coupling at encoding, driving negative overgeneralization in peripubertal youth.",
+    "ree_translation": "Bears on MECH-073 both ways: valence IS represented in hippocampal (CA1) activity geometry (supports intrinsic-valence), but that representation is shaped by amygdala/mPFC modulation (supports downstream/extrinsic application). A genuinely mixed datum on the intrinsic-vs-applied axis.",
+    "mapping_caveat": "Task is emotional mnemonic similarity in 9-14 y youth, not spatial-map valence; 'CA1 pattern completion' is a memory-generalization index, not map geometry per se. Transfer to MECH-073's spatial-map-valence formulation is loose -- treat as an affective-memory analogue, not a direct test.",
+    "source_context": "Human fMRI, n=34 peripubertal youth (9-14 y), emotional mnemonic similarity task."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Human developmental fMRI relevant to the affective side of the claim, but task and construct (memory generalization, not map geometry) make the mapping loose; genuinely mixed direction."
+  }
+}
