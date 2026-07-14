@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_761_mech092_quiescent_replay_selectivity",
+  "run_id": "v3_exq_761_mech092_quiescent_replay_selectivity_20260714T204501Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-14T20:45:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-092"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "quiescent_replay_selectivity_confirmed",
+    "preconditions": [
+      {
+        "name": "quiescent_cycles_occur",
+        "description": "quiescent E3 ticks occur (non-vacuity gate 1)",
+        "measured": 19,
+        "threshold": 3,
+        "met": true,
+        "control": "min over seeds of quiescent E3 tick count"
+      },
+      {
+        "name": "salient_cycles_occur",
+        "description": "salient (non-quiescent) E3 ticks occur so the selectivity contrast has an OFF population",
+        "measured": 2,
+        "threshold": 1,
+        "met": true,
+        "control": "min over seeds of salient E3 tick count (harm-driven)"
+      },
+      {
+        "name": "replay_produces_events",
+        "description": "replay() returns real SWR-equivalent trajectories on quiescent ticks (not a no-op)",
+        "measured": 5.0,
+        "threshold": 1.0,
+        "met": true,
+        "control": "min over seeds of mean trajectories per quiescent replay call"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_quiescent_cycles_occur": true,
+      "C2_salient_cycles_occur": true,
+      "C3_replay_produces_events": true,
+      "C4_selective": true
+    },
+    "criteria": [
+      {
+        "name": "C1_quiescent_cycles_occur",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_salient_cycles_occur",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C3_replay_produces_events",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C4_selective",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}

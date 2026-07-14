@@ -1,0 +1,87 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
+  "run_id": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-14T20:47:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-046"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-046": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "functional_signature_measured",
+    "preconditions": [
+      {
+        "name": "input_lowfreq_range_posctrl",
+        "measured": 0.9999999999999999,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "input_max_lowfreq_supra_threshold_posctrl",
+        "measured": 1.1998886960620083,
+        "threshold": 0.6,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C046_present": true,
+      "C046_varies": true,
+      "C046_monotone": true,
+      "C046_rest_silent": true,
+      "C046_coordinator_write": true,
+      "C046_bounded": true
+    },
+    "criteria": [
+      {
+        "name": "C046_varies",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C046_coordinator_write",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
