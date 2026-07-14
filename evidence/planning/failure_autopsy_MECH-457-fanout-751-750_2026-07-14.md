@@ -54,7 +54,7 @@ Self-route `stronger_unsupervised_explorer_clears_floor_exploration_was_the_wall
 | Scale | **insufficient at the current explorer** | RND clears floor but is far below BC/ceiling — the build target |
 
 ### Verdict + routing (751)
-**Expert teacher NOT necessary** — vanilla policy-gradient was too weak; a learned-novelty drive (RND) bootstraps off the floor. Route: **`/implement-substrate`** via a **NEW MECH-457-owned** substrate_queue entry (`create`, priority 1) — the first the line owns. **Re-derive brake does NOT fire** (0 prior substrate_ceiling/non_contributory autopsies on MECH-457; this is a build motivated by a *positive* result). **GOV-FANOUT-1 exempt** — the bottleneck now routes to one unambiguous build, not a ≥2-hypothesis discrimination.
+**Expert teacher NOT necessary** — vanilla policy-gradient was too weak; a learned-novelty drive (RND) bootstraps off the floor. **But the mechanism CLASS for the floor→competent gap is NOT settled by 751** (novelty clears the floor ≠ a novelty bonus closes the gap; the 742/748 baseline already had entropy + count-based novelty and stayed sub-floor). Route: **`/lit-pull`** (user decision 2026-07-14) scoped to class-choice + composition-vs-duplication against the landed REE exploration substrate — **no substrate_queue entry this cycle.** Re-derive brake does NOT fire (0 prior). GOV-FANOUT-1: the open item is a *literature/design* class-choice, not yet a queued experiment portfolio.
 
 ---
 
@@ -93,7 +93,7 @@ Precondition unmet → the decisive INV-088 contrast (748 z_world+dense vs 749 r
 | Scale | dense-shaped arms sub-floor for the same RL-exploration-bootstrap reason as 748/749 shaping arms | the 751 build target |
 
 ### Verdict + routing (750)
-**NON_CONTRIBUTORY / starved** — does not weight against either claim. Route: **re-queue after substrate** (`pending_retest_after_substrate = true`), blocked on the **same** `mech457_unsupervised_novelty_explorer` build, extended to reach matched competence on **both** z_world and raw 5×5 view. Governance should **append** 750's failure record to the entry created from the 751 target (`action=amend`, do NOT create a second entry). INV-088 stays candidate/pending_substrate_reconfirmation; MECH-457 stays candidate/v3_pending.
+**NON_CONTRIBUTORY / starved** — does not weight against either claim. Route: **re-queue after substrate** (`pending_retest_after_substrate = true`), blocked on the **same** (now class-undecided) matched-competent unsupervised-competence build the 751 target routes to `/lit-pull`, extended to reach matched competence on **both** z_world and raw 5×5 view. No substrate entry this cycle. INV-088 stays candidate/pending_substrate_reconfirmation; MECH-457 stays candidate/v3_pending.
 
 ---
 
@@ -108,18 +108,20 @@ Not a substrate-ceiling shared-shape cluster — a **convergent continuation**. 
 
 ## Recommended substrate_queue entry (governance applies)
 
-**`action: create`** — new MECH-457-owned entry (user-confirmed: new entry, not amend f_dominance).
+**`action: none` — DEFERRED pending `/lit-pull`** (user decision 2026-07-14). The original recommendation (`create mech457_unsupervised_novelty_explorer`) was **superseded**: 751 licenses only that a *learned novelty signal clears the floor*, not that a novelty bonus closes the floor→competent gap, and a novelty module **risks duplicating the landed ARC-065 / MECH-314 curiosity substrate.** The build-target **class is open** and is a literature/design question, not a settled build.
 
-| Field | Value |
-|---|---|
-| `sd_id_suggested` | `mech457_unsupervised_novelty_explorer` (governance may rename on collision) |
-| `title` | Better unsupervised novelty-driven explorer for MECH-457 action-learning bootstrap (RND-family; lift competence from floor-clearing toward the BC/ceiling band) |
-| `unblocks_claims` | MECH-457, INV-088 |
-| `depends_on_unresolved` | SD-056 (z_world cotrain, IMPLEMENTED), MECH-229 |
-| `priority_suggested` | 1 (fresh failure records + blocks ≥2 claims) |
-| Build hint | First-class RND novelty module (not driver-defined — 751's arms were reuse-INELIGIBLE): intrinsic reward = ‖predictor(z_world) − frozen_random_target(z_world)‖² (normalized) + raised entropy, in `agent.actor_critic_step`, reuse-eligible emission. Target: push unsupervised foraging from ~5 toward the BC/ceiling band on **both** z_world and raw 5×5 view. **ICM/curiosity is NOT the seed.** Distinct from the f_dominance_conversion_ceiling *selection*-face campaign — this is the action-*learning* bootstrap face. |
+**Candidate classes for the floor→competent gap (for the lit-pull to weigh):**
 
-750's retest is a `pending_retest_after_substrate` dependent of this same entry (append its failure record; do not mint a second entry).
+| Class | Shape | REE status / duplication risk |
+|---|---|---|
+| Intrinsic-motivation / novelty-drive (RND, pseudo-counts, info-gain/EFE, empowerment) | scalar reward add-on | **High overlap** — ARC-065 *stable*, MECH-314 *substrate_ceiling* (landed), MECH-313, MECH-455; lit dossier already exists |
+| Behavioural-mode explore/exploit arbitration | mode/gating variable | Partial (tonic vigor, frontopolar modes) — not a first-class arbitrator |
+| Options / skills / temporal abstraction (DIAYN, HRL) | reusable sub-behaviours | None |
+| Go-Explore / archive-based | state archive + return | None; composes with hippocampal replay |
+| Credit-assignment / reverse-replay | fixes sparse-long-horizon credit | **Exists** — hippocampal `backward_credit_sweep` |
+| Curriculum / goal-generation (BC is one instance) | training-regime | Partial |
+
+The candidate `mech457_unsupervised_novelty_explorer` is retained in the JSON as `candidate_sd_id_if_novelty_class_selected` — **one option, not the decision.** 750's retest is a `pending_retest_after_substrate` dependent of whatever class the lit-pull selects. No entry created this cycle.
 
 ---
 
@@ -131,5 +133,7 @@ Both are drafted verbatim in the JSON (`recommended_evidence_quality_note` per t
 
 | Target | Outcome | Verdict | Routing |
 |---|---|---|---|
-| V3-EXQ-751 | diagnostic PASS | expert NOT necessary; RND clears floor unsupervised (ICM fails; floor not ceiling) | **implement-substrate** — create `mech457_unsupervised_novelty_explorer` (pri 1) |
-| V3-EXQ-750 | FAIL | non_contributory / starved; precondition unmet | **implement-substrate (shared)** then re-queue; `pending_retest_after_substrate` |
+| V3-EXQ-751 | diagnostic PASS | expert NOT necessary; RND clears floor unsupervised (ICM fails; floor not ceiling); **build-class undecided** | **lit-pull** (class-choice + duplication check); substrate entry deferred |
+| V3-EXQ-750 | FAIL | non_contributory / starved; precondition unmet | **lit-pull (shared)** → substrate → re-queue; `pending_retest_after_substrate` |
+
+> **Update 2026-07-14 (user decision):** original routing (`implement-substrate` / create novelty-explorer entry) superseded by **`/lit-pull` first**, scoped to which mechanism class closes the floor→competent gap and whether it composes with vs duplicates the landed ARC-065/MECH-314/hippocampal-replay substrate. No substrate entry created this cycle.

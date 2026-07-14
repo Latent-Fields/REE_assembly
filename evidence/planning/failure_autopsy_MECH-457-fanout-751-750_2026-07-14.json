@@ -37,22 +37,12 @@
       },
       "recommended_epistemic_category": "competence_implementation_gap",
       "recommended_evidence_direction": "not_scored_diagnostic",
-      "recommended_evidence_quality_note": "2026-07-14 (GOV-FANOUT-1 leg D / H-optim V3-EXQ-751, diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-751-750_2026-07-14): the H-optim leg RESOLVES the algorithm-axis discrimination the 747/748/749 fanout left open. A stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with NO expert and NO behavior-cloning: the RND (learned novelty-distillation) arm forages 5.22 (3/3 seeds supra-floor) vs the 742 sparse z_world baseline 0.30 (sub-floor). VERDICT: an expert teacher is NOT necessary -- vanilla policy-gradient exploration was merely too weak; a self-generated learned-novelty drive bootstraps action-learning off the floor. TWO REFINEMENTS foregrounded: (1) only RND worked -- ICM forward-model curiosity did NOT (0.22 ~ baseline) despite higher intrinsic reward, so the working signal is learned NOVELTY, not curiosity; (2) RND clears only the FLOOR (5.22), far below the BC expert (32.72) and the 48.05 observability ceiling -- unsupervised novelty gets off the floor, not to competent foraging. This makes the deferred build LIVE and points it at 'a substantially stronger unsupervised novelty-driven explorer' (RND-family seed), routed to /implement-substrate via a NEW MECH-457-owned substrate_queue entry (the first the line owns). Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457). Diagnostic -- excluded from governance confidence/conflict scoring; this note records the discrimination and the build target, not a weighted evidence entry. MECH-457 stays candidate/v3_pending, competence_implementation_gap.",
+      "recommended_evidence_quality_note": "2026-07-14 (GOV-FANOUT-1 leg D / H-optim V3-EXQ-751, diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-751-750_2026-07-14): the H-optim leg RESOLVES the algorithm-axis discrimination the 747/748/749 fanout left open. A stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with NO expert and NO behavior-cloning: the RND (learned novelty-distillation) arm forages 5.22 (3/3 seeds supra-floor) vs the 742 sparse z_world baseline 0.30 (sub-floor). VERDICT: an expert teacher is NOT necessary -- vanilla policy-gradient exploration was merely too weak; a self-generated learned-novelty drive bootstraps action-learning off the floor. TWO REFINEMENTS foregrounded: (1) only RND worked -- ICM forward-model curiosity did NOT (0.22 ~ baseline) despite higher intrinsic reward, so the working signal is learned NOVELTY, not curiosity; (2) RND clears only the FLOOR (5.22), far below the BC expert (32.72) and the 48.05 observability ceiling -- unsupervised novelty gets off the floor, not to competent foraging. This makes the deferred build-target question decidable, but 751 does NOT settle the mechanism CLASS: novelty clearing the floor is not evidence that a novelty bonus closes the floor->competent gap (the 742/748 baseline already had entropy + count-based novelty and stayed sub-floor). Routed to /lit-pull (user decision 2026-07-14) scoped to class-choice (novelty-drive vs explore/exploit mode vs skills/options vs replay-credit vs curriculum) + composition-vs-duplication against the LANDED REE exploration substrate (ARC-065 stable / MECH-314 substrate_ceiling / MECH-313 / MECH-455 / hippocampal reverse-replay) BEFORE any substrate_queue entry is created. No substrate entry this cycle. Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457). Diagnostic -- excluded from governance confidence/conflict scoring; this note records the discrimination and the build target, not a weighted evidence entry. MECH-457 stays candidate/v3_pending, competence_implementation_gap.",
       "recommended_substrate_queue_entry": {
-        "action": "create",
-        "target_sd_id": null,
-        "sd_id_suggested": "mech457_unsupervised_novelty_explorer",
-        "title": "Better unsupervised novelty-driven explorer for MECH-457 action-learning bootstrap (RND-family; lift competence from floor-clearing toward the BC/ceiling band)",
-        "implementation_hint": "751 established that a LEARNED state-novelty signal (RND, Burda 2018) -- not forward-model curiosity (ICM, which failed here) -- bootstraps the z_world(cotrain) actor-critic off the 1.0 forage floor unsupervised (5.22, 3/3 seeds), but leaves a large gap to the BC expert (32.72) and the local_view_greedy observability ceiling (48.05). Build a first-class unsupervised novelty explorer in the substrate (not a driver-defined module -- the 751 RND/ICM arms were driver-defined and reuse-INELIGIBLE): RND intrinsic reward = ||predictor(z_world) - frozen_random_target(z_world)||^2 (normalized) + raised entropy, integrated into agent.actor_critic_step, with reuse-eligible arm emission. Target: push unsupervised z_world foraging from ~5 toward the BC/ceiling band on both z_world AND raw 5x5 view (the raw-view explorer arm 751 did not run and is prerequisite for the 750 INV-088 retest). ICM/curiosity is NOT the seed. Owning thread: conversion_ceiling_campaign_plan.md / ree_ai_design_critique_plan.md WS-1; distinct from the f_dominance_conversion_ceiling selection-face campaign (that entry is the SELECTION face; this is the action-LEARNING bootstrap face).",
-        "unblocks_claims": ["MECH-457", "INV-088"],
-        "depends_on_unresolved": ["SD-056 (z_world cotrain encoder, IMPLEMENTED)", "MECH-229"],
-        "priority_suggested": 1,
-        "failure_record_entry": {
-          "run_id": "v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic_20260714T023058Z_v3",
-          "experiment_type": "v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic",
-          "metric": "unsupervised z_world RND explorer forages 5.22/ep @D3 (3/3 supra 1.0 floor) -- off the floor but ~16% of the BC expert (32.72) and ~11% of the local_view_greedy ceiling (48.05); ICM 0.22 sub-floor",
-          "target": "a working unsupervised explorer should approach the BC/ceiling band (>=~32 toward 48) on both z_world and raw view, not merely clear the 1.0 floor"
-        }
+        "action": "none",
+        "note": "DEFERRED pending /lit-pull (user decision 2026-07-14). 751 licenses only the NARROW claim that a LEARNED novelty signal (RND) clears the FLOOR unsupervised (5.22); it does NOT license 'a stronger novelty bonus closes the floor->competent gap' (32.72 BC / 48.05 ceiling). The 742/748 baseline ALREADY carried entropy + count-based novelty and stayed sub-floor, so 'more novelty' is a within-class upgrade, not an established path to competence. The build-target CLASS is genuinely open: (a) intrinsic-motivation/novelty-drive (RND-family) -- but this risks DUPLICATING the landed ARC-065 structured-curiosity cluster / MECH-314 (substrate_ceiling) / MECH-455 competence-drive; (b) behavioural-mode explore/exploit arbitration; (c) options/skills temporal abstraction; (d) go-explore/archive-based; (e) credit-assignment/reverse-replay (hippocampal backward_credit_sweep exists); (f) curriculum/goal-generation. Route to /lit-pull scoped to CLASS-CHOICE + composition-vs-duplication against existing REE exploration substrate BEFORE any substrate_queue commit. The candidate sd_id_suggested 'mech457_unsupervised_novelty_explorer' is ONE option among several, not the decided target. Governance: do NOT create a substrate entry this cycle.",
+        "candidate_sd_id_if_novelty_class_selected": "mech457_unsupervised_novelty_explorer",
+        "unblocks_claims_if_built": ["MECH-457", "INV-088"]
       },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
@@ -66,24 +56,26 @@
         "fired": false,
         "threshold": 2,
         "prior_substrate_ceiling_autopsies": [],
-        "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457 (742 + 747/748/749 were competence_implementation_gap/weakens). This target is a diagnostic PASS routing to a build motivated by a POSITIVE result, not a re-tested ceiling. Brake does not apply.",
+        "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457 (742 + 747/748/749 were competence_implementation_gap/weakens). This target is a diagnostic PASS routing to a lit-pull (build class undecided), not a re-tested ceiling. Brake does not apply.",
         "refused_requeue": false,
-        "route_to": "implement-substrate",
-        "upstream_substrate": "mech457_unsupervised_novelty_explorer (new)"
+        "route_to": "lit-pull",
+        "upstream_substrate": "TBD -- build-target class to be selected by /lit-pull (candidate: mech457_unsupervised_novelty_explorer)"
       },
       "fanout_recommendation": {
-        "is_discrimination": false,
-        "resolved_this_cycle": ["H-optim (algorithm axis): exploration-was-the-wall NULL realized; expert teacher NOT necessary; RND (learned novelty) is the working seed, ICM (curiosity) is not"],
-        "note": "GOV-FANOUT-1 EXEMPT: the bottleneck now routes to ONE unambiguous build (a better unsupervised novelty explorer) -- not a >=2-hypothesis discrimination -- so no fanout portfolio is emitted. The 747/748/749 discrimination (expert-necessary vs exploration-too-weak) is RESOLVED by this leg toward the latter. Just build it."
+        "is_discrimination": true,
+        "resolved_this_cycle": ["H-optim (algorithm axis): exploration-was-the-wall NULL realized; expert teacher NOT necessary; RND (learned novelty) clears the FLOOR, ICM (curiosity) does not"],
+        "live_hypotheses": ["novelty-drive/intrinsic-motivation (RND-family) -- risks duplicating landed ARC-065/MECH-314", "behavioural-mode explore/exploit arbitration", "options/skills temporal abstraction", "go-explore/archive-based", "credit-assignment/reverse-replay (hippocampal)", "curriculum/goal-generation"],
+        "note": "NOT yet a queued experiment portfolio: the OPEN question is which mechanism CLASS closes the floor->competent gap, which is a literature+design question, not a next-experiment discrimination. Route to /lit-pull scoped to class-choice + composition-vs-duplication against existing REE exploration substrate (ARC-065/MECH-313/MECH-314/MECH-455/hippocampal-replay). The lit-pull's output decides whether the eventual build is a novelty module, a mode arbitrator, a skills layer, a replay-credit fix, or a curriculum -- and only then does a substrate_queue entry (and possibly a GOV-FANOUT-1 experiment portfolio) follow."
       },
       "learning_extracted": [
         "Algorithm-axis fork RESOLVED: a stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with no expert (RND z_world 5.22, 3/3 supra-floor) -> an expert teacher is NOT necessary; vanilla policy-gradient exploration was merely too weak. Confirms the 747/748/749 autopsy's H-optim null.",
         "The working intrinsic signal is LEARNED NOVELTY (RND / random-target distillation), NOT forward-model curiosity (ICM): ICM foraged 0.22 (~ sparse baseline) with HIGHER intrinsic reward (0.069 vs 0.030) -- degenerate-forward-model failure. The build seed is RND-family, not ICM.",
         "Unsupervised RND clears only the FLOOR (5.22) -- ~16% of the BC expert (32.72), ~11% of the local_view_greedy observability ceiling (48.05). 'Off the floor' is not 'competent'; the build target is a substantially stronger novelty explorer, not merely 'any intrinsic bonus'.",
-        "This makes LIVE the substrate build the 747/748/749 autopsy deferred (action=none pending exactly this leg). First substrate_queue entry the MECH-457 line owns.",
-        "751's RND/ICM arms are driver-defined intrinsic modules -> reuse-INELIGIBLE (excluded from substrate hash); the substrate build must promote the novelty explorer to a first-class, reuse-eligible substrate module."
+        "The build target the 747/748/749 autopsy deferred is now decidable in PRINCIPLE, but the class is NOT settled by 751: novelty clearing the floor does not mean a novelty bonus closes the floor->competent gap. Route to /lit-pull scoped to class-choice before committing a substrate entry (user decision 2026-07-14).",
+        "DUPLICATION RISK: REE already has landed exploration substrate -- ARC-065 (stable) structured-curiosity cluster, MECH-314 (substrate_ceiling) structured-curiosity/EFE analog, MECH-313 noise floor, MECH-455 competence-drive, and hippocampal reverse-replay credit. A new RND novelty module risks re-building what exists; the lit-pull must weigh composition-vs-duplication, not just 'more novelty'.",
+        "751's RND/ICM arms are driver-defined intrinsic modules -> reuse-INELIGIBLE (excluded from substrate hash); whichever class is selected must be promoted to a first-class, reuse-eligible substrate module."
       ],
-      "routing": "implement-substrate"
+      "routing": "lit-pull"
     },
     {
       "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
@@ -117,14 +109,13 @@
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "2026-07-14 (INV-088 strategy-diversity readout V3-EXQ-750, diagnostic, claim_ids=[MECH-457, INV-088]; consumed via /governance from failure_autopsy_MECH-457-fanout-751-750_2026-07-14): NON_CONTRIBUTORY / starved -- does NOT weight against MECH-457 or INV-088. The load-bearing precondition (the dense pair matched-competent -- both dense arms clear the 1.0 forage floor) is UNMET (z_world-dense-shaped 0.217, raw-dense-shaped 0.767, both sub-floor), so the decisive INV-088 representation-vs-diversity contrast (748 vs 749 at matched competence) cannot be read. Cause is two-fold: 750's 'dense' arms are dense-reward-SHAPING RL (the sub-floor variant already starved in 748/749), NOT the BC variant that cleared the floor; and even BC would not give a clean read (the teacher launders the representation's diversity contribution). A clean representation->diversity read needs matched-competent UNSUPERVISED policies on both representations -- the explorer substrate 751 motivates (mech457_unsupervised_novelty_explorer), plus the raw-view explorer arm 751 did not run. The instrument works (H_greedy calibration 2.32 bits). Confound flag (NOT evidence): at sub-floor competence z_world arms collapse to near-monostrategy (opposite to INV-088) -- a training-collapse artifact, exactly why matched competence is the load-bearing gate. INV-088 stays candidate/pending_substrate_reconfirmation; MECH-457 stays candidate/v3_pending. pending_retest_after_substrate: the retest blocks on the same mech457_unsupervised_novelty_explorer build (matched-competent unsupervised policies on BOTH representations).",
       "recommended_substrate_queue_entry": {
-        "action": "amend",
-        "target_sd_id": "mech457_unsupervised_novelty_explorer",
-        "note": "No separate substrate entry. 750's retest blocks on the SAME explorer build recommended by 751's target above -- specifically it needs the explorer to reach matched competence on BOTH z_world AND raw 5x5 view (751 ran z_world explorer arms only). Governance should append this failure_record_entry to the mech457_unsupervised_novelty_explorer entry created from the 751 target, and record 750 as a pending_retest_after_substrate dependent of it (do NOT create a second entry).",
+        "action": "none",
+        "note": "DEFERRED (shares 751's deferral). No substrate entry this cycle. 750's retest blocks on whatever matched-competent UNSUPERVISED-competence substrate the /lit-pull class-choice selects (751's target), extended to reach matched competence on BOTH z_world AND raw 5x5 view (751 ran z_world explorer arms only). Governance should record 750 as pending_retest_after_substrate against the eventual entry once the class is decided; do NOT create an entry now.",
         "failure_record_entry": {
           "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
           "experiment_type": "v3_exq_750_mech457_inv088_strategy_diversity_readout",
           "metric": "INV-088 representation->diversity readout starved: dense pair matched-competent precondition unmet (both dense-shaped arms sub-floor); needs matched-competent unsupervised policies on both z_world and raw view",
-          "target": "the explorer must reach supra-floor (ideally BC/ceiling band) UNSUPERVISED on BOTH representations so the 748-vs-749 H_greedy contrast is readable at matched competence"
+          "target": "the eventual explorer/mode/skills/replay substrate must reach supra-floor (ideally BC/ceiling band) UNSUPERVISED on BOTH representations so the 748-vs-749 H_greedy contrast is readable at matched competence"
         }
       },
       "pending_retest_after_substrate": true,
@@ -151,18 +142,19 @@
         "750 is NON_CONTRIBUTORY / starved: the dense pair matched-competent precondition is unmet, so the INV-088 representation-vs-diversity contrast cannot be read. Weights against neither MECH-457 nor INV-088.",
         "Design pitfall recorded: 750's 'dense' arms are dense-reward-SHAPING RL (shaping_coef=1.0), the sub-floor variant already starved in 748/749 -- NOT the BC variant that cleared the floor. The 2x2 label 'dense teacher = PASS' conflated BC (the arm that passed) with shaping (the arm that failed).",
         "Deeper design constraint: even BC arms would not give a clean representation->diversity read -- BC launders the representation's diversity contribution through the imitated expert. The clean read requires matched-competent UNSUPERVISED policies on both representations.",
-        "Therefore 750's retest blocks on the SAME mech457_unsupervised_novelty_explorer build (751 target), extended to reach matched competence on BOTH z_world and raw 5x5 view (751 ran z_world explorer arms only).",
+        "Therefore 750's retest blocks on the SAME (now class-undecided) matched-competent unsupervised-competence build the 751 target routes to /lit-pull, extended to reach matched competence on BOTH z_world and raw 5x5 view (751 ran z_world explorer arms only).",
         "Confound flag (NOT evidence against INV-088): at sub-floor competence z_world arms collapse to near-monostrategy (direction opposite to INV-088's prediction) -- a training-collapse artifact that vindicates the matched-competence gate."
       ],
-      "routing": "implement-substrate"
+      "routing": "lit-pull"
     }
   ],
   "cluster_pattern": {
     "shape": "Convergent continuation, not a substrate-ceiling shared-shape cluster: 751 (diagnostic PASS) POSITIVELY demonstrates the seed (RND learned-novelty clears the floor unsupervised on z_world), and 750 (FAIL, non_contributory) is STARVED for exactly that seed (needs matched-competent unsupervised policies on both representations to read INV-088).",
     "is_independent_bugs": false,
     "structural_property": "The MECH-457 line's remaining bottleneck is a SINGLE buildable substrate -- a better unsupervised novelty-driven explorer (RND-family) that reaches competent foraging on both z_world and raw 5x5 view. 751 shows the seed works but clears only the floor; 750 cannot be adjudicated until that explorer reaches matched competence. One build unblocks both. This is complicated (buildable) execution backlog behind a now-DISCHARGED complex (probe-gated) node -- the 747/748/749 expert-vs-exploration puzzle is answered.",
-    "readings": ["single_buildable_substrate_unblocks_both_diagnostics"],
-    "resolved_this_cluster": ["algorithm-axis fork (expert-necessary vs exploration-too-weak): RESOLVED toward exploration-too-weak; RND (learned novelty) is the working seed, ICM (curiosity) is not"],
-    "build_target": "mech457_unsupervised_novelty_explorer (NEW substrate_queue entry, action=create, priority 1, unblocks MECH-457 + INV-088)"
+    "readings": ["single_substrate_gap_unblocks_both_diagnostics_but_mechanism_class_undecided"],
+    "resolved_this_cluster": ["algorithm-axis fork (expert-necessary vs exploration-too-weak): RESOLVED toward exploration-too-weak; RND (learned novelty) clears the FLOOR, ICM (curiosity) does not"],
+    "open_this_cluster": ["mechanism CLASS for the floor->competent gap: novelty-drive (RND, risks duplicating ARC-065/MECH-314) vs behavioural-mode explore/exploit vs options/skills vs go-explore vs replay-credit vs curriculum -- 751 does NOT settle this"],
+    "build_target": "DEFERRED pending /lit-pull (user decision 2026-07-14): class-choice + composition-vs-duplication against landed REE exploration substrate; candidate-if-novelty-class = mech457_unsupervised_novelty_explorer. No substrate_queue entry created this cycle."
   }
 }
