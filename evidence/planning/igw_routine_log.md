@@ -937,3 +937,6 @@ One line per hourly tick. ASCII only.
 2026-07-14T05:54:49Z skip IGW-20260714-199: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-14T06:55:10Z skip IGW-20260714-198: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-14T07:55:46Z SPAWN IGW-20260714-199 skill=/queue-experiment prio=40 uuid=318dc67c-a670-4301-82bf-f59e2c4d7f13 pid=34363 worktree=igw-199-proposal-for-mech-086
+2026-07-14T18:17:29Z reaped TASK_CLAIMS igw-auto-igw-199-proposal-for-mech-086-20260714T075806Z (ledger IGW-20260714-199 -> spawn_failed_no_session)
+2026-07-14T18:17:29Z GC keep igw-199-proposal-for-mech-086 (ledger IGW-20260714-199 -> spawn_failed_no_session; 1 un-pushed commit(s) e.g. 58c4eba session amazing-kepler-0c8b71: close claim + WORKSPA)
+2026-07-14T18:17:16Z skip IGW-20260714-199: no fresh runner heartbeat (experiment-lane item would just sit in queue)
