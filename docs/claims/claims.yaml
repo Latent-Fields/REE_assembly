@@ -48608,6 +48608,76 @@
     diagnostic (and, later, the ablation cliff) scores. PROMOTES NOTHING.
   location: evidence/planning/global_workspace_jlens_plan.md
 
+- id: SD-065
+  title: "Conditioned-safety cue channel: env-level controllable, observable Pavlovian safety CS added to CausalGridWorld -- an ambient (uniform-when-active) 25-dim field view emitted into world_state (feeds the z_world encoder the SD-051 ConditionedSafetyStore keys on). Can be paired with the MECH-302 relief-completion window during teaching (the store still writes its prototype ONLY on the real event_fired tick -- the pairing is real, not synthesized) and presented CONCURRENTLY with a threat cue at test. Closes the 'no controllable safety cue' substrate gap that forced V3-EXQ-759 to synthesize the Pavlovian pairing off-substrate, making MECH-304's promote-to-active classical-conditioned-inhibition behavioural falsifier runnable. Adds no entity type (NUM_ENTITY_TYPES stays 7); pure environment substrate; no trainable parameters; no MECH-094 interaction at the env level."
+  claim_type: design_decision
+  subject: environment.conditioned_safety_cue_channel
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-14
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-07-14"
+  depends_on:
+    - SD-051    # the ConditionedSafetyStore consumer this cue channel feeds (z_world prototype)
+    - SD-022    # limb_damage + scheduled-injection curriculum: the relief generator + build-pattern precedent
+    - MECH-302  # relief-completion teaching signal that gates the store's prototype write (event_fired)
+  functional_restatement: >
+    SD-065 extends CausalGridWorld (ree_core/environment/causal_grid_world.py)
+    with a controllable conditioned-safety cue channel. The SD-051
+    ConditionedSafetyStore keys on the full z_world but had no observable cue to
+    bind: the MECH-302 relief-completion event is an internal z_harm_a-norm
+    derivative with no stimulus attached, and the SD-023 landmark / SD-049
+    dual_cue fields are resource-predictive, not safety, and not bindable to
+    relief. SD-065 adds an AMBIENT (uniform-when-active) 25-dim field view
+    appended to world_state (feeds the z_world encoder) plus
+    obs_dict["safety_cue_field_view"]. Ambient (not a spatial gradient) so the
+    cue's z_world contribution is position-independent -- reliably present at
+    every relief tick and reproducible at test, removing a navigation confound;
+    the faithful analog of a Pavlovian tone/light CS.
+
+    Two activation paths. (1) safety_cue_on_relief auto-activates the cue across
+    the SD-022 damage->heal (MECH-302 relief) window -- active exactly when
+    sum(limb_damage) > safety_cue_heal_floor; the store still writes its
+    prototype ONLY on the real event_fired tick inside that window, so the
+    Pavlovian pairing is real, not synthesized. (2) set_safety_cue(active) is a
+    tri-state manual override (test-phase API; precedence over the schedule;
+    persists across reset) to present {threat + cue} concurrently in one tick.
+    All kwargs are env-only (NOT surfaced through REEConfig.from_dims);
+    disabled-by-default, bit-identical OFF (no channel, world_obs_dim unchanged,
+    zero RNG draws). Preconditions (loud-not-silent, mirroring SD-022):
+    safety_cue_enabled requires use_proxy_fields; safety_cue_on_relief requires
+    limb_damage_enabled (both raise ValueError).
+
+    Enables MECH-304's pre-registered behavioural falsifier: classical
+    conditioned inhibition (a learned safety cue suppresses avoidance commitment
+    even when presented concurrently with a threat cue) plus the dissociation
+    (MECH-304 ablation abolishes cue-specific safety while sparing MECH-303
+    contextual safety). It is to MECH-304 what SD-022 scheduled_limb_damage is to
+    MECH-302: a curriculum-level env affordance supplying the controllable
+    antecedent the mechanism needs, without changing the agent substrate.
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-07-14 (/implement-substrate, session
+    infallible-perlman-a4f3fe), disabled-by-default. Module
+    ree-v3/ree_core/environment/causal_grid_world.py: env kwargs
+    safety_cue_enabled / safety_cue_scale / safety_cue_on_relief /
+    safety_cue_heal_floor; step() computes _safety_cue_active (manual override >
+    relief-window > inactive); world_state gains a 25-dim uniform view when
+    enabled (world_obs_dim +25); set_safety_cue() test-phase API; info sentinels
+    safety_cue_enabled / safety_cue_active / safety_cue_event_count. 10/10 new
+    contracts in tests/contracts/test_scheduled_safety_cue_curriculum.py (off-inert
+    + dim-unchanged / preconditions / geometry +25 / manual override + scale clip /
+    relief-pairing tracks damage window / reset clears dynamics + override persists
+    / RNG isolation); backward-compat + activation + relief-pairing smokes PASS.
+    Design doc docs/architecture/sd_065_conditioned_safety_cue_channel.md;
+    ree-v3/CLAUDE.md SD-Implemented entry. PROMOTES NOTHING. v3_pending until the
+    V3-EXQ-763 MECH-304 behavioural falsifier validates the channel end-to-end.
+  validation_experiment: V3-EXQ-763 (MECH-304 promote-to-active behavioural falsifier)
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
