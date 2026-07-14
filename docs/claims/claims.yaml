@@ -54344,12 +54344,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-13
+    as_of: 2026-07-14
     needs_review: false
     evidence:
-      from: v3_exq_742_mech457_actor_critic_onoff_20260713T032215Z_v3
-      as_of: 2026-07-13
-      verdict: weakens (ON/OFF validation FAILED -- all 4 arms forage 0.20-0.27/ep at D3, below random_walk 0.93 and 0.5% of local_view_greedy 48.05, readiness gates all met; sufficiency reading refuted, necessity NOT falsified; routed GOV-FANOUT-1)
+      from: v3_exq_747_748_749_mech457_fanout (GOV-FANOUT-1 discrimination portfolio, diagnostic)
+      as_of: 2026-07-14
+      verdict: weakens sufficiency / strengthens dependency -- 2x3 (representation x teacher) fanout REFUTES H-rep and reward-density; only BC (imitation) clears the floor on both inputs (z_world+BC 32.72 > raw+BC 20.93). Discriminated cause = RL exploration/credit-assignment bootstrap, not representation and not reward density. One live discrimination remains on the algorithm axis (H-optim leg V3-EXQ-751, in flight). Stays candidate/v3_pending.
   implementation_phase: v3
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
@@ -54462,4 +54462,31 @@
     hypothesis. Routed to GOV-FANOUT-1: H-rep (actor on raw 5x5 view) vs H-explore
     (reward-shaping / BC-warmup). Same-question floor re-pose REFUSED. MECH-457
     stays candidate/v3_pending.
+
+    2026-07-14 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-747/748/749,
+    diagnostic, claim_ids=[MECH-457]; consumed via /governance from
+    failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13): the two-axis fanout
+    (representation x teacher) REFUTES H-rep and the reward-density reading.
+    Reward SHAPING rescues neither representation (z_world shaped 0.217, raw
+    shaped 0.767 -- both sub-floor 1.0/ceiling 48.05); only behavior-cloning
+    clears the floor, on BOTH inputs (z_world+BC 32.72, raw+BC 20.93), and
+    z_world+BC > raw+BC -- so the prediction-trained z_world is NOT
+    action-inadequate. The discriminated cause is the RL exploration/
+    credit-assignment bootstrap (only imitation bypasses it), not representation
+    and not reward density. This STRENGTHENS a dependency reading: action-learning
+    requires a bootstrappable action-level teaching signal / developmental
+    scaffold (BC = observational-acquisition analog), consistent with the
+    O'Doherty/Schultz/Sutton biology. MECH-457 stays candidate/v3_pending,
+    competence_implementation_gap; sufficiency weakens, dependency strengthened.
+    One live discrimination remains on the algorithm axis (is an expert teacher
+    necessary, or is unsupervised exploration merely too weak) -- the H-optim leg
+    V3-EXQ-751 (stronger unsupervised explorer, no expert; PPO+entropy + RND/ICM)
+    is queued and in flight to decide the build target. No substrate_queue entry
+    amended/created this cycle (autopsy sec8 action=none: the build target --
+    better unsupervised explorer vs imitation/curriculum scaffold -- is exactly
+    what the H-optim leg must decide; f_dominance_conversion_ceiling stays as-is).
+    Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory
+    autopsies tagging MECH-457). The three runs are diagnostic (excluded from
+    governance scoring); this note records the discrimination, not a weighted
+    evidence entry.
   location: evidence/literature/targeted_review_actor_critic_action_learning/
