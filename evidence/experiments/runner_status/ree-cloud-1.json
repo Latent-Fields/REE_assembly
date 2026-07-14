@@ -2,21 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 2069716,
   "runner_started_at": "2026-07-11T23:09:12.195580+00:00",
-  "last_updated": "2026-07-12T12:11:12.202435+00:00",
+  "last_updated": "2026-07-14T02:30:59.491432+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-742",
-      "backlog_id": "",
-      "claim_id": "MECH-457",
-      "title": "MECH-457 first-class actor-critic action-learning ON/OFF validation (A0-A3 cotrain x SF-critic + bias_head control + local_view/oracle/random anchors; D0+D3; foraging teacher)",
-      "description": "",
-      "estimated_minutes": 6400.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-742-m",
       "backlog_id": "",
@@ -3411,6 +3400,90 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_733c_rebinding_pB_confirmatory_independent_seeds_20260712T121111Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 4198.4
+    },
+    {
+      "queue_id": "V3-EXQ-744",
+      "backlog_id": "",
+      "claim_id": "INV-088",
+      "title": "INV-088 world/goal-evaluator DV-coupling: held-out quality of a re-init z_world-reading E3 evaluator (harm_eval SD-003 + benefit_eval) tracks rising z_world differentiation (frozen-rep curriculum-order; onset {0,1,4,12,30}; extends 740a)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[secondary] benefit_eval corroborates: False (delta=0.220, rho=0.500) | OUTCOME: FAIL (direction=weakens) | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-744 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-744.json",
+      "started_at": "2026-07-12T12:31:25.627151+00:00",
+      "completed_at": "2026-07-12T12:51:38.063096+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_744_inv088_world_goal_evaluator_dv_coupling/v3_exq_744_inv088_world_goal_evaluator_dv_coupling_20260712T125137Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1212.4
+    },
+    {
+      "queue_id": "V3-EXQ-744a",
+      "backlog_id": "",
+      "claim_id": "INV-088",
+      "title": "INV-088 world/goal-evaluator DV coupling -- 8-seed re-estimate on shared maturation-curriculum module + frozen-prefix cache mint",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[secondary] benefit_eval corroborates: False (delta=0.171, rho=0.700) | OUTCOME: FAIL (direction=weakens) | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-744a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-744a.json",
+      "started_at": "2026-07-12T13:46:03.085112+00:00",
+      "completed_at": "2026-07-12T14:40:28.445784+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_744a_inv088_world_goal_evaluator_dv_coupling/v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 3265.4
+    },
+    {
+      "queue_id": "V3-EXQ-745",
+      "backlog_id": "",
+      "claim_id": "MECH-456",
+      "title": "MECH-456 ecological rebinding -- world-driven PATCH-SET-FLIP test-bed (DESIGN + DV diversity for provisional->active)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL (ready=False dv1=True dv2=False foraging_on=0.000 foraging_frozen=0.000 nocouple=0.000 gap=0.000 couple_authority=False(0.000) oracle=44.400 align_margin=0.223 overtakes=140) | outcome: FAIL label=substrate_not_ready_requeue DV1=4/6 DV2=4/6 (need 4) all_ready=False min_overtakes=0 direction=non_contributory | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-745 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-745.json",
+      "started_at": "2026-07-12T15:00:40.297201+00:00",
+      "completed_at": "2026-07-12T16:25:19.520859+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_745_rebinding_ecological_patchflip_20260712T162519Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 5079.2
+    },
+    {
+      "queue_id": "V3-EXQ-746a",
+      "backlog_id": "",
+      "claim_id": "INV-089",
+      "title": "INV-089 harm-eval z_harm CALIBRATED bound (corrected 746; module consumer, 3 targets)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "=== INV-089 harm-evaluator z_harm CALIBRATED BOUND result (746a, n=8, 3 targets) === | OUTCOME: FAIL (direction=weakens) on PRIMARY=dens | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-746a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-746a.json",
+      "started_at": "2026-07-12T16:59:36.618827+00:00",
+      "completed_at": "2026-07-12T17:00:11.945579+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2/v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 35.3
+    },
+    {
+      "queue_id": "V3-EXQ-747",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg A (H-rep): raw-5x5-view actor-critic",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL (arm=ac_rawview_sparse_rl seed=44 forage/ep=0.25) | outcome: FAIL label=rawview_sparse_insufficient readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-747 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-747.json",
+      "started_at": "2026-07-13T06:18:53.532667+00:00",
+      "completed_at": "2026-07-13T06:22:29.878826+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_747_mech457_hrep_rawview_actor_critic_20260713T062229Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 216.3
+    },
+    {
+      "queue_id": "V3-EXQ-751",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 leg D (H-optim): stronger unsupervised explorer (RND + ICM) vs sparse z_world actor-critic",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: FAIL (arm=ac_zworld_icm seed=44 forage/ep=0.3) | outcome: PASS label=stronger_unsupervised_explorer_clears_floor_exploration_was_the_wall readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-751 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-751.json",
+      "started_at": "2026-07-13T19:39:15.839355+00:00",
+      "completed_at": "2026-07-14T02:30:59.489828+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic_20260714T023058Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 24703.7
     }
   ]
 }
