@@ -36,13 +36,16 @@ REE_V3_CORE = ROOT.parent / "ree-v3" / "ree_core"
 # Generative-discovery complement to the consume-only _proposed_experiments lane:
 # surface candidate/provisional claims that are confirmable-but-unconfirmed (built
 # substrate + thin/zero experimental evidence + lit_conf >= floor, not wall-bound).
-# CONFIRMER_AUTOSPAWN_ENABLED is the P1->P2 rollout gate. P1 (current) = surface
-# ONLY: items render on /workset with status "surfaced", which the external IGW
-# auto-spawn routine (spawns `ready` items) and check_workset_drift (validates
-# `ready` items) both skip -- so the lane is output-only. P2 flips this True to
-# emit status "ready" (drift-checked + autospawn-eligible) at low priority.
-CONFIRMER_AUTOSPAWN_ENABLED = False
+# CONFIRMER_AUTOSPAWN_ENABLED is the P1->P2 rollout gate. P1 = surface ONLY: items
+# render on /workset with status "surfaced", which the external IGW auto-spawn routine
+# (spawns `ready` items) and check_workset_drift (validates `ready` items) both skip.
+# P2 (LIVE 2026-07-14, after 3/3 seed confirmers PASSed -- V3-EXQ-757/758/759):
+# emit status "ready" (drift-checked + autospawn-eligible) at LOW priority, THROTTLED
+# to at most CONFIRMER_AUTOSPAWN_CAP concurrently (post-pass demotes the surplus back
+# to "surfaced") so background confirmers drain steadily without a resource spike.
+CONFIRMER_AUTOSPAWN_ENABLED = True
 CONFIRMER_LIT_FLOOR = 0.6
+CONFIRMER_AUTOSPAWN_CAP = 3
 PENDING_REVIEW = EVIDENCE / "pending_review.md"
 PROMOTION_MD = EVIDENCE / "promotion_demotion_recommendations.md"
 SUBSTRATE_QUEUE = PLANNING / "substrate_queue.json"
@@ -839,6 +842,7 @@ def _evidence_confirmer_candidates(
     claims_meta: dict[str, dict],
     exp_evidence: set[str],
     substrate_by_id: dict[str, dict],
+    queued_claim_ids: set[str] | None = None,
 ) -> list[dict]:
     """GOV-CONFIRM-1 (plan gov_confirm_1_plan.md): candidate/provisional claims
     that are confirmable-but-unconfirmed -- built substrate + thin/zero experimental
@@ -873,11 +877,14 @@ def _evidence_confirmer_candidates(
     """
     lit_conf = _claim_lit_conf()
     built = _claims_implemented_in_substrate()
+    queued_claim_ids = queued_claim_ids or set()
     out: list[dict] = []
     for cid, meta in claims_meta.items():
         if cid not in built:  # built-substrate guard FIRST -- also gates the v3_pending relaxation
             continue
         if cid in exp_evidence:
+            continue
+        if cid in queued_claim_ids:  # a confirmer EXQ is already queued/running for this claim
             continue
         st = (meta.get("status") or "").strip().lower()
         if st not in _TESTABLE_CLAIM_STATUSES:
@@ -1715,11 +1722,17 @@ def build_workset() -> dict:
     # auto-spawn routine and check_workset_drift both skip it. P2 flips
     # CONFIRMER_AUTOSPAWN_ENABLED to emit "ready" (autospawn-eligible) at low priority.
     conf_status = "ready" if CONFIRMER_AUTOSPAWN_ENABLED else "surfaced"
-    # Cap generous (40): confirmers are LOW-priority surface-only background fill, so
-    # showing the full confirmable-but-unconfirmed backlog is honest; the ceiling only
-    # guards against a pathological flood if the registry grows. P2 (autospawn wiring)
-    # can tighten to a priority-based slice.
-    for conf in _evidence_confirmer_candidates(claims_meta, exp_evidence, substrate_by_id)[:40]:
+    # Exclude claims that already have a confirmer EXQ in the queue (anti-double-spawn).
+    confirmer_queued_claims = {
+        c for it in queue_items for c in (it.get("claim_ids") or [])
+    }
+    # Cap generous (40): confirmers are LOW-priority background fill, so showing the full
+    # confirmable-but-unconfirmed backlog is honest; the ceiling only guards a pathological
+    # flood. Concurrency (how many are autospawn-eligible `ready` at once) is capped
+    # separately below, post-assignment-merge, at CONFIRMER_AUTOSPAWN_CAP.
+    for conf in _evidence_confirmer_candidates(
+        claims_meta, exp_evidence, substrate_by_id, confirmer_queued_claims
+    )[:40]:
         cid = conf["claim_id"]
         add(
             lane="experiment",
@@ -1783,6 +1796,26 @@ def build_workset() -> dict:
             it["assignments"] = asgn
             if asgn:
                 assigned_count += 1
+
+    # GOV-CONFIRM-1 P2 concurrency cap: keep at most CONFIRMER_AUTOSPAWN_CAP confirmers
+    # autospawn-eligible (`ready`) at once. Confirmers already in flight (active
+    # assignment) count against the cap and are never demoted; the lowest-priority
+    # surplus `ready` confirmers WITHOUT an assignment are demoted back to `surfaced`
+    # so the external auto-spawn routine never launches more than the cap concurrently.
+    # No-op when the lane is surface-only (nothing is `ready`). Runs AFTER the assignment
+    # merge so `it["assignments"]` is populated. Confirmers are emitted lit_conf-desc and
+    # share priority 55, so the global (priority,id) sort keeps them lit-desc -- the
+    # demoted surplus is the lowest-lit, and the highest-lit keep the free slots.
+    if CONFIRMER_AUTOSPAWN_ENABLED:
+        conf_items = [it for it in items if it.get("confirmer")]
+        in_flight = sum(1 for it in conf_items if it.get("assignments"))
+        free_ready = [
+            it for it in conf_items
+            if it.get("status") == "ready" and not it.get("assignments")
+        ]
+        slots = max(0, CONFIRMER_AUTOSPAWN_CAP - in_flight)
+        for it in free_ready[slots:]:
+            it["status"] = "surfaced"
 
     summary = {
         "total": len(items),
