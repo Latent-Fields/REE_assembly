@@ -30,6 +30,19 @@ PLANNING = ROOT / "evidence" / "planning"
 EVIDENCE = ROOT / "evidence" / "experiments"
 CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
 REE_V3_QUEUE = ROOT.parent / "ree-v3" / "experiment_queue.json"
+REE_V3_CORE = ROOT.parent / "ree-v3" / "ree_core"
+
+# --- GOV-CONFIRM-1 evidence-confirmer lane (plan: gov_confirm_1_plan.md) -------
+# Generative-discovery complement to the consume-only _proposed_experiments lane:
+# surface candidate/provisional claims that are confirmable-but-unconfirmed (built
+# substrate + thin/zero experimental evidence + lit_conf >= floor, not wall-bound).
+# CONFIRMER_AUTOSPAWN_ENABLED is the P1->P2 rollout gate. P1 (current) = surface
+# ONLY: items render on /workset with status "surfaced", which the external IGW
+# auto-spawn routine (spawns `ready` items) and check_workset_drift (validates
+# `ready` items) both skip -- so the lane is output-only. P2 flips this True to
+# emit status "ready" (drift-checked + autospawn-eligible) at low priority.
+CONFIRMER_AUTOSPAWN_ENABLED = False
+CONFIRMER_LIT_FLOOR = 0.6
 PENDING_REVIEW = EVIDENCE / "pending_review.md"
 PROMOTION_MD = EVIDENCE / "promotion_demotion_recommendations.md"
 SUBSTRATE_QUEUE = PLANNING / "substrate_queue.json"
@@ -243,6 +256,7 @@ def _load_claims_meta() -> dict[str, dict]:
     keys = (
         "status", "claim_type", "epistemic_category", "invariant_type",
         "implementation_phase", "version_relevance", "v3_pending",
+        "title", "location",
     )
 
     def _flush() -> None:
@@ -772,6 +786,119 @@ def _proposed_experiments(
             continue
         out.append(p)
     return out[:15]
+
+
+def _claim_lit_conf() -> dict[str, float]:
+    """claim_id -> literature_confidence from claim_evidence.v1.json (0.0 if
+    absent). Feeds the GOV-CONFIRM-1 confirmer lane's 'worth confirming' floor."""
+    path = EVIDENCE / "claim_evidence.v1.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    claims = data.get("claims") if isinstance(data, dict) else None
+    if not isinstance(claims, dict):
+        return {}
+    out: dict[str, float] = {}
+    for cid, summary in claims.items():
+        if not isinstance(summary, dict):
+            continue
+        try:
+            out[str(cid)] = float(summary.get("literature_confidence") or 0.0)
+        except (TypeError, ValueError):
+            out[str(cid)] = 0.0
+    return out
+
+
+_SUBSTRATE_TAG_RE = re.compile(r"\b((?:MECH|ARC|SD|INV|Q|DEV-NEED)-\d+[A-Za-z]?)\b")
+
+
+def _claims_implemented_in_substrate() -> set[str]:
+    """Claim ids that appear (tagged) in ree-v3/ree_core source -- a deterministic
+    proxy for 'the mechanism substrate is built', since REE modules cite their
+    owning claim id in docstrings/comments. No structured claims.yaml field encodes
+    this (`location` points at lit/architecture docs; `assembly_state` does not
+    distinguish built from unbuilt), so a one-pass source scan is the honest gate.
+    Returns the empty set if the ree_core tree is absent (keeps the confirmer lane
+    inert off-box rather than crashing)."""
+    if not REE_V3_CORE.exists():
+        return set()
+    ids: set[str] = set()
+    for py in REE_V3_CORE.rglob("*.py"):
+        try:
+            text = py.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        ids |= set(_SUBSTRATE_TAG_RE.findall(text))
+    return ids
+
+
+def _evidence_confirmer_candidates(
+    claims_meta: dict[str, dict],
+    exp_evidence: set[str],
+    substrate_by_id: dict[str, dict],
+) -> list[dict]:
+    """GOV-CONFIRM-1 (plan gov_confirm_1_plan.md): candidate/provisional claims
+    that are confirmable-but-unconfirmed -- built substrate + thin/zero experimental
+    evidence + lit_conf >= floor + NOT wall-bound/substrate-blocked + NOT V4+.
+
+    The GENERATIVE-DISCOVERY complement to _proposed_experiments (which is
+    consume-only -- it re-surfaces hand-authored proposals; nothing scans the
+    registry to AUTHOR a confirmer). REUSES the same predicates the proposal /
+    retest lanes use:
+      * built-substrate gate: claim-id tagged in ree_core (_claims_implemented_in_substrate)
+      * exp_evidence -- drop claims that already carry genuine experimental evidence
+      * status in _TESTABLE_CLAIM_STATUSES (candidate / provisional)
+      * _resolve_epistemic_category in _EPI_SUPPRESS_PROPOSAL -- drop
+        governance_rule / substrate_coherence / substrate_ceiling / etc.
+      * _is_deferred_beyond_v3 -- drop V4/V5-only
+      * _retest_blockers -- drop substrate-blocked (the competence-wall gate)
+      * lit_conf >= CONFIRMER_LIT_FLOOR -- worth confirming
+
+    v3_pending RELAXATION (user decision 2026-07-14, gov_confirm_1_plan.md): unlike
+    _claim_v3_testable (used by the proposal/retest lanes) this lane does NOT drop
+    v3_pending claims. v3_pending means "held until V3 experiments provide evidence";
+    a confirming experiment on ALREADY-BUILT substrate is precisely that evidence.
+    The built-substrate gate (cid in `built`, applied first) is the safeguard: the
+    relaxation only ever admits a v3_pending claim whose mechanism is already
+    implemented -- for one still awaiting substrate, the built gate excludes it.
+
+    DISCOVERY only. The judgement piece -- scoping a confirming DV that is buildable
+    NOW (a representation-level / functional-signature readout, NOT a committed
+    behaviour DV that the competence wall blocks) -- stays in the per-item
+    /queue-experiment pass, which self-routes substrate_not_ready_requeue if only a
+    behavioural DV exists. Sorted by lit_conf desc.
+    """
+    lit_conf = _claim_lit_conf()
+    built = _claims_implemented_in_substrate()
+    out: list[dict] = []
+    for cid, meta in claims_meta.items():
+        if cid not in built:  # built-substrate guard FIRST -- also gates the v3_pending relaxation
+            continue
+        if cid in exp_evidence:
+            continue
+        st = (meta.get("status") or "").strip().lower()
+        if st not in _TESTABLE_CLAIM_STATUSES:
+            continue
+        if _resolve_epistemic_category(meta) in _EPI_SUPPRESS_PROPOSAL:
+            continue
+        if _is_deferred_beyond_v3(meta):
+            continue
+        if _retest_blockers(cid, substrate_by_id)[0]:
+            continue
+        lit = lit_conf.get(cid, 0.0)
+        if lit < CONFIRMER_LIT_FLOOR:
+            continue
+        out.append({
+            "claim_id": cid,
+            "lit_conf": lit,
+            "title": meta.get("title") or cid,
+            "location": meta.get("location") or "",
+        })
+    out.sort(key=lambda d: (-d["lit_conf"], d["claim_id"]))
+    return out
 
 
 _EXQ_BASE_RE = re.compile(r"^(V3-EXQ-\d+)", re.IGNORECASE)
@@ -1578,6 +1705,44 @@ def build_workset() -> dict:
             owner_proposal_id=pid,
             blocked_by=[],
             unblocks=[cid] if cid else [],
+        )
+
+    # GOV-CONFIRM-1 evidence-confirmer lane (plan gov_confirm_1_plan.md). Generative
+    # complement to the proposals lane above: surface confirmable-but-unconfirmed
+    # candidate claims (built substrate + thin evidence) so their confirming
+    # experiments get discovered without a hand-authored proposal. P1 (surface-only):
+    # status "surfaced" -- rendered on /workset but NOT `ready`, so the external
+    # auto-spawn routine and check_workset_drift both skip it. P2 flips
+    # CONFIRMER_AUTOSPAWN_ENABLED to emit "ready" (autospawn-eligible) at low priority.
+    conf_status = "ready" if CONFIRMER_AUTOSPAWN_ENABLED else "surfaced"
+    # Cap generous (40): confirmers are LOW-priority surface-only background fill, so
+    # showing the full confirmable-but-unconfirmed backlog is honest; the ceiling only
+    # guards against a pathological flood if the registry grows. P2 (autospawn wiring)
+    # can tighten to a priority-based slice.
+    for conf in _evidence_confirmer_candidates(claims_meta, exp_evidence, substrate_by_id)[:40]:
+        cid = conf["claim_id"]
+        add(
+            lane="experiment",
+            skill="/queue-experiment",
+            status=conf_status,
+            # Low priority: sorts BELOW governance(1-8)/substrate(20-25)/retest(28)/
+            # ops(35)/proposals(40) -- confirmers are background fill behind the front.
+            priority=55,
+            severity="low",
+            title=f"Confirm evidence: {cid} (lit {conf['lit_conf']:.2f}, exp ~0)",
+            why_now=(
+                f"GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), "
+                f"lit_conf {conf['lit_conf']:.2f}, ZERO experimental evidence. Scope a "
+                f"WALL-INDEPENDENT representation/functional-signature confirming DV "
+                f"(self-route substrate_not_ready_requeue if only a behavioural DV exists). "
+                f"loc: {conf['location']}"
+            )[:240],
+            gap_ids=[],
+            claim_ids=[cid],
+            owner_exq=None,
+            blocked_by=[],
+            unblocks=[cid],
+            confirmer=True,
         )
 
     items.sort(key=lambda x: (x.get("priority", 99), x.get("id", "")))

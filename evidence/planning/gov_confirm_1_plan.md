@@ -23,12 +23,11 @@ closure_plan:
     - id: "gov_confirm_1:P1"
       title: "Shadow detector -- derive-only `evidence_confirmer` lane in generate_inter_governance_workset.py; output-only, NOT wired to autospawn"
       phase: 1
-      status: open
+      status: done
       severity: high
       owner_exq: null
       last_updated: 2026-07-14
-      next: "routing=implement-substrate (REE_assembly tooling)"
-      resume_condition: "Build after user reviews P0. Add a new generative lane that iterates ALL claims_meta (not just pre-authored proposals) and REUSES the existing predicates to select confirmer candidates; emit as a low-priority workset lane, output-only. Acceptance: the lane surfaces a SHORT high-signal set (the 5 known confirmers + peers), NOT the 153 raw candidates -- verified by eyeballing one run; and it changes no existing lane (bit-identical to prior workset for all non-confirmer items)."
+      completion_note: "DONE. Added `_evidence_confirmer_candidates` + `_claim_lit_conf` + `_claims_implemented_in_substrate` helpers and the `evidence_confirmer` lane to generate_inter_governance_workset.py. REUSES the existing predicates (exp_evidence / _TESTABLE_CLAIM_STATUSES / _EPI_SUPPRESS_PROPOSAL / _is_deferred_beyond_v3 / _retest_blockers) + a lit_conf floor (0.6) + the built-substrate gate (claim-id tagged in ree-v3/ree_core -- the honest proxy, since neither `location` nor `assembly_state` distinguishes built from unbuilt). v3_pending RELAXED under the built-substrate guard (user decision 2026-07-14): v3_pending means 'held until V3 experiments provide evidence' and a confirmer on built substrate IS that evidence. Surfaces 32 confirmers incl. all 5 motivating claims (MECH-304/288/303/284/287; ranks 3-22). P1-SAFE / output-only: gated by CONFIRMER_AUTOSPAWN_ENABLED=False -> status 'surfaced' (not 'ready'), which the external auto-spawn routine and check_workset_drift both skip. VERIFIED: additive (non-confirmer items byte-identical with/without the lane), py_compile OK, test_igw_spawned_task_autorelease 3/3, check_workset_drift ready_items_flagged=0."
     - id: "gov_confirm_1:P2"
       title: "Wire the confirmer lane to the hourly IGW autospawn at strictly LOW priority"
       phase: 2
@@ -42,7 +41,7 @@ closure_plan:
 
 # GOV-CONFIRM-1 -- Evidence-Confirmer Detector (Plan of Record)
 
-**Created:** 2026-07-14 &nbsp;|&nbsp; **Status:** P0 done (this doc + claim registered); P1/P2 build pending user review.
+**Created:** 2026-07-14 &nbsp;|&nbsp; **Status:** P0 + **P1 done** (detector + shadow lane landed, output-only); P2 (low-priority autospawn wiring) pending.
 
 ## The gap (why this exists)
 
