@@ -1,3 +1,97 @@
+---
+closure_plan:
+  id: pack_writer_single_writer_migration
+  generation: process
+  title: "pack_writer Single-Writer Migration (manifest chokepoint fix)"
+  registered: 2026-07-12
+  last_updated: 2026-07-13
+  owner: machinery
+  summary: >
+    Make ree-v3/experiments/pack_writer.py the mandatory single manifest writer
+    across the experiment corpus, incrementally, without breaking the
+    flat -> sync -> pack -> indexer chain. generation: process -> infra/tooling
+    lane; owns no scientific claims, so it is segmented out of the V3 closure %
+    and rendered on the shared `process` tab (sibling of arm_reuse_fingerprint,
+    the readout-reuse instance of the same over-record principle).
+  scope_claims: []
+  sibling_plans: [arm_reuse_fingerprint]
+  nodes:
+    - id: STEP-1
+      title: "Author-side flat chokepoint: write_flat_manifest + manifest_writer_lint (new scripts forced onto the writer)"
+      status: done
+      severity: load-bearing
+      last_updated: 2026-07-12
+      note: >
+        LANDED 2026-07-12 (additive + inert). pack_writer.write_flat_manifest
+        stamps the always-core via stamp_recording_core, enforces identity
+        invariants, preserves field names verbatim, writes <out_dir>/<run_id>.json.
+        validate_experiments.manifest_writer_lint is HARD under --strict --paths
+        (a NEW script that raw-json.dumps a manifest is blocked) and advisory in
+        full-glob (grandfathers the 1,028-script backlog). Wired into
+        /queue-experiment Step 3.5.
+    - id: STEP-2
+      title: "pack_writer field-coverage survey (step 2)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-12
+      note: >
+        Survey (section 5) established that the flat chokepoint sidesteps the
+        write_pack field-coverage gap (write_flat_manifest passes the whole dict
+        through, so needs no new field params); the coverage gap only bites the
+        pack path + sync converter, deferred to the section-7 unification follow-up.
+    - id: STEP-3
+      title: "Staged corpus migration backlog (step 3): route the 1,028-script corpus through write_flat_manifest"
+      status: done
+      severity: high
+      last_updated: 2026-07-13
+      note: >
+        Lint-flagged migration backlog CLEARED 2026-07-13 across many staged
+        batches (F pilot + batches 1-6 + several HYBRID / RUNID_only / edge-case
+        classes): ~670 scripts routed through write_flat_manifest + 354
+        MANIFEST_WRITER_EXEMPT (archival, zero-active). The residual ~8 unmatched
+        are emit-only/harness with no raw flat-manifest json.dump (not
+        lint-flagged), so the lint-flagged backlog is empty.
+    - id: STEP-7.3
+      title: "Harden the manifest-writer lint to a commit gate"
+      status: done
+      severity: high
+      last_updated: 2026-07-13
+      note: >
+        DONE 2026-07-13 (ree-v3 main 7ce1721). validate_experiments --checks
+        selector + precommit_contracts.sh Block 1b + a real git pre-commit.local
+        hook (via install_precommit_gate.sh) block a NEW/modified v3_*.py script
+        from reintroducing a raw json.dump manifest tail; full-glob stays
+        advisory. New suite tests/contracts/test_manifest_writer_lint.py.
+    - id: STEP-7.4
+      title: "elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapsed_seconds.py)"
+      status: in_progress
+      severity: medium
+      last_updated: 2026-07-13
+      note: >
+        Cumulative 104 scripts retrofitted (68 + 35 + 1 across eligible batches);
+        the mechanically-retrofittable population is exhausted through the
+        RUNID_only var-identity batch. The remainder are by-design advisory gaps
+        (no unaliased timezone import, or a scope-split parse_args anchor);
+        recovering them would need a scoped extension of the retrofit tool, a
+        deliberate follow-up, not a bug.
+    - id: STEP-7.1
+      title: "Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_pack delegate to one shared skeleton)"
+      status: deferred
+      severity: medium
+      last_updated: 2026-07-12
+      note: >
+        Deferred (section 7.1): changes the golden byte-shape test
+        (coordinator/test_phase3_runpack_materialize.py) + touches the coordinator
+        writer. Sequence after the top-3 families migrate.
+    - id: STEP-7.2
+      title: "Carry the always-core through sync into the pack (substrate_hash/config/seeds/machine/elapsed_seconds + rich governance fields)"
+      status: deferred
+      severity: medium
+      last_updated: 2026-07-12
+      note: >
+        Deferred (section 7.2): makes the always-core load-bearing to confidence
+        scoring -- needs user sign-off because it changes promotion math.
+---
 # pack_writer Single-Writer Migration Plan (chokepoint fix)
 
 **Status:** IN PROGRESS (v0.4). Authored 2026-07-12; step 3 F-pilot + batch 1 (98 scripts) LANDED 2026-07-12 (ree-v3 main `d88c373`); step 3 batch 2 (135 scripts: local-run_id + write_text-manifest + default=str) LANDED 2026-07-12; step 3 batch 3 (247 scripts: with-open/dir-var name mismatch + non-adjacent out_path + non-`manifest`-var flat manifests + 5 onboard_smoke exempts) LANDED 2026-07-12 (ree-v3 main `e854b5c`); step 3 batch 4 (145 scripts: provably-safe idioms -- with-open `encoding=`/`.open()` spelling + `os.path.join` path + per-mvar run_id key + write_text `default=str` + Path-import guard + multi-write-site refusal) LANDED 2026-07-12 (ree-v3 main `681f490`); step 3 batch 5 (15 scripts: the non-canonical-filename class -- AST proof that the literal/`%s`/`{TYPE}_{ts}_v3` filename provably equals `f"{run_id}.json"`, write-only-rewrite with the original out_dir sub-expression; 69 of the 84 correctly REFUSED as genuine renames) LANDED 2026-07-12 (ree-v3 main `ae74b63`); step 3 **edge-case-A HYBRID** (276 scripts: 267 archival `MANIFEST_WRITER_EXEMPT` + 9 active corrected-and-routed; the `{TYPE}_{ts}.json` `result`-var `detect_manifest_var`→None class) LANDED 2026-07-12 (ree-v3 main `7b8c150`); step 3 batch 6 (9 scripts: the `no out_dir assignment` param-dir class via a `dir_bound_as_param` migrator generalization [8: `621`/`621a`/`622`/`626`/`626a`/`626b`/`636`/`637`] + `354` real-branch hand-migration; `540f` dropped to the concurrent 69-rename HYBRID, `241a`/`241b`/`247` refused as pack-subdir rename/relocate) LANDED 2026-07-13 (ree-v3 main `bf7724a`); step 3 **batch-5 non-canonical genuine-rename HYBRID** (69 scripts: the `detect_manifest_var` SUCCEEDED but the filename is not provably `== f"{run_id}.json"` class -- `{TYPE}_{ts}` missing `_v3` / `manifest.json` pack-style / `{run_id}_manifest.json` / filename-var / `ts`-`ts_utc`-order mismatch; classified **all 69 ARCHIVAL, ZERO active** -> `MANIFEST_WRITER_EXEMPT`; disjoint from the edge-case-A HYBRID [`detect_manifest_var`->None] by construction) LANDED 2026-07-13 (ree-v3 main `acd1a50`); step 3 **RUNID_only var-identity** (12 scripts: the `detect_manifest_var`->None class that ALREADY writes canonical `{run_id}.json` -- generalized `detect_manifest_var` to prove a non-dict-literal manifest var [assembled via literal/AnnAssign+subscript+`.update`, or a helper-return binding] carries run_id+arch+resolvable-status; routed the 12 byte-safe, honestly REFUSED the other 10 of 22 [8 no resolvable status, 2 non-canonical dir]) LANDED 2026-07-13 (ree-v3 main `31eb700`); step 3 **no-canonical-with-open HYBRID** (3 scripts: the migrator's `no canonical with open(<path>) above dump` refusal class -- early-era self-packing writers that dump the identity manifest to a pack-subdir `runs/<run_id>/manifest.json` path [not a flat `<run_id>.json`], `241a`/`241b` + a `<TYPE>_output.json` runner pointer, `247` no flat sibling at all; routing would relocate/rename -> classified **all 3 ARCHIVAL, ZERO active** [not queued, last run 2026-04 ~96d ago] -> `MANIFEST_WRITER_EXEMPT`) LANDED 2026-07-13; step 3 **RUNID_only no-resolvable-status HYBRID** (8 scripts: the RUNID_only var-identity batch's 8 honest refusals `028`/`212`/`255`/`256`/`407`/`470`/`470a`/`479` -- already write canonical `{run_id}.json` but carry `final_verdict`/`pass`/`verdict`/`passed`, NOT `status`|`outcome`|`overall_outcome`, so `write_flat_manifest` would raise on its status guard; classified **all 8 ARCHIVAL, ZERO active** [not queued, last run 79-114d ago] -> `MANIFEST_WRITER_EXEMPT`) LANDED 2026-07-13 (ree-v3 main `5c20b42`). Cumulative: **670 of 1028 scripts** now route through `write_flat_manifest` (+ **354** `MANIFEST_WRITER_EXEMPT`; migrator unmatched 402->8). step 3 **683/686 no-run_id non-canonical-dir HYBRID** (2 scripts: the last `no json.dump(manifest` NOT-byte-safe residual `683`/`686` -- both write `result` [a `run_experiment()` return with `architecture_epoch`+`outcome` but NO `run_id` key] to a single hardcoded relative f-string `../REE_assembly/evidence/experiments/{run_id}.json`, so routing is a correct-and-route [inject run_id + split dir], not byte-safe; classified **both ARCHIVAL, ZERO active** [not queued, never ran, substrate-blocked proxies] -> `MANIFEST_WRITER_EXEMPT`; empirically NOT lint-flagged [the STRING `"run_id"` is absent -> `manifest_writer_lint` never fired], so the exempt is inert w.r.t. the lint, its real effect migrator unmatched->skip; **this CLEARS the lint-flagged migration backlog** -- the residual 8 unmatched are all emit-only/harness with no raw flat-manifest `json.dump`, not lint-flagged) LANDED 2026-07-13. §7.4 elapsed_seconds retrofit (68 batch-1/2 scripts `47ed14a`; +35 batch-3 scripts `d57e893`, 103 total) landed in parallel. §7.4 batch-4 pass (2026-07-12, session `optimistic-babbage-363511`): **0 of the 145 batch-4 scripts eligible -- all 145 are by-design advisory gaps, no code change** (batch 4 is the older-era grab-bag that structurally predates the retrofit's `args = parser.parse_args()` + `datetime.now(timezone.utc)` in-function idiom); retrofit cumulative stayed **103**. §7.4 batch-5 pass (2026-07-13, session `pack_writer §7.4 batch-5 elapsed retrofit`, ree-v3 main `a442440`): **1 of the 15 batch-5 scripts eligible (527); the other 14 stay by-design advisory gaps** (2 no unaliased `timezone` import [`526` has `datetime` only], 5 no argparse at all, 7 scope-split like batch-4's 705/706); retrofit cumulative **104**. §7.4 batch-6 pass (2026-07-13, session `pack_writer §7.4 batch-6 elapsed retrofit`, NO ree-v3 commit): **0 of the 9 batch-6 scripts eligible -- all 9 stay by-design advisory gaps** (5 scope-split -- `parse_args` in the module `if __name__` guard while the write is inside `emit_manifest()` [`621`/`621a`/`622`/`626`/`626a`]; 3 import `datetime` only, no unaliased `timezone` [`626b`/`636`/`637`]; 1 imports `datetime as dt_mod` aliased [`354`]); `--apply` a verified no-op; retrofit cumulative stays **104**. §7.4 batch-7 pass (2026-07-13, session `pack_writer §7.4 batch-7 elapsed retrofit` [`nice-grothendieck-f7b58b`], NO ree-v3 commit): **0 of the 12 RUNID_only-batch scripts eligible -- all 12 stay by-design advisory gaps** (10 import `datetime` only, no unaliased `timezone` [`568`/`588c`/`588d`/`588e`/`669b`/`670`/`688`/`688a`/`730`/`731`]; 2 scope-split with `datetime`+`timezone` present -- `596` `parse_args` in `main()` while wfm in `run_experiment()`, `615` both under the `if __name__` guard so the anchor is nested in an `If` [0 direct anchors]); `--apply` a verified no-op; retrofit cumulative stays **104**.

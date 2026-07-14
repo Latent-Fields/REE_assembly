@@ -1,3 +1,44 @@
+---
+closure_plan:
+  id: epistemic_overlay
+  generation: meta
+  title: "Epistemic Overlay (derive-only probabilistic confidence overlay)"
+  registered: 2026-07-12
+  last_updated: 2026-07-12
+  owner: machinery
+  summary: >
+    Turns the magic-number confidence heuristic into an explicit probabilistic
+    per-node score with uncertainty, as a pure derived overlay on
+    claim_evidence.v1.json. generation: meta -> excluded from the V3 closure %
+    (epistemic-machinery work, not V3 substrate) and not scanned by
+    check_closure_drift (no owner_exq). PROMOTES/DEMOTES NOTHING.
+  scope_claims: []
+  sibling_plans: []
+  nodes:
+    - id: PHASE-1
+      title: "Phase 1 (Option C + C-slice of D): Beta-Binomial per-node posterior (exp/lit decoupled) + promotion-gate honesty surface + emergent_from single-hop alarm + continuous-posterior visualization"
+      status: done
+      severity: load-bearing
+      last_updated: 2026-07-12
+      note: >
+        LANDED (REE_assembly master 7edabd57b6). Per-node posterior mean +
+        credible interval additive to claim_evidence.v1.json (the unary potential
+        a Phase-2 MRF consumes unchanged); promotion-gate honesty surface shown as
+        data only (actual gate logic untouched); one-hop unsupported-foundation
+        alarm over emergent_from (NOT belief propagation); continuous posterior +
+        credible-interval band as the explorer confidence channel. Derive-only.
+    - id: PHASE-2
+      title: "Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, additive output schema, evidence-flow animation"
+      status: in_progress
+      severity: high
+      last_updated: 2026-07-12
+      note: >
+        Design + implementation ACTIVE (opened 2026-07-12). Pairwise MRF over the
+        earned conditional structure + damped loopy BP beyond the single hop;
+        output additive (Phase-1 fields untouched); Option-D evidence-flow viz
+        layer. Still derive-only: no status mutation, no auto-promotion, no
+        depends_on Bayes-net re-orientation. PROMOTES/DEMOTES NOTHING.
+---
 # Epistemic Overlay — Plan-of-Record (Phase 1 Option C; Phase 2 Option B)
 
 **Status:** Phase 1 (Option C + C-slice of D) LANDED (REE_assembly master 7edabd57b6). Phase 2 (Option B — pairwise MRF + damped loopy BP) design + implementation ACTIVE (this session, 2026-07-12). Derive-only overlay. Promotes/demotes nothing.

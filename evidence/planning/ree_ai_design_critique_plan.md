@@ -1,3 +1,129 @@
+---
+closure_plan:
+  id: ree_ai_design_critique
+  generation: meta
+  title: "REE AI-Design Critique (cross-cutting workstream roadmap)"
+  registered: 2026-07-09
+  last_updated: 2026-07-10
+  owner: strategic
+  summary: >
+    A durable, resume-across-sessions roadmap for the "REE as an AI design"
+    critique -- where REE is ahead, reinvents the wheel, is flawed, or needs
+    work -- as ~14 workstreams (WS) in leverage/dependency tiers. generation:
+    meta -> a strategic design-critique roadmap, NOT a V3 substrate-closure map;
+    segmented out of the V3 closure % (its threads are lit-pulls, bridge docs,
+    governance rules, and diagnostics that CONSUME V3 results rather than owning
+    substrate claims). Node status mirrors the plan's own resume-primitive Status
+    table. PROMOTES/DEMOTES NOTHING directly.
+  scope_claims: []
+  sibling_plans: [conversion_ceiling_campaign, commitment_closure]
+  nodes:
+    - id: WS-1
+      tier: 0
+      title: "Capability floor before structure -- isolate can-it-act from does-structure-help"
+      status: in_progress
+      severity: load-bearing
+      last_updated: 2026-07-10
+      note: >
+        CONSUMES V3-EXQ-724/732/732a (does not re-queue). 4th diagnostic
+        (719a->724->732->732a) bottoming out on the same competence floor; 732a
+        autopsy found the learner-adequacy gate observability-confounded
+        (global-oracle reference vs 5x5 local view). Re-operationalized: needs a
+        local-view-achievable ceiling in WS-3 capability_eval.py before a fair
+        probe. Currently blocked-on-upstream (all-ON forages ~0). REFUSED
+        V3-EXQ-732b. Diagnostic; claim_ids=[].
+    - id: WS-2
+      tier: 1
+      title: "Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)"
+      status: open
+      severity: high
+      last_updated: 2026-07-09
+      note: "NOT STARTED. Pre-registered demotion rule for substrate_ceiling / pending_retest_after_substrate."
+    - id: WS-3
+      tier: 1
+      title: "Capability-eval yardstick (minimal benchmark independent of any REE claim)"
+      status: done
+      severity: high
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> reusable block ree-v3/experiments/_lib/capability_eval.py. Separates claim-wrong from substrate-cant-act."
+    - id: WS-4
+      tier: 2
+      title: "Formal-ancestor mapping (top ~30 load-bearing MECH/ARC to nearest formal ancestor)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/formal_ancestor_mapping.md (per-row lit-pull)."
+    - id: WS-5
+      tier: 2
+      title: "Active-inference bridge (precision / epistemic value / exploration math REE can inherit)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/active_inference_bridge.md (targeted lit)."
+    - id: WS-6
+      tier: 2
+      title: "Bitter-Lesson rebuttal (why scale + search won't eat this structure)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/bitter_lesson_position.md (steelmans Sutton)."
+    - id: WS-7
+      tier: 2
+      title: "Corrigibility positioning (commit-boundary vs the formal corrigibility literature)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/corrigibility_positioning.md (maps MECH-090)."
+    - id: WS-8
+      tier: 2
+      title: "Cognitive-architecture graveyard (Soar / ACT-R / LeCun AMI ceilings -> anti-patterns)"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/cognitive_architecture_graveyard.md (9 anti-patterns)."
+    - id: WS-9
+      tier: 2
+      title: "Intrinsic-motivation lit (Oudeyer, Schmidhuber curiosity, Baldassarre) feeding WS-1"
+      status: done
+      severity: medium
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> evidence/planning/intrinsic_motivation_competence_mechanisms.md."
+    - id: WS-10
+      tier: 3
+      title: "Minimal 2-agent world (put any load on the ethics thesis, currently V5-only)"
+      status: open
+      severity: medium
+      last_updated: 2026-07-09
+      note: "NOT STARTED. Needs substrate/experiments (Tier 3)."
+    - id: WS-11
+      tier: 3
+      title: "Early-gating vs late-judging demo (REE early commit-gating beats a Constitutional-AI-style late judge)"
+      status: open
+      severity: medium
+      last_updated: 2026-07-09
+      note: "NOT STARTED. Needs substrate/experiments (Tier 3)."
+    - id: WS-12
+      tier: 4
+      title: "Similarity / dehumanization failure mode (sufficiently-like-me gates care -> out-group exclusion)"
+      status: done
+      severity: high
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> EXT-009 in docs/claims/claims.yaml (reflexive failure mode as a first-class claim)."
+    - id: WS-13
+      tier: 4
+      title: "Moral-philosophy red-team (adversarial audit of the axiom chain)"
+      status: done
+      severity: high
+      last_updated: 2026-07-09
+      note: "DONE 2026-07-09 -> docs/architecture/axiom_chain_adversarial_audit.md (cites EXT claims)."
+    - id: WS-14
+      tier: 1
+      title: "Bottleneck fan-out escalation rule (new GOV-* claim: escalate a discrimination brake from sequential retry to fan-out)"
+      status: done
+      severity: high
+      last_updated: 2026-07-10
+      note: "DONE 2026-07-10 -> GOV-FANOUT-1 in claims.yaml (constructive complement to the re-derive brake)."
+---
 # REE AI-Design Critique — Roadmap Plan
 
 **Created:** 2026-07-09

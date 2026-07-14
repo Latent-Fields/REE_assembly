@@ -1,11 +1,11 @@
 ---
 title: Closure Dashboard
-nav_order: 12
+nav_order: 11
 ---
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-07-13T04:18:57Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-07-14T19:23:56Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
@@ -37,7 +37,7 @@ Status tally: `assembling`&nbsp;9 · `blocked`&nbsp;9 · `blocked_pending_substr
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (a): Consumer-Input-Threshold Recalibration</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:100.0%"></div></div>&nbsp;<span style="color:#57606a">100%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-05</td></tr>
 </tbody></table>
 
-_Plus 30 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
+_Plus 33 V4/V5 forward-roadmap plan(s), excluded from the V3 closure percentage._
 
 Full node-by-node detail (remaining work, blockers, owners) is in the generated `evidence/planning/closure_status.md` snapshot.
 
@@ -47,19 +47,19 @@ The two health signals from [`docs/architecture/cognitive_architecture_graveyard
 
 ### Ratio 2 -- governance-mass : cognitive-mass  (commit proxy)
 
-Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3226 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
+Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3104 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
 
-- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **67%** of all commits (2147 / 3226). The source critique's ~60-77% estimate, live.
-- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **25 : 1** (governance 2676 : cognitive 106).
+- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **66%** of all commits (2053 / 3104). The source critique's ~60-77% estimate, live.
+- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **25 : 1** (governance 2549 : cognitive 104).
 
 Bucket tally (both repos, window):
 
 | bucket | commits | what it is |
 |--------|--------:|------------|
-| machine coordination | 2147 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
-| human governance | 529 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
-| cognitive / substrate | 106 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
-| neutral / other | 444 | docs, explorer/serve, site, tooling (excluded from the ratio) |
+| machine coordination | 2053 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
+| human governance | 496 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
+| cognitive / substrate | 104 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
+| neutral / other | 451 | docs, explorer/serve, site, tooling (excluded from the ratio) |
 
 > Reading: a very high ratio is the graveyard signal, not a bug to 'fix' by suppressing coordination commits. It is only a problem if, cycle after cycle, governance is busy while capability is flat. The governance mass is justified *only* as a falsification engine that kills dead structure -- never as a substitute for earning capability.
 

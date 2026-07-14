@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-13T04:18:57Z
+Generated: 2026-07-14T19:23:56Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -156,13 +156,11 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (3)
+## Plans WITHOUT closure_plan frontmatter (0)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
-- `evidence/planning/epistemic_overlay_plan.md`
-- `evidence/planning/pack_writer_single_writer_migration_plan.md`
-- `evidence/planning/ree_ai_design_critique_plan.md`
+_None -- every plan doc is mapped._
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 
@@ -170,8 +168,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
-- **META**: 100.0% across 4 non-deferred nodes in 1 plan(s).
-- **PROCESS**: 100.0% across 13 non-deferred nodes in 2 plan(s).
+- **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
+- **PROCESS**: 96.7% across 18 non-deferred nodes in 3 plan(s).
 - **V4**: 29.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -381,14 +379,37 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-7` | Ethics / commitment policy grounding (or honest 'no clean analog') | blocked | low | Function-ground each ethics/commitment-policy component OR record 'no clean neural analog' | 2026-06-20 |
 | meta | assembly_vs_closure_plan.md | `MOVE-1` | Keystone: first-class `assembling` / `open_by_design` node state | done | load-bearing |  | 2026-06-21 |
 | meta | assembly_vs_closure_plan.md | `MOVE-3` | Hard brake on the re-derive loop (failure-autopsy granularity hook gat | done | load-bearing |  | 2026-06-21 |
+| meta | epistemic_overlay_plan.md | `PHASE-1` | Phase 1 (Option C + C-slice of D): Beta-Binomial per-node posterior (e | done | load-bearing |  | 2026-07-12 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-1` | Author-side flat chokepoint: write_flat_manifest + manifest_writer_lin | done | load-bearing |  | 2026-07-12 |
+| meta | ree_ai_design_critique_plan.md | `WS-1` | Capability floor before structure -- isolate can-it-act from does-stru | in_progress | load-bearing |  | 2026-07-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-1` | z_self promoted from body-state latent to a stateful self-model (DR-13 | done | load-bearing | V3 BEGINNING present (no gate): SD-005 z_self/z_world split is implemented -- z_self exist | 2026-07-01 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-2` | Finish self-attribution: complete the per-stream comparator topology ( | blocked | load-bearing | V3 BEGINNING present: self-attribution on the z_world causal-footprint stream runs (SD-031 | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-3` | z_self enters E3 viability scoring (DR-10): bodily state modulates tra | in_progress | load-bearing | V3 LIMIT: E3.score_trajectory() currently evaluates entirely in z_world space -- there is  | 2026-07-01 |
 | meta | assembly_vs_closure_plan.md | `MOVE-2` | Assembly-chip path mirroring the closure-chip path (session-land) | done | high |  | 2026-06-21 |
+| meta | epistemic_overlay_plan.md | `PHASE-2` | Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, ad | in_progress | high |  | 2026-07-12 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-3` | Staged corpus migration backlog (step 3): route the 1,028-script corpu | done | high |  | 2026-07-13 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.3` | Harden the manifest-writer lint to a commit gate | done | high |  | 2026-07-13 |
+| meta | ree_ai_design_critique_plan.md | `WS-2` | Ceiling-claim demotion rule (new GOV-* pre-registered falsification/de | open | high |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-3` | Capability-eval yardstick (minimal benchmark independent of any REE cl | done | high |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-12` | Similarity / dehumanization failure mode (sufficiently-like-me gates c | done | high |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-13` | Moral-philosophy red-team (adversarial audit of the axiom chain) | done | high |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-14` | Bottleneck fan-out escalation rule (new GOV-* claim: escalate a discri | done | high |  | 2026-07-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-5` | z_self-domain goal representation (DR-11): self-state goals representa | blocked | high | V3 WIRING AUDIT (MECH-214, 2026-04-07): z_goal lives purely in z_world; V3 grid world conf | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-6` | Proxy/hedonic dissociating environment (DR-14): substrate that surface | blocked | high | V3 LIMIT: the grid world makes proxy == hedonic by construction; you cannot show a goal pu | 2026-06-10 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (INV-064): self-stability must prec | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
 | meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-2` | pack_writer field-coverage survey (step 2) | done | medium |  | 2026-07-12 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | in_progress | medium |  | 2026-07-13 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | deferred | medium |  | 2026-07-12 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | deferred | medium |  | 2026-07-12 |
+| meta | ree_ai_design_critique_plan.md | `WS-4` | Formal-ancestor mapping (top ~30 load-bearing MECH/ARC to nearest form | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-5` | Active-inference bridge (precision / epistemic value / exploration mat | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-6` | Bitter-Lesson rebuttal (why scale + search won't eat this structure) | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-7` | Corrigibility positioning (commit-boundary vs the formal corrigibility | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-8` | Cognitive-architecture graveyard (Soar / ACT-R / LeCun AMI ceilings -> | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-9` | Intrinsic-motivation lit (Oudeyer, Schmidhuber curiosity, Baldassarre) | done | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-10` | Minimal 2-agent world (put any load on the ethics thesis, currently V5 | open | medium |  | 2026-07-09 |
+| meta | ree_ai_design_critique_plan.md | `WS-11` | Early-gating vs late-judging demo (REE early commit-gating beats a Con | open | medium |  | 2026-07-09 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | in_progress | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-17 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-9` | Own-future-option uncertainty: does REE need an explicit self-model of | assembling | low | what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where  | 2026-06-24 |
