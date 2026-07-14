@@ -1,0 +1,168 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-14T17:27:43Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_slug": "MECH-457-fanout-751-750",
+  "fans_out_from": "failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13.json",
+  "routed_by": "governance session nifty-cerf-c06cab, REE_assembly commit 5563f7546b (pending_review=2, V3-EXQ-751/750 synced mid-cycle, routed to /failure-autopsy)",
+  "targets": [
+    {
+      "run_id": "v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic_20260714T023058Z_v3",
+      "queue_id": "V3-EXQ-751",
+      "leg": "D (H-optim, algorithm / exploration-strength axis)",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "failed_criterion": "none -- diagnostic PASS adjudicated for verdict-aliasing; preconditions ALL met, non-degenerate, NOT vacuous",
+      "self_route_label": "stronger_unsupervised_explorer_clears_floor_exploration_was_the_wall",
+      "self_route_adjudication": "CONFIRMED and REFINED. The pre-registered load-bearing criterion (any unsupervised explorer clears the 1.0 floor @D3, strict majority of seeds, no expert/no BC) is met by the RND arm (5.22, 3/3 supra-floor). Preconditions met (local_view_greedy 48.05, oracle 57.2), non_degenerate, all criteria_non_degenerate true -> a VALID, non-vacuous, preconditions-met diagnostic PASS (NOT precondition_unmet, NOT vacuous_pass). Two refinements the raw self-route hides: (1) ONLY RND cleared -- ICM (forward-model curiosity) did NOT (0.22 ~ sparse baseline 0.30) despite HIGHER intrinsic reward (0.069 vs 0.030), the classic degenerate-forward-model failure; the working signal is learned NOVELTY (random-target distillation), not curiosity. (2) RND clears only the FLOOR (5.22, ~6x floor) -- far below the BC expert teacher (32.72) and ~1/9 of the local_view_greedy observability ceiling (48.05). Not aliased/reward-leakage: RND intrinsic reward is task-agnostic state novelty (no oracle, no task-reward shaping). Mild baseline drift noted (sparse repro 0.30 vs expected band [0.20,0.27]) but the baseline stays sub-floor, so the discrimination holds.",
+      "key_metric": "d3_zworld_RND_forage=5.22 (3/3 supra 1.0 floor) vs d3_zworld_ICM_forage=0.22 (0/3) vs d3_zworld_sparse_baseline=0.30 (sub-floor). Reference: BC expert 32.72 (748); local_view_greedy ceiling 48.05; oracle 57.2.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened-and-refined -- resolves the algorithm-axis fork the 747/748/749 autopsy left: an EXPERT teacher is NOT necessary; a learned unsupervised novelty signal (RND) bootstraps action-learning off the floor. MECH-457 machinery is functional-when-explored, not only functional-when-taught.",
+        "biological_reference": "clear -- RND novelty-distillation = novelty-driven intrinsic-motivation exploration (hippocampal/dopaminergic novelty; developmental self-directed exploration precedes expert scaffolding). ICM forward-model curiosity degenerating in a hard-to-model view is a known RL failure, not a claim problem. Sibling to MECH-455 (competence-based intrinsic motivation, the drive side).",
+        "prerequisites": "identified -- the bootstrappable action-level signal the 747/748/749 autopsy called 'missing' can be a self-generated novelty drive (RND), not necessarily an external teacher.",
+        "implementation": "complete -- RND/ICM explorer arms ran clean; always-core recorded (substrate_hash present, seeds [42,43,44], recording_schema rec/v1).",
+        "environment": "adequate -- oracle 57.2, local_view_greedy 48.05 clear the floor.",
+        "measurement": "adequate -- per-arm per-seed foraging_competence + intrinsic-reward traces recorded.",
+        "integration": "z_world(cotrain)->policy under an added learned intrinsic signal reaches supra-floor; the z_world control substrate is adequate for RND-driven bootstrap.",
+        "scale": "insufficient AT THE CURRENT EXPLORER -- RND clears floor (5.22) but is far below BC (32.72)/ceiling (48.05); a substantially stronger novelty explorer is the build target."
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty-driven intrinsic-motivation exploration (RND-style learned novelty); dopaminergic/hippocampal novelty signals bootstrapping self-directed action-learning before expert scaffolding",
+        "dependencies": ["a learned state-novelty estimator", "entropy-regularized policy gradient", "z_world cotrain encoder (SD-056)"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the finding matches developmental self-directed exploration; ICM's failure is an implementation property of forward-model curiosity, not a biological divergence",
+        "lit_status": "present -- targeted_review_actor_critic_action_learning + the 2026-07-13 lit-pull (Burda2018 RND, Pathak2017 ICM, Hester2018 DQfD, Ross2011 DAgger, Kang2021 observational; REE_assembly master 5883691b2b)"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "not_scored_diagnostic",
+      "recommended_evidence_quality_note": "2026-07-14 (GOV-FANOUT-1 leg D / H-optim V3-EXQ-751, diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-751-750_2026-07-14): the H-optim leg RESOLVES the algorithm-axis discrimination the 747/748/749 fanout left open. A stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with NO expert and NO behavior-cloning: the RND (learned novelty-distillation) arm forages 5.22 (3/3 seeds supra-floor) vs the 742 sparse z_world baseline 0.30 (sub-floor). VERDICT: an expert teacher is NOT necessary -- vanilla policy-gradient exploration was merely too weak; a self-generated learned-novelty drive bootstraps action-learning off the floor. TWO REFINEMENTS foregrounded: (1) only RND worked -- ICM forward-model curiosity did NOT (0.22 ~ baseline) despite higher intrinsic reward, so the working signal is learned NOVELTY, not curiosity; (2) RND clears only the FLOOR (5.22), far below the BC expert (32.72) and the 48.05 observability ceiling -- unsupervised novelty gets off the floor, not to competent foraging. This makes the deferred build LIVE and points it at 'a substantially stronger unsupervised novelty-driven explorer' (RND-family seed), routed to /implement-substrate via a NEW MECH-457-owned substrate_queue entry (the first the line owns). Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457). Diagnostic -- excluded from governance confidence/conflict scoring; this note records the discrimination and the build target, not a weighted evidence entry. MECH-457 stays candidate/v3_pending, competence_implementation_gap.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "mech457_unsupervised_novelty_explorer",
+        "title": "Better unsupervised novelty-driven explorer for MECH-457 action-learning bootstrap (RND-family; lift competence from floor-clearing toward the BC/ceiling band)",
+        "implementation_hint": "751 established that a LEARNED state-novelty signal (RND, Burda 2018) -- not forward-model curiosity (ICM, which failed here) -- bootstraps the z_world(cotrain) actor-critic off the 1.0 forage floor unsupervised (5.22, 3/3 seeds), but leaves a large gap to the BC expert (32.72) and the local_view_greedy observability ceiling (48.05). Build a first-class unsupervised novelty explorer in the substrate (not a driver-defined module -- the 751 RND/ICM arms were driver-defined and reuse-INELIGIBLE): RND intrinsic reward = ||predictor(z_world) - frozen_random_target(z_world)||^2 (normalized) + raised entropy, integrated into agent.actor_critic_step, with reuse-eligible arm emission. Target: push unsupervised z_world foraging from ~5 toward the BC/ceiling band on both z_world AND raw 5x5 view (the raw-view explorer arm 751 did not run and is prerequisite for the 750 INV-088 retest). ICM/curiosity is NOT the seed. Owning thread: conversion_ceiling_campaign_plan.md / ree_ai_design_critique_plan.md WS-1; distinct from the f_dominance_conversion_ceiling selection-face campaign (that entry is the SELECTION face; this is the action-LEARNING bootstrap face).",
+        "unblocks_claims": ["MECH-457", "INV-088"],
+        "depends_on_unresolved": ["SD-056 (z_world cotrain encoder, IMPLEMENTED)", "MECH-229"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic_20260714T023058Z_v3",
+          "experiment_type": "v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic",
+          "metric": "unsupervised z_world RND explorer forages 5.22/ep @D3 (3/3 supra 1.0 floor) -- off the floor but ~16% of the BC expert (32.72) and ~11% of the local_view_greedy ceiling (48.05); ICM 0.22 sub-floor",
+          "target": "a working unsupervised explorer should approach the BC/ceiling band (>=~32 toward 48) on both z_world and raw view, not merely clear the 1.0 floor"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": ["failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11", "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13", "failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13"],
+        "reason": "This is the Nth autopsy circling MECH-457, but the failure signatures CONVERGE (all -> the RL exploration / action-learning credit-assignment bootstrap wall), progressively refined (734-737 competence bottleneck -> 742 upstream-of-credit-assignment -> 747/748/749 teacher-axis -> 751 exploration-strength resolved). Not divergent-signature granularity debt: the claim is not coarse, it is blocked on a single buildable substrate. Route = implement-substrate, not claim-synthesis.",
+        "routing": "implement-substrate"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "reason": "0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457 (742 + 747/748/749 were competence_implementation_gap/weakens). This target is a diagnostic PASS routing to a build motivated by a POSITIVE result, not a re-tested ceiling. Brake does not apply.",
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_unsupervised_novelty_explorer (new)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "resolved_this_cycle": ["H-optim (algorithm axis): exploration-was-the-wall NULL realized; expert teacher NOT necessary; RND (learned novelty) is the working seed, ICM (curiosity) is not"],
+        "note": "GOV-FANOUT-1 EXEMPT: the bottleneck now routes to ONE unambiguous build (a better unsupervised novelty explorer) -- not a >=2-hypothesis discrimination -- so no fanout portfolio is emitted. The 747/748/749 discrimination (expert-necessary vs exploration-too-weak) is RESOLVED by this leg toward the latter. Just build it."
+      },
+      "learning_extracted": [
+        "Algorithm-axis fork RESOLVED: a stronger UNSUPERVISED explorer clears the 1.0 forage floor @D3 with no expert (RND z_world 5.22, 3/3 supra-floor) -> an expert teacher is NOT necessary; vanilla policy-gradient exploration was merely too weak. Confirms the 747/748/749 autopsy's H-optim null.",
+        "The working intrinsic signal is LEARNED NOVELTY (RND / random-target distillation), NOT forward-model curiosity (ICM): ICM foraged 0.22 (~ sparse baseline) with HIGHER intrinsic reward (0.069 vs 0.030) -- degenerate-forward-model failure. The build seed is RND-family, not ICM.",
+        "Unsupervised RND clears only the FLOOR (5.22) -- ~16% of the BC expert (32.72), ~11% of the local_view_greedy observability ceiling (48.05). 'Off the floor' is not 'competent'; the build target is a substantially stronger novelty explorer, not merely 'any intrinsic bonus'.",
+        "This makes LIVE the substrate build the 747/748/749 autopsy deferred (action=none pending exactly this leg). First substrate_queue entry the MECH-457 line owns.",
+        "751's RND/ICM arms are driver-defined intrinsic modules -> reuse-INELIGIBLE (excluded from substrate hash); the substrate build must promote the novelty explorer to a first-class, reuse-eligible substrate module."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
+      "queue_id": "V3-EXQ-750",
+      "leg": "INV-088 single-step strategy-diversity readout on the 742/747/748/749 2x2 (representation x teacher-density)",
+      "claim_ids": ["MECH-457", "INV-088"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "FAIL",
+      "failed_criterion": "precondition -- dense_pair_matched_competent (load-bearing) unmet",
+      "self_route_label": "matched_competence_precondition_unmet",
+      "self_route_adjudication": "CONFIRMED -- NON_CONTRIBUTORY / starved. The load-bearing precondition dense_pair_matched_competent = FALSE (min(majority_supra_floor(z_world_dense), majority_supra_floor(raw_dense)) = 0, threshold 1): neither dense arm cleared the 1.0 forage floor (z_world_dense 0.217 0/3; raw_dense 0.767 1/3). So the decisive INV-088 representation-vs-diversity contrast (748 vs 749 at matched competence) cannot be read. TWO nested causes: (1) design -- 750's 'dense' arms are dense-reward-SHAPING RL (shaping_coef=1.0), the SUB-FLOOR variant already shown starved in 748/749; the arms that actually cleared the floor there were BC (behavior cloning), which 750 did not use, so the precondition was doomed by construction; (2) deeper -- even the BC arms would NOT give a clean read: a behavior-cloned policy's action distribution reflects the imitated EXPERT's diversity, not the representation's intrinsic diversity-affording capacity (both z_world+BC and raw+BC clone the same expert), so the teacher launders INV-088's contrast. A clean representation->diversity read at matched competence requires matched-competent UNSUPERVISED policies on BOTH representations -> the same explorer build 751 motivates (plus the raw-view explorer arm 751 did not run). The instrument itself works (H_greedy calibration random_walk 2.32 - constant 0.0 = 2.32 bits > 1.0).",
+      "key_metric": "dense_pair_matched_competent=FALSE (z_world_dense-shaped 0.217 0/3, raw_dense-shaped 0.767 1/3, both sub-floor 1.0); instrument spread 2.32 bits (registerable). Confound-only (NOT evidence): at sub-floor competence z_world arms collapse to near-monostrategy (H_greedy 0.31, effective_actions ~1.3) vs raw arms (0.99-1.36) -- direction OPPOSITE to INV-088, a training-collapse artifact.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- the precondition gate blocks the INV-088 (and MECH-457) contrast entirely; NON_CONTRIBUTORY, weights against neither claim.",
+        "biological_reference": "n/a this run -- readout starved before it can bear on the representation->diversity question.",
+        "prerequisites": "missing -- matched-competent UNSUPERVISED policies on both representations (the explorer substrate from 751's recommendation); the dense-shaping and BC teachers both fail to provide a clean matched-competent unsupervised pair.",
+        "implementation": "complete -- the 2x2 reran deterministically; instrument (H_greedy/effective_actions/softmax-entropy) validated on controls.",
+        "environment": "adequate -- oracle 57.2, local_view_greedy 48.05 clear the floor.",
+        "measurement": "instrument adequate but STARVED -- H_greedy registers a real between-policy spread on calibration controls (2.32 bits); the decisive cells are competence-starved, so the metric has nothing valid to read.",
+        "integration": "n/a -- gated at the competence precondition.",
+        "scale": "the dense-shaped arms are sub-floor for the same reason 748/749 shaped arms were: the RL exploration bootstrap wall (the 751 build target)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- non_contributory (readout starved); INV-088's representation-differentiation->strategy-diversity question is untested here",
+        "dependencies": ["matched-competent unsupervised policies on both z_world and raw view"],
+        "is_formal_import": false,
+        "divergence": "none tested",
+        "lit_status": "present (INV-088 grounded via monostrategy-representation-ceiling-root / Le Lan generalize-vs-approximate)"
+      },
+      "recommended_epistemic_category": "substrate_starved_precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-14 (INV-088 strategy-diversity readout V3-EXQ-750, diagnostic, claim_ids=[MECH-457, INV-088]; consumed via /governance from failure_autopsy_MECH-457-fanout-751-750_2026-07-14): NON_CONTRIBUTORY / starved -- does NOT weight against MECH-457 or INV-088. The load-bearing precondition (the dense pair matched-competent -- both dense arms clear the 1.0 forage floor) is UNMET (z_world-dense-shaped 0.217, raw-dense-shaped 0.767, both sub-floor), so the decisive INV-088 representation-vs-diversity contrast (748 vs 749 at matched competence) cannot be read. Cause is two-fold: 750's 'dense' arms are dense-reward-SHAPING RL (the sub-floor variant already starved in 748/749), NOT the BC variant that cleared the floor; and even BC would not give a clean read (the teacher launders the representation's diversity contribution). A clean representation->diversity read needs matched-competent UNSUPERVISED policies on both representations -- the explorer substrate 751 motivates (mech457_unsupervised_novelty_explorer), plus the raw-view explorer arm 751 did not run. The instrument works (H_greedy calibration 2.32 bits). Confound flag (NOT evidence): at sub-floor competence z_world arms collapse to near-monostrategy (opposite to INV-088) -- a training-collapse artifact, exactly why matched competence is the load-bearing gate. INV-088 stays candidate/pending_substrate_reconfirmation; MECH-457 stays candidate/v3_pending. pending_retest_after_substrate: the retest blocks on the same mech457_unsupervised_novelty_explorer build (matched-competent unsupervised policies on BOTH representations).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech457_unsupervised_novelty_explorer",
+        "note": "No separate substrate entry. 750's retest blocks on the SAME explorer build recommended by 751's target above -- specifically it needs the explorer to reach matched competence on BOTH z_world AND raw 5x5 view (751 ran z_world explorer arms only). Governance should append this failure_record_entry to the mech457_unsupervised_novelty_explorer entry created from the 751 target, and record 750 as a pending_retest_after_substrate dependent of it (do NOT create a second entry).",
+        "failure_record_entry": {
+          "run_id": "v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3",
+          "experiment_type": "v3_exq_750_mech457_inv088_strategy_diversity_readout",
+          "metric": "INV-088 representation->diversity readout starved: dense pair matched-competent precondition unmet (both dense-shaped arms sub-floor); needs matched-competent unsupervised policies on both z_world and raw view",
+          "target": "the explorer must reach supra-floor (ideally BC/ceiling band) UNSUPERVISED on BOTH representations so the 748-vs-749 H_greedy contrast is readable at matched competence"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "granularity_debt_trigger": {
+        "fires": false,
+        "reason": "First autopsy tagging INV-088; NON_CONTRIBUTORY. No recurrence.",
+        "routing": "implement-substrate (shared explorer build) then re-queue"
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "reason": "This is the FIRST non_contributory autopsy tagging INV-088 and MECH-457 (count after this = 1 < threshold 2). Brake does not fire. Note: the re-queue is REFUSED until the mech457_unsupervised_novelty_explorer substrate is built -- but that refusal is the precondition-starvation blocker, not a re-derive-brake firing.",
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_unsupervised_novelty_explorer (new, shared with 751 target)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "GOV-FANOUT-1 EXEMPT: 750 is starved, not a live discrimination; it routes to the single shared explorer build. Once that build lands, the INV-088 readout re-queues (matched-competent unsupervised policies on both representations) -- ideally reading representation->diversity off UNSUPERVISED competent policies to avoid the teacher-laundering confound."
+      },
+      "learning_extracted": [
+        "750 is NON_CONTRIBUTORY / starved: the dense pair matched-competent precondition is unmet, so the INV-088 representation-vs-diversity contrast cannot be read. Weights against neither MECH-457 nor INV-088.",
+        "Design pitfall recorded: 750's 'dense' arms are dense-reward-SHAPING RL (shaping_coef=1.0), the sub-floor variant already starved in 748/749 -- NOT the BC variant that cleared the floor. The 2x2 label 'dense teacher = PASS' conflated BC (the arm that passed) with shaping (the arm that failed).",
+        "Deeper design constraint: even BC arms would not give a clean representation->diversity read -- BC launders the representation's diversity contribution through the imitated expert. The clean read requires matched-competent UNSUPERVISED policies on both representations.",
+        "Therefore 750's retest blocks on the SAME mech457_unsupervised_novelty_explorer build (751 target), extended to reach matched competence on BOTH z_world and raw 5x5 view (751 ran z_world explorer arms only).",
+        "Confound flag (NOT evidence against INV-088): at sub-floor competence z_world arms collapse to near-monostrategy (direction opposite to INV-088's prediction) -- a training-collapse artifact that vindicates the matched-competence gate."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Convergent continuation, not a substrate-ceiling shared-shape cluster: 751 (diagnostic PASS) POSITIVELY demonstrates the seed (RND learned-novelty clears the floor unsupervised on z_world), and 750 (FAIL, non_contributory) is STARVED for exactly that seed (needs matched-competent unsupervised policies on both representations to read INV-088).",
+    "is_independent_bugs": false,
+    "structural_property": "The MECH-457 line's remaining bottleneck is a SINGLE buildable substrate -- a better unsupervised novelty-driven explorer (RND-family) that reaches competent foraging on both z_world and raw 5x5 view. 751 shows the seed works but clears only the floor; 750 cannot be adjudicated until that explorer reaches matched competence. One build unblocks both. This is complicated (buildable) execution backlog behind a now-DISCHARGED complex (probe-gated) node -- the 747/748/749 expert-vs-exploration puzzle is answered.",
+    "readings": ["single_buildable_substrate_unblocks_both_diagnostics"],
+    "resolved_this_cluster": ["algorithm-axis fork (expert-necessary vs exploration-too-weak): RESOLVED toward exploration-too-weak; RND (learned novelty) is the working seed, ICM (curiosity) is not"],
+    "build_target": "mech457_unsupervised_novelty_explorer (NEW substrate_queue entry, action=create, priority 1, unblocks MECH-457 + INV-088)"
+  }
+}
