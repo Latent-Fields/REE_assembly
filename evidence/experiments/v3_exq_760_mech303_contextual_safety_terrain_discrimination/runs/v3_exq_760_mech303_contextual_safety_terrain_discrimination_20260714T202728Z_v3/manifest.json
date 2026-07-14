@@ -1,0 +1,86 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_760_mech303_contextual_safety_terrain_discrimination",
+  "run_id": "v3_exq_760_mech303_contextual_safety_terrain_discrimination_20260714T202728Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-14T20:27:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-303"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "context_specific_safety_terrain_confirmed",
+    "preconditions": [
+      {
+        "name": "safety_field_responds_to_accumulation",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "contexts_separable_in_zworld",
+        "measured": 0.8884567901234567,
+        "threshold": 0.7,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_auc_gated_above_pass",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_margin_gate_attributable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "non_vacuity_field_not_flat",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_auc_gated_above_pass": true,
+      "C2_margin_gate_attributable": true
+    }
+  }
+}
