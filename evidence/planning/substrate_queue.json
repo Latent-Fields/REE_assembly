@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "nice-blackwell-f367f8 (implement-substrate MECH-457 substrate_queue materialization)",
-  "last_updated_utc": "2026-07-12T10:03:22Z",
+  "last_seen_session": "nice-grothendieck-f7b58b (close stale IGW-20260714-178: MECH-457 substrate already built+validated)",
+  "last_updated_utc": "2026-07-14T19:22:14Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5503,7 +5503,7 @@
       "source_autopsy": "failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11",
       "sd_id": "sd_actor_critic_action_learning",
       "title": "First-class RPE-driven actor-critic action-learning substrate (dorsal-striatal actor + value-baseline critic), representation co-shaping (NOT a readout over the frozen prediction latent)",
-      "status": "proposed",
+      "status": "implemented",
       "ready": true,
       "priority": 1,
       "node_class": "complicated (buildable)",
@@ -5538,7 +5538,8 @@
           "V3-EXQ-738 (PASS anchor, x-ref): greedy 5x5 local-view forager = 6.05 @D0, 48.05 @D3 -> env is trivially forageable; the wall is action-LEARNING, not observability."
         ],
         "prediction": "A dedicated RPE actor-critic whose action-learning loss co-shapes the encoder (co-trained arm) should clear the 1.0 floor at D3 for a majority of seeds; a frozen-encoder arm is predicted to remain at or below the 737 latent-inadequacy level (<0.6), settling how much the representation must co-adapt. If the co-trained arm also stays sub-floor, the deficit is deeper than action-learning credit-assignment (route re-autopsy, NOT a lettered floor re-test)."
-      }
+      },
+      "resolution_note": "Substrate BUILT+LANDED 2026-07-12 (session nice-blackwell-f367f8, /implement-substrate): ree-v3 ree_core/action_learning/actor_critic.py + agent hooks + config, smoke PASS, bit-identical OFF; design doc docs/architecture/sd_actor_critic_action_learning.md marked IMPLEMENTED. Validation V3-EXQ-742 RAN 2026-07-13 -> FAIL/weakens (all 4 arms A0-A3 sub-floor at D3: 0.20/0.233/0.267/0.217 res/ep, below the 1.0 floor, below bias_head baseline 0.75 and random walk 0.933; readiness met). Interpretation deeper_than_action_learning -> REFUTES the '734-737 single-missing-mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning. Governance-consumed; discrimination moved to GOV-FANOUT-1 (H-rep vs H-explore, V3-EXQ-747/748/749, ran 2026-07-13). Substrate-BUILD lane DONE; MECH-457 stays candidate/v3_pending (substrate promotes nothing). Marked resolved 2026-07-14T19:22:14Z (session nice-grothendieck-f7b58b) to close stale IGW-20260714-178."
     },
     {
       "sd_id": "agency_comparator_testbed_sd047",
