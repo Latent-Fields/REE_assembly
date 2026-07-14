@@ -1,48 +1,50 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-13T22:29:45Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-751",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "last_tick_utc": "2026-07-14T18:52:42Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-753",
+  "current_exq_started_utc": "2026-07-14T18:50:55.859735+00:00",
+  "current_title": "MECH-457 GOV-FANOUT-1 leg H-return (memory/frontier axis): Go-Explore archive + return vs sparse, z_world + raw 5x5, diagnostic",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / D3_hazard_free",
+    "runs_done": 9,
+    "runs_total": 21,
+    "episodes_done": 0,
+    "episodes_total": 1000,
+    "overall_pct": 42.9
+  },
+  "seconds_elapsed": 106,
+  "seconds_remaining": 51,
+  "recent_lines": [
+    "MECH-457 GOV-FANOUT-1 leg H-return (memory/frontier axis) diagnostic (4 trained arms x 2 reps + 3 anchors, rung D3_hazard_free, 3 seeds; P0=200 RL=1000 eval=20)",
+    "Seed 42 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy forage/ep=45.75)",
+    "Seed 43 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy forage/ep=49.7)",
+    "Seed 44 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy forage/ep=48.7)",
+    "Seed 42 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle forage/ep=57.0)",
+    "Seed 43 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle forage/ep=57.3)",
+    "Seed 44 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle forage/ep=57.3)",
+    "Seed 42 Condition D3_hazard_free:random_walk",
+    "verdict: PASS (arm=random_walk forage/ep=1.05)",
+    "Seed 43 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk forage/ep=0.9)",
+    "Seed 44 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk forage/ep=0.85)",
+    "Seed 42 Condition D3_hazard_free:sparse_zw"
   ],
-  "runner_pid": 740,
-  "runner_version": "r3838 33215af 2026-07-13 (running r3827 a059e33)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 747,
+  "runner_version": "r3842 2a796df 2026-07-14 (running r3838 33215af)",
   "gpu": {
     "available": false
   },
