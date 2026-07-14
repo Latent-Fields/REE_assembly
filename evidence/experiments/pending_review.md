@@ -1,10 +1,17 @@
 # Pending Experiment Review
 
-Generated: `2026-07-14T06:53:33Z`  
+Generated: `2026-07-14T07:15:08Z`  
 Last review: `2026-07-14T06:51:15Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **2** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 2 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## Unclaimed manifests (PASS/FAIL with no claim tags)
+
+These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
+
+| Result | Manifest stem | Experiment type | Queue ID | Direction |
+|--------|---------------|-----------------|----------|-----------|
+| PASS | `v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic_20260714T023058Z_v3` | v3_exq_751_mech457_hoptim_unsupervised_explorer_actor_critic | V3-EXQ-751 | unknown |
+| FAIL | `v3_exq_750_mech457_inv088_strategy_diversity_readout_20260714T033302Z_v3` | v3_exq_750_mech457_inv088_strategy_diversity_readout | V3-EXQ-750 | unknown |
 
 ---
 
