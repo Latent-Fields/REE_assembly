@@ -1,0 +1,87 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-15T14:10:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_746b_inv089_harm_eval_z_harm_bound_variance_reduced_20260715T134512Z_v3",
+      "queue_id": "V3-EXQ-746b",
+      "claim_ids": ["INV-089"],
+      "failed_criterion": "precondition",
+      "failed_precondition": "PC_iv_moved",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- IV starved, the bound could not express itself; no claim pressure either way; INV-089 stays provisional",
+        "biological_reference": "n/a -- pure measurement calibration; no biology divergence, no formal-import divergence",
+        "prerequisites": "present -- SD-010 HarmEncoder + harm_eval_z_harm IMPLEMENTED; no substrate build owed",
+        "implementation": "DV estimator FIXED/complete (validated at maturity, mean_dv_mature 0.45)",
+        "environment": "adequate -- regime unchanged (scheduled_external_hazard OFF)",
+        "measurement": "inadequate/coupled -- widening collection for DV power destroyed the IV onset contrast; sparse-IV gradient likely an underfitting artifact",
+        "integration": "coupled but unstable -- IV-power and DV-power are anti-coupled in the shared collection budget (the core defect)",
+        "scale": "adequate -- a data-allocation, not data-volume, problem"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- measurement calibration of a bound-coupling test, not a biology translation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present (INV-089 already provisional on 743 positive control)"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_scope": "bound-coupling leg only; the DV-estimator-viability sub-finding IS contributory and bears on 746a (see note)",
+      "recommended_evidence_quality_note": "V3-EXQ-746b FAIL, starved on PC_iv_moved (mean_iv_delta +0.002, mean_iv_rho -0.037): the z_harm differentiation IV did not vary across onset, so the bound-coupling test could not run -- NOT a falsification, no weight on INV-089's bound. Root cause: collect_episodes 14->60 (added for DV power) washed out the IV onset gradient; mature-anchor IV rose to 0.42, so the implied onset-0 IV climbed to ~mature level. Contributory finding retained: PC_dv_estimator_ok=True, mean_dv_mature 0.45 -- the DV-estimator fix is validated at maturity, which casts the 746a weakens as measurement-suspect (see 746a note). Route: 746c redesign decoupling IV/DV data budgets.",
+      "related_claim_action": {
+        "claim_id_or_run": "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3",
+        "action": "annotate_keep_weight",
+        "user_confirmed": true,
+        "note_to_append": "2026-07-15 (V3-EXQ-746b autopsy -- failure_autopsy_V3-EXQ-746b_2026-07-15): 746a's weakens is measurement-suspect. 746b repaired the DV estimator (standardised target + K-fold + weight-decay/early-stop + finite floor) and showed PC_dv_estimator_ok=True, mean_dv_mature 0.45 -- the harm_eval_z_harm head CAN beat the mean at maturity, so 746a's -166 divergence was estimator pathology, not a real null. 746a's weakens is RETAINED (746b did not deliver a valid bound test -- its IV starved) but flagged measurement-suspect pending a valid met-both-preconditions bound test (746c). INV-089 stays provisional on 743's single-pathway positive control."
+      },
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "INV-089 provisional rests on 743's SINGLE-PATHWAY positive control (harm decodable-in-principle from z_harm + decodability rises with HarmEncoder maturation). The bound-coupling sub-claim has never validly tested. Do not read 746b as resolving any conflict.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "reason": "0 prior INV-089 substrate_ceiling/non_contributory autopsies; this is a live measurement-design fix with existence proofs (746a IV-moves, 746b DV-viable), not a substrate-ceiling verdict. Each letter fixed a different diagnosed measurement pathology.",
+        "refused_requeue": false,
+        "route_to": "queue-experiment"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "is_second_or_later_autopsy_on_target": true,
+        "prior_autopsy": "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13",
+        "reason": "The three failures (746 DV-starved, 746a DV-artifact, 746b IV-starved) are measurement-instrument iterations of ONE bound test, not structurally-distinct claim pressures from different mechanisms -- not granularity debt. Construct concern noted for user: 'z_harm differentiation grows with maturation' may be under-operationalized; user may still elect /claim-synthesis.",
+        "routing": "queue-experiment"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "GOV-FANOUT-1 not indicated: the bottleneck is a single well-posed measurement fix (decouple IV/DV data budgets so both preconditions hold), not a discrimination among >=2 mechanism hypotheses. Routes to one buildable redesign letter."
+      },
+      "learning_extracted": [
+        "The DV-estimator fix is validated (mean_dv_mature 0.45 at the mature anchor) -> 746a's weakens is measurement-suspect; INV-089's live weakens should carry that caveat.",
+        "New degeneracy mode: IV-power (onset contrast) and DV-power (estimator generalisation) are anti-coupled in a shared collection budget -- fixing one starved the other; the two probes must draw independent data budgets.",
+        "The local-density onset IV gradient may be a small-sample underfitting artifact (collect=14 underfit at low onset; at collect=60 z_harm decodes density ~equally at onset 0 and 30). A valid bound test must use adequate sampling for both legs AND verify the target's z_harm differentiation genuinely grows with maturation under that sampling (explicit onset-0-vs-mature IV-gap readout)."
+      ],
+      "routing": "queue-experiment",
+      "routing_spec": {
+        "kind": "same-question redesign, alphabetic suffix",
+        "suggested_id": "V3-EXQ-746c",
+        "must": [
+          "Decouple the IV probe and DV estimator data budgets (they need not share collect_episodes).",
+          "Use adequate sampling for BOTH legs so neither the IV underfits nor the DV overfits.",
+          "Select/verify a target whose z_harm differentiation genuinely GROWS with maturation under adequate sampling (local-density's gradient may be a sampling artifact -- prefer a harm-relevant, maturation-dependent target).",
+          "Emit an explicit onset-0-vs-mature IV-gap readout to falsify the small-sample-artifact hypothesis before trusting any bound-coupling result.",
+          "Retain the 746b DV-estimator fix (standardise target + K-fold + weight-decay/early-stop + finite R2 floor) and the PC_dv_estimator_ok rail."
+        ],
+        "must_not": [
+          "implement-substrate -- SD-010 HarmEncoder + harm_eval_z_harm already IMPLEMENTED.",
+          "A naive sparse-IV letter (restore collect=14) -- risks reinstating the underfitting artifact."
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null
+}
