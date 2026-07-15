@@ -1,0 +1,86 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-15T13:47:18Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_slug": "MECH-457-fanout-755",
+  "fans_out_from": "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15.json",
+  "portfolio_state": "four single-axis discrimination legs now closed (752 H-credit / 753 H-return / 754 H-curriculum / 755 H-mode all FAIL); 751 (H-optim/RND) the sole floor-clear; V3-EXQ-756 (H-credit x H-return additivity pair) still running on ree-cloud-3 at autopsy time.",
+  "targets": [
+    {
+      "run_id": "v3_exq_755_mech457_hmode_explore_exploit_gate_20260715T081923Z_v3",
+      "queue_id": "V3-EXQ-755",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C_hmode_beats_fixed_rnd_by_margin FAIL: the utility-gated rnd_mode arm does not exceed the SAME-RUN fixed-coefficient rnd_fixed arm by the 1.0 consolidation margin on EITHER representation. z_world mode 2.933 vs fixed 2.633 (gain +0.30); raw mode 0.367 vs fixed 0.733 (gain -0.367, mode WORSE); any_rep_mode_gain=false. Both RND arms are supra-floor (fixed_zw 2.633, mode_zw 2.933 clear the 1.0 floor) but both plateau far below RND's own 751 level (5.22) and BC (32.72)/local-view (48.05). Readiness MET (local_view_greedy 48.05, greedy_oracle 57.2, random_walk 0.93). non_degenerate=true.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (dependency) - refutes the policy-control / explore-exploit-arbitration axis as the missing lever; strengthens the reading that the residual is explorer CAPACITY to convert coverage->competence, not exploration scheduling. Does NOT falsify MECH-457 (necessity intact; a distinct sufficiency candidate refuted).",
+        "biological_reference": "clear - LC-NE gain / explore-exploit arbitration (Aston-Jones & Cohen 2005; Daw 2006) is a real neuromodulatory control axis, but it MODULATES an already-competent policy's exploration; it cannot manufacture competence a low-capacity learner never had. Cold-start / capacity is a known RL + developmental property, not a claim defect.",
+        "prerequisites": "missing (buildable) - a success-independent dense per-step drive (752-754 half) AND adequate policy capacity / training budget to convert coverage into competence (the half 755 sharpens). RND alone reaches only ~2.9-5.2 res/ep ~= 11% of the 48 local-view ceiling.",
+        "implementation": "complete (portfolio-gated) - RNDModule + ModeGate in experiments/_lib/mech457_explorer_classes.py (substrate-hashed); mode arm ran deterministically, cleared floor, gate active (per_arm_intrinsic_reward_recent mode_zw 0.0466 > fixed_zw 0.0254 confirms the anneal did shift behaviour); the gate simply produced no competence lift.",
+        "environment": "adequate - oracle 57.2, local_view_greedy 48.05, RND arms supra-floor; the 1.0 floor is genuine, not an env artifact.",
+        "measurement": "adequate - per-seed competence recorded on both reps; RND/BC/ceiling reference bands pre-registered; criterion is a real same-run consolidation-margin test with the fixed-coef RND as the correct comparator.",
+        "integration": "isolated-per-axis - H-mode run alone; the H-credit x H-return additivity pair (756) tests cross-mechanism composition and is still in flight.",
+        "scale": "insufficient at the current explorer - the bottleneck is capacity/budget to reach COMPETENT (not merely off-floor) foraging on the 5x5 view; this is exactly the build target's second half."
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic/phasic gain arbitration of explore vs exploit; critic-utility-gated exploration annealing (Aston-Jones & Cohen 2005; Daw et al. 2006; Cohen/McClure/Yu 2007)",
+        "dependencies": ["a competent base policy for the mode gate to arbitrate", "a success-independent dense bootstrap drive (novelty/imitation) upstream", "adequate representational + policy capacity to convert coverage into competence"],
+        "is_formal_import": false,
+        "divergence": "The mechanism is biologically real but sits DOWNSTREAM of the missing competence: an arbitration controller over exploration cannot bootstrap competence from a low-capacity learner. Not a formal-definition import failure; a dependency-ordering finding.",
+        "lit_status": "present (targeted_review_action_learning_bootstrap_class_choice/SYNTHESIS.md already grounds the bootstrap-class choice; the H-mode axis was one of the four composable classes it named)"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-15 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-755, H-mode/policy-control axis; diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-755_2026-07-15). A critic-utility-gated explore/exploit mode scalar (Aston-Jones&Cohen/Daw; anneals rollout-entropy temperature + RND coefficient toward exploitation as utility rises) yields NO consolidation gain over a SAME-RUN fixed-coefficient RND arm: z_world mode 2.933 vs fixed 2.633 (gain +0.30 < 1.0 margin), raw mode 0.367 vs fixed 0.733 (mode worse), any_rep_mode_gain=false; every readiness precondition holds (oracle 57.2, local-view 48.05, random_walk 0.93). Distinct from 752/753/754 (which sat sub-floor): here the RND arms DO clear the floor but the arbitration GATE adds nothing -- so the policy-control axis is REFUTED as the missing lever, and the residual is explorer CAPACITY to convert coverage->competence (RND plateaus at ~11% of the 48 ceiling), not explore/exploit scheduling. This CLOSES the four single-axis legs of the portfolio (752/753/754/755 all FAIL; only 751 RND cleared the floor) and STRENGTHENS the 'adequate policy capacity / training budget' half of the pending mech457_competence_bootstrap_explorer build target. Does NOT falsify MECH-457 (necessity intact; one more sufficiency candidate refuted). Diagnostic -- excluded from confidence/conflict scoring; PROMOTES/DEMOTES NOTHING. Re-derive brake FIRES (3rd non_contributory/convergent MECH-457 autopsy): route = implement-substrate (fold this failure record into mech457_competence_bootstrap_explorer); a same-claim mode-gate retune / any further bolt-on leg against the same competence floor is REFUSED. MECH-457 stays candidate/v3_pending. The H-credit x H-return additivity pair V3-EXQ-756 was still running on ree-cloud-3 at autopsy time.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech457_competence_bootstrap_explorer",
+        "sd_id_suggested": "mech457_competence_bootstrap_explorer",
+        "title": "Competent unsupervised explorer for the action-learning competence floor (MECH-457) -- 755 sharpens the CAPACITY half: adequate policy capacity + training budget to convert coverage into competence, not merely a success-independent drive.",
+        "implementation_hint": "755 (H-mode) shows an explore/exploit arbitration controller adds no consolidation gain over fixed RND -- the residual is not exploration SCHEDULING but the explorer's CAPACITY to convert coverage into competence (RND plateaus at ~2.9-5.2 res/ep ~= 11% of the 48 local-view ceiling). When materialising the entry recommended by failure_autopsy_MECH-457-fanout-752-753-754 (compose ARC-065/MECH-314 curiosity as a success-independent bootstrap drive), ensure the build ALSO increases policy capacity / training budget so the composed explorer reaches floor->COMPETENT, not merely off-floor. If governance has already created the entry from the 752-753-754 autopsy, append this failure record; if not, create it per that autopsy first, then append.",
+        "unblocks_claims": ["MECH-457", "INV-088"],
+        "depends_on_unresolved": ["SD-056", "MECH-229", "ARC-065 (landed curiosity substrate to compose)", "MECH-314 (landed novelty/curiosity-bias substrate to compose)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_755_mech457_hmode_explore_exploit_gate_20260715T081923Z_v3",
+          "experiment_type": "v3_exq_755_mech457_hmode_explore_exploit_gate",
+          "metric": "C_hmode_beats_fixed_rnd_by_margin FAIL -- utility-gated rnd_mode arm does not beat same-run fixed-coef rnd_fixed by the 1.0 consolidation margin: z_world +0.30 (2.933 vs 2.633), raw -0.367 (0.367 vs 0.733), any_rep_mode_gain=false; both RND arms supra-floor but plateau ~11% of the 48 local-view ceiling.",
+          "target": "utility-gated mode arm exceeds same-run fixed-coef RND by >= 1.0 res/ep with strict-majority-of-seeds supra-floor (and, for the build, reaches COMPETENT foraging >> the 5.22 RND plateau toward the 48.05 local-view ceiling)."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15"
+        ],
+        "refused_requeue": true,
+        "refused_requeue_scope": "same-claim mode-gate retune, or any further single-axis bolt-on leg (credit/return/curriculum/mode-style) circling the same MECH-457 competence floor. The eventual post-build retest of the composed competent explorer is NOT refused; nor is a genuinely-distinct-mechanism new-EXQ question.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_competence_bootstrap_explorer"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "GOV-FANOUT-1 portfolio is EXHAUSTED at the single-axis level: all four distinct axes (credit/return/curriculum/mode) refuted, RND (751) the sole floor-clear. The bottleneck is now a single unambiguous build (mech457_competence_bootstrap_explorer), not an open discrimination -- so NO fresh fan-out is owed. The one remaining portfolio cell (756 additivity pair) is already running and does not require a new fan-out."
+      },
+      "learning_extracted": [
+        "The policy-control / explore-exploit-arbitration axis is refuted as the missing lever for the MECH-457 competence floor: a critic-utility mode gate produces zero consolidation gain over fixed-coefficient RND on both representations.",
+        "The residual gap is explorer CAPACITY to convert coverage->competence (RND plateaus at ~11% of the local-view ceiling), NOT exploration scheduling -- this sharpens the second half of the mech457_competence_bootstrap_explorer build target (adequate policy capacity/training budget), complementing the success-independent-drive half established by 752-754.",
+        "755 differs in shape from 752-754 (its RND arms clear the floor; the treatment adds nothing) yet converges on the same structural conclusion -- convergence across two different failure shapes on the same claim is the load-bearing signal, not two independent nulls.",
+        "The four-axis single-mechanism portfolio (752/753/754/755) is now closed with a single floor-clear (751 RND); the additivity pair 756 remains in flight but the cold-start/capacity reading predicts it also fails."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Across the GOV-FANOUT-1 single-axis portfolio, NO mechanism bolted onto exploration lifts competence above raw success-independent novelty: 752 (backward credit sweep), 753 (Go-Explore archive/return) and 754 (AMIGo goal-frontier) collapse to the sparse-RL baseline (~0.15-0.45, sub-floor); 755 (critic-utility explore/exploit gate) clears the floor via its RND arms but adds no gain over fixed-coef RND (+0.30/-0.37). Only 751 (unsupervised RND explorer) cleared the 1.0 floor (5.22), and even it reaches only ~11% of the 48 local-view ceiling.",
+    "is_independent_bugs": false,
+    "structural_property": "COLD-START + CAPACITY. Two joined halves: (1) success-dependence -- mechanisms that amplify signal derived from prior task success (credit/return/curriculum) cannot bootstrap from ~0 competence (752-754); only success-INDEPENDENT drives (RND 751, BC 748) break the floor. (2) capacity/conversion -- even a competent arbitration controller over a success-independent drive (755 mode gate) cannot squeeze more competence from a low-capacity explorer; the ceiling is the explorer's capacity to convert coverage into competence. The build target mech457_competence_bootstrap_explorer must satisfy BOTH: compose ARC-065/MECH-314 curiosity as a success-independent bootstrap drive AND add adequate policy capacity/training budget for floor->competent.",
+    "readings": ["cold_start_success_dependence", "explorer_capacity_conversion", "test_design_ceiling_subordinate"]
+  }
+}
