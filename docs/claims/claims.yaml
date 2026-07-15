@@ -18434,6 +18434,22 @@
     toward stable until a bound-coupling PASS exists. Net: no promotion; the single
     remaining support is a decodability positive control, and the sole bound test to
     date weakens.
+
+    2026-07-15 (V3-EXQ-746b autopsy -- failure_autopsy_V3-EXQ-746b_2026-07-15): 746a's
+    weakens is MEASUREMENT-SUSPECT. 746b repaired the DV estimator (standardised target +
+    K=5-fold averaged held-out R2 + weight-decay/early-stopping + finite R2 floor -1) and
+    showed PC_dv_estimator_ok=True, mean_dv_mature 0.45 -- the harm_eval_z_harm head CAN
+    beat the mean at maturity, so 746a's -166 held-out divergence was estimator pathology,
+    not a real null. 746a's weakens is RETAINED and still weighted (746b delivered no valid
+    bound test -- its IV starved on PC_iv_moved, mean_iv_delta +0.002, so the coupling could
+    not express itself) but flagged measurement-suspect pending a valid met-both-preconditions
+    bound test. V3-EXQ-746c (queued 2026-07-15, ree-v3 commit 697250c) is that test: primary
+    target corrected to prox (the SD-010 harm-proximity label -- the only collected target
+    whose z_harm differentiation genuinely grows with maturation AND survives adequate
+    sampling; local-density's gradient is a small-sample underfitting artifact) and the IV/DV
+    data budgets decoupled (disjoint pools) so neither leg starves the other. INV-089 stays
+    provisional on 743's single-pathway positive control; no promotion until a bound-coupling
+    PASS on a valid met-precondition test exists.
   subject: development.maturational_sequence
   description: >
     Child (ii) of INV-064 (harm leg). E3's nociceptive harm-evaluation quality --
