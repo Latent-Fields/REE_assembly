@@ -48785,6 +48785,73 @@
     inline PASS. PROMOTES NOTHING; v3_pending until the cloud V3-EXQ-763 PASS.
   validation_experiment: V3-EXQ-763 (MECH-304 promote-to-active behavioural falsifier)
 
+- id: SD-067
+  title: "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_world residual scale (~0.065 between safe/unsafe contexts under SD-008 under-differentiation), so evaluate_safety SATURATES (reads ~identically in every context) and the fixed contextual_safety_release_threshold cannot resolve the safe-vs-unsafe signal into an absolute gap -- the discrimination exists as a rank (AUC ~0.83, V3-EXQ-760) but the behavioural release fires indiscriminately. The tighter bandwidth resolves it into an absolute gap the release gate can use. The Euclidean-RBF sibling of SD-066 (same SD-008 root cause); centering is a no-op here because Euclidean distance is translation-invariant, so bandwidth is the correct lever. A read-resolution workaround, NOT a z_world representation fix."
+  claim_type: design_decision
+  subject: safety_prediction.contextual_safety_terrain_read_resolution
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-15
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-07-15"
+  depends_on:
+    - MECH-303  # the contextual passive safety terrain whose read this resolves
+    - SD-008    # the z_world under-differentiation (common-mode) this works around
+  functional_restatement: >
+    The MECH-303 behavioural promote-to-active gate hits the same SD-008 z_world
+    common-mode ceiling SD-066 fixed for the sister claim MECH-304, but through a
+    different readout. The contextual safety terrain is an RBF over accumulated
+    z_world centers: evaluate_safety(z) = sum_i w_i * exp(-||z-center_i||^2 /
+    (2*bw^2)); the release gate fires when evaluate_safety(z_world).mean() >=
+    contextual_safety_release_threshold, with bw inherited from the shared
+    kernel_bandwidth (1.0). Under SD-008, safe (num_hazards=0) and unsafe
+    (num_hazards=8) contexts sit only ~0.065 apart in z_world (cosine ~0.988), so a
+    bandwidth of 1.0 is ~15x too wide: the RBF saturates (safe read 99.7 vs unsafe
+    99.7, ratio 1.00) and the fixed threshold fires indiscriminately -- terrain-ON
+    arms release at 1.0 in BOTH a safe and an unsafe context, so context-specificity
+    fails for a substrate reason, not a real null. The discrimination exists (raw
+    Euclidean rank AUC ~0.83, matching V3-EXQ-760) but the wide bandwidth cannot
+    resolve it into an absolute gap. SD-067 adds an opt-in dedicated
+    safety_terrain_bandwidth (tighter than kernel_bandwidth) so evaluate_safety
+    resolves the small residual into an absolute gap. Config
+    residue.safety_terrain_bandwidth (Optional[float], default None -> falls back to
+    kernel_bandwidth, byte-identical), surfaced through from_dims. Centering (the
+    SD-066 lever) is a no-op here: the RBF is Euclidean-distance-based and Euclidean
+    distance is translation-invariant, so bandwidth -- not a baseline subtraction --
+    is the correct lever. A read-resolution workaround for the SD-008 common-mode,
+    NOT a z_world representation fix and NOT a metric-learned terrain (the sharper
+    long-term answer).
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-07-15 (session unruffled-hopper-e33b08),
+    disabled-by-default. config.py ResidueConfig.safety_terrain_bandwidth (default
+    None) + from_dims(safety_terrain_bandwidth=None) threaded onto config.residue
+    when use_contextual_safety_terrain=True; field.py safety_terrain_rbf_field uses
+    it when set, else kernel_bandwidth. 6/6 new contracts in
+    tests/contracts/test_sd067_safety_terrain_bandwidth.py (None->kernel
+    bit-identical / config default None / dedicated bandwidth used + harm RBF
+    untouched / tight bandwidth resolves a small separation the wide one cannot /
+    from_dims wiring). Full pytest tests/ 1469 passed (bit-identical OFF). Real-field
+    inline validation (safety_terrain_bandwidth=0.03, release_threshold 0.5, 6 seeds):
+    arm A terrain-ON safe release 0.748, arm B terrain-OFF safe 0.000 (terrain-necessity
+    gap 0.748 PASS), arm C terrain-ON unsafe 0.457 (context-specificity gap 0.292 FAIL
+    < 0.34), arm D store-ON cue 0.833 (MECH-304 dissociation PASS). SD-067 WORKS AS
+    DESIGNED -- it resolves the previously-saturated read (~99.7 in every context ->
+    terrain-necessity now demonstrable at 0.748) into a usable absolute gap. The residual
+    context-specificity shortfall is UPSTREAM in z_world (SD-008), not SD-067: directional
+    5/6 seeds (A>C) but 1 seed inverts and a variance-aware paired test (t~1.8, p~0.13)
+    does not clear it -- an AUC-0.83 z_world input ceiling no read-side bandwidth can break.
+    DISPOSITION (2026-07-15, user): SD-067 lands as a validated read-resolution fix; the
+    MECH-303 promote-to-active behavioural falsifier V3-EXQ-764 is HELD (not queued), gated
+    on z_world differentiation (SD-008); the validated script is committed and ready to
+    queue once z_world can separate safe/unsafe contexts. PROMOTES NOTHING; stays
+    candidate/v3_pending (no landed cloud validation while 764 is held; inline-validated).
+  validation_experiment: V3-EXQ-764 (MECH-303 promote-to-active behavioural falsifier -- HELD pending SD-008 z_world differentiation)
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis

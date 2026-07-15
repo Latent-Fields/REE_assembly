@@ -7605,6 +7605,14 @@
     "title": "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix.",
     "type": "design_decision"
   },
+  "SD-067": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "safety_prediction.contextual_safety_terrain_read_resolution",
+    "title": "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_world residual scale (~0.065 between safe/unsafe contexts under SD-008 under-differentiation), so evaluate_safety SATURATES (reads ~identically in every context) and the fixed contextual_safety_release_threshold cannot resolve the safe-vs-unsafe signal into an absolute gap -- the discrimination exists as a rank (AUC ~0.83, V3-EXQ-760) but the behavioural release fires indiscriminately. The tighter bandwidth resolves it into an absolute gap the release gate can use. The Euclidean-RBF sibling of SD-066 (same SD-008 root cause); centering is a no-op here because Euclidean distance is translation-invariant, so bandwidth is the correct lever. A read-resolution workaround, NOT a z_world representation fix.",
+    "type": "design_decision"
+  },
   "SENT-0": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
