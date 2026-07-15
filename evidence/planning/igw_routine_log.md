@@ -964,3 +964,4 @@ One line per hourly tick. ASCII only.
 2026-07-15T17:05:51Z complete IGW-20260713-198 completed_resumable->completed outcome=USEFUL_LANDED: marked EVB-0113 (MECH-077) blocked_substrate: behavioural therapeutic-change DV
 2026-07-15T18:19:18Z skip IGW-20260715-203: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-15T19:19:50Z skip IGW-20260715-203: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-15T20:23:12Z skip IGW-20260715-203: no fresh runner heartbeat (experiment-lane item would just sit in queue)
