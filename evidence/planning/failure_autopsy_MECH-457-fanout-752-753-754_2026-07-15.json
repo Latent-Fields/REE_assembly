@@ -1,0 +1,128 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-15T08:27:34Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_slug": "MECH-457-fanout-752-753-754",
+  "fans_out_from": "failure_autopsy_MECH-457-fanout-751-750_2026-07-14.json",
+  "user_decisions_2026_07_15": [
+    "Accept the cold-start / success-dependence reading as the load-bearing diagnosis.",
+    "Route implement-substrate now (competent explorer build) AND queue H-mode in parallel as the one remaining distinct axis; H-mode does NOT gate the build."
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_752_mech457_hcredit_backward_sweep_20260715T001321Z_v3",
+      "queue_id": "V3-EXQ-752",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "self_route_label": "hcredit_subfloor_does_not_clear_floor",
+      "arm_result": "hcredit_zw 0.2/0.45/0.3, hcredit_raw 0.25/0.4/0.35 -- indistinguishable from sparse baseline; below 1.0 floor and RND 5.22 plateau",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (dependency): refutes sufficiency of sparse-reward-credit bolt-ons; does not falsify MECH-457",
+        "biological_reference": "clear: reward-credit learning presupposes earned reward; cold-start is a known RL + developmental property",
+        "prerequisites": "missing (buildable): a success-independent dense per-step drive wired to the foraging policy",
+        "implementation": "complete (portfolio-gated); per-mechanism internals not line-by-line re-verified",
+        "environment": "adequate: oracle 57 / local-view 48 / RND 5.22 clear the floor",
+        "measurement": "adequate: per-seed competence + pre-registered RND/BC/ceiling reference bands",
+        "integration": "isolated-per-class; H-credit x H-return additivity pending in V3-EXQ-756",
+        "scale": "insufficient at current explorer; build target = floor->competent"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal/ventral striatal actor-critic (O'Doherty 2004) with dopaminergic RPE teaching signal (Schultz 1997); developmental novelty-drive + imitation preceding reward-credit control",
+        "dependencies": ["success-independent dense per-step bootstrap signal (novelty-drive or imitation)", "policy capacity to convert coverage into competence"],
+        "is_formal_import": false,
+        "divergence": "sparse-reward-credit reshaping (backward credit sweep) cannot manufacture a bootstrap signal from zero success",
+        "lit_status": "present (targeted_review_actor_critic_action_learning + targeted_review_action_learning_bootstrap_class_choice)"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-15 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-752/753/754, diagnostic, claim_ids=[MECH-457(+INV-088 on 754)]; consumed via /governance from failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15). Three composable action-learning classes on distinct axes -- H-credit (backward credit sweep), H-return (Go-Explore archive/return), H-curriculum (AMIGo goal-frontier) -- each FAIL to lift above the RND 5.22 novelty plateau; all three collapse to the sparse-RL baseline (~0.15-0.45 @D3, below the 1.0 floor), adding nothing over vanilla sparse RL while every readiness precondition holds (oracle 57, local-view 48, random_walk floor). DISCRIMINATED CAUSE (cold-start / success-dependence): all three amplify signal derived from prior task success (credit to propagate / states to archive / achievable frontier), so they cannot bootstrap from ~0 competence; only the two success-INDEPENDENT classes in the arc -- RND novelty (751, 5.22) and BC imitation (748, 32.72) -- break the floor. STRENGTHENS the dependency reading (action-learning needs a success-independent dense per-step bootstrap signal -- novelty-drive/imitation -- consistent with O'Doherty/Schultz/Sutton); does NOT falsify MECH-457 (necessity intact; sufficiency of sparse-reward-credit tricks refuted). Diagnostic -- excluded from confidence/conflict scoring; PROMOTES/DEMOTES NOTHING. Re-derive brake FIRES (2nd non_contributory/convergent MECH-457 autopsy): route = implement-substrate; same-claim bolt-on test re-queue REFUSED. H-mode queued in parallel as the one remaining distinct axis (does not gate the build). MECH-457 stays candidate/v3_pending. Pair cell V3-EXQ-756 in flight at autopsy time.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "mech457_competence_bootstrap_explorer",
+        "title": "Competent unsupervised explorer for the action-learning competence floor (MECH-457): compose the landed ARC-065/MECH-314 curiosity-novelty substrate as a SUCCESS-INDEPENDENT dense per-step bootstrap drive for the foraging policy, plus adequate policy capacity/training budget to convert coverage into competence. Targets floor->competent (RND alone reaches only 5.22 ~= 11% of the 48 local-view ceiling). UPSTREAM of f_dominance_conversion_ceiling (which is the downstream selection-face variance-monopoly ceiling).",
+        "implementation_hint": "The 752/753/754 portfolio shows sparse-reward-credit reshaping (credit-sweep / archive-return / achievable-goal curriculum) cannot bootstrap from ~0 competence -- they all need prior success. Build a success-INDEPENDENT dense drive instead: wire the existing ARC-065/MECH-314 curiosity/novelty reward as an every-step bootstrap signal for the trainable foraging policy (composition, NOT a new novelty module -- honours the lit-pull duplication objection), and give the policy enough capacity/training to lift beyond the RND coverage plateau toward the local-view competence ceiling (~48). Do NOT re-queue another sparse-reward-credit bolt-on class against this floor (re-derive brake).",
+        "unblocks_claims": ["MECH-457", "INV-088"],
+        "depends_on_unresolved": ["SD-056", "MECH-229", "ARC-065 (landed curiosity substrate to compose)", "MECH-314 (landed novelty/curiosity-bias substrate to compose)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_752_mech457_hcredit_backward_sweep_20260715T001321Z_v3 | v3_exq_753_mech457_hreturn_go_explore_archive_20260715T020417Z_v3 | v3_exq_754_mech457_hcurriculum_goal_frontier_20260715T060558Z_v3",
+          "experiment_type": "v3_exq_75{2,3,4}_mech457_h{credit,return,curriculum}",
+          "metric": "foraging_competence @D3: all three mechanism arms ~0.15-0.45 (z_world and raw), indistinguishable from sparse-RL baseline, below the 1.0 floor and the RND 5.22 novelty plateau",
+          "target": "lift above the RND 5.22 plateau toward BC competence 32.72 / local-view ceiling 48.05 -- a working competent-explorer build must reach competent (not merely off-floor) foraging on the 5x5 local view"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_MECH-457-fanout-751-750_2026-07-14"],
+        "refused_requeue": true,
+        "refused_requeue_scope": "same-claim sparse-reward-credit BOLT-ON re-poses (another credit/return/curriculum-style class against the same competence floor). Distinct-axis GOV-FANOUT-1 legs (H-mode) and the eventual post-build retest are NOT refused.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_competence_bootstrap_explorer (new entry; create)"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "primary_route": "implement-substrate (single build) -- the bottleneck is now a named build, not a fan-out",
+        "live_hypotheses": ["H1 (adopted): cold-start needs a success-independent dense drive -> build the competent explorer", "H-mode: an explicit explore/exploit behavioural arbitration (critic-utility gate) may lift where success-dependent classes did not"],
+        "suggested_probes": [
+          {"hypothesis": "H-mode", "axis": "behavioural mode (explore/exploit arbitration)", "sketch": "critic-utility explore/exploit gate on the foraging policy; shares env/baseline + 742-sparse and RND-5.22 reference cells; declared null = H-mode arm <= RND 5.22 plateau on a strict majority of seeds", "gates_build": false}
+        ],
+        "note": "GOV-FANOUT-1: the primary bottleneck routes to a single build (implement-substrate). H-mode is the one remaining genuinely-distinct axis, queued in PARALLEL per user decision -- it does not gate the substrate build. Per re-derive brake, do NOT add further sparse-reward-credit bolt-on legs."
+      },
+      "learning_extracted": [
+        "The competence floor is a COLD-START problem: mechanisms that amplify signal from prior task success (credit propagation, archive-return, achievable-goal curriculum) cannot bootstrap from ~0 competence.",
+        "Only success-INDEPENDENT dense per-step drives break the floor: RND novelty (5.22) and BC imitation (32.72). This narrows the build to a success-independent bootstrap drive.",
+        "The build is COMPOSITION not a new module: wire landed ARC-065/MECH-314 curiosity as the bootstrap drive (honours the lit-pull duplication objection) + policy capacity to convert coverage->competence.",
+        "RND clears the floor but only to ~11% of ceiling -- coverage gets you off the floor, a conversion step is still needed for competence."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_753_mech457_hreturn_go_explore_archive_20260715T020417Z_v3",
+      "queue_id": "V3-EXQ-753",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "self_route_label": "hreturn_subfloor_does_not_clear_floor",
+      "arm_result": "hreturn_zw 0.25/0.2/0.3, hreturn_raw 0.15/0.3/0.45 -- indistinguishable from sparse baseline; script docstring itself notes RND 'DETACHES from the frontier' and the return is 'a teleport'",
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "See MECH-457 portfolio note on V3-EXQ-752 (same cluster autopsy). H-return (Go-Explore archive/return) collapses to the sparse baseline: an incompetent policy reaches no interesting states to archive, so there is nothing to return to -- the success-dependence failure mode. Diagnostic; PROMOTES/DEMOTES NOTHING.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_754_mech457_hcurriculum_goal_frontier_20260715T060558Z_v3",
+      "queue_id": "V3-EXQ-754",
+      "claim_ids": ["MECH-457", "INV-088"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "self_route_label": "hcurriculum_subfloor_does_not_clear_floor",
+      "arm_result": "hcurriculum_zw 0.15/0.2/0.15, hcurriculum_raw 0.15/0.1/0.3 -- indistinguishable from (arguably slightly below) sparse baseline",
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note_MECH457": "See MECH-457 portfolio note on V3-EXQ-752 (same cluster autopsy). H-curriculum (AMIGo goal-frontier) collapses to the sparse baseline: from ~0 competence the achievable-goal frontier is trivial and carries no gradient toward foraging -- the success-dependence failure mode. Diagnostic; PROMOTES/DEMOTES NOTHING.",
+      "recommended_evidence_quality_note_INV088": "2026-07-15 (V3-EXQ-754, diagnostic, INV-088 carried): the strategy-diversity readout remains starved -- no matched-competent policy exists on either representation (same block as 750). Not weighted against INV-088. Retest is pending_retest_after_substrate on the competent-explorer build (mech457_competence_bootstrap_explorer). INV-088 stays candidate/pending_substrate_reconfirmation.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "three distinct-axis composable action-learning classes (backward credit sweep / Go-Explore archive-return / AMIGo goal-frontier) each collapse to EXACTLY the sparse-RL baseline (~0.15-0.45 @D3), below the 1.0 floor and the RND 5.22 success-independent novelty plateau",
+    "is_independent_bugs": false,
+    "structural_property": "COLD-START / success-dependence: all three amplify or restructure signal derived from prior task success, so they cannot bootstrap competence from ~0; only success-INDEPENDENT dense per-step drives (RND novelty 5.22, BC imitation 32.72) break the floor",
+    "readings": ["cold_start_success_dependence (adopted, load-bearing)", "test_design_ceiling (subordinate: per-mechanism training/capacity not line-by-line re-verified, but three coincident under-trainings collapsing to the identical baseline is implausible)"]
+  },
+  "granularity_debt_trigger": {
+    "fires": false,
+    "rationale": "MECH-457 has 4+ prior autopsies but they CONVERGE (progressive refinement: 734-737 competence gap -> 742 upstream-of-credit -> 747/748/749 RL-exploration-bootstrap -> 751 exploration-was-the-wall -> 752/753/754 cold-start/success-dependence), rather than scattering across structurally-distinct sub-mechanisms. The claim is not coarse; it is blocked on a single buildable substrate. Route = implement-substrate, not claim-synthesis. Same reasoning as the 751-750 autopsy.",
+    "routing": null
+  }
+}
