@@ -2255,6 +2255,8 @@
   },
   "INV-088": {
     "assembly_state": "remaining",
+    "assembly_status": "queued",
+    "awaiting": "mech457_competence_bootstrap_explorer",
     "emergent_from": [
       "ARC-001",
       "ARC-003",
@@ -3067,9 +3069,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-092": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "mature",
     "epistemic_stance": "shown",
-    "status": "candidate",
+    "status": "provisional",
     "subject": "hippocampal.quiescent_offline_replay",
     "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
     "type": "mechanism_hypothesis"
@@ -4852,11 +4854,11 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-303": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "mature",
     "assembly_status": "built",
     "awaiting": "MECH-302",
     "epistemic_stance": "shown",
-    "status": "candidate",
+    "status": "provisional",
     "subject": "safety_prediction.contextual_passive_substrate",
     "title": "Context-bound passive safety representation: the agent encodes 'this environment predicts absence of suffering' through sustained non-occurrence of harm, without requiring a discrete teaching event. Substrate is prefrontal-hippocampal (IL for expression gating; vHipp-to-PL-equivalent for contextual store). Update rule is diffuse and slow -- accumulated context exposure without harm drives the store. Output lowers background vigilance threshold: reduces the general avoidance commitment level when the agent is in an environment the store predicts as safe. Parallel to the 'things liked' goal-cue store but tracking suffering-absence rather than reward-presence. Sister claim to MECH-304 (cue-specific conditioned inhibition pathway).",
     "type": "mechanism_hypothesis"
@@ -4866,7 +4868,7 @@
     "assembly_status": "built",
     "awaiting": "SD-051",
     "epistemic_stance": "shown",
-    "status": "provisional",
+    "status": "active",
     "subject": "safety_prediction.cue_specific_conditioned_inhibition_substrate",
     "title": "Cue-specific conditioned safety prediction: a discrete predictive structure encodes 'this stimulus actively predicts that suffering will be omitted', updated by explicit MECH-302 relief-completion events as its teaching signal. Encoding substrate is cortico-striatal (dorsal striatum + dlPFC). Expression/output pathway is IL-to-CeA. This is the conditioned-inhibition mechanism: when a specific cue co-occurs with relief, a separate learned prediction forms that can gate avoidance commitment release when the cue is later present. Sister claim to MECH-303 (contextual passive safety representation).",
     "type": "mechanism_hypothesis"

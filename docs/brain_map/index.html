@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- BRAIN_MAP_VERSION: 2026-06-06.7 -->
+<!-- BRAIN_MAP_VERSION: 2026-07-13.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -171,7 +171,7 @@
   const PLANES = ["sagittal", "coronal", "axial"];
   const IMPL_DIM = { full: 1, partial: 0.65, claim_only: 0.35 };
   const TIER_RGB = { expressed: [46,160,67], claimed: [210,153,34], frontier: [163,113,247], absent: [72,79,88] };
-  let payload = null, nodeById = {}, selectedId = null, regions3d = null;
+  let payload = null, nodeById = {}, selectedId = null, regions3d = null, atlasIndex = null;
   const YAW0 = -0.62, PITCH0 = -0.32;
   let yaw3d = YAW0, pitch3d = PITCH0, zoom3d = 1, inited3d = false, hover3dId = null;
   const $ = (id) => document.getElementById(id);
@@ -192,8 +192,23 @@
     await Promise.all(PLANES.map(loadPlane));
     init3d();
     applyLayers();
-    const params = new URLSearchParams(location.search);
-    const region = params.get("region"), claim = params.get("claim");
+    if (!atlasIndex) { try { atlasIndex = await loadAtlasIndex(); } catch (e) { atlasIndex = { ok: false }; } }
+    applyDeepLink();
+  }
+
+  // Deep links arrive as either query (?claim=/?region=) or hash (#claim=/#region=).
+  // The Code Atlas chips link here as "/brain-map#claim=<id>", so the hash form must work.
+  function parseHashParams() {
+    const h = (location.hash || "").replace(/^#/, "");
+    if (!h) return {};
+    const m = h.match(/^(claim|region)[=:-](.+)$/);
+    return m ? { [m[1]]: decodeURIComponent(m[2]) } : {};
+  }
+  function applyDeepLink() {
+    const q = new URLSearchParams(location.search);
+    const hp = parseHashParams();
+    const region = hp.region || q.get("region");
+    const claim = hp.claim || q.get("claim");
     if (region && nodeById[region]) selectNode(region);
     else if (claim) selectByClaim(claim);
   }
@@ -454,6 +469,41 @@
     return PLANES.filter((p) => $("host_" + p).querySelector('[data-region="' + cssEsc(id) + '"]'));
   }
 
+  // Fetch the Code Atlas once and index source file -> atlas layer id. Region files in
+  // brain_region_map (ree_core_paths / functional_analogs) are ree_core-relative, so strip
+  // the "ree_core/" prefix off atlas filePaths for matching.
+  async function loadAtlasIndex() {
+    const r = await fetch("/api/code_atlas", { cache: "no-cache" });
+    const p = await r.json();
+    const layerIdByName = {};
+    (p.layers || []).forEach((L) => { if (L.name) layerIdByName[L.name] = L.id; });
+    const fileLayer = {};
+    (p.nodes || []).forEach((n) => {
+      const fp = n.filePath || "";
+      if (!fp || fp in fileLayer) return;
+      const rel = fp.indexOf("ree_core/") === 0 ? fp.slice("ree_core/".length) : fp;
+      fileLayer[rel] = layerIdByName[n.layer] || null;
+    });
+    return { ok: !p.error, fileLayer: fileLayer, files: Object.keys(fileLayer) };
+  }
+
+  // Atlas layer id owning the plurality of a region's files, or null.
+  function atlasLayerForRegion(node) {
+    if (!atlasIndex || !atlasIndex.ok) return null;
+    const entries = (node.ree_core_paths || []).concat(node.functional_analogs || []);
+    if (!entries.length) return null;
+    const tally = {};
+    atlasIndex.files.forEach((rel) => {
+      const lid = atlasIndex.fileLayer[rel];
+      if (!lid) return;
+      const hit = entries.some((e) => { e = String(e).replace(/\/$/, ""); return rel === e || rel.indexOf(e + "/") === 0; });
+      if (hit) tally[lid] = (tally[lid] || 0) + 1;
+    });
+    let best = null, bestN = 0;
+    Object.keys(tally).forEach((lid) => { if (tally[lid] > bestN) { bestN = tally[lid]; best = lid; } });
+    return best;
+  }
+
   function renderSidebar(node) {
     if (!node) { $("sidebar").innerHTML = '<p class="empty">No region selected.</p>'; return; }
     const tier = node.coverage_tier || "claimed";
@@ -485,6 +535,14 @@
         html += '<li><a href="https://github.com/Latent-Fields/REE_assembly/blob/master/' + esc(d) + '" target="_blank" rel="noopener">' + esc(d.split("/").pop()) + "</a></li>"; });
       html += "</ul>";
     }
+    if ((node.ree_core_paths || []).length || (node.functional_analogs || []).length) {
+      const lid = atlasLayerForRegion(node);
+      const firstClaim = (node.claims_sample && node.claims_sample[0] && node.claims_sample[0].id) || (node.claim_ids || [])[0];
+      let href = null;
+      if (lid) href = "/code-atlas?layer=" + encodeURIComponent(lid);
+      else if (firstClaim) href = "/code-atlas?claim=" + encodeURIComponent(firstClaim);
+      if (href) html += '<p class="meta"><a href="' + href + '" target="_blank" rel="noopener">Open files in Code Atlas &nearr;</a></p>';
+    }
     html += '<p class="meta"><b>Claims</b> (sample)</p><ul class="claim-list">';
     (node.claims_sample || []).forEach((c) => {
       html += '<li><a href="../public_explorer/#claim-' + esc(c.id) + '" target="_blank" rel="noopener">' +
@@ -505,6 +563,7 @@
   ["layerImpl", "layerClaims", "layerEvidence", "layerFrontier", "layerGhost", "layerAnatomy"].forEach((id) => {
     $(id).addEventListener("change", applyLayers);
   });
+  window.addEventListener("hashchange", applyDeepLink);
   load();
   setInterval(load, 60000);
 })();

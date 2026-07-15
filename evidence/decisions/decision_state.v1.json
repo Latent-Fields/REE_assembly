@@ -469,13 +469,13 @@
       "timestamp_utc": "2026-02-15T18:46:42.773429Z"
     },
     "MECH-046": {
-      "actor": "user",
-      "decision_needed": "Model adjudication outcome selection",
+      "actor": "governance",
+      "decision_needed": "Keep provisional; record first evidence-class functional-signature support",
       "decision_status": "applied",
-      "rationale": "Applied anti-lock-in dispatch recommendation: retain_ree; basis=conflict_below_hybrid_threshold; conflict_ratio=0.667; overall_confidence=0.597.",
-      "recommendation": "retain_ree",
-      "selected_option": "retain_ree",
-      "timestamp_utc": "2026-02-15T18:46:42.773429Z"
+      "rationale": "V3-EXQ-762 PASS/supports: first genuine exp-class support (genuine_exp 0->1) -- mode_prior present + context range 0.70 + monotone + coordinator-write + bounded. 1 genuine exp is thin for a stable flip; consolidates provisional.",
+      "recommendation": "record_supporting_evidence",
+      "selected_option": "Keep provisional + record support",
+      "timestamp_utc": "2026-07-15T13:44:33.349339Z"
     },
     "MECH-053": {
       "actor": "user",
@@ -676,13 +676,13 @@
       "timestamp_utc": "2026-03-29T21:16:41.297665Z"
     },
     "MECH-092": {
-      "actor": "user",
-      "decision_needed": "Conflict resolution before promotion",
+      "actor": "governance",
+      "decision_needed": "Promote candidate->provisional: quiescent-replay triggering signature confirmed",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: conflict ratio requires resolution before promotion. Dedicated experiments queued.",
-      "recommendation": "hold_candidate_resolve_conflict",
-      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
-      "timestamp_utc": "2026-03-29T21:16:41.333183Z"
+      "rationale": "V3-EXQ-761 PASS/supports: replay fires selectively on quiescent E3 cycles via real production path (first triggering-signature evidence). Prior hold_candidate_resolve_conflict was substrate-driven (EXQ-136 couldn't test consolidation), not a genuine support-vs-weaken conflict. Promote-to-active still needs SD-006-gated downstream consolidation-benefit test.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote candidate->provisional",
+      "timestamp_utc": "2026-07-15T13:44:33.301255Z"
     },
     "MECH-093": {
       "actor": "user",
@@ -1198,14 +1198,13 @@
       "timestamp_utc": "2026-06-10T16:18:22Z"
     },
     "MECH-284": {
-      "actor": "governance-2026-07-14T20:41Z",
+      "actor": "governance-2026-07-14T20:4xZ",
       "decision_needed": "First indexed V3 evidence (V3-EXQ-758 staleness-accumulator functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
       "decision_status": "applied",
+      "rationale": "governance 2026-07-14: V3-EXQ-758 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate; drives real StalenessAccumulator.integrate()/tick_leak()/snapshot(); load-bearing C2 region-locality + C1 monotone rise + C3 leak decay all met 5/5; both readiness preconditions met). First indexed exp evidence for MECH-284 (the 2026-04-25 EXQ-478/480 runs were inconclusive/behaviourally-inert, not supporting). Accumulator complement to MECH-287 (promoted same day via sibling V3-EXQ-757). v3_pending:false, status provisional. NOT-YET-CLEARED for promote-to-active: the pre-registered EXQ-475 unlock test + dissociation-from-prediction-error + attribution_weight specificity remain the separate gate. Precedent: MECH-287/288/304 promote_to_provisional 2026-07-14.",
       "recommendation": "promote_to_provisional",
       "selected_option": "Clear v3_pending gate and promote to provisional",
-      "rationale": "governance 2026-07-14: V3-EXQ-758 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate; drives real StalenessAccumulator.integrate()/tick_leak()/snapshot(); load-bearing C2 region-locality + C1 monotone rise + C3 leak decay all met 5/5; both readiness preconditions met). First indexed in-silico evidence for MECH-284 (the 2026-04-25 EXQ-478/480 runs were inconclusive/behaviourally-inert, not supporting). Accumulator complement to MECH-287 (promoted same day via sibling V3-EXQ-757). v3_pending:false, status provisional. NOT-YET-CLEARED for promote-to-active: the pre-registered EXQ-475 unlock test + dissociation-from-prediction-error + attribution_weight specificity remain the separate gate. Precedent: MECH-287/288/304 promote_to_provisional 2026-07-14.",
-      "timestamp_utc": "2026-07-14T20:41:53.792349Z",
-      "source_file": "evidence/experiments/v3_exq_758_mech284_staleness_accumulator_monotonicity_20260714T200900Z_v3.json"
+      "timestamp_utc": "2026-07-14T20:41:53.792349Z"
     },
     "MECH-285": {
       "actor": "governance-2026-06-23T22:14",
@@ -1220,21 +1219,19 @@
       "actor": "governance-2026-07-14T20:07Z",
       "decision_needed": "First indexed V3 evidence (V3-EXQ-757 functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
       "decision_status": "applied",
+      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
       "recommendation": "promote_to_provisional",
       "selected_option": "Clear v3_pending gate and promote to provisional",
-      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
-      "timestamp_utc": "2026-07-14T20:19:21.313158Z",
-      "source_file": "evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json"
+      "timestamp_utc": "2026-07-14T20:19:21.313158Z"
     },
     "MECH-288": {
       "actor": "governance-2026-07-14T20:07Z",
       "decision_needed": "First indexed V3 evidence (V3-EXQ-757 functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
       "decision_status": "applied",
+      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
       "recommendation": "promote_to_provisional",
       "selected_option": "Clear v3_pending gate and promote to provisional",
-      "rationale": "governance 2026-07-14: V3-EXQ-757 wall-independent functional-signature isolation test PASS/supports (5 seeds, non-degenerate, all 6 load-bearing criteria); first indexed exp evidence. v3_pending:false, status provisional. Behavioural/integrated confirmation (V3-EXQ-476 unlock + four-arm factorial for 287; Phase-2 downstream integration for 288) remains a separate promote-to-active gate. MECH-288 fast-scale specificity caveat recorded.",
-      "timestamp_utc": "2026-07-14T20:19:21.367028Z",
-      "source_file": "evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json"
+      "timestamp_utc": "2026-07-14T20:19:21.367028Z"
     },
     "MECH-291": {
       "actor": "user",
@@ -1291,23 +1288,22 @@
       "timestamp_utc": "2026-07-12T10:01:12.283854Z"
     },
     "MECH-303": {
-      "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required",
+      "actor": "governance",
+      "decision_needed": "Promote candidate->provisional: wall-independent safety-terrain discrimination confirmed",
       "decision_status": "applied",
-      "rationale": "v3_pending=true; conflict_ratio=0, clean evidence (supports=3, mixed=1). Standard V3-pending hold. No status change.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-05-07T04:14:02Z"
+      "rationale": "V3-EXQ-760 PASS/supports: gated AUC 0.884 vs ungated 0.488; first genuine exp support; wall-independent. Behavioural falsifier remains the promote-to-active gate.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote candidate->provisional",
+      "timestamp_utc": "2026-07-15T13:44:33.249223Z"
     },
     "MECH-304": {
-      "actor": "governance-2026-07-14T20:29Z",
-      "decision_needed": "First indexed V3 evidence (V3-EXQ-759 functional-signature PASS/supports) cleared the v3_pending hold; promote candidate -> provisional",
+      "actor": "governance",
+      "decision_needed": "Promote to active: pre-registered behavioural conditioned-inhibition falsifier passed",
       "decision_status": "applied",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Clear v3_pending gate and promote to provisional",
-      "rationale": "governance 2026-07-14: V3-EXQ-759 wall-independent functional-signature isolation test PASS/supports (read-only ConditionedSafetyStore.predict on a frozen action-free agent; 6 valid seeds all above chance, positive_control AUC 0.997, load-bearing C1 cue-discrimination non-degenerate; 4 readiness preconditions met); first indexed in-silico evidence for MECH-304. v3_pending:false, status provisional. NOT-YET-CLEARED for promote-to-active: the pre-registered behavioural falsifier (conditioned inhibition -- safety cue suppresses avoidance concurrent with a threat cue) + the MECH-303-sparing ablation remain the separate promote-to-active gate. Precedent: MECH-287/288 promote_to_provisional 2026-07-14.",
-      "timestamp_utc": "2026-07-14T20:39:20.788928Z",
-      "source_file": "evidence/experiments/v3_exq_759_mech304_cue_specific_conditioned_safety_prediction_20260714T201108Z_v3.json"
+      "rationale": "V3-EXQ-763 PASS: DV1 conditioned inhibition + DV2 MECH-303 dissociation/sparing both load-bearing PASS; preconditions met (positive-control 0.667>=0.34, 5/6 valid seeds). exp_conf 0.825, 2 supports/0 weakens.",
+      "recommendation": "promote_to_active",
+      "selected_option": "Promote provisional->active",
+      "timestamp_utc": "2026-07-15T13:44:33.206848Z"
     },
     "MECH-307": {
       "actor": "user",
@@ -2237,7 +2233,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-13T04:18:41.580229Z",
+  "generated_at_utc": "2026-07-15T13:47:50.836959Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-14T19:30:36Z
+Generated: 2026-07-15T13:34:51Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -169,7 +169,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 96.7% across 18 non-deferred nodes in 3 plan(s).
+- **PROCESS**: 91.3% across 23 non-deferred nodes in 4 plan(s).
 - **V4**: 30.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -179,6 +179,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-CATEGORY` | Phase 0 -- governance_rule category + 22 SENT/GOV claims registered | done | load-bearing |  | 2026-06-19 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:GATE` | Section 9.0 hard prerequisite -- cross-instance determinism gate (610  | done | high |  | 2026-06-07 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-PLAN` | Phase 0 -- plan-of-record created | done | high | depends_on: ethics_perimeter:P0-CATEGORY | 2026-06-19 |
+| process | gov_confirm_1_plan.md | `gov_confirm_1:P0` | Plan-of-record + register GOV-CONFIRM-1 governance_rule claim | done | high |  | 2026-07-14 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P0` | Phase 0 -- instrument only: arm_fingerprint lib (substrate content-has | done | medium |  | 2026-06-06 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:MINT` | Baseline pre-minting -- canonical baseline modules + low-priority clou | done | low |  | 2026-06-07 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-1` | Two-levels-of-abstraction distinction (the load-bearing scoping claim) | done | load-bearing | No substrate prerequisite -- this is a DESIGN/SCOPING claim, registrable now as the spine  | 2026-06-13 |
@@ -213,6 +214,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-1` | Temporal Coherence Loop substrate (ARC-053/054/055 phase-coherent V(t) | deferred | high | REVERSAL TRIGGER 1: a V3 working-model failure mode the synaptic forms demonstrably cannot | 2026-06-11 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-2` | Oscillatory multiplexing + ephaptic coherence mechanisms (MECH-225/226 | deferred | high | REVERSAL TRIGGER (concrete, from the boundary doc): if the MECH-271 routing audit cannot d | 2026-06-11 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-BOUNDARY` | Phase 1 -- SENT-0 + GOV-HEALTH-1 V3 bright lines (ree-v3 README + regi | done | high | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
+| process | gov_confirm_1_plan.md | `gov_confirm_1:P1` | Shadow detector -- derive-only `evidence_confirmer` lane in generate_i | done | high |  | 2026-07-14 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-2` | Agent-policy novelty typing (MECH-130): world-state novelty != agent-p | blocked | high | MECH-111 curiosity/novelty signal is the V3 mechanism being TYPED -- it currently rewards  | 2026-06-10 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-build` | Phase 1 consumer machinery -- arm_fingerprint_index.json writer, try_r | done | medium |  | 2026-06-09 |
@@ -274,6 +276,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-7` | Biology grounding for the social affect-binding + reciprocity-developm | deferred | medium | Per project rule feedback_biology_before_formal_definitions: the suffering/empathy social  | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-6` | PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD | blocked | medium | V3 HOOKS: MECH-089 theta-gamma packaging (formats content for E3) + SD-026 z_goal write ch | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-8` | Biology grounding completion (frontopolar deliberation, counterfactual | done | medium | L1 frontopolar/area-10 counterfactual deliberation (Koechlin & Hyafil 2007 branching; Boor | 2026-06-13 |
+| process | gov_confirm_1_plan.md | `gov_confirm_1:P2` | Wire the confirmer lane to the hourly IGW autospawn at strictly LOW pr | done | medium |  | 2026-07-14 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-4` | V5/V6 frame inventory: feeding / hazard / contact / interruption / hel | blocked | medium | Frame semantics (Fillmore): words evoke whole scenes -- roles, participants, objects, rela | 2026-06-10 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-5` | Aspect / event-arc as closure map: starting / ongoing / repeated / int | blocked | medium | Event Segmentation Theory: experience is segmented into events around prediction error and | 2026-06-10 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-7` | LLM-as-mine-not-foundation discipline + biology/linguistics grounding  | deferred | medium | Per project rule feedback_biology_before_formal_definitions: the primitive-mining method a | 2026-06-10 |
@@ -399,9 +402,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-7` | Maturational-sequence honesty gate (INV-064): self-stability must prec | blocked | high | INV-064 is emergent on ARC-001/002/003/ARC-019 and carries pending_substrate_reconfirmatio | 2026-06-10 |
 | meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-2` | pack_writer field-coverage survey (step 2) | done | medium |  | 2026-07-12 |
-| process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | in_progress | medium |  | 2026-07-13 |
-| process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | deferred | medium |  | 2026-07-12 |
-| process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | deferred | medium |  | 2026-07-12 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | done | medium |  | 2026-07-15 |
 | meta | ree_ai_design_critique_plan.md | `WS-4` | Formal-ancestor mapping (top ~30 load-bearing MECH/ARC to nearest form | done | medium |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-5` | Active-inference bridge (precision / epistemic value / exploration mat | done | medium |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-6` | Bitter-Lesson rebuttal (why scale + search won't eat this structure) | done | medium |  | 2026-07-09 |
@@ -412,5 +413,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | ree_ai_design_critique_plan.md | `WS-11` | Early-gating vs late-judging demo (REE early commit-gating beats a Con | open | medium |  | 2026-07-09 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-4` | E2 prediction error modulates E3 confidence (DR-12): PE-magnitude sign | in_progress | medium | V3 LIMIT: E3 trusts E2 unconditionally; high E2 prediction error does not currently down-w | 2026-06-17 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | parked | low |  | 2026-07-15 |
+| process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | parked_indefinite | low |  | 2026-07-15 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-9` | Own-future-option uncertainty: does REE need an explicit self-model of | assembling | low | what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where  | 2026-06-24 |
 

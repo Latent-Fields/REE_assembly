@@ -2586,9 +2586,13 @@
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-11
+    as_of: 2026-07-15
     needs_review: false
     evidence:
+      from: v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3
+      as_of: 2026-07-15
+      verdict: supports/PASS
+    prior_evidence:
       from: v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3
       as_of: 2026-04-21
       verdict: supports/PASS
@@ -2615,6 +2619,13 @@
     (intracranial latency ~74ms CeA vs ~400ms cortex), Pessoa & Adolphs 2010
     (many-roads bounding). Evidence pulled 2026-04-21 to targeted_review_connectome_mech_046.
     V3-EXQ-A (CeA mode-prior ablation) is the primary falsifier.
+    2026-07-15 (gov): V3-EXQ-762 (CeA mode_prior context-conditioning, PASS/supports) is the
+    FIRST genuine exp-class support (genuine_exp 0->1) -- drives the real CeAAnalog (688 arming
+    caveat honoured) action-free across 4 graded harm contexts; DV = cea_mode_prior injected
+    into a real SalienceCoordinator: present (0.70 @threat_high) + context-varying RANGE 0.70
+    [load-bearing] + monotone + rest-silent + coordinator-write [load-bearing] + bounded
+    (max_abs 0.72 <= cap 0.8). Wall-independent (read-only/training-free). Stays provisional --
+    1 genuine exp is thin for a stable flip; this consolidates the provisional reading.
   depends_on:
     - ARC-005
     - MECH-039
@@ -6657,12 +6668,16 @@
   claim_type: mechanism_hypothesis
   subject: hippocampal.quiescent_offline_replay
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-15
     needs_review: false
     evidence:
+      from: "decision:MECH-092@2026-07-15T13:44:33.301255Z"
+      as_of: 2026-07-15
+      verdict: promote_to_provisional/applied
+    prior_evidence:
       from: "decision:MECH-092@2026-03-29T21:16:41.333183Z"
       as_of: 2026-03-29
       verdict: hold_candidate_resolve_conflict/applied
@@ -6675,6 +6690,14 @@
     -- none present. Proxy measured navigation delta with/without replay; cannot detect
     consolidation of a map that does not exist. Manifest evidence_direction corrected to
     non_contributory.
+    2026-07-15 (gov): promoted candidate->provisional on V3-EXQ-761 (quiescent-replay
+    selectivity, PASS/supports) -- the FIRST genuine triggering-signature evidence: replay
+    fires selectively on quiescent E3 cycles via the real production path
+    (act_with_split_obs -> _do_replay -> hippocampal.replay) on an untrained agent. The
+    2026-03-29 hold_candidate_resolve_conflict was substrate-driven (EXQ-136 could not test
+    downstream consolidation-benefit -- no SD-006 async loop / no viability map), NOT a
+    genuine support-vs-weaken conflict; 761 confirms the TRIGGERING half. Promote-to-active
+    still gated on the downstream consolidation-benefit test (SD-006 / working viability map).
   claim_level: mixed
   functional_restatement: >
     During quiescent periods between active E3 updates, the hippocampal module performs
@@ -32725,12 +32748,16 @@
   claim_type: mechanism_hypothesis
   subject: safety_prediction.contextual_passive_substrate
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-15
     needs_review: false
     evidence:
+      from: "decision:MECH-303@2026-07-15T13:44:33.249223Z"
+      as_of: 2026-07-15
+      verdict: promote_to_provisional/applied
+    prior_evidence:
       from: "decision:MECH-303@2026-05-07T04:14:02Z"
       as_of: 2026-05-07
       verdict: hold_pending_v3_substrate/applied
@@ -32739,6 +32766,14 @@
   claim_level: mechanistic
   registered_utc: 2026-05-03
   revised_utc: 2026-06-05
+  evidence_quality_note: |
+    2026-07-15 (gov): promoted candidate->provisional on V3-EXQ-760 (contextual safety-terrain
+    discrimination, PASS/supports) -- wall-independent representation-level confirm: the
+    read-only evaluate_safety field DISCRIMINATES safe vs unsafe contexts, gated (harm-absent
+    accumulation) AUC 0.884 vs ungated control 0.488, isolating the harm-absence gate. First
+    genuine exp support (exp_conf 0.773), 1 support/0 weakens. Mirrors the MECH-287/288/284/304
+    wall-independent-isolation -> provisional pattern. Promote-to-active remains gated on a
+    behavioural falsifier (context-safety lowers background vigilance/avoidance-commitment level).
   depends_on:
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
     - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
@@ -32862,12 +32897,16 @@
   claim_type: mechanism_hypothesis
   subject: safety_prediction.cue_specific_conditioned_inhibition_substrate
   polarity: asserts
-  status: provisional
+  status: active
   live_status:
-    reading: provisional
-    as_of: 2026-07-14
+    reading: active
+    as_of: 2026-07-15
     needs_review: false
     evidence:
+      from: "decision:MECH-304@2026-07-15T13:44:33.206848Z"
+      as_of: 2026-07-15
+      verdict: promote_to_active/applied
+    prior_evidence:
       from: "decision:MECH-304@2026-07-14T20:39:20.788928Z"
       as_of: 2026-07-14
       verdict: promote_to_provisional/applied
@@ -32876,6 +32915,18 @@
   claim_level: mechanistic
   registered_utc: 2026-05-04
   revised_utc: 2026-06-05
+  evidence_quality_note: |
+    2026-07-15 (gov): promoted provisional->active on V3-EXQ-763 (conditioned-inhibition
+    behavioural falsifier, PASS/supports) -- the PRE-REGISTERED promote-to-active gate set
+    when MECH-304 went provisional (2026-07-14, V3-EXQ-759 wall-independent isolation). Both
+    load-bearing DVs passed: DV1 conditioned inhibition (safety cue lowers avoidance-commitment
+    concurrent with a threat cue, store-necessity + cue-specificity gaps) AND DV2 MECH-303
+    dissociation/sparing (store-OFF abolishes DV1 while use_contextual_safety_terrain spared);
+    preconditions met (arm-A positive-control release 0.667 >= 0.34; 5/6 valid seeds >= 4).
+    Two indexed genuine-exp supports (759 representation-level isolation + 763 behavioural),
+    0 weakens, quadrant confirmed_established, exp_conf 0.825. Substrate path: SD-065
+    controllable conditioned-safety cue channel + SD-066 common-mode-invariant (centered)
+    store readout, both landed 2026-07-15 (byte-identical OFF).
   depends_on:
     - MECH-302    # provides the teaching signal: the relief-completion event that trains the MECH-304 store
     - MECH-094    # hypothesis-tag write gate (the tag from MECH-302 is the MECH-304 update trigger)
@@ -54668,6 +54719,7 @@
       as_of: 2026-07-14
       verdict: weakens sufficiency / strengthens dependency -- 2x3 (representation x teacher) fanout REFUTES H-rep and reward-density; only BC (imitation) clears the floor on both inputs (z_world+BC 32.72 > raw+BC 20.93). Discriminated cause = RL exploration/credit-assignment bootstrap, not representation and not reward density. One live discrimination remains on the algorithm axis (H-optim leg V3-EXQ-751, in flight). Stays candidate/v3_pending.
   implementation_phase: v3
+  pending_retest_after_substrate: true  # substrate_queue mech457_competence_bootstrap_explorer (2026-07-15): the 752/753/754 cold-start diagnosis routes a NEW success-independent bootstrap-drive build; retest MECH-457 sufficiency once it lands
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic

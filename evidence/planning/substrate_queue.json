@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "nice-grothendieck-f7b58b (close stale IGW-20260714-178: MECH-457 substrate already built+validated)",
-  "last_updated_utc": "2026-07-14T19:22:14Z",
+  "last_updated_utc": "2026-07-15T13:44:01Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5609,6 +5609,34 @@
       "priority": 1,
       "added_session": "modest-faraday-58b67a",
       "last_seen_session": "modest-faraday-58b67a"
+    },
+    {
+      "sd_id": "mech457_competence_bootstrap_explorer",
+      "title": "Competent unsupervised explorer for the action-learning competence floor (MECH-457): compose the landed ARC-065/MECH-314 curiosity-novelty substrate as a SUCCESS-INDEPENDENT dense per-step bootstrap drive for the foraging policy, plus adequate policy capacity/training budget to convert coverage into competence. Targets floor->competent (RND alone reaches only 5.22 ~= 11% of the 48 local-view ceiling). UPSTREAM of f_dominance_conversion_ceiling (which is the downstream selection-face variance-monopoly ceiling).",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-056",
+        "MECH-229"
+      ],
+      "unblocks_claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_752_mech457_hcredit_backward_sweep_20260715T001321Z_v3 | v3_exq_753_mech457_hreturn_go_explore_archive_20260715T020417Z_v3 | v3_exq_754_mech457_hcurriculum_goal_frontier_20260715T060558Z_v3",
+          "experiment_type": "v3_exq_75{2,3,4}_mech457_h{credit,return,curriculum}",
+          "metric": "foraging_competence @D3: all three mechanism arms ~0.15-0.45 (z_world and raw), indistinguishable from sparse-RL baseline, below the 1.0 floor and the RND 5.22 novelty plateau",
+          "target": "lift above the RND 5.22 plateau toward BC competence 32.72 / local-view ceiling 48.05 -- a working competent-explorer build must reach competent (not merely off-floor) foraging on the 5x5 local view"
+        }
+      ],
+      "implementation_hint": "The 752/753/754 portfolio shows sparse-reward-credit reshaping (credit-sweep / archive-return / achievable-goal curriculum) cannot bootstrap from ~0 competence -- they all need prior success. Build a success-INDEPENDENT dense drive instead: wire the existing ARC-065/MECH-314 curiosity/novelty reward as an every-step bootstrap signal for the trainable foraging policy (composition, NOT a new novelty module -- honours the lit-pull duplication objection), and give the policy enough capacity/training to lift beyond the RND coverage plateau toward the local-view competence ceiling (~48). Do NOT re-queue another sparse-reward-credit bolt-on class against this floor (re-derive brake).",
+      "priority": 1,
+      "added_session": "ree-ai-design-critique-773a00-governance",
+      "last_seen_session": "ree-ai-design-critique-773a00-governance"
     }
   ],
   "schema_version": "substrate_queue/v2"
