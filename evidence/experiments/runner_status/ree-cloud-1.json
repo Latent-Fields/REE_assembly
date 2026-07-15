@@ -2,54 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 2069716,
   "runner_started_at": "2026-07-11T23:09:12.195580+00:00",
-  "last_updated": "2026-07-14T20:47:08.489178+00:00",
+  "last_updated": "2026-07-15T08:19:44.585429+00:00",
   "idle": false,
   "current": null,
   "queue": [
-    {
-      "queue_id": "V3-EXQ-742-m",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 bias_head_baseline MINT -- order-independent reuse insurance for the V3-EXQ-742 OFF arm (724-A0 all-ON; D0+D3; baseline)",
-      "description": "",
-      "estimated_minutes": 232.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-752",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-credit (credit-assignment axis): prioritized backward credit replay vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-753",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-return (memory/frontier axis): Go-Explore archive + return vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-754",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457/INV-088 GOV-FANOUT-1 leg H-curriculum (teaching-signal axis): goal-frontier IMGEP/AMIGo-lite vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
     {
       "queue_id": "V3-EXQ-755",
       "backlog_id": "",
@@ -57,7 +13,7 @@
       "title": "MECH-457 GOV-FANOUT-1 leg H-mode (policy-control axis): critic-utility explore/exploit gate vs fixed-RND, z_world + raw 5x5, diagnostic",
       "description": "",
       "estimated_minutes": 3600.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -68,7 +24,7 @@
       "title": "MECH-457 GOV-FANOUT-1 PAIR H-credit x H-return (additivity cell): credit + return + pair vs sparse, z_world + raw 5x5, diagnostic",
       "description": "",
       "estimated_minutes": 4400.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3623,6 +3579,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_762_mech046_cea_mode_prior_context_conditioning/v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 1.5
+    },
+    {
+      "queue_id": "V3-EXQ-763",
+      "backlog_id": "",
+      "claim_id": "MECH-304",
+      "title": "MECH-304 promote-to-active behavioural conditioned-inhibition falsifier (SD-065 cue + SD-066 centered readout)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome=PASS evidence_direction=supports label=mech304_conditioned_inhibition_confirmed | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-763 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-763.json",
+      "started_at": "2026-07-15T08:11:05.373640+00:00",
+      "completed_at": "2026-07-15T08:19:44.584648+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 519.2
     }
   ]
 }
