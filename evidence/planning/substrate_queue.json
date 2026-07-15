@@ -5630,6 +5630,12 @@
           "experiment_type": "v3_exq_75{2,3,4}_mech457_h{credit,return,curriculum}",
           "metric": "foraging_competence @D3: all three mechanism arms ~0.15-0.45 (z_world and raw), indistinguishable from sparse-RL baseline, below the 1.0 floor and the RND 5.22 novelty plateau",
           "target": "lift above the RND 5.22 plateau toward BC competence 32.72 / local-view ceiling 48.05 -- a working competent-explorer build must reach competent (not merely off-floor) foraging on the 5x5 local view"
+        },
+        {
+          "run_id": "v3_exq_755_mech457_hmode_explore_exploit_gate_20260715T081923Z_v3",
+          "experiment_type": "v3_exq_755_mech457_hmode_explore_exploit_gate",
+          "metric": "C_hmode_beats_fixed_rnd_by_margin FAIL -- utility-gated rnd_mode arm does not beat same-run fixed-coef rnd_fixed by the 1.0 consolidation margin: z_world +0.30 (2.933 vs 2.633), raw -0.367 (0.367 vs 0.733), any_rep_mode_gain=false; both RND arms supra-floor but plateau ~11% of the 48 local-view ceiling.",
+          "target": "utility-gated mode arm exceeds same-run fixed-coef RND by >= 1.0 res/ep with strict-majority-of-seeds supra-floor (and, for the build, reaches COMPETENT foraging >> the 5.22 RND plateau toward the 48.05 local-view ceiling)."
         }
       ],
       "implementation_hint": "The 752/753/754 portfolio shows sparse-reward-credit reshaping (credit-sweep / archive-return / achievable-goal curriculum) cannot bootstrap from ~0 competence -- they all need prior success. Build a success-INDEPENDENT dense drive instead: wire the existing ARC-065/MECH-314 curiosity/novelty reward as an every-step bootstrap signal for the trainable foraging policy (composition, NOT a new novelty module -- honours the lit-pull duplication objection), and give the policy enough capacity/training to lift beyond the RND coverage plateau toward the local-view competence ceiling (~48). Do NOT re-queue another sparse-reward-credit bolt-on class against this floor (re-derive brake).",
