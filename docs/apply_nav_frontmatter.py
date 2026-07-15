@@ -155,6 +155,7 @@ ASSIGN = {
     "mech_293_ghost_goal_probe_search.md": "goals", "mech_295_drive_liking_approach_bridge.md": "goals",
     "mech_303_contextual_safety_terrain.md": "goals", "sd_012_homeostatic_drive.md": "goals",
     "sd_050_suffering_derivative_comparator.md": "goals", "sd_051_conditioned_safety_store.md": "goals",
+    "sd_065_conditioned_safety_cue_channel.md": "goals",
     "sd_057_object_bound_incentive_salience.md": "goals", "sd_058_instrumental_avoidance_acquisition.md": "goals",
     "sd_059_escape_affordance_bridge.md": "goals", "trainable_relief_safety_affordance_learners.md": "goals",
     "sd_actor_critic_action_learning.md": "goals",

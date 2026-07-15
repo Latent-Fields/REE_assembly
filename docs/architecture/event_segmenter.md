@@ -3,8 +3,8 @@ title: Event-Segment Detection Substrate (MECH-288)
 parent: "Attention, Binding & Objects"
 grandparent: Architecture
 nav_order: 3
-status: candidate/v3_pending
-status_asof: 2026-07-10
+status: provisional
+status_asof: 2026-07-15
 status_claim: MECH-288
 ---
 
