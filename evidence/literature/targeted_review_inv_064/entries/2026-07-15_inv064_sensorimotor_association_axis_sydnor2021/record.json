@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_064",
+  "entry_id": "2026-07-15_inv064_sensorimotor_association_axis_sydnor2021",
+  "timestamp_utc": "2026-07-15T06:06:48Z",
+  "claim_ids_tested": [
+    "INV-064"
+  ],
+  "source": {
+    "title": "Neurodevelopment of the association cortices: Patterns, mechanisms, and implications for psychopathology",
+    "authors": [
+      "Valerie J Sydnor",
+      "Bart Larsen",
+      "Danielle S Bassett",
+      "Aaron Alexander-Bloch",
+      "Damien A Fair",
+      "Allyson P Mackey",
+      "Armin Raznahan",
+      "Theodore D Satterthwaite"
+    ],
+    "year": 2021,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2021.06.016",
+    "pmid": "34270921"
+  },
+  "evidence_class": "developmental_neuroscience_review",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Landmark Neuron review synthesising multimodal human neuroimaging into the sensorimotor-to-association (S-A) axis of cortical development: maturation proceeds hierarchically from lower-order primary/unimodal sensorimotor cortices to higher-order transmodal association cortices, tracking an evolutionarily-rooted axis and the hierarchical unfolding of plasticity-related events. This is close to a direct external instantiation of INV-064's E1/E2 (sensory/motor) -> E3 (executive/association) maturational ordering. High source quality; mapping fidelity strong for the ORDERING and its functional/clinical significance, held below 0.85 because the review is observational and does not test the NECESSITY / curriculum-causality that is INV-064's strong claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The S-A axis establishes temporal ordering and its correlates, not curriculum necessity. If a competent transmodal (E3-analogue) system could be built without prior maturation of sensorimotor (E1/E2-analogue) cortices -- e.g. via a training regime that front-loads association-level structure -- INV-064's necessity claim would be weakened while the observed developmental ordering remained true."
+  ],
+  "tags": [
+    "inv-064",
+    "sensorimotor-association-axis",
+    "cortical-hierarchy",
+    "neurodevelopment",
+    "maturational-sequence",
+    "association-cortex",
+    "protracted-plasticity",
+    "e1-e2-e3"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human cortical development spans decades and progresses hierarchically from lower-order primary and unimodal cortices with sensory and motor functions to higher-order transmodal association cortices subserving executive, socioemotional and mentalizing functions, conforming to an evolutionarily-rooted sensorimotor-to-association axis of cortical organization; this program is linked to the hierarchical unfolding of plasticity-related neurobiological events and the protracted plasticity of late-maturing association cortices confers both their unique functional properties and risk for developmental psychopathology.",
+    "ree_translation": "The sensorimotor-to-association axis is the biological instantiation of the curriculum ordering INV-064 posits: sensory (E1) and sensorimotor/world-model (E2) substrates mature first and provide the settled scaffold on which the last-maturing executive/association layer (E3) integrates. The review supports (a) the ordering itself, (b) INV-064's prediction that early-life disruption has outsized and specific effects on executive rather than merely emotional function (the association tier carries the longest, most vulnerable plasticity window), and (c) the prediction that intensive early experience yields disproportionate long-term returns (protracted association plasticity = an extended sensitivity window).",
+    "mapping_caveat": "The review documents the ORDERING and its functional/clinical correlates observationally; it does not test the counterfactual NECESSITY at the core of INV-064 (that a competent E3 cannot be built unless E1/E2 mature first). The 'correct curriculum order' reading is an inference from the program's evolutionary conservation plus the cost of its disruption, not a curriculum-ablation experiment. Mapping from cortical tiers (sensorimotor / association) to REE encoder stages (E1/E2 / E3) is a functional analogy, not an architectural identity.",
+    "source_context": "Review of human multimodal neuroimaging (structural MRI, functional MRI, microstructural and molecular markers) across childhood and adolescence, integrated with animal plasticity mechanisms. Human developmental data; transfer to REE E-stages is by functional analogy."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Flagship, heavily-cited multimodal synthesis. Mapping fidelity strong on ordering and functional significance; the necessity claim is an inference, not a demonstration. Transfer risk moderate (human cortex -> REE E-stage analogy)."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_064",
+  "entry_id": "2026-07-15_inv064_intrinsic_activity_sa_axis_sydnor2023",
+  "timestamp_utc": "2026-07-15T06:06:48Z",
+  "claim_ids_tested": [
+    "INV-064"
+  ],
+  "source": {
+    "title": "Intrinsic activity development unfolds along a sensorimotor-association cortical axis in youth",
+    "authors": [
+      "Valerie J Sydnor",
+      "Bart Larsen",
+      "Jakob Seidlitz",
+      "Aaron F Alexander-Bloch",
+      "Dani S Bassett",
+      "Allyson P Mackey",
+      "Theodore D Satterthwaite"
+    ],
+    "year": 2023,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-023-01282-y",
+    "pmid": "36973514"
+  },
+  "evidence_class": "fmri_developmental_empirical",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Large empirical (not review) resting-state fMRI study (n=1033, ages 8-23) showing intrinsic cortical activity refines from synchronized/high-amplitude to sparse/low-amplitude heterochronously ALONG the sensorimotor-association axis, coupled to intracortical myelin maturation, with environmental-disadvantage effects diverging most across the axis in mid-adolescence. Converts the ordering from review-level to primary-data support and directly instantiates INV-064's environment-times-window prediction. Held to 0.74 because intrinsic-activity refinement is a plasticity PROXY (not a competence measure), the environment associations are correlational, and it shares authorship (Sydnor/Satterthwaite lab) with the 2021 review, so the two entries are not fully independent.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Intrinsic-activity amplitude decline is used as a proxy for declining plasticity; if that proxy dissociates from actual learning capacity along the axis, the mapping to a competence-building curriculum weakens.",
+    "The environment-times-axis interaction is correlational (neighborhood disadvantage, not manipulated experience). If the disproportionate-early-experience effect INV-064 predicts is really driven by confounds rather than differential plasticity along the axis, this support softens."
+  ],
+  "tags": [
+    "inv-064",
+    "sensorimotor-association-axis",
+    "intrinsic-activity",
+    "resting-state-fmri",
+    "plasticity-decline",
+    "intracortical-myelin",
+    "environmental-sensitivity",
+    "empirical"
+  ],
+  "mapping": {
+    "source_claim_statement": "In 1,033 youths (ages 8-23), the amplitude of intrinsic (resting-state) fMRI activity declines developmentally from synchronized and high-amplitude to sparse and low-amplitude -- a signature of declining plasticity as cortex matures -- and this refinement is initiated heterochronously across regions, organized along a hierarchical sensorimotor-to-association axis from ages 8 to 18, coupled to the maturation of intracortical myelin (a plasticity regulator). Associations between neighborhood environment and intrinsic activity diverged most across this axis during mid-adolescence.",
+    "ree_translation": "Primary-data confirmation that the maturational program INV-064 relies on actually unfolds along the sensorimotor-association axis in humans, with a plasticity-decline signature -- strengthening the ordering beyond the review level. The environment-times-axis interaction directly instantiates INV-064's prediction that intensive/high-entropy early experience yields disproportionate long-term returns and that early disruption has outsized specific effects: the axis is where environmental input has the most differential developmental leverage during the sensitive window.",
+    "mapping_caveat": "Intrinsic-activity amplitude is a proxy for plasticity, not a direct measure of plasticity or of competence; the environment associations are correlational (neighborhood disadvantage, not manipulated experience). The necessity / curriculum-causality claim of INV-064 is untested here. Sensorimotor / association -> E1/E2 / E3 remains a functional analogy. Partial author overlap with the 2021 Sydnor review (same lab) means this entry and the 2021 entry are not statistically independent -- treat them as one strong line of evidence with a review head and an empirical body, not two separate confirmations.",
+    "source_context": "Resting-state fMRI, n=1033 youths ages 8-23 (Philadelphia Neurodevelopmental Cohort-scale sample), plus intracortical-myelin and neighborhood-environment measures. Human developmental data; REE transfer by functional analogy."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Nature Neuroscience, large sample, multimodal, empirical. Mapping fidelity good for ordering + environment-window prediction; the plasticity proxy and correlational environment link cap it. Transfer risk moderate. Not independent of the 2021 review (shared lab) -- flagged so confidence is not double-counted in aggregation."
+  }
+}

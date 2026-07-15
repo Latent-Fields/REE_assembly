@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016",
+  "timestamp_utc": "2026-07-15T06:06:48Z",
+  "claim_ids_tested": [
+    "MECH-204"
+  ],
+  "source": {
+    "title": "Effects of Fluoxetine and Visual Experience on Glutamatergic and GABAergic Synaptic Proteins in Adult Rat Visual Cortex",
+    "authors": [
+      "Simon Beshara",
+      "Brett R Beston",
+      "Joshua G A Pinto",
+      "Kathryn M Murphy"
+    ],
+    "year": 2016,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0126-15.2015",
+    "pmid": "26730408"
+  },
+  "evidence_class": "synaptic_plasticity_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.48,
+  "confidence_rationale": "Directly informs the active-vs-permissive crux of the MECH-204 conflict but from a different system and in the opposite 5-HT direction, so it is genuinely mixed. It supports the INSTRUCTIVE (non-permissive) half -- serotonergic manipulation does not merely open a plasticity gate, it sculpts a specific synaptic regime (mature GluN2A / GABAA-alpha1 dominance), creating a NOVEL state rather than reverting to a juvenile one. But the DIRECTION conflicts with MECH-204: here elevated 5-HT is the instructive signal that enables plasticity, whereas MECH-204 posits 5-HT WITHDRAWAL as the instructive signal that sets the recalibration zero-point. Confidence is deliberately low (0.48): the transfer is a cross-system conceptual analogy (chronic developmental OD plasticity in rat V1 vs phasic online precision-prior recalibration in REM), not a mechanistic test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The instructive reading transfers only at the level of 'serotonergic state shapes the character of the plastic regime, not just its gate'. If MECH-204's zero-point turns out to be purely permissive at the precision-prior level (a threshold that recalibration crosses, with no serotonin-shaped structure to the resulting reference), then this paper's instructive finding in V1 is simply about a different phenomenon and offers no support.",
+    "If the relevant sign for online precision recalibration is that HIGH 5-HT stabilises priors and LOW 5-HT destabilises them (consistent with fluoxetine here raising 5-HT to drive plasticity), the directionality of MECH-204 (withdrawal instructs) would be under tension and would need the REM-specific, phasic, forebrain mechanism to be genuinely distinct from the chronic tonic OD-plasticity mechanism."
+  ],
+  "tags": [
+    "mech-204",
+    "serotonin",
+    "fluoxetine",
+    "cortical-plasticity",
+    "instructive-vs-permissive",
+    "ocular-dominance",
+    "conflict-informing",
+    "cross-system-analogy"
+  ],
+  "mapping": {
+    "source_claim_statement": "In adult rat visual cortex, fluoxetine (a selective serotonin reuptake inhibitor that raises 5-HT) reinstates critical-period-like ocular-dominance plasticity, but it does NOT shift synaptic protein balances back to a juvenile critical-period state. Instead it drives the balance toward the more mature subunits (GluN2A, GABAA-alpha1), creating a novel synaptic environment; paired with monocular deprivation it normalised the glutamatergic gain, acting neuroprotectively.",
+    "ree_translation": "The load-bearing crux of MECH-204 is that serotonergic state is INSTRUCTIVE (it actively defines the recalibration operating point / zero-point) rather than merely PERMISSIVE (gating whether recalibration can happen at all). Beshara & Murphy give the cleanest available demonstration of the instructive/non-permissive principle in cortical plasticity: manipulating 5-HT does not just toggle a plasticity gate, it sculpts a specific, novel synaptic regime. That principle is exactly the half of the MECH-204 conflict that is hardest to establish, and this paper supports it.",
+    "mapping_caveat": "This is a cross-system conceptual analogy, not a mechanistic test of MECH-204. Three mismatches: (1) mechanism class -- chronic, structural, developmental ocular-dominance plasticity in a primary sensory cortex, vs phasic, online, precision-prior recalibration during REM; (2) 5-HT direction -- fluoxetine ELEVATES 5-HT to enable plasticity, whereas MECH-204 posits 5-HT WITHDRAWAL as the instructive signal; (3) substrate -- rat V1 synaptic proteins vs REE precision priors. The 'instructive not permissive' point transfers at the level of principle; the directional tension is an analogy to be flagged, not a refutation. Do not over-weight in either direction -- hence the mixed call and the 0.48 confidence.",
+    "source_context": "Adult (P90+) Long-Evans rats; fluoxetine +/- monocular deprivation; readout = Western-blot quantification of 12 presynaptic/postsynaptic glutamatergic and GABAergic proteins plus the OD-plasticity paradigm. Single laboratory."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.6,
+    "notes": "Solid primary study but single-lab, modest n, protein-level readout. Mapping fidelity low because the link to REE precision recalibration is conceptual (instructive-vs-permissive), not mechanistic. Transfer risk high: different system, timescale, and 5-HT direction. The value of the entry is that it engages the actual conflict, not that it settles it."
+  }
+}

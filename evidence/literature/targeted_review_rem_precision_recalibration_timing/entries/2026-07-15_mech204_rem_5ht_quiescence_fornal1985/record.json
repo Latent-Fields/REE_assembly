@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_rem_precision_recalibration_timing",
+  "entry_id": "2026-07-15_mech204_rem_5ht_quiescence_fornal1985",
+  "timestamp_utc": "2026-07-15T06:06:48Z",
+  "claim_ids_tested": [
+    "MECH-204",
+    "MECH-203"
+  ],
+  "source": {
+    "title": "Activity of serotonin-containing neurons in nucleus raphe magnus in freely moving cats",
+    "authors": [
+      "C Fornal",
+      "S Auerbach",
+      "B L Jacobs"
+    ],
+    "year": 1985,
+    "venue": "Experimental Neurology",
+    "doi": "10.1016/0014-4886(85)90074-3",
+    "pmid": "3996511"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Classic in-vivo single-unit recording with pharmacological identification (Jacobs lab, independent of the Hobson lineage that dominates the existing MECH-204 entries). Quantitatively pins the depth of the REM serotonergic withdrawal: identified serotonergic neurons fire at 4.49 spikes/s in active waking, 2.14 in SWS, and 0.20 in REM -- an ~95% reduction that grounds the 'zero-point' premise. Held below 0.8 because the recorded nucleus is raphe magnus (a bulbospinal / pain-modulatory nucleus), not the forebrain-projecting dorsal raphe that carries the precision-relevant tone, and because the paper documents the SUBSTRATE FACT of withdrawal, not the active-vs-permissive functional role that is the live MECH-204 conflict.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If precision-relevant 5-HT tone during REM is carried by dorsal-raphe or median-raphe subpopulations that do NOT go fully silent (the ~12% atypical DR neurons documented by Sakai & Crochet 2001), the near-zero raphe magnus rate would overstate the depth of the forebrain zero-point and the strict tonic_5ht=0 idealisation would need softening."
+  ],
+  "tags": [
+    "mech-204",
+    "mech-203",
+    "rem-sleep",
+    "raphe-magnus",
+    "serotonin",
+    "single-unit-recording",
+    "5-ht-zero-point",
+    "substrate-premise"
+  ],
+  "mapping": {
+    "source_claim_statement": "Serotonin-containing neurons in nucleus raphe magnus of freely moving cats, identified on-line by slow regular spontaneous activity and inhibition by a 5-HT agonist, discharged fastest during active waking (4.49 +/- 0.40 spikes/s), intermediate during slow-wave sleep (2.14 +/- 0.23), and slowest during REM sleep (0.20 +/- 0.03 spikes/s).",
+    "ree_translation": "Independent quantitative substrate evidence for the premise MECH-204 builds on: at REM entry serotonergic raphe output collapses to near zero, which is the biological correlate of SerotoninModule._tonic_5ht -> 0 and the moment MECH-204 says the recalibration zero-point is defined. Fornal's ~95% withdrawal figure calibrates 'how close to zero' the REE idealisation should be treated as.",
+    "mapping_caveat": "Nucleus raphe magnus is a caudal, largely bulbospinal/antinociceptive serotonergic nucleus, not the dorsal raphe that projects to the forebrain circuits carrying precision priors; the paper is cited here as corroboration that the REM-off serotonergic pattern is a pan-raphe rule, NOT as direct evidence about forebrain precision tone (that role is held by the existing Sakai & Crochet 2001 DR entry). Critically, this paper is silent on the active-vs-permissive question -- it establishes THAT 5-HT withdraws, not whether that withdrawal actively calibrates a reference or merely permits recalibration.",
+    "source_context": "In-vivo extracellular single-unit recording in freely-moving cats across the sleep-wake cycle, with serotonergic identity confirmed by inhibitory response to the 5-HT agonist 5-MeO-DMT. Cat -> human -> REE transfer rests on the well-conserved mammalian raphe-REM-quiescence pattern."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Methodologically strong classic ephys with pharmacological ID. Mapping fidelity moderate because raphe magnus is not the forebrain-relevant DR nucleus and the paper speaks to the substrate premise, not the consumer/functional conflict. Transfer risk moderate (cat->human) but the pattern is well-conserved."
+  }
+}
