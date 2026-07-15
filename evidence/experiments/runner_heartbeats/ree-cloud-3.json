@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-15T13:42:10Z",
+  "last_tick_utc": "2026-07-15T14:02:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-756",
   "current_exq_started_utc": "2026-07-15T02:04:20.400580+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 42 / D3_hazard_free",
     "runs_done": 18,
     "runs_total": 33,
-    "episodes_done": 100,
+    "episodes_done": 150,
     "episodes_total": 1000,
-    "overall_pct": 54.8
+    "overall_pct": 55.0
   },
-  "seconds_elapsed": 41870,
-  "seconds_remaining": 70113,
+  "seconds_elapsed": 43083,
+  "seconds_remaining": 69878,
   "recent_lines": [
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 150/200",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 200/200",
     "[train] sparse_zw seed=42 phase=RL ep 200/1000 (returns=0 credit_passes=0)",
@@ -118,7 +117,8 @@
     "verdict: FAIL (arm=hreturn_zw forage/ep=0.3)",
     "Seed 42 Condition D3_hazard_free:pair_zw",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 50/200",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200"
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 150/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
