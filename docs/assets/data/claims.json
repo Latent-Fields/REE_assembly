@@ -7595,6 +7595,14 @@
     "title": "Conditioned-safety cue channel: env-level controllable, observable Pavlovian safety CS added to CausalGridWorld -- an ambient (uniform-when-active) 25-dim field view emitted into world_state (feeds the z_world encoder the SD-051 ConditionedSafetyStore keys on). Can be paired with the MECH-302 relief-completion window during teaching (the store still writes its prototype ONLY on the real event_fired tick -- the pairing is real, not synthesized) and presented CONCURRENTLY with a threat cue at test. Closes the 'no controllable safety cue' substrate gap that forced V3-EXQ-759 to synthesize the Pavlovian pairing off-substrate, making MECH-304's promote-to-active classical-conditioned-inhibition behavioural falsifier runnable. Adds no entity type (NUM_ENTITY_TYPES stays 7); pure environment substrate; no trainable parameters; no MECH-094 interaction at the env level.",
     "type": "design_decision"
   },
+  "SD-066": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "safety_prediction.common_mode_invariant_conditioned_safety_readout",
+    "title": "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix.",
+    "type": "design_decision"
+  },
   "SENT-0": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",

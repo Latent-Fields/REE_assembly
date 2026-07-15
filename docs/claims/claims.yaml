@@ -48678,6 +48678,62 @@
     V3-EXQ-763 MECH-304 behavioural falsifier validates the channel end-to-end.
   validation_experiment: V3-EXQ-763 (MECH-304 promote-to-active behavioural falsifier)
 
+- id: SD-066
+  title: "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix."
+  claim_type: design_decision
+  subject: safety_prediction.common_mode_invariant_conditioned_safety_readout
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-15
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: architectural
+  registered_utc: "2026-07-15"
+  depends_on:
+    - SD-051    # the ConditionedSafetyStore this readout extends
+    - SD-065    # the safety cue channel whose signal it resolves
+    - SD-008    # the z_world under-differentiation (common-mode) this works around
+  functional_restatement: >
+    The MECH-304 behavioural promote-to-active gate (SD-051 store + SD-065 cue)
+    hits a substrate ceiling the representation-level V3-EXQ-759 (rank/AUC)
+    sidestepped: the store release gate is sigmoid(gain*cosine(z_world,
+    prototype)) > safety_store_threshold == cosine > 0, but under SD-008
+    under-differentiation every z_world sits at cosine ~0.99 (measured
+    cos(cue,nocue)=0.988 vs cos(two contexts)=0.995), so the gate fires
+    UNCONDITIONALLY once the prototype is non-empty -- the cue (a consistent but
+    ~0.006-cosine signal) is unresolvable behaviourally, and more encoder warmup
+    does not help (nothing supervises the encoder to differentiate the passive
+    cue). SD-066 adds an opt-in centered readout: the store keeps a slow EMA
+    baseline of z_world (the common-mode) and does BOTH prototype accumulation and
+    querying on the centered residual z_world - baseline, so the cue residual
+    dominates the cosine. Non-parametric; the baseline advances inside
+    store.update() (already called every tick in sense()) so there is NO agent
+    hot-path change; sim_mode (MECH-094) does not advance the baseline. Config
+    safety_store_centered (bool, default False -> byte-identical raw cosine) +
+    safety_store_baseline_alpha, surfaced through from_dims. It is a readout
+    workaround for the SD-008 z_world common-mode, NOT a representation fix (does
+    not improve z_world differentiation) and NOT a replacement for the V4
+    trainable-contrastive store (still the sharper long-term answer).
+  implementation_note: >
+    Substrate IMPLEMENTED 2026-07-15 (/implement-substrate, session
+    infallible-perlman-a4f3fe), disabled-by-default. Module
+    ree-v3/ree_core/safety/conditioned_safety_store.py (ConditionedSafetyStore
+    centered=/baseline_alpha= params + _baseline EMA + centered accumulation/query
+    + reset clears baseline); config.py safety_store_centered /
+    safety_store_baseline_alpha (dataclass + from_dims); agent.py passes them to
+    the store constructor. 5/5 new contracts in
+    tests/contracts/test_sd066_centered_safety_readout.py (raw bit-identical +
+    never-touches-baseline / baseline lifecycle + reset / common-mode separation /
+    sim_mode gate / config default); full pytest tests/ 1463 passed (bit-identical
+    OFF). Landed ree-v3 main 0721dcb. VALIDATED end-to-end inline: centered ON
+    makes the MECH-304 behavioural gate cue-specific (arm A cue release 1.0 / sig
+    0.7-0.94 vs arm C nocue release ~0 / sig 0.17-0.48; A-C ~1.0) -- V3-EXQ-763
+    inline PASS. PROMOTES NOTHING; v3_pending until the cloud V3-EXQ-763 PASS.
+  validation_experiment: V3-EXQ-763 (MECH-304 promote-to-active behavioural falsifier)
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
