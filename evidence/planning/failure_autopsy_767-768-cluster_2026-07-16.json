@@ -1,0 +1,135 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-16T17:42:12Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_767_sd025_curiosity_drive_selection_bias_20260716T073159Z_v3",
+      "queue_id": "V3-EXQ-767",
+      "claim_ids": ["SD-025"],
+      "outcome": "PASS",
+      "adjudication": "vacuous",
+      "failed_criterion": "discrimination",
+      "flagged_load_bearing_criterion": "L1a_pref_A_on = 1.0 on all 8 seeds (zero cross-seed variance); criteria_non_degenerate.pref_on_varies_across_seeds = False; top-level non_degenerate = false",
+      "machine": "DLAPTOP-4.local",
+      "machine_class": "darwin-arm64-py3.13",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- NOT falsified. The curiosity drive genuinely propagates into CEM elite selection (OFF 0.5 -> ON 1.0). But the test does not let the claim express itself in a variance-bearing way: the load-bearing gate saturates so it carries no graded / effect-size information. No demotion; no promotion on this run.",
+        "biological_reference": "clear -- information-seeking / novelty drive biasing hippocampal trajectory selection toward representationally richer regions (curiosity as intrinsic drive; ties to SD-024 VTA->hippocampus expansion verified in 766a). Faithful translation, not a formal-definition import.",
+        "prerequisites": "present -- SD-024 IMPLEMENTED + verified (V3-EXQ-766a, adjudication verified); curiosity_drive + familiarity EMA implemented.",
+        "implementation": "complete -- the drive substrate works; the READOUT is mis-operationalized. _pref_dense computes the continuous per-candidate scores (line 242-246) but returns only the binary argmin fraction, discarding the margin.",
+        "environment": "adequate -- non-parametric RBF benefit terrain; no env pressure needed for a drive-propagation read.",
+        "measurement": "under-instrumented / misleading (DOMINANT) -- the load-bearing statistic is a binary directional-preference proportion over a manipulation so strong (density ~84 vs ~9, curiosity term ~75-point gap vs near-zero harm terrain) that argmin picks dense on every trial -> pref pinned at exactly 1.0, zero headroom, zero cross-seed variance. L1a/L1b/L1c/L2a are all ~constant; the only varying quantity (pref_fresh) does not enter a load-bearing pass as variance.",
+        "integration": "n/a -- isolated drive-propagation test by design.",
+        "scale": "adequate -- 8 seeds; the problem is metric saturation, not sample size."
+      },
+      "biological_reference": {
+        "closest_mechanism": "curiosity / information-seeking drive biasing hippocampal candidate-trajectory selection toward higher representational density (novelty-seeking on the RBF map, discounted by a waking-only familiarity EMA)",
+        "dependencies": ["SD-024 DA-modulated representational density", "weight-independent density read (ARC-007 strict)", "waking-only familiarity EMA (MECH-094)"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful drive instantiation; the finding is a measurement-operationalization defect, not a biology divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "2026-07-16 (V3-EXQ-767, diagnostic, claim_ids=[SD-025]; failure_autopsy_767-768-cluster_2026-07-16): PASS self-routed 'supports' but adjudication=VACUOUS. The single load-bearing gate L1a_pref_A_on is pinned at exactly 1.0 on all 8 seeds with zero cross-seed variance (criteria_non_degenerate.pref_on_varies_across_seeds=False -> the script's OWN top-level non_degenerate=false), because the curiosity term (density ~84 vs ~9 dense/sparse, ~75-point score gap) dominates the near-zero harm-terrain score, so argmin(score) selects dense on every one of 32 trials. The MECHANISM is real (OFF arm = 0.5 exactly -> the null selection rule gives chance; the drive genuinely discriminates), but the binary directional-preference readout saturates and carries no effect-size / SD-of-delta information, so the load-bearing gate is NOT properly cleared. epistemic_category measurement_degeneracy (NOT substrate_ceiling -- SD-024/SD-025 substrate works). evidence_direction inconclusive (PROMOTES/DEMOTES NOTHING). Route = /queue-experiment re-operationalization 767a (same scientific question, corrected instrument): replace the saturating binary pref_dense load-bearing gate with the CONTINUOUS CEM score-margin (sparse_score - dense_score, already computed internally in _pref_dense but discarded), which is variance-bearing (r1_density_gap already varies 58-80 across seeds). Keep the clean OFF/single-drive controls + counterbalancing. Re-derive brake NOT fired (0 prior substrate_ceiling/non_contributory SD-025 autopsies). SD-025 stays candidate.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "First autopsy tagging SD-025; no prior failure_autopsy_* on this claim -> no granularity-debt recurrence signal."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [],
+        "suggested_probes": [],
+        "note": "Bottleneck routes to ONE unambiguous re-operationalization (binary-argmin -> continuous CEM score-margin). Not a discrimination between competing substrate hypotheses; GOV-FANOUT-1 does not apply."
+      },
+      "learning_extracted": [
+        "The curiosity drive genuinely propagates into CEM elite selection (OFF 0.5 -> ON 1.0); the mechanism is real and NOT falsified.",
+        "A binary directional-preference proportion (fraction-selecting-dense under a dominant drive) is the WRONG load-bearing operationalization: it saturates to exactly 1.0 with zero headroom, fails the script's own non-degeneracy guard, and cannot support the effect-size/SD-of-delta governance gate.",
+        "The fix is a readout re-operationalization (mystery/known-data), NOT more runs and NOT substrate work: the continuous CEM score-margin already exists at run time (scores list) but is discarded in favour of the argmin vote."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3",
+      "queue_id": "V3-EXQ-768",
+      "claim_ids": ["ARC-057"],
+      "outcome": "PASS",
+      "adjudication": "vacuous",
+      "failed_criterion": "absolute",
+      "flagged_load_bearing_criterion": "C2_both_on_approaches = 1.0 on all 8 seeds (zero cross-seed variance); criteria_non_degenerate.pref_both_on_varies_across_seeds = False; top-level non_degenerate = false",
+      "machine": "ree-worker-1",
+      "machine_class": "linux-x86_64-py3.10",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- NOT falsified, and the super-additive shape is genuinely present (single drives at chance, conjunction approaches). But the load-bearing absolute-level criterion C2 saturates, so the gate is not properly cleared; no promotion on this run.",
+        "biological_reference": "clear -- approach emerging from the INTERACTION of DA-mediated representational expansion (MECH-232/SD-024) and an information-seeking curiosity drive (SD-025), neither alone sufficient. Faithful translation.",
+        "prerequisites": "present -- both SD-024 (766a verified) and SD-025 (767, this cluster) prereqs ran PASS; the 2x2 ablation is well-formed.",
+        "implementation": "complete -- interaction machinery works; the READOUT (identical _pref_dense as 767) is mis-operationalized. C1 interaction contrast IS variance-bearing and passes; only the absolute-level C2 saturates.",
+        "environment": "adequate -- env-free Test B by design (ecological Test C deferred to V4).",
+        "measurement": "under-instrumented / misleading (DOMINANT for C2) -- C2 both_on = 1.0 on all seeds (same saturation as 767's L1a). The super-additive signal survives in C1 (interaction = 1.0 - pref_sd025_on, varies across seeds) and in the at-chance single-drive arms, but the load-bearing absolute-level gate C2 is degenerate.",
+        "integration": "coupled -- the conjunction (both_on) is the integration test; it works but saturates.",
+        "scale": "adequate -- 8 seeds; metric saturation, not sample size."
+      },
+      "biological_reference": {
+        "closest_mechanism": "conjunctive approach: DA-driven representational expansion (VTA->hippocampus) x curiosity/novelty drive on the expanded map; approach only when BOTH present (AND gate), with no explicit valence/wanting gradient",
+        "dependencies": ["SD-024 DA-modulated density (MECH-232)", "SD-025 curiosity drive", "weight-independent density read (ARC-007 strict)", "equal-mass A-vs-B value isolation"],
+        "is_formal_import": false,
+        "divergence": "none -- faithful conjunctive-interaction instantiation; finding is a measurement-operationalization defect shared with 767.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_degeneracy",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "2026-07-16 (V3-EXQ-768, diagnostic, claim_ids=[ARC-057]; failure_autopsy_767-768-cluster_2026-07-16): PASS self-routed 'supports' but adjudication=VACUOUS. The load-bearing absolute-level gate C2_both_on_approaches is pinned at exactly 1.0 on all 8 seeds with zero cross-seed variance (criteria_non_degenerate.pref_both_on_varies_across_seeds=False -> script's OWN top-level non_degenerate=false), via the same _pref_dense argmin saturation as 767: the both-ON conjunction's curiosity term dominates so argmin picks dense every trial. The super-additive INTERACTION is genuinely present and NOT vacuous in itself -- single-drive arms are at chance (sd024_on=0.5 flat; sd025_on ~0.45 with cross-seed spread), C1 interaction contrast (=1.0-pref_sd025_on) varies across seeds and passes, C3/C4/C7 controls pass -- but because the flagged criterion C2 is a LOAD-BEARING gate at zero variance, and governance gates on load-bearing criteria, ARC-057 must NOT promote on this run. epistemic_category measurement_degeneracy (NOT substrate_ceiling). evidence_direction inconclusive (PROMOTES/DEMOTES NOTHING). Route = /queue-experiment re-operationalization 768a (same scientific question, corrected instrument): make the load-bearing selection statistic the CONTINUOUS CEM score-margin (already computed in _pref_dense, discarded), so C2 (and C1's both_on term) carry variance; keep the 2x2 ablation, the equal-mass value isolation, and the weight-zeroing C4. Re-derive brake NOT fired (0 prior substrate_ceiling/non_contributory ARC-057 autopsies). ARC-057 stays candidate.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "First autopsy tagging ARC-057; no prior failure_autopsy_* on this claim -> no granularity-debt recurrence signal."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [],
+        "suggested_probes": [],
+        "note": "Bottleneck routes to ONE unambiguous re-operationalization (binary-argmin -> continuous CEM score-margin). GOV-FANOUT-1 does not apply."
+      },
+      "learning_extracted": [
+        "The env-free ARC-057 super-additive interaction is genuinely present (single drives at chance, conjunction approaches; C1 variance-bearing and passing) and NOT falsified.",
+        "Only the absolute-level load-bearing gate C2 (both_on >= 0.6) saturates to 1.0 -- same _pref_dense argmin ceiling as 767; the interaction contrast C1 escapes it because it subtracts the varying sd025-alone arm.",
+        "Because governance gates on load-bearing criteria, a saturated C2 blocks promotion even though the interaction itself is real -- the re-operationalization onto a continuous margin is what lets ARC-057 clear on evidence."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "A load-bearing binary directional-preference proportion (pref_dense = fraction of 32 counterbalanced trials whose argmin(CEM score) heads to the dense region) pinned at exactly 1.0 on all 8 seeds with zero cross-seed variance, because the SD-025 curiosity term (density ~10-84 x weight) dominates the near-zero (empty-harm) terrain score, so argmin deterministically selects dense every trial. Clean negative controls (OFF/both_off = 0.5 exactly). Both scripts' OWN non-degeneracy guard fails (pref_*_varies_across_seeds=False -> non_degenerate:false) yet both emit PASS/supports.",
+    "is_independent_bugs": false,
+    "structural_property": "ONE operationalization defect of the shared _pref_dense selection instrument (used by both 767 and 768, and likely reused by future SD-024/SD-025 CEM-selection diagnostics in the 766-lineage): the binary argmin vote has no headroom under a dominant drive, so the load-bearing gate saturates and loses all effect-size / cross-seed-variance information. The continuous CEM score-margin exists at run time (per-candidate scores list) but is discarded. The mechanisms under test (curiosity propagation; super-additive DA x curiosity interaction) are REAL -- the negative controls and non-saturated companion criteria confirm they discriminate from a null selection rule -- so this is a metric-saturation ceiling effect, NOT a degenerate mechanism.",
+    "readings": ["ceiling_effect_on_real_mechanism", "degenerate_binary_test"],
+    "readings_converge": "Both live readings force the SAME action: re-operationalize the load-bearing selection statistic onto a continuous, variance-bearing form (CEM score-margin, user-selected) before either PASS can move governance. Resolving ceiling-effect vs degenerate-test is not required to route.",
+    "planning_decision_forced": "Both SD-025 (767) and ARC-057 (768) remain candidate; neither promotes on the current runs. Re-queue 767a + 768a with the CEM score-margin as the load-bearing gate. Recommend fixing the saturation at the shared experiments/_lib selection-instrument level so the 766-lineage does not reproduce it.",
+    "shared_substrate": ["ree-v3/ree_core/hippocampal/ (HippocampalModule._score_trajectory)", "ree-v3/ree_core/residue/field.py (DA-modulated RBF density + curiosity read)", "experiments _pref_dense argmin selection instrument (767 + 768)"]
+  }
+}
