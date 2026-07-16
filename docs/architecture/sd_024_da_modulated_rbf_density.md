@@ -140,6 +140,23 @@ at reward locations. Can be tested independently.
 
 ### 3. Curiosity Drive (SD-025)
 
+> **SD-025 Status: IMPLEMENTED 2026-07-16** (ree-v3 `ree_core/hippocampal/curiosity.py`
+> `FamiliarityTracker` + `HippocampalModule._curiosity_bonus`/`update_familiarity`).
+> Config (`HippocampalConfig`): `curiosity_weight` (master, default `0.0` -> bit-identical
+> OFF), `familiarity_ema_alpha` (`0.01`), `use_curiosity_familiarity` (`True`),
+> `familiarity_bandwidth` (`1.0`). `_score_trajectory` subtracts
+> `curiosity_weight * mean(density * (1 - familiarity))`; density is the SD-024
+> weight-independent `compute_representational_density`, familiarity a proximity-weighted
+> visit-count EMA raised on WAKING visits only (MECH-094; agent gates on `hypothesis_tag`).
+> No phased training (read + EMA state only). 7 contracts in
+> `tests/contracts/test_sd025_curiosity_drive.py`; full `pytest tests/` 1488 passed.
+> **Scope:** the substrate is buildable on SD-024, but the full ARC-057 ecological
+> approach-emergence claim (SD-024 x SD-025 interaction) is ENV-CONSTRAINED (the
+> CausalGridWorld cannot test it faithfully -- see the ARC-057 SUBSTRATE CONSTRAINT in
+> Motivation above). Validation V3-EXQ-767 is scoped to the DRIVE MECHANISM (does
+> curiosity propagate into CEM selection toward higher-density regions? + the familiarity
+> anti-perseveration discount), NOT the interaction claim.
+
 The curiosity drive biases exploration toward regions of higher representational
 density. It operates on the hippocampal map's internal state, not on the
 environment directly:

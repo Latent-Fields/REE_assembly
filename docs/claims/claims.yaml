@@ -19790,6 +19790,34 @@
     Both default to 0 for backward compatibility.
     Test: ARC-057 requires BOTH SD-024 and SD-025 active. Neither alone should produce
     significant approach behavior (interaction effect, not additive).
+  implementation_note: >
+    IMPLEMENTED 2026-07-16 in ree-v3 (hippocampal/curiosity.py FamiliarityTracker +
+    hippocampal/module.py HippocampalModule._curiosity_bonus / update_familiarity;
+    agent.py sense() waking-gated familiarity update). Config (HippocampalConfig):
+    curiosity_weight (master, default 0.0 -> tracker never built, _score_trajectory
+    untouched -> bit-identical OFF), familiarity_ema_alpha (0.01), use_curiosity_familiarity
+    (True; False = density-only ablation), familiarity_bandwidth (1.0).
+    _score_trajectory subtracts curiosity_weight * mean(density * (1 - familiarity));
+    density = compute_representational_density (the SD-024 WEIGHT-INDEPENDENT active-center
+    count -- drive follows representational quality, not a valence gradient); familiarity =
+    a proximity-weighted visit-count EMA (soft visitation KDE, clamped [0,1]) raised on
+    WAKING visits only (MECH-094; agent gates on hypothesis_tag, mirroring the MECH-314a
+    visitation buffer). No phased training (read + EMA state only). 7 contracts in
+    tests/contracts/test_sd025_curiosity_drive.py; full pytest tests/ 1488 passed.
+    SCOPE: the SUBSTRATE is buildable now on SD-024, but the depends_on ARC-057/MECH-111/
+    INV-051 are CLAIMS (not implementable substrate) whose full ARC-057 ecological
+    approach-emergence test is ENV-CONSTRAINED -- the CausalGridWorld cannot faithfully
+    test the SD-024 x SD-025 interaction (a cell is a cell; nothing more to discover at
+    higher resolution; see ARC-057 SUBSTRATE CONSTRAINT). SD-004 + SD-024 (the only
+    implementable-substrate deps) are IMPLEMENTED. Validation V3-EXQ-767 is scoped to the
+    DRIVE MECHANISM (does curiosity PROPAGATE into CEM selection toward higher-density
+    regions -- the propagation MECH-111's broken broadcast-novelty->E3 path could not
+    achieve, EXQ-141b/590a -- + the familiarity anti-perseveration discount), NOT the
+    interaction claim. SD-025 stays candidate; a PASS is drive-mechanism readiness, not
+    ARC-057 evidence. NOTE for governance: substrate_queue.json SD-025 depends_on_unresolved
+    still lists SD-024 (now implemented) -- drop it; the remaining ARC-057/MECH-111/INV-051
+    are env/claim gates on the full test, not the substrate build.
+    See docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-drive.
 
 - id: MECH-220
   title: harm_stream_hub_coordination
