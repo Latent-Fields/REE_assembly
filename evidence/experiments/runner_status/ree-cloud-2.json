@@ -1,45 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 670,
-  "runner_started_at": "2026-07-13T06:20:44.573918+00:00",
-  "last_updated": "2026-07-13T11:19:11.795683+00:00",
+  "runner_pid": 668,
+  "runner_started_at": "2026-07-16T15:20:38.348649+00:00",
+  "last_updated": "2026-07-16T15:20:45.281781+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-747",
-      "backlog_id": "",
-      "claim_id": "MECH-457",
-      "title": "MECH-457 GOV-FANOUT-1 leg A (H-rep): raw-5x5-view actor-critic",
-      "description": "",
-      "estimated_minutes": 1600.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-749",
-      "backlog_id": "",
-      "claim_id": "MECH-457",
-      "title": "MECH-457 GOV-FANOUT-1 leg C (conjunction): raw-view dense-teacher actor-critic",
-      "description": "",
-      "estimated_minutes": 2000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-742-m",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 bias_head_baseline MINT -- order-independent reuse insurance for the V3-EXQ-742 OFF arm (724-A0 all-ON; D0+D3; baseline)",
-      "description": "",
-      "estimated_minutes": 232.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -2876,6 +2842,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_748_mech457_hexplore_reward_density_actor_critic_20260713T111911Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 17906.4
+    },
+    {
+      "queue_id": "V3-EXQ-766a",
+      "backlog_id": "",
+      "claim_id": "MECH-232",
+      "title": "MECH-232 DA-modulated representational expansion -- CLOUD confirmation of 766 (SD-024 cloud-authoritative gate)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_766_mech232_da_modulated_representational_expansion] outcome=PASS elapsed=5.6s | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-766a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-766a.json",
+      "started_at": "2026-07-16T15:20:38.362329+00:00",
+      "completed_at": "2026-07-16T15:20:45.281029+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_766_mech232_da_modulated_representational_expansion/v3_exq_766_mech232_da_modulated_representational_expansion_20260716T152044Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 6.9
     }
   ]
 }
