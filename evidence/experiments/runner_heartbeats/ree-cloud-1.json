@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-16T06:25:51Z",
+  "last_tick_utc": "2026-07-16T07:31:06Z",
   "state": "running",
   "current_exq": "V3-EXQ-765",
   "current_exq_started_utc": "2026-07-16T05:57:54.452075+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "MECH-457",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / D3_hazard_free",
-    "runs_done": 9,
+    "run_label": "Seed 43 / D3_hazard_free",
+    "runs_done": 10,
     "runs_total": 21,
     "episodes_done": 100,
     "episodes_total": 3000,
-    "overall_pct": 43.0
+    "overall_pct": 47.8
   },
-  "seconds_elapsed": 1677,
-  "seconds_remaining": 41,
+  "seconds_elapsed": 5592,
+  "seconds_remaining": 37072,
   "recent_lines": [
     "MECH-457 competence bootstrap-explorer validation (post-build retest) (7 arms x 1 rung [D3_hazard_free] x 3 seeds; P0=200, ON_budget=3000, OFF_budget=1000, eval=20, steps=200)",
     "Seed 42 Condition D3_hazard_free:local_view_greedy",
@@ -40,7 +40,18 @@
     "verdict: FAIL (arm=random_walk seed=44 forage/ep=0.85)",
     "Seed 42 Condition D3_hazard_free:boot_off_zworld",
     "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 50/200",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200"
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 100/200",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 150/200",
+    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0 ep 200/200",
+    "[train] boot_off_zworld seed=42 phase=RL ep 200/1000 (returns=0 credit_passes=0)",
+    "[train] boot_off_zworld seed=42 phase=RL ep 400/1000 (returns=0 credit_passes=0)",
+    "[train] boot_off_zworld seed=42 phase=RL ep 600/1000 (returns=0 credit_passes=0)",
+    "[train] boot_off_zworld seed=42 phase=RL ep 800/1000 (returns=0 credit_passes=0)",
+    "[train] boot_off_zworld seed=42 phase=RL ep 1000/1000 (returns=0 credit_passes=0)",
+    "verdict: PASS (arm=boot_off_zworld seed=42 forage/ep=4.7)",
+    "Seed 43 Condition D3_hazard_free:boot_off_zworld",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 50/200",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 100/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
