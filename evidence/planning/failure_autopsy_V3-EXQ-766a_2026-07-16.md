@@ -72,6 +72,21 @@ infra follow-up so the index-scored artifact carries machine_class/substrate_has
 It does not make this gate unauditable (the flat manifest + coordinator DB both record the
 cloud provenance).
 
+**RESOLVED 2026-07-16** (REE_assembly `59e9f69f1f`, ree-v3 `7197e9e`). Root cause: the
+phase3 run-pack producer `sync_v3_results.build_runpack_docs` never mapped the flat
+manifest's always-core provenance (`machine`/`machine_class`/`substrate_hash`) into the
+pack, and set `metrics.values` from a top-level `metrics` key that 766-style manifests
+don't have (their readouts live under `aggregates`). Systemic: all 2519 packs read
+`machine_class: null`. Fix: (1) producer now carries the provenance (conditional-add ->
+legacy flats byte-identical) and folds `aggregates` into `metrics.values` when no
+top-level `metrics`; (2) `build_experiment_indexes` unconditionally backfills provenance
+from the flat sibling onto the pack (independent of the annotation gate; never changes
+scoring), so all historical thin packs heal at index time without a rewrite; (3) the two
+V3-EXQ-766 packs (+ the V3-EXQ-633 golden fixture) were regenerated on disk; (4)
+`validate_recording.check_pack_provenance` flags any pack that drops provenance the flat
+carries. This run's cloud pack now carries `machine_class: linux-x86_64-py3.10`,
+`substrate_hash f92a600c…`, and 11 metrics.values.
+
 ## Routing
 
 **`governance`** — promote **MECH-232 candidate -> provisional**, citing the cloud PASS.
