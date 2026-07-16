@@ -2,28 +2,17 @@
   "schema_version": "v1",
   "runner_pid": 2069716,
   "runner_started_at": "2026-07-11T23:09:12.195580+00:00",
-  "last_updated": "2026-07-15T08:19:44.585429+00:00",
+  "last_updated": "2026-07-16T15:53:07.442308+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-755",
+      "queue_id": "V3-EXQ-680e",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-mode (policy-control axis): critic-utility explore/exploit gate vs fixed-RND, z_world + raw 5x5, diagnostic",
+      "claim_id": "MECH-423",
+      "title": "MECH-423 cross-model super-additivity 3-arm ablation -- readiness-cosine-gate recalibration (magnitude-floored tolerance-band); supersedes 680d",
       "description": "",
-      "estimated_minutes": 3600.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-756",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 PAIR H-credit x H-return (additivity cell): credit + return + pair vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 4400.0,
+      "estimated_minutes": 80.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3593,6 +3582,48 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 519.2
+    },
+    {
+      "queue_id": "V3-EXQ-746c",
+      "backlog_id": "",
+      "claim_id": "INV-089",
+      "title": "INV-089 harm-eval z_harm bound: target-corrected (prox) + IV/DV budget-decoupled redesign of starved 746b",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[secondary:realized_harm] pre_met=False (iv_moved=False iv_delta_full=0.0004 iv_delta_small=-0.0255; dv_decodable=False mature_iv=0.043; raw_std=0.0965; dv_estimator_ok=True mature_dv=0.046) C1=False(rho=0.100) C2=False(dvd=0.0006,cpl=0.275) C3=False(2sd=0.0212) -> claim_pass=False | OUTCOME: FAIL (direction=weakens) on PRIMARY=prox | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-746c -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-746c.json",
+      "started_at": "2026-07-15T15:10:06.838830+00:00",
+      "completed_at": "2026-07-15T15:17:06.261099+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_746c_inv089_harm_eval_z_harm_bound_target_corrected/v3_exq_746c_inv089_harm_eval_z_harm_bound_target_corrected_20260715T151705Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 419.4
+    },
+    {
+      "queue_id": "V3-EXQ-765",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 competence bootstrap-explorer validation (post-build retest): composed RND drive + credit-replay + developmental anneal + budget, OFF (RND plateau) vs ON x {z_world,raw}; does the composition lift floor->competent past the 5.22 plateau (target ~13.05, toward BC 32.72)?",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS (arm=boot_on_raw seed=44 forage/ep=15.9) | outcome: FAIL label=bootstrap_explorer_plateaus_capacity_gap_remains readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-765 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-765.json",
+      "started_at": "2026-07-16T05:57:54.452075+00:00",
+      "completed_at": "2026-07-16T12:27:27.145414+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 23372.7
+    },
+    {
+      "queue_id": "V3-EXQ-768",
+      "backlog_id": "",
+      "claim_id": "ARC-057",
+      "title": "ARC-057 SD-024 x SD-025 interaction spike (env-free Test B) -- 4-arm DA-expansion x curiosity-drive ablation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_768_arc057_da_curiosity_interaction_spike] outcome=PASS elapsed=22.5s | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-768 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-768.json",
+      "started_at": "2026-07-16T15:52:43.502069+00:00",
+      "completed_at": "2026-07-16T15:53:07.441468+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_768_arc057_da_curiosity_interaction_spike/v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 23.9
     }
   ]
 }
