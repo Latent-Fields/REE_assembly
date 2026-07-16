@@ -5614,9 +5614,9 @@
       "sd_id": "mech457_competence_bootstrap_explorer",
       "title": "Competent unsupervised explorer for the action-learning competence floor (MECH-457): compose the landed ARC-065/MECH-314 curiosity-novelty substrate as a SUCCESS-INDEPENDENT dense per-step bootstrap drive for the foraging policy, plus adequate policy capacity/training budget to convert coverage into competence. Targets floor->competent (RND alone reaches only 5.22 ~= 11% of the 48 local-view ceiling). UPSTREAM of f_dominance_conversion_ceiling (which is the downstream selection-face variance-monopoly ceiling).",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": false,
-      "design_doc": null,
+      "status": "implemented",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_mech457_competence_bootstrap_explorer.md",
       "depends_on_unresolved": [
         "MECH-229"
       ],
@@ -5641,7 +5641,11 @@
       "implementation_hint": "The 752/753/754 portfolio shows sparse-reward-credit reshaping (credit-sweep / archive-return / achievable-goal curriculum) cannot bootstrap from ~0 competence -- they all need prior success. Build a success-INDEPENDENT dense drive instead: wire the existing ARC-065/MECH-314 curiosity/novelty reward as an every-step bootstrap signal for the trainable foraging policy (composition, NOT a new novelty module -- honours the lit-pull duplication objection), and give the policy enough capacity/training to lift beyond the RND coverage plateau toward the local-view competence ceiling (~48). Do NOT re-queue another sparse-reward-credit bolt-on class against this floor (re-derive brake).",
       "priority": 1,
       "added_session": "ree-ai-design-critique-773a00-governance",
-      "last_seen_session": "ree-ai-design-critique-773a00-governance"
+      "last_seen_session": "ree-ai-design-critique-773a00-governance",
+      "implemented_utc": "2026-07-16T05:38:34Z",
+      "implemented_by": "unruffled-lichterman-65e45e (/implement-substrate)",
+      "implemented_note": "Composed floor->competent bootstrap explorer built in experiments/_lib/mech457_bootstrap_explorer.py (ree-v3 main 022a284): RND success-independent drive + prioritized credit-replay converter + NEW developmental intrinsic-coef/entropy anneal + increased budget on the first-class actor-critic, both z_world cotrain and raw 5x5. Composition of ONLY landed pieces (honours the SYNTHESIS.md duplication objection). No-op-default bit-identical OFF (=751 RND plateau); full pytest 1428 passed + 6 new contracts. Validation V3-EXQ-765 queued + coordinator-ingested (diagnostic, OFF-vs-ON x {z_world,raw}, foraging lift >=7.83 above the 5.22 plateau). MECH-457 stays candidate/v3_pending (pending_retest_after_substrate); INV-088 candidate/pending_substrate_reconfirmation until 765 scores. NOTE: the 746c-756 failure_record (H-credit x H-return pair null) is NOT appended here -- left to the governance autopsy-consumption pass; the existing 752-755 records were sufficient to route this build.",
+      "validation_exq": "V3-EXQ-765"
     }
   ],
   "schema_version": "substrate_queue/v2"
