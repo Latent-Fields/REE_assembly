@@ -1008,6 +1008,15 @@
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107828Z"
     },
+    "MECH-232": {
+      "actor": "governance (mech232-766a-cloud-regate)",
+      "decision_needed": "Promote MECH-232 candidate->provisional on the SD-024 cloud-authoritative gate (V3-EXQ-766a cloud PASS)",
+      "decision_status": "applied",
+      "rationale": "Cloud diagnostic V3-EXQ-766a (ree-cloud-2, linux-x86_64-py3.10) PASS/supports, adjudication=verified; all 4 load-bearing criteria pass; readiness met; non_degenerate. Satisfies SD-024 cloud-authoritative gate.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "promote candidate->provisional",
+      "timestamp_utc": "2026-07-16T15:38:50.500709Z"
+    },
     "MECH-256": {
       "actor": "governance-2026-04-25T15:15",
       "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
@@ -1565,6 +1574,15 @@
       "recommendation": "held_v4_by_architectural_commitment",
       "selected_option": "Keep held under the V5 architectural commitment (correct path).",
       "timestamp_utc": "2026-07-01T01:23:10.371814Z"
+    },
+    "MECH-423": {
+      "actor": "governance-641c45",
+      "decision_needed": "Promotion review: candidate -> provisional on first clean supports (V3-EXQ-680e)",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-680e clean cloud (ree-cloud-2) evidence PASS super_additive/supports; all 7 integration-readiness preconditions met; supersedes 680d; completes the pre-registered 680b->e corrected-gate campaign. No v3_pending gate.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "Promote to provisional",
+      "timestamp_utc": "2026-07-16T18:07:07.583233Z"
     },
     "MECH-436": {
       "actor": "governance-20260617T2349Z",
@@ -2233,7 +2251,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-15T13:47:50.836959Z",
+  "generated_at_utc": "2026-07-16T18:07:42.170782Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

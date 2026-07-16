@@ -19798,6 +19798,17 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  evidence_quality_note: >
+    2026-07-16 governance (cycle 2026-07-16d; failure_autopsy_767-768-cluster): V3-EXQ-767
+    (curiosity-drive CEM selection-bias diagnostic) PASSed self-routed 'supports' but was
+    adjudicated VACUOUS -- the single load-bearing gate L1a_pref_A_on is pinned at exactly 1.0 on
+    all 8 seeds (zero cross-seed variance), so the binary directional-preference readout saturates
+    and carries no effect-size. The MECHANISM is real (OFF arm = 0.5 chance; the drive genuinely
+    discriminates dense from sparse) -- epistemic_category measurement_degeneracy, NOT
+    substrate_ceiling (the SD-024/SD-025 substrate works). evidence_direction inconclusive
+    (PROMOTES/DEMOTES NOTHING). Re-operationalized as V3-EXQ-767a: replace the saturating binary
+    pref-gate with the continuous CEM score-margin (already computed internally, discarded). SD-025
+    stays candidate.
   registered: "2026-04-14"
   depends_on:
     - SD-024
@@ -22051,6 +22062,18 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  evidence_quality_note: >
+    2026-07-16 governance (cycle 2026-07-16d; failure_autopsy_767-768-cluster): V3-EXQ-768
+    (SD-024 x SD-025 DA-density x curiosity interaction spike) PASSed self-routed 'supports' but was
+    adjudicated VACUOUS -- the load-bearing absolute-level gate C2_both_on_approaches is pinned at
+    exactly 1.0 on all 8 seeds (zero cross-seed variance) via argmin saturation. The super-additive
+    INTERACTION itself is genuine (single-drive arms at chance -- sd024_on flat 0.5, sd025_on ~0.45
+    with cross-seed spread; C1 interaction contrast, C3/C4/C7 controls all pass), but because a
+    load-bearing gate reads at zero variance and governance gates on load-bearing criteria, ARC-057
+    must NOT promote on this run. epistemic_category measurement_degeneracy, NOT substrate_ceiling.
+    evidence_direction inconclusive (PROMOTES/DEMOTES NOTHING). Re-operationalized as V3-EXQ-768a:
+    make the load-bearing selection statistic the continuous CEM score-margin (keep the 2x2 ablation,
+    equal-mass value isolation, weight-zeroing C4). ARC-057 stays candidate.
   registered: "2026-04-14"
   depends_on:
     - MECH-232
@@ -51007,7 +51030,7 @@
   claim_type: mechanism_hypothesis
   subject: integration.cross_model_super_additivity
   polarity: asserts
-  status: candidate
+  status: provisional
   granularity_debt_disposition: coherent_campaign  # GOV-GRAN-1 human-adjudicated 2026-07-16 (NOT granularity debt); see granularity_debt_recurrence_note
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 discrimination (2026-07-16, session gifted-kilby-8e2491). Audit flagged
@@ -51035,13 +51058,13 @@
     finite net-negative cosine on a majority of seeds, route to /implement-substrate (shared-latent
     objective reconciliation) or narrow the claim -- NOT another 680f re-queue.
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-16
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-680d_2026-06-15
-      as_of: 2026-06-15
-      verdict: non_contributory/standard
+      from: v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3
+      as_of: 2026-07-16
+      verdict: supports/standard
   implementation_phase: v3
   epistemic_category: standard
   version_relevance: v3
@@ -51101,6 +51124,18 @@
     stable seed (789) shows a genuine net-negative shared-encoder cosine (-0.40), MECH-423 NOT weakened.
     Both autopsies route to /queue-experiment 680d (stabilise PAIR co-training + guard the cosine
     aggregate); no substrate gap. 680d is the live path to a genuine super-additivity verdict.
+    2026-07-16 (governance cycle 2026-07-16d): PROMOTED candidate -> provisional. V3-EXQ-680e
+    (ree-cloud-2, cloud class) is the first clean experimental evidence PASS -- interpretation
+    super_additive, evidence_direction supports, all 7 integration-readiness preconditions met
+    (shared-latent grad coupled, inference loop iterated, E2 touchable under interleaved, interleaved
+    share positive, blocked share zero, PAIR seeds finite + not net-negative transfer), load-bearing
+    superadditivity_margin_pair passed. 680e completes the 680b->c->d->e campaign the
+    granularity_debt_recurrence_note pre-registered as the honest resolution: it recalibrated the
+    readiness cosine gate (min(cos)>=0 -> magnitude-floored tolerance band 0.15, pre-registered from
+    680d's observed usable-seed noise), unmasking the super-additive verdict that 680d's false-routing
+    gate had suppressed (680d's non_contributory FAIL was gradient-orthogonality noise, not negative
+    transfer). Predecessor V3-EXQ-680d marked superseded. No v3_pending gate. Integrated-arm
+    super-additivity over the ARC-004 shared latent now confirmed on cloud class.
 - id: MECH-424
   title: "Language prediction as a corrective / instantiating predictive stream: when language is modelled as an externalisation of internal cognition, predicting language inside the integrated substrate can INSTANTIATE cognitive structures not gained sensorimotorically, and can CORRECT or DEGRADE existing structures as a function of the language's quality. The bidirectional clause (good language repairs structure; bad language corrupts it) is the discriminating edge over language-as-scaffold."
   claim_type: mechanism_hypothesis

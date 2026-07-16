@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-16T15:39:34Z",
+  "last_review_utc": "2026-07-16T18:08:56Z",
   "discussed_experiment_dirs": [
     "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier",
     "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
@@ -854,7 +854,10 @@
     "v3_exq_746b_inv089_harm_eval_z_harm_bound_variance_reduced",
     "v3_exq_746c_inv089_harm_eval_z_harm_bound_target_corrected",
     "v3_exq_756_mech457_hcredit_x_hreturn_pair",
-    "v3_exq_766_mech232_da_modulated_representational_expansion"
+    "v3_exq_766_mech232_da_modulated_representational_expansion",
+    "v3_exq_680e_mech423_superadditivity_ablation",
+    "v3_exq_767_sd025_curiosity_drive_selection_bias",
+    "v3_exq_768_arc057_da_curiosity_interaction_spike"
   ],
   "reviewed_run_ids": [
     "v3_exq_742m_mech457_bias_head_baseline_mint_20260715T013328Z_v3",
@@ -3386,7 +3389,10 @@
     "v3_exq_756_mech457_hcredit_x_hreturn_pair_20260715T170212Z_v3",
     "v3_exq_766_mech232_da_modulated_representational_expansion_20260716T152044Z_v3",
     "v3_exq_766_mech232_da_modulated_representational_expansion_20260716T062527Z_v3",
-    "v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3"
+    "v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3",
+    "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
+    "v3_exq_767_sd025_curiosity_drive_selection_bias_20260716T073159Z_v3",
+    "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5260,6 +5266,16 @@
         "v3_exq_756_mech457_hcredit_x_hreturn_pair_20260715T170212Z_v3"
       ],
       "note": "Governance walk 2026-07-16b (user-interactive). 4 pending; 3 FAILs reviewed, V3-EXQ-766 LEFT PENDING (route B). All 3 FAILs adjudicated non_contributory by confirmed autopsies -> WEIGH NOTHING; PROMOTES/DEMOTES NOTHING. (1) V3-EXQ-746b/INV-089 non_contributory (measurement_degeneracy, failure_autopsy_V3-EXQ-746b_2026-07-15): DV-estimator fix validated but IV starved (PC_iv_moved false) -> no valid bound test; manifest ev_dir unknown->non_contributory (flat+pack). (2) V3-EXQ-746c/INV-089 non_contributory (measurement_regime_mismatch, failure_autopsy_746c-756_2026-07-16): first VALID met-precondition driver test, self-routed weakens but ran in a NON-BINDING regime (prox z_harm diff ~0.82) -> flat-high evaluator consistent with a ceiling; manifest ev_dir weakens->non_contributory (flat+pack) -- LOAD-BEARING correction (removes a false weakens against INV-089). (3) V3-EXQ-756/MECH-457 non_contributory (competence_implementation_gap, failure_autopsy_746c-756_2026-07-16): H-credit x H-return pair sub-floor, closes GOV-FANOUT-1 combination axis, routes /implement-substrate AMEND mech457_competence_bootstrap_explorer (already built by unruffled-lichterman); manifest ev_dir unknown->non_contributory (flat+pack). CLAIMS.YAML: INV-089 note reconciliation applied (746a/b/c re-assigned to INV-090 driver child; ceiling INV-089 has NO active weakens; 'actively pressured' softened; live_status re-anchored to 743; pending_retest_after_substrate:true on a distinct non-flat harm-eval target -- blocked on the committed-action/conversion ceiling). INV-090 note: binding-curriculum build REFUSED (welded-to-ceiling), no substrate_queue entry. INV-089 stays provisional on 743; INV-090 holds candidate/substrate_conditional; MECH-457 stays candidate/v3_pending. V3-EXQ-766 (MECH-232 DA-representational-expansion) PASS but a Mac (DLAPTOP-4) diagnostic run, and the SD-024 design gates MECH-232 on a CLOUD PASS via /failure-autopsy; left pending for a cloud confirmation + autopsy (chip spawned). Step-3 agenda: INV-088 stays held (hold_candidate_resolve_conflict, blocked on mech457 bootstrap-explorer / V3-EXQ-765). PROMOTES nothing; DEMOTES nothing."
+    },
+    {
+      "utc": "2026-07-16T18:08:56Z",
+      "session": "governance-641c45 (/governance walk+apply 2026-07-16d)",
+      "reviewed": [
+        "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
+        "v3_exq_767_sd025_curiosity_drive_selection_bias_20260716T073159Z_v3",
+        "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3"
+      ],
+      "note": "Governance walk 2026-07-16d (user-interactive apply). 3 pending PASS -> 0. (1) V3-EXQ-680e/MECH-423 EVIDENCE PASS/supports (ree-cloud-2, cloud class; super_additive, all 7 preconditions met, load-bearing superadditivity_margin_pair passed) -> PROMOTED MECH-423 candidate->provisional; completes the 680b->e corrected-gate campaign the granularity_debt_recurrence_note pre-registered; 680d marked superseded (flat ev_dir non_contributory->superseded + superseded_by 680e). No v3_pending gate. decision_log + decision_state updated (promote_to_provisional/applied). (2) V3-EXQ-767/SD-025 diagnostic PASS adjudicated VACUOUS (confirmed failure_autopsy_767-768-cluster_2026-07-16): load-bearing L1a_pref_A_on saturated 1.0/8 seeds zero-variance; measurement_degeneracy; ev_dir supports->inconclusive (flat); re-operationalize V3-EXQ-767a (continuous CEM score-margin gate); SD-025 stays candidate + evidence_quality_note. (3) V3-EXQ-768/ARC-057 diagnostic PASS adjudicated VACUOUS (same cluster autopsy): load-bearing C2_both_on_approaches saturated 1.0/8 seeds; interaction genuine but load-bearing gate zero-variance blocks promotion; measurement_degeneracy; ev_dir supports->inconclusive (flat); re-operationalize V3-EXQ-768a; ARC-057 stays candidate (also v3_pending) + evidence_quality_note. Step-3 agenda: INV-088 stays held (hold_candidate_resolve_conflict, blocked-on-upstream V3-EXQ-769 in flight). PROMOTES 1 (MECH-423); DEMOTES nothing."
     }
   ]
 }
