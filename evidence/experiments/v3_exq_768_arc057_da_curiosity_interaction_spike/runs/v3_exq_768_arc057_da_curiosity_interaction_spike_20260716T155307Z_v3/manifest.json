@@ -1,0 +1,136 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_768_arc057_da_curiosity_interaction_spike",
+  "run_id": "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-16T15:53:07Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-057"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc057_approach_emerges_from_da_curiosity_interaction_not_either_alone",
+    "preconditions": [
+      {
+        "name": "density_read_discriminates",
+        "kind": "readiness",
+        "description": "ON field: density(dense) - density(sparse) clears floor (the density statistic the interaction contrast C1/C2 route on)",
+        "measured": 13.09414,
+        "threshold": 0.5,
+        "control": "DA-dense reward region vs equally-visited non-DA region",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "selection_responds_to_curiosity",
+        "kind": "readiness",
+        "description": "strong positive control (large curiosity_weight, dense ON field) yields pref_dense >= floor (the selection statistic C1/C2 route on)",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "control": "curiosity_weight=3.0, dense ON field",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_interaction_contrast",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.5,
+        "threshold": 0.2,
+        "note": "pref_both_on - (pref_sd024_on + pref_sd025_on - pref_both_off); super-additive 2x2 interaction, not additive"
+      },
+      {
+        "name": "C2_both_on_approaches",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 1.0,
+        "threshold": 0.6
+      },
+      {
+        "name": "C3_sd025_alone_no_gradient",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.4531,
+        "threshold": 0.65,
+        "direction": "upper",
+        "note": "SD-024 OFF -> uniform density -> curiosity has no gradient -> no directional approach"
+      },
+      {
+        "name": "C4_interaction_rides_density_not_value",
+        "load_bearing": true,
+        "passed": true,
+        "interaction_zeroed": 0.5,
+        "pref_both_on_zeroed": 1.0,
+        "threshold_interaction": 0.2,
+        "threshold_approach": 0.6,
+        "note": "all benefit weights zeroed (value removed): interaction + both-ON approach persist because density is weight-independent"
+      },
+      {
+        "name": "C5_sd024_alone_no_selection_approach",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.5,
+        "threshold": 0.65,
+        "direction": "upper"
+      },
+      {
+        "name": "C6_baseline_chance",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.5,
+        "threshold": 0.15,
+        "note": "|pref_both_off - 0.5|"
+      },
+      {
+        "name": "C7_value_non_discriminating",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.092,
+        "threshold": 0.2,
+        "direction": "upper",
+        "note": "equal-mass design: value_dense ~ value_sparse -> value cannot drive the A-vs-B choice"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "density_dense_exceeds_sparse": true,
+      "interaction_varies_across_seeds": true,
+      "pref_both_on_varies_across_seeds": false,
+      "da_creates_density_gradient": true
+    }
+  }
+}
