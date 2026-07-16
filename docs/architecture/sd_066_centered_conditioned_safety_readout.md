@@ -1,9 +1,8 @@
 ---
-title: "SD-066: safety_prediction.common_mode_invariant_conditioned_safety_readout"
-parent: "Goals, Drives & Motivation"
-grandparent: Architecture
-status: IMPLEMENTED
-status_asof: 2026-07-15
+title: "SD-066: common-mode-invariant (centered) conditioned-safety readout"
+nav_exclude: true
+status: candidate/v3_pending
+status_asof: 2026-07-16
 status_claim: SD-066
 ---
 
