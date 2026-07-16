@@ -1,0 +1,84 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-16T15:57:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3",
+      "queue_id": "V3-EXQ-765",
+      "claim_ids": ["MECH-457"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; drive-axis weakly strengthened (raw ON +5.87 over OFF is a real converter-driven lift), capacity half untested-to-competence. No demotion.",
+        "biological_reference": "clear -- dorsal-striatal actor + RPE + developmental exploration scaffold (RND/replay/anneal); plateau matches an under-capacitated actor / immature policy horizon (missing-dependency signature, not falsification).",
+        "prerequisites": "drive prerequisites PRESENT and fired (n_credit_replay_passes 4500-8259); remaining prerequisite = adequate policy capacity / training horizon, IMMATURE.",
+        "implementation": "partial -- composed explorer complete and runs but at capacity/budget insufficient to reach competence; z_world cotrain path destructive.",
+        "environment": "adequate -- readiness proves env solvable from the 5x5 local view (48.05 achievable).",
+        "measurement": "adequate -- foraging_competence + grounded denominators + well-formed 13.05 lift target; recording complete (substrate_hash present, validate_recording OK) so ceiling reading is falsifiable, no recording gap.",
+        "integration": "partially coupled but unstable -- z_world encoder-cotrain coupling DEGRADES competence (ON 0.35 < OFF 5.22); raw (no coupling) helps.",
+        "scale": "likely insufficient (DOMINANT) -- actor_critic_hidden=128, on_budget=3000 ep; raw plateaus 6.48 vs 48.05 achievable; verdict = capacity_gap_remains."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal actor taught by dopaminergic RPE (O'Doherty 2004; Schultz 1997), scaffolded by novelty drive (RND) + consolidation replay + developmental explore->exploit anneal (maturational curriculum analog)",
+        "dependencies": ["policy capacity / representational depth of the actor", "training horizon / budget", "credit-assignment reliability", "frozen-encoder decoupling for the z_world path (Stooke 2021)"],
+        "is_formal_import": false,
+        "divergence": "not a formal-import divergence; grounded in 5 canonical lit entries (targeted_review_actor_critic_action_learning). The failure is a discovered capacity prerequisite of the reference mechanism, plus a decoupled-representation caution the z_world cotrain path violates.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-16 (V3-EXQ-765, diagnostic, claim_ids=[MECH-457]; failure_autopsy_V3-EXQ-765_2026-07-16): post-build retest of the composed mech457_competence_bootstrap_explorer substrate RAN and FAILED (bootstrap_explorer_plateaus_capacity_gap_remains). Readiness PASSED (local_view_greedy 48.05, oracle 57.2 vs 1.0 floor -- env solvable from the 5x5 view). The composed DRIVE half works on raw (ON 6.48 vs OFF 0.62, +5.87 converter-driven lift; n_credit_replay_passes 4500-8259) but the CAPACITY-to-convert half persists: raw ON plateaus at ~13% of the 48.05 achievable ceiling and clears NEITHER representation's 13.05 lift-competence target. Two subordinate findings: (1) z_world cotrain is DESTRUCTIVE (ON 0.35 < OFF 5.22 -- explorer drive corrupts the prediction-trained encoder; detach the z_world path per Stooke 2021); (2) high seed variance on raw (15.9 / 3.05 / 0.5 -- convert-ability unreliable, residual partly credit-reliability, not pure capacity). epistemic_category competence_implementation_gap (0 substrate_ceiling verdicts preserved; GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic, PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (5th non_contributory MECH-457 autopsy): REFUSE any fresh same-question explorer-mechanism re-queue; route = implement-substrate capacity-side amend of mech457_competence_bootstrap_explorer (raise policy capacity/budget + reliability/warm-start + z_world cotrain detach). MECH-457 stays candidate/v3_pending. NEW hit within the GOV-GRAN-1 coherent-campaign disposition, not a granularity signal.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech457_competence_bootstrap_explorer",
+        "sd_id_suggested": null,
+        "title": "Capacity-side amend: raise actor-critic policy capacity/budget + credit reliability + detach z_world cotrain",
+        "implementation_hint": "V3-EXQ-765 post-build retest shows the composed DRIVE half works on raw (ON 6.48 vs OFF 0.62) but the actor-critic plateaus at ~13% of the 48.05 achievable ceiling (capacity-to-convert gap) and z_world cotrain is destructive (ON 0.35 < OFF 5.22). Next build: (a) raise actor_critic_hidden + on_budget; (b) add credit-reliability / warm-start to cut the large raw seed variance (15.9/3.05/0.5); (c) default the z_world path to detached (train policy on the frozen encoder, per Stooke 2021). Then a post-build retest (new EXQ number) -- NOT another single-axis explorer probe (re-derive brake holds).",
+        "unblocks_claims": ["MECH-457", "INV-088"],
+        "depends_on_unresolved": ["sd_actor_critic_action_learning (built)", "SD-056 (built)", "MECH-229 (built)"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3",
+          "experiment_type": "v3_exq_765_mech457_bootstrap_explorer_competence",
+          "metric": "D3 foraging_competence: raw ON 6.48 (plateau, 1/3 seeds supra 13.05 target), z_world ON 0.35 (below its 5.22 OFF plateau); neither rep clears the 13.05 lift-competence target on a strict majority of seeds",
+          "target": "ON >= 13.05 (5.22 RND plateau + 7.83 lift margin) AND beats its OFF arm by >= the lift margin, strict-majority seeds, on either representation"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15",
+          "failure_autopsy_746c-756_2026-07-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_competence_bootstrap_explorer"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "GOV-GRAN-1 already discriminated this recurrence (2026-07-16, session gifted-kilby-8e2491): COHERENT campaign, /claim-synthesis CONTRAINDICATED (every candidate sub-claim already owned by ARC-065/MECH-314, MECH-455, INV-088). 765 is a new hit within the campaign, not a granularity signal."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "live_hypotheses": [],
+        "suggested_probes": [],
+        "note": "Bottleneck routes to ONE unambiguous build (capacity + reliability + z_world detach are three knobs on the same build, not competing hypotheses). GOV-FANOUT-1 does not apply; re-derive brake forbids another single-axis probe."
+      },
+      "learning_extracted": [
+        "Composed bootstrap explorer's DRIVE half works on raw (RND+credit-replay+developmental anneal lifts raw foraging 0.62->6.48, +5.87); CAPACITY-to-convert half remains the wall (~13% of the 48.05 achievable ceiling). Two-joined-halves campaign read confirmed at the post-build layer.",
+        "z_world cotrain is DESTRUCTIVE (ON 0.35 < OFF 5.22) -- explorer drive corrupts the prediction-trained encoder; future builds must detach the z_world path (frozen encoder, Stooke 2021).",
+        "Large raw seed variance (15.9/3.05/0.5) -- convert-ability is unreliable; residual partly credit-reliability/exploration-depth, not pure network capacity; capacity build should add reliability/warm-start.",
+        "MECH-457 claim neither confirmed nor falsified: biology supports the mechanism class, capacity was not adequate, so demotion threshold not met."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
