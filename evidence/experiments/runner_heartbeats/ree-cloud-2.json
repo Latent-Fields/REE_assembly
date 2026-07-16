@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-16T15:36:52Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 0,
-  "queue_id_at_head": null,
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-712",
-      "result": "PASS",
-      "completed_at": "2026-07-04T01:42:07.722614+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-727",
-      "result": "PASS",
-      "completed_at": "2026-07-09T18:20:50.248935+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-716a",
-      "result": "PASS",
-      "completed_at": "2026-07-09T19:35:17.792135+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-748",
-      "result": "PASS",
-      "completed_at": "2026-07-13T11:19:11.794923+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-766a",
-      "result": "PASS",
-      "completed_at": "2026-07-16T15:20:45.281029+00:00"
-    }
+  "last_tick_utc": "2026-07-16T15:43:01Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-680e",
+  "current_exq_started_utc": "2026-07-16T15:42:56.223343+00:00",
+  "current_title": "MECH-423 cross-model super-additivity 3-arm ablation -- readiness-cosine-gate recalibration (magnitude-floored tolerance-band); supersedes 680d",
+  "current_claim_id": "MECH-423",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_ISOLATED",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 1,
+    "episodes_total": 40,
+    "overall_pct": 0.2
+  },
+  "seconds_elapsed": 5,
+  "seconds_remaining": 911,
+  "recent_lines": [
+    "[v3_exq_680e_mech423_superadditivity_ablation] starting (dry_run=False) arms=('ARM_ISOLATED', 'ARM_INTEGRATED_PAIR', 'ARM_INTEGRATED_TRIPLE') seeds=(42, 123, 456, 789, 1011) train_eps=40 enc_warmup=10 enc_lr=0.0001 cosine_band=0.15",
+    "Seed 42 Condition ARM_ISOLATED",
+    "[train] ARM_ISOLATED seed=42 ep 1/40 enc_live=False"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 668,
-  "runner_version": "r3889 dc79b04 2026-07-16 (running r3885 c5a1a6d)",
+  "runner_version": "r3892 e21f00f 2026-07-16 (running r3885 c5a1a6d)",
   "gpu": {
     "available": false
   },
