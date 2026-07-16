@@ -286,6 +286,9 @@ Existing experiments are unaffected unless DA parameters are explicitly set.
 - This tests the drive mechanism independent of the DA expansion
 
 **Phase 3: Combined (ARC-057 test)**
+
+> NOTE: Phase 3 is the ENV-FREE interaction spike (Test B) -- run on the SD-024 workaround in synthetic RBF/z_world space (see V3-EXQ-768). The env-enabled ECOLOGICAL test (Test C) is a separate, stronger claim deferred to V4 -- routing rationale in evidence/planning/arc_057_ecological_env_decision_2026-07-16.md.
+
 - DA modulation + curiosity drive together
 - Measure: does approach behavior emerge toward reward locations?
 - Ablation: DA ON + curiosity OFF, DA OFF + curiosity ON, both OFF
