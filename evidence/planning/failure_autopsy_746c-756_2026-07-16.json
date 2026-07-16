@@ -1,0 +1,125 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-16T05:22:38Z",
+  "scope": "single",
+  "status": "confirmed",
+  "note": "Two independent single-target autopsies bundled (not a cluster: different claims, different failure shapes). Target A = V3-EXQ-746c/INV-089 (load-bearing); Target B = V3-EXQ-756/MECH-457 (diagnostic).",
+  "targets": [
+    {
+      "run_id": "v3_exq_746c_inv089_harm_eval_z_harm_bound_target_corrected_20260715T151705Z_v3",
+      "queue_id": "V3-EXQ-746c",
+      "claim_ids": ["INV-089"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- bound could not express itself in a non-binding regime; no claim pressure either way",
+        "biological_reference": "clear -- ceiling relationship is lit-supported (0.793) and simply non-binding in the tested regime; no biology/formal-import divergence",
+        "prerequisites": "present -- SD-010 HarmEncoder + harm_eval_z_harm IMPLEMENTED",
+        "implementation": "complete -- 746b DV-estimator fix retained and validated (dv_mature 0.89)",
+        "environment": "inadequate -- maturation curriculum never drives harm-target z_harm differentiation into the binding regime",
+        "measurement": "inadequate -- PC_iv_moved (delta>0 AND rho>0) does not gate on a binding regime; test measures a monotone DRIVER (couple>=0.80), not the CEILING the claim asserts",
+        "integration": "n/a -- single-stream measurement",
+        "scale": "adequate -- not a data-volume problem"
+      },
+      "biological_reference": {
+        "closest_mechanism": "nociceptive evaluation capability bounded by nociceptive-representation differentiation (Bastuji2016, Verriotis-Fitzgerald2016, Beggs2015)",
+        "dependencies": ["SD-010 HarmEncoder differentiation trajectory", "a maturation regime where harm-target z_harm differentiation is genuinely low-and-binding early"],
+        "is_formal_import": false,
+        "divergence": "none -- the ceiling is real and non-binding here; the divergence is between the CLAIM (ceiling) and the TEST (driver)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_regime_mismatch",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-746c FAIL, self-routed weakens but ADJUDICATED non_contributory (failure_autopsy_746c-756_2026-07-16). First VALID met-precondition bound test (all 4 PC met, non_degenerate=True) after the 746/746a/746b measurement fixes. It fails C1/C2/C3, but in a NON-BINDING regime: primary target prox has z_harm differentiation already ~0.82 at onset 0 rising only to ~0.87 (IV delta +0.054, rho +0.26 noisy), so differentiation is never the binding constraint at any tested onset. A ceiling bound predicts harm_eval flat-high and decoupled from small IV wiggles in the non-binding regime -- exactly observed (DV mature ~0.89, couple_rho 0.675, 6/8 seeds strongly positive). PC_iv_moved (delta>0 AND rho>0) does not verify a binding regime; the test operationalizes the bound as a monotone DRIVER (couple>=0.80), a trustworthy weakens of the driver reading but NOT of the ceiling reading INV-089 asserts. No weight on INV-089's bound. Root: no available harm target has a binding maturation gradient in this substrate (dens=small-sample artifact, realized-harm Y=flat, prox=already-high). Route: /claim-synthesis to split 'bounded by' (ceiling) from 'grows with' (driver). Re-derive brake fired (2nd non_contributory on INV-089); a naive same-regime 746-letter is REFUSED.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Routing is /claim-synthesis, not implement-substrate. IF the split retains a growth-coupling/driver sub-claim, the fallback substrate is a maturation curriculum that starts harm-target z_harm differentiation genuinely low (binding-then-released) so the driver can be validly tested -- but that entry is created only after /claim-synthesis, not here."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "With 746c set aside (non_contributory) and 746a measurement-suspect (746b autopsy), INV-089's only undisturbed support is 743's single-pathway decodability positive control. Must NOT advance toward stable until the ceiling/driver split lands and a valid ceiling-form (or binding-regime driver) test exists. Stays provisional.",
+      "re_read_recommendation_746a": "Recommend governance re-read the still-active 746a weakens in light of 746c. 746a already flagged measurement-suspect (746b autopsy); 746c shows the DRIVER test cannot validly run in the available (non-binding) regime, so the current INV-089 note's 'the strictly-bounded reading is now actively pressured' over-states a driver-test result. Governance to decide whether 746a stays active or reclassifies alongside the ceiling/driver split. Analysis-only; governance decides.",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-746b_2026-07-15"],
+        "refused_requeue": true,
+        "route_to": "claim-synthesis",
+        "upstream_substrate": null,
+        "reason": "2nd non_contributory-family autopsy on INV-089 (746b was 1st). Brake fires -> refuse a naive same-regime 746-letter. Route is /claim-synthesis (granularity-debt path) rather than implement-substrate because the recurrence is a claim-semantics conflation (ceiling vs driver), not a substrate ceiling -- user-confirmed at the gate."
+      },
+      "granularity_debt_trigger": {
+        "fires": true,
+        "reason": "4th autopsy circling INV-089. The 746b autopsy set this false (measurement-instrument iterations of one bound test); 746c changes it -- a VALID test now fails for a claim-semantics reason (INV-089 conflates the CEILING 'harm_eval <= f(differentiation)' with the DRIVER 'harm_eval grows with differentiation during maturation'). That conflation is granularity debt.",
+        "routing": "claim-synthesis",
+        "prior_autopsies_same_target": ["failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13", "failure_autopsy_V3-EXQ-746b_2026-07-15"]
+      },
+      "learning_extracted": [
+        "INV-089 conflates a CEILING sub-claim (harm_eval <= f(z_harm differentiation)) with a growth-coupling/DRIVER sub-claim (harm_eval rises with differentiation during maturation). The 746 lineage tests the driver; the driver is unfalsifiable whenever differentiation is non-binding.",
+        "This substrate has no harm target with a binding maturation gradient: dens (small-sample artifact), realized-harm Y (flat), prox (already-high at onset 0). Any future driver test needs a curriculum that starts harm-target z_harm differentiation genuinely low.",
+        "746c is a clean non_contributory, not a weakens -- a well-built experiment's self-route (met-precondition = trustworthy weakens) misfired because PC_iv_moved does not gate on a binding regime."
+      ],
+      "routing": "claim-synthesis"
+    },
+    {
+      "run_id": "v3_exq_756_mech457_hcredit_x_hreturn_pair_20260715T170212Z_v3",
+      "queue_id": "V3-EXQ-756",
+      "claim_ids": ["MECH-457"],
+      "also_bears_on": ["INV-088"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- diagnostic; MECH-457 stays candidate/v3_pending; no governance scoring weight",
+        "biological_reference": "n/a -- competence-floor engineering question, not a biology-translation test",
+        "prerequisites": "present -- sd_actor_critic_action_learning + mech457_explorer_classes lib built",
+        "implementation": "competence_implementation_gap -- the action-learning stack collapses to sub-sparse-baseline despite a solvable env",
+        "environment": "adequate -- readiness met (local-view greedy 48.05, oracle 57.2 vs 1.0 floor)",
+        "measurement": "adequate -- criteria_non_degenerate all true",
+        "integration": "n/a",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a (competence-bootstrap engineering)",
+        "dependencies": ["mech457_competence_bootstrap_explorer"],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-756 FAIL (diagnostic, non-scoring). H-credit x H-return pair forages 0.20 z_world / 0.32 raw -- sub-floor, below even the sparse baseline (0.35/0.38); pair_gain_over_best_single -0.05/-0.017, no super-additivity (any_rep_pair_additive=false). Readiness met (local-view greedy 48.05, oracle 57.2). Closes the GOV-FANOUT-1 combination-aware discrimination: no single mechanism (752-755) and no pairwise combination of the two most-promising clears the 1.0 competence floor. competence_implementation_gap; route implement-substrate (amend mech457_competence_bootstrap_explorer). MECH-457 stays candidate/v3_pending; INV-088 candidate/pending_substrate_reconfirmation. Re-derive brake continues to fire.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "mech457_competence_bootstrap_explorer",
+        "unblocks_claims": ["MECH-457", "INV-088"],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_756_mech457_hcredit_x_hreturn_pair_20260715T170212Z_v3",
+          "experiment_type": "v3_exq_756_mech457_hcredit_x_hreturn_pair",
+          "metric": "H-credit x H-return pair D3 foraging 0.20 z_world / 0.32 raw; pair_gain_over_best_single -0.05/-0.017 (no super-additivity); below sparse baseline 0.35/0.38; readiness met (local-view greedy 48.05, oracle 57.2)",
+          "target": ">=1.0 competence floor AND pair exceeds best single by >=1.0 resource/ep"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15"
+        ],
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech457_competence_bootstrap_explorer",
+        "reason": "4th non_contributory-family autopsy on MECH-457; brake already firing since 752-754. A further same-claim MECH-457 explorer-mechanism test (single or combination) is refused until the competence-bootstrap substrate is built."
+      },
+      "learning_extracted": [
+        "No pairwise combination of the two most-promising MECH-457 explorer mechanisms (H-credit backward credit sweep x H-return Go-Explore archive-return) clears the competence floor, and the pair shows negative super-additivity -- combining them slightly degrades vs the best single and falls below the sparse baseline.",
+        "This closes the GOV-FANOUT-1 combination-aware discrimination: the bottleneck is a missing competence-bootstrap PRIMITIVE, not an unfound exploration mechanism or combination."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
