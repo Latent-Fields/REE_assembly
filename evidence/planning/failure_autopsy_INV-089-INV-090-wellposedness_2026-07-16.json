@@ -1,0 +1,121 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-16T06:16:57Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "kind": "measurement_instrument_reframe",
+  "trigger": "queue-experiment Step 2.4 well-posedness stop; ceiling-form envelope test found analytically vacuous before authoring",
+  "provenance": {
+    "prior_autopsy": "failure_autopsy_746c-756_2026-07-16",
+    "claim_synthesis_proposal": "claim_synthesis_INV-089_2026-07-16.md",
+    "lineage_autopsies": [
+      "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13",
+      "failure_autopsy_V3-EXQ-744_2026-07-12",
+      "failure_autopsy_V3-EXQ-746b_2026-07-15",
+      "failure_autopsy_746c-756_2026-07-16"
+    ]
+  },
+  "targets": [
+    {
+      "run_id": null,
+      "queue_id": null,
+      "claim_ids": ["INV-089"],
+      "failed_criterion": "measurement",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact-but-analytic: the ceiling is true by construction under current instrumentation, not falsifiable",
+        "biological_reference": "ceiling lit-grounded (targeted_review_inv_089 0.793) but non-binding in this substrate; not a biology divergence",
+        "prerequisites": "present: SD-010 HarmEncoder + harm_eval_z_harm IMPLEMENTED",
+        "implementation": "structurally circular: harm_eval_z_harm is a plain MLP (e3_selector.py:681); the 746 DV is a fresh same-capacity MLP decoding the same target the IV probes -> evaluator == same-capacity decoder of the target",
+        "environment": "inadequate: realized-harm Y is flat -> no distinct non-flat evaluation signal exists",
+        "measurement": "ill-posed: harm_eval <= same-budget-decodability ceiling is analytic (same-capacity MLP ceiling) or false-falsifying (linear-ridge ceiling)",
+        "integration": "n/a (single-stream measurement)",
+        "scale": "adequate (not a data-volume problem)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "postnatal nociceptive representational maturation gating discriminative harm evaluation",
+        "dependencies": ["distinct experienced harm-evaluation signal", "graded experienced harm in environment"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing for the ceiling; the failure is measurement circularity, not biology divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_reframe",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-16 (INV-089/090 well-posedness autopsy -- failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16): the ceiling-form envelope test assigned by the 2026-07-16 split is ANALYTICALLY VACUOUS under the 746 instrumentation. 'harm_eval quality' and 'the same-budget z_harm->target decodability ceiling' are the SAME measurement (a same-capacity MLP decoding the target from frozen z_harm), so harm_eval <= ceiling holds by construction and any violation is estimator noise (a linear-ridge ceiling instead yields false falsifications). The bound is therefore analytic, not an empirically expressible invariant; INV-089's only empirical content (decodability rises with maturation) is already carried by 743. No demotion -- stays provisional on 743's single-pathway positive control (narrow_supports_flag). pending_retest_after_substrate on a distinct non-flat harm-evaluation target (evaluator objective != representational-decodability probe); the only in-substrate candidate, realized-harm Y, is flat, so the retest is blocked on the committed-action/conversion ceiling. Re-derive brake fired (3rd non_contributory-family reading); a same-claim test re-queue is REFUSED.",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-746b_2026-07-15",
+          "failure_autopsy_746c-756_2026-07-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "hold",
+        "upstream_substrate": "distinct_non_flat_harm_evaluation_target (blocked on commitment/conversion ceiling)"
+      },
+      "learning_extracted": [
+        "A bound whose two sides are measured by the same estimator is analytic, not empirical: an empirically testable ceiling needs evaluator and ceiling-decoder to be genuinely different objects.",
+        "The INV-089/INV-090 split re-expressed one root as two children but did not create a testable instrument; both are blocked on a distinct non-flat evaluation signal.",
+        "prox 'already-high at onset 0' is a symptom that prox is a raw input feature and the family has no evaluation object distinct from decoding it -- engineering a binding regime would manufacture a self-fulfilling co-rise.",
+        "Caught at queue-experiment Step 2.4 before any script was authored, so no vacuous_pass was banked."
+      ],
+      "routing": "governance-narrow-in-place"
+    },
+    {
+      "run_id": null,
+      "queue_id": null,
+      "claim_ids": ["INV-090"],
+      "failed_criterion": "measurement",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact-but-untestable: driver welded to the ceiling by the representation bottleneck",
+        "biological_reference": "thinner + counter-indicated: Verriotis-Fitzgerald 2016 (nociceptive maturation non-activity-dependent) pressures an experience-driven co-rise",
+        "prerequisites": "present: SD-010 built",
+        "implementation": "structurally circular (shared with INV-089): no evaluator object distinct from same-capacity decode of the target",
+        "environment": "inadequate: flat realized-harm Y; and a binding curriculum would clamp differentiation as sole bottleneck, manufacturing a self-fulfilling co-rise",
+        "measurement": "non-discriminating: monotone-coupling PASS entailed by the ceiling; discriminating FAIL near-impossible by construction",
+        "integration": "n/a",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "experience-driven refinement of nociceptive evaluation during postnatal maturation",
+        "dependencies": ["distinct non-flat experienced harm-evaluation signal", "committed harm-relevant policy"],
+        "is_formal_import": false,
+        "divergence": "lit partly counter-indicates the driver mechanism (non-activity-dependent nociceptive maturation)",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-16 (INV-089/090 well-posedness autopsy): the driver reading is WELDED to the ceiling by the representation bottleneck -- a binding-regime curriculum clamps differentiation as the sole bottleneck, so the evaluator (same-capacity decode of the same target from the same z_harm) tracks differentiation upward by construction; a monotone-coupling PASS is entailed by the ceiling and does not discriminate the driver, and the only discriminating FAIL (evaluator flat below a rising ceiling) is near-impossible by construction. The binding-regime maturation-curriculum build is therefore REFUSED (it manufactures a self-fulfilling co-rise rather than testing a driver). The real unblock is a distinct, non-flat, experienced harm-evaluation signal (evaluator != decoder), itself blocked on the committed-action/conversion (F-dominance) ceiling. Combined with the already-noted thinner + counter-indicated lit warrant (Verriotis-Fitzgerald 2016, non-activity-dependent nociceptive maturation), INV-090 HOLDS candidate/substrate_conditional with no substrate_queue entry created; governance may retire the driver reading if the commitment ceiling proves durable.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "distinct-non-flat-evaluation-target substrate is real but doubly blocked (flat Y + committed-policy/conversion ceiling) and thinly warranted; creating an entry now adds a blocked_by-on-a-blocked-ceiling node with no near-term action. Dependency tracked via INV-089/INV-090 notes."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-746b_2026-07-15",
+          "failure_autopsy_746c-756_2026-07-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "hold",
+        "upstream_substrate": "distinct_non_flat_harm_evaluation_target (blocked on commitment/conversion ceiling)"
+      },
+      "learning_extracted": [
+        "An engineered binding regime does not test a driver -- it manufactures a self-fulfilling co-rise; the driver is only distinct from the ceiling when the evaluator can lag the representation, which the representation-bottleneck design forecloses.",
+        "Splitting a claim into ceiling+driver does not manufacture a discriminating instrument when both readings share one measurement root."
+      ],
+      "routing": "governance-hold"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "one shared measurement root: the 746 family has no harm_eval object distinct from a same-capacity decode of the harm target from z_harm",
+    "is_independent_bugs": false,
+    "structural_property": "the evaluator IS a same-capacity decoder of the target, so (a) the ceiling is analytic and (b) the driver is welded to it; both need a distinct non-flat experienced harm-evaluation signal that the substrate lacks (flat realized-harm Y) and that is blocked on the committed-action/conversion ceiling",
+    "readings": ["measurement_reframe", "substrate_blocked_on_commitment_ceiling"]
+  }
+}
