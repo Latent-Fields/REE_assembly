@@ -1,0 +1,118 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin",
+  "run_id": "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-16T20:11:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-025"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "curiosity_drive_propagates_into_cem_selection_margin_with_familiarity_discount",
+    "preconditions": [
+      {
+        "name": "density_read_discriminates",
+        "kind": "readiness",
+        "description": "density(A) - density(B) clears floor (the density statistic the curiosity term routes on)",
+        "measured": 58.31583,
+        "threshold": 0.5,
+        "control": "DA-dense A vs single-center B",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "selection_margin_responds_to_curiosity",
+        "kind": "readiness",
+        "description": "strong positive control (large curiosity_weight, dense A) yields a positive CEM score-MARGIN >= floor (the SAME margin statistic L1a/L1b route on)",
+        "measured": 78.7565,
+        "threshold": 1.0,
+        "control": "curiosity_weight=3.0, dense A vs sparse B",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "L1a_margin_on",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 39.2574,
+        "threshold": 1.0,
+        "note": "continuous CEM score-margin (sparse - dense) under curiosity; > 0 <=> dense is the CEM elite; magnitude reflects drive strength (re-op of the saturating binary pref)"
+      },
+      {
+        "name": "L1b_margin_propagation_delta",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 39.2574,
+        "threshold": 1.0,
+        "note": "margin_on - margin_off; OFF counterbalances to ~0 -> the margin shifts with the drive"
+      },
+      {
+        "name": "L1c_weight_independence",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.1,
+        "direction": "upper",
+        "note": "benefit weights zeroed -> value flat; density-driven margin unchanged (relative)"
+      },
+      {
+        "name": "L2a_antiperseveration_margin",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 20.0542,
+        "threshold": 1.0,
+        "note": "counterbalanced drop of the margin toward the familiarized region (WAKING)"
+      },
+      {
+        "name": "L2b_mech094_replay_no_shift",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "note": "is_waking=False must not raise familiarity -> margin unchanged"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "margin_on_varies_across_seeds": true,
+      "density_a_exceeds_b": true,
+      "on_margin_exceeds_off": true
+    }
+  }
+}
