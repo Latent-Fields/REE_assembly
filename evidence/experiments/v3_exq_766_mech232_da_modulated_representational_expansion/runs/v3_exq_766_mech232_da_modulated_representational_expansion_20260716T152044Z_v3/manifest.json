@@ -1,0 +1,125 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_766_mech232_da_modulated_representational_expansion",
+  "run_id": "v3_exq_766_mech232_da_modulated_representational_expansion_20260716T152044Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-16T15:20:44Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-232"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "da_representational_expansion_produces_approach_without_valence_gradient",
+    "preconditions": [
+      {
+        "name": "density_read_discriminates",
+        "kind": "readiness",
+        "description": "single DA-ON cluster: density(reward) - density(far) clears floor (the density statistic L1a/L2 route on)",
+        "measured": 2.11358,
+        "threshold": 0.5,
+        "control": "fresh single DA-ON cluster at the reward location",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "density_walker_functional",
+        "kind": "readiness",
+        "description": "the density hill-climber (the L2 instrument) reaches a strong positive-control single Gaussian",
+        "measured": 0.9167,
+        "threshold": 0.8,
+        "control": "single-location attractor, 8 accumulations",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "L1a_density_expansion",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 2.3969,
+        "threshold": 1.5
+      },
+      {
+        "name": "L2a_density_approach",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.9583,
+        "threshold": 0.6
+      },
+      {
+        "name": "L2b_approach_above_chance",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.9583,
+        "threshold": 0.2
+      },
+      {
+        "name": "L2c_approach_without_gradient",
+        "load_bearing": true,
+        "passed": true,
+        "density_zeroed": 0.9583,
+        "value_zeroed": 0.0,
+        "chance": 0.0,
+        "note": "weights zeroed: density approach persists AND value-follower at chance"
+      },
+      {
+        "name": "L1b_resolution_narrowed",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 1.0
+      },
+      {
+        "name": "L1c_stability_improved",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.5
+      },
+      {
+        "name": "total_benefit_mass_conserved",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.0,
+        "note": "context: DA splits one encounter's intensity across the cluster"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "densities_positive_and_vary": true,
+      "approach_varies_across_seeds": true,
+      "da_allocates_more_centers": true
+    }
+  }
+}
