@@ -1,0 +1,125 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_680e_mech423_superadditivity_ablation",
+  "run_id": "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-16T15:57:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-423"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "super_additive",
+    "route": "readiness_met_superadditivity_verdict",
+    "fork": 2,
+    "preconditions": [
+      {
+        "name": "pair_seeds_finite_world_r2",
+        "measured": 5.0,
+        "threshold": 4.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r1_shared_latent_grad_coupled",
+        "measured": 0.0004189779283478856,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "pair_seeds_not_net_negative_transfer",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "direction": "upper",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r2_iterative_loop_iterated",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_e2_touchable_under_interleaved",
+        "measured": 8.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_interleaved_share_positive",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "r3_blocked_share_zero",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "cosine_band_classification": {
+      "cosine_orthogonal_band": 0.15,
+      "n_net_negative": 0,
+      "n_near_orthogonal": 5,
+      "n_net_positive": 0,
+      "net_negative_seeds": [],
+      "min_cos_usable": -0.03710304945707321,
+      "max_cos_usable": 0.05055876821279526,
+      "mean_cos_usable": -0.0006977370008826256,
+      "min_seeds_net_negative_for_fork3": 3
+    },
+    "criteria": [
+      {
+        "name": "superadditivity_margin_pair",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  }
+}
