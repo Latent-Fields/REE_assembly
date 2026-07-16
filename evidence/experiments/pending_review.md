@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-07-15T13:50:15Z`  
-Last review: `2026-07-15T13:44:01Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-16T06:43:07Z`  
+Last review: `2026-07-16T06:42:33Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_766_mech232_da_modulated_representational_expansion_20260716T062527Z_v3` | 2026-07-16T06:25 | MECH-232 |
 
 ---
 

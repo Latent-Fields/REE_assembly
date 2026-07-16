@@ -18389,15 +18389,16 @@
     - ARC-019
     - ARC-027
   pending_substrate_reconfirmation: false
+  pending_retest_after_substrate: true
   status: provisional
   live_status:
     reading: provisional
-    as_of: 2026-07-13
+    as_of: 2026-07-16
     needs_review: false
     evidence:
-      from: v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3
-      as_of: 2026-07-13
-      verdict: weakens (first met-precondition bound test -- harm_eval_z_harm quality does NOT track z_harm differentiation on a dense decodable target, C1 rho=-0.53/C2 couple rho=-0.08/mean_dv_delta=-34.5; STAYS provisional, re-weighed with the sole remaining 743 single-pathway positive control in view; 746 superseded/scoring-excluded)
+      from: v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3
+      as_of: 2026-07-16
+      verdict: provisional on 743's single-pathway positive control (harm decodable-in-principle from z_harm; decodability rises with HarmEncoder maturation). NARROWED 2026-07-16 to the CEILING reading -- the 746a/746b/746c bound tests are all DRIVER (monotone-coupling) tests that weigh on INV-090, not the ceiling. On the narrowed ceiling INV-089 there is NO active weakens -- 746c's self-routed weakens was ADJUDICATED non_contributory (measurement_regime_mismatch, failure_autopsy_746c-756_2026-07-16) and the ceiling-form envelope test is analytically vacuous under 746 instrumentation (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16). pending_retest on a distinct non-flat harm-evaluation target (blocked on the committed-action/conversion ceiling).
   evidence_quality_note: >
     Promoted candidate->provisional 2026-07-12 on V3-EXQ-743 (PASS/supports). The
     load-bearing positive control passed: realized harm is decodable-in-principle from
@@ -18450,6 +18451,27 @@
     data budgets decoupled (disjoint pools) so neither leg starves the other. INV-089 stays
     provisional on 743's single-pathway positive control; no promotion until a bound-coupling
     PASS on a valid met-precondition test exists.
+
+    2026-07-16 (/governance -- 746c non_contributory adjudication + well-posedness reframe).
+    The 746a/746b/746c bound tests are ALL driver (monotone-coupling) tests and have been
+    RE-ASSIGNED to INV-090 (the growth-coupling/driver child split out 2026-07-16); they no
+    longer weigh on the narrowed CEILING claim INV-089. 746c (the first valid met-precondition
+    driver test) self-routed weakens but was ADJUDICATED non_contributory
+    (measurement_regime_mismatch: it ran in a non-binding regime -- prox z_harm differentiation
+    ~0.82 at onset 0 -- so a flat-high evaluator is CONSISTENT with a ceiling, not against it;
+    failure_autopsy_746c-756_2026-07-16); its manifest evidence_direction is corrected to
+    non_contributory (scoring-excluded). The ceiling-form ENVELOPE test assigned by the split is
+    ANALYTICALLY VACUOUS under the 746 instrumentation -- 'harm_eval quality' and 'the same-budget
+    z_harm->target decodability ceiling' are the same measurement (a same-capacity MLP decode of
+    the target from frozen z_harm), so harm_eval <= ceiling holds by construction
+    (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16). Net re-weigh: on the narrowed
+    ceiling INV-089 there is NO active weakens; the earlier 'actively pressured' phrasing
+    over-stated a driver-test result against the ceiling. INV-089 STAYS provisional on 743's
+    single-pathway positive control (narrow_supports_flag); pending_retest_after_substrate on a
+    distinct non-flat harm-evaluation target (evaluator objective != representational-decodability
+    probe) -- the only in-substrate candidate (realized-harm Y) is flat, so the retest is blocked
+    on the committed-action/conversion ceiling. Re-derive brake fired (3rd non_contributory-family
+    reading); a same-claim same-regime 746-letter re-queue is REFUSED. PROMOTES/DEMOTES NOTHING.
   subject: development.maturational_sequence
   description: >
     Child (ii) of INV-064 (harm leg); NARROWED 2026-07-16 to the CEILING reading (the
@@ -18572,6 +18594,18 @@
     maturation curriculum (a NEW substrate_queue entry via /implement-substrate -- the re-derive
     brake REFUSES a naive same-regime 746-letter). Re-derive brake fired 2026-07-16 (2nd
     non_contributory on the lineage).
+
+    2026-07-16 UPDATE (well-posedness autopsy -- failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16,
+    consumed via /governance): the binding-regime maturation-curriculum build is now REFUSED, not
+    merely owed. A curriculum that clamps z_harm differentiation as the sole bottleneck welds the
+    driver to the ceiling -- the evaluator (same-capacity decode of the same target from the same
+    z_harm) tracks differentiation upward BY CONSTRUCTION, so a monotone-coupling PASS is entailed
+    by the ceiling and the only discriminating FAIL is near-impossible. Building it manufactures a
+    self-fulfilling co-rise rather than testing a driver. The real unblock is a DISTINCT, non-flat,
+    experienced harm-evaluation signal (evaluator objective != decoder), itself blocked on the
+    committed-action/conversion (F-dominance) ceiling. NO substrate_queue entry created; INV-090
+    HOLDS candidate/substrate_conditional. Governance may retire the driver reading if the
+    commitment ceiling proves durable.
   registered: "2026-07-16"
   depends_on: [INV-089, INV-064, SD-010, ARC-003, ARC-019, ARC-027]
   origin: >
