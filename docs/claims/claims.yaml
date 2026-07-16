@@ -18452,29 +18452,33 @@
     PASS on a valid met-precondition test exists.
   subject: development.maturational_sequence
   description: >
-    Child (ii) of INV-064 (harm leg). E3's nociceptive harm-evaluation quality --
-    harm_eval_z_harm (e3_selector.py:660), which reads z_harm = HarmEncoder(harm_obs)
-    (stack.py:119) -- is strictly bounded by z_harm representational differentiation, a
-    maturation trajectory DISTINCT from z_world's. Under SD-010 the HarmEncoder is
-    instantiated OUTSIDE the z_world encoder and is exempt from reafference correction
-    (introduced to resolve the EXQ-027b over-correction paradox where the
-    ReafferencePredictor subtracted hazard when harm was fused into z_world). Because harm
-    is routed through its own encoder, harm-evaluator quality is bounded by z_harm
-    differentiation, NOT z_world differentiation -- which is why V3-EXQ-740a's harm leg,
-    which decoded realized harm from z_world, was mis-streamed and never validly exercised
-    (harm world-features decode from z_world at 0.245 and rise, while realized scalar harm
-    does not: 0.034, flat). Productive harm-evaluator training cannot precede sufficient
-    z_harm differentiation.
+    Child (ii) of INV-064 (harm leg); NARROWED 2026-07-16 to the CEILING reading (the
+    growth-coupling/driver reading split out to INV-090 -- see notes). E3's nociceptive
+    harm-evaluation quality -- harm_eval_z_harm (e3_selector.py:660), which reads z_harm =
+    HarmEncoder(harm_obs) (stack.py:119) -- CANNOT EXCEED an upper bound set by z_harm
+    representational differentiation, a maturation trajectory DISTINCT from z_world's: for a
+    fixed evaluator-training budget on frozen z_harm, held-out harm-eval quality at any
+    maturation point is <= what a same-budget decoder can extract from z_harm at that point.
+    Under SD-010 the HarmEncoder is instantiated OUTSIDE the z_world encoder and is exempt
+    from reafference correction (introduced to resolve the EXQ-027b over-correction paradox
+    where the ReafferencePredictor subtracted hazard when harm was fused into z_world). Because
+    harm is routed through its own encoder, the bound is set by z_harm differentiation, NOT
+    z_world differentiation -- which is why V3-EXQ-740a's harm leg, which decoded realized harm
+    from z_world, was mis-streamed and never validly exercised (harm world-features decode from
+    z_world at 0.245 and rise, while realized scalar harm does not: 0.034, flat). This is a
+    CEILING (constrains the maximum harm-evaluator quality); it is SILENT on whether quality
+    tracks differentiation upward during maturation -- that co-rise is the separate claim INV-090.
   what_would_answer: >
-    A frozen-representation contrast over HarmEncoder (z_harm) maturation: decode realized
-    harm_target from FROZEN z_harm across HarmEncoder onset, verify z_harm-harm-decodability
-    RISES with z_harm maturation (the positive control that harm is decodable-in-principle
-    from the stream E3 actually uses), then show harm_eval_z_harm held-out quality is bounded
-    by z_harm differentiation, with a z_harm maturation trajectory reported SEPARATELY from
-    the z_world trajectory (distinct encoder). Explicitly NOT a z_world decode -- the
-    re-derive brake refuses a same-observable 740b; this probes z_harm, a different
-    observable. Falsified if harm_eval_z_harm quality is flat/non-monotone across a
-    validly-moving z_harm-differentiation gradient (given z_harm-harm-decodability confirmed).
+    An ENVELOPE / upper-bound contrast over HarmEncoder (z_harm) maturation, valid in ANY regime
+    (including non-binding / already-differentiated): at each HarmEncoder onset, compare held-out
+    harm_eval_z_harm quality against the same-budget z_harm->harm-target decodability CEILING on
+    frozen z_harm, with the z_harm maturation trajectory reported SEPARATELY from the z_world
+    trajectory (distinct encoder). The positive control (harm decodable-in-principle from z_harm,
+    decodability rises with maturation) is V3-EXQ-743 PASS. SUPPORTED if harm-eval quality stays
+    at-or-below the differentiation-implied ceiling across onsets (never exceeds it). FALSIFIED if
+    harm_eval_z_harm quality EXCEEDS the z_harm-differentiation ceiling at any onset (evaluation
+    richer than the representation can support). Explicitly NOT a monotone-coupling/driver test
+    (that is INV-090) and NOT a z_world decode (the re-derive brake refuses a same-observable 740b).
   notes: >
     New mechanistic content grounded in the distinct nociceptive-maturation literature:
     parallel spino-thalamic / spino-parabrachial pathway to operculo-insular / mid-cingulate
@@ -18485,12 +18489,96 @@
     + HarmEncoder exist); no build owed. Motivating evidence is the MIS-STREAMED harm half of
     the INV-064 740-cluster (the measurement collision that revealed the stream-split). Not
     substrate_ceiling.
+
+    2026-07-16 GRANULARITY-DEBT SPLIT (/claim-synthesis, proposal
+    evidence/planning/claim_synthesis_INV-089_2026-07-16.md; user-approved per-child): the 746
+    lineage (746/746a/746b/746c, 4 autopsies) revealed INV-089 conflated TWO separable
+    mechanisms under one id -- a CEILING (harm_eval quality <= f(z_harm differentiation),
+    RETAINED here) and a growth-coupling/DRIVER (quality RISES WITH differentiation during
+    maturation, SPLIT OUT to INV-090). INV-089 narrowed to the ceiling; INV-090 registered
+    substrate_conditional/candidate carrying the driver reading. Lit (targeted_review_inv_089,
+    0.793) LEANS to the ceiling (Verriotis-Fitzgerald 2016: nociceptive maturation is
+    non-activity-dependent -> a maturational GATE, pressuring an experience-driven co-rise).
+    EVIDENCE RE-ASSIGNMENT (for governance to reconcile in its 746c pass -- deliberately NOT
+    applied by /claim-synthesis): 746a/746b/746c are ALL driver (monotone-coupling) tests, so
+    they weigh on INV-090, not on the ceiling INV-089; on the narrowed ceiling INV-089 there is
+    NO active weakens and the sole support is 743's positive control. The current
+    live_status.evidence (746a weakens) and the evidence_quality_note phrase "the 'strictly
+    bounded by z_harm differentiation' reading is now actively pressured" OVER-STATE a driver-test
+    result against the ceiling and should be re-weighed when governance applies the 746c
+    non_contributory adjudication. Stays provisional pending a valid ceiling-form (envelope) test.
   registered: "2026-07-12"
   depends_on: [INV-064, SD-010, ARC-003, ARC-019, ARC-027]
   origin: >
     Registered via /claim-synthesis 2026-07-12 as child (ii) of INV-064, from the
     granularity-debt decomposition in failure_autopsy_V3-EXQ-740a_2026-07-12 (proposal
-    evidence/planning/claim_synthesis_INV-064_2026-07-12.md). PROMOTES/DEMOTES NOTHING.
+    evidence/planning/claim_synthesis_INV-064_2026-07-12.md). NARROWED to the ceiling reading
+    2026-07-16 via a second /claim-synthesis round (proposal
+    evidence/planning/claim_synthesis_INV-089_2026-07-16.md, from
+    failure_autopsy_746c-756_2026-07-16), splitting the growth-coupling/driver reading out to
+    INV-090. PROMOTES/DEMOTES NOTHING.
+
+- id: INV-090
+  title: harm_evaluator_quality_grows_with_z_harm_differentiation
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-003
+    - ARC-019
+    - ARC-027
+  pending_substrate_reconfirmation: true
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-16
+    needs_review: false
+  epistemic_category: substrate_conditional
+  subject: development.maturational_sequence
+  description: >
+    Growth-coupling/DRIVER child split from INV-089 (the ceiling) on 2026-07-16. During
+    maturation, E3's nociceptive harm-evaluation quality -- harm_eval_z_harm (e3_selector.py:660,
+    reading z_harm = HarmEncoder(harm_obs)) -- RISES MONOTONICALLY WITH z_harm representational
+    differentiation WHILE differentiation is the binding constraint (the low-differentiation
+    regime). Distinct from INV-089: INV-089 asserts only the CAP (quality cannot exceed
+    f(differentiation)); INV-090 asserts the UPWARD CO-MOVEMENT -- that as z_harm differentiates
+    from a genuinely immature (low) starting point, harm-evaluator quality tracks it upward. The
+    reading is falsifiable ONLY in a binding regime: once differentiation is already high enough
+    that it no longer limits evaluation (non-binding), quality is flat-high and decoupled from
+    small differentiation fluctuations -- CONSISTENT with the ceiling and uninformative about the
+    driver.
+  what_would_answer: >
+    A monotone-coupling contrast in a BINDING regime: with a harm target whose z_harm
+    differentiation starts genuinely LOW (onset-0 differentiation well below the harm-eval-
+    saturating level) and rises with HarmEncoder maturation, show harm_eval_z_harm held-out
+    quality rises monotonically with, and rank-couples to (couple_rho >= 0.80), that
+    differentiation across onset. The precondition gate MUST verify a binding regime -- a minimum
+    onset-0-to-mature differentiation gap AND onset-0 below saturation -- the gate the 746
+    lineage's PC_iv_moved (delta>0 and rho>0 only) never enforced. FALSIFIED if quality is
+    flat/non-monotone across a validly-moving, binding differentiation gradient. NOT expressible
+    in the current substrate: no collected harm target has a binding maturation gradient (dens =
+    small-sample artifact, realized-harm Y = flat, prox = already-high ~0.82 at onset 0), so a NEW
+    maturation curriculum that starts harm-target z_harm differentiation low (binding-then-released)
+    is owed before this can validly run.
+  notes: >
+    Carries the entire 746 driver lineage: 746a (weakens, measurement-suspect DV artifact), 746b
+    (non_contributory, IV starved), 746c (non_contributory -- first VALID test, but ran in a
+    non-binding regime: prox z_harm differentiation ~0.82 at onset 0 rising only to ~0.87, so the
+    driver could not express itself; couple_rho 0.675 with 6/8 seeds positive was weak POSITIVE
+    evidence, not a weakens). WEAKER lit warrant than the INV-089 ceiling: Beggs 2015 grounds
+    postnatal refinement, but Verriotis-Fitzgerald 2016 (nociceptive maturation is
+    non-activity-dependent) PRESSURES an experience-driven co-rise -- the driver mechanism may not
+    be biologically operative for harm. Registered as a testable candidate to make the split
+    honest, NOT as an established mechanism. substrate_conditional: needs a binding-regime
+    maturation curriculum (a NEW substrate_queue entry via /implement-substrate -- the re-derive
+    brake REFUSES a naive same-regime 746-letter). Re-derive brake fired 2026-07-16 (2nd
+    non_contributory on the lineage).
+  registered: "2026-07-16"
+  depends_on: [INV-089, INV-064, SD-010, ARC-003, ARC-019, ARC-027]
+  origin: >
+    Registered via /claim-synthesis 2026-07-16 as the growth-coupling/driver child split from
+    INV-089 (narrowed to the ceiling), from the granularity-debt decomposition in
+    failure_autopsy_746c-756_2026-07-16 (proposal
+    evidence/planning/claim_synthesis_INV-089_2026-07-16.md). PROMOTES/DEMOTES NOTHING.
 
 - id: MECH-214
   title: goal_referent_e1_representability
