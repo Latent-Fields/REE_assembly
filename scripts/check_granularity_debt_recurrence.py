@@ -64,6 +64,15 @@ re-listing a claim across an artifact's targets does not inflate the count.
 METABOLIZED EXCLUSIONS (a claim is NOT surfaced when ANY fires -- mirrors the
 `/claim-synthesis` Step-1 disjunction, using only the PRECISE markers to avoid
 false exclusion):
+  * the claim's `granularity_debt_disposition` in _GD_ADJUDICATED_NOT_DEBT -- a
+    human ran the discrimination and recorded verdict (b) NOT-granularity-debt
+    (`coherent_campaign` / `passenger_co_claim`) where no substrate-relane is
+    honest (working substrate, live iteration, or a passenger co-claim). This is
+    the marker for the THIRD adjudication outcome the other two markers cannot
+    express (they only cover "split it" and "it's a substrate/same-wall story");
+    without it, an adjudicated coherent campaign re-surfaced every cycle. Silences
+    THIS scan only; touches no epistemic_category (no false GOV-CEIL-1 seed);
+    pair with a `granularity_debt_recurrence_note` for the human-readable trail;
   * the claim's `epistemic_category` in _EPI_SUPPRESS_PROPOSAL (the cheap
     machine-readable pass -- enrichment-in-progress, not undetected debt);
   * the claim carries a `decomposition_note` (the exact marker `/claim-synthesis`
@@ -133,6 +142,28 @@ GRAN_RECURRENCE_N = 2
 # A no-verdict direction: the autopsy contributed no evidence to the claim (so no
 # clean falsification). A weakens / refutes / supports means a verdict WAS reached.
 NO_VERDICT_DIRECTIONS = {"non_contributory", "inconclusive"}
+
+# GOV-GRAN-1 human-adjudication marker. The audit's response to a P1 is explicitly
+# a HUMAN decision (Step 6a-v-quater): coarse-claim (-> /claim-synthesis) vs
+# coherent substrate campaign (-> metabolize + route to substrate). The existing
+# metabolized-exclusion markers only capture two of the three possible outcomes:
+# "split it" (decomposition_note / claim_synthesis doc) and "it's a substrate/
+# same-wall story" (epistemic_category in _EPI_SUPPRESS_PROPOSAL). There was NO
+# way to record the third, common outcome -- "a human ran the discrimination and
+# decided NOT granularity debt, and no substrate-relane is honest" -- so those
+# claims re-surfaced every cycle even after adjudication (e.g. a coherent-iteration
+# campaign whose substrate demonstrably works, or a passenger co-claim that was
+# never the failing subject). This enum is that record. A claim carrying
+# `granularity_debt_disposition` in this set has been adjudicated (b) by a human;
+# it is NOT re-surfaced. It PROMOTES/DEMOTES NOTHING and does NOT touch
+# epistemic_category (so it never seeds a false GOV-CEIL-1 demotion count) -- it
+# only silences THIS scan for the reason the docstring already sanctions. Pair it
+# with a `granularity_debt_recurrence_note` recording the verdict + reasoning
+# (the human-readable audit trail; this enum is the machine-readable key).
+_GD_ADJUDICATED_NOT_DEBT = {
+    "coherent_campaign",   # >1 no-verdict signature = progressive localization of ONE gap, not bundled mechanisms
+    "passenger_co_claim",  # the claim was never the failing subject; hits belong to a co-tagged sibling's substrate
+}
 
 # Mirror scripts/generate_inter_governance_workset.py:_EPI_SUPPRESS_PROPOSAL. A
 # hit whose epistemic_category is one of these is the substrate-enrichment / SAME
@@ -229,6 +260,7 @@ def _load_claim_meta(claims_yaml: Path) -> dict[str, dict]:
             "epistemic_category": str(c.get("epistemic_category") or "").strip().lower(),
             "status": str(c.get("status") or "").strip().lower(),
             "has_decomposition_note": bool(c.get("decomposition_note")),
+            "gd_disposition": str(c.get("granularity_debt_disposition") or "").strip().lower(),
         }
     return meta
 
@@ -346,7 +378,9 @@ def audit(recurrence_hits: dict[str, dict], claim_meta: dict[str, dict],
         meta = claim_meta.get(cid, {})
         already_synth = cid in synthesized
         reason = None
-        if meta.get("epistemic_category") in _EPI_SUPPRESS_PROPOSAL:
+        if meta.get("gd_disposition") in _GD_ADJUDICATED_NOT_DEBT:
+            reason = f"granularity_debt_disposition={meta['gd_disposition']} (human-adjudicated NOT granularity debt)"
+        elif meta.get("epistemic_category") in _EPI_SUPPRESS_PROPOSAL:
             reason = f"epistemic_category={meta['epistemic_category']} (substrate/enrichment; GOV-CEIL-1 lane)"
         elif meta.get("status") in _CLAIM_DEAD_STATUSES:
             reason = f"claim status={meta['status']} (dead)"
