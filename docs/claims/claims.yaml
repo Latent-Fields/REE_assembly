@@ -21951,10 +21951,10 @@
   claim_type: mechanism_hypothesis
   subject: hippocampus.da_representational_expansion
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-16
     needs_review: false
   registered: "2026-04-14"
   depends_on:
@@ -21962,6 +21962,19 @@
     - SD-004
     - MECH-229
   location: docs/architecture/hippocampal_valence_asymmetry.md#mech-232
+  evidence_quality_note: >
+    2026-07-16: candidate -> provisional. SD-024 diagnostic V3-EXQ-766a (cloud, ree-cloud-2,
+    linux-x86_64-py3.10) PASS/supports, adjudication=verified
+    (evidence/planning/failure_autopsy_V3-EXQ-766a_2026-07-16.json). DA-modulated RBF
+    representational expansion produces approach from representational density ALONE: with all
+    benefit weights zeroed (value field removed), the weight-independent density-follower still
+    approaches reward (0.958) while the value-follower falls to chance (0.0) -- the CRUX
+    discriminator against a valence-tag account. All 4 load-bearing criteria pass (L1a 2.40>=1.5,
+    L2a 0.958>=0.60, L2b 0.958>=0.20, L2c approach-without-gradient); readiness met (density
+    discrim 2.11, walker 0.917); non_degenerate. Cloud PASS satisfies SD-024's cloud-authoritative
+    gate; the Mac 766 run reproduces but is not gate-authoritative. Diagnostic (experiment_purpose
+    excluded from confidence scoring) -- the promotion is the gate-clearing action, not a
+    confidence increment.
   notes: >
     Derived from literature review of VTA-hippocampal dopaminergic pathway (2026-04-14).
     Key evidence: Retailleau & Morris 2018 showed local D1 blockade prevents place cell
