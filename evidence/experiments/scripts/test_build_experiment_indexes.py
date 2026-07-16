@@ -272,6 +272,60 @@ def test_metrics_and_status_not_overridden():
     assert merged["evidence_direction"] == "non_contributory"  # flat wins
 
 
+# --- Unconditional provenance backfill (2026-07-16 thin-pack fix) -------------
+# machine/machine_class/substrate_hash are pure provenance; a pre-2026-07-16 pack
+# dropped them (build_runpack_docs did not map them) even when the flat sibling
+# carried the always-core, so the index scored machine_class=null. The backfill
+# fills them from the flat copy WITHOUT the annotation gate (they never change
+# scoring direction), while never overwriting a non-empty pack value.
+
+def test_provenance_backfill_unannotated_thin_pack():
+    """The exact 2026-07-16 case: an unannotated thin pack whose flat sibling
+    carries provenance is backfilled -- even though the direction-overlay gate
+    does NOT fire (applied stays False)."""
+    pack = {"run_id": "r1", "status": "PASS"}
+    flat = {"machine": "ree-cloud-2",
+            "machine_class": "linux-x86_64-py3.10",
+            "substrate_hash": "f92a600cf17a"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is False  # provenance backfill must not set the overlay flag
+    assert merged["machine"] == "ree-cloud-2"
+    assert merged["machine_class"] == "linux-x86_64-py3.10"
+    assert merged["substrate_hash"] == "f92a600cf17a"
+
+
+def test_provenance_backfill_never_overwrites_nonempty_pack():
+    """A pack that already carries provenance keeps ITS values (the pack ran on
+    that class); the flat copy does not clobber a non-empty pack value."""
+    pack = {"machine_class": "darwin-arm64-py3.13", "substrate_hash": "PACKHASH"}
+    flat = {"machine_class": "linux-x86_64-py3.10", "substrate_hash": "FLATHASH"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert merged["machine_class"] == "darwin-arm64-py3.13"
+    assert merged["substrate_hash"] == "PACKHASH"
+
+
+def test_provenance_backfill_legacy_flat_without_provenance_is_noop():
+    """A legacy flat that lacks provenance leaves a thin pack byte-identical."""
+    pack = {"run_id": "legacy", "status": "PASS"}
+    flat = {"evidence_direction": "supports"}  # no provenance keys
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert merged == pack
+    assert applied is False
+
+
+def test_provenance_backfill_composes_with_annotated_overlay():
+    """Backfill and the annotated direction-overlay both apply: an annotated flat
+    correction rides the overlay AND its provenance is backfilled onto the pack."""
+    pack = {"evidence_direction": "supports"}
+    flat = {"evidence_direction": "non_contributory",
+            "evidence_direction_note": "autopsy: vacuous",
+            "machine_class": "linux-x86_64-py3.10"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, flat)
+    assert applied is True
+    assert merged["evidence_direction"] == "non_contributory"
+    assert merged["machine_class"] == "linux-x86_64-py3.10"
+
+
 def test_is_annotated_signals():
     assert b._is_annotated({"evidence_direction_note": "x"}) is True
     assert b._is_annotated({"degeneracy_reason": "x"}) is True

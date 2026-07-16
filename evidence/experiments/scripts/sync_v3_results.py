@@ -220,8 +220,32 @@ def build_runpack_docs(data: dict, experiment_type: str):
     if isinstance(interpretation, dict) and interpretation:
         manifest["interpretation"] = interpretation
 
-    # Build metrics.json
-    raw_metrics = data.get("metrics", {})
+    # Experimental Recording Standard always-core provenance (2026-07-16). Carry
+    # machine / machine_class / substrate_hash from the flat manifest into the
+    # pack so the index-scored runs/ artifact is self-describing. Pre-2026-07-16
+    # this mapping was absent, so every pack dropped these even when the flat
+    # sibling carried them (all packs read machine_class=null) -- gate-critical,
+    # because machine_class is the cloud-authoritative gate class (SD-024) and the
+    # arm-fingerprint reuse key (linux-x86_64-py3.10 binding). Conditional add:
+    # only emit a key when the flat carries a non-empty value, so legacy flat
+    # manifests without provenance produce byte-identical output.
+    for _prov in ("machine", "machine_class", "substrate_hash"):
+        _val = data.get(_prov)
+        if _val is not None and str(_val).strip() != "":
+            manifest[_prov] = _val
+
+    # Build metrics.json. 766-style diagnostic manifests store their scalar
+    # readouts under `aggregates` (paired with `thresholds`) rather than a
+    # top-level `metrics` dict, which left metrics.values={} on the scored pack.
+    # Fall back to `aggregates` when there is no top-level `metrics`, so the
+    # quantitative readouts survive into the runs/ pack.
+    raw_metrics = data.get("metrics")
+    if not raw_metrics:
+        agg = data.get("aggregates")
+        if isinstance(agg, dict) and agg:
+            raw_metrics = dict(agg)
+    if not isinstance(raw_metrics, dict):
+        raw_metrics = {}
     metrics_doc = {
         "schema_version": "metrics/v1",
         "values": raw_metrics,

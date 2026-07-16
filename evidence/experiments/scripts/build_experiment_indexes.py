@@ -148,6 +148,14 @@ class RunRecord:
     #     the 047m false-clear fix (a saturated TRAINING label invalidates a run).
     substrate_hash: str = ""
     label_balance: dict[str, Any] = field(default_factory=dict)
+    # Recording-provenance surfacing (2026-07-16): the machine + machine_class the
+    # run executed on. machine_class is the cloud-authoritative gate class (SD-024)
+    # and the arm-reuse fingerprint key. Read from the pack after the unconditional
+    # flat-provenance backfill (_merge_flat_manifest_overrides), so a thin
+    # pre-2026-07-16 pack still surfaces the flat sibling's value. Surfaced for
+    # queryability, NOT scored.
+    machine: str = ""
+    machine_class: str = ""
 
 
 def _is_number(value: Any) -> bool:
@@ -609,6 +617,16 @@ _FLAT_DIRECTION_FIELDS = frozenset({
     "superseded_by_substrate_per_claim",
 })
 
+# Pure-provenance always-core fields backfilled from the flat sibling onto the
+# pack UNCONDITIONALLY (independent of the annotation gate) when the pack lacks or
+# empties them. None of these are in _FLAT_DIRECTION_FIELDS, so they never change
+# how a run scores -- backfill only makes the scored artifact self-describing.
+_FLAT_PROVENANCE_BACKFILL_FIELDS = (
+    "machine",
+    "machine_class",
+    "substrate_hash",
+)
+
 # Sentinel distinguishing "pack has no such key" from "pack value is None".
 _MISSING = object()
 
@@ -682,11 +700,34 @@ def _merge_flat_manifest_overrides(
             disagreements.append(
                 (fld, None if pack_val is _MISSING else pack_val, flat_val))
 
+    # Unconditional provenance backfill (2026-07-16). machine_class / substrate_hash
+    # / machine are pure PROVENANCE (never in _FLAT_DIRECTION_FIELDS -- they cannot
+    # change how a run scores), yet a pre-2026-07-16 pack dropped them entirely
+    # (build_runpack_docs did not map them), so the index read machine_class=null /
+    # substrate_hash="" for every historical run even though the flat sibling
+    # carried the always-core. Fill from the flat copy whenever the pack lacks OR
+    # empties the field, regardless of the annotation gate below. This is a no-op
+    # once the producer fix propagates (the pack then already carries them), and a
+    # no-op for legacy flats that lack provenance. It does NOT set `applied` (that
+    # flag guards the direction-field overlay + its WARNings) and never overwrites
+    # a non-empty pack value.
+    base = pack
+    prov_filled: dict[str, Any] = {}
+    for fld in _FLAT_PROVENANCE_BACKFILL_FIELDS:
+        flat_val = flat_manifest.get(fld)
+        if flat_val is None or str(flat_val).strip() == "":
+            continue
+        pack_val = pack.get(fld, _MISSING)
+        if pack_val is _MISSING or str(pack_val or "").strip() == "":
+            prov_filled[fld] = flat_val
+    if prov_filled:
+        base = {**pack, **prov_filled}
+
     apply_overlay = _is_annotated(flat_manifest) and not _is_annotated(pack)
     if not apply_overlay:
-        return pack_manifest, disagreements, False
+        return (base if prov_filled else pack_manifest), disagreements, False
 
-    merged = dict(pack)
+    merged = dict(base)
     for fld in _FLAT_AUTHORITATIVE_FIELDS:
         if fld in flat_manifest:
             merged[fld] = flat_manifest[fld]
@@ -863,6 +904,10 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         substrate_hash = str(manifest.get("substrate_hash", "") or "").strip()
         raw_label_balance = manifest.get("label_balance") or {}
         label_balance = raw_label_balance if isinstance(raw_label_balance, dict) else {}
+        # machine / machine_class read AFTER the flat-provenance backfill above, so
+        # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
+        machine = str(manifest.get("machine", "") or "").strip()
+        machine_class = str(manifest.get("machine_class", "") or "").strip()
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -896,6 +941,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 degeneracy_reason=degeneracy_reason,
                 substrate_hash=substrate_hash,
                 label_balance=label_balance,
+                machine=machine,
+                machine_class=machine_class,
             )
         )
 
@@ -1971,6 +2018,10 @@ def _write_claim_evidence_matrix(
                 unlinked_entry["substrate_hash"] = run.substrate_hash
             if run.label_balance:
                 unlinked_entry["label_balance"] = run.label_balance
+            if run.machine_class:
+                unlinked_entry["machine_class"] = run.machine_class
+            if run.machine:
+                unlinked_entry["machine"] = run.machine
             matrix["unlinked_runs"].append(unlinked_entry)
             continue
 
@@ -2022,6 +2073,10 @@ def _write_claim_evidence_matrix(
                 entry["substrate_hash"] = run.substrate_hash
             if run.label_balance:
                 entry["label_balance"] = run.label_balance
+            if run.machine_class:
+                entry["machine_class"] = run.machine_class
+            if run.machine:
+                entry["machine"] = run.machine
             matrix["entries"].append(entry)
 
             # Epoch-stale, explicitly excluded, or superseded entries are logged
