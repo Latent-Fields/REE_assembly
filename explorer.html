@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-13.3 -->
+<!-- EXPLORER_VERSION: 2026-07-16.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7295,7 +7295,6 @@ END CONFLICT RESOLUTION`;
     const EXP_MACHINE_DISPLAY_STALE_SEC = 600;
     const EXP_SCROLL_STORAGE_KEY = 'ree_explorer.exp_scroll_y';
     let expQueueCache = { items: [], source: 'file', at: 0 };
-    let expQueueCountDebounce = { shown: null, candidate: null, streak: 0 };
     function ensureExpShell() {
       if (!els.expContent) return;
       if (document.getElementById('expShell')) return;
@@ -7341,39 +7340,22 @@ END CONFLICT RESOLUTION`;
       return false;
     }
 
-    function debouncedQueueCount(n) {
-      if (expQueueCountDebounce.shown === null) {
-        expQueueCountDebounce.shown = n;
-        return n;
-      }
-      if (n === expQueueCountDebounce.shown) {
-        expQueueCountDebounce.candidate = null;
-        expQueueCountDebounce.streak = 0;
-        return n;
-      }
-      if (n === expQueueCountDebounce.candidate) {
-        expQueueCountDebounce.streak += 1;
-      } else {
-        expQueueCountDebounce.candidate = n;
-        expQueueCountDebounce.streak = 1;
-      }
-      if (expQueueCountDebounce.streak >= 2) {
-        expQueueCountDebounce.shown = n;
-        expQueueCountDebounce.candidate = null;
-        expQueueCountDebounce.streak = 0;
-      }
-      return expQueueCountDebounce.shown;
-    }
-
     async function fetchExperimentQueue() {
       const isActive = st => st !== 'completed' && st !== 'failed';
       let items = [];
       let source = 'file';
       let mirrorStaleBanner = '';
+      // Track whether ANY source actually responded. An authoritative empty read
+      // (a source answered and the queue is genuinely empty) must be distinguished
+      // from a failed read (network/coordinator blip): only the latter should fall
+      // back to the last-good snapshot. Otherwise a legitimately drained queue keeps
+      // showing a phantom item forever behind the stale-snapshot banner.
+      let readOk = false;
 
       try {
         const lr = await fetch('/api/queue/live?t=' + Date.now());
         if (lr.ok) {
+          readOk = true;
           const live = await lr.json();
           const liveItems = (live.items || []).filter(qi => isActive(qi.status));
           if (liveItems.length) {
@@ -7388,6 +7370,7 @@ END CONFLICT RESOLUTION`;
           try {
             const qr = await fetch('/api/queue/' + ver + '?t=' + Date.now());
             if (qr.ok) {
+              readOk = true;
               const qd = await qr.json();
               (qd.items || []).forEach(qi => {
                 if (isActive(qi.status)) items.push(qi);
@@ -7398,17 +7381,23 @@ END CONFLICT RESOLUTION`;
         source = 'file';
       }
 
-      if (!items.length && expQueueCache.items.length) {
+      if (items.length) {
+        expQueueCache = { items: items.slice(), source, at: Date.now() };
+      } else if (!readOk && expQueueCache.items.length) {
+        // Every source failed to respond -- fall back to the last good snapshot
+        // so a transient blip doesn't blank an actually-populated queue.
         items = expQueueCache.items.slice();
         const ago = expQueueCache.at
           ? Math.round((Date.now() - expQueueCache.at) / 1000) : '?';
         mirrorStaleBanner = `<div class="exp-card" style="margin-bottom:8px;border-color:#d8b36d;background:#fffaf0">`
           + `<div class="exp-desc" style="font-size:12px;color:#7c5a1f">`
-          + `Queue read empty -- showing last successful snapshot (${items.length} item`
+          + `Queue read failed -- showing last successful snapshot (${items.length} item`
           + `${items.length === 1 ? '' : 's'}, ${ago}s ago, source ${escapeHtml(expQueueCache.source)}).`
           + `</div></div>`;
-      } else if (items.length) {
-        expQueueCache = { items: items.slice(), source, at: Date.now() };
+      } else {
+        // Authoritative empty read -- the queue is genuinely empty. Drop any stale
+        // snapshot so a drained queue stops surfacing a phantom item.
+        expQueueCache = { items: [], source, at: Date.now() };
       }
 
       return { items, source, mirrorStaleBanner };
@@ -8093,7 +8082,13 @@ END CONFLICT RESOLUTION`;
       }
 
       // ── Queue (always shown) ──
-      const queueCountShown = debouncedQueueCount(queue.length);
+      // Header count is derived from the same raw queue.length the body list
+      // uses below, so the "Queue -- N items" label can never disagree with the
+      // rendered cards. (A previous debounce on this count lagged the body by up
+      // to 2 poll cycles -- and froze indefinitely when the tab was backgrounded
+      // and setInterval was throttled -- producing a header that read empty while
+      // an item was listed, or vice-versa.)
+      const queueCountShown = queue.length;
       let queueHtml = `<div class="exp-section"><div class="exp-section-title">Queue${queueCountShown > 0 ? ` &mdash; ${queueCountShown} item${queueCountShown === 1 ? '' : 's'}` : ''}${queueSourceNote}</div>`;
       queueHtml += queueMirrorBanner;
       if (queue.length > 0) {
