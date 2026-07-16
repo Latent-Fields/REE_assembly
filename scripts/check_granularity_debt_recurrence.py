@@ -70,7 +70,18 @@ false exclusion):
     stamps on an umbrella it has already split -- e.g. INV-064 after 2026-07-12);
   * a `claim_synthesis_<claim>_*.md` proposal doc already exists (already
     synthesized -- done or in-flight);
-  * the claim's `status` is dead (resolved / superseded / deprecated).
+  * the claim's `status` is dead (resolved / superseded / deprecated);
+  * CO-TAGGED-BYSTANDER absorption: EVERY one of the claim's hits is on an
+    autopsy target that co-tags an already-synthesized-or-decomposed SIBLING
+    claim (the recurrence subject is that already-metabolized umbrella, and this
+    claim is only along for the ride). Symmetric to the `_trigger_claims`
+    multi-claim narrowing on the P0 path: a run tagged `[SD-034, MECH-268,
+    MECH-090]` whose recurrence is SD-034's closure coupling (decomposed into
+    MECH-445/446 on 2026-06-19) must not fan its no-verdict hit out to the
+    co-tagged MECH-268 -- SD-034 and MECH-090 are already excluded as
+    synthesized, so the un-named third claim would otherwise surface alone as a
+    pure false positive. Only fires when the claim has NO hit of its own on a
+    target free of a metabolized sibling.
   Deliberately NOT excluded on raw reverse-dep fan-in alone: a claim can be
   depended-upon by unrelated downstream consumers (INV-064 <- MECH-214/215)
   without having been decomposed, so bare fan-in over-excludes. The precise
@@ -246,13 +257,22 @@ def _synthesized_claims(autopsy_dir: Path) -> set[str]:
     return out
 
 
-def count_recurrence_hits(autopsy_dir: Path) -> dict[str, dict]:
+def count_recurrence_hits(autopsy_dir: Path,
+                          absorbing_claims: set[str] | None = None) -> dict[str, dict]:
     """Count no-verdict non-ceiling claim-keyed autopsy hits per claim_id.
 
-    Returns {claim_id: {"n_hits", "hits": [(stem, run_id)], "signatures": set,
-    "explicit_trigger": bool, "trigger_artifacts": [stem]}}. See module docstring
-    for the (i)/(ii)/(iii) hit definition.
+    Returns {claim_id: {"n_hits", "n_own_hits", "hits": [(stem, run_id)],
+    "signatures": set, "explicit_trigger": bool, "trigger_artifacts": [stem]}}.
+    See module docstring for the (i)/(ii)/(iii) hit definition.
+
+    `absorbing_claims` is the set of already-synthesized-or-decomposed umbrella
+    claims. A hit whose target co-tags an absorbing sibling (other than the claim
+    itself) is counted in `hits` (for display) but NOT in `n_own_hits`: the
+    target's recurrence subject is that metabolized umbrella, so it must not
+    inflate a co-tagged bystander's own recurrence count. `n_own_hits` is the
+    figure the audit qualifies P1 on; `n_hits` stays the full transparency count.
     """
+    absorbing_claims = absorbing_claims or set()
     per_claim: dict[str, dict] = {}
     if not autopsy_dir.is_dir():
         return {}
@@ -278,15 +298,21 @@ def count_recurrence_hits(autopsy_dir: Path) -> dict[str, dict]:
             run_key = str(tgt.get("run_id") or tgt.get("queue_id") or fp.stem)
             trig_claims = _trigger_claims(tgt)
             sig = _signature(tgt)
+            tgt_claim_set = {str(c).strip() for c in claim_ids if str(c).strip()}
             for cid in claim_ids:
                 cid = str(cid).strip()
                 if not cid:
                     continue
+                # Absorbed iff SOME OTHER co-tagged claim on this target is an
+                # already-metabolized umbrella (the recurrence is about it).
+                absorbed = bool((tgt_claim_set & absorbing_claims) - {cid})
                 rec = per_claim.setdefault(cid, {
-                    "hits": set(), "signatures": set(),
+                    "hits": set(), "own_hits": set(), "signatures": set(),
                     "explicit_trigger": False, "trigger_artifacts": set(),
                 })
                 rec["hits"].add((fp.stem, run_key))
+                if not absorbed:
+                    rec["own_hits"].add((fp.stem, run_key))
                 rec["signatures"].add(sig)
                 if cid in trig_claims:
                     rec["explicit_trigger"] = True
@@ -294,6 +320,7 @@ def count_recurrence_hits(autopsy_dir: Path) -> dict[str, dict]:
     return {
         cid: {
             "n_hits": len(rec["hits"]),
+            "n_own_hits": len(rec["own_hits"]),
             "hits": sorted(rec["hits"]),
             "n_signatures": len(rec["signatures"]),
             "explicit_trigger": rec["explicit_trigger"],
@@ -327,9 +354,17 @@ def audit(recurrence_hits: dict[str, dict], claim_meta: dict[str, dict],
             reason = "already decomposed (decomposition_note present)"
         elif already_synth:
             reason = "already synthesized (claim_synthesis_*.md exists)"
+        elif rec["n_own_hits"] < n and not rec["explicit_trigger"]:
+            # Co-tagged bystander: every hit shares a target with an
+            # already-synthesized/decomposed umbrella (the recurrence subject);
+            # no independent recurrence of its own. Mirrors _trigger_claims'
+            # multi-claim narrowing on the P0 path.
+            reason = ("co-tagged bystander (all hits share an already-synthesized/"
+                      "decomposed sibling umbrella; recurrence subject is metabolized)")
         record = {
             "claim_id": cid,
             "n_hits": rec["n_hits"],
+            "n_own_hits": rec["n_own_hits"],
             "n_signatures": rec["n_signatures"],
             "chain": [run for (_stem, run) in rec["hits"]],
             "artifacts": [stem for (stem, _run) in rec["hits"]],
@@ -362,9 +397,15 @@ def main() -> int:
                     help="exit 1 if any P0/P1 granularity-debt recurrence is flagged")
     args = ap.parse_args()
 
-    recurrence_hits = count_recurrence_hits(args.autopsy_dir)
     claim_meta = _load_claim_meta(args.claims_yaml)
     synthesized = _synthesized_claims(args.autopsy_dir)
+    # Absorbing umbrellas = already SPLIT (synthesized OR decomposition_note). A
+    # co-tagged hit on such an umbrella's target is the umbrella's recurrence, not
+    # a bystander sibling's -- see count_recurrence_hits `absorbing_claims`.
+    absorbing_claims = set(synthesized) | {
+        cid for cid, m in claim_meta.items() if m.get("has_decomposition_note")
+    }
+    recurrence_hits = count_recurrence_hits(args.autopsy_dir, absorbing_claims)
     result = audit(recurrence_hits, claim_meta, synthesized, n=GRAN_RECURRENCE_N)
     p0, p1, excluded = (result["dropped_handoff"],
                         result["unflagged_recurrence"], result["excluded"])
