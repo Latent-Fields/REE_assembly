@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-16T15:31:38Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_766_mech232_da_modulated_representational_expansion_20260716T152044Z_v3",
+      "queue_id": "V3-EXQ-766a",
+      "claim_ids": ["MECH-232"],
+      "outcome": "PASS",
+      "adjudication": "verified",
+      "failed_criterion": "none",
+      "gate": "SD-024 cloud-authoritative; MECH-232 candidate->provisional",
+      "machine": "ree-cloud-2",
+      "machine_class": "linux-x86_64-py3.10",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- the test let the claim express itself; L2c weight-zeroing CRUX is a genuine discriminator against a valence-tag account and it held",
+        "biological_reference": "clear -- VTA-hippocampal DA representational expansion (Retailleau & Morris 2018; Lisman & Grace 2005; Wittmann 2005); faithful translation, not a formal import",
+        "prerequisites": "present -- SD-024 IMPLEMENTED; ARC-007/SD-004/MECH-229 satisfied",
+        "implementation": "complete -- SD-024 full; 1475 pytest + 13 SD-024 contracts pass",
+        "environment": "adequate -- non-parametric RBF benefit terrain; no env pressure needed",
+        "measurement": "adequate -- readiness asserts the routed statistic; non-degeneracy checks confirm",
+        "integration": "n/a -- isolated representational test by design",
+        "scale": "adequate -- 8 seeds, non_degenerate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "VTA->hippocampus dopaminergic modulation of place coding at reward-associated locations (representational expansion)",
+        "dependencies": ["phasic DA at reward encounter", "RBF center allocation", "weight-independent density read"],
+        "is_formal_import": false,
+        "divergence": "none -- weight-independent density read is a faithful instantiation, not a formal-definition import",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "verified",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "2026-07-16: candidate -> provisional. SD-024 diagnostic V3-EXQ-766a (cloud, ree-cloud-2, linux-x86_64-py3.10) PASS/supports, adjudication=verified. DA-modulated RBF representational expansion produces approach from representational density ALONE: with all benefit weights zeroed (value field removed), the weight-independent density-follower still approaches reward (0.958) while the value-follower falls to chance (0.0) -- the CRUX discriminator against a valence-tag account. All 4 load-bearing criteria pass (L1a 2.40>=1.5, L2a 0.958>=0.60, L2b 0.958>=0.20, L2c approach-without-gradient); readiness met (density discrim 2.11, walker 0.917); non_degenerate. Cloud PASS satisfies SD-024's cloud-authoritative gate; the Mac 766 run reproduces but is not gate-authoritative. Diagnostic (excluded from confidence scoring).",
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "MECH-232's falsifiable prediction holds on cloud class: DA-modulated RBF representational expansion (not an explicit positive-valence gradient) is sufficient to produce approach, demonstrated by the weight-zeroing CRUX (L2c).",
+        "The cloud PASS reproduces the Mac inline validation -- machine-class robust (Regime-A determinism on linux-x86_64-py3.10)."
+      ],
+      "secondary_observation": "The committed runs/<run_id> pack is thin (empty metrics.values, no top-level machine_class/substrate_hash), so the index reads machine_class=null; the committed flat manifest carries the full always-core. Pre-existing phase3 pack-writer recording-provenance property; infra follow-up, not a blocker for this gate.",
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}
