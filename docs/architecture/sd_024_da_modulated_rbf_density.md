@@ -4,7 +4,7 @@ parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 13
 status: candidate
-status_asof: 2026-07-10
+status_asof: 2026-07-16
 status_claim: SD-024
 ---
 
@@ -13,7 +13,49 @@ status_claim: SD-024
 > Registered: 2026-04-14
 > Claims: MECH-232, ARC-057
 > Depends on: SD-004, SD-014, ARC-007
-> Status: candidate (design doc only, not yet implemented)
+> Status: **IMPLEMENTED** 2026-07-16 (built as the DIAGNOSTIC instrument that
+> resolves MECH-232; validation V3-EXQ-766 queued). Design was doc-only 2026-04-14
+> -> 2026-07-15.
+
+## Implementation Status (2026-07-16)
+
+Implemented in `ree-v3` as a DIAGNOSTIC substrate -- the instrument that tests
+MECH-232's falsifiable prediction, NOT a feature gated behind it. Modulates ONLY
+the benefit terrain (`ResidueField.benefit_rbf_field`); the harm and safety RBF
+fields keep single-center standard-bandwidth allocation, so the MECH-233 encoding
+asymmetry is preserved structurally.
+
+- **`RBFLayer`** (`ree_core/residue/field.py`): optional `per_center_bandwidth`
+  buffer (default off -> byte-identical scalar-bandwidth reads); `add_residue_cluster()`
+  allocates `n = 1 + int(da_signal * allocation_scale)` jittered centers with
+  optional per-center bandwidth narrowing (floored at `0.5 * base`);
+  `compute_local_density()` returns a **weight-independent** proximity-weighted
+  active-center count.
+- **`ResidueField`** (`field.py`): benefit field built with per-center bandwidth +
+  optional `da_benefit_num_centers` capacity override when the master switch is on;
+  `accumulate_benefit(..., dopamine_signal=)` routes to the cluster path when DA is
+  active (MECH-094 `hypothesis_tag` gate inherited -> replay cannot expand);
+  `compute_benefit_density()` wrapper.
+- **`HippocampalModule`** (`ree_core/hippocampal/module.py`):
+  `compute_representational_density()` read-through (the SD-025 curiosity-drive hook).
+- **Config** (`ree_core/utils/config.py`, `ResidueConfig`):
+  `use_da_modulated_rbf_density` (master, default `False`), `da_allocation_scale`
+  (`0.0`), `da_jitter_radius` (`0.1`), `da_bandwidth_narrowing` (`0.0`),
+  `da_benefit_num_centers` (`None`). **All defaults no-op -> bit-identical OFF**
+  (full `pytest tests/` 1475 passed; 13 SD-024 contracts in
+  `tests/contracts/test_sd024_da_modulated_rbf_density.py`).
+
+**The MECH-232 discriminator** (against a valence-tag mechanism): `compute_local_density`
+depends only on center positions + active mask + per-center bandwidth, **never on the
+RBF weights**. DA-driven multi-center allocation raises density even when the summed
+benefit value (`evaluate_benefit`, the weight sum) is held flat -- so approach that
+follows density demonstrates approach from representational *quality* alone, not from a
+positive-valence gradient. The total `intensity` is split across the cluster so the
+weighted benefit value integrates to the same magnitude a single-center allocation
+would (the expansion is representational, not a value inflation).
+
+**No phased training** (no new encoder head; allocation logic + a read over an existing
+field). **MECH-094**: DA expansion inherits `accumulate_benefit`'s `hypothesis_tag` gate.
 
 ## Motivation
 

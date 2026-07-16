@@ -19701,6 +19701,24 @@
     Biologically grounded: Retailleau & Morris 2018 showed place cells reorient to reward
     features via D1 receptors; rats in uniform corridors still get sharper fields near
     reward end. The brain allocates more resources regardless of environmental justification.
+  implementation_note: >
+    IMPLEMENTED 2026-07-16 in ree-v3 (residue/field.py RBFLayer + ResidueField,
+    hippocampal/module.py). Config (ResidueConfig): use_da_modulated_rbf_density (master,
+    default False -> bit-identical OFF), da_allocation_scale (0.0), da_jitter_radius (0.1),
+    da_bandwidth_narrowing (0.0), da_benefit_num_centers (None). accumulate_benefit(...,
+    dopamine_signal=) routes reward events to add_residue_cluster (n = 1 + int(da*scale)
+    jittered centers + per-center bandwidth floored at 0.5*base) on the benefit terrain
+    ONLY (harm/safety keep single-center standard-bandwidth -> MECH-233 asymmetry preserved).
+    compute_local_density is WEIGHT-INDEPENDENT (the MECH-232 discriminator). MECH-094:
+    hypothesis_tag gate inherited (replay cannot expand). No phased training (no encoder
+    head). Full pytest tests/ 1475 passed; 13 contracts in
+    tests/contracts/test_sd024_da_modulated_rbf_density.py. Built as the DIAGNOSTIC
+    instrument resolving MECH-232 (validation V3-EXQ-766), NOT gated behind it -- the
+    depends_on MECH-232 here is a circular/stale gate (MECH-232 is candidate precisely
+    because SD-024 is what supplies its first experimental test); SD-004 is IMPLEMENTED.
+    NOTE for governance: substrate_queue.json SD-024 depends_on_unresolved should drop
+    SD-004 (implemented) and MECH-232 (the claim SD-024 tests). Unblocks SD-025
+    (curiosity_drive) downstream. See docs/architecture/sd_024_da_modulated_rbf_density.md.
 
 - id: SD-025
   title: "Curiosity drive: information-seeking bias in hippocampal trajectory scoring that favors regions of higher representational density in the RBF map."
@@ -21863,6 +21881,23 @@
     Testable prediction: in the V3 hippocampal module, DA-modulated representational
     resolution at reward locations should produce approach behavior without requiring
     an explicit positive gradient field.
+  implementation_note: >
+    2026-07-16: the DIAGNOSTIC substrate that tests this claim's falsifiable prediction
+    -- SD-024 (hippocampal_module.da_modulated_rbf_density) -- was IMPLEMENTED in ree-v3
+    (residue/field.py RBFLayer + ResidueField, hippocampal/module.py). DA at reward
+    encounters allocates a local cluster of RBF centers + optional finer per-center
+    bandwidth on the benefit terrain (representational expansion), and compute_local_density
+    reads the WEIGHT-INDEPENDENT structural richness -- so the "approach from
+    representational quality, not a valence tag" prediction is now testable: DA raises
+    density even when the summed benefit value (evaluate_benefit) is held flat. All config
+    no-op by default (use_da_modulated_rbf_density=False, bit-identical OFF; full pytest
+    tests/ 1475 passed; 13 SD-024 contracts). NO status change (MECH-232 stays candidate --
+    building the instrument is not evidence). Validation experiment V3-EXQ-766 queued
+    (experiment_purpose=diagnostic): leg-1 representational expansion at reward locations
+    (density/resolution/stability DA-ON > DA-OFF); leg-2 CRUX approach-without-explicit-
+    gradient (weight-independent density-following approach with the value gradient held
+    flat). A PASS promotes MECH-232 candidate->provisional; FAIL refutes. See
+    docs/architecture/sd_024_da_modulated_rbf_density.md (Status IMPLEMENTED 2026-07-16).
 
 - id: MECH-233
   title: "Threat and approach valence enter hippocampal terrain through mechanistically asymmetric pathways: BLA writes explicit negative valence via dedicated anxiety/avoidance cells (Jimenez 2018); VTA-DA enhances representational fidelity via LTP modulation and place field sharpening (Retailleau & Morris 2018). The behavioural outputs (avoidance, approach) appear similar but the encoding mechanisms are distinct."
