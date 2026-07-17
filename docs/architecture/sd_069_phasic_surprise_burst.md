@@ -68,7 +68,7 @@ biological substrate, same source signal, different consumer.
 **Data flow:**
 
 ```
-e3._running_variance (per-tick PE surprise)
+<surprise source: e3._running_variance OR e3.last_instantaneous_pe>
   -> PhasicSurpriseBurst.tick(surprise)
        event iff surprise >= trigger_ratio * max(ema_baseline, trigger_floor)
        on event: inject drive in [0,1] from normalized surprise excess
@@ -100,6 +100,43 @@ every-tick offset.
 | `phasic_burst_temp_delta` | `-0.5` | temperature delta at full burst (negative = sharpen) |
 | `phasic_burst_decay` | `0.5` | geometric per-tick decay of the envelope |
 | `phasic_burst_min_temperature` | `0.1` | strict-positive floor on the combined temperature |
+| `phasic_burst_signal_source` | `"running_variance"` | event-detector source signal; `"instantaneous_pe"` for the sharp source (see below) |
+
+### Sharp-surprise source (2026-07-17)
+
+The event detector's source signal is selectable so the phasic lever can fire on
+**real, non-synthetic** surprise events:
+
+- **`"running_variance"`** (default, no-op): reads the SMOOTHED `e3._running_variance`
+  EMA -- the original wiring. Empirically that accumulator **decays monotonically**
+  for an untrained forward model (0.475 -> 0.004) and washes out real per-tick PE
+  spikes, so the lever fires **0 natural events** even with env volatility enabled
+  (`CausalGridWorldV2 background_drift_enabled=True, n_drift_sources=3,
+  drift_policy=random_walk`). A no-training 777-style probe on this source therefore
+  self-routes `substrate_not_ready_requeue` -- it can only exercise the lever with a
+  synthetic poke to `_running_variance`, which is exactly what the MECH-063 (ii) test
+  must avoid.
+- **`"instantaneous_pe"`**: reads a new read-only signal `e3.last_instantaneous_pe` =
+  the RAW per-tick PE-MSE (`error_var` in `e3.update_running_variance`) captured
+  BEFORE the running-variance EMA smoothing folds it in. Genuine surprise spikes
+  survive, so the lever fires on real events. Grounded in the MECH-104 lit basis
+  (Aston-Jones & Cohen 2005 phasic mode fires on **sharp/instantaneous** salience, not
+  a smoothed average). The detector keeps its own EMA baseline + relative-ratio
+  trigger, so a sharp single-tick input still produces a clean event.
+
+`e3.last_instantaneous_pe` is written **unconditionally** by `update_running_variance`
+(a pure additive no-op accumulator) and read **only** by the phasic-burst source branch
+in `REEAgent.select_action` when `phasic_burst_signal_source == "instantaneous_pe"`, so
+the default keeps existing experiments bit-identical. An invalid source string raises
+`ValueError` at agent construction (no silent fallback to the smoothed source).
+
+**Validation (untrained rollout, drift on, no synthetic poke).** Under
+`"instantaneous_pe"` the phasic burst is ACTIVE across the run (burst_ticks up to
+209/232 at trigger_ratio 1.3), while under `"running_variance"` it is NEVER active
+(0/217) -- a clean load-bearing contrast. The regulator's `n_events` counter resets per
+episode (`agent.reset -> phasic_burst.reset`), so a readiness gate must sum events
+across episodes rather than read the end-of-run `get_state`. Full validation: V3-EXQ-779
+(MECH-063 sub-claim ii dissociation).
 
 **Diagnostic (telemetry probe).** `phasic_burst_level` and
 `phasic_burst_temp_delta` are surfaced in `agent._last_score_bias_decomp`

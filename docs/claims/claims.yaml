@@ -49333,7 +49333,20 @@
     an injected surprise spike fires through select_action -> pre-commit softmax
     entropy drops on the event (0.80 -> 0.06) and decays over the tail (event-locked
     transient), bit-identical before the event.
-  validation_experiment: pending (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern; queued 2026-07-17 -- see Step 8)
+    SHARP-SURPRISE SOURCE amend 2026-07-17 (session mystifying-wilbur-394a10): added
+    REEConfig.phasic_burst_signal_source ("running_variance" default no-op /
+    "instantaneous_pe"). The default smoothed e3._running_variance decays monotonically
+    for an untrained forward model and fires 0 natural events even under env volatility,
+    so a no-training probe could only exercise the lever with a synthetic poke (exactly
+    what MECH-063 ii must avoid). "instantaneous_pe" reads a new read-only
+    e3.last_instantaneous_pe (raw per-tick PE-MSE before the running-variance EMA
+    smoothing), so genuine surprise spikes survive -- the lever fires on REAL events
+    (Aston-Jones & Cohen 2005 phasic mode = sharp/instantaneous salience). Validated
+    (untrained rollout, drift on, no poke): burst ACTIVE under instantaneous_pe
+    (burst_ticks up to 209/232) vs NEVER active under running_variance (0/217).
+    Additive no-op default (existing experiments bit-identical); invalid source raises
+    ValueError at construction. No status/confidence change (substrate only).
+  validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
 
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
