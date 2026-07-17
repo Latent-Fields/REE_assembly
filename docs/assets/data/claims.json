@@ -7638,6 +7638,14 @@
     "title": "Dedicated safety-terrain RBF bandwidth: an opt-in, tighter bandwidth for the MECH-303 contextual-safety-terrain RBF read, separate from the shared kernel_bandwidth (1.0). The shared bandwidth is ~15x too wide for the z_world residual scale (~0.065 between safe/unsafe contexts under SD-008 under-differentiation), so evaluate_safety SATURATES (reads ~identically in every context) and the fixed contextual_safety_release_threshold cannot resolve the safe-vs-unsafe signal into an absolute gap -- the discrimination exists as a rank (AUC ~0.83, V3-EXQ-760) but the behavioural release fires indiscriminately. The tighter bandwidth resolves it into an absolute gap the release gate can use. The Euclidean-RBF sibling of SD-066 (same SD-008 root cause); centering is a no-op here because Euclidean distance is translation-invariant, so bandwidth is the correct lever. A read-resolution workaround, NOT a z_world representation fix.",
     "type": "design_decision"
   },
+  "SD-068": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.consolidation_pipeline_lesion_harness",
+    "title": "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout (denoising-SNR / transfer-fidelity / precision-calibration-error) scored against INJECTED known content, so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by damage-tolerance staging order plus a REM passthrough-nudge-vs-generative-pass contrast, not by feed-forward error-compounding (which is topology-baked).",
+    "type": "design_decision"
+  },
   "SENT-0": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",

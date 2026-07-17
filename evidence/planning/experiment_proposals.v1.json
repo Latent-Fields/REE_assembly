@@ -8425,7 +8425,12 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "MECH-121",
+        "glymphatic-clearance-analog"
+      ],
+      "blocked_note": "IGW-20260717-206 (blocked_substrate 2026-07-17). MECH-169 falsifier (uniform damage across MECH-120->121->123 -> STAGED reverse-dependency failure). FOLLOW-THROUGH 2026-07-17 (session igw-206-mech169-lesion-harness-65eff6): consolidation-pipeline-lesion-harness blocker BUILT+smoke-verified via /implement-substrate (SD-068); validated by diagnostic V3-EXQ-778 (queued, coordinator-live). Remaining blockers permanent/held: glymphatic-clearance-analog has no V3 analog (out of scope), MECH-121 hold_pending_v3_substrate. A MECH-169-SPECIFIC run is NOT pursued; its V3-testable staging content is FOLDED onto INV-047/MECH-168 via /claim-synthesis. Stays blocked_substrate; not surfaced as ready /queue-experiment work. (NOTE: blocked_note is regenerated from claims.yaml on governance runs; durable disposition in claims.yaml SD-068 + docs/architecture/sd_068_consolidation_lesion_harness.md + substrate_dependencies.json.)"
     },
     {
       "acceptance_checks": [

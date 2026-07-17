@@ -14531,6 +14531,12 @@
     predicting that schema formation fails before schema retrieval -- consistent
     with the amnesic profile of early Alzheimer's (new learning fails before
     remote memory access).
+    SD-068 fold (2026-07-17, IGW-20260717-206): INV-047's staged-clinical-decline
+    prediction is the clinical-domain twin of MECH-168's pipeline prediction and the
+    V3-testable realization of MECH-169's attribution-pipeline half. Now instrumented
+    by the SD-068 consolidation-lesion harness + diagnostic V3-EXQ-778 (diagnostic,
+    non-scoring). MECH-169's glymphatic half has no V3 analog (out of scope). No
+    confidence change.
   pharmacological_predictions:
     - PHARM-014  # pipeline-rebuild dissociation prediction (staged decline reverses in pipeline-mediated treatment)
 
@@ -14585,6 +14591,13 @@
     MECH-168 is insufficient consolidation cycles producing progressive
     dissolution of the context scaffold. PTSD consolidates the wrong content;
     dementia fails to consolidate at all.
+    SD-068 (2026-07-17, IGW-20260717-206): this staged-failure-in-reverse-dependency-
+    order prediction is now instrumented at the V3 substrate by the SD-068
+    consolidation-pipeline lesion harness (per-phase diffuse damage + per-phase
+    functional readouts, non-vacuous error-propagation-gain), validated by diagnostic
+    V3-EXQ-778. MECH-168 (with INV-047) is the V3-testable realization of MECH-169's
+    attribution-pipeline half (MECH-169's glymphatic half has no V3 analog). Diagnostic,
+    non-scoring; no confidence change.
 
 - id: MECH-169
   title: "The glymphatic clearance hypothesis (amyloid-beta accumulation via insufficient sleep-phase clearance) and the attribution pipeline account (consolidation failure via disrupted offline phases) are mechanistically complementary accounts of sleep-deprivation-induced dementia: the former explains why structural substrate damage accumulates; the latter explains why cognitive symptoms are staged and context-specific rather than diffuse and uniform."
@@ -14624,6 +14637,16 @@
     predict the clinical phenotype. The attribution pipeline account without the
     glymphatic account cannot explain why sleep deprivation specifically (rather
     than other forms of neural disruption) is the primary risk factor.
+    SD-068 fold (2026-07-17, IGW-20260717-206, user-adjudicated): MECH-169's ONLY
+    V3-testable content is the staged-decline-under-uniform-damage prediction, which
+    is exactly what INV-047 and MECH-168 already assert. The glymphatic / amyloid
+    structural-damage half has NO V3 analog (unrepresentable). So MECH-169 is NOT
+    pursued as a distinct V3 experiment; its V3-testable staging content is FOLDED
+    onto INV-047 / MECH-168, now instrumented by the SD-068 consolidation-pipeline
+    lesion harness + diagnostic V3-EXQ-778. MECH-169 stays the complementarity
+    umbrella (its glymphatic half is real, just out-of-V3-scope). No confidence
+    change; EVB-0115 stays blocked_substrate (glymphatic unrepresentable + MECH-121
+    held).
 
 - id: MECH-170
   title: "Sleep architecture restoration in early MCI should produce dissociated cognitive improvement: slot-filling (episodic attribution, MECH-121 analog) should improve before slot-formation (contextual semantic, MECH-120 analog), because the pipeline rebuilds in dependency order. This distinguishes the attribution account from accounts predicting uniform memory improvement with sleep restoration."
@@ -49156,6 +49179,58 @@
     queue once z_world can separate safe/unsafe contexts. PROMOTES NOTHING; stays
     candidate/v3_pending (no landed cloud validation while 764 is held; inline-validated).
   validation_experiment: V3-EXQ-764 (MECH-303 promote-to-active behavioural falsifier -- HELD pending SD-008 z_world differentiation)
+
+- id: SD-068
+  title: "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout (denoising-SNR / transfer-fidelity / precision-calibration-error) scored against INJECTED known content, so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by damage-tolerance staging order plus a REM passthrough-nudge-vs-generative-pass contrast, not by feed-forward error-compounding (which is topology-baked)."
+  claim_type: design_decision
+  subject: sleep.consolidation_pipeline_lesion_harness
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-17
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-17"
+  depends_on:
+    - SD-017
+    - MECH-120
+    - MECH-121
+    - MECH-123
+    - MECH-204
+  location: docs/architecture/sd_068_consolidation_lesion_harness.md
+  functional_restatement: >
+    IGW-20260717-206 (EVB-0115) adjudicated a MECH-169 experiment blocked_substrate:
+    the live sleep cycle (SleepLoopManager._run_cycle) exposes only operational
+    telemetry (routing counts, replay diversity, update counts), with NO per-phase
+    output-quality readout and NO per-phase diffuse-damage knob, so the distinctive
+    MECH-168/INV-047/MECH-169 falsifier (uniform damage -> STAGED reverse-dependency
+    failure vs uniform) could not be run non-vacuously. SD-068 supplies both at the
+    experiment layer (ree-v3/experiments/_lib/consolidation_lesion_harness.py; no
+    ree_core change), following the V3-EXQ-702 injected-content precedent so it
+    sidesteps the failure_autopsy_V3-EXQ-538a encoding-starvation ceiling (fidelity
+    is scored against KNOWN injected content, not emergent encoding). A single
+    RMS-scaled Gaussian sigma applied identically to each phase == the uniform/diffuse
+    damage model. Non-vacuity: per-phase errors are normalised to fractional-of-own-
+    range degradation and ranked by damage-tolerance for staging order, and REM is
+    measured two ways (passthrough linear precision nudge vs generative
+    run_rem_attribution_pass) so amplify/attenuate is testable rather than assumed.
+    Substrate finding: the three phases operate on DISJOINT state, so a faithful
+    cross-phase content-propagation pipe is not directly instrumentable -- the
+    non-vacuity is carried by staging-order + the REM contrast.
+  implementation_note: >
+    IMPLEMENTED 2026-07-17 (session igw-206-mech169-lesion-harness-65eff6),
+    experiment-layer, zero ree_core change. Smoke: run_staged_sweep deterministic;
+    observed damage-tolerance order (nrem, rem, sws) stable across seeds 42/7 --
+    a PARTIAL match to the reverse-dependency prediction (SWS correctly most-robust/
+    last) that INVERTS REM-vs-NREM, with the REM generative sensitivity null (pure
+    passthrough nudge). This is the intended non-vacuous diagnostic behaviour: it does
+    NOT rubber-stamp the staging prediction. MECH-121 hold RESPECTED (not lifted): the
+    validation run is EXPERIMENT_PURPOSE=diagnostic and does not tag MECH-121 as
+    promotion evidence; the NREM leg is substrate-plumbing-fidelity only. Glymphatic/
+    amyloid structural half of MECH-169 has no V3 analog and is out of scope.
+  validation_experiment: V3-EXQ-778 (staged-damage diagnostic; queued 2026-07-17, coordinator-live)
 
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
