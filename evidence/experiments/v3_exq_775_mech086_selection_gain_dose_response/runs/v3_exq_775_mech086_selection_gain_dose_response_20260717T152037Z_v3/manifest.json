@@ -1,0 +1,109 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_775_mech086_selection_gain_dose_response",
+  "run_id": "v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-17T15:20:37Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-086"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "selection_gain_dose_response_confirmed",
+    "preconditions": [
+      {
+        "name": "clean_landscape_discriminative",
+        "measured": 3.0842087698153353,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "distorted_landscape_decouples_value",
+        "measured": 0.9111111111111111,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "gain_modulates_decisiveness",
+        "measured": 0.8913463374898895,
+        "threshold": 0.4,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "probe_regime_uncommitted",
+        "measured": 1.0,
+        "threshold": 0.99,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "S1_gain_monotonicity",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S2_value_conditional_benefit",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S3a_indecision_pole",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S3b_aberrant_salience_pole",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "S1_gain_monotonicity": true,
+      "S2_value_conditional_benefit": true,
+      "S3a_indecision_pole": true,
+      "S3b_aberrant_salience_pole": true
+    }
+  }
+}
