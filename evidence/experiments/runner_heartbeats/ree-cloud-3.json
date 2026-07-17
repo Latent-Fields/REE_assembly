@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-17T14:03:02Z",
+  "last_tick_utc": "2026-07-17T15:23:26Z",
   "state": "running",
   "current_exq": "V3-EXQ-771",
   "current_exq_started_utc": "2026-07-17T07:05:47.013026+00:00",
@@ -9,22 +9,16 @@
   "current_claim_id": "MECH-457",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / D3_hazard_free",
-    "runs_done": 12,
+    "run_label": "Seed 43 / D3_hazard_free",
+    "runs_done": 13,
     "runs_total": 27,
-    "episodes_done": 2800,
+    "episodes_done": 150,
     "episodes_total": 3000,
-    "overall_pct": 47.9
+    "overall_pct": 48.3
   },
-  "seconds_elapsed": 25035,
-  "seconds_remaining": 44696,
+  "seconds_elapsed": 29859,
+  "seconds_remaining": 82392,
   "recent_lines": [
-    "Seed 42 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=42 forage/ep=52.9 death_rate=0.15)",
-    "Seed 43 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=43 forage/ep=55.2 death_rate=0.1)",
-    "Seed 44 Condition D3_hazard_free:local_view_greedy",
-    "verdict: PASS (arm=local_view_greedy seed=44 forage/ep=58.5 death_rate=0.05)",
     "Seed 42 Condition D3_hazard_free:greedy_oracle",
     "verdict: PASS (arm=greedy_oracle seed=42 forage/ep=60.75 death_rate=0.0)",
     "Seed 43 Condition D3_hazard_free:greedy_oracle",
@@ -118,7 +112,13 @@
     "[train] metab_decouple_zworld seed=42 phase=RL ep 2200/3000 (returns=0 credit_passes=6441)",
     "[train] metab_decouple_zworld seed=42 phase=RL ep 2400/3000 (returns=0 credit_passes=7026)",
     "[train] metab_decouple_zworld seed=42 phase=RL ep 2600/3000 (returns=0 credit_passes=7620)",
-    "[train] metab_decouple_zworld seed=42 phase=RL ep 2800/3000 (returns=0 credit_passes=8217)"
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2800/3000 (returns=0 credit_passes=8217)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 3000/3000 (returns=0 credit_passes=8814)",
+    "verdict: PASS (arm=metab_decouple_zworld seed=42 forage/ep=1.95 death_rate=0.0)",
+    "Seed 43 Condition D3_hazard_free:metab_decouple_zworld",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 50/200",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 100/200",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 150/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
