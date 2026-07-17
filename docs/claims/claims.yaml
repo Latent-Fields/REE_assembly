@@ -19809,6 +19809,20 @@
     (PROMOTES/DEMOTES NOTHING). Re-operationalized as V3-EXQ-767a: replace the saturating binary
     pref-gate with the continuous CEM score-margin (already computed internally, discarded). SD-025
     stays candidate.
+
+    2026-07-17 governance (failure_autopsy_V3-EXQ-767a): V3-EXQ-767a -- the continuous CEM
+    score-margin re-operationalization of the vacuous V3-EXQ-767 -- adjudicated REAL / non-vacuous
+    (supports). The re-op RESOLVED 767's measurement_degeneracy: the load-bearing statistic is now
+    the continuous CEM score-margin min(sparse)-min(dense), variance-bearing (margin_on 39.26,
+    varies 26.95-45.61 across 8 seeds) and clearing the criteria_non_degenerate guard. All four
+    load-bearing criteria PASS -- propagation (margin_on 39.26 vs OFF null 0.0), weight-independent
+    density read (L1c 0.0 <= 0.1: zeroing benefit value leaves the margin unchanged -> routes on
+    density not value, ARC-007-strict), and waking-only familiarity-discount anti-perseveration
+    (L2a 20.05; MECH-094 replay control L2b 0.0). Readiness met (density discrim 58.32; positive
+    control margin 78.76; substrate_hash be9a4d7f, 8 seeds). ADVANCES SD-025 drive-mechanism
+    validation. Scope: DRIVE MECHANISM only -- NOT the env-constrained ARC-057 approach-emergence
+    claim (interaction is V3-EXQ-768a, which promoted ARC-057 candidate->provisional 2026-07-17).
+    Supersedes 767's inconclusive note. SD-025 stays candidate.
   registered: "2026-04-14"
   depends_on:
     - SD-024
@@ -55148,7 +55162,7 @@
       as_of: 2026-07-14
       verdict: weakens sufficiency / strengthens dependency -- 2x3 (representation x teacher) fanout REFUTES H-rep and reward-density; only BC (imitation) clears the floor on both inputs (z_world+BC 32.72 > raw+BC 20.93). Discriminated cause = RL exploration/credit-assignment bootstrap, not representation and not reward density. One live discrimination remains on the algorithm axis (H-optim leg V3-EXQ-751, in flight). Stays candidate/v3_pending.
   implementation_phase: v3
-  pending_retest_after_substrate: true  # substrate_queue mech457_competence_bootstrap_explorer: original build (022a284) failed the 765 retest (capacity gap); CAPACITY-SIDE AMEND built 2026-07-16 (hidden 256 + 5x budget + warm-start/credit-reliability + z_world detached); retest MECH-457 sufficiency once V3-EXQ-769 (supersedes 765) scores
+  pending_retest_after_substrate: true  # substrate_queue mech457_competence_bootstrap_explorer: original build (022a284) failed the 765 retest (capacity gap); CAPACITY-SIDE AMEND built 2026-07-16 (hidden 256 + 5x budget + warm-start/credit-reliability + z_world detached) but V3-EXQ-769 (supersedes 765) RAN + REGRESSED (raw ON 6.48->0.12) -- capacity axis FALSIFIED (failure_autopsy_V3-EXQ-769_2026-07-17); reconfirmation re-routed to GOV-FANOUT-1 portfolio V3-EXQ-770/771/772 (drive-schedule / reward-coupling / credit-horizon)
   evidence_quality_note: >
     2026-07-16 (V3-EXQ-765, diagnostic, claim_ids=[MECH-457];
     failure_autopsy_V3-EXQ-765_2026-07-16): post-build retest of the composed
@@ -55175,6 +55189,36 @@
     no-op defaults (OFF bit-identical to 765). Retest V3-EXQ-769 (supersedes 765) queued
     (cloud). MECH-457 stays candidate/v3_pending. This is a NEW hit within the GOV-GRAN-1
     coherent-campaign disposition, not a granularity signal.
+
+    2026-07-17 (V3-EXQ-769, diagnostic, claim_ids=[MECH-457];
+    failure_autopsy_V3-EXQ-769_2026-07-17, supersedes V3-EXQ-765): the 765-routed
+    CAPACITY-side amend (ON hidden 128->256 + budget 3x->5x; warm-start 0.2 + credit
+    passes 3->6 / topk 32->64; z_world cotrain->DETACHED) RAN and FAILED, and it
+    REGRESSED rather than plateaued. Readiness PASSED (local_view_greedy 48.05, oracle
+    57.2 vs 1.0 floor). Raw ON fell 6.48->0.12 (below its OFF; the single 765 clearing
+    seed 15.9->0); z_world ON unchanged ~0.27 despite detaching (refuting the 765
+    cotrain-destructive subordinate finding); credit machinery fired
+    (n_credit_replay_passes 9k-18k). Behavioral signature: every ON arm survives 200
+    steps, death 0, contamination avoided, forage ~0 -- AVOIDANCE learned WITHOUT
+    APPROACH; on D3_hazard_free survival is decoupled from foraging so more optimization
+    drives the policy into the passive-survival basin. This EMPIRICALLY FALSIFIES the 765
+    capacity diagnosis: the wall is not actor capacity but developmental-ordering /
+    reward-coupling (approach-before-avoidance root). epistemic_category
+    competence_implementation_gap (missing-dependency reframe, user-confirmed; NOT
+    substrate_ceiling -- ordering/reward axis untested; 0 substrate_ceiling verdicts
+    preserved, GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic,
+    PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (6th non_contributory MECH-457
+    autopsy): REFUSE any further capacity/same-axis explorer re-queue (no 769b / bigger
+    net / more budget / warm-start retune). Routing = GOV-FANOUT-1 discrimination
+    portfolio (V3-EXQ-770 H1 drive-schedule / 771 H2 reward-coupling / 772 H3
+    credit-horizon), each with a declared null, coordinated with the in-flight
+    approach-before-avoidance ordering falsifier. Secondary methodological finding: the
+    build's 'OFF bit-identical to 765' claim is false (substrate_hash cd368e11->be9a4d7f;
+    OFF z_world 5.22->2.63) -- the no-op-default contract was not numerically verified.
+    MECH-457 stays candidate/v3_pending; a NEW hit within the GOV-GRAN-1 coherent-campaign
+    disposition, not a granularity signal. INV-088 stays candidate/pending_substrate_
+    reconfirmation (769 was its retest path; reconfirmation did not occur; unblock
+    re-routed onto the 770/771/772 portfolio).
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic
