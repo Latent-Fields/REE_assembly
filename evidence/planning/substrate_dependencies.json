@@ -1,600 +1,612 @@
 {
- "schema_version": "substrate_dependencies/v1",
- "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
- "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
- "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
- "last_updated_utc": "2026-07-17T15:45:06Z",
- "landings": [
-  {
-   "substrate": "ARC-062",
-   "landed_utc": "2026-05-09",
-   "description": "policy.gated_policy -- gated-policy heads + context discriminator (GAP-A)",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-309",
-    "ARC-063",
-    "ARC-077",
-    "MECH-312",
-    "Q-054"
-   ],
-   "stale_evidence_disposition": "self-evidence basis; differential-heads robustness fix 2026-05-18 + GAP-B floor 2026-05-20 are robustness/floor, not mechanism changes"
-  },
-  {
-   "substrate": "MECH-307",
-   "landed_utc": "2026-05-11",
-   "recalibrated_utc": "2026-05-12",
-   "description": "anticipatory affect conjunction architecture (split channels) + default-value recalibration",
-   "mechanism_changing": true,
-   "dependent_claims": [],
-   "candidate_stale": [
+  "schema_version": "substrate_dependencies/v1",
+  "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
+  "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
+  "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
+  "last_updated_utc": "2026-07-17T16:27:10Z",
+  "landings": [
     {
-     "run_id": "v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3",
-     "claim_id": "MECH-307",
-     "entry_ts": "2026-05-08",
-     "recommendation": "MARK",
-     "rationale": "pre-landing conjunction; 540g re-run is the live evidence",
-     "disposition": "MARKED (per-claim, v3_exq_539 -> MECH-307); no new EXQ -- live MECH-307 evidence is the post-recalibration 540g lineage."
-    }
-   ]
-  },
-  {
-   "substrate": "ARC-065",
-   "landed_utc": "2026-05-17",
-   "description": "SP-CEM flipped to main-path default (6 config flags); changes the live action path for all from_dims agents",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-313",
-    "MECH-314",
-    "MECH-316",
-    "MECH-317",
-    "MECH-318",
-    "MECH-333",
-    "MECH-341",
-    "INV-073",
-    "INV-074",
-    "INV-076",
-    "ARC-064",
-    "ARC-072",
-    "ARC-077",
-    "Q-043",
-    "Q-045",
-    "Q-052",
-    "Q-054",
-    "Q-055",
-    "MECH-312"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_567_*_sp_cem_20260515T203126Z_v3",
-     "claim_id": "ARC-065",
-     "entry_ts": "2026-05-15",
-     "recommendation": "KEEP",
-     "rationale": "these runs ARE the evidence basis for the SP-CEM landing; already ran SP-CEM"
-    }
-   ]
-  },
-  {
-   "substrate": "SD-012",
-   "landed_utc": "2026-05-17",
-   "description": "sustained-drive EMA trace amendment (drive_ema_alpha; DEFAULT 1.0 = bit-identical to instantaneous form)",
-   "mechanism_changing": false,
-   "no_op_default": true,
-   "dependent_claims_count": 38,
-   "stale_evidence_disposition": "FALSE-POSITIVE CLUSTER -- default alpha=1.0 is a no-op; do NOT revalidate. Revisit only if MECH-306 promotes alpha<1.0 as default."
-  },
-  {
-   "substrate": "INV-074/MECH-333/MECH-334",
-   "landed_utc": "2026-05-17",
-   "description": "Phase-3 plasticity-injection crystallization + EWC residue write-protect",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-333",
-    "MECH-334",
-    "ARC-075",
-    "ARC-076",
-    "MECH-336",
-    "Q-052"
-   ]
-  },
-  {
-   "substrate": "MECH-341",
-   "landed_utc": "2026-05-27",
-   "retuned_utc": "2026-05-28",
-   "amended_utc": "2026-06-01",
-   "description": "E3 score diversity preservation (stratified select) on the action path; +stratified_within_class_temperature amend",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "INV-076"
-   ]
-  },
-  {
-   "substrate": "MECH-090",
-   "landed_utc": "2026-05-28",
-   "axis_amended_utc": "2026-05-29",
-   "description": "commit-entry predicate (R-c readiness conjunction); nav_competence axis added 2026-05-29. Admission-only (does not couple to maintenance-time release -- see V3-EXQ-592f autopsy + MECH-090 release-path audit).",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-057a",
-    "MECH-091",
-    "MECH-104",
-    "MECH-105",
-    "MECH-106",
-    "ARC-028",
-    "ARC-029",
-    "SD-021",
-    "MECH-234",
-    "MECH-235",
-    "MECH-250",
-    "MECH-279",
-    "MECH-281",
-    "SD-034",
-    "SD-036",
-    "Q-042"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_049a_mech090_bistable_concordance / 321a / 321b",
-     "claim_id": "MECH-090",
-     "entry_ts": "2026-04-16..19",
-     "recommendation": "MARK",
-     "rationale": "tested old beta-gate/bistable commit gate; R-c conjunction changes the commit-entry predicate"
+      "substrate": "ARC-062",
+      "landed_utc": "2026-05-09",
+      "description": "policy.gated_policy -- gated-policy heads + context discriminator (GAP-A)",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-309",
+        "ARC-063",
+        "ARC-077",
+        "MECH-312",
+        "Q-054"
+      ],
+      "stale_evidence_disposition": "self-evidence basis; differential-heads robustness fix 2026-05-18 + GAP-B floor 2026-05-20 are robustness/floor, not mechanism changes"
     },
     {
-     "run_id": "v3_exq_063 / v3_exq_125_committed_mode",
-     "claim_id": "ARC-029",
-     "entry_ts": "2026-03-22 / 03-29",
-     "recommendation": "MARK",
-     "rationale": "committed-mode harm outcomes downstream of commit-entry gate",
-     "disposition": "REVALIDATION QUEUED V3-EXQ-063a (ree-v3 main 1e7fdc9, supersedes V3-EXQ-063); R-c commit-entry gate active. C3-FAIL => route /failure-autopsy (gate suppresses commitment, not noise). See epoch_stale_evidence_review_2026-06-02.md REVALIDATION STATUS."
+      "substrate": "MECH-307",
+      "landed_utc": "2026-05-11",
+      "recalibrated_utc": "2026-05-12",
+      "description": "anticipatory affect conjunction architecture (split channels) + default-value recalibration",
+      "mechanism_changing": true,
+      "dependent_claims": [],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3",
+          "claim_id": "MECH-307",
+          "entry_ts": "2026-05-08",
+          "recommendation": "MARK",
+          "rationale": "pre-landing conjunction; 540g re-run is the live evidence",
+          "disposition": "MARKED (per-claim, v3_exq_539 -> MECH-307); no new EXQ -- live MECH-307 evidence is the post-recalibration 540g lineage."
+        }
+      ]
     },
     {
-     "run_id": "MECH-104/091/106/SD-021 cohort (~14 runs)",
-     "claim_id": "MECH-104/MECH-091/MECH-106/SD-021",
-     "entry_ts": "2026-03..04",
-     "recommendation": "KEEP",
-     "rationale": "orthogonal axes (volatility/surprise gating, phase-reset, BG hysteresis, descending pain); listed only via depends_on"
-    }
-   ]
-  },
-  {
-   "substrate": "SD-056",
-   "landed_utc": "2026-05-29",
-   "multi_step_amend_utc": "2026-05-31",
-   "description": "E2 action-conditional divergence preservation (contrastive next-state)",
-   "mechanism_changing": true,
-   "dependent_claims": []
-  },
-  {
-   "substrate": "SD-037/MECH-281",
-   "landed_utc": "2026-05-30",
-   "description": "consumer-cascade motor-coupling axis amend",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-280",
-    "MECH-281",
-    "MECH-282",
-    "MECH-286",
-    "Q-040"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
-     "claim_id": "MECH-281/MECH-280/SD-037",
-     "entry_ts": "2026-05-21",
-     "recommendation": "REVALIDATE_OR_CONFIRM_SUPERSEDED",
-     "rationale": "483c inert coupling routed the cascade amend; likely already superseded by 483e -- confirm supersession recorded"
-    }
-   ]
-  },
-  {
-   "substrate": "SD-022/MECH-302",
-   "landed_utc": "2026-05-30",
-   "description": "scheduled-injection env extension (MECH-302 unblock)",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "SD-047",
-    "SD-048"
-   ],
-   "stale_evidence_disposition": "additive env knob; does not alter harm-stream dissociation or comparator-gap axes -- KEEP"
-  },
-  {
-   "substrate": "SD-049",
-   "landed_utc": "2026-05-31",
-   "description": "SD-032 consumer cascade reading per-axis (Phase 3)",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-229"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_514b (05-05) / v3_exq_514j (05-23)",
-     "claim_id": "SD-049",
-     "entry_ts": "2026-05-05/23",
-     "recommendation": "MARK",
-     "rationale": "self-evidence before Phase-3 per-axis read changed downstream exposure",
-     "disposition": "REVALIDATION ALREADY COVERED by queued V3-EXQ-514l (use_sd049_per_axis_consumer_cascade=True, tags SD-049, tests wanting!=liking + goal_resource_r lift). DO NOT queue a separate 514m. See epoch_stale_evidence_review_2026-06-02.md REVALIDATION STATUS."
+      "substrate": "ARC-065",
+      "landed_utc": "2026-05-17",
+      "description": "SP-CEM flipped to main-path default (6 config flags); changes the live action path for all from_dims agents",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-313",
+        "MECH-314",
+        "MECH-316",
+        "MECH-317",
+        "MECH-318",
+        "MECH-333",
+        "MECH-341",
+        "INV-073",
+        "INV-074",
+        "INV-076",
+        "ARC-064",
+        "ARC-072",
+        "ARC-077",
+        "Q-043",
+        "Q-045",
+        "Q-052",
+        "Q-054",
+        "Q-055",
+        "MECH-312"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_567_*_sp_cem_20260515T203126Z_v3",
+          "claim_id": "ARC-065",
+          "entry_ts": "2026-05-15",
+          "recommendation": "KEEP",
+          "rationale": "these runs ARE the evidence basis for the SP-CEM landing; already ran SP-CEM"
+        }
+      ]
     },
     {
-     "run_id": "v3_exq_326a_wanting_gradient_nav_fix",
-     "claim_id": "MECH-229",
-     "entry_ts": "2026-04-13",
-     "recommendation": "KEEP",
-     "rationale": "wanting-gradient nav not re-measured by SD-032 consumer read"
-    }
-   ]
-  },
-  {
-   "substrate": "scaffolded_sd054_onboarding",
-   "landed_utc": "2026-05-31",
-   "amended_utc": "2026-06-02",
-   "description": "onboarding scaffold substrate (GAP-C prereq) + update_z_goal wiring / Stage-0 positive control",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "Q-045",
-    "MECH-313",
-    "MECH-260"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
-     "claim_id": "MECH-260/MECH-313/Q-045",
-     "entry_ts": "2026-06-01",
-     "recommendation": "ALREADY_MARKED",
-     "rationale": "nested manifest already carries pending_retest_after_substrate:true; honored by indexer (was non_contributory)"
-    }
-   ]
-  },
-  {
-   "substrate": "MECH-342",
-   "landed_utc": "2026-06-02T16:15:43Z",
-   "amended_utc": null,
-   "description": "NEW maintenance-time readiness-driven commitment-release coupling (B3b). Release-side complement to the MECH-090 admission-only R-c conjunction; default-OFF master flag (use_maintenance_release), bit-identical when disabled.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-090"
-   ],
-   "candidate_stale": [],
-   "audit_note": "Additive / no-op-default landing: a new release pathway gated default-OFF. MECH-090 dependent evidence (EXQ-049e PASS; V3-EXQ-592d admission-axis 4-arm validator) is on the ADMISSION axis, which MECH-342 does not touch (it is the release-side complement). All MECH-090 experimental scoring entries KEEP (no stale-substrate re-tag). The V3-EXQ-592f manifest pending_retest_after_substrate flag is governed by the MECH-342 substrate_queue entry / V3-EXQ-592g, not by this staleness audit."
-  },
-  {
-   "substrate": "MECH-090 R-c continuation Phase-2 env-source (nav_competence automatic source)",
-   "landed_utc": "2026-06-02T18:02:20Z",
-   "description": "Wired the named Phase-2 follow-on for the MECH-090 R-c across-tick nav_competence axis: CausalGridWorldV2.mech090_readiness_outcome_enabled (env-only kwarg, default False) emits info['mech090_readiness_outcome']=clip(1-mean(limb_damage),0,1); REEAgent.sense(mech090_readiness_outcome=...) forwards it into commit_readiness.update(). The 2026-05-29 pass wired the consumer + notify_outcome seam but no caller ever pushed, so the axis was fail-open inert in ecological runs. CommitReadiness module unchanged. 719/719 contracts + 7/7 preflight; default-OFF bit-identical.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-090",
-    "ARC-029"
-   ],
-   "candidate_stale": [],
-   "audit_note": "ADDITIVE / no-op-default. The across-tick nav_competence axis was never exercised by any prior experiment (no notify_outcome caller existed), so it produced no evidence and made none stale. No PASSED run measured this axis. KEEP all MECH-090 / ARC-029 evidence. Validation is the new V3-EXQ-628 (ecological ARC-029 successor to 063a), not a re-scoring of existing evidence."
-  },
-  {
-   "substrate": "SD-057 object-bound incentive-salience layer (GAP-7 L2-L3-L4 core)",
-   "landed_utc": "2026-06-04T07:20:53Z",
-   "description": "Inserted a per-object incentive layer between the benefit pulse and z_goal: IncentiveTokenBank in ree-v3/ree_core/goal.py (L2 bind benefit->SD-049 type tag, L3 per-object slow-decay revaluable token with at-recall per-axis-drive-specific wanting), agent.update_z_goal gains resource_type kwarg + seeds z_goal FROM the most-wanted object's embedding (L4; amends MECH-230 seed source). 5 GoalConfig flags via from_dims; _harness.py forwards resource_type_at_agent. Default-OFF bit-identical; no trainable params. Contracts 6/6 + 747/751 (4 pre-existing local-git-env runner fails) + 7/7 preflight.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-229",
-    "MECH-117",
-    "MECH-230",
-    "ARC-030"
-   ],
-   "candidate_stale": [],
-   "audit_note": "ADDITIVE / no-op-default (use_incentive_token_bank=False by default; resource_type defaults None). The object-bound seeding path is exercised only when the flag is ON; every prior experiment ran with the bank OFF (legacy single-attractor seeding), so no PASSED run's measured mechanism changed and none is made stale. KEEP all MECH-229/MECH-117/MECH-230/ARC-030 evidence. These claims stay v3_pending/substrate_ceiling; SD-057 unblocks their L9 retest but does not re-score existing evidence. Validation is the new SD-057 forced-contact mechanism diagnostic (claim_ids=[]), GATED behaviourally on goal_pipeline:GAP-2."
-  },
-  {
-   "substrate": "SD-057 phase-2 (L6 cue-recall MECH-347 + L7 dACC readout MECH-348)",
-   "landed_utc": "2026-06-04T10:14:56Z",
-   "description": "L6 cue-recall (GoalState.cue_pull + agent.cue_recall_wanting; perceived cue raises wanting for matched object before benefit) + L7 dACC object-discriminative readout (candidate_goal_proximity -> bundle goal_readout -> DACCtoE3Adapter bias). Both no-op-default (use_cue_recall, use_mech_consume), bit-identical OFF, no trained params. Contracts: phase-2 5/5 + SD-057 6/6 + dACC 5/5 + step-harness 7/7; 750/757 full (7 pre-existing local-git-env runner fails) + 7/7 preflight.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-347",
-    "MECH-348",
-    "MECH-229",
-    "MECH-117",
-    "ARC-030"
-   ],
-   "candidate_stale": [],
-   "audit_note": "ADDITIVE / no-op-default (use_cue_recall=False, use_mech_consume=False, cue_recall_gain unused, dacc_goal_readout_weight=0.0). The L6 cue path and L7 dACC goal readout are exercised only when the flags are ON; every prior experiment ran with both OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. MECH-229/117/ARC-030 stay v3_pending; phase-2 unblocks their L9 retest (still GAP-2-gated) but does not re-score existing evidence. Validation = SD-057 phase-2 forced-cue diagnostic V3-EXQ-637 (claim_ids=[])."
-  },
-  {
-   "substrate": "ARC-063 v1 (distributed CandidateRule field; GAP-B non-Bayesian rule-creator; child claims MECH-349/350/351/352)",
-   "landed_utc": "2026-06-04T15:34:09Z",
-   "description": "ree_core/policy/candidate_rule_field.py (CandidateRuleField: CREATE mint MECH-349 / REPRESENT pinned subspace MECH-350 / GATE tolerance MECH-351 / SELECT MECH-338 / OUTPUT+CREDIT MECH-352) + SD-033a LateralPFCAnalog.update crf_source wiring (use_candidate_rule_source) + agent select_action tick + REEConfig.use_candidate_rule_field. Pure-arithmetic, no trained params, no phased training. Precondition requires use_lateral_pfc_analog. Contracts test_candidate_rule_field.py 8/8; 775/782 (7 pre-existing local-git runner fails) + 7/7 preflight; V3-EXQ-639 readiness 5/5.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "ARC-063",
-    "MECH-349",
-    "MECH-350",
-    "MECH-351",
-    "MECH-352",
-    "MECH-309",
-    "ARC-062",
-    "ARC-064",
-    "SD-033a",
-    "MECH-318",
-    "MECH-338"
-   ],
-   "candidate_stale": [],
-   "audit_note": "ADDITIVE / no-op-default (use_candidate_rule_field=False -> agent.candidate_rule_field is None; lateral_pfc.update sees crf_source=None and runs the legacy delta/world EMA source; bit-identical OFF, verified 775/782 contracts). The field is exercised only when the master flag is ON; every prior experiment ran with it OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. The 543/598b GAP-B evidence (MECH-309/ARC-062/SD-033a) measured the rule_state COLLAPSE on the field-OFF substrate; ARC-063 supplies the missing creator but does not re-score that evidence -- the ARC-062 GAP-B behavioural re-run on the field-ON substrate is the governance-weighting successor, queued separately. Readiness validation V3-EXQ-639 (claim_ids=[]). MECH-349/350/351/352 register candidate+v3_pending; substrate landing does not promote."
-  },
-  {
-   "substrate": "commitment-closure-control-plane (SD-034 amend)",
-   "landed_utc": "2026-06-12T23:26:37Z",
-   "description": "SD-034 behavioural-authority amend: Leg A env-completion hook seam REEAgent.notify_env_completion -> closure_operator.emit_closure (use_closure_env_completion_hook); Leg B BetaGate de-commitment hold/refractory installed by ClosureOperator._fire (closure_decommit_hold_ticks). Both no-op-default, bit-identical OFF.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "SD-034",
-    "MECH-260",
-    "MECH-268",
-    "MECH-090"
-   ],
-   "candidate_stale": [],
-   "audit_note": "Step-8.5 KEEP all evidence: no-op-default flags (hook off, hold 0), so every existing experiment uses the legacy path and no dependent claim's measured mechanism changed. The V3-EXQ-460c/468c FAILs were already reclassified non_contributory/substrate_ceiling/pending_retest by the 2026-06-12 governance cycle (this amend supplies the substrate the retest needs); they are not re-touched here. Behavioural authority is exercised only when the *d retests opt in."
-  },
-  {
-   "substrate": "mode-governance-engagement",
-   "landed_utc": "2026-06-13T09:45:43Z",
-   "description": "SalienceCoordinator external_task salience SOURCE: REEConfig.use_external_task_drive (no-op-default) injects a committed-goal-pursuit engagement signal into the SD-032a coordinator (affinity -> external_task + salience-aggregate), so external_task mode occupancy can arise on the 603n foraging agent. Unblocks the MECH-266/SD-032a behavioural arms (464d/467d).",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-266",
-    "SD-032a"
-   ],
-   "candidate_stale": [],
-   "audit_note": "No-op-default flag (use_external_task_drive=False). Every existing experiment uses the default (drive off), so no dependent claim's measured mechanism changed. KEEP all evidence. The 464c/467c FAILs were already reclassified non_contributory + pending_retest_after_substrate by the 2026-06-13 cycle (this is the substrate they were deferred to); the retest is 464d/467d, not a re-weight of prior runs."
-  },
-  {
-   "substrate": "commitment-closure-control-plane (Leg C rule_bias_head training)",
-   "landed_utc": "2026-06-16T20:12:26Z",
-   "description": "scaffold_train_rule_bias_head leg: trains agent.lateral_pfc.bias_head_parameters() (SD-033a/ARC-062 GAP-D head) during scaffolded_sd054_onboarding P1 via the V3-EXQ-598b outcome-coupled E3-gradient REINFORCE pattern. No-op-default flag; bit-identical OFF; ree_core untouched. Routed by failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (460d/468d flag-set-but-untrained head -> de-commit authority absent).",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "SD-034",
-    "MECH-260",
-    "MECH-261",
-    "MECH-090",
-    "MECH-268"
-   ],
-   "candidate_stale": [],
-   "audit_note": "Step 8.5 NOT triggered: no-op-default flag (scaffold_train_rule_bias_head=False). Every existing experiment uses the default (leg off) -> no dependent claim measured mechanism changed. KEEP all evidence. The autopsy already reclassified 460d/468d non_contributory + pending_retest_after_substrate; the 460e re-run (leg ON) is the fresh evidence."
-  },
-  {
-   "substrate": "v4_loop_segregation",
-   "landed_utc": "2026-06-24T19:54:55Z",
-   "description": "Registered the V4 loop-segregation substrate (owning claim ARC-110) via /implement-substrate from failure_autopsy_V3-EXQ-700b: SD design doc docs/architecture/sd_v4_loop_segregation.md (PENDING/V4) + substrate_queue.json entry (sd_id v4_loop_segregation, priority 1, ready=false, unblocks MECH-439/ARC-108/MECH-450/ARC-110) + ARC-110 assembly companion fields (assembly_status:queued, awaiting:v4_loop_segregation) + routed-substrate cross-refs on ARC-108/MECH-450. NO ree-v3 code; NO V3 experiment; V4-sequenced behind V3 closeout.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "ARC-110",
-    "MECH-439",
-    "ARC-108",
-    "MECH-450",
-    "ARC-109",
-    "MECH-451",
-    "MECH-452",
-    "ARC-111"
-   ],
-   "candidate_stale": [],
-   "audit_note": "Spec/queue REGISTRATION only -- no mechanism a dependent claim measures was changed (no code landed). No evidence becomes mechanistically stale; staleness audit N/A (mechanism_changing=false). The built V3-frozen levers (ARC-108 w_chan, MECH-450 W_lat) are unchanged; this records the V4 substrate that will RE-TEST them under a valid same-layer null + segregated loops."
-  },
-  {
-   "substrate": "v4_loop_segregation",
-   "landed_utc": "2026-06-27T11:04:08Z",
-   "description": "BUILT the v4_loop_segregation substrate in ree-v3 via /implement-substrate (full scope, gate cleared by V3-EXQ-704b FAIL-to-convert): ree_core/predictors/e3_selector.py _segregated_loop_arbitrate (N>=3 parallel segregated loops motor/assoc/limbic, within-loop competition first + Haber ascending-spiral arbitration after, per-loop zscore normalisation) + _loop_inlayer_null (S2 same-layer null) + _d1_d2_split (ARC-109) + loop-local eligibility traces (MECH-452); config.e3 flags use_loop_segregation / loop_segregation_* / use_d1_d2_population_split / d1_da_gain / d2_da_gain / use_loop_local_eligibility_traces (threaded through REEConfig.from_dims). ALL no-op default -> byte-identical OFF. SD doc -> IMPLEMENTED; ARC-110/ARC-109/MECH-452 implementation_note added (PROMOTES NOTHING). Validation experiment V3-EXQ-707 queued.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "ARC-110",
-    "MECH-439",
-    "ARC-108",
-    "MECH-450",
-    "ARC-109",
-    "MECH-451",
-    "MECH-452",
-    "ARC-111",
-    "MECH-314"
-   ],
-   "candidate_stale": [],
-   "audit_note": "NO-OP-DEFAULT landing -> mechanism_changing=false: every new flag defaults off and the legacy single-arena within-eligible path is byte-identical OFF (verified: V3-EXQ-704b finer-channel dry-run ran clean through the modified selector; V3-EXQ-707 dry-run ran all 4 arms). No existing experiment's measured mechanism changes, so prior evidence on the dependent claims is NOT mechanistically stale -- staleness audit = KEEP ALL (default branch unchanged). Only NEW experiments that opt in (V3-EXQ-707) exercise the loop path. The build SUPPLIES the substrate on which ARC-108/MECH-450 can be re-tested against a VALID same-layer null + segregated loops (the two conditions the single arena structurally denied -- 704b/706b autopsy)."
-  },
-  {
-   "substrate": "state_conditioned_exploration_noise (MECH-440 + MECH-441)",
-   "landed_utc": "2026-06-27T11:41:06Z",
-   "description": "BUILT MECH-440 (NoisyNet propagating selection-head weight noise: ree-v3/ree_core/policy/noisy_selection_head.py; injected into _modulatory_accum + the ARC-110 segregated final before the committed argmin; config E3Config.use_noisy_selection_head / noisy_selection_sigma_init / _weight / _anneal*) and MECH-441 (K-head E2 model-disagreement directed curiosity: ree-v3/ree_core/policy/model_disagreement.py; per-candidate cross-head variance -> propagating curiosity bonus via the version-layering-guarded model_disagreement_per_candidate kwarg; config E3Config.use_model_disagreement_curiosity / model_disagreement_weight + LatentStackConfig.n_disagreement_heads). Both no-op default / bit-identical OFF. MECH-440 falsifier queued on the 569i top-k + MECH-448 demotion stack; MECH-441 falsifier HELD (blocked_substrate) gated on ARC-110 validation V3-EXQ-707. Decision-of-record evidence/decisions/cpkt_tonic_exploration_noise_build_decision_2026-06-27.md.",
-   "mechanism_changing": false,
-   "mechanism_changing_rationale": "Both levers are no-op default (flag OFF / sigma_init=0 / n_heads=0 = bit-identical). All prior evidence on the dependent claims was produced on the OFF path, which is byte-identical post-landing, so no prior EXPERIMENTAL scoring entry is mechanistically stale. KEEP all -- no MARK / REVALIDATE.",
-   "dependent_claims": [
-    "MECH-313",
-    "MECH-260",
-    "Q-045",
-    "MECH-314",
-    "ARC-065",
-    "Q-044"
-   ],
-   "candidate_stale": []
-  },
-  {
-   "substrate": "mech451_finer_channel_gating_flag_fix",
-   "landed_utc": "2026-06-28T16:41:19Z",
-   "description": "Fixed a substrate-wide plumbing defect in ree-v3/ree_core/agent.py: the per-head finer-channel dict (score_bias_channels) was gated on the top-level config.use_finer_channel_gating (never set in ree_core -> always False) while the e3.select() consumer + selector read config.e3.use_finer_channel_gating. Net: the MECH-451 named decomposition (ofc/dacc/lpfc/vigour/liking/gated_policy) NEVER reached the selector in any run -- only the lumped residual/mech341/route did. Fixed agent.py:5238 to read config.e3.use_finer_channel_gating. Re-enables the named decomposition for all finer-channel experiments. Found via ARC-110 V3-EXQ-707 autopsy (ARM_DROP_LIMBIC byte-identical to A1_LOOPS).",
-   "mechanism_changing": true,
-   "mechanism_changing_rationale": "Before the fix the finer per-named-channel decomposition was inert (score_bias_channels always None); after, the named channels reach the selector as separable learned channels. Any experiment whose conclusion depended on the named decomposition being active was testing a residual/mech341/route 3-way split instead, so its evidence does not bear on the named-channel hypothesis.",
-   "dependent_claims": [
-    "MECH-451",
-    "ARC-110",
-    "ARC-108"
-   ],
-   "candidate_stale": [
-    {
-     "run_id": "v3_exq_704_mech451_finer_channel_granularity_falsifier",
-     "claim": "MECH-451",
-     "decision": "KEEP_NONSCORING_NOTE",
-     "rationale": "already FAIL/non_contributory (does not weight). But its INTERPRETATION (finer granularity fails to convert -> route to ARC-110) is VOID: the named channels were never separated. MECH-451 effectively untested; pending_retest_after_substrate already true. Recorded in claims.yaml MECH-451.defect_note. No index change needed (non-scoring)."
+      "substrate": "SD-012",
+      "landed_utc": "2026-05-17",
+      "description": "sustained-drive EMA trace amendment (drive_ema_alpha; DEFAULT 1.0 = bit-identical to instantaneous form)",
+      "mechanism_changing": false,
+      "no_op_default": true,
+      "dependent_claims_count": 38,
+      "stale_evidence_disposition": "FALSE-POSITIVE CLUSTER -- default alpha=1.0 is a no-op; do NOT revalidate. Revisit only if MECH-306 promotes alpha<1.0 as default."
     },
     {
-     "run_id": "v3_exq_704b_mech451_finer_channel_granularity_falsifier",
-     "claim": "MECH-451",
-     "decision": "KEEP_NONSCORING_NOTE",
-     "rationale": "same as 704: FAIL/non_contributory, non-scoring; finer-channel leg of the routing autopsy void; retest required post-fix AND post per-candidate-range (Defect 3)."
+      "substrate": "INV-074/MECH-333/MECH-334",
+      "landed_utc": "2026-05-17",
+      "description": "Phase-3 plasticity-injection crystallization + EWC residue write-protect",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-333",
+        "MECH-334",
+        "ARC-075",
+        "ARC-076",
+        "MECH-336",
+        "Q-052"
+      ]
     },
     {
-     "run_id": "v3_exq_707_arc110_loop_segregation_validation",
-     "claim": "ARC-110",
-     "decision": "KEEP_NONSCORING_NOTE",
-     "rationale": "non_contributory/substrate_not_ready_requeue; C1+C2 did not exercise the cortical decomposition. Re-run required post per-named-channel routing. Annotated in the manifest + claims.yaml ARC-110.validation_note."
+      "substrate": "MECH-341",
+      "landed_utc": "2026-05-27",
+      "retuned_utc": "2026-05-28",
+      "amended_utc": "2026-06-01",
+      "description": "E3 score diversity preservation (stratified select) on the action path; +stratified_within_class_temperature amend",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "INV-076"
+      ]
     },
     {
-     "run_id": "v3_exq_706_706b_mech314_curiosity_conversion",
-     "claim": "MECH-314",
-     "decision": "KEEP",
-     "rationale": "UNAFFECTED by Defect 1 -- the curiosity channel rides the `residual` lump, which always reached the selector. The curiosity leg of the routing autopsy stands."
-    }
-   ]
-  },
-  {
-   "substrate": "arc110_named_channel_routing_c2_release",
-   "landed_utc": "2026-06-28T17:42:59Z",
-   "description": "ARC-110 C2 release: new no-op-default E3Config flag use_named_channel_routing. When on (with loop segregation + finer-channel gating), each named channel's segregated-loop-arbitration term is sourced from its per-candidate REPRESENTATION (ofc/lpfc->cand_world_summaries [K,D], liking->goal-proximity [K], vigour->first-action one-hots [K,A], dacc->payoff/effort [K,2], gated_policy->summaries [K,D]) routed through the parameter-free range-preserving project_channel_range (the SAME GAP-A path that keeps the lumped `route` channel phasic), substituted for the flat bias-head scalar in the LOOP ACCUMULATION ONLY. Fixes the MECH-191 phasic-externalisation gap that made the limbic loop inert (ARM_DROP_LIMBIC byte-identical to A1_LOOPS in V3-EXQ-707). agent.py capture + project_channel_range route + e3_selector loop_term_override; config.py flag + from_dims plumbing. Regression guard ree-v3/tests/test_arc110_loop_segregation.py (TestNamedChannelRoutingC2Release + TestRoutedRepsReachSelectorThroughAgent). Validation re-queued as V3-EXQ-707b.",
-   "mechanism_changing": false,
-   "mechanism_changing_rationale": "NO-OP DEFAULT / byte-identical OFF. The new flag defaults False and the kwarg is version-layering-guarded, so every prior run (incl. 707/707a) executed the routing-OFF path and is UNAFFECTED -- the routed-representation path is an OPT-IN additive substitution that only alters the segregated-loop arbitration's view of the named channels WHEN explicitly enabled. The _lcg_terms eligibility traces, the authority/shortlist _modulatory_accum recompose, and the F/score commit path are unchanged even when ON. So no prior evidence becomes mechanistically stale; this is an additive substrate capability, not a change to a mechanism prior evidence measured.",
-   "dependent_claims": [
-    "ARC-110"
-   ],
-   "candidate_stale": [
+      "substrate": "MECH-090",
+      "landed_utc": "2026-05-28",
+      "axis_amended_utc": "2026-05-29",
+      "description": "commit-entry predicate (R-c readiness conjunction); nav_competence axis added 2026-05-29. Admission-only (does not couple to maintenance-time release -- see V3-EXQ-592f autopsy + MECH-090 release-path audit).",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-057a",
+        "MECH-091",
+        "MECH-104",
+        "MECH-105",
+        "MECH-106",
+        "ARC-028",
+        "ARC-029",
+        "SD-021",
+        "MECH-234",
+        "MECH-235",
+        "MECH-250",
+        "MECH-279",
+        "MECH-281",
+        "SD-034",
+        "SD-036",
+        "Q-042"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_049a_mech090_bistable_concordance / 321a / 321b",
+          "claim_id": "MECH-090",
+          "entry_ts": "2026-04-16..19",
+          "recommendation": "MARK",
+          "rationale": "tested old beta-gate/bistable commit gate; R-c conjunction changes the commit-entry predicate"
+        },
+        {
+          "run_id": "v3_exq_063 / v3_exq_125_committed_mode",
+          "claim_id": "ARC-029",
+          "entry_ts": "2026-03-22 / 03-29",
+          "recommendation": "MARK",
+          "rationale": "committed-mode harm outcomes downstream of commit-entry gate",
+          "disposition": "REVALIDATION QUEUED V3-EXQ-063a (ree-v3 main 1e7fdc9, supersedes V3-EXQ-063); R-c commit-entry gate active. C3-FAIL => route /failure-autopsy (gate suppresses commitment, not noise). See epoch_stale_evidence_review_2026-06-02.md REVALIDATION STATUS."
+        },
+        {
+          "run_id": "MECH-104/091/106/SD-021 cohort (~14 runs)",
+          "claim_id": "MECH-104/MECH-091/MECH-106/SD-021",
+          "entry_ts": "2026-03..04",
+          "recommendation": "KEEP",
+          "rationale": "orthogonal axes (volatility/surprise gating, phase-reset, BG hysteresis, descending pain); listed only via depends_on"
+        }
+      ]
+    },
     {
-     "run_id": "v3_exq_707a_arc110_loop_segregation_validation",
-     "claim": "ARC-110",
-     "decision": "KEEP",
-     "rationale": "707a runs with use_named_channel_routing OFF (it predates the release) so it is on the OFF path and unaffected by this landing. It is SUPERSEDED by V3-EXQ-707b (the C2-release validation) on the separate supersession axis, not de-weighted by staleness. 707a was still claimed/running on ree-cloud-1 at landing time."
+      "substrate": "SD-056",
+      "landed_utc": "2026-05-29",
+      "multi_step_amend_utc": "2026-05-31",
+      "description": "E2 action-conditional divergence preservation (contrastive next-state)",
+      "mechanism_changing": true,
+      "dependent_claims": []
+    },
+    {
+      "substrate": "SD-037/MECH-281",
+      "landed_utc": "2026-05-30",
+      "description": "consumer-cascade motor-coupling axis amend",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-280",
+        "MECH-281",
+        "MECH-282",
+        "MECH-286",
+        "Q-040"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_483c_sd037_broadcast_gap4_tier1_20260521T064444Z_v3",
+          "claim_id": "MECH-281/MECH-280/SD-037",
+          "entry_ts": "2026-05-21",
+          "recommendation": "REVALIDATE_OR_CONFIRM_SUPERSEDED",
+          "rationale": "483c inert coupling routed the cascade amend; likely already superseded by 483e -- confirm supersession recorded"
+        }
+      ]
+    },
+    {
+      "substrate": "SD-022/MECH-302",
+      "landed_utc": "2026-05-30",
+      "description": "scheduled-injection env extension (MECH-302 unblock)",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "SD-047",
+        "SD-048"
+      ],
+      "stale_evidence_disposition": "additive env knob; does not alter harm-stream dissociation or comparator-gap axes -- KEEP"
+    },
+    {
+      "substrate": "SD-049",
+      "landed_utc": "2026-05-31",
+      "description": "SD-032 consumer cascade reading per-axis (Phase 3)",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-229"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_514b (05-05) / v3_exq_514j (05-23)",
+          "claim_id": "SD-049",
+          "entry_ts": "2026-05-05/23",
+          "recommendation": "MARK",
+          "rationale": "self-evidence before Phase-3 per-axis read changed downstream exposure",
+          "disposition": "REVALIDATION ALREADY COVERED by queued V3-EXQ-514l (use_sd049_per_axis_consumer_cascade=True, tags SD-049, tests wanting!=liking + goal_resource_r lift). DO NOT queue a separate 514m. See epoch_stale_evidence_review_2026-06-02.md REVALIDATION STATUS."
+        },
+        {
+          "run_id": "v3_exq_326a_wanting_gradient_nav_fix",
+          "claim_id": "MECH-229",
+          "entry_ts": "2026-04-13",
+          "recommendation": "KEEP",
+          "rationale": "wanting-gradient nav not re-measured by SD-032 consumer read"
+        }
+      ]
+    },
+    {
+      "substrate": "scaffolded_sd054_onboarding",
+      "landed_utc": "2026-05-31",
+      "amended_utc": "2026-06-02",
+      "description": "onboarding scaffold substrate (GAP-C prereq) + update_z_goal wiring / Stage-0 positive control",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "Q-045",
+        "MECH-313",
+        "MECH-260"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_603d_q045_mech313_mech260_scaffolded_sd054_20260601T095345Z_v3",
+          "claim_id": "MECH-260/MECH-313/Q-045",
+          "entry_ts": "2026-06-01",
+          "recommendation": "ALREADY_MARKED",
+          "rationale": "nested manifest already carries pending_retest_after_substrate:true; honored by indexer (was non_contributory)"
+        }
+      ]
+    },
+    {
+      "substrate": "MECH-342",
+      "landed_utc": "2026-06-02T16:15:43Z",
+      "amended_utc": null,
+      "description": "NEW maintenance-time readiness-driven commitment-release coupling (B3b). Release-side complement to the MECH-090 admission-only R-c conjunction; default-OFF master flag (use_maintenance_release), bit-identical when disabled.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-090"
+      ],
+      "candidate_stale": [],
+      "audit_note": "Additive / no-op-default landing: a new release pathway gated default-OFF. MECH-090 dependent evidence (EXQ-049e PASS; V3-EXQ-592d admission-axis 4-arm validator) is on the ADMISSION axis, which MECH-342 does not touch (it is the release-side complement). All MECH-090 experimental scoring entries KEEP (no stale-substrate re-tag). The V3-EXQ-592f manifest pending_retest_after_substrate flag is governed by the MECH-342 substrate_queue entry / V3-EXQ-592g, not by this staleness audit."
+    },
+    {
+      "substrate": "MECH-090 R-c continuation Phase-2 env-source (nav_competence automatic source)",
+      "landed_utc": "2026-06-02T18:02:20Z",
+      "description": "Wired the named Phase-2 follow-on for the MECH-090 R-c across-tick nav_competence axis: CausalGridWorldV2.mech090_readiness_outcome_enabled (env-only kwarg, default False) emits info['mech090_readiness_outcome']=clip(1-mean(limb_damage),0,1); REEAgent.sense(mech090_readiness_outcome=...) forwards it into commit_readiness.update(). The 2026-05-29 pass wired the consumer + notify_outcome seam but no caller ever pushed, so the axis was fail-open inert in ecological runs. CommitReadiness module unchanged. 719/719 contracts + 7/7 preflight; default-OFF bit-identical.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-090",
+        "ARC-029"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default. The across-tick nav_competence axis was never exercised by any prior experiment (no notify_outcome caller existed), so it produced no evidence and made none stale. No PASSED run measured this axis. KEEP all MECH-090 / ARC-029 evidence. Validation is the new V3-EXQ-628 (ecological ARC-029 successor to 063a), not a re-scoring of existing evidence."
+    },
+    {
+      "substrate": "SD-057 object-bound incentive-salience layer (GAP-7 L2-L3-L4 core)",
+      "landed_utc": "2026-06-04T07:20:53Z",
+      "description": "Inserted a per-object incentive layer between the benefit pulse and z_goal: IncentiveTokenBank in ree-v3/ree_core/goal.py (L2 bind benefit->SD-049 type tag, L3 per-object slow-decay revaluable token with at-recall per-axis-drive-specific wanting), agent.update_z_goal gains resource_type kwarg + seeds z_goal FROM the most-wanted object's embedding (L4; amends MECH-230 seed source). 5 GoalConfig flags via from_dims; _harness.py forwards resource_type_at_agent. Default-OFF bit-identical; no trainable params. Contracts 6/6 + 747/751 (4 pre-existing local-git-env runner fails) + 7/7 preflight.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-229",
+        "MECH-117",
+        "MECH-230",
+        "ARC-030"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default (use_incentive_token_bank=False by default; resource_type defaults None). The object-bound seeding path is exercised only when the flag is ON; every prior experiment ran with the bank OFF (legacy single-attractor seeding), so no PASSED run's measured mechanism changed and none is made stale. KEEP all MECH-229/MECH-117/MECH-230/ARC-030 evidence. These claims stay v3_pending/substrate_ceiling; SD-057 unblocks their L9 retest but does not re-score existing evidence. Validation is the new SD-057 forced-contact mechanism diagnostic (claim_ids=[]), GATED behaviourally on goal_pipeline:GAP-2."
+    },
+    {
+      "substrate": "SD-057 phase-2 (L6 cue-recall MECH-347 + L7 dACC readout MECH-348)",
+      "landed_utc": "2026-06-04T10:14:56Z",
+      "description": "L6 cue-recall (GoalState.cue_pull + agent.cue_recall_wanting; perceived cue raises wanting for matched object before benefit) + L7 dACC object-discriminative readout (candidate_goal_proximity -> bundle goal_readout -> DACCtoE3Adapter bias). Both no-op-default (use_cue_recall, use_mech_consume), bit-identical OFF, no trained params. Contracts: phase-2 5/5 + SD-057 6/6 + dACC 5/5 + step-harness 7/7; 750/757 full (7 pre-existing local-git-env runner fails) + 7/7 preflight.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-347",
+        "MECH-348",
+        "MECH-229",
+        "MECH-117",
+        "ARC-030"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default (use_cue_recall=False, use_mech_consume=False, cue_recall_gain unused, dacc_goal_readout_weight=0.0). The L6 cue path and L7 dACC goal readout are exercised only when the flags are ON; every prior experiment ran with both OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. MECH-229/117/ARC-030 stay v3_pending; phase-2 unblocks their L9 retest (still GAP-2-gated) but does not re-score existing evidence. Validation = SD-057 phase-2 forced-cue diagnostic V3-EXQ-637 (claim_ids=[])."
+    },
+    {
+      "substrate": "ARC-063 v1 (distributed CandidateRule field; GAP-B non-Bayesian rule-creator; child claims MECH-349/350/351/352)",
+      "landed_utc": "2026-06-04T15:34:09Z",
+      "description": "ree_core/policy/candidate_rule_field.py (CandidateRuleField: CREATE mint MECH-349 / REPRESENT pinned subspace MECH-350 / GATE tolerance MECH-351 / SELECT MECH-338 / OUTPUT+CREDIT MECH-352) + SD-033a LateralPFCAnalog.update crf_source wiring (use_candidate_rule_source) + agent select_action tick + REEConfig.use_candidate_rule_field. Pure-arithmetic, no trained params, no phased training. Precondition requires use_lateral_pfc_analog. Contracts test_candidate_rule_field.py 8/8; 775/782 (7 pre-existing local-git runner fails) + 7/7 preflight; V3-EXQ-639 readiness 5/5.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "ARC-063",
+        "MECH-349",
+        "MECH-350",
+        "MECH-351",
+        "MECH-352",
+        "MECH-309",
+        "ARC-062",
+        "ARC-064",
+        "SD-033a",
+        "MECH-318",
+        "MECH-338"
+      ],
+      "candidate_stale": [],
+      "audit_note": "ADDITIVE / no-op-default (use_candidate_rule_field=False -> agent.candidate_rule_field is None; lateral_pfc.update sees crf_source=None and runs the legacy delta/world EMA source; bit-identical OFF, verified 775/782 contracts). The field is exercised only when the master flag is ON; every prior experiment ran with it OFF, so no PASSED run's measured mechanism changed and none is made stale. KEEP all dependent evidence. The 543/598b GAP-B evidence (MECH-309/ARC-062/SD-033a) measured the rule_state COLLAPSE on the field-OFF substrate; ARC-063 supplies the missing creator but does not re-score that evidence -- the ARC-062 GAP-B behavioural re-run on the field-ON substrate is the governance-weighting successor, queued separately. Readiness validation V3-EXQ-639 (claim_ids=[]). MECH-349/350/351/352 register candidate+v3_pending; substrate landing does not promote."
+    },
+    {
+      "substrate": "commitment-closure-control-plane (SD-034 amend)",
+      "landed_utc": "2026-06-12T23:26:37Z",
+      "description": "SD-034 behavioural-authority amend: Leg A env-completion hook seam REEAgent.notify_env_completion -> closure_operator.emit_closure (use_closure_env_completion_hook); Leg B BetaGate de-commitment hold/refractory installed by ClosureOperator._fire (closure_decommit_hold_ticks). Both no-op-default, bit-identical OFF.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "SD-034",
+        "MECH-260",
+        "MECH-268",
+        "MECH-090"
+      ],
+      "candidate_stale": [],
+      "audit_note": "Step-8.5 KEEP all evidence: no-op-default flags (hook off, hold 0), so every existing experiment uses the legacy path and no dependent claim's measured mechanism changed. The V3-EXQ-460c/468c FAILs were already reclassified non_contributory/substrate_ceiling/pending_retest by the 2026-06-12 governance cycle (this amend supplies the substrate the retest needs); they are not re-touched here. Behavioural authority is exercised only when the *d retests opt in."
+    },
+    {
+      "substrate": "mode-governance-engagement",
+      "landed_utc": "2026-06-13T09:45:43Z",
+      "description": "SalienceCoordinator external_task salience SOURCE: REEConfig.use_external_task_drive (no-op-default) injects a committed-goal-pursuit engagement signal into the SD-032a coordinator (affinity -> external_task + salience-aggregate), so external_task mode occupancy can arise on the 603n foraging agent. Unblocks the MECH-266/SD-032a behavioural arms (464d/467d).",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "candidate_stale": [],
+      "audit_note": "No-op-default flag (use_external_task_drive=False). Every existing experiment uses the default (drive off), so no dependent claim's measured mechanism changed. KEEP all evidence. The 464c/467c FAILs were already reclassified non_contributory + pending_retest_after_substrate by the 2026-06-13 cycle (this is the substrate they were deferred to); the retest is 464d/467d, not a re-weight of prior runs."
+    },
+    {
+      "substrate": "commitment-closure-control-plane (Leg C rule_bias_head training)",
+      "landed_utc": "2026-06-16T20:12:26Z",
+      "description": "scaffold_train_rule_bias_head leg: trains agent.lateral_pfc.bias_head_parameters() (SD-033a/ARC-062 GAP-D head) during scaffolded_sd054_onboarding P1 via the V3-EXQ-598b outcome-coupled E3-gradient REINFORCE pattern. No-op-default flag; bit-identical OFF; ree_core untouched. Routed by failure_autopsy_SD-034-closure-control-plane-d_2026-06-13 (460d/468d flag-set-but-untrained head -> de-commit authority absent).",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "SD-034",
+        "MECH-260",
+        "MECH-261",
+        "MECH-090",
+        "MECH-268"
+      ],
+      "candidate_stale": [],
+      "audit_note": "Step 8.5 NOT triggered: no-op-default flag (scaffold_train_rule_bias_head=False). Every existing experiment uses the default (leg off) -> no dependent claim measured mechanism changed. KEEP all evidence. The autopsy already reclassified 460d/468d non_contributory + pending_retest_after_substrate; the 460e re-run (leg ON) is the fresh evidence."
+    },
+    {
+      "substrate": "v4_loop_segregation",
+      "landed_utc": "2026-06-24T19:54:55Z",
+      "description": "Registered the V4 loop-segregation substrate (owning claim ARC-110) via /implement-substrate from failure_autopsy_V3-EXQ-700b: SD design doc docs/architecture/sd_v4_loop_segregation.md (PENDING/V4) + substrate_queue.json entry (sd_id v4_loop_segregation, priority 1, ready=false, unblocks MECH-439/ARC-108/MECH-450/ARC-110) + ARC-110 assembly companion fields (assembly_status:queued, awaiting:v4_loop_segregation) + routed-substrate cross-refs on ARC-108/MECH-450. NO ree-v3 code; NO V3 experiment; V4-sequenced behind V3 closeout.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "ARC-110",
+        "MECH-439",
+        "ARC-108",
+        "MECH-450",
+        "ARC-109",
+        "MECH-451",
+        "MECH-452",
+        "ARC-111"
+      ],
+      "candidate_stale": [],
+      "audit_note": "Spec/queue REGISTRATION only -- no mechanism a dependent claim measures was changed (no code landed). No evidence becomes mechanistically stale; staleness audit N/A (mechanism_changing=false). The built V3-frozen levers (ARC-108 w_chan, MECH-450 W_lat) are unchanged; this records the V4 substrate that will RE-TEST them under a valid same-layer null + segregated loops."
+    },
+    {
+      "substrate": "v4_loop_segregation",
+      "landed_utc": "2026-06-27T11:04:08Z",
+      "description": "BUILT the v4_loop_segregation substrate in ree-v3 via /implement-substrate (full scope, gate cleared by V3-EXQ-704b FAIL-to-convert): ree_core/predictors/e3_selector.py _segregated_loop_arbitrate (N>=3 parallel segregated loops motor/assoc/limbic, within-loop competition first + Haber ascending-spiral arbitration after, per-loop zscore normalisation) + _loop_inlayer_null (S2 same-layer null) + _d1_d2_split (ARC-109) + loop-local eligibility traces (MECH-452); config.e3 flags use_loop_segregation / loop_segregation_* / use_d1_d2_population_split / d1_da_gain / d2_da_gain / use_loop_local_eligibility_traces (threaded through REEConfig.from_dims). ALL no-op default -> byte-identical OFF. SD doc -> IMPLEMENTED; ARC-110/ARC-109/MECH-452 implementation_note added (PROMOTES NOTHING). Validation experiment V3-EXQ-707 queued.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "ARC-110",
+        "MECH-439",
+        "ARC-108",
+        "MECH-450",
+        "ARC-109",
+        "MECH-451",
+        "MECH-452",
+        "ARC-111",
+        "MECH-314"
+      ],
+      "candidate_stale": [],
+      "audit_note": "NO-OP-DEFAULT landing -> mechanism_changing=false: every new flag defaults off and the legacy single-arena within-eligible path is byte-identical OFF (verified: V3-EXQ-704b finer-channel dry-run ran clean through the modified selector; V3-EXQ-707 dry-run ran all 4 arms). No existing experiment's measured mechanism changes, so prior evidence on the dependent claims is NOT mechanistically stale -- staleness audit = KEEP ALL (default branch unchanged). Only NEW experiments that opt in (V3-EXQ-707) exercise the loop path. The build SUPPLIES the substrate on which ARC-108/MECH-450 can be re-tested against a VALID same-layer null + segregated loops (the two conditions the single arena structurally denied -- 704b/706b autopsy)."
+    },
+    {
+      "substrate": "state_conditioned_exploration_noise (MECH-440 + MECH-441)",
+      "landed_utc": "2026-06-27T11:41:06Z",
+      "description": "BUILT MECH-440 (NoisyNet propagating selection-head weight noise: ree-v3/ree_core/policy/noisy_selection_head.py; injected into _modulatory_accum + the ARC-110 segregated final before the committed argmin; config E3Config.use_noisy_selection_head / noisy_selection_sigma_init / _weight / _anneal*) and MECH-441 (K-head E2 model-disagreement directed curiosity: ree-v3/ree_core/policy/model_disagreement.py; per-candidate cross-head variance -> propagating curiosity bonus via the version-layering-guarded model_disagreement_per_candidate kwarg; config E3Config.use_model_disagreement_curiosity / model_disagreement_weight + LatentStackConfig.n_disagreement_heads). Both no-op default / bit-identical OFF. MECH-440 falsifier queued on the 569i top-k + MECH-448 demotion stack; MECH-441 falsifier HELD (blocked_substrate) gated on ARC-110 validation V3-EXQ-707. Decision-of-record evidence/decisions/cpkt_tonic_exploration_noise_build_decision_2026-06-27.md.",
+      "mechanism_changing": false,
+      "mechanism_changing_rationale": "Both levers are no-op default (flag OFF / sigma_init=0 / n_heads=0 = bit-identical). All prior evidence on the dependent claims was produced on the OFF path, which is byte-identical post-landing, so no prior EXPERIMENTAL scoring entry is mechanistically stale. KEEP all -- no MARK / REVALIDATE.",
+      "dependent_claims": [
+        "MECH-313",
+        "MECH-260",
+        "Q-045",
+        "MECH-314",
+        "ARC-065",
+        "Q-044"
+      ],
+      "candidate_stale": []
+    },
+    {
+      "substrate": "mech451_finer_channel_gating_flag_fix",
+      "landed_utc": "2026-06-28T16:41:19Z",
+      "description": "Fixed a substrate-wide plumbing defect in ree-v3/ree_core/agent.py: the per-head finer-channel dict (score_bias_channels) was gated on the top-level config.use_finer_channel_gating (never set in ree_core -> always False) while the e3.select() consumer + selector read config.e3.use_finer_channel_gating. Net: the MECH-451 named decomposition (ofc/dacc/lpfc/vigour/liking/gated_policy) NEVER reached the selector in any run -- only the lumped residual/mech341/route did. Fixed agent.py:5238 to read config.e3.use_finer_channel_gating. Re-enables the named decomposition for all finer-channel experiments. Found via ARC-110 V3-EXQ-707 autopsy (ARM_DROP_LIMBIC byte-identical to A1_LOOPS).",
+      "mechanism_changing": true,
+      "mechanism_changing_rationale": "Before the fix the finer per-named-channel decomposition was inert (score_bias_channels always None); after, the named channels reach the selector as separable learned channels. Any experiment whose conclusion depended on the named decomposition being active was testing a residual/mech341/route 3-way split instead, so its evidence does not bear on the named-channel hypothesis.",
+      "dependent_claims": [
+        "MECH-451",
+        "ARC-110",
+        "ARC-108"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_704_mech451_finer_channel_granularity_falsifier",
+          "claim": "MECH-451",
+          "decision": "KEEP_NONSCORING_NOTE",
+          "rationale": "already FAIL/non_contributory (does not weight). But its INTERPRETATION (finer granularity fails to convert -> route to ARC-110) is VOID: the named channels were never separated. MECH-451 effectively untested; pending_retest_after_substrate already true. Recorded in claims.yaml MECH-451.defect_note. No index change needed (non-scoring)."
+        },
+        {
+          "run_id": "v3_exq_704b_mech451_finer_channel_granularity_falsifier",
+          "claim": "MECH-451",
+          "decision": "KEEP_NONSCORING_NOTE",
+          "rationale": "same as 704: FAIL/non_contributory, non-scoring; finer-channel leg of the routing autopsy void; retest required post-fix AND post per-candidate-range (Defect 3)."
+        },
+        {
+          "run_id": "v3_exq_707_arc110_loop_segregation_validation",
+          "claim": "ARC-110",
+          "decision": "KEEP_NONSCORING_NOTE",
+          "rationale": "non_contributory/substrate_not_ready_requeue; C1+C2 did not exercise the cortical decomposition. Re-run required post per-named-channel routing. Annotated in the manifest + claims.yaml ARC-110.validation_note."
+        },
+        {
+          "run_id": "v3_exq_706_706b_mech314_curiosity_conversion",
+          "claim": "MECH-314",
+          "decision": "KEEP",
+          "rationale": "UNAFFECTED by Defect 1 -- the curiosity channel rides the `residual` lump, which always reached the selector. The curiosity leg of the routing autopsy stands."
+        }
+      ]
+    },
+    {
+      "substrate": "arc110_named_channel_routing_c2_release",
+      "landed_utc": "2026-06-28T17:42:59Z",
+      "description": "ARC-110 C2 release: new no-op-default E3Config flag use_named_channel_routing. When on (with loop segregation + finer-channel gating), each named channel's segregated-loop-arbitration term is sourced from its per-candidate REPRESENTATION (ofc/lpfc->cand_world_summaries [K,D], liking->goal-proximity [K], vigour->first-action one-hots [K,A], dacc->payoff/effort [K,2], gated_policy->summaries [K,D]) routed through the parameter-free range-preserving project_channel_range (the SAME GAP-A path that keeps the lumped `route` channel phasic), substituted for the flat bias-head scalar in the LOOP ACCUMULATION ONLY. Fixes the MECH-191 phasic-externalisation gap that made the limbic loop inert (ARM_DROP_LIMBIC byte-identical to A1_LOOPS in V3-EXQ-707). agent.py capture + project_channel_range route + e3_selector loop_term_override; config.py flag + from_dims plumbing. Regression guard ree-v3/tests/test_arc110_loop_segregation.py (TestNamedChannelRoutingC2Release + TestRoutedRepsReachSelectorThroughAgent). Validation re-queued as V3-EXQ-707b.",
+      "mechanism_changing": false,
+      "mechanism_changing_rationale": "NO-OP DEFAULT / byte-identical OFF. The new flag defaults False and the kwarg is version-layering-guarded, so every prior run (incl. 707/707a) executed the routing-OFF path and is UNAFFECTED -- the routed-representation path is an OPT-IN additive substitution that only alters the segregated-loop arbitration's view of the named channels WHEN explicitly enabled. The _lcg_terms eligibility traces, the authority/shortlist _modulatory_accum recompose, and the F/score commit path are unchanged even when ON. So no prior evidence becomes mechanistically stale; this is an additive substrate capability, not a change to a mechanism prior evidence measured.",
+      "dependent_claims": [
+        "ARC-110"
+      ],
+      "candidate_stale": [
+        {
+          "run_id": "v3_exq_707a_arc110_loop_segregation_validation",
+          "claim": "ARC-110",
+          "decision": "KEEP",
+          "rationale": "707a runs with use_named_channel_routing OFF (it predates the release) so it is on the OFF path and unaffected by this landing. It is SUPERSEDED by V3-EXQ-707b (the C2-release validation) on the separate supersession axis, not de-weighted by staleness. 707a was still claimed/running on ree-cloud-1 at landing time."
+        }
+      ]
+    },
+    {
+      "substrate": "disinhibitory_soft_competitive_settling",
+      "landed_utc": "2026-07-02T18:56:16Z",
+      "description": "MECH-140 x MECH-450 disinhibitory soft-competitive settling: new no-op-default E3Config flag use_soft_competitive_settling (+ soft_competitive_settling_gain default 0.0 = exact no-op even when on, _rounds/_temperature/_cross_class). Parameter-free graded lateral-inhibition settling (e3_selector._soft_competitive_settle) over the F+MECH-448/449 within-eligible field (single arena) or the arbitrated cross-loop final (ARC-110), R~3 rounds, softmax-support, class-surround kernel; runs BEFORE the commit argmin. The always-on graded complement to the LEARNED W_lat settling (no-op at init); supplies the at-init attractor-flip. Composes with W_lat + learned cross-loop arbitration (M_cross/V3-EXQ-709) at a different level; orthogonal flag default-OFF. Safety inherited (transforms only the eligible subset, >=1 survivor, no global disinhibition); waking-only (MECH-094); no autograd/no learned params.",
+      "mechanism_changing": false,
+      "no_op_default": true,
+      "dependent_claims": [
+        "MECH-140",
+        "MECH-450",
+        "MECH-439",
+        "MECH-448",
+        "MECH-449",
+        "ARC-107",
+        "ARC-110",
+        "ARC-108"
+      ],
+      "staleness_audit": "KEEP all dependent-claim evidence: no-op-default param, default branch byte-identical (flag OFF -> bit-identical, gain 0.0 -> exact no-op). No prior run enabled the flag, so no evidence is mechanistically stale. No MARK/REVALIDATE.",
+      "candidate_stale": [],
+      "design_doc": "docs/architecture/soft_competitive_disinhibition_settling.md",
+      "contract_test": "ree-v3/tests/contracts/test_soft_competitive_settling.py",
+      "landed_by_session": "substrate-mech140-mech450-disinhib-settling-20260702T1856Z"
+    },
+    {
+      "substrate": "ascending_spiral_gain",
+      "landed_utc": "2026-07-03T15:50:37Z",
+      "description": "ARC-110 x ARC-108 ascending-spiral gain (V3-EXQ-709/710 loop-effective-weight repair): new no-op-default E3Config flags use_ascending_spiral_gain (master, default False) + loop_segregation_ascending_spiral_gain (default 1.0, forward) + loop_segregation_ascending_plasticity_gain (default 1.0, maturation). Scales ONLY the ascending (strict-upper-triangle, row<col in motor/assoc/limbic order) M_cross entries -- in the forward W_cross assembly (_ascending_gain_matrix) and in the M_cross three-factor post_action_update -- so w_eff[limbic]/w_eff[assoc] rise WITHOUT touching w_eff[motor] (Haber 2000 asymmetric ascending spiral). Lets a non-motor (limbic) loop reach/exceed motor effective weight (the 709/710 ceiling). Map stays LINEAR (constant elementwise scaling of M_cross); byte-identical OFF / at gains 1.0 (8 contracts + 709 --dry-run reproduces the 709 FAIL bit-for-bit). Requires use_learned_cross_loop_arbitration on to act.",
+      "mechanism_changing": false,
+      "no_op_default": true,
+      "dependent_claims": [
+        "MECH-439",
+        "ARC-108",
+        "ARC-110",
+        "MECH-450",
+        "MECH-140"
+      ],
+      "staleness_audit": "NOT TRIGGERED: no-op-default param, byte-identical OFF. All prior evidence on the dependent claims ran with the ascending gain OFF (== unchanged pre-landing behavior), so no prior run is mechanistically stale. KEEP all. The new mechanism is exercised only by the V3-EXQ-711 validation falsifier (ascending gain ON) queued alongside this landing.",
+      "candidate_stale": [],
+      "design_doc": "docs/architecture/learned_cross_loop_arbitration.md (Addendum: ascending-spiral gain)",
+      "contract_test": "ree-v3/tests/contracts/test_ascending_spiral_gain.py",
+      "landed_by_session": "substrate-ascending-spiral-gain-20260703T155037Z"
+    },
+    {
+      "substrate": "ascending_parity_controller",
+      "landed_utc": "2026-07-04T12:33:19Z",
+      "description": "ARC-110 x ARC-108 BOUNDED ascending-spiral gain -- target-PARITY controller (V3-EXQ-711 runaway repair): new no-op-default E3Config flags use_ascending_parity_controller (master, default False) + loop_segregation_parity_forward_gain (default 1.0, lift) + loop_segregation_parity_ceiling_ratio (default 0.0=disabled, cap) + loop_segregation_parity_plasticity_gain (default 1.0) + loop_segregation_m_cross_clamp (default 0.0=disabled). e3_selector._parity_forward_gain SOLVES a per-step ascending gain that holds w_eff[limbic] toward but under ceiling_ratio*w_eff[motor] (actuator-saturated setpoint control; motor column gain-invariant = the fixed parity reference), + an anti-windup clamp on the ascending M_cross maturation. Repairs the raw-scalar 711 runaway (M_cross 4897.8, w_eff[limbic] 10-2274x w_eff[motor] = limbic MONOPOLY). Takes precedence over the raw use_ascending_spiral_gain path (retained for 709/711 reproducibility). Byte-identical OFF / inert.",
+      "mechanism_changing": false,
+      "no_op_default": true,
+      "dependent_claims": [
+        "MECH-439",
+        "ARC-108",
+        "ARC-110"
+      ],
+      "staleness_audit": "KEEP ALL. This landing is additive + no-op-default: the OFF path is BYTE-IDENTICAL to the pre-landing substrate (the new controller only acts under use_ascending_parity_controller, which no prior experiment set -- it did not exist). All prior evidence on MECH-439/ARC-108/ARC-110 was collected on the un-controlled substrate, which remains exactly reproducible (OFF byte-identical), so nothing is mechanistically stale. No MARK / REVALIDATE. The successor falsifier V3-EXQ-713 supplies the NEW evidence under the controller; it PROMOTES NOTHING until it scores.",
+      "candidate_stale": [],
+      "design_doc": "docs/architecture/learned_cross_loop_arbitration.md (Sub-addendum: bounded parity controller)",
+      "contract_test": "ree-v3/tests/contracts/test_ascending_parity_controller.py",
+      "validation_experiment": "V3-EXQ-713",
+      "landed_by_session": "implement-substrate-bounded-parity-ascending-20260704T0918Z"
+    },
+    {
+      "substrate": "cross_stream_binding_substrate",
+      "landed_utc": "2026-07-08T20:37:38Z",
+      "description": "Shared-latent-factor binding coupling injected into both E2.rollout_with_world stream transitions (theta-gated common cause derived from the joint z_self/z_world state), gated behind E2Config.cross_stream_binding_enabled (no-op default; OFF byte-identical). Makes cross-stream coherence C(tau) potentially non-reducible to E. ree_core/latent/cross_stream_binder.py + e2_fast.py. Retest V3-EXQ-720.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "INV-002 (unblocked-on-retest; not a depends_on edge)",
+        "entities/selection.coherence_nonreducibility (candidate, unregistered)"
+      ],
+      "stale_evidence_disposition": "none -- no-op-default flag, OFF is byte-identical, so NO prior evidence was produced with the ON mechanism; nothing becomes stale. The ON mechanism is exercised for the first time by V3-EXQ-720."
+    },
+    {
+      "substrate": "sd_033e_frontopolar_decommit",
+      "landed_utc": "2026-07-09T12:21:31Z",
+      "description": "SD-033e V3-narrow frontopolar de-commit lever (MECH-264 geometric counterfactual-value head) wired at NaturalCommitUrgencyRelease.tick as an entry-relative NON-F release-pressure term (frontopolar_gain*max(0,cfv_now-cfv_at_entry)). New master flag use_frontopolar_decommit + frontopolar_gain, both no-op default; self.frontopolar is None when OFF -> bit-identical. Duration-face de-commit lever for the F-dominance conversion ceiling (MECH-439). Validation HELD/gated on V3-EXQ-724.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "SD-033e",
+        "MECH-264"
+      ],
+      "stale_evidence_disposition": "KEEP-ALL. Additive no-op-default lever; OFF is bit-identical and no prior experimental scoring entry on SD-033e/MECH-264 exercised this path (SD-033e/MECH-264 carry no experimental supports -- both candidate/v3_pending). Nothing to mark or revalidate.",
+      "candidate_stale": []
+    },
+    {
+      "substrate": "sd_actor_critic_action_learning",
+      "landed_utc": "2026-07-11T23:08:25Z",
+      "description": "MECH-457 first-class RPE-driven actor-critic action-learning substrate. New module ree_core/action_learning/actor_critic.py (dorsal-striatal actor + plain value critic + optional successor-feature critic V_SF=psi.w); config no-op knobs use_actor_critic/actor_critic_cotrain_encoder/actor_critic_use_sf_critic; agent hooks actor_critic_step/reward/parameters/encoder_parameters. Adds a NEW action pathway distinct from the bias_head REINFORCE; does not alter any existing consumer when off (bit-identical). Routed from failure_autopsy_734-737.",
+      "mechanism_changing": true,
+      "dependent_claims": [
+        "MECH-457",
+        "f_dominance_conversion_ceiling",
+        "ARC-063",
+        "SD-056",
+        "MECH-229"
+      ],
+      "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. MECH-457 is newly-registered (no scoring entries). SD-056/MECH-229 are structural deps whose measured mechanisms are unchanged by this additive substrate (it is bit-identical OFF; it reads their outputs, does not alter them). f_dominance_conversion_ceiling is UNBLOCKED, not invalidated. Audit result: KEEP all; candidate_stale empty.",
+      "candidate_stale": []
+    },
+    {
+      "substrate": "agency_comparator_testbed_sd047",
+      "landed_utc": "2026-07-11T23:22:35Z",
+      "description": "SD-047 amendment + MECH-095 valid test-bed. ree_core: CausalGridWorldV2 flat kwarg tag_env_caused_multisource_ttype (default False, bit-identical OFF) tags residual transition_type=='none' env-caused-multisource steps -> a non-saturating self/world label (fixes the env_events>0 fold degeneracy that made 047l/047m non_contributory). Test-bed V3-EXQ-741: 4-arm SD-047 sweep x 4 seeds, 3 conditions (BASELINE / ROUTED_A gradient-label / ROUTED_B efference-copy read-out) + probe-partition + self-world-balance guards. Landed ree-v3 main 64e9dad.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-095",
+        "MECH-098",
+        "MECH-099",
+        "SD-047"
+      ],
+      "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. The env change is a no-op-default (bit-identical OFF) opt-in label tag that NO existing experiment used, so all prior evidence on SD-047/MECH-095/098/099 was produced with the tag off and is unaffected. The 047l/047m MECH-095 evidence is already non_contributory/superseded (governance-consumed). MECH-095 stays candidate/substrate_ceiling/pending_retest; this test-bed re-points its owed retest and PROMOTES/DEMOTES NOTHING. Audit result: KEEP all; candidate_stale empty.",
+      "candidate_stale": []
+    },
+    {
+      "substrate": "consolidation_pipeline_lesion_harness_sd068",
+      "landed_utc": "2026-07-17T15:45:06Z",
+      "description": "SD-068 consolidation-pipeline lesion harness (experiment-layer, ree-v3/experiments/_lib/consolidation_lesion_harness.py; NO ree_core change). Per-phase-damageable + per-phase-functional-readout instrumentation on MECH-120->121->123 offline-consolidation pipeline; MECH-168/INV-047/MECH-169 staged-decline falsifier buildable. Injected-content (V3-EXQ-702), non-vacuous via damage-tolerance staging + REM passthrough-vs-generative contrast. Validated by diagnostic V3-EXQ-778. MECH-121 hold respected (diagnostic-only). Glymphatic half out of scope. IGW-20260717-206 / EVB-0115.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-120",
+        "MECH-121",
+        "MECH-123",
+        "MECH-168",
+        "INV-047",
+        "MECH-169",
+        "SD-017"
+      ],
+      "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. SD-068 is pure additive experiment-layer instrumentation with no-op-default agent construction; changes NO existing claim measured mechanism (mechanism_changing=false). Audit not required; all prior evidence KEPT.",
+      "candidate_stale": []
+    },
+    {
+      "substrate": "SD-069",
+      "landed_utc": "2026-07-17T16:27:10Z",
+      "description": "phasic_surprise_burst regulator (ree_core/regulators/phasic_surprise_burst.py) -- toggleable LC-NE phasic event-burst on the E3 softmax temperature; phasic complement to MECH-313 tonic. No-op-default (use_phasic_burst=False -> agent does not instantiate; combined T == tonic; OFF action stream bit-identical). Additive lever, not a change to any existing mechanism.",
+      "mechanism_changing": false,
+      "dependent_claims": [
+        "MECH-063",
+        "MECH-313"
+      ],
+      "stale_evidence_disposition": "KEEP all -- additive no-op-default lever; changes no mechanism any dependent claim currently measures. MECH-063 sub-claim (i) evidence (V3-EXQ-777) is on the orthogonal-axes leg, untouched. MECH-313 tonic path bit-identical (rename only; full tests/contracts 1462 pass).",
+      "candidate_stale": []
     }
-   ]
-  },
-  {
-   "substrate": "disinhibitory_soft_competitive_settling",
-   "landed_utc": "2026-07-02T18:56:16Z",
-   "description": "MECH-140 x MECH-450 disinhibitory soft-competitive settling: new no-op-default E3Config flag use_soft_competitive_settling (+ soft_competitive_settling_gain default 0.0 = exact no-op even when on, _rounds/_temperature/_cross_class). Parameter-free graded lateral-inhibition settling (e3_selector._soft_competitive_settle) over the F+MECH-448/449 within-eligible field (single arena) or the arbitrated cross-loop final (ARC-110), R~3 rounds, softmax-support, class-surround kernel; runs BEFORE the commit argmin. The always-on graded complement to the LEARNED W_lat settling (no-op at init); supplies the at-init attractor-flip. Composes with W_lat + learned cross-loop arbitration (M_cross/V3-EXQ-709) at a different level; orthogonal flag default-OFF. Safety inherited (transforms only the eligible subset, >=1 survivor, no global disinhibition); waking-only (MECH-094); no autograd/no learned params.",
-   "mechanism_changing": false,
-   "no_op_default": true,
-   "dependent_claims": [
-    "MECH-140",
-    "MECH-450",
-    "MECH-439",
-    "MECH-448",
-    "MECH-449",
-    "ARC-107",
-    "ARC-110",
-    "ARC-108"
-   ],
-   "staleness_audit": "KEEP all dependent-claim evidence: no-op-default param, default branch byte-identical (flag OFF -> bit-identical, gain 0.0 -> exact no-op). No prior run enabled the flag, so no evidence is mechanistically stale. No MARK/REVALIDATE.",
-   "candidate_stale": [],
-   "design_doc": "docs/architecture/soft_competitive_disinhibition_settling.md",
-   "contract_test": "ree-v3/tests/contracts/test_soft_competitive_settling.py",
-   "landed_by_session": "substrate-mech140-mech450-disinhib-settling-20260702T1856Z"
-  },
-  {
-   "substrate": "ascending_spiral_gain",
-   "landed_utc": "2026-07-03T15:50:37Z",
-   "description": "ARC-110 x ARC-108 ascending-spiral gain (V3-EXQ-709/710 loop-effective-weight repair): new no-op-default E3Config flags use_ascending_spiral_gain (master, default False) + loop_segregation_ascending_spiral_gain (default 1.0, forward) + loop_segregation_ascending_plasticity_gain (default 1.0, maturation). Scales ONLY the ascending (strict-upper-triangle, row<col in motor/assoc/limbic order) M_cross entries -- in the forward W_cross assembly (_ascending_gain_matrix) and in the M_cross three-factor post_action_update -- so w_eff[limbic]/w_eff[assoc] rise WITHOUT touching w_eff[motor] (Haber 2000 asymmetric ascending spiral). Lets a non-motor (limbic) loop reach/exceed motor effective weight (the 709/710 ceiling). Map stays LINEAR (constant elementwise scaling of M_cross); byte-identical OFF / at gains 1.0 (8 contracts + 709 --dry-run reproduces the 709 FAIL bit-for-bit). Requires use_learned_cross_loop_arbitration on to act.",
-   "mechanism_changing": false,
-   "no_op_default": true,
-   "dependent_claims": [
-    "MECH-439",
-    "ARC-108",
-    "ARC-110",
-    "MECH-450",
-    "MECH-140"
-   ],
-   "staleness_audit": "NOT TRIGGERED: no-op-default param, byte-identical OFF. All prior evidence on the dependent claims ran with the ascending gain OFF (== unchanged pre-landing behavior), so no prior run is mechanistically stale. KEEP all. The new mechanism is exercised only by the V3-EXQ-711 validation falsifier (ascending gain ON) queued alongside this landing.",
-   "candidate_stale": [],
-   "design_doc": "docs/architecture/learned_cross_loop_arbitration.md (Addendum: ascending-spiral gain)",
-   "contract_test": "ree-v3/tests/contracts/test_ascending_spiral_gain.py",
-   "landed_by_session": "substrate-ascending-spiral-gain-20260703T155037Z"
-  },
-  {
-   "substrate": "ascending_parity_controller",
-   "landed_utc": "2026-07-04T12:33:19Z",
-   "description": "ARC-110 x ARC-108 BOUNDED ascending-spiral gain -- target-PARITY controller (V3-EXQ-711 runaway repair): new no-op-default E3Config flags use_ascending_parity_controller (master, default False) + loop_segregation_parity_forward_gain (default 1.0, lift) + loop_segregation_parity_ceiling_ratio (default 0.0=disabled, cap) + loop_segregation_parity_plasticity_gain (default 1.0) + loop_segregation_m_cross_clamp (default 0.0=disabled). e3_selector._parity_forward_gain SOLVES a per-step ascending gain that holds w_eff[limbic] toward but under ceiling_ratio*w_eff[motor] (actuator-saturated setpoint control; motor column gain-invariant = the fixed parity reference), + an anti-windup clamp on the ascending M_cross maturation. Repairs the raw-scalar 711 runaway (M_cross 4897.8, w_eff[limbic] 10-2274x w_eff[motor] = limbic MONOPOLY). Takes precedence over the raw use_ascending_spiral_gain path (retained for 709/711 reproducibility). Byte-identical OFF / inert.",
-   "mechanism_changing": false,
-   "no_op_default": true,
-   "dependent_claims": [
-    "MECH-439",
-    "ARC-108",
-    "ARC-110"
-   ],
-   "staleness_audit": "KEEP ALL. This landing is additive + no-op-default: the OFF path is BYTE-IDENTICAL to the pre-landing substrate (the new controller only acts under use_ascending_parity_controller, which no prior experiment set -- it did not exist). All prior evidence on MECH-439/ARC-108/ARC-110 was collected on the un-controlled substrate, which remains exactly reproducible (OFF byte-identical), so nothing is mechanistically stale. No MARK / REVALIDATE. The successor falsifier V3-EXQ-713 supplies the NEW evidence under the controller; it PROMOTES NOTHING until it scores.",
-   "candidate_stale": [],
-   "design_doc": "docs/architecture/learned_cross_loop_arbitration.md (Sub-addendum: bounded parity controller)",
-   "contract_test": "ree-v3/tests/contracts/test_ascending_parity_controller.py",
-   "validation_experiment": "V3-EXQ-713",
-   "landed_by_session": "implement-substrate-bounded-parity-ascending-20260704T0918Z"
-  },
-  {
-   "substrate": "cross_stream_binding_substrate",
-   "landed_utc": "2026-07-08T20:37:38Z",
-   "description": "Shared-latent-factor binding coupling injected into both E2.rollout_with_world stream transitions (theta-gated common cause derived from the joint z_self/z_world state), gated behind E2Config.cross_stream_binding_enabled (no-op default; OFF byte-identical). Makes cross-stream coherence C(tau) potentially non-reducible to E. ree_core/latent/cross_stream_binder.py + e2_fast.py. Retest V3-EXQ-720.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "INV-002 (unblocked-on-retest; not a depends_on edge)",
-    "entities/selection.coherence_nonreducibility (candidate, unregistered)"
-   ],
-   "stale_evidence_disposition": "none -- no-op-default flag, OFF is byte-identical, so NO prior evidence was produced with the ON mechanism; nothing becomes stale. The ON mechanism is exercised for the first time by V3-EXQ-720."
-  },
-  {
-   "substrate": "sd_033e_frontopolar_decommit",
-   "landed_utc": "2026-07-09T12:21:31Z",
-   "description": "SD-033e V3-narrow frontopolar de-commit lever (MECH-264 geometric counterfactual-value head) wired at NaturalCommitUrgencyRelease.tick as an entry-relative NON-F release-pressure term (frontopolar_gain*max(0,cfv_now-cfv_at_entry)). New master flag use_frontopolar_decommit + frontopolar_gain, both no-op default; self.frontopolar is None when OFF -> bit-identical. Duration-face de-commit lever for the F-dominance conversion ceiling (MECH-439). Validation HELD/gated on V3-EXQ-724.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "SD-033e",
-    "MECH-264"
-   ],
-   "stale_evidence_disposition": "KEEP-ALL. Additive no-op-default lever; OFF is bit-identical and no prior experimental scoring entry on SD-033e/MECH-264 exercised this path (SD-033e/MECH-264 carry no experimental supports -- both candidate/v3_pending). Nothing to mark or revalidate.",
-   "candidate_stale": []
-  },
-  {
-   "substrate": "sd_actor_critic_action_learning",
-   "landed_utc": "2026-07-11T23:08:25Z",
-   "description": "MECH-457 first-class RPE-driven actor-critic action-learning substrate. New module ree_core/action_learning/actor_critic.py (dorsal-striatal actor + plain value critic + optional successor-feature critic V_SF=psi.w); config no-op knobs use_actor_critic/actor_critic_cotrain_encoder/actor_critic_use_sf_critic; agent hooks actor_critic_step/reward/parameters/encoder_parameters. Adds a NEW action pathway distinct from the bias_head REINFORCE; does not alter any existing consumer when off (bit-identical). Routed from failure_autopsy_734-737.",
-   "mechanism_changing": true,
-   "dependent_claims": [
-    "MECH-457",
-    "f_dominance_conversion_ceiling",
-    "ARC-063",
-    "SD-056",
-    "MECH-229"
-   ],
-   "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. MECH-457 is newly-registered (no scoring entries). SD-056/MECH-229 are structural deps whose measured mechanisms are unchanged by this additive substrate (it is bit-identical OFF; it reads their outputs, does not alter them). f_dominance_conversion_ceiling is UNBLOCKED, not invalidated. Audit result: KEEP all; candidate_stale empty.",
-   "candidate_stale": []
-  },
-  {
-   "substrate": "agency_comparator_testbed_sd047",
-   "landed_utc": "2026-07-11T23:22:35Z",
-   "description": "SD-047 amendment + MECH-095 valid test-bed. ree_core: CausalGridWorldV2 flat kwarg tag_env_caused_multisource_ttype (default False, bit-identical OFF) tags residual transition_type=='none' env-caused-multisource steps -> a non-saturating self/world label (fixes the env_events>0 fold degeneracy that made 047l/047m non_contributory). Test-bed V3-EXQ-741: 4-arm SD-047 sweep x 4 seeds, 3 conditions (BASELINE / ROUTED_A gradient-label / ROUTED_B efference-copy read-out) + probe-partition + self-world-balance guards. Landed ree-v3 main 64e9dad.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-095",
-    "MECH-098",
-    "MECH-099",
-    "SD-047"
-   ],
-   "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. The env change is a no-op-default (bit-identical OFF) opt-in label tag that NO existing experiment used, so all prior evidence on SD-047/MECH-095/098/099 was produced with the tag off and is unaffected. The 047l/047m MECH-095 evidence is already non_contributory/superseded (governance-consumed). MECH-095 stays candidate/substrate_ceiling/pending_retest; this test-bed re-points its owed retest and PROMOTES/DEMOTES NOTHING. Audit result: KEEP all; candidate_stale empty.",
-   "candidate_stale": []
-  },
-  {
-   "substrate": "consolidation_pipeline_lesion_harness_sd068",
-   "landed_utc": "2026-07-17T15:45:06Z",
-   "description": "SD-068 consolidation-pipeline lesion harness (experiment-layer, ree-v3/experiments/_lib/consolidation_lesion_harness.py; NO ree_core change). Per-phase-damageable + per-phase-functional-readout instrumentation on MECH-120->121->123 offline-consolidation pipeline; MECH-168/INV-047/MECH-169 staged-decline falsifier buildable. Injected-content (V3-EXQ-702), non-vacuous via damage-tolerance staging + REM passthrough-vs-generative contrast. Validated by diagnostic V3-EXQ-778. MECH-121 hold respected (diagnostic-only). Glymphatic half out of scope. IGW-20260717-206 / EVB-0115.",
-   "mechanism_changing": false,
-   "dependent_claims": [
-    "MECH-120",
-    "MECH-121",
-    "MECH-123",
-    "MECH-168",
-    "INV-047",
-    "MECH-169",
-    "SD-017"
-   ],
-   "stale_evidence_disposition": "NO prior EXPERIMENTAL evidence goes stale. SD-068 is pure additive experiment-layer instrumentation with no-op-default agent construction; changes NO existing claim measured mechanism (mechanism_changing=false). Audit not required; all prior evidence KEPT.",
-   "candidate_stale": []
-  }
- ]
+  ]
 }

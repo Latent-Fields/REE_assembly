@@ -287,6 +287,16 @@ Each axis should carry:
 This decomposition allows regimes like "focused but initiation-suppressed" (stable representation, high commitment
 threshold, low energy budget) without forcing contradictory updates into a single scalar channel.
 
+**Substrate status (sub-claim ii, tonic/phasic split).** On the precision/vigor axis the tonic/phasic pair is now
+substrate-landed on the E3 selection softmax: the **tonic** component is MECH-313 `stochastic_noise_floor` (a sustained
+every-tick softmax-temperature lift, `ree_core/policy/noise_floor.py`), and the **phasic** component is SD-069
+`phasic_surprise_burst` (an event-locked transient softmax-temperature delta fired on a surprise spike and decaying over
+a few ticks, `ree_core/regulators/phasic_surprise_burst.py`). Both are independently toggleable (`use_noise_floor` /
+`use_phasic_burst`) and act on the same effective-temperature readout, which is what makes the tonic-vs-phasic
+dissociation behaviourally testable (SD-069 reuses the MECH-104 Aston-Jones & Cohen 2005 phasic-mode lit basis but routes
+to the selection softmax, not the ARC-016 commit gate that carries the MECH-104 `volatility_interrupt` claim). See
+`REE_assembly/docs/architecture/sd_069_phasic_surprise_burst.md`.
+
 ### Competitive trigger field and bounded tactical bandwidth
 
 Control pressure should be treated as a competitive trigger field rather than a single "interrupt happened" scalar.
