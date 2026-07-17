@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-17T16:39:16Z",
+  "last_tick_utc": "2026-07-17T17:24:27Z",
   "state": "running",
   "current_exq": "V3-EXQ-771",
   "current_exq_started_utc": "2026-07-17T07:05:47.013026+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 44 / D3_hazard_free",
     "runs_done": 14,
     "runs_total": 27,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 3000,
     "overall_pct": 51.9
   },
-  "seconds_elapsed": 34410,
-  "seconds_remaining": 86934,
+  "seconds_elapsed": 37120,
+  "seconds_remaining": 86822,
   "recent_lines": [
-    "[train] metab_ctrl_zworld seed=42 phase=RL ep 400/3000 (returns=0 credit_passes=726)",
     "[train] metab_ctrl_zworld seed=42 phase=RL ep 600/3000 (returns=0 credit_passes=1083)",
     "[train] metab_ctrl_zworld seed=42 phase=RL ep 800/3000 (returns=0 credit_passes=1479)",
     "[train] metab_ctrl_zworld seed=42 phase=RL ep 1000/3000 (returns=0 credit_passes=1863)",
@@ -118,7 +117,8 @@
     "[train] metab_decouple_zworld seed=43 phase=RL ep 2800/3000 (returns=0 credit_passes=8178)",
     "[train] metab_decouple_zworld seed=43 phase=RL ep 3000/3000 (returns=0 credit_passes=8766)",
     "verdict: PASS (arm=metab_decouple_zworld seed=43 forage/ep=1.8 death_rate=0.0)",
-    "Seed 44 Condition D3_hazard_free:metab_decouple_zworld"
+    "Seed 44 Condition D3_hazard_free:metab_decouple_zworld",
+    "[train] ree_allon rung=D3_hazard_free seed=44 phase=P0 ep 50/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
