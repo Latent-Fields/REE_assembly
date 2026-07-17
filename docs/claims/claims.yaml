@@ -3299,6 +3299,16 @@
     - docs/thoughts/2026-02-15_basal_ganglia_commit_gating_control_plane_axes.md
     - docs/thoughts/2026-02-13_subjective_experience_pre_post_commit.md
     - docs/thoughts/2026-02-23_some_subjective_experience_mapping.md
+  implementation_note: >
+    Sub-claim (i) orthogonal-axes covered behaviourally by V3-EXQ-777. Sub-claim
+    (ii) TONIC/PHASIC SPLIT is now substrate-buildable: SD-069
+    (control_plane.phasic_surprise_burst, IMPLEMENTED 2026-07-17) adds the missing
+    toggleable PHASIC event-burst lever on the E3 softmax temperature -- the phasic
+    complement to MECH-313 stochastic_noise_floor (tonic) on the same readout, so
+    tonic-vs-phasic become independently toggleable and behaviourally dissociable.
+    No status/confidence change from this landing (substrate only; the sub-claim (ii)
+    dissociation experiment is queued 2026-07-17). See
+    docs/architecture/sd_069_phasic_surprise_burst.md.
 - id: MECH-064
   title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis
@@ -14495,6 +14505,15 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  evidence_quality_note: |
+    [SD-068 staged-damage diagnostic, 2026-07-17] DIAGNOSTIC, no status change.
+    The staged-decline SHAPE this prediction asserts is instrumented by the SD-068
+    consolidation-lesion harness. V3-EXQ-778a (8 seeds): NREM-before-SWS adjacency
+    robust (8/8, p=0.0078), REM-fails-first seed-variable/underpowered (CI straddles
+    0). Non-vacuity: the REM generative gain (offline banking, current harness) is
+    attenuating (0.149 mean, 8/8 seeds < 1 << passthrough 1.0) -> staged decline is
+    a real transfer function, not topology. Full reading in the MECH-168
+    evidence_quality_note + docs/architecture/sd_068_consolidation_lesion_harness.md.
   depends_on:
     - INV-046
     - INV-045
@@ -14550,6 +14569,29 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  evidence_quality_note: |
+    [SD-068 staged-damage diagnostic, 2026-07-17] DIAGNOSTIC (non-scoring;
+    promotes/demotes nothing; MECH-121 remains held, its NREM leg is
+    substrate-plumbing-fidelity only). The SD-068 consolidation-lesion harness
+    instruments this claim's staging prediction under uniform diffuse damage.
+    Two legs, reported together (detail: docs/architecture/sd_068_consolidation_lesion_harness.md
+    "Diagnostic results"):
+    (1) STAGING ORDER (V3-EXQ-778a, 8 seeds, PASS/supports): the
+    NREM-fails-before-SWS adjacency is ROBUST (8/8 seeds, sign-test p=0.0078,
+    95% CI [0.422,0.425]); the REM-fails-FIRST adjacency is CONTESTED /
+    seed-variable / underpowered at n=8 (mean tolerance-diff -0.097, 95% CI
+    [-0.43,+0.23] straddles 0, sign-test p=1.0; overall Spearman mean-rho 0.375,
+    CI includes 0). So the reverse-dependency staging is PARTIALLY supported --
+    the upstream half holds, the REM-first head is unresolved at this power.
+    (2) NON-VACUITY (REM generative gain, offline banking run of the current
+    harness rem_generative_fidelity readout, 8 seeds -- the readout is in NO
+    778/778a manifest; 778 ran the retired null proxy, 778a scored order off
+    tolerances): rem_generative_gain = 0.149 mean (0.040-0.409), ATTENUATING
+    (gain<1) on 8/8 seeds, decisively below the passthrough leg's gain of 1.0.
+    The REM staged-first-failure is therefore NOT pure feed-forward topology --
+    the generative re-derivation pass has real corrective capacity ("the
+    correction needs an intact seed"). This is diagnostic evidence for the SHAPE
+    of the staged-decline prediction, not promotion evidence.
   depends_on:
     - INV-046
     - INV-047
@@ -14647,6 +14689,16 @@
     umbrella (its glymphatic half is real, just out-of-V3-scope). No confidence
     change; EVB-0115 stays blocked_substrate (glymphatic unrepresentable + MECH-121
     held).
+    SD-068 diagnostic outcome (2026-07-17, DIAGNOSTIC -- no confidence change): the
+    folded staging half now has a partial diagnostic reading on the V3-testable
+    side. V3-EXQ-778a (8 seeds, PASS/supports) shows the NREM-before-SWS staging
+    adjacency ROBUST (8/8, sign-test p=0.0078) but the REM-fails-first adjacency
+    seed-variable / underpowered (CI straddles 0). The non-vacuity check -- the REM
+    generative-re-derivation gain, banked offline from the current harness readout
+    (rem_generative_fidelity; in no 778/778a manifest) -- is ATTENUATING (gain 0.149
+    mean, 8/8 seeds < 1, vs passthrough gain 1.0), so the staged decline rests on a
+    real error-propagation transfer function, not feed-forward topology. See the
+    MECH-168 evidence_quality_note and docs/architecture/sd_068_consolidation_lesion_harness.md.
 
 - id: MECH-170
   title: "Sleep architecture restoration in early MCI should produce dissociated cognitive improvement: slot-filling (episodic attribution, MECH-121 analog) should improve before slot-formation (contextual semantic, MECH-120 analog), because the pipeline rebuilds in dependency order. This distinguishes the attribution account from accounts predicting uniform memory improvement with sleep restoration."
@@ -49231,6 +49283,57 @@
     promotion evidence; the NREM leg is substrate-plumbing-fidelity only. Glymphatic/
     amyloid structural half of MECH-169 has no V3 analog and is out of scope.
   validation_experiment: V3-EXQ-778 (staged-damage diagnostic; queued 2026-07-17, coordinator-live)
+
+- id: SD-069
+  title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
+  claim_type: design_decision
+  subject: control_plane.phasic_surprise_burst
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-17
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-17"
+  depends_on:
+    - MECH-313
+    - ARC-005
+    - MECH-063
+  location: docs/architecture/sd_069_phasic_surprise_burst.md
+  functional_restatement: >
+    A 2026-07-17 substrate scan confirmed MECH-063 sub-claim (ii) (tonic/phasic
+    split) could not be tested behaviourally: MECH-313 noise_floor was the only
+    TONIC lever on the E3 softmax, with no toggleable PHASIC event-triggered
+    counterpart on a comparable readout. MECH-104 was documented but unimplemented
+    as a substrate module (faked in experiments by mutating e3._running_variance,
+    routing only to the ARC-016 commit gate); MECH-287 InvalidationTrigger is
+    genuinely phasic but routes to hippocampal staleness, never the softmax. SD-069
+    supplies the missing phasic lever: a pure-arithmetic regulator
+    (ree_core/regulators/phasic_surprise_burst.py) that reads e3._running_variance
+    surprise, fires a burst on a spike over its own EMA baseline
+    (surprise >= trigger_ratio x max(ema, floor)), decays it geometrically, and adds
+    a transient temperature delta (default negative = phasic sharpening) at the
+    e3.select() call site AFTER the MECH-313 tonic lift. Tonic and phasic are
+    independently toggleable (use_noise_floor / use_phasic_burst) on the same
+    effective-temperature readout, and the tonic lift is kept uncontaminated in the
+    diagnostics so the dissociation is manifest-readable.
+  implementation_note: >
+    IMPLEMENTED 2026-07-17 (session blissful-hugle-5dd043) via /implement-substrate.
+    Config: REEConfig.use_phasic_burst (default False -> agent does not instantiate
+    the regulator; combined temperature == tonic; OFF action stream bit-identical,
+    contract C8 with n_events==0) + phasic_burst_surprise_ema_decay (0.1),
+    _trigger_ratio (1.5), _trigger_floor (1e-6), _temp_delta (-0.5), _decay (0.5),
+    _min_temperature (0.1, strict-positive floor on combined T). Diagnostic:
+    phasic_burst_level / _temp_delta in _last_score_bias_decomp; phasic_burst block in
+    _last_control_vector. MECH-094: simulation_mode returns cached burst, no state
+    advance; no memory-write surface -> phased training N/A, hypothesis_tag N/A.
+    Smoke: 17 SD-069 contracts pass; full tests/contracts 1462 pass (0 regressions);
+    an injected surprise spike fires through select_action -> pre-commit softmax
+    entropy drops on the event (0.80 -> 0.06) and decays over the tail (event-locked
+    transient), bit-identical before the event.
+  validation_experiment: pending (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern; queued 2026-07-17 -- see Step 8)
 
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."

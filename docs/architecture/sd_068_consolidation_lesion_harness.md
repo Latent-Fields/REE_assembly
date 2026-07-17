@@ -5,7 +5,7 @@
 **Status:** IMPLEMENTED
 **Registered:** 2026-07-17
 **Depends on:** SD-017 (offline SWS/REM passes), MECH-120 (SWS denoising), MECH-121 (NREM slot-filling, *held*), MECH-123 (REM precision recalibration), MECH-204 (precision-recalibration consumer)
-**Blocks:** the MECH-168 / INV-047 / MECH-169 staged-decline falsifier; a representation-level staged-damage diagnostic (V3-EXQ-778, queued 2026-07-17)
+**Blocks:** the MECH-168 / INV-047 / MECH-169 staged-decline falsifier; a representation-level staged-damage diagnostic (V3-EXQ-778 + power-up V3-EXQ-778a, run 2026-07-17; generative-gain non-vacuity banked offline -- see **Diagnostic results**)
 
 ## Problem
 
@@ -132,7 +132,9 @@ on every seed -- a real, monotone, strongly-attenuating dose-response, no longer
 null. The corrupted seed is also pushed into `theta_buffer` and the real
 `run_rem_attribution_pass` driven once for liveness telemetry (`rem_n_rollouts`),
 confirming the injection point is exactly the seed the live REM path reads;
-`rem_terrain_variance` is retained as telemetry only, not scored.
+`rem_terrain_variance` is retained as telemetry only, not scored. This smoke result
+is confirmed at n=8 seeds in **Diagnostic results** below (the load-bearing
+non-vacuity finding banked into the MECH-168 / INV-047 / MECH-169 staging record).
 
 **Backward-compatible key contract:** `error_propagation_gain` keeps
 `rem_generative_output_slope` / `rem_passthrough_calibration_slope` /
@@ -148,6 +150,89 @@ order `(rem, nrem, sws)`.
 `REEConfig.from_dims(..., shy_enabled=True, sws_enabled=True, rem_enabled=True,
 use_sleep_aggregation_cluster=True)` -- all pre-existing no-op-default flags.
 Backward compatible: no existing experiment's behaviour changes.
+
+## Diagnostic results (2026-07-17)
+
+Two diagnostic legs, reported together (both DIAGNOSTIC / non-scoring; MECH-121
+held, NREM leg substrate-plumbing-fidelity only). Neither `error_propagation_gain`
+generative-gain key was emitted into a manifest: V3-EXQ-778 ran under the retired
+`rem_terrain_variance` proxy (generative sensitivity ~null), and V3-EXQ-778a scores
+staging *order* off `calibration_error`/tolerances -- so the generative-gain leg
+below is an **offline banking run** of the current harness (ree-v3 `main` `da873a1`,
+`rem_generative_fidelity`), 8 seeds `{42, 7, 123, 2024, 99, 7777, 314, 1000}`
+(V3-EXQ-778a's seed set, for 1:1 alignment), `sigma` in `{0, 0.25, 0.5, 1, 2}`.
+
+### Leg 1 -- Staging order (V3-EXQ-778a, `...staging_power_diagnostic_20260717T163507Z_v3`, ree-worker-1, PASS/supports)
+
+8-seed damage-tolerance distribution + a 3-way statistical staging test (per-seed
+Spearman rho vs predicted `(rem, nrem, sws)`; the two adjacency predictions as
+paired tolerance-diff CIs + sign tests; Kendall's W). Verdict label
+`staging_seed_variable_underpowered` -- staging match REPORTED, never gated:
+
+- **`nrem` fails before `sws` -- ROBUST.** `sws_tolerance - nrem_tolerance` > 0 on
+  **8/8** seeds (mean +0.424, 95% CI [0.422, 0.425], sign-test p = 0.0078). The
+  upstream half of the reverse-dependency ordering holds cleanly.
+- **`rem` fails first -- CONTESTED / seed-variable.** `nrem_tolerance -
+  rem_tolerance` mean -0.097, 95% CI [-0.43, +0.23] straddles 0 (4/8 seeds positive,
+  sign-test p = 1.0). The REM-first leg is underpowered at n=8; `rem` tolerance is
+  the high-variance phase (std 0.396 vs `nrem` 0.0014, `sws` ~9e-9).
+- Overall Spearman mean rho = 0.375 (95% CI [-0.25, +1.00], includes 0); Kendall's
+  W = 0.328 (Friedman chi2 = 5.25, df 2). Modal observed order `(rem, nrem, sws)` on
+  4/8 seeds.
+
+So the *reverse-dependency staging* is **partially supported**: the NREM-before-SWS
+adjacency is robust; the REM-fails-first adjacency is not resolved at this power. All
+three phases degrade monotonically with `sigma` (load-bearing C1 PASS, corr >= 0.96
+each) and are non-degenerate at `sigma = 0` (P0 control).
+
+### Leg 2 -- REM generative gain (offline banking, current harness, n=8) -- the non-vacuity result
+
+`rem_generative_gain` = least-squares slope of the generated-rollout relative
+deviation vs the injected seed's relative corruption. Passthrough leg (bare precision
+nudge, MECH-204) is **gain = 1 by construction** (linear full-adoption interpolation
+passes corruption straight through):
+
+| seed | `rem_generative_gain` | `rem_generative_gain_mean` | attenuates (gain<1) |
+|------|-----------------------|-----------------------------|---------------------|
+| 42   | 0.190 | 0.173 | yes |
+| 7    | 0.409 | 0.429 | yes |
+| 123  | 0.067 | 0.066 | yes |
+| 2024 | 0.076 | 0.068 | yes |
+| 99   | 0.040 | 0.042 | yes |
+| 7777 | 0.212 | 0.218 | yes |
+| 314  | 0.077 | 0.083 | yes |
+| 1000 | 0.123 | 0.138 | yes |
+| **mean** | **0.149** (min 0.040, max 0.409, std 0.121) | **0.152** | **8/8** |
+
+**`rem_generative_gain` = 0.149 mean, 8/8 seeds attenuating (gain < 1), decisively
+below the passthrough leg's gain of 1.0.** The `_mean` (per-`sigma` point-gain
+average) corroborates the slope (0.152). The per-seed tolerance orderings reproduce
+V3-EXQ-778a's exactly (same code + seeds -- a consistency cross-check).
+
+The load-bearing conclusion: **the REM staged-first-failure is NOT pure topology.**
+The generative re-derivation pass has genuine corrective capacity -- it attenuates a
+diffusely corrupted seed rather than passing it through (gain 1) or amplifying it
+(gain > 1, the MECH-094 psychosis polarity). In the harness's non-vacuity vocabulary,
+"the correction needs an intact seed": REM's early vulnerability under diffuse damage
+reflects a real transfer function, not merely its downstream position in the DAG.
+
+(`rem_passthrough_calibration_slope` -- the raw `calibration_error`-vs-`sigma` slope
+in variance units -- ranges 0.03-599 across seeds; it is scale-variable telemetry
+under the `step=1.0` full-adoption measurement choice, NOT the dimensionless gain, and
+is NOT load-bearing. The by-construction passthrough *gain* is 1.0; the load-bearing
+contrast is generative-gain 0.149 << 1.)
+
+### Combined diagnostic reading
+
+Staging order under uniform diffuse damage is **partially confirmed** (NREM-before-SWS
+robust; REM-first seed-variable/underpowered), and -- critically -- the piece that
+would make even a confirmed staging *vacuous* is refuted: the REM generative pass is
+**strongly attenuating (gain ~0.15 << 1 on 8/8 seeds)**, so the pipeline's
+staged-decline behaviour rests on a real error-propagation transfer function, not on
+feed-forward topology alone. This is DIAGNOSTIC evidence for the *shape* of the
+MECH-168 / INV-047 staged-decline prediction (and MECH-169's V3-testable staging
+half); it does not promote any claim, and MECH-121 stays held (the NREM leg is
+plumbing-fidelity only).
 
 ## Architecture Context
 
