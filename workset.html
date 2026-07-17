@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-06-21.1 -->
+<!-- WORKSET_VERSION: 2026-07-17.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -124,6 +124,11 @@
   .badge.status-blocked, .badge.status-upstream_blocked { background: #f8514933; color: #ff7b72; }
   .badge.status-partial, .badge.status-in_progress { background: #d2992233; color: #e3b341; }
   .badge.leverage { background: #a371f733; color: #d2a8ff; }
+  .badge.gen { background: #6e768133; color: #adbac7; letter-spacing: .3px; }
+  .badge.gen.gen-v3 { background: #2ea04326; color: #56d364; }
+  .badge.gen.gen-v4 { background: #388bfd26; color: #79c0ff; }
+  .badge.gen.gen-v5 { background: #d2992226; color: #e3b341; }
+  .badge.gen.gen-v6 { background: #a371f726; color: #d2a8ff; }
   .badge.plan-pill {
     background: var(--bg-3); color: var(--muted); text-transform: none;
     font-weight: 500; cursor: pointer;
@@ -340,6 +345,8 @@
     <option value="plan">Plan</option>
     <option value="lane">Lane</option>
   </select>
+  <label for="version-filter">Generation</label>
+  <select id="version-filter" title="Filter by substrate generation. V3 = current active-substrate work (experiments, substrate builds, governance); V4/V5/V6 = forward-roadmap plan gaps kept out of the V3 closure percentage."><option value="">All generations</option></select>
   <label for="plan-filter">Plan</label>
   <select id="plan-filter"><option value="">All plans</option></select>
   <label for="lens-filter">Outcome</label>
@@ -360,6 +367,7 @@ let STATUS_FILTER = 'all';
 let GROUP_BY = 'priority';
 let PLAN_FILTER = '';
 let LENS_FILTER = '';
+let VERSION_FILTER = '';
 let CLAIM_SEARCH = '';
 let RA = { count: 0, releases: [], hours: 24 };  // recent activity (released assignments)
 
@@ -499,6 +507,8 @@ function applyUrlParams() {
   if (plan) PLAN_FILTER = plan;
   const lens = p.get('lens');
   if (lens) LENS_FILTER = lens;
+  const ver = p.get('version');
+  if (ver) VERSION_FILTER = ver;
   const q = p.get('q');
   if (q) CLAIM_SEARCH = q;
   const f = p.get('status');
@@ -510,6 +520,7 @@ function syncUrl() {
   if (GROUP_BY !== 'priority') p.set('group', GROUP_BY);
   if (PLAN_FILTER) p.set('plan', PLAN_FILTER);
   if (LENS_FILTER) p.set('lens', LENS_FILTER);
+  if (VERSION_FILTER) p.set('version', VERSION_FILTER);
   if (CLAIM_SEARCH.trim()) p.set('q', CLAIM_SEARCH.trim());
   if (STATUS_FILTER !== 'all') p.set('status', STATUS_FILTER);
   const qs = p.toString();
@@ -569,6 +580,29 @@ function populateFilters() {
   if (LENS_FILTER) lensSel.value = LENS_FILTER;
   lensSel.addEventListener('change', () => {
     LENS_FILTER = lensSel.value;
+    renderAll();
+    syncUrl();
+  });
+
+  const verSel = document.getElementById('version-filter');
+  // Prefer the generator's summary.by_version count; fall back to counting items.
+  const byVer = (WS.summary && WS.summary.by_version) || {};
+  const verCounts = Object.keys(byVer).length
+    ? byVer
+    : (WS.items || []).reduce((acc, it) => {
+        const v = it.version || 'v3';
+        acc[v] = (acc[v] || 0) + 1;
+        return acc;
+      }, {});
+  for (const v of Object.keys(verCounts).sort()) {
+    const opt = document.createElement('option');
+    opt.value = v;
+    opt.textContent = v.toUpperCase() + ' (' + verCounts[v] + ')';
+    verSel.appendChild(opt);
+  }
+  if (VERSION_FILTER) verSel.value = VERSION_FILTER;
+  verSel.addEventListener('change', () => {
+    VERSION_FILTER = verSel.value;
     renderAll();
     syncUrl();
   });
@@ -653,6 +687,11 @@ function matchPlanFilter(it) {
   return it.plan_id === PLAN_FILTER;
 }
 
+function matchVersionFilter(it) {
+  if (!VERSION_FILTER) return true;
+  return (it.version || 'v3') === VERSION_FILTER;
+}
+
 function matchClaimSearch(it) {
   const q = CLAIM_SEARCH.trim().toUpperCase();
   if (!q) return true;
@@ -669,7 +708,7 @@ function matchClaimSearch(it) {
 function filterItems() {
   return (WS.items || []).filter(it =>
     matchStatusFilter(it) && matchLensFilter(it) &&
-    matchPlanFilter(it) && matchClaimSearch(it));
+    matchPlanFilter(it) && matchVersionFilter(it) && matchClaimSearch(it));
 }
 
 function isHighLeverage(it) {
@@ -798,9 +837,11 @@ function buildSections(items) {
 
 function renderCard(it) {
   const stCls = 'status-' + (it.status || 'ready').replace(/-/g, '_');
+  const ver = (it.version || 'v3');
   let badges =
     '<span class="badge lane">' + escapeHtml(it.lane || '?') + '</span>' +
     '<span class="badge ' + stCls + '">' + escapeHtml(it.status || '?') + '</span>' +
+    '<span class="badge gen gen-' + escapeAttr(ver) + '" title="Substrate generation">' + escapeHtml(ver.toUpperCase()) + '</span>' +
     '<span class="badge">P' + escapeHtml(String(it.priority != null ? it.priority : '?')) + '</span>';
   const uc = it.unblock_count != null ? it.unblock_count : (it.unblocks || []).length;
   if (uc >= 3 && it.status === 'ready') {
@@ -947,7 +988,7 @@ function renderAll() {
     });
   });
 
-  if (LENS_FILTER || PLAN_FILTER || CLAIM_SEARCH.trim()) {
+  if (LENS_FILTER || PLAN_FILTER || VERSION_FILTER || CLAIM_SEARCH.trim()) {
     const first = root.querySelector('.card');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }

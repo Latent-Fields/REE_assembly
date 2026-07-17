@@ -1099,8 +1099,53 @@ def _extract_claim_tokens(*parts: str | list | None) -> set[str]:
     return out
 
 
+_GENERATION_RE = re.compile(r"^v(\d+)$", re.IGNORECASE)
+# Node-level generation hint from free text (node titles/notes). Matches a
+# standalone Vn generation token (V4, V5, "V5-only") but NOT an experiment id
+# like "V3-EXQ-603" -- the negative lookahead drops the EXQ case so a node that
+# merely references a V3 experiment is not mislabeled.
+_NODE_VERSION_HINT_RE = re.compile(r"(?<![A-Za-z0-9])[Vv]([3-9])\b(?!-EXQ)")
+
+
+def _norm_generation(val, plan_id: str | None = None) -> str:
+    """Normalize a plan's generation bucket.
+
+    Authoritative source is the plan frontmatter's `closure_plan.generation`
+    field. An explicit value is preserved -- 'v4'/'v5'/... normalize to 'vN',
+    and non-numeric buckets like 'meta' (cross-cutting roadmaps) are kept
+    verbatim (lowercased) rather than coerced to a version. With no explicit
+    generation, falls back to a trailing `_vN` suffix on the plan id, then
+    defaults to 'v3' (plans without a generation are V3-era active substrate).
+    """
+    if val is not None and str(val).strip():
+        s = str(val).strip().lower()
+        m = _GENERATION_RE.match(s)
+        return ("v" + m.group(1)) if m else s
+    if plan_id:
+        m = re.search(r"_v(\d+)$", str(plan_id))
+        if m:
+            return "v" + m.group(1)
+    return "v3"
+
+
+def _node_version_hint(*texts) -> str | None:
+    """Return a 'vN' generation hint parsed from node free text, or None.
+
+    Used for plan nodes (e.g. in a `generation: meta` cross-cutting roadmap)
+    that declare their target generation only in the title/note, such as
+    "Minimal 2-agent world (... currently V5-only)".
+    """
+    for t in texts:
+        if not t:
+            continue
+        m = _NODE_VERSION_HINT_RE.search(str(t))
+        if m:
+            return "v" + m.group(1)
+    return None
+
+
 def _load_plan_registry() -> dict[str, dict]:
-    """plan_id -> {title, scope_claims} from *_plan.md frontmatter."""
+    """plan_id -> {title, scope_claims, generation} from *_plan.md frontmatter."""
     reg: dict[str, dict] = {}
     if not PLANNING.exists():
         return reg
@@ -1116,6 +1161,7 @@ def _load_plan_registry() -> dict[str, dict]:
         reg[plan_id] = {
             "title": str(plan.get("title") or plan_id.replace("_", " ").title()),
             "scope_claims": sorted(set(scope)),
+            "generation": _norm_generation(plan.get("generation"), plan_id),
         }
     return reg
 
@@ -1170,7 +1216,24 @@ def _enrich_workset_items(items: list[dict], plan_reg: dict[str, dict]) -> tuple
         if pid:
             pinfo = plan_reg.get(str(pid)) or {}
             it["plan_title"] = pinfo.get("title") or str(pid).replace("_", " ").title()
+            # Generation follows the owning plan (V4/V5/V6 roadmaps carry an
+            # explicit numeric `generation`; V3-era plans have none -> "v3").
+            # ONLY for a non-numeric roadmap bucket (e.g. `generation: meta` /
+            # `process` cross-cutting plans whose nodes each target a different
+            # generation) do we defer to a per-node title hint like "... V5-only".
+            # A plan with a real vN generation is single-generation, so an
+            # incidental version mention in a node title (usually a V3
+            # prerequisite) must NOT override the plan's own bucket.
+            plan_gen = pinfo.get("generation") or "v3"
+            if _GENERATION_RE.match(plan_gen):
+                it["version"] = plan_gen
+            else:
+                it["version"] = _node_version_hint(it.get("title")) or plan_gen
             by_plan.setdefault(str(pid), []).append(it["id"])
+        else:
+            # Non-plan lanes (governance / experiment / substrate / ops) are all
+            # current-cycle work against the active V3 substrate.
+            it["version"] = "v3"
         matched = _matched_lenses(it, lens_tokens)
         it["matched_lenses"] = matched
         for lid in matched:
@@ -1817,6 +1880,10 @@ def build_workset() -> dict:
         for it in free_ready[slots:]:
             it["status"] = "surfaced"
 
+    by_version: dict[str, int] = {}
+    for x in items:
+        by_version[x.get("version") or "v3"] = by_version.get(x.get("version") or "v3", 0) + 1
+
     summary = {
         "total": len(items),
         "ready": sum(1 for x in items if x.get("status") == "ready"),
@@ -1828,6 +1895,7 @@ def build_workset() -> dict:
         "queue_pending": len(pending_q),
         "live_exqs": sorted(live.keys()),
         "auto_absorbed_retests": auto_absorbed_retests,
+        "by_version": {v: by_version[v] for v in sorted(by_version)},
     }
 
     return {
@@ -1838,7 +1906,11 @@ def build_workset() -> dict:
         "lenses": lenses_meta,
         "indexes": indexes,
         "plans": {
-            pid: {"title": info["title"], "scope_claims": info["scope_claims"]}
+            pid: {
+                "title": info["title"],
+                "scope_claims": info["scope_claims"],
+                "generation": info.get("generation") or "v3",
+            }
             for pid, info in sorted(plan_reg.items())
         },
         "items": items,
@@ -1868,6 +1940,10 @@ def write_markdown(data: dict) -> str:
         f"- Items: **{data['summary']['total']}** "
         f"(ready {data['summary']['ready']}, in_flight {data['summary']['in_flight']}, "
         f"blocked {data['summary']['blocked']})",
+        "- By generation: "
+        + ", ".join(
+            f"{v} {n}" for v, n in sorted((data["summary"].get("by_version") or {}).items())
+        ),
         f"- Pending review: **{data['summary']['pending_review_count']}**",
         f"- Queue pending (unclaimed): **{data['summary']['queue_pending']}**",
         "",
@@ -1886,7 +1962,7 @@ def write_markdown(data: dict) -> str:
     for it in data["items"]:
         lines.append(f"### {it['id']} -- {it['title']}")
         lines.append("")
-        lines.append(f"- **Lane:** {it['lane']} | **Skill:** `{it['skill']}` | **Status:** {it['status']} | **Priority:** {it.get('priority')}")
+        lines.append(f"- **Lane:** {it['lane']} | **Skill:** `{it['skill']}` | **Status:** {it['status']} | **Priority:** {it.get('priority')} | **Generation:** {it.get('version', 'v3')}")
         if it.get("gap_ids"):
             lines.append(f"- **Gap(s):** {', '.join(it['gap_ids'])}")
         if it.get("owner_exq"):
