@@ -1,0 +1,208 @@
+# REE Scientific Progress Dashboard — Design Proposal
+
+*Draft — 2026-07-17. Complementary to the existing closure map; nothing here relaxes formal claim-closure standards.*
+
+## 0. The problem, precisely
+
+The closure map measures **epistemic closure** — claims formally promoted, falsified, or retired — weighted by `CLOSURE_STATUS_WEIGHTS` (`serve.py:1688`) over the `closure_plan:` nodes in `evidence/planning/*_plan.md`. It is deliberately conservative and should stay that way.
+
+But in the current phase most experiments **reduce uncertainty without closing a claim**. Concrete, live example (the MECH-457 competence-floor line, 2026-07-13 → 2026-07-16):
+
+| Run | What it did | Closure delta |
+|-----|-------------|:---:|
+| 747 | Ruled out *representation* as the wall (raw-view + sparse still fails) | 0 |
+| 748 | Showed a dense teacher on z_world clears sparsity | 0 |
+| 749 | Conjunction: needs adequate input **and** dense teacher | 0 |
+| 751 | **Confirmed** the seed — success-independent novelty (RND) clears the 1.0 floor (5.22) | 0 |
+| 752 | Ruled out backward credit-sweep (sub-floor) | 0 |
+| 753 | Ruled out Go-Explore archive/return (sub-floor) | 0 |
+| 754 | Ruled out AMIGo goal-frontier (sub-floor) | 0 |
+| 755 | Ruled out explore/exploit arbitration gate (no gain over fixed RND) | 0 |
+
+Eight experiments. **Zero** movement on the closure map. Yet the hypothesis space for "why is competence stuck below the foraging floor?" collapsed from seven candidate mechanisms to one synthesis (compose RND + credit-replay + developmental anneal → `mech457_competence_bootstrap_explorer`, now under test as V3-EXQ-765). That collapse **is** the scientific progress, and today it is invisible.
+
+The dashboard's single job: **make uncertainty reduction visible without inflating closure.**
+
+---
+
+## 1. The conceptual dashboard — four independent needles + one feed
+
+Four dimensions that move independently, plus a momentum stream. The design's thesis is that these are **orthogonal** — a healthy phase can move any subset while the others sit still, and conflating them (as a single "% done") is the exact error the closure map is being blamed for.
+
+```
+  BUILD            PROVE            NARROW              DECIDE
+  Engineering      Epistemic        Hypothesis          Decision
+  Completion       Closure          Space Remaining     Readiness
+  ─────────        ─────────        ─────────           ─────────
+  does the code    is the claim     how many rival      can a design
+  exist yet?       proven?          explanations        choice legit-
+                                    survive?            imately be made?
+  (build ≠ proof)  (conservative,   (NEW — the          (state machine
+                    unchanged)       missing signal)     per question)
+
+                    ── SCIENTIFIC MOMENTUM ──
+        every recent experiment, classified by what it MOVED
+        (confirmed / ruled-out / control-repaired / measurement-
+         improved / narrowed / implemented / inconclusive / underpowered)
+```
+
+Why four and not one composite: a composite index invites Goodhart (optimise the number, not the science) and re-creates the very conflation we're fixing. Keeping them separate is the anti-Goodhart move — you cannot make the closure needle move by narrowing hypotheses, and you cannot make the narrow needle move by shipping code.
+
+### Dimension 1 — Engineering Completion ("Build")
+**Question:** how much of the intended V3 architecture physically exists, independent of whether it validates?
+
+- **Source:** `evidence/planning/substrate_queue.json` (110 items; 60 `implemented`) + SD-* claims with `epistemic_category: substrate_conditional/substrate_ceiling` + closure nodes the debt-vocabulary tags `complicated (buildable)`.
+- **State machine per module:** `proposed → pending_implementation → implemented → implemented_pending_validation → validated`.
+- **Headline metric:** severity-weighted fraction built (reuse `severity: load-bearing|high|medium|low` weights already on closure nodes). Plus an explicit **build–proof gap** counter: *"N modules built, M still unvalidated"* — the honest distance between "the code exists" and "the claim is proven."
+- **Deliberately independent of Dimension 2.** A module can be `implemented` (Build ✔) while its claim is still `candidate/v3_pending` (Prove ✗). SD-024 da-modulated RBF density is exactly this shape: built and landed weeks before MECH-232 promoted.
+
+### Dimension 2 — Epistemic Closure ("Prove")
+**Unchanged.** A read-only mirror of `read_closure()` / `/api/closure`. Same 77.5 % weighted headline, same conservative weights, same `deferred → None` exclusion. The dashboard *embeds* the closure map; it never re-weights it. This is the guarantee that adding the new dashboard cannot soften closure.
+
+### Dimension 3 — Hypothesis Space Remaining ("Narrow") — the new component
+**Question:** for each open scientific question, how many rival explanations still survive?
+
+Represented as a **branching tree per question**. Each hypothesis is a node with a state:
+
+`untested · alive · eliminated · confirmed · split · dormant`
+
+An experiment acts on the tree: `weakens` (adjudicated, control passed) → `eliminated`; `supports` → `confirmed`; a discrimination that reveals sub-cases → `split` (spawns children); `non_contributory`/`inconclusive` → node **unchanged** (correctly: an uninformative run must not shrink the space).
+
+Worked example (real, from the fanout above) — question **"Why is competence stuck below the foraging floor?"**:
+
+```
+Q: competence-floor root  (MECH-457 / INV-088)
+├── H-rep      representation insufficient        ✗ eliminated  (747, 749)
+├── H-explore  needs dense teacher / exploration  ⇄ split → { sparsity-was-wall (748 ✓),
+│                                                             but only 11% of ceiling }
+├── H-optim    success-independent novelty (RND)  ✓ confirmed   (751 — clears 1.0 floor)
+├── H-credit   backward credit-sweep              ✗ eliminated  (752)
+├── H-return   Go-Explore archive/return          ✗ eliminated  (753)
+├── H-curric   AMIGo goal-frontier                ✗ eliminated  (754)
+└── H-arbitr   explore/exploit arbitration gate   ✗ eliminated  (755)
+
+surviving: 1 synthesis (RND necessary, insufficient alone → compose)  ·  initial: 7  ·  reduction 6/7
+```
+
+**Metrics (principled; no fabricated precision):**
+- **Surviving hypotheses** — an *integer*, the headline. Un-gameable without real discriminating experiments.
+- **Reduction ratio** = eliminated ÷ pre-registered-initial, per question. Meaningful *only* because hypotheses are frozen at fan-out registration (see governance).
+- **Coarse entropy proxy** `H = log₂(surviving) bits` — shown **only** when survivors are explicitly enumerated and roughly equiprobable; otherwise suppressed. We never attach invented per-hypothesis probabilities. (7→1 reads as ~2.8 bits removed on this question; that is the strongest defensible quantitative statement.)
+- **Project roll-up:** total surviving hypotheses across all open questions, plotted over time — the **cumulative information-gain curve**, the chart that visibly falls while closure sits flat.
+
+### Dimension 4 — Decision Readiness ("Decide")
+**Question:** for each major architectural question, how many unknowns remain before a design decision can *legitimately* be made?
+
+**State machine per question:**
+
+`observation_bottleneck → prediction_rich_action_poor → discriminative_ready → decidable_now → decided`
+
+- `observation_bottleneck` — can't even measure yet; needs a control or instrument (e.g. 750: matched-competence precondition unmet).
+- `prediction_rich_action_poor` — theory is sharp, no clean discriminating experiment has run.
+- `discriminative_ready` — one well-posed experiment away from a decision (e.g. the live 737 gate).
+- `decidable_now` — evidence sufficient; only the human decision is outstanding.
+- `decided` — folded into closure (hand-off to Dimension 2).
+
+Each card carries a **decision distance** in the vocabulary the user asked for — *"1 successful discriminative experiment"*, *"2 additional controls"* — read directly off open fan-out legs and failed negative-controls in the autopsy stream. The evidence bar is bucketed into **deciles**, not false-precise percentages.
+
+### Scientific Momentum feed
+Every adjudicated experiment, reclassified from the binary PASS/FAIL into **what it actually moved**. Deterministic mapping (see §4). This is the section that stops treating "747 FAIL" and "a genuinely uninformative FAIL" as equivalent — 747 *ruled out the representation axis*, and the feed says so.
+
+---
+
+## 2. Recommended metrics (and what we deliberately refuse to compute)
+
+| Metric | Type | Source | Goodhart guard |
+|--------|------|--------|----------------|
+| Severity-weighted build fraction | ratio | substrate_queue + closure severities | build ≠ proof; unvalidated sub-count shown alongside |
+| Build–proof gap | integer | modules `implemented` but claim not promoted | — |
+| Closure weighted % | ratio | `read_closure()` (unchanged) | conservative weights, read-only |
+| Surviving hypotheses / question | integer | hypothesis_space.v1.json | elimination needs adjudicated `weakens` + passed control |
+| Reduction ratio | ratio | eliminated ÷ frozen-initial | initial enumeration frozen at fan-out; retro-padding = audit flag |
+| `log₂(surviving)` entropy proxy | bits | surviving count | shown only when enumerated & ~equiprobable |
+| Cumulative surviving-hypotheses over time | time series | ledger snapshots | monotone claims audited against adjudications |
+| Decision-readiness state | enum (5) | fan-out legs + autopsy | state advance requires an adjudicated event |
+| Decision distance | phrase + integer | open legs / missing controls | phrased qualitatively |
+| Momentum class | enum (8) | deterministic map §4 | derived, never hand-set |
+
+**Refused (fake precision):** a single composite "progress score"; per-hypothesis posterior probabilities we can't defend; Expected Value of Information in currency-of-experiments (we *do* keep its qualitative cousin — "which axis discriminates most" — because the fan-out shape already encodes it). The user's brief explicitly licenses this refusal: *"If quantitative scoring is weak, prefer qualitative state machines."*
+
+The one genuinely quantitative anchor we already own is the **Beta-Binomial posterior + 95 % credible interval** from `build_experiment_indexes.py` (`claim_evidence.v1.json`). CI *width* is a defensible per-claim reducible-uncertainty proxy; narrowing CI over time is a legitimate secondary momentum signal, and it is already computed — no new statistics invented.
+
+---
+
+## 3. Governance rules
+
+The dashboard is a **derive-only consumer**. It has authority over nothing.
+
+1. **Never a gate, always exits 0.** Same contract as `generate_closure_snapshot.py`. A red momentum panel never blocks a commit, a promotion, or a runner.
+2. **No write-back into `claims.yaml` or the closure map.** Momentum classes, hypothesis states, and decision-readiness states are stored in a *separate* ledger (`hypothesis_space.v1.json`) and never mutate claim `status`/`live_status`. Closure conservatism is structurally protected because the new signal lives in a different file the closure pipeline never reads.
+3. **Hypotheses are pre-registered.** A hypothesis enters a question's tree *before* its discriminating experiment runs — sourced from an autopsy's `fanout_recommendation` (or a manually-registered enumeration for non-fan-out questions). The initial set is **frozen** at registration; the denominator of the reduction ratio cannot be padded after the fact.
+4. **Elimination bar = closure bar.** A hypothesis flips to `eliminated` only on an **adjudicated `weakens`** with a **passed negative control** and `non_degenerate: true`. A vacuous pass or a starved run (750-style) narrows nothing — it advances Decision Readiness *backwards* (surfaces an observation bottleneck), which is the honest reading.
+5. **Anti-Goodhart audit.** A standing check (sibling of `check_closure_drift.py` and `check_granularity_debt_recurrence.py`) flags: (a) any question whose surviving-count dropped with no adjudicated `weakens` behind it; (b) any post-hoc enlargement of a frozen initial set; (c) `confirmed` nodes lacking a passed control. Flags are advisory, printed, non-blocking.
+6. **Human owns the decision.** `decidable_now → decided` is only ever set by a `decision_log.v1.jsonl` entry (actor = a person), never auto-derived. The dashboard can say "decidable," never "decided."
+
+---
+
+## 4. Update rules after each experiment
+
+Runs at the **same adjudication moment** as governance (`/failure-autopsy` → `/governance`), reading the artifacts those steps already produce — no new human step.
+
+For each newly-adjudicated run:
+
+**Step A — classify momentum** (deterministic map):
+
+| Signal | Momentum class |
+|--------|----------------|
+| `outcome PASS` + `evidence_direction supports` | **confirmed** |
+| adjudicated `weakens` + control passed | **ruled out** |
+| `recommended_epistemic_category measurement_test_design_defect / measurement_gap` (re-queue fixes a control) | **control repaired** |
+| `measurement_degeneracy / measurement_artifact` resolved | **measurement improved** |
+| `non_contributory` that eliminates a specific fan-out leg / discrimination split | **hypothesis narrowed** |
+| substrate landed via `/implement-substrate` | **implementation completed** |
+| `evidence_direction inconclusive` | **inconclusive** |
+| `non_degenerate: false` / `precondition_unmet` / vacuous_pass | **underpowered** |
+
+**Step B — update the hypothesis tree.** Locate the run's target hypothesis (via `queue_id`→`leg`, or `claim_ids`). Apply the state transition from §1. `split` spawns pre-registered children. `non_contributory`/`inconclusive`/`underpowered` leave the tree's *counts* untouched (they still appear in the feed).
+
+**Step C — recompute per-question rollups.** Surviving count, reduction ratio, entropy proxy, decision-readiness state, decision distance.
+
+**Step D — snapshot the project curve.** Append `(date, total_surviving, closure_pct, build_pct)` to the time series so the dual-line chart gains a point. This is the artifact that makes "closure flat, understanding advancing" self-documenting.
+
+**Step E — run the anti-Goodhart audit** (§3.5), print flags.
+
+All five steps are pure functions of files that already exist (`failure_autopsy_*.json`, manifests, `claim_evidence.v1.json`, `substrate_queue.json`, closure frontmatter). The only *new* persistent artifact is `hypothesis_space.v1.json` + its append-only time series.
+
+---
+
+## 5. Mock-up
+
+Delivered as an interactive HTML dashboard (published artifact). It is populated with **real current data** — the MECH-457 competence-floor fan-out, the INV-088/089/090 ceiling/driver split, SD-024/025, the live 737/738/739 front, and MECH-232's genuine promotion — so it doubles as a validation that the four dimensions actually separate on today's project state.
+
+Layout, top to bottom:
+1. **Four-needle header** — Build / Prove / Narrow / Decide, each an independent gauge, captioned with its distinct question.
+2. **Hero dual-line chart** — cumulative surviving-hypotheses (falling) over a flat closure %, captioned *"closure static — understanding advancing."*
+3. **Shrinking hypothesis tree** — the live competence-floor question, seven leaves collapsing to one synthesis, colour-coded by state.
+4. **Decision-readiness cards** — one per major question, state pill + evidence decile bar + decision distance.
+5. **Scientific Momentum feed** — recent runs, each with its class chip and the one line of *what it moved*.
+
+---
+
+## 6. Coexistence with the existing closure map
+
+- **Two pages, one nav.** New `progress.html` served exactly like `/machines` (`serve.py:5797` pattern) + `read_progress()` + `/api/progress`; a static Pages mirror under `docs/assets/data/progress.v1.json` via `build_site_visualizations.py`. Linked from the explorer "More ▾" menu next to **Closure 🧩**.
+- **Closure stays the source of truth for "done."** The progress dashboard *embeds* the closure needle (Dimension 2) read-only and links out to `/closure` for the authoritative node-by-node view. Nothing in the closure pipeline changes.
+- **Division of labour:**
+  - *Closure map* answers **"how many claims have been completed?"** — conservative, promotion-gated, the record.
+  - *Progress dashboard* answers **"how much closer are we to understanding REE?"** — includes build-without-proof and narrowing-without-closure, the leading indicator.
+- **The hand-off is explicit.** When a hypothesis reaches `confirmed` and its claim clears the promotion gate, Dimension 3/4 hand it to Dimension 2 — the momentum feed's `confirmed` entry links to the closure node it eventually becomes. No double-counting: a promoted claim's hypotheses are marked `decided` and drop out of the surviving-count.
+- **CURRENT_FRONT.md gains one line** — the surviving-hypothesis count on the live question — so the existing "single live front" doc points at both maps.
+
+### Build path (if approved)
+1. `scripts/build_hypothesis_space.py` → `evidence/planning/hypothesis_space.v1.json` (+ append-only time series). Derive-only, exits 0. Registered as a `closure_plan`-sibling generation `meta`, runs in `governance.sh`.
+2. `read_progress()` in `serve.py` + `/api/progress` + `/progress` route (copy the 12-line `/machines` block).
+3. `progress.html` (the mock-up, wired to `/api/progress`).
+4. Static mirror in `build_site_visualizations.py`.
+5. Anti-Goodhart audit `scripts/check_hypothesis_space_integrity.py` (sibling of `check_closure_drift.py`).
+
+No change to `claims.yaml`, the closure weights, the evidence scorer, or any promotion gate. The new signal is strictly additive.
