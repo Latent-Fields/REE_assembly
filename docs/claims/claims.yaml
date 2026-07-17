@@ -55358,3 +55358,105 @@
     governance scoring); this note records the discrimination, not a weighted
     evidence entry.
   location: evidence/literature/targeted_review_actor_critic_action_learning/
+
+- id: MECH-458
+  title: "Curiosity is a reward-conditional EXPLOITATION amplifier, not a diversity generator: the SD-025 hippocampal curiosity / density-attraction drive pulls only toward representational structure that reward (SD-024/MECH-232 DA-expansion) has ALREADY sculpted -- a rich-get-richer loop with zero PROACTIVE pull toward unshaped / novel / under-represented regions. Its only diversity affordance is a weak, lagging, REACTIVE familiarity-discount brake (~half the strength of the exploitation force it opposes, and zero at the decision point). COROLLARY: proactive strategy-diversity GENERATION requires a SEPARATE rarity-seeking drive (Bellemare-2016 polarity: attraction to LOW-count / under-represented strategy classes, independent of prior reward-shaping), NOT a novelty-magnitude increase on the existing drive; and any such drive is ORDERING-GATED on INV-088 z_world differentiation (a rarity term over an under-differentiated map has nothing to range over)."
+  claim_type: mechanism_hypothesis
+  subject: hippocampal_module.curiosity_drive.exploitation_polarity
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-17
+    needs_review: false
+    evidence:
+      from: "V3-EXQ-767a + V3-EXQ-768a (both cloud PASS, non-degenerate) + re-analysis probe scratchpad/probe1_sd025_force_decomposition.py"
+      as_of: 2026-07-17
+      verdict: "DESCRIPTIVE polarity (exploitation-dominant, diversity=0 at selection, curiosity-alone-on-flat=0) SUPPORTED by 767a+768a re-analysis (diagnostic); the FIX corollary (rarity-seeking generation drive) is v3_pending -- build blocked-on-upstream INV-088 z_world differentiation, untested"
+  implementation_phase: v3
+  v3_pending: true
+  claim_level: mechanistic
+  registered_utc: "2026-07-17"
+  depends_on:
+    - SD-025    # the curiosity/density-attraction drive whose polarity this claim characterizes
+    - SD-024    # DA-expansion -- the reward-shaping the drive is parasitic on (768a: flat-map -> zero)
+    - ARC-057   # approach-emergence: the SAME drive is correct THERE (provisional 2026-07-17); this claim scopes the DIVERSITY side ARC-057 never claimed
+    - INV-088   # z_world differentiation -- the ORDERING gate for the rarity-seeking generation drive the corollary prescribes
+  location: docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-exploitation-polarity-mech-458
+  functional_restatement: >
+    The SD-025 curiosity drive that makes reward-approach EMERGE (ARC-057) is
+    structurally the WRONG force for strategy-diversity GENERATION -- a category
+    limit, not a parameter to tune. Two cloud PASSes decompose the drive on the
+    identical CEM score-margin scale (re-analysis, no new compute):
+
+    (1) V3-EXQ-767a (map IS reward-shaped): density-attraction at selection = 39.3
+    vs the familiarity-discount CEILING (after 12 forced visits) = 20.4 (1.93x),
+    and the diversity term contributes 0.00 AT THE DECISION POINT (familiarity
+    starts at 0). The drive's first move is 100% exploitation; its only diversity
+    affordance is a lagging reactive "leave after you've exploited" brake -- Bellemare's
+    proactive low-count bonus INVERTED.
+
+    (2) V3-EXQ-768a (map NOT reward-shaped): SD-025-alone on a flat map = 0 directed
+    behaviour; the density-attraction force is 100% parasitic on dopamine (SD-024)
+    having already sculpted the map. Together: curiosity pulls ONLY toward structure
+    reward has already built (rich-get-richer); it has no proactive pull toward
+    unshaped / under-represented regions -- exactly the flat-map case where it outputs
+    zero. This explains the stuck v3 mass (conversion_ceiling 0%, competence floor,
+    monostrategy): a GENERATION drive biased toward the already-rewarding region
+    under-serves per-candidate strategy diversity.
+
+    Biological / ML grounding (targeted_review_arc_057, NON-load-bearing per the
+    lit/exp decoupling rule): Bellemare 2016 (pseudo-counts) -- a density-based
+    intrinsic drive DOES produce directed navigation, but the bonus is HIGH for
+    low-count / rarely-visited states = the OPPOSITE polarity on "density" from
+    SD-025's density-attraction, and the precise vocabulary for what the generation
+    drive is missing. Stachenfeld 2017 (predictive map) -- approach is read off map
+    STRUCTURE, so a rarity-seeking drive needs a differentiated map to range over
+    (the INV-088 ordering gate). Pathak 2017 (ICM) -- curiosity-alone yields directed
+    approach only in informationally RICH envs; REE's grid world is flat, so all
+    structure comes from internal DA-expansion (SD-024).
+  what_would_answer: >
+    ONCE INV-088 z_world differentiation is cleared (the ordering gate), build a
+    proactive rarity-seeking generation drive on ARC-065/MECH-314 (Bellemare polarity:
+    attraction to low-count / under-represented strategy classes or z_world regions,
+    independent of reward-shaping) and run a discriminative arm against (a) OFF and
+    (b) a pure novelty-MAGNITUDE sweep of the existing SD-025 drive (the
+    infant_substrate:GAP-13 lever). PRIMARY DV = per-candidate / committed-class
+    strategy diversity on an UNSHAPED (flat / not-yet-reward-sculpted) map. SUPPORTS
+    the claim iff the rarity-seeking arm supplies diversity pull comparable to the
+    ~39-unit exploitation force AT THE DECISION POINT (where SD-025 supplies 0) AND the
+    novelty-magnitude sweep does NOT (768a predicts the flat-map arm reads ~0 regardless
+    of weight). WEAKENS iff a magnitude sweep of the existing density-attraction drive
+    alone lifts flat-map diversity (would refute the polarity/category claim). Not
+    runnable before INV-088 (a rarity term over an AUC-0.83 under-differentiated map
+    chases the sparse corner, not diverse strategies) -- so this is a build-gated
+    prediction, not a queued falsifier.
+  evidence_quality_note: >
+    2026-07-17 registration (source: evidence/planning/curiosity_exploitation_amplifier_reframe_2026-07-17.md,
+    registered as hypothesis 2026-07-17; anchored by V3-EXQ-767a + V3-EXQ-768a, both
+    cloud PASS non-degenerate, + the re-analysis probe probe1_sd025_force_decomposition.py).
+    The DESCRIPTIVE polarity half is evidence-anchored (767a force decomposition + 768a
+    2x2 interaction, robust across 8 seeds x 2 experiments); the force MAGNITUDES are
+    SD-025 diagnostic-geometry-specific (counterbalanced 2-region test-bed, not a full
+    behavioural env) while the DIRECTIONS (exploitation >> diversity; diversity = 0 at
+    selection; curiosity-alone-on-flat = 0) are robust. The FIX corollary (rarity-seeking
+    is the missing GENERATION drive) is a v3_pending PREDICTION, not yet tested -- its
+    build is blocked-on-upstream INV-088 z_world differentiation. Registered candidate;
+    PROMOTES/DEMOTES NOTHING (767a/768a are diagnostic, excluded from confidence scoring;
+    the registration is the metabolization action, not a confidence increment). Lit
+    NON-load-bearing (decoupling rule). Relationship to siblings: does NOT rest on / is
+    NOT rested on by ARC-057's 768a promotion (ARC-057 is approach-side scoped and
+    explicitly excludes the diversity side this claim covers); consistent with MECH-457's
+    refutation of the explore/exploit-ARBITRATION axis (V3-EXQ-755) -- the drive is the
+    wrong KIND, not mis-arbitrated. Re-scopes conversion_ceiling_campaign (adds a
+    GENERATION face; see conversion_ceiling_campaign_plan.md :GENERATION node) and routes
+    the ARC-065/MECH-314 build (arc_062_rule_apprehension:GAP-H /
+    behavioral_diversity_isolation) as rarity-seeking, ordering-gated on INV-088.
+  notes: >
+    Premise-challenge cross-refs already on conversion_ceiling_campaign_plan.md and
+    behavioral_diversity_isolation_plan.md (commit e00047c17d). This claim is the
+    registered form of that reframe. The rarity-seeking build itself is NOT queued here --
+    it is blocked-on-upstream INV-088; this registration + the campaign GENERATION-face
+    re-scope are the metabolization step. See [[project_curiosity_exploitation_amplifier_reframe]],
+    [[project_monostrategy_representation_ceiling_root]] (differentiate-first),
+    [[project_mech457_competence_floor_coldstart]], [[project_conversion_ceiling_four_roots]].

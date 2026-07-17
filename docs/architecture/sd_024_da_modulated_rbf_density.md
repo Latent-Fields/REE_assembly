@@ -179,6 +179,46 @@ centers (DA-expanded) have higher density, so they score higher on novelty *even
 if the agent has visited before*, because there are more centers to distinguish
 between. The agent keeps finding "new" structure in the expanded region.
 
+<a id="curiosity-exploitation-polarity-mech-458"></a>
+#### Polarity: an exploitation amplifier, not a diversity generator (MECH-458)
+
+> **MECH-458 (candidate / v3_pending, registered 2026-07-17).** Source of truth:
+> [`evidence/planning/curiosity_exploitation_amplifier_reframe_2026-07-17.md`](../../evidence/planning/curiosity_exploitation_amplifier_reframe_2026-07-17.md).
+> Evidence anchor: V3-EXQ-767a + V3-EXQ-768a (both cloud PASS, non-degenerate) +
+> the re-analysis probe `scratchpad/probe1_sd025_force_decomposition.py`.
+
+The same "does the same computation everywhere" property that makes approach EMERGE
+(ARC-057) makes this drive structurally the WRONG force for strategy-diversity
+GENERATION. Two cloud PASSes decompose the drive on the identical CEM score-margin
+scale (re-analysis, no new compute):
+
+- **767a (map IS reward-shaped):** density-attraction at selection = **39.3** vs the
+  familiarity-discount CEILING (after 12 forced visits) = **20.4** (1.93x), and the
+  diversity term contributes **0 at the decision point** (familiarity starts at 0).
+  The drive's first move is 100% exploitation; its only diversity affordance is a
+  lagging, reactive "leave after you've exploited" brake -- Bellemare's proactive
+  low-count bonus INVERTED.
+- **768a (map is NOT reward-shaped):** SD-025-alone on a flat map = **0** directed
+  behaviour. The density-attraction force is 100% parasitic on dopamine (SD-024)
+  having already sculpted the map.
+
+**Together:** curiosity pulls only toward structure reward has ALREADY built (a
+rich-get-richer loop); it has no proactive pull toward unshaped / under-represented
+regions -- exactly the flat-map case where it outputs zero. This under-serves the
+stuck v3 mass (conversion_ceiling 0%, competence floor, monostrategy).
+
+**Corollary (the build spec, v3_pending, blocked-on-upstream INV-088):** proactive
+strategy-diversity generation requires a SEPARATE **rarity-seeking** drive (Bellemare-2016
+polarity: attraction to LOW-count / under-represented strategy classes, independent of
+reward-shaping) -- NOT a novelty-MAGNITUDE increase on the existing drive (768a shows
+the flat-map arm reads ~0 regardless of weight; the `infant_substrate:GAP-13` lever
+cannot help). It is ORDERING-GATED on INV-088 z_world differentiation: a rarity term
+over an AUC-0.83 under-differentiated map chases the sparse corner, not diverse
+strategies (Stachenfeld 2017; matches the monostrategy plan's differentiate-first
+prediction). This hands to `ARC-065 / MECH-314` (`arc_062_rule_apprehension:GAP-H` /
+`behavioral_diversity_isolation`) and adds a GENERATION face to the
+`conversion_ceiling_campaign` (whose five existing faces are all SELECTION machinery).
+
 ### 4. DA Signal Source
 
 The dopamine signal for center allocation should come from the reward encounter
