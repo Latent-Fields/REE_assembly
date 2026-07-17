@@ -66,8 +66,9 @@ loaded with a known clean signal, then scored against that known signal:
   caveat).
 - `rem_precision_error` -- inject a known target precision + starting variance,
   corrupt the reference by `sigma`, run `recalibrate_precision_to`, measure
-  `|running_variance_after - 1/target_clean|`; also drives the live generative
-  `run_rem_attribution_pass` for the gain readout.
+  `|running_variance_after - 1/target_clean|` (the passthrough (a) baseline).
+- `rem_generative_fidelity` -- the clean generative-re-derivation readout (see
+  "REM generative gain" below), driven from `rem_precision_error`.
 
 **Uniform diffuse-damage knob.** `diffuse_perturb(t, sigma, gen)` -- additive
 isotropic Gaussian scaled to each tensor's own RMS, so a given `sigma` is
@@ -82,13 +83,62 @@ is what separates a genuine staged sensitivity from topology-baked level
 differences. REM is measured two ways:
 
 - the bare linear precision nudge (MECH-204) -- **passthrough by construction**;
-- the generative re-derivation pass (`run_rem_attribution_pass`, Hobson & Friston
-  2012) -- the only locus where an attenuating (gain < passthrough) or amplifying
-  (gain > passthrough) REM gain can appear.
+- the generative re-derivation pass (the hippocampal replay rollout that
+  `run_rem_attribution_pass` performs, Hobson & Friston 2012) -- the only locus
+  where an attenuating (gain < 1) or amplifying (gain > 1) REM gain can appear.
 
-If the generative gain measures ~ passthrough, the honest diagnostic outcome is
-"the V3 REM substrate has no corrective capacity, so its staged-first-failure is
-pure topology" -- a valid, informative result, not a harness failure.
+If the generative gain measures ~ passthrough (~1), the honest diagnostic outcome
+is "the V3 REM substrate has no corrective capacity, so its staged-first-failure
+is pure topology" -- a valid, informative result, not a harness failure.
+
+### REM generative gain -- rollout-seed injection (`rem_generative_fidelity`)
+
+**(Implemented 2026-07-17; replaces the retired `rem_terrain_variance` proxy.)**
+The first cut of the REM (b) leg corrupted the E3 **precision reference** and read
+`rem_terrain_variance` back as an amplify/attenuate indicator. But the generative
+pass never consumes the precision reference -- it consumes the **rollout seed**
+(`theta_buffer.recent`, re-derived through `hippocampal.replay -> e2.rollout_with_world`).
+So that read was ~null (confirmed in V3-EXQ-778: PASSED on ree-cloud-4,
+`20260717T160320Z`, generative sensitivity ~null).
+
+The clean readout injects the known content onto the seed the generative pass
+actually reads:
+
+1. capture `theta_buffer.recent[-1]` (an in-distribution `z_world`) as the known
+   clean target;
+2. re-derive the **clean** rollout with the exact call `hippocampal.replay` makes
+   (`e2.rollout_with_world`), but with a **fixed** action sequence held constant
+   across the clean and corrupt re-derivations -- replay's per-call *random*
+   actions were precisely why the proxy variance read null (action noise swamped
+   the seed effect); `n_rollouts` fixed action draws are averaged;
+3. corrupt the seed by `sigma` (the same `diffuse_perturb` primitive) and
+   re-derive with the **same** fixed actions;
+4. measure the recovered-vs-known-target deviation over the **generated** states
+   (`world_states[1:]`, excluding the raw seed passthrough at `t=0`), relative to
+   the clean rollout.
+
+The load-bearing number is `rem_generative_gain` = least-squares slope of the
+generated-rollout relative deviation vs the injected seed's relative corruption
+across the `sigma` grid:
+
+- `gain < 1` -> **attenuating** (genuine generative correction; non-vacuous
+  staging -- the REM pass recovers content from a corrupt seed);
+- `gain ~ 1` -> passthrough (staging is topology);
+- `gain > 1` -> amplifying (MECH-094 psychosis polarity).
+
+Smoke result against the real substrate (seeds 0/1/7, `sigma` in
+`{0, 0.25, 0.5, 1, 2}`): `rem_generative_gain` in ~`0.07-0.41`, `attenuates=1.0`
+on every seed -- a real, monotone, strongly-attenuating dose-response, no longer
+null. The corrupted seed is also pushed into `theta_buffer` and the real
+`run_rem_attribution_pass` driven once for liveness telemetry (`rem_n_rollouts`),
+confirming the injection point is exactly the seed the live REM path reads;
+`rem_terrain_variance` is retained as telemetry only, not scored.
+
+**Backward-compatible key contract:** `error_propagation_gain` keeps
+`rem_generative_output_slope` / `rem_passthrough_calibration_slope` /
+`rem_generative_available` (the existing V3-EXQ-778 driver's contract; the
+`output_slope` key is now fed by the real readout, not the proxy) and **adds**
+`rem_generative_gain`, `rem_generative_gain_mean`, and `rem_generative_attenuates`.
 
 `run_staged_sweep` orchestrates a per-seed sweep and reports the OBSERVED
 staged-failure order (phases ranked by gain) versus the predicted reverse-dependency
