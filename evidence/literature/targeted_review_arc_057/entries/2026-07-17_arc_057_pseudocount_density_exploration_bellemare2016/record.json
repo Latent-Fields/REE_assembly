@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_057",
+  "entry_id": "2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016",
+  "timestamp_utc": "2026-07-17T06:24:59Z",
+  "claim_ids_tested": ["ARC-057"],
+  "source": {
+    "title": "Unifying Count-Based Exploration and Intrinsic Motivation",
+    "authors": ["Marc G Bellemare", "Sriram Srinivasan", "Georg Ostrovski", "Tom Schaul", "David Saxton", "Remi Munos"],
+    "year": 2016,
+    "venue": "NeurIPS 2016; arXiv:1606.01868",
+    "doi": "10.48550/arXiv.1606.01868",
+    "url": "https://arxiv.org/abs/1606.01868"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Shows that a DENSITY MODEL over the state space, converted into a pseudo-count intrinsic bonus, produces directed navigation toward distant goals in hard sparse-reward tasks (notably Montezuma's Revenge) with no explicit external gradient guiding the agent there. This grounds ARC-057's mechanism-plausibility -- that a density-based intrinsic drive yields emergent directed approach -- and matches SD-025's FAMILIARITY term almost exactly (the bonus is high for rarely-visited states). Held at 0.55 by a real sign-tension: count-based novelty seeks LOW-count / under-explored regions, whereas ARC-057's curiosity is ATTRACTED to HIGH representational density; the two theories agree on the familiarity/visitation term but are opposite on the representational-density term, which is REE's own contribution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The pseudo-count bonus is HIGH for LOW-density (rarely visited) states -- novelty-as-rarity. ARC-057's curiosity drive is ATTRACTED to HIGH representational density (more RBF centers = more to distinguish). The word 'density' means opposite things: state-visitation density (Bellemare, seek low) vs representational density (REE, seek high). Support holds only for the visitation/familiarity half of SD-025's novelty = density x (1 - familiarity).",
+    "Directedness comes from a value-bootstrapping RL agent propagating the intrinsic bonus via TD backups into a policy, i.e. the approach IS carried by a learned value function -- whereas ARC-057 claims approach without an explicit value/wanting gradient. The mechanism of directedness therefore differs from REE's density-following CEM read-out.",
+    "The result is exploration to reach novelty, not approach toward reward per se; the reward-directedness in Montezuma comes from extrinsic reward eventually being found and bootstrapped, not from an asymmetric DA-shaped representation making the drive land on reward."
+  ],
+  "tags": ["arc-057", "intrinsic_motivation", "count_based_exploration", "pseudo_count", "density_model", "directed_exploration", "sd-025", "familiarity", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "A density model over states can be turned into a pseudo-count via the change in the model's prediction after observing a state; using this pseudo-count as an exploration bonus (high for rarely-visited states) generalizes count-based exploration to high-dimensional, non-tabular settings and yields strongly directed exploration, solving hard sparse-reward games such as Montezuma's Revenge that defeat undirected (epsilon-greedy) agents.",
+    "ree_translation": "Demonstrates the general mechanism ARC-057 depends on: a density-based intrinsic drive produces emergent, directed, goal-reaching navigation rather than random walk. It directly instantiates SD-025's familiarity discount -- the visit-count EMA that keeps the agent from perseverating on already-explored regions -- and shows that a novelty bonus of this form is sufficient to organize long-range directed approach in practice.",
+    "mapping_caveat": "Critical sign-tension: pseudo-counts reward LOW-visitation (novelty-as-rarity), matching SD-025's familiarity term, but ARC-057's curiosity is ATTRACTED to HIGH representational density -- the opposite polarity on the 'density' variable. This paper therefore supports the familiarity/anti-perseveration half of SD-025 and the general 'density-based drive -> directed approach' plausibility, but NOT the representational-density-attraction that is REE's novel contribution, and NOT the gradient-free read-out (its directedness is carried by a bootstrapped value function). Deep-RL video-game -> REE hippocampal CEM by functional analogy.",
+    "source_context": "Deep reinforcement learning (DQN / A3C variants) on the Atari Arcade Learning Environment, especially hard-exploration sparse-reward games; a CTS density model supplies the pseudo-counts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.45,
+    "notes": "Canonical NeurIPS result establishing density-model intrinsic motivation. Mapping fidelity moderate-low: exact match to SD-025's familiarity/visitation term and strong support for 'density-based drive -> directed approach', but opposite polarity on representational density and directedness carried by a value function rather than gradient-free. Transfer risk moderate: Atari deep-RL -> REE abstract hippocampal terrain."
+  }
+}

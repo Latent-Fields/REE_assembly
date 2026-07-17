@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_057",
+  "entry_id": "2026-07-17_arc_057_predictive_map_emergent_navigation_stachenfeld2017",
+  "timestamp_utc": "2026-07-17T06:24:59Z",
+  "claim_ids_tested": ["ARC-057"],
+  "source": {
+    "title": "The hippocampus as a predictive map",
+    "authors": ["Kimberly L Stachenfeld", "Matthew M Botvinick", "Samuel J Gershman"],
+    "year": 2017,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.4650",
+    "url": "https://doi.org/10.1038/nn.4650"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Foundational, heavily-cited normative model (validated against place- and grid-cell data) showing that goal-directed navigation is read off the STRUCTURE of a hippocampal representation -- a successor representation whose place fields skew and cluster around rewards and barriers -- rather than off an explicit stored value gradient. This is exactly ARC-057's core thesis ('there is no gradient -- there is more map'). Held at 0.62 because the representational scheme is a successor/predictive map (future-occupancy), NOT REE's DA-modulated RBF density expansion, and the paper contains no separate curiosity/information-seeking drive -- it grounds the 'representation-structure produces approach without an explicit gradient' premise but not the specific SD-024 x SD-025 two-component interaction that ARC-057 asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The map here is a successor representation encoding expected future state occupancy; place fields reshape around reward/goal locations, but the reshaping is driven by the transition/reward structure of the task, not by a dopaminergic representational-DENSITY expansion signal -- so it supports 'structure not gradient' generically while being silent on the DA-expansion (MECH-232/SD-024) leg ARC-057 specifically invokes.",
+    "There is no curiosity or information-seeking drive in the model. Approach follows the value/policy read off the SR map, so the paper does not evidence the ARC-057 claim that a UNIFORM curiosity drive (SD-025) operating on the asymmetrically-shaped map is what converts representational structure into approach.",
+    "Because the SR map itself encodes reward-weighted expected occupancy, a critic could argue the map is not gradient-free but rather bakes an implicit value gradient into the representation -- the very implicit/explicit boundary ARC-057 rests on is blurred here."
+  ],
+  "tags": ["arc-057", "hippocampus", "predictive_map", "successor_representation", "emergent_navigation", "no_explicit_gradient", "mech-232", "sd-025"],
+  "mapping": {
+    "source_claim_statement": "The firing of hippocampal place cells is well described as encoding a predictive (successor) representation -- expected future state occupancy under the current policy. Place fields skew opposite the direction of travel, cluster and subdivide around rewarded goals and barriers, and grid cells arise as a low-dimensional eigendecomposition of this map. Goal-directed navigation and reward-sensitive reshaping of the representation emerge from the predictive structure of the map itself.",
+    "ree_translation": "Grounds the ARC-057 architectural insight that approach behaviour toward reward can be an emergent read-out of representational STRUCTURE rather than a commanded value/wanting gradient. The observation that place fields cluster and subdivide (finer resolution, more sub-fields) around reward locations is the biological analogue of REE's reward-driven representational expansion (MECH-232/SD-024); the fact that navigation is then produced by operating on that shaped map -- not by a separate stored gradient field -- is precisely ARC-057's 'more map, not more gradient' claim.",
+    "mapping_caveat": "The paper's mechanism is a successor/predictive map, not DA-modulated RBF density expansion, and it has no explicit curiosity drive -- so it supports ARC-057's 'representation-structure yields approach without an explicit gradient' premise by functional analogy, not the specific SD-024 x SD-025 interaction. It also arguably folds an implicit value gradient into the SR itself, so the implicit-vs-explicit boundary is softer than in REE. Rodent/human hippocampal model -> REE abstract RBF terrain transfer is by analogy of function.",
+    "source_context": "Normative computational model (successor representation / temporal-difference learning) compared against rodent place-cell and grid-cell recordings and human fMRI; simulated spatial navigation in open fields, mazes, and tasks with rewards and barriers."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Foundational high-venue model, strongly validated against neural data. Mapping fidelity moderate: directly supports 'approach from representational structure, no explicit gradient' and the reward-driven field-subdivision analogue of representational expansion, but the representational scheme (SR) differs from RBF density and there is no curiosity-drive component. Transfer risk moderate: hippocampal spatial map -> REE abstract hippocampal RBF terrain, and SR reward-weighting blurs the implicit/explicit gradient line."
+  }
+}

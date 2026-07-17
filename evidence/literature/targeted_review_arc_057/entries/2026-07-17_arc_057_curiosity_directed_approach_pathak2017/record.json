@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_057",
+  "entry_id": "2026-07-17_arc_057_curiosity_directed_approach_pathak2017",
+  "timestamp_utc": "2026-07-17T06:24:59Z",
+  "claim_ids_tested": ["ARC-057"],
+  "source": {
+    "title": "Curiosity-driven Exploration by Self-supervised Prediction",
+    "authors": ["Deepak Pathak", "Pulkit Agrawal", "Alexei A Efros", "Trevor Darrell"],
+    "year": 2017,
+    "venue": "ICML 2017 (PMLR v70); arXiv:1705.05363",
+    "doi": "10.48550/arXiv.1705.05363",
+    "url": "https://arxiv.org/abs/1705.05363"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Canonical computational demonstration that an intrinsic curiosity signal ALONE -- with no extrinsic reward gradient -- produces directed, goal-approaching navigation (systematic level-traversal in Super Mario, room-to-room navigation in VizDoom). That is the ARC-057 emergence principle in its purest computational form: directed approach as an emergent property of an information-seeking drive rather than a commanded value field. Held at 0.6 because ICM curiosity is forward-model PREDICTION ERROR (seek unpredictable transitions), not SD-025's representational-DENSITY following, and there is no DA-expansion partner shaping the space -- so it evidences the 'intrinsic drive -> directed approach, no explicit gradient' half of ARC-057 but not the SD-024 x SD-025 interaction that makes the approach land on reward.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The intrinsic reward is prediction error in a learned inverse-dynamics feature space (novelty = surprise), whereas SD-025 defines novelty as representational density x (1 - familiarity). Curiosity here seeks the UNPREDICTABLE; ARC-057's curiosity seeks the representationally DENSE -- the shared word 'curiosity' spans two different computations.",
+    "There is no dopaminergic representational-expansion component: the environment's structure is fixed and curiosity explores it uniformly. ARC-057's distinctive claim is that DA ASYMMETRICALLY expands the map so that a uniform drive produces reward-directed approach -- this paper shows the drive-produces-approach half but not the asymmetry-of-the-substrate half.",
+    "Prediction-error curiosity is known to be vulnerable to the 'noisy-TV' trap (stochastic transitions look perpetually novel); this failure mode has no analogue in the density-following formulation, so a naive read that 'curiosity always yields adaptive approach' would over-claim."
+  ],
+  "tags": ["arc-057", "curiosity", "intrinsic_motivation", "directed_exploration", "emergent_approach", "no_explicit_gradient", "sd-025", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "An agent whose only reward is intrinsic curiosity -- the error of a forward model predicting the next state in a self-supervised inverse-dynamics feature space -- learns effective, directed exploration policies with no extrinsic reward. Curiosity-only agents systematically traverse Super Mario levels and navigate room-to-room in VizDoom, and the learned exploration transfers to unseen scenarios and speeds goal-reaching when sparse extrinsic reward is later added.",
+    "ree_translation": "Instantiates the ARC-057 emergence principle: goal-directed, approaching navigation arises as a by-product of an intrinsic information-seeking drive rather than from a stored approach/wanting gradient. REE's SD-025 curiosity drive plays the same role -- a uniform drive that produces directed behaviour -- but ARC-057 adds the twist (absent here) that the space it operates on has been asymmetrically shaped by DA-driven representational expansion, so the emergent approach is aimed at reward locations specifically.",
+    "mapping_caveat": "ICM curiosity is prediction-error/surprise-seeking in a video-game deep-RL agent; SD-025 curiosity is representational-density-following in an abstract hippocampal CEM. The paper evidences 'intrinsic drive -> emergent directed approach without an explicit gradient' but NOT the SD-024 x SD-025 interaction, and it lacks any DA representational-expansion mechanism. Prediction-error curiosity also has the noisy-TV pathology, which the density formulation avoids. Deep-RL video-game -> REE hippocampal terrain transfer by functional analogy.",
+    "source_context": "Deep reinforcement learning agents (A3C) with an Intrinsic Curiosity Module; VizDoom 3D navigation and Super Mario Bros, in no-reward and sparse-reward regimes, plus generalization/transfer tests."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Canonical, heavily-cited ICML result. Mapping fidelity moderate: strong on the 'curiosity-alone yields directed approach, no explicit reward gradient' principle, weaker because the curiosity computation (prediction error) differs from SD-025's density-following and there is no DA-expansion partner. Transfer risk moderate-high: deep-RL pixel agent -> REE abstract hippocampal CEM, and surprise-seeking vs density-seeking are different drives."
+  }
+}

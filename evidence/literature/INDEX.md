@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-17T06:08:11.170804Z`
+Generated: `2026-07-17T06:29:32.973770Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -26,6 +26,7 @@ Generated: `2026-07-17T06:08:11.170804Z`
 | `targeted_review_arc_042` | [`2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020`](targeted_review_arc_042/entries/2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020/record.json) | 4 | [`summary`](targeted_review_arc_042/entries/2026-04-05_arc_042_hippocampal_remapping_hidden_state_inference_sanders2020/summary.md) |
 | `targeted_review_arc_045` | [`2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/record.json) | 3 | [`summary`](targeted_review_arc_045/entries/2026-04-05_arc_045_nrem_rem_consolidation_forgetting_langille2019/summary.md) |
 | `targeted_review_arc_046` | [`2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018`](targeted_review_arc_046/entries/2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018/record.json) | 2 | [`summary`](targeted_review_arc_046/entries/2026-06-09_arc_046_stress_hyporesponsive_period_suchecki2018/summary.md) |
+| `targeted_review_arc_057` | [`2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016`](targeted_review_arc_057/entries/2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016/record.json) | 3 | [`summary`](targeted_review_arc_057/entries/2026-07-17_arc_057_pseudocount_density_exploration_bellemare2016/summary.md) |
 | `targeted_review_arc_058` | [`2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/record.json) | 7 | [`summary`](targeted_review_arc_058/entries/2026-05-03_arc_058_negative_symptoms_active_inference_jeganathan2021/summary.md) |
 | `targeted_review_arc_062_refuge_forage_ecology` | [`2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/record.json) | 6 | [`summary`](targeted_review_arc_062_refuge_forage_ecology/entries/2026-05-09_arc_062_state_dependent_fish_refuge_balabanfeld2019/summary.md) |
 | `targeted_review_arc_062_rule_apprehension` | [`2026-05-09_arc_062_pfc_rule_cells_bongard2010`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/record.json) | 8 | [`summary`](targeted_review_arc_062_rule_apprehension/entries/2026-05-09_arc_062_pfc_rule_cells_bongard2010/summary.md) |
