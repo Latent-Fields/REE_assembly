@@ -1,0 +1,91 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_774_mech173_rem_suppression_precision_calibration",
+  "run_id": "v3_exq_774_mech173_rem_suppression_precision_calibration_20260717T152554Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-17T17:08:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-173"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mixed_inconclusive",
+    "preconditions": [
+      {
+        "name": "rv_live_all_arms",
+        "description": "every cell rv_final differs from precision_init by > floor (Q-042/530c contract)",
+        "measured": 0.4917140845248863,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "recalib_engaged_full_sleep",
+        "description": "FULL_SLEEP mean per-cycle |rv_after-rv_before| exceeds floor (lever engaged)",
+        "measured": 0.0005365384755417235,
+        "threshold": 0.0001,
+        "control": "FULL_SLEEP arm cross-cycle WRITEBACK recalibration movement",
+        "met": true
+      },
+      {
+        "name": "recalib_fired_full_sleep_cycles",
+        "description": "FULL_SLEEP recalibration fired on at least one sleep cycle in every seed",
+        "measured": 20.0,
+        "threshold": 1.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "delta_recalib_positive_significant",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "selectivity_sws_null",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "suppressed_arm_absolutely_overconfident",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "cross_arm_overconfidence_score_spread": true
+    }
+  }
+}
