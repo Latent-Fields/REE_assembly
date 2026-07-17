@@ -1,0 +1,139 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_768a_arc057_da_curiosity_interaction_spike_margin",
+  "run_id": "v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-17T06:46:20Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-057"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc057_approach_margin_emerges_from_da_curiosity_interaction_not_either_alone",
+    "preconditions": [
+      {
+        "name": "density_read_discriminates",
+        "kind": "readiness",
+        "description": "ON field: density(dense) - density(sparse) clears floor (the density statistic the interaction contrast C1/C2 route on)",
+        "measured": 13.09414,
+        "threshold": 0.5,
+        "control": "DA-dense reward region vs equally-visited non-DA region",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "selection_margin_responds_to_curiosity",
+        "kind": "readiness",
+        "description": "strong positive control (large curiosity_weight, dense ON field) yields a positive CEM score-MARGIN >= floor (the SAME margin statistic C1/C2 route on)",
+        "measured": 17.8561,
+        "threshold": 1.0,
+        "control": "curiosity_weight=3.0, dense ON field",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_interaction_margin_contrast",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 14.3727,
+        "threshold": 1.0,
+        "note": "margin_both_on - (margin_sd024_on + margin_sd025_on - margin_both_off); super-additive 2x2 interaction in CONTINUOUS score-margin units (re-op of the saturating binary pref interaction)"
+      },
+      {
+        "name": "C2_both_on_margin",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 14.3957,
+        "threshold": 1.0,
+        "note": "both-ON produces a positive dense-preferring CEM score-margin (re-op of the saturating binary pref_both_on >= 0.60)"
+      },
+      {
+        "name": "C3_sd025_alone_no_gradient",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 0.0011,
+        "threshold": 0.35,
+        "direction": "upper",
+        "note": "|margin_sd025_on| / |margin_both_on|: SD-024 OFF -> uniform density -> curiosity has no gradient -> ~0 directional margin"
+      },
+      {
+        "name": "C4_interaction_rides_density_not_value",
+        "load_bearing": true,
+        "passed": true,
+        "interaction_margin_zeroed": 14.3727,
+        "margin_both_on_zeroed": 14.3957,
+        "threshold_interaction": 1.0,
+        "threshold_both_on": 1.0,
+        "note": "all benefit weights zeroed (value removed): interaction margin + both-ON margin persist because density is weight-independent"
+      },
+      {
+        "name": "C5_sd024_alone_no_margin",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.35,
+        "direction": "upper",
+        "note": "|margin_sd024_on| / |margin_both_on|: density gradient exists but curiosity OFF"
+      },
+      {
+        "name": "C6_baseline_near_zero_margin",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.0,
+        "threshold": 0.35,
+        "direction": "upper",
+        "note": "|margin_both_off| / |margin_both_on|: no gradient, nothing reads it"
+      },
+      {
+        "name": "C7_value_non_discriminating",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.092,
+        "threshold": 0.2,
+        "direction": "upper",
+        "note": "equal-mass design: value_dense ~ value_sparse -> value cannot drive the A-vs-B choice"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "density_dense_exceeds_sparse": true,
+      "interaction_margin_varies_across_seeds": true,
+      "both_on_margin_varies_across_seeds": true,
+      "da_creates_density_gradient": true
+    }
+  }
+}
