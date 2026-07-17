@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-17T13:42:53Z",
+  "last_tick_utc": "2026-07-17T14:03:02Z",
   "state": "running",
   "current_exq": "V3-EXQ-771",
   "current_exq_started_utc": "2026-07-17T07:05:47.013026+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 42 / D3_hazard_free",
     "runs_done": 12,
     "runs_total": 27,
-    "episodes_done": 1600,
+    "episodes_done": 2800,
     "episodes_total": 3000,
-    "overall_pct": 46.4
+    "overall_pct": 47.9
   },
-  "seconds_elapsed": 23827,
-  "seconds_remaining": 45967,
+  "seconds_elapsed": 25035,
+  "seconds_remaining": 44696,
   "recent_lines": [
-    "MECH-457 GOV-FANOUT-1 H2 metabolic forage-to-survive discrimination (9 arms x 1 rung [D3_hazard_free] x 3 seeds; P0=200, ON_budget=3000, eval=20, steps=200; ref_hidden=128, budget_mult=3, z_world_detached=True; ctrl=standard decouple=contam_off treat=metabolic[energy_decay=0.02,health_drain=0.05])",
     "Seed 42 Condition D3_hazard_free:local_view_greedy",
     "verdict: PASS (arm=local_view_greedy seed=42 forage/ep=52.9 death_rate=0.15)",
     "Seed 43 Condition D3_hazard_free:local_view_greedy",
@@ -113,7 +112,13 @@
     "[train] metab_decouple_zworld seed=42 phase=RL ep 1000/3000 (returns=0 credit_passes=2895)",
     "[train] metab_decouple_zworld seed=42 phase=RL ep 1200/3000 (returns=0 credit_passes=3480)",
     "[train] metab_decouple_zworld seed=42 phase=RL ep 1400/3000 (returns=0 credit_passes=4068)",
-    "[train] metab_decouple_zworld seed=42 phase=RL ep 1600/3000 (returns=0 credit_passes=4662)"
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 1600/3000 (returns=0 credit_passes=4662)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 1800/3000 (returns=0 credit_passes=5256)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2000/3000 (returns=0 credit_passes=5847)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2200/3000 (returns=0 credit_passes=6441)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2400/3000 (returns=0 credit_passes=7026)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2600/3000 (returns=0 credit_passes=7620)",
+    "[train] metab_decouple_zworld seed=42 phase=RL ep 2800/3000 (returns=0 credit_passes=8217)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
