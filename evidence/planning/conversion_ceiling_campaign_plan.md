@@ -121,6 +121,8 @@ This closure plan is the **assembly-frontier home** for the conversion-ceiling c
 - **The live campaign view** (prong inventory, composition matrix, full-stack spec, critical path): [`conversion_ceiling_prong_map.md`](conversion_ceiling_prong_map.md).
 - **The lever inventory + metric trajectory**: the `f_dominance_conversion_ceiling` entry in `substrate_queue.json` (6-rung `fallback_ladder`; rung 6 = root C, tagged PARALLEL to the selection-face rungs).
 
+> **PREMISE CHALLENGE (2026-07-17, hypothesis):** every face here is *selection* machinery, and the umbrella thesis presumes per-candidate diversity already exists and only needs *converting*. The curiosity=exploitation-amplifier reframe ([`curiosity_exploitation_amplifier_reframe_2026-07-17.md`](curiosity_exploitation_amplifier_reframe_2026-07-17.md)) argues per-candidate diversity may be **generation-limited** — the SD-025 drive is exploitation-dominant (V3-EXQ-767a: density-attraction 39.3 vs familiarity-discount ceiling 20.4, 0 at the decision point) and produces zero directed behaviour on an unshaped map (V3-EXQ-768a: SD-025-alone = 0). If so, the uniform `precondition_unmet / non_contributory` verdicts across all five faces (failure_autopsy_V3-EXQ-732_2026-07-10) read as "diversity was never generated," not "selection failed" — and the campaign needs a **generation face** (rarity-seeking `ARC-065 / MECH-314`, ordering-gated on INV-088), not more selection faces. Governance to consider re-scoping `CAMPAIGN`.
+
 ## Node summary
 
 | Node | Face | State | Runnable |

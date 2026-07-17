@@ -367,6 +367,8 @@ striatal novelty + hippocampal trajectory sampling), and multiple layers can ind
 suppress the observed action-class entropy. Without an isolation matrix, a Rung-1 FAIL is
 under-determined: we don't know which substrate to fix next.
 
+> **GENERATION-vs-SELECTION reframe (2026-07-17, hypothesis):** the isolation matrix here is largely about where diversity *collapses* (selection/scoring layers — GAP-B E3 collapse, GAP-I F-dominance monopoly). The curiosity=exploitation-amplifier reframe ([`curiosity_exploitation_amplifier_reframe_2026-07-17.md`](curiosity_exploitation_amplifier_reframe_2026-07-17.md)) adds a *generation*-side root: the SD-025 hippocampal-trajectory curiosity drive (one of ARC-065's four pathways above) is a reward-conditional **exploitation amplifier** — it pulls toward structure reward has already built and produces zero directed behaviour on an unshaped map (V3-EXQ-768a SD-025-alone = 0; V3-EXQ-767a exploitation 39.3 vs diversity-brake 20.4, 0 at selection). It cannot *generate* diversity toward under-represented strategy space; its familiarity term is only a weak reactive brake. Implication for ARC-065 (GAP-H): the missing piece is a **proactive rarity-seeking** drive (Bellemare polarity), not a stronger curiosity/novelty magnitude — ordering-gated on INV-088 z_world differentiation.
+
 ---
 
 ## Layer model: where diversity can collapse
