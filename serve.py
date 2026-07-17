@@ -3689,6 +3689,40 @@ def read_closure() -> dict:
     })
 
 
+# Scientific Progress Dashboard (Build/Prove/Narrow/Decide + momentum). The
+# payload is DERIVED offline by scripts/build_hypothesis_space.py (derive-only,
+# exits 0, runs in governance.sh); serve.py only reads the committed snapshot.
+# This never re-weights closure -- Dimension 2 embeds read_closure() read-only.
+PROGRESS_JSON_FILE = PLANNING_DIR / "hypothesis_space.v1.json"
+
+
+def read_progress() -> dict:
+    """Load the committed hypothesis_space.v1.json snapshot for /progress.
+
+    Derive-only consumer: if the snapshot is missing/unreadable, return a
+    friendly empty state pointing at the build script rather than erroring."""
+    empty = {
+        "schema_version": "hypothesis_space/v1",
+        "generated_at": None,
+        "empty": True,
+        "empty_note": (
+            "No hypothesis_space.v1.json yet. Run "
+            "python scripts/build_hypothesis_space.py (or bash scripts/governance.sh)."
+        ),
+        "references": {"closure_map": "/closure"},
+    }
+    if not PROGRESS_JSON_FILE.exists():
+        return empty
+    try:
+        data = json.loads(PROGRESS_JSON_FILE.read_text(encoding="utf-8"))
+        if isinstance(data, dict):
+            return data
+    except Exception:
+        pass
+    empty["empty_note"] = "hypothesis_space.v1.json unreadable."
+    return empty
+
+
 def read_workset() -> dict:
     """Load inter-governance workset from generate_inter_governance_workset.py."""
     empty = {
@@ -5882,6 +5916,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if path == "/api/closure":
             body = json.dumps(read_closure(), indent=2, default=str).encode()
             self._json_response(body)
+            return
+        if path == "/api/progress":
+            body = json.dumps(read_progress(), indent=2, default=str).encode()
+            self._json_response(body)
+            return
+        if path in ("/progress", "/progress.html"):
+            progress_page = SERVE_DIR / "progress.html"
+            if progress_page.exists():
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache")
+                self.end_headers()
+                self.wfile.write(progress_page.read_bytes())
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         if path == "/api/igw/ledger":
             body = json.dumps(read_igw_ledger(), indent=2, default=str).encode()

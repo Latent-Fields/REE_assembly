@@ -1,0 +1,730 @@
+{
+  "schema_version": "hypothesis_space/v1",
+  "generated_at": "2026-07-17T17:53:13Z",
+  "generator": "scripts/build_hypothesis_space.py",
+  "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
+  "registry": "evidence/planning/hypothesis_space_registry.v1.json",
+  "needles": {
+    "build": {
+      "question": "how much of the intended V3 architecture physically exists?",
+      "total_modules": 110,
+      "built_modules": 89,
+      "fraction_built": 0.8091,
+      "state_counts": {
+        "proposed": 21,
+        "implemented": 66,
+        "implemented_pending_validation": 13,
+        "validated": 10
+      },
+      "build_proof_gap": 79,
+      "build_proof_gap_note": "89 modules built, 79 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "source": "evidence/planning/substrate_queue.json",
+      "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
+    },
+    "prove": {
+      "question": "is the claim proven? (conservative, unchanged)",
+      "closure_pct": 77.5,
+      "node_total": 80,
+      "node_done_weighted": 62.0,
+      "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
+      "authoritative_view": "/closure"
+    },
+    "narrow": {
+      "question": "how many rival explanations still survive?",
+      "total_surviving": 10,
+      "total_initial": 19,
+      "total_resolved_out": 9,
+      "open_questions": 6
+    },
+    "decide": {
+      "question": "can a design choice legitimately be made?",
+      "ready": 2,
+      "open_questions": 6
+    }
+  },
+  "hero_series": [
+    {
+      "date": "2026-07-11",
+      "surviving": 18,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    },
+    {
+      "date": "2026-07-13",
+      "surviving": 16,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    },
+    {
+      "date": "2026-07-15",
+      "surviving": 12,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    },
+    {
+      "date": "2026-07-16",
+      "surviving": 11,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    },
+    {
+      "date": "2026-07-17",
+      "surviving": 10,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    }
+  ],
+  "questions": [
+    {
+      "qid": "competence_floor",
+      "title": "Why is committed competence stuck below the foraging floor?",
+      "short_title": "competence floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "is_hero": true,
+      "initial_frozen_count": 7,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 6,
+      "confirmed": 1,
+      "reduction_numerator": 6,
+      "reduction_ratio": 0.8571,
+      "bits_removed": 2.81,
+      "synthesis": {
+        "surviving_label": "compose RND + prioritised credit-replay + developmental anneal",
+        "text": "Floor = success-dependence + capacity-to-convert. RND is necessary but not sufficient; no single bolt-on mechanism lifts competence past it. Build response: compose RND + prioritised credit-replay + developmental anneal -> mech457_competence_bootstrap_explorer, now under test as V3-EXQ-765.",
+        "under_test": "V3-EXQ-765"
+      },
+      "hypotheses": [
+        {
+          "hid": "H-rep",
+          "label": "representation insufficient",
+          "desc": "the raw 5x5 view (vs z_world) is too impoverished for the policy to learn foraging",
+          "axis": "representation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-747",
+            "V3-EXQ-749"
+          ],
+          "basis": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed).",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-explore",
+          "label": "needs a dense teacher / stronger exploration",
+          "desc": "reward sparsity is the wall; a dense teaching signal on z_world should clear it",
+          "axis": "exploration",
+          "state": "split",
+          "evidence_runs": [
+            "V3-EXQ-748"
+          ],
+          "basis": "sparsity WAS a wall (dense teacher on z_world clears it) -- but the cleared policy still reaches only ~11% of the 48-cell ceiling, so the sub-case 'dense teacher sufficient' is refuted while 'sparsity mattered' is confirmed.",
+          "children": [
+            {
+              "label": "sparsity was a genuine wall (dense teacher clears it)",
+              "state": "confirmed"
+            },
+            {
+              "label": "but a dense teacher alone is NOT sufficient (~11% of ceiling)",
+              "state": "eliminated"
+            }
+          ],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-optim",
+          "label": "success-independent novelty (RND) is the seed",
+          "desc": "a stronger unsupervised explorer (Random Network Distillation) clears the 1.0 competence floor without any earned reward",
+          "axis": "algorithm",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-751"
+          ],
+          "basis": "RND clears the 1.0 floor (5.22) unsupervised on z_world -- a NECESSARY seed, but insufficient alone (no single bolt-on lifts competence past it). Confirmed-necessary, not confirmed-sufficient.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-credit",
+          "label": "backward credit-sweep converts novelty to competence",
+          "desc": "an eligibility/credit-sweep over visited states manufactures competence from coverage",
+          "axis": "credit-assignment",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-752"
+          ],
+          "basis": "hcredit collapses to the sparse-RL baseline (~0.2-0.45 @D3, below the 1.0 floor and the RND 5.22 plateau); the pre-registered reference bands (oracle 57 / local-view 48 / RND 5.22) all clear the floor, so the sub-floor reading is real, not a starved measurement. Discrimination adjudicated in the confirmed cluster autopsy; non_contributory to MECH-457 but eliminates H-credit as a sufficient mechanism.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-return",
+          "label": "Go-Explore archive/return",
+          "desc": "archiving promising states and returning to them provides the bootstrap",
+          "axis": "return-policy",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-753"
+          ],
+          "basis": "Go-Explore archive/return collapses to the sparse-RL baseline against the same passing reference bands -- eliminated as a sufficient mechanism.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-curric",
+          "label": "AMIGo goal-frontier curriculum",
+          "desc": "an adversarially-motivated goal-frontier curriculum lifts competence",
+          "axis": "curriculum",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-754"
+          ],
+          "basis": "AMIGo goal-frontier curriculum collapses to the sparse-RL baseline against the same passing reference bands -- eliminated as a sufficient mechanism.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-arbitr",
+          "label": "explore/exploit arbitration gate",
+          "desc": "an arbitration gate switching between exploration and exploitation (curiosity as a diversity generator) is the missing lever",
+          "axis": "arbitration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-755"
+          ],
+          "basis": "explore/exploit arbitration adds no gain over fixed RND -- curiosity is an exploitation amplifier, not a diversity generator (cross-links the SD-025/ARC-057 finding). Eliminated as a sufficient mechanism.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Root cause of the conversion / competence ceiling -- which of the four candidate roots is load-bearing?",
+        "distance_phrase": "1 successful discriminative experiment -- V3-EXQ-737 (the live gate)",
+        "live_gate": "V3-EXQ-737",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "conversion_ceiling_root",
+      "title": "Which of the four candidate roots drives the conversion / committed-action-diversity ceiling?",
+      "short_title": "conversion-ceiling root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 1,
+      "confirmed": 0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.25,
+      "bits_removed": 0.42,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-reward-balance",
+          "label": "reward-balance is the lever",
+          "desc": "re-balancing the reward terms lifts committed-action diversity",
+          "axis": "reward",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-735"
+          ],
+          "basis": "reward re-balancing does not move the ceiling -- reward is not the lever (adjudicated in the confirmed cluster autopsy).",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-substrate-ceiling",
+          "label": "substrate ceiling (representation/capacity)",
+          "desc": "the REE substrate itself caps diversity independent of driver",
+          "axis": "substrate",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-734"
+          ],
+          "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-policy-learning",
+          "label": "policy-learning insufficient (or deeper root)",
+          "desc": "the policy-learning stage cannot convert representation into committed diversity",
+          "axis": "policy",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-737"
+          ],
+          "basis": "the live discriminative gate V3-EXQ-737 is running now; this is the leg the decision hinges on.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-f-dominance",
+          "label": "F-dominance selection-conversion",
+          "desc": "a dominant selection channel (F-dominance) starves committed-action diversity at conversion",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-737"
+          ],
+          "basis": "the live root candidate (see memory: pursue BG-like commitment over F-dominance); co-adjudicated by V3-EXQ-737.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Root cause of the conversion / competence ceiling (four candidate roots, one live).",
+        "distance_phrase": "1 successful discriminative experiment -- V3-EXQ-737 (the live gate)",
+        "live_gate": "V3-EXQ-737",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "da_density_approach",
+      "title": "Does DA-modulated representational density drive approach without an explicit gradient?",
+      "short_title": "DA-modulated density",
+      "claims": [
+        "MECH-232",
+        "SD-024"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-da-density",
+          "label": "DA-modulated density expands representation -> approach",
+          "desc": "dopamine-modulated RBF density expansion produces approach behaviour with no explicit reward gradient",
+          "axis": "neuromodulation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-766a"
+          ],
+          "basis": "766a: DA-modulated representational expansion holds on cloud class (supports/verified) -> MECH-232 promoted candidate -> provisional. Hands off to closure (Dimension 2).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-da-null",
+          "label": "no effect / artefact of the OFF baseline",
+          "desc": "the apparent approach is a baseline artefact, not DA-driven",
+          "axis": "neuromodulation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-766a"
+          ],
+          "basis": "the bit-identical OFF arm did not reproduce the approach; the null is eliminated by the same verified run.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Does DA-modulated density drive approach without an explicit gradient?",
+        "distance_phrase": "cloud V3-EXQ-766a PASS -> MECH-232 promoted candidate -> provisional; hands off to closure.",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "inv088_diversity_readout",
+      "title": "Is INV-088 strategy-diversity readable across representations?",
+      "short_title": "INV-088 diversity readout",
+      "claims": [
+        "INV-088"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-diversity-readable",
+          "label": "diversity is readable across representations",
+          "desc": "committed-strategy diversity can be read from both raw-view and z_world once competence is matched",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-750"
+          ],
+          "basis": "750 ran starved: the matched-competence precondition was unmet, so the diversity readout is uninformative. This narrows NOTHING on the claim -- it surfaces an OBSERVATION BOTTLENECK (Dimension 4), the honest reading. The hypothesis stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-representation-bound",
+          "label": "diversity readout is representation-bound",
+          "desc": "diversity is only legible on z_world, capped elsewhere by the SD-008 AUC ceiling",
+          "axis": "readout",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-750"
+          ],
+          "basis": "cannot be discriminated until matched-competent unsupervised policies exist on both representations.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is INV-088 strategy-diversity readable across representations?",
+        "distance_phrase": "needs matched-competent unsupervised policies on both representations before the readout is even measurable",
+        "live_gate": null,
+        "observation_bottleneck": "matched-competent unsupervised policies on both representations -- 750 ran starved"
+      }
+    },
+    {
+      "qid": "ceiling_vs_driver",
+      "title": "Ceiling vs. driver reading of harm-eval bounding",
+      "short_title": "ceiling vs driver",
+      "claims": [
+        "INV-089",
+        "INV-090"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-ceiling",
+          "label": "harm-eval bounding is a ceiling (INV-089)",
+          "desc": "the observed bounding of harm-eval is a capacity ceiling, not an active driver",
+          "axis": "eval-dynamics",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "theory is sharp (ceiling reading) but no clean discriminating experiment has separated ceiling from driver.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-driver",
+          "label": "harm-eval bounding is an active driver (INV-090)",
+          "desc": "the bounding actively drives behaviour; requires a non-flat eval target + binding-regime curriculum to test",
+          "axis": "eval-dynamics",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "INV-090 (driver) is deferred: needs a distinct non-flat eval target + a binding-regime curriculum before it is testable.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "prediction_rich_action_poor",
+        "evidence_decile": 4,
+        "decision_question": "Is harm-eval bounding a ceiling (INV-089) or an active driver (INV-090)?",
+        "distance_phrase": "needs a distinct non-flat eval target + a binding-regime curriculum before the driver is testable",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "curiosity_diversity_vs_amplifier",
+      "title": "Is curiosity a diversity generator or an exploitation amplifier?",
+      "short_title": "curiosity's role",
+      "claims": [
+        "SD-025",
+        "ARC-057"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": {
+        "surviving_label": "curiosity = reward-conditional exploitation amplifier",
+        "text": "SD-025 is reward-conditional exploitation, NOT a diversity generator; conversion_ceiling has only selection faces. ARC-065/MECH-314 needs a rarity-seeking (Bellemare-polarity) drive, ordering-gated on INV-088.",
+        "under_test": null
+      },
+      "hypotheses": [
+        {
+          "hid": "H-diversity-generator",
+          "label": "curiosity generates strategy diversity",
+          "desc": "an information-seeking curiosity drive broadens the committed-strategy distribution",
+          "axis": "drive",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-767a"
+          ],
+          "basis": "the diversity-generator reading is refuted: SD-025 curiosity is reward-conditional exploitation. The first pass (767, inconclusive/measurement_degeneracy) was measurement-improved into 767a (margin fix), which supports the exploitation-amplifier reading -- eliminating the diversity-generator hypothesis.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-exploitation-amplifier",
+          "label": "curiosity amplifies exploitation (reward-conditional)",
+          "desc": "curiosity is a reward-conditional exploitation amplifier (Bellemare-polarity absent), not a rarity-seeking diversity source",
+          "axis": "drive",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-768a"
+          ],
+          "basis": "768a (DA x curiosity interaction, margin fix) supports the exploitation-amplifier reading; ARC-057 promoted provisional 2026-07-17. Implication: ARC-065/MECH-314 needs a rarity-seeking (Bellemare-polarity) drive, ordering-gated on INV-088.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is curiosity a diversity generator or an exploitation amplifier?",
+        "distance_phrase": "767a/768a PASS (margin fix) -> ARC-057 promoted provisional; the exploitation-amplifier reading is decidable.",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
+    }
+  ],
+  "momentum": [
+    {
+      "run": "V3-EXQ-768a",
+      "all_runs": [
+        "V3-EXQ-768a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "curiosity_diversity_vs_amplifier",
+      "claims": [
+        "SD-025",
+        "ARC-057"
+      ],
+      "moved": "768a (DA x curiosity interaction, margin fix) supports the exploitation-amplifier reading; ARC-057 promoted provisional 2026-07-17. Implication: ARC-065/MECH-314 needs a rarity-seeking (Bellemare-polarity) drive, ordering-gated on INV-088.",
+      "resolved_utc": "2026-07-17T00:00:00Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-767a",
+      "all_runs": [
+        "V3-EXQ-767a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "curiosity_diversity_vs_amplifier",
+      "claims": [
+        "SD-025",
+        "ARC-057"
+      ],
+      "moved": "the diversity-generator reading is refuted: SD-025 curiosity is reward-conditional exploitation. The first pass (767, inconclusive/measurement_degeneracy) was measurement-improved into 767a (margin fix), which supports the exploitation-amplifier reading -- eliminating the diversity-generator hypothesis.",
+      "resolved_utc": "2026-07-17T00:00:00Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-766a",
+      "all_runs": [
+        "V3-EXQ-766a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "da_density_approach",
+      "claims": [
+        "MECH-232",
+        "SD-024"
+      ],
+      "moved": "766a: DA-modulated representational expansion holds on cloud class (supports/verified) -> MECH-232 promoted candidate -> provisional. Hands off to closure (Dimension 2).",
+      "resolved_utc": "2026-07-16T00:00:00Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-755",
+      "all_runs": [
+        "V3-EXQ-755"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "explore/exploit arbitration adds no gain over fixed RND -- curiosity is an exploitation amplifier, not a diversity generator (cross-links the SD-025/ARC-057 finding). Eliminated as a sufficient mechanism.",
+      "resolved_utc": "2026-07-15T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-754",
+      "all_runs": [
+        "V3-EXQ-754"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "AMIGo goal-frontier curriculum collapses to the sparse-RL baseline against the same passing reference bands -- eliminated as a sufficient mechanism.",
+      "resolved_utc": "2026-07-15T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-753",
+      "all_runs": [
+        "V3-EXQ-753"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Go-Explore archive/return collapses to the sparse-RL baseline against the same passing reference bands -- eliminated as a sufficient mechanism.",
+      "resolved_utc": "2026-07-15T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-752",
+      "all_runs": [
+        "V3-EXQ-752"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "hcredit collapses to the sparse-RL baseline (~0.2-0.45 @D3, below the 1.0 floor and the RND 5.22 plateau); the pre-registered reference bands (oracle 57 / local-view 48 / RND 5.22) all clear the floor, so the sub-floor reading is real, not a starved measurement. Discrimination adjudicated in the confirmed cluster autopsy; non_contributory to MECH-457 but eliminates H-credit as a sufficient mechanism.",
+      "resolved_utc": "2026-07-15T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-751",
+      "all_runs": [
+        "V3-EXQ-751"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "RND clears the 1.0 floor (5.22) unsupervised on z_world -- a NECESSARY seed, but insufficient alone (no single bolt-on lifts competence past it). Confirmed-necessary, not confirmed-sufficient.",
+      "resolved_utc": "2026-07-14T00:00:00Z",
+      "evidence_direction": "supports_necessary"
+    },
+    {
+      "run": "V3-EXQ-750",
+      "all_runs": [
+        "V3-EXQ-750"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "inv088_diversity_readout",
+      "claims": [
+        "INV-088"
+      ],
+      "moved": "750 ran starved: the matched-competence precondition was unmet, so the diversity readout is uninformative. This narrows NOTHING on the claim -- it surfaces an OBSERVATION BOTTLENECK (Dimension 4), the honest reading. The hypothesis stays alive.",
+      "resolved_utc": "2026-07-14T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-749",
+      "all_runs": [
+        "V3-EXQ-747",
+        "V3-EXQ-749"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed).",
+      "resolved_utc": "2026-07-13T00:00:00Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-748",
+      "all_runs": [
+        "V3-EXQ-748"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "sparsity WAS a wall (dense teacher on z_world clears it) -- but the cleared policy still reaches only ~11% of the 48-cell ceiling, so the sub-case 'dense teacher sufficient' is refuted while 'sparsity mattered' is confirmed.",
+      "resolved_utc": "2026-07-13T00:00:00Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-735",
+      "all_runs": [
+        "V3-EXQ-735"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "reward re-balancing does not move the ceiling -- reward is not the lever (adjudicated in the confirmed cluster autopsy).",
+      "resolved_utc": "2026-07-11T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-734",
+      "all_runs": [
+        "V3-EXQ-734"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive.",
+      "resolved_utc": "2026-07-11T00:00:00Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-765",
+      "all_runs": [
+        "V3-EXQ-765"
+      ],
+      "momentum_class": "implementation_completed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Composed build under test: compose RND + prioritised credit-replay + developmental anneal (substrate landed, proof pending).",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
+    }
+  ],
+  "references": {
+    "closure_map": "/closure",
+    "design_doc": "evidence/planning/scientific_progress_dashboard_design.md",
+    "integrity_audit": "evidence/planning/hypothesis_space_integrity.md"
+  }
+}

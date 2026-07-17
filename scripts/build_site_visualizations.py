@@ -188,10 +188,38 @@ def build_fishtank():
     print("  wrote %s" % out_html.relative_to(REPO))
 
 
+def build_progress():
+    """Snapshot serve.read_progress() (the Scientific Progress Dashboard payload)
+    to docs/assets/data/progress.v1.json for the static Pages mirror. read_progress()
+    is a pure read of the committed hypothesis_space.v1.json -- no server bind. The
+    payload is derive-only; this mirror never re-weights closure."""
+    print("Progress dashboard:")
+    spec = importlib.util.spec_from_file_location("ree_serve_progress", REPO / "serve.py")
+    serve = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(serve)
+    payload = serve.read_progress()
+    out_json = DOCS / "assets" / "data" / "progress.v1.json"
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+    if payload.get("empty"):
+        print("  wrote %s (EMPTY -- run build_hypothesis_space.py first)"
+              % out_json.relative_to(REPO))
+    else:
+        n = payload.get("needles", {})
+        print("  wrote %s (build=%s%% prove=%s%% surviving=%s/%s ready=%s)"
+              % (out_json.relative_to(REPO),
+                 round((n.get("build", {}).get("fraction_built") or 0) * 100, 1),
+                 n.get("prove", {}).get("closure_pct"),
+                 n.get("narrow", {}).get("total_surviving"),
+                 n.get("narrow", {}).get("total_initial"),
+                 n.get("decide", {}).get("ready")))
+
+
 def main():
     print("Building static site visualizations into docs/ ...")
     build_brain_map()
     build_fishtank()
+    build_progress()
     print("Done.")
 
 

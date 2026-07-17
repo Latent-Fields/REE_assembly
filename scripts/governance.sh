@@ -106,6 +106,20 @@ echo "--- Step 3c-tris: Inter-governance workset regen + drift check (warn-only)
 echo "--- Step 3c-bis: Closure-status snapshot (server-free rollup) ---"
 "$PYTHON" scripts/generate_closure_snapshot.py
 
+echo "--- Step 3c-bis-6: Scientific Progress Dashboard rollup (Build/Prove/Narrow/Decide) ---"
+# DERIVE-ONLY sibling of the closure snapshot. Joins the FROZEN hypothesis-space
+# registry against the autopsy/manifest/evidence/substrate/closure data to build
+# evidence/planning/hypothesis_space.v1.json (+ append-only time series) for the
+# /progress dashboard. Runs AFTER the closure snapshot so Dimension 2 embeds the
+# fresh closure %. Never a gate; exits 0. NO write-back to claims.yaml/closure/scorer.
+"$PYTHON" scripts/build_hypothesis_space.py || true
+
+echo "--- Step 3c-bis-6b: Hypothesis-space integrity audit (anti-Goodhart, warn-only) ---"
+# Sibling of check_closure_drift.py. Flags un-backed surviving-count drops,
+# post-hoc enlargement of a frozen initial set, and confirmed nodes lacking a
+# passed control. Advisory, non-blocking; exits 0.
+"$PYTHON" scripts/check_hypothesis_space_integrity.py || true
+
 echo "--- Step 3c-bis-2: Current-front routing doc (SHP-6; derives docs/CURRENT_FRONT.md) ---"
 # SHORT, LIVE-ONLY front doc the Session-Startup entry docs route to (fixes the
 # status_history_plane 'Failure A -- routing'). Derived from insights_report.md +
