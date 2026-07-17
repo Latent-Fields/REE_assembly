@@ -1,0 +1,92 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_sd068_consolidation_staged_damage_diagnostic",
+  "run_id": "v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T161157Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-17T16:11:57Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-068",
+    "MECH-168",
+    "INV-047",
+    "MECH-169"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-068": "supports",
+    "MECH-168": "unknown",
+    "INV-047": "unknown",
+    "MECH-169": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "harness_operational_staging_partial_or_inverted",
+    "preconditions": [
+      {
+        "name": "intact_readouts_nondegenerate",
+        "description": "at sigma=0 the injected-content readouts (SWS signal_power, REM clean variance) are non-degenerate -- the P0 positive control that the phases actually operate",
+        "measured": 0.499999750000125,
+        "threshold": 1e-09,
+        "control": "sigma=0 intact sweep point",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_monotone_degradation": true,
+      "C2_intact_nondegenerate": true,
+      "C3_staging_and_rem_contrast_computable": true
+    },
+    "criteria": [
+      {
+        "name": "C1_monotone_degradation_all_phases",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "staging_summary": {
+      "predicted_reverse_dependency_order": [
+        "rem",
+        "nrem",
+        "sws"
+      ],
+      "modal_observed_order": [
+        "rem",
+        "nrem",
+        "sws"
+      ],
+      "modal_order_seed_count": 1,
+      "n_seeds_matching_prediction": 1,
+      "note": "staging match is REPORTED, not gated; a partial-match/inversion is a valid diagnostic outcome."
+    }
+  }
+}
