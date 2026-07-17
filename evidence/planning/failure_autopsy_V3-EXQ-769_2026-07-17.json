@@ -1,0 +1,96 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-17T06:22:57Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3",
+      "queue_id": "V3-EXQ-769",
+      "supersedes": "v3_exq_765_mech457_bootstrap_explorer_competence",
+      "claim_ids": ["MECH-457"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- mis-diagnosed, not falsified; test let the claim express itself and the capacity SUB-hypothesis (not MECH-457) is falsified; claim_ids correct (not inherited-tag error)",
+        "biological_reference": "clear -- dorsal-striatal actor + developmental appetitive drive; avoidance-without-approach = approach-before-avoidance ontogenetic-ordering failure + known RL wrong-basin pathology",
+        "prerequisites": "missing (developmental ordering) and UNTESTED -- drive/capacity/credit all built and fired; the untested missing dependency is a non-annealing / approach-first appetitive drive",
+        "implementation": "complete but mis-aimed -- runs to full 5x budget; MORE optimization -> WORSE foraging (converges into passive-survival basin)",
+        "environment": "wrong pressure (dominant) -- D3_hazard_free is survivable without foraging, so no extrinsic gradient toward forage once the intrinsic drive anneals",
+        "measurement": "adequate -- foraging_competence + grounded denominators; recording core complete (substrate_hash present); ceiling reading would be falsifiable but is not the verdict",
+        "integration": "tested -- z_world DETACH did not rescue z_world ON (~0.27), refuting the 765 cotrain-destructive subordinate finding as the operative cause",
+        "scale": "FALSIFIED as the wall -- hidden 128->256 + budget 3x->5x REGRESSED raw ON 6.48->0.12; the single 765 clearing seed 15.9->0"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal actor taught by dopaminergic RPE (O'Doherty 2004; Schultz 1997), scaffolded by a novelty/curiosity drive (RND) + consolidation replay + a developmental explore->exploit anneal",
+        "dependencies": ["sustained appetitive/approach drive that does not extinguish before approach is established", "developmental ordering: approach before avoidance", "reward structure that couples survival to foraging"],
+        "is_formal_import": false,
+        "divergence": "not a formal-import divergence -- biology grounded (targeted_review_actor_critic_action_learning, 5 lit entries). The divergence is that the composed drive's ANNEAL SCHEDULE lets the aversive/survival system monopolize the policy before approach is established -- an ontogenetic-ordering omission, not a mechanism-class error",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-17 (V3-EXQ-769, diagnostic, claim_ids=[MECH-457]; failure_autopsy_V3-EXQ-769_2026-07-17, supersedes V3-EXQ-765): the 765-routed CAPACITY-side amend of mech457_competence_bootstrap_explorer (ON hidden 128->256 + budget 3x->5x; warm-start 0.2 + credit passes 3->6 / topk 32->64; z_world cotrain->DETACHED) RAN and FAILED, and it REGRESSED rather than plateaued. Readiness PASSED (local_view_greedy 48.05, oracle 57.2 vs 1.0 floor). Raw ON fell 6.48->0.12 (below its OFF; the single 765 clearing seed 15.9->0); z_world ON unchanged at ~0.27 despite detaching (refuting the 765 cotrain-destructive subordinate finding); credit machinery fired (n_credit_replay_passes 9k-18k). Behavioral signature: every ON arm survives 200 steps, death 0, contamination avoided, forage ~0 -- AVOIDANCE learned WITHOUT APPROACH; on D3_hazard_free survival is decoupled from foraging so more optimization drives the policy into the passive-survival basin. This EMPIRICALLY FALSIFIES the 765 capacity diagnosis: the wall is not actor capacity but developmental-ordering / reward-coupling (approach-before-avoidance root). epistemic_category competence_implementation_gap (missing-dependency reframe, user-confirmed; NOT substrate_ceiling -- ordering/reward axis untested; 0 substrate_ceiling verdicts preserved, GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic, PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (6th non_contributory MECH-457 autopsy): REFUSE any further capacity/same-axis explorer re-queue (no 769b / bigger net / more budget / warm-start retune). Routing = GOV-FANOUT-1 discrimination portfolio via /queue-experiment: H1 drive-schedule (don't anneal / approach-first), H2 reward-coupling (metabolic forage-to-survive env), H3 credit-horizon (dense-shaped forage oracle), each with a declared null, design-audited, coordinated with the in-flight approach-before-avoidance ordering falsifier. Secondary methodological finding: the build's 'OFF bit-identical to 765' claim is false (substrate_hash cd368e11->be9a4d7f; OFF z_world 5.22->2.63) -- the no-op-default contract was not numerically verified. MECH-457 stays candidate/v3_pending; a NEW hit within the GOV-GRAN-1 coherent-campaign disposition, not a granularity signal. INV-088 stays candidate/pending_substrate_reconfirmation (769 was its retest path; reconfirmation did not occur; unblock re-routed onto the portfolio).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "mech457_competence_bootstrap_explorer",
+        "note": "Routing is a GOV-FANOUT-1 discrimination portfolio, not a single build. Do NOT create/amend a substrate entry until the portfolio resolves which axis to build. Governance should record the 769 capacity-amend REGRESSION against the existing mech457_competence_bootstrap_explorer failure_record and mark its next-build direction PENDING the portfolio verdict (superseding the capacity-side next-build the 765 autopsy named, which is now falsified)."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15",
+          "failure_autopsy_746c-756_2026-07-16",
+          "failure_autopsy_V3-EXQ-765_2026-07-16"
+        ],
+        "refused_requeue": true,
+        "route_to": "queue-experiment (GOV-FANOUT-1 discrimination portfolio -- NOT another capacity/same-axis explorer re-test; the 765-forced capacity build was BUILT and REGRESSED, so the single-build route is exhausted on this axis)",
+        "upstream_substrate": "pending -- the fanout portfolio decides which axis (ordering / reward-coupling / credit-horizon) names the next substrate build"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: developmental ordering / drive-schedule -- the intrinsic appetitive drive anneals to 0.05 before approach is established, so avoidance / passive-survival locks in",
+          "H2: env reward-coupling -- D3_hazard_free is survivable without foraging, so once the drive is gone there is no extrinsic gradient toward forage",
+          "H3: credit-assignment horizon -- the actor-critic cannot assign credit from sparse foraging events to the actions that caused them, independent of drive or env"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "drive", "sketch": "do NOT anneal the intrinsic drive (or an approach-first curriculum establishing foraging before the aversive/survival pressure is fully weighted). Null: sustained/approach-first drive leaves ON at the passive-survival collapse (forage ~0) -> ordering is not the operative axis."},
+          {"hypothesis": "H2", "axis": "environment", "sketch": "a metabolic forage-to-survive env variant (resources deplete; survival REQUIRES foraging) so the passive-survival optimum no longer exists. Null: even when survival requires foraging, ON does not reach competent foraging -> reward-decoupling is not the wall."},
+          {"hypothesis": "H3", "axis": "measurement", "sketch": "a dense-shaped foraging reward oracle (or achievable-credit anchor) removing the credit-assignment difficulty. Null: even with dense/oracle-shaped forage credit, ON does not reach competent foraging -> the wall is deeper than credit horizon (representation ceiling or a different mechanism class)."}
+        ],
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential re-pose. NEW EXQ numbers testing DIFFERENT mechanisms -- brake permits. COORDINATE with the in-flight approach-before-avoidance ordering falsifier: if it already covers H1, drop H1 and keep H2/H3."
+      },
+      "secondary_findings": [
+        {
+          "kind": "reproducibility / recording-contract",
+          "detail": "The 769 build's 'OFF arms bit-identical to 765' claim is FALSE. substrate_hash changed (765 cd368e11bbaaa5d8b4d7424ee8314b31d0c39da718ebe1f75ec3e4cea46bf760 -> 769 be9a4d7f2cae17d06196ae3b75f7dda0ceab0afcd0b0a3cd841897ac353bc3ce) because the capacity build edited the _lib code; OFF z_world moved per-seed (765 4.7/4.75/6.2 mean 5.22 -> 769 5.85/1.2/0.85 mean 2.63). The five no-op-default config fields perturbed the OFF RNG/computation. Does NOT change the FAIL verdict (ON nowhere near 13.05 on either rep regardless of OFF), but cross-765/769 OFF comparison is confounded and the no-op-default contract was not numerically verified. Any future amend to this substrate should assert bit-identical OFF via FINGERPRINT match, not config-value match, before trusting drift-guard reasoning.",
+          "changes_verdict": false
+        },
+        {
+          "kind": "downstream-claim unblock re-route",
+          "detail": "INV-088 (world_goal_evaluator_dv_coupling, candidate / pending_substrate_reconfirmation) was blocked-on-upstream of 769 (769 was its retest path). 769 FAILED/REGRESSED -> substrate NOT reconfirmed -> INV-088 stays candidate/pending_substrate_reconfirmation; its unblock re-routes onto the GOV-FANOUT-1 portfolio's outcome (a matched-competent policy on both representations, prerequisite for the V3-EXQ-750 strategy-diversity retest, still does not exist).",
+          "changes_verdict": false
+        }
+      ],
+      "learning_extracted": [
+        "The capacity/reliability/integration axis is EMPIRICALLY FALSIFIED: all three 765-routed knobs failed -- capacity+budget regressed raw ON (6.48->0.12); warm-start/more-credit collapsed the one clearing seed (15.9->0); z_world detach left z_world ON unchanged (~0.27). More optimization made competence worse.",
+        "The wall is which BASIN optimization converges to, not actor size: ON survives 200 steps / death 0 / avoids contamination / forages ~0 -- avoidance learned WITHOUT approach. On D3_hazard_free survival is decoupled from foraging, so once the drive anneals there is no gradient toward forage. Approach-before-avoidance ordering + reward-decoupling.",
+        "The failure is now localized to three competing axes (a discrimination, not a build): H1 developmental ordering / drive-schedule, H2 env reward-coupling, H3 credit-assignment horizon. GOV-FANOUT-1 applies.",
+        "MECH-457 the claim is MIS-DIAGNOSED, not falsified: biology supports the mechanism class; the 765 capacity frame was wrong; the live ordering/reward axis is untested, so the substrate-ceiling / demotion threshold is not met.",
+        "Methodological: the 'bit-identical OFF' no-op-default contract was not numerically verified (substrate_hash + OFF numbers changed) -- assert via fingerprint match on the next amend."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": false,
+    "reason": "MECH-457 has granularity_debt_disposition=coherent_campaign (GOV-GRAN-1, session gifted-kilby-8e2491, 2026-07-16). The 750-769 recurrence is progressive localization of ONE competence-bootstrap gap, not a too-coarse claim; every candidate sub-claim already has an owner (ARC-065/MECH-314, MECH-455, INV-088). /claim-synthesis CONTRAINDICATED. This is a NEW hit within the coherent campaign, not a granularity signal.",
+    "routing": "queue-experiment"
+  }
+}

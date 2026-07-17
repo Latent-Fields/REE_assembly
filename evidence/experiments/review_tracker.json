@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-17T06:18:01Z",
+  "last_review_utc": "2026-07-17T06:22:57Z",
   "discussed_experiment_dirs": [
     "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier",
     "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
@@ -3393,7 +3393,8 @@
     "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
     "v3_exq_767_sd025_curiosity_drive_selection_bias_20260716T073159Z_v3",
     "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3",
-    "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3"
+    "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3",
+    "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5286,6 +5287,14 @@
         "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3"
       ],
       "note": "Governance walk 2026-07-16d (user-interactive apply). 3 pending PASS -> 0. (1) V3-EXQ-680e/MECH-423 EVIDENCE PASS/supports (ree-cloud-2, cloud class; super_additive, all 7 preconditions met, load-bearing superadditivity_margin_pair passed) -> PROMOTED MECH-423 candidate->provisional; completes the 680b->e corrected-gate campaign the granularity_debt_recurrence_note pre-registered; 680d marked superseded (flat ev_dir non_contributory->superseded + superseded_by 680e). No v3_pending gate. decision_log + decision_state updated (promote_to_provisional/applied). (2) V3-EXQ-767/SD-025 diagnostic PASS adjudicated VACUOUS (confirmed failure_autopsy_767-768-cluster_2026-07-16): load-bearing L1a_pref_A_on saturated 1.0/8 seeds zero-variance; measurement_degeneracy; ev_dir supports->inconclusive (flat); re-operationalize V3-EXQ-767a (continuous CEM score-margin gate); SD-025 stays candidate + evidence_quality_note. (3) V3-EXQ-768/ARC-057 diagnostic PASS adjudicated VACUOUS (same cluster autopsy): load-bearing C2_both_on_approaches saturated 1.0/8 seeds; interaction genuine but load-bearing gate zero-variance blocks promotion; measurement_degeneracy; ev_dir supports->inconclusive (flat); re-operationalize V3-EXQ-768a; ARC-057 stays candidate (also v3_pending) + evidence_quality_note. Step-3 agenda: INV-088 stays held (hold_candidate_resolve_conflict, blocked-on-upstream V3-EXQ-769 in flight). PROMOTES 1 (MECH-423); DEMOTES nothing."
+    },
+    {
+      "utc": "2026-07-17T06:22:57Z",
+      "session": "ree-assembly-dirty-state-96dd3f (/failure-autopsy V3-EXQ-769)",
+      "reviewed": [
+        "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3"
+      ],
+      "note": "Failure autopsy of V3-EXQ-769 (MECH-457 capacity-amend post-build retest, supersedes 765; diagnostic, PROMOTES/DEMOTES NOTHING). FAIL bootstrap_explorer_plateaus_capacity_gap_remains -- and a REGRESSION: raw ON 6.48->0.12 (the one 765 clearing seed 15.9->0), z_world ON unchanged ~0.27 despite detaching. Capacity/reliability/integration axis EMPIRICALLY FALSIFIED. Behavioral signature: ON survives 200 steps/death 0/contamination-avoided/forage ~0 = avoidance WITHOUT approach; D3_hazard_free decouples survival from foraging. Diagnosis (user-confirmed Step-8): missing-dependency reframe (NOT substrate_ceiling; 0 substrate_ceiling verdicts preserved, GOV-CEIL-1 unaffected), epistemic competence_implementation_gap, ev_dir non_contributory. Re-derive brake FIRED (6th non_contributory MECH-457 autopsy): REFUSE any capacity/same-axis re-queue. Routing = GOV-FANOUT-1 discrimination portfolio (H1 drive-schedule / H2 reward-coupling / H3 credit-horizon), each with declared null, coordinate w/ in-flight approach-before-avoidance ordering falsifier. Secondary: 'bit-identical OFF' claim false (substrate_hash + OFF numbers changed). INV-088 stays candidate/pending_substrate_reconfirmation (769 was its retest path; not reconfirmed; unblock re-routed to portfolio). Artifact: failure_autopsy_V3-EXQ-769_2026-07-17.{md,json}. MECH-457 stays candidate/v3_pending."
     }
   ]
 }
