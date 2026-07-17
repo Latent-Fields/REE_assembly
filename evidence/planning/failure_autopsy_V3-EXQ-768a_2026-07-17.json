@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-17T07:05:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3",
+      "queue_id": "V3-EXQ-768a",
+      "claim_ids": ["ARC-057"],
+      "failed_criterion": "none (verified PASS)",
+      "adjudication": "verified",
+      "supersedes": "v3_exq_768_arc057_da_curiosity_interaction_spike",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- interaction expressed and passed; rides density not value (C4)",
+        "biological_reference": "clear -- DA-expansion x curiosity; lit present (targeted_review_arc_057, lit_conf 0.745)",
+        "prerequisites": "present -- MECH-232 provisional; SD-024 + SD-025 IMPLEMENTED",
+        "implementation": "complete -- 2x2 ablation, continuous CEM score-margin, weight-zeroing discriminator",
+        "environment": "adequate -- SD-024 internal-density workaround validates the grid-world interaction test",
+        "measurement": "adequate (resolved) -- continuous margin fixes the 768 saturation; dominant resolved layer",
+        "integration": "coupled + stable -- approach emerges only from the coupled interaction",
+        "scale": "adequate -- 8 seeds, variance-bearing, positive control met"
+      },
+      "biological_reference": {
+        "closest_mechanism": "DA-mediated hippocampal representational expansion + information-seeking/curiosity drive following map structure",
+        "dependencies": ["MECH-232 DA representational expansion", "SD-024 da_modulated_rbf_density", "SD-025 curiosity_drive"],
+        "is_formal_import": false,
+        "divergence": "none -- biological translation confirmed by the interaction test; Stachenfeld2017/Berridge/Pathak2017/Bellemare2016 grounding",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "verified",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "2026-07-17: candidate -> provisional. SD-024 x SD-025 interaction diagnostic V3-EXQ-768a (cloud, ree-cloud-4, linux-x86_64-py3.10) PASS/supports, adjudication=verified (evidence/planning/failure_autopsy_V3-EXQ-768a_2026-07-17.json). Re-operationalized replacement for the confirmed 768 vacuous_pass cluster: the binary argmin gate that saturated at exactly 1.0 (zero cross-seed variance) is replaced by the continuous CEM score-margin. Approach emerges ONLY from the DA-expansion x curiosity interaction -- both-on margin 14.53 (varies 9.0-17.0 across 8 seeds), while SD-024-alone (0.0) and SD-025-alone-on-a-flat-map (-0.01) produce no approach margin -- the super-additive interaction ARC-057 asserts. All 4 load-bearing criteria pass (C1 interaction contrast 14.37>=1.0; C2 both-on 14.40>=1.0; C3 sd025-alone-no-gradient 0.0011<=0.35; C4 interaction rides density not value: weight-zeroed both-on identical to both-on), C7 value non-discriminating (0.092), readiness met (density discrim 13.09; positive control 17.86), non_degenerate (all 4 variance guards TRUE). Cloud PASS satisfies the cloud-authoritative gate. Diagnostic (experiment_purpose excluded from confidence scoring) -- the promotion is the gate-clearing action, not a confidence increment. SCOPE: validates the interaction / approach-emergence claim ONLY. It does NOT bear on the ecological richer-env test (V4-deferred, arc_057_ecological_env_decision_2026-07-16), and it does NOT establish strategy-diversity generation: 767a+768a together show the curiosity drive is a reward-conditional exploitation amplifier (approach-side confirmed; diversity-generation is a separate open node -- see the curiosity=exploitation-amplifier reframe on behavioral_diversity_isolation / conversion_ceiling_campaign).",
+      "recommended_status_change": {"claim_id": "ARC-057", "from": "candidate", "to": "provisional", "scope": "approach-side (interaction/approach-emergence only)"},
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false},
+      "granularity_debt_trigger": {"fires": false, "note": "prior 767-768-cluster autopsy was the measurement_degeneracy diagnosis; 768a is its resolution (verified PASS), not a recurring divergent-signature failure"},
+      "learning_extracted": [
+        "ARC-057 super-additive approach-emergence is real and non-degenerate: approach only from DA-expansion x curiosity; singles ~0. The re-op margin resolves the 768 saturation.",
+        "It rides density not value (C4 weight-zeroing invariant; C7 value non-discriminating) -- the no-explicit-gradient core holds.",
+        "SD-025-alone-on-flat-map = 0 shows the curiosity drive is a reward-conditional exploitation amplifier (approach-side confirmed; orthogonal to strategy-diversity generation -- see reframe). The promotion must not be read as diversity evidence.",
+        "The ecological richer-env test (ARC-057 Test C) remains V4-deferred; 768a is the env-free interaction spike it targets."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "re-operationalization resolving a prior vacuous_pass",
+    "is_independent_bugs": false,
+    "structural_property": "the 767/768 vacuous cluster (binary argmin saturation) is resolved by the continuous CEM score-margin; 767a (SD-025 drive) and 768a (SD-024xSD-025 interaction) both PASS non-degenerate",
+    "readings": ["measurement_degeneracy_resolved"]
+  }
+}
