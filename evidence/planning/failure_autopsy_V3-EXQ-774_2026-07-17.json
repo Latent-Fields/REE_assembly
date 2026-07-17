@@ -1,0 +1,81 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-17T17:20:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_774_mech173_rem_suppression_precision_calibration_20260717T152554Z_v3",
+      "queue_id": "V3-EXQ-774",
+      "claim_ids": ["MECH-173"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "mixed_inconclusive",
+      "adjudicated_label": "substrate_ceiling",
+      "failed_criterion": "discrimination",
+      "failed_criteria_detail": [
+        "delta_recalib_positive_significant (discrimination) FAIL",
+        "suppressed_arm_absolutely_overconfident (absolute) FAIL",
+        "selectivity_sws_null (negative_control) PASS"
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact - not falsified; direction + accuracy-dissociation + REM-selectivity all claim-consistent; test could not fully express the claim due to substrate ceiling",
+        "biological_reference": "partial - corrector (REM recalibration toward cumulative reference) modeled; missing the waking confidence-inflation source + accuracy anchor it corrects. Lit present.",
+        "prerequisites": "partial - MECH-204 GAP-1 F1 built and fired; Phase-7/Option-B accuracy-anchored/broadcast arm + waking inflation source absent",
+        "implementation": "partial - symbol of recalibration present and engaged (20 cycles), functional role (correcting accuracy-decoupled overconfidence) unmanifestable without an inflation source",
+        "environment": "too easy / converges too fast - forward-model error ~0.004 and precision saturates ~250 within ~5 episodes on 2/3 seeds; no recalibration headroom. Non-converging test-bed is a secondary lever on significance only.",
+        "measurement": "adequate - continuous variance-bearing load-bearing statistic (767/768 lesson), independent accuracy dissociation; captured direction/dissociation/selectivity; not blind",
+        "integration": "coupled - arms differ only in intended knobs; SWS-null confirms clean coupling, no generic sleep-disruption artefact",
+        "scale": "binding constraint - F1 setpoint ceiling (accuracy-lagging anchor + fast convergence) caps expression"
+      },
+      "biological_reference": {
+        "closest_mechanism": "REM-phase precision recalibration against a cumulative uncertainty reference (Hobson AIM; Walker & Stickgold sleep-dependent precision; 5-HT withdrawal defining the setpoint)",
+        "dependencies": ["waking confidence-inflation source (recency/salience/reward) that recalibration corrects", "accuracy-anchored (not running_variance-lagging) recalibration target", "MECH-123 precision recalibration", "MECH-204 F1 consumer"],
+        "is_formal_import": false,
+        "divergence": "Built F1 consumer models the corrector (low-pass setpoint on running_variance) but not the error it corrects; setpoint anchored to a lagging function of the agent's own running_variance rather than an independent accuracy signal. Removing the corrector removes humility but cannot expose overconfidence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-774 (diagnostic, excluded from scoring) adjudicated substrate_ceiling (failure_autopsy 2026-07-17): the built MECH-204 F1 precision-recalibration produces MECH-173's direction (suppression removes epistemic humility) with accuracy-dissociation and REM-selectivity intact, but cannot express absolute overconfidence -- the F1 setpoint is a lagging low-pass of the agent's own running_variance with no waking confidence-inflation source to correct, and precision saturates before the recalibration lever gains headroom (effect present on 1/3 seeds only). Not falsification; a discovered prerequisite. Fires the sleep_substrate_plan Phase 7 / Option B resume trigger (accuracy-anchored / broadcast recalibration; read _persistent_zero_point, lit choice (a), already adjudicated). pending_retest_after_substrate.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH-204",
+        "title": "MECH-204 Phase 7 / Option B resume: accuracy-anchored (broadcast) REM precision recalibration + waking confidence-inflation source",
+        "implementation_hint": "V3-EXQ-774 fires the sleep_substrate_plan.md Phase 7 resume trigger ('downstream MECH-204 consumer FAILing attributable to F1-alone-insufficient'). Build the spec'd Phase 7 Option B arm: broadcast-read serotonin._persistent_zero_point (F1 cumulative reference, lit choice (a)) at select_action(), additive E3-score bias scaled by rem_precision_broadcast_gain, run alongside F1. ALSO add a waking confidence-inflation source (recency/salience/reward-driven precision inflation) so removing recalibration can expose absolute overconfidence, and pair with a non-converging / perpetually-novel test-bed so recalibration headroom persists across seeds. Lit-pull dependency already satisfied (targeted_review_rem_precision_recalibration_timing, 2026-05-09). Reconcile the current V4-deferral of Phase 7 against this fresh trigger.",
+        "unblocks_claims": ["MECH-173"],
+        "depends_on_unresolved": ["non-converging / perpetually-novel test-bed for persistent recalibration headroom", "waking confidence-inflation source"],
+        "priority_suggested": 2,
+        "priority_note": "1 fresh failure record (774) => rule default 1; but sleep_substrate_plan currently defers Phase 7 to V4 and MECH-173 is a downstream dementia-prodrome claim (not a V3-closure gate). Set 2 and let governance reconcile V3-vs-V4 placement.",
+        "failure_record_entry": {
+          "run_id": "v3_exq_774_mech173_rem_suppression_precision_calibration_20260717T152554Z_v3",
+          "experiment_type": "v3_exq_774_mech173_rem_suppression_precision_calibration",
+          "metric": "delta_recalib_off_vs_full mean +0.209 (sd 0.293, not significant; effect on 1/3 seeds only); suppressed_absolutely_overconfident=False (overconfidence_index never crosses 0); accuracy_dissociation=True; selectivity_sws_null PASS",
+          "target": "A working accuracy-anchored recalibration must yield delta_recalib significant-positive across seeds AND at least one suppressed arm with overconfidence_index > +0.1 (absolute overconfidence), with accuracy held constant and SWS null."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "MECH-204"
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "GOV-FANOUT-1 N/A: single spec'd build (Phase 7 Option B), read-site already lit-adjudicated (choice (a)). Not a discrimination bottleneck."
+      },
+      "learning_extracted": [
+        "Built MECH-204 F1 recalibration produces MECH-173's direction (suppression removes epistemic humility) with accuracy-dissociation + REM-selectivity intact, but cannot produce absolute overconfidence (setpoint is a lagging low-pass of the agent's own running_variance; no waking inflation source to correct).",
+        "Two failures (non-significance, no absolute overconfidence) share one architectural root (accuracy-lagging F1 setpoint); significance is convergence-headroom-masked (effect only on the one seed that never reached the precision ceiling).",
+        "This is the sleep_substrate_plan Phase 7 / Option B resume trigger; lit-pull dependency already satisfied (read _persistent_zero_point, choice (a)).",
+        "Longer training budget worsens the ceiling (more seeds saturate); fixes are architectural + a non-converging test-bed, not more compute.",
+        "Diagnostic self-route logic note: a spread<floor degeneracy gate cannot detect a convergence-gated ceiling; future diagnostics in this family should gate on per-seed headroom / distance-to-ceiling, not aggregate cross-arm spread."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
