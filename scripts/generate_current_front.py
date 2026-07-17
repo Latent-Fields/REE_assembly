@@ -28,6 +28,7 @@ Usage (from REE_assembly root, or anywhere):
 Runs automatically in scripts/governance.sh.
 """
 
+import json
 import os
 import re
 import sys
@@ -36,6 +37,7 @@ from datetime import datetime, timezone
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INSIGHTS = os.path.join(ROOT, "insights_report.md")
 CLOSURE = os.path.join(ROOT, "evidence", "planning", "closure_status.md")
+HYPOTHESIS_SPACE = os.path.join(ROOT, "evidence", "planning", "hypothesis_space.v1.json")
 OUT = os.path.join(ROOT, "docs", "CURRENT_FRONT.md")
 
 # em/en dash class for tolerant matching of Claude-authored prose
@@ -48,6 +50,16 @@ def _read(path):
             return fh.read()
     except OSError:
         return ""
+
+
+def _read_json(path):
+    """Soft-load a JSON file. Returns None on any error so a missing/malformed
+    hypothesis_space.v1.json degrades gracefully (the front doc still generates)."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return None
 
 
 def _search(pattern, text, group=1, default=None, flags=0):
@@ -139,6 +151,26 @@ def derive():
     f["remaining"] = _search(r"Remaining\s*\([^)]*\)\s*:\s*\*\*(\d+)\*\*", closure,
                              default=None)
 
+    # --- hypothesis space: the live "hero" question ----------------------------
+    # One line pointing at the /progress map: the surviving-hypothesis count on the
+    # live question (design doc Sec.6). Soft: a missing/malformed JSON is skipped
+    # silently (front doc still generates); it is an additive pointer, not a gate.
+    f["hero"] = None
+    hs = _read_json(HYPOTHESIS_SPACE)
+    if isinstance(hs, dict):
+        questions = hs.get("questions") or []
+        hero = next((q for q in questions if isinstance(q, dict) and q.get("is_hero")), None)
+        if hero:
+            surviving = hero.get("surviving")
+            initial = hero.get("initial_frozen_count")
+            f["hero"] = {
+                "short_title": hero.get("short_title") or hero.get("qid") or "(live question)",
+                "surviving": surviving,
+                "initial": initial,
+                "reduction_ratio": hero.get("reduction_ratio"),
+                "bits_removed": hero.get("bits_removed"),
+            }
+
     return f, needs_review
 
 
@@ -186,6 +218,18 @@ def render(f, needs_review, now):
         if f["buildable_desc"]:
             b += " (%s)" % f["buildable_desc"]
         lines.append("- **Buildable now (independent of the wall):** %s" % b)
+
+    # hypothesis-space hero question (the live rival-explanation narrowing)
+    hero = f.get("hero")
+    if hero:
+        surv = hero["surviving"] if hero["surviving"] is not None else "?"
+        init = hero["initial"] if hero["initial"] is not None else "?"
+        bits = "?" if hero["bits_removed"] is None else ("%.2f" % hero["bits_removed"])
+        pct = ("%.0f%%" % (hero["reduction_ratio"] * 100)
+               if isinstance(hero["reduction_ratio"], (int, float)) else "?")
+        lines.append("- **Live question (hypothesis space):** %s -- %s of %s rival "
+                     "explanations still standing (%s ruled out, ~%s bits removed). "
+                     "Full map: `/progress`." % (hero["short_title"], surv, init, pct, bits))
     lines.append("")
 
     # closure headline
