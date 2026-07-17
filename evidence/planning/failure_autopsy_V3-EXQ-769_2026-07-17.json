@@ -8,7 +8,9 @@
       "run_id": "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3",
       "queue_id": "V3-EXQ-769",
       "supersedes": "v3_exq_765_mech457_bootstrap_explorer_competence",
-      "claim_ids": ["MECH-457"],
+      "claim_ids": [
+        "MECH-457"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "intact -- mis-diagnosed, not falsified; test let the claim express itself and the capacity SUB-hypothesis (not MECH-457) is falsified; claim_ids correct (not inherited-tag error)",
@@ -22,7 +24,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "dorsal-striatal actor taught by dopaminergic RPE (O'Doherty 2004; Schultz 1997), scaffolded by a novelty/curiosity drive (RND) + consolidation replay + a developmental explore->exploit anneal",
-        "dependencies": ["sustained appetitive/approach drive that does not extinguish before approach is established", "developmental ordering: approach before avoidance", "reward structure that couples survival to foraging"],
+        "dependencies": [
+          "sustained appetitive/approach drive that does not extinguish before approach is established",
+          "developmental ordering: approach before avoidance",
+          "reward structure that couples survival to foraging"
+        ],
         "is_formal_import": false,
         "divergence": "not a formal-import divergence -- biology grounded (targeted_review_actor_critic_action_learning, 5 lit entries). The divergence is that the composed drive's ANNEAL SCHEDULE lets the aversive/survival system monopolize the policy before approach is established -- an ontogenetic-ordering omission, not a mechanism-class error",
         "lit_status": "present"
@@ -59,11 +65,24 @@
           "H3: credit-assignment horizon -- the actor-critic cannot assign credit from sparse foraging events to the actions that caused them, independent of drive or env"
         ],
         "suggested_probes": [
-          {"hypothesis": "H1", "axis": "drive", "sketch": "do NOT anneal the intrinsic drive (or an approach-first curriculum establishing foraging before the aversive/survival pressure is fully weighted). Null: sustained/approach-first drive leaves ON at the passive-survival collapse (forage ~0) -> ordering is not the operative axis."},
-          {"hypothesis": "H2", "axis": "environment", "sketch": "a metabolic forage-to-survive env variant (resources deplete; survival REQUIRES foraging) so the passive-survival optimum no longer exists. Null: even when survival requires foraging, ON does not reach competent foraging -> reward-decoupling is not the wall."},
-          {"hypothesis": "H3", "axis": "measurement", "sketch": "a dense-shaped foraging reward oracle (or achievable-credit anchor) removing the credit-assignment difficulty. Null: even with dense/oracle-shaped forage credit, ON does not reach competent foraging -> the wall is deeper than credit horizon (representation ceiling or a different mechanism class)."}
+          {
+            "hypothesis": "H1",
+            "axis": "drive",
+            "sketch": "do NOT anneal the intrinsic drive (or an approach-first curriculum). PREFERRED ARM: SD-025 curiosity_drive (built + drive-validated 2026-07-16, V3-EXQ-767->767a; candidate) exposed as the actor-critic per-step intrinsic reward = density*(1-familiarity) (SD-024 weight-independent density + familiarity-EMA anti-perseveration). Note SD-025 natively lives on the hippocampal-CEM _score_trajectory proposal path -> must be wired as a scalar intrinsic reward to the RepAgent policy, not left on the planner. Its anti-perseveration term penalizes staying put (the exact 769 passive-survival behavior). CAVEATS: SD-025 is a NOVELTY-class drive (same class as RND, which 747-749 showed plateaus ~5.22 = ~11% of the 48 ceiling; only competence-directed BC 32.72 cleared) AND it shares 769's extinction pathology (self-attenuates as familiarity->1). Null: sustained / SD-025 / approach-first drive still leaves ON at passive-survival collapse (forage ~0) -> ordering is not the operative axis."
+          },
+          {
+            "hypothesis": "H2",
+            "axis": "environment",
+            "sketch": "a metabolic forage-to-survive env variant (resources deplete; survival REQUIRES foraging) so the passive-survival optimum no longer exists. Null: even when survival requires foraging, ON does not reach competent foraging -> reward-decoupling is not the wall."
+          },
+          {
+            "hypothesis": "H3",
+            "axis": "measurement",
+            "sketch": "a dense-shaped foraging reward oracle (or achievable-credit anchor) removing the credit-assignment difficulty. Null: even with dense/oracle-shaped forage credit, ON does not reach competent foraging -> the wall is deeper than credit horizon (representation ceiling or a different mechanism class)."
+          }
         ],
-        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential re-pose. NEW EXQ numbers testing DIFFERENT mechanisms -- brake permits. COORDINATE with the in-flight approach-before-avoidance ordering falsifier: if it already covers H1, drop H1 and keep H2/H3."
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential re-pose. NEW EXQ numbers testing DIFFERENT mechanisms -- brake permits. COORDINATE with the in-flight approach-before-avoidance ordering falsifier: if it already covers H1, drop H1 and keep H2/H3.",
+        "sd025_design_note": "SD-025 curiosity_drive (newly validated) is a candidate arm for H1, NOT a fanout-reshaper. RND and SD-025 are ONE coherent curiosity sub-class: spend ONE H1 drive leg covering the class (SD-025 as the arm -- substrate-grounded + anti-perseverating), do NOT burn a 2nd leg on curiosity variants, do NOT let SD-025 displace H2. SD-025 REINFORCES H2 as load-bearing: it self-attenuates via familiarity-saturation just as RND anneals, so novelty-class drives cannot escape the passive-survival collapse when survival is decoupled from foraging; the only way off the plateau is a NON-extinguishing homeostatic forage-to-survive coupling (= H2)."
       },
       "secondary_findings": [
         {
