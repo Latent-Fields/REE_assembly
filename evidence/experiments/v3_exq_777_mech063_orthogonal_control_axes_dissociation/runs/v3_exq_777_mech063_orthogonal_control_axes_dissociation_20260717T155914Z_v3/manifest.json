@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_777_mech063_orthogonal_control_axes_dissociation",
+  "run_id": "v3_exq_777_mech063_orthogonal_control_axes_dissociation_20260717T155914Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-17T15:59:14.484307Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-063"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "control_axes_collinear_toward_one_scalar",
+    "preconditions": [
+      {
+        "name": "score_axis_live",
+        "control": "A1 arms: mean v_t and no-op candidate count",
+        "measured": 0.5,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "temperature_axis_live",
+        "control": "B1 arms: effective_T - baseline_T",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "sample_sufficiency",
+        "control": "min fresh E3 selections over cells",
+        "measured": 20,
+        "threshold": 20,
+        "met": true
+      },
+      {
+        "name": "baseline_entropy_headroom",
+        "control": "A0B0 normalised entropy below ceiling",
+        "measured": 0.34963984881412663,
+        "threshold": 0.98,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "axis_authority",
+        "control": "both standardised main-effect vector norms",
+        "measured": 0.10456660183295516,
+        "threshold": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_rank2_non_collinearity",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rank2_non_collinearity": true
+    },
+    "summary": "MECH-063 rank-2 test on the production control plane. Two independently-toggled regulators route to two E3-softmax parameters (score-bias vs temperature). PASS = their standardised behavioural effect vectors are non-collinear (rank-2, control is NOT one scalar); FAIL/weakens = parallel (collapse toward one scalar); FAIL/non_contributory = a control axis was not exercised (substrate_not_ready_requeue)."
+  }
+}
