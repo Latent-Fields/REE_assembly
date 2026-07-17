@@ -1,67 +1,11 @@
 {
   "schema_version": "v1",
-  "runner_pid": 667,
-  "runner_started_at": "2026-07-14T18:55:40.646263+00:00",
-  "last_updated": "2026-07-15T01:33:28.972001+00:00",
+  "runner_pid": 668,
+  "runner_started_at": "2026-07-17T06:45:49.311502+00:00",
+  "last_updated": "2026-07-17T06:46:20.461815+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-752",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-credit (credit-assignment axis): prioritized backward credit replay vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-753",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-return (memory/frontier axis): Go-Explore archive + return vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-754",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457/INV-088 GOV-FANOUT-1 leg H-curriculum (teaching-signal axis): goal-frontier IMGEP/AMIGo-lite vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 2800.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-755",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 leg H-mode (policy-control axis): critic-utility explore/exploit gate vs fixed-RND, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 3600.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-756",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-457 GOV-FANOUT-1 PAIR H-credit x H-return (additivity cell): credit + return + pair vs sparse, z_world + raw 5x5, diagnostic",
-      "description": "",
-      "estimated_minutes": 4400.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -2366,6 +2310,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_742m_mech457_bias_head_baseline_mint_20260715T013328Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 23867.0
+    },
+    {
+      "queue_id": "V3-EXQ-768a",
+      "backlog_id": "",
+      "claim_id": "ARC-057",
+      "title": "ARC-057 SD-024xSD-025 interaction spike -- continuous CEM score-margin re-op (supersedes 768)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_768a_arc057_da_curiosity_interaction_spike_margin] outcome=PASS elapsed=29.9s | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-768a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-768a.json",
+      "started_at": "2026-07-17T06:45:49.326305+00:00",
+      "completed_at": "2026-07-17T06:46:20.461015+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_768a_arc057_da_curiosity_interaction_spike_margin/v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 30.0
     }
   ]
 }
