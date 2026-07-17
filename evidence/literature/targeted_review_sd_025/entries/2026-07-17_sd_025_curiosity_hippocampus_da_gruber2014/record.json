@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_025",
+  "entry_id": "2026-07-17_sd_025_curiosity_hippocampus_da_gruber2014",
+  "timestamp_utc": "2026-07-17T06:04:56Z",
+  "claim_ids_tested": ["SD-025"],
+  "source": {
+    "title": "States of curiosity modulate hippocampus-dependent learning via the dopaminergic circuit",
+    "authors": ["Matthias J Gruber", "Bernard D Gelman", "Charan Ranganath"],
+    "year": 2014,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2014.08.060",
+    "url": "https://doi.org/10.1016/j.neuron.2014.08.060"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Empirical human fMRI evidence that intrinsic curiosity engages the same midbrain-dopaminergic + hippocampal circuit as extrinsic reward and enhances hippocampus-dependent encoding -- grounding SD-025's placement of a curiosity drive ON the hippocampal layer AND its coupling to the SD-024 dopaminergic-expansion substrate (the ARC-057 SD-024 x SD-025 pairing). Held at 0.66 because curiosity here is an epistemic-state manipulation (trivia questions) validated by memory benefit, not a spatial trajectory-scoring bias favoring representational density; the mapping to SD-025's mechanism is by shared circuit and shared functional role, not by measured computation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Curiosity is operationalized as anticipatory interest in the answer to a trivia question and read out as a memory-encoding benefit; SD-025 operationalizes curiosity as an online CEM trajectory-scoring bonus proportional to representational density -- the shared construct label ('curiosity') spans two quite different computations.",
+    "The paper links curiosity to enhanced ENCODING (a consolidation/memory outcome), not to biased ACTION SELECTION toward information-rich regions -- so it supports the drive's neural substrate more than SD-025's specific behavioural function (approach emergence via density-following)."
+  ],
+  "tags": ["sd-025", "curiosity", "hippocampus", "dopamine", "intrinsic_motivation", "arc-057", "sd-024"],
+  "mapping": {
+    "source_claim_statement": "In humans, states of high curiosity improved memory both for the curiosity-target material and for incidental material encountered during the curious state. fMRI showed enhanced activity in the midbrain (SN/VTA) and nucleus accumbens during high curiosity, and curiosity-driven memory benefits were supported by anticipatory activity in midbrain and hippocampus and by functional connectivity between them. This links intrinsic-curiosity mechanisms to the extrinsic-reward dopaminergic circuit.",
+    "ree_translation": "Grounds two SD-025 design commitments at once: (1) curiosity is a real intrinsic drive with a dedicated neural substrate, and (2) that substrate is the midbrain-dopaminergic + hippocampal circuit -- exactly where REE places the SD-024 (DA-modulated RBF density) x SD-025 (curiosity trajectory bias) pairing. The finding that intrinsic curiosity and extrinsic reward share the dopaminergic circuit supports the ARC-057 architecture in which the curiosity drive and the DA-expansion substrate co-modulate the same hippocampal representation.",
+    "mapping_caveat": "The curiosity construct is epistemic (interest in trivia answers), validated via a memory-encoding benefit, not a spatial/representational-density trajectory-scoring bias. Support is by shared circuit and shared functional role (intrinsic drive coupled to DA + hippocampus), NOT by measurement of SD-025's actual computation (density-following action selection). Human fMRI -> REE abstract hippocampal RBF terrain transfer by functional analogy.",
+    "source_context": "Healthy human adults, fMRI during a trivia-question curiosity paradigm with immediate and one-day-delayed memory tests; midbrain/NAcc/hippocampus BOLD and functional connectivity."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.38,
+    "notes": "Strong, well-replicated empirical study in a top venue. Mapping fidelity moderate: it validates the drive's neural substrate and its DA-hippocampus coupling (the SD-024 x SD-025 / ARC-057 pairing) but not SD-025's density-following action-selection computation. Transfer risk moderate: human epistemic curiosity + memory outcome -> REE spatial trajectory-scoring bias."
+  }
+}

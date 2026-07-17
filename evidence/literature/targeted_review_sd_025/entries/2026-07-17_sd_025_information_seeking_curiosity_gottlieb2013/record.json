@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_025",
+  "entry_id": "2026-07-17_sd_025_information_seeking_curiosity_gottlieb2013",
+  "timestamp_utc": "2026-07-17T06:04:56Z",
+  "claim_ids_tested": ["SD-025"],
+  "source": {
+    "title": "Information-seeking, curiosity, and attention: computational and neural mechanisms",
+    "authors": ["Jacqueline Gottlieb", "Pierre-Yves Oudeyer", "Manuel Lopes", "Adrien Baranes"],
+    "year": 2013,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2013.09.001",
+    "url": "https://doi.org/10.1016/j.tics.2013.09.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Foundational cross-disciplinary (machine-learning + neuroscience) grounding for the design decision that an information-seeking/curiosity drive is a legitimate, uniform bias that guides exploration -- exactly SD-025's move. It licenses the family of mechanisms SD-025 sits in (automatic novelty bias through learning-progress/information-gain search). Held at 0.68 because it is a design_decision grounding, not an empirical validation, and because SD-025's specific operationalization (density-of-RBF-centers as the information proxy, novelty = density * (1 - familiarity)) is only one member of the family the review surveys -- the review does not endorse density-of-representation specifically.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review's stronger mechanisms are learning-progress / information-gain based (seek where you can reduce uncertainty fastest); SD-025's density-following proxy is closer to the 'automatic novelty bias' end and does not explicitly compute expected information gain -- so a strict reading pressures SD-025 toward the weaker/simpler member of the family.",
+    "Curiosity-as-density can perseverate on high-density-but-fully-learned regions; the review notes pure novelty biases get 'trapped' without a learning-progress term -- SD-025 mitigates this only via the familiarity EMA, an ad hoc discount rather than a learning-progress signal."
+  ],
+  "tags": ["sd-025", "curiosity", "information_seeking", "intrinsic_motivation", "exploration", "novelty", "arc-057"],
+  "mapping": {
+    "source_claim_statement": "Exploration and information-gathering are guided by a family of mechanisms ranging from automatic biases toward novelty/surprise to systematic searches for learning progress and information gain (curiosity-driven behaviour). These mechanisms are shared across machine learning, active visual sampling, and psychology/neuroscience of curiosity, and can be studied as intrinsic drives that bias action selection independently of extrinsic reward.",
+    "ree_translation": "Licenses SD-025's core design decision: adding a uniform, extrinsic-reward-independent information-seeking bias to hippocampal CEM trajectory scoring is a principled instantiation of a well-attested drive, not an ad hoc bonus. SD-025's uniform 'do the same computation everywhere' curiosity term, with approach emerging because DA-expanded (SD-024) regions carry more representational structure, is a concrete member of the novelty/information-bias family the review formalizes.",
+    "mapping_caveat": "The review grounds the EXISTENCE and legitimacy of an information-seeking drive, and situates SD-025 in the mechanism family -- but it does not endorse SD-025's specific proxy (representational density in an RBF map) as the information measure, and its strongest mechanisms are learning-progress-based rather than novelty-density-based. So it supports the design DECISION more than the specific FUNCTIONAL FORM. Theory/computational review, not empirical validation.",
+    "source_context": "Cross-disciplinary review spanning reinforcement-learning intrinsic motivation, active oculomotor sampling in natural behaviour, and psychology/neuroscience of curiosity; primate/human and machine-learning models."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.3,
+    "notes": "High-quality, highly-cited review from a strong venue and precisely the right domain-bridge (ML intrinsic motivation <-> neuroscience curiosity). Mapping fidelity moderate: grounds the drive and the family, not SD-025's density-specific form. Transfer risk low-moderate -- the review is explicitly framed as design-relevant computational principles, which is how REE uses it."
+  }
+}

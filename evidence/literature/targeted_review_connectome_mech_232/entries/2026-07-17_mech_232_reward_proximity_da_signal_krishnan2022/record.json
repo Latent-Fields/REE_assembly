@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_232",
+  "entry_id": "2026-07-17_mech_232_reward_proximity_da_signal_krishnan2022",
+  "timestamp_utc": "2026-07-17T06:04:56Z",
+  "claim_ids_tested": ["MECH-232"],
+  "source": {
+    "title": "Reward expectation extinction restructures and degrades CA1 spatial maps through loss of a dopaminergic reward proximity signal",
+    "authors": ["Seetha Krishnan", "Chad Heer", "Chery Cherian", "Mark E J Sheffield"],
+    "year": 2022,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-022-34465-5",
+    "url": "https://doi.org/10.1038/s41467-022-34465-5"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct, causal, cellular-resolution test of the exact mechanism MECH-232 asserts: a VTA-dopaminergic reward-proximity signal in CA1 that governs the fidelity/stability/over-representation of the reward map rather than writing an explicit positive-valence field. Bidirectional evidence (extinction removes it; optogenetic VTA-DA inhibition reproduces it). Confidence held below 0.9 by rodent-to-REE transfer and because the paper does not directly dissociate 'implicit representational-quality expansion' from an explicit valence gradient the way MECH-232's CRUX demands -- it shows the correlates, not the approach-behaviour dissociation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper measures encoding-side map quality (over-representation, remapping rate, trial-to-trial reliability) but does not test whether the DA-modulated representation drives approach behaviour in the absence of an explicit positive gradient -- so it supports the representational-expansion premise of MECH-232 without confirming the load-bearing 'this expansion IS the approach mechanism' claim.",
+    "Reward-proximity DA signal is a ramping, expectation-dependent scalar; a reader could interpret 'reward proximity' as itself a graded valence-like signal, blurring the very implicit-vs-explicit distinction MECH-232 rests on."
+  ],
+  "tags": ["mech-232", "dopamine", "hippocampus", "place_cells", "reward", "vta_ca1", "representational_expansion"],
+  "mapping": {
+    "source_claim_statement": "In mice, VTA dopaminergic axons in CA1 carry a reward-expectation-dependent ramping reward-proximity signal; this signal maintains place-cell over-representation of reward locations and map reliability. Extinguishing reward expectation, or optogenetically inhibiting VTA dopaminergic neurons, abolishes reward over-representation, increases place-field remapping, and reduces trial-to-trial reliability -- while the animal stays behaviourally engaged.",
+    "ree_translation": "Directly instantiates MECH-232's core: dopamine at reward-relevant locations acts on the fidelity, stability, and density of hippocampal place representations (REE's DA-modulated RBF representational expansion, SD-024) rather than stamping an explicit positive-valence tag. Loss of the DA signal degrades map quality without erasing engagement -- exactly the dissociation REE relies on to argue approach-valence enters hippocampal terrain implicitly, through representational quality.",
+    "mapping_caveat": "The paper establishes DA-controls-map-quality (the SD-024 substrate premise) but not the MECH-232 CRUX that this quality expansion, absent an explicit gradient, produces approach behaviour. It is strong support for the representational leg and silent on the behavioural-dissociation leg. Rodent 2-photon imaging in a virtual linear track; transfer to REE's abstract RBF terrain is by analogy of function, not mechanism.",
+    "source_context": "Head-fixed mice, virtual-reality linear track, two-photon Ca2+ imaging of CA1 pyramidal cells + GCaMP imaging of VTA dopaminergic axons in CA1; optogenetic inhibition of VTA dopaminergic neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "High-quality causal study in a strong venue with converging correlational + optogenetic evidence. Mapping fidelity high on the representational-expansion premise, lower on the approach-dissociation CRUX. Transfer risk moderate: rodent spatial navigation -> REE abstract hippocampal terrain."
+  }
+}

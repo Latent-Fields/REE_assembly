@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_232",
+  "entry_id": "2026-07-17_mech_232_da_reactivation_stability_mcnamara2014",
+  "timestamp_utc": "2026-07-17T06:04:56Z",
+  "claim_ids_tested": ["MECH-232"],
+  "source": {
+    "title": "Dopaminergic neurons promote hippocampal reactivation and spatial memory persistence",
+    "authors": ["Colin G McNamara", "Alvaro Tejero-Cantero", "Stephanie Trouche", "Natalia Campo-Urriza", "David Dupret"],
+    "year": 2014,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3843",
+    "url": "https://doi.org/10.1038/nn.3843"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Causal optogenetic evidence that midbrain dopaminergic input to hippocampus enhances place-cell assembly reactivation and stabilizes spatial memory at newly learned goal locations -- directly supporting the 'stability / durability' sub-component of MECH-232's representational-expansion claim. Held below the Krishnan entry because it targets reactivation/persistence (the stability leg) rather than density/over-representation, and does not address the implicit-vs-explicit-gradient CRUX at all.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Demonstrates DA-driven stabilization of goal-location representations but says nothing about whether that stability substitutes for, or is distinct from, an explicit positive-valence tag -- the MECH-232 dissociation is untested.",
+    "Effect is on offline reactivation during sleep/rest and subsequent recall; MECH-232 as instantiated in REE is an online CEM-scoring / terrain mechanism, so the mapping crosses a consolidation-vs-online-planning boundary."
+  ],
+  "tags": ["mech-232", "dopamine", "hippocampus", "reactivation", "spatial_memory", "place_field_stability", "vta"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic burst stimulation of hippocampal dopaminergic fibers from midbrain neurons, delivered while mice explored novel environments, enhanced reactivation of CA1 pyramidal-cell assemblies during subsequent sleep/rest. Delivered during learning of new goal locations, it improved later recall of spatial neural representations and stabilized memory performance.",
+    "ree_translation": "Supports the 'stability / durability' facet of MECH-232's representational-expansion account: dopamine at reward/goal-relevant locations makes those hippocampal representations more durable and more easily reactivated, i.e. it upgrades representational quality rather than adding a valence field. Corresponds to the place-field stability leg of the SD-024 substrate readouts (V3-EXQ-766 leg-1 'stability' supporting metric).",
+    "mapping_caveat": "Evidence is about offline reactivation and memory persistence, not online density/over-representation or approach behaviour. It reinforces one facet (stability/durability) of the representational-expansion claim and is orthogonal to the implicit-vs-explicit-gradient CRUX. Rodent optogenetics -> REE abstract terrain transfer by functional analogy.",
+    "source_context": "Male transgenic (TH-Cre) mice, freely moving, appetitive spatial goal-learning task; optogenetic burst stimulation of midbrain dopaminergic fibers in dorsal hippocampus; CA1 assembly recording across sleep/rest."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.4,
+    "notes": "High-quality causal optogenetic study, strong venue. Mapping fidelity moderate: it evidences the stability/durability facet but not density/over-representation or the approach dissociation, and lives on the consolidation timescale rather than REE's online CEM terrain. Transfer risk moderate-to-high for the same online-vs-offline reason."
+  }
+}
