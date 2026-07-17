@@ -1,0 +1,87 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_776_mech279_pag_freeze_gate_functional_signature",
+  "run_id": "v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-17T15:37:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-279"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "pag_freeze_gate_functional_signature_confirmed",
+    "preconditions": [
+      {
+        "name": "pag_gate_commits_on_positive_control",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "pag_gate_releases_on_drop",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "S1_commit_law",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S2_committed_state_hysteresis",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "S3_gaba_tone_exit_control",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "S1_commit_law": true,
+      "S2_committed_state_hysteresis": true,
+      "S3_gaba_tone_exit_control": true
+    }
+  }
+}
