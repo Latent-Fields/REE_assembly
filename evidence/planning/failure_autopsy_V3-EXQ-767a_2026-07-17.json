@@ -1,0 +1,95 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-17T06:18:01Z",
+  "scope": "single",
+  "status": "confirmed",
+  "adjudication_kind": "diagnostic_pass",
+  "targets": [
+    {
+      "run_id": "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3",
+      "queue_id": "V3-EXQ-767a",
+      "claim_ids": ["SD-025"],
+      "supersedes": "v3_exq_767_sd025_curiosity_drive_selection_bias",
+      "outcome": "PASS",
+      "self_routed_direction": "supports",
+      "adjudication_verdict": "real_non_vacuous",
+      "failed_criterion": null,
+      "vacuity_check": {
+        "predecessor_vacuous": true,
+        "predecessor_reason": "binary pref_dense argmin saturated at exactly 1.0, zero cross-seed variance (measurement_degeneracy)",
+        "criteria_non_degenerate": {
+          "margin_on_varies_across_seeds": true,
+          "density_a_exceeds_b": true,
+          "on_margin_exceeds_off": true
+        },
+        "non_degenerate": true,
+        "margin_on_per_seed": [39.2574, 45.6131, 39.283, 36.0235, 40.0565, 26.9533, 43.7565, 36.1062],
+        "margin_on_range": [26.9533, 45.6131],
+        "margin_off": 0.0,
+        "pipeline_flag": "not_flagged (0 diagnostic self-routes flagged for adjudication; 767a in plain PASS section)"
+      },
+      "load_bearing_criteria": {
+        "L1a_margin_on": {"measured": 39.2574, "floor": 1.0, "passed": true, "variance_bearing": true},
+        "L1b_margin_propagation_delta": {"measured": 39.2574, "floor": 1.0, "passed": true, "off_null": 0.0},
+        "L1c_weight_independence": {"measured": 0.0, "tol": 0.1, "passed": true, "null_by_design": true},
+        "L2a_antiperseveration_margin": {"measured": 20.0542, "floor": 1.0, "passed": true, "variance_bearing": true},
+        "L2b_mech094_replay_no_shift": {"measured": 0.0, "tol": 0.5, "passed": true, "load_bearing": false, "null_by_design": true}
+      },
+      "readiness_preconditions": {
+        "density_read_discriminates": {"measured": 58.31583, "floor": 0.5, "met": true},
+        "selection_margin_responds_to_curiosity": {"measured": 78.7565, "floor": 1.0, "met": true}
+      },
+      "recording_provenance": {
+        "always_core_complete": true,
+        "substrate_hash": "be9a4d7f2cae17d06196ae3b75f7dda0ceab0afcd0b0a3cd841897ac353bc3ce",
+        "config_present": true,
+        "seeds": [0, 1, 2, 3, 4, 5, 6, 7],
+        "validate_recording": "OK (0 always-core gaps, 0 thin-pack drops)"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- drive mechanism validated; test let the claim express itself",
+        "biological_reference": "clear -- faithful curiosity/novelty drive instantiation; lit present",
+        "prerequisites": "present -- SD-024 verified (766a); SD-004 implemented",
+        "implementation": "complete -- drive + weight-independent density read + waking familiarity EMA all functional",
+        "environment": "adequate -- env-free selection test (drive-mechanism scope)",
+        "measurement": "adequate (RESOLVED) -- continuous CEM score-margin is variance-bearing; fixes 767 measurement_degeneracy",
+        "integration": "coupled -- curiosity term -> CEM selection -> familiarity EMA; works",
+        "scale": "adequate -- 8 seeds; fix was to the metric not the sample"
+      },
+      "biological_reference": {
+        "closest_mechanism": "curiosity/novelty-seeking drive biasing hippocampal trajectory selection toward representationally richer regions, discounted by a waking-only familiarity EMA",
+        "dependencies": ["SD-024 DA-modulated RBF density", "hippocampal CEM elite selection", "waking familiarity EMA"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": null,
+      "recommended_epistemic_category_note": "N/A -- clean PASS, not a failure category. Predecessor 767's measurement_degeneracy is RESOLVED by the re-operationalization.",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "2026-07-17 governance (failure_autopsy_V3-EXQ-767a): V3-EXQ-767a -- the continuous CEM score-margin re-operationalization of the vacuous V3-EXQ-767 -- adjudicated REAL / non-vacuous (supports). The re-op resolved 767's measurement_degeneracy: the load-bearing statistic is now the continuous CEM score-margin min(sparse)-min(dense), variance-bearing (margin_on 39.26, varies 26.95-45.61 across 8 seeds) and clearing the criteria_non_degenerate guard. All four load-bearing criteria PASS -- propagation (margin_on 39.26 vs OFF null 0.0; propagation-delta 39.26), weight-independent density read (L1c 0.0 <= 0.1: zeroing benefit value leaves the margin unchanged -> routes on density not value, ARC-007-strict), and waking-only familiarity-discount anti-perseveration (L2a 20.05; MECH-094 replay control L2b 0.0). Readiness met (density discrim 58.32; positive control margin 78.76). Recording complete (substrate_hash be9a4d7f; config; 8 seeds). This ADVANCES SD-025 drive-mechanism validation. Scope: DRIVE MECHANISM only -- NOT the env-constrained ARC-057 approach-emergence claim; does not itself promote ARC-057 (interaction is V3-EXQ-768a). Supersedes 767's inconclusive note.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "scope_guard": "single-drive mechanism only; does NOT promote ARC-057 (env-constrained approach-emergence + SD-024xSD-025 interaction = sibling V3-EXQ-768a, running on ree-cloud-4).",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "0 prior substrate_ceiling/non_contributory autopsies for SD-025; and this is a confirmed PASS, not a ceiling reading."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "The one prior autopsy on this target (failure_autopsy_767-768-cluster) is RESOLVED here, not recurring with a new failure signature. A PASS confirming a re-operationalization is not the granularity-debt pattern."
+      },
+      "learning_extracted": [
+        "767->767a re-operationalization is a validated 'mystery (known data)' repair: the data existed (continuous per-candidate scores, per-seed density gaps); only the binary-pref readout frame was wrong. Reframing to the continuous CEM score-margin resolved the degeneracy -- confirming the cluster autopsy's routing was correct.",
+        "SD-025 drive mechanism validated at diagnostic level: curiosity propagates into hippocampal CEM elite selection with a graded, drive-strength-scaled margin, reads density weight-independently (ARC-007-strict), and is discounted by a waking-only familiarity EMA (anti-perseveration)."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-16T18:08:56Z",
+  "last_review_utc": "2026-07-17T06:18:01Z",
   "discussed_experiment_dirs": [
     "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier",
     "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
@@ -3392,7 +3392,8 @@
     "v3_exq_765_mech457_bootstrap_explorer_competence_20260716T122726Z_v3",
     "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
     "v3_exq_767_sd025_curiosity_drive_selection_bias_20260716T073159Z_v3",
-    "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3"
+    "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3",
+    "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -3756,6 +3757,15 @@
         "MECH-284"
       ],
       "note": "First indexed exp evidence for MECH-284 (V_s residual schema-staleness accumulator). Wall-independent functional-signature isolation test (exp:simulation), 5 seeds, non-degenerate; drives the REAL StalenessAccumulator.integrate()/tick_leak()/snapshot() path with real BroadcastEvent+Anchor objects; DV = region-indexed snapshot() scalar. All 3 criteria True 5/5: C2_region_locality_spread (LOAD-BEARING; perturbed region -> peak, non-overlapping fresh regions stay 0.0, range 1.0), C1_monotone_rise (graded 0.15->1.0), C3_leak_decay (factor-0.5 geometric decay to drop). Both readiness preconditions met (peak cross-region RANGE + peak vs_p supra-floor, populated only via real integrate() -- guards the 688 vacuous-null). Accumulator complement to MECH-287 (invalidation trigger), promoted same day via sibling V3-EXQ-757. Evidence class: functional-signature isolation of substrate module on controlled latent streams, action-free/training-free -- NOT integrated-agent behavioural. Cleared v3_pending gate; promoted candidate->provisional (mirrors MECH-287/288/304). Promote-to-active remains gated on EXQ-475 unlock + dissociation-from-PE + attribution_weight specificity tests."
+    },
+    {
+      "run_id": "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3",
+      "reviewed_utc": "2026-07-17T06:18:01Z",
+      "outcome": "PASS",
+      "claims": [
+        "SD-025"
+      ],
+      "note": "Diagnostic PASS adjudicated REAL/non-vacuous via /failure-autopsy (failure_autopsy_V3-EXQ-767a_2026-07-17). Continuous CEM score-margin re-op of the vacuous 767 (measurement_degeneracy, applied 2026-07-16d): load-bearing statistic is now the continuous margin min(sparse)-min(dense), variance-bearing (margin_on 39.26, varies 26.95-45.61 across 8 seeds), clears criteria_non_degenerate; pipeline did NOT re-flag vacuous_pass (0 self-routes flagged). All 4 load-bearing crits PASS: propagation (39.26 vs OFF null 0.0), weight-independent density read (L1c 0.0 <= 0.1, ARC-007-strict), waking-only familiarity-discount anti-perseveration (L2a 20.05; MECH-094 replay control L2b 0.0). Readiness met (density discrim 58.32; positive control 78.76). Recording complete (substrate_hash be9a4d7f; 8 seeds). ADVANCES SD-025 drive-mechanism validation; evidence_direction supports; routed to /governance for SD-025 candidate decision. Scope: DRIVE MECHANISM only -- does not promote ARC-057 (interaction = sibling V3-EXQ-768a)."
     }
   ],
   "review_history": [
