@@ -1,11 +1,45 @@
 {
   "schema_version": "v1",
-  "runner_pid": 668,
-  "runner_started_at": "2026-07-17T06:45:49.311502+00:00",
-  "last_updated": "2026-07-17T06:46:20.461815+00:00",
+  "runner_pid": 664,
+  "runner_started_at": "2026-07-17T16:00:39.288850+00:00",
+  "last_updated": "2026-07-17T16:03:20.704588+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-774",
+      "backlog_id": "EVB-0116",
+      "claim_id": "MECH-173",
+      "title": "MECH-173 REM-suppression precision-recalibration confidence-accuracy probe (diagnostic)",
+      "description": "",
+      "estimated_minutes": 48.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-771",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 H2: metabolic forage-to-survive (env reward-coupling) discrimination",
+      "description": "",
+      "estimated_minutes": 10800.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-777",
+      "backlog_id": "EVB-0204",
+      "claim_id": "MECH-063",
+      "title": "MECH-063 orthogonal control-plane axes rank-2 behavioural falsifier",
+      "description": "",
+      "estimated_minutes": 8.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-000",
@@ -2324,6 +2358,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_768a_arc057_da_curiosity_interaction_spike_margin/v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3.json",
       "completed_by": "ree-cloud-4",
       "actual_secs": 30.0
+    },
+    {
+      "queue_id": "V3-EXQ-773",
+      "backlog_id": "EVB-0112",
+      "claim_id": "MECH-076",
+      "title": "MECH-076 residue-as-terrain-deformation: basin-geometry dose-response (evidence)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_773_mech076_residue_basin_geometry_doseresponse] outcome=PASS elapsed=6.0s | Done. Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-773 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-773.json",
+      "started_at": "2026-07-17T16:00:39.308536+00:00",
+      "completed_at": "2026-07-17T16:00:46.550260+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_773_mech076_residue_basin_geometry_doseresponse/v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 7.2
+    },
+    {
+      "queue_id": "V3-EXQ-778",
+      "backlog_id": "",
+      "claim_id": "SD-068",
+      "title": "SD-068 consolidation-pipeline staged-damage diagnostic (harness validation)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | seeds pass: 3/3 (need 2) -> overall PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-778 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-778.json",
+      "started_at": "2026-07-17T16:00:47.757429+00:00",
+      "completed_at": "2026-07-17T16:03:20.703412+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_sd068_consolidation_staged_damage_diagnostic/v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T160320Z_v3.json",
+      "completed_by": "ree-cloud-4",
+      "actual_secs": 152.3
     }
   ]
 }
