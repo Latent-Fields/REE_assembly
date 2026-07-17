@@ -1,201 +1,108 @@
-# Morning Agenda — 2026-07-15
+# Morning Agenda — 2026-07-17
 
-Generated: 2026-07-15T04:25:32Z
-
-_Read-only digest. No governance decisions made, nothing marked reviewed._
+Generated: 2026-07-17T04:24:08Z
 
 ---
 
 ## Headlines — Positive Results & Live Decisions
 
-_New since the last digest (2026-07-13). Four overnight PASSes landed; three are genuine
-supporting-evidence runs and one is a decision-relevant diagnostic for the competence wall._
+Comparison window: results terminal since the last digest (2026-07-15T04:25:32Z).
 
-- **V3-EXQ-760 — mech303_contextual_safety_terrain_discrimination — PASS (supports)**
-  - **Moves:** MECH-303 — first genuine experimental support (gated AUC **0.857** vs ungated
-    control 0.456; margin 0.401 ≥ 0.15). exp_conf now **0.774**.
-  - **Makes live / unblocks:** MECH-303 is still `candidate` but now sits at exp_conf 0.774,
-    **above the candidate→provisional gate (0.62)** with a genuine-exp support → a
-    **promotion decision is live** for `/governance` (candidate → provisional).
-  - **Gate on acting:** run is in pending_review (not yet reviewed). None otherwise — read-only surfacing.
+- **V3-EXQ-767a — sd025_curiosity_drive_selection_bias_margin — PASS** (diagnostic, **pending review**)
+  - Cloud-authoritative (ree-worker-3, `linux-x86_64-py3.10`). Clean re-operationalization of the vacuous 767: the saturating binary `pref_dense` gate replaced with the continuous CEM score-margin. Non-degenerate this time — `median_margin_on` 39.26 varies across seeds, `margin_off` 0.0, `min_r2_margin` 78.76, weight-independence 0.0. Cross-seed variance guard all True.
+  - **Moves:** SD-025 (curiosity_drive) — supports; the drive-mechanism (curiosity biases CEM selection toward higher-density regions, familiarity discount prevents perseveration) is validated at the re-operationalized readout.
+  - **Makes live / unblocks:** confirms the SD-025 leg of the SD-024×SD-025 story; the ARC-057 interaction spike **V3-EXQ-768a** (still the sole queue item) is the paired next node.
+  - **Gate on acting:** diagnostic PASS — must be adjudicated via `/failure-autopsy` before it can drive SD-025 governance. Not yet reviewed.
 
-- **V3-EXQ-761 — mech092_quiescent_replay_selectivity — PASS (supports)**
-  - **Moves:** MECH-092 — new wall-independent functional-signature support (perfect selectivity:
-    quiescent fire 1.0 / salient 0.0 / nonE3 0.0; 5.0 replay trajectories per quiescent tick).
-    exp_conf now **0.774** (prior MECH-092 exp run EXQ-136 was non_contributory — this is its
-    first genuine support).
-  - **Makes live / unblocks:** MECH-092 is `candidate` at exp_conf 0.774 (> 0.62 gate) →
-    **promotion decision live** for `/governance` (candidate → provisional).
-  - **Gate on acting:** in pending_review; C4 selectivity is code-structural (load-bearing content
-    is C1–C3, all PASS). Actionable at governance review.
+- **MECH-423 — PROMOTED candidate → provisional** (V3-EXQ-680e cloud PASS/supports, applied governance cycle 2026-07-16d, REE_assembly `e40362ebb7`)
+  - Cross-model super-additivity. Completed the 680b→e corrected-gate campaign: the recalibrated readiness cosine gate (min(cos)≥0 → magnitude-floored band 0.15) unmasked the verdict 680d's false-route had suppressed. All 7 integration-readiness preconditions met; load-bearing `superadditivity_margin_pair` passed.
 
-- **V3-EXQ-762 — mech046_cea_mode_prior_context_conditioning — PASS (supports)**
-  - **Moves:** MECH-046 — +1 support (context-monotone mode prior: safe 0.0 → 0.15 → 0.40 →
-    threat_high 0.700; range 0.700 ≥ 0.3; rest-silent; bounded ≤ cap 0.8). exp_conf 0.774.
-  - **Makes live / unblocks:** MECH-046 is **already `provisional`** (v3_pending cleared 2026-04-22);
-    this consolidates it toward `stable`. Not a fresh gate-flip — a consolidation.
-  - **Gate on acting:** in pending_review. None.
-
-- **V3-EXQ-751 — mech457_hoptim_unsupervised_explorer_actor_critic — PASS (diagnostic)**
-  - **Moves:** MECH-457 confidence **neutrally** (recorded `unknown`, excluded from scoring —
-    stays `candidate/v3_pending`, exp_conf 0.32), BUT it is **decision-relevant**: a stronger
-    unsupervised explorer (**RND = 5.22** res/ep, majority supra-floor vs the 1.0 floor) is the
-    **first thing to clear the competence floor** in the whole 719a→724→732→732a→742 wall.
-  - **Makes live / unblocks:** narrows the conversion-ceiling / MECH-457 **build direction** —
-    "exploration was (part of) the wall." BUT the companion diagnostics **752 (H-credit) and 753
-    (H-return/Go-Explore) both stay sub-floor** (0.25–0.33 res/ep), so credit-assignment and
-    return-frontier variants do **not** close the gap. Label `stronger_unsupervised_explorer_clears_floor`.
-  - **Gate on acting:** diagnostic (claim-neutral) — **route 751/752/753 to `/failure-autopsy`**
-    before any `/implement-substrate` build. Do not treat as a claim verdict.
-
-_Nothing new weakens a claim. The MECH-457/INV-088 diagnostics (750/751/752/753) narrow the
-build direction without shifting confidence._
+- **MECH-232 — PROMOTED candidate → provisional** (V3-EXQ-766a cloud PASS/supports, adjudicated + governance 2026-07-16, REE_assembly `46db726a00`)
+  - DA-modulated RBF representational expansion. SD-024 cloud-authoritative gate CLOSED (ree-cloud-2, cloud class); autopsy `failure_autopsy_V3-EXQ-766a` verified.
 
 ---
 
 ## Queue Status
-- **Total pending: 0** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0) · **3 claimed and running** (all cloud):
-  - V3-EXQ-754 (ree-cloud-4) MECH-457/INV-088 · V3-EXQ-755 (ree-cloud-2) MECH-457 · V3-EXQ-756 (ree-cloud-3) MECH-457
-- **ALERT: Queue low — 0 pending experiments** (fewer than 3). Fleet is finishing the MECH-457
-  GOV-FANOUT-1 wave (754–756); once they land there is nothing queued behind them.
-- **Fleet-idle watcher** (snapshot 2026-07-15T03:23:02Z, ~1h old): `idle_risk = true`,
-  claimable backlog = **0** (threshold 3), `ready_sd_validation_candidates` = **EMPTY**
-  (excluded: 32 validation-already-ran, 17 no-queueable-validation, 3 known-churn). An empty
-  candidate list with 32 already-ran means **refill needs a fresh `/queue-experiment` design, not
-  a re-queue.** The obvious refill source is the 750/751/752/753 `/failure-autopsy` → the H-rep /
-  H-explore GOV-FANOUT-1 successors for the MECH-457 competence wall.
-- _(No owed-successor bullet: no plan Owner-EXQ passed the Step 7c cross-check as actionable-owed —
-  see Active Plans Heartbeat for 483f / 739 dispositions.)_
+- **Total pending: 1** (Mac: 0 | PC: 0 | EWIN: 0 | any: 0 | ree-cloud-4: 1)
+  - `V3-EXQ-768a` — ARC-057 DA×curiosity interaction spike (margin re-op), priority 7, ree-cloud-4
+- **ALERT: Queue low — fewer than 3 pending experiments.**
+- **Fleet-idle watcher:** `idle_risk=true`, claimable backlog=1 (threshold 3), snapshot 2026-07-17T03:37:05Z. `ready_sd_validation_candidates` is **EMPTY** — `excluded_validation_already_ran=32`, i.e. every built SD's validation has already been queued or run. **Refill needs a fresh `/queue-experiment` design, not a re-queue.** Natural refills on the table: the 767a→SD-025 adjudication continuation, 769→MECH-457 re-route, and 767a/768a follow-ons (see below).
+- Owed successors: **none** (all plan-row Owner-EXQs cleared the Step 7c existence cross-check — every candidate has a manifest or a `completed` runner_status entry; nothing is both unqueued and unrun).
 
 ---
 
-## Experiments Awaiting Review (5 indexed PASS / 4 indexed FAIL; 0 runner-only)
+## Experiments Awaiting Review (2 indexed / 0 runner-only)
 
-_1 diagnostic self-route flagged for `/failure-autopsy` adjudication (V3-EXQ-750,
-`matched_competence_precondition_unmet`)._
+### V3-EXQ-769 — mech457_bootstrap_explorer_capacity — FAIL
+- **Claims tested:** MECH-457 (status: candidate, v3_pending, epistemic_category: standard)
+- **Machine:** ree-cloud-2 (`linux-x86_64-py3.10`, cloud class)
+- **Key metrics:** label `bootstrap_explorer_plateaus_capacity_gap_remains`; `non_degenerate: true` (a real, non-vacuous FAIL). Positive controls clear the floor (local-view-greedy 48.05, greedy-oracle 57.2, thr 1.0) — the bootstrap explorer's capacity/reliability/detached-z_world amend did **not** close the competence gap.
+- **Classification:** diagnostic (evidence_direction `unknown`) → **needs `/failure-autopsy`**
+- **Supersedes:** V3-EXQ-765 (competence bootstrap-explorer, capacity-side amend). This is the latest MECH-457 non-passing autopsy target in the lineage — the re-derive brake is standing; expect the autopsy to REFUSE another same-axis probe and route to a distinct reframe / substrate move.
+- **Governance impact:** MECH-457 stays candidate/v3_pending; INV-088 conflict-resolution stays blocked-on-upstream (this was its retest).
 
-### V3-EXQ-760 — mech303_contextual_safety_terrain_discrimination — PASS
-- **Claims tested:** MECH-303 (candidate, exp_conf 0.774, confirmed_established quadrant; 6 entries 5 supports/1 mixed, genuine_exp=1)
-- **Key metrics:** gated AUC 0.857 vs ungated 0.456; margin 0.401; z_world separability 0.888
-- **Classification:** evidence — **Governance impact if confirmed:** first genuine-exp support; promotable candidate→provisional.
-
-### V3-EXQ-761 — mech092_quiescent_replay_selectivity — PASS
-- **Claims tested:** MECH-092 (candidate, exp_conf 0.774; 17 entries 16 supports/1 mixed, genuine_exp=1)
-- **Key metrics:** quiescent/salient/nonE3 fire = 1.0/0.0/0.0; 5.0 replay traj/tick; ≥19 quiescent cycles/seed
-- **Classification:** evidence — **Governance impact if confirmed:** first genuine support (EXQ-136 was non_contributory); promotable candidate→provisional.
-
-### V3-EXQ-762 — mech046_cea_mode_prior_context_conditioning — PASS
-- **Claims tested:** MECH-046 (**provisional**, exp_conf 0.774; 5 entries all supports)
-- **Key metrics:** mode prior 0.0→0.15→0.40→0.700 monotone; range 0.700; rest-silent; bounded ≤ 0.8
-- **Classification:** evidence — **Governance impact if confirmed:** consolidates provisional → toward stable.
-
-### V3-EXQ-751 — mech457_hoptim_unsupervised_explorer_actor_critic — PASS
-- **Claims tested:** MECH-457 (candidate/v3_pending, exp_conf 0.32; 23 entries mostly lit, genuine_exp=1 weakens)
-- **Key metrics:** RND explorer 5.217 (supra-floor); ICM 0.217 (sub-floor); anchors met (greedy 48.05, oracle 57.2)
-- **Classification:** diagnostic (excluded from scoring) — **Impact:** neutral on confidence; narrows build direction. Route to `/failure-autopsy`.
-
-### V3-EXQ-742m — mech457_bias_head_baseline_mint — PASS
-- **Claims tested:** none (baseline mint, claim_ids=[]) — reuse-insurance OFF-arm for the MECH-457 actor-critic lineage. Moves nothing.
-
-### V3-EXQ-750 — mech457_inv088_strategy_diversity_readout — FAIL (self-route flagged)
-- **Claims tested:** INV-088 (candidate, exp_conf 0.319, `pending_substrate_reconfirmation`), MECH-457
-- **Key metrics:** dense-pair repr effect on H_greedy = −1.050 bits (raw view shows *more* single-step diversity than z_world — opposite of the INV-088 repr-ceiling prediction). Precondition `dense_pair_matched_competent` **met:false** (0 vs 1) → FAIL confounded by competence.
-- **Classification:** diagnostic — **Impact:** neutral (recorded `unknown`); the ARC-065-child / INV-088-behavioural-consequence escalation does **not** fire. **Adjudicate via `/failure-autopsy`.**
-
-### V3-EXQ-752 — mech457_hcredit_backward_sweep — FAIL
-- **Claims tested:** MECH-457 (candidate/v3_pending)
-- **Key metrics:** hcredit z_world 0.317 / raw 0.333 (sub-floor); `any_rep_lifts_above_plateau=false`; anchors met
-- **Classification:** diagnostic (GOV-FANOUT-1 H-credit leg) — **Impact:** neutral; prioritized backward credit-assignment does **not** close the floor gap. Route to `/failure-autopsy`.
-
-### V3-EXQ-753 — mech457_hreturn_go_explore_archive — FAIL
-- **Claims tested:** MECH-457 (candidate/v3_pending)
-- **Key metrics:** hreturn z_world 0.25 / raw 0.30 (sub-floor); n_return_episodes ≈ 493; `any_rep_lifts_above_plateau=false`
-- **Classification:** diagnostic (GOV-FANOUT-1 H-return leg) — **Impact:** neutral; Go-Explore return-to-frontier archive does **not** close the gap. Route to `/failure-autopsy`.
-
-### V3-EXQ-763 — mech304_conditioned_inhibition_behavioural_falsifier — FAIL (non_contributory)
-- **Claims tested:** MECH-304 (**provisional**, exp_conf 0.774)
-- **Key metrics:** pos-control arm A release_rate 1.0 (met); but n_valid_seeds = **1** (threshold 4) → both load-bearing DVs fail; `non_degenerate:false`, reason `substrate_not_ready` (SD-065 first-of-lineage, substrate-in-flux).
-- **Classification:** evidence-intended, degenerate in effect — **Impact:** **does NOT weaken MECH-304.** Excluded from scoring; MECH-304 stays provisional (promoted 2026-07-14 by prior EXQ-759, the latest scored run). Behavioural falsifier needs the SD-065 safety-cue substrate to reach ≥4 valid seeds before re-posing.
+### V3-EXQ-767a — sd025_curiosity_drive_selection_bias_margin — PASS
+- **Claims tested:** SD-025 (status: candidate, design_decision)
+- **Machine:** ree-worker-3 (`linux-x86_64-py3.10`, cloud class)
+- **Key metrics:** `median_margin_on` 39.26 / `margin_off` 0.0 / propagation-delta 39.26; anti-perseveration margin 20.05; `min_r1_density_gap` 58.32; `min_r2_margin` 78.76. `criteria_non_degenerate` all True (margin varies across seeds — the vacuous-pass fix held).
+- **Classification:** diagnostic → **adjudicate via `/failure-autopsy`** before it drives SD-025 governance (see Headlines).
+- **Supersedes:** V3-EXQ-767 (binary `pref_dense` gate, adjudicated vacuous/measurement_degeneracy 2026-07-16d).
 
 ---
 
-## Errors to Diagnose (0 new)
+## Errors to Diagnose (0)
 
-No new undiagnosed ERRORs. `pending_review.md` reports 0 runner-only / 0 ERROR manifests. (87
-historical ERRORs in `runner_status.json` are all pre-existing and superseded by lettered
-successors — none surface as current pending items.)
+`generate_pending_review.py` reports 0 runner-only / 0 ERROR manifests pending. The 87 historical ERROR entries in `runner_status.json` all have queued or completed successors. Nothing to diagnose.
 
 ---
 
 ## Governance Agenda (1 recommendation)
 
-- **INV-088** (`candidate`) — Recommendation: **hold_candidate_resolve_conflict** (conflict resolution before promotion)
-  - Evidence: **3 supporting, 1 weakens, 1 mixed** (conflict_ratio 0.5); exp_entries 1, lit_entries 4
-  - Current confidence: exp_conf **0.319** (plausible_unproven quadrant)
-  - Note: also carries `pending_substrate_reconfirmation: true`. The active weakens is EXQ-744a
-    (mean_delta_r2 0.130 fails the 0.15 floor); the flagged FAIL 750 (above) is excluded/unknown so
-    does not add to the conflict. Governance should adjudicate the model-variance vs threshold-choice
-    vs claim-scope conflict before any promotion.
+- **INV-088** (candidate) — Recommendation: **hold_candidate_resolve_conflict** (`pending_user`)
+  - Conflict resolution before promotion. **Blocked-on-upstream:** its retest path ran through MECH-457 bootstrap-explorer; V3-EXQ-769 (the capacity amend) just FAILed, so the conflict is not yet resolvable. Keep candidate; do not force.
 
-**Granularity-debt recurrence (GOV-GRAN-1):**
-- P0 dropped-handoff: **none** (reactive discipline sound).
-- P1 unflagged-recurrence (list only — needs human discrimination, no action taken): **MECH-180**,
-  **MECH-423**, **MECH-268** — each circled by 2 no-verdict non-ceiling autopsies, no author flagged.
-  Discriminate coarse-claim (→ `/claim-synthesis`) vs coherent substrate-build campaign.
+**Granularity-debt recurrence (GOV-GRAN-1):** none. (P0 dropped-handoff = 0, P1 unflagged = 0; the reactive autopsy trigger caught everything — 29 claims already metabolized.)
 
 ---
 
-## Active Plans Heartbeat (3 in-flight)
+## Active Plans Heartbeat (8 plans with status tables)
 
-| Plan | Status | In-flight | Blocked | Stale rows | Last activity |
-|---|---|---|---|---|---|
-| conversion_ceiling_campaign_plan | assembling | all nodes (assembly-frontier, off closure %) | — | rest-by-design | 2026-07-10 |
-| ree_ai_design_critique_plan | in_progress | WS-1 (competence floor) | WS-2/10/11 not started | — | 2026-07-10 |
-| sd_037_axis_b_sustained_threat_curriculum_plan | assembling | GAP-B (assembling) | Phase 2/3/4 (behind P1b) | Phase 2/3/4 (2026-06-05) | 2026-06-23 |
+> Note: none of these plan files carry an explicit `Status: active` frontmatter line; they are surfaced here for visibility. Stale threshold = row `Last updated` before 2026-07-10. **No stale-row Owner-EXQ passed the Step 7c owed cross-check** — all have run or completed. Stale rows are unreconciled prose, not owed work.
 
-**conversion_ceiling_campaign** — all faces RAN terminal; campaign converged on the
-**competence-localization gate**. The 719a→724→732→732a chain bottomed out on the competence
-floor; the GOV-FANOUT-1 portfolio replaced it — **737 (P-A) and 738 (P-B) both RAN** (738 refuted
-H2: the floor is reachable from the 5×5 local view). All named Owner-EXQs (724/732/732a/714) have
-run. No actionable owed successor — blocked-on-upstream (the all-ON agent forages ~0). The live
-front is now the 742/751/752/753 MECH-457 competence-wall diagnostics (see Headlines).
+| Plan | Phases in-flight | Blocked | Paused | Stale rows |
+|---|---|---|---|---|
+| arc_062_rule_apprehension_plan | 1 | 1 | 0 | 1 |
+| commitment_closure_plan | 3 | 2 | 0 | 10 |
+| behavioral_diversity_isolation_plan | 2 | 2 | 0 | 3 |
+| goal_pipeline_plan | 1 | 2 | 0 | 2 |
+| infant_substrate_plan | 0 | 1 | 0 | 3 |
+| self_attribution_plan | 0 | 3 | 0 | 3 |
+| ree_ai_design_critique_plan | 0 | 1 | 0 | 0 |
+| sleep_substrate_plan | 0 | 1 | 0 | 0 |
 
-- **739 (P-C observation axis):** Step 7c — not in the live queue, no manifest, not in runner_status
-  → passes the bare 3-check, BUT its portfolio sibling 738/P-B already refuted the H2 question the
-  portfolio was posed to settle. **Not listed as actionable-owed** — a human should decide whether
-  the observation-axis probe still adds anything post-refutation.
-
-**ree_ai_design_critique WS-1** — IN PROGRESS but **blocked-on-upstream**: the H1/H2 discriminator
-is terminal (732b same-question re-pose REFUSED); resolution needs the local-view-achievable ceiling
-reference (WS-3 `capability_eval.py`) to land AND a substrate to clear the competence floor first.
-No owed EXQ.
-
-**sd_037_axis_b** — GAP-B owner **625e RAN TERMINAL FAIL** 2026-06-20 (consolidated into the
-MECH-439 conversion-ceiling cluster). Phase 2/3/4 rows are `blocked` behind P1b with stale
-`last_updated` (2026-06-05); Phase 4 owner **483f** passes the bare Step 7c 3-check (not queued / no
-manifest / not completed) **but is blocked-on-upstream** (Phase 4 cannot run until P1b clears, which
-is itself gated on the conversion ceiling) → **not an actionable owed successor.** No PLAN STALING
-flag: no in-progress/open rows (assembling rows rest in drift by design).
+Stale rows across these plans reference historical EXQs (543k, 629, 460b, 603n, 591, 567, 589, 590, 490g, 514g, …) — all verified run/completed (490g FAIL, 514g PASS in runner_status; the rest have manifests). These are unreconciled plan prose from April–June, not owed successors. No fresh owed work surfaced.
 
 ---
 
-## Literature Pull Candidates (Top 1)
+## Literature Pull Candidates (Top 4 with literature need)
 
-| # | Claim | Subject | Priority | Existing entries |
-|---|-------|---------|----------|-----------------|
-| 1 | Q-019 | Basal-ganglia evidence extraction from six key papers | medium | 0 (no `targeted_review_q019`) |
+| # | Claim | Priority | Existing entries |
+|---|-------|----------|-----------------|
+| 1 | MECH-232 | medium | 0 |
+| 2 | SD-025 | medium | 0 |
+| 3 | ARC-057 | medium | 0 |
+| 4 | Q-019 | medium | 1 |
 
-_Only 1 backlog item flags `literature` as evidence_needed (of 364 total backlog items)._
+(MECH-232 and ARC-057 are the just-promoted / active-spike claims — a `/lit-pull` on either would ground the newly-provisional MECH-232 and the pending ARC-057 interaction node.)
 
 ---
 
 ## Serve.py Status
-- **RUNNING** on port 8000 (PID 3612).
+- **RUNNING on port 8000** (PID 67391).
 
 ---
 
 ## Blocked Items
-- None. `governance.sh` ran clean (both active TASK_CLAIMS claims were stale >6h → treated as
-  cleared; no governance collision). REE_assembly rebased cleanly over 3 phase3 writer commits
-  (3 local igw-ledger commits remain ahead). Foreign-session working-tree dirt (closure_dashboard,
-  inter_governance_workset, claims_live_status_drift, substrate_status_snapshot) left untouched.
+- No TASK_CLAIMS governance collision — governance.sh ran normally.
+- REE_assembly required a `git pull --rebase --autostash` at start (3 local igw-ledger bot commits + 2 incoming phase3 commits diverged; rebased cleanly, ~1061 pre-existing derive-noise dirty files left untouched per standing precedent).
+- INV-088 governance is blocked-on-upstream (MECH-457 retest 769 FAILed) — see Governance Agenda.
