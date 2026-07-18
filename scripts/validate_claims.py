@@ -26,11 +26,22 @@ Flag-drift warnings (WARN-level, no exit effect):
   surface drift between flag state and substrate status; governance decides.
 
 Modes:
-  --warn      (default) print issues, exit 0
-  --strict    print issues, exit 1 if any ERROR (Session D default in governance.sh)
-  --audit     print classification counts only (no validation)
+  --warn             (default) print issues, exit 0
+  --strict           print issues, exit 1 if any ERROR (Session D default in governance.sh)
+  --audit            print classification counts only (no validation)
+  --duplicates-only  run ONLY the duplicate-key gate; exit 1 if any duplicate.
+                     Deliberately narrow: this is the mode the PreToolUse
+                     git-commit guard blocks on. A duplicate key is definite
+                     silent data loss with one unambiguous remedy, so it is
+                     worth blocking a commit over; the other ERROR rules are
+                     schema/governance findings whose remedy may legitimately
+                     be "decide during governance", and coupling them to the
+                     commit path would let an unrelated pre-existing ERROR
+                     wedge an unrelated commit. --strict remains the full
+                     gate for governance.sh.
 
-Called at the top of build_claims_json.py and governance.sh.
+Called at the top of build_claims_json.py and governance.sh, and (as
+--duplicates-only) from the PreToolUse commit guard in .claude/settings.json.
 See docs/architecture/invariant_types.md for schema semantics.
 """
 import argparse
@@ -264,10 +275,27 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--strict", action="store_true", help="exit 1 on any ERROR")
     ap.add_argument("--audit", action="store_true", help="print classification counts only")
+    ap.add_argument(
+        "--duplicates-only",
+        action="store_true",
+        help="run ONLY the duplicate-key gate; exit 1 if any duplicate (commit-guard mode)",
+    )
     args = ap.parse_args()
 
     claims, duplicate_issues = load_claims()
     invariants = [c for c in claims if c.get("claim_type") == "invariant"]
+
+    # Commit-guard mode. Returns BEFORE the schema/governance checks so that a
+    # pre-existing unrelated ERROR elsewhere in the registry can never block a
+    # commit that has nothing to do with it.
+    if args.duplicates_only:
+        dupes = [msg for lvl, msg in duplicate_issues if lvl == "ERROR"]
+        if not dupes:
+            return 0
+        print(f"validate_claims [duplicates-only]: {len(dupes)} duplicate key(s) in claims.yaml")
+        for msg in dupes:
+            print(f"  ERROR: {msg}")
+        return 1
 
     if args.audit:
         counts = {"universal": 0, "emergent": 0, "grey_zone": 0, "unclassified": 0}
