@@ -23,7 +23,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
     - id: "conversion_ceiling_campaign:P-comp"
       title: "Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go compound or cancel at committed-class entropy (C2)?"
@@ -39,7 +39,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_non_contributory
     - id: "conversion_ceiling_campaign:P2-rootC"
       title: "Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-commit are dissociable"
@@ -55,7 +55,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
     - id: "conversion_ceiling_campaign:P3-ofc"
       title: "Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feeding F"
@@ -71,7 +71,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: built
     - id: "conversion_ceiling_campaign:FULLSTACK"
       title: "The real test: co-armed full-stack arm (demotion + Go/No-Go + floor + root-C + OFC ON), sweep use_candidate_rule_field, DV committed-class entropy"
@@ -87,7 +87,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: ran_exhausted_for_substrate
       cross_plan_link: ["behavioral_diversity_isolation:GAP-I"]
     - id: "conversion_ceiling_campaign:P4-learned-gating"
@@ -104,7 +104,7 @@ closure_plan:
         needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: exhausted
       cross_plan_link: ["behavioral_diversity_isolation:GAP-K"]
       reconcile_note_2026_07_06: "ARBITRATION FACE EXHAUSTED (session ecstatic-pare-45f7ad; planning reconciliation only, PROMOTES NOTHING). This 4th campaign face -- the cross-loop-arbitration-REWEIGHTING attack, mirror of behavioral_diversity_isolation:GAP-K -- is retired: 709 (weak) / 711 (runaway) / 713 (fair-bounded parity win) all ran terminal FAIL/non_contributory, and 713 (the first fair non-saturated limbic parity win) still failed C1, exhausting the route. The selection/eligibility face (MECH-448, the SELECTION-face prongs P-comp/P2/P3 composing into FULLSTACK) is confirmed the conversion route of record. status KEPT assembling (NOT flipped to done): the MECH-439 ceiling this face attacked is STILL OPEN (tracked by the in-progress behavioral_diversity_isolation:GAP-I); crediting an exhausted-negative face done=1.0 would inflate the closure %. Marked assembly_status: exhausted, off the % axis."
@@ -116,17 +116,19 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-17"
-        from: "curiosity_exploitation_amplifier_reframe_2026-07-17 (registered MECH-458)"
-        verdict: "generation-limited hypothesis (V3-EXQ-767a exploitation 39.3 vs diversity-ceiling 20.4, 0 at the decision point; V3-EXQ-768a SD-025-alone-on-flat = 0)"
-        next: "routing=implement-substrate (rarity-seeking ARC-065/MECH-314), BLOCKED-ON-UPSTREAM INV-088 z_world differentiation"
-        brake: "not_fired"
-        needs_review: false
+        as_of: "2026-07-10"
+        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
+        verdict: "non_contributory/precondition_unmet"
+        next: "routing=queue-experiment"
+        brake: "fired"
+        needs_review: true
+        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
-        scope_claims: ["MECH-458", "ARC-065", "MECH-314", "INV-088"]
+        scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
       assembly_status: blocked_on_upstream
       cross_plan_link: ["behavioral_diversity_isolation:GAP-A", "arc_062_rule_apprehension:GAP-H"]
+      healer_reconciliation_note_2026_07_18: "LIVE-BLOCK ADJUDICATION (session sad-engelbart-e80765; PROMOTES/DEMOTES NOTHING, no claims.yaml touched). The 2026-07-17 rescope below ALSO hand-wrote this node's `live:` block (as_of 2026-07-17 / from 'curiosity_exploitation_amplifier_reframe_2026-07-17' / verdict 'generation-limited hypothesis' / brake not_fired / needs_review false) and hand-narrowed `join.scope_claims` to [MECH-458, ARC-065, MECH-314, INV-088]. Both were a CATEGORY ERROR, not a governance decision, and scripts/heal_status_plane_drift.py (governance.sh Step 3c-pre-heal) correctly re-projected over them. `live:`+`join:` are DERIVED OUTPUTS of the ONE projection path (scripts/project_status_head.py, STORED_LIVE_FIELDS) over the append-only event log = failure_autopsy_*.json + PASS manifests + decision_log.v1.jsonl; they are not hand-authorable. Three findings settle it: (1) 'curiosity_exploitation_amplifier_reframe_2026-07-17' is a planning .md doc, NOT an event -- it matches ZERO events in the log, so no scope choice could ever project it as `from:`, and the hand-written head would have been re-clobbered by every future governance run in perpetuity; (2) `brake` is a pure derived count (substrate_ceiling events >= threshold 2), never a hand-set lever -- under this node's inherited plan scope it counts 42, and even under the rescope's OWN narrowed list it counts 11, so `not_fired` was unreachable either way; (3) 'generation-limited hypothesis (...)' is not in the projector's verdict vocabulary (direction/category). NOTHING SUBSTANTIVE WAS REVERTED: the healer's contract touches only the derived block, and this node's id / title / status assembling / severity load-bearing / assembly_status blocked_on_upstream / cross_plan_link / the rescope_note below / the Node-summary row / the PREMISE CHALLENGE blockquote are all INTACT as the rescope wrote them. The rescope prose is therefore NOT retracted -- it never asserted a live: value, and it remains the governing statement of this face. Read the derived block correctly: verdict non_contributory/precondition_unmet from failure_autopsy_V3-EXQ-732_2026-07-10 is the SAME autopsy the rescope note cites and re-reads as 'diversity was never GENERATED'; brake fired REINFORCES the note's 'not runnable until INV-088 clears, no experiment queued here' (a fired brake means do-not-re-queue). One residual tension is glossed, not resolved: the derived `next: routing=queue-experiment` is the 732 head's OWN routing, and does NOT override this node's owed action, which is /implement-substrate rarity-seeking ARC-065/MECH-314 ordering-gated on INV-088 (see the Node-summary row). OPEN GOVERNANCE QUESTION, DELIBERATELY NOT APPLIED HERE: if the rescope intended a genuine scope NARROWING for this face, its legitimate expression is a node-level `scope_claims:` field (which load_plans reads as an INPUT, falling back to the plan-level list when absent) -- NOT the derived `join.scope_claims` it was written into. No node in this plan currently sets one. Applying it is a real governance change with a materially different projection (head moves to failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754, verdict non_contributory/competence_implementation_gap, routing=implement-substrate) and it would DROP the 12 campaign claims from this node's join, so it is left to a human decision rather than inferred."
       rescope_note_2026_07_17: "GENERATION FACE ADDED (session trusting-williams-ac3b1d; metabolizes the curiosity=exploitation-amplifier reframe, registered MECH-458). PROMOTES/DEMOTES NOTHING -- it names a missing build target, not a demonstrated conversion. The campaign's uniform precondition_unmet/non_contributory verdicts across the five SELECTION faces (failure_autopsy_V3-EXQ-732_2026-07-10) are re-read as 'per-candidate diversity was never GENERATED,' not 'selection failed': 767a decomposes the SD-025 curiosity margin as exploitation 39.3 vs a lagging familiarity-discount ceiling 20.4 (0 at the decision point), and 768a shows SD-025-alone on a flat map = 0 directed behaviour (density-attraction is 100% parasitic on prior DA-shaping). The fix is a proactive rarity-seeking drive (Bellemare polarity) on ARC-065/MECH-314, NOT more selection faces and NOT a magnitude sweep of SD-025 (768a: the flat-map arm reads ~0 regardless of weight). status assembling / assembly_status blocked_on_upstream: the build is ORDERING-GATED on INV-088 z_world differentiation (differentiate-first; a rarity term over an AUC-0.83 map chases the sparse corner, not diverse strategies) -- this node is NOT runnable until INV-088 clears, so no experiment is queued here. Off the closure %. See docs/architecture/sd_024_da_modulated_rbf_density.md#curiosity-exploitation-polarity-mech-458 and the PREMISE CHALLENGE blockquote below."
 ---
 
