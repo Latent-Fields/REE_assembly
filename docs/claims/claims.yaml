@@ -18592,6 +18592,48 @@
     clear the foraging floor; until that discrimination resolves, INV-088 has no test-bed.
     This is discovery debt: complex (probe-gated) -> puzzle (known rules), NOT a
     substrate_ceiling (INV-088 explicitly retains 'Not substrate_ceiling' per its notes).
+
+    2026-07-18 z_world near-static characterisation (OFFLINE DIAGNOSTIC,
+    governance-scoring-EXCLUDED, licenses no build; source
+    evidence/experiments/zworld_near_static_characterisation_2026-07-18.md, landed
+    REE_assembly master 735e067e4d). PROMOTES AND DEMOTES NOTHING -- no status change,
+    no live_status change, decision unchanged.
+    The ANTECEDENT of INV-088 -- that z_world differentiation is genuinely low -- gains
+    direct quantitative support, and in a SHARPER form than 'low': low AND not improvable by
+    enriching the environment or raising competence. The offset-invariant contrast ratio
+    (spread / ||centroid||) is ~0.094 and moves only 1.52x across 24 cells spanning a 782x
+    foraging range, a 17.4x survival range, and the full 4-rung x734 difficulty ladder (it is
+    HIGHEST at the most impoverished rung, i.e. rung impoverishment runs the wrong way); the
+    encoder attenuates contrast 6.7x versus the raw 250-d world_state channel. Decodability is
+    selectively lost in exactly the world/goal-evaluator-relevant direction: 81% / 72% of raw
+    held-out R2 retained for agent_x / agent_y, but only 56% / 59% for resource_proximity /
+    nearest_resource_dist.
+
+    The COUPLING leg is UNTOUCHED by that characterisation. Nothing in the diagnostic measures
+    evaluator quality. V3-EXQ-744a's WEAKENS reading (mean_delta_r2=0.130 failing the 0.15
+    floor and the 2xSD effect gate, C2 monotone rho=0.69; real-but-weak and high-variance)
+    stands unaltered. This measurement MUST NOT be read as rehabilitating the strong bound.
+
+    The mechanism behind the low antecedent is CONFOUNDED and is recorded as such. Cause (a)
+    ENCODER splits into (a1) the encoder being untrained in the measured configuration --
+    weight-delta check: latent_stack 0/61 tensors change across the x734 P0 warmup, because the
+    loop buffers z_world.detach() and optimises only agent.e2.parameters() -- and (a2) the
+    world_dim=32 discriminative-granularity ceiling already adjudicated by
+    failure_autopsy_zworld-integration-cluster_2026-06-06. Every cell measured was dim=32 AND
+    untrained, so (a1) and (a2) are perfectly confounded in this data. Separating them is
+    chipped separately and REUSES that autopsy's user-confirmed retest spec (world_dim=128 +
+    trained encoder + ARC-065 behavioural diversity) rather than a fresh design.
+
+    (a1) is CONFIGURATION-SPECIFIC and is NOT a general claim about the REE encoder: it is a
+    fact about the x724/x734 P0 protocol. Other paths do train the world encoder --
+    V3-EXQ-740a's world_feat_decode_r2 rose 0.048 -> 0.245 with maturation, which is only
+    possible if the encoder moved on that path.
+
+    Scope: no bearing on MECH-459 / the return-scale-normaliser thread, and nothing in this
+    characterisation may be used to argue either leg of the live GOV-FANOUT-1 discrimination
+    (V3-EXQ-780 H-bc-prior vs V3-EXQ-781 H-approach-primitive); both remain claimed, the
+    discrimination remains open, and mech457_competence_bootstrap_explorer stays
+    blocked_pending_discrimination.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
