@@ -333,7 +333,7 @@ Interactive gate, 2026-07-18, session `gracious-bassi-721580`.
    `HEAD` confirmed **exactly** 4 added + `SD-068` changed, nothing else — no foreign
    read-modify-write contamination.
 7. ✅ Committed via `scripts/ree_commit.py` (**not** a pathspec commit — the tree carried
-   other sessions' dirty index-rebuild files). Landed **`e219e83d60`** on `REE_assembly`
+   other sessions' dirty index-rebuild files). Landed **`2453ad7a70`** on `REE_assembly`
    `master`, pushed to `origin/master`.
 
 **One forced deviation from §5.** Two proposed `epistemic_category` values do not exist in
