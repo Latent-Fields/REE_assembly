@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "nice-grothendieck-f7b58b (close stale IGW-20260714-178: MECH-457 substrate already built+validated)",
-  "last_updated_utc": "2026-07-18T04:54:03Z",
+  "last_seen_session": "queue-experiment-priceless-lewin-f47019-2026-07-18",
+  "last_updated_utc": "2026-07-18T18:39:07Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5679,6 +5679,70 @@
       "implemented_note": "ORIGINAL BUILD 2026-07-16 (unruffled-lichterman-65e45e, ree-v3 main 022a284): composed floor->competent bootstrap explorer in experiments/_lib/mech457_bootstrap_explorer.py -- RND success-independent drive + prioritized credit-replay converter + developmental intrinsic-coef/entropy anneal + increased budget on the first-class actor-critic, both z_world cotrain and raw 5x5. Retest V3-EXQ-765 RAN and FAILED (bootstrap_explorer_plateaus_capacity_gap_remains): drive half works on raw (+5.87) but the actor-critic plateaus at ~13% of the 48.05 ceiling and z_world cotrain is destructive (ON 0.35 < OFF 5.22). CAPACITY-SIDE AMEND 2026-07-16 (jovial-joliot-9f904b, /implement-substrate, routed from failure_autopsy_V3-EXQ-765): three JOINT capacity/reliability/integration knobs applied to the SAME build (not competing hypotheses) -- (a) ON actor_critic_hidden 128->256 + ON_BUDGET_MULTIPLIER 3->5 (capacity); (b) ON warm_start_fraction 0.2 + credit_replay_passes 3->6 / credit_topk 32->64 (reliability, cut the 15.9/3.05/0.5 seed variance); (c) ON cotrain_encoder False = z_world DETACHED, train policy on the frozen prediction-trained encoder (Stooke 2021, since cotrain corrupts z_world). All five new BootstrapExplorerConfig fields OFF-preserving no-op defaults -> OFF arms bit-identical to 765's (drift-guard ~5.22 z_world / ~0.6 raw). Threaded actor_critic_hidden/cotrain_encoder through make_rep -> RawViewRep/ZWorldRep -> fan.make_rawview_ac/make_zworld_agent -> x742._make_actor_critic_agent(hidden=); credit passes/topk + warm_then_anneal through train_a2c -> _prioritized_credit_replay. 5 new contracts (C7-C11); 11 bootstrap-explorer contracts pass, full contracts green (0 regressions). Retest V3-EXQ-769 (supersedes 765) queued + coordinator-ingested (diagnostic, OFF-vs-ON x {z_world,raw}, lift >=7.83 above the 5.22 plateau; cloud ree-cloud-2). RE-DERIVE BRAKE HELD-BUT-SANCTIONED (5th non_contributory MECH-457 autopsy; the brake refuses another single-axis probe, NOT this named-capacity post-build retest under a NEW EXQ number). MECH-457 stays candidate/v3_pending (pending_retest_after_substrate); INV-088 candidate/pending_substrate_reconfirmation until 769 scores.",
       "validation_exq": "V3-EXQ-770 / V3-EXQ-771 / V3-EXQ-772 (GOV-FANOUT-1 portfolio; V3-EXQ-769 capacity retest FALSIFIED)",
       "blocked_note": "Re-derive brake FIRED (7th non_contributory MECH-457 autopsy, 2026-07-18). FOUR axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772). REFUSE any further config/env/credit/capacity amend. Gated on the NEW GOV-FANOUT-1 discrimination portfolio (H-bc-prior vs H-approach-primitive) naming WHICH competence-directed dependency to build -- do NOT build blind."
+    },
+    {
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": true,
+      "design_doc": "evidence/planning/mech457_retention_portfolio_2026-07-18.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "added_session": "queue-experiment-priceless-lewin-f47019-2026-07-18",
+      "failure_record": [],
+      "sd_id": "mech457_bc_aux_schedule",
+      "title": "Schedulable bc_aux_coef for the MECH-457 bootstrap explorer: make the imitation auxiliary coefficient a (ep, n_episodes) -> float callable so its persistence can be swept constant/annealed/off. Unblocks hypothesis H-retention-auxiliary-decay (competence_floor). SMALLEST of the four retention builds -- the scheduling pattern is already proven beside it.",
+      "implementation_hint": "bc_aux_coef is currently a plain float on the config dataclass (experiments/_lib/mech457_explorer_classes.py:537, declared experiments/_lib/mech457_bootstrap_explorer.py:148,168), read once per episode at explorer_classes.py:702 where loss = loss + float(bc_aux_coef) * bc_loss. The pattern to mirror already exists in the SAME dataclass: coef_schedule and entropy_schedule are Optional[Callable[[int,int],float]] at explorer_classes.py:535, applied at :616-617. Add bc_aux_schedule mirroring them and use the effective coefficient at :708. ~6 lines. Note this edits experiments/_lib/**, which is bound into substrate_hash, so it correctly refuses reuse of pre-change baseline arm fingerprints."
+    },
+    {
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": true,
+      "design_doc": "evidence/planning/mech457_retention_portfolio_2026-07-18.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "added_session": "queue-experiment-priceless-lewin-f47019-2026-07-18",
+      "failure_record": [],
+      "sd_id": "mech457_distributional_critic",
+      "title": "Distributional (two-hot / HL-Gauss) critic for the action-learning loop, as an alternative VALUE ESTIMATOR to the current scalar-MSE critic. Unblocks hypothesis H-retention-critic (competence_floor). Attacks the measured V3-EXQ-782 R-(b) candidate directly.",
+      "implementation_hint": "Current critic is scalar: value_head = nn.Linear(hidden_dim, 1) at ree_core/action_learning/actor_critic.py:110, decoded :147; loss is scalar MSE at experiments/_lib/mech457_fanout.py:255,422 and mech457_explorer_classes.py:699,799. There is NO distributional machinery anywhere -- zero hits for twohot/two_hot/hl_gauss/value_bins/atoms/symlog in ree_core/ or experiments/. Needs: a bin support (+ symlog or HL-Gauss target projection), a [hidden -> n_bins] head, cross-entropy loss against the projected target, and expectation-decode so GAE keeps consuming a scalar value. DO NOT substitute the successor-feature critic (use_sf_critic, actor_critic.py:116-125) for this: it is hard-wired False on every 457 path (mech457_fanout.py:153,335; explorer_classes.py:830), has no field in BootstrapExplorerConfig, and its psi-Bellman + reward-regression losses exist ONLY in experiments/v3_exq_742_...py:357-372 -- nothing in _lib computes them. Flipping the flag without porting that block leaves reward_w at zero-init and V_SF identically 0, i.e. an UNTRAINED critic read as an alternative one (a degenerate arm masquerading as a scientific verdict). ANTI-ALIAS CONSTRAINT: this build must change the value estimator ONLY -- it must not also constrain the policy update, or it aliases with mech457_policy_kl_anchor."
+    },
+    {
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": true,
+      "design_doc": "evidence/planning/mech457_retention_portfolio_2026-07-18.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "added_session": "queue-experiment-priceless-lewin-f47019-2026-07-18",
+      "failure_record": [],
+      "sd_id": "mech457_policy_kl_anchor",
+      "title": "KL-anchor / trust-region constraint to a FROZEN snapshot of an installed policy, as an UPDATE CONSTRAINT independent of the value estimator. Unblocks hypothesis H-retention-consolidation (competence_floor).",
+      "implementation_hint": "Nothing of this exists: no kl_coef / kl_penalty / ref_policy / reference_policy / target_kl anywhere in ree_core/ or experiments/, and no deepcopy/state_dict() policy snapshot in any _lib training module. ('frozen' at actor_critic.py:31,76 refers to a frozen z_world ENCODER, not a policy. The lone _anchor_policy hit, experiments/v3_exq_750_...py:315, is a rollout-policy factory for a diversity readout.) PPO clip exists but only in experiments/v3_exq_734_...py:210,581 and v3_exq_732a:212,355 -- the live MECH-457 loop is vanilla A2C with no ratio and no clip (mech457_fanout.py:254-257, explorer_classes.py:698-701), so a trust region would have to be ported in. Needs: snapshot ActorCriticPolicy weights at the post-install checkpoint, forward the frozen copy on rollout states, add kl_coef * KL(pi || pi_ref) to the loss. ANTI-ALIAS CONSTRAINT: the anchor must target the INSTALLED policy snapshot, NOT the demonstrator. Anchoring via bc_aux_coef would anchor to the demonstrator and alias with mech457_bc_aux_schedule / H-retention-auxiliary-decay. It must also leave the value estimator untouched, or it aliases with mech457_distributional_critic."
+    },
+    {
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": true,
+      "design_doc": "evidence/planning/mech457_retention_portfolio_2026-07-18.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "added_session": "queue-experiment-priceless-lewin-f47019-2026-07-18",
+      "failure_record": [],
+      "sd_id": "mech457_consummatory_act",
+      "title": "Consummatory act distinct from movement: contact AFFORDS rather than EFFECTS consumption, so an approach drive can extinguish on contact and hand off to a separate consummatory action. Unblocks hypothesis H-consummation-binding (competence_floor). MOST INVASIVE of the four -- changes action_space_size.",
+      "implementation_hint": "Today consumption is AUTOMATIC on entering the resource cell: ree_core/environment/causal_grid_world.py:1931-1936 bumps health/energy and removes the resource inside the move branch of step() (dispatched at :1800 via dx,dy = self.ACTIONS[action]). ACTIONS is four moves + no-op, :79-81, with action_space_size = len(self.ACTIONS) at :1185. Build: add ACTIONS[5] = CONSUME (a no-move action) and relocate the :1931-1975 benefit / removal / drive-restore block behind it. BLAST RADIUS -- this changes action_space_size, therefore action_dim on every actor head, and it busts every cached arm fingerprint (all reuse correctly refuses across the change). Gate it behind a config flag so pre-change lineages keep the 5-action space and their fingerprints stay valid. NOTE the drive half is ALREADY BUILT and needs nothing: extinction-on-contact is the default (causal_grid_world.py:1931-1932 scalar path; per-axis :1955-1972, where per_axis_restoration_fraction = 1.0 drives the axis drive to exactly 0), and the anti-extinction knobs are wired (ree_core/goal.py:64 drive_ema_alpha, :81 drive_floor). Only the consummatory ACT is missing."
     }
   ],
   "schema_version": "substrate_queue/v2"
