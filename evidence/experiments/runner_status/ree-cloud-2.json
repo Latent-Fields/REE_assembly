@@ -1,19 +1,74 @@
 {
   "schema_version": "v1",
   "runner_pid": 668,
-  "runner_started_at": "2026-07-17T15:20:36.485064+00:00",
-  "last_updated": "2026-07-17T15:21:48.084105+00:00",
+  "runner_started_at": "2026-07-18T05:21:19.025678+00:00",
+  "last_updated": "2026-07-18T13:01:40.269552+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-771",
+      "queue_id": "V3-EXQ-778e",
+      "backlog_id": "",
+      "claim_id": "SD-068",
+      "title": "SD-068 GOV-FANOUT-1 leg 2/3 H-rem-genuinely-content-free: REM de-clamped readout (axis=representation)",
+      "description": "",
+      "estimated_minutes": 5.3,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-778f",
+      "backlog_id": "",
+      "claim_id": "SD-068",
+      "title": "SD-068 GOV-FANOUT-1 leg 3/3 H-gen-gain-content-free: REM generative gain vs content scale (axis=observation)",
+      "description": "",
+      "estimated_minutes": 3.2,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-779a",
+      "backlog_id": "",
+      "claim_id": "MECH-063",
+      "title": "MECH-063 (ii) tonic/phasic dissociation -- sample-driven stopping + sample_starvation_requeue (supersedes 779)",
+      "description": "",
+      "estimated_minutes": 320.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-782",
+      "backlog_id": "",
+      "claim_id": "MECH-459",
+      "title": "MECH-459 probe R: advantage composition (pre/post standardisation) + critic calibration on BC-visited states",
+      "description": "",
+      "estimated_minutes": 6000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-781",
       "backlog_id": "",
       "claim_id": "MECH-457",
-      "title": "MECH-457 GOV-FANOUT-1 H2: metabolic forage-to-survive (env reward-coupling) discrimination",
+      "title": "MECH-457 GOV-FANOUT-1 H-approach-primitive: innate non-extinguishing demonstrator-free approach-drive discrimination",
       "description": "",
-      "estimated_minutes": 10800.0,
+      "estimated_minutes": 8400.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-783",
+      "backlog_id": "",
+      "claim_id": "Q-002",
+      "title": "z_world under-differentiation: separate untrained-encoder (a1) from the world_dim=32 granularity ceiling (a2) via a 2x2 dim x training crossing",
+      "description": "",
+      "estimated_minutes": 554.7,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2896,6 +2951,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 70.9
+    },
+    {
+      "queue_id": "V3-EXQ-780",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "MECH-457 GOV-FANOUT-1 H-bc-prior: competence-directed behavioral-prior (imitation) discrimination",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS (arm=bcprior_treat_raw seed=44 forage/ep=8.0) | outcome: FAIL label=bc_prior_not_the_axis readiness_met=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-780 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-780.json",
+      "started_at": "2026-07-18T05:21:19.040698+00:00",
+      "completed_at": "2026-07-18T12:33:25.974564+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_780_mech457_bc_prior_discrimination_20260718T123325Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 25925.7
+    },
+    {
+      "queue_id": "V3-EXQ-778d",
+      "backlog_id": "",
+      "claim_id": "SD-068",
+      "title": "SD-068 GOV-FANOUT-1 leg 1/3 H-rem-clamp-artifact: REM unpaired-target null (axis=measurement)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | verdict: PASS | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-778d -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-778d.json",
+      "started_at": "2026-07-18T12:35:28.807489+00:00",
+      "completed_at": "2026-07-18T12:42:16.544068+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_sd068_rem_unpaired_null_diagnostic/v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 407.7
+    },
+    {
+      "queue_id": "V3-EXQ-778g",
+      "backlog_id": "",
+      "claim_id": "SD-068",
+      "title": "SD-068 rebuilt sws content-scored readout validation (null control + content ladder)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | seeds pass: 8/8 (need 8) -> overall PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-778g -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-778g.json",
+      "started_at": "2026-07-18T12:42:17.803799+00:00",
+      "completed_at": "2026-07-18T13:01:40.268648+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_sd068_sws_content_scored_readout_diagnostic/v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 1162.5
     }
   ]
 }
