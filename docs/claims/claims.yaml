@@ -3318,6 +3318,20 @@
     untrained agents in a hazard-terminating env yield 2-100% of budget depending on seed.
     Retests V3-EXQ-777a / 779a pending. Biological warrant remains strong (LC-NE tonic/phasic
     adaptive gain); the claim is untested, not unsupported.
+    2026-07-18 UPDATE (sub-claim (i) only): V3-EXQ-777a RAN and was adjudicated
+    non_contributory / substrate_ceiling by
+    failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18. Its predecessor sampling defect
+    was genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved), and
+    C1 did NOT fail on collinearity -- mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and
+    c1_seed_count PASSED; the single best-conditioned seed (17) gave sin_angle 0.9883, i.e.
+    near-perfect orthogonality. The sole failing bar was c1_robust, a population-SD
+    expression unreachable at any n. The binding constraint is substrate: informative-seed
+    yield 4 of 14 (28.6%), with corr(D-saturation-distance, norm_v_score) = 0.884. The
+    re-derive brake FIRED on the 777 lineage (user-confirmed "Fire on 777 lineage, exempt
+    779") and routed to SD-074 (probe.trained_enough_agent_warmup, IMPLEMENTED 2026-07-18);
+    a further lettered iteration against an UNTRAINED agent is REFUSED. No status or
+    confidence change from that landing (substrate only). Sub-claim (ii) / the 779 lineage is
+    explicitly EXEMPT and is NOT blocked on SD-074.
 - id: MECH-064
   title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis
@@ -49368,8 +49382,61 @@
     NOT touched (GOV-FROZEN-1). Approved at the interactive gate 2026-07-18 (session
     gracious-bassi-721580); full derivation in
     evidence/planning/claim_synthesis_SD-068_2026-07-18.md.
-    STILL OWED, independent of this decomposition: the REM cluster autopsy's
-    recommended_evidence_quality_note_SD_068 has NOT yet been folded into this note.
+    FOLD OWED (discharged 2026-07-18 by the REM-LEG RETIRED block below): the REM cluster
+    autopsy's recommended_evidence_quality_note_SD_068 is now folded in; this note carries
+    no outstanding fold debt.
+
+    [REM LEG RETIRED 2026-07-18 -- GOV-FANOUT-1 rem-leg portfolio V3-EXQ-778d
+    (measurement) / 778e (representation) / 778f (observation), three discrimination legs
+    on distinct design axes, n=8 seeds each, all positive controls passing. All
+    experiment_purpose=diagnostic, so again no status or confidence change. This amendment
+    supersedes exactly three spans above, and nothing else: (1) in the 778c DISPOSITION
+    paragraph, the clause "PLUS the REM passthrough-vs-generative contrast"; (2) in the
+    778g AMENDED CONTRACT paragraph, the clause "plus the REM passthrough-vs-generative
+    contrast"; and (3) the whole of item (i) of the 778g "NARROW-SUPPORTS FLAG -- STILL
+    RAISED" paragraph, whose open question (H-gen-gain-content-free, recorded there as
+    owned by "V3-EXQ-778d/e/f (all still queued as of 2026-07-18)") is precisely what
+    these three runs closed. It also DISCHARGES the fold debt recorded at the end of the
+    DECOMPOSED block. Everything else above STANDS, and none of 778c / 778g / the
+    decomposition is superseded.]
+    THE REM PER-PHASE READOUT IS CONTENT-FREE, and the three legs converge on it. Once the
+    zero-content null's clamp degeneracy is removed by an unpaired-target null, the null
+    arm STILL tracks the injected arm's sigma-slope -- content-contingent on 1/8 seeds
+    only, unclamped ratios 0.577-0.995 -- and an independently de-clamped readout agrees
+    on every non-degenerate seed (0.999 / 0.998 / 0.326, all above the 0.25 ceiling that
+    admitted the nrem and rebuilt-sws legs). So the both-rails degeneracy reported for rem
+    under 778c was not the whole story: removing it does not recover content-contingency,
+    it exposes its absence.
+    GENERATIVE-GAIN PILLAR RETRACTED AS A CORRECTION SIGNAL. rem_generative_gain is FLAT
+    in content scale (delta -0.0097 against a pre-registered bar of 0.05, with the
+    residual trend inverted in sign). The interpretive gloss that "correction needs an
+    intact seed" is therefore RETRACTED from
+    docs/architecture/sd_068_consolidation_lesion_harness.md.
+    WHAT IS NOT OVERTURNED. The attenuation finding itself -- rem_generative_gain 0.149,
+    attenuating 8/8 seeds -- STANDS, and is recorded at every content scale (0.1589 /
+    0.1520 / 0.1493, 8/8 attenuating throughout) precisely so that it stays visible. Only
+    its use as a functional-damage instrument is retired, which is the same disposition
+    SD-072 already carries.
+    NET EFFECT ON SD-068. The staged-failure contract is carried by the nrem leg plus the
+    rebuilt sws leg (V3-EXQ-778g) ONLY. The REM leg is not a functional-damage instrument,
+    and the generative-gain pillar does not evidence content-dependent correction. The
+    reverse-dependency staging order remains UNSUPPORTED -- unchanged in substance from
+    the 778g note, but now for a settled rather than an open reason: the rem leg's lack of
+    an interpretable readout is a type fact (MECH-462), not a pending measurement.
+    SPECIFICATION DEFECT FOUND IN THE COURSE OF THIS ADJUDICATION, recorded here so the
+    ledger is not read as a substantive negative: V3-EXQ-778d's readiness anchor scored
+    "railed" on the saturation rail ONLY, against a two-rail degeneracy, capping a
+    bit-perfect replication at 0.625 under a 0.75 gate. The anchor's underlying data
+    reproduced V3-EXQ-778c to identical floats across three runs, so control_passed is
+    asserted here on the corrected both-rails predicate. Fix routed as V3-EXQ-778h (low
+    priority, ledger-hygiene only).
+    NOTHING ELSE CHANGES. No status, confidence, promotion or demotion change on SD-068,
+    MECH-168, INV-047 or MECH-169 -- all supporting runs are experiment_purpose=diagnostic
+    and do not weight governance confidence. The MECH-121 hold
+    (hold_pending_v3_substrate) stays RESPECTED. The four children registered 2026-07-18
+    (MECH-462, SD-071, SD-072, SD-073) are unaltered by this fold.
+    hypothesis_space_registry.v1.json is NOT touched (GOV-FROZEN-1). Full diagnosis:
+    evidence/planning/failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json.
 
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
@@ -49434,6 +49501,76 @@
     Additive no-op default (existing experiments bit-identical); invalid source raises
     ValueError at construction. No status/confidence change (substrate only).
   validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
+
+- id: SD-074
+  title: "Trained-enough agent substrate for read-only control-plane telemetry probes: a warmup/checkpoint stage that brings the agent to a non-degenerate E3 action-value landscape BEFORE telemetry collection begins, and records the realised per-seed saturation distribution so informative-seed yield is auditable rather than inferred. Harness-level training-regime enrichment (experiments/_lib), NOT a ree_core mechanism change."
+  claim_type: design_decision
+  subject: probe.trained_enough_agent_warmup
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-18"
+  depends_on: []
+  location: docs/architecture/sd_074_probe_warmup_trained_enough_agent.md
+  functional_restatement: >
+    A gain/bias regulator is only measurable when the distribution it modulates has
+    dynamic range. The 2x2 read-only telemetry-probe family measures MECH-320
+    tonic_vigor score-bias and MECH-313 noise_floor temperature on the E3 pre-commit
+    softmax while running an UNTRAINED agent, whose action-value distribution is
+    degenerate on ~64% of seeds. Measured by V3-EXQ-777a: 7 of 14 seeds ceiling-pinned
+    and 2 floor-pinned on D_action_mass_mean, informative-seed yield 4 of 14 (28.6%),
+    and corr(distance of D from saturation, norm_v_score) = 0.884 -- the quantitative
+    statement that the score axis's measurable authority is largely DETERMINED by how
+    far the action-value mass sits from its 0/1 bounds. That caps power: the design
+    needs ~51 informative seeds, i.e. ~177 raw seeds and ~31 h, which is infeasible.
+    This is substrate, not sampling: V3-EXQ-777a's sample-driven stopping worked
+    perfectly (all 56 cells reached 250 fresh E3 selections, zero starved cells) and
+    the saturation rate barely moved from its starved predecessor. SD-074 supplies a
+    warmup that de-saturates the landscape before measurement, targeting a MAJORITY of
+    seeds with D_action_mass_mean strictly inside (0.05, 0.95), and records the
+    realised per-seed distribution so yield is auditable.
+  implementation_note: >
+    IMPLEMENTED 2026-07-18 as ree-v3/experiments/_lib/probe_warmup.py (harness-level
+    only; nothing under ree_core/ touched, no config default moved, no existing script
+    imports it, so backward compatibility is total by construction). Composes landed
+    modules rather than writing a fourth training loop: goal_pipeline_tier1.warmup_train,
+    the baselines/maturation_curriculum cache discipline, and sample_driven_rollout for
+    the de-saturation read. Gate policy (user-confirmed): RECORD, do not abort -- only
+    assert_any_informative() raises, and only when ZERO seeds de-saturated. Regime
+    (user-confirmed): target_env only, num_episodes swept. Three hazards found and
+    defended: (H1) e3._running_variance is a plain Python float (e3_selector.py:291),
+    NOT a register_buffer, and feeds commit_variance (:2703) upstream of the measured
+    distribution -- fresh 0.500 vs warmed 0.0092, a ~54x drift state_dict alone would
+    silently discard; carried explicitly with an asserted round trip. (H2) all four
+    777a arms verified to share an identical 194-key state_dict (TonicVigor/NoiseFloor
+    are zero-parameter non-nn.Module), so one warmed checkpoint per seed serves all
+    four and they differ ONLY in regulator scalars at the e3.select() call site;
+    asserted, not assumed. (H3) the consumer's generate_trajectories capture is
+    instance-level and NOT in state_dict -- if lost after load_state_dict the run
+    self-routes to sample_starvation_requeue, i.e. a lost patch masquerades as a
+    sampling bug, the exact misdiagnosis this lineage already made twice. Measurement
+    is non-destructive: no_grad+eval stop gradients but not the plain-Python
+    accumulators nor the registered plasticity buffers (e3_selector.py:373-462), so
+    both are snapshotted and restored (verified exact, max|dw|=0.000e+00). Smoke test
+    PASS 2026-07-18. Routed by
+    evidence/planning/failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json
+    targets[0], which fired the re-derive brake on the 777 lineage.
+  notes: >
+    NOT VALIDATED YET -- status candidate, validation experiment pending. The only
+    de-saturation reading so far is a smoke-level sanity indication at n=1 seed and a
+    toy budget (untrained 0.9949 ceiling-saturated, reproducing the autopsy failure
+    mode, versus 0.51-0.67 headroom after 3 warmup episodes); that is NOT evidence and
+    must not be cited as such. Deliberately out of scope: V3-EXQ-777a's c1_robust bar
+    is (mean_sin - pstdev_sin) > MARGIN, a POPULATION dispersion that does not shrink
+    with n and is therefore unreachable at any sample size; the successor experiment
+    author must re-express it against a standard error. Per the autopsy that repair is
+    necessary but NOT sufficient -- the binding constraint was always the informative
+    seed yield, which is what this SD moves.
 
 - id: SD-070
   title: "z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the SD-005 split-encoder world path on STATIC scene-structure targets derived from world_obs alone (hazard/resource presence + bucketed nearest-Chebyshev distance), with class-balanced CE and a VICReg-style variance/covariance anti-collapse penalty, replacing the SD-009 event-contrastive + SD-018 P0 that was measured to COLLAPSE z_world to participation ratio ~1.06 at world_dim=128. Supplies the trained encoder that SD-031 / E2WorldForward P1 and V3-EXQ-783 both require."
