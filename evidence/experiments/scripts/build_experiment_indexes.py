@@ -246,6 +246,24 @@ def _compute_adjudication(interpretation: Any, status: str,
                              signature_gates{} where they belong; if a manifest also
                              places one in criteria_non_degenerate{}, the "_branch"
                              suffix makes the indexer ignore it.
+                             ALSO EXCLUDED: keys whose matching interpretation
+                             .criteria[] entry (matched on `name`) is tagged
+                             load_bearing:false. The legacy check is otherwise
+                             load_bearing-BLIND, so a manifest supplying BOTH
+                             blocks passed (3b) -- which honours the tag -- and
+                             was then blocked by the legacy path on a criterion
+                             its own author had explicitly declared not
+                             load-bearing (V3-EXQ-783 C2_event_selectivity, a
+                             recorded caveat on a run whose load-bearing
+                             C1_cr_crossing was non-degenerate and passed; see
+                             failure_autopsy_V3-EXQ-783_2026-07-18.md Sec.2 --
+                             adjudicated a FALSE POSITIVE). Same false-flag class
+                             as the 648a/649 branch-selector case, and the
+                             explicit tag is strictly better evidence than a name
+                             suffix. Behaviour is UNCHANGED when criteria[] is
+                             absent or a key has no matching entry, so the
+                             hundreds of pre-convention manifests that expose no
+                             load_bearing tag keep their present adjudication.
       - "verified"        -- declared structure(s) present and all checks hold.
 
     The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
@@ -326,8 +344,24 @@ def _compute_adjudication(interpretation: Any, status: str,
     # NOT "this criterion is degenerate". Treating a selector False as degeneracy
     # is the V3-EXQ-648a/649 directionality false-flag class. See docstring
     # CONVENTION note + failure_autopsy_V3-EXQ-723_2026-07-09.md Sec.3.
+    # ALSO exclude keys the manifest's own criteria[] tags load_bearing:false.
+    # (3b) above honours that tag; this legacy path was blind to it, so a manifest
+    # supplying BOTH blocks cleared (3b) and was then blocked here on a criterion
+    # its author had explicitly declared a non-blocking caveat (V3-EXQ-783
+    # C2_event_selectivity -- see failure_autopsy_V3-EXQ-783_2026-07-18.md Sec.2).
+    # Absent criteria[] / unmatched keys are untouched, so legacy manifests that
+    # expose no load_bearing tag keep their present adjudication.
+    non_load_bearing = set()
+    _criteria = interp.get("criteria")
+    if isinstance(_criteria, list):
+        for c in _criteria:
+            if isinstance(c, dict) and c.get("load_bearing") is False:
+                name = c.get("name")
+                if isinstance(name, str):
+                    non_load_bearing.add(name)
     degeneracy_assertions = [v for k, v in crit.items()
-                             if not str(k).endswith("_branch")]
+                             if not str(k).endswith("_branch")
+                             and str(k) not in non_load_bearing]
     if str(status).upper() == "PASS" and any(v is False for v in degeneracy_assertions):
         return label, "vacuous_pass"
     return label, "verified"
