@@ -1,0 +1,130 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_sd068_null_content_control_diagnostic",
+  "run_id": "v3_exq_sd068_null_content_control_diagnostic_20260718T065939Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-18T06:59:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-068",
+    "MECH-168",
+    "INV-047",
+    "MECH-169"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-068": "weakens",
+    "MECH-168": "unknown",
+    "INV-047": "unknown",
+    "MECH-169": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "null_control_partial_staging_order_partly_noise_sensitivity",
+    "preconditions": [
+      {
+        "name": "injected_arm_sigma_slope_supra_floor",
+        "description": "the ratio's DENOMINATOR -- the injected-arm sigma-slope, the same statistic C1 routes on -- clears the floor on the known-damaged positive control, so null/injected is interpretable. Below floor means the sweep never damaged the readout and the control cannot discriminate content-contingency from inertness.",
+        "measured": 0.09671970039873905,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "injected arm swept to sigma=max (known-damaged positive control)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_all_phases_content_contingent": true,
+      "C2_ratio_interpretable_all_phases": true,
+      "C3_confound_verdict_seed_stable": true
+    },
+    "criteria": [
+      {
+        "name": "C1_all_phases_content_contingent",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_ratio_interpretable_all_phases",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_confound_verdict_seed_stable",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "confound_register": {
+      "confounded_phases": [
+        "rem",
+        "sws"
+      ],
+      "per_phase": {
+        "sws": {
+          "mean_null_slope_ratio": 0.9999999992778613,
+          "per_seed_null_slope_ratio": [
+            0.9999999985557226,
+            1.0
+          ],
+          "n_seeds_confounded": 2,
+          "confounded_all_seeds": true,
+          "confound_verdict_stable": true
+        },
+        "nrem": {
+          "mean_null_slope_ratio": 0.14391451897835855,
+          "per_seed_null_slope_ratio": [
+            0.14494678920865325,
+            0.14288224874806385
+          ],
+          "n_seeds_confounded": 0,
+          "confounded_all_seeds": false,
+          "confound_verdict_stable": true
+        },
+        "rem": {
+          "mean_null_slope_ratio": 2174.2332540892858,
+          "per_seed_null_slope_ratio": [
+            4348.4665081785715,
+            0.0
+          ],
+          "n_seeds_confounded": 1,
+          "confounded_all_seeds": false,
+          "confound_verdict_stable": false
+        }
+      },
+      "ceiling": 0.25,
+      "rem_ratio_off_scale": true,
+      "rem_off_scale_note": "When the rem null arm's precision reference collapses onto the 1e-3 positivity floor, 1/1e-3 = 1000 dominates the calibration error, so a large rem null_slope_ratio is OFF-SCALE -- read it as 'this leg is structurally content-free' (it is passthrough by construction at step=1.0), NEVER as a calibrated N-fold noise sensitivity.",
+      "note": "A confounded phase's readout moves with sigma even with NO injected content, so its contribution to the V3-EXQ-778 damage-tolerance order (nrem, rem, sws) is raw noise sensitivity rather than functional damage tolerance. Confounded phases are REPORTED and flagged, never dropped from the staging order. Recorded in the harness module docstring's CONFOUND REGISTER."
+    }
+  }
+}
