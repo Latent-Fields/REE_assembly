@@ -53983,6 +53983,105 @@
     normal /governance path, not through this rule. EXEMPT: claims with no built substrate
     (nothing to confirm yet) and claims already covered by a queued/proposed run.
   notes: "Plan of record: evidence/planning/gov_confirm_1_plan.md (P0 done -- this claim + plan; P1 shadow detector + P2 low-priority autospawn build after user review). GENERATIVE-DISCOVERY complement to GOV-CEIL-1 / GOV-DIAG-1 (detection), GOV-FANOUT-1 (response), GOV-REUSE-1 (reanalysis consumer). Reuses existing workset predicates -- adds only the generative iteration + a lit_conf floor + a location-exists substrate-built gate. First-application seed set (2026-07-14 subagent scan, chips spawned this session): MECH-304, MECH-288, MECH-287, MECH-303, MECH-284; borderline MECH-271 (substrate unconfirmed) / MECH-292 (scope-risky). PROMOTES/DEMOTES NOTHING on registration. Cross-ref the IGW auto-spawn routine, ree_ai_design_critique_plan.md (WS family), and the work_graph_debt_vocabulary complex(probe-gated) token (the wall-independent-DV judgement stays a per-item /queue-experiment probe)."
+- id: GOV-FROZEN-1
+  title: "Frozen hypothesis-set pre-registration rule (anti-Goodhart contract over the Narrow/Decide dashboard): the reduction ratio surviving/initial is Goodhart-able from the denominator side -- a campaign can improve its apparent narrowing by padding the initial hypothesis set after the discriminating evidence is already in. This rule pre-registers the contract that forbids it: the initial set is FROZEN at registration (initial_frozen_count_at_registration never moves), a hypothesis must be pre-registered before its adjudicating run resolves, and the ONE sanctioned way an already-adjudicated question's set may grow is LABELLED GOV-FANOUT-1 fan-out whose late legs clear only on GIT-WITNESSED provenance -- a self-reported pre_registered_utc is back-datable and is not evidence. The registry has a SINGLE producer (/failure-autopsy Step 9b); governance is derive-only over it. The audit is advisory and NEVER gates a cycle. Warn-only; PROMOTES/DEMOTES NOTHING."
+  claim_type: governance_rule
+  subject: governance.epistemics.frozen_hypothesis_set
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: 2026-07-18
+  source_thought: evidence/planning/hypothesis_space_registry.v1.json
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  functional_restatement: >
+    Epistemic-hygiene governance rule; the DENOMINATOR-side member of the warn-only
+    routing-standard family (GOV-CEIL-1 ceiling-exhaustion detection, GOV-DIAG-1
+    diagnostic-recurrence detection, GOV-FANOUT-1 bottleneck response, GOV-REUSE-1
+    reanalysis-first, GOV-CONFIRM-1 generative confirmer discovery). Those govern how
+    work is stopped, answered, or started; this one governs the integrity of the
+    measure by which narrowing progress is REPORTED.
+    THE GOODHART VECTOR. The Scientific Progress Dashboard's Dimension 3 (Narrow)
+    reports a reduction ratio -- surviving hypotheses over the initial enumerated set.
+    Every term in that ratio is improvable by moving the denominator rather than by
+    doing science: enumerate extra rival hypotheses AFTER their discriminating run has
+    already resolved, and a campaign that eliminated 2 of 3 legs reports as having
+    eliminated 4 of 6. The elimination side is already barred (a leg may be marked
+    eliminated only on an adjudicated weakens with met_elimination_bar, control_passed,
+    and non_degenerate all true). This rule bars the registration side.
+    THE CONTRACT (invariants 1-7 of /failure-autopsy Step 9b, in summary).
+    (1) initial_frozen_count == len(hypotheses) for every question, always, bumped in
+    the same edit that adds a leg. (2) pre_registered_utc <= the adjudicating run's
+    resolved_utc for every resolved leg. (3) an already-adjudicated question's
+    initial_frozen_count is never enlarged after the fact, EXCEPT as labelled fan-out
+    growth (3a, below). (4) eliminated / split require the full bar plus an adjudicated
+    direction; otherwise the leg stays alive. (5) confirmed requires control_passed.
+    (6) exactly two legitimate sources of total_initial growth -- a NEW-question
+    registration and labelled fan-out on an existing one; the audit attributes a
+    time-series rise to whichever labelled sources landed in that window and flags only
+    the UNATTRIBUTED remainder. (7) a human owns decided -- the dashboard may say
+    decidable_now but decision.decision_log_ref is only ever a human decision_log entry.
+    THE SCOPED FAN-OUT ALLOWANCE (invariant 3a). A GOV-FANOUT-1 discrimination
+    portfolio legitimately enumerates NEW rival explanations for an EXISTING question as
+    earlier axes are eliminated -- that is what a fan-out routing IS, systematic
+    practice rather than an exception. Such growth is sanctioned only when all three
+    hold: (a) pre-registration precedes adjudication -- growth is legitimate for legs
+    whose adjudicating run has NOT yet resolved, and a leg added AFTER its own evidence
+    is in clears ONLY on git-witnessed provenance (its pre_registration_source artifact,
+    or its own registry entry, durably committed before the run resolved); (b) the
+    growth is labelled machine-readably in the question's fanout_growth_events[], naming
+    the opening autopsy (fanout_source) and the added hids, with delta consistent; and
+    (c) initial_frozen_count_at_registration is preserved separately so the ratio is
+    reportable BOTH ways. Growth satisfying (a)-(c) is ADVISORY, reported outside the
+    flag count. Growth that is unaccounted, unlabelled, mismatched, or retro-padded
+    remains a real bucket-(b) violation.
+    WHY A GIT WITNESS, AND WHY LEGITIMATE CASES MUST SELF-CLEAR. A self-reported
+    pre_registered_utc is written after the fact and is trivially back-datable, so an
+    audit reading only the registry can NEVER detect back-dating. A commit date cannot
+    be manufactured, so the witness makes the honest case self-clearing with no human
+    adjudication and the dishonest case detectable. This asymmetry is deliberate and is
+    the load-bearing design choice, because ALARM FATIGUE IS ITSELF A GOODHART VECTOR:
+    a warn-only flag that recurs every cycle with a plausible narrative attached gets
+    accepted by default -- which is exactly how a benign-per-invariant-6 reading came to
+    be cited for growth that invariant 6 did not cover. The standing design rule that
+    follows: silence-plus-a-narrative must FAIL where a git witness would PASS, and
+    legitimate cases must clear on verifiable provenance rather than on human
+    adjudication, so that a raised flag stays rare enough to be worth reading. Legs with
+    no git history at all (uncommitted, wholesale rewrite, git unavailable) report as a
+    quiet unverifiable state -- not a violation, but not evidence either.
+    A GROWING DENOMINATOR IS ITSELF A SIGNAL. The set grows mostly by legs that are
+    then eliminated, so labelled fan-out inflates the headline narrowing ratio PRECISELY
+    when a campaign is failing to converge and having to invent new candidate
+    explanations. A clean advisory section is therefore not an all-clear. The dashboard
+    must report the honest pair -- surviving/original AND surviving/current-including-
+    fan-out -- so non-convergence stays visible rather than being laundered into an
+    improved ratio, and an autopsy appending a growth event must say so in its routing
+    note (fanout_growth_note on the question).
+    PRODUCER / CONSUMER SEPARATION. The registry has a SINGLE producer,
+    /failure-autopsy Step 9b, which pre-registers at fan-out time and resolves at
+    adjudication time. /governance Step 5c is derive-only over it: it reads the audit
+    report, surfaces non-zero flags as review hints, and routes any real flag BACK to an
+    autopsy session -- it never patches the registry inline. Governance must not grow a
+    second registry writer; a second producer would let the consumer of the measure also
+    author its denominator, reintroducing exactly the incentive this rule removes.
+    ENFORCEMENT POSTURE -- READ THIS BEFORE CITING THE RULE. Registration of this
+    claim buys DOCUMENTATION AND CITABILITY, NOT PREVENTION. The rule existed as skill
+    prose plus a JSON header, which a session cannot cite, version, or depend on the way
+    it can a claim -- and that asymmetry is plausibly why invariant 6 was cited loosely
+    for a case it did not cover. What actually closes the back-dating hole is the GIT
+    WITNESS (landed 2026-07-18), not the existence of this entry. The audit
+    (check_hypothesis_space_integrity.py) is ADVISORY and warn-only: it always exits 0
+    and NEVER gates a governance cycle. Nothing here is scored by the closure pipeline;
+    the registry is a derive-only INPUT that never mutates claims.yaml, closure weights,
+    or claim status. Do not cite GOV-FROZEN-1 as though the rule were enforced by its
+    own registration.
+  notes: "Registered 2026-07-18 by the /governance 2026-07-18 cycle session's request; deliberately deferred by the session that BUILT the machinery because claims.yaml is governance-owned and high-contention. DOCUMENTATION / CITABILITY ONLY -- registers no new enforcement; the machinery was already fully built and landed. Wiring (all pre-existing): evidence/planning/hypothesis_space_registry.v1.json (the FROZEN append-only ledger, invariants block: elimination_bar, frozen_initial_set, labelled_fanout_growth, human_owns_decided, non_contributory_unchanged), scripts/check_hypothesis_space_integrity.py (advisory audit buckets a/b/c/d plus advisory e_labelled_growth / f_unverifiable / g_witnessed), scripts/build_hypothesis_space.py (derives hypothesis_space.v1.json + hypothesis_space_timeseries.v1.jsonl), scripts/governance.sh Step 3c-bis-6b (warn-only), /failure-autopsy SKILL.md Step 9b Frozen-set invariants 1-7 (SINGLE producer; 3a is the fan-out case), /governance SKILL.md Step 5c (derive-only consumer). Landed as REE_assembly master 9d26f2be5f (fan-out contract + honest-pair dashboard) and bd9674dd44 (git-witnessed pre-registration). N/A: no numeric threshold constant -- the contract is structural, not count-triggered (contrast GOV-CEIL-1 N=3 / GOV-DIAG-1 N=3). PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref GOV-FANOUT-1 (the fan-out routing whose portfolios are the sanctioned growth source), GOV-CEIL-1 / GOV-DIAG-1 (sibling warn-only detection rules), and the work_graph_debt_vocabulary aleatoric(irreducible) token for the unverifiable provenance state (no git history is not a reducible unknown -- it is hedged, not researched)."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment
