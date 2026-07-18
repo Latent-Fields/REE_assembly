@@ -1,0 +1,106 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_782_mech459_advantage_composition_probe",
+  "run_id": "v3_exq_782_mech459_advantage_composition_probe_20260718T111818Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-18T11:18:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-459"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-459": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "forage_mass_already_concentrated__critic_flat_uninformed",
+    "preconditions": [
+      {
+        "name": "local_view_greedy_clears_floor_at_d3",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages >= the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view (same statistic the verdict criterion routes on). Below-floor means the substrate/env is not ready, NOT that the actor-critic failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "greedy_oracle_clears_floor_at_d3",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "forage_steps_in_measured_window_supra_count_floor",
+        "kind": "readiness",
+        "description": "COUNT readiness matching the count-gated R-(a) criterion: the forage |adv| mass fractions are computed OVER forage-contact steps, so with too few such steps a 'stays tiny' reading is vacuous (no signal to swamp) rather than a falsification of the weak form. Minimum over all probe cells.",
+        "control": "n forage-contact steps in the LATE measurement window, per probe cell",
+        "measured": 273,
+        "threshold": 30,
+        "met": true
+      },
+      {
+        "name": "demo_state_return_spread_supra_floor",
+        "kind": "readiness",
+        "description": "SPREAD readiness matching the spread-gated R-(b) criterion: the collapse test routes on std(V)/std(G), so a degenerate G distribution over demonstrator-visited states makes the ratio uninterpretable. The demonstrator forages (48.05 @D3), so its state distribution MUST carry a bimodal return spread.",
+        "control": "std(return-to-go) over LocalViewGreedyPolicy-visited states, min over cells",
+        "measured": 0.302689,
+        "threshold": 0.25,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "R_a_forage_adv_mass_parity_rescaled_post_standardisation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "R_b_critic_separates_pre_from_post_reward_states",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "local_view_clears_floor_at_d3": true,
+      "oracle_clears_floor_at_d3": true,
+      "forage_steps_present_in_window": true,
+      "demo_return_distribution_has_spread": true,
+      "concentration_pre_post_spread": true
+    }
+  }
+}
