@@ -282,24 +282,35 @@ below the passthrough leg's gain of 1.0.** The `_mean` (per-`sigma` point-gain
 average) corroborates the slope (0.152). The per-seed tolerance orderings reproduce
 V3-EXQ-778a's exactly (same code + seeds -- a consistency cross-check).
 
-The load-bearing conclusion: **the REM staged-first-failure is NOT pure topology.**
-The generative re-derivation pass has genuine corrective capacity -- it attenuates a
+The attenuation finding stands: the generative re-derivation pass attenuates a
 diffusely corrupted seed rather than passing it through (gain 1) or amplifying it
-(gain > 1, the MECH-094 psychosis polarity). In the harness's non-vacuity vocabulary,
-"the correction needs an intact seed": REM's early vulnerability under diffuse damage
-reflects a real transfer function, not merely its downstream position in the DAG.
+(gain > 1, the MECH-094 psychosis polarity). ~~In the harness's non-vacuity
+vocabulary, "the correction needs an intact seed": REM's early vulnerability under
+diffuse damage reflects a real transfer function, not merely its downstream position
+in the DAG.~~ **The "intact seed" gloss is RETRACTED (2026-07-18, V3-EXQ-778f) -- see
+the RESOLVED box immediately below. The attenuation itself is NOT retracted; only the
+inference from it to content-dependent correction is.**
 
-> **OPEN QUESTION on the "intact seed" gloss (flagged 2026-07-18, V3-EXQ-778c).** In
-> the null control's manifest the **null arm's** `rem_generative_gain` (seed 42:
-> 0.182 / 0.184 / 0.188 / 0.209 across `sigma`) is close to the injected arm's
-> (0.165 / 0.166 / 0.172 / 0.190) at `rem_gen_content_scale` 0.0. This sits OUTSIDE
-> the scored C1 criteria and is recorded as an open question, **not** a verdict. If it
-> replicates it does not touch the attenuation finding itself -- the transfer function
-> does attenuate -- but it would undercut the specific gloss that the correction
-> *needs an intact seed*, since attenuation would then occur with no seed content at
-> all. Registered as hypothesis `H-gen-gain-content-free` in
-> `hypothesis_space_registry.v1.json`; probe sketched in
-> `failure_autopsy_V3-EXQ-778c_2026-07-18`.
+> **RESOLVED 2026-07-18 (V3-EXQ-778f) -- the "intact seed" gloss is RETRACTED.** The
+> open question flagged from V3-EXQ-778c (the null arm's `rem_generative_gain` sitting
+> close to the injected arm's at `rem_gen_content_scale` 0.0) has been answered by a
+> direct content-scale sweep, and it answers **against** the gloss.
+> `rem_generative_gain` is **flat in content scale**: mean delta (1.0 minus 0.0) =
+> **-0.009662** against a pre-registered separation bar of
+> `max(0.05, 2 x SEM = 0.0117)` = **0.05**. Two independent points against the gloss:
+> the residual monotone trend (7/8 seeds) is an **order of magnitude below the bar** --
+> exactly the consistent-but-tiny case the bar was constructed to reject -- **and its
+> sign is INVERTED**, gain being LOWER with intact content (0.1493) than with none
+> (0.1589). Hypothesis `H-gen-gain-content-free` is RESOLVED in
+> `hypothesis_space_registry.v1.json`.
+>
+> **SCOPE GUARD -- what is NOT overturned.** The attenuation finding itself
+> (`rem_generative_gain` 0.149, attenuating **8/8 seeds**) **STANDS**. It is recorded
+> at every content scale -- **0.1589 / 0.1520 / 0.1493, 8/8 attenuating throughout** --
+> precisely so it stays visible. ONLY the interpretive gloss is retracted: the
+> transfer function does attenuate, but it does not need seed content to do so, so the
+> generative-gain pillar **does not evidence content-dependent correction**. Full
+> adjudication: `evidence/planning/failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.{md,json}`.
 
 (`rem_passthrough_calibration_slope` -- the raw `calibration_error`-vs-`sigma` slope
 in variance units -- ranges 0.03-599 across seeds; it is scale-variable telemetry
@@ -355,7 +366,8 @@ non-vacuity honestly rather than withdrawing the claim"), the non-vacuity contra
 now carried by the `nrem` injected-content leg and the REM passthrough-vs-generative
 contrast **only** -- not by the `sws` leg. Note this leaves SD-068 resting on a single
 confirmed content-contingent readout plus a generative-gain contrast whose own
-content-dependence is itself an open question (see the OPEN QUESTION box above): do not
+content-dependence was at the time an open question -- since **RESOLVED against the
+gloss** (V3-EXQ-778f; see the RESOLVED box above), which narrows SD-068 further: do not
 read the narrowing as leaving SD-068 comfortably supported.
 
 > **PARTIALLY RE-WIDENED 2026-07-18 (V3-EXQ-778g).** The exclusion of the `sws` leg rested
@@ -367,6 +379,20 @@ read the narrowing as leaving SD-068 comfortably supported.
 > pillar's content-dependence is still open (`H-gen-gain-content-free`), and the staging
 > order is still unsupported. Do not read the re-widening as leaving SD-068 comfortably
 > supported either; it restores one readout to the contract, nothing more.
+>
+> **UPDATE 2026-07-18 (SD-068 REM GOV-FANOUT-1 cluster, V3-EXQ-778d/778e/778f).** The
+> outstanding caution "the generative-gain pillar's content-dependence is still open
+> (`H-gen-gain-content-free`)" is now **CLOSED -- in the NARROWING direction**, not the
+> widening one. `H-gen-gain-content-free` resolved: `rem_generative_gain` is flat in
+> content scale, so the pillar **does not evidence content-dependent correction** (see
+> the RESOLVED box above). Separately, the same cluster established across three
+> discrimination axes (778d measurement / 778e representation / 778f observation, n=8
+> seeds each, positive controls passing) that **the REM per-phase readout is content-free
+> and is NOT a functional-damage instrument**. Net effect: the staged-failure contract is
+> carried by **`nrem` plus the rebuilt `sws` only**; the REM contrast no longer counts
+> toward it. **The staging order REMAINS UNSUPPORTED.** The `sws` leg (V3-EXQ-778g) is
+> untouched by this cluster. The 8/8 attenuation finding is untouched and STANDS. Full
+> adjudication: `evidence/planning/failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.{md,json}`.
 
 **Routing:** `/implement-substrate` to replace `sws_denoising_snr` with a content-scored
 readout (experiment-layer, `_lib/consolidation_lesion_harness.py`, zero `ree_core`

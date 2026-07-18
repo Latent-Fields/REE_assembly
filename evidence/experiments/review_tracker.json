@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-18T04:54:03Z",
+  "last_review_utc": "2026-07-18T18:17:08Z",
   "discussed_experiment_dirs": [
     "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier",
     "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
@@ -866,7 +866,13 @@
     "v3_exq_776_mech279_pag_freeze_gate_functional_signature",
     "v3_exq_773_mech076_residue_basin_geometry_doseresponse",
     "v3_exq_sd068_consolidation_staged_damage_diagnostic",
-    "v3_exq_sd068_consolidation_staging_power_diagnostic"
+    "v3_exq_sd068_consolidation_staging_power_diagnostic",
+    "v3_exq_sd068_rem_unpaired_null_diagnostic",
+    "v3_exq_sd068_rem_declamped_readout_diagnostic",
+    "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic",
+    "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+    "v3_exq_sd068_rem_declamped_readout_diagnostic_20260718T163318Z_v3",
+    "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3"
   ],
   "reviewed_run_ids": [
     "v3_exq_742m_mech457_bias_head_baseline_mint_20260715T013328Z_v3",
@@ -3418,7 +3424,10 @@
     "v3_exq_777_mech063_orthogonal_control_axes_dissociation_20260717T155914Z_v3",
     "v3_exq_779_mech063_tonic_phasic_dissociation_20260717T191826Z_v3",
     "v3_exq_sd068_null_content_control_diagnostic_20260718T065939Z_v3",
-    "v3_exq_sd068_null_content_control_diagnostic_20260718T072318Z_v3"
+    "v3_exq_sd068_null_content_control_diagnostic_20260718T072318Z_v3",
+    "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+    "v3_exq_sd068_rem_declamped_readout_diagnostic_20260718T163318Z_v3",
+    "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -3800,6 +3809,42 @@
         "ARC-057"
       ],
       "note": "V3-EXQ-768a ARC-057 SD-024 x SD-025 interaction verified/non-vacuous PASS (failure_autopsy_V3-EXQ-768a_2026-07-17). Supersedes the 768 vacuous_pass cluster (continuous CEM score-margin resolves argmin saturation). Approach emerges only from the DA-expansion x curiosity interaction; rides density not value. ARC-057 candidate->provisional, approach-side scoped (does NOT establish strategy-diversity generation -- curiosity=exploitation-amplifier reframe)."
+    },
+    {
+      "run_id": "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+      "reviewed_utc": "2026-07-18T18:17:08Z",
+      "outcome": "FAIL",
+      "claims": [
+        "SD-068",
+        "MECH-168",
+        "INV-047",
+        "MECH-169"
+      ],
+      "note": "V3-EXQ-778d SD-068 REM unpaired-target null (measurement axis). Adjudicated in failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18: self-route substrate_not_ready_requeue REJECTED -- the failing precondition is a specification defect in the readiness anchor (one-rail predicate against a two-rail degeneracy, capping a bit-perfect 778c replication at 0.625 under a 0.75 gate), not a substrate-readiness fact. control_passed asserted on the corrected both-rails predicate. With the clamp degeneracy removed the null arm still tracks the injected arm's sigma-slope: the REM readout is content-free. weakens SD-068; unknown on MECH-168/INV-047/MECH-169 (context tags). Anchor fix routed as V3-EXQ-778h (low priority, ledger-hygiene only)."
+    },
+    {
+      "run_id": "v3_exq_sd068_rem_declamped_readout_diagnostic_20260718T163318Z_v3",
+      "reviewed_utc": "2026-07-18T18:17:08Z",
+      "outcome": "FAIL",
+      "claims": [
+        "SD-068",
+        "MECH-168",
+        "INV-047",
+        "MECH-169"
+      ],
+      "note": "V3-EXQ-778e SD-068 REM de-clamped readout (representation axis). Read alone it narrows nothing (5/8 seeds still saturate, C1 fails); read jointly with 778d's de-railed unpaired arm it is corroborative -- the independent de-clamped readout agrees on every non-degenerate seed (0.999 / 0.998 / 0.326, all above the 0.25 ceiling). H-rem-genuinely-content-free resolves. weakens SD-068; unknown on MECH-168/INV-047/MECH-169 (context tags)."
+    },
+    {
+      "run_id": "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3",
+      "reviewed_utc": "2026-07-18T18:17:08Z",
+      "outcome": "FAIL",
+      "claims": [
+        "SD-068",
+        "MECH-168",
+        "INV-047",
+        "MECH-169"
+      ],
+      "note": "V3-EXQ-778f SD-068 REM generative-gain content-scale sweep (observation axis). rem_generative_gain is FLAT in content scale: mean delta (1.0 minus 0.0) = -0.009662 against a pre-registered separation bar of max(0.05, 2 x SEM = 0.0117) = 0.05; the residual 7/8-seed monotone trend is an order of magnitude below the bar AND inverted in sign (0.1493 intact vs 0.1589 none). The interpretive gloss 'correction needs an intact seed' is RETRACTED from docs/architecture/sd_068_consolidation_lesion_harness.md. SCOPE GUARD: the attenuation finding itself (rem_generative_gain 0.149, attenuating 8/8 seeds at every content scale -- 0.1589 / 0.1520 / 0.1493) is NOT overturned and STANDS. weakens SD-068; unknown on MECH-168/INV-047/MECH-169 (context tags)."
     }
   ],
   "review_history": [
@@ -5345,6 +5390,16 @@
         "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
       ],
       "note": "Governance cycle 2026-07-18. APPLIED: (1) 3 promotions candidate->provisional on clean first exp PASSes -- MECH-086 (V3-EXQ-775, 4/4 selection-gain signatures 3/3 seeds), MECH-279 (V3-EXQ-776, 3/3 PAG freeze-gate signatures 5/5 seeds; first CLEAN support, prior 475 clearance sat in the update_z_goal contaminated cohort; scope = functional law under driven z_harm_a, NOT ecological engagement), MECH-076 (V3-EXQ-773, graded basin geometry + capture-at-a-distance; basin-geometry leg only). (2) MECH-457 cluster autopsy 770/771/772 applied non_contributory/competence_implementation_gap -- all three hit their pre-registered nulls, FOUR axes now eliminated (capacity/drive/reward/credit); missing-dependency REFRAME, NOT substrate_ceiling; re-derive brake fired (7th); stays candidate/v3_pending; new portfolio H-bc-prior vs H-approach-primitive routed. (3) MECH-173 (V3-EXQ-774) applied inconclusive/substrate_ceiling + pending_retest_after_substrate -> /implement-substrate AMEND MECH-204 Phase 7 Option B. (4) INV-088 keeps hold_candidate_resolve_conflict; reconfirmation re-routed (770/771/772 did not reconfirm). (5) SD-068 x3 diagnostics marked reviewed diagnostic-only (findings already banked to MECH-168/INV-047; MECH-121 held; promotes/demotes nothing). HELD PENDING (user route B): V3-EXQ-777 + V3-EXQ-779 (both MECH-063) un-adjudicated -- NO evidence_direction applied; /failure-autopsy chips spawned. MECH-063 NOT demoted on the un-adjudicated 777 'weakens' self-route."
+    },
+    {
+      "utc": "2026-07-18T18:17:08Z",
+      "session": "reverent-chatterjee-5f187e (SD-068 REM fanout autopsy governance writes)",
+      "reviewed": [
+        "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+        "v3_exq_sd068_rem_declamped_readout_diagnostic_20260718T163318Z_v3",
+        "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3"
+      ],
+      "note": "Applied the governance writes owed by the CONFIRMED SD-068 REM GOV-FANOUT-1 cluster autopsy (REE_assembly master deda5e17ed). Three discrimination legs on distinct design axes converge: the SD-068 REM per-phase readout is content-free and is NOT a functional-damage instrument. Net effect: the staged-failure contract is carried by nrem plus the rebuilt sws (V3-EXQ-778g) only; the generative-gain pillar does not evidence content-dependent correction; the staging order REMAINS UNSUPPORTED. The attenuation finding STANDS -- only the interpretive gloss is retracted. SD-068 SWS leg untouched."
     }
   ]
 }
