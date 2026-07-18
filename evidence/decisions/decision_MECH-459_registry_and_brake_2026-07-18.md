@@ -198,7 +198,55 @@ exonerated and MECH-459 goes to `weakened`.
 | `claims.yaml` MECH-459 | notes amended with this adjudication (status stays `candidate`) |
 | `substrate_queue.json` `mech457_competence_bootstrap_explorer` | **unchanged**, stays `blocked_pending_discrimination` |
 | V3-EXQ-780 / 781 | **unchanged**, running unmodified on ree-cloud-2 / ree-cloud-3 |
-| Next action | queue probe R as a DIAGNOSTIC via `/queue-experiment`, new EXQ (next free >= 782) |
+| Next action | ~~queue probe R as a DIAGNOSTIC via `/queue-experiment`, new EXQ (next free >= 782)~~ **DONE 2026-07-18T08:16Z -> V3-EXQ-782** |
+
+## Execution record (appended after the ruling)
+
+**Probe R queued as `V3-EXQ-782`** (`v3_exq_782_mech459_advantage_composition_probe`,
+`experiment_purpose: diagnostic`, priority 7, `machine_affinity: any`, 5 arms x 3 seeds x 3000 ep).
+Landed ree-v3 `origin/main 16fd4ef`; ingested into the coordinator DB (`/queue/active` confirms).
+**Do not re-queue it.** Two departures from the ruling's letter, both recorded in the script:
+
+1. **Instrumentation is a separate mirror module** (`ree-v3/experiments/_lib/mech459_probe_r.py`),
+   not a hook added to `mech457_explorer_classes.train_a2c`. A default-None hook would be
+   numerically byte-identical when OFF, but it still changes the *bytes* of a file V3-EXQ-780/781
+   are running against -- perturbing their `arm_fingerprint` substrate_hash and reaching any worker
+   that restarts mid-run. The mirror imports every operator-defining quantity (`FORAGE_BONUS`,
+   `_novelty_bonus`, `_RunningStd`, `_compute_gae`, `AC_*`, `_prioritized_credit_replay`,
+   `warm_then_anneal`) rather than re-declaring it, and documents the faithfulness contract
+   line-by-line against `explorer_classes.py:646-720`. `git status` confirms zero `mech457_*`
+   modifications, satisfying section 0's "live discrimination NOT pre-empted".
+
+2. **R-(a) is prevalence-normalised, and carries a THIRD outcome this ruling did not enumerate.**
+   Forage contacts are rare, so a raw "tiny mass fraction" partly just measures rarity; the probe
+   therefore routes on the CONCENTRATION `C = (forage |adv| mass fraction) / (forage step
+   fraction)`, where `C == 1` means forage steps carry exactly their per-step share of the
+   gradient. Branches: **parity-rescaling** (`C_pre<0.5`, `C_post>=1.0`, `delta>=0.25`) -> weak form
+   supported, queue probe K, register `H-return-scale`; **stays-tiny** (`C_post<1.0`,
+   `delta<0.25`) -> normaliser exonerated, weak form falls, K NOT queued, MECH-459 -> `weakened`;
+   **already-concentrated** (`C_pre>=0.5`) -> the weak form's PREMISE fails (forage already carries
+   its share BEFORE standardisation), so the weak form falls by a different route and K is likewise
+   not queued.
+
+**Analytic constraint worth carrying forward** (recorded in the script's interpretation grid, and
+absent from this ruling): the standardisation is `(a - mean)/(std + eps)`. Division by a positive
+scalar is a global rescale and leaves every `|adv|` mass *fraction* exactly invariant -- so **only
+the mean subtraction can move the composition**. The parity-rescaling signature is therefore a
+demanding, specific prediction (it requires a large negative episode-mean advantage relative to
+forage-step advantages), not a generic consequence of normalising. `mean_episode_mean_adv` is
+emitted per cell as the audit of that mechanism.
+
+**Readiness gates match the routed statistic** (so a starved run cannot masquerade as a
+falsification): R-(a) is count-gated -> COUNT readiness (`>=30` forage steps per cell in the
+measured window; below that "stays tiny" is vacuous, not falsifying). R-(b) is spread-gated ->
+SPREAD readiness (`std(return-to-go) >= 0.25` over demonstrator-visited states). Either below
+floor -> `substrate_not_ready_requeue`, never a substrate-verdict label. The dry-run exercised this
+for real (toy budget produced 1 forage step -> correctly self-routed `substrate_not_ready_requeue`).
+
+The Finding V3 corollary is emitted at runtime as `headline.exq_781_null_readable`, and the
+conditional follow-ons as `headline.probe_k_recommended` /
+`headline.hypothesis_registry_action` -- so this artifact's routing is machine-readable off the
+manifest rather than needing re-derivation from prose.
 
 **MECH-459 status: `candidate`, NARROWED.** The strong form (architectural invariance
 laundering the 770/771 eliminations) is **refuted by Finding V2** and should not be restated.

@@ -56055,6 +56055,22 @@
     stays tiny post-standardisation, the weak form falls, probe K is NOT queued, and this claim goes
     to `weakened`. V3-EXQ-780/781 unmodified; substrate_queue entry stays
     blocked_pending_discrimination.
+    QUEUED 2026-07-18 as V3-EXQ-782 (v3_exq_782_mech459_advantage_composition_probe,
+    experiment_purpose=diagnostic, governance-scoring-excluded) -- probe R is LIVE, do NOT re-queue
+    it. Instrumentation is a SEPARATE mirror module ree-v3/experiments/_lib/mech459_probe_r.py, so
+    the mech457_* _lib files and the running 780/781 are byte-unchanged. It measures the reference
+    composed-bootstrap CTRL path (the shared control arm of 780/781), both reps, no treatment arm.
+    R-(a) is prevalence-normalised to a CONCENTRATION C = (forage |adv| mass fraction) / (forage
+    step fraction), so rarity alone cannot manufacture a "tiny" reading: parity-rescaling =
+    C_pre<0.5 AND C_post>=1.0 AND delta>=0.25; stays-tiny = C_post<1.0 with delta<0.25;
+    already-concentrated = C_pre>=0.5 (the weak form's PREMISE fails -- a third outcome the
+    adjudication did not enumerate). ANALYTIC CONSTRAINT recorded in the script: the std divide is
+    provably |adv|-fraction-preserving, so ONLY the mean subtraction can move the composition --
+    the parity signature therefore requires a large negative episode-mean advantage relative to
+    forage-step advantages, and mean_episode_mean_adv is emitted as the audit of that mechanism.
+    The run self-routes all three branches plus headline.probe_k_recommended,
+    headline.hypothesis_registry_action and headline.exq_781_null_readable (the Finding V3
+    corollary), so the routing above is machine-readable off the manifest.
   origin: >
     Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
     evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3), from a DreamerV3
