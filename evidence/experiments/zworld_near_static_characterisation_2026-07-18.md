@@ -250,7 +250,36 @@ Scope limits, stated plainly:
    here. Whether training lifts the contrast ratio is unmeasured. The next probe is **not** a fresh
    design: the 2026-06-06 cluster autopsy's user-confirmed retest spec (world_dim=128 + trained
    encoder + ARC-065 behavioural diversity) already covers it and would separate (a1) from (a2).
+
+   > **SUPERSEDED SAME DAY — this open question is now ANSWERED, and the answer inverts the
+   > expectation.** SD-070 (`latent.zworld_p0_anticollapse_recipe`, registered REE_assembly master
+   > `cc1fe6b3dd`, implemented ree-v3 main `f418400`; design doc
+   > `docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md`) measured the trained arm
+   > independently and by the **same contrast-ratio statistic**, at world_dim=128:
+   >
+   > | configuration | participation ratio | contrast ratio |
+   > |---|---|---|
+   > | untrained | 9.21 | 0.1222 |
+   > | SD-009 + SD-018 P0, lr 1e-4 | **1.06** | **0.0726** |
+   >
+   > So the substrate's *prescribed* P0 does not lift differentiation — it **collapses** z_world
+   > onto ~one effective dimension and *lowers* contrast. Training the encoder as prescribed would
+   > have made the manifold worse, not better, which means the "encoder is never trained" finding in
+   > 3b is not straightforwardly a deficiency to be fixed by switching the training on. SD-070's
+   > replacement recipe (static scene-structure grounding + class-balanced CE + VICReg var/cov
+   > anti-collapse + mini-batching) raises contrast 3/3 seeds (0.137 -> 0.238) with
+   > retained_fraction 0.625 and absolute PR 5.079. Root cause diagnosed there is a **wiring**
+   > fault, not label imbalance: `transition_type` is a TRANSITION property while z_world is a
+   > static single-frame encoding (`evidence/planning/sd009_event_contrastive_channel_mismatch_2026-07-18.md`).
+   >
+   > Note the cross-check: SD-070's untrained numbers at dim=128 (CR 0.1222, PR 9.21) sit close to
+   > this document's untrained numbers at dim=32 (CR ~0.094, PR ~7), from an independent harness.
+
 2b. **(a1) and (a2) are perfectly confounded here** — every cell is dim=32 and untrained. See 3d.
+   **Now being resolved:** **V3-EXQ-783** ("z_world dim x training crossing, unblocked by SD-070",
+   queued ree-v3 main `4607c41`, live in the coordinator DB) runs exactly the {dim 32, 128} x
+   {untrained, trained} crossing this document identified as the missing discriminator. Do not
+   design a fresh probe for the (a1)/(a2) separation — read 783.
 3. **The raw channel's own contrast ratio is also flat** across rungs and competence (0.579-0.696).
    So on the contrast statistic the (b)/(c) axes had limited upstream variation to propagate, and
    the flatness of `z_world` CR is on its own weaker evidence than it looks. The discrimination
