@@ -55864,6 +55864,50 @@
     claim -- and equally consistent with MECH-460 and MECH-461. BC clearing the floor does NOT
     discriminate among the three, which is why every falsifier here is on an INTERMEDIATE
     quantity rather than on final foraging competence.
+    ADJUDICATED 2026-07-18 -- evidence/decisions/decision_MECH-459_registry_and_brake_2026-07-18.md.
+    The claim is NARROWED, not withdrawn. (1) The operator analysis is CORRECT: invariance to a
+    GLOBAL multiplicative reward rescaling holds to within REWARD_STD_EPS (the Welford running std
+    alone suffices -- scaled rewards, GAE advantages, returns and the value loss are all unchanged
+    under r -> c*r). (2) But the STRONG FORM's inferential step -- that the 770/771 eliminations
+    were divided out BY CONSTRUCTION -- is REFUTED and must not be restated. None of the three legs
+    is a global rescaling: 771 is a metabolic forage-to-survive ENVIRONMENT change (termination
+    structure + state distribution); 772 is potential-based shaping (already conceded); and 770
+    varies intrinsic_coef on ONE reward component (relative reweighting = shape) while ALSO holding
+    entropy_beta constant at 0.10 where the control anneals 0.10 -> 0.03 -- and beta_eff multiplies
+    the LOSS (mech457_explorer_classes.py:698), entirely OUTSIDE the normaliser. So 770 moved a
+    lever the operator provably does not divide out. The 772 counterweight GENERALISES to 770/771.
+    (3) SURVIVING form is the weak one only: per-episode standardisation re-amplifies co-present
+    novelty noise back to unit variance and SWAMPS the shape change. That is an empirical
+    noise-dominance claim, not an architectural one.
+    LOCUS -- the two-sided normaliser is NOT confined to the cited train_rawview_ac_rl. Verified
+    sites: mech457_fanout.py:244/253 and :411/420, mech457_explorer_classes.py:688/697 and :941/950.
+    V3-EXQ-770/771 run the composed bootstrap in explorer_classes, not fanout, so the citation is
+    under-inclusive but in-scope.
+    COROLLARY (Finding V3, decision-relevant to the LIVE portfolio) -- the two queued legs are
+    ASYMMETRICALLY exposed. V3-EXQ-780 (H-bc-prior) adds bc_aux_coef*bc_loss as a LOSS-side CE term
+    (explorer_classes.py:703-708); it never enters `shaped`, so the normaliser cannot swamp it --
+    780 is NOT confounded. V3-EXQ-781 (H-approach-primitive) adds approach_coef*approach_drive
+    directly into `shaped` (explorer_classes.py:660-662), INSIDE the normaliser -- so a 781 NULL is
+    confounded by this claim while a 781 POSITIVE is not. Read a 781 null with that caveat.
+    GOVERNANCE OUTCOME -- (D1) competence_floor does NOT gain a third ALIVE leg. In its surviving
+    weak form this claim is an INSTRUMENT-VALIDITY claim about the question's evidence base, not a
+    rival ANSWER to its decision_question, so registering it as a leg would inflate the denominator
+    without ever being able to reduce the numerator. Registry unwritten; counts stay 7 (original) /
+    12 (current); surviving-ratio reported both ways 2/7 = 0.286 and 2/12 = 0.167. Trigger armed:
+    it graduates to hid H-return-scale (axis normalisation-pathway) under a labelled
+    fanout_growth_events[] entry IFF probe R-(a) returns the parity-rescaling signature. Probe R is
+    a diagnostic on intermediate quantities and is explicitly NOT the adjudicating run for that leg,
+    so later registration satisfies the pre_registered_utc <= resolved_utc invariant.
+    (D2) The re-derive brake PERMITS the shape-preserving knock-out -- it changes the update
+    OPERATOR (not an input to a fixed rule), carries different claim_ids (MECH-459 brake count 0),
+    and declares a symmetric falsifier. But the knock-out is NOT the first move: it tests only the
+    now-weakened form and a null is compatible with signal-absence too. Sequence = cheap DIAGNOSTIC
+    probe R first (R-(a) advantage composition pre- vs post-standardisation; R-(b) critic
+    calibration on BC-visited states), new EXQ via /queue-experiment, governance-scoring-excluded.
+    The knock-out (probe K) is sanctioned but HELD pending R-(a); if R-(a) shows the forage fraction
+    stays tiny post-standardisation, the weak form falls, probe K is NOT queued, and this claim goes
+    to `weakened`. V3-EXQ-780/781 unmodified; substrate_queue entry stays
+    blocked_pending_discrimination.
   origin: >
     Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
     evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3), from a DreamerV3
