@@ -72,7 +72,10 @@ def _lifted_node_ids():
     return done
 
 
-def _live_join_lines(stored_live, bears_on, scope_claims):
+def _live_join_lines(stored_live, stored_join):
+    """Render the two-plane block from the two STORED views. Both come from the
+    ONE projection path (P.stored_live_view / P.stored_join_view), so what is
+    written here is exactly what the drift check re-projects and compares."""
     lines = ["      live:"]
     for k in P.STORED_LIVE_FIELDS:
         lines.append("        %s: %s" % (k, json.dumps(stored_live.get(k))))
@@ -80,8 +83,8 @@ def _live_join_lines(stored_live, bears_on, scope_claims):
         lines.append("        needs_review_reasons: %s"
                      % json.dumps(stored_live["needs_review_reasons"]))
     lines.append("      join:")
-    lines.append("        bears_on: %s" % json.dumps(bears_on))
-    lines.append("        scope_claims: %s" % json.dumps(scope_claims))
+    for k in P.STORED_JOIN_FIELDS:
+        lines.append("        %s: %s" % (k, json.dumps(stored_join.get(k))))
     return lines
 
 
@@ -132,7 +135,15 @@ def main():
     target_plans = [p for p in all_plans if p["plan_id"] == plan_id]
     events, _ = P.load_events(REPO_ROOT)
     projections = P.build_projections(target_plans, events, P.DEFAULT_BRAKE_THRESHOLD)
-    plan_scope = target_plans[0]["scope_claims"]
+    # NOTE: the stored `join.scope_claims` comes from the PROJECTION
+    # (P.stored_join_view -> pr["node_scope_claims"]), which is the node's
+    # EFFECTIVE scope. This previously stamped the plan-level list onto every
+    # node, which silently ignored a node-level `scope_claims:` override and
+    # would have written a join block that disagreed with the projection that
+    # produced the node's own live head. No node sets one today, so the fix is
+    # a no-op on the current tree -- but node-level scope_claims is the
+    # sanctioned way to narrow a single face (see the GENERATION adjudication,
+    # master 417993abd0), so this had to be correct before anyone uses it.
 
     lifted = _lifted_node_ids()
 
@@ -187,7 +198,7 @@ def main():
                 continue
             ls, le = span
             sl = P.stored_live_view(pr["live"])
-            new_block = _live_join_lines(sl, pr["join_bears_on"], plan_scope)
+            new_block = _live_join_lines(sl, P.stored_join_view(pr))
             if node_lines[ls:le] == new_block:
                 out.extend(node_lines)
                 skipped.append((nid, "collapsed, current"))
@@ -202,7 +213,7 @@ def main():
                              "shp2_backfill_snapshot.py first (razor sec 5)." % nid)
 
         sl = P.stored_live_view(pr["live"])
-        lj = _live_join_lines(sl, pr["join_bears_on"], plan_scope)
+        lj = _live_join_lines(sl, P.stored_join_view(pr))
 
         # emit node with blob lines removed and live/join inserted after severity
         # (else after status, else after the last field before the blobs).

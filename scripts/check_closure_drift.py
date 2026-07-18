@@ -529,6 +529,36 @@ def _stored_live_view_from_plan(live_block) -> dict:
     return out
 
 
+def _stored_join_view_from_plan(join_block) -> dict:
+    """Coerce a plan node's stored `join:` block to the same shape the projector's
+    `stored_join_view` emits, so the two are directly comparable."""
+    if not isinstance(join_block, dict) or _psh is None:
+        return {}
+    return {k: list(join_block.get(k) or []) for k in _psh.STORED_JOIN_FIELDS}
+
+
+def _join_diff(stored: dict, projected: dict) -> list[str]:
+    """Field-level mismatches between a stored and a projected join view.
+
+    Both fields are ordered lists. `bears_on` is projector-sorted and
+    `scope_claims` preserves the authored order, so list equality is the right
+    comparison for both -- and a pure REORDER of the plan-level `scope_claims:`
+    list is reported, since the re-stamp would rewrite it anyway (leaving it
+    unflagged would mean the healer never converges)."""
+    diffs: list[str] = []
+    for f in _psh.STORED_JOIN_FIELDS:
+        sv, pv = list(stored.get(f) or []), list(projected.get(f) or [])
+        if sv == pv:
+            continue
+        missing = [x for x in pv if x not in sv]
+        extra = [x for x in sv if x not in pv]
+        if missing or extra:
+            diffs.append(f"join.{f}: missing={missing} unexpected={extra}")
+        else:
+            diffs.append(f"join.{f}: same members, order differs")
+    return diffs
+
+
 def _live_diff(stored: dict, projected: dict) -> list[str]:
     """Field-level mismatches between a stored and a projected live view.
     Scalars compared as strings; needs_review as bool; reasons as ordered lists."""
@@ -592,6 +622,22 @@ def status_plane_drift() -> tuple[list[dict], int, str | None]:
             stored = _stored_live_view_from_plan(live_block)
             projected = _psh.stored_live_view(pr["live"])
             diffs = _live_diff(stored, projected)
+
+            # History-plane half. Checked even when `live:` matches: editing the
+            # plan-level `scope_claims:` list re-scopes the join of EVERY node in
+            # the plan, and when that edit moves no node's live head a live-only
+            # check sees nothing at all -- so the stored joins go stale with no
+            # signal and the healer never fires. Because the healer re-stamps by
+            # PLAN (any drifted node re-stamps the whole file, and the re-stamp
+            # compares the full live:+join: block), surfacing join drift here is
+            # what makes a plan-level scope edit self-heal on the next cycle.
+            join_block = node.get("join")
+            if isinstance(join_block, dict):
+                diffs = diffs + _join_diff(
+                    _stored_join_view_from_plan(join_block),
+                    _psh.stored_join_view(pr),
+                )
+
             if diffs:
                 drifted.append({
                     "plan": path.name,
@@ -1139,6 +1185,58 @@ def _self_test() -> int:
         "future revisit_after -> revisit_due False (still resting)",
         rec_future is not None and rec_future["revisit_due"] is False,
     )
+
+    # --- _join_diff fixtures (history-plane drift) ----------------------------
+    # Anchor (2026-07-18): a plan-level `scope_claims:` edit re-scopes the join of
+    # EVERY node in the plan while moving no live head. A live-only check saw
+    # nothing, so the healer never fired and the stored joins went silently stale.
+    # Verified end-to-end in a sandbox: adding one claim to the plan-level list
+    # flagged 7/7 nodes (live-only: 0) and the healer re-stamped the whole plan.
+    if _psh is not None:
+        check(
+            "join_diff: identical join -> no drift",
+            _join_diff({"bears_on": ["a"], "scope_claims": ["M-1"]},
+                       {"bears_on": ["a"], "scope_claims": ["M-1"]}) == [],
+        )
+        added = _join_diff({"bears_on": [], "scope_claims": ["M-1"]},
+                           {"bears_on": [], "scope_claims": ["M-1", "M-2"]})
+        check(
+            "join_diff: plan-level scope ADD is drift (the 2026-07-18 blind spot)",
+            len(added) == 1 and "missing=['M-2']" in added[0],
+        )
+        removed = _join_diff({"bears_on": [], "scope_claims": ["M-1", "M-2"]},
+                             {"bears_on": [], "scope_claims": ["M-1"]})
+        check(
+            "join_diff: scope REMOVE is drift",
+            len(removed) == 1 and "unexpected=['M-2']" in removed[0],
+        )
+        check(
+            "join_diff: bears_on drift reported under its own field",
+            _join_diff({"bears_on": ["a"], "scope_claims": []},
+                       {"bears_on": ["a", "b"], "scope_claims": []})[0].startswith(
+                           "join.bears_on:"),
+        )
+        reordered = _join_diff({"bears_on": [], "scope_claims": ["M-2", "M-1"]},
+                               {"bears_on": [], "scope_claims": ["M-1", "M-2"]})
+        check(
+            "join_diff: pure REORDER is drift (else the re-stamp never converges)",
+            len(reordered) == 1 and "order differs" in reordered[0],
+        )
+        # The stored view must round-trip what the projector emits, or the two
+        # halves disagree and the healer loops re-stamping the same value.
+        check(
+            "stored_join_view round-trips through _stored_join_view_from_plan",
+            _stored_join_view_from_plan(
+                _psh.stored_join_view({"join_bears_on": ["a"],
+                                       "node_scope_claims": ["M-1"]}))
+            == {"bears_on": ["a"], "scope_claims": ["M-1"]},
+        )
+        check(
+            "stored_join_view uses the NODE scope, not the plan scope",
+            _psh.stored_join_view(
+                {"join_bears_on": [], "node_scope_claims": ["M-9"]})["scope_claims"]
+            == ["M-9"],
+        )
 
     print()
     if failures:

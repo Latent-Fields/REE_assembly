@@ -517,6 +517,38 @@ def stored_live_view(live):
     return out
 
 
+# The history-plane counterpart of STORED_LIVE_FIELDS: the subset of a node's
+# projected `join` that SHP-2 persists into the plan node. `tokens` and
+# `slice_event_ids` are DELIBERATELY excluded for the same reason brake_count /
+# slice_size are excluded from the live view -- they grow with every event and
+# would make the drift check perpetually red without changing the join's meaning.
+#
+# `scope_claims` is the node's EFFECTIVE INPUT scope (node-level `scope_claims:`
+# when set, else the plan-level list), exactly as load_plans resolves it. It is
+# the one stored field that is an INPUT echo rather than a derivation, which is
+# precisely why it must be checked: editing the plan-level `scope_claims:` list
+# changes the join for EVERY node in the plan, and if that edit moves no node's
+# live head then a live-only drift check sees nothing and the stored joins go
+# silently stale. See check_closure_drift.status_plane_drift.
+STORED_JOIN_FIELDS = ("bears_on", "scope_claims")
+
+
+def stored_join_view(pr):
+    """Project a node's full projection dict down to the stored `join:` subset.
+
+    Takes the whole projection (not just the join) because the two stored fields
+    come from different places: `bears_on` is derived from the joined slice, while
+    `scope_claims` is the node's effective input scope. This is the single source
+    of truth for "what join: looks like when stored", shared by the collapse tool
+    and check_closure_drift.py -- mirroring stored_live_view for the status plane."""
+    if not pr:
+        return {}
+    return {
+        "bears_on": list(pr.get("join_bears_on") or []),
+        "scope_claims": list(pr.get("node_scope_claims") or []),
+    }
+
+
 # ---------------------------------------------------------------------------
 # Diff-vs-blob (the non-destructive razor audit, contract sec 5)
 # ---------------------------------------------------------------------------
@@ -635,6 +667,12 @@ def build_projections(plans, events, threshold, global_coverage=None):
                 "live": live, "head": head, "slice": slc, "tokens": tokens,
                 "prov": prov, "join_bears_on": join_bears_on,
                 "plan_id": plan["plan_id"],
+                # The node's EFFECTIVE input scope (node-level `scope_claims:` when
+                # set, else the plan-level list -- load_plans already resolved it).
+                # Carried here so stored_join_view() can build the whole stored join
+                # from the projection alone, and so consumers stamp the node's own
+                # scope rather than re-deriving (or mis-deriving) it.
+                "node_scope_claims": list(node["scope_claims"]),
             }
             if global_coverage is not None:
                 pr["diff"] = diff_blob(node, slc, global_coverage)
