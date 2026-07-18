@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-17T17:53:19Z
+Generated: 2026-07-18T04:47:26Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the three ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate.
 
-Audited **6** open question(s) across **1** time-series snapshot(s). **0** flag(s) raised.
+Audited **6** open question(s) across **2** time-series snapshot(s). **1** flag(s) raised.
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -12,11 +12,11 @@ _A question's surviving count fell with no adjudicated `weakens`/discrimination 
 
 _None._
 
-## (b) Post-hoc enlargement of a frozen set (0)
+## (b) Post-hoc enlargement of a frozen set (1)
 
 _The frozen initial enumeration grew, or a hypothesis was pre-registered after its own adjudicating run._
 
-_None._
+- time series 2026-07-17 -> 2026-07-18: total_initial grew by 5 -- the frozen denominator was enlarged.
 
 ## (c) Confirmed without a passed control (0)
 

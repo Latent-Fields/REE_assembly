@@ -1,0 +1,171 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T04:34:55Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_770_mech457_drive_schedule_discrimination_20260717T134514Z_v3",
+      "queue_id": "V3-EXQ-770",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "drive_schedule_not_the_axis",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-457 necessary-but-not-sufficient; test let it express itself (readiness met)",
+        "biological_reference": "clear -- dorsal-striatal actor-critic; failure matches an actor with no competence-directed bootstrap",
+        "prerequisites": "missing -- pre-instrumental approach primitive / imitation seed absent",
+        "implementation": "complete for the tested axis (drive-schedule built + exercised, not the wall)",
+        "environment": "adequate -- solvable from the 5x5 local view (local_view_greedy 48.05, oracle 57.2)",
+        "measurement": "adequate -- non_degenerate=True; controls clear floor",
+        "integration": "coupled but unstable -- passive-survival basin; raw occasionally partial-climbs, z_world never",
+        "scale": "adequate; capacity axis separately falsified by 769"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal actor-critic action learning (O'Doherty 2004 actor; Schultz 1997 RPE teacher)",
+        "dependencies": ["pre-instrumental approach primitives (PAG/hypothalamic appetitive)", "imitation/observational learning", "behavioral priors", "scaffolded developmental progression"],
+        "is_formal_import": false,
+        "divergence": "REE asks the actor to cold-start a forager from RPE-on-a-prediction-encoder; mammals never do -- they inherit approach primitives / imitate. BC (32.72) is the only floor-clearing existence proof.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "See the shared cluster note (drafted in the .md Step 8 hand-off) -- one appended entry covers all three legs. drive_schedule_not_the_axis: sustained-vs-annealed intrinsic drive, treat forages 0.88/0.90 (z_world/raw) vs local_view 48.05 / oracle 57.2, non_degenerate.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "drive-schedule (sustained vs annealed / approach-first) does NOT lift competence -- H1 eliminated",
+        "sustained drive still collapses to the passive-survival basin (forage ~0.9, random-walk level)"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_771_mech457_metabolic_forage_survive_discrimination_20260718T004749Z_v3",
+      "queue_id": "V3-EXQ-771",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "reward_coupling_not_the_axis",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- necessary-but-not-sufficient",
+        "biological_reference": "clear -- actor with no competence-directed bootstrap even under survival pressure",
+        "prerequisites": "missing -- competence-directed bootstrap dependency",
+        "implementation": "complete for the tested axis (metabolic env + aliasing decouple control built)",
+        "environment": "adequate -- metabolic env solvable (local_view_greedy 55.53, oracle 60.77)",
+        "measurement": "adequate -- non_degenerate=True; aliasing control (decouple) present",
+        "integration": "coupled but unstable -- actor collapses/dies rather than learning to forage under starvation",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal actor-critic; homeostatic forage-to-survive coupling",
+        "dependencies": ["homeostatic drive", "approach primitive", "imitation"],
+        "is_formal_import": false,
+        "divergence": "even when survival REQUIRES foraging, the actor does not learn to forage -- reward-coupling is not the wall; the actor lacks the bootstrap to discover the policy at all.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "See the shared cluster note. reward_coupling_not_the_axis: metabolic forage-to-survive, treat forages 0.42/0.62 vs decouple 3.05, vs local_view 55.53 / oracle 60.77, non_degenerate; aliasing (contamination-removal) NOT the lift.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "forcing survival-requires-foraging does NOT lift competence -- H2 eliminated",
+        "the actor collapses to passive-survival/death even under metabolic pressure (no reward gradient can substitute for the missing bootstrap)"
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_772_mech457_dense_credit_forage_discrimination_20260717T132301Z_v3",
+      "queue_id": "V3-EXQ-772",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "credit_horizon_not_the_axis",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- necessary-but-not-sufficient",
+        "biological_reference": "clear",
+        "prerequisites": "missing -- competence-directed bootstrap dependency",
+        "implementation": "complete for the tested axis (dense potential-based shaping, Ng 1999, policy-invariant)",
+        "environment": "adequate -- solvable from the local view (local_view_greedy 48.05, oracle 57.2)",
+        "measurement": "adequate -- non_degenerate=True; unshaped eval both arms",
+        "integration": "coupled but unstable -- passive-survival basin",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal actor-critic; eligibility/credit-assignment",
+        "dependencies": ["credit assignment", "approach primitive", "imitation"],
+        "is_formal_import": false,
+        "divergence": "even with dense/oracle-shaped forage credit the actor does not reach competent foraging -- the wall is DEEPER than credit horizon (H3's own declared null), pointing to a different mechanism class = the missing competence-directed bootstrap.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "See the shared cluster note. credit_horizon_not_the_axis: dense potential-based forage shaping, treat forages 0.33/0.58 vs local_view 48.05 / oracle 57.2, non_degenerate; the wall is deeper than credit.",
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "dense credit-shaping does NOT lift competence -- H3 eliminated; the wall is deeper than credit horizon",
+        "H3's null (representation ceiling vs different mechanism class) resolves toward 'different mechanism class' -- the missing competence-directed bootstrap"
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "readiness/negative-control passes on every leg (local_view_greedy 48-55, oracle 57-61 clear the 1.0 floor); the discrimination criterion fails on every leg (all treatment arms forage at the floor, ~0-1, indistinguishable from random_walk, on both z_world and raw). Combined with 769 (capacity falsified), FOUR axes eliminated: capacity, drive-schedule, reward-coupling, credit-horizon.",
+    "is_independent_bugs": false,
+    "structural_property": "The learned actor-critic converter cannot extract a competent foraging policy from a provably-sufficient observation, invariant to drive-schedule, reward-coupling, and credit-horizon. The missing dependency is a competence-directed bootstrap (behavioral-prior / approach-primitive seed) -- the actor exists and fires but has nothing competence-directed to bootstrap from. BC (imitation, 32.72) is the only floor-clearing existence proof; every intrinsic/self-supervised route fails.",
+    "readings": ["missing_competence_directed_dependency (adjudicated live)", "representation_ceiling (H3 null alternative, disfavored by the BC existence proof + passive-survival-basin signature)"]
+  },
+  "re_derive_brake": {
+    "fired": true,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [
+      "failure_autopsy_MECH-457-fanout-751-750_2026-07-14",
+      "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15",
+      "failure_autopsy_MECH-457-fanout-755_2026-07-15",
+      "failure_autopsy_746c-756_2026-07-16",
+      "failure_autopsy_V3-EXQ-765_2026-07-16",
+      "failure_autopsy_V3-EXQ-769_2026-07-17"
+    ],
+    "refused_requeue": true,
+    "route_to": "queue-experiment (GOV-FANOUT-1 discrimination portfolio -- NOT another config/env/credit/capacity same-axis re-pose; the four config/env/schedule/credit axes are exhausted. The fan-out tests DIFFERENT mechanism classes under NEW EXQ numbers, the sanctioned route the brake permits -- same sanction as 769->770/771/772.)",
+    "upstream_substrate": "mech457_competence_bootstrap_explorer (amend deferred until the H-bc-prior vs H-approach-primitive discrimination names which competence-directed dependency to build)"
+  },
+  "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+      "H-bc-prior: the actor needs a competence-directed BEHAVIORAL PRIOR -- a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or greedy_oracle). Existence proof: the BC arm cleared the floor (32.72).",
+      "H-approach-primitive: the actor needs an innate NON-EXTINGUISHING competence-directed approach drive (a subcortical appetitive-approach analog toward resources), architecturally distinct from novelty-class drives (RND/SD-025) that self-attenuate via familiarity; must be demonstrator-free to avoid verdict-aliasing with H-bc-prior."
+    ],
+    "suggested_probes": [
+      {
+        "hypothesis": "H-bc-prior",
+        "axis": "learning-signal",
+        "sketch": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary loss from the floor-clearing local_view_greedy (or oracle) demonstrator; unshaped eval; record whether the seeded policy survives eval on raw vs z_world. NULL: even imitation-seeded, the actor collapses back to passive-survival at eval -> the deficit is not a missing behavioral prior but something that erases the seeded policy (stability / representation-riding failure)."
+      },
+      {
+        "hypothesis": "H-approach-primitive",
+        "axis": "intrinsic-architecture",
+        "sketch": "a sustained, non-extinguishing, demonstrator-free competence-directed approach drive (resource-gradient appetitive approach), distinct from novelty-class RND/SD-025; unshaped eval. NULL: a sustained competence-directed approach drive still leaves the actor in passive-survival -> the missing piece is the learned imitation/behavioral-prior dependency, not an approach drive."
+      }
+    ],
+    "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage + verdict-aliasing before queuing) instead of a single blind build. The two legs sit on DIFFERENT axes (supervised learning-signal vs intrinsic architecture); H-approach-primitive MUST be demonstrator-free so it does not alias H-bc-prior. Both legs record the raw-vs-z_world covariate so a representation-riding failure is separable from a bootstrap-content failure. NEW EXQ numbers, different mechanism classes -- re-derive brake permits."
+  },
+  "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "mech457_competence_bootstrap_explorer",
+    "implementation_hint": "V3-EXQ-770/771/772 GOV-FANOUT-1 portfolio RAN and all three FAILED (failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18): drive-schedule (770), reward-coupling (771), credit-horizon (772) all NOT-the-axis; readiness met on every leg; combined with 769 (capacity falsified) FOUR axes are now eliminated. The wall is the learned converter itself -- it cannot extract a competent policy from a sufficient observation, invariant to all config/env/credit/capacity levers. Re-derive brake FIRED (7th non_contributory autopsy): REFUSE any further config/env/credit/capacity amend. NEXT = GOV-FANOUT-1 discrimination portfolio (H-bc-prior competence-directed behavioral-prior/imitation seed vs H-approach-primitive innate non-extinguishing competence-directed approach drive), each with a declared null; the substrate amend is deferred until that discrimination names which competence-directed dependency to build (do NOT build blind).",
+    "unblocks_claims": ["MECH-457", "INV-088"],
+    "depends_on_unresolved": ["MECH-229"],
+    "priority_suggested": 1,
+    "failure_record_entry": {
+      "run_id": "v3_exq_770_771_772_mech457_fanout",
+      "experiment_type": "v3_exq_770_771_772_mech457_drive_reward_credit_discrimination",
+      "metric": "D3 foraging_competence of every treatment arm ~0-1 (floor), both reps, all three axes; vs local_view_greedy 48-55 / oracle 57-61",
+      "target": "13.05 lift-competence target (5.22 RND plateau + 7.83 margin) -- cleared by NO treatment arm"
+    }
+  },
+  "hypothesis_space_ledger_applied": {
+    "question": "competence_floor",
+    "resolved": ["H1-drive-schedule -> eliminated", "H2-reward-coupling -> eliminated", "H3-credit-horizon -> eliminated"],
+    "pre_registered_alive": ["H-bc-prior", "H-approach-primitive"],
+    "initial_frozen_count_delta": "7 -> 12 (+3 resolved dropped-769-fanout legs, +2 new alive legs)"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-17T17:53:13Z",
+  "generated_at": "2026-07-18T04:47:20Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,9 +31,9 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 10,
-      "total_initial": 19,
-      "total_resolved_out": 9,
+      "total_surviving": 12,
+      "total_initial": 24,
+      "total_resolved_out": 12,
       "open_questions": 6
     },
     "decide": {
@@ -45,31 +45,37 @@
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 18,
+      "surviving": 23,
       "closure_pct": 77.5,
       "build_pct": 80.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 16,
+      "surviving": 21,
       "closure_pct": 77.5,
       "build_pct": 80.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 12,
+      "surviving": 17,
       "closure_pct": 77.5,
       "build_pct": 80.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 11,
+      "surviving": 16,
       "closure_pct": 77.5,
       "build_pct": 80.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 10,
+      "surviving": 13,
+      "closure_pct": 77.5,
+      "build_pct": 80.9
+    },
+    {
+      "date": "2026-07-18",
+      "surviving": 12,
       "closure_pct": 77.5,
       "build_pct": 80.9
     }
@@ -84,18 +90,18 @@
         "INV-088"
       ],
       "is_hero": true,
-      "initial_frozen_count": 7,
-      "surviving": 1,
-      "alive": 0,
-      "resolved_out": 6,
+      "initial_frozen_count": 12,
+      "surviving": 3,
+      "alive": 2,
+      "resolved_out": 9,
       "confirmed": 1,
-      "reduction_numerator": 6,
-      "reduction_ratio": 0.8571,
-      "bits_removed": 2.81,
+      "reduction_numerator": 9,
+      "reduction_ratio": 0.75,
+      "bits_removed": 2.0,
       "synthesis": {
-        "surviving_label": "compose RND + prioritised credit-replay + developmental anneal",
-        "text": "Floor = success-dependence + capacity-to-convert. RND is necessary but not sufficient; no single bolt-on mechanism lifts competence past it. Build response: compose RND + prioritised credit-replay + developmental anneal -> mech457_competence_bootstrap_explorer, now under test as V3-EXQ-765.",
-        "under_test": "V3-EXQ-765"
+        "surviving_label": "competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination",
+        "text": "Floor = success-dependence + capacity-to-convert. FOUR axes now eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772): the learned actor-critic converter cannot extract a competent policy from a provably-sufficient observation, invariant to all config/env/credit/capacity levers. RND (H-optim) remains a necessary-not-sufficient seed. The missing dependency is a competence-directed bootstrap; BC (imitation, 32.72) is the only floor-clearing existence proof. Next = GOV-FANOUT-1 discrimination H-bc-prior vs H-approach-primitive.",
+        "under_test": "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)"
       },
       "hypotheses": [
         {
@@ -198,14 +204,75 @@
           "basis": "explore/exploit arbitration adds no gain over fixed RND -- curiosity is an exploitation amplifier, not a diversity generator (cross-links the SD-025/ARC-057 finding). Eliminated as a sufficient mechanism.",
           "children": [],
           "met_elimination_bar": true
+        },
+        {
+          "hid": "H1-drive-schedule",
+          "label": "drive-schedule / developmental ordering is the axis",
+          "desc": "sustained (non-annealed) or approach-first intrinsic drive lifts competence past the floor",
+          "axis": "drive",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-770"
+          ],
+          "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H2-reward-coupling",
+          "label": "env reward-coupling is the axis",
+          "desc": "a metabolic forage-to-survive env (survival requires foraging) removes the passive-survival optimum and lifts competence",
+          "axis": "environment",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-771"
+          ],
+          "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H3-credit-horizon",
+          "label": "credit-assignment horizon is the axis",
+          "desc": "dense potential-based forage shaping (policy-invariant) removes the credit-assignment difficulty and lifts competence",
+          "axis": "measurement",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-772"
+          ],
+          "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-bc-prior",
+          "label": "competence-directed behavioral prior (imitation seed)",
+          "desc": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or oracle)",
+          "axis": "learning-signal",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Existence proof: the BC arm cleared the floor (32.72). Live because the four config/env/credit/capacity axes are eliminated but 'which competence-directed dependency' is unresolved. Adjudicating run pending /queue-experiment.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-approach-primitive",
+          "label": "innate non-extinguishing competence-directed approach drive",
+          "desc": "a sustained, demonstrator-free appetitive-approach drive toward resources, architecturally distinct from novelty-class drives (RND/SD-025) that self-attenuate via familiarity",
+          "axis": "intrinsic-architecture",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Live alternative to H-bc-prior; kept demonstrator-free to avoid verdict-aliasing. Adjudicating run pending /queue-experiment.",
+          "children": [],
+          "met_elimination_bar": false
         }
       ],
       "decision": {
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
-        "decision_question": "Root cause of the conversion / competence ceiling -- which of the four candidate roots is load-bearing?",
-        "distance_phrase": "1 successful discriminative experiment -- V3-EXQ-737 (the live gate)",
-        "live_gate": "V3-EXQ-737",
+        "decision_question": "Which competence-directed dependency lets the actor-critic convert a sufficient observation into competent foraging -- a learned behavioral prior (imitation) or an innate non-extinguishing approach primitive?",
+        "distance_phrase": "1 discriminative portfolio -- H-bc-prior vs H-approach-primitive (not yet queued)",
+        "live_gate": "pending -- H-bc-prior vs H-approach-primitive portfolio",
         "observation_bottleneck": null
       }
     },
@@ -512,6 +579,51 @@
   ],
   "momentum": [
     {
+      "run": "V3-EXQ-771",
+      "all_runs": [
+        "V3-EXQ-771"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+      "resolved_utc": "2026-07-18T00:47:49Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-770",
+      "all_runs": [
+        "V3-EXQ-770"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+      "resolved_utc": "2026-07-17T13:45:14Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-772",
+      "all_runs": [
+        "V3-EXQ-772"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one.",
+      "resolved_utc": "2026-07-17T13:23:01Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
       "run": "V3-EXQ-768a",
       "all_runs": [
         "V3-EXQ-768a"
@@ -707,9 +819,9 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-765",
+      "run": "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)",
       "all_runs": [
-        "V3-EXQ-765"
+        "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)"
       ],
       "momentum_class": "implementation_completed",
       "qid": "competence_floor",
@@ -717,7 +829,7 @@
         "MECH-457",
         "INV-088"
       ],
-      "moved": "Composed build under test: compose RND + prioritised credit-replay + developmental anneal (substrate landed, proof pending).",
+      "moved": "Composed build under test: competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination (substrate landed, proof pending).",
       "resolved_utc": null,
       "evidence_direction": "pending"
     }

@@ -13,16 +13,21 @@
       "qid": "competence_floor",
       "title": "Why is committed competence stuck below the foraging floor?",
       "short_title": "competence floor",
-      "claims": ["MECH-457", "INV-088"],
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
       "registered_utc": "2026-07-13T00:00:00Z",
       "fanout_sources": [
         "failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13.json",
         "failure_autopsy_MECH-457-fanout-751-750_2026-07-14.json",
         "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15.json",
-        "failure_autopsy_MECH-457-fanout-755_2026-07-15.json"
+        "failure_autopsy_MECH-457-fanout-755_2026-07-15.json",
+        "failure_autopsy_V3-EXQ-769_2026-07-17.json",
+        "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json"
       ],
       "is_hero": true,
-      "initial_frozen_count": 7,
+      "initial_frozen_count": 12,
       "hypotheses": [
         {
           "hid": "H-rep",
@@ -30,10 +35,16 @@
           "desc": "the raw 5x5 view (vs z_world) is too impoverished for the policy to learn foraging",
           "axis": "representation",
           "pre_registered_utc": "2026-07-13T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-747", "V3-EXQ-749"],
+          "adjudicating_runs": [
+            "V3-EXQ-747",
+            "V3-EXQ-749"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-747", "V3-EXQ-749"],
+            "resolving_runs": [
+              "V3-EXQ-747",
+              "V3-EXQ-749"
+            ],
             "evidence_direction": "weakens",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "rawview_sparse_insufficient",
@@ -50,10 +61,14 @@
           "desc": "reward sparsity is the wall; a dense teaching signal on z_world should clear it",
           "axis": "exploration",
           "pre_registered_utc": "2026-07-13T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-748"],
+          "adjudicating_runs": [
+            "V3-EXQ-748"
+          ],
           "resolution": {
             "state": "split",
-            "resolving_runs": ["V3-EXQ-748"],
+            "resolving_runs": [
+              "V3-EXQ-748"
+            ],
             "evidence_direction": "weakens",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "dense_teacher_on_zworld_clears_sparsity_was_the_wall",
@@ -80,10 +95,14 @@
           "desc": "a stronger unsupervised explorer (Random Network Distillation) clears the 1.0 competence floor without any earned reward",
           "axis": "algorithm",
           "pre_registered_utc": "2026-07-14T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-751"],
+          "adjudicating_runs": [
+            "V3-EXQ-751"
+          ],
           "resolution": {
             "state": "confirmed",
-            "resolving_runs": ["V3-EXQ-751"],
+            "resolving_runs": [
+              "V3-EXQ-751"
+            ],
             "evidence_direction": "supports_necessary",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "stronger_unsupervised_explorer_clears_floor_exploration_was_the_wall",
@@ -101,10 +120,14 @@
           "desc": "an eligibility/credit-sweep over visited states manufactures competence from coverage",
           "axis": "credit-assignment",
           "pre_registered_utc": "2026-07-15T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-752"],
+          "adjudicating_runs": [
+            "V3-EXQ-752"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-752"],
+            "resolving_runs": [
+              "V3-EXQ-752"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "hcredit_subfloor_does_not_clear_floor",
@@ -121,10 +144,14 @@
           "desc": "archiving promising states and returning to them provides the bootstrap",
           "axis": "return-policy",
           "pre_registered_utc": "2026-07-15T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-753"],
+          "adjudicating_runs": [
+            "V3-EXQ-753"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-753"],
+            "resolving_runs": [
+              "V3-EXQ-753"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "hreturn_subfloor_does_not_clear_floor",
@@ -141,10 +168,14 @@
           "desc": "an adversarially-motivated goal-frontier curriculum lifts competence",
           "axis": "curriculum",
           "pre_registered_utc": "2026-07-15T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-754"],
+          "adjudicating_runs": [
+            "V3-EXQ-754"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-754"],
+            "resolving_runs": [
+              "V3-EXQ-754"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": "hcurriculum_subfloor_does_not_clear_floor",
@@ -161,10 +192,14 @@
           "desc": "an arbitration gate switching between exploration and exploitation (curiosity as a diversity generator) is the missing lever",
           "axis": "arbitration",
           "pre_registered_utc": "2026-07-15T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-755"],
+          "adjudicating_runs": [
+            "V3-EXQ-755"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-755"],
+            "resolving_runs": [
+              "V3-EXQ-755"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "competence_implementation_gap",
             "self_route_label": null,
@@ -174,26 +209,141 @@
             "resolved_utc": "2026-07-15T00:00:00Z",
             "basis": "explore/exploit arbitration adds no gain over fixed RND -- curiosity is an exploitation amplifier, not a diversity generator (cross-links the SD-025/ARC-057 finding). Eliminated as a sufficient mechanism."
           }
+        },
+        {
+          "hid": "H1-drive-schedule",
+          "label": "drive-schedule / developmental ordering is the axis",
+          "desc": "sustained (non-annealed) or approach-first intrinsic drive lifts competence past the floor",
+          "axis": "drive",
+          "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "adjudicating_runs": [
+            "V3-EXQ-770"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-770"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "drive_schedule_not_the_axis",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-17T13:45:14Z",
+            "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one."
+          }
+        },
+        {
+          "hid": "H2-reward-coupling",
+          "label": "env reward-coupling is the axis",
+          "desc": "a metabolic forage-to-survive env (survival requires foraging) removes the passive-survival optimum and lifts competence",
+          "axis": "environment",
+          "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "adjudicating_runs": [
+            "V3-EXQ-771"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-771"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "reward_coupling_not_the_axis",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T00:47:49Z",
+            "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one."
+          }
+        },
+        {
+          "hid": "H3-credit-horizon",
+          "label": "credit-assignment horizon is the axis",
+          "desc": "dense potential-based forage shaping (policy-invariant) removes the credit-assignment difficulty and lifts competence",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "adjudicating_runs": [
+            "V3-EXQ-772"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-772"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "credit_horizon_not_the_axis",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-17T13:23:01Z",
+            "basis": "Treatment arm forages at the floor (~0-1, indistinguishable from random_walk) on BOTH z_world and raw, while the pre-registered reference bands clear the floor (local_view_greedy 48-55, greedy_oracle 57-61 vs the 1.0 floor). The sub-floor reading is real, not a starved measurement -- non_degenerate=True, control passed. Discrimination adjudicated in failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18; non_contributory to MECH-457 but eliminates this axis as the operative one."
+          }
+        },
+        {
+          "hid": "H-bc-prior",
+          "label": "competence-directed behavioral prior (imitation seed)",
+          "desc": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or oracle)",
+          "axis": "learning-signal",
+          "pre_registered_utc": "2026-07-18T04:34:55Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Existence proof: the BC arm cleared the floor (32.72). Live because the four config/env/credit/capacity axes are eliminated but 'which competence-directed dependency' is unresolved. Adjudicating run pending /queue-experiment."
+          }
+        },
+        {
+          "hid": "H-approach-primitive",
+          "label": "innate non-extinguishing competence-directed approach drive",
+          "desc": "a sustained, demonstrator-free appetitive-approach drive toward resources, architecturally distinct from novelty-class drives (RND/SD-025) that self-attenuate via familiarity",
+          "axis": "intrinsic-architecture",
+          "pre_registered_utc": "2026-07-18T04:34:55Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Live alternative to H-bc-prior; kept demonstrator-free to avoid verdict-aliasing. Adjudicating run pending /queue-experiment."
+          }
         }
       ],
       "synthesis": {
-        "surviving_label": "compose RND + prioritised credit-replay + developmental anneal",
-        "text": "Floor = success-dependence + capacity-to-convert. RND is necessary but not sufficient; no single bolt-on mechanism lifts competence past it. Build response: compose RND + prioritised credit-replay + developmental anneal -> mech457_competence_bootstrap_explorer, now under test as V3-EXQ-765.",
-        "under_test": "V3-EXQ-765"
+        "surviving_label": "competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination",
+        "text": "Floor = success-dependence + capacity-to-convert. FOUR axes now eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772): the learned actor-critic converter cannot extract a competent policy from a provably-sufficient observation, invariant to all config/env/credit/capacity levers. RND (H-optim) remains a necessary-not-sufficient seed. The missing dependency is a competence-directed bootstrap; BC (imitation, 32.72) is the only floor-clearing existence proof. Next = GOV-FANOUT-1 discrimination H-bc-prior vs H-approach-primitive.",
+        "under_test": "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)"
       },
       "decision": {
-        "decision_question": "Root cause of the conversion / competence ceiling -- which of the four candidate roots is load-bearing?",
-        "live_gate": "V3-EXQ-737",
+        "decision_question": "Which competence-directed dependency lets the actor-critic convert a sufficient observation into competent foraging -- a learned behavioral prior (imitation) or an innate non-extinguishing approach primitive?",
+        "live_gate": "pending -- H-bc-prior vs H-approach-primitive portfolio",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "1 successful discriminative experiment -- V3-EXQ-737 (the live gate)"
+        "distance_phrase": "1 discriminative portfolio -- H-bc-prior vs H-approach-primitive (not yet queued)"
       }
     },
     {
       "qid": "conversion_ceiling_root",
       "title": "Which of the four candidate roots drives the conversion / committed-action-diversity ceiling?",
       "short_title": "conversion-ceiling root",
-      "claims": ["MECH-457", "ARC-065"],
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
       "registered_utc": "2026-07-11T00:00:00Z",
       "fanout_sources": [
         "failure_autopsy_734-737-conversion-ceiling-competence_2026-07-11.json"
@@ -207,10 +357,14 @@
           "desc": "re-balancing the reward terms lifts committed-action diversity",
           "axis": "reward",
           "pre_registered_utc": "2026-07-11T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-735"],
+          "adjudicating_runs": [
+            "V3-EXQ-735"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-735"],
+            "resolving_runs": [
+              "V3-EXQ-735"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "substrate_ceiling",
             "self_route_label": "reward_balance_not_the_lever",
@@ -227,10 +381,14 @@
           "desc": "the REE substrate itself caps diversity independent of driver",
           "axis": "substrate",
           "pre_registered_utc": "2026-07-11T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-734"],
+          "adjudicating_runs": [
+            "V3-EXQ-734"
+          ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": ["V3-EXQ-734"],
+            "resolving_runs": [
+              "V3-EXQ-734"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "substrate_ceiling",
             "self_route_label": "ree_substrate_ceiling",
@@ -247,7 +405,9 @@
           "desc": "the policy-learning stage cannot convert representation into committed diversity",
           "axis": "policy",
           "pre_registered_utc": "2026-07-11T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-737"],
+          "adjudicating_runs": [
+            "V3-EXQ-737"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -267,7 +427,9 @@
           "desc": "a dominant selection channel (F-dominance) starves committed-action diversity at conversion",
           "axis": "selection",
           "pre_registered_utc": "2026-07-11T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-737"],
+          "adjudicating_runs": [
+            "V3-EXQ-737"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -295,7 +457,10 @@
       "qid": "da_density_approach",
       "title": "Does DA-modulated representational density drive approach without an explicit gradient?",
       "short_title": "DA-modulated density",
-      "claims": ["MECH-232", "SD-024"],
+      "claims": [
+        "MECH-232",
+        "SD-024"
+      ],
       "registered_utc": "2026-07-16T00:00:00Z",
       "fanout_sources": [
         "failure_autopsy_V3-EXQ-766a_2026-07-16.json"
@@ -309,10 +474,14 @@
           "desc": "dopamine-modulated RBF density expansion produces approach behaviour with no explicit reward gradient",
           "axis": "neuromodulation",
           "pre_registered_utc": "2026-07-16T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-766a"],
+          "adjudicating_runs": [
+            "V3-EXQ-766a"
+          ],
           "resolution": {
             "state": "confirmed",
-            "resolving_runs": ["V3-EXQ-766a"],
+            "resolving_runs": [
+              "V3-EXQ-766a"
+            ],
             "evidence_direction": "supports",
             "epistemic_category": "verified",
             "self_route_label": null,
@@ -329,10 +498,14 @@
           "desc": "the apparent approach is a baseline artefact, not DA-driven",
           "axis": "neuromodulation",
           "pre_registered_utc": "2026-07-16T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-766a"],
+          "adjudicating_runs": [
+            "V3-EXQ-766a"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-766a"],
+            "resolving_runs": [
+              "V3-EXQ-766a"
+            ],
             "evidence_direction": "weakens",
             "epistemic_category": "verified",
             "self_route_label": null,
@@ -357,7 +530,9 @@
       "qid": "inv088_diversity_readout",
       "title": "Is INV-088 strategy-diversity readable across representations?",
       "short_title": "INV-088 diversity readout",
-      "claims": ["INV-088"],
+      "claims": [
+        "INV-088"
+      ],
       "registered_utc": "2026-07-14T00:00:00Z",
       "fanout_sources": [
         "failure_autopsy_MECH-457-fanout-751-750_2026-07-14.json"
@@ -371,10 +546,14 @@
           "desc": "committed-strategy diversity can be read from both raw-view and z_world once competence is matched",
           "axis": "readout",
           "pre_registered_utc": "2026-07-14T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-750"],
+          "adjudicating_runs": [
+            "V3-EXQ-750"
+          ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": ["V3-EXQ-750"],
+            "resolving_runs": [
+              "V3-EXQ-750"
+            ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "substrate_starved_precondition_unmet",
             "self_route_label": "matched_competence_precondition_unmet",
@@ -391,7 +570,9 @@
           "desc": "diversity is only legible on z_world, capped elsewhere by the SD-008 AUC ceiling",
           "axis": "readout",
           "pre_registered_utc": "2026-07-14T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-750"],
+          "adjudicating_runs": [
+            "V3-EXQ-750"
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -420,7 +601,10 @@
       "qid": "ceiling_vs_driver",
       "title": "Ceiling vs. driver reading of harm-eval bounding",
       "short_title": "ceiling vs driver",
-      "claims": ["INV-089", "INV-090"],
+      "claims": [
+        "INV-089",
+        "INV-090"
+      ],
       "registered_utc": "2026-07-14T00:00:00Z",
       "fanout_sources": [],
       "is_hero": false,
@@ -480,7 +664,10 @@
       "qid": "curiosity_diversity_vs_amplifier",
       "title": "Is curiosity a diversity generator or an exploitation amplifier?",
       "short_title": "curiosity's role",
-      "claims": ["SD-025", "ARC-057"],
+      "claims": [
+        "SD-025",
+        "ARC-057"
+      ],
       "registered_utc": "2026-07-16T00:00:00Z",
       "fanout_sources": [
         "failure_autopsy_767-768-cluster_2026-07-16.json",
@@ -496,10 +683,15 @@
           "desc": "an information-seeking curiosity drive broadens the committed-strategy distribution",
           "axis": "drive",
           "pre_registered_utc": "2026-07-16T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-767", "V3-EXQ-767a"],
+          "adjudicating_runs": [
+            "V3-EXQ-767",
+            "V3-EXQ-767a"
+          ],
           "resolution": {
             "state": "eliminated",
-            "resolving_runs": ["V3-EXQ-767a"],
+            "resolving_runs": [
+              "V3-EXQ-767a"
+            ],
             "evidence_direction": "supports",
             "epistemic_category": "verified",
             "self_route_label": null,
@@ -516,10 +708,15 @@
           "desc": "curiosity is a reward-conditional exploitation amplifier (Bellemare-polarity absent), not a rarity-seeking diversity source",
           "axis": "drive",
           "pre_registered_utc": "2026-07-16T00:00:00Z",
-          "adjudicating_runs": ["V3-EXQ-768", "V3-EXQ-768a"],
+          "adjudicating_runs": [
+            "V3-EXQ-768",
+            "V3-EXQ-768a"
+          ],
           "resolution": {
             "state": "confirmed",
-            "resolving_runs": ["V3-EXQ-768a"],
+            "resolving_runs": [
+              "V3-EXQ-768a"
+            ],
             "evidence_direction": "supports",
             "epistemic_category": "verified",
             "self_route_label": null,
