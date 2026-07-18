@@ -50,10 +50,60 @@ decision at Step 6a-v-ter. Absent a `bears_on`-tagged corpus every count is 0, s
 a missing / untagged corpus can never mass-surface (same non-falsifying-safe
 posture as GOV-CEIL-1).
 
+METABOLIZED EXCLUSION (the analog of GOV-GRAN-1's `granularity_debt_disposition`).
+Without one, a chain whose prescribed response was CARRIED OUT IN FULL still fires
+every cycle forever, because the audit can see the failures but not the fix. That
+is not a harmless nag: GOV-FROZEN-1's own design notes name ALARM FATIGUE as
+itself a Goodhart vector -- a warn-only flag that recurs every cycle with a
+plausible narrative gets accepted by default, and a resolved chain that can never
+clear is exactly that failure mode. (Live instance, 2026-07-18: the
+724 -> 732 -> 732a chain under `ree_ai_design_critique_plan:WS-1` /
+`f_dominance_conversion_ceiling` had been fully metabolized on 2026-07-10 -- WS-1's
+adequacy gate re-operationalized off the privileged global teleport oracle onto a
+local-view-achievable 5x5 `resource_field_view` ceiling, the same-question re-queue
+V3-EXQ-732b explicitly REFUSED, and the constructive response BUILT as GOV-FANOUT-1
+-- and the audit still reported both tokens ACTIONABLE every cycle.)
+
+GOV-GRAN-1 keys its exclusion off a note field on the CLAIM, which GOV-DIAG-1
+cannot reuse: its hits are keyed on a `bears_on` work-stream token, and by
+construction it touches no claim (`claim_ids: []`). So the marker needs a
+work-stream-shaped home, and it gets the one the tokens already name -- a
+`diagnostic_recurrence_metabolized` block on the owning NODE of a
+`evidence/planning/*_plan.md` `closure_plan:` frontmatter, i.e. the same plan node
+whose Status row records the re-operationalization. Shape:
+
+    nodes:
+      - id: WS-1
+        diagnostic_recurrence_metabolized:
+          date: 2026-07-10
+          metabolized_hits:            # REQUIRED -- run_ids and/or autopsy stems
+            - v3_exq_724_..._v3
+            - v3_exq_732_..._v3
+          covers_tokens:               # optional -- extra bears_on tokens same chain
+            - f_dominance_conversion_ceiling
+          note: >
+            what was actually done (re-posed how, what was refused, what was built)
+
+A node's marker covers the token forms `<plan-file-stem>:<node id>`,
+`<closure_plan.id>:<node id>` and the bare `<node id>`, plus anything in
+`covers_tokens` -- which is how a free-form competence-gap token like
+`f_dominance_conversion_ceiling` (not a `plan:node` token, so it has no node of its
+own) is homed on the node that actually metabolized it.
+
+The exclusion is HIT-SCOPED, NOT token-scoped: only the listed
+`metabolized_hits` are subtracted, and the token is then re-thresholded on what
+remains. This is deliberately narrower than GOV-GRAN-1's claim-level silencing,
+because a `bears_on` token is a long-lived work-stream name rather than a single
+adjudicated claim -- a NEW diagnostic chain later circling the SAME work-stream
+must still be able to re-accumulate to N and fire. A marker can quiet the chain it
+names; it can never permanently deafen the token. `metabolized_hits` is REQUIRED
+for exactly that reason: a marker missing it is IGNORED and reported as malformed
+(fails loud, never silently blanket-silences).
+
 This audit READS ONLY and PROMOTES / DEMOTES NOTHING. It surfaces a pattern for a
 human to route (typically to /governance for a re-operationalization decision, or
 to refuse a same-question re-queue in the re-derive brake's spirit). It does not
-touch claims.yaml.
+touch claims.yaml. It is warn-only and always exits 0 unless `--strict`.
 
 Usage:
   python3 scripts/check_diagnostic_chain_recurrence.py            # human report, exit 0
@@ -82,6 +132,10 @@ DIAG_RECURRENCE_N = 3
 # circling hit.
 NO_VERDICT_DIRECTIONS = {"non_contributory", "inconclusive"}
 
+# Node-level metabolization marker key in a *_plan.md `closure_plan:` frontmatter.
+# See the module docstring for the shape and for why the exclusion is hit-scoped.
+METABOLIZED_KEY = "diagnostic_recurrence_metabolized"
+
 
 def _tokens(value) -> list[str]:
     """Normalize a bears_on field (str | list | None) to a list of clean tokens."""
@@ -94,6 +148,114 @@ def _tokens(value) -> list[str]:
     else:
         items = [value]
     return [str(x).strip() for x in items if str(x).strip()]
+
+
+def _parse_plan_frontmatter(path: Path) -> dict | None:
+    """Read a *_plan.md YAML frontmatter block. Mirrors check_closure_drift.py."""
+    try:
+        import yaml  # noqa: PLC0415
+    except ImportError:
+        return None
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    if not text.startswith("---\n"):
+        return None
+    end = text.find("\n---\n", 4)
+    if end < 0:
+        return None
+    try:
+        fm = yaml.safe_load(text[4:end])
+    except Exception:  # noqa: BLE001 -- any YAML defect is "no marker here"
+        return None
+    return fm if isinstance(fm, dict) else None
+
+
+def load_metabolized_markers(plans_dir: Path) -> tuple[dict[str, list[dict]], list[dict]]:
+    """Collect `diagnostic_recurrence_metabolized` markers from plan-node frontmatter.
+
+    Returns (markers_by_token, malformed) where markers_by_token maps a `bears_on`
+    token to the list of marker records covering it, each
+    {plan, node, date, note, metabolized_hits: set}. `malformed` lists markers
+    dropped for missing `metabolized_hits` -- reported, never silently applied.
+    """
+    by_token: dict[str, list[dict]] = {}
+    malformed: list[dict] = []
+    if not plans_dir.is_dir():
+        return {}, []
+    for path in sorted(plans_dir.glob("*_plan.md")):
+        fm = _parse_plan_frontmatter(path)
+        plan = (fm or {}).get("closure_plan")
+        if not isinstance(plan, dict):
+            continue
+        plan_id = str(plan.get("id") or "").strip()
+        stem = path.stem  # e.g. ree_ai_design_critique_plan
+        for node in (plan.get("nodes") or []):
+            if not isinstance(node, dict):
+                continue
+            marker = node.get(METABOLIZED_KEY)
+            if not isinstance(marker, dict):
+                continue
+            node_id = str(node.get("id") or "").strip()
+            hits = {t for t in _tokens(marker.get("metabolized_hits"))}
+            record = {
+                "plan": stem,
+                "node": node_id,
+                "date": str(marker.get("date") or ""),
+                "note": str(marker.get("note") or "").strip(),
+                "metabolized_hits": hits,
+            }
+            if not hits:
+                # Fail LOUD. A marker with no hit list would blanket-silence the
+                # token forever -- the very defect this exclusion exists to fix.
+                malformed.append({**record, "reason": "missing or empty metabolized_hits"})
+                continue
+            covered = {t for t in (
+                f"{stem}:{node_id}",
+                f"{plan_id}:{node_id}" if plan_id else "",
+                node_id,
+            ) if t}
+            covered.update(_tokens(marker.get("covers_tokens")))
+            for tok in covered:
+                by_token.setdefault(tok, []).append(record)
+    return by_token, malformed
+
+
+def apply_metabolized_exclusions(
+    recurrence_hits: dict[str, dict],
+    markers_by_token: dict[str, list[dict]],
+) -> tuple[dict[str, dict], list[dict]]:
+    """Subtract marker-listed hits from each token's count (hit-scoped, not token-scoped).
+
+    A hit matches when its run_id OR its autopsy artifact stem appears in a covering
+    marker's `metabolized_hits`. Returns (filtered_hits, excluded) where `excluded`
+    records what was dropped and by which marker, for the report.
+    """
+    filtered: dict[str, dict] = {}
+    excluded: list[dict] = []
+    for tok, rec in recurrence_hits.items():
+        markers = markers_by_token.get(tok) or []
+        if not markers:
+            filtered[tok] = rec
+            continue
+        metabolized: set[str] = set()
+        for m in markers:
+            metabolized |= m["metabolized_hits"]
+        kept, dropped = [], []
+        for (stem, run) in rec["hits"]:
+            (dropped if (run in metabolized or stem in metabolized) else kept).append((stem, run))
+        if dropped:
+            excluded.append({
+                "bears_on": tok,
+                "n_excluded": len(dropped),
+                "n_remaining": len(kept),
+                "excluded_chain": [run for (_stem, run) in dropped],
+                "markers": [f"{m['plan']}:{m['node']}" for m in markers],
+                "note": next((m["note"] for m in markers if m["note"]), ""),
+            })
+        filtered[tok] = {"n_hits": len(kept), "hits": kept}
+    return filtered, excluded
 
 
 def count_recurrence_hits(autopsy_dir: Path) -> dict[str, dict]:
@@ -161,19 +323,28 @@ def main() -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--autopsy-dir", type=Path, default=DEFAULT_AUTOPSY_DIR,
                     help="dir of failure_autopsy_*.json for the GOV-DIAG-1 hit count")
+    ap.add_argument("--plans-dir", type=Path, default=DEFAULT_AUTOPSY_DIR,
+                    help="dir of *_plan.md carrying diagnostic_recurrence_metabolized markers")
     ap.add_argument("--json", action="store_true", help="emit machine-readable JSON")
     ap.add_argument("--strict", action="store_true",
                     help="exit 1 if any diagnostic-chain recurrence is flagged")
     args = ap.parse_args()
 
-    recurrence_hits = count_recurrence_hits(args.autopsy_dir)
+    raw_hits = count_recurrence_hits(args.autopsy_dir)
+    markers_by_token, malformed = load_metabolized_markers(args.plans_dir)
+    recurrence_hits, excluded = apply_metabolized_exclusions(raw_hits, markers_by_token)
     flagged = audit(recurrence_hits, n=DIAG_RECURRENCE_N)
+    n_excluded_hits = sum(r["n_excluded"] for r in excluded)
 
     if args.json:
         print(json.dumps({
             "diag_recurrence_n": DIAG_RECURRENCE_N,
             "n_work_streams_seen": len(recurrence_hits),
             "recurrence_flagged": flagged,
+            "excluded_metabolized": excluded,
+            "malformed_markers": [
+                {k: v for k, v in m.items() if k != "metabolized_hits"} for m in malformed
+            ],
             "all_counts": {
                 tok: rec["n_hits"] for tok, rec in sorted(recurrence_hits.items())
             },
@@ -185,6 +356,14 @@ def main() -> int:
               f"{n_ws} bears_on work-stream(s) carry pure-diagnostic "
               "(claim_ids=[]) no-verdict autopsies")
         print(f"  diagnostic-chain recurrence N>={DIAG_RECURRENCE_N} (ACTIONABLE): {n_flag}")
+        print(f"  excluded (already metabolized): {n_excluded_hits} hit(s) "
+              f"across {len(excluded)} work-stream(s)")
+        for r in excluded:
+            print(f"    [metabolized] {r['bears_on']} -- {r['n_excluded']} hit(s) "
+                  f"cleared by {', '.join(r['markers'])}; {r['n_remaining']} remaining")
+        for m in malformed:
+            print(f"    [MALFORMED MARKER] {m['plan']}:{m['node']} -- {m['reason']}; "
+                  "marker IGNORED (no hits excluded)")
         if n_flag:
             print("  -- RECURRENCE: surface to user -- the question may be MIS-POSED,")
             print("     not under-powered. Re-pose (fix the operationalization);")

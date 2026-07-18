@@ -54127,6 +54127,26 @@
     refuse a same-question re-queue in the re-derive brake's spirit.
     NON-FALSIFYING-SAFE: absent a bears_on-tagged corpus every count is 0, so a
     missing / untagged corpus can never mass-surface (same posture as GOV-CEIL-1).
+    (d) METABOLIZED EXCLUSION (added 2026-07-18). A chain whose prescribed response
+    was actually CARRIED OUT must be able to CLEAR; otherwise it fires ACTIONABLE
+    every cycle forever, which is precisely the alarm-fatigue Goodhart vector
+    GOV-FROZEN-1's design notes name -- a warn-only flag that recurs every cycle
+    with a plausible narrative gets accepted by default. GOV-GRAN-1 keys its
+    equivalent exclusion off a note field on the CLAIM; GOV-DIAG-1 cannot, because
+    it touches no claim by construction. Its work-stream-shaped analogue is a
+    diagnostic_recurrence_metabolized block on the owning NODE of an
+    evidence/planning/*_plan.md closure_plan frontmatter (the same node whose Status
+    row records the re-pose), carrying a REQUIRED metabolized_hits list (run_ids
+    and/or autopsy artifact stems), an optional covers_tokens list (for a free-form
+    competence-gap token that has no node of its own), and a note recording what was
+    re-posed, refused and built. A node's marker covers <plan_stem>:<node id>,
+    <closure_plan id>:<node id>, the bare <node id>, and any covers_tokens. The
+    exclusion is HIT-SCOPED, NOT token-scoped: only the listed hits are subtracted
+    and the token is re-thresholded on what remains, so a NEW chain later circling
+    the SAME work-stream still re-accumulates to N and re-fires -- a marker can
+    quiet the chain it names, never permanently deafen the token. metabolized_hits
+    is REQUIRED for that reason: a marker missing it is IGNORED and reported as
+    MALFORMED (fails loud, never silently blanket-silences).
     RESPONSE. This rule PROMOTES / DEMOTES NOTHING and touches no claim -- the
     chain is claim_ids: [] by construction. The surface is an ACTIONABLE routing
     signal: hand /governance (or the user) a re-operationalization decision for the
@@ -54137,7 +54157,7 @@
     pure-diagnostic no-verdict autopsies per bears_on token and surfaces a
     recurrence overlay, run warn-only inside governance.sh. APPLICATION (the
     re-operationalization) is a human governance decision at Step 6a-v-ter.
-  notes: "Diagnostic-side companion to GOV-CEIL-1 (which stays claim-keyed). Wiring: scripts/check_diagnostic_chain_recurrence.py (pure-diagnostic no-verdict hit counter from confirmed failure_autopsy_*.json, keyed on bears_on; recurrence overlay at N>=3), scripts/governance.sh (Step 3f warn-only audit), governance skill Step 6a-v-ter (surface + re-operationalization procedure). N=3 is a module constant (DIAG_RECURRENCE_N) -- tunable. Requires a bears_on work-stream token on failure_autopsy targets (schema addition, target-level, string-or-list; pre-existing informal field formalized here); the 719a/724/732/732a chain was backfilled as the validating example (trips WS-1 + f_dominance_conversion_ceiling at 3 hits from the 724/732/732a tail; 719a excluded as claim-keyed). PROMOTES/DEMOTES NOTHING -- it surfaces a mis-posed-question pattern for a human to route. Cross-ref GOV-CEIL-1 and the re-derive brake in the /failure-autopsy skill."
+  notes: "Diagnostic-side companion to GOV-CEIL-1 (which stays claim-keyed). Wiring: scripts/check_diagnostic_chain_recurrence.py (pure-diagnostic no-verdict hit counter from confirmed failure_autopsy_*.json, keyed on bears_on; recurrence overlay at N>=3), scripts/governance.sh (Step 3f warn-only audit), governance skill Step 6a-v-ter (surface + re-operationalization procedure). N=3 is a module constant (DIAG_RECURRENCE_N) -- tunable. Requires a bears_on work-stream token on failure_autopsy targets (schema addition, target-level, string-or-list; pre-existing informal field formalized here); the 719a/724/732/732a chain was backfilled as the validating example (trips WS-1 + f_dominance_conversion_ceiling at 3 hits from the 724/732/732a tail; 719a excluded as claim-keyed). PROMOTES/DEMOTES NOTHING -- it surfaces a mis-posed-question pattern for a human to route. Cross-ref GOV-CEIL-1 and the re-derive brake in the /failure-autopsy skill. 2026-07-18 metabolized-exclusion amendment (definition (d)): the validating chain itself became the first stale alarm -- 724/732/732a had been fully metabolized on 2026-07-10 (WS-1 adequacy gate re-operationalized off the privileged global teleport oracle onto a local-view-achievable 5x5 resource_field_view ceiling in the WS-3 capability_eval.py yardstick, the oracle demoted to floor-achievability control; same-question re-queue V3-EXQ-732b REFUSED; GOV-FANOUT-1 BUILT as the constructive response, producing the 737/738/739 portfolio whose P-B leg refuted H2) yet both its tokens kept reporting ACTIONABLE every governance cycle. Fixed by the hit-scoped diagnostic_recurrence_metabolized marker (load_metabolized_markers / apply_metabolized_exclusions in check_diagnostic_chain_recurrence.py; marker landed on ree_ai_design_critique_plan.md node WS-1 covering f_dominance_conversion_ceiling), mirroring GOV-GRAN-1's granularity_debt_disposition exclusion but narrower (hit-scoped, so the work-stream can re-fire on a genuinely new chain). Audit drops from 2 ACTIONABLE to 0."
 - id: GOV-FANOUT-1
   title: "Bottleneck fan-out escalation rule (constructive complement to GOV-CEIL-1 / GOV-DIAG-1 / the re-derive brake): the existing brakes DETECT that work is circling one root (N>=3 same-root ceiling or diagnostic-recurrence hits) and correctly REFUSE another same-question sequential letter -- but they prescribe no constructive next move, so the default is a single re-posed sequential probe that can itself inherit the prior confound and return a confident-but-wrong verdict. This rule supplies the missing response: when a brake fires AND the open question is a DISCRIMINATION (which-hypothesis, not a single named build), the standard escalates from sequential retry to a DIVERSE PARALLEL PORTFOLIO -- enumerate the live hypothesis space, design >=K probes each attacking a DIFFERENT design axis (not power-bumps), each declaring what a null result means, adversarially audit the portfolio for coverage gaps + verdict aliasing BEFORE queuing, and run them in parallel accepting some legs will be non_contributory. Warn-only routing signal; PROMOTES/DEMOTES NOTHING."
   claim_type: governance_rule

@@ -32,6 +32,31 @@ closure_plan:
         local-view-achievable ceiling in WS-3 capability_eval.py before a fair
         probe. Currently blocked-on-upstream (all-ON forages ~0). REFUSED
         V3-EXQ-732b. Diagnostic; claim_ids=[].
+      diagnostic_recurrence_metabolized:
+        date: 2026-07-10
+        metabolized_hits:
+          - v3_exq_724_competence_localization_diagnostic_20260709T211405Z_v3
+          - v3_exq_732_policy_learning_discriminator_20260710T014857Z_v3
+          - v3_exq_732a_policy_learning_discriminator_20260710T103144Z_v3
+        covers_tokens:
+          - f_dominance_conversion_ceiling
+        note: >
+          GOV-DIAG-1's prescribed response was carried out IN FULL for the
+          724 -> 732 -> 732a chain, so it must stop firing (a resolved chain that
+          can never clear is the alarm-fatigue Goodhart vector GOV-FROZEN-1's
+          design notes warn about). (1) RE-POSED: failure_autopsy_V3-EXQ-732a
+          _2026-07-10 found the learner-adequacy gate observability-confounded,
+          and the gate's reference was moved off the privileged GLOBAL teleport
+          oracle onto a LOCAL-VIEW-ACHIEVABLE ceiling (a 5x5 resource_field_view
+          greedy anchor in the WS-3 capability_eval.py yardstick; the global
+          oracle demoted to floor-achievability control only) -- see this plan's
+          "Re-operationalized adequacy reference -- the WS-1 design fix" section.
+          (2) REFUSED: the same-question re-queue V3-EXQ-732b, in the re-derive
+          brake's spirit. (3) BUILT: GOV-FANOUT-1 (WS-14, registered in
+          docs/claims/claims.yaml) as the constructive response, which produced
+          the 737/738/739 diverse parallel portfolio whose P-B leg refuted H2.
+          Hit-scoped: a NEW diagnostic chain on WS-1 or on
+          f_dominance_conversion_ceiling still re-accumulates and re-fires at N.
     - id: WS-2
       tier: 1
       title: "Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)"
