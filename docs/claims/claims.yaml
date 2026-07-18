@@ -55845,6 +55845,46 @@
     logged trajectories and measure predicted-vs-actual reward/continuation divergence by horizon
     step. That probe is complex (probe-gated) -> puzzle (known rules) -- the missing fact is
     measurable WITHOUT building the update.
+    SCOPE EXCLUSION CONFIRMED 2026-07-18 -- DREAMER-V3-P-008 answered (REE_convergence/sources/
+    dreamer-v3/source.yaml; write-up in that source's actor_critic_stabilisation.md "Probe
+    DREAMER-V3-P-008 -- result"). The exclusion STANDS and is now measured rather than asserted,
+    but its stated REASON was imprecise and is corrected here. e2 is NOT merely "a contrastive
+    REPRESENTATION, not a rollout source": E2FastPredictor.world_forward (e2_fast.py:201-222) IS a
+    deterministic generative residual next-latent map in the same space as its input, and
+    multi-step open-loop rollout machinery already exists (rollout_with_world, e2_fast.py:657-757).
+    SD-056 is an auxiliary InfoNCE loss OVER that generative model's predictions, not a
+    discriminator. The structural gap is real but sits elsewhere, in three independent places, each
+    sufficient alone: (i) world_forward is NOT TRAINED as a world model -- AgentV3.compute_e2_loss
+    (agent.py:9118-9134) trains only predict_next_self (z_self); the z_world map gets no gradient
+    from the substrate objective, its only shaping is the SD-056 term which is default OFF
+    (config.py:388) and read by no ree_core call site, and it is consumed single-step under no_grad
+    for attribution only; (ii) NO CONTINUATION HEAD exists over latents anywhere in ree_core (the
+    sole termination head, e2_escape_affordance_linker.py:165, predicts THREAT termination, not
+    episode done), so lambda-returns have no continuation substrate -- though a reward COULD be
+    read off an imagined latent, since E3Selector.harm_eval/benefit_eval and the ActorCriticNet
+    value head all read z_world directly; (iii) MEASURED open-loop divergence: untrained (= the
+    default substrate state) diverges immediately, rel err 0.69 at k=1 to 17.8 at k=15, 28x-254x
+    worse than a do-nothing persistence baseline; and even after 2240 deliberate MSE updates (an
+    objective the substrate does not run) it NEVER BEATS PERSISTENCE AT ANY HORIZON -- 1.21x worse
+    at k=1 widening to 2.15x at k=15, despite superficially healthy absolutes (cos 0.988, rel err
+    0.151 at k=15). LIMITING CAVEAT: z_world is near-static over the measured trajectories (mean
+    one-step movement 2.0% of norm; e2's k=15 error 0.0698 EXCEEDS the whole-dataset inter-state
+    spread 0.0522), so the probe cannot separate "e2 fails to model the dynamics" from "z_world has
+    almost no dynamics to model" -- the latter upstream-limits any forward model on z_world. Either
+    way a lambda-return over these rollouts would be degenerate.
+    BEARING ON THIS CLAIM: the probe SHARPENS MECH-459 BY EXCLUSION and adds no support to it. It
+    establishes that the imagination route is materially more expensive than the normaliser
+    corrective this claim proposes -- it would require a training objective for world_forward, a
+    continuation head, AND a z_world that actually moves, before a DreamerV3-style update could be
+    written at all. It does NOT bear on whether the two-sided normaliser is the floor's cause; the
+    what_would_answer falsifier above is unaffected and remains the discriminating test. It also
+    opens a NEW complex (probe-gated) node, deliberately not pursued: whether z_world's near-static
+    character is a property of the encoder, of the D3_hazard_free rung, or of the low-competence
+    trajectory distribution -- which bears on the monostrategy representation-ceiling thread
+    (INV-088), NOT on this claim. The probe was a measurement only: no ree_core change, no queued
+    experiment, no imagined-rollout update built. It does NOT adjudicate GOV-FANOUT-1 (V3-EXQ-780
+    vs 781) and must not be cited for either leg; mech457_competence_bootstrap_explorer stays
+    blocked_pending_discrimination.
     COORDINATION -- DOES NOT PRE-EMPT THE LIVE DISCRIMINATION. The GOV-FANOUT-1 portfolio
     (H-bc-prior V3-EXQ-780 vs H-approach-primitive V3-EXQ-781) is pre-registered ALIVE in the
     competence_floor question of hypothesis_space_registry.v1.json. MECH-459 belongs to NEITHER
