@@ -658,6 +658,9 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
 
 def _self_test() -> int:
     """Synthetic registry exercising each flag exactly once."""
+    # Hoisted: Python requires a global declaration before the name's first use in
+    # the function body, and `audit` is called partway through.
+    global _artifact_first_commit, _registry_first_witness, REPORT, audit
     reg = {"questions": [
         {"qid": "ok_q", "initial_frozen_count": 2, "hypotheses": [
             {"hid": "h1", "pre_registered_utc": "2026-07-01",
@@ -792,7 +795,6 @@ def _self_test() -> int:
     ]
     # Hermetic: stub the two git lookups so the self-test never shells out (and so
     # it exercises the witness LOGIC rather than this repo's actual history).
-    global _artifact_first_commit, _registry_first_witness
     _real_art, _real_reg = _artifact_first_commit, _registry_first_witness
     _artifact_first_commit = lambda p: {
         "failure_autopsy_witnessed_2026-07-03.json": "2026-07-03",   # before resolution
@@ -863,6 +865,37 @@ def _self_test() -> int:
         else:
             print(f"  FAIL discrimination: {msg}")
             failures.append(name)
+    # Fail-open check: a crashed audit must INVALIDATE the report, not leave a stale
+    # clean one behind. Governance reads the file, so "silently kept the old report"
+    # is indistinguishable from "audited and found nothing" -- the failure mode this
+    # whole script exists to catch. Verified by actually breaking audit().
+    import tempfile
+    _real_report, _real_audit = REPORT, audit
+    try:
+        with tempfile.TemporaryDirectory() as td:
+            REPORT = Path(td) / "report.md"
+            REPORT.write_text("# stale\n\nAudited 6 questions. **0** flag(s) raised.\n",
+                              encoding="utf-8")
+
+            def _boom(*a, **k):
+                raise RuntimeError("synthetic audit failure")
+
+            audit = _boom
+            # Exactly the __main__ shape: main() propagates, the handler invalidates.
+            try:
+                main()
+            except Exception as exc:
+                _write_incomplete_report(exc)
+            body = REPORT.read_text(encoding="utf-8")
+            stale_survived = "0** flag(s) raised" in body and "DID NOT" not in body
+    finally:
+        REPORT, audit = _real_report, _real_audit
+    if stale_survived:
+        print("  FAIL fail-open: a crashed audit left the stale '0 flags' report in place")
+        failures.append("stale_report_survives_crash")
+    else:
+        print("  ok   fail-open: a crashed audit does not leave a stale clean report")
+
     if failures:
         print(f"SELF-TEST FAILED: {failures}")
         return 1
@@ -870,10 +903,72 @@ def _self_test() -> int:
     return 0
 
 
+def _rel(p: Path) -> str:
+    """Repo-relative display path, falling back to the absolute one.
+
+    `Path.relative_to` RAISES when the path is outside REPO_ROOT. That never
+    happens in production, but it did crash the unparseable-registry branch under
+    test -- and a crash inside an error path is the worst place for one, since it
+    is what runs when things are already wrong.
+    """
+    try:
+        return str(p.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(p)
+
+
+def _write_incomplete_report(exc: Exception) -> None:
+    """Overwrite the report so a CRASHED audit cannot be read as a CLEAN one.
+
+    Exercised by --self-test; called from the __main__ handler. Never raises --
+    the contract is that this script gates nothing, so even a failed
+    invalidation must not turn into a non-zero exit.
+    """
+    try:
+        REPORT.write_text(
+            "# Hypothesis-Space Integrity Audit (anti-Goodhart)\n\n"
+            f"Generated: {_utc_now_iso_z()}\n\n"
+            "## AUDIT DID NOT COMPLETE\n\n"
+            f"The audit raised `{exc.__class__.__name__}: {exc}` and exited without "
+            "producing findings, so **no integrity check was performed this run**.\n\n"
+            "**This is not an all-clear, and any flag count quoted from an earlier "
+            "report is stale.** The previous report was overwritten deliberately: it "
+            "said what the last *successful* run found, and leaving it in place would "
+            "let a crashed audit read as a clean one.\n\n"
+            "Re-run `scripts/check_hypothesis_space_integrity.py` once the cause is "
+            "fixed; `--self-test` checks the audit logic itself.\n\n"
+            "_Advisory and non-blocking as always -- this exits 0 and gates nothing._\n",
+            encoding="utf-8")
+    except Exception:
+        # Even the invalidation failed (read-only FS, etc.). Still never gate.
+        pass
+
+
 def main() -> int:
     now = _utc_now_iso_z()
     registry = _load_json(REGISTRY)
     if not isinstance(registry, dict):
+        # An UNPARSEABLE registry is not the same as an absent one. _load_json
+        # swallows both, but the first is the case you most want an alarm for --
+        # a corrupted or half-written ledger. Reporting it as "nothing to audit"
+        # would make ledger corruption read as all-clear.
+        if REGISTRY.exists():
+            print("hypothesis-space integrity: REGISTRY UNPARSEABLE -- see report.",
+                  file=sys.stderr)
+            REPORT.write_text(
+                "# Hypothesis-Space Integrity Audit (anti-Goodhart)\n\n"
+                f"Generated: {now}\n\n"
+                "## AUDIT DID NOT RUN -- REGISTRY UNPARSEABLE\n\n"
+                f"`{_rel(REGISTRY)}` exists but could not be parsed as "
+                "JSON, so **no integrity check was performed**. This is NOT an all-clear: "
+                "a malformed ledger is exactly the state the frozen-set invariants exist "
+                "to catch, and it is also what a half-written or conflict-mangled edit "
+                "looks like.\n\n"
+                "Fix the JSON, then re-run `scripts/check_hypothesis_space_integrity.py`. "
+                "Treat any flag count quoted from an earlier report as stale.\n\n"
+                "_Advisory and non-blocking as always -- this exits 0 and gates nothing._\n",
+                encoding="utf-8")
+            return 0
         print("hypothesis-space integrity: registry missing; nothing to audit.")
         REPORT.write_text(
             f"# Hypothesis-Space Integrity Audit\n\nGenerated: {now}\n\n"
@@ -883,7 +978,7 @@ def main() -> int:
     flags = audit(registry, timeseries)
     REPORT.write_text(render_report(flags, registry, timeseries, now), encoding="utf-8")
     total = sum(len(v) for k, v in flags.items() if k not in ADVISORY_BUCKETS)
-    print(f"Hypothesis-space integrity report written: {REPORT.relative_to(REPO_ROOT)}")
+    print(f"Hypothesis-space integrity report written: {_rel(REPORT)}")
     print(f"  flags: a={len(flags['a_unbacked_drop'])} b={len(flags['b_enlargement'])} "
           f"c={len(flags['c_confirmed_no_control'])} d={len(flags['d_bar_violation'])} "
           f"(total={total}, advisory/non-blocking)")
@@ -910,6 +1005,15 @@ if __name__ == "__main__":
     try:
         sys.exit(main())
     except Exception as exc:  # pragma: no cover - advisory, never blocks
+        # SELF-INVALIDATE THE REPORT. The contract is "never gates" (exit 0), but a
+        # crash used to leave the PREVIOUS report on disk -- typically one saying
+        # "0 flag(s) raised" -- while only stderr carried the failure. Governance
+        # Step 5c reads the FILE, not the exit code or stderr, and stderr scrolls
+        # past inside governance.sh. So a crashed audit read as a clean audit: a
+        # silent no-op presenting as success, which is the exact failure mode this
+        # script exists to catch elsewhere. Overwrite the report so a stale clean
+        # one can never be mistaken for a current one.
         print(f"hypothesis-space integrity: non-fatal error ({exc.__class__.__name__}); exiting 0.",
               file=sys.stderr)
+        _write_incomplete_report(exc)
         sys.exit(0)
