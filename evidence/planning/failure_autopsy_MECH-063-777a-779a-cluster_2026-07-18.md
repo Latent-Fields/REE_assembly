@@ -271,6 +271,38 @@ Retain flags: `lit_only_above_cap`, `low_exp_conf`, `synthetic_signals_only`.
 | 3 | Shared lib | `/queue-experiment` | `experiments/_lib/` rollout helper (carried forward, now extended): budgets **and caps** denominated in the same unit as the gates that consume them; emit per-cell `stop_reason` and realised counts. |
 | 4 | Probe template fix | `/queue-experiment` | Retire the mean-minus-population-SD robustness idiom. Use the standard error for "exceeds its own noise"; state "holds on essentially every seed" as a seed-fraction bar. |
 
+### Follow-up 4 — carrier survey and resolution (2026-07-18, session `intelligent-poincare-f59a5a`)
+
+**No experiment script was edited. Every carrier of the idiom is already-run or frozen**, so the retirement had to be prospective. Full survey of `ree-v3/experiments/` for `_pooled_std` / `pstdev`:
+
+| Script | Bar | MARGIN | Status | Disposition |
+|---|---|---|---|---|
+| `v3_exq_777a_..._orthogonal_control_axes_dissociation.py:697` | `mean_sin - sd_sin > SIN_MARGIN` | **0.500** | RAN (manifest `20260718T101635Z`) | **The confirmed defect.** Autopsy matter — not retro-edited. |
+| `v3_exq_777_..._orthogonal_control_axes_dissociation.py:416` | same idiom | — | RAN (`20260717T155914Z`) | Predecessor. Not retro-edited. |
+| `v3_exq_779a_..._tonic_phasic_dissociation.py:676` | `abs(mean) - _pooled_std > 0.0` | **0.0** | RAN (`20260718T121351Z`) | Conservative form — see below. Criterion **PASSED**. |
+| `v3_exq_779_..._tonic_phasic_dissociation.py:469` | same, margin 0.0 | 0.0 | RAN (`20260717T191826Z`) | Conservative form. |
+| `v3_exq_779b_..._tonic_phasic_dissociation.py:751` | same, margin 0.0 | 0.0 | **QUEUED**, pending `ree-cloud-4` | **Deliberately untouched** — supersession contract. |
+| `v3_exq_760_mech303_contextual_safety_terrain_discrimination.py:423` | `mean_margin - sd_margin > 0.0` | 0.0 | RAN (`20260714T202728Z`), **PASS/supports**, claim **MECH-303** | Conservative form. Carrier **outside** the MECH-063 family — not previously identified. |
+
+**The key distinction, which makes a blanket rewrite wrong.** The consequence of the idiom depends entirely on `MARGIN`:
+
+- **`MARGIN > 0` compounds into unreachability.** A non-shrinking dispersion is subtracted *and* a positive bar must still be cleared. This is 777a alone, and it is the confirmed defect.
+- **`MARGIN == 0` reduces to `mean > dispersion`, which is a *conservative* bar** — strictly *harder* than the SEM form it was mistaken for, since `pstdev >= pstdev/sqrt(n)` for all `n >= 1`. The five margin-0.0 carriers therefore cleared (or failed) a **stricter** test than intended. **779a's and 760's PASSes are not undermined by this defect** and must not be "corrected" as though they were — re-denominating a bar a run already cleared would loosen it retroactively. In particular **MECH-303 needs no `evidence_quality_note`**: 760 passed a harder bar than the one it meant to set.
+
+That distinction is also the independent, mechanism-level reason the brief's instruction to leave **779b** alone is correct, not merely procedural.
+
+**What landed instead:** `ree-v3/experiments/_lib/robustness_bars.py` (new), so the successor author (777b / 779c) has a correct bar to import rather than another copy to make:
+
+- `robust_by_sem(vals, margin, k, min_n)` — `mean - k*SEM > margin`, the replacement where the intent is "exceeds its own measurement noise". Tightens with `n`; `k` is pre-registered and emitted.
+- `exceeds_cross_seed_dispersion(vals, margin, min_n)` — the dispersion bar kept but **named**, returning `sample_size_improvable: False` for the manifest, and flagging `margin_compounds_unreachability` when `margin > 0`.
+- `seeds_required_for_sem_bar(...)` — the design-time cost check. Validated against this autopsy's own recorded figures: reproduces `SE` at n=4/14/51 (0.1614 / 0.0863 / 0.0452) and `n_informative_required = 51` exactly. (`raw_seeds_implied` 179 vs the autopsy's 177 — the helper ceils informative-`n` before dividing by yield, the more conservative order.)
+
+The module's docstring carries the autopsy's sharpest finding up front: **repairing the denominator is necessary but not sufficient** — 777a's numbers still fail the corrected bar at n=4 and n=14, needing ~51 informative seeds (~177 raw, ~31 h) at the observed 28.6% yield. The binding constraint was the **yield**, which is follow-up #1's `SD-PROBE-WARMUP`, not this criterion.
+
+**Seed-fraction bar (second half of follow-up 4): already present, no action.** 777a's `c1_seed_count` is exactly that bar, and it **PASSED** at 3 of 4 informative seeds. The defect was never the absence of a seed-fraction criterion.
+
+`pytest tests/` — **1628 passed**, 39 subtests passed.
+
 ---
 
 ## Hypothesis-space ledger (Step 9b)
