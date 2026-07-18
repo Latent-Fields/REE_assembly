@@ -282,11 +282,57 @@
     if(hero){ s = 'The '+esc(hero.short_title)+' line ('+hero.reduction_numerator+'/'+hero.initial_frozen_count+
       ' ruled out) and five other open questions took the space from '+atReg+' to '+na.total_surviving+
       ' live hypotheses with no movement on the closure map.'; }
-    if(fanout){ s += ' <b style="color:var(--built)">Read that with the fan-out caveat:</b> '+fanout+
-      ' of those hypotheses were added mid-campaign as earlier axes were eliminated ('+na.total_initial+
-      ' enumerated in total). A space that keeps growing new rivals has not converged &mdash; the larger '+
-      'denominator flatters the ratio precisely when the campaign is struggling.'; }
+    if(fanout){
+      var hc = (hero&&hero.convergence)||{};
+      s += ' <b style="color:var(--built)">Read that with the fan-out caveat:</b> '+fanout+
+        ' of those hypotheses were added mid-campaign as earlier axes were eliminated ('+na.total_initial+
+        ' enumerated in total), so the larger denominator flatters the ratio.';
+      if(hc.convergence_class==='refining'){
+        s += ' That growth is <b style="color:var(--confirmed)">refinement, not drift</b> &mdash; whole axis '+
+          'families were closed out and the survivors sit on fresh territory'+
+          ((hc.families_fresh||[]).length? ' ('+esc(hc.families_fresh.join(', '))+')' : '')+
+          '. The count grew while the <em>kind</em> of answer narrowed.';
+      } else if(hc.convergence_class==='circling'){
+        s += ' And that growth is <b style="color:var(--elim)">circling</b> &mdash; new legs re-entered '+
+          'families already ruled out. This is genuine non-convergence.';
+      }
+    }
     document.getElementById('heroSub').innerHTML = s;
+  }
+
+  // A growing denominator is not one phenomenon. The axis-family discriminator
+  // (registry `axis_families` -> build_hypothesis_space.axis_family_convergence)
+  // separates successive refinement from circling; render its verdict rather than
+  // the old blanket "not converging" banner, which conflated the two.
+  var CONV = {
+    refining:  {tone:'var(--confirmed)', head:'Refining &mdash; the space grew, but understanding narrowed'},
+    circling:  {tone:'var(--elim)',      head:'Circling &mdash; new legs re-entered already-eliminated territory'},
+    scattering:{tone:'var(--built)',     head:'Scattering &mdash; legs spread across families, none closed out'},
+    mixed:     {tone:'var(--built)',     head:'Mixed &mdash; growth partly re-entered eliminated territory'},
+    indeterminate:{tone:'var(--built)',  head:'Indeterminate &mdash; an axis label is missing from the family map'}
+  };
+  function renderConvergence(hero, hAtReg){
+    var c = hero.convergence||{};
+    var meta = CONV[c.convergence_class];
+    if(!meta){ return ''; }
+    var s = '<div class="banner" style="margin:0 18px 12px;border-left:3px solid '+meta.tone+'">'+
+      '<b style="color:'+meta.tone+'">'+meta.head+'.</b> '+
+      'Set grew '+hAtReg+' &rarr; '+esc(hero.initial_frozen_count)+' via labelled GOV-FANOUT-1 portfolios. '+
+      esc(c.reason||'');
+    if((c.families_closed||[]).length){
+      s += ' <span style="opacity:.8">Closed: <b>'+esc(c.families_closed.join(', '))+'</b>.</span>';
+    }
+    if((c.families_fresh||[]).length){
+      s += ' <span style="opacity:.8">Live frontier: <b>'+esc(c.families_fresh.join(', '))+'</b>.</span>';
+    }
+    var reent = (c.growth_events||[]).filter(function(e){return (e.re_entered||[]).length;});
+    if(reent.length){
+      s += '<div style="margin-top:6px;opacity:.85">Re-entered territory: '+
+        reent.map(function(e){
+          return e.re_entered.map(function(r){return esc(r.hid)+' &rarr; '+esc(r.family);}).join(', ');
+        }).join('; ')+' &mdash; the leg-level analogue of the re-derive brake.</div>';
+    }
+    return s+'</div>';
   }
 
   function renderTree(data){
@@ -311,10 +357,7 @@
         '<div><div class="rn">'+bits+'</div><div class="rl">bits removed<br>vs original</div></div>'+
         (hFanout? '<div><div class="rn" style="color:var(--built)">'+bitsCur+'</div><div class="rl">bits if you<br>count fan-out</div></div>' : '')+
       '</div></div>'+
-      (hFanout? '<div class="banner" style="margin:0 18px 12px">This question&rsquo;s hypothesis set grew '+hAtReg+' &rarr; '+
-        hero.initial_frozen_count+' as a GOV-FANOUT-1 portfolio enumerated new rivals. Legitimate and labelled '+
-        '(see the integrity audit), but it means the campaign is inventing candidate explanations about as fast as '+
-        'it eliminates them &mdash; not converging.</div>' : '')+
+      (hFanout? renderConvergence(hero, hAtReg) : '')+
       '<div class="tree">';
     (hero.hypotheses||[]).forEach(function(h){
       var cls = STATE_CLASS[h.state]||'st-alive';

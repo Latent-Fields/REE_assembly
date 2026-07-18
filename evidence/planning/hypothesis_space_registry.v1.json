@@ -9,6 +9,41 @@
     "human_owns_decided": "decision.decided is set ONLY by a human via decision.decision_log_ref; the dashboard may say 'decidable_now', never 'decided', without it.",
     "non_contributory_unchanged": "A run whose evidence_direction is inconclusive/non_contributory and which does NOT discriminate a pre-registered leg leaves the tree counts untouched (it still appears in the momentum feed)."
   },
+  "axis_families": {
+    "_purpose": "COARSE, HUMAN-OWNED taxonomy grouping per-leg `axis` labels into families, so build_hypothesis_space.py can distinguish SUCCESSIVE REFINEMENT (a campaign closes out one family and opens a fresh one -- leg count grows while understanding narrows) from CIRCLING (new legs re-enter a family that already has eliminated legs) and SCATTERING (legs spray across families with none ever closed). The bare `fanout_added > 0` proxy it replaces could not tell these apart.",
+    "_authority": "This map is ARGUABLE and belongs to the human, not the script. build_hypothesis_space.py computes over it and never invents or infers a family. Disputing a row here is the correct way to dispute a convergence verdict.",
+    "_unclassified_policy": "An axis absent from `map` is reported as `unclassified` and forces the question's convergence_class to `indeterminate` -- it NEVER silently defaults into a family. Extend the map when introducing a new axis label (see /failure-autopsy Step 9b).",
+    "_provenance_caveat": "These family boundaries were drawn on 2026-07-18 AFTER the competence_floor campaign had run, by a session that had already formed a reading of that campaign's shape. Confirmation-by-construction is a live risk: the taxonomy could have been gerrymandered to produce the verdict its author expected. Two partial checks -- (i) the boundaries are drawn on intervention LOCUS (what layer of the system a hypothesis blames), which is independent of any one question's outcome; (ii) applied to competence_floor it yields a NON-flattering result, classifying the 769 fan-out's drive-schedule leg as re-entry into an already-swept family. A taxonomy that only ever confirms would not do that. Neither check is decisive; treat the verdict as a reading, not a measurement.",
+    "map": {
+      "intrinsic-architecture": "constitution",
+      "learning-signal": "constitution",
+      "substrate": "constitution",
+      "algorithm": "process",
+      "credit-assignment": "process",
+      "curriculum": "process",
+      "exploration": "process",
+      "return-policy": "process",
+      "arbitration": "process",
+      "drive": "process",
+      "policy": "process",
+      "selection": "process",
+      "neuromodulation": "process",
+      "representation": "representation",
+      "readout": "representation",
+      "observation": "representation",
+      "environment": "world",
+      "reward": "world",
+      "eval-dynamics": "world",
+      "measurement": "instrumentation"
+    },
+    "_family_glosses": {
+      "constitution": "what the agent is endowed with BEFORE learning starts (innate drives, seeded priors, substrate capacity)",
+      "process": "HOW learning or decision proceeds (algorithm, credit, curriculum, exploration, selection, drive schedules)",
+      "representation": "WHAT is encoded or perceivable (state representation, readouts, observability)",
+      "world": "the TASK the agent faces (environment dynamics, reward structure, evaluation regime)",
+      "instrumentation": "whether the effect is MEASURABLE at all (metric validity, credit horizon as a measurement question)"
+    }
+  },
   "questions": [
     {
       "qid": "competence_floor",

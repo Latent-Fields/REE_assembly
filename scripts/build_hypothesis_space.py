@@ -68,6 +68,13 @@ def _utc_now_iso_z() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _tally(values) -> dict:
+    out: dict = {}
+    for v in values:
+        out[v] = out.get(v, 0) + 1
+    return dict(sorted(out.items(), key=lambda kv: (-kv[1], kv[0])))
+
+
 def _load_json(path: Path):
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -167,7 +174,147 @@ def prove_dimension() -> dict:
 # Dim 3 + Dim 4 -- Narrow + Decide (from the frozen registry)
 # --------------------------------------------------------------------------
 
-def _question_rollup(q: dict) -> dict:
+def axis_family_convergence(q: dict, families: dict) -> dict:
+    """Classify HOW a question's hypothesis space is moving, using the declared
+    axis-family taxonomy (registry `axis_families`).
+
+    A growing denominator is not one phenomenon. Two campaigns can both add legs
+    and mean opposite things:
+
+      REFINING  -- the campaign closed out an entire family (every leg in it
+                   resolved) and the new legs open a family with no eliminations
+                   in it. Leg count grows while understanding NARROWS: the answer
+                   moved to a different KIND of explanation. This is progress and
+                   the bare fanout_added>0 proxy mislabels it as failure.
+      CIRCLING  -- new legs re-enter a family that ALREADY had eliminated legs
+                   when they were added. The campaign is re-litigating dead
+                   territory. This is the real non-convergence signal, and the
+                   leg-level analogue of the claim-level re-derive brake.
+      SCATTERING-- legs spread across families with none closed out. No family has
+                   been swept, so nothing has actually been ruled out as a class.
+
+    The taxonomy is HUMAN-OWNED (registry `axis_families.map`); this function only
+    computes over it. An unmapped axis yields `indeterminate` rather than a guess.
+    """
+    fmap = (families or {}).get("map") or {}
+    hyps = q.get("hypotheses") or []
+    if not fmap or not hyps:
+        return {"convergence_class": "indeterminate",
+                "reason": "no axis-family map declared" if not fmap else "no hypotheses",
+                "unclassified_axes": []}
+
+    def fam(h):
+        return fmap.get(h.get("axis") or "")
+
+    unclassified = sorted({(h.get("axis") or "(none)") for h in hyps if not fam(h)})
+
+    # Family state: which families have any resolved-out leg, and which are FULLY
+    # resolved (closed -- the whole class ruled out).
+    by_fam: dict = {}
+    for h in hyps:
+        f = fam(h)
+        if not f:
+            continue
+        by_fam.setdefault(f, []).append(h)
+    closed, touched, fresh = [], [], []
+    for f, hs in by_fam.items():
+        states = [(h.get("resolution") or {}).get("state") or "untested" for h in hs]
+        n_out = sum(1 for s in states if s in RESOLVED_OUT_STATES)
+        if n_out:
+            touched.append(f)
+        # "Closed" = every leg in the family is resolved (out or confirmed); nothing
+        # in that class is still standing as an open rival.
+        if all(s in RESOLVED_OUT_STATES or s == "confirmed" for s in states):
+            closed.append(f)
+        if n_out == 0 and any(s in ALIVE_STATES for s in states):
+            fresh.append(f)
+
+    # Per growth event: did the legs it added open fresh territory, or re-enter a
+    # family that already had eliminations AT THAT TIME?
+    by_hid = {h.get("hid"): h for h in hyps}
+    events = []
+    for ev in q.get("fanout_growth_events") or []:
+        when = ev.get("recorded_utc") or ""
+        own = set(ev.get("added_hids") or [])
+        # Families that already had an elimination before this event landed. The
+        # event's OWN legs are excluded: a leg cannot re-enter territory that its
+        # own later resolution created (they are typically appended to the registry
+        # after their runs resolve, so including them marks every event as circling).
+        prior_dead = set()
+        for h in hyps:
+            if h.get("hid") in own:
+                continue
+            f = fam(h)
+            res = h.get("resolution") or {}
+            r_utc = res.get("resolved_utc") or ""
+            if f and res.get("state") in RESOLVED_OUT_STATES and r_utc and r_utc < when:
+                prior_dead.add(f)
+        added, re_entered = [], []
+        for hid in ev.get("added_hids") or []:
+            h = by_hid.get(hid)
+            f = fam(h) if h else None
+            added.append({"hid": hid, "family": f})
+            if f and f in prior_dead:
+                re_entered.append({"hid": hid, "family": f})
+        if not added:
+            continue
+        if len(re_entered) == len(added):
+            cls = "circling"
+        elif re_entered:
+            cls = "partial_re_entry"
+        else:
+            cls = "refining"
+        events.append({
+            "recorded_utc": when,
+            "fanout_source": ev.get("fanout_source"),
+            "event_class": cls,
+            "added": added,
+            "re_entered": re_entered,
+            "families_already_dead": sorted(prior_dead),
+        })
+
+    if unclassified:
+        cls = "indeterminate"
+        reason = (f"{len(unclassified)} axis label(s) not in the declared family map "
+                  f"({', '.join(unclassified)}) -- extend `axis_families.map` to classify.")
+    elif not events:
+        # No growth: narrowing if anything has actually been ruled out, else static.
+        cls = "narrowing" if touched else "static"
+        reason = ("no fan-out growth; "
+                  + (f"eliminations in {len(touched)} family/families"
+                     + (f", {len(closed)} fully closed" if closed else "")
+                     if touched else "nothing ruled out yet"))
+    elif any(e["event_class"] == "circling" for e in events):
+        cls = "circling"
+        reason = "a growth event added ONLY legs re-entering already-eliminated families"
+    elif events[-1]["event_class"] == "refining" and closed:
+        cls = "refining"
+        n_partial = sum(1 for e in events if e["event_class"] == "partial_re_entry")
+        reason = (f"{len(closed)} family/families closed ({', '.join(sorted(closed))}); "
+                  f"the latest growth opened fresh territory"
+                  + (f" ({', '.join(sorted(fresh))})" if fresh else "")
+                  + (f". NOTE: {n_partial} earlier growth event(s) partly re-entered an "
+                     "already-eliminated family -- refinement, but not a clean sweep."
+                     if n_partial else ""))
+    elif not closed:
+        cls = "scattering"
+        reason = "legs added across families but no family has been closed out"
+    else:
+        cls = "mixed"
+        reason = "growth partly re-entered already-eliminated families"
+
+    return {
+        "convergence_class": cls,
+        "reason": reason,
+        "families_closed": sorted(closed),
+        "families_touched": sorted(touched),
+        "families_fresh": sorted(fresh),
+        "unclassified_axes": unclassified,
+        "growth_events": events,
+    }
+
+
+def _question_rollup(q: dict, families: dict = None) -> dict:
     hyps = q.get("hypotheses") or []
     initial = int(q.get("initial_frozen_count") or len(hyps))
     alive = 0
@@ -248,7 +395,10 @@ def _question_rollup(q: dict) -> dict:
         "fanout_growth_note": q.get("fanout_growth_note"),
         "net_narrowing_ratio": round(net_narrowing_ratio, 4),
         "bits_removed_vs_registration": bits_removed_vs_registration,
+        # Superseded by `convergence` below -- kept for payload back-compat. This bare
+        # proxy CANNOT tell successive refinement from circling; read convergence_class.
         "not_converging": bool(fanout_added > 0),
+        "convergence": axis_family_convergence(q, families or {}),
         "surviving": surviving,
         "alive": alive,
         "resolved_out": resolved_out,
@@ -465,7 +615,8 @@ def main() -> int:
     dim_build = build_dimension(subq)
     dim_prove = prove_dimension()
 
-    questions = [_question_rollup(q) for q in registry["questions"]]
+    families = registry.get("axis_families") or {}
+    questions = [_question_rollup(q, families) for q in registry["questions"]]
     total_surviving = sum(q["surviving"] for q in questions)
     total_initial = sum(q["initial_frozen_count"] for q in questions)
     total_initial_at_registration = sum(
@@ -509,6 +660,16 @@ def main() -> int:
                     ((total_initial_at_registration - total_surviving)
                      / total_initial_at_registration * 100.0)
                     if total_initial_at_registration else 0.0, 1),
+                "convergence_classes": _tally(
+                    q["convergence"]["convergence_class"] for q in questions),
+                "convergence_note": (
+                    "A growing denominator is not one phenomenon. `refining` = a family "
+                    "was closed out and the new legs opened fresh territory (count grows, "
+                    "understanding narrows). `circling` = new legs re-entered an "
+                    "already-eliminated family -- the real non-convergence signal. "
+                    "`indeterminate` = an axis label is missing from the declared "
+                    "axis_families map. See each question's `convergence` block."
+                ),
                 "honest_pair_note": (
                     f"{total_surviving} alive against {total_initial_at_registration} "
                     f"originally enumerated, and against {total_initial} including "

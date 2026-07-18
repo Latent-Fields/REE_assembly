@@ -342,9 +342,11 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
         # signal even when it is entirely legitimate.
         flags["e_labelled_growth"].append(
             f"`{qid}`: denominator grew {at_reg} -> {initial} across {ok_events} "
-            "labelled portfolio(s). Legitimate, but report the reduction ratio BOTH "
-            "ways -- a campaign enumerating new rivals as it eliminates old ones has "
-            "not converged."
+            "labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. "
+            "Whether this growth is REFINEMENT (a family closed, survivors on fresh "
+            "territory) or CIRCLING (re-entry into already-eliminated territory) is "
+            "decided by the axis-family discriminator -- read `convergence.convergence_class` "
+            "for this question in hypothesis_space.v1.json rather than assuming either."
         )
 
     # RECURRENCE overlay (GOV-FROZEN-1 escalation). Every portfolio counted here
@@ -554,11 +556,16 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     )
     L.append("")
     L.append(
-        "**Read these as a convergence signal, not an all-clear.** The denominator grows "
-        "mostly by legs that are then eliminated, which makes the headline narrowing ratio "
-        "look strongest exactly when a campaign is failing to converge and having to invent "
-        "new candidate explanations. The dashboard reports surviving/original AND "
-        "surviving/current-including-fan-out for this reason."
+        "**Read these alongside the convergence class, not as an all-clear.** The "
+        "denominator grows mostly by legs that are then eliminated, which inflates the "
+        "headline narrowing ratio -- so the dashboard reports surviving/original AND "
+        "surviving/current-including-fan-out. But growth alone does NOT mean a campaign is "
+        "failing: the axis-family discriminator (`convergence.convergence_class` in "
+        "`hypothesis_space.v1.json`) separates **refining** (an axis family was closed out "
+        "and the survivors sit on fresh territory -- count grows while the KIND of answer "
+        "narrows) from **circling** (new legs re-enter already-eliminated families, the "
+        "leg-level analogue of the re-derive brake) and **scattering** (nothing ever closed). "
+        "Cite the class when you report growth."
     )
     L.append("")
     if not adv:

@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-18T08:56:37Z
+Generated: 2026-07-18T09:32:53Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
@@ -34,11 +34,11 @@ _None._
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
-**Read these as a convergence signal, not an all-clear.** The denominator grows mostly by legs that are then eliminated, which makes the headline narrowing ratio look strongest exactly when a campaign is failing to converge and having to invent new candidate explanations. The dashboard reports surviving/original AND surviving/current-including-fan-out for this reason.
+**Read these alongside the convergence class, not as an all-clear.** The denominator grows mostly by legs that are then eliminated, which inflates the headline narrowing ratio -- so the dashboard reports surviving/original AND surviving/current-including-fan-out. But growth alone does NOT mean a campaign is failing: the axis-family discriminator (`convergence.convergence_class` in `hypothesis_space.v1.json`) separates **refining** (an axis family was closed out and the survivors sit on fresh territory -- count grows while the KIND of answer narrows) from **circling** (new legs re-enter already-eliminated families, the leg-level analogue of the re-derive brake) and **scattering** (nothing ever closed). Cite the class when you report growth.
 
 - `competence_floor`: +3 leg(s) (H1-drive-schedule, H2-reward-coupling, H3-credit-horizon) added by labelled fan-out from `failure_autopsy_V3-EXQ-769_2026-07-17.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `competence_floor`: +2 leg(s) (H-bc-prior, H-approach-primitive) added by labelled fan-out from `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json` -- conditions (a)-(c) satisfied, advisory not a violation.
-- `competence_floor`: denominator grew 7 -> 12 across 2 labelled portfolio(s). Legitimate, but report the reduction ratio BOTH ways -- a campaign enumerating new rivals as it eliminates old ones has not converged.
+- `competence_floor`: denominator grew 7 -> 12 across 2 labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - time series 2026-07-17 -> 2026-07-18: total_initial grew by 14, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 14 leg(s)) -- advisory, not a violation.
 
 ## Fan-out recurrence (ACTIONABLE, 0) -- N >= 3 portfolios on one question
