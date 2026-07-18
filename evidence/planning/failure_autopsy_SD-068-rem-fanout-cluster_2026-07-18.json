@@ -1,0 +1,249 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T18:06:48Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "question": "consolidation_readout_validity",
+  "gov_rules": ["GOV-FANOUT-1", "GOV-FROZEN-1"],
+  "routed_by": "failure_autopsy_V3-EXQ-778c_2026-07-18.json -> targets[0].fanout_recommendation",
+  "portfolio_completeness": {
+    "legs_expected": 3,
+    "legs_reported": 3,
+    "all_legs_present": true,
+    "note": "V3-EXQ-778e completed 2026-07-18T16:33:18Z, 18 minutes after the /governance cycle ran at 16:15Z, so it was absent from that cycle's pending_review.md but is fully available here. No leg failed or was dropped. No subset adjudication occurred."
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+      "queue_id": "V3-EXQ-778d",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "hypothesis_id": "H-rem-clamp-artifact",
+      "hypothesis_axis": "measurement",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_adjudication": "REJECTED -- mislabels the cause. The failing precondition is a specification defect in the readiness anchor, not a substrate-readiness fact. Canonical V3-EXQ-642 shape (the precondition test itself is wrong).",
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (SD-068 only) -- the claims could express themselves; the instrument could not",
+        "biological_reference": "clear -- Bar et al. 2020 unpaired-target control faithfully implemented in the amended probe",
+        "prerequisites": "present -- injected-arm readiness cleared on 8/8 seeds",
+        "implementation": "complete -- e3_selector.recalibrate_precision_to behaves exactly as its algebra predicts",
+        "environment": "adequate -- full sigma grid",
+        "measurement": "misleading -- readiness anchor predicate is narrower than the degeneracy it anchors to; unmeetable by construction",
+        "integration": "coupled but stable",
+        "scale": "adequate -- n=8; joint signal not power-limited"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Bar et al. 2020 targeted memory reactivation, 'same odour, no prior pairing' unpaired control",
+        "dependencies": ["precision recalibration target", "clean-target scoring reference"],
+        "is_formal_import": false,
+        "divergence": "none -- the unpaired-target null is the faithful biological analog, and replaced a zero-content null that removed pairing AND pushed the parameterisation off a cliff",
+        "lit_status": "present"
+      },
+      "specification_defect": {
+        "kind": "readiness_anchor_predicate_narrower_than_anchored_degeneracy",
+        "location": "ree-v3/experiments/v3_exq_sd068_rem_unpaired_null_diagnostic.py:288",
+        "shipped_predicate": "derailed = clamp_frac <= 0.2 and n_distinct >= 3 and len(clean_sigmas) >= 3; railed = not derailed",
+        "anchored_degeneracy": "V3-EXQ-778c degeneracy was at BOTH rails: saturation (calibration_error pinned at 998.5009992509989, target_clamped 1.0, identically zero slope, 5/8 seeds) AND positivity-floor collapse (null precision reference on the 1e-3 floor, off-scale ratios 1801-9143, 3/8 seeds)",
+        "consequence": "The predicate detects only the saturation rail. The three floor-collapsed seeds (indices 0, 2, 4) have clamp_frac 0.2 / n_distinct 5 / n_unclamped 4 and are scored as HEALTHY. Maximum anchor fraction achievable by a bit-perfect replication of 778c is exactly 5/8 = 0.625 against a >= 0.75 gate. The precondition can never report met.",
+        "degeneracy_flag_traces_to_it": "criteria_non_degenerate.C1_unpaired_null_derails = bool(readiness_ok and anchor_ok); readiness_ok was true on 8/8, so the entire degeneracy flag on the load-bearing criterion traces to this one mis-specified statistic",
+        "replication_witness": {
+          "claim": "ARM_NULL_ZERO reproduced V3-EXQ-778c to identical floats",
+          "v3_exq_778c_registry_basis": "0.0 on 5/8 seeds, 1801-9143 on 3/8",
+          "v3_exq_778d_null_zero": [4348.4665081785715, 0.0, 9142.771353766831, 0.0, 1801.6453681003277, 0.0, 0.0, 0.0],
+          "v3_exq_778e_legacy_anchor": [4348.4665081785715, 0.0, 9142.771353766831, 0.0, 1801.6453681003277, 0.0, 0.0, 0.0],
+          "verdict": "bit-identical across three independent runs; the replication is not in doubt"
+        },
+        "control_rehabilitated": true,
+        "rehabilitation_basis": "control_passed asserted on the corrected both-rails predicate, not the shipped one-rail predicate. The underlying evidence is identical floats across three runs, not a judgement call. Labelled as a post-hoc rehabilitation, adjudicated at the interactive gate 2026-07-18."
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "SD-068": "weakens",
+        "MECH-168": "unknown",
+        "INV-047": "unknown",
+        "MECH-169": "unknown"
+      },
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "Zero prior substrate_ceiling / non_contributory autopsies on SD-068, MECH-168, INV-047, MECH-169. No same-claim re-queue is being refused."
+      },
+      "learning_extracted": [
+        "A readiness anchor must be scored with the SAME predicate as the degeneracy it anchors to. Generalisable check: compute the value the reference run itself would score under the shipped predicate, and assert the threshold is below it.",
+        "The probe amendment (retiring the provably-inert step ladder) prevented a false elimination and is a model instance of pre-queue design audit. The asymmetry is instructive: the inert-probe check was algebraic and got run; the anchor-threshold check was arithmetic and did not exist."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_sd068_rem_declamped_readout_diagnostic_20260718T163318Z_v3",
+      "queue_id": "V3-EXQ-778e",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "hypothesis_id": "H-rem-genuinely-content-free",
+      "hypothesis_axis": "representation",
+      "self_route_label": "measurement_still_degenerate_requeue",
+      "self_route_adjudication": "HONEST BUT SUPERSEDED BY THE JOINT READ. Read alone the leg narrows nothing (5/8 seeds still saturate, C1 fails). Read with 778d's de-railed unpaired arm -- a non-degenerate observation of the same quantity -- it is corroborative and the hypothesis resolves.",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (SD-068 only)",
+        "biological_reference": "clear -- direct precision-target scoring, no formal import",
+        "prerequisites": "present -- de-clamped injected slope 0.0771 >> 1e-06",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading -- de-clamping changed the scale (9143 -> ~1.0) but not the pattern; the same 5 seeds still saturate at n_distinct 1",
+        "integration": "coupled but stable",
+        "scale": "adequate -- 3 non-degenerate seeds all agree"
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision recalibration against a known injected target (REM-phase calibration)",
+        "dependencies": ["injected target precision", "clean target variance"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "SD-068": "weakens",
+        "MECH-168": "unknown",
+        "INV-047": "unknown",
+        "MECH-169": "unknown"
+      },
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "De-clamping the REM readout changed the scale but not the degeneracy pattern -- the same 5 seeds saturate. The degeneracy is not a units artifact.",
+        "On every non-degenerate seed the de-clamped ratio is above the 0.25 ceiling (0.999 / 0.998 / 0.326), i.e. content-free.",
+        "The within-run legacy replication anchor is a strong design pattern: scoring the predecessor readout on IDENTICAL cells makes any difference attributable to the readout DEFINITION alone, and it is what confirmed the 778c replication when 778d's dedicated anchor mis-scored."
+      ],
+      "routing": "governance-demotion"
+    },
+    {
+      "run_id": "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3",
+      "queue_id": "V3-EXQ-778f",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "hypothesis_id": "H-gen-gain-content-free",
+      "hypothesis_axis": "observation",
+      "self_route_label": "gen_gain_content_free_intact_seed_gloss_unsupported",
+      "self_route_adjudication": "ACCEPTED. Clean non-degenerate PASS as shipped: precondition met (corruption range 1.5646 >> 0.05), all three criteria_non_degenerate true, load-bearing C1 passed. Decision-flipping positive.",
+      "failed_criterion": "none -- PASS",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (SD-068 only) -- retracts an interpretive gloss, does not touch the attenuation finding",
+        "biological_reference": "clear -- generative rollout transfer function",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate -- corruption range 1.5646 >> 0.05 floor",
+        "measurement": "adequate -- range-gated readiness on the same statistic the gain routes on",
+        "integration": "coupled and stable -- 8/8 attenuating at every content scale",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "REM generative replay transfer function / error propagation gain",
+        "dependencies": ["seed content", "rollout corruption"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "scope_guard_honoured": {
+        "attenuation_finding_stands": true,
+        "statement": "rem_generative_gain 0.149, attenuating 8/8 seeds, is NOT overturned and is NOT under test. Per-content-scale gains (0.1589 / 0.1520 / 0.1493) and per-scale attenuation counts (8/8 at every scale) are recorded precisely so this stays visible. ONLY the interpretive gloss that correction needs an INTACT SEED is retracted.",
+        "residual_trend_reported": "A consistent monotone ordering exists (7/8 seeds) but is an order of magnitude below the pre-registered separation bar -- the 'consistent-but-tiny' case the bar was explicitly built to reject -- AND its sign is inverted: gain is LOWER with intact content (0.1493) than with none (0.1589), opposite to the gloss's prediction."
+      },
+      "decision_flipping": {
+        "is_decision_flipping": true,
+        "retracts": "the interpretive gloss 'correction needs an intact seed'",
+        "recorded_at": "REE_assembly/docs/architecture/sd_068_consolidation_lesion_harness.md OPEN QUESTION box, lines ~292-302",
+        "also_closes": "the outstanding caution at lines ~361-369 (the V3-EXQ-778g partial re-widening note) which explicitly lists 'the generative-gain pillar's content-dependence is still open (H-gen-gain-content-free)'",
+        "direction": "NARROWING -- neither edit widens SD-068"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "SD-068": "weakens",
+        "MECH-168": "unknown",
+        "INV-047": "unknown",
+        "MECH-169": "unknown"
+      },
+      "recommended_substrate_queue_entry": { "action": "none" },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "rem_generative_gain is a content-free property of the rollout transfer function. The attenuation is real but occurs with no seed content at all, so it cannot evidence that correction needs an intact seed.",
+        "The separation bar max(0.05 absolute floor, 2 x SEM of the paired delta) did exactly the work it was designed for: it rejected a consistent-but-tiny (7/8 monotonic) effect on magnitude grounds."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "recommended_evidence_quality_note_SD_068": "The SD-068 REM per-phase readout is content-free. Three GOV-FANOUT-1 discrimination legs on distinct design axes converge (V3-EXQ-778d measurement / 778e representation / 778f observation, n=8 seeds each, all positive controls passing): once the zero-content null's clamp degeneracy is removed by an unpaired-target null, the null arm still tracks the injected arm's sigma-slope (content-contingent on 1/8 seeds only; unclamped ratios 0.577-0.995), and an independently de-clamped readout agrees on every non-degenerate seed (0.999 / 0.998 / 0.326, all above the 0.25 ceiling). Separately, rem_generative_gain is flat in content scale (delta -0.0097 against a pre-registered bar of 0.05, with the residual trend inverted in sign), so the interpretive gloss that 'correction needs an intact seed' is RETRACTED from docs/architecture/sd_068_consolidation_lesion_harness.md. The attenuation finding itself (rem_generative_gain 0.149, attenuating 8/8 seeds) is NOT overturned and STANDS -- it is recorded at every content scale (0.1589 / 0.1520 / 0.1493, 8/8 attenuating throughout) precisely so it stays visible. Net effect on SD-068: the staged-failure contract is carried by nrem plus the rebuilt sws (V3-EXQ-778g) only; the REM leg is not a functional-damage instrument and the generative-gain pillar does not evidence content-dependent correction. The staging order remains unsupported. NOTE a specification defect found in the course of this adjudication: V3-EXQ-778d's readiness anchor scored 'railed' on the saturation rail only, against a two-rail degeneracy, capping a bit-perfect replication at 0.625 under a 0.75 gate; the anchor's underlying data reproduced V3-EXQ-778c to identical floats across three runs, so control_passed is asserted here on the corrected both-rails predicate. Fix routed as V3-EXQ-778h (low priority, ledger-hygiene only).",
+  "documentation_change_required": {
+    "file": "REE_assembly/docs/architecture/sd_068_consolidation_lesion_harness.md",
+    "applied_by": "governance -- NOT this skill",
+    "changes": [
+      "Lines ~292-302: resolve the OPEN QUESTION box on the 'intact seed' gloss -- the gloss is RETRACTED (V3-EXQ-778f).",
+      "Lines ~361-369: close the outstanding 'generative-gain pillar's content-dependence is still open (H-gen-gain-content-free)' caution in the V3-EXQ-778g partial re-widening note. Closed in the NARROWING direction."
+    ]
+  },
+  "granularity_debt_trigger": {
+    "fires": true,
+    "n": 2,
+    "target": "SD-068 / consolidation_readout_validity",
+    "prior_autopsies": ["failure_autopsy_V3-EXQ-778c_2026-07-18"],
+    "distinct_failure_signatures": [
+      "V3-EXQ-778c: algebraic content-cancellation in a log-ratio (sws denoising_snr)",
+      "SD-068-rem-fanout-cluster: clamp saturation at both rails plus a mis-specified readiness predicate (rem calibration_error)"
+    ],
+    "routing": "claim-synthesis",
+    "recommendation": "SD-068 asserts a STAGED three-phase damage-tolerance contract, but its three per-phase instruments have turned out to be three structurally different measurement problems. That is granularity debt -- SD-068 is plausibly several claims (one per phase, plus the staging-order claim) -- not a falsification. Recorded as a recommendation only; this autopsy does not route it.",
+    "handoff_status": "recommended_not_yet_run"
+  },
+  "requeue_recommendation": {
+    "suggested_queue_id": "V3-EXQ-778h",
+    "kind": "same-question alphabetic suffix -- instrument specification fix",
+    "priority_suggested": 3,
+    "is_blocker_on_resolutions": false,
+    "change": "Fix the readiness anchor predicate in v3_exq_sd068_rem_unpaired_null_diagnostic.py to count BOTH rails (saturation AND positivity-floor collapse), and add the generalisable assertion from Learning 1: compute the value the reference run itself scores under the shipped predicate and assert the threshold is below it.",
+    "rationale": "Instrument-specification fix, NOT a blind re-run and NOT a substrate build. The scientific content of 778d is already adjudicated in this artifact; the re-run exists only to make the ledger's control provenance clean-as-shipped rather than clean-as-rehabilitated."
+  },
+  "cluster_pattern": {
+    "shape": "Three legs on distinct design axes (measurement / representation / observation), spanning two axis-families (instrumentation / representation), each with its own declared null and each with a PASSING positive control, converge on the same answer. Two legs self-routed to requeue and only the third passed as shipped.",
+    "is_independent_bugs": false,
+    "structural_property": "The SD-068 REM calibration readout does not track content fidelity. It responds to noise magnitude, not content. The clamp degeneracy IS an operationalisation artifact (778d C1 de-rail passed 7/8), and once removed the readout is STILL content-free (778d C2 1/8; 778e 0.999/0.998/0.326 on every non-degenerate seed) -- and the generative-gain pillar is content-free too (778f, delta -0.0097 vs bar 0.05).",
+    "readings": ["instrument_content_freeness"],
+    "joint_read_was_load_bearing": true,
+    "joint_read_note": "No single leg cleared its own load-bearing criterion in isolation. Read alone, 778d routes to substrate_not_ready_requeue and 778e to measurement_still_degenerate_requeue -- two requeues and no finding. Read jointly, with the anchor specification defect diagnosed, they are unambiguous and mutually corroborating. A direct validating instance of GOV-FANOUT-1: subset adjudication would have produced exactly the confident-but-wrong outcome the rule exists to prevent -- here in the CONSERVATIVE direction (two spurious requeues, one real finding lost).",
+    "anti_circling_check": {
+      "family_co_occurrence": "H-rem-clamp-artifact sits in the instrumentation family, which already contains an eliminated leg (H-sws-content-contingent).",
+      "is_re_entry": false,
+      "justification": "Not the dead leg wearing a new name. H-sws concerned the SWS phase's denoising_snr log-ratio, whose content term differentiates out ALGEBRAICALLY; H-rem-clamp-artifact concerns a different phase, a different readout (calibration_error), and a different failure mode (clamp saturation). The family co-occurrence is genuine convergence on 'the instruments are the problem', not re-entry."
+    },
+    "residual_stated": {
+      "dissenting_seed": "V3-EXQ-778d seed index 3: unclamped ratio 0.0011 -- strongly content-contingent -- on a legitimately de-railed arm (clamp_frac 0.2, 4 unclamped sigmas). 1 of 8.",
+      "ratio_instability": "unpaired-arm mean 11.55, sd 29.77, 95% CI [-9.08, 32.18], ceiling_inside_ci95 true",
+      "reading": "The instability runs TOWARD larger ratios, i.e. toward more content-freeness. The direction is not in doubt; the magnitude is not estimable."
+    }
+  },
+  "hypothesis_space_ledger_applied": {
+    "question": "consolidation_readout_validity",
+    "mode": "B (resolve)",
+    "fanout_growth": false,
+    "initial_frozen_count_unchanged": 6,
+    "axis_map_extension_required": false,
+    "resolutions": [
+      {"hid": "H-rem-content-contingent", "from": "alive", "to": "eliminated", "direction": "weakens"},
+      {"hid": "H-rem-clamp-artifact", "from": "alive", "to": "confirmed", "direction": "supports"},
+      {"hid": "H-rem-genuinely-content-free", "from": "alive", "to": "confirmed", "direction": "supports"},
+      {"hid": "H-gen-gain-content-free", "from": "alive", "to": "confirmed", "direction": "supports"}
+    ],
+    "question_resolved_ratio": "6/6 (was 2/6)",
+    "surviving": 4,
+    "eliminated": 2,
+    "decidable_flipped_to_true": true,
+    "decision_log_ref": null
+  }
+}

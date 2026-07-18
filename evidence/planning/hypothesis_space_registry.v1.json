@@ -936,7 +936,8 @@
       ],
       "registered_utc": "2026-07-18T08:41:15Z",
       "fanout_sources": [
-        "failure_autopsy_V3-EXQ-778c_2026-07-18.json"
+        "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
+        "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json"
       ],
       "is_hero": false,
       "initial_frozen_count": 6,
@@ -1001,21 +1002,25 @@
           "pre_registered_utc": "2026-07-18T07:23:18Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
           "adjudicating_runs": [
-            "V3-EXQ-778c"
+            "V3-EXQ-778c",
+            "V3-EXQ-778d",
+            "V3-EXQ-778e"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-778c"
+              "V3-EXQ-778d",
+              "V3-EXQ-778e"
             ],
-            "evidence_direction": "inconclusive",
+            "evidence_direction": "weakens",
             "epistemic_category": "measurement_gap",
-            "self_route_label": "null_content_partial_staging_order_partly_noise_sensitivity",
-            "control_passed": false,
-            "non_degenerate": false,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "The run narrowed nothing on this leg. Per-seed null ratios are degenerate at BOTH rails: exactly 0.0 on 5/8 seeds (null calibration_error pinned at the constant 998.5009992509989 with target_clamped 1.0, giving an identically zero slope) and off-scale 1801-9143 on 3/8 (null precision reference collapsed onto the 1e-3 positivity floor, so 1/1e-3 dominates). mean 1911.6, sd 3306.1, 95% CI [-379, 4203], ceiling_inside_ci95 true, confound_verdict_stable false. The 5 apparently-unconfounded seeds are unconfounded only BY DEGENERACY -- a zero slope from a saturated constant is not evidence of content-contingency. Stays alive; the observation bottleneck is the clamp saturation, fanned out as H-rem-clamp-artifact / H-rem-genuinely-content-free."
+            "self_route_label": "substrate_not_ready_requeue + measurement_still_degenerate_requeue (both superseded by the joint read)",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T16:33:18Z",
+            "adjudicated_by": "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json",
+            "basis": "ELIMINATED as the direct complement of H-rem-genuinely-content-free being confirmed -- the two are mutually exclusive readings of the same readout and the joint evidence discriminates between them. Once 778d's unpaired-target null removes the clamp degeneracy (7/8 seeds de-railed, clamp fractions mostly 0.0), the null arm STILL tracks the injected arm's sigma-slope: content-contingent on only 1/8 seeds, unclamped ratios 0.577-0.995 against a 0.25 ceiling. 778e's independently de-clamped readout agrees on every non-degenerate seed (0.999 / 0.998 / 0.326, all ABOVE the ceiling). Positive controls passed in both legs (injected slopes 0.0665 and 0.0771, both >> the 1e-06 floor, on 8/8 seeds). The rem calibration readout responds to noise magnitude, not content fidelity. Residual: one dissenting seed (778d idx 3, ratio 0.0011) and a wide ratio spread (sd 29.8, CI [-9.08, 32.18]) whose instability runs TOWARD content-freeness."
           }
         },
         {
@@ -1045,16 +1050,21 @@
             }
           ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "Untested. Probe (AMENDED 2026-07-18T09:56:12Z, pre-queue, before any compute -- see probe_amendments): UNPAIRED-TARGET null. Point the recalibration at an INDEPENDENT positive target of the same magnitude class (ARM_NULL_UNPAIRED), unpaired with the clean target the error is scored against -- the faithful Bar et al. 2020 'same odour, no prior pairing' analog -- and retain the 778c zero-content null (ARM_NULL_ZERO) as a replication anchor. Declared null: if ARM_NULL_UNPAIRED stays railed too -- still clamping, still constant -- this leg is REFUTED and the measurement axis is eliminated from the question. The ORIGINAL step-ladder probe was retired as PROVABLY INERT: the 1e-3 positivity clamp is applied upstream of step and step cancels in the reported slope ratio, so the ladder was exactly step-invariant to 12 significant figures and would have returned this leg's declared null BY CONSTRUCTION. Adjudicating run V3-EXQ-778d (ree-v3 18c4687)."
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-778d"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "measurement_gap",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T12:42:16Z",
+            "adjudicated_by": "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json",
+            "control_rehabilitated": true,
+            "control_rehabilitation_note": "control_passed is asserted on the CORRECTED both-rails predicate, NOT the shipped one-rail predicate. The shipped readiness anchor (v3_exq_sd068_rem_unpaired_null_diagnostic.py:288) scores `railed` as NOT(clamp_frac<=0.2 and n_distinct>=3 and n_unclamped>=3), which detects only the SATURATION rail; V3-EXQ-778c's degeneracy was documented at BOTH rails (saturation AND positivity-floor collapse). The three floor-collapsed seeds are therefore scored HEALTHY, capping a bit-perfect replication at 5/8 = 0.625 against a >= 0.75 gate -- the precondition is unmeetable by construction. The anchor's underlying data DID reproduce 778c to identical floats across three independent runs ([4348.4665081785715, 0.0, 9142.771353766831, 0.0, 1801.6453681003277, 0.0, 0.0, 0.0] in both 778d ARM_NULL_ZERO and 778e's legacy anchor, matching 778c's recorded 0.0-on-5/8 / 1801-9143-on-3/8). criteria_non_degenerate.C1 = readiness_ok AND anchor_ok with readiness_ok true on 8/8, so the degeneracy flag traces ENTIRELY to this one mis-specified statistic. Post-hoc rehabilitation, adjudicated at the interactive gate 2026-07-18 and labelled as such. Clean-as-shipped re-run routed as V3-EXQ-778h (low priority, ledger hygiene; NOT a blocker on this resolution).",
+            "basis": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687."
           }
         },
         {
@@ -1064,18 +1074,26 @@
           "axis": "representation",
           "pre_registered_utc": "2026-07-18T08:41:15Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-778e",
+            "V3-EXQ-778d"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "Untested. Probe: score the rem leg against the injected precision target directly rather than via running_variance_after, and compare null vs injected slope in common units. Declared null: if a de-clamped readout yields null_slope_ratio <= 0.25, this leg is refuted."
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-778d",
+              "V3-EXQ-778e"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "measurement_gap",
+            "self_route_label": "measurement_still_degenerate_requeue",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T16:33:18Z",
+            "adjudicated_by": "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json",
+            "resolved_on_joint_evidence": true,
+            "basis": "CONFIRMED on the JOINT 778d+778e evidence, per GOV-FANOUT-1's requirement that portfolio legs be read jointly. 778e ALONE narrows nothing: its precondition declamped_null_series_non_degenerate is unmet (5/8 seeds saturate at n_distinct 1) and its C1 fails on those degenerate zeros -- a zero slope from a saturated constant is not evidence of content-contingency. But 778d's de-railed ARM_NULL_UNPAIRED is a NON-DEGENERATE observation of the same quantity (7/8 seeds de-railed, injected readiness cleared 8/8), and it shows the null still tracking the injected slope: content-contingent on 1/8 seeds, unclamped ratios [0.995, 0.901, 0.877, 0.0011, 0.577, 85.18, 0.574, 3.295] against a 0.25 ceiling. 778e's three NON-degenerate seeds agree independently (0.999 / 0.998 / 0.326, all above the ceiling). De-clamping changed the SCALE (9143 -> ~1.0) but not the PATTERN -- the same five seeds saturate -- so the degeneracy is not a units artifact. control_passed true (injected-arm readiness cleared on 8/8 in BOTH legs); non_degenerate true (778d's unpaired arm). RESIDUAL STATED HONESTLY: one dissenting seed (778d idx 3, unclamped ratio 0.0011, strongly content-contingent, on a legitimately de-railed arm), and the unpaired-arm ratio estimate is unstable (mean 11.55, sd 29.77, 95% CI [-9.08, 32.18], ceiling_inside_ci95 true) -- but the instability runs TOWARD larger ratios, i.e. toward more content-freeness. Direction not in doubt; magnitude not estimable. Confirmed 7/8, not 8/8."
           }
         },
         {
@@ -1085,30 +1103,36 @@
           "axis": "observation",
           "pre_registered_utc": "2026-07-18T08:41:15Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-778f"
+          ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "Untested, but motivated by an observation in the 778c manifest that sits OUTSIDE the scored C1 criteria: on seed 42 the null arm's rem_generative_gain (0.182/0.184/0.188/0.209 across sigma) is close to the injected arm's (0.165/0.166/0.172/0.190) at rem_gen_content_scale 0.0. Probe: contrast generative gain at content_scale in {0.0, 0.5, 1.0} across seeds. Declared null: if gain scales monotonically with content scale, this leg is refuted and the doc's gloss stands."
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-778f"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "measurement_gap",
+            "self_route_label": "gen_gain_content_free_intact_seed_gloss_unsupported",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T12:22:00Z",
+            "adjudicated_by": "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json",
+            "basis": "CONFIRMED cleanly as shipped -- the only leg of the portfolio that needed no rehabilitation. Precondition control_input_corruption_range_supra_floor met (1.5646 vs 0.05) on the content_scale=1.0 positive control; all three criteria_non_degenerate true; manifest non_degenerate true. Load-bearing C1_gain_flat_in_content_scale PASSED: mean gain delta (1.0 minus 0.0) = -0.009662 against a pre-registered separation bar of max(0.05 absolute floor, 2 x SEM = 0.0117) = 0.05, separated false. The declared null required the gain to be above the bar WITH monotonicity; it was an order of magnitude below. Mean gain by content scale 0.1589 / 0.1520 / 0.1493. TWO points against the retracted gloss: (i) a consistent monotone ordering does exist (7/8 seeds) but is exactly the consistent-but-tiny case the bar was built to reject; (ii) its SIGN IS INVERTED -- gain is LOWER with intact content than with none -- opposite to what 'correction needs an intact seed' predicts. SCOPE GUARD HONOURED: this does NOT overturn the attenuation finding (rem_generative_gain 0.149, attenuating 8/8 seeds), which STANDS and is recorded at every content scale (8/8 attenuating at 0.0, 0.5 and 1.0). Only the interpretive gloss in the sd_068 architecture doc's OPEN QUESTION box is retracted."
           }
         }
       ],
       "synthesis": null,
       "decision": {
         "decision_question": "Can the SD-068 harness's damage-tolerance staging order be read as functional damage tolerance at all, or only as noise sensitivity?",
-        "live_gate": "an /implement-substrate rebuild of sws_denoising_snr as a content-scored readout, plus the rem-leg H1/H2/H3 portfolio",
-        "decidable": false,
+        "live_gate": null,
+        "decidable": true,
         "decision_log_ref": null,
-        "distance_phrase": "One run spent (V3-EXQ-778c, n=8). Of three per-phase readouts, one eliminated as content-free (sws), one confirmed content-contingent (nrem), one unresolved by degeneracy (rem). The staging order cannot currently be read as functional damage tolerance.",
-        "observation_bottleneck": "Two of three per-phase readouts cannot express content-contingency: sws by construction (its content term differentiates out of a log-ratio), rem by clamp saturation at both rails. Only nrem is a working instrument."
-      }
+        "distance_phrase": "RESOLVED 6/6. Four runs spent (V3-EXQ-778c, then the 778d/778e/778f GOV-FANOUT-1 portfolio, n=8 seeds each). Of three per-phase readouts, ONE is a working content-contingent instrument (nrem); sws was eliminated as content-free by construction and then REBUILT and validated (V3-EXQ-778g); rem is now confirmed content-free across three design axes and is NOT a functional-damage instrument. The generative-gain pillar is content-free too. So the staging order CANNOT be read as functional damage tolerance -- it rests on two of three phases, with the third measuring noise magnitude.",
+        "observation_bottleneck": null
+      },
+      "fanout_growth_note": "No fan-out growth in this cycle: all four legs resolved here were already pre-registered (2026-07-18T07:23:18Z / 08:41:15Z), so initial_frozen_count stays 6 and no fanout_growth_events entry is required. The question converged WITHOUT needing a new portfolio -- the 778c fan-out enumerated a sufficient rival set first time."
     }
   ]
 }
