@@ -1,0 +1,299 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T18:09:53Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "session_id": "fervent-tereshkova-2f1c69",
+  "session_label": "MECH-063 777a/779a cluster autopsy",
+  "provenance": "Deferred by the 2026-07-18 /governance cycle (session governance-c4a10d, route B). Governance applied no evidence_direction and marked neither run reviewed. Both runs are the routed fixes of failure_autopsy_MECH-063-777-779-cluster_2026-07-18, whose four fixes (F1 sample-driven stopping, F2 D-saturation guard, F3 per-seed R5 authority gating, F4 seed pool 5->14) are all present and whose preconditions cleared.",
+  "companion_md": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.md",
+  "predecessor_autopsy": "failure_autopsy_MECH-063-777-779-cluster_2026-07-18.json",
+  "targets": [
+    {
+      "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+      "queue_id": "V3-EXQ-777a",
+      "claim_ids": ["MECH-063"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "control_axes_collinear_toward_one_scalar",
+      "manifest_evidence_direction": "weakens",
+      "failed_criterion": "discrimination",
+      "recording_always_core_complete": true,
+      "substrate_hash": "8348f89d81ec0be9ea14eb72863ac40218c4e3b3ce1cfbb3a3cf288ec44f65b5",
+      "machine_class": "linux-x86_64-py3.10",
+      "predecessor_fixes_verified": {
+        "F1_sample_driven_stopping": "WORKED -- all 56 cells reached 250 fresh E3 selections, every cell stopped_on floors_met, starved_cells is EMPTY. The 40x per-seed yield spread that defined V3-EXQ-777 is gone.",
+        "F2_D_saturation_guard": "APPLIED but does not repair -- it EXCLUDES saturated seeds rather than reducing saturation. 777 had ~4 of 5 seeds saturated (80%); 777a has 9 of 14 (64%, 7 ceiling + 2 floor). The rate is essentially unchanged, so the guard converts a false signal into a small sample.",
+        "F3_per_seed_authority_gating": "WORKED -- per-seed test replaced the mean-across-seeds aggregation; 9 of 14 seeds correctly reported authority_met false.",
+        "F4_pool_expansion_and_seed_bar": "PARTIALLY a threshold re-expression -- pool 5->14 is a real change, but C1_SEED_FRAC 0.75 of the informative pool lowered the effective bar from 4-of-5 to 3-of-4. c1_seed_count now PASSES (3 of 4, required 3) where it previously failed."
+      },
+      "why_the_self_route_label_is_wrong": {
+        "headline": "C1 did NOT fail on collinearity. mean_sin_angle 0.5454 EXCEEDS SIN_MARGIN 0.500, and 3 of 4 informative seeds clear the margin (c1_seed_count PASSED, 3 vs required 3). The ONLY failing bar is c1_robust.",
+        "recurrence": "This is the SECOND consecutive run whose headline orthogonality number exceeds its own margin while the self-route label asserts collinearity (777: 0.530 > 0.500; 777a: 0.545 > 0.500).",
+        "best_conditioned_seed": "Seed 17 -- the single genuinely mid-range seed (D_seed_mean 0.497) and the one with the strongest score-axis authority (norm_v_score 0.213) -- gives sin_angle 0.9883, i.e. near-perfect orthogonality. Where the instrument can see, it sees the claim, not its rival."
+      },
+      "c1_robust_is_not_sample_size_improvable": {
+        "definition": "experiments/v3_exq_777a_mech063_orthogonal_control_axes_dissociation.py:697 -- c1_robust = (mean_sin - sd_sin) > SIN_MARGIN",
+        "sd_source": "line 541 _pooled_std returns statistics.pstdev(vals) -- the POPULATION standard deviation of the seed-level sin_angle values, not a standard error",
+        "consequence": "pstdev does not shrink with n. The bar therefore cannot be met by adding seeds, and it conflates seed-to-seed biological/initialisation dispersion with measurement noise (the line comment reads 'effect exceeds its own noise').",
+        "observed": {"mean_sin_angle": 0.5453733747000418, "sd_sin_angle": 0.32280381117584833, "mean_minus_sd": 0.2226, "SIN_MARGIN": 0.5},
+        "even_if_repaired_to_standard_error": {
+          "n_4_actual": {"SE": 0.1614, "mean_minus_SE": 0.3840, "passes": false},
+          "n_14": {"SE": 0.0863, "mean_minus_SE": 0.4591, "passes": false},
+          "n_51": {"SE": 0.0452, "mean_minus_SE": 0.5002, "passes": true},
+          "informative_seeds_required": 50.6,
+          "observed_informative_yield": "4 of 14 = 28.6%",
+          "raw_seeds_implied": 177,
+          "wall_clock_implied_hours": 31,
+          "reading": "Repairing the criterion is necessary but NOT sufficient. At the observed effect size and dispersion the design needs ~51 informative seeds, which at a 28.6% informative yield means ~177 raw seeds and ~31 h. The binding constraint is the informative-seed YIELD, not the bar."
+        }
+      },
+      "yield_is_substrate_gated": {
+        "correlation": "corr(distance of D_action_mass_mean from saturation, norm_v_score) = 0.884 across all 14 seeds",
+        "reading": "The score axis's measurable authority is very largely DETERMINED by how far the action-value mass sits from its 0/1 bounds. Where D is pinned the score-bias lever has nothing to act on, so its effect vector collapses toward zero and the sin_angle between a large temperature vector and a near-zero score vector becomes numerically ill-conditioned.",
+        "supporting": {
+          "median_magnitude_asymmetry_vtemp_over_vscore": 8.1,
+          "regimes": {"ceiling": 7, "headroom": 5, "floor": 2},
+          "authority_met": {"true": 5, "false": 9},
+          "corr_vscore_sin_all14": 0.315,
+          "corr_vscore_sin_unsaturated_only": 0.028,
+          "note_on_corr": "Among seeds that ARE measurable the angle does not track score-axis magnitude (0.028), i.e. there is no systematic weak-axis-implies-collinear artifact WITHIN the informative pool. The 0.315 over all 14 is carried entirely by the saturated seeds, which is exactly why F2 excluding them was correct."
+        },
+        "why_this_is_substrate_and_not_sampling": "D_action_mass saturation is a property of an UNTRAINED agent's degenerate E3 action-value distribution -- either one action dominates (D -> 1) or values are flat (D -> 0). It is invariant to how long the cell is sampled: 777a gave every cell 250 clean selections and the saturation rate barely moved from 777's starved run. Sampling was the binding constraint in 777; it is demonstrably NOT the binding constraint in 777a."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- the claim was not placed in conditions where it could express itself on 9 of 14 seeds; on the 4 where it could, 3 cleared the orthogonality margin",
+        "biological_reference": "clear -- LC-NE tonic/phasic adaptive gain; the failure does NOT match a missing-dependency signature, it matches a dynamic-range floor on one measured axis",
+        "prerequisites": "present -- MECH-320 tonic_vigor and MECH-313 noise_floor both implemented and both confirmed live by all six preconditions",
+        "implementation": "complete -- both regulators exercised on the real production E3 select() path",
+        "environment": "wrong pressures -- an untrained agent in a hazard-terminating 8x8 env produces degenerate action-value distributions on ~64% of seeds",
+        "measurement": "under-instrumented -- c1_robust uses population SD where a standard error is intended, making the load-bearing bar unreachable at any n",
+        "integration": "coupled -- both axes route to the same E3 softmax by design",
+        "scale": "likely insufficient -- informative-seed yield 28.6% caps achievable power; ~51 informative seeds needed, 4 obtained"
+      },
+      "biological_reference": {
+        "closest_mechanism": "locus coeruleus-noradrenaline tonic vs phasic modes (Aston-Jones & Cohen adaptive gain theory); DA tonic/phasic (Grace) as a second instance of the class",
+        "dependencies": ["arousal/uncertainty baseline signal", "salience/event detector", "shared downstream gain target", "a non-degenerate action-value distribution for a gain term to act upon"],
+        "is_formal_import": false,
+        "divergence": "none identified -- MECH-063 is a biological translation from basal-ganglia / neuromodulator sources, not a Pearl/Shannon/optimal-control formalism, so the SD-003 failure mode does not apply",
+        "lit_status": "present",
+        "dependency_discovered": "A gain/bias regulator is only observable when the distribution it modulates has dynamic range. In brains that range is supplied by a trained, non-degenerate action-value landscape; in the probe it is absent because the agent is untrained. This is a genuine prerequisite discovered by the FAIL, not a falsification."
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_direction_change": true,
+      "direction_change_rationale": "Manifest carries auto-derived 'weakens'. This is the second artifact weakens that would have demoted MECH-063 on a criterion that failed on dispersion while the collinearity statistic cleared its own margin. Governance must overwrite it.",
+      "recommended_evidence_quality_note": "Adjudicated by failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18. Direction corrected from the auto-derived 'weakens' to non_contributory; the self-route control_axes_collinear_toward_one_scalar is contradicted by the run's own numbers for the second consecutive iteration. All six preconditions were MET and the sampling defect of V3-EXQ-777 is genuinely repaired (F1: every cell reached 250 fresh E3 selections, all stopped_on floors_met, zero starved cells). C1 nonetheless failed -- but NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds above margin, required 3). The sole failing bar is c1_robust, defined at script line 697 as (mean_sin - sd_sin) > SIN_MARGIN where sd_sin is statistics.pstdev across seeds (line 541) -- a POPULATION dispersion, not a standard error, so the bar cannot be met by adding seeds and conflates seed-to-seed variability with measurement noise. Repairing it to standard-error form is necessary but not sufficient: at the observed mean 0.545 and sd 0.323 the design needs ~51 informative seeds, and the observed informative yield is 4 of 14 (28.6%), implying ~177 raw seeds and ~31 h. The yield is substrate-gated, not sampling-gated: corr(distance of D_action_mass from saturation, norm_v_score) = 0.884, with 9 of 14 seeds saturated (7 ceiling, 2 floor) and a median v_temp/v_score magnitude asymmetry of 8.1x. Saturation is a property of an untrained agent's degenerate E3 action-value distribution and barely moved from V3-EXQ-777's starved run (80% of 5) despite every cell receiving 250 clean selections. Notably, within the informative pool the angle does NOT track score-axis magnitude (corr 0.028), and the single best-conditioned seed (17; D 0.497, norm_v_score 0.213) gives sin_angle 0.9883 -- near-perfect orthogonality. MECH-063 sub-claim (i) remains UNTESTED, and what evidence exists points toward the claim rather than its rival. The re-derive brake has FIRED for this lineage: route to /implement-substrate for a trained-enough probe substrate; a further instrument-only lettered iteration is REFUSED.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-PROBE-WARMUP",
+        "title": "Trained-enough agent substrate for read-only control-plane telemetry probes",
+        "implementation_hint": "The 2x2 read-only telemetry-probe family measures gain/bias regulators on the E3 softmax while running an UNTRAINED agent, whose action-value distribution is degenerate on ~64% of seeds (D_action_mass pinned at 0 or 1). A regulator that modulates a distribution is unobservable when that distribution has no dynamic range: corr(D-saturation-distance, norm_v_score) = 0.884, capping informative-seed yield at 28.6% and making the load-bearing criterion unreachable at feasible compute. Build a warmup/checkpoint stage that brings the agent to a non-degenerate action-value landscape (target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95)) before telemetry collection begins, and record the realised per-seed saturation distribution so the yield is auditable. This is training-regime substrate enrichment for the probe harness -- the same class as the V3-EXQ-603c precedent -- not a ree_core mechanism change.",
+        "unblocks_claims": ["MECH-063"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "priority_rationale": "One fresh failure record (V3-EXQ-777a) on a re-derive-brake-fired lineage; blocks the only route to testing MECH-063 sub-claim (i).",
+        "failure_record_entry": {
+          "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+          "experiment_type": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation",
+          "metric": "informative-seed yield 4 of 14 (28.6%); 9 of 14 seeds with D_action_mass_mean saturated at ceiling (7) or floor (2); corr(D-saturation-distance, norm_v_score) = 0.884",
+          "target": "majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95), i.e. informative yield sufficient to reach ~51 informative seeds at feasible compute"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-063 retains ZERO experimental entries after this adjudication: 2 literature supports (0.79, 0.81) from one 2005-era LC-NE / neuromodulator pull. The prior autopsy already withdrew 777's artifact weakens; this withdraws 777a's. No illusory support is manufactured -- the claim's own flags (lit_only_above_cap, low_exp_conf, synthetic_signals_only) already assert this posture. MECH-063 is UNTESTED, not supported and not weakened.",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_MECH-063-777-779-cluster_2026-07-18.json"],
+        "count_including_this": 2,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "SD-PROBE-WARMUP",
+        "scope": "777 lineage / MECH-063 sub-claim (i) ONLY -- the 779 lineage is explicitly exempt, see targets[1].re_derive_brake",
+        "refusal_statement": "A further lettered iteration of the orthogonal-control-axes probe against an untrained agent (a hypothetical V3-EXQ-777b) is REFUSED. The predecessor autopsy warned that 777a must fix the sampling model rather than nudge a threshold; F1/F3 were genuine fixes and did work, but the run still landed a third consecutive instrument-defect reading, and the quantified power analysis shows no instrument repair alone can reach the bar (~177 raw seeds / ~31 h). Build SD-PROBE-WARMUP first. A redesign testing a DIFFERENT mechanism under a new EXQ number remains permitted.",
+        "user_confirmed": "2026-07-18 interactive gate -- user selected 'Fire on 777 lineage, exempt 779'."
+      },
+      "fanout_recommendation": null,
+      "fanout_exempt_reason": "GOV-FANOUT-1 exempt: the bottleneck routes to a single unambiguous build (a trained-enough probe substrate), not to a discrimination among >=2 live hypotheses. The rival hypothesis H-collapse-one-scalar is not competing for the diagnosis here -- the run failed to observe, it did not observe collapse.",
+      "learning_extracted": [
+        "A robustness bar written as mean - pstdev > margin is not sample-size-improvable: population dispersion does not shrink with n. Where the intent is 'effect exceeds its own noise', the standard error is the correct denominator; conflating seed variability with measurement noise makes a load-bearing criterion structurally unreachable.",
+        "Excluding a degenerate sample is not the same as repairing it. F2's saturation guard correctly stopped saturated seeds contributing a false angle, but left the saturation RATE untouched, converting a false signal into an underpowered one -- the honest next question is why the rate is 64%, not how to filter it.",
+        "A gain/bias regulator is only measurable when the distribution it modulates has dynamic range. corr(D-saturation-distance, norm_v_score) = 0.884 is the quantitative statement of that prerequisite, and it is a genuine biological dependency (trained, non-degenerate action-value landscapes) discovered by the FAIL.",
+        "Quantify the power ceiling before authorising another iteration. Computing 'seeds required at observed effect and dispersion' (~51 informative, ~177 raw, ~31 h) is what converts 'the bar is too strict' into a decidable substrate-vs-instrument verdict, and it is cheap.",
+        "An auto-derived evidence_direction produced a second consecutive artifact 'weakens' on MECH-063 from a criterion that never tested collinearity. A self-route label that contradicts the run's own headline statistic twice is a signal about the labelling logic, not about the claim.",
+        "Distinguishing WITHIN-pool from ACROSS-pool correlation was decisive: corr(v_score, sin) is 0.315 over all 14 seeds but 0.028 within the informative pool, which is what rules out a weak-axis-implies-collinear artifact contaminating the surviving seeds."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_779a_mech063_tonic_phasic_dissociation_20260718T121351Z_v3",
+      "queue_id": "V3-EXQ-779a",
+      "claim_ids": ["MECH-063"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "sample_starvation_requeue",
+      "manifest_evidence_direction": "non_contributory",
+      "failed_criterion": "absolute",
+      "recording_always_core_complete": true,
+      "substrate_hash": "765ce9d24824fbdd26998d59fe5436bfebacf9e247ea8aba5f0ffa851b82e3a7",
+      "machine_class": "linux-x86_64-py3.10",
+      "headline_finding": {
+        "statement": "The load-bearing criterion PASSED. double_dissociation_C1_and_C2 = passed true, criteria_non_degenerate true, robust true, diss_seed_count 4 meeting min_seeds 4.",
+        "numbers": {"mean_dS_tonic": 0.26540843531841196, "sd_dS_tonic": 0.07218850051619204, "SUSTAINED_MARGIN": 0.05, "mean_dR_phasic": -0.04842247648493759, "sd_dR_phasic": 0.03732045146851734, "TRANSIENT_MARGIN": 0.02},
+        "why_still_FAIL": "readiness_met false -- the precondition phasic_fires_real_events measured 6 against a threshold of 10, aggregated as a MIN across cells and sourced entirely from seed 23 / arm T1P1."
+      },
+      "self_route_mismatch_adjudicated": {
+        "question_posed": "Is sample_starvation_requeue the right reading, or is SD-069 phasic_surprise_burst genuinely not firing (a capability question)?",
+        "verdict": "SAMPLING. The capability reading is RULED OUT. The manifest's own classification (preconditions[0].kind = 'sample', readiness_unmet_capability_kind = []) is correct.",
+        "evidence_capability_is_intact": [
+          "burst_level_max = 1.00 in EVERY PHASIC-ON cell, including both seed-23 cells (T0P1 and T1P1). SD-069 fires at full amplitude on the offending seed.",
+          "Firing RATE on seed 23 is 7.19 (T1P1) and 11.86 (T0P1) event ticks per 1000 env steps, which sits INSIDE the range spanned by other seeds -- seed 29 runs 8.75 and 9.58, i.e. LOWER than seed 23's T0P1. There is no rate anomaly on seed 23.",
+          "Seed 23 received 835 and 843 env steps against 2400 for every other cell. Scaling seed 29's rate to 835 steps predicts ~7.7 ticks; 6 were observed. The shortfall is fully explained by exposure."
+        ],
+        "root_cause": "The 120-EPISODE cap, not the 2400-step cap, is what bound seed 23. Seed 23 dies in ~7 steps per episode, so 120 episodes exhausted at 835 steps -- 35% of the exposure every other seed received, with stop_reason 'episode_cap' while all 15 other starved cells report 'step_cap'.",
+        "structural_reading": "F1 sample-driven stopping fixed the STOPPING RULE but left the CAP episode-denominated. The original V3-EXQ-777/779 defect -- an episode-denominated budget silently truncating fast-dying seeds -- therefore reappeared in a new location rather than being eliminated. The fix moved the bottleneck."
+      },
+      "why_the_withholding_is_correct": {
+        "statement": "Although the criterion passed, withholding it is the RIGHT call and the gate is not mis-scoped.",
+        "reason": "Seed 23 is one of the FOUR dissociating seeds (11, 23, 29, 37 dissociate; 17 fails C2) and carries the LARGEST phasic effect of any seed, dR_phasic = -0.10812811159965086, estimated on just 6 event ticks. Excluding seed 23 leaves 3 dissociating seeds against min_seeds 4, so the run would fail on seed count. The PASS therefore genuinely depends on the under-exposed cell, and the precondition correctly refused to bank it.",
+        "contrast_with_predecessor": "In V3-EXQ-779 the min-across-cells gate was criticised for letting a non-contributing dead cell veto a working run. Here the vetoing cell IS a contributor, and the strongest one -- so the same aggregation rule is doing legitimate work this time. Do not 'fix' the min-aggregation; fix the exposure."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact and NEARLY DEMONSTRATED -- the double dissociation held robustly on 4 seeds; only the reliability of the strongest contributor's estimate is in question",
+        "biological_reference": "clear -- SD-069 phasic_surprise_burst is the phasic complement to MECH-313 tonic noise_floor on the same E3 temperature readout; matches LC-NE tonic baseline vs phasic burst",
+        "prerequisites": "present -- SD-069 IMPLEMENTED, correctly wired, and firing at normal rate on every cell including the offending one (burst_level_max 1.0 throughout)",
+        "implementation": "complete",
+        "environment": "adequate for the mechanism, adverse for exposure -- the hazard-terminating env gives seed 23 ~7-step episodes, which the episode cap then converts into a 65% exposure deficit",
+        "measurement": "adequate -- the readiness gate correctly identified that the strongest contributor's estimate rests on 6 event ticks; the sample/capability kind classification introduced by this iteration worked exactly as designed",
+        "integration": "coupled -- tonic and phasic share the temperature readout by design",
+        "scale": "insufficient on one cell only -- 6 event ticks vs a 30-tick target, from a 120-episode cap binding at 835 of 2400 available steps"
+      },
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic baseline arousal vs phasic event-locked gain burst (Aston-Jones & Cohen adaptive gain theory)",
+        "dependencies": ["sustained arousal/uncertainty baseline", "sharp per-tick surprise/event detector", "shared softmax temperature target"],
+        "is_formal_import": false,
+        "divergence": "none identified; SD-069's instantaneous_pe source is a faithful sharp-event detector translation and is confirmed firing",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_direction_change": false,
+      "recommended_evidence_quality_note": "Adjudicated by failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18. Direction non_contributory is correct and unchanged, but the run is much closer to a result than the FAIL suggests: the load-bearing criterion double_dissociation_C1_and_C2 PASSED (criteria_non_degenerate true, robust true, diss_seed_count 4 = min_seeds 4; mean_dS_tonic +0.265 sd 0.072 against SUSTAINED_MARGIN 0.05, mean_dR_phasic -0.048 sd 0.037 against TRANSIENT_MARGIN 0.02). It was withheld solely because phasic_fires_real_events measured 6 against threshold 10 as a MIN across cells, sourced entirely from seed 23 / T1P1. The self-route sample_starvation_requeue is CORRECT and the capability reading is ruled out: burst_level_max is 1.00 in every PHASIC-ON cell including both seed-23 cells, and seed 23's firing rate (7.2-11.9 event ticks per 1000 env steps) sits inside the range other seeds span (seed 29: 8.8-9.6). Seed 23 received 835 env steps against 2400 for every other cell because it dies in ~7 steps per episode and the 120-EPISODE cap bound before the 2400-step cap -- it is the only cell reporting stop_reason 'episode_cap'; the other 15 starved cells report 'step_cap'. F1 sample-driven stopping fixed the stopping rule but left the cap episode-denominated, so the original episode-denominated starvation reappeared in a new location. The withholding is nonetheless correct: seed 23 is one of the four dissociating seeds and carries the largest phasic effect (dR_phasic -0.108) on only 6 event ticks, and excluding it leaves 3 dissociating seeds against min_seeds 4. Do not relax the min-across-cells aggregation, which is doing legitimate work here; step-denominate the cap. MECH-063 sub-claim (ii) is one exposure fix from adjudication.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "SD-069 is implemented, wired and firing at normal rate on every cell including the offending one. There is no substrate gap for sub-claim (ii). The fix is a single sampling-cap parameter in the experiment harness, routed via /queue-experiment."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "narrow_supports_note": "779a was already non_contributory in the index, so this adjudication does not change MECH-063's counts. See the 777a target for the narrow-supports consequence.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "count_including_this": 2,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "exempt": true,
+        "exempt_rationale": "The claim-level count reaches the threshold, but this lineage is NOT circling a substrate ceiling and the brake's purpose does not apply. 779a's load-bearing criterion PASSED non-degenerately and robustly; it is gated by a single cell's exposure, fixable by one parameter (step-denominate max_episodes_per_cell). Refusing V3-EXQ-779b would discard a nearly-complete result rather than prevent a re-derive loop. The brake exists to stop another letter circling the same ceiling; 779b is not that.",
+        "user_confirmed": "2026-07-18 interactive gate -- user selected 'Fire on 777 lineage, exempt 779'."
+      },
+      "fanout_recommendation": null,
+      "fanout_exempt_reason": "GOV-FANOUT-1 exempt: single unambiguous one-parameter fix, no discrimination among rival hypotheses.",
+      "learning_extracted": [
+        "Fixing a stopping RULE does not fix an episode-denominated CAP. F1 made sampling sample-driven but max_episodes_per_cell remained in episodes, so the identical starvation mechanism reappeared one layer down on the identical seed. When retiring a denomination bug, audit every budget in the file, not just the one that failed.",
+        "'stop_reason' is the diagnostic that separates the two starvation modes: 15 cells hit step_cap (genuinely long-running) while the single decisive cell hit episode_cap. Recording it per-cell is what made this a one-command diagnosis.",
+        "A rate check discriminates capability from exposure cheaply: normalising event ticks per 1000 env steps showed seed 23 firing at a rate INSIDE the range other seeds span, so the shortfall was exposure and not capability. Raw counts alone would have supported the opposite conclusion.",
+        "The sample-vs-capability precondition kind introduced by this iteration (readiness_unmet_sample_kind / readiness_unmet_capability_kind) worked as designed and is the reason the mislabelling of V3-EXQ-779 did not recur. Keep it in the probe template.",
+        "A min-across-cells gate is legitimate when the offending cell CONTRIBUTES to the criterion and pathological when it does not. The same aggregation rule was wrong in 779 and right in 779a -- the discriminating question is participation, not aggregation."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both runs inherit the same root -- per-seed heterogeneity in an untrained agent inside a hazard-terminating environment -- but it now expresses through two DIFFERENT channels, and the predecessor's fixes cleanly separated them. In 777a the channel is DYNAMIC RANGE (the score axis's dependent variable is saturated on 64% of seeds, capping informative yield at 28.6%); in 779a the channel is EXPOSURE (one fast-dying seed is truncated by an episode-denominated cap at 35% of the steps every other cell received).",
+    "is_independent_bugs": false,
+    "structural_property": "Seed-level heterogeneity in an untrained agent is the single upstream property. The predecessor autopsy diagnosed it as a SAMPLING defect and fixed sampling; sampling is now demonstrably repaired in 777a (250 selects on every cell, zero starved cells) and the saturation rate barely moved, which proves sampling was never the binding constraint for sub-claim (i). What the repair achieved was to SEPARATE the two channels so each could be diagnosed on its own terms -- which is why the two targets now route differently for the first time in this chain.",
+    "divergent_routing_is_the_finding": "This is the first iteration in the 777/779 chain where the two sub-claims do NOT share a diagnosis. Sub-claim (i) is substrate-ceiling'd and brake-fired; sub-claim (ii) passed its criterion and needs one parameter. Treating them as one undifferentiated cluster from here would hold a nearly-complete result hostage to a substrate build it does not need.",
+    "readings": ["substrate_enrichment", "test_design_ceiling"],
+    "reading_adjudication": {
+      "substrate_enrichment": "ACCEPTED for sub-claim (i) -- but as TRAINING-REGIME substrate (a non-degenerate action-value landscape for the regulator to act on), not as a ree_core mechanism gap. Both regulators under test are present and live.",
+      "test_design_ceiling": "ACCEPTED for sub-claim (i) as a SECONDARY, contributing defect (c1_robust's population-SD denominator), and REJECTED as the dominant reading because repairing it still leaves the design needing ~51 informative seeds at a 28.6% yield. ACCEPTED as the sole reading for sub-claim (ii), where it is a one-parameter cap denomination."
+    },
+    "shared_seed_pathology_table": {
+      "note": "seed 23 is the recurring pathological seed across all four runs in the chain",
+      "777": {"seed_23": "21 of 900 steps; D at floor 0.002-0.013"},
+      "779": {"seed_23": "21 steps; 19-step cell vetoed readiness"},
+      "777a": {"seed_23": "250 selects obtained (sampling fixed); D_seed_mean 0.0099, regime floor, authority_met false -- excluded from the informative pool"},
+      "779a": {"seed_23": "835 of 2400 steps via episode_cap; 6 event ticks; vetoed readiness AND carried the largest phasic effect"}
+    },
+    "planning_consequence": "Two separate builds, deliberately decoupled: (1) SD-PROBE-WARMUP -- a trained-enough agent substrate for the read-only telemetry-probe family, which is the only route to testing sub-claim (i) and is brake-enforced; (2) a one-parameter cap denomination fix in V3-EXQ-779b, which should NOT wait on (1). The shared experiments/_lib rollout helper proposed by the predecessor autopsy remains correct and should absorb both the step-denominated cap and the per-cell stop_reason recording that made this diagnosis cheap."
+  },
+  "claim_disposition": {
+    "claim_id": "MECH-063",
+    "current_status": "provisional",
+    "recommended_status": "provisional",
+    "demote": false,
+    "rationale": "The demotion threshold (tested fairly + biology supports the mechanism + still fails) is not met for either sub-claim. Sub-claim (i) was not tested -- 9 of 14 seeds could not express it, and on the 4 that could, 3 cleared the orthogonality margin with the best-conditioned seed at sin_angle 0.988. Sub-claim (ii) PASSED its load-bearing criterion robustly and was withheld only for the reliability of one contributor's estimate. Biological warrant remains strong (LC-NE tonic/phasic adaptive gain).",
+    "post_adjudication_evidence_state": "ZERO experimental entries. 2 literature supports (0.79, 0.81) from one 2005-era LC-NE / neuromodulator pull. The exp_conf contribution from 777's artifact weakens was already withdrawn by the predecessor autopsy; 777a's artifact weakens is withdrawn here.",
+    "retain_flags": ["lit_only_above_cap", "low_exp_conf", "synthetic_signals_only"],
+    "suggested_claim_note": "Sub-claims (i) and (ii) remain experimentally untested as of 2026-07-18, but for now-DIFFERENT reasons -- the first divergence in this chain. V3-EXQ-777a and V3-EXQ-779a were adjudicated by failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18. Sub-claim (i) (V3-EXQ-777a, non_contributory, substrate_ceiling): the predecessor's sampling fixes WORKED (every cell reached 250 fresh E3 selections, zero starved cells) and all six preconditions were met, yet C1 failed -- not on collinearity (mean_sin_angle 0.545 EXCEEDS the 0.500 margin and 3 of 4 informative seeds clear it) but on c1_robust, a bar defined as mean minus POPULATION SD and therefore unreachable at any n. Repairing it is insufficient: the design needs ~51 informative seeds at an observed 28.6% informative yield, and that yield is substrate-gated (corr(D-saturation-distance, norm_v_score) = 0.884; 9 of 14 seeds saturated) by an untrained agent's degenerate action-value distribution. The re-derive brake has FIRED for this lineage and refuses a further instrument-only iteration; route is /implement-substrate on SD-PROBE-WARMUP. Sub-claim (ii) (V3-EXQ-779a, non_contributory, measurement_test_design_defect): the double-dissociation criterion PASSED robustly on 4 seeds and was withheld only because seed 23 -- its largest contributor -- was truncated to 835 of 2400 env steps by an episode-denominated cap, yielding 6 event ticks. SD-069 fires at full amplitude and normal rate on that seed; capability is ruled out. Sub-claim (ii) is one exposure fix (V3-EXQ-779b) from adjudication and is NOT blocked on SD-PROBE-WARMUP. Biological warrant remains strong (LC-NE tonic/phasic adaptive gain); the claim is untested, not unsupported.",
+    "granularity_debt_recurrence_note": "GOV-GRAN-1 P1 unflagged_recurrence discrimination (2026-07-18, session fervent-tereshkova-2f1c69). The audit flagged MECH-063 with 2 hits across 2 distinct signatures (chain 777 -> 779), now a 4-run chain with 777a and 779a. VERDICT: NOT granularity debt -> COHERENT substrate-build campaign circling ONE buildable gap (cf. the 460e..i lineage the /failure-autopsy docstring cites as a correct 'NOT granularity debt' adjudication, and the MECH-180 worked example). All four failures share a SINGLE upstream signature -- per-seed heterogeneity in an untrained agent inside a hazard-terminating environment -- recurring in successively narrower locations rather than as structurally distinct mechanisms: episode-denominated BUDGET (777, 779) -> dependent-variable SATURATION capping informative yield (777a) -> episode-denominated CAP truncating one contributor (779a). Each iteration eliminated the previous location and exposed the next, which is progressive localization, not bundled mechanisms. Two further facts weigh against the coarse-claim reading: the two sub-claims are cleanly SEPARABLE and are visibly separating (in this cycle they took different epistemic categories, different routings and different brake dispositions for the first time), and neither sub-claim has produced a falsification that a finer child claim would have caught -- sub-claim (ii) in fact PASSED its load-bearing criterion. No /claim-synthesis handoff is recommended. Re-evaluate if a future iteration produces a failure signature that does NOT reduce to per-seed heterogeneity."
+  },
+  "granularity_debt_trigger": {
+    "fires": true,
+    "prior_autopsies_on_bears_on_target": ["failure_autopsy_MECH-063-777-779-cluster_2026-07-18.json"],
+    "routing": null,
+    "adjudicated": "NOT granularity debt -- coherent substrate-build campaign; see claim_disposition.granularity_debt_recurrence_note",
+    "user_confirmed": "2026-07-18 interactive gate -- user selected 'NOT granularity debt -- coherent campaign'.",
+    "note": "The trigger fires mechanically (this is the second autopsy on MECH-063) and is recorded as fired so the GOV-GRAN-1 standing scan can see it was adjudicated rather than dropped. The adjudication is NOT a /claim-synthesis handoff."
+  },
+  "work_graph_classification": {
+    "sub_claim_i": "complicated (buildable) -- SD-PROBE-WARMUP is a named build with no open question; the probe needs a non-degenerate action-value landscape and the target condition is stated quantitatively.",
+    "sub_claim_ii": "complicated (buildable) -- a single cap-denomination parameter change."
+  },
+  "recommended_followups": [
+    {
+      "type": "substrate_build",
+      "skill": "implement-substrate",
+      "sd_id_suggested": "SD-PROBE-WARMUP",
+      "priority_suggested": 1,
+      "blocks": "MECH-063 sub-claim (i) retest; brake-enforced",
+      "description": "Trained-enough agent substrate for the read-only control-plane telemetry-probe family. Target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95). Record the realised per-seed saturation distribution so informative yield is auditable."
+    },
+    {
+      "queue_id_suggested": "V3-EXQ-779b",
+      "type": "alphabetic_suffix_same_question",
+      "skill": "queue-experiment",
+      "not_blocked_by": "SD-PROBE-WARMUP",
+      "changes": [
+        "Step-denominate the per-cell cap: raise or remove max_episodes_per_cell (currently 120) so max_env_steps_per_cell (2400) is the binding constraint for every cell. Seed 23 exhausted 120 episodes at 835 steps because it dies in ~7 steps per episode, receiving 35% of the exposure every other cell received.",
+        "Keep the min-across-cells readiness aggregation UNCHANGED -- it did legitimate work here (the offending cell was the criterion's largest contributor). Do not relax it.",
+        "Keep the sample-vs-capability precondition kind classification; it is why the V3-EXQ-779 mislabelling did not recur.",
+        "Continue recording per-cell stop_reason -- it is what separated the one episode_cap cell from the 15 step_cap cells and made this a one-command diagnosis.",
+        "Expect adjudication on this run: the double dissociation already passed robustly on 4 seeds (mean_dS_tonic +0.265, mean_dR_phasic -0.048); the open question is only whether seed 23's dR_phasic (-0.108) survives adequate exposure."
+      ]
+    },
+    {
+      "type": "shared_lib_build",
+      "skill": "queue-experiment",
+      "path": "ree-v3/experiments/_lib/",
+      "description": "Sample-driven cell rollout helper, carried forward from the predecessor autopsy and now extended: budgets AND caps must both be denominated in the same unit as the gates that consume them (steps/selections, never episodes), and the helper must emit per-cell stop_reason plus realised step/episode/selection counts. The 779a episode-cap recurrence is the concrete case for the cap half of this."
+    },
+    {
+      "type": "probe_template_fix",
+      "skill": "queue-experiment",
+      "description": "Retire the mean-minus-population-SD robustness idiom from the telemetry-probe template. Where the intent is 'effect exceeds its own noise', use the standard error; where the intent is 'this holds on essentially every seed', state that as a seed-fraction bar (which c1_seed_count already does) rather than smuggling it into a dispersion test."
+    }
+  ],
+  "hypothesis_space_ledger": {
+    "applied": true,
+    "mode": "B_resolve_only",
+    "question": "control_plane_rank",
+    "growth": false,
+    "hypotheses_pre_registered": 0,
+    "hypotheses_resolved": 0,
+    "all_left_alive": true,
+    "reduction_this_cycle": "0 of 3 eliminated; four runs now spent on this question across two cycles, zero bits removed",
+    "observation_bottleneck": "sub-claim (i): informative-seed yield capped at 28.6% by action-value saturation in an untrained agent; sub-claim (ii): one contributing cell truncated to 35% exposure by an episode-denominated cap",
+    "note": "H-rank2-score-temp now records control_passed true and non_degenerate true for the first time (777a met all six preconditions) but stays alive because a non_contributory substrate-ceiling reading discriminates nothing. H-rank2-tonic-phasic stays alive with the significant update that its criterion PASSED and is withheld only on one contributor's exposure. H-collapse-one-scalar stays alive: both 777a and 779a produced evidence pointing AWAY from it, but neither cleared the elimination bar, so no bits may be claimed."
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-18T18:14:33Z",
+  "generated_at": "2026-07-18T18:15:48Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -831,9 +831,10 @@
           "axis": "representation",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-777"
+            "V3-EXQ-777",
+            "V3-EXQ-777a"
           ],
-          "basis": "777 narrowed nothing. Its self-routed collinearity label is an artifact: mean_sin_angle 0.530 EXCEEDS the 0.500 margin and C1 fell on seed-count (3/5 vs min 4) plus dispersion. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 and at floor on seed 23, so the axis had no headroom to express itself; the P0 authority gate passed only via a mean across seeds that masked two seeds individually below the effect floor. Control therefore NOT cleanly passed. Hypothesis stays alive pending V3-EXQ-777a.",
+          "basis": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -844,9 +845,10 @@
           "axis": "drive",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-779"
+            "V3-EXQ-779",
+            "V3-EXQ-779a"
           ],
-          "basis": "779 narrowed nothing and its readiness was unmet (non_degenerate false). The substrate was NOT the problem: SD-069 was correctly wired (signal_source instantaneous_pe) and fired in every PHASIC-ON cell (burst_level_max 1.0, 5-22 event ticks). The failed phasic_fires_real_events precondition (5 vs 10) is a min across cells sourced entirely from seed 23/T1P1, which ran 19 of 900 budgeted steps. Hypothesis stays alive pending V3-EXQ-779a.",
+          "basis": "779a came CLOSE to resolving this leg: the load-bearing double_dissociation_C1_and_C2 criterion PASSED (criteria_non_degenerate true, robust true, diss_seed_count 4 = min_seeds 4; mean_dS_tonic +0.265 sd 0.072, mean_dR_phasic -0.048 sd 0.037). It was withheld only because phasic_fires_real_events measured 6 vs threshold 10, a MIN across cells sourced entirely from seed 23 / T1P1. Capability is RULED OUT: burst_level_max is 1.00 in every PHASIC-ON cell including both seed-23 cells, and seed 23's firing rate (7.2-11.9 ticks per 1000 env steps) sits inside the range other seeds span (seed 29: 8.8-9.6). Seed 23 got 835 of 2400 env steps because it dies in ~7 steps per episode and the 120-EPISODE cap bound first -- the only cell with stop_reason episode_cap against 15 step_cap cells. The withholding is CORRECT: seed 23 is one of the four dissociating seeds and carries the largest phasic effect (-0.108) on 6 event ticks; excluding it leaves 3 < min_seeds 4. non_degenerate false, so the elimination bar is not met and the leg stays ALIVE -- but it is one exposure fix (V3-EXQ-779b) from adjudication.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -860,7 +862,7 @@
             "V3-EXQ-777a",
             "V3-EXQ-779a"
           ],
-          "basis": "The rival hypothesis remains untested. 777 appeared to support it but did so via a saturated dependent variable, not via a fair test; that apparent support is withdrawn by this autopsy.",
+          "basis": "Both adjudicating runs have now completed and BOTH produced evidence pointing AWAY from collapse -- 777a's mean_sin_angle 0.5454 exceeds the 0.500 non-collinearity margin with its best-conditioned seed at 0.9883, and 779a's double-dissociation criterion PASSED robustly on 4 seeds. NEITHER cleared the elimination bar, however: 777a is a substrate-ceiling non_contributory (informative yield 28.6%, criterion bar unreachable) and 779a is non_degenerate false (readiness unmet). No bits may be claimed against this rival. It stays ALIVE and remains untested; the apparent support 777 once lent it was withdrawn by the predecessor autopsy and nothing here revives it.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -869,9 +871,9 @@
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
         "decision_question": "Does the REE control plane retain >=2 independent control degrees of freedom, or is it effectively one scalar?",
-        "distance_phrase": "Two runs spent (777, 779), zero of three hypotheses eliminated. Both were sample-starved before they could discriminate; the space is unnarrowed.",
-        "live_gate": "V3-EXQ-777a and V3-EXQ-779a with sample-driven stopping, per-seed authority gating, and a saturation guard on the score axis's dependent variable",
-        "observation_bottleneck": "Sample starvation: the shared 2x2 telemetry-probe template denominates its budget in episodes while its gates are denominated in selections/event-ticks, and an untrained agent in a hazard-terminating env yields 2-100% of budget depending on seed (40x spread, reproduced across both runs)."
+        "distance_phrase": "Four runs spent (777, 779, 777a, 779a), zero of three hypotheses eliminated. The 777a/779a iteration repaired the sampling defect that stalled the first pair -- and in doing so SPLIT the bottleneck in two. Sub-claim (i) is now substrate-ceilinged (informative-seed yield 28.6%, capped by action-value saturation in an untrained agent; corr 0.884) and its re-derive brake has fired. Sub-claim (ii) PASSED its double-dissociation criterion robustly and is withheld only by one contributor's exposure -- it is a single cap parameter from adjudication. The space is still unnarrowed, but for the first time the two legs are separately actionable.",
+        "live_gate": "Sub-claim (i): SD-PROBE-WARMUP -- a trained-enough probe substrate giving D_action_mass dynamic range (brake-enforced; a further lettered iteration is refused). Sub-claim (ii): V3-EXQ-779b -- step-denominate max_episodes_per_cell so max_env_steps_per_cell binds for every cell; NOT blocked on SD-PROBE-WARMUP.",
+        "observation_bottleneck": "Split as of 2026-07-18. Sub-claim (i): DYNAMIC RANGE -- the score axis's dependent variable is saturated on 9 of 14 seeds (corr(D-saturation-distance, norm_v_score) = 0.884), a property of an untrained agent's degenerate action-value distribution that survived a fully repaired sampling model, capping informative yield at 28.6% against the ~51 informative seeds the criterion needs. Sub-claim (ii): EXPOSURE -- an episode-denominated cap (120 episodes) truncated the criterion's largest contributor to 835 of 2400 env steps. The predecessor's sample-starvation reading is SUPERSEDED: sampling was repaired and was demonstrably not the binding constraint."
       }
     },
     {
@@ -1455,9 +1457,10 @@
       "evidence_direction": "inconclusive"
     },
     {
-      "run": "V3-EXQ-779",
+      "run": "V3-EXQ-779a",
       "all_runs": [
-        "V3-EXQ-779"
+        "V3-EXQ-779",
+        "V3-EXQ-779a"
       ],
       "momentum_class": "control_repaired",
       "qid": "control_plane_rank",
@@ -1465,22 +1468,23 @@
         "MECH-063",
         "SD-069"
       ],
-      "moved": "779 narrowed nothing and its readiness was unmet (non_degenerate false). The substrate was NOT the problem: SD-069 was correctly wired (signal_source instantaneous_pe) and fired in every PHASIC-ON cell (burst_level_max 1.0, 5-22 event ticks). The failed phasic_fires_real_events precondition (5 vs 10) is a min across cells sourced entirely from seed 23/T1P1, which ran 19 of 900 budgeted steps. Hypothesis stays alive pending V3-EXQ-779a.",
+      "moved": "779a came CLOSE to resolving this leg: the load-bearing double_dissociation_C1_and_C2 criterion PASSED (criteria_non_degenerate true, robust true, diss_seed_count 4 = min_seeds 4; mean_dS_tonic +0.265 sd 0.072, mean_dR_phasic -0.048 sd 0.037). It was withheld only because phasic_fires_real_events measured 6 vs threshold 10, a MIN across cells sourced entirely from seed 23 / T1P1. Capability is RULED OUT: burst_level_max is 1.00 in every PHASIC-ON cell including both seed-23 cells, and seed 23's firing rate (7.2-11.9 ticks per 1000 env steps) sits inside the range other seeds span (seed 29: 8.8-9.6). Seed 23 got 835 of 2400 env steps because it dies in ~7 steps per episode and the 120-EPISODE cap bound first -- the only cell with stop_reason episode_cap against 15 step_cap cells. The withholding is CORRECT: seed 23 is one of the four dissociating seeds and carries the largest phasic effect (-0.108) on 6 event ticks; excluding it leaves 3 < min_seeds 4. non_degenerate false, so the elimination bar is not met and the leg stays ALIVE -- but it is one exposure fix (V3-EXQ-779b) from adjudication.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-777",
+      "run": "V3-EXQ-777a",
       "all_runs": [
-        "V3-EXQ-777"
+        "V3-EXQ-777",
+        "V3-EXQ-777a"
       ],
-      "momentum_class": "control_repaired",
+      "momentum_class": "hypothesis_narrowed",
       "qid": "control_plane_rank",
       "claims": [
         "MECH-063",
         "SD-069"
       ],
-      "moved": "777 narrowed nothing. Its self-routed collinearity label is an artifact: mean_sin_angle 0.530 EXCEEDS the 0.500 margin and C1 fell on seed-count (3/5 vs min 4) plus dispersion. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 and at floor on seed 23, so the axis had no headroom to express itself; the P0 authority gate passed only via a mean across seeds that masked two seeds individually below the effect floor. Control therefore NOT cleanly passed. Hypothesis stays alive pending V3-EXQ-777a.",
+      "moved": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     }
