@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-18T10:15:10Z",
+  "generated_at": "2026-07-18T10:22:21Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -129,10 +129,9 @@
           "note": "GOV-FANOUT-1 successor portfolio opened when the 770/771/772 cluster eliminated all three prior axes, leaving 'which competence-directed dependency' unresolved. Both legs alive; adjudicating runs V3-EXQ-780/781 queued 2026-07-18 (unresolved, so (a) holds trivially). Backfilled 2026-07-18 under the labelled_fanout_growth invariant."
         }
       ],
-      "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding -- but it also means the campaign has not converged: it is inventing new candidate explanations as fast as it rules old ones out. Report the ratio BOTH ways (see the labelled_fanout_growth invariant).",
+      "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
       "net_narrowing_ratio": 0.5714,
       "bits_removed_vs_registration": 1.22,
-      "not_converging": true,
       "convergence": {
         "convergence_class": "refining",
         "reason": "4 families closed out; the latest growth opened fresh territory. 1 earlier growth event partly re-entered an already-eliminated family, so this is refinement but not a clean sweep",
@@ -411,7 +410,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.25,
       "bits_removed_vs_registration": 0.42,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
         "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
@@ -515,7 +513,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.5,
       "bits_removed_vs_registration": 1.0,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
         "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
@@ -589,7 +586,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
@@ -662,7 +658,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
@@ -731,7 +726,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.5,
       "bits_removed_vs_registration": 1.0,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
         "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
@@ -810,7 +804,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "static",
         "reason": "no fan-out growth; nothing ruled out yet",
@@ -900,7 +893,6 @@
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.3333,
       "bits_removed_vs_registration": 0.58,
-      "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
         "reason": "no fan-out growth; eliminations in 1 family",

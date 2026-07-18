@@ -351,12 +351,14 @@ def _question_rollup(q: dict, families: dict = None) -> dict:
     # --- The honest pair (labelled fan-out growth) -------------------------
     # A question's denominator may legitimately grow when a GOV-FANOUT-1 portfolio
     # enumerates new rivals as earlier axes are eliminated (registry invariant
-    # `labelled_fanout_growth`). That growth inflates the headline reduction ratio
-    # precisely when the campaign is FAILING to converge -- the added legs are
-    # mostly eliminated straight away, so both numerator and denominator rise.
-    # So we report BOTH: the ratio against the current (fan-out-inclusive)
+    # `labelled_fanout_growth`). That growth inflates the headline reduction ratio --
+    # the added legs are often eliminated straight away, so numerator and denominator
+    # rise together. So we report BOTH: the ratio against the current (fan-out-inclusive)
     # denominator, AND the net narrowing against the registration-time denominator,
     # which is what actually answers "are we closer than when we started?".
+    # NOTE: an inflated ratio is NOT by itself evidence of failure. Whether the growth
+    # is refinement or flailing is a separate question, answered by the axis-family
+    # discriminator (`convergence`), not by the size of the denominator.
     at_reg = q.get("initial_frozen_count_at_registration")
     at_reg = int(at_reg) if at_reg is not None else initial
     fanout_added = max(0, initial - at_reg)
@@ -401,9 +403,12 @@ def _question_rollup(q: dict, families: dict = None) -> dict:
         "fanout_growth_note": q.get("fanout_growth_note"),
         "net_narrowing_ratio": round(net_narrowing_ratio, 4),
         "bits_removed_vs_registration": bits_removed_vs_registration,
-        # Superseded by `convergence` below -- kept for payload back-compat. This bare
-        # proxy CANNOT tell successive refinement from circling; read convergence_class.
-        "not_converging": bool(fanout_added > 0),
+        # The former `not_converging: fanout_added > 0` proxy is REMOVED, not kept for
+        # back-compat: on a `refining` question the two actively disagree (fanout_added
+        # > 0 said "not converging" while the discriminator says the opposite, which is
+        # the whole point of the discriminator). Shipping both would let a consumer pick
+        # the wrong one, and the only reader it ever had -- progress.html -- now renders
+        # off convergence_class. Read `convergence.convergence_class`.
         "convergence": axis_family_convergence(q, families or {}),
         "surviving": surviving,
         "alive": alive,
