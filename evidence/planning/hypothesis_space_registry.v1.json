@@ -1025,7 +1025,25 @@
           "axis": "measurement",
           "pre_registered_utc": "2026-07-18T08:41:15Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
-          "adjudicating_runs": [],
+          "adjudicating_runs": [
+            "V3-EXQ-778d"
+          ],
+          "probe_amendments": [
+            {
+              "amended_utc": "2026-07-18T09:56:12Z",
+              "amended_before_adjudicating_run": true,
+              "hypothesis_changed": false,
+              "retired_probe": "re-run the rem leg over a step ladder (0.1/0.25/0.5/1.0) and read whether the null arm leaves the 998.5 constant and the 1e-3 floor. Declared null: if the null arm stays railed at every step, this leg is refuted.",
+              "retired_reason": "PROVABLY INERT -- would have returned this leg's own declared null BY CONSTRUCTION. ree_core/predictors/e3_selector.py recalibrate_precision_to computes rv_after = (1-step)*rv_before + step*(1/(target+1e-6)), so (a) the max(1e-3, raw_target) positivity clamp is applied to corrupt_target UPSTREAM of step, making the clamp fraction and the null-series distinct-value count EXACTLY step-invariant, and (b) both arms' sigma-slopes carry the same linear factor step, which CANCELS in the reported ratio |null slope| / |injected slope|. Verified numerically over step in {0.1, 0.25, 0.5, 1.0}: ratio identical to 12 significant figures (14569.1833719598-...602, float round-off only), clamp fraction and distinct-value count bit-identical. A positivity-floor ladder fails for the same reason: the null arm's reference is centred on ZERO, so it clamps on ~half the draws at ANY floor value. Running it would have written a false elimination into the frozen ledger rather than a measurement.",
+              "replacement_probe": "UNPAIRED-TARGET null. ARM_NULL_UNPAIRED points the recalibration at an INDEPENDENT positive target of the same magnitude class (log-normal, positive by construction), unpaired with the clean target the error is scored against -- the faithful Bar et al. 2020 'same odour, NO PRIOR PAIRING' analog, versus the zero-content null which removes the pairing AND pushes the parameterisation off a cliff. ARM_NULL_ZERO (the 778c null) is retained as a replication anchor.",
+              "replacement_declared_null": "if ARM_NULL_UNPAIRED stays railed too -- still clamping, still constant -- this leg is REFUTED and the measurement axis is eliminated from the question.",
+              "detected_by": "pre-queue design audit of V3-EXQ-778d, before any compute was spent",
+              "implemented_in": "ree-v3/experiments/v3_exq_sd068_rem_unpaired_null_diagnostic.py",
+              "witness_commit": "ree-v3 18c4687 (main) -- 'SD-068 GOV-FANOUT-1: queue the 3-leg REM discrimination portfolio (V3-EXQ-778d/e/f)'",
+              "audit_note_source": "interpretation.probe_amended_pre_queue in the V3-EXQ-778d manifest",
+              "integrity_note": "The amendment precedes the adjudicating run: witness commit 18c4687 and this record both predate any V3-EXQ-778d result manifest, and resolved_utc is still null. pre_registered_utc (2026-07-18T08:41:15Z) is unchanged and the hid is unchanged, so the git-witnessed pre-registration check still resolves against the original fan-out commit. The hypothesis under adjudication is UNCHANGED (the degeneracy is an artifact of the measurement rather than a property of the readout); only the probe is."
+            }
+          ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -1036,7 +1054,7 @@
             "non_degenerate": null,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "Untested. Probe: re-run the rem leg over a step ladder (0.1/0.25/0.5/1.0) and read whether the null arm leaves the 998.5 constant and the 1e-3 floor. Declared null: if the null arm stays railed at every step, this leg is refuted."
+            "basis": "Untested. Probe (AMENDED 2026-07-18T09:56:12Z, pre-queue, before any compute -- see probe_amendments): UNPAIRED-TARGET null. Point the recalibration at an INDEPENDENT positive target of the same magnitude class (ARM_NULL_UNPAIRED), unpaired with the clean target the error is scored against -- the faithful Bar et al. 2020 'same odour, no prior pairing' analog -- and retain the 778c zero-content null (ARM_NULL_ZERO) as a replication anchor. Declared null: if ARM_NULL_UNPAIRED stays railed too -- still clamping, still constant -- this leg is REFUTED and the measurement axis is eliminated from the question. The ORIGINAL step-ladder probe was retired as PROVABLY INERT: the 1e-3 positivity clamp is applied upstream of step and step cancels in the reported slope ratio, so the ladder was exactly step-invariant to 12 significant figures and would have returned this leg's declared null BY CONSTRUCTION. Adjudicating run V3-EXQ-778d (ree-v3 18c4687)."
           }
         },
         {
