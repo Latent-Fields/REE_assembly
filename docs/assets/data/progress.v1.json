@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-18T07:11:23Z",
+  "generated_at": "2026-07-18T07:40:07Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,56 +31,56 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 12,
-      "total_initial": 24,
-      "total_initial_at_registration": 19,
+      "total_surviving": 15,
+      "total_initial": 27,
+      "total_initial_at_registration": 22,
       "total_fanout_added": 5,
       "total_resolved_out": 12,
-      "reduction_pct_vs_current": 50.0,
-      "net_narrowing_pct": 36.8,
-      "honest_pair_note": "12 alive against 19 originally enumerated, and against 24 including 5 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 6
+      "reduction_pct_vs_current": 44.4,
+      "net_narrowing_pct": 31.8,
+      "honest_pair_note": "15 alive against 22 originally enumerated, and against 27 including 5 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 7
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 2,
-      "open_questions": 6
+      "open_questions": 7
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 23,
+      "surviving": 26,
       "closure_pct": 77.5,
       "build_pct": 80.0
     },
     {
       "date": "2026-07-13",
-      "surviving": 21,
+      "surviving": 24,
       "closure_pct": 77.5,
       "build_pct": 80.0
     },
     {
       "date": "2026-07-15",
-      "surviving": 17,
+      "surviving": 20,
       "closure_pct": 77.5,
       "build_pct": 80.0
     },
     {
       "date": "2026-07-16",
-      "surviving": 16,
+      "surviving": 19,
       "closure_pct": 77.5,
       "build_pct": 80.0
     },
     {
       "date": "2026-07-17",
-      "surviving": 13,
+      "surviving": 16,
       "closure_pct": 77.5,
       "build_pct": 80.0
     },
     {
       "date": "2026-07-18",
-      "surviving": 12,
+      "surviving": 15,
       "closure_pct": 77.5,
       "build_pct": 80.0
     }
@@ -650,6 +650,82 @@
         "live_gate": null,
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "control_plane_rank",
+      "title": "Does the control plane carry two independent degrees of freedom, or collapse to one scalar?",
+      "short_title": "control-plane rank",
+      "claims": [
+        "MECH-063",
+        "SD-069"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "not_converging": false,
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-rank2-score-temp",
+          "label": "score-bias and temperature are independent axes",
+          "desc": "MECH-063 sub-claim (i): the MECH-320 tonic_vigor score-bias axis and the MECH-313 noise_floor temperature axis route to distinct E3 softmax parameters and produce non-collinear behavioural effect vectors (rank 2)",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-777"
+          ],
+          "basis": "777 narrowed nothing. Its self-routed collinearity label is an artifact: mean_sin_angle 0.530 EXCEEDS the 0.500 margin and C1 fell on seed-count (3/5 vs min 4) plus dispersion. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 and at floor on seed 23, so the axis had no headroom to express itself; the P0 authority gate passed only via a mean across seeds that masked two seeds individually below the effect floor. Control therefore NOT cleanly passed. Hypothesis stays alive pending V3-EXQ-777a.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-rank2-tonic-phasic",
+          "label": "tonic baseline and phasic transient are independent DOF on one readout",
+          "desc": "MECH-063 sub-claim (ii): the MECH-313 tonic noise_floor moves the sustained baseline entropy while the SD-069 phasic_surprise_burst moves an event-locked transient on the same E3 temperature readout, with cross-legs ~0 (double dissociation)",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-779"
+          ],
+          "basis": "779 narrowed nothing and its readiness was unmet (non_degenerate false). The substrate was NOT the problem: SD-069 was correctly wired (signal_source instantaneous_pe) and fired in every PHASIC-ON cell (burst_level_max 1.0, 5-22 event ticks). The failed phasic_fires_real_events precondition (5 vs 10) is a min across cells sourced entirely from seed 23/T1P1, which ran 19 of 900 budgeted steps. Hypothesis stays alive pending V3-EXQ-779a.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-collapse-one-scalar",
+          "label": "the control plane collapses to a single scalar",
+          "desc": "the rival reading: apparent tonic/phasic and score/temperature distinctions are reparameterisations of one underlying control scalar, so no genuine second degree of freedom exists",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-777a",
+            "V3-EXQ-779a"
+          ],
+          "basis": "The rival hypothesis remains untested. 777 appeared to support it but did so via a saturated dependent variable, not via a fair test; that apparent support is withdrawn by this autopsy.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does the REE control plane retain >=2 independent control degrees of freedom, or is it effectively one scalar?",
+        "distance_phrase": "Two runs spent (777, 779), zero of three hypotheses eliminated. Both were sample-starved before they could discriminate; the space is unnarrowed.",
+        "live_gate": "V3-EXQ-777a and V3-EXQ-779a with sample-driven stopping, per-seed authority gating, and a saturation guard on the score axis's dependent variable",
+        "observation_bottleneck": "Sample starvation: the shared 2x2 telemetry-probe template denominates its budget in episodes while its gates are denominated in selections/event-ticks, and an untrained agent in a hazard-terminating env yields 2-100% of budget depending on seed (40x spread, reproduced across both runs)."
+      }
     }
   ],
   "momentum": [
@@ -907,6 +983,36 @@
       "moved": "Composed build under test: competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination (substrate landed, proof pending).",
       "resolved_utc": null,
       "evidence_direction": "pending"
+    },
+    {
+      "run": "V3-EXQ-779",
+      "all_runs": [
+        "V3-EXQ-779"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "control_plane_rank",
+      "claims": [
+        "MECH-063",
+        "SD-069"
+      ],
+      "moved": "779 narrowed nothing and its readiness was unmet (non_degenerate false). The substrate was NOT the problem: SD-069 was correctly wired (signal_source instantaneous_pe) and fired in every PHASIC-ON cell (burst_level_max 1.0, 5-22 event ticks). The failed phasic_fires_real_events precondition (5 vs 10) is a min across cells sourced entirely from seed 23/T1P1, which ran 19 of 900 budgeted steps. Hypothesis stays alive pending V3-EXQ-779a.",
+      "resolved_utc": null,
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-777",
+      "all_runs": [
+        "V3-EXQ-777"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "control_plane_rank",
+      "claims": [
+        "MECH-063",
+        "SD-069"
+      ],
+      "moved": "777 narrowed nothing. Its self-routed collinearity label is an artifact: mean_sin_angle 0.530 EXCEEDS the 0.500 margin and C1 fell on seed-count (3/5 vs min 4) plus dispersion. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 and at floor on seed 23, so the axis had no headroom to express itself; the P0 authority gate passed only via a mean across seeds that masked two seeds individually below the effect floor. Control therefore NOT cleanly passed. Hypothesis stays alive pending V3-EXQ-777a.",
+      "resolved_utc": null,
+      "evidence_direction": "non_contributory"
     }
   ],
   "references": {

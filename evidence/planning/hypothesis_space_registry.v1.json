@@ -5,7 +5,7 @@
   "invariants": {
     "elimination_bar": "A hypothesis may carry resolution.state == 'eliminated' ONLY with an adjudicated weakens (or a confirmed fan-out discrimination), met_elimination_bar == true, control_passed == true, and non_degenerate == true (design rule 4). check_hypothesis_space_integrity.py enforces this.",
     "frozen_initial_set": "initial_frozen_count_at_registration is fixed at registration and NEVER changes. initial_frozen_count tracks the current enumerated set and may only exceed it via LABELLED fan-out growth (see labelled_fanout_growth). A hypothesis's pre_registered_utc must be <= the resolved_utc of its adjudicating run (pre-registration before the experiment, never retro-padding).",
-    "labelled_fanout_growth": "An EXISTING, already-adjudicated question's hypothesis set may legitimately grow when a GOV-FANOUT-1 discrimination portfolio enumerates new rival explanations as earlier axes are eliminated -- but ONLY when all three hold: (a) every new leg's pre_registered_utc precedes the resolved_utc of its adjudicating run (no leg is added after the evidence that adjudicates it is in); (b) the growth is recorded as a machine-readable entry in the question's fanout_growth_events[] naming the autopsy that opened the portfolio (fanout_source) and listing the added hids; (c) initial_frozen_count_at_registration is preserved separately so the reduction ratio can be reported BOTH ways. Growth satisfying (a)-(c) is ADVISORY (labelled fan-out), not a violation. Growth that is unaccounted, unlabelled, or retro-padded remains a REAL bucket-(b) violation. NOTE: a growing denominator is itself a scientific signal -- a campaign that keeps inventing new candidate explanations as it eliminates old ones is FAILING to converge. The dashboard must report surviving/original AND surviving/current so this stays visible rather than being laundered into an improved ratio.",
+    "labelled_fanout_growth": "An EXISTING, already-adjudicated question's hypothesis set may legitimately grow when a GOV-FANOUT-1 discrimination portfolio enumerates new rival explanations as earlier axes are eliminated -- but ONLY when all three hold: (a) STRICT FORM OF INVARIANT 3 -- growth is legitimate for legs whose adjudicating run has NOT yet resolved; a leg added after its own evidence is already in clears ONLY on GIT-WITNESSED provenance, i.e. its pre_registration_source artifact (or its own registry entry) was durably committed BEFORE the run resolved. The self-reported pre_registered_utc alone is NOT sufficient -- it is written after the fact and is trivially back-datable, so an audit reading only this file can never detect back-dating. The witness makes the honest case self-clearing with no human adjudication and the dishonest case detectable, because a commit date cannot be manufactured. Legs with no git history at all (uncommitted, wholesale rewrite, git unavailable) report as a quiet 'unverifiable' state -- not a violation, but not evidence either; (b) the growth is recorded as a machine-readable entry in the question's fanout_growth_events[] naming the autopsy that opened the portfolio (fanout_source) and listing the added hids; (c) initial_frozen_count_at_registration is preserved separately so the reduction ratio can be reported BOTH ways. Growth satisfying (a)-(c) is ADVISORY (labelled fan-out), not a violation. Growth that is unaccounted, unlabelled, or retro-padded remains a REAL bucket-(b) violation. NOTE: a growing denominator is itself a scientific signal -- a campaign that keeps inventing new candidate explanations as it eliminates old ones is FAILING to converge. The dashboard must report surviving/original AND surviving/current so this stays visible rather than being laundered into an improved ratio. DESIGN NOTE -- alarm fatigue is itself a Goodhart vector: a warn-only flag that recurs every cycle with a plausible narrative attached gets accepted by default (exactly what happened when 'benign per invariant 6' was cited for growth invariant 6 did not cover). Legitimate cases MUST self-clear on verifiable provenance so that a raised flag stays rare enough to be worth reading; silence-plus-a-narrative must fail where a git witness would pass.",
     "human_owns_decided": "decision.decided is set ONLY by a human via decision.decision_log_ref; the dashboard may say 'decidable_now', never 'decided', without it.",
     "non_contributory_unchanged": "A run whose evidence_direction is inconclusive/non_contributory and which does NOT discriminate a pre-registered leg leaves the tree counts untouched (it still appears in the momentum feed)."
   },
@@ -244,6 +244,7 @@
           "desc": "sustained (non-annealed) or approach-first intrinsic drive lifts competence past the floor",
           "axis": "drive",
           "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-769_2026-07-17.json",
           "adjudicating_runs": [
             "V3-EXQ-770"
           ],
@@ -268,6 +269,7 @@
           "desc": "a metabolic forage-to-survive env (survival requires foraging) removes the passive-survival optimum and lifts competence",
           "axis": "environment",
           "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-769_2026-07-17.json",
           "adjudicating_runs": [
             "V3-EXQ-771"
           ],
@@ -292,6 +294,7 @@
           "desc": "dense potential-based forage shaping (policy-invariant) removes the credit-assignment difficulty and lifts competence",
           "axis": "measurement",
           "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-769_2026-07-17.json",
           "adjudicating_runs": [
             "V3-EXQ-772"
           ],
@@ -316,6 +319,7 @@
           "desc": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or oracle)",
           "axis": "learning-signal",
           "pre_registered_utc": "2026-07-18T04:34:55Z",
+          "pre_registration_source": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
           "adjudicating_runs": [
             "V3-EXQ-780"
           ],
@@ -338,6 +342,7 @@
           "desc": "a sustained, demonstrator-free appetitive-approach drive toward resources, architecturally distinct from novelty-class drives (RND/SD-025) that self-attenuate via familiarity",
           "axis": "intrinsic-architecture",
           "pre_registered_utc": "2026-07-18T04:34:55Z",
+          "pre_registration_source": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
           "adjudicating_runs": [
             "V3-EXQ-781"
           ],

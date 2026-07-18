@@ -32,6 +32,7 @@ Usage (from REE_assembly/ root):
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -43,6 +44,9 @@ TIMESERIES = PLANNING_DIR / "hypothesis_space_timeseries.v1.jsonl"
 REPORT = PLANNING_DIR / "hypothesis_space_integrity.md"
 
 RESOLVED_OUT_STATES = {"eliminated", "split"}
+# Buckets that are REPORTED but never counted as flags: sanctioned labelled growth,
+# the quiet unverifiable-provenance state, and cleared git witnesses.
+ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed"}
 # An adjudicated basis for an elimination: a weakens, OR a confirmed-cluster
 # non_contributory discrimination that met the bar (design's own Dim-3 worked
 # example treats a sub-floor discrimination against passing reference bands as an
@@ -59,6 +63,112 @@ def _load_json(path: Path):
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return None
+
+
+# --------------------------------------------------------------------------
+# Git-witnessed pre-registration
+#
+# `pre_registered_utc` is SELF-REPORTED and written into the registry after the
+# fact, so invariant 2 (pre <= resolved) is trivially satisfiable by choosing a
+# convenient earlier timestamp -- no audit reading only the registry can detect
+# back-dating. The witness closes that: we ask git when the claim to have
+# pre-registered actually became durable, and compare THAT against the run it
+# adjudicates. The honest case self-clears (its autopsy artifact was committed
+# before the run resolved); the back-dated case cannot manufacture a commit.
+#
+# Design note (alarm fatigue is itself a Goodhart vector): a flag that recurs
+# every cycle with a plausible narrative attached gets accepted by default.
+# So legitimate provenance must self-clear WITHOUT human adjudication, and the
+# degenerate cases (no git history yet, wholesale file rewrite, git absent) are
+# reported as a quiet `unverifiable` state -- never as a violation.
+# --------------------------------------------------------------------------
+
+_GIT_CACHE: dict = {}
+
+
+def _git(args: list) -> str:
+    """Run a read-only git command in the repo. Returns '' on any failure --
+    git being unavailable must degrade to `unverifiable`, never to a flag."""
+    key = tuple(args)
+    if key in _GIT_CACHE:
+        return _GIT_CACHE[key]
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(REPO_ROOT)] + args,
+            capture_output=True, text=True, timeout=20,
+        )
+        val = out.stdout.strip() if out.returncode == 0 else ""
+    except Exception:
+        val = ""
+    _GIT_CACHE[key] = val
+    return val
+
+
+def _artifact_first_commit(rel_path: str) -> str:
+    """Earliest commit date (ISO-8601 Z, date part) that ADDED `rel_path`.
+    '' if the file has no git history (uncommitted / unknown / git absent)."""
+    if not rel_path:
+        return ""
+    for prefix in ("evidence/planning/", ""):
+        p = rel_path if rel_path.startswith(prefix) else prefix + rel_path
+        out = _git(["log", "--diff-filter=A", "--format=%cI", "--", p])
+        if out:
+            return out.splitlines()[-1].strip()[:10]
+    return ""
+
+
+def _registry_first_witness(hid: str) -> str:
+    """Earliest commit date that introduced `hid` into the registry file.
+    This is the fallback witness when a leg carries no pre_registration_source."""
+    if not hid:
+        return ""
+    out = _git(["log", "-S", hid, "--format=%cI", "--",
+                "evidence/planning/hypothesis_space_registry.v1.json"])
+    if not out:
+        return ""
+    return out.splitlines()[-1].strip()[:10]
+
+
+def witness_pre_registration(h: dict) -> tuple:
+    """Return (state, witness_date, detail) for one hypothesis.
+
+    state is one of:
+      'witnessed'    -- durable evidence of pre-registration predates the
+                        adjudicating run's resolution. Self-cleared, no flag.
+      'unwitnessed'  -- git history EXISTS and contradicts the claim: the
+                        earliest durable record post-dates the resolution and
+                        no pre_registration_source clears it. This is the
+                        detectable back-dating case -> a real flag.
+      'unverifiable' -- no git history to check (uncommitted leg, wholesale
+                        rewrite, git unavailable). Quiet; counted, not flagged.
+      'n/a'          -- the leg is unresolved, so there is nothing to back-date.
+    """
+    res = h.get("resolution") or {}
+    resolved = (res.get("resolved_utc") or "")[:10]
+    if not resolved:
+        # Invariant 3's strict form: a leg whose adjudicating run has NOT
+        # resolved cannot be retro-padded -- there is no evidence to have seen.
+        return ("n/a", "", "adjudicating run not resolved")
+
+    src = h.get("pre_registration_source")
+    if src:
+        art = _artifact_first_commit(src)
+        if art and art <= resolved:
+            return ("witnessed", art,
+                    f"`{src}` committed {art} <= resolution {resolved}")
+        if art:
+            return ("unwitnessed", art,
+                    f"`{src}` was committed {art}, AFTER resolution {resolved}")
+        # Named source has no git history -- fall through to the registry witness.
+
+    reg = _registry_first_witness(h.get("hid"))
+    if not reg:
+        return ("unverifiable", "", "no git history for this leg")
+    if reg <= resolved:
+        return ("witnessed", reg, f"entered the registry {reg} <= resolution {resolved}")
+    return ("unwitnessed", reg,
+            f"first durable record {reg} POST-DATES resolution {resolved}"
+            + ("" if src else " and the leg names no `pre_registration_source`"))
 
 
 def _load_timeseries(path: Path) -> list:
@@ -138,7 +248,12 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
                 "the growth record does not match the legs it claims to add."
             )
             continue
-        # (a) every added leg must exist and pre-date its own adjudicating run.
+        # (a) STRICT (Step 9b invariant 3): growth is legitimate only for legs whose
+        # adjudicating run has NOT resolved. A leg added after its own evidence is in
+        # may still clear -- but only on WITNESSED provenance (a pre_registration_source
+        # artifact, or a registry entry, durably committed before the run resolved).
+        # The self-reported pre_registered_utc alone is NOT sufficient: it is
+        # back-datable, which is what made this rule non-enforceable before.
         bad = []
         for hid in hids:
             h = by_hid.get(hid)
@@ -149,8 +264,24 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
             resolved = ((h.get("resolution") or {}).get("resolved_utc") or "")[:10]
             if not pre:
                 bad.append(f"{hid} (no pre_registered_utc)")
-            elif resolved and pre > resolved:
+                continue
+            if resolved and pre > resolved:
                 bad.append(f"{hid} (pre {pre} AFTER resolution {resolved})")
+                continue
+            state, wdate, detail = witness_pre_registration(h)
+            if state == "unwitnessed":
+                bad.append(
+                    f"{hid} (adjudicating run already RESOLVED when the leg was added; "
+                    f"{detail} -- self-reported pre_registered_utc {pre} is unwitnessed)"
+                )
+            elif state == "unverifiable":
+                flags["f_unverifiable"].append(
+                    f"`{qid}`/`{hid}`: pre-registration could not be checked against git "
+                    f"({detail}). Not a violation -- but it is also not evidence. Commit "
+                    "the leg (and name a `pre_registration_source`) so it self-clears."
+                )
+            elif state == "witnessed":
+                flags["g_witnessed"].append(f"`{qid}`/`{hid}`: {detail}")
         if bad:
             flags["b_enlargement"].append(
                 f"{label}: condition (a) unmet for {', '.join(bad)} -- a leg added "
@@ -193,7 +324,7 @@ def audit(registry: dict, timeseries: list) -> dict:
     advisory `e_labelled_growth` bucket (labelled fan-out; NOT a violation)."""
     flags = {"a_unbacked_drop": [], "b_enlargement": [],
              "c_confirmed_no_control": [], "d_bar_violation": [],
-             "e_labelled_growth": []}
+             "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the date the growth was
     # recorded -- lets the time-series check attribute a total_initial rise.
@@ -307,8 +438,10 @@ def audit(registry: dict, timeseries: list) -> dict:
 
 def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> str:
     # `e_labelled_growth` is ADVISORY -- it is reported, but never counted as a flag.
-    total = sum(len(v) for k, v in flags.items() if k != "e_labelled_growth")
+    total = sum(len(v) for k, v in flags.items() if k not in ADVISORY_BUCKETS)
     n_advisory = len(flags.get("e_labelled_growth") or [])
+    n_unverifiable = len(flags.get("f_unverifiable") or [])
+    n_witnessed = len(flags.get("g_witnessed") or [])
     L = []
     L.append("# Hypothesis-Space Integrity Audit (anti-Goodhart)")
     L.append("")
@@ -326,7 +459,9 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     n_q = len(registry.get("questions") or [])
     L.append(
         f"Audited **{n_q}** open question(s) across **{len(timeseries)}** time-series "
-        f"snapshot(s). **{total}** flag(s) raised, **{n_advisory}** advisory note(s)."
+        f"snapshot(s). **{total}** flag(s) raised, **{n_advisory}** advisory note(s), "
+        f"**{n_witnessed}** git-witnessed pre-registration(s), "
+        f"**{n_unverifiable}** unverifiable."
     )
     L.append("")
     sections = [
@@ -380,6 +515,42 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         for msg in adv:
             L.append(f"- {msg}")
     L.append("")
+
+    wit = flags.get("g_witnessed") or []
+    unv = flags.get("f_unverifiable") or []
+    L.append(f"## Pre-registration provenance ({len(wit)} witnessed, {len(unv)} unverifiable)")
+    L.append("")
+    L.append(
+        "_`pre_registered_utc` is SELF-REPORTED and written into the registry after the "
+        "fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- "
+        "no audit reading only the registry can detect that. A fan-out leg whose "
+        "adjudicating run had ALREADY RESOLVED when it was added therefore clears only on "
+        "**git-witnessed** provenance: its `pre_registration_source` artifact (or its own "
+        "registry entry) must have been durably committed before the run resolved. The "
+        "honest case self-clears with no human adjudication; a back-dated one cannot "
+        "manufacture a commit._"
+    )
+    L.append("")
+    if wit:
+        L.append("**Witnessed (cleared on evidence):**")
+        L.append("")
+        for msg in wit:
+            L.append(f"- {msg}")
+        L.append("")
+    if unv:
+        L.append(
+            "**Unverifiable (quiet -- not a violation, but not evidence either).** No git "
+            "history was available to check these (uncommitted leg, wholesale file rewrite, "
+            "or git unavailable). Commit the leg and name a `pre_registration_source` so it "
+            "self-clears next cycle:"
+        )
+        L.append("")
+        for msg in unv:
+            L.append(f"- {msg}")
+        L.append("")
+    if not wit and not unv:
+        L.append("_No fan-out leg required a provenance check this cycle._")
+        L.append("")
     L.append("---")
     L.append("")
     L.append(
@@ -424,6 +595,58 @@ def _self_test() -> int:
              {"hid": "f_new", "pre_registered_utc": "2026-07-03",
               "resolution": {"state": "alive"}},
          ]},
+        # WITNESSED late append: the leg was added AFTER its run resolved, but its
+        # pre_registration_source artifact was committed BEFORE -> self-clears.
+        {"qid": "fanout_witnessed_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-07-01T00:00:00Z",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-07-09T00:00:00Z",
+              "fanout_source": "failure_autopsy_witnessed_2026-07-03.json",
+              "added_hids": ["w_new"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "w1", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
+             {"hid": "w_new", "pre_registered_utc": "2026-07-03",
+              "pre_registration_source": "failure_autopsy_witnessed_2026-07-03.json",
+              "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}},
+         ]},
+        # BACK-DATED: claims pre_registered_utc 2026-07-03 but nothing durable exists
+        # until 2026-07-09, after the run resolved -> real (b) flag. This is the case
+        # the self-reported timestamp alone could never catch.
+        {"qid": "fanout_backdated_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-07-01T00:00:00Z",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-07-09T00:00:00Z",
+              "fanout_source": "failure_autopsy_backdated_2026-07-09.json",
+              "added_hids": ["bd_new"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "bd1", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
+             {"hid": "bd_new", "pre_registered_utc": "2026-07-03",
+              "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}},
+         ]},
+        # UNVERIFIABLE: resolved leg with no git history at all -> quiet, NOT a flag.
+        {"qid": "fanout_unverifiable_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-07-01T00:00:00Z",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-07-09T00:00:00Z",
+              "fanout_source": "failure_autopsy_nohistory_2026-07-09.json",
+              "added_hids": ["uv_new"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "uv1", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
+             {"hid": "uv_new", "pre_registered_utc": "2026-07-03",
+              "resolution": {"state": "eliminated", "resolved_utc": "2026-07-05",
+                             "evidence_direction": "weakens", "met_elimination_bar": True,
+                             "control_passed": True, "non_degenerate": True}},
+         ]},
         # UNLABELLED growth: no fanout_growth_events covering it -> real (b) flag.
         {"qid": "fanout_bad_q", "initial_frozen_count": 3,
          "initial_frozen_count_at_registration": 2,
@@ -449,13 +672,29 @@ def _self_test() -> int:
         {"date": "2026-07-02", "total_surviving": 3, "total_resolved_out": 0, "total_initial": 5},  # (a) unbacked drop
         {"date": "2026-07-03", "total_surviving": 3, "total_resolved_out": 0, "total_initial": 7},  # (b) init grew
     ]
-    flags = audit(reg, ts)
+    # Hermetic: stub the two git lookups so the self-test never shells out (and so
+    # it exercises the witness LOGIC rather than this repo's actual history).
+    global _artifact_first_commit, _registry_first_witness
+    _real_art, _real_reg = _artifact_first_commit, _registry_first_witness
+    _artifact_first_commit = lambda p: {
+        "failure_autopsy_witnessed_2026-07-03.json": "2026-07-03",   # before resolution
+        "failure_autopsy_backdated_2026-07-09.json": "2026-07-09",   # after resolution
+    }.get(p, "")                                                      # nohistory -> ''
+    _registry_first_witness = lambda hid: {
+        "bd_new": "2026-07-09",   # nothing durable until after the run resolved
+    }.get(hid, "")                # uv_new -> '' -> unverifiable
+    try:
+        flags = audit(reg, ts)
+    finally:
+        _artifact_first_commit, _registry_first_witness = _real_art, _real_reg
     checks = {
         "a_unbacked_drop": flags["a_unbacked_drop"],
         "b_enlargement": flags["b_enlargement"],
         "c_confirmed_no_control": flags["c_confirmed_no_control"],
         "d_bar_violation": flags["d_bar_violation"],
         "e_labelled_growth": flags["e_labelled_growth"],
+        "f_unverifiable": flags["f_unverifiable"],
+        "g_witnessed": flags["g_witnessed"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -478,6 +717,23 @@ def _self_test() -> int:
         failures.append("labelled_growth_not_advised")
     else:
         print("  ok   discrimination: labelled fan-out growth reported as advisory")
+
+    # Provenance discriminations -- the point of the git witness.
+    joined_f = " ".join(flags["f_unverifiable"])
+    joined_g = " ".join(flags["g_witnessed"])
+    for name, cond, msg in [
+        ("backdated_caught", "fanout_backdated_q" in joined_b,
+         "back-dated late append flagged as (b)"),
+        ("witnessed_cleared", "fanout_witnessed_q" not in joined_b and "w_new" in joined_g,
+         "witnessed late append self-cleared (not flagged, listed as witnessed)"),
+        ("unverifiable_quiet", "fanout_unverifiable_q" not in joined_b and "uv_new" in joined_f,
+         "no-git-history leg reported unverifiable, NOT flagged"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
     if failures:
         print(f"SELF-TEST FAILED: {failures}")
         return 1
@@ -497,13 +753,15 @@ def main() -> int:
     timeseries = _load_timeseries(TIMESERIES)
     flags = audit(registry, timeseries)
     REPORT.write_text(render_report(flags, registry, timeseries, now), encoding="utf-8")
-    total = sum(len(v) for k, v in flags.items() if k != "e_labelled_growth")
+    total = sum(len(v) for k, v in flags.items() if k not in ADVISORY_BUCKETS)
     print(f"Hypothesis-space integrity report written: {REPORT.relative_to(REPO_ROOT)}")
     print(f"  flags: a={len(flags['a_unbacked_drop'])} b={len(flags['b_enlargement'])} "
           f"c={len(flags['c_confirmed_no_control'])} d={len(flags['d_bar_violation'])} "
           f"(total={total}, advisory/non-blocking)")
     print(f"  labelled fan-out growth (advisory, not a flag): "
           f"{len(flags['e_labelled_growth'])} note(s)")
+    print(f"  pre-registration provenance: {len(flags['g_witnessed'])} git-witnessed, "
+          f"{len(flags['f_unverifiable'])} unverifiable")
     return 0
 
 
