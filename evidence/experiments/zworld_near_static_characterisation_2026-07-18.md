@@ -148,9 +148,57 @@ self-location survives largely intact (72-81% retained); the **resource-relative
 ones a world/goal evaluator actually needs — lose 41-44% of decodable variance. The loss is
 selective in the direction that matters for INV-088.
 
+### 3d. Prior art — this is a RECURRENCE, and (a) has two components this design cannot separate
+
+Two earlier records describe the same phenomenon and materially qualify the verdict below.
+
+**`failure_autopsy_zworld-integration-cluster_2026-06-06`** (`evidence/planning/`) already adjudicated
+a `substrate_ceiling`: *"z_world at world_dim=32 is a competent bulk dynamical predictor
+(world_forward_r2 0.72-0.94) but lacks event-selective / spatially-organized discriminative structure
+at the granularity downstream claims require."* Convergence across structurally different read paths
+(V3-EXQ-170/215 bare-RBF, V3-EXQ-177 full-stack) ruled out stack-composition interference and located
+the property as intrinsic to `z_world` at dim=32. Its **user-confirmed retest spec** is already on
+record: **world_dim=128 AND a behaviourally-balanced / exploratory policy (ARC-065 diversity active)**,
+re-measuring event selectivity + counterfactual attribution + fine-vs-coarse residue in one harness.
+
+**`substrate_queue.json:971`** (E2WorldForward, implemented 2026-06-06) records the matching
+precondition as an implementation note: *"P0 must train the z_world encoder (SD-009 + SD-018) before
+the forward model -- a random encoder gives a vacuous zero comparator (MECH-353 / V3-EXQ-642 lesson)"*,
+and `E2WorldForward` hard-asserts `world_dim >= 128` as a carry-forward guard from that autopsy.
+
+Both bear directly. The measurement here — and DREAMER-V3-P-008's — was taken at **world_dim=32 with
+an untrained encoder**, i.e. violating the recorded precondition *and* sitting inside the recorded
+ceiling. That reconciles an apparent contradiction: the 2026-06-06 autopsy found `world_forward_r2`
+0.72-0.94 (a competent bulk predictor) where DREAMER-V3-P-008 found `e2` never beating persistence.
+The difference is that the autopsy's encoder had been trained and the probe's had not.
+
+**Consequence for the verdict: within cause (a) there are two components, and this design does not
+separate them.**
+
+- **(a1) the encoder is untrained in this configuration** — new here, decisive (weight-delta 0/61).
+- **(a2) the world_dim=32 discriminative-granularity ceiling** — already established 2026-06-06 and
+  categorised `substrate_ceiling` / `pending_retest_after_substrate`.
+
+Every cell measured here is dim=32 AND untrained, so (a1) and (a2) are perfectly confounded in this
+data. The refutations of (b) and (c) are unaffected — they come from the rung and policy sweeps, which
+vary independently of both — but "cause (a)" below should be read as *(a1) and/or (a2)*, not as (a1)
+alone. Separating them needs the 2026-06-06 retest spec (dim=128, trained, behaviourally balanced),
+which already exists and should be used rather than a fresh design.
+
+**MECH-353 / V3-EXQ-642 is a third recurrence** of the same lesson (a random encoder yields a vacuous
+comparator). Counting the 2026-04-28 SD-016 finding at `substrate_queue.json:1415` — *"z_world
+produces near-identical queries (cosine 0.998 across batch)... none can synthesise cross-context
+variance that the encoder is not producing"* — this is at least the fourth independent arrival at
+under-differentiated `z_world` from four different directions. Note that the 2026-04-28 record posed
+an **env-richness gate** as the remedy (retest SD-016 only after demonstrating cross-context z_world
+separation, probe V3-EXQ-418h, SD-023 landmarks ON vs OFF). **The rung sweep in 3a is evidence against
+that remedy**: contrast did not move across the full four-rung richness ladder and was *highest* at the
+most impoverished rung. Env enrichment is the wrong lever for this particular quantity.
+
 ## 4. Verdict
 
-**Cause (a) ENCODER, decisively, with a specific named mechanism** — and the mechanism is stronger
+**Cause (a) ENCODER, decisively, with a specific named mechanism** — read as *(a1) untrained and/or
+(a2) the dim=32 ceiling*, which 3d explains this design cannot separate — and the mechanism is stronger
 than "under-differentiated by construction": in this configuration the world encoder is *never
 trained at all*. `z_world` is a frozen random projection whose contrast ratio (~0.094) is fixed at
 initialisation and provably invariant to everything the environment or the policy can vary.
@@ -199,7 +247,10 @@ Scope limits, stated plainly:
    encoder moved. The correct generalisation is: *this* measurement, and DREAMER-V3-P-008's, were
    taken on a frozen random projection.
 2. **740a's 0.245 remains low in absolute terms**, and the trained-encoder ceiling is NOT measured
-   here. Whether training lifts the contrast ratio is unmeasured and is the obvious next probe.
+   here. Whether training lifts the contrast ratio is unmeasured. The next probe is **not** a fresh
+   design: the 2026-06-06 cluster autopsy's user-confirmed retest spec (world_dim=128 + trained
+   encoder + ARC-065 behavioural diversity) already covers it and would separate (a1) from (a2).
+2b. **(a1) and (a2) are perfectly confounded here** — every cell is dim=32 and untrained. See 3d.
 3. **The raw channel's own contrast ratio is also flat** across rungs and competence (0.579-0.696).
    So on the contrast statistic the (b)/(c) axes had limited upstream variation to propagate, and
    the flatness of `z_world` CR is on its own weaker evidence than it looks. The discrimination
