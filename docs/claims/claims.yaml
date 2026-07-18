@@ -49587,6 +49587,70 @@
     not substrate_ceiling). Predecessor V3-EXQ-778b (n=2) is marked superseded.
     Full diagnosis: evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
 
+    [PARTIALLY RE-WIDENED 2026-07-18 -- V3-EXQ-778g, PASS/supports, DIAGNOSTIC so
+    again no status or confidence change. This amendment supersedes exactly two spans
+    of the 778c text above: the clause "and NOT by the sws leg" in DISPOSITION, and
+    the NARROW-SUPPORTS FLAG paragraph. Everything else above STANDS, and V3-EXQ-778c
+    is NOT superseded -- its finding is about the RETIRED readout and is what motivated
+    the repair; 778g validates a DIFFERENT instrument.]
+    GROUND FOR RE-ADMISSION. The sws leg was excluded on one stated ground and one
+    only: its readout was content-free by construction. That ground is now discharged.
+    sws_denoising_snr was replaced by _sws_pattern_completion (cosine retrieval margin
+    of the post-SHY store against the injected prototypes, probed with the UNSCALED
+    base; ree-v3 origin/main 8b18338, experiment-layer, zero ree_core change), and
+    V3-EXQ-778g (run_id
+    v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3, 8 seeds,
+    ree-cloud-2) clears the SAME load-bearing C1 criterion at the SAME 0.25 ceiling
+    that admitted the nrem leg: null_slope_ratio_sws mean 0.1495 (sd 0.0218, CI95
+    [0.1344, 0.1646]), ceiling_inside_ci95 FALSE, 8/8 seeds, against the retired
+    readout's analytic 1.0000 (sd 2.7e-8). Pre-registered C3 (content-scale ladder,
+    slope spread 0.1108 > the 0.01 floor) additionally discharges the caveat that the
+    replacement is cosine-based and hence scale-invariant, so its null arm is flat in
+    sigma partly BY CONSTRUCTION -- the result does not rest on the null ratio alone.
+    Symmetry of criterion is the point: re-admitting sws on a weaker test than the one
+    that excluded it would be motivated reasoning, and that is not what happened here.
+    AMENDED CONTRACT. SD-068's non-vacuity is henceforth carried by TWO confirmed
+    content-contingent per-phase readouts -- the nrem injected-content leg AND the
+    rebuilt sws pattern-completion leg -- plus the REM passthrough-vs-generative
+    contrast.
+    STILL EXCLUDED, EXPLICITLY -- the reverse-dependency STAGING ORDER. 778g gates on
+    gated_phase sws ALONE; nrem and rem were measured and reported as CONTEXT ONLY,
+    deliberately not gated, because the rem leg is degenerate at both clamp rails and
+    gating all three would FAIL regardless of whether the sws repair worked. What is
+    validated is therefore the sws INSTRUMENT's content-contingency, not any staging
+    result. Staging order is a CROSS-phase ranking and cannot be supported while one
+    of the three ranked legs (rem) has no interpretable readout, and in any case no run
+    has yet re-measured the staging order using the repaired instrument. So the
+    retraction above holds: the architecture doc's "Diagnostic results" remain
+    RETRACTED as staging evidence and the reverse-dependency staging order remains
+    UNSUPPORTED. One phrase in that retraction is now stale and is corrected here --
+    it read "no leg ... is currently supported by a validated instrument", which after
+    778g is false as written (sws now has a validated instrument); the correct
+    statement is that no leg's staging POSITION has been established, two of three
+    legs now have validated content-contingent instruments, and the third (rem) does
+    not.
+    NARROW-SUPPORTS FLAG -- STILL RAISED, on narrower ground. The original wording
+    ("resting on a SINGLE confirmed content-contingent readout") is superseded: there
+    are now two. But the flag is NOT cleared, for two reasons that 778g does not
+    touch. (i) The REM generative-gain contrast, which is the third pillar of the
+    amended contract, has its own content-dependence unresolved -- the null arm's
+    rem_generative_gain ~0.182-0.209 sits close to the injected arm's ~0.165-0.190 at
+    content_scale 0.0, outside the scored criteria, registered as
+    H-gen-gain-content-free and owned by the GOV-FANOUT-1 rem-leg portfolio
+    V3-EXQ-778d/e/f (all still queued as of 2026-07-18). (ii) The staging order, which
+    the claim title names as a non-vacuity carrier, remains unsupported per the
+    paragraph above. Do not read this re-widening as leaving SD-068 comfortably
+    supported; it restores one readout to the contract, nothing more.
+    SCOPE OF THIS AMENDMENT. Wording and scope only. Both 778c and 778g are
+    experiment_purpose=diagnostic and neither weights governance confidence, so no
+    confidence, status, promotion or demotion change follows -- SD-068 remains status
+    candidate, implementation_phase v3. The MECH-121 hold (hold_pending_v3_substrate)
+    remains RESPECTED: 778g deliberately does not tag MECH-121, and its
+    evidence_direction_per_claim is supports for SD-068 and unknown for MECH-168 /
+    INV-047 / MECH-169, so no downstream fold-note is amended by this. The claim title
+    is left unchanged: it states the ORIGINAL design-time contract, and this note is
+    the live carrier of scope.
+
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
   claim_type: design_decision
