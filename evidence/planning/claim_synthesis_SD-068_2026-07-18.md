@@ -308,21 +308,58 @@ Interactive gate, 2026-07-18, session `gracious-bassi-721580`.
 | SD-068 fate | **Umbrella + AMEND TITLE** — narrow to the harness design decision; strike the staging-order non-vacuity carrier from the title |
 | Registration timing | **DEFERRED** — wait for the `jovial-joliot-9f904b` duplicate-key dedup pass to land before touching `claims.yaml` |
 
-**Registration checklist for the follow-on session** (nothing below has been done):
+**Registration checklist** — **DISCHARGED 2026-07-18** (session `loving-mccarthy-9c997c`).
 
-1. Confirm `jovial-joliot-9f904b` is closed and its dedup landed on `origin/master`.
-2. Take a `TASK_CLAIMS` claim covering `docs/claims/claims.yaml`,
-   `docs/assets/data/claims.json`, and this file.
-3. Re-check max ids (`SD-*`, `MECH-*`) in the file **and** recent `git log` — the
-   provisional ids here were free at 2026-07-18T18:19Z only.
-4. Register all four children as `status: candidate`, each with `what_would_answer`,
-   `depends_on`, `epistemic_category` and a `location` architecture-doc stub, per §5.
-   Re-read the insertion region immediately before editing.
-5. Amend the SD-068 title (strike staging order as a non-vacuity carrier) and wire the
-   umbrella `depends_on` relationships.
-6. `python scripts/build_claims_json.py` — confirm the four children appear and the stance
-   tally moved.
-7. Commit via `scripts/ree_commit.py`, verify with `git show --stat HEAD`, push `HEAD:master`.
+1. ✅ `jovial-joliot-9f904b` closed; its duplicate-key dedup landed `b8492a7180`, confirmed
+   an ancestor of `origin/master` before any edit here.
+2. ✅ `TASK_CLAIMS` claim taken covering `docs/claims/claims.yaml`,
+   `docs/assets/data/claims.json` and this file.
+3. ✅ Ids re-checked at write time (2026-07-18T18:32Z) against both the working file **and**
+   `origin/master`, plus `git log` for concurrent allocations. Max was `SD-070` /
+   `MECH-461` in both — **all four provisional ids were still free and were allocated as
+   proposed**: `MECH-462`, `SD-071`, `SD-072`, `SD-073`.
+4. ✅ All four registered `status: candidate`, each with `what_would_answer`, `depends_on`,
+   `epistemic_category` and `location: docs/architecture/sd_068_consolidation_lesion_harness.md`.
+5. ✅ SD-068 title amended (staging order struck as a non-vacuity carrier; non-vacuity now
+   carried by SD-071). Umbrella relationships wired as child→parent `depends_on` edges;
+   the umbrella deliberately does **not** `depends_on` its children, which would be circular.
+   SD-068's `evidence_quality_note` carries a `[DECOMPOSED 2026-07-18 ...]` block naming all
+   four children, and corrects its own now-stale closing sentence ("The claim title is left
+   unchanged"), which the title amendment falsified.
+6. ✅ `build_claims_json.py`: 894 → **898** claims; `epistemic_stance` believed 751 → **755**
+   (shown 73 and asked 70 unchanged — all four register as `believed`, consistent with
+   `status: candidate` and no supporting non-diagnostic run). `validate_claims.py` 0 errors,
+   1 pre-existing unrelated warning (INV-089). A structural diff of `claims.json` against
+   `HEAD` confirmed **exactly** 4 added + `SD-068` changed, nothing else — no foreign
+   read-modify-write contamination.
+7. ✅ Committed via `scripts/ree_commit.py` (**not** a pathspec commit — the tree carried
+   other sessions' dirty index-rebuild files). Landed **`e219e83d60`** on `REE_assembly`
+   `master`, pushed to `origin/master`.
+
+**One forced deviation from §5.** Two proposed `epistemic_category` values do not exist in
+the schema: `validate_claims.py` `VALID_EPISTEMIC_CATEGORIES` admits only `standard`,
+`substrate_coherence`, `answer_state`, `substrate_ceiling`, `substrate_conditional`,
+`derivational`, `out_of_domain`, `governance_rule`. An invalid explicit value blocks
+`governance.sh --strict`, so the proposal's `measurement_gap` and `measurement_validated`
+could not be used as written. Extending a validated enum is a schema change beyond a
+registration mandate, so they were mapped rather than added:
+
+| Child | §5 proposed | Registered | Why |
+|-------|-------------|-----------|-----|
+| `MECH-462` | `measurement_gap` | `substrate_conditional` | its discriminating test is gated on SD-072's unbuilt downstream readout |
+| `SD-071` | `measurement_validated` | `standard` | remaining condition is an ordinary **non-diagnostic run**, not a substrate block — `substrate_conditional` would have wrongly suppressed it from the promotion queue and the IGW |
+| `SD-072` | `substrate_conditional` | `substrate_conditional` | valid as proposed |
+| `SD-073` | `substrate_conditional` | `substrate_conditional` | valid as proposed |
+
+The deviation is recorded in each affected claim's own `evidence_quality_note` as well, so
+it is visible from the registry without reading this doc. If `measurement_gap` /
+`measurement_validated` are wanted as first-class categories, that is a separate governance
+change to `VALID_EPISTEMIC_CATEGORIES` plus the indexer's `_resolve_epistemic_category()`.
+
+**Still owed, and NOT discharged here** (unchanged from §6 item 3): the REM cluster autopsy's
+`recommended_evidence_quality_note_SD_068` has still not been folded into SD-068's
+`evidence_quality_note`. The `[DECOMPOSED ...]` block added by this session flags it
+explicitly so it is not lost.
 
 No status, confidence, promotion or demotion change is authorised by this approval — all
 supporting runs are `experiment_purpose: diagnostic`. The MECH-121 hold stays RESPECTED.
