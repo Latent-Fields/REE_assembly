@@ -1,0 +1,233 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_783_zworld_granularity_training_crossing",
+  "run_id": "v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-18T11:23:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-002",
+    "SD-031"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "Q-002": "unknown",
+    "SD-031": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mixed_partial_separation",
+    "preconditions": [
+      {
+        "name": "raw_channel_contrast_ratio_non_degenerate",
+        "description": "The raw world_state channel's own contrast ratio (the SAME spread-relative statistic the load-bearing CR criterion routes on) must clear the floor on the positive control, else there is no upstream variation for the encoder to transmit and the whole measurement is starved rather than informative.",
+        "control": "raw world_state observations the encoder consumes, min across all cells",
+        "measured": 0.8138011886968888,
+        "threshold": 0.2,
+        "met": true
+      },
+      {
+        "name": "trained_arm_encoder_weights_actually_moved",
+        "description": "Every encoder_training arm must show >=1 changed world-path tensor across P0. This is the exact check that produced 'world-path CHANGED: NONE' (0/61) on the x734 configuration; if it fails here the manipulation did not take and no (a1)/(a2) conclusion is licensed.",
+        "control": "world-path latent_stack tensors, min across all TRAINED cells",
+        "measured": 7,
+        "threshold": 1,
+        "met": true
+      },
+      {
+        "name": "p1_encoder_frozen",
+        "description": "P1 trains E2WorldForward on stop-gradient z_world targets and must not move the encoder. A non-zero count means the phase separation leaked.",
+        "control": "world-path tensors changed during P1, max across all cells",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "trained_arm_representation_not_collapsed",
+        "description": "Each TRAINED arm must retain >= 50% of its dim-matched UNTRAINED arm's z_world participation ratio AND clear an absolute PR floor of 2.0. The prescribed P0 (SD-009 + SD-018) was measured at authoring time to collapse z_world to PR ~1.1 from an untrained PR ~9.7, driven by a ~95% class-0-saturated SD-009 CE label. A collapsed manifold has no discriminative geometry, so its low contrast ratio reflects the training recipe destroying the representation -- NOT the dim=32 granularity ceiling. Below floor: substrate_not_ready_requeue, never a verdict.",
+        "control": "dim-matched UNTRAINED arm's mean z_world participation ratio",
+        "measured": 0.5767661982480816,
+        "threshold": 0.5,
+        "met": true,
+        "detail": {
+          "D32_TRAINED": {
+            "trained_pr": 4.47387283427493,
+            "untrained_pr": 6.803258296957814,
+            "retained_fraction": 0.6576073756122848,
+            "absolute_ok": true
+          },
+          "D128_TRAINED": {
+            "trained_pr": 5.260901322960018,
+            "untrained_pr": 9.12137593870779,
+            "retained_fraction": 0.5767661982480816,
+            "absolute_ok": true
+          }
+        },
+        "min_trained_pr_absolute": 4.47387283427493,
+        "absolute_threshold": 2.0
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_cr_crossing": true,
+      "C2_event_selectivity": false,
+      "C3_residue_fine_coarse": true,
+      "C4_attribution_dim128_only": true
+    },
+    "criteria": [
+      {
+        "name": "C1_cr_crossing",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_event_selectivity",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_residue_fine_coarse",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C4_attribution_dim128_only",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "axis_deltas": {
+      "training_at_dim32": {
+        "mean_delta": 0.08141261764129114,
+        "sd_delta": 0.03170562541623815,
+        "per_seed_deltas": [
+          0.03175283851321348,
+          0.11032841715294674,
+          0.08369077210284678,
+          0.1204916568712667,
+          0.07761127546417335,
+          0.08882207896771688,
+          0.09962901444468378,
+          0.03897488761348142
+        ],
+        "n": 8,
+        "clears": true
+      },
+      "training_at_dim128": {
+        "mean_delta": 0.10741545380484878,
+        "sd_delta": 0.023171496388075415,
+        "per_seed_deltas": [
+          0.06405513460532714,
+          0.13221841116460817,
+          0.1059533115001424,
+          0.08794972356710727,
+          0.1334451798159145,
+          0.1038759368973558,
+          0.11103541751588299,
+          0.12079051537245195
+        ],
+        "n": 8,
+        "clears": true
+      },
+      "dim_at_untrained": {
+        "mean_delta": -0.0032049822866647582,
+        "sd_delta": 0.012367748231623888,
+        "per_seed_deltas": [
+          -0.009284977716131959,
+          0.014639675788045467,
+          -0.0039826226833365175,
+          -0.005095874029394806,
+          0.009125657170196588,
+          -0.0146843496620227,
+          -0.02192375647901669,
+          0.005566389318342552
+        ],
+        "n": 8,
+        "clears": false
+      },
+      "dim_at_trained": {
+        "mean_delta": 0.022797853876892878,
+        "sd_delta": 0.04039651556118192,
+        "per_seed_deltas": [
+          0.0230173183759817,
+          0.0365296697997069,
+          0.018279916713959093,
+          -0.037637807333554235,
+          0.06495956152193774,
+          0.00036950826761622535,
+          -0.010517353407817481,
+          0.08738201707731308
+        ],
+        "n": 8,
+        "clears": false
+      },
+      "conjunctive_D128T_vs_D32U": {
+        "mean_delta": 0.10421047151818402,
+        "sd_delta": 0.031937011323586444,
+        "per_seed_deltas": [
+          0.054770156889195176,
+          0.14685808695265362,
+          0.10197068881680588,
+          0.08285384953771247,
+          0.1425708369861111,
+          0.0891915872353331,
+          0.0891116610368663,
+          0.1263569046907945
+        ],
+        "n": 8,
+        "clears": true
+      }
+    },
+    "sd009_ce_label_balance_train": {
+      "class_counts": {
+        "0": 23044,
+        "1": 1116,
+        "2": 48
+      },
+      "class_fracs": {
+        "0": 0.9519167217448777,
+        "1": 0.0461004626569729,
+        "2": 0.0019828155981493722
+      },
+      "min_class_frac": 0.0019828155981493722,
+      "saturated": true
+    },
+    "thresholds": {
+      "cr_lift_floor": 0.05,
+      "cr_lift_sd_multiple": 2.0,
+      "cr_minor_axis_ceiling": 0.02,
+      "raw_cr_readiness_floor": 0.2
+    },
+    "readiness_ok": true
+  }
+}
