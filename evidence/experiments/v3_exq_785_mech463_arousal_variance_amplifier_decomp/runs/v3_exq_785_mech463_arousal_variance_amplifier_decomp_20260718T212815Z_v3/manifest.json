@@ -1,0 +1,191 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_785_mech463_arousal_variance_amplifier_decomp",
+  "run_id": "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-18T21:28:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-463"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "harm_incumbent::incumbent_cross_candidate_range",
+        "kind": "readiness",
+        "description": "mean cross-candidate RANGE of the incumbent component 'harm_weighted' -- the SAME statistic the decomposition routes on",
+        "control": "SD-056 action-contrastive candidates",
+        "direction": "lower",
+        "measured": 0.013367164134979247,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::n_components_with_nontrivial_share",
+        "kind": "readiness",
+        "description": "number of components holding |share| > 0.01; a decomposition where only one component is non-trivial is arithmetically forced, not measured",
+        "control": "multi-component primary score",
+        "direction": "lower",
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::urgency_applied_non_constant",
+        "kind": "readiness",
+        "description": "SD of urgency_applied; no variation means no deciles and a vacuous probe",
+        "control": "SD-011 harm stream fed explicitly via sense()",
+        "direction": "lower",
+        "measured": 0.01924640369564303,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::cross_candidate_score_variance",
+        "kind": "readiness",
+        "description": "mean total cross-candidate score variance (a share of ~0 is undefined)",
+        "control": "SD-056 action-contrastive candidates + rollout clamp",
+        "direction": "lower",
+        "measured": 1.311007365575e-05,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::committed_tick_count",
+        "kind": "readiness",
+        "description": "committed ticks available to score. The inherited 643a gate MISSES this: with update_running_variance uncalled (396a) every tick is uncommitted while P1-P4 all read GREEN, so a probe about COMMITTED-selection variance silently scores nothing",
+        "control": "driver drives the running-variance EMA per 396a",
+        "direction": "lower",
+        "measured": 3959.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::incumbent_identity_as_preregistered",
+        "kind": "readiness",
+        "description": "margin of pre-registered incumbent 'harm_weighted' over the runner-up; guards against scoring 'the incumbent's share rises' for the wrong incumbent (observed top: 'harm_weighted')",
+        "control": "measured 2026-07-18 seed 0, 241 committed ticks",
+        "direction": "lower",
+        "measured": 0.8815993599393788,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::modulatory_authority_active_frac",
+        "kind": "readiness",
+        "description": "fraction of selection ticks where the authority gate fired (channel-incumbent regimes only -- N/A when the incumbent is a primary score component)",
+        "control": "candidates that genuinely differ",
+        "direction": "lower",
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::incumbent_cross_candidate_range",
+        "kind": "readiness",
+        "description": "mean cross-candidate RANGE of the incumbent component 'CH:mech341' -- the SAME statistic the decomposition routes on",
+        "control": "SD-056 action-contrastive candidates",
+        "direction": "lower",
+        "measured": 0.32044921875,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::n_components_with_nontrivial_share",
+        "kind": "readiness",
+        "description": "number of components holding |share| > 0.01; a decomposition where only one component is non-trivial is arithmetically forced, not measured",
+        "control": "multi-component primary score",
+        "direction": "lower",
+        "measured": 1.0,
+        "threshold": 1.5,
+        "met": false
+      },
+      {
+        "name": "entropy_incumbent::urgency_applied_non_constant",
+        "kind": "readiness",
+        "description": "SD of urgency_applied; no variation means no deciles and a vacuous probe",
+        "control": "SD-011 harm stream fed explicitly via sense()",
+        "direction": "lower",
+        "measured": 0.018685765590105454,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::cross_candidate_score_variance",
+        "kind": "readiness",
+        "description": "mean total cross-candidate score variance (a share of ~0 is undefined)",
+        "control": "SD-056 action-contrastive candidates + rollout clamp",
+        "direction": "lower",
+        "measured": 0.008054562807907499,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::committed_tick_count",
+        "kind": "readiness",
+        "description": "committed ticks available to score. The inherited 643a gate MISSES this: with update_running_variance uncalled (396a) every tick is uncommitted while P1-P4 all read GREEN, so a probe about COMMITTED-selection variance silently scores nothing",
+        "control": "driver drives the running-variance EMA per 396a",
+        "direction": "lower",
+        "measured": 3959.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "entropy_incumbent::incumbent_identity_as_preregistered",
+        "kind": "readiness",
+        "description": "margin of pre-registered incumbent 'CH:mech341' over the runner-up; guards against scoring 'the incumbent's share rises' for the wrong incumbent (observed top: 'CH:mech341')",
+        "control": "measured 2026-07-18 seed 0, 241 committed ticks",
+        "direction": "lower",
+        "measured": 1.0065226054559233,
+        "threshold": 0.1,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_harm_incumbent_incumbent_share_rises_with_urgency": true,
+      "C_entropy_incumbent_incumbent_share_rises_with_urgency": true
+    },
+    "design_note": "Two regimes with DIFFERENT incumbents (harm_weighted vs CH:mech341). MECH-463's mechanism is channel-agnostic -- the 'which IS F' clause is a contingent fact from MECH-439, not part of the mechanism -- so the test is whether the INCUMBENT's share rises with urgency regardless of who the incumbent is. Rising in both = channel-agnostic; rising in one = channel-specific (refine, not kill); flat in both = clean refutation.",
+    "null_note": "Does NOT import MECH-439's ~88-89% F-share as a null. That figure is a TEMPORAL variance fraction (V3-EXQ-571 compute_variance_decomp: np.var over per-STEP candidate-MEAN arrays); this measures CROSS-CANDIDATE variance within a tick. The two are incommensurable. Nulls are pre-registered per regime from measurement instead.",
+    "licensing_note": "MECH-463 as registered ties its CONSEQUENCE to F-entrenchment. This establishes the MECHANISM, not that consequence: the substrate offers no F-incumbent cross-candidate regime (F share is 0.146 at best, and harm_weighted is the actual cross-candidate incumbent at baseline). A PASS is evidence about the mechanism the conversion-ceiling argument invokes, NOT direct evidence about the ceiling.",
+    "caveat_z_world_under_differentiation": "Under an under-differentiated z_world (participation ratio ~1.06 at world_dim=128) the per-candidate channels have little to range over. That objection bites the FIX, not the measurement -- but a does_not_support verdict must be read against it, not as unconditional.",
+    "scope_note": "NOT gated on MECH-457 or INV-088 (decomposition probe on score geometry, not a behavioural conversion test). Does NOT re-open the 689/485/445/625 selection-face lineages; the conversion-ceiling re-derive brake is respected. MECH-439 deliberately NOT tagged (11 substrate_ceiling autopsies); a refutation here leaves it untouched."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10",
+  "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b"
+}
