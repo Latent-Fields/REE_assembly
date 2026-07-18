@@ -1,10 +1,11 @@
 {
   "schema_version": "hypothesis_space_registry/v1",
-  "purpose": "FROZEN, append-only pre-registration ledger for the Scientific Progress Dashboard's Dimension 3 (Narrow) and Dimension 4 (Decide). One entry per open scientific question; each question carries a set of rival hypotheses that were pre-registered BEFORE their discriminating experiment ran (design rule 3). The initial hypothesis set is the FROZEN denominator of the reduction ratio -- it must never be padded after the fact.",
+  "purpose": "FROZEN, append-only pre-registration ledger for the Scientific Progress Dashboard's Dimension 3 (Narrow) and Dimension 4 (Decide). One entry per open scientific question; each question carries a set of rival hypotheses that were pre-registered BEFORE their discriminating experiment ran (design rule 3). The initial hypothesis set is the FROZEN denominator of the reduction ratio -- it must never be padded after the fact. The ONE sanctioned way it may grow is LABELLED GOV-FANOUT-1 fan-out (see the labelled_fanout_growth invariant), which preserves the registration-time denominator separately so the ratio is always reportable both ways.",
   "authority": "This file is a derive-only INPUT. It never mutates claims.yaml, closure weights, or claim status. It is the human-adjudicated ledger appended at the same governance moment as /failure-autopsy -> /governance. build_hypothesis_space.py joins it against the live autopsy/manifest/evidence data to DERIVE surviving counts, momentum classes, decision-readiness state, and the time series. Nothing here is scored by the closure pipeline.",
   "invariants": {
     "elimination_bar": "A hypothesis may carry resolution.state == 'eliminated' ONLY with an adjudicated weakens (or a confirmed fan-out discrimination), met_elimination_bar == true, control_passed == true, and non_degenerate == true (design rule 4). check_hypothesis_space_integrity.py enforces this.",
-    "frozen_initial_set": "initial_frozen_count is fixed at registration. A hypothesis's pre_registered_utc must be <= the resolved_utc of its adjudicating run (pre-registration before the experiment, never retro-padding).",
+    "frozen_initial_set": "initial_frozen_count_at_registration is fixed at registration and NEVER changes. initial_frozen_count tracks the current enumerated set and may only exceed it via LABELLED fan-out growth (see labelled_fanout_growth). A hypothesis's pre_registered_utc must be <= the resolved_utc of its adjudicating run (pre-registration before the experiment, never retro-padding).",
+    "labelled_fanout_growth": "An EXISTING, already-adjudicated question's hypothesis set may legitimately grow when a GOV-FANOUT-1 discrimination portfolio enumerates new rival explanations as earlier axes are eliminated -- but ONLY when all three hold: (a) every new leg's pre_registered_utc precedes the resolved_utc of its adjudicating run (no leg is added after the evidence that adjudicates it is in); (b) the growth is recorded as a machine-readable entry in the question's fanout_growth_events[] naming the autopsy that opened the portfolio (fanout_source) and listing the added hids; (c) initial_frozen_count_at_registration is preserved separately so the reduction ratio can be reported BOTH ways. Growth satisfying (a)-(c) is ADVISORY (labelled fan-out), not a violation. Growth that is unaccounted, unlabelled, or retro-padded remains a REAL bucket-(b) violation. NOTE: a growing denominator is itself a scientific signal -- a campaign that keeps inventing new candidate explanations as it eliminates old ones is FAILING to converge. The dashboard must report surviving/original AND surviving/current so this stays visible rather than being laundered into an improved ratio.",
     "human_owns_decided": "decision.decided is set ONLY by a human via decision.decision_log_ref; the dashboard may say 'decidable_now', never 'decided', without it.",
     "non_contributory_unchanged": "A run whose evidence_direction is inconclusive/non_contributory and which does NOT discriminate a pre-registered leg leaves the tree counts untouched (it still appears in the momentum feed)."
   },
@@ -28,6 +29,33 @@
       ],
       "is_hero": true,
       "initial_frozen_count": 12,
+      "initial_frozen_count_at_registration": 7,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-07-18T04:49:14Z",
+          "pre_registered_utc": "2026-07-17T06:22:57Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-769_2026-07-17.json",
+          "added_hids": [
+            "H1-drive-schedule",
+            "H2-reward-coupling",
+            "H3-credit-horizon"
+          ],
+          "delta": 3,
+          "note": "GOV-FANOUT-1 discrimination portfolio routed by the 769 autopsy (capacity axis empirically falsified; re-derive brake fired -> refuse same-axis re-queue). Three NEW rival axes pre-registered 2026-07-17T06:22:57Z, BEFORE their adjudicating runs V3-EXQ-770/771/772 resolved (07-17T13:45, 07-18T00:47, 07-17T13:23). Backfilled 2026-07-18 under the labelled_fanout_growth invariant."
+        },
+        {
+          "recorded_utc": "2026-07-18T04:49:14Z",
+          "pre_registered_utc": "2026-07-18T04:34:55Z",
+          "fanout_source": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
+          "added_hids": [
+            "H-bc-prior",
+            "H-approach-primitive"
+          ],
+          "delta": 2,
+          "note": "GOV-FANOUT-1 successor portfolio opened when the 770/771/772 cluster eliminated all three prior axes, leaving 'which competence-directed dependency' unresolved. Both legs alive; adjudicating runs V3-EXQ-780/781 queued 2026-07-18 (unresolved, so (a) holds trivially). Backfilled 2026-07-18 under the labelled_fanout_growth invariant."
+        }
+      ],
+      "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding -- but it also means the campaign has not converged: it is inventing new candidate explanations as fast as it rules old ones out. Report the ratio BOTH ways (see the labelled_fanout_growth invariant).",
       "hypotheses": [
         {
           "hid": "H-rep",
@@ -354,6 +382,8 @@
       ],
       "is_hero": false,
       "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_growth_events": [],
       "hypotheses": [
         {
           "hid": "H-reward-balance",
@@ -471,6 +501,8 @@
       ],
       "is_hero": false,
       "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
       "hypotheses": [
         {
           "hid": "H-da-density",
@@ -543,6 +575,8 @@
       ],
       "is_hero": false,
       "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
       "hypotheses": [
         {
           "hid": "H-diversity-readable",
@@ -613,6 +647,8 @@
       "fanout_sources": [],
       "is_hero": false,
       "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
       "hypotheses": [
         {
           "hid": "H-ceiling",
@@ -680,6 +716,8 @@
       ],
       "is_hero": false,
       "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
       "hypotheses": [
         {
           "hid": "H-diversity-generator",

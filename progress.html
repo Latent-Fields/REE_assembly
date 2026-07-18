@@ -240,7 +240,13 @@
     var el = document.getElementById('needles');
     var b = n.build||{}, p = n.prove||{}, na = n.narrow||{}, d = n.decide||{};
     var buildPct = Math.round((b.fraction_built||0)*1000)/10;
-    var reduc = (na.total_initial? Math.round((na.total_resolved_out/na.total_initial)*100):0);
+    // Honest pair: the fan-out-inclusive denominator always flatters, so the bar
+    // tracks NET narrowing against what the open questions ORIGINALLY enumerated.
+    var atReg = (na.total_initial_at_registration!=null)? na.total_initial_at_registration : na.total_initial;
+    var fanout = na.total_fanout_added||0;
+    var reduc = (atReg? Math.round(((atReg-na.total_surviving)/atReg)*100):0);
+    if(reduc<0){ reduc = 0; }
+    var reducCur = (na.total_initial? Math.round((na.total_resolved_out/na.total_initial)*100):0);
     var readyPct = (d.open_questions? Math.round((d.ready/d.open_questions)*100):0);
     el.innerHTML =
       '<div class="needle build"><div class="tag">Dim 1 &middot; Build</div><div class="verb">Engineering Completion</div>'+
@@ -254,8 +260,11 @@
         '<div class="track"><i style="width:'+(p.closure_pct||0)+'%;background:var(--confirmed)"></i></div></div>'+
       '<div class="needle narrow"><div class="tag">Dim 3 &middot; Narrow</div><div class="verb">Hypothesis Space</div>'+
         '<div class="big">'+esc(na.total_surviving)+'<span class="u">alive</span></div>'+
-        '<div class="sub">Surviving rival explanations across '+esc(na.open_questions)+' open questions &mdash; down from '+esc(na.total_initial)+' enumerated. '+
-        '<b style="color:var(--accent)">'+esc(na.total_resolved_out)+' ruled out</b>.</div>'+
+        '<div class="sub">Surviving rival explanations across '+esc(na.open_questions)+' open questions &mdash; down from '+esc(atReg)+' originally enumerated. '+
+        '<b style="color:var(--accent)">'+esc(na.total_resolved_out)+' ruled out</b>.'+
+        (fanout? ' <b style="color:var(--built)">+'+esc(fanout)+' added by fan-out</b> ('+esc(na.total_initial)+
+          ' now, '+reducCur+'% against that larger denominator) &mdash; the space grew as rivals were eliminated.' : '')+
+        '</div>'+
         '<div class="track"><i style="width:'+reduc+'%;background:var(--accent)"></i></div></div>'+
       '<div class="needle decide"><div class="tag">Dim 4 &middot; Decide</div><div class="verb">Decision Readiness</div>'+
         '<div class="big">'+esc(d.ready)+'<span class="u">/'+esc(d.open_questions)+' ready</span></div>'+
@@ -266,11 +275,17 @@
   function renderHeroSub(data){
     var hero = (data.questions||[]).filter(function(q){return q.is_hero;})[0];
     var na = (data.needles||{}).narrow||{};
-    var s = 'The search space collapsed from '+na.total_initial+' enumerated rival explanations to '+
+    var atReg = (na.total_initial_at_registration!=null)? na.total_initial_at_registration : na.total_initial;
+    var fanout = na.total_fanout_added||0;
+    var s = 'The search space collapsed from '+atReg+' enumerated rival explanations to '+
       na.total_surviving+' still alive, while formal closure sat flat. That collapse is the progress the closure line cannot show.';
     if(hero){ s = 'The '+esc(hero.short_title)+' line ('+hero.reduction_numerator+'/'+hero.initial_frozen_count+
-      ' ruled out) and five other open questions took the space from '+na.total_initial+' to '+na.total_surviving+
+      ' ruled out) and five other open questions took the space from '+atReg+' to '+na.total_surviving+
       ' live hypotheses with no movement on the closure map.'; }
+    if(fanout){ s += ' <b style="color:var(--built)">Read that with the fan-out caveat:</b> '+fanout+
+      ' of those hypotheses were added mid-campaign as earlier axes were eliminated ('+na.total_initial+
+      ' enumerated in total). A space that keeps growing new rivals has not converged &mdash; the larger '+
+      'denominator flatters the ratio precisely when the campaign is struggling.'; }
     document.getElementById('heroSub').innerHTML = s;
   }
 
@@ -279,15 +294,28 @@
     if(!hero){ hero = (data.questions||[])[0]; }
     var wrap = document.getElementById('treewrap');
     if(!hero){ wrap.innerHTML='<div class="banner">No open questions registered.</div>'; return; }
-    var bits = (hero.bits_removed!=null)? ('~'+hero.bits_removed) : '&mdash;';
+    // Honest pair: bits/ratio against the ORIGINAL frozen denominator is the load-bearing
+    // number; the fan-out-inclusive one is shown beside it, never instead of it.
+    var hAtReg = (hero.initial_frozen_count_at_registration!=null)? hero.initial_frozen_count_at_registration : hero.initial_frozen_count;
+    var hFanout = hero.fanout_added||0;
+    var bits = (hero.bits_removed_vs_registration!=null)? ('~'+hero.bits_removed_vs_registration) : '&mdash;';
+    var bitsCur = (hero.bits_removed!=null)? ('~'+hero.bits_removed) : '&mdash;';
     var html =
       '<div class="treehead"><div>'+
         '<div class="q">'+esc(hero.title)+'</div>'+
-        '<div class="qmeta">'+esc((hero.claims||[]).join(' · '))+' &middot; surviving '+hero.surviving+' of '+hero.initial_frozen_count+'</div>'+
+        '<div class="qmeta">'+esc((hero.claims||[]).join(' · '))+' &middot; surviving '+hero.surviving+' of '+hAtReg+' originally enumerated'+
+          (hFanout? ' &middot; <b style="color:var(--built)">+'+hFanout+' added by fan-out</b> ('+hero.initial_frozen_count+' now)' : '')+'</div>'+
       '</div><div class="reduc">'+
         '<div><div class="rn">'+hero.reduction_numerator+'/'+hero.initial_frozen_count+'</div><div class="rl">ruled<br>out</div></div>'+
-        '<div><div class="rn">'+bits+'</div><div class="rl">bits<br>removed</div></div>'+
-      '</div></div><div class="tree">';
+        '<div><div class="rn">'+hero.surviving+'/'+hAtReg+'</div><div class="rl">alive vs<br>original</div></div>'+
+        '<div><div class="rn">'+bits+'</div><div class="rl">bits removed<br>vs original</div></div>'+
+        (hFanout? '<div><div class="rn" style="color:var(--built)">'+bitsCur+'</div><div class="rl">bits if you<br>count fan-out</div></div>' : '')+
+      '</div></div>'+
+      (hFanout? '<div class="banner" style="margin:0 18px 12px">This question&rsquo;s hypothesis set grew '+hAtReg+' &rarr; '+
+        hero.initial_frozen_count+' as a GOV-FANOUT-1 portfolio enumerated new rivals. Legitimate and labelled '+
+        '(see the integrity audit), but it means the campaign is inventing candidate explanations about as fast as '+
+        'it eliminates them &mdash; not converging.</div>' : '')+
+      '<div class="tree">';
     (hero.hypotheses||[]).forEach(function(h){
       var cls = STATE_CLASS[h.state]||'st-alive';
       var runs = (h.evidence_runs||[]).map(shortRun).join(', ');
@@ -300,7 +328,8 @@
       });
     });
     if(hero.synthesis && hero.synthesis.surviving_label){
-      html += '<div class="synth"><b>surviving synthesis &middot; '+hero.surviving+' of '+hero.initial_frozen_count+'</b>'+
+      html += '<div class="synth"><b>surviving synthesis &middot; '+hero.surviving+' of '+hAtReg+' originally enumerated'+
+        (hFanout? ' ('+hero.initial_frozen_count+' incl. fan-out)' : '')+'</b>'+
         esc(hero.synthesis.text)+'</div>';
     }
     html += '</div><div class="key" style="padding:0 18px 16px">'+

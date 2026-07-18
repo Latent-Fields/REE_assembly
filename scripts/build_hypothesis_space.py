@@ -194,12 +194,33 @@ def _question_rollup(q: dict) -> dict:
         surviving = alive if alive else max(0, initial - resolved_out - confirmed)
     reduction_num = resolved_out  # "ruled out / resolved away" (design: eliminated/split)
     reduction_ratio = (reduction_num / initial) if initial else 0.0
+
+    # --- The honest pair (labelled fan-out growth) -------------------------
+    # A question's denominator may legitimately grow when a GOV-FANOUT-1 portfolio
+    # enumerates new rivals as earlier axes are eliminated (registry invariant
+    # `labelled_fanout_growth`). That growth inflates the headline reduction ratio
+    # precisely when the campaign is FAILING to converge -- the added legs are
+    # mostly eliminated straight away, so both numerator and denominator rise.
+    # So we report BOTH: the ratio against the current (fan-out-inclusive)
+    # denominator, AND the net narrowing against the registration-time denominator,
+    # which is what actually answers "are we closer than when we started?".
+    at_reg = q.get("initial_frozen_count_at_registration")
+    at_reg = int(at_reg) if at_reg is not None else initial
+    fanout_added = max(0, initial - at_reg)
+    # Net narrowing vs where the question STARTED. Goes negative if the space grew
+    # net -- i.e. we now have more live rivals than we originally enumerated.
+    net_narrowing_ratio = ((at_reg - surviving) / at_reg) if at_reg else 0.0
+
     # Coarse entropy proxy: only meaningful when survivors are enumerable and
     # roughly equiprobable. We report bits REMOVED (log2(initial) - log2(surviving))
-    # -- the strongest defensible quantitative statement (design rule).
+    # -- the strongest defensible quantitative statement (design rule). Reported
+    # against BOTH denominators for the same reason as the ratio.
     bits_removed = None
+    bits_removed_vs_registration = None
     if initial > 0 and surviving >= 1:
         bits_removed = round(math.log2(initial) - math.log2(surviving), 2)
+    if at_reg > 0 and surviving >= 1:
+        bits_removed_vs_registration = round(math.log2(at_reg) - math.log2(surviving), 2)
 
     # Dim 4 -- decision readiness state (derived from the adjudicated decision block).
     dec = q.get("decision") or {}
@@ -221,6 +242,13 @@ def _question_rollup(q: dict) -> dict:
         "claims": q.get("claims") or [],
         "is_hero": bool(q.get("is_hero")),
         "initial_frozen_count": initial,
+        "initial_frozen_count_at_registration": at_reg,
+        "fanout_added": fanout_added,
+        "fanout_growth_events": q.get("fanout_growth_events") or [],
+        "fanout_growth_note": q.get("fanout_growth_note"),
+        "net_narrowing_ratio": round(net_narrowing_ratio, 4),
+        "bits_removed_vs_registration": bits_removed_vs_registration,
+        "not_converging": bool(fanout_added > 0),
         "surviving": surviving,
         "alive": alive,
         "resolved_out": resolved_out,
@@ -440,6 +468,9 @@ def main() -> int:
     questions = [_question_rollup(q) for q in registry["questions"]]
     total_surviving = sum(q["surviving"] for q in questions)
     total_initial = sum(q["initial_frozen_count"] for q in questions)
+    total_initial_at_registration = sum(
+        q["initial_frozen_count_at_registration"] for q in questions)
+    total_fanout_added = sum(q["fanout_added"] for q in questions)
     total_resolved_out = sum(q["resolved_out"] for q in questions)
     ready_count = sum(1 for q in questions
                       if q["decision"]["readiness_state"] in ("decidable_now", "decided"))
@@ -463,7 +494,27 @@ def main() -> int:
                 "question": "how many rival explanations still survive?",
                 "total_surviving": total_surviving,
                 "total_initial": total_initial,
+                # The honest pair -- see _question_rollup(). `total_initial` is the
+                # CURRENT (fan-out-inclusive) denominator; `_at_registration` is what
+                # the open questions originally enumerated. Reporting only the former
+                # launders a non-converging campaign into an improved ratio, because
+                # labelled fan-out adds legs that are then eliminated (raising BOTH
+                # numerator and denominator).
+                "total_initial_at_registration": total_initial_at_registration,
+                "total_fanout_added": total_fanout_added,
                 "total_resolved_out": total_resolved_out,
+                "reduction_pct_vs_current": round(
+                    (total_resolved_out / total_initial * 100.0) if total_initial else 0.0, 1),
+                "net_narrowing_pct": round(
+                    ((total_initial_at_registration - total_surviving)
+                     / total_initial_at_registration * 100.0)
+                    if total_initial_at_registration else 0.0, 1),
+                "honest_pair_note": (
+                    f"{total_surviving} alive against {total_initial_at_registration} "
+                    f"originally enumerated, and against {total_initial} including "
+                    f"{total_fanout_added} added by labelled fan-out. The second "
+                    "denominator always flatters; read the first."
+                ),
                 "open_questions": len(questions),
             },
             "decide": {
@@ -488,6 +539,8 @@ def main() -> int:
         "snapshot_utc": now,
         "total_surviving": total_surviving,
         "total_initial": total_initial,
+        "total_initial_at_registration": total_initial_at_registration,
+        "total_fanout_added": total_fanout_added,
         "total_resolved_out": total_resolved_out,
         "closure_pct": closure_pct,
         "build_pct": build_pct,
@@ -500,7 +553,8 @@ def main() -> int:
         f"  build={build_pct}% ({dim_build['built_modules']}/{dim_build['total_modules']}, "
         f"gap={dim_build['build_proof_gap']})  "
         f"prove={closure_pct}%  "
-        f"surviving={total_surviving}/{total_initial} "
+        f"surviving={total_surviving}/{total_initial_at_registration} at registration "
+        f"({total_surviving}/{total_initial} incl. +{total_fanout_added} fan-out)  "
         f"(resolved_out={total_resolved_out})  "
         f"ready={ready_count}/{len(questions)}  "
         f"momentum_items={len(feed)}"
