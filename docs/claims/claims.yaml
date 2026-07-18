@@ -2276,28 +2276,9 @@
   source:
     - docs/architecture/social.md
 - id: MECH-033
-  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-124 evidence superseded 2026-05-08 due to warmup loop calls env.reset() inside the per-step inner loop, corrupting E2 world_forward training (E2 is taught z_world_t + a -> z_world_post_reset, a meaningless mapping); the KERNEL_CHAIN_ON arm uses the corrupted E2 for CEM kernels. Awaiting StepHarness re-run."
-  title: "E2 forward-prediction kernels seed hippocampal rollouts."
-  claim_type: mechanism_hypothesis
-  subject: hippocampus.kernel_chaining_interface
-  polarity: asserts
-  status: active
-  live_status:
-    reading: active
-    as_of: 2026-07-11
-    needs_review: false
-    evidence:
-      from: v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3
-      as_of: 2026-04-09
-      verdict: supports/PASS
-  last_reviewed: 2026-02-15
-  lifecycle_stage: adjudicated
-  adjudication_outcome: retain_ree
-  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
-  adjudication_decision_status: applied
-  adjudication_recommendation: retain_ree
-  v3_pending: false
   evidence_quality_note: |
+    [multi_sense_audit_2026_05_08] EXQ-124 evidence superseded 2026-05-08 due to warmup loop calls env.reset() inside the per-step inner loop, corrupting E2 world_forward training (E2 is taught z_world_t + a -> z_world_post_reset, a meaningless mapping); the KERNEL_CHAIN_ON arm uses the corrupted E2 for CEM kernels. Awaiting StepHarness re-run.
+
     V2 experiment EXQ-022 (kernel_chaining_interface, EVB-0016) FAIL — run twice (2026-03-08,
     2026-03-15), consistent result. WITH_CHAIN (full E2→hippocampus→E3 pipeline) only 1.8%
     better than NO_CHAIN (random action selection); random agent improves faster on slope.
@@ -2329,6 +2310,26 @@
     Extends EXQ-184 into current substrate defaults; V2 EXQ-022 FAIL fully explained
     by absent z_world/action-object primitive and inadequate training. MECH-033 is
     now replicated 4x PASS across multiple substrate generations.
+  title: "E2 forward-prediction kernels seed hippocampal rollouts."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.kernel_chaining_interface
+  polarity: asserts
+  status: active
+  live_status:
+    reading: active
+    as_of: 2026-07-11
+    needs_review: false
+    evidence:
+      from: v3_exq_308_mech033_kernel_chain_discriminative_20260409T183908Z_v3
+      as_of: 2026-04-09
+      verdict: supports/PASS
+  last_reviewed: 2026-02-15
+  lifecycle_stage: adjudicated
+  adjudication_outcome: retain_ree
+  adjudicated_at_utc: 2026-02-15T18:46:42.773429Z
+  adjudication_decision_status: applied
+  adjudication_recommendation: retain_ree
+  v3_pending: false
   depends_on:
     - ARC-018
     - ARC-002
@@ -5105,7 +5106,10 @@
   source:
     - docs/architecture/valenced_hippocampal_map.md
 - id: MECH-073
-  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-375 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (line 240 + line 300 for grad-enabled compute_event_contrastive_loss); training-time substrate-tick rate was 2x; eval (P2) was clean. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation."
+  evidence_quality_note: |
+    [multi_sense_audit_2026_05_08] EXQ-375 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (line 240 + line 300 for grad-enabled compute_event_contrastive_loss); training-time substrate-tick rate was 2x; eval (P2) was clean. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation.
+
+    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.689, conflict_ratio=1, 0 exp entries, 5 lit entries. Literature-only conflict: 2 supports, 2 weakens, 1 mixed across lit entries. Conflict with ARC-007 noted below. Hold at candidate pending experimental discrimination. Governance 2026-04-13: EXQ-375 dry run PASS (preliminary support). First experimental evidence: VALENCE_GEOM AUROC=0.982/0.923 in 2/3 seeds, VALENCE_ABLATED all at chance (0.5). Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375 run is high priority for definitive discrimination. Governance 2026-06-10: PROMOTED candidate -> provisional. EXQ-375 ran to completion 3/3 PASS (the "definitive discrimination" the 2026-04-13 note flagged as high priority): VALENCE_GEOM probe-AUROC discriminates harm/safety from hippocampal map geometry, VALENCE_ABLATED at chance; genuine_exp_direction_counts = 3 supports / 0 weakens / 0 mixed; experimental_confidence 0.757 > 0.62 candidate->provisional bar. The prior hold_candidate_resolve_conflict was driven by a LITERATURE-ONLY direction conflict (2 weakens / 1 mixed: Knudsen 2021, Gauthier 2018, Bittner 2017) classified pre-Q-020. Q-020 Resolution A (2026-03-16) reconciled MECH-073 with ARC-007 (co-true; MECH-073 reframed as a consequence of ARC-013 applied to z_world), and under Phase-3 lit/exp decoupling the literature signal is a parallel signal that does not gate promotion (experimental_confidence does). So the experimental gate is met and the residual conflict is non-blocking. NOT promoted to stable: needs exp_conf >= 0.80; the multi_sense_audit 2x substrate-tick caveat + a StepHarness re-run remain the path to stable. Optional follow-up: re-adjudicate the 3 pre-Q-020 literature entries (weakens/mixed -> supports under Resolution A), which would raise lit_conf but does not affect this promotion.
   title: "Valence is intrinsic to hippocampal map geometry, not applied downstream (ARC-007 reconciled via Q-020 Resolution A; provisional 2026-06-10)."
   claim_type: mechanism_hypothesis
   subject: hippocampal.intrinsic_map_valence
@@ -5119,29 +5123,6 @@
       from: v3_exq_375_mech073_valence_geometry_probe_20260418T141616Z_v3
       as_of: 2026-04-18
       verdict: supports/PASS
-  evidence_quality_note: >
-    Governance 2026-04-03: hold_candidate_resolve_conflict applied. conf=0.689,
-    conflict_ratio=1, 0 exp entries, 5 lit entries. Literature-only conflict: 2 supports,
-    2 weakens, 1 mixed across lit entries. Conflict with ARC-007 noted below. Hold at
-    candidate pending experimental discrimination.
-    Governance 2026-04-13: EXQ-375 dry run PASS (preliminary support). First experimental
-    evidence: VALENCE_GEOM AUROC=0.982/0.923 in 2/3 seeds, VALENCE_ABLATED all at chance
-    (0.5). Consistent with Resolution A (MECH-073 co-true with ARC-007). Full EXQ-375
-    run is high priority for definitive discrimination.
-    Governance 2026-06-10: PROMOTED candidate -> provisional. EXQ-375 ran to completion 3/3 PASS
-    (the "definitive discrimination" the 2026-04-13 note flagged as high priority): VALENCE_GEOM
-    probe-AUROC discriminates harm/safety from hippocampal map geometry, VALENCE_ABLATED at chance;
-    genuine_exp_direction_counts = 3 supports / 0 weakens / 0 mixed; experimental_confidence 0.757 >
-    0.62 candidate->provisional bar. The prior hold_candidate_resolve_conflict was driven by a
-    LITERATURE-ONLY direction conflict (2 weakens / 1 mixed: Knudsen 2021, Gauthier 2018, Bittner 2017)
-    classified pre-Q-020. Q-020 Resolution A (2026-03-16) reconciled MECH-073 with ARC-007 (co-true;
-    MECH-073 reframed as a consequence of ARC-013 applied to z_world), and under Phase-3 lit/exp
-    decoupling the literature signal is a parallel signal that does not gate promotion (experimental_confidence
-    does). So the experimental gate is met and the residual conflict is non-blocking. NOT promoted to
-    stable: needs exp_conf >= 0.80; the multi_sense_audit 2x substrate-tick caveat + a StepHarness
-    re-run remain the path to stable. Optional follow-up: re-adjudicate the 3 pre-Q-020 literature
-    entries (weakens/mixed -> supports under Resolution A), which would raise lit_conf but does not
-    affect this promotion.
   conflict_with:
     - ARC-007
   conflict_note: |
@@ -6866,29 +6847,9 @@
 # Registered 2026-03-17 — SD-005 anatomical gap fill: TPJ, dual-stream encoder, peripersonal space
 # Source: neuroanatomical review of self/world latent split missing pieces
 - id: MECH-095
-  evidence_quality_note: "[multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged."
-  title: "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change."
-  claim_type: mechanism_hypothesis
-  subject: tpj.agency_detection_comparator
-  polarity: asserts
-  status: candidate
-  live_status:
-    reading: candidate/substrate_ceiling/v5-reassigned
-    as_of: 2026-07-12
-    needs_review: false
-    evidence:
-      from: V3-EXQ-741
-      as_of: 2026-07-12
-      verdict: non_contributory/substrate_ceiling (1st valid ceiling hit; v3->v5, ceiling bound to multi_agent_ecology_v5:MAE-3)
-  last_reviewed: 2026-07-12
-  epistemic_category: substrate_ceiling
-  pending_retest_after_substrate: true
-  ceiling_retest_binding_substrate: ["multi_agent_ecology_v5:MAE-3"]
-  ceiling_retest_binding_note: "Re-pointed 2026-07-12 (governance IGW-20260712-001 consumption of failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed ran VALIDLY (non_degenerate:True, all 4 arms pass guards) and the comparator does no functional work (no arm discriminates, best +0.028; baseline already carries contact). This is the 1st VALID substrate_ceiling hit and it EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction: a single-agent V3 env cannot make an agency comparator load-bearing because world-caused drift is not a structurally-distinct OTHER. The owed positive-discrimination retest is now BLOCKED on the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3), NOT on any single-agent SD-047 test-bed. Re-derive brake refuses a 4th single-agent SD-047 letter. PRIOR (superseded) re-point 2026-07-11 (047m): had pointed at agency_comparator_testbed_sd047 -- that test-bed is now built + validly exercised, so it is retired as the binding substrate."
-  adjudicated_at_utc: "2026-07-11T12:37:35Z"
-  adjudication_outcome: demoted
-  implementation_phase: v5
   evidence_quality_note: |
+    [multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged.
+
     EXQ-121 FAIL (2026-03-28): AUC_COMP_ON=0.411 vs AUC_COMP_ABLATED=0.745 (delta=-0.334).
     Only 1/5 criteria passed. AgencyComparator actively hurts attribution performance at current
     training scale. Possible causes: z_self (32-dim) too noisy for reliable efference-copy
@@ -6896,33 +6857,7 @@
     produce enough discriminable other-caused events. Holds at active status -- prior neuroanatomical
     and literature support remains valid. Redesign flagged: larger z_self, improved efference-copy
     embedding, or higher env_drift_prob needed before next experimental test.
-  depends_on:
-    - SD-005
-    - MECH-069
-    - ARC-021
-  location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
-  source:
-    - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
-  notes: >
-    At the z_self/z_world interface, an explicit agency-detection comparator
-    (TPJ-equivalent) must compare efference-copy-predicted z_self change with
-    observed z_self change. When predicted and observed z_self changes match,
-    state change is self-caused (no residue). When they diverge, cause is
-    attributed to z_world (potential residue). This is the architectural mechanism
-    for SD-003 counterfactual attribution: self_delta and world_delta are only
-    cleanly separable if this comparator exists. Without it, SD-003's causal_delta
-    conflates proprioceptive self-effects with world-directed footprint.
-    Neural basis: temporoparietal junction (TPJ) computes forward-model prediction
-    vs sensory outcome mismatch for agency attribution. Blakemore et al. (2002).
-    Additional grounding (2026-03-17): TPJ sits at the terminus of the lateral/third
-    visual stream (MT→MST/FST→posterior STS→TPJ), which is specialised for dynamic
-    motion and biological motion detection (Haak & Beckmann 2018; Pitcher &
-    Ungerleider 2021). MSTd congruent/incongruent neurons (Gu et al. 2008) provide
-    the upstream causal inference that feeds this stream: congruent=reafference,
-    incongruent=exafference/world-change. The efference copy reaches parietal via
-    SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
-    Literature: evidence/literature/targeted_review_reafference_streams/.
-  evidence_quality_note: |
+
     EXQ-047k PASS 5/5 (2026-03-25, 4 seeds): contact_recall_routed=0.796 > 0.55,
     recall_improvement=+0.065 > 0.04, action_dissoc=-0.007 > -0.05, n_contact_min=164.
     4-seed replication with clean discriminative test. Promoted from provisional to active.
@@ -6999,6 +6934,53 @@
     V3-EXQ-047m (2026-07-11, SD-047 @ intensity 1.0, 4 seeds, ree-cloud-2) is the CORRECTED successor to 047l. Its probe-partition fix worked (non_degenerate=true, n_no_contact_min=8 >= floor 5) so the EVAL contrast was real, and it FAILed 3/5 with routing HURTING recall (ROUTED 0.492 vs BASELINE 0.795, improvement -0.302). But this is NON_CONTRIBUTORY -- a SECOND operationalisation degeneracy, NOT a substrate_ceiling confirmation and NOT a weakens. Root cause: the identical env_events fold that saturated 047l's PROBE now saturates the TRAINING label. is_world = 1 if (prev_ttype in WORLD_CAUSED or env_events>0), and at intensity 1.0 the 2 background-drift sources fire env_events>0 on ~93%+ of steps (env_ev_ticks ~4470 of ~4800; episodes die ~11 steps), so is_world ~= constant 1 -- the routing head never sees a self-caused negative and cannot learn the discrimination; instead it homogenizes z_world, degrading an already-good BASELINE contact encoding (0.795) and collapsing action-dissociation (BASELINE +0.140 -> ROUTED -0.002; seed 123 catastrophic: world 0.111 / self 1.000). The 047m guard validated only the PROBE partition, not the training-label balance, so non_degenerate=true is a FALSE CLEAR of validity. Three independent reasons this is not a valid ceiling hit: (1) comparator invalidly trained (saturated label); (2) 047m is a binary comparator-ON-vs-ABLATED at fixed intensity 1.0, NOT the pre-registered 4-arm SD-047 intensity sweep (sd_047 doc warns a binary test cannot distinguish 'SD-047 works' from 'SD-047 overshot calibration' -- the Asai overshoot branch is exactly the label saturation and is unexcluded); (3) the BASELINE succeeds at 0.795, so the substrate carries the contact signal -- the failure is corruption of a good representation, not an absent one. n_ceiling_hits STAYS 0. RE-DERIVE BRAKE FIRES (2nd non_contributory MECH-095 read, threshold 2): route to a test-bed redesign, REFUSE a third 047 letter. The convergent 047l(probe)+047m(training) shape implicates the OPERATIONALISATION (the env_events fold is degenerate at intensity 1.0 wherever applied), not the substrate. Load-bearing redesign input: MECH-095's notes describe a query-time read-out comparator (efference-copy-predicted vs observed z_self), but the 047-lineage operationalises it as an auxiliary BCE head reshaping z_world by gradient -- plausibly the wrong functional translation. Substrate_queue: CREATE an agency-comparator test-bed entry (non-saturating training label / read-out reoperationalisation + a training-label non-degeneracy guard + the pre-registered 4-arm intensity sweep). pending_retest_after_substrate stays true but RE-POINTED from 'SD-047 build' (done) to that test-bed; ceiling audit moves MECH-095 off 'ceiling_may_have_lifted' to 'ceiling-retest-blocked-on-testbed'. MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate; this consumption PROMOTES/DEMOTES NOTHING.
 
     V3-EXQ-741 (2026-07-12, /governance IGW-20260712-001 inline autopsy failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed the 047m brake demanded ran VALIDLY for the first time -- non_degenerate=True, all 4 intensity arms (0/0.25x/1.0x/4.0x) pass BOTH the probe-partition and self/world-balance guards the 047l/047m lineage lacked. The 047l/047m measurement degeneracy is FIXED. On the valid test-bed the comparator does no functional work: no arm discriminates (best routing improvement +0.028 < 0.04 floor), ROUTED_A gradient-head HURTS recall (mean -0.114), ROUTED_B efference-copy read-out neutral (+0.003), baseline already carries contact recall (0.75-0.93). evidence_direction NON_CONTRIBUTORY (NOT the script's self-routed 'weakens'): SD-047's world-caused drift is not a structurally-distinct OTHER, so the env cannot make the comparator load-bearing and the baseline pre-empts it -- the test could not let the claim express its value. This EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction (MECH-095 is intrinsically relational; needs a genuine second agent). This is the 1st VALID substrate_ceiling hit (n_ceiling_hits 0 -> 1; 047l/047m were measurement-degeneracy, uncounted). RE-DERIVE BRAKE FIRED (3rd non_contributory) but its test-bed-rebuild demand was honored -- it does NOT re-block; it RE-POINTS the ceiling from the now-built+validly-exercised test-bed to the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3) and REFUSES a 4th single-agent SD-047 letter. Secondary learning: the read-out framing (ROUTED_B) is the biology-faithful translation; the gradient-BCE-head (ROUTED_A) is not. Positive base remains NARROW (only 047k, a single thin-env operationalisation) -- flagged per the illusory-conflict-resolution rule. implementation_phase REASSIGNED v3 -> v5 (user-confirmed, phase-follows-dependency: the multi-agent ecology is the enabling substrate; MECH-095 removed from V3-completion accounting). pending_retest_after_substrate stays true, re-pointed to multi_agent_ecology_v5:MAE-3. MECH-095 stays candidate / substrate_ceiling / pending_retest_after_substrate; PROMOTES/DEMOTES NOTHING.
+  title: "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change."
+  claim_type: mechanism_hypothesis
+  subject: tpj.agency_detection_comparator
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_ceiling/v5-reassigned
+    as_of: 2026-07-12
+    needs_review: false
+    evidence:
+      from: V3-EXQ-741
+      as_of: 2026-07-12
+      verdict: non_contributory/substrate_ceiling (1st valid ceiling hit; v3->v5, ceiling bound to multi_agent_ecology_v5:MAE-3)
+  last_reviewed: 2026-07-12
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
+  ceiling_retest_binding_substrate: ["multi_agent_ecology_v5:MAE-3"]
+  ceiling_retest_binding_note: "Re-pointed 2026-07-12 (governance IGW-20260712-001 consumption of failure_autopsy_V3-EXQ-741, confirmed): the agency_comparator_testbed_sd047 test-bed ran VALIDLY (non_degenerate:True, all 4 arms pass guards) and the comparator does no functional work (no arm discriminates, best +0.028; baseline already carries contact). This is the 1st VALID substrate_ceiling hit and it EMPIRICALLY CONFIRMS multi_agent_ecology_v5:MAE-3's standing prediction: a single-agent V3 env cannot make an agency comparator load-bearing because world-caused drift is not a structurally-distinct OTHER. The owed positive-discrimination retest is now BLOCKED on the multi-agent ecology (MAE-1 -> MAE-2 -> MAE-3), NOT on any single-agent SD-047 test-bed. Re-derive brake refuses a 4th single-agent SD-047 letter. PRIOR (superseded) re-point 2026-07-11 (047m): had pointed at agency_comparator_testbed_sd047 -- that test-bed is now built + validly exercised, so it is retired as the binding substrate."
+  adjudicated_at_utc: "2026-07-11T12:37:35Z"
+  adjudication_outcome: demoted
+  implementation_phase: v5
+  depends_on:
+    - SD-005
+    - MECH-069
+    - ARC-021
+  location: docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  source:
+    - docs/thoughts/2026-03-14_self_world_latent_split_sd003_limitation.md
+  notes: >
+    At the z_self/z_world interface, an explicit agency-detection comparator
+    (TPJ-equivalent) must compare efference-copy-predicted z_self change with
+    observed z_self change. When predicted and observed z_self changes match,
+    state change is self-caused (no residue). When they diverge, cause is
+    attributed to z_world (potential residue). This is the architectural mechanism
+    for SD-003 counterfactual attribution: self_delta and world_delta are only
+    cleanly separable if this comparator exists. Without it, SD-003's causal_delta
+    conflates proprioceptive self-effects with world-directed footprint.
+    Neural basis: temporoparietal junction (TPJ) computes forward-model prediction
+    vs sensory outcome mismatch for agency attribution. Blakemore et al. (2002).
+    Additional grounding (2026-03-17): TPJ sits at the terminus of the lateral/third
+    visual stream (MT→MST/FST→posterior STS→TPJ), which is specialised for dynamic
+    motion and biological motion detection (Haak & Beckmann 2018; Pitcher &
+    Ungerleider 2021). MSTd congruent/incongruent neurons (Gu et al. 2008) provide
+    the upstream causal inference that feeds this stream: congruent=reafference,
+    incongruent=exafference/world-change. The efference copy reaches parietal via
+    SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
+    Literature: evidence/literature/targeted_review_reafference_streams/.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
@@ -8100,21 +8082,9 @@
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
 
 - id: SD-005
-  evidence_quality_note: "[multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged."
-  title: "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain)."
-  claim_type: design_decision
-  subject: latent_stack.self_world_latent_split
-  polarity: asserts
-  status: implemented
-  live_status:
-    reading: implemented
-    as_of: 2026-07-11
-    needs_review: false
-  status_note: >
-    z_gamma split into z_self (E2 domain: motor-sensory, proprioceptive) and
-    z_world (E3/Hippocampus/ResidueField domain: causal footprint, residue,
-    moral attribution). SD-005 and SD-004 must be co-designed.
   evidence_quality_note: |
+    [multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged.
+
     EXQ-047 (2026-03-20): Split provides 82% attribution improvement (gap: 0.035 split vs
     0.019 unified) and meaningful calibration gain (0.1915 vs 0.1577), but calibration
     improvement (3.4pp) falls below 5pp C1 threshold -> FAIL 4/5. C1 failure is partly
@@ -8154,6 +8124,19 @@
     an efference copy signal. Future architecture direction: use E2 prediction as the
     primary reafference signal (exafference = z_world_actual - E2(z_world_prev, action)),
     which would provide a stronger and self-improving separation mechanism. See SD-007 notes.
+  title: "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain)."
+  claim_type: design_decision
+  subject: latent_stack.self_world_latent_split
+  polarity: asserts
+  status: implemented
+  live_status:
+    reading: implemented
+    as_of: 2026-07-11
+    needs_review: false
+  status_note: >
+    z_gamma split into z_self (E2 domain: motor-sensory, proprioceptive) and
+    z_world (E3/Hippocampus/ResidueField domain: causal footprint, residue,
+    moral attribution). SD-005 and SD-004 must be co-designed.
   depends_on: []
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
   heterogeneity_note: >
@@ -9037,7 +9020,16 @@
     Registered 2026-03-23.
 
 - id: MECH-118
-  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-143 evidence superseded 2026-05-08 due to the eval loop calls sense() twice per step in the hopfield-ON arm only (once no-grad, once grad-enabled for the familiarity-pull update); ON arm ticks substrates 2x per env state, OFF arm 1x; the two arms therefore ran under structurally different substrate dynamics. Awaiting StepHarness re-run."
+  evidence_quality_note: |
+    [multi_sense_audit_2026_05_08] EXQ-143 evidence superseded 2026-05-08 due to the eval loop calls sense() twice per step in the hopfield-ON arm only (once no-grad, once grad-enabled for the familiarity-pull update); ON arm ticks substrates 2x per env state, OFF arm 1x; the two arms therefore ran under structurally different substrate dynamics. Awaiting StepHarness re-run.
+
+    EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL.
+    First experimental entry.
+    EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed --
+    stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation.
+    Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat
+    ~20.6-20.8 across R1/R2). Supports that Hopfield-style familiarity (stability) is a
+    discriminable self-maintenance signal. D_eff direction between regimes remains unresolved.
   title: "Hopfield-style pattern familiarity of z_self states (stability against stored self-state memories) is a distinct self-maintenance signal from D_eff coherence."
   claim_type: mechanism_hypothesis
   subject: self_maintenance.hopfield_familiarity_signal
@@ -9052,14 +9044,6 @@
       as_of: 2026-03-29
       verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v3
-  evidence_quality_note: |
-    EXQ-143 FAIL/mixed (2026-03-29): Hopfield familiarity discriminative pair FAIL.
-    First experimental entry.
-    EXQ-084d SUPPORTS (per-claim override, 2026-03-30): stability dissociation confirmed --
-    stab collapses with both noise (0.063 vs 0.950) and novelty (0.026 vs 0.950) perturbation.
-    Stability signal responds to perturbation as distinct signal from D_eff (D_eff remains flat
-    ~20.6-20.8 across R1/R2). Supports that Hopfield-style familiarity (stability) is a
-    discriminable self-maintenance signal. D_eff direction between regimes remains unresolved.
   depends_on:
     - MECH-113
     - INV-033
@@ -11515,23 +11499,9 @@
     Backward compatible. Validation: V3-EXQ-322 queued.
 
 - id: MECH-135
-  evidence_quality_note: "[multi_sense_audit_2026_05_08] EXQ-108 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (latent_prev / latent_next pattern at lines 129 and 139); substrate-tick rate during training was 2x the env-step rate, while eval was clean single-sense. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation."
-  title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
-  claim_type: mechanism_hypothesis
-  subject: planning.e1_e2_parallel_rollout
-  polarity: asserts
-  status: candidate
-  live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
-    needs_review: false
-    evidence:
-      from: "decision:MECH-135@2026-03-28T17:30:00Z"
-      as_of: 2026-03-28
-      verdict: hold_pending_v3_substrate/applied
-  implementation_phase: v3
-  v3_pending: true
   evidence_quality_note: |
+    [multi_sense_audit_2026_05_08] EXQ-108 evidence retained but direction held with lower confidence: training loop calls sense() twice per step (latent_prev / latent_next pattern at lines 129 and 139); substrate-tick rate during training was 2x the env-step rate, while eval was clean single-sense. Both arms equally affected so the pre/post comparison structure is preserved, but magnitude estimates may be biased. StepHarness re-run recommended for confirmation.
+
     EXQ-103 PASS x2 (2026-03-28): E2 training horizon ablation. Multi-step z_world
     transitions learned without collapsing z_self/z_world independence (C1/C2/C3 all pass,
     2 independent runs). Core computational substrate for MECH-135 is functional.
@@ -11554,6 +11524,21 @@
     sim z_self/z_world remains near-zero across horizons 1/3/5; world_acc 0.90/0.78/0.93). Third
     substrate confirmation. v3_pending hold retained -- EXQ-104b trained-agent diagnostic still needed
     before directional evidence on MECH-135 proper.
+  title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
+  claim_type: mechanism_hypothesis
+  subject: planning.e1_e2_parallel_rollout
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-11
+    needs_review: false
+    evidence:
+      from: "decision:MECH-135@2026-03-28T17:30:00Z"
+      as_of: 2026-03-28
+      verdict: hold_pending_v3_substrate/applied
+  implementation_phase: v3
+  v3_pending: true
   depends_on:
     - SD-005
     - MECH-069
@@ -12599,6 +12584,7 @@
     - MECH-150
     - MECH-151
     - MECH-152
+    - MECH-160
     - ARC-035
     - ARC-001
     - ARC-002
@@ -12629,16 +12615,6 @@
     rates, not simultaneous output from a single retrieval step. This may share
     an underlying reason with the E1/E2 developmental training differential vs E3
     (ARC-042 staged development). See MECH-160 for the specific rate asymmetry claim.
-  depends_on:
-    - MECH-150
-    - MECH-151
-    - MECH-152
-    - MECH-160
-    - ARC-035
-    - ARC-001
-    - ARC-002
-    - ARC-003
-    - SD-005
   evidence: []
 
 - id: INV-040
@@ -17741,6 +17717,9 @@
     confirms mechanism at 16 cycles. substrate_queue substrate-ready IGW-20260521-022;
     V3-EXQ-602 queued (StepHarness + sleep aggregation cluster integration).
     Phase 7 Option B deferred V4. No promotion from substrate closure alone.
+
+    Substrate IMPLEMENTED 2026-05-08/09 (sleep_substrate_plan GAP-1): F1 cross-cycle persistent_zero_point EMA in SerotoninModule; WRITEBACK-phase consumer in SleepLoopManager via use_rem_precision_recalibration (default False, bit-identical OFF). V3-EXQ-541 superseded (within-cycle no-op). V3-EXQ-541c PASS 2026-05-09 (supports): C1-C4, monotone step-size dose-response, 16 sleep cycles/arm. EXQ-541a/541b inconclusive_timescale (4 cycles insufficient for C3 rv divergence). Contracts 13/13. Tier-1 integration V3-EXQ-602 queued (StepHarness + sleep aggregation cluster). Claim remains candidate/v3_pending until governance accepts contributory evidence; downstream SD-029/MECH-256 retests still gated on MECH-269/MECH-307 per substrate_queue.
+    2026-05-29 (V3-EXQ-596 + V3-EXQ-602 failure_autopsy): closure-handoff integration at 12 cycles, step=0.25: MECH-204 recalibration fires every cycle in 3/3 seeds (C1 PASS); arm relative rv divergence 8.4-27.6% per seed clears the 3% C3 threshold and exceeds the 541c canonical PASS bar (4.5-9% at 16 cycles). Overall FAIL driven by C2 cluster_live_frac >= 50% (0/3 seeds; deterministic 1/11 = 9.09% because MECH-285 sampler under K=1 single-fire driver draws once at buffer-fill, then idle). C2 is a cluster-integration criterion (MECH-285 / GAP-3), not a MECH-204 prediction; 596/602 strengthen MECH-204 on C1+C3. Both manifests reclassified non_contributory -> inconclusive_measurement. Successor EXQ redesigning C2 against the documented K=1 driver pattern (sleep_substrate_plan.md GAP-7) tracked under /queue-experiment. Autopsy: evidence/planning/failure_autopsy_V3-EXQ-596-602_MECH204_2026-05-29.md.
   depends_on:
     - MECH-123
     - MECH-186
@@ -17762,33 +17741,6 @@
     double hit explaining why noradrenergic-mediated REM suppression produces rigidity rather
     than just reduced recalibration. Predicts: pharmacological 5-HT agonists during REM
     should impair precision recalibration quality specifically (not SWS consolidation).
-  evidence_quality_note: >
-    Substrate IMPLEMENTED 2026-05-08/09 (sleep_substrate_plan GAP-1): F1 cross-cycle
-    persistent_zero_point EMA in SerotoninModule; WRITEBACK-phase consumer in
-    SleepLoopManager via use_rem_precision_recalibration (default False, bit-identical OFF).
-    V3-EXQ-541 superseded (within-cycle no-op). V3-EXQ-541c PASS 2026-05-09 (supports):
-    C1-C4, monotone step-size dose-response, 16 sleep cycles/arm. EXQ-541a/541b
-    inconclusive_timescale (4 cycles insufficient for C3 rv divergence). Contracts 13/13.
-    Tier-1 integration V3-EXQ-602 queued (StepHarness + sleep aggregation cluster).
-    Claim remains candidate/v3_pending until governance accepts contributory evidence;
-    downstream SD-029/MECH-256 retests still gated on MECH-269/MECH-307 per substrate_queue.
-
-    2026-05-29 (V3-EXQ-596 + V3-EXQ-602 failure_autopsy): closure-handoff
-    integration at 12 cycles, step=0.25: MECH-204 recalibration fires every
-    cycle in 3/3 seeds (C1 PASS); arm relative rv divergence 8.4-27.6% per
-    seed clears the 3% C3 threshold and exceeds the 541c canonical PASS bar
-    (4.5-9% at 16 cycles). Overall FAIL driven by C2 cluster_live_frac >= 50%
-    (0/3 seeds; deterministic 1/11 = 9.09% because MECH-285 sampler under K=1
-    single-fire driver draws once at buffer-fill, then idle). C2 is a
-    cluster-integration criterion (MECH-285 / GAP-3), not a MECH-204 prediction;
-    596/602 strengthen MECH-204 on C1+C3. Both manifests reclassified
-    non_contributory -> inconclusive_measurement. Successor EXQ redesigning C2
-    against the documented K=1 driver pattern (sleep_substrate_plan.md GAP-7)
-    tracked under /queue-experiment. Autopsy:
-    evidence/planning/failure_autopsy_V3-EXQ-596-602_MECH204_2026-05-29.md.
-
-# Registered 2026-04-06 — surprise-gated generative replay
-# Source: conversation on hippocampal replay scheduling priority
 - id: MECH-205
   title: "Hippocampal replay is surprise-gated and generative: episodes with high unexplained prediction error are prioritized, replayed with counterfactual variations via E2, and deprioritized only when forward models can account for the surprise."
   claim_type: mechanism_hypothesis
@@ -20177,6 +20129,8 @@
     Symptom of missing SD-032b (dACC-analog cingulate integration substrate), not evidence
     against MECH-220. SD-032b now IMPLEMENTED 2026-04-19; V3-EXQ-445 queued as retest.
     Claim held pending that retest.
+
+    EXQ-395 FAIL (2026-04-18, weakens): HUB_ENABLED (hub_weight=0.3) and HUB_ABLATED (hub_weight=0.0) produce identical harm_rates across 3 seeds (delta=0.0 every seed). z_harm_a_norm shows small directional effect (+0.09 to +0.14) but harm_rate behavioral metric is unchanged. Evidence the hub mechanism (as currently implemented) is inert on the causal path to behavior. Either the hub weight is too small, the routing is not reaching policy, or the coordination mechanism needs a different architectural instantiation.
   description: >
     A lightweight cross-stream coordination mechanism (harm hub) allows z_harm_s and
     z_harm_a to share context without collapsing into a single stream. The hub implements
@@ -20207,9 +20161,6 @@
     Menon & Uddin (2010, TICS): saliency, switching, attention and control (insula hub).
     Seeley et al. (2007, J Neurosci): salience network and insular-ACC hub.
     Wiech et al. (2010, Neuron): perceptual salience and modulatory role of insula in pain.
-  evidence_quality_note: >
-    EXQ-395 FAIL (2026-04-18, weakens): HUB_ENABLED (hub_weight=0.3) and HUB_ABLATED (hub_weight=0.0) produce identical harm_rates across 3 seeds (delta=0.0 every seed). z_harm_a_norm shows small directional effect (+0.09 to +0.14) but harm_rate behavioral metric is unchanged. Evidence the hub mechanism (as currently implemented) is inert on the causal path to behavior. Either the hub weight is too small, the routing is not reaching policy, or the coordination mechanism needs a different architectural instantiation.
-
 - id: ARC-052
   title: harm_precision_weighting
   claim_type: architecture_hypothesis
@@ -21553,6 +21504,8 @@
     [2026-05-08 governance]: EXQ-490f reclassified weakens -> non_contributory (manifest patched). Cascade test ran on pre-MECH-307 conjunction architecture; the four-gap wiring fault confounds the result. Re-test required after MECH-307 substrate lands. Cross-witness: EXQ-536b force-arm probe (z_goal_inject=0.3, action-time fraction=1.0) also yielded approach_commit_rate=0.0, consistent with downstream-inert at the same architectural layer.
 
     [2026-05-08 governance: narrow_open_question applied]. The broad question decomposes into three machine-testable sub-questions, each of which can be falsified by an experiment on the StepHarness-corrected substrate after MECH-307 conjunction architecture lands: (Q-040.a) Does MECH-269b (V_s gating E1/E2 forward predictions in addition to the hippocampal proposer anchor) restore non-zero approach_commit_rate when SD-032b dACC adaptive-control is ON? Test = factorial 2x2 of {MECH-269b OFF/ON} x {SD-032b OFF/ON} on EXQ-483a-conditions retest under StepHarness; PASS = MECH-269b=ON x SD-032b=ON arm produces approach_commit_rate > 0 AND non-zero dACC-driven score-bias contribution; non-MECH-269b-ON arms remain at zero. (Q-040.b) If Q-040.a FAILs, is the upstream blocker MECH-295 liking-stream wiring? Test = MECH-295 force-arm probe (already evidence-of-record at EXQ-536b: action-time injection fraction=1.0, approach_commit_rate=0.0) plus a corrected EXQ-490g re-run under StepHarness + MECH-307 substrate. (Q-040.c) Is dACC behavioural-adjustment magnitude proportional to V_s precision-modulated PE under MECH-269b=ON? Test = EXQ-475a-conditions retest measuring dACC weight delta as a function of |precision-weighted forward-PE|; PASS = nonzero correlation in MECH-269b=ON arm and ~zero in OFF arm. Resolution path: Q-040.a is the load-bearing arbitration; Q-040.b is the alternative-hypothesis isolator; Q-040.c is the mechanism-quantification follow-on. Empirical answer is gated on (i) StepHarness migration of EXQ-471a/475a/483c/490g/524a (cohort scheduled), (ii) MECH-307 four-gap conjunction substrate landing (EXQ-540 discriminative validation queued), and (iii) MECH-269b V_s-rollout-gate landing (per substrate_queue MECH-269b-followup-A). No claim-status change; question stays open with these sub-questions as the testable scaffolding.
+
+    2026-04-28T22Z governance: narrow_open_question note. Lit-pull 2026-04-27 added 4 entries (Hayden 2011, Treuting 2025, Brown-Braver 2007, Thonnard 2021) on V_s -> E1/E2 forward- prediction generalisation; lit_conf 0.84. Lit supports MECH-269b necessity but does not license sufficiency promotion. Combined with V3-EXQ-490b FAIL today (Q-040a effectively PASS at threshold- overridden scale, Q-040b FAILs in current substrate), the architectural reading firms: MECH-269b necessary but not sufficient; MECH-295 liking-bridge is the dominant remaining blocker; successor EXQ should test both ON together. Aggregator- floor flag continues.
   title: "Is V_s generalisation to E1/E2 forward predictions (MECH-269b) the missing link that unblocks SD-032b dACC behavioural-revision (i.e. the wired-but-inert failure mode of EXQ-483/483a)?"
   claim_type: open_question
   subject: control.vs_generalisation_unblocks_dacc
@@ -21657,18 +21610,6 @@
     (broadcast override + dACC + drive modulation + V_s gate + liking
     bridge) is the natural next gate for Q-040b. Q-040a effectively
     answered (PASS at threshold-overridden smoke scale).
-  evidence_quality_note: >
-    2026-04-28T22Z governance: narrow_open_question note. Lit-pull
-    2026-04-27 added 4 entries (Hayden 2011, Treuting 2025,
-    Brown-Braver 2007, Thonnard 2021) on V_s -> E1/E2 forward-
-    prediction generalisation; lit_conf 0.84. Lit supports MECH-269b
-    necessity but does not license sufficiency promotion. Combined
-    with V3-EXQ-490b FAIL today (Q-040a effectively PASS at threshold-
-    overridden scale, Q-040b FAILs in current substrate), the
-    architectural reading firms: MECH-269b necessary but not
-    sufficient; MECH-295 liking-bridge is the dominant remaining
-    blocker; successor EXQ should test both ON together. Aggregator-
-    floor flag continues.
   location: docs/architecture/v_s_invalidation_runtime.md
 
 - id: Q-041
@@ -26393,34 +26334,10 @@
     (action=amend; 5th failure_record + beta-engagement deliverable). NOT a falsification.
     Escalation pre-registered by failure_autopsy_SD-034-closure-control-plane-d_2026-06-13
     line 90. Closes via the post-amend 460f re-queue (held until /implement-substrate amend).
-  implementation_note: >
-    IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py
-    (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five-
-    part "done" token: (a) MECH-090 beta_gate.release(); (b) MECH-260
-    dacc.inject_nogo(action_class, count); (c) ResidueField.discharge_
-    domain(z_world, factor, radius) with hard 1e-6 floor preserving the
-    "residue cannot be erased" invariant; (d) SalienceCoordinator.update_
-    signal("closure_event", value) re-biasing affinity toward internal_
-    planning; (e) dacc.reset_episode_pe() + optional dacc_pe_cap
-    (MECH-268 coupling). Completion detector: rule_state delta <
-    threshold for N consecutive ticks AND beta elevated AND current_mode
-    in allowed_closure_modes AND sd_033a write_gate >= min. Master
-    switch use_closure_operator (default False, bit-identical OFF).
-    Mode-conditioning generalises MECH-094 hypothesis-tag: closure
-    blocked in internal_replay / offline_consolidation modes. Validation
-    PASSed 2026-04-21: V3-EXQ-460 (verified-but-not-released, 6 sub-
-    tests), V3-EXQ-466 (satisficing / residue discharge, 5 sub-tests),
-    V3-EXQ-468 (commitment vs contradiction, coupled SD-034 + MECH-268,
-    6 sub-tests). Behavioural variants with full E3 task loop +
-    tolerance-band completion env deferred (depend on phased rule_state
-    training + CausalGridWorldV2 env extension not yet on roadmap).
-    Design doc: docs/architecture/sd_034_governance_closure_operator.md
-    (backfilled 2026-04-27). Lit-pull recommendations from 2026-04-27
-    largely match V3 implementation (graded No-Go via MECH-260 FIFO,
-    multi-region substrate-agnostic detector); one V4 reconsideration
-    flagged: route post-completion negative bias through SD-033a's
-    per-candidate bias projection rather than only via MECH-260
-    action-class FIFO.
+  implementation_note: |
+    IMPLEMENTED 2026-04-20 in ree-v3/ree_core/governance/closure_operator.py (ClosureOperator, ClosureOperatorConfig, ClosureEvent, 616 LOC). Five- part "done" token: (a) MECH-090 beta_gate.release(); (b) MECH-260 dacc.inject_nogo(action_class, count); (c) ResidueField.discharge_ domain(z_world, factor, radius) with hard 1e-6 floor preserving the "residue cannot be erased" invariant; (d) SalienceCoordinator.update_ signal("closure_event", value) re-biasing affinity toward internal_ planning; (e) dacc.reset_episode_pe() + optional dacc_pe_cap (MECH-268 coupling). Completion detector: rule_state delta < threshold for N consecutive ticks AND beta elevated AND current_mode in allowed_closure_modes AND sd_033a write_gate >= min. Master switch use_closure_operator (default False, bit-identical OFF). Mode-conditioning generalises MECH-094 hypothesis-tag: closure blocked in internal_replay / offline_consolidation modes. Validation PASSed 2026-04-21: V3-EXQ-460 (verified-but-not-released, 6 sub- tests), V3-EXQ-466 (satisficing / residue discharge, 5 sub-tests), V3-EXQ-468 (commitment vs contradiction, coupled SD-034 + MECH-268, 6 sub-tests). Behavioural variants with full E3 task loop + tolerance-band completion env deferred (depend on phased rule_state training + CausalGridWorldV2 env extension not yet on roadmap). Design doc: docs/architecture/sd_034_governance_closure_operator.md (backfilled 2026-04-27). Lit-pull recommendations from 2026-04-27 largely match V3 implementation (graded No-Go via MECH-260 FIFO, multi-region substrate-agnostic detector); one V4 reconsideration flagged: route post-completion negative bias through SD-033a's per-candidate bias projection rather than only via MECH-260 action-class FIFO.
+
+    2026-06-12 commitment-closure-control-plane amend (/implement-substrate): gave the ClosureOperator behavioural authority on the 603n substrate via two no-op-default legs. Leg A -- explicit env-completion hook seam REEAgent.notify_env_completion -> closure_operator.emit_closure (config use_closure_env_completion_hook; closes the V3-EXQ-460c n_closures=0 defect: the env sequence_complete signal was never routed into emit_closure). Leg B -- BetaGate de-commitment hold/refractory installed by ClosureOperator._fire (config closure_decommit_hold_ticks; closes the V3-EXQ-468c committed_frac cap-pin: a closure-driven release now survives >1 tick). Leg C (the trained GAP-D rule_bias_head + non-cap-pinned de-commitment DV) is experiment-side. Bit-identical OFF (1014 contracts + 7/7 preflight; 6 new in test_sd034_decommit_hold_and_env_hook.py). NO flag/confidence change: SD-034 provisional holds, MECH-261 stable untouched, MECH-260 candidate. Validation V3-EXQ-460d (supersedes 460c) + V3-EXQ-468d (supersedes 468c) -- retest gate: n_closures>=1 reachable + nogo_installed>=1 on >=2/3 seeds AND a non-cap-pinned de-commitment DV ON<OFF on >=2/3 seeds. See ree-v3/CLAUDE.md "SD-034 AMEND: commitment-closure-control-plane" + docs/architecture/sd_034_governance_closure_operator.md amend section.
   claim_level: architectural
   registered_utc: 2026-04-20
   depends_on:
@@ -26565,26 +26482,6 @@
     falsifications. Routed to /implement-substrate (wire env sequence_complete ->
     emit_closure + de-commitment hold + train rule_bias_head); substrate_queue
     SD-034 amended with both *c failure records.
-  pending_retest_after_substrate: true
-  implementation_note: >-
-    2026-06-12 commitment-closure-control-plane amend (/implement-substrate):
-    gave the ClosureOperator behavioural authority on the 603n substrate via two
-    no-op-default legs. Leg A -- explicit env-completion hook seam
-    REEAgent.notify_env_completion -> closure_operator.emit_closure (config
-    use_closure_env_completion_hook; closes the V3-EXQ-460c n_closures=0 defect:
-    the env sequence_complete signal was never routed into emit_closure). Leg B --
-    BetaGate de-commitment hold/refractory installed by ClosureOperator._fire
-    (config closure_decommit_hold_ticks; closes the V3-EXQ-468c committed_frac
-    cap-pin: a closure-driven release now survives >1 tick). Leg C (the trained
-    GAP-D rule_bias_head + non-cap-pinned de-commitment DV) is experiment-side.
-    Bit-identical OFF (1014 contracts + 7/7 preflight; 6 new in
-    test_sd034_decommit_hold_and_env_hook.py). NO flag/confidence change: SD-034
-    provisional holds, MECH-261 stable untouched, MECH-260 candidate. Validation
-    V3-EXQ-460d (supersedes 460c) + V3-EXQ-468d (supersedes 468c) -- retest gate:
-    n_closures>=1 reachable + nogo_installed>=1 on >=2/3 seeds AND a non-cap-pinned
-    de-commitment DV ON<OFF on >=2/3 seeds. See ree-v3/CLAUDE.md "SD-034 AMEND:
-    commitment-closure-control-plane" + docs/architecture/sd_034_governance_closure_operator.md
-    amend section.
   location: evidence/planning/sd033_governance_plan.md
 - id: SD-035
   title: "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus — two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours."
@@ -27538,7 +27435,6 @@
     for the /failure-autopsy cluster extension and left PENDING this cycle (no
     inline weakens applied). Provisional->candidate demotion (conflict_ratio 0.571)
     again HELD pending that autopsy + retest; not falsifications of MECH-266.
-  pending_retest_after_substrate: true
   location: evidence/planning/sd033_governance_plan.md
 - id: MECH-267
   title: "Mode-conditioned hippocampal trajectory proposals: HippocampalModule.propose_trajectories must condition on operating_mode (SD-032a) in addition to world_state. External_task mode proposes task-relevant trajectories; internal_planning mode proposes counterfactual / branching trajectories; internal_replay mode replays past-successful trajectories; offline_consolidation mode proposes stability-check trajectories. Without mode conditioning, replay content contaminates external-task selection."
@@ -27826,7 +27722,12 @@
   location: evidence/planning/sd033_governance_plan.md
 
 - id: MECH-269
-  evidence_quality_note: "[R4.b stamped 2026-05-29] behavioral_diversity_isolation:GAP-D Theory-4 R4.b decision-rule stamped on diagnostic-probe evidence: V3-EXQ-550 FAIL/supports MECH-269 2026-05-11T20:18Z (wired-but-untrained z_goal did NOT shift action-class entropy, so the substrate-level reading SURVIVES per the manifest's interpretation grid). Run is in claim_evidence.v1.json with evidence_direction=supports but scoring_excluded=diagnostic_probe (experiment_purpose=diagnostic), so the standard /governance pipeline cannot lift this claim off hold_pending_v3_substrate via exp_conf -- the stamp is a governance-level recognition of the V_s-pathology reading, NOT an experimental_confidence move. v3_pending=true preserved. Non-diagnostic behavioural sufficiency test (Q-040b) is owned by goal_pipeline:GAP-4 / V3-EXQ-490g Tier-1 retest cohort -- that is the path to lifting v3_pending. See evidence/planning/behavioral_diversity_isolation_plan.md 2026-05-29 GAP-D R4.b stamp section."
+  evidence_quality_note: |
+    [R4.b stamped 2026-05-29] behavioral_diversity_isolation:GAP-D Theory-4 R4.b decision-rule stamped on diagnostic-probe evidence: V3-EXQ-550 FAIL/supports MECH-269 2026-05-11T20:18Z (wired-but-untrained z_goal did NOT shift action-class entropy, so the substrate-level reading SURVIVES per the manifest's interpretation grid). Run is in claim_evidence.v1.json with evidence_direction=supports but scoring_excluded=diagnostic_probe (experiment_purpose=diagnostic), so the standard /governance pipeline cannot lift this claim off hold_pending_v3_substrate via exp_conf -- the stamp is a governance-level recognition of the V_s-pathology reading, NOT an experimental_confidence move. v3_pending=true preserved. Non-diagnostic behavioural sufficiency test (Q-040b) is owned by goal_pipeline:GAP-4 / V3-EXQ-490g Tier-1 retest cohort -- that is the path to lifting v3_pending. See evidence/planning/behavioral_diversity_isolation_plan.md 2026-05-29 GAP-D R4.b stamp section.
+
+    Registered candidate with v3_pending:true. lit_confidence 0.858 after 2026-04-22 lit-pull (targeted_review_waking_v_s_invalidation/ + targeted_review_connectome_mech_269/). Anchor-reset arm grounded in dual-trace extinction literature (Bouton 2004) plus latent-cause inference (Gershman 2010, 2017). No in-silico experiment evidence yet. Promotion requires substrate implementation (extends HippocampalModule.propose_trajectories with anchor-reset hysteresis) plus the EXQ-471 unlock test plus the dual-trace return-of- avoidance test.
+    2026-04-25 governance: V3-EXQ-478 (Phase 3 diagnostic) and V3-EXQ-480 (4-arm parameter sweep) both FAIL substrate-readiness gates. Anchor resets fire abundantly (63/31 per seed) and staleness peaks ~0.94/0.83, but freeze_recommit_count is bit-identical OFF=ON across all attribution_mode and leak_factor settings; baseline action_class_entropy=0 on both seeds even with SD-029 curriculum ON. Both runs tagged inconclusive per_claim (correctly). Diagnosis: read-side hook is the bottleneck, not parameter tuning. V3-EXQ-481 (V_s commit-release hook) confirms: vs_commit_release_count=0 in both ON and OFF arms -- the release path is dead code on this env. The MECH-284 + MECH-269 online coupling is wired-but-behaviourally-inert; revisit BoundaryEvent rate, anchor-key snapshot scope, or commit-entry capture sites before the next validation pass. Substrate stays candidate / v3_pending; not a weakening of MECH-269.
+    [2026-05-08 governance]: EXQ-476c diagnostic, inconclusive. V_s observables do not convert to behaviour without the MECH-284 Phase-3 consumer; reveals an architectural gap (assumed-present consumer is in fact absent). Not weighted as evidence.
   title: "Hippocampal proposer anchor selection AND anchor-reset: (a) trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. (b) Active anchors are continuously re-evaluated against an effective verisimilitude V_s_anchor(a, t) = V_s(r, t) - staleness[r] (MECH-284 read-out); if V_s_anchor falls below theta_reset(r) for k consecutive steps the anchor is marked inactive (NOT erased -- dual-trace preservation per Bouton 2004) and a new anchor is sought from the current latent slice. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation."
   claim_type: mechanism_hypothesis
   subject: hippocampal_proposer.regional_verisimilitude_anchor_selection
@@ -27947,33 +27848,6 @@
     BLA landing (SD-035 / V3-EXQ-474) is the natural MECH-271 routing
     validation target, which in turn constrains MECH-269 once the
     anchor/probe labels are emitted.
-  evidence_quality_note: >
-    Registered candidate with v3_pending:true. lit_confidence 0.858
-    after 2026-04-22 lit-pull (targeted_review_waking_v_s_invalidation/
-    + targeted_review_connectome_mech_269/). Anchor-reset arm grounded
-    in dual-trace extinction literature (Bouton 2004) plus latent-cause
-    inference (Gershman 2010, 2017). No in-silico experiment evidence
-    yet. Promotion requires substrate implementation (extends
-    HippocampalModule.propose_trajectories with anchor-reset hysteresis)
-    plus the EXQ-471 unlock test plus the dual-trace return-of-
-    avoidance test.
-
-    2026-04-25 governance: V3-EXQ-478 (Phase 3 diagnostic) and V3-EXQ-480
-    (4-arm parameter sweep) both FAIL substrate-readiness gates. Anchor
-    resets fire abundantly (63/31 per seed) and staleness peaks ~0.94/0.83,
-    but freeze_recommit_count is bit-identical OFF=ON across all
-    attribution_mode and leak_factor settings; baseline action_class_entropy=0
-    on both seeds even with SD-029 curriculum ON. Both runs tagged
-    inconclusive per_claim (correctly). Diagnosis: read-side hook is the
-    bottleneck, not parameter tuning. V3-EXQ-481 (V_s commit-release
-    hook) confirms: vs_commit_release_count=0 in both ON and OFF arms
-    -- the release path is dead code on this env. The MECH-284 +
-    MECH-269 online coupling is wired-but-behaviourally-inert; revisit
-    BoundaryEvent rate, anchor-key snapshot scope, or commit-entry
-    capture sites before the next validation pass. Substrate stays
-    candidate / v3_pending; not a weakening of MECH-269.
-
-    [2026-05-08 governance]: EXQ-476c diagnostic, inconclusive. V_s observables do not convert to behaviour without the MECH-284 Phase-3 consumer; reveals an architectural gap (assumed-present consumer is in fact absent). Not weighted as evidence.
   implementation_note: >
     Anchor-reset arm online-arm wiring now consumes MECH-284 staleness
     as of 2026-04-24 (ree-v3 Phase 3). AnchorSet.tick_hysteresis
@@ -29043,7 +28917,10 @@
 
 
 - id: SD-036
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    No direct V3 substrate evidence yet; substrate not implemented. Indirect motivating evidence is V3-EXQ-471 episode log (psychiatric_failure_modes.md catatonia subtype II section). Clinical evidence (benzodiazepines first-line for catatonia) is a coincidence of architectural prediction and existing clinical practice, but is not itself a substrate test. Promotion requires the falsifiable substrate experiments above. EXQ-475 (governance 2026-04-22, evidence_direction_per_claim split): SD-036 enabled with default decay parameters did NOT unlock the EXQ-471 monostrategy lock-in -- per-seed eval rewards remained negative across 3/3 seeds and the warmup improvement was bimodal (seeds 0/2 improved, seed 1 worsened). MECH-279 PAG freeze gate fired correctly (1000 active steps per seed) -- substrate-landing confirmed. SD-036 stays non_contributory pending MECH-269 V_s landing upstream; the decay regulator alone cannot break a lock-in whose proximal driver is the V_s monostrategy, but it remains a necessary substrate piece once V_s lands.
   title: "GABAergic regulatory layer applies cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone; missing-decay regulator is the proximal substrate cause of harm-stream lock-in (catatonia subtype II) observed in V3-EXQ-471."
   claim_type: design_decision
   subject: gabaergic.cross_stream_decay_regulator
@@ -29107,60 +28984,15 @@
     MECH-202B (commit-gate paralysis); the same surface phenomenology
     arises from different mechanisms with different treatment targets.
     Design doc: docs/architecture/sd_036_gabaergic_decay_regulator.md
-  evidence_quality_note: >
-    No direct V3 substrate evidence yet; substrate not implemented.
-    Indirect motivating evidence is V3-EXQ-471 episode log
-    (psychiatric_failure_modes.md catatonia subtype II section).
-    Clinical evidence (benzodiazepines first-line for catatonia) is a
-    coincidence of architectural prediction and existing clinical
-    practice, but is not itself a substrate test. Promotion requires
-    the falsifiable substrate experiments above.
-    EXQ-475 (governance 2026-04-22, evidence_direction_per_claim split):
-    SD-036 enabled with default decay parameters did NOT unlock the
-    EXQ-471 monostrategy lock-in -- per-seed eval rewards remained
-    negative across 3/3 seeds and the warmup improvement was bimodal
-    (seeds 0/2 improved, seed 1 worsened). MECH-279 PAG freeze gate
-    fired correctly (1000 active steps per seed) -- substrate-landing
-    confirmed. SD-036 stays non_contributory pending MECH-269 V_s
-    landing upstream; the decay regulator alone cannot break a lock-in
-    whose proximal driver is the V_s monostrategy, but it remains a
-    necessary substrate piece once V_s lands.
   pharmacological_predictions:
     - PHARM-004  # lorazepam in catatonia, subtype-II specificity prediction
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: MECH-279
-  evidence_quality_note: >
-    2026-07-18 governance: candidate -> provisional. V3-EXQ-776 (PAG freeze-gate functional
-    signature; run_id v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3)
-    PASS/supports, self-route pag_freeze_gate_functional_signature_confirmed, no adjudication flag.
-    All THREE signatures pass on 5/5 seeds and are non-degenerate, against gate_cfg
-    theta_freeze=2.0 / duration_input_threshold=0.4: S1 commit-law (freeze commits when
-    z_harm_a x duration exceeds theta_freeze -- MECH-279's primary falsifiable prediction);
-    S2 committed-state hysteresis (freeze is a sustained COMMITTED state with its own exit
-    criterion, not merely absence of movement -- the architectural core of the claim);
-    S3 gaba_tone exit-control (elevated gaba_tone accelerates exit, lowered gaba_tone sustains
-    freeze under mild harm = the catatonia phenotype -- MECH-279's secondary prediction).
-    Env-free DRIVEN probe of the real agent-instantiated gate reading real gaba_tone from SD-036.
-    Evidence state: exp_conf 0.774, lit_conf 0.896 (6 lit entries); 7 supports / 0 weakens.
-    DECONTAMINATION: this is the first clean experimental support for MECH-279. The
-    v3_pending=false clearance (2026-04-22) rested on V3-EXQ-475, which is inside the
-    contaminated cohort recorded below; V3-EXQ-776 is a fresh wall-independent probe outside
-    that cohort and does not inherit the update_z_goal defect.
-    SCOPE (important): 776 validates the gate's FUNCTIONAL LAW under driven z_harm_a. It does
-    NOT establish that the gate engages ECOLOGICALLY -- the standing MECH-280 / SD-037 finding
-    that pag_release_count_end=0 across all 12 runs of 483e (z_harm_a never clears
-    theta_freeze=2.0 in situ) is untouched by this run and still routes to the
-    PAGFreezeGateConfig.theta_freeze / duration_input_threshold recalibration.
-    ---
-    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524
-    cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side
-    TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving
-    GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense()
-    per warmup step, agent.update_residue() never called (residue field empty / running_variance
-    pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration +
-    corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working
-    session 2026-05-07.
+  evidence_quality_note: |
+    2026-07-18 governance: candidate -> provisional. V3-EXQ-776 (PAG freeze-gate functional signature; run_id v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3) PASS/supports, self-route pag_freeze_gate_functional_signature_confirmed, no adjudication flag. All THREE signatures pass on 5/5 seeds and are non-degenerate, against gate_cfg theta_freeze=2.0 / duration_input_threshold=0.4: S1 commit-law (freeze commits when z_harm_a x duration exceeds theta_freeze -- MECH-279's primary falsifiable prediction); S2 committed-state hysteresis (freeze is a sustained COMMITTED state with its own exit criterion, not merely absence of movement -- the architectural core of the claim); S3 gaba_tone exit-control (elevated gaba_tone accelerates exit, lowered gaba_tone sustains freeze under mild harm = the catatonia phenotype -- MECH-279's secondary prediction). Env-free DRIVEN probe of the real agent-instantiated gate reading real gaba_tone from SD-036. Evidence state: exp_conf 0.774, lit_conf 0.896 (6 lit entries); 7 supports / 0 weakens. DECONTAMINATION: this is the first clean experimental support for MECH-279. The v3_pending=false clearance (2026-04-22) rested on V3-EXQ-475, which is inside the contaminated cohort recorded below; V3-EXQ-776 is a fresh wall-independent probe outside that cohort and does not inherit the update_z_goal defect. SCOPE (important): 776 validates the gate's FUNCTIONAL LAW under driven z_harm_a. It does NOT establish that the gate engages ECOLOGICALLY -- the standing MECH-280 / SD-037 finding that pag_release_count_end=0 across all 12 runs of 483e (z_harm_a never clears theta_freeze=2.0 in situ) is untouched by this run and still routes to the PAGFreezeGateConfig.theta_freeze / duration_input_threshold recalibration. --- [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07.
+
+    Substrate not implemented. Strong biological literature backing (defensive behaviour / PAG circuitry) but no V3 substrate test yet. Promotion requires the falsifiable substrate experiments in sd_036_gabaergic_decay_regulator.md.
   title: "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia."
   claim_type: mechanism_hypothesis
   subject: pag.gabaergic_freeze_gate
@@ -29212,11 +29044,6 @@
     BLA/CeA -> PAG -> action constraint.
     Design doc: docs/architecture/sd_036_gabaergic_decay_regulator.md
     section 'PAG freeze-gating (MECH-279)'.
-  evidence_quality_note: >
-    Substrate not implemented. Strong biological literature backing
-    (defensive behaviour / PAG circuitry) but no V3 substrate test
-    yet. Promotion requires the falsifiable substrate experiments in
-    sd_036_gabaergic_decay_regulator.md.
   pharmacological_predictions:
     - PHARM-004  # lorazepam in catatonia subtype II, freeze-gate exit
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
@@ -29243,6 +29070,10 @@
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: EXQ-483d (supersedes 483c). Substrate fires correctly: override_signal_nonzero_steps saturates at total step count in every OFF_ON / ON_ON seed (C2 cleanly PASS). However action_counts and goal_norm_peak are bit-identical across the broadcast_override axis within each seed (OFF_OFF vs OFF_ON; ON_OFF vs ON_ON), and C3_lift_vs_baseline fails (lifts=1/3). MECH-295 bridge dominates effective_drive at the goal-seeding site; PAG-freeze and SalienceCoordinator consumer pathways are dormant in this env / config. Substrate-ceiling: SD-037 wired but inert at the validation surface. Closes the SD-037 substrate_queue's pre-existing prediction ("if still flat, blocker is upstream of SD-037, not override wiring"). Hold pending consumer-cascade substrate work (SalienceCoordinator enable + PAG-engaging env condition + PFC/BLA/beta-gate consumers per MECH-281 implementation_note). Pair with pending_retest_after_substrate. Apply per-claim: SD-037 evidence_direction non_contributory; MECH-280 / MECH-281 evidence_direction non_contributory (claims could not express themselves -- their targets were not engaged). Set pending_retest_after_substrate: true on all three. epistemic_category: substrate_ceiling. Routing: implement-substrate (amend SD-037 substrate_queue entry). Artifact: evidence/planning/failure_autopsy_V3-EXQ-483d_2026-05-30.{md,json}.
 
     [2026-05-31 governance, V3-EXQ-483e autopsy applied]: EXQ-483e (supersedes 483d under 483 lineage). Substrate broadcast saturates correctly (override_signal_nonzero_steps == total_eval_steps in every ON_OFF / ON_ON seed; C2_substrate cleanly PASS). The 2026-05-30 MECH-281 consumer-cascade amend (four new gain knobs: pfc_eta / bla_encoding / cea_amplitude / beta_interrupt) is fully wired in ARM_3 ON_ON but produces ZERO behavioural divergence: bla_encoding_gain_peak / cea_mode_prior_peak / cea_fast_prime_peak / dacc_bias_nonzero_steps / pag_release_count_end / beta_release_count all 0 across ALL 12 runs (including ARM_3 ON_ON in every seed). action_counts BIT-IDENTICAL across all four arms within each seed. goal_norm_peak near-bit-identical (OFF_OFF vs ON_OFF; OFF_ON vs ON_ON). Only lateral_pfc rule_state EMA responds (1.08-1.18x, below 1.5x C2 threshold). Diagnosis: SD-037 multiplicative gain pattern (output * (1 + gain * override_signal)) requires consumer-module input gates to be crossed first; BLA arousal_threshold_on=0.4 + CeA fast_route_threshold=0.5 + PAG theta_freeze sustained-product=2.0 + dACC pe-magnitude floors all sit ABOVE fishtank baseline signal magnitudes. With consumer outputs at zero baseline, broadcast amplification yields zero. epistemic_category: substrate_ceiling (one architectural layer deeper than 483d: 483d was "consumers unwired"; 483e is "consumers wired but their own input thresholds not cleared"). Falsifies the SD-037 substrate_queue 483d prediction that consumer-cascade wiring alone would deliver the lever. Apply per-claim: SD-037 / MECH-280 / MECH-281 evidence_direction non_contributory. Set pending_retest_after_substrate: true on all three (already true; preserved). Routing: implement-substrate amend SD-037 substrate_queue entry with consumer-input-threshold failure_record_entry; next substrate axes: (a) consumer-input-threshold recalibration on BLA / CeA / PAG / dACC config knobs against fishtank baseline magnitudes; (b) SD-029-style sustained-threat env curriculum driving z_harm_a above current consumer-input thresholds. Distinct from 540/590a/591/598/603/610 substrate_uniform cluster (different shape on different substrate root). Artifact: evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.{md,json}.
+
+    Substrate IMPLEMENTED 2026-04-25 (ree-v3 commit; design doc sd_037_broadcast_override_regulator.md). First validation V3-EXQ-483 (4-arm SD-036 x SD-037 factorial, 3 seeds, 60-ep warmup) returned a "wired-but-inert" pattern: substrate signature confirmed -- override_signal climbed from 0.0 to 0.56 mean / 0.62 max in ON arms and PAG release count rose from 5.3 (override OFF) to 9.0-9.3 (override ON), tracking the lit-pull-predicted PAG-exit-threshold scaling. Behavioural acceptance criteria (PWS / narcolepsy ratios) were uninterpretable because approach_commit was 0.0 across ALL arms including the SD-036-only baseline (ON_OFF), making the PWS / narcolepsy ratios degenerate (0/0). The pattern matches EXQ-471 / EXQ-478 / EXQ-480: substrate writes the expected signal but the policy layer does not yet translate it into observable behavioural divergence under the standard CausalGridWorldV2 benefit task. Confidence is therefore SUBSTRATE-CONFIRMED-WIRED but BEHAVIOURALLY-INCONCLUSIVE -- promotion still requires independent demonstration of the two failure-mode phenotypes. Successor V3-EXQ-483a queued (warmup 60 -> 200 to give baseline arm enough exposure to potentially produce non-zero approach behaviour; acceptance logic adds substrate-readiness fallback path used only when the baseline arm yields no behavioural signal, requiring override_mean > 0.30 AND PAG release ratio ON_ON / ON_OFF > 1.30 -- both thresholds derived from EXQ-483's measured values so the test discriminates against a hypothetically broken substrate without depending on a behavioural readout the policy layer cannot yet produce). Strong literature basis retained (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
+    [IGW-20260521-020 substrate-ready close]: Substrate-readiness canonical PASS V3-EXQ-483b (2026-05-08). SD-037 landing scope = BroadcastOverrideRegulator + MECH-280/281 consumer sites only; MECH-282 (LPB channel) and MECH-286 (sleep-onset gating) explicitly deferred. Tier-1 evidence V3-EXQ-483c queued (goal_pipeline GAP-4). v3_pending retained until behavioural phenotypes or 483c contributory evidence; no promotion.
+    [enum-comment migrated to field 2026-07-18] epistemic_category: set 2026-05-31 per failure_autopsy_V3-EXQ-483e (and 483d before it); consumer-input-threshold layer is the substrate-ceiling root for this claim's current validation surface
   title: "Broadcast override regulator (orexin-analog) is the third regulatory layer of the V3 control stack: a small, broadly-projecting gain modulator that integrates internal homeostatic state and threat context to produce an override_signal that reweights z_harm at downstream commit gates and gates the SD-012 drive->z_goal seeding bridge. Dissociable from SD-036 (GABA decay) and from MECH-186/187/188 (5-HT goal-pipeline gain): each layer predicts a clinically distinct failure phenotype (catatonia subtype II / depression / narcolepsy + PWS-hyperphagia). SD-036 alone is architecturally insufficient to break harm-stream lock-in under sustained threat; SD-037 supplies the override authority that lets metabolic demand drive z_goal seeding when threat persists."
   claim_type: design_decision
   subject: broadcast.override_regulator
@@ -29314,45 +29145,6 @@
     to fix V3-EXQ-471 architecturally; the orexin-analog cluster is on the
     V3 roadmap regardless of EXQ-475's empirical outcome.
     Design doc: docs/architecture/sd_037_broadcast_override_regulator.md
-  evidence_quality_note: >
-    Substrate IMPLEMENTED 2026-04-25 (ree-v3 commit; design doc
-    sd_037_broadcast_override_regulator.md). First validation V3-EXQ-483
-    (4-arm SD-036 x SD-037 factorial, 3 seeds, 60-ep warmup) returned a
-    "wired-but-inert" pattern: substrate signature confirmed --
-    override_signal climbed from 0.0 to 0.56 mean / 0.62 max in ON arms
-    and PAG release count rose from 5.3 (override OFF) to 9.0-9.3
-    (override ON), tracking the lit-pull-predicted PAG-exit-threshold
-    scaling. Behavioural acceptance criteria (PWS / narcolepsy ratios)
-    were uninterpretable because approach_commit was 0.0 across ALL
-    arms including the SD-036-only baseline (ON_OFF), making the
-    PWS / narcolepsy ratios degenerate (0/0). The pattern matches
-    EXQ-471 / EXQ-478 / EXQ-480: substrate writes the expected signal
-    but the policy layer does not yet translate it into observable
-    behavioural divergence under the standard CausalGridWorldV2
-    benefit task. Confidence is therefore SUBSTRATE-CONFIRMED-WIRED
-    but BEHAVIOURALLY-INCONCLUSIVE -- promotion still requires
-    independent demonstration of the two failure-mode phenotypes.
-    Successor V3-EXQ-483a queued (warmup 60 -> 200 to give baseline
-    arm enough exposure to potentially produce non-zero approach
-    behaviour; acceptance logic adds substrate-readiness fallback path
-    used only when the baseline arm yields no behavioural signal,
-    requiring override_mean > 0.30 AND PAG release ratio
-    ON_ON / ON_OFF > 1.30 -- both thresholds derived from EXQ-483's
-    measured values so the test discriminates against a hypothetically
-    broken substrate without depending on a behavioural readout the
-    policy layer cannot yet produce). Strong literature basis retained
-    (lit-pull synthesis at literature_confidence ~0.78 across 13 papers).
-
-    [IGW-20260521-020 substrate-ready close]: Substrate-readiness canonical
-    PASS V3-EXQ-483b (2026-05-08). SD-037 landing scope = BroadcastOverrideRegulator
-    + MECH-280/281 consumer sites only; MECH-282 (LPB channel) and MECH-286
-    (sleep-onset gating) explicitly deferred. Tier-1 evidence V3-EXQ-483c
-    queued (goal_pipeline GAP-4). v3_pending retained until behavioural
-    phenotypes or 483c contributory evidence; no promotion.
-
-    [enum-comment migrated to field 2026-07-18] epistemic_category: set 2026-05-31 per
-    failure_autopsy_V3-EXQ-483e (and 483d before it); consumer-input-threshold layer is the
-    substrate-ceiling root for this claim's current validation surface
   pharmacological_predictions:
     - PHARM-001  # DORA-class (suvorexant/lemborexant) substrate intervention for hyperarousal-insomnia
     - PHARM-002  # modafinil / sodium oxybate (MECH-286 axis, narcolepsy sleep-state)
@@ -31142,7 +30934,6 @@
     child-validated (494/496/497 PASS); the open item is test-design. Re-queue as
     V3-EXQ-651a with a non-degeneracy gate (FIELD_ONLY must abandon first) + a
     behavioural re-approach readout. Status/phase/confidence unchanged.
-  pending_retest_after_substrate: true
   location: docs/architecture/ghost_goal_search.md
 
 - id: ARC-061
@@ -31400,7 +31191,10 @@
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-269b
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [R4.b stamped 2026-05-29] behavioral_diversity_isolation:GAP-D Theory-4 R4.b decision-rule stamped on diagnostic-probe evidence: V3-EXQ-601 PASS/supports MECH-269b 2026-05-21T12:02Z (MECH-269b-followup-A staleness-gate wiring). Run is in claim_evidence.v1.json with evidence_direction=supports + status=PASS but scoring_excluded=diagnostic_probe (experiment_purpose=diagnostic), so the standard /governance pipeline cannot lift this claim off hold_pending_v3_substrate via exp_conf -- the stamp is a governance-level recognition of the substrate-path confirmation, NOT an experimental_confidence move. v3_pending=true preserved. Non-diagnostic behavioural sufficiency test (Q-040b) is owned by goal_pipeline:GAP-4 / V3-EXQ-490g Tier-1 retest cohort -- that is the path to lifting v3_pending. See evidence/planning/behavioral_diversity_isolation_plan.md 2026-05-29 GAP-D R4.b stamp section."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [R4.b stamped 2026-05-29] behavioral_diversity_isolation:GAP-D Theory-4 R4.b decision-rule stamped on diagnostic-probe evidence: V3-EXQ-601 PASS/supports MECH-269b 2026-05-21T12:02Z (MECH-269b-followup-A staleness-gate wiring). Run is in claim_evidence.v1.json with evidence_direction=supports + status=PASS but scoring_excluded=diagnostic_probe (experiment_purpose=diagnostic), so the standard /governance pipeline cannot lift this claim off hold_pending_v3_substrate via exp_conf -- the stamp is a governance-level recognition of the substrate-path confirmation, NOT an experimental_confidence move. v3_pending=true preserved. Non-diagnostic behavioural sufficiency test (Q-040b) is owned by goal_pipeline:GAP-4 / V3-EXQ-490g Tier-1 retest cohort -- that is the path to lifting v3_pending. See evidence/planning/behavioral_diversity_isolation_plan.md 2026-05-29 GAP-D R4.b stamp section.
+
+    Literature support is asymmetric across the claim's two architectural halves. Cortex-side per-stream precision/reliability gating of prediction errors has strong inferential support from the predictive-coding programme: cortical microcircuits implement precision-weighted PE (Bastos et al. 2012, Neuron, doi:10.1016/j.neuron.2012.10.038), attention is precision (Feldman & Friston 2010, Front Hum Neurosci, doi:10.3389/fnhum.2010.00215), pulvinar-cortex modulatory gain is the most direct biological substrate proposal (Kanai et al. 2015, Phil Trans R Soc B, doi:10.1098/rstb.2014.0169), and aberrant precision produces the wired-but-inert clinical phenotype the claim warns about (Adams et al. 2013, doi:10.3389/fpsyt.2013.00047; Lawson et al. 2014, doi:10.3389/fnhum.2014.00302). The empirical foundation for per-stream reliability-weighted integration is psychophysically demonstrated for cue integration (Ernst & Banks 2002, Nature, doi:10.1038/415429a). However, the symmetric-application half of the claim -- that the SAME V_s signal gates BOTH hippocampal proposer anchor selection AND cortical E1/E2 forward predictions -- is genuinely novel architectural ground. The closest available precedent is Daw, Niv & Dayan 2005 (Nat Neurosci, doi:10.1038/nn1560), which arbitrates between two distinct world-model systems by uncertainty, but is structural rather than direct. No paper in the targeted review demonstrates symmetric hippocampal+cortical precision-gating at the resolution MECH-269b assumes. Sparse direct support for symmetric-application does NOT falsify the mechanism; biology may not have been measured at this resolution. Substrate validation must distinguish behavioural signatures predicted by symmetric-V_s gating (cortex-side wired-but-inert failure mode without V_s on E1/E2 rollouts; downstream consumers receive stale-but-confident-looking PE) from cortex-only-gating null hypotheses. V3-EXQ-490 FAIL x2 (2026-04-27, diagnostic -> reclassified non_contributory in /governance 2026-04-27). Two near-identical FAIL runs of the Q-040 factorial (3 seeds each, ON_OFF vs ON_ON arms differing only in use_vs_rollout_gating). Sub-diagnostic outcome: c1 gate-firing precondition itself FAILed (c1_on_total_held = 0, c1_off_total_held = 0 across both runs and both arms). With c1 not firing, c2 (approach_commit recovery) and c3 (dACC PE) cannot be interpreted -- the experiment never reaches the question it was designed to answer. Two near-identical FAILs across separate runs is suspicious; flagged for /diagnose-errors to investigate gate-firing precondition (possible substrate gating bug or smoke-scale insufficient warmup). Hold at candidate; substrate validation deferred until /diagnose-errors clears the gate-firing precondition.
   title: "Regional verisimilitude V_s gates not only hippocampal proposer anchor selection but also which streams ground forward predictions in cortical world models (E1 sensory predictor, E2 transition model). Without symmetric V_s gating on E1/E2 rollouts, downstream consumers receive stale-but-confident-looking prediction errors -- the wired-but-inert failure mode."
   claim_type: mechanism_hypothesis
   subject: cortical_world_model.regional_verisimilitude_rollout_gating
@@ -31515,54 +31309,17 @@
     smoke overrides; resolves 2026-04-27 architectural_mismatch (raw V_s
     hold unreachable). v3_pending remains true until Q-040b behavioural
     factorial (approach_commit + dACC) on StepHarness cohort.
-  evidence_quality_note: >
-    Literature support is asymmetric across the claim's two
-    architectural halves. Cortex-side per-stream precision/reliability
-    gating of prediction errors has strong inferential support from the
-    predictive-coding programme: cortical microcircuits implement
-    precision-weighted PE (Bastos et al. 2012, Neuron,
-    doi:10.1016/j.neuron.2012.10.038), attention is precision (Feldman
-    & Friston 2010, Front Hum Neurosci, doi:10.3389/fnhum.2010.00215),
-    pulvinar-cortex modulatory gain is the most direct biological
-    substrate proposal (Kanai et al. 2015, Phil Trans R Soc B,
-    doi:10.1098/rstb.2014.0169), and aberrant precision produces the
-    wired-but-inert clinical phenotype the claim warns about (Adams
-    et al. 2013, doi:10.3389/fpsyt.2013.00047; Lawson et al. 2014,
-    doi:10.3389/fnhum.2014.00302). The empirical foundation for
-    per-stream reliability-weighted integration is psychophysically
-    demonstrated for cue integration (Ernst & Banks 2002, Nature,
-    doi:10.1038/415429a). However, the symmetric-application half of
-    the claim -- that the SAME V_s signal gates BOTH hippocampal
-    proposer anchor selection AND cortical E1/E2 forward predictions --
-    is genuinely novel architectural ground. The closest available
-    precedent is Daw, Niv & Dayan 2005 (Nat Neurosci,
-    doi:10.1038/nn1560), which arbitrates between two distinct
-    world-model systems by uncertainty, but is structural rather than
-    direct. No paper in the targeted review demonstrates symmetric
-    hippocampal+cortical precision-gating at the resolution MECH-269b
-    assumes. Sparse direct support for symmetric-application does NOT
-    falsify the mechanism; biology may not have been measured at this
-    resolution. Substrate validation must distinguish behavioural
-    signatures predicted by symmetric-V_s gating (cortex-side
-    wired-but-inert failure mode without V_s on E1/E2 rollouts;
-    downstream consumers receive stale-but-confident-looking PE) from
-    cortex-only-gating null hypotheses.
-    V3-EXQ-490 FAIL x2 (2026-04-27, diagnostic -> reclassified non_contributory
-    in /governance 2026-04-27). Two near-identical FAIL runs of the Q-040
-    factorial (3 seeds each, ON_OFF vs ON_ON arms differing only in
-    use_vs_rollout_gating). Sub-diagnostic outcome: c1 gate-firing
-    precondition itself FAILed (c1_on_total_held = 0, c1_off_total_held = 0
-    across both runs and both arms). With c1 not firing, c2 (approach_commit
-    recovery) and c3 (dACC PE) cannot be interpreted -- the experiment never
-    reaches the question it was designed to answer. Two near-identical FAILs
-    across separate runs is suspicious; flagged for /diagnose-errors to
-    investigate gate-firing precondition (possible substrate gating bug or
-    smoke-scale insufficient warmup). Hold at candidate; substrate validation
-    deferred until /diagnose-errors clears the gate-firing precondition.
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-295
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [2026-06-04 governance / failure_autopsy_V3-EXQ-490k] V3-EXQ-490k (modulatory-sufficiency argmin-flip probe, diagnostic) ran to completion (PASS, probe_ran=true) but could NOT test the narrowed-modulatory reading: ROW_2_fires_but_never_flips -- the cue fires on all 3 seeds (mech295_fired_ticks=145) yet argmin_flip_ticks=0 because mech295_bias_range_mean=0.0 (per-candidate bias uniform across candidates -> subtracting it cannot change the argmin BY CONSTRUCTION). The option-(c) probe correctly removed the 490j saturation contamination but is defeated by a DIFFERENT upstream gap (collapsed candidate z_world + weak z_goal goal_norm_peak=0.193). non_contributory for governance weighting; epistemic_category set to substrate_ceiling; pending_retest_after_substrate via 490L on enriched substrate with a pre-registered mech295_bias_range_mean>0 guard before interpreting argmin flips. narrow_supports_flag=true: MECH-295 shows zero behavioural-sufficiency across the 490g/h/i/j/k lineage. [2026-06-09 governance / re-scope + GAP-4 close, user-approved] goal_pipeline:GAP-4 CLOSED by re-scoping MECH-295 to the modulatory reading rather than continuing to block on a V3-EXQ-490L successor. The behavioural-necessity reading is terminally falsified (490j); the modulatory reading stands and is substrate-supported; the modulatory-sufficiency behavioural retest (490L) is retained as an OPTIONAL, non-GAP-blocking future test gated on the scaffolded_sd054_onboarding substrate (owned elsewhere, in flight via the 603-line Stage-H programme). epistemic_category=substrate_ceiling and pending_retest_after_substrate=true preserved for that optional test; status stays candidate (no promotion)."
+  evidence_quality_note: |
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07. [2026-06-04 governance / failure_autopsy_V3-EXQ-490k] V3-EXQ-490k (modulatory-sufficiency argmin-flip probe, diagnostic) ran to completion (PASS, probe_ran=true) but could NOT test the narrowed-modulatory reading: ROW_2_fires_but_never_flips -- the cue fires on all 3 seeds (mech295_fired_ticks=145) yet argmin_flip_ticks=0 because mech295_bias_range_mean=0.0 (per-candidate bias uniform across candidates -> subtracting it cannot change the argmin BY CONSTRUCTION). The option-(c) probe correctly removed the 490j saturation contamination but is defeated by a DIFFERENT upstream gap (collapsed candidate z_world + weak z_goal goal_norm_peak=0.193). non_contributory for governance weighting; epistemic_category set to substrate_ceiling; pending_retest_after_substrate via 490L on enriched substrate with a pre-registered mech295_bias_range_mean>0 guard before interpreting argmin flips. narrow_supports_flag=true: MECH-295 shows zero behavioural-sufficiency across the 490g/h/i/j/k lineage. [2026-06-09 governance / re-scope + GAP-4 close, user-approved] goal_pipeline:GAP-4 CLOSED by re-scoping MECH-295 to the modulatory reading rather than continuing to block on a V3-EXQ-490L successor. The behavioural-necessity reading is terminally falsified (490j); the modulatory reading stands and is substrate-supported; the modulatory-sufficiency behavioural retest (490L) is retained as an OPTIONAL, non-GAP-blocking future test gated on the scaffolded_sd054_onboarding substrate (owned elsewhere, in flight via the 603-line Stage-H programme). epistemic_category=substrate_ceiling and pending_retest_after_substrate=true preserved for that optional test; status stays candidate (no promotion).
+
+    Strong literature support for the architectural premise (a separable liking-stream substrate exists) and the general principle (drive-state changes route through experienced hedonic value before reaching action selection). Strongest direct evidence: Smith Berridge & Aldridge 2011 (PNAS, doi:10.1073/pnas.1101920108; VP single-unit, drive change recodes palatability before cue firing) and Dickinson & Balleine 1994 (Animal Learn Behav, doi:10.3758/BF03209866; instrumental devaluation requires outcome re-experience). Architectural articulation in Berridge & Kringelbach 2015 (Neuron, doi:10.1016/j.neuron.2015.02.018). Substrate evidence: Pecina & Berridge 2005 (J Neurosci, doi:10.1523/JNEUROSCI.3331-05.2005), Castro & Berridge 2014 (Phys Behav, doi:10.1016/j.physbeh.2014.02.063). The strong- necessity reading (no liking activation => no approach) versus the weak-bridge reading (baseline liking sufficient if bridge intact) is NOT arbitrated by existing literature; the DAT-knockdown finding (Pecina et al. 2003, J Neurosci, doi:10.1523/JNEUROSCI.23-28-09395.2003) is compatible only with the weak reading. MECH-295 commits to the weak reading provisionally. The cleanest direct test of MECH-295 (mu-opioid antagonist in NAc shell hotspot + hunger + cue-approach) is an experimental gap. EXQ-483's failure signature (approach_commit = 0.0 across all arms despite drive amplification) is consistent with a broken liking-bridge wiring. See `evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md` for the full breakdown.
+    Governance flag (2026-04-26 hold): the strong-vs-weak necessity arbitration remains the explicit promotion-blocker. Next governance cycle should not promote MECH-295 above candidate without (a) a V3 substrate test that holds drive_level fixed and severs vs preserves the liking bridge, or (b) literature evidence resolving the DAT- knockdown / Pecina 2003 inconsistency with strong necessity. The weak reading remains the provisional commitment.
+    V3-EXQ-490i autopsy upgrade (2026-05-31): the manifest evidence_direction_per_claim[MECH-295] is overridden from "weakens" to "narrow_supports" per confirmed failure_autopsy_V3-EXQ-490i_2026-05-30. Bridge fires cleanly in ARM_1 (cue_fires 6/4/12; write_fires 6/4/40) with approach_commit_rate=1.0 in 3/3 seeds; ARM_0 severed shows approach_commit_rate=0.0 in 3/3. The MECH-295 architectural prediction registered as the primary falsifiable test (bridge intact -> approach recovers; bridge severed -> collapses) is met in the sign direction across all seeds. Manifest evidence_direction=weakens rolls up (i) test-design contamination on C3_lift_vs_baseline (chosen substrate-side proxy is goal_norm_peak ARM_1 - ARM_0; ARM_0 has z_goal_enabled=True and accumulates a goal-norm baseline the metric assumes is zero -- seed-7 ARM_0 spikes to 12.49) and (ii) a separate C2 dACC wiring gap (dacc_bias_nonzero_steps=0 across all ARM_1 seeds despite cfg.use_dacc=True -- SD-032b consumer-pathway wiring gap, NOT a MECH-295 falsification). narrow_supports flag set: one experimental pair under one env config; broader retest comes with V3-EXQ-490j on a non-contaminated baseline arm (z_goal_enabled=False) plus direct bridge-magnitude probe. Routing: /queue-experiment for V3-EXQ-490j; /diagnose-errors for the SD-032b dACC bundle -> E3 score_bias propagation path. Substrate operative; no SD-amend.
+    V3-EXQ-490j autopsy upgrade (2026-05-31, revised 11:58Z): manifest evidence_direction_per_claim[MECH-295] = 'weakens' at the behavioural-necessity layer. Severed-bridge baseline contract verified at the substrate layer (ARM_0 z_goal_enabled=False; bridge_cue_fires=0, bridge_write_fires=0, mech295_*_calls=0, goal_active_steps=0, goal_norm_peak=0.0 across 3/3 seeds; substrate-side C6 anticipatory_write_peak 0.287/0.0066/0.069 + C7 approach_cue_bias_peak 0.396/0.054/0.427 + C9 write_sum 80.2/0.58/17.5 ALL PASS in ARM_1 vs zero baseline). The C8 approach_commit_rate_lift FAIL is NOT purely metric contamination -- approach_commit_rate = 1.0 in BOTH arms across all 3 seeds reflects the substantive fact that ARM_0 (link severed, drive amplification active per gap4 substrate) still produces approach commitment via parallel pathways: MECH-216 schema readout (drive- modulated wanting write), MECH-290 backward credit sweep (VALENCE_WANTING at completion), MECH-307 anticipatory liking write at predicted location, and serotonin tonic_5ht benefit_salience -- all drive-> approach pathways operating independently of the SD-014/SD-015 liking-stream substrate that MECH-295 names. This falsifies the weak-reading necessity claim ('if the link is severed, drive amplification produces no approach regardless of drive magnitude') at the behavioural layer. The substrate IS implemented correctly (V3-EXQ-493 6/6 PASS isolation + 490j C6/C7/C9 PASS); what is mis- scoped is the claim. Governance applied (2026-05-31): MECH-295 narrowed from a necessity claim to a modulation claim -- 'the drive -> liking-stream -> approach-cue gain pathway biases approach scoring via a liking-specific per-candidate score_bias; it is not the sole or necessary pathway by which drive amplification reaches approach action selection in a multi-pathway substrate'. Biology-faithful (Berridge & Robinson 2003 wanting/liking dissociation; Berridge & Kringelbach 2015 hedonic architecture as one pathway among several); resolves the long-standing Pecina 2003 DAT-knockdown tension that troubled the weak reading. v3_pending gate stays held until the narrowed claim's substrate-isolating retest lands. Routing: PRIMARY /governance for claim narrowing (applied this cycle); SECONDARY /queue-experiment V3-EXQ-490k with direct E3 score_bias argmin-change probe (autopsy Section 9 option c as primary metric + option a as behavioural sanity check + option b as sensitivity-analysis ablation arm). Strong-reading falsifier (mu-opioid antagonist in NAc shell hotspot + hunger + cue-approach) remains the experimental gap for any reinstatement of a strong-necessity reading. Cohort context: 490g (Fork A library rebuild), 490h (runner silent-drop), 490i (goal_norm_peak baseline contamination), 490j (substrate fires correctly, behavioural-necessity reading reframed). Autopsy artifact: evidence/planning/failure_autopsy_V3-EXQ-490j_2026-05-31.{md,json} status=confirmed_revised.
+    [2026-05-31 evening governance: V3-EXQ-618 reclassified non_contributory]: V3-EXQ-618 SD-049 Phase 3 consumer-cascade validation PASSed all four substrate-readiness acceptance criteria (C1 per_axis_drive evolves min_peak=0.027; C2 no crashes; C3 AIC reads per_axis mean_l1=5.92; C4 MECH-295 axis routes mean_l1=0.169) but is experiment_purpose= diagnostic and does not test MECH-295's behavioural-necessity hypothesis directly. Per the established pattern for substrate- readiness diagnostics in this claim (cf. EXQ-519b 2026-05-30 governance), reclassified non_contributory for both tagged claims. Load-bearing behavioural validation is owed to V3-EXQ-619 (reserved; replicates V3-EXQ-514g structure on Phase 3 substrate; unblocks goal_pipeline:GAP-2 cluster). MECH-295 stays candidate / v3_pending=true.
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
   title: "The drive -> liking-stream -> approach-cue gain pathway is one of several drive->approach pathways in the REE substrate. It biases approach action scoring via a liking-specific per-candidate score_bias contribution, but is NOT the sole or necessary pathway by which drive amplification reaches approach action selection (narrowed 2026-05-31 from necessity to modulation per V3-EXQ-490j autopsy; original necessity title preserved in functional_restatement history). Parallel architecturally first-class drive->approach pathways operate in the same substrate: MECH-216 schema-readout wanting, MECH-290 backward credit sweep, MECH-307 anticipatory liking, and serotonin tonic_5ht benefit_salience."
@@ -31738,122 +31495,6 @@
     Strong-vs-weak necessity is flagged for user resolution. The
     cleanest direct test (mu-opioid antagonist in NAc shell hotspot
     + hunger + cue-approach) is an experimental gap.
-  evidence_quality_note: >
-    Strong literature support for the architectural premise (a
-    separable liking-stream substrate exists) and the general principle
-    (drive-state changes route through experienced hedonic value before
-    reaching action selection). Strongest direct evidence: Smith
-    Berridge & Aldridge 2011 (PNAS, doi:10.1073/pnas.1101920108; VP
-    single-unit, drive change recodes palatability before cue firing)
-    and Dickinson & Balleine 1994 (Animal Learn Behav,
-    doi:10.3758/BF03209866; instrumental devaluation requires outcome
-    re-experience). Architectural articulation in Berridge &
-    Kringelbach 2015 (Neuron, doi:10.1016/j.neuron.2015.02.018).
-    Substrate evidence: Pecina & Berridge 2005 (J Neurosci,
-    doi:10.1523/JNEUROSCI.3331-05.2005), Castro & Berridge 2014
-    (Phys Behav, doi:10.1016/j.physbeh.2014.02.063). The strong-
-    necessity reading (no liking activation => no approach) versus the
-    weak-bridge reading (baseline liking sufficient if bridge intact)
-    is NOT arbitrated by existing literature; the DAT-knockdown finding
-    (Pecina et al. 2003, J Neurosci, doi:10.1523/JNEUROSCI.23-28-09395.2003)
-    is compatible only with the weak reading. MECH-295 commits to the
-    weak reading provisionally. The cleanest direct test of MECH-295
-    (mu-opioid antagonist in NAc shell hotspot + hunger + cue-approach)
-    is an experimental gap. EXQ-483's failure signature
-    (approach_commit = 0.0 across all arms despite drive amplification)
-    is consistent with a broken liking-bridge wiring. See
-    `evidence/literature/targeted_review_mech295_liking_approach_bridge/SYNTHESIS.md`
-    for the full breakdown.
-
-    Governance flag (2026-04-26 hold): the strong-vs-weak necessity
-    arbitration remains the explicit promotion-blocker. Next governance
-    cycle should not promote MECH-295 above candidate without (a) a V3
-    substrate test that holds drive_level fixed and severs vs preserves
-    the liking bridge, or (b) literature evidence resolving the DAT-
-    knockdown / Pecina 2003 inconsistency with strong necessity. The
-    weak reading remains the provisional commitment.
-
-    V3-EXQ-490i autopsy upgrade (2026-05-31): the manifest
-    evidence_direction_per_claim[MECH-295] is overridden from "weakens"
-    to "narrow_supports" per confirmed failure_autopsy_V3-EXQ-490i_2026-05-30.
-    Bridge fires cleanly in ARM_1 (cue_fires 6/4/12; write_fires 6/4/40)
-    with approach_commit_rate=1.0 in 3/3 seeds; ARM_0 severed shows
-    approach_commit_rate=0.0 in 3/3. The MECH-295 architectural prediction
-    registered as the primary falsifiable test (bridge intact -> approach
-    recovers; bridge severed -> collapses) is met in the sign direction
-    across all seeds. Manifest evidence_direction=weakens rolls up
-    (i) test-design contamination on C3_lift_vs_baseline (chosen substrate-side
-    proxy is goal_norm_peak ARM_1 - ARM_0; ARM_0 has z_goal_enabled=True
-    and accumulates a goal-norm baseline the metric assumes is zero --
-    seed-7 ARM_0 spikes to 12.49) and (ii) a separate C2 dACC wiring gap
-    (dacc_bias_nonzero_steps=0 across all ARM_1 seeds despite cfg.use_dacc=True
-    -- SD-032b consumer-pathway wiring gap, NOT a MECH-295 falsification).
-    narrow_supports flag set: one experimental pair under one env config;
-    broader retest comes with V3-EXQ-490j on a non-contaminated baseline
-    arm (z_goal_enabled=False) plus direct bridge-magnitude probe.
-    Routing: /queue-experiment for V3-EXQ-490j; /diagnose-errors for the
-    SD-032b dACC bundle -> E3 score_bias propagation path. Substrate
-    operative; no SD-amend.
-
-    V3-EXQ-490j autopsy upgrade (2026-05-31, revised 11:58Z): manifest
-    evidence_direction_per_claim[MECH-295] = 'weakens' at the
-    behavioural-necessity layer. Severed-bridge baseline contract verified
-    at the substrate layer (ARM_0 z_goal_enabled=False; bridge_cue_fires=0,
-    bridge_write_fires=0, mech295_*_calls=0, goal_active_steps=0,
-    goal_norm_peak=0.0 across 3/3 seeds; substrate-side C6
-    anticipatory_write_peak 0.287/0.0066/0.069 + C7 approach_cue_bias_peak
-    0.396/0.054/0.427 + C9 write_sum 80.2/0.58/17.5 ALL PASS in ARM_1 vs
-    zero baseline). The C8 approach_commit_rate_lift FAIL is NOT purely
-    metric contamination -- approach_commit_rate = 1.0 in BOTH arms across
-    all 3 seeds reflects the substantive fact that ARM_0 (link severed,
-    drive amplification active per gap4 substrate) still produces approach
-    commitment via parallel pathways: MECH-216 schema readout (drive-
-    modulated wanting write), MECH-290 backward credit sweep (VALENCE_WANTING
-    at completion), MECH-307 anticipatory liking write at predicted
-    location, and serotonin tonic_5ht benefit_salience -- all drive->
-    approach pathways operating independently of the SD-014/SD-015
-    liking-stream substrate that MECH-295 names. This falsifies the
-    weak-reading necessity claim ('if the link is severed, drive
-    amplification produces no approach regardless of drive magnitude') at
-    the behavioural layer. The substrate IS implemented correctly
-    (V3-EXQ-493 6/6 PASS isolation + 490j C6/C7/C9 PASS); what is mis-
-    scoped is the claim. Governance applied (2026-05-31): MECH-295
-    narrowed from a necessity claim to a modulation claim -- 'the drive
-    -> liking-stream -> approach-cue gain pathway biases approach scoring
-    via a liking-specific per-candidate score_bias; it is not the sole
-    or necessary pathway by which drive amplification reaches approach
-    action selection in a multi-pathway substrate'. Biology-faithful
-    (Berridge & Robinson 2003 wanting/liking dissociation; Berridge &
-    Kringelbach 2015 hedonic architecture as one pathway among several);
-    resolves the long-standing Pecina 2003 DAT-knockdown tension that
-    troubled the weak reading. v3_pending gate stays held until the
-    narrowed claim's substrate-isolating retest lands. Routing: PRIMARY
-    /governance for claim narrowing (applied this cycle); SECONDARY
-    /queue-experiment V3-EXQ-490k with direct E3 score_bias argmin-change
-    probe (autopsy Section 9 option c as primary metric + option a as
-    behavioural sanity check + option b as sensitivity-analysis ablation
-    arm). Strong-reading falsifier (mu-opioid antagonist in NAc shell
-    hotspot + hunger + cue-approach) remains the experimental gap for
-    any reinstatement of a strong-necessity reading. Cohort context: 490g
-    (Fork A library rebuild), 490h (runner silent-drop), 490i
-    (goal_norm_peak baseline contamination), 490j (substrate fires
-    correctly, behavioural-necessity reading reframed). Autopsy artifact:
-    evidence/planning/failure_autopsy_V3-EXQ-490j_2026-05-31.{md,json}
-    status=confirmed_revised.
-
-    [2026-05-31 evening governance: V3-EXQ-618 reclassified non_contributory]:
-    V3-EXQ-618 SD-049 Phase 3 consumer-cascade validation PASSed all four
-    substrate-readiness acceptance criteria (C1 per_axis_drive evolves
-    min_peak=0.027; C2 no crashes; C3 AIC reads per_axis mean_l1=5.92;
-    C4 MECH-295 axis routes mean_l1=0.169) but is experiment_purpose=
-    diagnostic and does not test MECH-295's behavioural-necessity
-    hypothesis directly. Per the established pattern for substrate-
-    readiness diagnostics in this claim (cf. EXQ-519b 2026-05-30
-    governance), reclassified non_contributory for both tagged claims.
-    Load-bearing behavioural validation is owed to V3-EXQ-619 (reserved;
-    replicates V3-EXQ-514g structure on Phase 3 substrate; unblocks
-    goal_pipeline:GAP-2 cluster). MECH-295 stays candidate /
-    v3_pending=true.
   implementation_note: >
     V3 substrate IMPLEMENTED 2026-04-26 in ree-v3/ree_core/regulators/
     mech295_liking_bridge.py (MECH295LikingBridge,
@@ -33414,6 +33055,23 @@
     genuine exp support (exp_conf 0.773), 1 support/0 weakens. Mirrors the MECH-287/288/284/304
     wall-independent-isolation -> provisional pattern. Promote-to-active remains gated on a
     behavioural falsifier (context-safety lowers background vigilance/avoidance-commitment level).
+
+    Revised candidate 2026-05-04. Primary lit support: Kreutzmann
+    2020 Psychopharmacology (IL required for safety expression not
+    acquisition; PL null), Meyer 2019 PNAS (vHipp->PL pathway for
+    safety-cue inhibition, cross-species), Laing 2022 J Neurosci
+    (standard safety signal -> vmPFC + hippocampus, dissociated from
+    conditioned inhibitor -> dorsal striatum). Ng & Sangha 2023
+    papers (IL circuit and IL single-unit) retagged to MECH-304
+    (conditioned inhibition paradigm). Substrate implemented 2026-05-04
+    (SD-052). v3_pending=true until V3-EXQ-520 context-conditioned
+    safety extinction discriminative-pair experiment completes.
+    Cluster-level enrichment anchor 2026-06-05: Silva et al. 2021 Nat
+    Neurosci (DOI 10.1038/s41593-021-00856-y; nucleus reuniens -> BLA
+    safety transmission; conf 0.80) -- bears primarily on MECH-304;
+    recorded on MECH-303 as a cluster-level note that the safety-
+    expression machinery is prefrontal-hippocampal-thalamic. Thalamic
+    relay + remote/recent axis UNIMPLEMENTED (documentation-only).
   depends_on:
     - SD-011      # dual nociceptive streams (the suffering signal whose absence MECH-303 tracks)
     - SD-012      # homeostatic drive (anchors 'safety' as drive-baseline-not-rising over time)
@@ -33505,23 +33163,6 @@
     contextual_safety_accum_weight (0.01), contextual_safety_harm_threshold
     (0.05), contextual_safety_release_threshold (1.0). All no-op at defaults.
     Validation experiment V3-EXQ-520 queued 2026-05-04.
-  evidence_quality_note: |
-    Revised candidate 2026-05-04. Primary lit support: Kreutzmann
-    2020 Psychopharmacology (IL required for safety expression not
-    acquisition; PL null), Meyer 2019 PNAS (vHipp->PL pathway for
-    safety-cue inhibition, cross-species), Laing 2022 J Neurosci
-    (standard safety signal -> vmPFC + hippocampus, dissociated from
-    conditioned inhibitor -> dorsal striatum). Ng & Sangha 2023
-    papers (IL circuit and IL single-unit) retagged to MECH-304
-    (conditioned inhibition paradigm). Substrate implemented 2026-05-04
-    (SD-052). v3_pending=true until V3-EXQ-520 context-conditioned
-    safety extinction discriminative-pair experiment completes.
-    Cluster-level enrichment anchor 2026-06-05: Silva et al. 2021 Nat
-    Neurosci (DOI 10.1038/s41593-021-00856-y; nucleus reuniens -> BLA
-    safety transmission; conf 0.80) -- bears primarily on MECH-304;
-    recorded on MECH-303 as a cluster-level note that the safety-
-    expression machinery is prefrontal-hippocampal-thalamic. Thalamic
-    relay + remote/recent axis UNIMPLEMENTED (documentation-only).
   location: evidence/literature/targeted_review_connectome_mech_303/
   enrichment_anchors:
     - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
@@ -33567,6 +33208,37 @@
     0 weakens, quadrant confirmed_established, exp_conf 0.825. Substrate path: SD-065
     controllable conditioned-safety cue channel + SD-066 common-mode-invariant (centered)
     store readout, both landed 2026-07-15 (byte-identical OFF).
+
+    New candidate 2026-05-04. Primary lit support: Laing 2022 J
+    Neurosci (conditioned inhibitor -> dorsal striatum + dlPFC;
+    dissociated from standard safety signal -> vmPFC/hippocampus),
+    Ng & Sangha 2023 Neuropsychopharmacol (IL->CeA required for
+    conditioned safety expression; IL->BLA not required), Ng & Sangha
+    2023 Cereb Cortex (IL single-unit encodes conditioned inhibitors
+    specifically). Enrichment anchor 2026-06-05: Silva et al. 2021 Nat
+    Neurosci 24(7):964-974 (DOI 10.1038/s41593-021-00856-y; nucleus
+    reuniens -> BLA causally registers and transmits safety signals
+    driving REMOTE fear extinction; conf 0.80, supports) adds the
+    midline-thalamic transmission node + the remote-vs-recent
+    (time-since-encoding) dependence. Substrate IMPLEMENTED 2026-05-04
+    (SD-051, ConditionedSafetyStore). v3_pending=true until V3-EXQ-519
+    validation PASS (conditioned-inhibition discriminative-pair gated
+    by EXQ-517 PASS). The reuniens relay + remote/recent axis remain
+    UNIMPLEMENTED (enrichment is documentation-only; see notes
+    candidate-third-mechanism flag).
+    [2026-07-14 governance] v3_pending CLEARED and status promoted
+    candidate->provisional on the first indexed in-silico evidence:
+    V3-EXQ-759 (cue-specific conditioned safety PREDICTION, PASS /
+    supports), a wall-independent functional-signature isolation test of
+    ConditionedSafetyStore.predict on a frozen action-free agent (6/6
+    seeds above chance, positive control AUC 0.997, load-bearing C1
+    non-degenerate). This is NECESSARY-NOT-SUFFICIENT for promote-to-
+    active: 759 isolates the cue-discriminative predictive structure but
+    does NOT run the pre-registered behavioural falsifier (the
+    conditioned-inhibition discriminative-pair with a concurrent threat
+    cue, the EXQ-519-family gate named above) or the MECH-303-sparing
+    ablation. Those behavioural / dissociation tests remain the
+    promote-to-active gate. See notes 2026-07-14 governance block.
   depends_on:
     - MECH-302    # provides the teaching signal: the relief-completion event that trains the MECH-304 store
     - MECH-094    # hypothesis-tag write gate (the tag from MECH-302 is the MECH-304 update trigger)
@@ -33733,37 +33405,6 @@
     approach attractor (requires MECH-163 V3 completion gate) and
     contrastive cue-specific learning (requires trainable encoder head).
     See sd_051_conditioned_safety_store.md and v3_v4_transition_boundary.md.
-  evidence_quality_note: |
-    New candidate 2026-05-04. Primary lit support: Laing 2022 J
-    Neurosci (conditioned inhibitor -> dorsal striatum + dlPFC;
-    dissociated from standard safety signal -> vmPFC/hippocampus),
-    Ng & Sangha 2023 Neuropsychopharmacol (IL->CeA required for
-    conditioned safety expression; IL->BLA not required), Ng & Sangha
-    2023 Cereb Cortex (IL single-unit encodes conditioned inhibitors
-    specifically). Enrichment anchor 2026-06-05: Silva et al. 2021 Nat
-    Neurosci 24(7):964-974 (DOI 10.1038/s41593-021-00856-y; nucleus
-    reuniens -> BLA causally registers and transmits safety signals
-    driving REMOTE fear extinction; conf 0.80, supports) adds the
-    midline-thalamic transmission node + the remote-vs-recent
-    (time-since-encoding) dependence. Substrate IMPLEMENTED 2026-05-04
-    (SD-051, ConditionedSafetyStore). v3_pending=true until V3-EXQ-519
-    validation PASS (conditioned-inhibition discriminative-pair gated
-    by EXQ-517 PASS). The reuniens relay + remote/recent axis remain
-    UNIMPLEMENTED (enrichment is documentation-only; see notes
-    candidate-third-mechanism flag).
-    [2026-07-14 governance] v3_pending CLEARED and status promoted
-    candidate->provisional on the first indexed in-silico evidence:
-    V3-EXQ-759 (cue-specific conditioned safety PREDICTION, PASS /
-    supports), a wall-independent functional-signature isolation test of
-    ConditionedSafetyStore.predict on a frozen action-free agent (6/6
-    seeds above chance, positive control AUC 0.997, load-bearing C1
-    non-degenerate). This is NECESSARY-NOT-SUFFICIENT for promote-to-
-    active: 759 isolates the cue-discriminative predictive structure but
-    does NOT run the pre-registered behavioural falsifier (the
-    conditioned-inhibition discriminative-pair with a concurrent threat
-    cue, the EXQ-519-family gate named above) or the MECH-303-sparing
-    ablation. Those behavioural / dissociation tests remain the
-    promote-to-active gate. See notes 2026-07-14 governance block.
   location: evidence/literature/targeted_review_connectome_mech_303/
   enrichment_anchors:
     - source: "Silva et al. 2021 Nat Neurosci 24(7):964-974"
@@ -39425,7 +39066,6 @@
     Companion slots: ARC-066 (positive-side vigor coupling) and
     ARC-067 (boredom aversive accumulator). The three jointly cover
     the non_deficit_action_drives architectural commitment.
-  pending_retest_after_substrate: true
   evidence_quality_note: >
     Registered 2026-05-10 alongside ARC-066 + ARC-067 from user
     phenomenology. Lit-pull required before child MECH design;
@@ -40491,7 +40131,6 @@
     existing preference is strong. Both implementations differ by ~3
     lines of arithmetic at the call site; the experiment chooses
     which one lands as primary.
-  pending_retest_after_substrate: true
   evidence_quality_note: >
     Registered 2026-05-10 from ARC-066 lit-pull synthesis (R3 +
     R4 verdicts).
@@ -45903,24 +45542,10 @@
   split_from: MECH-229
   registered_utc: "2026-06-16"
   pending_retest_after_substrate: false
-  evidence_quality_note: >
-    Substrate ceiling LIFTED 2026-06-21 (governance). The SD-049-PHASE-2 bounded-kappa /
-    standing-differential-depletion env amend (kappa_scale 12.0 + per_axis_restoration_fraction
-    0.15) landed and V3-EXQ-514u (supersedes 514t; PASS, supports, non_degenerate) cleared the
-    drive-coupling effect margin on the enriched substrate via the CONTINUOUS-AMPLITUDE
-    (intensity) reading: mean_cont_amplitude_shift 0.164 > 0.05 floor on all scored seeds
-    (k_sd 1.0, n=76); enriched per-axis drive spread 0.222 > 0.1; OFF/bank-disabled floor and
-    argmax-relevance readiness all met. This shows the claim's "intensity" disjunct
-    (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive)). The DISCRETE
-    target-FLIP disjunct (C_WL_DRIVE_coupled_dissociation_flip) remains SECONDARY and still
-    fails on the natural enriched substrate (mean wl_drive_delta -0.133), but the overshoot
-    positive control flips most_wanted (0.81) -> the flip shortfall is a magnitude artifact,
-    NOT a falsification (the what_would_answer overshoot disambiguator resolves toward
-    "drive CAN carve"). epistemic_category flipped substrate_ceiling -> standard and
-    pending_retest_after_substrate cleared. NOT promoted: status stays candidate and
-    v3_pending: true holds promotion (hold_pending_v3_substrate). The remaining open work is
-    the target-FLIP disjunct on the V3 enriched env (514u amplitude reading is sufficient to
-    lift the ceiling, not to promote).
+  evidence_quality_note: |
+    Substrate ceiling LIFTED 2026-06-21 (governance). The SD-049-PHASE-2 bounded-kappa / standing-differential-depletion env amend (kappa_scale 12.0 + per_axis_restoration_fraction 0.15) landed and V3-EXQ-514u (supersedes 514t; PASS, supports, non_degenerate) cleared the drive-coupling effect margin on the enriched substrate via the CONTINUOUS-AMPLITUDE (intensity) reading: mean_cont_amplitude_shift 0.164 > 0.05 floor on all scored seeds (k_sd 1.0, n=76); enriched per-axis drive spread 0.222 > 0.1; OFF/bank-disabled floor and argmax-relevance readiness all met. This shows the claim's "intensity" disjunct (incentive-salience amplitude ~ base_value*(1+kappa*per_axis_drive)). The DISCRETE target-FLIP disjunct (C_WL_DRIVE_coupled_dissociation_flip) remains SECONDARY and still fails on the natural enriched substrate (mean wl_drive_delta -0.133), but the overshoot positive control flips most_wanted (0.81) -> the flip shortfall is a magnitude artifact, NOT a falsification (the what_would_answer overshoot disambiguator resolves toward "drive CAN carve"). epistemic_category flipped substrate_ceiling -> standard and pending_retest_after_substrate cleared. NOT promoted: status stays candidate and v3_pending: true holds promotion (hold_pending_v3_substrate). The remaining open work is the target-FLIP disjunct on the V3 enriched env (514u amplitude reading is sufficient to lift the ceiling, not to promote).
+
+    2026-06-17 (failure_autopsy_V3-EXQ-514r, confirmed; applied /governance 2026-06-17): the 514r self-stamped weakens is reclassified non_contributory and scoring-excluded. 514r was the pre-registered overshoot disambiguator. Its genuine-weakens precondition ("overshoot CANNOT flip most_wanted even at OVERSHOOT_DRIVE_MAGNITUDE=5.0") is FALSE: overshoot flips most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000) + non-zero on all 5 (mean_overshoot_flip 0.485; seed 44 also flipped 0.800 -> 3/6 across all seeds) -- the drive channel demonstrably CAN carve at adequate magnitude, so 514q's natural delta=0.0 is a drive-MAGNITUDE/env artifact, not a structural inability. Controls non-vacuous (pc_argmax_relevance_frac 1.0, off-floor 1.0, bank populated 1.0). KEY: the positive control flips a 0.5 base_value gap on 100% of seeds, but real in-run gaps on seeds 45/46/47 exceed 0.5 (even mag-5.0 can't flip there) -> the kappa-scaling half of the SD-049-PHASE-2 env amend is LOAD-BEARING, not just differential depletion. MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED -- confirmed correct, NOT weakened, NOT promoted); the SD-049-PHASE-2 differential-depletion + kappa-scaling amend is now GREENLIT (the 514q "DO NOT build until 514r resolves" hold is lifted). MECH-229 leg (a) UNAFFECTED. No demotion. 2026-06-20 (failure_autopsy_V3-EXQ-514t, confirmed; applied /governance 2026-06-20): the SD-049-PHASE-2 amend was built and armed by V3-EXQ-514s/514t. 514t (kappa_scale 6.0->12.0) self-routes mech436_enrichment_insufficient_substrate_ceiling by the honest path (all five non-vacuity preconditions MET; enriched_spread 0.192 -> lever (b) standing-differential-depletion DONE). non_contributory, NOT a weakens: overshoot (mag 5.0) still flips most_wanted 4/5. LOAD-BEARING NEW FINDING: the kappa-MAGNITUDE lever is NON-MONOTONE and EXHAUSTED -- doubling kappa REGRESSED the natural delta (514s +0.064/sd 0.109/2-of-5 -> 514t -0.037/sd 0.188/1-of-5, 2 seeds strongly negative); at kappa_eff=24 the drive term over-amplifies base_value and most_wanted -> argmax(per_axis_drive), read by the argmax-flip-gated WL metric as sign-unstable noise. The "needs more kappa" prediction is FALSIFIED; the diagnosed ceiling is now the MEASUREMENT layer (flip-gate discards continuous sub-flip re-weighting). MECH-436 stays candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED). Route: V3-EXQ-514u measurement-redesign (continuous incentive-amplitude readout at MODERATE kappa <= 6.0, the 514s C8 bounded-kappa invariant) -- ALREADY QUEUED (supersedes 514t). No /claim-synthesis (convergent 5th-autopsy signature, granularity debt already discharged at 514q). MECH-229 leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNAFFECTED. No demotion.
   depends_on:
     - MECH-229   # parent umbrella: the wanting!=liking object-bound dissociation this modulation specializes
     - SD-049     # multi-resource per-axis drive substrate -- the drive-state signal source
@@ -45970,39 +45595,6 @@
     drive/state-modulated cue attraction. DOES NOT weaken MECH-229's established wanting!=liking
     dissociation (leg a). Owning falsifier V3-EXQ-514r (queued 2026-06-16). DO NOT build the
     SD-049-PHASE-2 substrate amend until 514r resolves.
-  evidence_quality_note: >
-    2026-06-17 (failure_autopsy_V3-EXQ-514r, confirmed; applied /governance 2026-06-17): the
-    514r self-stamped weakens is reclassified non_contributory and scoring-excluded. 514r was
-    the pre-registered overshoot disambiguator. Its genuine-weakens precondition ("overshoot
-    CANNOT flip most_wanted even at OVERSHOOT_DRIVE_MAGNITUDE=5.0") is FALSE: overshoot flips
-    most_wanted fully on 2/5 guard-passing seeds (0.727, 1.000) + non-zero on all 5
-    (mean_overshoot_flip 0.485; seed 44 also flipped 0.800 -> 3/6 across all seeds) -- the drive
-    channel demonstrably CAN carve at adequate magnitude, so 514q's natural delta=0.0 is a
-    drive-MAGNITUDE/env artifact, not a structural inability. Controls non-vacuous
-    (pc_argmax_relevance_frac 1.0, off-floor 1.0, bank populated 1.0). KEY: the positive control
-    flips a 0.5 base_value gap on 100% of seeds, but real in-run gaps on seeds 45/46/47 exceed
-    0.5 (even mag-5.0 can't flip there) -> the kappa-scaling half of the SD-049-PHASE-2 env amend
-    is LOAD-BEARING, not just differential depletion. MECH-436 stays candidate / substrate_ceiling
-    / pending_retest_after_substrate (UNCHANGED -- confirmed correct, NOT weakened, NOT promoted);
-    the SD-049-PHASE-2 differential-depletion + kappa-scaling amend is now GREENLIT (the 514q
-    "DO NOT build until 514r resolves" hold is lifted). MECH-229 leg (a) UNAFFECTED. No demotion.
-    2026-06-20 (failure_autopsy_V3-EXQ-514t, confirmed; applied /governance 2026-06-20):
-    the SD-049-PHASE-2 amend was built and armed by V3-EXQ-514s/514t. 514t (kappa_scale 6.0->12.0)
-    self-routes mech436_enrichment_insufficient_substrate_ceiling by the honest path (all five
-    non-vacuity preconditions MET; enriched_spread 0.192 -> lever (b) standing-differential-depletion
-    DONE). non_contributory, NOT a weakens: overshoot (mag 5.0) still flips most_wanted 4/5.
-    LOAD-BEARING NEW FINDING: the kappa-MAGNITUDE lever is NON-MONOTONE and EXHAUSTED -- doubling
-    kappa REGRESSED the natural delta (514s +0.064/sd 0.109/2-of-5 -> 514t -0.037/sd 0.188/1-of-5,
-    2 seeds strongly negative); at kappa_eff=24 the drive term over-amplifies base_value and
-    most_wanted -> argmax(per_axis_drive), read by the argmax-flip-gated WL metric as sign-unstable
-    noise. The "needs more kappa" prediction is FALSIFIED; the diagnosed ceiling is now the
-    MEASUREMENT layer (flip-gate discards continuous sub-flip re-weighting). MECH-436 stays
-    candidate / substrate_ceiling / pending_retest_after_substrate (UNCHANGED). Route: V3-EXQ-514u
-    measurement-redesign (continuous incentive-amplitude readout at MODERATE kappa <= 6.0, the
-    514s C8 bounded-kappa invariant) -- ALREADY QUEUED (supersedes 514t). No /claim-synthesis
-    (convergent 5th-autopsy signature, granularity debt already discharged at 514q). MECH-229
-    leg (a) wanting!=liking (V3-EXQ-514o PASS 0.80) UNAFFECTED. No demotion.
-
 - id: MECH-348
   title: "dACC object-discriminative goal readout (L7): the dACC adaptive-control consumer reads per-candidate goal_proximity to the (SD-057 object-bound) z_goal, so its effort/value computation becomes object-discriminative -- approach_commit is goal-conditioned rather than z_goal-blind. Resolves the 2026-06-04 L7 audit finding that only E3 goal_proximity read z_goal consequentially and dACC was blind."
   claim_type: mechanism_hypothesis
@@ -56055,90 +55647,35 @@
       verdict: weakens sufficiency / strengthens dependency -- 2x3 (representation x teacher) fanout REFUTES H-rep and reward-density; only BC (imitation) clears the floor on both inputs (z_world+BC 32.72 > raw+BC 20.93). Discriminated cause = RL exploration/credit-assignment bootstrap, not representation and not reward density. One live discrimination remains on the algorithm axis (H-optim leg V3-EXQ-751, in flight). Stays candidate/v3_pending.
   implementation_phase: v3
   pending_retest_after_substrate: true  # substrate_queue mech457_competence_bootstrap_explorer: original build (022a284) failed the 765 retest (capacity gap); CAPACITY-SIDE AMEND built 2026-07-16 (hidden 256 + 5x budget + warm-start/credit-reliability + z_world detached) but V3-EXQ-769 (supersedes 765) RAN + REGRESSED (raw ON 6.48->0.12) -- capacity axis FALSIFIED (failure_autopsy_V3-EXQ-769_2026-07-17); reconfirmation re-routed to GOV-FANOUT-1 portfolio V3-EXQ-770/771/772 (drive-schedule / reward-coupling / credit-horizon)
-  evidence_quality_note: >
-    2026-07-16 (V3-EXQ-765, diagnostic, claim_ids=[MECH-457];
-    failure_autopsy_V3-EXQ-765_2026-07-16): post-build retest of the composed
-    mech457_competence_bootstrap_explorer substrate RAN and FAILED
-    (bootstrap_explorer_plateaus_capacity_gap_remains). Readiness PASSED
-    (local_view_greedy 48.05, oracle 57.2 vs 1.0 floor -- env solvable from the 5x5
-    view). The composed DRIVE half works on raw (ON 6.48 vs OFF 0.62, +5.87
-    converter-driven lift; n_credit_replay_passes 4500-8259) but the CAPACITY-to-convert
-    half persists: raw ON plateaus at ~13% of the 48.05 achievable ceiling and clears
-    NEITHER representation's 13.05 lift-competence target. Two subordinate findings: (1)
-    z_world cotrain is DESTRUCTIVE (ON 0.35 < OFF 5.22 -- explorer drive corrupts the
-    prediction-trained encoder; detach the z_world path per Stooke 2021); (2) high seed
-    variance on raw (15.9 / 3.05 / 0.5 -- convert-ability unreliable, residual partly
-    credit-reliability, not pure capacity). epistemic_category
-    competence_implementation_gap (0 substrate_ceiling verdicts preserved; GOV-CEIL-1
-    unaffected); evidence_direction non_contributory (diagnostic, PROMOTES/DEMOTES
-    NOTHING). Re-derive brake FIRED (5th non_contributory MECH-457 autopsy): REFUSE any
-    fresh same-question explorer-mechanism re-queue; route = implement-substrate
-    capacity-side amend of mech457_competence_bootstrap_explorer (raise policy
-    capacity/budget + reliability/warm-start + z_world cotrain detach). AMEND BUILT
-    2026-07-16 (session jovial-joliot-9f904b): ON actor_critic_hidden 128->256 +
-    ON_BUDGET_MULTIPLIER 3->5; ON warm_start_fraction 0.2 + credit_replay_passes 3->6 /
-    credit_topk 32->64; ON z_world DETACHED (cotrain_encoder False) -- all OFF-preserving
-    no-op defaults (OFF bit-identical to 765). Retest V3-EXQ-769 (supersedes 765) queued
-    (cloud). MECH-457 stays candidate/v3_pending. This is a NEW hit within the GOV-GRAN-1
-    coherent-campaign disposition, not a granularity signal.
+  evidence_quality_note: |
+    2026-07-16 (V3-EXQ-765, diagnostic, claim_ids=[MECH-457]; failure_autopsy_V3-EXQ-765_2026-07-16): post-build retest of the composed mech457_competence_bootstrap_explorer substrate RAN and FAILED (bootstrap_explorer_plateaus_capacity_gap_remains). Readiness PASSED (local_view_greedy 48.05, oracle 57.2 vs 1.0 floor -- env solvable from the 5x5 view). The composed DRIVE half works on raw (ON 6.48 vs OFF 0.62, +5.87 converter-driven lift; n_credit_replay_passes 4500-8259) but the CAPACITY-to-convert half persists: raw ON plateaus at ~13% of the 48.05 achievable ceiling and clears NEITHER representation's 13.05 lift-competence target. Two subordinate findings: (1) z_world cotrain is DESTRUCTIVE (ON 0.35 < OFF 5.22 -- explorer drive corrupts the prediction-trained encoder; detach the z_world path per Stooke 2021); (2) high seed variance on raw (15.9 / 3.05 / 0.5 -- convert-ability unreliable, residual partly credit-reliability, not pure capacity). epistemic_category competence_implementation_gap (0 substrate_ceiling verdicts preserved; GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic, PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (5th non_contributory MECH-457 autopsy): REFUSE any fresh same-question explorer-mechanism re-queue; route = implement-substrate capacity-side amend of mech457_competence_bootstrap_explorer (raise policy capacity/budget + reliability/warm-start + z_world cotrain detach). AMEND BUILT 2026-07-16 (session jovial-joliot-9f904b): ON actor_critic_hidden 128->256 + ON_BUDGET_MULTIPLIER 3->5; ON warm_start_fraction 0.2 + credit_replay_passes 3->6 / credit_topk 32->64; ON z_world DETACHED (cotrain_encoder False) -- all OFF-preserving no-op defaults (OFF bit-identical to 765). Retest V3-EXQ-769 (supersedes 765) queued (cloud). MECH-457 stays candidate/v3_pending. This is a NEW hit within the GOV-GRAN-1 coherent-campaign disposition, not a granularity signal.
+    2026-07-17 (V3-EXQ-769, diagnostic, claim_ids=[MECH-457]; failure_autopsy_V3-EXQ-769_2026-07-17, supersedes V3-EXQ-765): the 765-routed CAPACITY-side amend (ON hidden 128->256 + budget 3x->5x; warm-start 0.2 + credit passes 3->6 / topk 32->64; z_world cotrain->DETACHED) RAN and FAILED, and it REGRESSED rather than plateaued. Readiness PASSED (local_view_greedy 48.05, oracle 57.2 vs 1.0 floor). Raw ON fell 6.48->0.12 (below its OFF; the single 765 clearing seed 15.9->0); z_world ON unchanged ~0.27 despite detaching (refuting the 765 cotrain-destructive subordinate finding); credit machinery fired (n_credit_replay_passes 9k-18k). Behavioral signature: every ON arm survives 200 steps, death 0, contamination avoided, forage ~0 -- AVOIDANCE learned WITHOUT APPROACH; on D3_hazard_free survival is decoupled from foraging so more optimization drives the policy into the passive-survival basin. This EMPIRICALLY FALSIFIES the 765 capacity diagnosis: the wall is not actor capacity but developmental-ordering / reward-coupling (approach-before-avoidance root). epistemic_category competence_implementation_gap (missing-dependency reframe, user-confirmed; NOT substrate_ceiling -- ordering/reward axis untested; 0 substrate_ceiling verdicts preserved, GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic, PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (6th non_contributory MECH-457 autopsy): REFUSE any further capacity/same-axis explorer re-queue (no 769b / bigger net / more budget / warm-start retune). Routing = GOV-FANOUT-1 discrimination portfolio (V3-EXQ-770 H1 drive-schedule / 771 H2 reward-coupling / 772 H3 credit-horizon), each with a declared null, coordinated with the in-flight approach-before-avoidance ordering falsifier. Secondary methodological finding: the build's 'OFF bit-identical to 765' claim is false (substrate_hash cd368e11->be9a4d7f; OFF z_world 5.22->2.63) -- the no-op-default contract was not numerically verified. MECH-457 stays candidate/v3_pending; a NEW hit within the GOV-GRAN-1 coherent-campaign disposition, not a granularity signal. INV-088 stays candidate/pending_substrate_ reconfirmation (769 was its retest path; reconfirmation did not occur; unblock re-routed onto the 770/771/772 portfolio). --- 2026-07-18 governance (V3-EXQ-770 / 771 / 772 CLUSTER, diagnostic, claim_ids=[MECH-457]; failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18, status confirmed): the GOV-FANOUT-1 discrimination portfolio routed by the 769 autopsy RAN and ALL THREE FAILED, each hitting its OWN pre-registered null -- 770 drive_schedule_not_the_axis, 771 reward_coupling_not_the_axis, 772 credit_horizon_not_the_axis. Readiness met on every leg (local_view_greedy 48-55, oracle 57-61 vs the 1.0 floor -- the env is solvable from the 5x5 view in all three), every treatment arm forages AT THE FLOOR (~0-1, random-walk level) on BOTH z_world and raw, non_degenerate TRUE x3. Combined with 769 (capacity falsified) this eliminates FOUR axes: capacity, drive-schedule, reward-coupling, credit-horizon. REFRAME (user-confirmed at the autopsy Step-8 gate): this is a MISSING-DEPENDENCY finding, NOT a substrate ceiling. The learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation, and is invariant to every config / env / credit / capacity lever tried. MECH-457 itself is INTACT but necessary-not-sufficient: behavioural cloning (imitation 32.72) remains the ONLY floor-clearing existence proof, so the gap is in the converter's bootstrap, not in the claim's assertion that a dedicated actor-critic substrate is required. epistemic_category competence_implementation_gap (explicitly NOT substrate_ceiling -- 0 ceiling verdicts added, GOV-CEIL-1 exhaustion count unaffected). evidence_direction non_contributory (PROMOTES / DEMOTES NOTHING; MECH-457 stays candidate/v3_pending). Re-derive brake FIRED (7th consecutive non_contributory MECH-457 autopsy): REFUSE any further config / env / credit / capacity re-queue on this axis. Routing (user-chosen): a NEW GOV-FANOUT-1 discrimination portfolio FIRST -- H-bc-prior (competence-directed behavioural-prior / imitation seed) vs H-approach-primitive (innate non-extinguishing demonstrator-free approach drive), each with a declared null; the substrate amend to mech457_competence_bootstrap_explorer is DEFERRED until that discrimination resolves. Hypothesis-space ledger: H1/H2/H3 resolved eliminated (full bar met), H-bc-prior / H-approach-primitive pre-registered alive (competence_floor 7 -> 12).
 
-    2026-07-17 (V3-EXQ-769, diagnostic, claim_ids=[MECH-457];
-    failure_autopsy_V3-EXQ-769_2026-07-17, supersedes V3-EXQ-765): the 765-routed
-    CAPACITY-side amend (ON hidden 128->256 + budget 3x->5x; warm-start 0.2 + credit
-    passes 3->6 / topk 32->64; z_world cotrain->DETACHED) RAN and FAILED, and it
-    REGRESSED rather than plateaued. Readiness PASSED (local_view_greedy 48.05, oracle
-    57.2 vs 1.0 floor). Raw ON fell 6.48->0.12 (below its OFF; the single 765 clearing
-    seed 15.9->0); z_world ON unchanged ~0.27 despite detaching (refuting the 765
-    cotrain-destructive subordinate finding); credit machinery fired
-    (n_credit_replay_passes 9k-18k). Behavioral signature: every ON arm survives 200
-    steps, death 0, contamination avoided, forage ~0 -- AVOIDANCE learned WITHOUT
-    APPROACH; on D3_hazard_free survival is decoupled from foraging so more optimization
-    drives the policy into the passive-survival basin. This EMPIRICALLY FALSIFIES the 765
-    capacity diagnosis: the wall is not actor capacity but developmental-ordering /
-    reward-coupling (approach-before-avoidance root). epistemic_category
-    competence_implementation_gap (missing-dependency reframe, user-confirmed; NOT
-    substrate_ceiling -- ordering/reward axis untested; 0 substrate_ceiling verdicts
-    preserved, GOV-CEIL-1 unaffected); evidence_direction non_contributory (diagnostic,
-    PROMOTES/DEMOTES NOTHING). Re-derive brake FIRED (6th non_contributory MECH-457
-    autopsy): REFUSE any further capacity/same-axis explorer re-queue (no 769b / bigger
-    net / more budget / warm-start retune). Routing = GOV-FANOUT-1 discrimination
-    portfolio (V3-EXQ-770 H1 drive-schedule / 771 H2 reward-coupling / 772 H3
-    credit-horizon), each with a declared null, coordinated with the in-flight
-    approach-before-avoidance ordering falsifier. Secondary methodological finding: the
-    build's 'OFF bit-identical to 765' claim is false (substrate_hash cd368e11->be9a4d7f;
-    OFF z_world 5.22->2.63) -- the no-op-default contract was not numerically verified.
-    MECH-457 stays candidate/v3_pending; a NEW hit within the GOV-GRAN-1 coherent-campaign
-    disposition, not a granularity signal. INV-088 stays candidate/pending_substrate_
-    reconfirmation (769 was its retest path; reconfirmation did not occur; unblock
-    re-routed onto the 770/771/772 portfolio).
-    ---
-    2026-07-18 governance (V3-EXQ-770 / 771 / 772 CLUSTER, diagnostic, claim_ids=[MECH-457];
-    failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18, status confirmed): the GOV-FANOUT-1
-    discrimination portfolio routed by the 769 autopsy RAN and ALL THREE FAILED, each hitting
-    its OWN pre-registered null -- 770 drive_schedule_not_the_axis, 771
-    reward_coupling_not_the_axis, 772 credit_horizon_not_the_axis. Readiness met on every leg
-    (local_view_greedy 48-55, oracle 57-61 vs the 1.0 floor -- the env is solvable from the 5x5
-    view in all three), every treatment arm forages AT THE FLOOR (~0-1, random-walk level) on
-    BOTH z_world and raw, non_degenerate TRUE x3. Combined with 769 (capacity falsified) this
-    eliminates FOUR axes: capacity, drive-schedule, reward-coupling, credit-horizon.
-    REFRAME (user-confirmed at the autopsy Step-8 gate): this is a MISSING-DEPENDENCY finding,
-    NOT a substrate ceiling. The learned actor-critic converter cannot extract a competent
-    policy from a PROVABLY SUFFICIENT observation, and is invariant to every config / env /
-    credit / capacity lever tried. MECH-457 itself is INTACT but necessary-not-sufficient:
-    behavioural cloning (imitation 32.72) remains the ONLY floor-clearing existence proof, so
-    the gap is in the converter's bootstrap, not in the claim's assertion that a dedicated
-    actor-critic substrate is required.
-    epistemic_category competence_implementation_gap (explicitly NOT substrate_ceiling -- 0
-    ceiling verdicts added, GOV-CEIL-1 exhaustion count unaffected).
-    evidence_direction non_contributory (PROMOTES / DEMOTES NOTHING; MECH-457 stays
-    candidate/v3_pending). Re-derive brake FIRED (7th consecutive non_contributory MECH-457
-    autopsy): REFUSE any further config / env / credit / capacity re-queue on this axis.
-    Routing (user-chosen): a NEW GOV-FANOUT-1 discrimination portfolio FIRST -- H-bc-prior
-    (competence-directed behavioural-prior / imitation seed) vs H-approach-primitive (innate
-    non-extinguishing demonstrator-free approach drive), each with a declared null; the
-    substrate amend to mech457_competence_bootstrap_explorer is DEFERRED until that
-    discrimination resolves. Hypothesis-space ledger: H1/H2/H3 resolved eliminated (full bar
-    met), H-bc-prior / H-approach-primitive pre-registered alive (competence_floor 7 -> 12).
+    PROMOTES NOTHING. Registered 2026-07-10 via /lit-pull as the single novel candidate the actor-critic action-learning lit-pull warrants -- grounding the 'prediction-rich, action-poor' translation gap the V3-EXQ-724 autopsy identified as REE's competence bottleneck. Distinct from MECH-455 (competence-based intrinsic motivation = why the agent doesn't WANT to earn competence, the drive side) -- MECH-457 is the action-LEARNING MACHINERY that converts drive into learned control (how action is learned at all). Sibling, not duplicate. Owning thread: ree_ai_design_critique_plan.md WS-1 (competence floor) -> conversion_ceiling_campaign_plan.md; build target = the f_dominance_conversion_ceiling entry in evidence/planning/substrate_queue.json. NO substrate written yet: the H1/H2 discriminator (V3-EXQ-737) decides the build target before any commit.
+    Literature grounding (5 canonical entries in evidence/literature/targeted_review_actor_critic_action_learning/entries/):
+      - Schultz, Dayan & Montague 1997 (Science) -- dopaminergic reward-prediction
+        error as the dedicated teaching signal for action learning; the reward-error
+        channel REE lacks
+        (2026-07-10_actor_critic_rpe_teaching_signal_schultz1997)
+      - O'Doherty et al. 2004 (Science) -- dorsal striatum = actor, ventral = critic;
+        the direct biological anchor for action-learning as a first-class dissociable
+        system (2026-07-10_actor_critic_dorsal_ventral_striatum_odoherty2004)
+      - Collins & Frank 2014 (Psych Review) -- OpAL opponent-actor / D1-D2
+        credit-assignment internals; a later refinement, not the minimal build
+        (2026-07-10_actor_critic_opponent_actor_credit_collins_frank2014)
+      - Sutton et al. 2000 (NeurIPS) -- policy-gradient theorem / actor-critic; the
+        formal reason a separately-trained policy + value baseline learns control a
+        value/prediction model won't
+        (2026-07-10_actor_critic_policy_gradient_theorem_sutton2000)
+      - Stooke et al. 2021 (ICML) -- decoupling representation from RL; supports the
+        frozen-encoder + trainable-policy design AND flags the residual feature-
+        adequacy (H2) risk
+        (2026-07-10_actor_critic_decoupled_representation_control_stooke2021)
+
+    Distinct from targeted_review_action_policy_decomposition (how action DECOMPOSES into habits/goals/hierarchy/chunks -- SD-004/ARC-021/SD-045), from targeted_review_striatal_gain_control_bounding (MECH-448 gain/demotion envelope), and from targeted_review_mech_090_release_motor_cessation (release/stop). This dossier is 'how action is learned AT ALL', a different question.
+    Readiness taxonomy (work_graph_debt_vocabulary.md): the owed actor-critic build is `complicated (buildable)` execution backlog -- buildable now, nothing missing. It sits behind exactly ONE `complex (probe-gated) / puzzle (known rules)` node: is the actor the right target, or is the observation encoder the problem (H1 vs H2)? We keep the rules (the actor-critic frame is well-posed) and lack a fact. V3-EXQ-737 is the spike that discharges it; a green 737 converts the whole line to `complicated (buildable)` backlog. V3-EXQ-738 already discharged one leg (refuted strong-H2: the 1.0 floor is reachable from the 5x5 local view). So MECH-457 is NOT "blocked" in the can't-build sense -- it is gated on a single reducible unknown. (NB: "gated on 737" here = gated on the 737 spike's OUTCOME being supporting, which is what promotion needs; the BUILD is gated on the 737 DECISION, i.e. go/no-go + target. Not blocked: nothing that must exist is missing.)
+    2026-07-13 (V3-EXQ-742, the MECH-457 ON/OFF validation; evidence, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13): V3-EXQ-742 (2026-07-13, evidence, ON/OFF validation) WEAKENS the sufficiency reading: the first-class RPE actor-critic substrate (all 4 arms: frozen/cotrain x plain/SF) forages 0.20-0.27/ep at D3 -- below random_walk (0.93) and 0.5% of the local_view_greedy ceiling (48.05) -- while every readiness precondition holds (oracle + local-view clear the floor, bias_head reproduces incompetence). Necessity NOT falsified; the deficit sits UPSTREAM of action-learning credit-assignment. Refutes the 734-737 autopsy's 'single missing mechanism = MECH-457' conclusion; the surviving structural-property half ('prediction-trained z_world is action-inadequate') is the leading hypothesis. Routed to GOV-FANOUT-1: H-rep (actor on raw 5x5 view) vs H-explore (reward-shaping / BC-warmup). Same-question floor re-pose REFUSED. MECH-457 stays candidate/v3_pending.
+    2026-07-14 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-747/748/749, diagnostic, claim_ids=[MECH-457]; consumed via /governance from failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13): the two-axis fanout (representation x teacher) REFUTES H-rep and the reward-density reading. Reward SHAPING rescues neither representation (z_world shaped 0.217, raw shaped 0.767 -- both sub-floor 1.0/ceiling 48.05); only behavior-cloning clears the floor, on BOTH inputs (z_world+BC 32.72, raw+BC 20.93), and z_world+BC > raw+BC -- so the prediction-trained z_world is NOT action-inadequate. The discriminated cause is the RL exploration/ credit-assignment bootstrap (only imitation bypasses it), not representation and not reward density. This STRENGTHENS a dependency reading: action-learning requires a bootstrappable action-level teaching signal / developmental scaffold (BC = observational-acquisition analog), consistent with the O'Doherty/Schultz/Sutton biology. MECH-457 stays candidate/v3_pending, competence_implementation_gap; sufficiency weakens, dependency strengthened. One live discrimination remains on the algorithm axis (is an expert teacher necessary, or is unsupervised exploration merely too weak) -- the H-optim leg V3-EXQ-751 (stronger unsupervised explorer, no expert; PPO+entropy + RND/ICM) is queued and in flight to decide the build target. No substrate_queue entry amended/created this cycle (autopsy sec8 action=none: the build target -- better unsupervised explorer vs imitation/curriculum scaffold -- is exactly what the H-optim leg must decide; f_dominance_conversion_ceiling stays as-is). Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory autopsies tagging MECH-457). The three runs are diagnostic (excluded from governance scoring); this note records the discrimination, not a weighted evidence entry.
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic
@@ -56184,102 +55721,6 @@
     policy (H2) -- which would WEAKEN this claim. V3-EXQ-738 (2026-07-10) already
     refuted the strong-H2 read: the 1.0 floor IS reachable from the agent's 5x5 local
     view, leaving H1 as the surviving hypothesis pending 737.
-  evidence_quality_note: >
-    PROMOTES NOTHING. Registered 2026-07-10 via /lit-pull as the single novel
-    candidate the actor-critic action-learning lit-pull warrants -- grounding the
-    'prediction-rich, action-poor' translation gap the V3-EXQ-724 autopsy identified
-    as REE's competence bottleneck. Distinct from MECH-455 (competence-based
-    intrinsic motivation = why the agent doesn't WANT to earn competence, the drive
-    side) -- MECH-457 is the action-LEARNING MACHINERY that converts drive into
-    learned control (how action is learned at all). Sibling, not duplicate. Owning
-    thread: ree_ai_design_critique_plan.md WS-1 (competence floor) ->
-    conversion_ceiling_campaign_plan.md; build target = the
-    f_dominance_conversion_ceiling entry in
-    evidence/planning/substrate_queue.json. NO substrate written yet: the H1/H2
-    discriminator (V3-EXQ-737) decides the build target before any commit.
-
-    Literature grounding (5 canonical entries in
-    evidence/literature/targeted_review_actor_critic_action_learning/entries/):
-      - Schultz, Dayan & Montague 1997 (Science) -- dopaminergic reward-prediction
-        error as the dedicated teaching signal for action learning; the reward-error
-        channel REE lacks
-        (2026-07-10_actor_critic_rpe_teaching_signal_schultz1997)
-      - O'Doherty et al. 2004 (Science) -- dorsal striatum = actor, ventral = critic;
-        the direct biological anchor for action-learning as a first-class dissociable
-        system (2026-07-10_actor_critic_dorsal_ventral_striatum_odoherty2004)
-      - Collins & Frank 2014 (Psych Review) -- OpAL opponent-actor / D1-D2
-        credit-assignment internals; a later refinement, not the minimal build
-        (2026-07-10_actor_critic_opponent_actor_credit_collins_frank2014)
-      - Sutton et al. 2000 (NeurIPS) -- policy-gradient theorem / actor-critic; the
-        formal reason a separately-trained policy + value baseline learns control a
-        value/prediction model won't
-        (2026-07-10_actor_critic_policy_gradient_theorem_sutton2000)
-      - Stooke et al. 2021 (ICML) -- decoupling representation from RL; supports the
-        frozen-encoder + trainable-policy design AND flags the residual feature-
-        adequacy (H2) risk
-        (2026-07-10_actor_critic_decoupled_representation_control_stooke2021)
-
-    Distinct from targeted_review_action_policy_decomposition (how action DECOMPOSES
-    into habits/goals/hierarchy/chunks -- SD-004/ARC-021/SD-045), from
-    targeted_review_striatal_gain_control_bounding (MECH-448 gain/demotion envelope),
-    and from targeted_review_mech_090_release_motor_cessation (release/stop). This
-    dossier is 'how action is learned AT ALL', a different question.
-
-    Readiness taxonomy (work_graph_debt_vocabulary.md): the owed actor-critic build is
-    `complicated (buildable)` execution backlog -- buildable now, nothing missing. It
-    sits behind exactly ONE `complex (probe-gated) / puzzle (known rules)` node: is the
-    actor the right target, or is the observation encoder the problem (H1 vs H2)? We
-    keep the rules (the actor-critic frame is well-posed) and lack a fact. V3-EXQ-737 is
-    the spike that discharges it; a green 737 converts the whole line to
-    `complicated (buildable)` backlog. V3-EXQ-738 already discharged one leg (refuted
-    strong-H2: the 1.0 floor is reachable from the 5x5 local view). So MECH-457 is NOT
-    "blocked" in the can't-build sense -- it is gated on a single reducible unknown.
-    (NB: "gated on 737" here = gated on the 737 spike's OUTCOME being supporting, which
-    is what promotion needs; the BUILD is gated on the 737 DECISION, i.e. go/no-go +
-    target. Not blocked: nothing that must exist is missing.)
-
-    2026-07-13 (V3-EXQ-742, the MECH-457 ON/OFF validation; evidence,
-    claim_ids=[MECH-457]; consumed via /governance from
-    failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13):
-    V3-EXQ-742 (2026-07-13, evidence, ON/OFF validation) WEAKENS the sufficiency
-    reading: the first-class RPE actor-critic substrate (all 4 arms:
-    frozen/cotrain x plain/SF) forages 0.20-0.27/ep at D3 -- below random_walk
-    (0.93) and 0.5% of the local_view_greedy ceiling (48.05) -- while every
-    readiness precondition holds (oracle + local-view clear the floor, bias_head
-    reproduces incompetence). Necessity NOT falsified; the deficit sits UPSTREAM
-    of action-learning credit-assignment. Refutes the 734-737 autopsy's 'single
-    missing mechanism = MECH-457' conclusion; the surviving structural-property
-    half ('prediction-trained z_world is action-inadequate') is the leading
-    hypothesis. Routed to GOV-FANOUT-1: H-rep (actor on raw 5x5 view) vs H-explore
-    (reward-shaping / BC-warmup). Same-question floor re-pose REFUSED. MECH-457
-    stays candidate/v3_pending.
-
-    2026-07-14 (GOV-FANOUT-1 discrimination portfolio V3-EXQ-747/748/749,
-    diagnostic, claim_ids=[MECH-457]; consumed via /governance from
-    failure_autopsy_MECH-457-fanout-747-748-749_2026-07-13): the two-axis fanout
-    (representation x teacher) REFUTES H-rep and the reward-density reading.
-    Reward SHAPING rescues neither representation (z_world shaped 0.217, raw
-    shaped 0.767 -- both sub-floor 1.0/ceiling 48.05); only behavior-cloning
-    clears the floor, on BOTH inputs (z_world+BC 32.72, raw+BC 20.93), and
-    z_world+BC > raw+BC -- so the prediction-trained z_world is NOT
-    action-inadequate. The discriminated cause is the RL exploration/
-    credit-assignment bootstrap (only imitation bypasses it), not representation
-    and not reward density. This STRENGTHENS a dependency reading: action-learning
-    requires a bootstrappable action-level teaching signal / developmental
-    scaffold (BC = observational-acquisition analog), consistent with the
-    O'Doherty/Schultz/Sutton biology. MECH-457 stays candidate/v3_pending,
-    competence_implementation_gap; sufficiency weakens, dependency strengthened.
-    One live discrimination remains on the algorithm axis (is an expert teacher
-    necessary, or is unsupervised exploration merely too weak) -- the H-optim leg
-    V3-EXQ-751 (stronger unsupervised explorer, no expert; PPO+entropy + RND/ICM)
-    is queued and in flight to decide the build target. No substrate_queue entry
-    amended/created this cycle (autopsy sec8 action=none: the build target --
-    better unsupervised explorer vs imitation/curriculum scaffold -- is exactly
-    what the H-optim leg must decide; f_dominance_conversion_ceiling stays as-is).
-    Re-derive brake does NOT fire (0 prior substrate_ceiling/non_contributory
-    autopsies tagging MECH-457). The three runs are diagnostic (excluded from
-    governance scoring); this note records the discrimination, not a weighted
-    evidence entry.
   location: evidence/literature/targeted_review_actor_critic_action_learning/
 
 - id: MECH-458
