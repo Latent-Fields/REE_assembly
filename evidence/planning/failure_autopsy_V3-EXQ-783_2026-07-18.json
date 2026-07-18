@@ -1,0 +1,123 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T18:06:59Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3",
+      "queue_id": "V3-EXQ-783",
+      "claim_ids": ["Q-002", "SD-031"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "mixed_partial_separation",
+      "indexer_adjudication": "vacuous_pass",
+      "adjudicated_self_route_label": "a1_untrained_encoder_dominates",
+      "adjudication_verdict": "false_positive_flag_and_label_artifact",
+      "failed_criterion": "none -- load-bearing C1_cr_crossing passed non-degenerately under four MET preconditions",
+      "degenerate_criterion": {
+        "name": "C2_event_selectivity",
+        "load_bearing": false,
+        "cause": "sd009_ce_label_balance_train.saturated == true (class-0 95.19%, class-2 0.198%)",
+        "in_scope": false,
+        "note": "The saturation IS the SD-009 transition_type channel mismatch this experiment explicitly routes around via SD-070 and does not adjudicate; the script tags neither SD-009 nor MECH-100."
+      },
+      "flag_mechanism": {
+        "modern_3b_check_fired": false,
+        "legacy_check_fired": true,
+        "defect": "build_experiment_indexes.py legacy criteria_non_degenerate vacuity check is load_bearing-blind (excludes only keys suffixed _branch), while the modern (3b) aggregation-vacuity check gates on the explicit load_bearing tag. A manifest supplying BOTH blocks is adjudicated by the blind path.",
+        "class": "same directionality/attribution false-flag class as V3-EXQ-648a/649, one level up",
+        "recommendation": "skip any criteria_non_degenerate key whose matching criteria[] entry is tagged load_bearing:false"
+      },
+      "label_artifact_analysis": {
+        "mechanism": "dim_at_trained point estimate +0.0228 exceeded CR_MINOR_AXIS_CEILING 0.02 by 0.0028, flipping dim_minor to false and falling every named branch through to the else",
+        "sem_of_that_delta": 0.0143,
+        "margin_to_sem_ratio": 0.196,
+        "dead_band": "0.02-0.05 -- between minor (abs < 0.02) and clears (mean >= 0.05) -- with no noise allowance in either test",
+        "paired_per_seed_n": 8,
+        "axis_stats": {
+          "training_at_dim32":  {"mean": 0.0814, "sd": 0.0317, "sem": 0.0112, "t": 7.26,  "ci95": [0.0549, 0.1079],  "zero_in_ci": false},
+          "training_at_dim128": {"mean": 0.1074, "sd": 0.0232, "sem": 0.0082, "t": 13.11, "ci95": [0.0880, 0.1268],  "zero_in_ci": false},
+          "dim_at_untrained":   {"mean": -0.0032, "sd": 0.0124, "sem": 0.0044, "t": -0.73, "ci95": [-0.0135, 0.0071], "zero_in_ci": true},
+          "dim_at_trained":     {"mean": 0.0228, "sd": 0.0404, "sem": 0.0143, "t": 1.60,  "ci95": [-0.0110, 0.0566], "zero_in_ci": true},
+          "conjunctive_D128T_vs_D32U": {"mean": 0.1042, "sd": 0.0319, "sem": 0.0113, "t": 9.23, "ci95": [0.0775, 0.1309], "zero_in_ci": false}
+        }
+      },
+      "preconditions_all_met": true,
+      "recording_provenance": {
+        "validate_recording": "OK",
+        "always_core_gaps": [],
+        "substrate_hash": "7f856703fd038d9ea20b8435b1433f566c8afc0d9135515cc40a064d75abea9d",
+        "substrate_landed_before_run": true,
+        "sd070_commit": "ree-v3 main f418400 (2026-07-18T10:46:06Z); run 2026-07-18T11:23:40Z"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- Q-002's remedy clause corrected, its question untouched; SD-031 untested beyond phasing fidelity",
+        "biological_reference": "clear -- an untrained sensory encoder carries no differentiated manifold regardless of unit count; cortical representational differentiation is experience-driven, not dimension-driven. The 2026-06-06 dim-ceiling reading was the formal-capacity intuition, not the biological one.",
+        "prerequisites": "present -- SD-070 landed and demonstrably trains the world path",
+        "implementation": "complete for the tested path -- P0/P1 phase separation held exactly (p1_encoder_frozen = 0)",
+        "environment": "adequate -- raw world_state contrast 0.8138 vs a 0.2 floor",
+        "measurement": "adequate on the load-bearing DV (offset-invariant CR); degraded on the non-load-bearing C2 via a known out-of-scope label saturation",
+        "integration": "coupled and stable -- env exposure held identical across arms; arms differ in weight updates only",
+        "scale": "adequate, and this IS the finding -- dim 32 is not the binding constraint; 4x-ing it changes nothing"
+      },
+      "biological_reference": {
+        "closest_mechanism": "experience-dependent differentiation of cortical sensory representations",
+        "dependencies": ["a gradient path to the encoder", "non-degenerate upstream input variation", "an anti-collapse objective"],
+        "is_formal_import": false,
+        "divergence": "none -- the result matches the biology; it is the prior dim-ceiling hypothesis that was the formal-capacity import (more units = more discriminability)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "instrument_validated_cause_discriminated",
+      "recommended_evidence_direction": "diagnostic_no_direction",
+      "recommended_evidence_direction_per_claim": {"Q-002": "diagnostic_no_direction", "SD-031": "diagnostic_no_direction"},
+      "discharges_prior_verdict": {
+        "prior_autopsy": "failure_autopsy_zworld-integration-cluster_2026-06-06",
+        "prior_leg": "(a2) world_dim=32 discriminative-granularity ceiling",
+        "prior_category": "substrate_ceiling / pending_retest_after_substrate",
+        "new_status": "REFUTED by that autopsy's own user-confirmed retest spec (section 7)",
+        "basis": "raising world_dim 32 -> 128 lifts z_world contrast at neither training state (both CI95 straddle zero)"
+      },
+      "recommended_evidence_quality_note": "See failure_autopsy_V3-EXQ-783_2026-07-18.md section 8 for the exact Q-002 and SD-031 note texts governance should write.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The only build routed by this autopsy is a fix to REE_assembly governance tooling (build_experiment_indexes.py legacy vacuity check), not a ree-v3 substrate gap. substrate_queue.json is the wrong register; the fix is spawned as a follow-on chip."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_zworld-integration-cluster_2026-06-06"],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Would have been N=2 for Q-002 had this autopsy concluded substrate_ceiling. It concludes the opposite and DISCHARGES the prior verdict, so the brake does not fire and no re-queue is refused."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": ["failure_autopsy_zworld-integration-cluster_2026-06-06"],
+        "routing": null,
+        "note": "The count condition is met (Q-002 has a prior autopsy) but the substance is not: this autopsy RESOLVES the prior one's open (a1)/(a2) confound rather than circling the claim with a new failure signature. Convergence, not granularity debt."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "z_world under-differentiation is a TRAINING fault, not a DIMENSIONALITY fault: training lifts CR at both dims (t=+7.26, +13.11) while dim lifts nothing at either training state (both CI95 straddle zero).",
+        "SD-070 works: world-path weight-delta 7 (vs the x734 configuration's 0/61) with PR retention 0.658, against the prescribed pre-SD-070 P0's collapse to PR ~1.06, and P0/P1 phase separation preserved exactly.",
+        "Q-002's HARD PRECONDITION remedy clause 'resolve via SD-005 / higher-dim z_world' is REFUTED as a route; the route is a trained encoder (SD-070). The precondition itself is corrected, not lifted.",
+        "The indexer's legacy criteria_non_degenerate vacuity check is load_bearing-blind while its modern (3b) check is not, so any manifest supplying both blocks can be BLOCKING-flagged on a criterion its own author correctly tagged non-load-bearing. Corpus-wide governance-tooling defect.",
+        "Bright-line label thresholds with no noise allowance manufacture spurious labels: a 0.0028 excursion past a 0.02 ceiling, against a 0.0143 SEM, changed the routed label. Route on a distinguishable-from-zero test, not a point estimate."
+      ],
+      "routing": "governance-adjudication",
+      "routing_secondary": "governance-tooling-fix (build_experiment_indexes.py legacy vacuity check; spawned as a follow-on chip, no substrate_queue entry)",
+      "governance_actions_recommended": [
+        "Clear the vacuous_pass flag on this run as a false positive.",
+        "Record the adjudicated self-route as a1_untrained_encoder_dominates, superseding the emitted mixed_partial_separation.",
+        "Correct Q-002's what_would_answer HARD PRECONDITION remedy clause (trained encoder / SD-070, not higher-dim z_world). Do NOT lift the precondition.",
+        "Record on the 2026-06-06 cluster autopsy's (a2) leg that its substrate_ceiling / pending_retest_after_substrate verdict is DISCHARGED and REFUTED.",
+        "No status, confidence, promotion or demotion change: experiment_purpose is diagnostic. SD-031's v3_pending gate is NOT cleared."
+      ]
+    }
+  ],
+  "cluster_pattern": null
+}

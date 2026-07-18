@@ -60,7 +60,8 @@
         "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15.json",
         "failure_autopsy_MECH-457-fanout-755_2026-07-15.json",
         "failure_autopsy_V3-EXQ-769_2026-07-17.json",
-        "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json"
+        "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
+        "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.json"
       ],
       "is_hero": true,
       "initial_frozen_count": 12,
@@ -360,15 +361,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-780"
+            ],
+            "evidence_direction": "inconclusive",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "bc_prior_not_the_axis",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Existence proof: the BC arm cleared the floor (32.72). Live because the four config/env/credit/capacity axes are eliminated but 'which competence-directed dependency' is unresolved. Adjudicating run V3-EXQ-780 queued 2026-07-18 via /queue-experiment (pending completion)."
+            "basis": "NOT ELIMINATED -- V3-EXQ-780 ran but does not discriminate this leg, and its self-route bc_prior_not_the_axis is REJECTED on autopsy. The pre-registered null is verbatim 'treat still forages ~0 both reps'; raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's OWN declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583, 0/3 seeds took the BC seed -- manipulation NEVER INSTALLED, arm uninformative. raw_view: post_bc 20.933, 3/3 seeds took -- manipulation installed ABOVE the 13.05 lift-competence target (inside the 32.72 BC-expert band, vs a 48.05 local-view ceiling), then ERODED by RL to 11.667. Readiness met; non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. RE-POSED: 20.933 is the FIRST observation in this campaign of the agent exceeding the lift-competence target, so the leg's open question shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it. V3-EXQ-782 R-(b) supplies the leading mechanism candidate -- a flat, uninformed critic on the shared CTRL path (std(V)/std(G)=0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior. Secondary: the z_world imitation pathway is its own implementation gap (0/3 install). Routed to a retention re-pose under a NEW EXQ number (re-derive brake permits: new question, new null, new measurement, and a positive control no prior leg had). Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18."
           }
         },
         {
@@ -382,16 +385,18 @@
             "V3-EXQ-781"
           ],
           "resolution": {
-            "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Live alternative to H-bc-prior; kept demonstrator-free to avoid verdict-aliasing. Adjudicating run V3-EXQ-781 queued 2026-07-18 via /queue-experiment (pending completion)."
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-781"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "approach_primitive_not_the_axis",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T16:24:37Z",
+            "basis": "An innate, non-extinguishing, demonstrator-free appetitive resource-proximity drive (approach_coef=1.0) on the non-regressed reference build does not lift foraging competence on either representation: treat 0.317 (z_world, ctrl 0.300) and 0.200 (raw_view, ctrl 2.983) against a 1.0 floor and a 13.05 lift-competence target; 0/3 seeds supra-target on either rep. Trustworthy on three independent checks: (1) MANIPULATION EFFECTIVE -- the declared covariate mean_approach_reward_recent reads 0.698/0.707 in treat vs 0.000 in both ctrl, so the drive fired and was earned; (2) NULL READABLE -- V3-EXQ-782 R-(a) found forage |adv| mass already concentrated pre-standardisation (C_pre 1.92/1.20 vs a 0.5 threshold), so the MECH-459 weak form under which this inside-the-normaliser null would have been confounded does not hold, resolving Finding V3 of decision_MECH-459_registry_and_brake_2026-07-18.md in favour of a face-value read; (3) SUBSTRATE CAN EXPRESS COMPETENCE -- the co-adjudicated V3-EXQ-780 raw_view arm reaches 20.933 on this same substrate when a competent policy is installed by BC, so the null is not a can't-express-it artifact (a positive control this leg did not contain internally and which only joint adjudication supplies). Readiness met (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor); non_degenerate=True. LOAD-BEARING POSITIVE FINDING: in raw_view the drive SUPPRESSED foraging (0.200 vs a 2.983 ctrl, tight across all three seeds 0.15/0.20/0.25) while approach reward was continuously earned -- approach-without-consummation, the appetitive drive becoming terminal rather than instrumental. That is a discovered dependency (consummation/commitment binding) converging with the standing BG-commitment reading, not a new axis. Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18."
           }
         }
       ],
@@ -1133,6 +1138,87 @@
         "observation_bottleneck": null
       },
       "fanout_growth_note": "No fan-out growth in this cycle: all four legs resolved here were already pre-registered (2026-07-18T07:23:18Z / 08:41:15Z), so initial_frozen_count stays 6 and no fanout_growth_events entry is required. The question converged WITHOUT needing a new portfolio -- the 778c fan-out enumerated a sufficient rival set first time."
+    },
+    {
+      "qid": "zworld_underdifferentiation_cause",
+      "title": "Why is the z_world manifold under-differentiated -- an untrained encoder, or a world_dim=32 discriminative-granularity ceiling?",
+      "short_title": "z_world under-differentiation cause",
+      "claims": [
+        "Q-002",
+        "SD-031"
+      ],
+      "registered_utc": "2026-07-18T18:06:59Z",
+      "fanout_sources": [
+        "failure_autopsy_zworld-integration-cluster_2026-06-06.json",
+        "failure_autopsy_V3-EXQ-783_2026-07-18.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-a1-untrained-encoder",
+          "label": "the world encoder is never trained in the measured configuration",
+          "desc": "SplitEncoder.world_encoder receives no gradient during P0 (the loop buffers latent.z_world.detach() and optimises only agent.e2.parameters()), so the manifold is an untrained projection regardless of its width.",
+          "axis": "learning-signal",
+          "pre_registered_utc": "2026-06-06T00:00:00Z",
+          "pre_registration_source": "failure_autopsy_zworld-integration-cluster_2026-06-06.json",
+          "adjudicating_runs": [
+            "V3-EXQ-783"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-783"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "instrument_validated_cause_discriminated",
+            "self_route_label": "a1_untrained_encoder_dominates",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-18T11:23:40Z",
+            "basis": "783 crosses {dim 32,128} x {untrained,trained} at n=8 paired seeds. Training lifts the z_world contrast ratio at BOTH dims (dim32 +0.0814, t=+7.26; dim128 +0.1074, t=+13.11), both CI95 clear of zero. All four preconditions MET, including the positive control (raw channel CR 0.8138 vs a 0.2 floor) and the weight-movement check that read 0/61 on the x734 configuration and reads 7 here."
+          }
+        },
+        {
+          "hid": "H-a2-dim32-granularity",
+          "label": "the world_dim=32 discriminative-granularity ceiling",
+          "desc": "The 2026-06-06 cluster autopsy's substrate_ceiling / pending_retest_after_substrate leg: 32 latent units cap the discriminable structure z_world can carry, so contrast should rise with dimensionality.",
+          "axis": "representation",
+          "pre_registered_utc": "2026-06-06T00:00:00Z",
+          "pre_registration_source": "failure_autopsy_zworld-integration-cluster_2026-06-06.json",
+          "adjudicating_runs": [
+            "V3-EXQ-783"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-783"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "instrument_validated_cause_discriminated",
+            "self_route_label": "a1_untrained_encoder_dominates",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-18T11:23:40Z",
+            "basis": "Raising world_dim 32 -> 128 lifts contrast at NEITHER training state: untrained -0.0032 (t=-0.73, CI95 [-0.0135,+0.0071]), trained +0.0228 (t=+1.60, CI95 [-0.0110,+0.0566]) -- both straddle zero at n=8 paired seeds. The emitted mixed_partial_separation label turned on the trained delta exceeding a bright-line 0.02 minor-axis ceiling by 0.0028 against its own SEM of 0.0143, and does not survive a noise-aware read (autopsy section 3, user-adjudicated). The 2026-06-06 substrate_ceiling verdict on this leg is refuted by its own user-confirmed retest spec."
+          }
+        }
+      ],
+      "synthesis": {
+        "surviving_label": "untrained encoder (a1) -- z_world under-differentiation is a training fault, not a dimensionality fault",
+        "text": "z_world under-differentiation is a TRAINING fault, not a DIMENSIONALITY fault. SD-070 (ree-v3 main f418400) supplies the missing gradient path and demonstrably works (world-path weight-delta 7; participation-ratio retention 0.658 against the prescribed pre-SD-070 P0's collapse to PR ~1.06). Q-002's HARD PRECONDITION remedy clause 'resolve via SD-005 / higher-dim z_world' is refuted as a route and should be corrected to a trained encoder; the precondition itself is NOT lifted, since no run has yet swept RBF resolution on an SD-070-trained encoder."
+      },
+      "decision": {
+        "decision_question": "Is z_world under-differentiation caused by an untrained encoder or by a dim-32 granularity ceiling?",
+        "live_gate": null,
+        "decidable": true,
+        "decision_log_ref": null,
+        "distance_phrase": "Decided by V3-EXQ-783: (a1) confirmed, (a2) eliminated. Downstream Q-002 resolution now needs an RBF-resolution sweep on an SD-070-trained encoder -- a NEW question, not a re-test of this one."
+      }
     }
   ]
 }

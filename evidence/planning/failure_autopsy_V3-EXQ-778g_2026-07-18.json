@@ -1,0 +1,129 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T18:06:59Z",
+  "scope": "single",
+  "status": "confirmed",
+  "adjudication_kind": "ratification_of_already_applied_governance_decision",
+  "targets": [
+    {
+      "run_id": "v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3",
+      "queue_id": "V3-EXQ-778g",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "sws_readout_content_contingent_validated",
+      "indexer_adjudication": "clean",
+      "adjudicated_self_route_label": "sws_readout_content_contingent_validated",
+      "adjudication_verdict": "self_route_upheld",
+      "failed_criterion": "none -- both load-bearing criteria (C1, C3) passed on 8/8 seeds under two MET preconditions",
+      "preconditions_all_met": true,
+      "recording_provenance": {
+        "validate_recording": "OK",
+        "always_core_gaps": [],
+        "substrate_hash": "3cd1aa9cf922715013f6ce8f0e7be91c32a5025c1e77d9c2a0ac5b60b9766a07",
+        "machine": "ree-cloud-2",
+        "n_seeds": 8
+      },
+      "headline_metrics": {
+        "C1_null_slope_ratio_sws": {"mean": 0.14950301781, "sd": 0.021831491734, "ci95": [0.13437456588, 0.16463146974], "ceiling": 0.25, "ceiling_inside_ci95": false, "n_seeds_content_contingent": 8},
+        "C3_content_scale_ladder_spread": {"measured": 0.11084844688, "floor": 0.01},
+        "precondition_injected_arm_sigma_slope": {"measured": 0.32317587708, "range": [0.3232, 0.3578], "floor": 1e-06},
+        "retired_readout_778c": {"ratio": 1.0, "sd": 2.7e-08, "n_confounded": "8/8"}
+      },
+      "scope": {
+        "gated_phase": "sws",
+        "context_phases_not_gated": ["nrem", "rem"],
+        "rem_leg_owner": "V3-EXQ-778d/e/f (GOV-FANOUT-1 portfolio, all still queued)",
+        "validated": "the sws INSTRUMENT's content-contingency",
+        "not_validated": "the reverse-dependency STAGING ORDER -- a cross-phase ranking that cannot be supported while the rem leg has no interpretable readout, and which no run has re-measured with the repaired instrument",
+        "supersedes_778c": false,
+        "supersedes_778c_rationale": "778c's finding concerns the RETIRED readout (sws_denoising_snr, content-free by analytic construction) and is what motivated this build; 778g validates a DIFFERENT instrument. Manifest supersedes field is correctly null."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact; SD-068 instrument leg strengthened. Tests the readout, not the staging claim.",
+        "biological_reference": "clear -- follows the Bar et al. 2020 'same odour, no prior pairing' null-contingency design; the null arm gets a real arm-identical probe that is simply not planted rather than a 0/0-degenerate zero",
+        "prerequisites": "present -- the replacement readout landed (ree-v3 main 8b18338) before the run and the substrate_hash changed with it",
+        "implementation": "complete, experiment-layer only; zero ree_core change",
+        "environment": "adequate -- injected-arm sigma sweep moves the readout across the full grid (slopes 0.323-0.358)",
+        "measurement": "adequate and independently anti-artifact-checked -- C3 discharges the cosine scale-invariance caveat that C1 alone could not",
+        "integration": "isolated by design -- sws gated alone, nrem/rem context-only; appropriate for instrument validation",
+        "scale": "adequate -- n=8 seeds, ceiling_inside_ci95 FALSE; the earlier 3-seed local smoke is superseded"
+      },
+      "biological_reference": {
+        "closest_mechanism": "odour-contingent hippocampal replay / pattern completion (Bar et al. 2020 null-contingency control)",
+        "dependencies": ["a planted content prototype", "an arm-identical unplanted null probe", "a damage sweep that actually moves the readout"],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "instrument_repair_validated",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {"SD-068": "supports", "MECH-168": "unknown", "INV-047": "unknown", "MECH-169": "unknown"},
+      "recommended_evidence_quality_note": "NONE -- no new claims.yaml write is recommended. The re-widening this run licenses was already applied and landed at REE_assembly 9a31d79acc (2026-07-18T15:32:10Z). See the optional provenance-pointer text in failure_autopsy_V3-EXQ-778g_2026-07-18.md section 8.",
+      "already_applied_decision": {
+        "decision": "re-widen SD-068's non-vacuity contract to re-admit the sws leg; staging order still excluded",
+        "commit": "9a31d79acc",
+        "repo": "REE_assembly",
+        "landed_utc": "2026-07-18T15:32:10Z",
+        "on_origin_master": true,
+        "applied_by_session": "practical-kapitsa-66ec83",
+        "location": "docs/claims/claims.yaml:49603-49665 (evidence_quality_note, '[PARTIALLY RE-WIDENED 2026-07-18 -- V3-EXQ-778g]' block)",
+        "independently_verified": true,
+        "verification_result": "accurate on every headline number and correct on every scope boundary; also self-corrects a phrase from the 778c narrowing that 778g made false",
+        "autopsy_concurs": true,
+        "stale_pointer": {
+          "location": "docs/claims/claims.yaml:49548-49550 (implementation_note)",
+          "text": "Whether SD-068's non-vacuity contract should now be re-widened to re-admit the sws leg is a GOVERNANCE adjudication for a /governance cycle, not something this implementation_note performs.",
+          "why_stale": "The adjudication landed 23 minutes later at 9a31d79acc. The sentence remains historically accurate about what the implementation_note itself did; the evidence_quality_note is the live carrier of scope.",
+          "severity": "cosmetic -- not a correctness defect",
+          "recommended_fix": "optional one-line forward pointer; see .md section 8"
+        }
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Experiment-layer repair already landed (ree-v3 main 8b18338); zero ree_core change. The predecessor autopsy 778c also recorded action 'none'. The rem leg is already owned by the queued GOV-FANOUT-1 portfolio V3-EXQ-778d/e/f."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "STILL RAISED on narrower ground, per the applied re-widening. Two of three legs now have validated content-contingent instruments, but (i) the REM generative-gain contrast -- the third pillar of the amended contract -- has its own content-dependence unresolved (H-gen-gain-content-free, alive in the hypothesis ledger, owned by 778d/e/f), and (ii) the staging order, which the claim title names as a non-vacuity carrier, remains unsupported.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "SD-068's one prior autopsy (failure_autopsy_V3-EXQ-778c_2026-07-18) is category measurement_gap, not substrate_ceiling/non_contributory. Counted total 0."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": ["failure_autopsy_V3-EXQ-778c_2026-07-18"],
+        "routing": null,
+        "note": "Count condition met but substance is not: 778c diagnosed a measurement gap and routed a repair; 778g validates that repair. A diagnose-repair-validate sequence converging on one instrument, not repeated circling with distinct failure signatures."
+      },
+      "fanout_recommendation": null,
+      "hypothesis_ledger_decision": {
+        "wrote_to_registry": false,
+        "question": "consolidation_readout_validity",
+        "rationale": "778g resolves NO pre-registered leg. H-sws-content-contingent stays `eliminated`: it concerns the RETIRED sws_denoising_snr readout, and 778c's elimination of it stands. Registering a post-hoc `confirmed` leg for the REBUILT instrument would enlarge an already-adjudicated question's denominator with a leg whose adjudicating run had already resolved and for which no artifact pre-registered it -- retro-padding without a git witness, barred by frozen-set invariant 3a(a). The rem-leg hypotheses (H-rem-content-contingent, H-rem-clamp-artifact, H-rem-genuinely-content-free, H-gen-gain-content-free) remain correctly `alive`: 778g gates the sws leg alone and touches none of them.",
+        "invariants_checked": ["3 (no post-hoc enlargement of an adjudicated question)", "3a (labelled fan-out growth requires a git-witnessed pre-registration)", "6 (only new questions and labelled fan-out may grow total_initial)"]
+      },
+      "learning_extracted": [
+        "Scoping a gate to the leg under repair is what makes an instrument-validation run informative: gating all three phases would have FAILED regardless of whether the sws repair worked. Stamping gated_phase / context_phases_not_gated / rem_leg_owner in interpretation is what makes the narrow scope legible to governance.",
+        "Pre-registering an anti-artifact criterion against your own readout's known form converts a PASS from tautological to meaningful: C3 exists because the replacement is cosine-based and hence scale-invariant, so its null arm is flat in sigma partly by construction.",
+        "Re-admission on the SAME load-bearing criterion at the SAME ceiling that excluded the leg (and that admitted the nrem leg) is the load-bearing fairness property; a weaker test would have been motivated reasoning.",
+        "A session brief can be stale on the state of the claim registry. Verifying the target decision against origin/master before recommending a governance write -- rather than trusting an in-note description of what is outstanding -- is what caught an already-landed adjudication. The stale pointer was an implementation_note describing its own scope while the live carrier of scope was the evidence_quality_note; the two can disagree by design."
+      ],
+      "routing": "governance-ratification-no-write",
+      "governance_actions_recommended": [
+        "Make NO further claims.yaml write to SD-068 on account of 778g -- the re-widening landed at 9a31d79acc and is independently verified correct here.",
+        "No status, confidence, promotion or demotion change: experiment_purpose is diagnostic. SD-068 remains candidate / implementation_phase v3.",
+        "MECH-121 hold remains RESPECTED (778g deliberately does not tag it).",
+        "evidence_direction stands as declared: supports for SD-068, unknown for MECH-168 / INV-047 / MECH-169.",
+        "OPTIONAL, not required: add a one-line forward pointer after the now-stale implementation_note sentence at claims.yaml:49548 so a future session does not re-open a closed decision.",
+        "Mark reviewed at the /governance walk (this skill does not touch review_tracker.json)."
+      ]
+    }
+  ],
+  "cluster_pattern": null
+}
