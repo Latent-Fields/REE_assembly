@@ -1,0 +1,368 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_779a_mech063_tonic_phasic_dissociation",
+  "run_id": "v3_exq_779a_mech063_tonic_phasic_dissociation_20260718T121351Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-18T12:13:51.661475Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-063"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sample_starvation_requeue",
+    "sampling_shortfall": {
+      "self_route": "sample_starvation_requeue",
+      "reason": "One or more cells hit the total-step cap before reaching their sample floors. This is a SAMPLING failure, not a substrate capability failure -- do not route to substrate_not_ready_requeue without an independent capability check.",
+      "n_starved_cells": 17,
+      "starved_cells": [
+        {
+          "arm": "T0P0",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 32,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 726,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 36,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 798,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 11,
+          "n_env_steps": 2400,
+          "n_episodes": 31,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 710,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 52,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 682,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 44,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 624,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 46,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 638,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 17,
+          "n_env_steps": 2400,
+          "n_episodes": 45,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 667,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 23,
+          "n_env_steps": 843,
+          "n_episodes": 120,
+          "stop_reason": "episode_cap",
+          "shortfall": {
+            "event_ticks": {
+              "measured": 10,
+              "threshold": 30
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 23,
+          "n_env_steps": 835,
+          "n_episodes": 120,
+          "stop_reason": "episode_cap",
+          "shortfall": {
+            "event_ticks": {
+              "measured": 6,
+              "threshold": 30
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 294,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 296,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "event_ticks": {
+              "measured": 21,
+              "threshold": 30
+            },
+            "selections": {
+              "measured": 293,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 29,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "event_ticks": {
+              "measured": 23,
+              "threshold": 30
+            },
+            "selections": {
+              "measured": 290,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P0",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 287,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P0",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 289,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T0P1",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 280,
+              "threshold": 800
+            }
+          }
+        },
+        {
+          "arm": "T1P1",
+          "seed": 37,
+          "n_env_steps": 2400,
+          "n_episodes": 9,
+          "stop_reason": "step_cap",
+          "shortfall": {
+            "selections": {
+              "measured": 296,
+              "threshold": 800
+            }
+          }
+        }
+      ]
+    },
+    "readiness_unmet_sample_kind": [
+      "phasic_fires_real_events"
+    ],
+    "readiness_unmet_capability_kind": [],
+    "preconditions": [
+      {
+        "name": "phasic_fires_real_events",
+        "kind": "sample",
+        "control": "PHASIC-ON cells: event-window ticks summed across episodes (min across cells)",
+        "measured": 6.0,
+        "threshold": 10,
+        "met": false,
+        "offending_cell": {
+          "seed": 23,
+          "arm": "T1P1",
+          "value": 6,
+          "n_env_steps": 835,
+          "n_episodes": 120,
+          "stop_reason": "episode_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "both_partitions_populated",
+        "kind": "sample",
+        "control": "PHASIC-ON cells: quiescent ticks (so the transient is computable; min across cells)",
+        "measured": 242.0,
+        "threshold": 10,
+        "met": true,
+        "offending_cell": {
+          "seed": 37,
+          "arm": "T0P1",
+          "value": 242,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "tonic_axis_live",
+        "kind": "capability",
+        "control": "TONIC-ON cells: noise_floor_temp_lift",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "sample_sufficiency",
+        "kind": "sample",
+        "control": "min fresh E3 selections over cells",
+        "measured": 280.0,
+        "threshold": 20,
+        "met": true,
+        "offending_cell": {
+          "seed": 37,
+          "arm": "T0P1",
+          "value": 280,
+          "n_env_steps": 2400,
+          "n_episodes": 8,
+          "stop_reason": "step_cap",
+          "sample_floors_met": false
+        }
+      },
+      {
+        "name": "baseline_entropy_headroom",
+        "kind": "capability",
+        "control": "T0P0 sustained entropy strictly inside (E_SAT_LOW, E_SAT_HIGH)",
+        "measured": 0.369775082006064,
+        "threshold": 0.98,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "double_dissociation_C1_and_C2",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "double_dissociation_C1_and_C2": true
+    },
+    "summary": "MECH-063 sub-claim (ii) tonic-vs-phasic dissociation on the E3 softmax temperature. The TONIC lever (MECH-313 noise_floor) moves the SUSTAINED (quiescent-tick) baseline entropy; the PHASIC lever (SD-069 phasic_surprise_burst, sharp instantaneous_pe source) moves an EVENT-LOCKED entropy TRANSIENT; cross-legs ~0. PASS = both hold (independent tonic-baseline vs phasic-transient degrees of freedom on one readout); FAIL/weakens = they do not dissociate; FAIL/non_contributory = the run could not test the claim -- labelled sample_starvation_requeue when a SAMPLE COUNT was short (substrate present and firing; offending cell named) and substrate_not_ready_requeue only when a substrate CAPABILITY check failed. Supersedes V3-EXQ-779, whose fixed episode budget let a single 19-step cell veto readiness under the latter label."
+  }
+}
