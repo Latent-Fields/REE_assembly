@@ -1,0 +1,238 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic",
+  "run_id": "v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic_20260718T183746Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-18T18:37:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-068",
+    "MECH-168",
+    "INV-047",
+    "MECH-169"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "SD-068": "unknown",
+    "MECH-168": "unknown",
+    "INV-047": "unknown",
+    "MECH-169": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "rem_clamp_artifact_confirmed_but_readout_still_content_free",
+    "hypothesis_id": "H-rem-clamp-artifact",
+    "hypothesis_axis": "measurement",
+    "hypothesis_question": "consolidation_readout_validity",
+    "probe_amended_pre_queue": {
+      "retired_probe": "step ladder (0.1/0.25/0.5/1.0)",
+      "reason": "PROVABLY INERT. rv_after = (1-step)*rv_before + step*(1/(target+1e-6)) (e3_selector.recalibrate_precision_to), so (a) the 1e-3 positivity clamp is applied UPSTREAM of step, making the clamp fraction exactly step-invariant, and (b) both arms' sigma-slopes carry the same factor step, which CANCELS in the reported ratio. Verified numerically over step in {0.1,0.25,0.5,1.0}: ratio identical to 12 significant figures (14569.1833719598-...602, float round-off only), clamp fraction and distinct-value count bit-identical. Running it would have returned this leg's declared null BY CONSTRUCTION -- a false elimination in the frozen ledger, not a measurement.",
+      "replacement_probe": "unpaired-target null: ARM_NULL_UNPAIRED points the recalibration at an INDEPENDENT positive target of the same magnitude class, unpaired with the clean target the error is scored against (the faithful Bar et al. 2020 'same odour, no prior pairing' analog), contrasted against ARM_NULL_ZERO (the 778c zero-target null, retained as the replication anchor). The hypothesis adjudicated is unchanged; only the probe is.",
+      "ledger_amendment_required": true,
+      "ledger_amendment_blocked_by": "active TASK_CLAIMS entry 'axis-family convergence discriminator' (claimed 2026-07-18T08:05:00Z) holds REE_assembly/evidence/planning/hypothesis_space_registry.v1.json"
+    },
+    "declared_null": "if ARM_NULL_UNPAIRED stays railed too -- still clamping, still constant -- H-rem-clamp-artifact is REFUTED: the both-rails degeneracy is NOT an artifact of how the null was operationalised, and the measurement axis is eliminated from question consolidation_readout_validity.",
+    "preconditions": [
+      {
+        "name": "injected_arm_sigma_slope_supra_floor",
+        "description": "the ratio's DENOMINATOR -- the injected-arm sigma-slope, the same statistic the content-contingency criterion routes on -- clears the floor. Below floor means the sweep never damaged the readout, so no ratio is interpretable.",
+        "measured": 0.06648187008701933,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "injected arm swept to sigma=max (known-damaged positive control)",
+        "met": true
+      },
+      {
+        "name": "null_zero_anchor_reproduces_778c_railed_signature",
+        "description": "READINESS ANCHOR (both-rails predicate; CORRECTED in V3-EXQ-778h). ARM_NULL_ZERO IS the V3-EXQ-778c rem condition on the same seeds and the same RNG stream, so it must reproduce 778c's railed signature. Measured as the FRACTION of seeds railed -- the SAME railed/de-railed statistic the load-bearing criterion routes on, asserted on the known-degenerate positive control. A seed counts as railed if it hit EITHER rail: (a) SATURATION (reference clamped across the grid -> constant series -> zero slope) or (b) POSITIVITY-FLOOR COLLAPSE (reference touched the 1e-3 floor and the fit went off-scale, |ratio| >= 100.0). V3-EXQ-778d's predicate tested rail (a) ONLY, so the 3/8 floor-collapsed seeds (ratios 1801-9143) were scored HEALTHY and the anchor could reach at most 5/8 = 0.625 against a 0.75 gate -- unmeetable by construction, and the sole cause of that run's degeneracy flag on the load-bearing criterion. A reachability guard now asserts at setup that the frozen reference clears this gate under the shipped predicate. If the anchor does not reproduce, something other than the null-mode differs from 778c and the contrast is uninterpretable -> requeue, never a verdict about the clamp.",
+        "measured": 1.0,
+        "threshold": 0.75,
+        "direction": "lower",
+        "control": "ARM_NULL_ZERO == the V3-EXQ-778c null (known-degenerate positive control)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_unpaired_null_derails": true,
+      "C2_unpaired_ratio_content_contingent": true,
+      "C3_anchor_reproduces_778c": true
+    },
+    "criteria": [
+      {
+        "name": "C1_unpaired_null_derails",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_unpaired_ratio_content_contingent",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C3_anchor_reproduces_778c",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "arm_summary": {
+      "NULL_ZERO": {
+        "n_seeds_railed": 8,
+        "railed_frac": 1.0,
+        "per_seed_clamp_frac": [
+          0.2,
+          1.0,
+          0.2,
+          1.0,
+          0.2,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "per_seed_null_slope_ratio_full": [
+          4348.4665081785715,
+          0.0,
+          9142.771353766831,
+          0.0,
+          1801.6453681003277,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "per_seed_rail_kind": [
+          "positivity_floor_collapse",
+          "saturation",
+          "positivity_floor_collapse",
+          "saturation",
+          "positivity_floor_collapse",
+          "saturation",
+          "saturation",
+          "saturation"
+        ],
+        "per_seed_min_corrupt_target_precision": [
+          0.001,
+          0.001,
+          0.001,
+          0.001,
+          0.001,
+          0.001,
+          0.001,
+          0.001
+        ],
+        "n_seeds_saturation_railed": 5,
+        "n_seeds_floor_collapsed": 3
+      },
+      "NULL_UNPAIRED": {
+        "n_seeds_derailed": 7,
+        "n_seeds_content_contingent": 1,
+        "mean_null_slope_ratio_unclamped": 11.550596479729984,
+        "sd_null_slope_ratio_unclamped": 29.76855506672861,
+        "ci95_low": -9.07795973100279,
+        "ci95_high": 32.17915269046276,
+        "ceiling_inside_ci95": true,
+        "per_seed_clamp_frac": [
+          0.0,
+          0.0,
+          0.0,
+          0.2,
+          0.0,
+          0.6,
+          0.2,
+          0.2
+        ],
+        "per_seed_n_unclamped_sigmas": [
+          5,
+          5,
+          5,
+          4,
+          5,
+          2,
+          4,
+          4
+        ],
+        "per_seed_null_slope_ratio_unclamped": [
+          0.9946357009625552,
+          0.9014339361414496,
+          0.8770952900685055,
+          0.0010989173069902271,
+          0.576577543244651,
+          85.18453599581865,
+          0.5739206576346799,
+          3.295473796662413
+        ],
+        "per_seed_unpaired_target_precision": [
+          1.4431723831036691,
+          2.0436320987408108,
+          2.145668953476459,
+          3.2568796444900494,
+          1.250851400088861,
+          0.9498686091556008,
+          2.0992846909117877,
+          1.5027993140703395
+        ]
+      }
+    },
+    "anchor_railed_seed_frac": 1.0,
+    "anchor_reachability_guard": {
+      "anchor_name": "null_zero_anchor_reproduces_778c_railed_signature",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "V3-EXQ-778c rem null, replicated bit-identically by V3-EXQ-778d ARM_NULL_ZERO (run_id v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3) and by V3-EXQ-778e's within-run legacy calibration_error anchor",
+      "threshold": 0.75,
+      "margin_cells": 0,
+      "required_score": 0.75,
+      "reachable": true,
+      "n_reference_cells": 8,
+      "n_reference_scored_true": 8,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "portfolio": {
+      "gov_rule": "GOV-FANOUT-1",
+      "question": "consolidation_readout_validity",
+      "this_leg": "H-rem-clamp-artifact (axis=measurement)",
+      "sibling_legs": [
+        "V3-EXQ-778e H-rem-genuinely-content-free (axis=representation)",
+        "V3-EXQ-778f H-gen-gain-content-free (axis=observation)"
+      ],
+      "note": "Read the three legs JOINTLY. This leg alone cannot resolve the parent H-rem-content-contingent: de-railing establishes only that the zero-target null was mis-operationalised, not that the readout tracks content. Resolution via /failure-autopsy Step 9b Mode B against the frozen ledger, not by this self-route."
+    }
+  }
+}
