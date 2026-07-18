@@ -1,0 +1,247 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T18:01:44Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_slug": "MECH-457-gov-fanout-1-cluster-780-781-782",
+  "adjudication_order": [
+    "V3-EXQ-782",
+    "V3-EXQ-781",
+    "V3-EXQ-780"
+  ],
+  "adjudication_order_rationale": "782 measures the SHARED composed-bootstrap CTRL arm of both 780 and 781 with no manipulation and no treatment arm, so its reading conditions whether the other two nulls are readable. Adjudicated first per decision_MECH-459_registry_and_brake_2026-07-18.md Finding V3. Outcome: it CLEARS the elimination bar for 781 rather than blocking it.",
+  "targets": [
+    {
+      "run_id": "v3_exq_782_mech459_advantage_composition_probe_20260718T111818Z_v3",
+      "queue_id": "V3-EXQ-782",
+      "claim_ids": ["MECH-459"],
+      "self_route_label": "forage_mass_already_concentrated__critic_flat_uninformed",
+      "failed_criterion": "absolute",
+      "manipulation_effectiveness": "n/a -- instrumentation probe, no manipulation and no treatment arm by design (Decision 2b)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (weak form only) -- the weak form's PREMISE fails, not merely its consequent. C_pre = 1.92 (z_world) / 1.20 (raw_view), both above the 0.5 'tiny' threshold, so forage-contact steps already carry disproportionate |adv| mass BEFORE the per-episode standardiser. There is no tiny forage signal for novelty noise to swamp. The STRONG form is not restated: it was already refuted by Finding V2 of the sanctioning decision.",
+        "biological_reference": "partial -- the claim is a formal/algorithmic import (DreamerV3 Hafner 2023, Appendix E 'amplification of near-zero returns'), not a biological translation. Its critic half has a dopaminergic-RPE analogue (a value baseline that fails to differentiate pre-reward from far states is a flat critic in the O'Doherty 2004 dorsal-striatum actor-critic sense); its normaliser half does not.",
+        "prerequisites": "present -- all four readiness preconditions met (local_view_greedy 48.05 and greedy_oracle 57.2 vs the 1.0 floor; 273 forage-contact steps vs the 30 floor; demonstrator return std 0.3027 vs the 0.25 floor).",
+        "implementation": "complete -- instrumentation mirror module; the live 780/781 scripts and the mech457_* _lib modules are byte-unchanged.",
+        "environment": "adequate -- same CausalGridWorld D3 configuration as the portfolio it instruments.",
+        "measurement": "adequate and decisive on R-(a). The probe measured exactly the intermediate quantity (per-step |adv| mass fractions either side of the standardiser) that no manifest records, so it was correctly run rather than reanalysed (GOV-REUSE-1).",
+        "integration": "coupled -- the CTRL arms are behaviourally equivalent to the portfolio's (see substrate_equivalence_check), so the conditioning read transfers.",
+        "scale": "adequate -- 3 seeds x 2 representations on the reference 128-wide/3x/detached build."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dorsal-striatal actor-critic with a dopaminergic RPE teaching signal; the critic as a value baseline that must differentiate states by proximity to reward.",
+        "dependencies": ["a value baseline that tracks return", "a non-degenerate advantage signal at reward-contact states"],
+        "is_formal_import": true,
+        "divergence": "R-(a) exonerates the normaliser half of the DreamerV3 import: the advantage composition is already concentrated on forage contacts, so the two-sided standardiser is not laundering shape changes. R-(b) independently corroborates the CRITIC half of that same import's prescribed corrective -- std(V)/std(G) = 0.041 (z_world) against a 0.25 collapse threshold, and a pre-reward-vs-far separation ratio of 0.016 against a 0.25 floor. The critic is FLAT AND UNINFORMED (signal-absence), NOT collapsed-to-the-bimodal-mean. The two halves of MECH-459 therefore separate cleanly and must not be adjudicated as one unit.",
+        "lit_status": "present -- Hafner 2023 DreamerV3 Appendix E is cited on the claim; no new /lit-pull commission is owed."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-782 (probe R, DIAGNOSTIC, sanctioned by decision_MECH-459_registry_and_brake_2026-07-18.md Decision 2b) WEAKENS the surviving WEAK form of MECH-459. R-(a) load-bearing: the prevalence-normalised concentration of forage-contact |adv| mass on the reference composed-bootstrap CTRL path is ALREADY CONCENTRATED before the per-episode standardiser -- C_pre = 1.92 (z_world) / 1.20 (raw_view) against a 0.5 'tiny' threshold -- so the weak form's premise (a tiny forage signal that novelty noise re-amplification could swamp) FAILS. The standardiser slightly REDUCES concentration (delta -0.343 z_world / -0.141 raw) rather than swamping it. Readiness met on all four preconditions (local_view_greedy 48.05, greedy_oracle 57.2, 273 forage steps vs a 30 floor, demo return std 0.3027 vs a 0.25 floor); non_degenerate=True. The STRONG form is NOT restated here -- it was refuted by Finding V2 of the sanctioning decision. Per the probe's own PRE-DECLARED conditional, an already-concentrated reading routes to `weakened`, queues NO probe K, and makes NO hypothesis-registry write (competence_floor counts stay 7/12). ADJACENT LIVE FINDING, carried but promoting nothing: R-(b) (declared load_bearing:false) finds the shared CTRL critic FLAT AND UNINFORMED -- std(V)/std(G) = 0.041 against a 0.25 collapse threshold, pre-reward-vs-far separation ratio 0.016 against a 0.25 floor, value-return correlation 0.434. That is signal-absence, not collapse-to-the-bimodal-mean, and it corroborates the DISTRIBUTIONAL-CRITIC half of MECH-459's own DreamerV3-prescribed corrective while R-(a) exonerates the normaliser half. It is the leading mechanism candidate for the V3-EXQ-780 raw_view erosion (an installed 20.93-competence behavioural prior decaying to 11.67 under RL is what an unbaselined, high-variance advantage predicts). MECH-459 stays candidate/v3_pending; this licenses no build -- not the twohot critic, not the percentile normaliser.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Probe R is a diagnostic on intermediate quantities. The critic-baseline finding is routed as a discrimination (fanout_recommendation on the competence_floor question), not as a named build -- the sanctioning decision explicitly licenses no build, and committing a twohot critic now would build on a single non-load-bearing covariate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "note": "MECH-459 substrate_ceiling/non_contributory autopsy count is 0 (verified by the Step 7 scan). No brake."
+      },
+      "learning_extracted": [
+        "The two halves of MECH-459 dissociate: R-(a) exonerates the two-sided normaliser (forage |adv| mass already concentrated pre-standardisation) while R-(b) corroborates the flat-critic half of the same DreamerV3 corrective. A composite algorithmic-import claim must be adjudicated half by half, not as a unit.",
+        "The standardiser REDUCES forage concentration slightly (delta -0.343 / -0.141) rather than amplifying noise over it -- the mean-subtraction is the only term that can move composition, and it moves it the benign way.",
+        "Conditioning payoff realised: because the weak form falls, V3-EXQ-781's null is readable at face value (781's approach drive enters `shaped` INSIDE the normaliser and would have been confounded had the weak form held). V3-EXQ-780's BC auxiliary is a loss-side CE term outside the normaliser and was never confounded. 782 therefore CLEARS the elimination bar for the portfolio rather than blocking it -- the outcome the pre-registered conditional was written to detect.",
+        "A flat, uninformed critic on the SHARED control path is a common-mode property of both 780 and 781, not a differential confound between them -- it cannot explain a treat-vs-ctrl difference, but it is a live candidate root for the campaign-wide failure to RETAIN competence."
+      ],
+      "routing": "governance-weaken-only"
+    },
+    {
+      "run_id": "v3_exq_781_mech457_approach_primitive_discrimination_20260718T162437Z_v3",
+      "queue_id": "V3-EXQ-781",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "approach_primitive_not_the_axis",
+      "failed_criterion": "discrimination",
+      "self_route_adjudication": "UPHELD. The declared null's antecedent ('treat still forages ~0 both reps') is satisfied: treat forages 0.317 (z_world) and 0.200 (raw_view) against a 1.0 competence floor and a 13.05 lift-competence target.",
+      "manipulation_effectiveness": "CONFIRMED EFFECTIVE. The script's own declared covariate (mean_approach_reward_recent, 'confirms the drive fired -- a null with a live drive is informative, not a plumbing bug') reads 0.698 (z_world treat) and 0.707 (raw treat) against 0.0 in BOTH ctrl arms. The intrinsic approach drive was live and being earned throughout.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- MECH-457 is neither supported nor weakened. What is eliminated is a specific rival dependency (H-approach-primitive), not the parent claim. MECH-457 stays candidate/v3_pending.",
+        "biological_reference": "clear -- an innate, non-extinguishing appetitive approach drive toward a resource gradient is a well-attested vertebrate primitive (hypothalamic/mesolimbic appetitive approach). The result is a genuine dissociation, not a translation failure: the drive was correctly instantiated and did produce approach behaviour.",
+        "prerequisites": "present -- both readiness preconditions met (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor). Critically, the JOINT read supplies a prerequisite 781 lacked internally: V3-EXQ-780's raw_view arm demonstrates that this exact substrate CAN reach 20.93 foraging competence when a competent policy is installed directly. So the substrate's capacity to express competence is established, and 781's null is not a can't-express-it artifact.",
+        "implementation": "complete -- approach_coef=1.0, non-extinguishing state reward on resource_field_view peak; anti-aliased against the eliminated H3 credit leg (state reward, not policy-invariant potential shaping) and against the self-attenuating RND/SD-025 novelty class (non-extinguishing).",
+        "environment": "adequate -- the env is solvable from the 5x5 local view (48.05) and floor-achievable with global info (57.2).",
+        "measurement": "adequate -- unshaped D3 evaluation with a manipulation-effectiveness covariate that fired, plus per-seed arrays. The raw_view suppression is tight across all three seeds (0.15 / 0.20 / 0.25), so it is a reliable effect and not seed noise.",
+        "integration": "coupled but revealing -- the drive integrated into `shaped` and changed behaviour, but the behaviour it produced (approach) did not compose into consummation.",
+        "scale": "adequate -- reference 128-wide/3x/detached build, 3 seeds x 2 representations, 39833s."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Appetitive approach (mesolimbic/hypothalamic resource-proximity drive) as the precursor half of an approach->consummation sequence.",
+        "dependencies": ["a consummatory act bound to the appetitive approach", "action-commitment able to terminate approach and switch to consumption"],
+        "is_formal_import": false,
+        "divergence": "Load-bearing POSITIVE finding. In real foraging, appetitive approach is bound to a consummatory response; here the approach drive was earned continuously (0.71) while foraging competence went to ~0.2 in raw_view -- DOWN from a 2.98 control. The agent learned to approach and dwell rather than to consume. That is approach-without-consummation: the drive became terminal instead of instrumental. This is a discovered dependency (a consummation/commitment binding), not a falsification -- and it converges with the standing BG-commitment reading of the conversion ceiling.",
+        "lit_status": "partial -- appetitive/consummatory dissociation is well-attested; no targeted_review entry exists for the approach-consummation binding specifically. Not blocking this adjudication."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-781 (DIAGNOSTIC, GOV-FANOUT-1 H-approach-primitive leg, demonstrator-free intrinsic-drive axis) PROMOTES AND DEMOTES NOTHING; MECH-457 stays candidate/v3_pending. It ELIMINATES the rival dependency H-approach-primitive on the competence_floor question. An innate, non-extinguishing appetitive resource-proximity drive (approach_coef=1.0) on the non-regressed reference build (128-wide/3x/detached) does not lift foraging competence on EITHER representation: treat 0.317 (z_world, ctrl 0.300) and 0.200 (raw_view, ctrl 2.983) against a 1.0 floor and a 13.05 lift-competence target; 0/3 seeds supra-target on either rep. The elimination is trustworthy on three independent checks. (1) MANIPULATION EFFECTIVE: the script's declared covariate mean_approach_reward_recent reads 0.698/0.707 in treat vs 0.000 in both ctrl -- the drive fired and was earned, so this is an informative null, not a plumbing bug. (2) READABLE: V3-EXQ-782 R-(a) found forage |adv| mass ALREADY CONCENTRATED pre-standardisation, so the MECH-459 weak form -- under which 781's null WOULD have been confounded, since its approach drive enters `shaped` inside the normaliser -- does not hold. This resolves Finding V3 of decision_MECH-459_registry_and_brake_2026-07-18.md in favour of reading 781 at face value. (3) SUBSTRATE CAN EXPRESS COMPETENCE: the co-adjudicated V3-EXQ-780 raw_view arm reaches 20.93 foraging competence on this same substrate when a competent policy is installed by BC, so the null is not a can't-express-it artifact -- a positive control 781 did not contain internally and which only joint adjudication supplies. Readiness met (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor); non_degenerate=True; criteria_non_degenerate all true. LOAD-BEARING POSITIVE FINDING beyond the elimination: in raw_view the drive SUPPRESSED foraging (0.200 vs a 2.983 control, tight across all three seeds: 0.15/0.20/0.25) while approach reward was continuously earned -- approach-without-consummation, the appetitive drive becoming terminal rather than instrumental. That is a discovered dependency (a consummation/commitment binding), and it converges with the standing basal-ganglia-commitment reading of the conversion ceiling rather than opening a new axis.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The elimination names no build. The approach-without-consummation finding is a discrimination candidate, not a specified substrate -- routed via the cluster fanout_recommendation."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_746c-756_2026-07-16.json",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15.json",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15.json",
+          "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
+          "failure_autopsy_V3-EXQ-765_2026-07-16.json",
+          "failure_autopsy_V3-EXQ-769_2026-07-17.json"
+        ],
+        "refused_requeue": false,
+        "route_to": "none",
+        "note": "MECH-457 carries 6 prior substrate_ceiling/non_contributory autopsies, far past the threshold of 2. The brake does NOT fire on this target because 781 is not a re-queue at all -- it is the adjudication of an already-executed GOV-FANOUT-1 leg on a distinct mechanism class (intrinsic architecture), the route the 770/771/772 autopsy itself sanctioned. The brake governs what is queued NEXT; see the cluster-level routing, which is a new-question re-pose (retention), not a same-axis re-pose."
+      },
+      "learning_extracted": [
+        "H-approach-primitive is eliminated: an innate non-extinguishing appetitive approach drive is NOT the missing competence-directed dependency. Effective manipulation, readable null, and a substrate demonstrably able to express competence.",
+        "Approach-without-consummation is the load-bearing positive finding. The drive was earned continuously (0.71) while competence fell to 0.20 in raw_view from a 2.98 control -- the agent learned to approach and dwell, not to consume. Appetitive approach became terminal rather than instrumental.",
+        "The suppression is reliable, not noise: treat per-seed 0.15/0.20/0.25 is tight, while the ctrl mean is driven by a single 8.1 outlier seed (0.30/0.55/8.10). Report the control's dispersion, not just its mean, when a negative delta carries a finding.",
+        "This converges with the standing basal-ganglia-commitment reading of the conversion ceiling (commitment/eligibility binding rather than drive magnitude) -- it constrains an existing thread rather than opening a new axis, which is why no new hypothesis leg is registered for it."
+      ],
+      "routing": "governance-record-elimination"
+    },
+    {
+      "run_id": "v3_exq_780_mech457_bc_prior_discrimination_20260718T123325Z_v3",
+      "queue_id": "V3-EXQ-780",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "bc_prior_not_the_axis",
+      "failed_criterion": "discrimination",
+      "self_route_adjudication": "REJECTED -- the self-route does not survive contact with the experiment's OWN declared covariate. The pre-registered null is verbatim 'treat still forages ~0 both reps'. In raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 post-BC), which is not ~0 and is ABOVE the 13.05 lift-competence target at the post-BC measurement point. The null's ANTECEDENT IS FALSIFIED, so its consequent (remove H-bc-prior) must not be applied. The script's load_bearing_dv declared the covariate that decides this: 'post_bc_foraging_competence separates seed never took from seed erased by RL'. It fires unambiguously into two branches, and NEITHER branch is bc_prior_not_the_axis. The self-route collapsed a two-branch covariate into a single label.",
+      "manipulation_effectiveness": "SPLIT BY REPRESENTATION. z_world: post_bc_forage 0.583, n_treat_seeds_bc_seed_took = 0/3 -- the BC seed NEVER TOOK, so the manipulation was never installed and this arm is uninformative about the hypothesis. raw_view: post_bc_forage 20.933, n_treat_seeds_bc_seed_took = 3/3 -- the manipulation WAS installed, at a competence ABOVE the 13.05 lift target, and was then ERODED by RL to 11.667.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact and UNTESTED for this leg -- MECH-457 unchanged. H-bc-prior was not given a fair test of its own null on either representation: z_world never received the manipulation, and raw_view falsified the null's antecedent.",
+        "biological_reference": "clear -- imitation/observational learning from a competent conspecific is a well-attested vertebrate route to skill acquisition, and the raw_view arm shows the translation WORKED (20.93 competence installed, vs an expert band of 32.72 and a local-view ceiling of 48.05). The failure is not in acquiring the prior but in retaining it under subsequent reward-driven optimisation -- which has its own biological analogue in overtraining/consolidation of an acquired motor skill.",
+        "prerequisites": "present for readiness (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor) but a NEW prerequisite is surfaced: retention of an installed policy under RL updating. V3-EXQ-782 R-(b) supplies the candidate mechanism -- a flat, uninformed critic (std(V)/std(G) = 0.041, separation ratio 0.016) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior.",
+        "implementation": "partial -- the BC warm-start plus persistent imitation auxiliary (bc_aux_coef=0.5) is correctly implemented for raw_view (3/3 seeds took) but FAILS TO INSTALL on z_world (0/3 seeds took, post_bc 0.583). The z_world imitation pathway is an implementation gap in its own right: a detached z_world representation was not able to absorb a local_view_greedy demonstrator.",
+        "environment": "adequate.",
+        "measurement": "adequate and, to the script author's credit, PRESCIENT -- the post_bc covariate was installed precisely to separate these branches and it is what overturns the self-route. The defect is in the interpretation grid (which enumerated only a ~0 null), not in the instrumentation.",
+        "integration": "coupled but unstable -- BC and RL integrate, but RL degrades what BC installs (20.933 -> 11.667 in raw_view).",
+        "scale": "adequate -- reference build, 3 seeds x 2 representations, 25925s."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Observational/imitative skill acquisition followed by reward-driven refinement, with striatal consolidation of the acquired policy.",
+        "dependencies": ["a value baseline informative enough that reward-driven refinement improves rather than degrades an acquired skill", "a consolidation/retention pathway protecting an installed policy from gradient drift"],
+        "is_formal_import": false,
+        "divergence": "In brains, reward-driven refinement of an imitated skill IMPROVES it; here it DEGRADES it (20.933 -> 11.667). That inversion is the load-bearing divergence, and it points at the value-baseline/retention pathway rather than at imitation.",
+        "lit_status": "partial -- no targeted_review entry for imitation-then-RL retention. Not blocking, but see routing."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-780 (DIAGNOSTIC, GOV-FANOUT-1 H-bc-prior leg, demonstrator-based imitation axis) PROMOTES AND DEMOTES NOTHING; MECH-457 stays candidate/v3_pending. Its self-route `bc_prior_not_the_axis` is REJECTED on autopsy and H-bc-prior is NOT eliminated -- it stays ALIVE on the competence_floor question, re-posed. The manifest's pre-registered null is verbatim 'treat still forages ~0 both reps'; in raw_view treat forages 11.667 at unshaped D3 (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's own declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583 with 0/3 seeds taking the BC seed -- the manipulation was NEVER INSTALLED, so this arm cannot speak to the hypothesis. raw_view: post_bc 20.933 with 3/3 seeds taking -- the manipulation WAS installed, ABOVE the 13.05 lift-competence target and inside the 32.72 BC-expert / 48.05 local-view-ceiling band -- and RL then ERODED it to 11.667. Readiness met (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor); non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. HIGH-VALUE POSITIVE FINDING: this is the FIRST observation in the entire competence_floor campaign of the agent exceeding the lift-competence target (20.933 vs 13.05) on this substrate. The campaign's question therefore changes shape -- from 'can competence be produced' to 'why is produced competence not RETAINED'. V3-EXQ-782 R-(b) supplies the leading mechanism candidate: a flat, uninformed critic on the shared CTRL path (std(V)/std(G) = 0.041 against a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 against a 0.25 floor) yields an unbaselined, high-variance advantage -- precisely what drifts a policy off an installed prior. Secondary finding: the z_world imitation pathway is an implementation gap in its own right (a detached z_world could not absorb a local_view_greedy demonstrator at all, 0/3). Routed to a retention re-pose under a NEW EXQ number; the re-derive brake permits it as a new question (retention vs discovery) with a new null and a positive control, NOT a same-axis re-pose.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The retention bottleneck is a DISCRIMINATION (which of: flat critic baseline / absent consolidation pathway / imitation-auxiliary decay schedule), not one unambiguous named build. Routing a single build now would commit substrate work on one non-load-bearing covariate. Fan out first -- see fanout_recommendation."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_746c-756_2026-07-16.json",
+          "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15.json",
+          "failure_autopsy_MECH-457-fanout-755_2026-07-15.json",
+          "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
+          "failure_autopsy_V3-EXQ-765_2026-07-16.json",
+          "failure_autopsy_V3-EXQ-769_2026-07-17.json"
+        ],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "MECH-457 carries 6 prior substrate_ceiling/non_contributory autopsies. The brake nonetheless PERMITS the recommended re-pose, on the same grounds it permitted 780 and 781 themselves: this is not another config/env/credit/capacity letter circling the same ceiling. It is a DIFFERENT QUESTION (retention of installed competence, not discovery of competence), with a different null, a different measurement (competence trajectory post-installation rather than terminal competence), and -- decisively -- a POSITIVE CONTROL that no prior leg possessed (raw_view reached 20.933). Every one of the 6 braked autopsies adjudicated a treatment arm that never left the ~0-1 floor; this one adjudicates a treatment arm that reached 20.933 and fell. The brake's refusal target is a same-axis re-pose against an unchanged ceiling, and this is not that. Recorded explicitly so the /queue-experiment Step 2.5 consumer half can see the reasoning rather than re-deriving it."
+      },
+      "learning_extracted": [
+        "H-bc-prior is NOT eliminated. Its declared null required 'treat still forages ~0 both reps' and raw_view returned 11.667 eval / 20.933 post-BC. Applying the null's consequent when its antecedent is falsified would have written a confident-but-wrong elimination into the frozen ledger -- the exact failure GOV-FANOUT-1 exists to prevent.",
+        "A behavioural prior CAN reach lift-competence on this substrate (20.933 > the 13.05 target, inside the 32.72 expert band) -- the first such observation in the whole competence_floor campaign. The bottleneck is not producing competence but RETAINING it.",
+        "RL degrades an installed competent prior here (20.933 -> 11.667), inverting the biological expectation that reward-driven refinement improves an imitated skill. That inversion is the load-bearing divergence and it localises to the value-baseline/retention pathway.",
+        "782 R-(b) and 780 raw_view interlock into one mechanism: a flat, uninformed critic (std(V)/std(G) = 0.041, separation 0.016) produces an unbaselined high-variance advantage, which is what erodes an installed policy. Neither run alone supports this; the cluster does.",
+        "The z_world imitation pathway is a separate implementation gap: 0/3 seeds absorbed the demonstrator (post_bc 0.583) where raw_view absorbed it 3/3 at 20.933. A detached z_world could not be taught by a local_view_greedy demonstrator at all.",
+        "PROCESS LEARNING: an interpretation grid must enumerate a branch for 'manipulation succeeded and then decayed'. This grid enumerated only a ~0 null, so a successful manipulation was scored as a null. The covariate that catches it was already present and declared -- the defect was that the routing logic did not consume it. Diagnostic scripts should route on their declared covariates, not only on the terminal criterion."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Three-leg GOV-FANOUT-1 portfolio adjudicated jointly, in which the legs' readings are mutually load-bearing and NONE is safely readable alone. 782 (shared CTRL instrumentation, no manipulation) establishes that the MECH-459 weak form does not hold, which makes 781's inside-the-normaliser null readable at face value. 781 (manipulation effective, competence null) eliminates the intrinsic-drive axis. 780 (manipulation effective in raw_view, competence ACHIEVED at 20.933 then eroded to 11.667) falsifies its own declared null's antecedent and therefore eliminates nothing -- while simultaneously supplying the positive control that makes 781's elimination trustworthy.",
+    "is_independent_bugs": false,
+    "structural_property": "The campaign has been asking a DISCOVERY question ('which mechanism produces competence') of a substrate whose actual deficit is RETENTION ('why is produced competence not held'). All ten previously-resolved legs intervened on discovery-side mechanisms and every one was adjudicated against a treatment arm that never left the ~0-1 floor -- so the retention deficit was structurally invisible to them: a mechanism that never produces competence cannot be observed failing to retain it. V3-EXQ-780's raw_view arm is the first arm in the campaign to clear the lift-competence target, and the deficit becomes visible in the same run. V3-EXQ-782 R-(b) independently measures a candidate mechanism (flat, uninformed critic on the shared control path) without knowing it was needed. This is one structural property, not three independent results.",
+    "readings": [
+      "retention_not_discovery -- the competence floor is (at least partly) a failure to retain an installed competent policy under RL updating, with a flat uninformed critic as the leading mechanism candidate. Directly evidenced by 780 raw_view (20.933 -> 11.667) plus 782 R-(b) (std(V)/std(G) 0.041, separation 0.016).",
+      "consummation_binding -- 781's approach-without-consummation (drive earned 0.707, foraging suppressed to 0.200 from a 2.983 control) says the appetitive half is instantiable but is not bound to a consummatory act. Converges with the standing basal-ganglia-commitment reading of the conversion ceiling."
+    ],
+    "forces_planning_decision": "The next portfolio on competence_floor should be a RETENTION discrimination, not another discovery-mechanism leg. The retention reading is newly opened by this cluster and is not yet a registered hypothesis leg; per the deferral decision below it is carried as a fanout_recommendation and will be pre-registered by the /queue-experiment that designs it.",
+    "joint_adjudication_was_load_bearing": "YES, and demonstrably so in both directions. Adjudicated alone, 781's elimination would have rested on no demonstration that competence was reachable in this substrate at all -- 780 raw_view supplies that positive control. Adjudicated alone, 780 would have been recorded as eliminating H-bc-prior on a self-route whose declared antecedent its own covariate falsifies. GOV-FANOUT-1's premise -- that adjudicating a leg in isolation is how a confident-but-wrong elimination enters the frozen ledger -- is validated concretely here.",
+    "substrate_equivalence_check": {
+      "note": "V3-EXQ-782 carries substrate_hash 098473b9f291e0b65cbf0dd9bdb10307930a7c78a5534c4ebce506579cf216f1, which DIFFERS from the 39b488c170ffb0c04deef010b3bb18d9ed10ac66ceb81c4bc36a650da1022060 shared by 780 and 781. The manifest explains this by construction (the instrumentation is a separate mirror module; the live 780/781 scripts and mech457_* _lib modules are byte-unchanged). Because a differing hash would otherwise make the conditioning read unfalsifiable, it was verified BEHAVIOURALLY instead: 782's CTRL arms (z_world 0.517, raw_view 6.483) sit inside the bands set by 780's (0.650 / 7.217) and 781's (0.300 / 2.983), and all three share the same reference anchors (local_view_greedy 48.05, greedy_oracle 57.2, random_walk 0.933). The mirror is behaviourally equivalent on the shared control path and the conditioning read transfers. Recorded as a caveat, not a blocker.",
+      "verified": true
+    },
+    "recording_provenance": {
+      "always_core_present": true,
+      "note": "All three manifests carry the full always-record core (recording_schema rec/v1, top-level substrate_hash, machine + machine_class, elapsed_seconds, config, explicit seeds [42,43,44]). No recording gap; no recording-debt re-run is owed. The decisive readouts in 782 were correctly RUN rather than reanalysed because per-step |adv| mass fractions and trained-critic V vs realized return are intermediate training quantities recorded by no manifest (GOV-REUSE-1)."
+    },
+    "granularity_debt_trigger": {
+      "fires": true,
+      "prior_autopsies_on_MECH-457": 9,
+      "this_is_autopsy_number": 10,
+      "routing": "NOT claim-synthesis -- already human-adjudicated",
+      "note": "The mechanical recurrence trigger fires hard (9 prior autopsies tag MECH-457). It is NOT routed to /claim-synthesis because MECH-457 already carries granularity_debt_disposition: coherent_campaign, human-adjudicated 2026-07-16 under GOV-GRAN-1. Recorded so the standing scan (scripts/check_granularity_debt_recurrence.py) sees an honest stamp and an explicit disposition rather than a dropped handoff. The cluster's own finding supports the existing disposition: the campaign is coherent and its legs are genuinely distinct rivals; what changed here is the QUESTION SHAPE (discovery -> retention), which is not granularity debt in the claim."
+    },
+    "fanout_recommendation": {
+      "is_discrimination": true,
+      "registered_this_cycle": false,
+      "deferral_rationale": "DELIBERATELY NOT pre-registered by this autopsy. V3-EXQ-782's manifest pre-declared, BEFORE it ran, that a stays-tiny or already-concentrated reading routes to 'do NOT queue probe K, no registry write (counts stay 7/12)'. That pre-declared conditional is honoured: no hypothesis is appended and initial_frozen_count stays 12. Registering a retention leg here would also enlarge the denominator's numerator with an unadjudicated leg -- the exact laundering the sanctioning decision flagged when it declined to add H-return-scale (adding it would have moved the ratio 0.167 -> 0.231 purely by padding). The retention portfolio is carried here as a recommendation; the /queue-experiment that DESIGNS it pre-registers its legs at fan-out time, with pre_registered_utc preceding their adjudicating runs and a labelled fanout_growth_events entry citing THAT autopsy as fanout_source.",
+      "live_hypotheses": [
+        "H-retention-critic: the value baseline is too flat/uninformed to refine an installed competent policy, so RL gradient noise drifts it off (782 R-(b): std(V)/std(G) = 0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor).",
+        "H-retention-consolidation: there is no consolidation/protection pathway for an acquired policy, so any continued updating erodes it regardless of critic quality.",
+        "H-retention-auxiliary-decay: the persistent imitation auxiliary (bc_aux_coef=0.5) is out-competed by the RL objective over training, so the prior is not held rather than not protected.",
+        "H-consummation-binding: appetitive approach is not bound to a consummatory act, so drive-side interventions produce approach-and-dwell rather than consumption (781: drive earned 0.707 while foraging fell to 0.200 from a 2.983 control)."
+      ],
+      "suggested_probes": [
+        {"hypothesis": "H-retention-critic", "axis": "algorithm", "sketch": "BC-install to the raw_view 20.9 competence point, then run the SAME RL refinement with a distributional/twohot critic vs the current scalar critic. DV: competence trajectory post-installation, not terminal competence. Null: the installed prior erodes identically under both critics -> the critic baseline is not the retention mechanism."},
+        {"hypothesis": "H-retention-consolidation", "axis": "policy", "sketch": "BC-install, then RL with a trust-region / KL-anchor to the installed policy vs unconstrained. Null: anchoring does not preserve competence -> retention is not a drift-protection problem."},
+        {"hypothesis": "H-retention-auxiliary-decay", "axis": "learning-signal", "sketch": "BC-install, then sweep bc_aux_coef persistence (constant vs annealed vs off) and measure the competence half-life. Null: half-life is invariant to the auxiliary schedule -> the prior is not being out-competed by the RL objective."},
+        {"hypothesis": "H-consummation-binding", "axis": "intrinsic-architecture", "sketch": "Approach drive gated to EXTINGUISH on resource contact and hand off to a consummatory act, vs 781's non-extinguishing terminal drive. Null: competence still flat -> the binding is not what 781 was missing."}
+      ],
+      "axis_family_caution": "Three of the four proposed axes (algorithm, policy, learning-signal) map to the `process` family, which already contains 6 eliminated legs -- so a naive read would score this portfolio as CIRCLING. It is not the dead legs wearing new names, and the distinction is measurable rather than rhetorical: every eliminated process leg intervened on how competence is DISCOVERED and was adjudicated against a treatment arm that never left the ~0-1 floor (credit sweep 0.2-0.45; archive/return, curriculum, arbitration all collapsing to the sparse-RL baseline). These probes intervene on whether ALREADY-INSTALLED competence is RETAINED, are adjudicated against a 20.933 starting point, and read a competence TRAJECTORY rather than a terminal value. The prior legs could not have detected a retention deficit because their arms never produced competence to retain. If the designing /queue-experiment introduces a `retention` axis label, it must add a family row for it in axis_families.map in the same edit (an unmapped axis forces convergence_class to indeterminate) -- and it should state this reasoning explicitly rather than letting the family map decide the verdict silently.",
+      "note": "GOV-FANOUT-1 producer half. Fan out a diverse portfolio with each leg declaring its null; design-audit for coverage and verdict-aliasing before queuing. Anti-alias requirement: H-retention-critic and H-retention-consolidation can both produce 'competence preserved', so the audit must ensure their probes are separable (the critic probe changes the value estimator, the consolidation probe changes the update constraint; a leg that changes both aliases them). Every leg MUST record the post-installation competence trajectory, not just terminal competence -- terminal-only measurement is what made this deficit invisible for ten legs."
+    },
+    "hypothesis_space_ledger_delta": {
+      "question": "competence_floor",
+      "resolved_this_cycle": [
+        {"hid": "H-approach-primitive", "to_state": "eliminated", "run": "V3-EXQ-781", "met_elimination_bar": true},
+        {"hid": "H-bc-prior", "to_state": "alive (unchanged)", "run": "V3-EXQ-780", "met_elimination_bar": false, "why": "declared null's antecedent falsified in raw_view; the run does not discriminate the leg"}
+      ],
+      "pre_registered_this_cycle": [],
+      "initial_frozen_count_before": 12,
+      "initial_frozen_count_after": 12,
+      "initial_frozen_count_at_registration": 7,
+      "denominator_moved": false,
+      "alive_before": 2,
+      "alive_after": 1,
+      "narrowing_ratio_vs_original_frozen_7": 0.143,
+      "narrowing_ratio_vs_current_including_fanout_12": 0.083,
+      "derived_surviving_before": 3,
+      "derived_surviving_after": 2,
+      "derived_surviving_ratio_vs_original_7": 0.286,
+      "derived_surviving_ratio_vs_current_12": 0.167,
+      "convergence_class": "refining",
+      "convergence_class_citation": "GOV-FROZEN-1 / labelled_fanout_growth: the competence_floor denominator grew 7 -> 12 across two labelled fan-out portfolios. The hypothesis-space integrity audit rates the convergence_class as `refining` (four axis families closed out; the latest growth opened fresh territory), NOT circling -- so the narrowing ratio is reported BOTH ways above, per the invariant.",
+      "non_convergence_caveat": "The question has now accumulated two labelled fan-out growth events and this cluster opens the case for a third (deferred). A question accumulating fan-out events is one whose campaign has not converged, and the honest reading here is stronger than 'not yet converged': this cluster shows the campaign was posing the WRONG QUESTION SHAPE (discovery rather than retention) for all ten previously-resolved legs. The reduction ratio improving to 10/12 should not be read as approaching an answer."
+    }
+  }
+}
