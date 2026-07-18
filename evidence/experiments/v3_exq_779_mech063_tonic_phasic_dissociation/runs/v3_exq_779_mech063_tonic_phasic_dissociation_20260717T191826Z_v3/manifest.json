@@ -92,5 +92,10 @@
       "double_dissociation_C1_and_C2": true
     },
     "summary": "MECH-063 sub-claim (ii) tonic-vs-phasic dissociation on the E3 softmax temperature. The TONIC lever (MECH-313 noise_floor) moves the SUSTAINED (quiescent-tick) baseline entropy; the PHASIC lever (SD-069 phasic_surprise_burst, sharp instantaneous_pe source) moves an EVENT-LOCKED entropy TRANSIENT; cross-legs ~0. PASS = both hold (independent tonic-baseline vs phasic-transient degrees of freedom on one readout); FAIL/weakens = they do not dissociate; FAIL/non_contributory = a lever was not exercised (substrate_not_ready_requeue)."
-  }
+  },
+  "epistemic_category": "measurement_test_design_defect",
+  "pending_retest_after_substrate": true,
+  "retest_queue_id": "V3-EXQ-779a",
+  "evidence_quality_note": "Adjudicated by failure_autopsy_MECH-063-777-779-cluster_2026-07-18. Direction non_contributory is correct, but the self-route `substrate_not_ready_requeue` mislabels the cause: SD-069 is ready and working, and the failure is sample starvation. The arms DID set the sharp source (config.phasic_burst.signal_source = \"instantaneous_pe\"; script line 205), and bursts fired in every PHASIC-ON cell (burst_level_max 1.0; n_event_ticks 5-22). The failed precondition phasic_fires_real_events (measured 5, threshold 10) is a MIN across cells sourced entirely from seed 23 / T1P1, the cell that ran 19 env steps of a 900-step budget; sample_sufficiency (19 vs 20) has the same origin. Seeds 11/17/23 ran at 2-28% of budget while 29/37 ran at 100% - a seed-dependent early-termination pattern reproduced almost exactly in V3-EXQ-777, i.e. a property of the untrained agent in a hazard-terminating env rather than of this probe. mean_dR_phasic (-0.083) is computed over ~5 event ticks and carries no weight. MECH-063 sub-claim (ii) was not tested. Retest V3-EXQ-779a with sample-driven stopping guaranteeing MIN_EVENT_TICKS per PHASIC-ON cell, and a `sample_starvation_requeue` label distinct from substrate-capability failure.",
+  "non_degenerate": false
 }

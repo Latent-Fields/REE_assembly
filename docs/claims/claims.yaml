@@ -3309,6 +3309,14 @@
     No status/confidence change from this landing (substrate only; the sub-claim (ii)
     dissociation experiment is queued 2026-07-17). See
     docs/architecture/sd_069_phasic_surprise_burst.md.
+  notes: >
+    Sub-claims (i) and (ii) both remain experimentally untested as of 2026-07-18. V3-EXQ-777 and
+    V3-EXQ-779 were adjudicated non_contributory (measurement_test_design_defect) by
+    failure_autopsy_MECH-063-777-779-cluster_2026-07-18: a shared telemetry-probe template
+    denominates its budget in episodes while its gates are denominated in selections, and
+    untrained agents in a hazard-terminating env yield 2-100% of budget depending on seed.
+    Retests V3-EXQ-777a / 779a pending. Biological warrant remains strong (LC-NE tonic/phasic
+    adaptive gain); the claim is untested, not unsupported.
 - id: MECH-064
   title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis

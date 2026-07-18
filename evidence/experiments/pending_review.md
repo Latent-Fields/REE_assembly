@@ -1,6 +1,6 @@
 # Pending Experiment Review
 
-Generated: `2026-07-18T06:41:36Z`  
+Generated: `2026-07-18T08:07:35Z`  
 Last review: `2026-07-18T04:54:03Z`  
 Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
@@ -8,8 +8,8 @@ Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_777_mech063_orthogonal_control_axes_dissociation_20260717T155914Z_v3` | 2026-07-17T15:59 | MECH-063 | — |
-| `v3_exq_779_mech063_tonic_phasic_dissociation_20260717T191826Z_v3` | 2026-07-17T19:18 | MECH-063 | — |
+| `v3_exq_sd068_null_content_control_diagnostic_20260718T065939Z_v3` | 2026-07-18T06:59 | INV-047, MECH-168, MECH-169, SD-068 | — |
+| `v3_exq_sd068_null_content_control_diagnostic_20260718T072318Z_v3` | 2026-07-18T07:23 | INV-047, MECH-168, MECH-169, SD-068 | — |
 
 ---
 
