@@ -49606,6 +49606,83 @@
     ValueError at construction. No status/confidence change (substrate only).
   validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
 
+- id: SD-070
+  title: "z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the SD-005 split-encoder world path on STATIC scene-structure targets derived from world_obs alone (hazard/resource presence + bucketed nearest-Chebyshev distance), with class-balanced CE and a VICReg-style variance/covariance anti-collapse penalty, replacing the SD-009 event-contrastive + SD-018 P0 that was measured to COLLAPSE z_world to participation ratio ~1.06 at world_dim=128. Supplies the trained encoder that SD-031 / E2WorldForward P1 and V3-EXQ-783 both require."
+  claim_type: design_decision
+  subject: latent.zworld_p0_anticollapse_recipe
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-005
+    - SD-018
+  location: docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md
+  functional_restatement: >
+    The P0 the substrate prescribed for training the z_world encoder (SD-009
+    event-contrastive CE + SD-018 resource-proximity MSE, online at batch=1) does not
+    produce a trained encoder -- it collapses z_world onto a single effective dimension.
+    Measured 2026-07-18 at world_dim=128, seed 42, 40 eval episodes: untrained
+    participation_ratio 9.21 / contrast_ratio 0.1222, versus 1.06 / 0.0726 after the
+    prescribed P0. Three measured faults drive it. (1) The SD-009 target is unlearnable
+    from the channel its loss reads: transition_type is a property of the TRANSITION
+    (t-1 -> t) while z_world is a static single-frame encoding, and an MLP-128 probe on
+    raw world_obs with no encoder in the path scores AT OR BELOW CHANCE (lift -0.014
+    3-class, -0.060 on a repaired 6-class map), while the same label probes at +0.240 /
+    +0.427 from the BODY delta that SD-005 routes to z_self. (2) Nothing penalises
+    collapse -- a ~95% class-0-saturated CE plus one scalar regression are both served by
+    a 1-D representation; notably the collapse is NOT the multiplicative precision gate,
+    whose sigmoid moves only 0.4966-0.5074 while the encoder's FUNCTION collapses. (3) The
+    loop is online at batch=1, leaving variance/covariance statistics undefined. SD-070
+    answers each: static scene-structure grounding targets the world channel demonstrably
+    determines (probed 0.943-0.965 balanced accuracy from raw world_obs), class-balanced
+    CE, a VICReg variance/covariance penalty whose COVARIANCE term is the
+    participation-ratio lever, an optional world_obs reconstruction head, and mini-batching
+    over a rollout buffer.
+  implementation_note: >
+    IMPLEMENTED 2026-07-18 (session admiring-poincare-1c80af) via /implement-substrate.
+    Module: ree-v3/ree_core/latent/zworld_p0.py (ZWorldP0Config + ZWorldP0Trainer, plus
+    the pure functions scene_structure_targets / variance_covariance_penalty /
+    balanced_class_weights / entity_presence_mask / chebyshev_offsets). BIT-IDENTICAL OFF
+    BY CONSTRUCTION, not by flag: SD-070 adds NO field to LatentStackConfig, NO head to
+    SplitEncoder and NO method to REEAgent -- it operates on an existing LatentStack from
+    outside and the auxiliary heads belong to the trainer, so nothing runs unless an
+    experiment explicitly constructs a trainer and there is no flag that can be left in the
+    wrong state (pinned by contracts C6). Trains exactly world_encoder +
+    world_precision_logit, and is contract-pinned NOT to touch the z_self path.
+    VALIDATION at config defaults, world_dim=128, 3 seeds: participation ratio 9.21->5.19
+    (s42), 6.63->5.41 (s43), 8.56->4.64 (s44); against the V3-EXQ-783 anti-collapse gate
+    computed as that harness computes it, retained_fraction 5.079/8.132 = 0.625 (needs
+    >=0.50) and absolute 5.079 (needs >=2.0), both PASS. Contrast ratio raised on 3/3 seeds
+    (mean 0.137->0.238), clearing the untrained 0.13-0.15 band. DISCRIMINATIVE, not
+    vacuously un-collapsed: held-out balanced-accuracy lift +0.23 to +0.47 across all four
+    grounding heads on all three seeds (the trainer always reports this, because an
+    anti-collapse gate can otherwise be satisfied by a regulariser that learns nothing).
+    31 contracts in ree-v3/tests/contracts/test_sd070_zworld_p0.py; full suite 1590 passed.
+    VICReg (Bardes/Ponce/LeCun 2022) is borrowed as ENGINEERING counsel for a measured
+    collapse failure mode and carries no architectural authority; two deviations from the
+    standard version are forced by measurement -- no invariance term / no augmentation
+    pairs (there are no augmented views here), and a covariance weight ~1000x the published
+    ratio (measured: w_cov=0.04 -> PR 1.80, w_cov=50 -> PR 4.02).
+  evidence_quality_note: >
+    Substrate validation only -- this is an implemented recipe with a measured
+    anti-collapse and discriminativeness result, NOT yet governance evidence for any
+    mechanism claim. Scope limits: measured at world_dim 128 and 32 on CausalGridWorldV2
+    at the x724 ENV_KWARGS rung under one exploratory epsilon-mixed policy, 3 seeds; the
+    grounding targets are specific to the 5x5x7 local-view layout. Bears on INV-088's
+    ANTECEDENT only -- NOT on the INV-088 coupling leg (V3-EXQ-744a's WEAKENS reading
+    stands), NOT on MECH-459 / return-scale, and NOT on either leg of the live
+    GOV-FANOUT-1 discrimination (V3-EXQ-780 vs V3-EXQ-781). SD-070 ROUTES AROUND SD-009
+    rather than adjudicating it: the SD-009 target/channel mismatch measured in the course
+    of this work is recorded for a future /governance cycle in
+    evidence/planning/sd009_event_contrastive_channel_mismatch_2026-07-18.md, and NO
+    SD-009 status, confidence, or evidence weighting was changed by this session.
+  validation_experiment: V3-EXQ-783
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
