@@ -1,0 +1,224 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation",
+  "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-18T10:16:35.130097Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-063"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "control_axes_collinear_toward_one_scalar",
+    "preconditions": [
+      {
+        "name": "score_axis_live",
+        "control": "A1 arms: mean v_t and no-op candidate count",
+        "measured": 0.5,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "temperature_axis_live",
+        "control": "B1 arms: effective_T - baseline_T",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "sample_sufficiency",
+        "control": "min fresh E3 selections over cells (sample-driven stopping)",
+        "measured": 250,
+        "threshold": 200,
+        "met": true
+      },
+      {
+        "name": "baseline_entropy_headroom",
+        "control": "A0B0 normalised entropy below ceiling",
+        "measured": 0.3128625778454058,
+        "threshold": 0.98,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "score_dv_headroom_seeds",
+        "control": "seeds whose D_action_mass_mean is strictly inside (0.05, 0.95) -- the guard V3-EXQ-777 lacked",
+        "measured": 5,
+        "threshold": 3,
+        "met": true
+      },
+      {
+        "name": "axis_authority_seeds_per_seed",
+        "control": "unsaturated seeds with BOTH ||v_temp|| and ||v_score|| > EFFECT_FLOOR, tested PER SEED (V3-EXQ-777 used a mean across seeds)",
+        "measured": 4,
+        "threshold": 3,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_rank2_non_collinearity",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_rank2_non_collinearity": true
+    },
+    "starved_cells": [],
+    "informative_seeds": [
+      17,
+      37,
+      3,
+      53
+    ],
+    "saturation_by_seed": {
+      "11": {
+        "D_seed_mean": 0.9983395020943135,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 0.007277965186917952,
+        "norm_v_temp": 0.8519510868518849,
+        "sin_angle": 0.9515548379010531
+      },
+      "17": {
+        "D_seed_mean": 0.4972724585815595,
+        "regime": "headroom",
+        "authority_met": true,
+        "norm_v_score": 0.21298331192646713,
+        "norm_v_temp": 0.7719639465571501,
+        "sin_angle": 0.9882762891709472
+      },
+      "23": {
+        "D_seed_mean": 0.009944081490332508,
+        "regime": "floor",
+        "authority_met": false,
+        "norm_v_score": 0.013392914500138818,
+        "norm_v_temp": 0.7932092234770821,
+        "sin_angle": 0.5779498050806292
+      },
+      "29": {
+        "D_seed_mean": 0.9594630432128907,
+        "regime": "ceiling",
+        "authority_met": true,
+        "norm_v_score": 0.08480683414958957,
+        "norm_v_temp": 1.2440302719856697,
+        "sin_angle": 0.45663897569700096
+      },
+      "37": {
+        "D_seed_mean": 0.8823638736605645,
+        "regime": "headroom",
+        "authority_met": true,
+        "norm_v_score": 0.13194196610940306,
+        "norm_v_temp": 0.6165518538343461,
+        "sin_angle": 0.5214531331150055
+      },
+      "3": {
+        "D_seed_mean": 0.9087604118585586,
+        "regime": "headroom",
+        "authority_met": true,
+        "norm_v_score": 0.08350390295257105,
+        "norm_v_temp": 0.4858215453089828,
+        "sin_angle": 0.5930792314231763
+      },
+      "5": {
+        "D_seed_mean": 0.0003005861775695379,
+        "regime": "floor",
+        "authority_met": false,
+        "norm_v_score": 0.0009562819002209597,
+        "norm_v_temp": 0.004652995705221347,
+        "sin_angle": 0.05451935660760573
+      },
+      "13": {
+        "D_seed_mean": 0.9985405848026275,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 0.0015477776261209218,
+        "norm_v_temp": 0.31702297235625,
+        "sin_angle": 0.3260298494317145
+      },
+      "19": {
+        "D_seed_mean": 0.9999999977946281,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 6.583718439635543e-06,
+        "norm_v_temp": 6.719769805158366e-05,
+        "sin_angle": 0.0023999138183018725
+      },
+      "41": {
+        "D_seed_mean": 0.9954690827727318,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 0.02224535127695438,
+        "norm_v_temp": 0.9250561437452232,
+        "sin_angle": 0.13051752312496218
+      },
+      "53": {
+        "D_seed_mean": 0.1487690844554454,
+        "regime": "headroom",
+        "authority_met": true,
+        "norm_v_score": 0.14794987738818793,
+        "norm_v_temp": 0.45554770132550604,
+        "sin_angle": 0.07868484509103785
+      },
+      "61": {
+        "D_seed_mean": 1.0,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 1.3439682194750835e-08,
+        "norm_v_temp": 1.3439682206042046e-08,
+        "sin_angle": 0.0
+      },
+      "71": {
+        "D_seed_mean": 0.9396664153337478,
+        "regime": "headroom",
+        "authority_met": false,
+        "norm_v_score": 0.02660179117574242,
+        "norm_v_temp": 0.15694604582363786,
+        "sin_angle": 0.7950336411222771
+      },
+      "83": {
+        "D_seed_mean": 0.9699975334405899,
+        "regime": "ceiling",
+        "authority_met": false,
+        "norm_v_score": 0.025517359719993426,
+        "norm_v_temp": 0.8283155446725066,
+        "sin_angle": 0.8016313393493922
+      }
+    },
+    "summary": "MECH-063 rank-2 test on the production control plane (V3-EXQ-777a, supersedes V3-EXQ-777). Two independently-toggled regulators route to two E3-softmax parameters (score-bias vs temperature). PASS = their standardised behavioural effect vectors are non-collinear on a pool of seeds with demonstrated DV headroom and demonstrated per-seed axis authority (rank-2, control is NOT one scalar). FAIL/weakens = parallel on that same clean pool. FAIL/non_contributory = the run could not test the claim, with the binding cause named by the label (sample_starvation / dv_saturation / axis_authority_starvation / substrate_not_ready). The 777 artifact -- a saturated score-axis DV read as collinearity -- is structurally unreachable here."
+  }
+}
