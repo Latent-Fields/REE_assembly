@@ -1,48 +1,50 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-18T00:53:58Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-770",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-771",
-      "result": "FAIL",
-      "completed_at": "2026-07-18T00:47:49.633038+00:00"
-    }
+  "last_tick_utc": "2026-07-18T05:21:59Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-781",
+  "current_exq_started_utc": "2026-07-18T05:20:42.867871+00:00",
+  "current_title": "MECH-457 GOV-FANOUT-1 H-approach-primitive: innate non-extinguishing demonstrator-free approach-drive discrimination",
+  "current_claim_id": "MECH-457",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / D3_hazard_free",
+    "runs_done": 9,
+    "runs_total": 21,
+    "episodes_done": 0,
+    "episodes_total": 3000,
+    "overall_pct": 42.9
+  },
+  "seconds_elapsed": 76,
+  "seconds_remaining": 49,
+  "recent_lines": [
+    "MECH-457 GOV-FANOUT-1 H-approach-primitive discrimination (7 arms x 1 rung [D3_hazard_free] x 3 seeds; P0=200, ON_budget=3000, eval=20, steps=200; ref_hidden=128, budget_mult=3, z_world_detached=True; treat=approach_drive(coef=1.0, non-extinguishing, demonstrator-free))",
+    "Seed 42 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=42 forage/ep=45.75)",
+    "Seed 43 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=43 forage/ep=49.7)",
+    "Seed 44 Condition D3_hazard_free:local_view_greedy",
+    "verdict: PASS (arm=local_view_greedy seed=44 forage/ep=48.7)",
+    "Seed 42 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=42 forage/ep=57.0)",
+    "Seed 43 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=43 forage/ep=57.3)",
+    "Seed 44 Condition D3_hazard_free:greedy_oracle",
+    "verdict: PASS (arm=greedy_oracle seed=44 forage/ep=57.3)",
+    "Seed 42 Condition D3_hazard_free:random_walk",
+    "verdict: PASS (arm=random_walk seed=42 forage/ep=1.05)",
+    "Seed 43 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk seed=43 forage/ep=0.9)",
+    "Seed 44 Condition D3_hazard_free:random_walk",
+    "verdict: FAIL (arm=random_walk seed=44 forage/ep=0.85)",
+    "Seed 42 Condition D3_hazard_free:approach_ctrl_zworld"
   ],
-  "runner_pid": 744,
-  "runner_version": "r3940 b8eb64e 2026-07-18 (running r3903 5c7dac4)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 745,
+  "runner_version": "r3943 f11704e 2026-07-18 (running r3940 b8eb64e)",
   "gpu": {
     "available": false
   },
