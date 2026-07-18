@@ -14555,6 +14555,25 @@
     attenuating (0.149 mean, 8/8 seeds < 1 << passthrough 1.0) -> staged decline is
     a real transfer function, not topology. Full reading in the MECH-168
     evidence_quality_note + docs/architecture/sd_068_consolidation_lesion_harness.md.
+    [AMENDED 2026-07-18 -- V3-EXQ-778c SD-068 null-content control, n=8] The
+    "NREM-before-SWS adjacency robust (8/8, p=0.0078)" half of the 2026-07-17 entry
+    above is RETRACTED as evidence of staging. The zero-injected-content null control
+    shows the sws pole of that adjacency is a CONTENT-FREE readout (null_slope_ratio
+    1.0000, sd 2.7e-8, 8/8 seeds confounded): denoising_snr_db is
+    10*log10(signal_power/noise_power) and noise_power is identical with and without
+    injected content at every sigma, so the sigma-slope is driven entirely by
+    log(noise_power) and the content term differentiates away. The adjacency therefore
+    compares a content-contingent readout (nrem, ratio 0.1445, 0/8 confounded) against
+    a noise statistic. The tightness of the 95% CI [0.422,0.425] is the signature of a
+    near-deterministic analytic metric, not strength of effect (sws tolerance std ~9e-9
+    vs nrem 0.0014, rem 0.396). The REM-fails-first half was already contested and is
+    unchanged. The rem leg is degenerate at both clamp rails and UNINTERPRETABLE at
+    n=8. The non-vacuity finding (REM generative gain 0.149, 8/8 attenuating) is a
+    DIFFERENT readout and is NOT overturned, though its own content-dependence is now
+    an open question (H-gen-gain-content-free). NO CONFIDENCE CHANGE: V3-EXQ-778c tags
+    this claim as CONTEXT only and its per-claim evidence_direction is unknown -- this
+    amends an annotation, not the claim. See
+    evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
   depends_on:
     - INV-046
     - INV-045
@@ -14633,6 +14652,36 @@
     the generative re-derivation pass has real corrective capacity ("the
     correction needs an intact seed"). This is diagnostic evidence for the SHAPE
     of the staged-decline prediction, not promotion evidence.
+    [AMENDED 2026-07-18 -- V3-EXQ-778c SD-068 null-content control, n=8, FAIL/weakens
+    on SD-068] The pre-registered zero-injected-content null control audited whether
+    the per-phase readouts leg (1) is built from measure CONTENT FIDELITY or raw NOISE
+    SENSITIVITY. Load-bearing C1 failed on 0/8 seeds. Per phase null_slope_ratio
+    (|null sigma-slope| / |injected sigma-slope|; ~0 = content-contingent, ~1 =
+    confounded): nrem 0.1445 (95% CI [0.1438,0.1451], 0/8 confounded) CONTENT-
+    CONTINGENT; sws 1.0000 (sd 2.7e-8, 8/8 confounded) CONTENT-FREE BY CONSTRUCTION --
+    noise_power is identical across arms at every sigma while signal_power is 5585.7
+    vs 0.0, so the log-ratio's content term differentiates out of the slope; rem
+    degenerate at BOTH rails (exactly 0.0 on 5/8 seeds from a saturated
+    calibration_error constant with target_clamped 1.0, off-scale 1801-9143 on 3/8
+    from the 1e-3 precision floor), ceiling_inside_ci95 true, UNINTERPRETABLE at n=8.
+    CONSEQUENCE FOR LEG (1): RETRACTED as staging evidence. The NREM-before-SWS
+    adjacency compares a working readout against a content-free one, and its
+    conspicuously tight CI [0.422,0.425] is the fingerprint of a near-deterministic
+    analytic metric rather than a robust effect. No leg of the reverse-dependency
+    staging order is currently supported by a validated instrument. CONSEQUENCE FOR
+    LEG (2): STANDS -- rem_generative_fidelity is a different readout with its own
+    internal clean-vs-corrupt control and C1 does not bear on it; but the null arm's
+    rem_generative_gain (~0.182-0.209 on seed 42) is close to the injected arm's
+    (~0.165-0.190) at rem_gen_content_scale 0.0, which sits OUTSIDE the scored criteria
+    and is registered as an open question against the "correction needs an intact seed"
+    gloss specifically (NOT against the attenuation finding). Readiness precondition
+    met and C2 passed, so this is an informative negative about the INSTRUMENT, not a
+    broken run. NO CONFIDENCE CHANGE: V3-EXQ-778c tags this claim as CONTEXT only
+    (per-claim evidence_direction unknown); it audits the harness (SD-068), not this
+    claim, and MECH-121 remains held. Routing: /implement-substrate to replace
+    sws_denoising_snr with a content-scored readout, plus a GOV-FANOUT-1 three-axis
+    portfolio on the rem leg. See
+    evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
   depends_on:
     - INV-046
     - INV-047
@@ -14740,6 +14789,22 @@
     mean, 8/8 seeds < 1, vs passthrough gain 1.0), so the staged decline rests on a
     real error-propagation transfer function, not feed-forward topology. See the
     MECH-168 evidence_quality_note and docs/architecture/sd_068_consolidation_lesion_harness.md.
+    SD-068 fold-note AMENDED 2026-07-18 (V3-EXQ-778c null-content control, n=8,
+    DIAGNOSTIC -- no confidence change): the folded staging half's support is narrowed
+    to the nrem leg only. The pre-registered zero-content null control shows that of
+    the three per-phase readouts the staging order is built from, the sws leg is
+    CONTENT-FREE (null_slope_ratio 1.0000, sd 2.7e-8, 8/8 seeds -- its
+    log(signal/noise) form differentiates the content term out of the sigma-slope) and
+    the rem leg is DEGENERATE at both clamp rails and uninterpretable at n=8; only
+    nrem is confirmed content-contingent (0.1445, 0/8 confounded). The
+    NREM-before-SWS "ROBUST 8/8 p=0.0078" reading recorded above is therefore
+    RETRACTED as staging evidence -- it compares a working readout against a noise
+    statistic, and its tight CI is a near-deterministic-metric artifact. The
+    non-vacuity leg (REM generative gain 0.149, 8/8 attenuating) is a different
+    readout and STANDS, though its own content-dependence is now an open question.
+    The glymphatic half remains out of V3 scope and is untouched. MECH-169 is tagged
+    as CONTEXT only on V3-EXQ-778c (per-claim evidence_direction unknown). See
+    evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
 
 - id: MECH-170
   title: "Sleep architecture restoration in early MCI should produce dissociated cognitive improvement: slot-filling (episodic attribution, MECH-121 analog) should improve before slot-formation (contextual semantic, MECH-120 analog), because the pipeline rebuilds in dependency order. This distinguishes the attribution account from accounts predicting uniform memory improvement with sleep restoration."
@@ -49389,6 +49454,51 @@
     promotion evidence; the NREM leg is substrate-plumbing-fidelity only. Glymphatic/
     amyloid structural half of MECH-169 has no V3 analog and is out of scope.
   validation_experiment: V3-EXQ-778 (staged-damage diagnostic; queued 2026-07-17, coordinator-live)
+  evidence_quality_note: |
+    [SCOPE NARROWED 2026-07-18 -- V3-EXQ-778c null-content control, FAIL/weakens,
+    DIAGNOSTIC so no status or confidence change] The pre-registered
+    zero-injected-content NULL CONTROL (the analog of the odour-contingency null in
+    Bar et al. 2020, the methodological precedent this SD follows) audited whether
+    each per-phase readout measures CONTENT FIDELITY or raw NOISE SENSITIVITY. It ran
+    the identical sigma sweep twice per seed on identical substrate / warm-up / RNG
+    streams, differing only in content_scale (1.0 vs 0.0), with the delivered
+    perturbation held numerically identical across arms. Load-bearing C1
+    (null_slope_ratio <= 0.25 on all three phases) FAILED on 0/8 seeds:
+      nrem 0.1445 (95% CI [0.1438,0.1451], 0/8 confounded) -- CONTENT-CONTINGENT;
+      sws  1.0000 (sd 2.7e-8, 8/8 confounded)  -- CONTENT-FREE BY CONSTRUCTION.
+        denoising_snr_db = 10*log10(signal_power/noise_power), and noise_power is
+        identical with and without injected content at every sigma (384.18 / 1536.73 /
+        6146.91 / 24587.64) while signal_power is 5585.7 vs 0.0 -- so the sigma-slope
+        depends only on log(noise_power) and the content term is a constant offset
+        that differentiates away. Analytic, not statistical, hence sd 2.7e-8.
+      rem  degenerate at BOTH rails -- exactly 0.0 on 5/8 seeds (null calibration_error
+        pinned at the constant 998.5009992509989, target_clamped 1.0) and off-scale
+        1801-9143 on 3/8 (null precision reference collapsed onto the 1e-3 floor);
+        ceiling_inside_ci95 true, confound_verdict_stable false. UNINTERPRETABLE at n=8.
+    The readiness precondition was MET (injected-arm slope 0.0665 >> 1e-06 floor), C2
+    passed and criteria_non_degenerate is true on all three criteria, so this is an
+    informative negative about the INSTRUMENT, not a broken run.
+    DISPOSITION -- NARROWED, NOT WITHDRAWN, per this experiment's own pre-registration
+    ("a FAIL here is an INFORMATIVE outcome... it scopes SD-068's non-vacuity honestly
+    rather than withdrawing the claim"). SD-068's non-vacuity contract is henceforth
+    carried by the nrem injected-content leg PLUS the REM
+    passthrough-vs-generative contrast, and NOT by the sws leg. The staged-damage
+    results in the architecture doc's "Diagnostic results" are correspondingly
+    retracted as staging evidence: no leg of the reverse-dependency staging order is
+    currently supported by a validated instrument.
+    NARROW-SUPPORTS FLAG: this leaves SD-068 resting on a SINGLE confirmed
+    content-contingent readout plus a generative-gain contrast whose own
+    content-dependence is itself an open question (the null arm's rem_generative_gain
+    ~0.182-0.209 is close to the injected arm's ~0.165-0.190 at content_scale 0.0 --
+    outside the scored criteria, registered as H-gen-gain-content-free). Do not read
+    the narrowing as leaving SD-068 comfortably supported.
+    ROUTING: /implement-substrate to replace sws_denoising_snr with a content-scored
+    readout (experiment-layer, _lib/consolidation_lesion_harness.py, zero ree_core
+    change -- the same repair as rem_terrain_variance -> rem_generative_fidelity at
+    ree-v3 main da873a1), plus a GOV-FANOUT-1 three-axis portfolio on the rem leg.
+    Re-derive brake does NOT fire (first autopsy on SD-068; category measurement_gap,
+    not substrate_ceiling). Predecessor V3-EXQ-778b (n=2) is marked superseded.
+    Full diagnosis: evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
 
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
