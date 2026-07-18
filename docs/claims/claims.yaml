@@ -16126,7 +16126,7 @@
       as_of: 2026-07-08
       verdict: "non_contributory/measurement_gap (environment / test-bed producer gap; NOT substrate_ceiling at the consumer, NOT falsification). Governance may leave INV-050 stored epistemic_category=substrate_ceiling untouched (conservative, as in the 718 cycle); the note carries the environment-producer-gap framing regardless."
   v3_pending: true
-  epistemic_category: substrate_ceiling  # GOV-GRAN-1 metabolization 2026-07-16 (see granularity_debt_recurrence_note); mirrors sibling INV-050
+  epistemic_category: substrate_ceiling
   ceiling_decision: deferred
   ceiling_routing_note: >
     Environment-producer gap RE-PARKED 2026-07-08 by user disposition (off the V3
@@ -16201,6 +16201,9 @@
     capability as SD-MEL-CONSUMER's terminal validated result; RE-PARK the ecological end-to-end demonstration
     (off the V3 critical path; environment-blocked). No new substrate build owed now; if un-parked, a graded-MEL
     environment/test-bed (non-converging world) is the entry point, not another letter.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-GRAN-1 metabolization
+    2026-07-16 (see granularity_debt_recurrence_note); mirrors sibling INV-050
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)
@@ -17076,7 +17079,7 @@
       as_of: 2026-06-13
       verdict: non_contributory/substrate_ceiling
   confidence: 0.0
-  epistemic_category: substrate_ceiling  # gov 2026-06-13: GAP-2 z_goal-seeding/context-diversity ceiling (per failure_autopsy_V3-EXQ-669a)
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): INF-ENV-003 transient-benefit-patch SALIENCE is orthogonal to MECH-189's real blocker, which is goal_pipeline:GAP-2 z_world context-diversity -- the super-ordinal anchor store saturates to <=1 via merge_similarity collapse on near-identical nursery contexts (failure_autopsy_V3-EXQ-669a/669b). No context-diversity substrate is built or in flight. Do not re-queue the 669 line until a context-diversity substrate lands."
@@ -17147,6 +17150,9 @@
     evidence but MECH-189 stays candidate / confidence 0.0 -- full behavioural validation
     (trained encoder, absolute 0.4) is the separate successor. Drives the
     infant_substrate:GAP-11 closure-node reconciliation. No promotion this cycle.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: gov 2026-06-13: GAP-2
+    z_goal-seeding/context-diversity ceiling (per failure_autopsy_V3-EXQ-669a)
   implementation_note: |
     2026-06-09 (/implement-substrate, infant_substrate:GAP-11): the "ContextMemory writes
     substrate" the 588 retest was deferred to is now IMPLEMENTED in ree-v3 -- a new
@@ -24498,7 +24504,7 @@
       verdict: non_contributory/substrate_ceiling
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_ceiling  # explicit 2026-06-19 (confirmed failure_autopsy_V3-EXQ-445h): V3-tractable in principle but the substrate is too coarse to deliver the committed-action-shift distinction c2 needs (conversion ceiling / F-dominance)
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true  # c2 retest gated on committed-action diversity (ARC-065 GAP-A / MECH-439); failure_autopsy_V3-EXQ-445h_2026-06-19
   claim_level: architectural
   registered_utc: 2026-04-19
@@ -24560,6 +24566,11 @@
     [2026-05-08 governance]: EXQ-445h SD-032b does_not_support (4th consecutive null after 445/445a/b/c). MECH-258 (C1 wins=2/3) and MECH-260 (C3 wins=3/3) both supported in the same run. Caution flag: monostrategy may stem from substrate gaps not yet inventoried (e.g. previous-valence-on-unexpected, MECH-307 conjunction architecture, sleep substrate). Do NOT advance toward demote until the candidate-gap inventory broadens.
 
     [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h -- supersedes the 2026-05-08 does_not_support framing]: All V3-EXQ-445-series c2 evidence is non-contributory -- the committed-action-entropy criterion (|entropy_ON-entropy_OFF|>=0.1) is floor-locked by the pre-conversion-ceiling monostrategy (action_class_entropy=0.0 in every arm incl OFF control; F-dominance V3-EXQ-571). The dACC substrate is functional (mean_score_bias_abs 2.0 ON vs 0.0 OFF; harm_a_forward_r2 ~0.94) but the applied precision-weighted conflict bias cannot move committed action until ARC-065 GAP-A / MECH-439 demonstrate committed-action diversity. pending_retest_after_substrate. epistemic_category set explicit substrate_ceiling this pass; manifests already carry non_contributory (exp_conf 0.413 -> 0.0). Routed /queue-experiment (gated): fixed-substrate c2 retest under GAP-A top-k / MECH-439 conflict-grade, never re-run under 445h.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: explicit 2026-06-19
+    (confirmed failure_autopsy_V3-EXQ-445h): V3-tractable in principle but the substrate is too
+    coarse to deliver the committed-action-shift distinction c2 needs (conversion ceiling /
+    F-dominance)
   implementation_note: >
     IMPLEMENTED 2026-04-19. Module: ree_core/cingulate/dacc.py
     (DACCAdaptiveControl, DACCConfig, DACCtoE3Adapter). Integrated into
@@ -25162,7 +25173,10 @@
 
     [2026-06-19 confirmed failure_autopsy_V3-EXQ-445h]: c3 (entropy_ON>=entropy_OFF) PASS is vacuous (0.0>=0.0 under monostrategy) -- excluded as degenerate across the 445-series. MECH-260 status unaffected (exp_conf 0.799 confirmed_established, driven by V3-EXQ-463). Already carries substrate_ceiling + pending_retest_after_substrate.
 
-  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
+    2026-07-09 (was substrate_ceiling)
+
+  epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 8 confirmed substrate_ceiling failure_autopsy hits (460b/460c/460f/445h/603c/603d/603e/687) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading (dACC anti-recency does no work at E3 -- bias_fraction 0.000 per V3-EXQ-571) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate."
   implementation_note: >
@@ -28413,7 +28427,11 @@
   claim_type: mechanism_hypothesis
   subject: hippocampus.state_gated_routing
   polarity: asserts
-  status: provisional  # gov 2026-06-23T23:28Z: promote candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries, supports-only; v3_pending gate cleared by V3-EXQ-702)
+  status: provisional
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
+    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries, supports-only;
+    v3_pending gate cleared by V3-EXQ-702)
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -28489,7 +28507,11 @@
   claim_type: mechanism_hypothesis
   subject: self_model.sleep_dependent_aggregation
   polarity: asserts
-  status: provisional  # gov 2026-06-23T23:28Z: promote candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries; 1 mixed lit entry but conflict_ratio 0; v3_pending gate cleared by V3-EXQ-702)
+  status: provisional
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
+    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries; 1 mixed lit entry
+    but conflict_ratio 0; v3_pending gate cleared by V3-EXQ-702)
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -29234,7 +29256,7 @@
       from: failure_autopsy_V3-EXQ-483e_2026-05-31
       as_of: 2026-05-31
       verdict: non_contributory/substrate_ceiling
-  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (and 483d before it); consumer-input-threshold layer is the substrate-ceiling root for this claim's current validation surface
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: true
   implementation_note: "IMPLEMENTED 2026-04-25. Module: ree_core/regulators/broadcast_override.py (BroadcastOverrideRegulator, BroadcastOverrideConfig). Master switch: REEConfig.use_broadcast_override (default False). Three consumer sites wired: PAG freeze-gate (MECH-279) exit_threshold scaled by alpha_override; SalienceCoordinator (SD-032a) operating-mode reweight via update_signal('override_signal', ...); GoalState (SD-012) drive seeding amplification via override_goal_seeding_gain. MECH-094: simulation_mode=True returns cached signal unchanged. Backward compatible with flag OFF (95/95 contracts PASS). Validation experiment: V3-EXQ-483 queued. Lit-pull confirms defaults biologically defensible: targeted_review_orexin_kinetics/synthesis.md (Mileykovskiy 2005, Lee 2005, Karnani 2020, Johnson 2012). [2026-05-30 consumer-cascade amend, MECH-281 motor-coupling axis]: Four additional consumer sites wired per V3-EXQ-483d substrate-ceiling autopsy routing -- (i) LateralPFCAnalog SD-033a update() eff_eta scaled by (1 + override_pfc_eta_gain * override_signal); (ii) BLAAnalog SD-035 encoding_gain scaled by (1 + override_bla_encoding_gain * override_signal); (iii) CeAAnalog SD-035 mode_prior + fast_prime scaled by (1 + override_cea_amplitude_gain * override_signal), bounded by mode_prior_log_odds_max so cortex still cannot be over-ruled; (iv) urgency_interrupt_threshold (MECH-090 motor side, parallel to PAG alpha_override) attenuated by max(0, 1 - override_beta_interrupt_gain * override_signal). All four new REEConfig gains default 0.0 (bit-identical OFF). Backward compatible: 556/556 contracts + 7/7 preflight PASS with all four gains at default 0.0 (543 prior + 13 new MECH-281 contracts at tests/contracts/test_sd_037_consumer_cascade.py). MECH-094 preserved via existing simulation_mode arguments on BLA/CeA + MECH-319 simulation-mode-rule-gate on LateralPFC. ree-v3/CLAUDE.md SD-037 consumer-cascade section appended 2026-05-30. Validation experiment: V3-EXQ-483e queued (4-arm successor under 483 lineage; reuses SD-036+MECH-279 freeze-engaging substrate for PAG-engaging env condition; SalienceCoordinator enable via use_salience_coordinator=True; claim_ids=[SD-037, MECH-280, MECH-281]). pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands."
@@ -29327,6 +29349,10 @@
     (sleep-onset gating) explicitly deferred. Tier-1 evidence V3-EXQ-483c
     queued (goal_pipeline GAP-4). v3_pending retained until behavioural
     phenotypes or 483c contributory evidence; no promotion.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: set 2026-05-31 per
+    failure_autopsy_V3-EXQ-483e (and 483d before it); consumer-input-threshold layer is the
+    substrate-ceiling root for this claim's current validation surface
   pharmacological_predictions:
     - PHARM-001  # DORA-class (suvorexant/lemborexant) substrate intervention for hyperarousal-insomnia
     - PHARM-002  # modafinil / sodium oxybate (MECH-286 axis, narcolepsy sleep-state)
@@ -29404,6 +29430,10 @@
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483d_2026-05-30.json. PAG alpha_override is wired (PAGFreezeGate receives the scaling), but the env does not engage PAG freeze in this run -- no committed-freeze state for the exit-threshold scaling to act on. Claim could not express itself. Hold pending PAG-engaging env condition (sustained-threat curriculum). pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
 
     [2026-05-31 governance, V3-EXQ-483e autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483e_2026-05-31.json. 483e reuses SD-036+MECH-279 freeze-engaging substrate (use_gabaergic_decay=True + use_pag_freeze_gate=True everywhere) but PAG remains dormant: pag_release_count_end = 0 across ALL 12 runs including ARM_3 ON_ON arms in every seed. MECH-280's path requires z_harm_a * duration > theta_freeze (=2.0) for the alpha_override scaling to act on a committed-freeze state; fishtank baseline z_harm_a magnitudes never cross the threshold even with sustained env exposure. Same shape as 483d but one architectural layer deeper -- the issue is now consumer-input-threshold calibration, not consumer-cascade wiring. Claim could not express itself. Hold pending consumer-input-threshold recalibration (PAG theta_freeze knob vs fishtank baseline) AND/OR SD-029-style sustained-threat env curriculum that drives z_harm_a above the threshold during scheduled windows. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: set 2026-05-31 per
+    failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); PAG theta_freeze threshold not
+    cleared at fishtank baseline
   title: "LH-PAG override projection: a direct projection from LH (orexin and/or peri-LC GABA analog) to PAG modulates the GABAergic freeze gate (MECH-279) under metabolic demand. The projection does not silence the freeze gate; it raises its threshold (theta_freeze_effective = theta_freeze_base x (1 + alpha_override x override_signal)). This produces the behavioural transition from freeze to active foraging under sustained hunger plus threat -- the foraging-under-predation phenotype the lit-pull surveys."
   claim_type: mechanism_hypothesis
   subject: lh_pag.override_projection
@@ -29417,7 +29447,7 @@
       from: failure_autopsy_V3-EXQ-483e_2026-05-31
       as_of: 2026-05-31
       verdict: non_contributory/substrate_ceiling
-  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); PAG theta_freeze threshold not cleared at fishtank baseline
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: true
   implementation_note: "IMPLEMENTED 2026-04-25 as part of SD-037 landing. PAGFreezeGateConfig.alpha_override (default 0.0) accepts the override_signal scaling; PAGFreezeGate.tick() now takes override_signal arg per cycle: exit_threshold = theta_freeze * (1 + alpha_override * override_signal) * gaba_tone. REEAgent wires override_alpha_pag (default 0.5) into PAG config when both use_broadcast_override and use_pag_freeze_gate are True. Substrate-readiness validation: V3-EXQ-483b PASS (2026-05-08). [2026-05-30 consumer-cascade amend]: PAG wiring unchanged this pass (already landed). V3-EXQ-483d FAIL traced to dormant PAG path in the fishtank validation env (no sustained-threat curriculum -> override_signal climbed but exit_threshold scaling had nowhere to discharge). End-to-end PAG-engaging behavioural testability restored via V3-EXQ-483e amend successor which reuses SD-036+MECH-279 freeze-engaging substrate (V3-EXQ-475-style config: use_gabaergic_decay=True + use_pag_freeze_gate=True). pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. See SD-037 implementation_note 2026-05-30 paragraph for the parent consumer-cascade landing record."
@@ -29468,6 +29498,10 @@
     [2026-05-30 governance, V3-EXQ-483d autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483d_2026-05-30.json. EXQ-483d clears approach_commit=0 (now 1.0 via MECH-295 bridge) but produces a fresh wired-but-inert signature on goal_norm_peak discrimination: GoalState seeding amplification path is dominated by MECH-295 bridge contribution to effective_drive, and SalienceCoordinator + PFC/BLA/beta-gate consumers remain dormant (consumer-cascade deferral per implementation_note). Override produces saturated override_signal but has nowhere to land where it would move goal_norm_peak against the bridge baseline. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
 
     [2026-05-31 governance, V3-EXQ-483e autopsy applied]: evidence_direction non_contributory per failure_autopsy_V3-EXQ-483e_2026-05-31.json. 2026-05-30 consumer-cascade amend (deferral closed) landed all four MECH-281 motor-coupling consumers (LateralPFC eff_eta, BLA encoding_gain, CeA mode_prior+fast_prime, BetaGate urgency_interrupt_threshold) -- the amend correctly fires at the override_signal interface (override_signal_nonzero_steps saturates) but ALL consumer outputs at zero across ALL 12 runs: bla_encoding_gain_peak=0, cea_mode_prior_peak=0, cea_fast_prime_peak=0, beta_release_count=0. Only lateral_pfc rule_state EMA responds (1.08-1.18x, sub-threshold). Diagnosis: SD-037 multiplicative gain pattern requires consumer-module input gates crossed first; BLA arousal_threshold_on=0.4 / CeA fast_route_threshold=0.5 / dACC pe-magnitude floors above fishtank baseline magnitudes. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) remain untestable end-to-end at this substrate layer. Hold pending consumer-input-threshold recalibration + env enrichment. pending_retest_after_substrate=true. Full diagnosis under SD-037 evidence_quality_note + autopsy artifact.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: set 2026-05-31 per
+    failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); BLA / CeA / dACC /
+    beta-interrupt consumer input thresholds not cleared at fishtank baseline
   title: "Orexin-analog gain modulation of drive-coupled arousal (motor-coupling axis): an orexin-analog modulator gates the coupling between drive_level and arousal-relevant downstream targets (PFC for SD-033a deliberation, BLA/CeA for SD-035 amygdala arbitration, beta-gate for MECH-090). Loss of this coupling produces a cataplexy-analog failure where emotional/drive input fails to recruit motor activation -- z_harm and drive_level compute normally but action selection does not integrate them. This is the motor-coupling axis of orexin function; the wake-stability axis (sleep-state gating, the dominant biological role) is MECH-286. Both axes are downstream of the same SD-037 override_signal, predicting clinical co-occurrence of cataplexy with sleep-state instability under orexin loss (narcolepsy)."
   claim_type: mechanism_hypothesis
   subject: orexin.drive_arousal_coupling
@@ -29481,7 +29515,7 @@
       from: failure_autopsy_V3-EXQ-483e_2026-05-31
       as_of: 2026-05-31
       verdict: non_contributory/substrate_ceiling
-  epistemic_category: substrate_ceiling  # set 2026-05-31 per failure_autopsy_V3-EXQ-483e (inherited from SD-037 parent); BLA / CeA / dACC / beta-interrupt consumer input thresholds not cleared at fishtank baseline
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: true
   implementation_note: "PARTIALLY IMPLEMENTED 2026-04-25 as part of SD-037 landing. Drive-coupling axis wired at GoalState seeding (effective_drive amplified by override_goal_seeding_gain * override_signal in REEAgent.update_z_goal) and at SalienceCoordinator (operating-mode reweight via affinity_weights['override_signal']). PFC/BLA/beta-gate targets noted in claim title rely on the same override_signal but additional consumer wiring is deferred until those substrates need it. Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) are V3-EXQ-483 secondary acceptance criteria. [2026-05-30 consumer-cascade amend, deferral closed]: Four additional consumer sites named in the claim title now wired. (i) LateralPFCAnalog (SD-033a deliberation, ree_core/pfc/lateral_pfc_analog.py): update() gains override_signal + override_eta_gain kwargs; eff_eta scaled by (1 + override_eta_gain * override_signal). Orexin-recruited state accelerates rule_state EMA learning. (ii) BLAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/bla.py): tick() gains override_signal + override_encoding_gain kwargs; final encoding_gain (after inverted-U + post-event window) scaled by (1 + override_encoding_gain * override_signal). Roozendaal 2011 anchor: orexin -> NE / amygdala enhanced LTP. (iii) CeAAnalog (SD-035 amygdala arbitration, ree_core/amygdala/cea.py): tick() gains override_signal + override_amplitude_gain kwargs; both mode_prior and fast_prime scaled by (1 + override_amplitude_gain * override_signal), re-clipped to mode_prior_log_odds_max so CeA cannot over-rule cortex via the amplified path. (iv) BetaGate / agent.py urgency_interrupt path (MECH-090 motor side, ree_core/agent.py select_action MECH-091 block): urgency_threshold scaled by max(0.0, 1 - override_beta_interrupt_gain * override_signal). Orexin -> escape-from-freeze on the motor side, parallel to the already-wired PAG alpha_override path on the freeze-gate side; lower threshold under recruited state -> committed motor program more readily aborted on z_harm_a / z_harm_un urgency. All four new REEConfig gains default 0.0 (bit-identical OFF). 556/556 contracts + 7/7 preflight PASS with all four gains at default 0.0 (was 543 + 13 new MECH-281 contracts at tests/contracts/test_sd_037_consumer_cascade.py). Activation smoke 2026-05-30 (50 ticks drive=0.9 / harm=0.6 -> override_signal=0.768): BLA encoding_gain 2.5 -> 5.0 (2x at gain=1); CeA mode_prior 0.2 -> 0.4, fast_prime 0.15 -> 0.3 (2x each at gain=1); LateralPFC rule_state delta 0.0956 -> 0.2867 (3x at gain=2). MECH-094 preserved via existing simulation_mode arguments on BLA/CeA tick + MECH-319 simulation-mode-rule-gate on LateralPFC update. Validation experiment: V3-EXQ-483e queued (4-arm successor under 483 lineage; reuses SD-036+MECH-279 freeze-engaging substrate for PAG-engaging env condition; SalienceCoordinator enable via use_salience_coordinator=True; claim_ids=[SD-037, MECH-280, MECH-281]). Cataplexy lesion test (override_signal=0) and PWS saturation test (override_signal=1) NOT executed this pass -- they are V3-EXQ-483 secondary acceptance criteria, now decisively testable end-to-end via 483e. pending_retest_after_substrate stays TRUE; closes only after V3-EXQ-483e retest manifest lands. ree-v3/CLAUDE.md SD-037 consumer-cascade section appended 2026-05-30."
@@ -36679,7 +36713,10 @@
   claim_type: mechanism_hypothesis
   subject: policy.stochastic_noise_floor_lc_ne_tonic_analog
   polarity: asserts
-  status: candidate  # GOV-CEIL-1 demotion 2026-07-09: floored from candidate_substrate_landed
+  status: candidate
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: GOV-CEIL-1 demotion 2026-07-09: floored
+    from candidate_substrate_landed
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-07-11
@@ -36850,7 +36887,10 @@
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
 
-  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
+    2026-07-09 (was substrate_ceiling)
+
+  epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 7 confirmed substrate_ceiling failure_autopsy hits (573/603c/603d/603e/610f/655/687) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading (LC-NE noise floor delivers only sub-threshold N=1 directional signals) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate."
   pending_retest_after_substrate: true
@@ -36915,9 +36955,9 @@
       from: failure_autopsy_V3-EXQ-732_2026-07-10
       as_of: 2026-07-10
       verdict: non_contributory/precondition_unmet
-  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; NOT demoted)
-  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 7 substrate_ceiling hits, but the umbrella CORE has a positive discrimination on a richer substrate -- V3-EXQ-604c PASS on the validated GAP-A substrate (2026-06-08) validated MECH-314's selection-face and lifted v3_pending. The 7 hits are on the curiosity-CONVERSION sub-property (705b/706/706b/590c), which has no separately-registered child claim. Per GOV-CEIL-1 granularity-first, the parent is exempt from demotion (a positive discrimination exists); parked to stop re-flagging. Owed retest re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (ARC-107 MECH-448/449), unbuilt."
-  epistemic_category: substrate_ceiling # /governance 2026-06-25: failure_autopsy_V3-EXQ-705b (1st FAIR demotion test, conversion ceiling persists; 6th MECH-314 ceiling autopsy, re-derive brake FIRED). Ceiling is upstream/architectural, NOT a falsification; mapped to the brake-EXEMPT double-gated (demotion+MECH-449 Go/No-Go) re-test (substrate already built) -> V4 ARC-110 loop-segregation only if that also fails.
+  ceiling_decision: deferred
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 7 substrate_ceiling hits, but the umbrella CORE has a positive discrimination on a richer substrate -- V3-EXQ-604c PASS on the validated GAP-A substrate (2026-06-08) validated MECH-314's selection-face and lifted v3_pending. The 7 hits are on the curiosity-CONVERSION sub-property (705b/706/706b/590c), which has no separately-registered child claim. Per GOV-CEIL-1 granularity-first, the parent is exempt from demotion (a positive discrimination exists); parked to stop re-flagging. Owed retest re-pointed to the DA-gated cross-loop arbitration-LEARNING substrate (ARC-107 MECH-448/449), unbuilt. [enum-comment migrated to field 2026-07-18] ceiling_decision: GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; NOT demoted)"
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -37034,6 +37074,12 @@
 
     [2026-06-25 governance: failure_autopsy_V3-EXQ-705b CONFIRMED non_contributory; MECH-314 UNWEAKENED] V3-EXQ-705b (curiosity-conversion under MECH-448 demotion + 689e channel-adaptive floor; supersedes V3-EXQ-705) was the FIRST FAIR test of the curiosity channel under a genuinely-excluding demotion (excluded_count 14.45 vs 705's all-admit 0.0; 590c saturation-arm confound also fixed) with the GAP-A pool divergent (cand_world_pairwise_dist 0.107 > 0.02). Committed-action-class entropy STILL did not lift over demotion-ON F-only + matched-noise -> conversion_ceiling_persists_despite_demotion. epistemic_category set substrate_ceiling; the ceiling is UPSTREAM/architectural (a single rank-preserving eligibility gate), NOT a falsification of curiosity. Re-derive brake FIRED (6th MECH-314 ceiling autopsy; priors EXQ-572-573, 604a-624a-630, gapA-604b-648a-649, 590c, 705) -> REFUSES a 705c demotion-only same-substrate letter. recommended_substrate_queue_entry action=none: MECH-449 Go/No-Go eligibility constitution is ALREADY built+validated+provisional (V3-EXQ-689g PASS 3/3, conversion_rate 1.0) but was OFF in 705b. Forward path = brake-EXEMPT /queue-experiment DOUBLE-GATED re-test (use_f_eligibility_demotion=True AND use_go_nogo_constitution=True), a different substrate condition than the demotion-only lineage (485k->MECH-449 shape). V4 ARC-110 loop-segregation (existing v4_loop_segregation substrate_queue entry) ONLY if the double-gated re-test also fails. pending_retest_after_substrate re-asserted.
     [2026-06-27 governance: failure_autopsy_704b-706b-conversion-ceiling CONFIRMED non_contributory; MECH-314 UNWEAKENED; brake-LOCK terminal] V3-EXQ-706b (the brake-EXEMPT DOUBLE-GATED re-test the 705b autopsy named, superseding V3-EXQ-706) is the FIRST FULLY-VALID double-gated curiosity-conversion test (non_degenerate=True; all 6 readiness legs met: GAP-A pool 0.072, curiosity bias range 0.00197, MECH-448 demotion excluded 23.4, MECH-449 Go/No-Go suppressed 7.9, z_world bounded, per-seed committed-tick budget balanced). It closed BOTH 706 measurement-validity defects (degenerate flat-hot temperature null replaced by a VALID same-layer non-temperature null magnitude-matched by construction, range 0.00197=curiosity range, ratio 1.0, non-degenerate vs ARM_FONLY; per-seed P1 budget equalised). With both composed selection-face eligibility gates active AND a valid null, the curiosity channel STILL did not convert: ARM_CURIOSITY committed-class entropy 0.967 sat BELOW the double-gated F-only control 1.029 and the valid null 1.019 (no lift on any seed) -> conversion_ceiling_persists_despite_double_gating_valid_null (the pre-registered TERMINAL). The ceiling is ARCHITECTURAL (the single F-dominated E3 arena), POSITIVE evidence that the binding constraint sits AFTER the eligibility-construction face -> the single-arena collapse (ARC-110). Re-derive brake FIRED + BRAKE-LOCK (8th MECH-314 substrate_ceiling/non_contributory autopsy; priors EXQ-572-573, 604a-624a-630, gapA-604b-648a-649, 590c, 705, 705b, 706): REFUSES any further V3 letter on the MECH-314 conversion lineage. Route /implement-substrate on v4_loop_segregation (ARC-110); substrate_queue amended (MECH-314 added to unblocks_claims + 706b failure record). epistemic_category stays substrate_ceiling; pending_retest_after_substrate stays true. Convergent with V3-EXQ-704b (MECH-451) onto the identical single-arena wall.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: /governance 2026-06-25:
+    failure_autopsy_V3-EXQ-705b (1st FAIR demotion test, conversion ceiling persists; 6th
+    MECH-314 ceiling autopsy, re-derive brake FIRED). Ceiling is upstream/architectural, NOT a
+    falsification; mapped to the brake-EXEMPT double-gated (demotion+MECH-449 Go/No-Go) re-test
+    (substrate already built) -> V4 ARC-110 loop-segregation only if that also fails.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the
@@ -37054,7 +37100,14 @@
   claim_type: mechanism_hypothesis
   subject: policy.curiosity.novelty_bonus_striatal_analog
   polarity: asserts
-  status: provisional # /governance 2026-06-14: candidate_substrate_landed -> provisional (user-directed). exp_conf 0.759 (> 0.62 candidate->provisional gate) after the flat-authoritative indexer correction (074ab9401e) cleared the stale pack weakens; v3_pending already lifted 2026-06-08 (V3-EXQ-604c PASS). Single genuine exp entry (1 support) -- promoted on a thin-but-clean record; a confirmatory run would harden it.
+  status: provisional
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: /governance 2026-06-14:
+    candidate_substrate_landed -> provisional (user-directed). exp_conf 0.759 (> 0.62
+    candidate->provisional gate) after the flat-authoritative indexer correction (074ab9401e)
+    cleared the stale pack weakens; v3_pending already lifted 2026-06-08 (V3-EXQ-604c PASS).
+    Single genuine exp entry (1 support) -- promoted on a thin-but-clean record; a confirmatory
+    run would harden it.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -37768,8 +37821,8 @@
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
 
   epistemic_category: substrate_ceiling
-  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; demotion semantics N/A for an open_question)
-  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 4 substrate_ceiling hits, but this is an open_question (status: open) -- GOV-CEIL-1's demotion semantics (floor status to candidate; carry an inert-mechanism null) do not map, since an open question asserts no mechanism to call inert and open->candidate is a category error. Its dependents MECH-313 and MECH-260 were demoted in this same 2026-07-09 pass and already carry the ceiling-exhaustion signal. Parked to stop re-flagging; the collapse-vs-distinct question stays substrate-blocked pending V3 goal-pipeline / scaffolded-onboarding enrichment."
+  ceiling_decision: deferred
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 4 substrate_ceiling hits, but this is an open_question (status: open) -- GOV-CEIL-1's demotion semantics (floor status to candidate; carry an inert-mechanism null) do not map, since an open question asserts no mechanism to call inert and open->candidate is a category error. Its dependents MECH-313 and MECH-260 were demoted in this same 2026-07-09 pass and already carry the ceiling-exhaustion signal. Parked to stop re-flagging; the collapse-vs-distinct question stays substrate-blocked pending V3 goal-pipeline / scaffolded-onboarding enrichment. [enum-comment migrated to field 2026-07-18] ceiling_decision: GOV-CEIL-1 keep-park 2026-07-09 (user-adjudicated; demotion semantics N/A for an open_question)"
   pending_retest_after_substrate: true
   location: docs/architecture/rule_apprehension_layer.md
 
@@ -38217,7 +38270,7 @@
       verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_conditional  # depends on ARC-063 rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress promote/demote until it lands. Set 2026-06-07 IGW-046.
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -38311,6 +38364,10 @@
     agency-confidence per channel. Re-poseable when SD-054 is
     extended or when Q-041 unified-threshold-supervisor work
     surfaces a per-channel agency signal.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: depends on ARC-063
+    rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress
+    promote/demote until it lands. Set 2026-06-07 IGW-046.
   notes: >
     Earlier-conversation dual-channel-arbitration sketch is
     superseded by this parent + sub-MECH structure. The four
@@ -38336,7 +38393,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_conditional  # depends on ARC-063 rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress promote/demote until it lands. Set 2026-06-07 IGW-046.
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -38374,6 +38431,10 @@
     LOW divergence from existing literature; direct mapping.
     Pull 4 R4 (HYBRID-naming) but the literature mapping is so
     direct that the literature-anchor name dominates.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: depends on ARC-063
+    rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress
+    promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-312b
@@ -38388,7 +38449,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_conditional  # depends on ARC-063 rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress promote/demote until it lands. Set 2026-06-07 IGW-046.
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -38429,6 +38490,10 @@
     See: evidence/literature/targeted_review_mech_312_arbitration_divergences/synthesis.md
 
     LOW-MEDIUM divergence; partial mapping. Pull 4 R4 HYBRID-naming.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: depends on ARC-063
+    rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress
+    promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-312c
@@ -38443,7 +38508,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_conditional  # depends on ARC-063 rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress promote/demote until it lands. Set 2026-06-07 IGW-046.
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -38510,6 +38575,10 @@
     Not yet experimentally tested. Falsifying experiment requires
     affect-variable substrate; SD-054 currently single-affect-
     condition. EXQ design deferred.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: depends on ARC-063
+    rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress
+    promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-312d
@@ -38524,7 +38593,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
-  epistemic_category: substrate_conditional  # depends on ARC-063 rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress promote/demote until it lands. Set 2026-06-07 IGW-046.
+  epistemic_category: substrate_conditional
   claim_level: mechanistic
   registered_utc: "2026-05-10"
   depends_on:
@@ -38592,6 +38661,10 @@
     Not yet experimentally tested. Falsifying experiment requires
     region-staleness-induction substrate; not currently in V3
     substrate set. EXQ design deferred.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: depends on ARC-063
+    rule-creator substrate (planned, design-only 2026-06-04, not yet built); suppress
+    promote/demote until it lands. Set 2026-06-07 IGW-046.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-319
@@ -43010,8 +43083,8 @@
     MECH-341/MECH-313, not weakens INV-074) and a mandatory pre-run assertion that the three fixes are present
     so the prescription is not dropped a third time.
   epistemic_category: substrate_ceiling
-  ceiling_decision: deferred  # GOV-CEIL-1 keep-park 2026-07-09 (formalizes the 2026-06-13 user acceptance)
-  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 8 substrate_ceiling hits, but this is a UNIVERSAL invariant with strong biological grounding (lit_conf 0.918, OD critical-period biology) already deliberately accepted as substrate_ceiling by user decision 2026-06-13 (see governance_note_2026_06_13) and V4-deferred (owned by plasticity_neuromodulation_v4; PLW-1 decision-to-build gate). pending_retest_after_substrate is already false -- there is no pending V3 retest. Demotion to a co-equal inert-mechanism null would contradict the well-grounded universal necessity; parked instead. Any future test is V4-scoped."
+  ceiling_decision: deferred
+  ceiling_routing_note: "GOV-CEIL-1 keep-parked (NOT demoted) 2026-07-09: flagged with 8 substrate_ceiling hits, but this is a UNIVERSAL invariant with strong biological grounding (lit_conf 0.918, OD critical-period biology) already deliberately accepted as substrate_ceiling by user decision 2026-06-13 (see governance_note_2026_06_13) and V4-deferred (owned by plasticity_neuromodulation_v4; PLW-1 decision-to-build gate). pending_retest_after_substrate is already false -- there is no pending V3 retest. Demotion to a co-equal inert-mechanism null would contradict the well-grounded universal necessity; parked instead. Any future test is V4-scoped. [enum-comment migrated to field 2026-07-18] ceiling_decision: GOV-CEIL-1 keep-park 2026-07-09 (formalizes the 2026-06-13 user acceptance)"
 
 - id: MECH-333
   title: "Critical period open phase: the dominant scoring pathway's effective update
@@ -44816,7 +44889,12 @@
   claim_type: mechanism_hypothesis
   subject: ethics_engine_3.scoring_trajectory_class_diversity_preservation
   polarity: asserts
-  status: provisional   # 2026-06-14 governance RATIFICATION (user-directed): V3-EXQ-660 binary within-class-representative preserver accepted as sufficient V3 evidence (exp_conf 0.871 > 0.62 gate); v3_pending released. See dated note below.
+  status: provisional
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: 2026-06-14 governance RATIFICATION
+    (user-directed): V3-EXQ-660 binary within-class-representative preserver accepted as
+    sufficient V3 evidence (exp_conf 0.871 > 0.62 gate); v3_pending released. See dated note
+    below.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -52418,7 +52496,7 @@
       from: failure_autopsy_V3-EXQ-732_2026-07-10
       as_of: 2026-07-10
       verdict: non_contributory/precondition_unmet
-  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling)
+  epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 10 confirmed substrate_ceiling failure_autopsy hits (689a/700/700a/700b/700c/700d/709/710/711/713) with no positive discrimination on any richer substrate. Demoted to contested candidate; the inert/no-op-mechanism null reading is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (e.g. the pending ARC-107 MECH-448/449 BG-constitution validation V3-EXQ-689g)."
   implementation_phase: v3
@@ -52544,6 +52622,9 @@
     (11th MECH-439 reading); same-level arbitration re-letter REFUSED; route = selection-face MECH-448
     behavioural retests (654h/485i/445h/625e). non_contributory: does NOT weaken MECH-439.
     pending_retest_after_substrate.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
+    2026-07-09 (was substrate_ceiling)
   depends_on:
     - ARC-065    # the behavioural-diversity GENERATION pathway whose output F-dominance prevents converting to committed action
     - MECH-309   # monomodal-policy-collapse equilibrium this names the selection-side mechanism of
@@ -52937,7 +53018,7 @@
       from: failure_autopsy_V3-EXQ-732_2026-07-10
       as_of: 2026-07-10
       verdict: non_contributory/precondition_unmet
-  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
+  epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 6 confirmed substrate_ceiling failure_autopsy hits (460i/460k/460l/715/715a/717) with no positive discrimination on any richer substrate. SD-034 de-commit Child A (closure->beta coupling); the SD-034 umbrella and MECH-090 latch are UNCHANGED -- only this sub-property is demoted. The inert/no-op-mechanism null reading (F-independent commit-intent exists as isolated existence proofs but never clears the 2/3 reliability bar) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (f_dominance_conversion_ceiling de-commit-release face)."
   implementation_phase: v3
@@ -53026,6 +53107,9 @@
     ceiling (MECH-439, F ~88-89% E3 variance V3-EXQ-571), NOT orthogonal. Retest gated on the F-dominance
     commit-entry-decisiveness lever (460i; substrate_queue f_dominance_conversion_ceiling), NOT a re-queue on the
     current selector.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
+    2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
   depends_on:
     - SD-034    # umbrella design_decision this child decomposes
     - MECH-090  # the bistable latch the closure-plane commit engages
@@ -53060,7 +53144,7 @@
       from: failure_autopsy_V3-EXQ-732_2026-07-10
       as_of: 2026-07-10
       verdict: non_contributory/precondition_unmet
-  epistemic_category: standard  # GOV-CEIL-1 demotion 2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
+  epistemic_category: standard
   ceiling_decision: exhausted
   ceiling_routing_note: "GOV-CEIL-1 ceiling-exhaustion demotion 2026-07-09: 5 confirmed substrate_ceiling failure_autopsy hits (460i/460k/460l/715/715a) with no positive discrimination on any richer substrate. SD-034 de-commit Child B (de-commit magnitude); the SD-034 umbrella and MECH-090 latch are UNCHANGED -- only this sub-property is demoted. The inert/no-op-mechanism null reading (the within-arm around-closure occupancy-drop DV is repeatedly starved/vacuous, never scored above threshold) is carried co-equally. Promotion re-gated on a future positive discrimination on a richer substrate (f_dominance_conversion_ceiling de-commit-release face)."
   implementation_phase: v3
@@ -53136,6 +53220,9 @@
     argmax. Retest (460i) gated on the F-dominance commit-entry-decisiveness / natural-commit-latch-occupancy
     lever (substrate_queue f_dominance_conversion_ceiling), which makes weak-natural-commit the norm across seeds
     so coupling-certification and the de-commit window co-occur -- NOT a re-queue on the current selector.
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: GOV-CEIL-1 demotion
+    2026-07-09 (was substrate_ceiling; prior 2026-06-22 V3-EXQ-460k autopsy)
   depends_on:
     - SD-034    # umbrella design_decision this child decomposes
     - MECH-090  # the latch occupancy the de-commit lowers
@@ -55363,7 +55450,7 @@
       from: "failure_autopsy_704b-706b-conversion-ceiling_2026-06-27#V3-EXQ-704b"
       as_of: 2026-06-27
       verdict: non_contributory/substrate_ceiling
-  epistemic_category: substrate_ceiling   # ELEVATED 2026-06-27 from substrate_conditional: V3-EXQ-704b proved the conversion test's same-layer null cannot be VALIDLY constructed in the single arena (matched-null inert on the DV), not merely mis-tuned (the 704 reading). Re-derive brake fired -> v4_loop_segregation (ARC-110). See failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.
+  epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true   # SET 2026-06-27 (704b autopsy): retest the finer-channel conversion once ARC-110 segregated loops + an in-layer null exist.
   implementation_phase: v3
   version_relevance: v3
@@ -55487,6 +55574,12 @@
     the single-arena-collapse reading. Confirmed
     failure_autopsy_704b-706b-conversion-ceiling_2026-06-27 (prior:
     failure_autopsy_V3-EXQ-704_2026-06-25).
+
+    [enum-comment migrated to field 2026-07-18] epistemic_category: ELEVATED 2026-06-27 from
+    substrate_conditional: V3-EXQ-704b proved the conversion test's same-layer null cannot be
+    VALIDLY constructed in the single arena (matched-null inert on the DV), not merely mis-tuned
+    (the 704 reading). Re-derive brake fired -> v4_loop_segregation (ARC-110). See
+    failure_autopsy_704b-706b-conversion-ceiling_2026-06-27.
 - id: MECH-452
   title: "Loop-local eligibility traces under a globally-broadcast dopamine signal: even with a SINGLE shared dopaminergic teaching signal (ARC-108 delta_t), the credit traces that decide WHICH synapses/channels the signal updates must remain LOCAL and loop-specific -- effective update = shared delta_t x separate local eligibility trace x loop-specific active synapses -- rather than the current single globally-broadcast credit that updates every recently-active selector component. A too-broad or temporally-smeared eligibility trace would make learned gating appear ineffective (no committed conversion) even when the underlying dopamine learning rule is exactly correct, because the right teaching signal is delivered to the wrong synapses."
   claim_type: mechanism_hypothesis
