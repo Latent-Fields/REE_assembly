@@ -441,6 +441,15 @@
       "selected_option": "Keep held under the V5 architectural commitment (correct path).",
       "timestamp_utc": "2026-07-01T01:23:09.896220Z"
     },
+    "INV-088": {
+      "actor": "governance-86e36f (user-approved)",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Reconfirmation path 770/771/772 all FAILED (confirmed cluster autopsy, non_contributory/competence_implementation_gap) -- second consecutive non-reconfirmation after 769. No new evidence on the real-but-weak 744a coupling. pending_substrate_reconfirmation stays true; re-routed to H-bc-prior vs H-approach-primitive. No status change.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "keep hold; re-route reconfirmation onto the successor MECH-457 portfolio",
+      "timestamp_utc": "2026-07-18T06:40:45.302684Z"
+    },
     "INV-089": {
       "actor": "governance/wizardly-sutherland-efdfc7",
       "decision_needed": "Promote INV-089 (harm z_harm evaluator leg) candidate->provisional on V3-EXQ-743 PASS positive control",
@@ -656,6 +665,24 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-04-03T22:00:00Z"
+    },
+    "MECH-076": {
+      "actor": "governance-86e36f (user-approved)",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-773 PASS/supports: C1 graded peak-avoidance dose-response + C2 capture-at-a-distance, both non-degenerate; exp_conf 0.774, lit_conf 0.753, 3 supports / 0 weakens. Scope: basin-geometry leg only (mechanistic_partial); biological instantiation (CA3 retraction / DG neurogenesis) untested.",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "promote candidate -> provisional",
+      "timestamp_utc": "2026-07-18T06:40:45.258446Z"
+    },
+    "MECH-086": {
+      "actor": "governance-86e36f (user-approved)",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-775 PASS/supports: all 4 selection-gain signatures on 3/3 seeds, non-degenerate; first exp entry (exp_conf 0.774, lit_conf 0.738), 3 supports / 0 weakens; no v3_pending gate. Closes the gap that MECH-086's own subject was never directly measured (674 tagged MECH-087 only).",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "promote candidate -> provisional",
+      "timestamp_utc": "2026-07-18T06:40:45.166296Z"
     },
     "MECH-089": {
       "actor": "user",
@@ -1187,6 +1214,15 @@
       "recommendation": "hold_pending_v3_substrate",
       "selected_option": "Apply hold (no status change)",
       "timestamp_utc": "2026-04-25T15:42:09.107868Z"
+    },
+    "MECH-279": {
+      "actor": "governance-86e36f (user-approved)",
+      "decision_needed": "Promotion review: candidate -> provisional",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-776 PASS/supports: all 3 PAG freeze-gate signatures on 5/5 seeds, non-degenerate (commit-law, hysteresis, gaba_tone exit-control); exp_conf 0.774, lit_conf 0.896 (6 lit), 7 supports / 0 weakens; v3_pending already false. First CLEAN exp support (prior 475 clearance sat in the update_z_goal contaminated cohort). Scope: functional law under driven z_harm_a, not ecological engagement (MECH-280/SD-037 theta_freeze recalibration untouched).",
+      "recommendation": "promote_to_provisional",
+      "selected_option": "promote candidate -> provisional",
+      "timestamp_utc": "2026-07-18T06:40:45.213047Z"
     },
     "MECH-280": {
       "actor": "dgolden",
@@ -2260,7 +2296,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-18T06:07:47.470467Z",
+  "generated_at_utc": "2026-07-18T08:47:13.750883Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

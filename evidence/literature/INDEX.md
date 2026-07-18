@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-18T06:07:47.470467Z`
+Generated: `2026-07-18T08:47:13.750883Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -47,6 +47,7 @@ Generated: `2026-07-18T06:07:47.470467Z`
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
 | `targeted_review_commit_release_duration_latch` | [`2026-06-20_crdl_deliberation_commitment_urgency_thura2022`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/record.json) | 5 | [`summary`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/summary.md) |
+| `targeted_review_competence_bootstrap_without_demonstrator` | [`2026-07-18_cdq_007_untutored_song_abnormal_volman1995`](targeted_review_competence_bootstrap_without_demonstrator/entries/2026-07-18_cdq_007_untutored_song_abnormal_volman1995/record.json) | 8 | [`summary`](targeted_review_competence_bootstrap_without_demonstrator/entries/2026-07-18_cdq_007_untutored_song_abnormal_volman1995/summary.md) |
 | `targeted_review_connectome_arc_007` | [`2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/record.json) | 5 | [`summary`](targeted_review_connectome_arc_007/entries/2026-04-02_arc_007_hippocampal_indexing_theory_teyler2007/summary.md) |
 | `targeted_review_connectome_arc_013` | [`2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023`](targeted_review_connectome_arc_013/entries/2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023/record.json) | 3 | [`summary`](targeted_review_connectome_arc_013/entries/2026-06-22_arc_013_successor_semantic_cognitive_map_stoewer2023/summary.md) |
 | `targeted_review_connectome_arc_016` | [`2026-04-14_arc_016_precision_action_hierarchy_limanowski2024`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/record.json) | 9 | [`summary`](targeted_review_connectome_arc_016/entries/2026-04-14_arc_016_precision_action_hierarchy_limanowski2024/summary.md) |

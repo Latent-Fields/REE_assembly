@@ -17,6 +17,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-05-31T08:30Z` [decision] `decision:SD-037@2026-05-31T08:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L265`](../../../../evidence/decisions/decision_log.v1.jsonl#L265) :: decision flag_for_failure_autopsy (approved)
 - `2026-05-31T10:58Z` [autopsy] `failure_autopsy_V3-EXQ-483e_2026-05-31` -> [`evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 - `2026-05-31T16:48Z` [decision] `decision:SD-037@2026-05-31T16:48:16.625924Z` -> [`evidence/decisions/decision_log.v1.jsonl#L269`](../../../../evidence/decisions/decision_log.v1.jsonl#L269) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-14T20:00Z` [manifest] `v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3` -> [`evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json`](../../../../evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json) :: PASS manifest supports
+- `2026-07-14T20:19Z` [decision] `decision:MECH-287@2026-07-14T20:19:21.313158Z` -> [`evidence/decisions/decision_log.v1.jsonl#L357`](../../../../evidence/decisions/decision_log.v1.jsonl#L357) :: decision promote_to_provisional (applied)
 
 ## `global_workspace_jlens:GATE-B`
 
@@ -31,6 +33,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-05-31T08:30Z` [decision] `decision:SD-037@2026-05-31T08:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L265`](../../../../evidence/decisions/decision_log.v1.jsonl#L265) :: decision flag_for_failure_autopsy (approved)
 - `2026-05-31T10:58Z` [autopsy] `failure_autopsy_V3-EXQ-483e_2026-05-31` -> [`evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 - `2026-05-31T16:48Z` [decision] `decision:SD-037@2026-05-31T16:48:16.625924Z` -> [`evidence/decisions/decision_log.v1.jsonl#L269`](../../../../evidence/decisions/decision_log.v1.jsonl#L269) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-14T20:00Z` [manifest] `v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3` -> [`evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json`](../../../../evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json) :: PASS manifest supports
+- `2026-07-14T20:19Z` [decision] `decision:MECH-287@2026-07-14T20:19:21.313158Z` -> [`evidence/decisions/decision_log.v1.jsonl#L357`](../../../../evidence/decisions/decision_log.v1.jsonl#L357) :: decision promote_to_provisional (applied)
 
 ## `global_workspace_jlens:B`
 
@@ -45,6 +49,8 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-05-31T08:30Z` [decision] `decision:SD-037@2026-05-31T08:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L265`](../../../../evidence/decisions/decision_log.v1.jsonl#L265) :: decision flag_for_failure_autopsy (approved)
 - `2026-05-31T10:58Z` [autopsy] `failure_autopsy_V3-EXQ-483e_2026-05-31` -> [`evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 - `2026-05-31T16:48Z` [decision] `decision:SD-037@2026-05-31T16:48:16.625924Z` -> [`evidence/decisions/decision_log.v1.jsonl#L269`](../../../../evidence/decisions/decision_log.v1.jsonl#L269) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-14T20:00Z` [manifest] `v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3` -> [`evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json`](../../../../evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json) :: PASS manifest supports
+- `2026-07-14T20:19Z` [decision] `decision:MECH-287@2026-07-14T20:19:21.313158Z` -> [`evidence/decisions/decision_log.v1.jsonl#L357`](../../../../evidence/decisions/decision_log.v1.jsonl#L357) :: decision promote_to_provisional (applied)
 
 ## `global_workspace_jlens:MECH-191`
 
@@ -59,4 +65,6 @@ Source plan: `evidence/planning/global_workspace_jlens_plan.md`
 - `2026-05-31T08:30Z` [decision] `decision:SD-037@2026-05-31T08:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L265`](../../../../evidence/decisions/decision_log.v1.jsonl#L265) :: decision flag_for_failure_autopsy (approved)
 - `2026-05-31T10:58Z` [autopsy] `failure_autopsy_V3-EXQ-483e_2026-05-31` -> [`evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-483e_2026-05-31.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 - `2026-05-31T16:48Z` [decision] `decision:SD-037@2026-05-31T16:48:16.625924Z` -> [`evidence/decisions/decision_log.v1.jsonl#L269`](../../../../evidence/decisions/decision_log.v1.jsonl#L269) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-14T20:00Z` [manifest] `v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3` -> [`evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json`](../../../../evidence/experiments/v3_exq_757_mech288_mech287_event_boundary_trigger_functional_20260714T200049Z_v3.json) :: PASS manifest supports
+- `2026-07-14T20:19Z` [decision] `decision:MECH-287@2026-07-14T20:19:21.313158Z` -> [`evidence/decisions/decision_log.v1.jsonl#L357`](../../../../evidence/decisions/decision_log.v1.jsonl#L357) :: decision promote_to_provisional (applied)
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_721_mech446_closure_latch_lag_distribution_diagnostic
 
-Generated: `2026-07-13T04:18:41.580229Z`
+Generated: `2026-07-18T08:47:13.750883Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

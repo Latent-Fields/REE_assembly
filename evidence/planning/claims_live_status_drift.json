@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-15T13:34:54Z",
+  "generated_at": "2026-07-18T04:54:30Z",
   "counts": {
-    "total": 884,
-    "reading_drift": 4,
+    "total": 889,
+    "reading_drift": 5,
     "unstamped": 0,
     "needs_review": 0,
-    "never_reviewed": 866,
-    "provenance_drift": 11
+    "never_reviewed": 871,
+    "provenance_drift": 22
   },
   "reading_drift": [
     {
@@ -15,6 +15,14 @@
       "derived_reading": "candidate/substrate_ceiling",
       "diffs": [
         "reading: stored='candidate/substrate_ceiling/v5-reassigned' derived='candidate/substrate_ceiling'"
+      ]
+    },
+    {
+      "claim": "MECH-180",
+      "stored_reading": "candidate/v3_pending",
+      "derived_reading": "candidate/v3_pending/substrate_ceiling",
+      "diffs": [
+        "reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling'"
       ]
     },
     {
@@ -440,6 +448,7 @@
     "INV-064",
     "INV-088",
     "INV-089",
+    "INV-090",
     "MECH-214",
     "MECH-215",
     "SD-018",
@@ -791,6 +800,9 @@
     "SD-064",
     "SD-065",
     "SD-066",
+    "SD-067",
+    "SD-068",
+    "SD-069",
     "MECH-394",
     "MECH-395",
     "Q-071",
@@ -910,23 +922,49 @@
     "MECH-454",
     "Q-080",
     "MECH-455",
-    "MECH-457"
+    "MECH-457",
+    "MECH-458"
   ],
   "provenance_drift": [
     {
       "claim": "MECH-046",
-      "stored_from": "v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3",
-      "derived_from": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3"
+      "stored_from": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3",
+      "derived_from": "decision:MECH-046@2026-07-15T13:44:33.349339Z"
     },
     {
-      "claim": "MECH-092",
-      "stored_from": "decision:MECH-092@2026-03-29T21:16:41.333183Z",
-      "derived_from": "v3_exq_761_mech092_quiescent_replay_selectivity_20260714T204501Z_v3"
+      "claim": "MECH-076",
+      "stored_from": null,
+      "derived_from": "v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3"
+    },
+    {
+      "claim": "MECH-086",
+      "stored_from": null,
+      "derived_from": "v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3"
     },
     {
       "claim": "MECH-095",
       "stored_from": "V3-EXQ-741",
       "derived_from": "failure_autopsy_V3-EXQ-741_2026-07-12"
+    },
+    {
+      "claim": "INV-047",
+      "stored_from": null,
+      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+    },
+    {
+      "claim": "MECH-168",
+      "stored_from": null,
+      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+    },
+    {
+      "claim": "MECH-169",
+      "stored_from": null,
+      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+    },
+    {
+      "claim": "MECH-173",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-774_2026-07-17"
     },
     {
       "claim": "INV-064",
@@ -940,8 +978,28 @@
     },
     {
       "claim": "INV-089",
-      "stored_from": "v3_exq_746a_inv089_harm_eval_z_harm_calibrated_bound_v2_20260712T170011Z_v3",
-      "derived_from": "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13#V3-EXQ-746a"
+      "stored_from": "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
+      "derived_from": "failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16"
+    },
+    {
+      "claim": "INV-090",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16"
+    },
+    {
+      "claim": "SD-025",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-767a_2026-07-17"
+    },
+    {
+      "claim": "MECH-232",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-766a_2026-07-16"
+    },
+    {
+      "claim": "ARC-057",
+      "stored_from": null,
+      "derived_from": "failure_autopsy_V3-EXQ-768a_2026-07-17"
     },
     {
       "claim": "MECH-456",
@@ -949,24 +1007,34 @@
       "derived_from": "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13#V3-EXQ-745"
     },
     {
+      "claim": "MECH-279",
+      "stored_from": null,
+      "derived_from": "v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3"
+    },
+    {
       "claim": "MECH-302",
       "stored_from": "V3-EXQ-517d",
       "derived_from": "failure_autopsy_V3-EXQ-517b_2026-05-30"
     },
     {
-      "claim": "MECH-303",
-      "stored_from": "decision:MECH-303@2026-05-07T04:14:02Z",
-      "derived_from": "v3_exq_760_mech303_contextual_safety_terrain_discrimination_20260714T202728Z_v3"
+      "claim": "SD-068",
+      "stored_from": null,
+      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
     },
     {
-      "claim": "MECH-304",
-      "stored_from": "decision:MECH-304@2026-07-14T20:39:20.788928Z",
-      "derived_from": "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier_20260715T081944Z_v3"
+      "claim": "MECH-423",
+      "stored_from": "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
+      "derived_from": "failure_autopsy_V3-EXQ-680d_2026-06-15"
     },
     {
       "claim": "MECH-457",
       "stored_from": "v3_exq_747_748_749_mech457_fanout (GOV-FANOUT-1 discrimination portfolio, diagnostic)",
-      "derived_from": "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754"
+      "derived_from": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18#V3-EXQ-772"
+    },
+    {
+      "claim": "MECH-458",
+      "stored_from": "V3-EXQ-767a + V3-EXQ-768a (both cloud PASS, non-degenerate) + re-analysis probe scratchpad/probe1_sd025_force_decomposition.py",
+      "derived_from": null
     }
   ],
   "provenance_available": true

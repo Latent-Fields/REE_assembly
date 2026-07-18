@@ -20,7 +20,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -42,7 +42,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -64,7 +64,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]
@@ -85,7 +85,7 @@ closure_plan:
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review_reasons: ["newest_forward_predates_later_decision+manifest_event(s)"]
       join:
         bears_on: []
         scope_claims: ["SD-064", "SD-027", "MECH-254", "MECH-191", "MECH-089", "MECH-287", "SD-037", "MECH-007"]

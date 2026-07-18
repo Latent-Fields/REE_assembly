@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-07-13T04:18:56Z",
+  "generated_at": "2026-07-18T06:52:07Z",
   "counts": {
     "drifted": 0,
     "stale_since": 0,
     "suppressed": 1,
-    "assembling": 9,
+    "assembling": 10,
     "assembling_revisit_due": 0,
     "status_plane_drifted": 0,
-    "status_plane_checked": 98
+    "status_plane_checked": 99
   },
   "status_plane_drift": {
-    "checked": 98,
+    "checked": 99,
     "skipped_reason": null,
     "drifted": []
   },
@@ -84,6 +84,15 @@
       "node_status": "assembling",
       "awaiting": null,
       "assembly_status": "exhausted",
+      "revisit_after": null,
+      "revisit_due": false
+    },
+    {
+      "node_id": "conversion_ceiling_campaign:GENERATION",
+      "plan": "conversion_ceiling_campaign_plan.md",
+      "node_status": "assembling",
+      "awaiting": null,
+      "assembly_status": "blocked_on_upstream",
       "revisit_after": null,
       "revisit_due": false
     },

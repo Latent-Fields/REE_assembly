@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_209_mech075_bg_hippocampal_gain_probe
 
-Generated: `2026-07-13T04:18:41.580229Z`
+Generated: `2026-07-18T08:47:13.750883Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
